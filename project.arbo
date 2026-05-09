@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-09T08:57:41.886Z'
+updated: '2026-05-09T09:52:31.850Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23690,6 +23690,7 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
+      - 6601484b-e852-4fb6-a25c-875950c82c59
       - 901813f7-011c-4c41-802b-53ecfdb96209
     metadata:
       status: pending
@@ -81728,7 +81729,7 @@ nodes:
       blueprintIcon: FolderTree
       blueprintColor: '#f97316'
       isBlueprint: true
-      collaborate: false
+      collaborate: true
       execute: true
   2f4a316f-d42b-4bc3-a2ef-aca3a2ea2b50:
     id: 2f4a316f-d42b-4bc3-a2ef-aca3a2ea2b50
@@ -83045,7 +83046,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 50b070d9-82f3-4010-83c7-7a99e9ab187e
     metadata:
       status: pending
       isBlueprint: true
@@ -84757,7 +84759,6 @@ nodes:
     children:
       - 5dd8ab00-6dbc-4955-b301-1ad9c0bd5a83
       - a1d066c3-7e32-4660-970d-665d375fe13c
-      - 50b070d9-82f3-4010-83c7-7a99e9ab187e
     metadata:
       status: pending
       isBlueprint: true
@@ -98643,99 +98644,12 @@ nodes:
     id: 50b070d9-82f3-4010-83c7-7a99e9ab187e
     content: 'PR3 - Bug : The terminal tab assignment is getting confused'
     children:
-      - 1452a28c-76d1-4999-b313-9a3c2618702a
-      - c75e89c3-971e-41d9-8013-e7ce426d95a3
-      - 6dde260a-f020-40f0-a7f8-08eec2dd0b88
+      - 2023117b-bb9a-4d9e-83c2-8724b01260bd
+      - 4495e73a-063c-4985-b5df-01370f140cfb
+      - c38e0362-fed2-47d2-ba51-a031af21297d
     metadata:
       status: pending
       expanded: false
-      deleted: false
-      plugins: {}
-  1452a28c-76d1-4999-b313-9a3c2618702a:
-    id: 1452a28c-76d1-4999-b313-9a3c2618702a
-    content: User story
-    children:
-      - 8cb9782f-8414-4a1c-a3db-a6f75df66349
-      - 26504134-41a8-43bd-ac4a-4d45927bc908
-      - e0adb7e6-26b6-43b9-9421-0c61e4f03aa5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8cb9782f-8414-4a1c-a3db-a6f75df66349:
-    id: 8cb9782f-8414-4a1c-a3db-a6f75df66349
-    content: A warning message appears to say a terminal tab is already assigned for an automated step on another node that has its own terminal tab
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  26504134-41a8-43bd-ac4a-4d45927bc908:
-    id: 26504134-41a8-43bd-ac4a-4d45927bc908
-    content: Sometimes there are duplicate commands sent to more than one terminal window
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0adb7e6-26b6-43b9-9421-0c61e4f03aa5:
-    id: e0adb7e6-26b6-43b9-9421-0c61e4f03aa5
-    content: Sometimes trying to continue a workflow says that the terminal that was used originally for that workflow is now assigned to another
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c75e89c3-971e-41d9-8013-e7ce426d95a3:
-    id: c75e89c3-971e-41d9-8013-e7ce426d95a3
-    content: Resume reconciliation and ack-retry hardening
-    children:
-      - 575894ce-66f0-4268-838c-549855b01931
-      - a99ed27a-d66b-48f9-831c-84344fb1b3cd
-      - 015a9d02-23a7-41b6-b79a-16081efeb24f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  575894ce-66f0-4268-838c-549855b01931:
-    id: 575894ce-66f0-4268-838c-549855b01931
-    content: Lazily reconcile `workflowSessionMap` on resume when the session id isn't yet known (instead of trusting whatever terminal last fired)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a99ed27a-d66b-48f9-831c-84344fb1b3cd:
-    id: a99ed27a-d66b-48f9-831c-84344fb1b3cd
-    content: Ensure an ack arriving inside the 5s pending-ack window cancels the retry rather than racing it
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  015a9d02-23a7-41b6-b79a-16081efeb24f:
-    id: 015a9d02-23a7-41b6-b79a-16081efeb24f
-    content: Targets the resume-after-reload mismap and any residual duplicate sends from retry races
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6dde260a-f020-40f0-a7f8-08eec2dd0b88:
-    id: 6dde260a-f020-40f0-a7f8-08eec2dd0b88
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   53e787b1-2be2-4754-907b-afb9e433f75e:
@@ -99988,6 +99902,208 @@ nodes:
   4bb044bd-fb13-4051-b5f3-730d223e6181:
     id: 4bb044bd-fb13-4051-b5f3-730d223e6181
     content: 'Documentation decision — no changes needed. Changelog: "Workflow execution" is in CHANGELOG.md ## Unreleased and the last release tag is v0.1.1, so PR2 fixes another aspect of an unreleased feature → per convention "Don''t add a line to the changelog for a bug fix to a feature that was implemented after the last release", skip. Same reasoning as PR1 (which also did not generate a changelog entry). Docs: behavior change is "a workflow node holds its terminal binding through running↔awaiting-validation transitions, so a checkpointed step''s terminal can''t be stolen by a fresh sibling and continueWorkflow no longer reports the original terminal as assigned to another node" — that''s the natural expectation users already have; existing docs/workflows.md does not promise the broken behavior, and "Running Multiple Items" (line 120-122) already covers per-file multi-terminal workflows correctly. Per "If it''s implicit or discoverable and non-blocking, no need to mention it" and "Don''t add an entry if it''s not useful to the user or bloats the documentation", skip. No existing documentation references the broken pre-fix behavior, so nothing to retract.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6601484b-e852-4fb6-a25c-875950c82c59:
+    id: 6601484b-e852-4fb6-a25c-875950c82c59
+    content: Bug - recurse not triggering
+    children:
+      - add49cc8-ea19-454d-8638-976af159ba52
+      - 94c398a1-4102-4f52-afb5-a5c894e697d0
+      - 49e9c84b-eea5-4d68-80c2-9c89fa96d2d7
+    metadata:
+      status: pending
+      expanded: false
+  add49cc8-ea19-454d-8638-976af159ba52:
+    id: add49cc8-ea19-454d-8638-976af159ba52
+    content: Check that decomposed nodes are related to each other
+    children: []
+    metadata:
+      status: pending
+  94c398a1-4102-4f52-afb5-a5c894e697d0:
+    id: 94c398a1-4102-4f52-afb5-a5c894e697d0
+    content: And that it persists between sessions
+    children: []
+    metadata:
+      status: pending
+  49e9c84b-eea5-4d68-80c2-9c89fa96d2d7:
+    id: 49e9c84b-eea5-4d68-80c2-9c89fa96d2d7
+    content: While we're at it - recurse should move the waiting decomposed items onto the next node and start their workflow from there, and not start them in a workflow in their current node
+    children:
+      - 198030df-29c2-4dfe-8b34-4c413fcfb84d
+    metadata:
+      status: pending
+  198030df-29c2-4dfe-8b34-4c413fcfb84d:
+    id: 198030df-29c2-4dfe-8b34-4c413fcfb84d
+    content: As they were already decomposed in the node they landed in
+    children: []
+    metadata:
+      status: pending
+  2023117b-bb9a-4d9e-83c2-8724b01260bd:
+    id: 2023117b-bb9a-4d9e-83c2-8724b01260bd
+    content: User story
+    children:
+      - abb7bca6-1869-4f70-92b6-ac4df62f934f
+      - e5857650-7113-4862-81f2-37f5e73c3fb7
+      - 0d395e72-d3bc-4598-a6d3-e3e780ae7136
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abb7bca6-1869-4f70-92b6-ac4df62f934f:
+    id: abb7bca6-1869-4f70-92b6-ac4df62f934f
+    content: A warning message appears to say a terminal tab is already assigned for an automated step on another node that has its own terminal tab
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5857650-7113-4862-81f2-37f5e73c3fb7:
+    id: e5857650-7113-4862-81f2-37f5e73c3fb7
+    content: Sometimes there are duplicate commands sent to more than one terminal window
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d395e72-d3bc-4598-a6d3-e3e780ae7136:
+    id: 0d395e72-d3bc-4598-a6d3-e3e780ae7136
+    content: Sometimes trying to continue a workflow says that the terminal that was used originally for that workflow is now assigned to another
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4495e73a-063c-4985-b5df-01370f140cfb:
+    id: 4495e73a-063c-4985-b5df-01370f140cfb
+    content: Resume reconciliation and ack-retry hardening
+    children:
+      - f308dc1b-fb52-4287-aef6-6226ca4f4074
+      - e055b11a-519e-4b65-8d87-02db24b8d85c
+      - 6f82b29c-cbc3-4650-a728-f9c0e0cdc305
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f308dc1b-fb52-4287-aef6-6226ca4f4074:
+    id: f308dc1b-fb52-4287-aef6-6226ca4f4074
+    content: Lazily reconcile `workflowSessionMap` on resume when the session id isn't yet known (instead of trusting whatever terminal last fired)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e055b11a-519e-4b65-8d87-02db24b8d85c:
+    id: e055b11a-519e-4b65-8d87-02db24b8d85c
+    content: Ensure an ack arriving inside the 5s pending-ack window cancels the retry rather than racing it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f82b29c-cbc3-4650-a728-f9c0e0cdc305:
+    id: 6f82b29c-cbc3-4650-a728-f9c0e0cdc305
+    content: Targets the resume-after-reload mismap and any residual duplicate sends from retry races
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c38e0362-fed2-47d2-ba51-a031af21297d:
+    id: c38e0362-fed2-47d2-ba51-a031af21297d
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children:
+      - d0a2fa72-d18a-41bb-8a28-c81492603a4e
+      - 4a4f36ae-153c-4a80-b33f-8ac04a10616f
+      - 0904c6fe-2218-48dc-988c-bcb332ebabee
+      - b310f01d-1b2a-41ad-9407-cd80929b3636
+      - 938a61e8-5957-49e3-9793-388e5f60eb00
+      - 51c6c4fa-dbe4-425b-b503-5e9e2ce864ab
+      - 942f9bc7-2411-47e1-a06e-30836beb762f
+      - 508eacf6-cc9f-45d6-b2f2-a8277c523396
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0a2fa72-d18a-41bb-8a28-c81492603a4e:
+    id: d0a2fa72-d18a-41bb-8a28-c81492603a4e
+    content: 'Test work added in src/renderer/store/tree/actions/tests/workflowResumeReconciliation.test.ts (15 named tests + 2 title-only). 7 currently fail per TDD — they pin the post-fix lazy-reconciliation contract: when a hook event arrives with a session_id NOT yet in workflowSessionMap but a known terminal_id, the handler must fall back to the terminal_id to find the running node and route the event (UserPromptSubmit consumes the pending ack so no retry fires; Stop advances the workflow; NeedsReview flips the entry to awaiting-validation). 8 currently pass — backward compatibility (known session_id still routes correctly), boundary cases (unknown session_id with no terminal_id drops, unknown session_id with foreign terminal_id drops, idempotent repeated dispatch, no-pending-ack no-op, rapid-fire fan-out). 2 title-only for intentionally-uncertain post-fix decisions: continueWorkflow''s eager-vs-lazy reconcile choice (whether continueWorkflow itself evicts the prior session→terminal mapping, or defers entirely to the next hook event); behavior when session_id is present but empty-string. Tests assert the OBSERVABLE contract (mockAutonomousCollaborate call count for retry detection; state.workflowExecutionStates / state.nodes for routing effects) rather than internal field names. Test harness mirrors workflowUserPromptAck.test.ts: vi.useFakeTimers() + primeRunningStep helper that flushes the autonomousCollaborate promise so registerPendingAck has run; same mocks (logger, toastStore, terminalExecution, nodeHelpers, promptBuilder, preferencesStore, workflowNotification, AcceptFeedbackCommand, parseFeedbackContent). Workaround: wrapped handleHookEvent calls in a `dispatch(LazyHookEvent)` helper so tests can pass `terminal_id` / `source` fields that the production HookEventPayload type does not yet declare — a `let rawHandleHookEvent` captured in beforeEach with `.bind(actions)` avoids self-recursion when the type widens. ESLint clean, tsc --noEmit clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a4f36ae-153c-4a80-b33f-8ac04a10616f:
+    id: 4a4f36ae-153c-4a80-b33f-8ac04a10616f
+    content: 'Implementation landed in src/renderer/store/tree/actions/workflowHookEventHandler.ts — minimal two-line change. (1) Widened `HookEventPayload` interface (lines 21-26) with `terminal_id?: string` and `source?: string` (the wire-level fields that the renderer already receives from main-process hook IPC; the type was just out of sync). (2) Changed the terminal-id lookup at line 64 from `const terminalId = workflowSessionMap[event.session_id]` to `const terminalId = workflowSessionMap[event.session_id] || event.terminal_id`. That single `||` is the lazy-reconciliation fallback: when the session id isn''t in the map (immediately after `continueWorkflow` resumes a node, before SessionStart for the new session has propagated through the renderer''s session map), the handler falls back to the event''s explicit terminal_id and proceeds to `findRunningNodeOnTerminal(terminalId)` exactly as before. Net effect for spec point 1 (lazy reconcile): the mapping isn''t eagerly evicted on continueWorkflow; the next hook event that arrives carrying a terminal_id reconciles routing on the spot. Net effect for spec point 2 (ack-within-window cancels retry): the residual race was driven entirely by the drop-on-unknown-session_id branch — which made consumePendingAck never run for events arriving in the resume window. With the fallback in place the consumePendingAck path is reached, the timer is cleared, and the retry never fires. Test wrapper note: the test file''s `dispatch(LazyHookEvent)` helper that worked around the absent terminal_id field is no longer strictly needed once the type widens, but it keeps the call sites short and is harmless — leaving it in. Final results: 15/15 tests in workflowResumeReconciliation.test.ts pass; 0 new regressions in src/renderer/store/tree/actions/tests/ sweep (10 pre-existing clear-session*.test.ts failures unchanged from master, all unrelated `window.electron.startKeepAwake is not a function` mock gaps). ESLint: 0 errors, no new warnings on changed files. tsc --noEmit: clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0904c6fe-2218-48dc-988c-bcb332ebabee:
+    id: 0904c6fe-2218-48dc-988c-bcb332ebabee
+    content: 'AC verification + test-coverage check. Traced each AC to code: AC1 (lazy reconcile when session id not yet known) → workflowHookEventHandler.ts:64 `|| event.terminal_id` fallback; mapping is never eagerly evicted on continueWorkflow, so the implementation literally matches the "lazily" wording in the spec. AC2 (ack within 5s window cancels retry) → corollary of AC1. The pre-fix race was specifically the drop-on-unknown-session_id branch skipping consumePendingAck; with the fallback the consume path reaches clearTimeout and the retry never fires. No separate code change required. AC3 (target resume-after-reload mismap + residual retry-race duplicate sends) → both root causes addressed by the same single change. Test coverage covers each AC: lazy fallback for UserPromptSubmit/Stop/NeedsReview (3 tests); backward compat with known session_id (1 test); boundary drops when neither session_id nor terminal_id is known (2 tests); ack-within-window race-pinning (3 tests including idempotent repeat and multi-terminal independence); continueWorkflow + lazy reconciliation interaction (1 named + 1 title-only). 2 title-only tests intentionally left for design choices the spec already implies (the lazy choice is named directly in the AC1 wording; the empty-string session_id case is a marginal edge). No discrepancies found between spec and implementation; no test asserts local/simplified behavior where the spec requires global behavior. Re-confirmed: 15/15 tests pass post-implementation; lint+tsc clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b310f01d-1b2a-41ad-9407-cd80929b3636:
+    id: b310f01d-1b2a-41ad-9407-cd80929b3636
+    content: 'AI refactor pass. Convention review of the diff: no iteration-history references in comments (no "this PR" / "PR3" / "user story" / "the bug this" hits in either changed file); no JSDoc; no PRD ticket references; no inline-arrow factory functions added (the production change is a 1-line `||` fallback inside an existing function, plus 2 optional fields on an interface — nothing factory-shaped to extract); test harness uses imported-module mocks (vi.mock, vi.stubGlobal where appropriate); beforeEach clears all mocks + state; afterEach restores real timers per the useFakeTimers contract; no empty tests (2 title-only are deliberate per project convention "Title-only tests are acceptable when post-fix behavior is uncertain"); no abandoned code (the `dispatch(LazyHookEvent)` helper is intentional even though the type now widens, because it keeps call sites short and reads cleanly). The `||` operator on the lookup line is idiomatic JS and reads inline ("if the session map has it, use that; else fall back to the event''s own terminal_id") — extracting to a named function would be over-engineering for a 1-line operation per "Don''t add features... beyond what the task requires". File lengths: workflowHookEventHandler.ts is 229 lines (under 500); workflowResumeReconciliation.test.ts is 411 lines (test files are exempt anyway). Standard checks final: 15/15 tests pass on changed/new files; ESLint "No issues found"; tsc --noEmit clean (no errors).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  938a61e8-5957-49e3-9793-388e5f60eb00:
+    id: 938a61e8-5957-49e3-9793-388e5f60eb00
+    content: 'Review feedback (pr-review-toolkit:code-reviewer): CRITICAL — the production fallback I shipped is UNREACHABLE in production. (1) BLOCKER — `useHookEventListener.ts:55-62` (the PR1 cross-store dispatcher) routes non-SessionStart events via `findStoreOwningSession(event.session_id)` (line 17-25), which uses `Object.prototype.hasOwnProperty.call(map, sessionId)`. If NO store has the session_id registered, the event is DROPPED at the dispatcher line 56-62 — `handleHookEvent` is NEVER called. Conversely, when the dispatcher DOES forward, it picks the store whose map contains `event.session_id`, so by definition `workflowSessionMap[event.session_id]` is truthy in that store and my new `|| event.terminal_id` fallback at workflowHookEventHandler.ts:66 NEVER FIRES. The "session not yet registered" race PR3 claims to fix is happening at the dispatcher boundary, not at the per-store handler. The 15 new tests pass only because they import `createWorkflowExecutionActions` and call `actions.handleHookEvent` directly (workflowResumeReconciliation.test.ts:117-119, 161) — they bypass the dispatcher. Fix path: move the lazy fallback INTO `useHookEventListener.ts`. Concretely: when `findStoreOwningSession` returns null, fall back to `event.terminal_id ? findStoreOwningTerminal(event.terminal_id) : null`. The handler-side change can stay as defense-in-depth or be reverted (it''s harmless dead code). Also need a NEW integration test that exercises useHookEventListener (not handleHookEvent directly) with the resume scenario — the existing tests in useHookEventListenerRouting.test.ts (PR1) are the right shape; add a "Stop with unknown session_id but known terminal_id routes to the store owning the terminal" case. (2) IMPORTANT — `||` vs `??` at workflowHookEventHandler.ts:66: with `||`, an empty-string entry in workflowSessionMap (no current writer produces it but a future regression in registerSession could) would falsy-coerce and silently fall through to event.terminal_id — possibly routing to the wrong terminal. `??` is safer. Same applies if the fallback moves to the dispatcher: any non-null-non-undefined check should use `??` or an explicit `if`. (3) IMPORTANT — `findSessionIdForTerminal` in sendActions.ts:153 returns the FIRST session_id mapped to the terminal. Between continueWorkflow and the next SessionStart, the prior session_id is still in workflowSessionMap; any sendContentToTerminal in that window — most relevantly the 5s ack-retry the PR is meant to suppress — bakes the STALE session_id into buildNeedsReviewInstruction (sendActions.ts:163). The AI POSTs NeedsReview with the stale id; the dispatcher routes via findStoreOwningSession which still owns that stale id, so it lands on the right store — likely benign but it IS a real semantic mismatch. Recommend either (a) evicting the stale entry on continueWorkflow (eager) or (b) a short comment near sendActions.ts:153 acknowledging the resume-window staleness. (4) MINOR — test file''s LazyHookEvent cast comment (lines 87-92 of workflowResumeReconciliation.test.ts) is now stale since the type WAS widened — recommend deleting the helper-type plumbing and using HookEventCall directly. The two title-only tests at lines 355 and 392 should be either filled in or `.todo`d. Wire payload (hookServer.ts:163-164, preload/index.ts:121) does carry terminal_id and source — the type widening was correct. Action items for next AI: (a) Move lazy fallback to useHookEventListener.findStoreOwningSession (or add a parallel branch in the dispatcher) + add a useHookEventListenerRouting.test.ts case for the unknown-session/known-terminal fallback path; (b) optionally revert the now-redundant handleHookEvent fallback OR keep as defense-in-depth; (c) change `||` to `??`; (d) decide on the resume-window stale-session-id comment-or-fix in sendActions; (e) trim the LazyHookEvent test plumbing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51c6c4fa-dbe4-425b-b503-5e9e2ce864ab:
+    id: 51c6c4fa-dbe4-425b-b503-5e9e2ce864ab
+    content: 'Feedback on the review (developer reply, after re-reading the dispatcher code): ACCEPTED 2 of 5 findings; REJECTED 3. — ACCEPT (correct, real correctness bug) Finding 1 "fallback is unreachable in production": confirmed by re-reading useHookEventListener.ts:55-62 and 17-25. The dispatcher''s `findStoreOwningSession` uses `Object.prototype.hasOwnProperty.call(map, sessionId)` — when no store has the session_id, the event is dropped before reaching any per-store handler; when a store DOES have it, the bracket access in my handler fallback is by definition truthy. So my `|| event.terminal_id` only fires in test code that bypasses the dispatcher. This is a genuine correctness defect introduced by shipping the fix in the wrong layer. The bug-relevant scenario (UserPromptSubmit with unknown session_id arriving in the resume window) hits the dispatcher''s drop branch, never my handler. The developer-facing AC1 verification I wrote in the prior step missed this — I traced the operator change but didn''t trace the handler''s call-site reachability. Fix in next implementation step: move the fallback into useHookEventListener.ts; when findStoreOwningSession returns null AND event.terminal_id is set, fall back to findStoreOwningTerminal(event.terminal_id). Add an integration test in useHookEventListenerRouting.test.ts (mirroring the PR1 routing test shape) for the unknown-session/known-terminal path. Decide whether to keep the handler-side `|| event.terminal_id` as defense-in-depth or revert: leaning revert because it''s pure dead code post-fix, and dead defensive code violates CLAUDE.md "Don''t add error handling, fallbacks, or validation for scenarios that can''t happen". REJECT (defensive against impossible scenario, also moot if handler-side fallback is reverted) Finding 2 "`||` vs `??`": the empty-string scenario requires a future regression in registerSession (workflowExecutionActions.ts:561-573) that doesn''t exist today and is guarded by registerSession''s own type signature (terminalId: string is non-empty in the only writer). CLAUDE.md is explicit: "Don''t add error handling, fallbacks, or validation for scenarios that can''t happen. Trust internal code and framework guarantees." If we revert the handler-side fallback per Finding 1, this is moot anyway. SKIP. REJECT (out of scope + reviewer admits "likely benign" + contradicts spec) Finding 3 "stale session_id baked into resume prompts via sendActions.ts:153": the reviewer''s own analysis admits the routing still works because the stale map entry points to the right terminal — so the AI''s NeedsReview POST does land on the correct store. The semantic mismatch is cosmetic. Critically, the spec for PR3 explicitly says "**Lazily** reconcile workflowSessionMap" — eager eviction on continueWorkflow (option a) would directly contradict the spec. A "what" comment near sendActions.ts:153 (option b) violates CLAUDE.md "Comments for ''why'' not ''what''". Both options are wrong; the lazy approach is the documented choice. SKIP. ACCEPT (cleanup, low cost) Finding 4 "stale LazyHookEvent test plumbing": now that HookEventPayload widened, the cast wrapper is unnecessary. Will trim in the next implementation step (delete the LazyHookEvent type alias, the rawHandleHookEvent capture, and the dispatch helper; replace `dispatch(...)` with direct `actions.handleHookEvent(...)` calls). REJECT (project convention permits) Finding 5 "title-only tests": CLAUDE.md "Title-only tests are acceptable when post-fix behavior is uncertain". The two title-only items (continueWorkflow eager-vs-lazy decision; empty-string session_id) document design choices the spec already implies — converting to `.todo` or filling them in adds noise without protecting against a real regression. SKIP. NET PLAN for the next implementation step: (a) Finding 1 → move fallback to useHookEventListener.ts (modify findStoreOwningSession or add a parallel branch in the dispatcher''s else path) + 1-2 new tests in useHookEventListenerRouting.test.ts; revert the now-dead handler-side fallback (keep the type widening); (b) Finding 4 → trim LazyHookEvent test plumbing; (c) update workflowResumeReconciliation.test.ts to either use the dispatcher (proper integration test) or remain a unit test of handler behavior with a clearer name making the bypass intentional.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  942f9bc7-2411-47e1-a06e-30836beb762f:
+    id: 942f9bc7-2411-47e1-a06e-30836beb762f
+    content: 'Feedback summary by severity — HIGH (accept, real correctness bug): Finding 1 (handler-side fallback is unreachable; the actual bug is at the PR1 dispatcher and the fix needs to land there); LOW (accept, cosmetic): Finding 4 (trim stale LazyHookEvent test plumbing post-type-widening); LOW/REJECTED (defensive against impossible scenario, moot if Finding 1 reverts the handler-side change): Finding 2 (`||` vs `??` — empty-string in workflowSessionMap requires breaking registerSession''s type contract first); LOW/REJECTED (out of scope + reviewer admits benign + contradicts spec wording): Finding 3 (stale session id baked into resume prompts — eager eviction would violate the spec''s "lazily"); LOW/REJECTED (convention permits): Finding 5 (title-only tests — explicitly allowed by CLAUDE.md when post-fix behavior is uncertain).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  508eacf6-cc9f-45d6-b2f2-a8277c523396:
+    id: 508eacf6-cc9f-45d6-b2f2-a8277c523396
+    content: 'Documentation decision — no changes needed. Changelog: "Workflow execution" is in CHANGELOG.md ## Unreleased and the last release tag is v0.1.1, so PR3 fixes another aspect of an unreleased feature → per convention "Don''t add a line to the changelog for a bug fix to a feature that was implemented after the last release", skip. Same reasoning as PR1 and PR2 (neither generated a changelog entry). Docs: behavior change is "workflows resumed via continueWorkflow continue to advance correctly even when the AI''s first hook event after resume arrives before SessionStart has propagated to the renderer''s session map" — a subtle internal-routing detail that users would expect to "just work"; existing docs/workflows.md does not promise the broken behavior. Per "If it''s implicit or discoverable and non-blocking, no need to mention it" and "Don''t add an entry if it''s not useful to the user or bloats the documentation", skip. No existing documentation references the broken pre-fix behavior, so nothing to retract. Note for next step: the implementation has the unreachable-fallback gap from the review (Finding 1) — the fix will land at the merge step (mirroring PR2''s pattern where I detected and fixed the disruption-handler regression before merging).'
     children: []
     metadata:
       status: completed
