@@ -1,21 +1,39 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 
-const { mockRegisterSession, mockHandleHookEvent } = vi.hoisted(() => ({
+const { mockRegisterSession, mockHandleHookEvent, sessionMapRef, fileStatesRef } = vi.hoisted(() => ({
   mockRegisterSession: vi.fn(),
   mockHandleHookEvent: vi.fn(),
+  sessionMapRef: { current: {} as Record<string, string> },
+  fileStatesRef: {
+    current: {} as Record<string, { terminals: { id: string }[]; activeTerminalId: string | null }>,
+  },
 }));
 
-vi.mock('../../store/storeManager', () => ({
-  storeManager: {
-    getAllStores: vi.fn(() => [{
-      getState: () => ({
-        actions: {
-          registerSession: mockRegisterSession,
-          handleHookEvent: mockHandleHookEvent,
-        },
-      }),
-    }]),
+vi.mock('../../store/storeManager', () => {
+  const fakeStore = {
+    getState: () => ({
+      currentFilePath: '/files/only.arbo',
+      workflowSessionMap: sessionMapRef.current,
+      actions: {
+        registerSession: mockRegisterSession,
+        handleHookEvent: mockHandleHookEvent,
+      },
+    }),
+  };
+  return {
+    storeManager: {
+      getAllStores: vi.fn(() => [fakeStore]),
+      getAllStoreEntries: vi.fn(() => [{ filePath: '/files/only.arbo', store: fakeStore }]),
+      getStoreForFile: vi.fn(() => fakeStore),
+      hasStore: vi.fn(() => true),
+    },
+  };
+});
+
+vi.mock('../../store/terminal/terminalStore', () => ({
+  useTerminalStore: {
+    getState: () => ({ fileStates: fileStatesRef.current }),
   },
 }));
 
@@ -32,6 +50,13 @@ describe('useHookEventListener', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    sessionMapRef.current = {};
+    fileStatesRef.current = {
+      '/files/only.arbo': {
+        terminals: [{ id: 'terminal-1' }, { id: 'terminal-42' }],
+        activeTerminalId: null,
+      },
+    };
     mockCleanup = vi.fn();
 
     global.window = {
@@ -91,6 +116,7 @@ describe('useHookEventListener', () => {
 
   describe('Stop events', () => {
     it('should forward Stop event to handleHookEvent', () => {
+      sessionMapRef.current = { 'sess-abc': 'terminal-1' };
       renderHook(() => useHookEventListener());
 
       act(() => {
@@ -110,6 +136,7 @@ describe('useHookEventListener', () => {
 
   describe('Notification events', () => {
     it('should forward Notification event with message to handleHookEvent', () => {
+      sessionMapRef.current = { 'sess-abc': 'terminal-1' };
       renderHook(() => useHookEventListener());
 
       act(() => {
@@ -130,6 +157,7 @@ describe('useHookEventListener', () => {
 
   describe('unknown events', () => {
     it('should forward unknown event types to handleHookEvent without crashing', () => {
+      sessionMapRef.current = { 'sess-abc': 'terminal-1' };
       renderHook(() => useHookEventListener());
 
       act(() => {
@@ -148,6 +176,9 @@ describe('useHookEventListener', () => {
 
   describe('rapid events', () => {
     it('should handle multiple events in quick succession', () => {
+      mockRegisterSession.mockImplementation((sessionId: string, terminalId: string) => {
+        sessionMapRef.current = { ...sessionMapRef.current, [sessionId]: terminalId };
+      });
       renderHook(() => useHookEventListener());
 
       act(() => {
