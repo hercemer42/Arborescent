@@ -35,11 +35,13 @@ import {
   captureSessionOnNode,
   markNodeStartingSession,
 } from "./workflowSessionResume";
+import { decideWorkflowStartRoute } from "../../../utils/workflowStartRoute";
+import { useTerminalStore } from "../../terminal/terminalStore";
 
 export type { WorkflowExecutionEntry };
 
 export interface WorkflowExecutionActions {
-  startWorkflow: (nodeId: string, terminalId: string | null) => void;
+  startWorkflow: (nodeId: string, terminalId: string | null) => Promise<void>;
   stopWorkflow: (nodeId: string) => void;
   continueWorkflow: (nodeId: string, terminalId: string | null) => void;
   completeWorkflow: (nodeId: string) => void;
@@ -222,17 +224,7 @@ export const createWorkflowExecutionActions = (
     if (changed) set({ terminalNodeAssignments: updated });
   }
 
-  function startWorkflow(nodeId: string, terminalId: string | null): void {
-    if (terminalId === null) {
-      useToastStore
-        .getState()
-        .addToast(
-          "No terminal tab available. Open a terminal to start workflow execution.",
-          "warning",
-        );
-      return;
-    }
-
+  async function startWorkflow(nodeId: string, terminalId: string | null): Promise<void> {
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
 
     if (
@@ -245,6 +237,49 @@ export const createWorkflowExecutionActions = (
     ) {
       return;
     }
+
+    const node = nodes[nodeId];
+    const openTerminalIds = new Set(
+      useTerminalStore.getState().terminals.map((t) => t.id),
+    );
+    const route = decideWorkflowStartRoute({
+      sessionId: node?.metadata.sessionId,
+      sessionLiveness: node?.metadata.sessionLiveness,
+      sessionTabId: node?.metadata.sessionTabId,
+      sessionWorkingDirectory: node?.metadata.sessionWorkingDirectory,
+      openTerminalIds,
+    });
+
+    if (route.kind === "spawn-fresh") {
+      if (terminalId === null) {
+        useToastStore
+          .getState()
+          .addToast(
+            "No terminal tab available. Open a terminal to start workflow execution.",
+            "warning",
+          );
+        return;
+      }
+      startWorkflowOnTerminal(nodeId, terminalId, "spawn");
+      return;
+    }
+
+    await sessionResumeManager.resumeSession(nodeId);
+    const resolvedTerminalId = get().nodes[nodeId]?.metadata.sessionTabId;
+    if (!resolvedTerminalId) return;
+    const liveTerminalIds = new Set(
+      useTerminalStore.getState().terminals.map((t) => t.id),
+    );
+    if (!liveTerminalIds.has(resolvedTerminalId)) return;
+    startWorkflowOnTerminal(nodeId, resolvedTerminalId, "reattach");
+  }
+
+  function startWorkflowOnTerminal(
+    nodeId: string,
+    terminalId: string,
+    mode: "spawn" | "reattach",
+  ): void {
+    const { nodes, workflowExecutionStates } = get();
 
     const existingNodeId = findRunningNodeOnTerminal(terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
@@ -274,16 +309,18 @@ export const createWorkflowExecutionActions = (
         ...workflowExecutionStates,
         [nodeId]: { state: "running" as const, terminalTabId: terminalId },
       },
-      nodes: markNodeStartingSession(nodes, nodeId, terminalId),
+      nodes: mode === "spawn" ? markNodeStartingSession(nodes, nodeId, terminalId) : nodes,
     });
     assignTerminalToNode(terminalId, nodeId);
 
     void window.electron.startKeepAwake();
 
     stepTimeouts.start(nodeId);
-    clearSessionManager.maybeClearThenSend(nodeId, terminalId);
+    if (mode === "spawn") {
+      clearSessionManager.maybeClearThenSend(nodeId, terminalId);
+    }
     logger.info(
-      `Started workflow execution for node ${nodeId} on terminal ${terminalId}`,
+      `Started workflow execution for node ${nodeId} on terminal ${terminalId} (${mode})`,
       "WorkflowExecution",
     );
     triggerAutosave?.();

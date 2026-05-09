@@ -121,6 +121,8 @@ Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — 
 
 Each workflow step that talks to an AI tool captures its session id on the node. Right-click a workflow node and pick **Resume session** to reattach — the action focuses the original terminal tab if it's still open, or opens a new one in the recorded working directory and runs `claude --resume`.
 
+**Start Workflow** auto-resumes too. If the node already has a live session in an open tab, Start focuses that tab — no duplicate is created. If the tab was closed but the session is still on disk, Start opens a new tab and runs `claude --resume`. A fresh session only spawns when the node has no recorded session or its session has been lost. Stopping a workflow does not end its underlying CLI session, so the next Start picks up where you left off.
+
 Closing a terminal tab no longer terminates the underlying session — the workflow execution stops, but the conversation remains in Claude's session store. You can walk away from a running step, close the tab, and resume from a fresh tab later. This works across app restart, as long as the session is still on disk.
 
 A red dot next to a workflow node means the session is gone and can't be resumed. Start the workflow again to spawn a fresh one.
