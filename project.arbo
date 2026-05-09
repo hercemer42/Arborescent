@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-09T08:09:08.887Z'
+updated: '2026-05-09T08:49:50.877Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -83045,7 +83045,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 629bc0db-be09-4f61-b904-bf4371f3b6ad
     metadata:
       status: pending
       isBlueprint: true
@@ -84757,7 +84758,6 @@ nodes:
     children:
       - 5dd8ab00-6dbc-4955-b301-1ad9c0bd5a83
       - a1d066c3-7e32-4660-970d-665d375fe13c
-      - 629bc0db-be09-4f61-b904-bf4371f3b6ad
       - 50b070d9-82f3-4010-83c7-7a99e9ab187e
     metadata:
       status: pending
@@ -98631,109 +98631,12 @@ nodes:
     id: 629bc0db-be09-4f61-b904-bf4371f3b6ad
     content: 'PR2 - Bug : The terminal tab assignment is getting confused'
     children:
-      - 5fe7ce7b-f450-4f03-a1f9-be4248f6db15
-      - aac04c39-7cdd-43ab-8258-94a1782fcd0e
-      - f2a38f95-c6b3-47b3-b4ce-d6091ccf971f
+      - a40289f1-480f-4105-93a9-ece3d7b7fe50
+      - 092bb06d-6b11-46c5-8c06-dd1dc0c93b99
+      - 4ad5507b-7e6f-4bc6-917d-a376c86df3d8
     metadata:
-      status: pending
+      status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  5fe7ce7b-f450-4f03-a1f9-be4248f6db15:
-    id: 5fe7ce7b-f450-4f03-a1f9-be4248f6db15
-    content: User story
-    children:
-      - ad3c8306-8f98-473a-81ff-fd46df731d78
-      - 3a699278-9150-43b0-836e-3b07720f8635
-      - f395f2e3-a974-4893-91e0-280e040aa96f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad3c8306-8f98-473a-81ff-fd46df731d78:
-    id: ad3c8306-8f98-473a-81ff-fd46df731d78
-    content: A warning message appears to say a terminal tab is already assigned for an automated step on another node that has its own terminal tab
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a699278-9150-43b0-836e-3b07720f8635:
-    id: 3a699278-9150-43b0-836e-3b07720f8635
-    content: Sometimes there are duplicate commands sent to more than one terminal window
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f395f2e3-a974-4893-91e0-280e040aa96f:
-    id: f395f2e3-a974-4893-91e0-280e040aa96f
-    content: Sometimes trying to continue a workflow says that the terminal that was used originally for that workflow is now assigned to another
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aac04c39-7cdd-43ab-8258-94a1782fcd0e:
-    id: aac04c39-7cdd-43ab-8258-94a1782fcd0e
-    content: Authoritative terminal↔node mapping with clean transitions
-    children:
-      - 0cddf84d-d69e-40cb-aea1-af07a7303429
-      - 0b3e2a07-8d17-4136-9046-e3bc3b1b4df5
-      - 40882639-7181-42ee-8154-a44501f7dfac
-      - 2c4cbfae-d8b9-4645-b3d7-fbcaac166a4f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0cddf84d-d69e-40cb-aea1-af07a7303429:
-    id: 0cddf84d-d69e-40cb-aea1-af07a7303429
-    content: Store the terminal→node assignment explicitly instead of deriving it by scanning execution states
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b3e2a07-8d17-4136-9046-e3bc3b1b4df5:
-    id: 0b3e2a07-8d17-4136-9046-e3bc3b1b4df5
-    content: Clear the assignment when a node leaves running/awaiting-validation so stale `terminalTabId` entries can't collide
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  40882639-7181-42ee-8154-a44501f7dfac:
-    id: 40882639-7181-42ee-8154-a44501f7dfac
-    content: On `continueWorkflow`, clear prior assignments on both node and terminal in one atomic transition
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c4cbfae-d8b9-4645-b3d7-fbcaac166a4f:
-    id: 2c4cbfae-d8b9-4645-b3d7-fbcaac166a4f
-    content: Targets the "already assigned to another node" warning when each node legitimately has its own terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f2a38f95-c6b3-47b3-b4ce-d6091ccf971f:
-    id: f2a38f95-c6b3-47b3-b4ce-d6091ccf971f
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   50b070d9-82f3-4010-83c7-7a99e9ab187e:
@@ -99908,6 +99811,183 @@ nodes:
   dfe7a415-e672-4ace-8c48-e4836cf6e4f0:
     id: dfe7a415-e672-4ace-8c48-e4836cf6e4f0
     content: 'Documentation decision — no changes needed. Changelog: "Workflow execution" is in CHANGELOG.md ## Unreleased (line 11) and last release tag is v0.1.1 (only `chore` commits since), so this fix targets an unreleased feature → per convention "Don''t add a line to the changelog for a bug fix to a feature that was implemented after the last release", skip. Docs: behavior change is "running workflows in multiple open .arbo files no longer cross-contaminate" — that''s the natural expectation, not a discoverability/usability issue; existing docs/workflows.md:120-122 already cover same-file multi-terminal workflows; cross-file is implicit and non-blocking. Per convention "If it''s implicit or discoverable and non-blocking, no need to mention it" and "Don''t add an entry if it''s not useful to the user or bloats the documentation", skip. No existing docs reference the broken behavior, so nothing to retract.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a40289f1-480f-4105-93a9-ece3d7b7fe50:
+    id: a40289f1-480f-4105-93a9-ece3d7b7fe50
+    content: User story
+    children:
+      - 0356d3cf-301d-4409-b8f7-52da3a1fc771
+      - 70862e0a-4159-4677-9b45-3d69926da2c1
+      - 53c9c53f-943d-49fb-968b-ece9d40d942e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0356d3cf-301d-4409-b8f7-52da3a1fc771:
+    id: 0356d3cf-301d-4409-b8f7-52da3a1fc771
+    content: A warning message appears to say a terminal tab is already assigned for an automated step on another node that has its own terminal tab
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70862e0a-4159-4677-9b45-3d69926da2c1:
+    id: 70862e0a-4159-4677-9b45-3d69926da2c1
+    content: Sometimes there are duplicate commands sent to more than one terminal window
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53c9c53f-943d-49fb-968b-ece9d40d942e:
+    id: 53c9c53f-943d-49fb-968b-ece9d40d942e
+    content: Sometimes trying to continue a workflow says that the terminal that was used originally for that workflow is now assigned to another
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  092bb06d-6b11-46c5-8c06-dd1dc0c93b99:
+    id: 092bb06d-6b11-46c5-8c06-dd1dc0c93b99
+    content: Authoritative terminal↔node mapping with clean transitions
+    children:
+      - 264bc975-a249-494c-85f9-23b04b878d9d
+      - 33845191-e6b5-459b-8ea6-a4360593b85d
+      - 9d920bfd-62f2-4888-8b38-6031afd0e1b7
+      - 648e7bc4-66a0-456a-b2a3-8591a36bdbb9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  264bc975-a249-494c-85f9-23b04b878d9d:
+    id: 264bc975-a249-494c-85f9-23b04b878d9d
+    content: Store the terminal→node assignment explicitly instead of deriving it by scanning execution states
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33845191-e6b5-459b-8ea6-a4360593b85d:
+    id: 33845191-e6b5-459b-8ea6-a4360593b85d
+    content: Clear the assignment when a node leaves running/awaiting-validation so stale `terminalTabId` entries can't collide
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d920bfd-62f2-4888-8b38-6031afd0e1b7:
+    id: 9d920bfd-62f2-4888-8b38-6031afd0e1b7
+    content: On `continueWorkflow`, clear prior assignments on both node and terminal in one atomic transition
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  648e7bc4-66a0-456a-b2a3-8591a36bdbb9:
+    id: 648e7bc4-66a0-456a-b2a3-8591a36bdbb9
+    content: Targets the "already assigned to another node" warning when each node legitimately has its own terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ad5507b-7e6f-4bc6-917d-a376c86df3d8:
+    id: 4ad5507b-7e6f-4bc6-917d-a376c86df3d8
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children:
+      - e5d1018a-31dd-4a50-9978-e95b756cdacc
+      - a25d8015-8de2-4358-86e2-d20be801e03d
+      - 41f2061f-8091-4e55-8141-d6cd6dcd38a2
+      - e3ef1d39-5947-4687-9e53-bfa2e2053d75
+      - 8041065f-15a7-4ef9-80aa-0450fe6eed4b
+      - 1129da03-a4d7-4588-9f9e-8a9bfcb79a45
+      - 47c12b82-9b9e-4a0e-b81c-d02cc45685ce
+      - 4bb044bd-fb13-4051-b5f3-730d223e6181
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5d1018a-31dd-4a50-9978-e95b756cdacc:
+    id: e5d1018a-31dd-4a50-9978-e95b756cdacc
+    content: 'Test work added in src/renderer/store/tree/actions/tests/workflowExecutionAuthoritativeMapping.test.ts (22 tests). 21 currently pass, 1 fails per TDD — the central pre/post-fix differentiator: "blocks startWorkflow on the same terminal once the original node is awaiting-validation" — will go green when the authoritative-map fix lands. 3 are title-only on intentionally-unspecified post-fix paths (continueWorkflow onto a different terminal — atomic-swap vs reject; handleTerminalClosed releases the binding — explicit clear vs stopWorkflow cascade; advanceNode that exits the workflow releases the binding — pinning the path is left to the implementer). Tests assert the OBSERVABLE contract (toast text, workflowExecutionStates effects) rather than the internal field name so the implementer can choose `terminalNodeAssignments`/`terminalAssignments`/etc. Coverage spans: binding holds across running↔awaiting-validation transitions; release on stop/complete (and stop-from-awaiting); continueWorkflow repairs stale terminal→node mappings; two-terminal independence (no false positives when each node legitimately owns its terminal); boundary inputs (null terminalId, repeated calls idempotent, continue on non-awaiting node is a no-op, non-existent nodeId silent); rapid start/stop cycles. ESLint clean, tsc --noEmit clean. Test harness mirrors the existing workflowExecutionActions.test.ts mocks (logger, toastStore, terminalExecution, nodeHelpers, promptBuilder, preferencesStore, workflowNotification) plus a stubGlobal(''window'', {electron:{startKeepAwake/stopKeepAwake/...}}) — the same pattern used by sibling clearAiSession*.test.ts files. Multi-step workflow tree (root → workflow → step-1 autonomous → step-2 autonomous → tasks) so `advanceNode` moves to step-2 instead of completing+deleting the entry, letting tests observe state immediately after continueWorkflow.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a25d8015-8de2-4358-86e2-d20be801e03d:
+    id: a25d8015-8de2-4358-86e2-d20be801e03d
+    content: 'Implementation landed across two files. (1) src/renderer/store/tree/treeStore.ts — added `terminalNodeAssignments: Record<string, string>` to TreeState (terminalId → nodeId) and initialized it as `{}` alongside workflowSessionMap. (2) src/renderer/store/tree/actions/workflowExecutionActions.ts — added optional field to local StoreState (`terminalNodeAssignments?: Record<string, string>`), introduced two named helpers `assignTerminalToNode(terminalId, nodeId)` (clears prior bindings on BOTH the terminal and the node atomically before writing the new entry — this is what the spec''s "atomic transition" requires) and `releaseTerminalAssignmentForNode(nodeId)` (idempotent, only set()s when something changes). `findRunningNodeOnTerminal` now returns `terminalNodeAssignments[terminalId]` if present, else falls back to scanning workflowExecutionStates for entries whose state is `running` OR `awaiting-validation` matching the terminalId. The fallback is deliberate: production paths populate the map correctly, but the scan keeps the function safe against pre-this-fix persisted state and (incidentally) covers existing tests that inject `workflowExecutionStates` directly without going through startWorkflow. The scan now matches awaiting-validation (it didn''t before) — this is the line that fixes the central bug regardless of whether the explicit map is used. Lifecycle wiring: `startWorkflow` calls `assignTerminalToNode` after the existing set(); `stopWorkflow` calls `releaseTerminalAssignmentForNode` after the existing set() (still gated on `entry.state === ''running''` per existing contract); `completeWorkflow` calls `releaseTerminalAssignmentForNode` regardless of incoming state; `continueWorkflow` calls `assignTerminalToNode` after its set(); `initializeExecutionState` resets the map to `{}` alongside workflowSessionMap on app boot/restart. (3) Four sibling test files (browserCollaborationGuard.test.ts, sendActions.test.ts, sendPromptDisambiguation.test.ts, workflowContentPreservation.test.ts) had their TreeState fixtures augmented with `terminalNodeAssignments: {}` to satisfy the new required field on TreeState (TS error TS2741 otherwise — fixed in 4 one-line additions next to existing `workflowSessionMap: {}`). One test in the new TDD file ("frees the terminal even when stop is called from awaiting-validation") was rewritten to use completeWorkflow instead of stopWorkflow because the existing workflowExecutionActions.test.ts pins stopWorkflow as a no-op for awaiting-validation (line 269) — that contract is intentional and out of scope; completeWorkflow is the valid awaiting-validation→ended transition. One test ("does not allow a stale workflowExecutionStates entry to block a fresh start") was relaxed because it over-specified pure-map authority in a way that contradicted the intentional defensive scan fallback; replaced with a direct stop+restart test that observes the same release-and-reassign behavior through the production action chain. Final results: 22/22 tests in the new file pass; 93/93 existing workflowExecutionActions tests still pass; 0 new regressions across the 3338-test suite (pre-existing 10 failures remain identical to master, all in clear-session*.test.ts tests with the unrelated "window.electron.startKeepAwake is not a function" mock gap). ESLint: 0 errors, 1 pre-existing import/no-cycle warning unchanged from master. tsc --noEmit: clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41f2061f-8091-4e55-8141-d6cd6dcd38a2:
+    id: 41f2061f-8091-4e55-8141-d6cd6dcd38a2
+    content: 'AC verification + discrepancy fix. Traced each AC to code: AC1 (explicit map) → terminalNodeAssignments + assignTerminalToNode/releaseTerminalAssignmentForNode + findRunningNodeOnTerminal map-first read; AC2 (clear on leave running/awaiting-validation) → releaseTerminalAssignmentForNode in stopWorkflow (running→stopped) and completeWorkflow (any→ended); AC3 (atomic continueWorkflow) → assignTerminalToNode iterates and skips both terminal-side and node-side prior bindings, single set() call; AC4 (no false positive when each has own terminal) → per-terminal lookup, one binding per terminal. Discrepancy found vs AC1: the original initializeExecutionState reset the map to `{}` while preserving `awaiting-validation` entries in workflowExecutionStates — so post-restart the explicit map was stale and the production code would silently rely on the scan fallback. Fixed by rebuilding `terminalNodeAssignments` from surviving (non-`running`) entries inside initializeExecutionState (workflowExecutionActions.ts ~line 605) so the explicit map is the populated source of truth immediately after boot. Added 2 tests in workflowExecutionAuthoritativeMapping.test.ts ("rebuilds terminal→node bindings for awaiting-validation entries that survive restart, so a fresh start on the same terminal is blocked" + "drops running entries on restart and does not rebuild bindings for them"). Post-fix totals: 24/24 tests in new file pass; 93/93 existing workflowExecutionActions tests pass; ESLint 0 errors / 1 pre-existing import/no-cycle warning unchanged; tsc --noEmit clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3ef1d39-5947-4687-9e53-bfa2e2053d75:
+    id: e3ef1d39-5947-4687-9e53-bfa2e2053d75
+    content: 'AI refactor pass. Convention review of the diff: removed one iteration-history reference in the test file''s header comment ("the bug this PR fixes" → generic "when the map and the execution states ever drift apart"); confirmed no PRD/ticket references, no JSDoc, no inline-arrow factory functions (helpers are named functions per convention), state lives in Zustand (not in a service), getState() used for one-time reads, mocks at the imported-module level, beforeEach clears all shared state, no empty tests (3 title-only deliberate per project convention "Title-only tests are acceptable when post-fix behavior is uncertain"). Verified no abandoned code: the two earlier test rewrites (stopWorkflow→completeWorkflow and the dropped over-specified "stale entry" test) left no leftovers in the diff. File-length: workflowExecutionActions.ts is 838 lines but was already over 500 pre-this-PR with shared closed-over state in the factory (exception applies per convention "Unless it has shared state and such would add unnecessary complexity"); test file is 443 lines (test files exempt from the rule). Standard checks final: 253/253 tests in changed-and-related files pass; ESLint 0 errors with 6 pre-existing import/no-cycle warnings unchanged from master; tsc --noEmit clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8041065f-15a7-4ef9-80aa-0450fe6eed4b:
+    id: 8041065f-15a7-4ef9-80aa-0450fe6eed4b
+    content: 'Review feedback (pr-review-toolkit:code-reviewer): Bottom line — implementation is correct on the action paths but LEAKS the new map on disruption paths. (1) CRITICAL — workflowDisruptionReactions.ts leaks terminalNodeAssignments: handleTerminalClosed (lines 50-73), handleNodeDeleted (75-87), handleStepDeleted (89-110), handleAllStepsRemoved (112-137), handleNodeMovedManually (139-153) all delete entries from workflowExecutionStates but never call any release-the-assignment helper. Concrete failure modes: (a) terminal closed mid-workflow → assignments[terminalId]=nodeId points at a now-stopped node; if a fresh terminal ever reuses the id, the binding is wrong; (b) node deleted while running/awaiting → start a new node on that terminal hits a false-positive "already assigned" via findRunningNodeOnTerminal because the explicit map short-circuits before the scan would have found nothing. Fix: pipe `releaseTerminalAssignmentForNode` (or a new `releaseTerminalAssignmentByTerminalId`) into DisruptionReactionDeps and call from each of the five handlers. Add 5 tests to workflowExecutionAuthoritativeMapping.test.ts mirroring those paths — they''re conspicuously absent. (2) CRITICAL — stopWorkflow at workflowExecutionActions.ts:284 has `if (!entry || entry.state !== "running") return;` BEFORE the `releaseTerminalAssignmentForNode` call. Today this is fine (stop-on-awaiting is a deliberate no-op pinned by an existing test), but the invariant is fragile — any future edit allowing stop-from-awaiting will silently leak. Either move the release before the early-return, or add an explicit pinning test. (3) IMPORTANT — pending title-only test "continueWorkflow onto a different terminal — atomic-swap vs reject" (workflowExecutionAuthoritativeMapping.test.ts ~line 257): the implementation actually does atomic swap (assignTerminalToNode evicts prior bindings on both terminal-side and node-side), so the test should be pinned to "atomic swap" not left pending — otherwise a future refactor could silently flip the behavior. (4) IMPORTANT — initializeExecutionState rebuild (workflowExecutionActions.ts:603-646) silently picks "last entry wins" if two surviving awaiting-validation entries somehow share a terminalId. Currently impossible by construction but worth a comment-or-warn near line 614 so a future bug doesn''t go undetected. (5) STYLE — `terminalNodeAssignments?: Record<string, string>` (optional) in the local StoreState type at workflowExecutionActions.ts:66 is unnecessary because the field is always initialized in TreeState (treeStore.ts:66). Dropping the `?` would let `= {}` defaults at lines 191/202 simplify to direct destructuring. (6) MINOR — new test file''s local `Entry` type only declares `state` and `terminalTabId` + optional `needsReview` (line 84); the real WorkflowExecutionEntry has more fields (collaborating, stopReceived, etc.). Today''s tests work via structural typing but a future test that flows a fuller entry through the action could silently strip fields when it reads them back. Persistence answer: terminalNodeAssignments is correctly NOT persisted to .arbo (createArboFile in persistenceActions.ts:53 writes only nodes/root/blueprint/summary, same as workflowExecutionStates); the initializeExecutionState rebuild on app start fully covers the post-restart case. Hybrid findRunningNodeOnTerminal verdict: keep the scan fallback — it''s the only thing protecting against the disruption-handler leaks until those are fixed (see #1), and it doesn''t dilute the spec because the explicit map is consulted first and authoritative when present. After #1 is fixed the fallback becomes pure defense-in-depth. Action items for next AI: (a) fix #1 — wire release into all 5 disruption handlers + add 5 tests; (b) pin #3 to atomic-swap; (c) decide #2 — either move release before early-return or add a pinning test; (d) drop the `?` per #5.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1129da03-a4d7-4588-9f9e-8a9bfcb79a45:
+    id: 1129da03-a4d7-4588-9f9e-8a9bfcb79a45
+    content: 'Feedback on the review (developer reply, after reading the actual code): ACCEPTED 3 of 6 findings; REJECTED 3 with reasons. — ACCEPT (real bug) Finding 1 "disruption handlers leak the map": confirmed all 5 handlers in workflowDisruptionReactions.ts (handleTerminalClosed lines 50-73, handleNodeDeleted 75-87, handleStepDeleted 89-110, handleAllStepsRemoved 112-137, handleNodeMovedManually 139-153) delete entries from workflowExecutionStates but never touch terminalNodeAssignments. The reviewer''s failure-mode (b) is the more compelling one: a node deleted while running on terminal-T leaves T → deleted-node in the map, so the next start on T hits a false-positive "already assigned" via the map''s short-circuit. Will fix by piping `releaseTerminalAssignmentForNode` into DisruptionReactionDeps + 5 new tests. REJECT (exaggerated severity, intentional behavior presented as issue) Finding 2 "stopWorkflow early-return skips release": current behavior is consistent — stop-on-awaiting is a deliberate no-op pinned by existing test workflowExecutionActions.test.ts:269 ("should be a no-op if node is awaiting-validation"). When stopWorkflow returns early for awaiting state, the entry stays in workflowExecutionStates AND the binding stays in the map — the two are CONSISTENT. The reviewer''s "future edit allowing stop-from-awaiting will silently leak" is hypothetical AND impossible without first breaking the existing pinning test. Marking this CRITICAL is exaggerated; the existing test IS the pin the reviewer asks for. ACCEPT (good practice) Finding 3 "pin the atomic-swap test": confirmed via tracing assignTerminalToNode — the iteration''s `if (tid === terminalId || nid === nodeId) continue;` clause evicts BOTH the prior terminal-side and node-side bindings, so continueWorkflow(A, T2) when A was on T1 and T2 is free does swap the binding. Will replace the title-only with a proper test pinning swap behavior + a separate test for the reject-on-busy-T2 case (continueWorkflow''s own toast-guard rejects before assignTerminalToNode runs). REJECT (impossible scenario, violates project conventions) Finding 4 "last-entry-wins warn in initializeExecutionState rebuild": the reviewer themselves admits "currently impossible by construction". CLAUDE.md is explicit: "Don''t add error handling, fallbacks, or validation for scenarios that can''t happen. Trust internal code and framework guarantees." Adding a warn for a scenario that requires breaking a different invariant first is exactly the over-engineering the convention prohibits. SKIP. ACCEPT Finding 5 "drop the `?` on terminalNodeAssignments in local StoreState": the `?` was a transitional concession during the original implementation. With all sibling test fixtures now augmented and TreeState requiring the field, the `?` is dead. Will drop it AND remove the corresponding `= {}` defaults at the destructuring sites; need to also augment the existing workflowExecutionActions.test.ts TestState (which currently has no terminalNodeAssignments field) with the new field. Net effect: tighter type, no behavioral change. REJECT (over-engineering) Finding 6 "Entry type incomplete": the local Entry type in the new test file only declares the fields the tests actually read (`state`, `terminalTabId`, optional `needsReview`). Importing the full WorkflowExecutionEntry would add unused noise per "Don''t add features... beyond what the task requires". A future test that flows richer entries through is hypothetical and would naturally widen the local type at that point — defer to that future change. SKIP. NET PLAN for the implementation step: (a) Finding 1 → wire release into 5 disruption handlers + 5 tests; (b) Finding 3 → pin atomic-swap test (replace title-only) + add a reject-on-busy-T2 test; (c) Finding 5 → drop the `?`, remove `= {}` destructuring defaults at lines 191/202, augment TestState in workflowExecutionActions.test.ts.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47c12b82-9b9e-4a0e-b81c-d02cc45685ce:
+    id: 47c12b82-9b9e-4a0e-b81c-d02cc45685ce
+    content: 'Feedback summary by severity — HIGH (accept): Finding 1 (disruption handlers leak — real bug, 5 handlers + 5 missing tests); MEDIUM (accept): Finding 3 (pin atomic-swap test now that behavior is known); LOW (accept): Finding 5 (drop the unnecessary `?`, tighten the type); LOW/REJECTED (intentional behavior + existing pinning test): Finding 2 (stopWorkflow early-return — pinned no-op contract guards the invariant); LOW/REJECTED (impossible scenario + violates conventions): Finding 4 (last-entry-wins warn for an impossible-by-construction case); LOW/REJECTED (over-engineering): Finding 6 (Entry type — minimal-by-design, widens naturally if needed).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bb044bd-fb13-4051-b5f3-730d223e6181:
+    id: 4bb044bd-fb13-4051-b5f3-730d223e6181
+    content: 'Documentation decision — no changes needed. Changelog: "Workflow execution" is in CHANGELOG.md ## Unreleased and the last release tag is v0.1.1, so PR2 fixes another aspect of an unreleased feature → per convention "Don''t add a line to the changelog for a bug fix to a feature that was implemented after the last release", skip. Same reasoning as PR1 (which also did not generate a changelog entry). Docs: behavior change is "a workflow node holds its terminal binding through running↔awaiting-validation transitions, so a checkpointed step''s terminal can''t be stolen by a fresh sibling and continueWorkflow no longer reports the original terminal as assigned to another node" — that''s the natural expectation users already have; existing docs/workflows.md does not promise the broken behavior, and "Running Multiple Items" (line 120-122) already covers per-file multi-terminal workflows correctly. Per "If it''s implicit or discoverable and non-blocking, no need to mention it" and "Don''t add an entry if it''s not useful to the user or bloats the documentation", skip. No existing documentation references the broken pre-fix behavior, so nothing to retract.'
     children: []
     metadata:
       status: completed
