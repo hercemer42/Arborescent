@@ -314,3 +314,18 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
+
+.session-lost-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: var(--red-500, #ef4444);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.node-content.session-lost {
+  background: var(--red-50, rgba(239, 68, 68, 0.06));
+}

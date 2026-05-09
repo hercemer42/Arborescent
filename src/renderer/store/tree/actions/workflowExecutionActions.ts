@@ -30,6 +30,11 @@ import { createStepTimeoutManager, isNodeRunning } from "./workflowStepTimeouts"
 import { createDisruptionReactions } from "./workflowDisruptionReactions";
 import { createHookEventHandler } from "./workflowHookEventHandler";
 import { createClearSessionManager } from "./workflowClearSession";
+import {
+  createSessionResumeManager,
+  captureSessionOnNode,
+  markNodeStartingSession,
+} from "./workflowSessionResume";
 
 export type { WorkflowExecutionEntry };
 
@@ -40,6 +45,7 @@ export interface WorkflowExecutionActions {
   completeWorkflow: (nodeId: string) => void;
   advanceNode: (nodeId: string) => void;
   registerSession: (sessionId: string, terminalId: string, source?: string) => void;
+  resumeSession: (nodeId: string) => Promise<void>;
   handleHookEvent: (event: {
     session_id: string;
     hook_event_name: string;
@@ -152,6 +158,8 @@ export const createWorkflowExecutionActions = (
     sendPrompt: (id, tid) => sendContentToTerminal(id, tid),
     stopWorkflow: (id) => stopWorkflow(id),
   });
+
+  const sessionResumeManager = createSessionResumeManager({ get, set, triggerAutosave });
 
   // Step-timeout lifecycle lives in its own module so the toast-action
   // callback (which loops back into stopWorkflow) has an explicit seam.
@@ -266,6 +274,7 @@ export const createWorkflowExecutionActions = (
         ...workflowExecutionStates,
         [nodeId]: { state: "running" as const, terminalTabId: terminalId },
       },
+      nodes: markNodeStartingSession(nodes, nodeId, terminalId),
     });
     assignTerminalToNode(terminalId, nodeId);
 
@@ -560,7 +569,16 @@ export const createWorkflowExecutionActions = (
   }
 
   function registerSession(sessionId: string, terminalId: string, source?: string): void {
-    const { workflowSessionMap } = get();
+    const trimmed = sessionId.trim();
+    if (trimmed.length === 0) {
+      logger.warn(
+        `Ignoring SessionStart with empty session id for terminal ${terminalId}`,
+        "WorkflowExecution",
+      );
+      return;
+    }
+
+    const { workflowSessionMap, nodes } = get();
 
     const updatedMap = { ...workflowSessionMap };
     for (const [existingSession, existingTerminal] of Object.entries(
@@ -571,23 +589,34 @@ export const createWorkflowExecutionActions = (
       }
     }
 
-    updatedMap[sessionId] = terminalId;
-    set({ workflowSessionMap: updatedMap });
+    updatedMap[trimmed] = terminalId;
+
+    const runningNodeId = findRunningNodeOnTerminal(terminalId);
+    const nodesWithCapture = runningNodeId
+      ? captureSessionOnNode(nodes, runningNodeId, trimmed, terminalId)
+      : nodes;
+
+    set({
+      workflowSessionMap: updatedMap,
+      nodes: nodesWithCapture,
+    });
+
+    if (runningNodeId && nodesWithCapture !== nodes) {
+      triggerAutosave?.();
+      void sessionResumeManager.refreshSessionCwd(runningNodeId, terminalId);
+    }
 
     if (!usePreferencesStore.getState().hasReceivedHookEvent) {
       usePreferencesStore.getState().markHookEventReceived();
     }
 
     logger.info(
-      `Registered session ${sessionId} for terminal ${terminalId}${source ? ` (source=${source})` : ''}`,
+      `Registered session ${trimmed} for terminal ${terminalId}${source ? ` (source=${source})` : ''}`,
       "WorkflowExecution",
     );
 
-    if (source === 'clear') {
-      const runningNodeId = findRunningNodeOnTerminal(terminalId);
-      if (runningNodeId) {
-        clearSessionManager.onClearConfirmed(runningNodeId);
-      }
+    if (source === 'clear' && runningNodeId) {
+      clearSessionManager.onClearConfirmed(runningNodeId);
     }
   }
 
@@ -830,6 +859,7 @@ export const createWorkflowExecutionActions = (
     completeWorkflow,
     advanceNode,
     registerSession,
+    resumeSession: sessionResumeManager.resumeSession,
     handleHookEvent,
     initializeExecutionState,
     ...disruptionReactions,

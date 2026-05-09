@@ -9,6 +9,7 @@ interface DisruptionState {
   nodes: Record<string, TreeNode>;
   ancestorRegistry: AncestorRegistry;
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
+  workflowSessionMap?: Record<string, string>;
 }
 
 export interface WorkflowDisruptionReactions {
@@ -21,7 +22,10 @@ export interface WorkflowDisruptionReactions {
 
 export interface DisruptionReactionDeps {
   get: () => DisruptionState;
-  set: (partial: { workflowExecutionStates?: Record<string, WorkflowExecutionEntry> }) => void;
+  set: (partial: {
+    workflowExecutionStates?: Record<string, WorkflowExecutionEntry>;
+    nodes?: Record<string, TreeNode>;
+  }) => void;
   /** Stop any outstanding autonomous feedback-file watcher for this node. */
   cleanupAutonomousCollaboration: (nodeId: string) => void;
   /** Clear any pending step-timeout timer. */
@@ -52,29 +56,81 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
   function handleTerminalClosed(terminalId: string): void {
     const { workflowExecutionStates, nodes } = get();
     const updatedStates = { ...workflowExecutionStates };
+    let updatedNodes = nodes;
+    let nodesChanged = false;
+    let statesChanged = false;
     const releasedNodes: string[] = [];
 
     for (const [nodeId, entry] of Object.entries(updatedStates)) {
-      if (entry.terminalTabId === terminalId && entry.state === 'running') {
-        delete updatedStates[nodeId];
-        cleanupAutonomousCollaboration(nodeId);
-        clearPendingAck(nodeId);
-        clearPendingClear(nodeId);
-        const node = nodes[nodeId];
-        const nodeName = node?.content || nodeId;
-        useToastStore
-          .getState()
-          .addToast(`"${nodeName}" stopped — terminal closed`, 'warning');
-        releasedNodes.push(nodeId);
+      if (entry.terminalTabId !== terminalId || entry.state !== 'running') continue;
+
+      delete updatedStates[nodeId];
+      statesChanged = true;
+      cleanupAutonomousCollaboration(nodeId);
+      clearPendingAck(nodeId);
+      clearPendingClear(nodeId);
+      releasedNodes.push(nodeId);
+
+      const detached = detachSessionFromTab(updatedNodes, nodeId, terminalId);
+      if (detached !== updatedNodes) {
+        updatedNodes = detached;
+        nodesChanged = true;
+      }
+
+      const node = nodes[nodeId];
+      const nodeName = node?.content || nodeId;
+      const sessionDetached = updatedNodes[nodeId]?.metadata.sessionLiveness === 'alive-detached';
+      const message = sessionDetached
+        ? `"${nodeName}" detached — session can be resumed from another tab`
+        : `"${nodeName}" stopped — terminal closed`;
+      useToastStore.getState().addToast(message, 'warning');
+    }
+
+    for (const [nodeId, node] of Object.entries(updatedNodes)) {
+      if (node.metadata.sessionTabId !== terminalId) continue;
+      if (workflowExecutionStates[nodeId]?.state === 'running') continue;
+      const detached = detachSessionFromTab(updatedNodes, nodeId, terminalId);
+      if (detached !== updatedNodes) {
+        updatedNodes = detached;
+        nodesChanged = true;
       }
     }
 
-    if (releasedNodes.length > 0) {
-      set({ workflowExecutionStates: updatedStates });
+    if (statesChanged || nodesChanged) {
+      const partial: {
+        workflowExecutionStates?: Record<string, WorkflowExecutionEntry>;
+        nodes?: Record<string, TreeNode>;
+      } = {};
+      if (statesChanged) partial.workflowExecutionStates = updatedStates;
+      if (nodesChanged) partial.nodes = updatedNodes;
+      set(partial);
       for (const nodeId of releasedNodes) {
         releaseTerminalAssignmentForNode(nodeId);
       }
+      if (nodesChanged) triggerAutosave?.();
     }
+  }
+
+  function detachSessionFromTab(
+    nodes: Record<string, TreeNode>,
+    nodeId: string,
+    terminalId: string,
+  ): Record<string, TreeNode> {
+    const node = nodes[nodeId];
+    if (!node) return nodes;
+    if (node.metadata.sessionTabId !== terminalId) return nodes;
+
+    const hasSessionId = node.metadata.sessionId !== undefined;
+    const wasStarting = node.metadata.sessionStarting === true;
+    if (!hasSessionId && !wasStarting) return nodes;
+
+    const nextMetadata = {
+      ...node.metadata,
+      sessionLiveness: hasSessionId ? ('alive-detached' as const) : ('lost' as const),
+    };
+    delete nextMetadata.sessionTabId;
+    delete nextMetadata.sessionStarting;
+    return { ...nodes, [nodeId]: { ...node, metadata: nextMetadata } };
   }
 
   function handleNodeDeleted(nodeId: string): void {

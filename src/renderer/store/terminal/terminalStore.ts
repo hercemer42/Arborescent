@@ -38,7 +38,7 @@ interface TerminalState {
   openTerminal: () => Promise<string | null>;
   sendNodeToTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
   executeNodeInTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
-  createNewTerminal: (title?: string) => Promise<void>;
+  createNewTerminal: (title?: string, cwd?: string) => Promise<TerminalInfo | null>;
   closeTerminal: (id: string) => Promise<void>;
   closeFileTerminals: (filePath: string) => Promise<void>;
   restoreTerminalSession: () => Promise<void>;
@@ -226,13 +226,15 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     }
   },
 
-  createNewTerminal: async (title = 'Terminal') => {
+  createNewTerminal: async (title = 'Terminal', cwd) => {
     try {
-      const terminalInfo = await createTerminalService(title);
+      const terminalInfo = await createTerminalService(title, undefined, undefined, cwd);
       get().addTerminal(terminalInfo);
       logger.info(`Created new terminal: ${terminalInfo.id}`, 'TerminalStore');
+      return terminalInfo;
     } catch (error) {
       logger.error('Failed to create terminal', error as Error, 'TerminalStore');
+      return null;
     }
   },
 

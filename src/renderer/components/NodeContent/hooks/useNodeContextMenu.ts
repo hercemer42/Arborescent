@@ -221,8 +221,27 @@ export function useNodeContextMenu(node: TreeNode) {
     const isExternalLink = freshNode.metadata.isExternalLink === true;
     const externalUrl = freshNode.metadata.externalUrl as string | undefined;
 
+    const sessionLiveness = freshNode.metadata.sessionLiveness;
+    const sessionId = freshNode.metadata.sessionId;
+    const isWorkflowStep = freshNode.metadata.isWorkflow === true || !!getWorkflowStepPosition(freshNode.id, nodes, ancestorRegistry);
+    const showResumeSession =
+      isWorkflowStep
+      && typeof sessionId === 'string'
+      && sessionId.length > 0
+      && (sessionLiveness === 'alive-attached' || sessionLiveness === 'alive-detached');
+
+    const handleResumeSession = async () => {
+      try {
+        showTerminal();
+        await actions.resumeSession(node.id);
+      } catch (error) {
+        logger.error('Failed to resume session', error as Error, 'Context Menu');
+      }
+    };
+
     const baseMenuItems: ContextMenuItem[] = [
       ...workflowExecutionItems,
+      ...(showResumeSession ? [{ label: 'Resume session', onClick: handleResumeSession }] : []),
       ...workflowNavigationItems,
       ...(isExternalLink && externalUrl ? [{
         label: 'Open in external browser',

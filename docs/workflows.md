@@ -117,6 +117,14 @@ On app restart, all previously running items are stopped. Checkpoint items await
 
 Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — you need to start the workflow again.
 
+## Resuming AI Sessions
+
+Each workflow step that talks to an AI tool captures its session id on the node. Right-click a workflow node and pick **Resume session** to reattach — the action focuses the original terminal tab if it's still open, or opens a new one in the recorded working directory and runs `claude --resume`.
+
+Closing a terminal tab no longer terminates the underlying session — the workflow execution stops, but the conversation remains in Claude's session store. You can walk away from a running step, close the tab, and resume from a fresh tab later. This works across app restart, as long as the session is still on disk.
+
+A red dot next to a workflow node means the session is gone and can't be resumed. Start the workflow again to spawn a fresh one.
+
 ## Running Multiple Items
 
 You can run multiple items through the same workflow simultaneously — each in its own terminal tab. Each item advances independently based on the step types it encounters. Start each item with **Run Workflow** and select a different terminal tab for each one.

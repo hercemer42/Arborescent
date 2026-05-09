@@ -1,13 +1,18 @@
 import { ArboFile, TreeNode } from '../../shared/types';
 
-function stripTransientMetadata(node: TreeNode): TreeNode {
-  if (!node.metadata.transient) {
+function stripRuntimeOnlyMetadata(node: TreeNode): TreeNode {
+  const { metadata } = node;
+  const hasTransient = metadata.transient !== undefined;
+  const hasSessionTabId = metadata.sessionTabId !== undefined;
+
+  if (!hasTransient && !hasSessionTabId) {
     return node;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { transient, ...cleanedMetadata } = node.metadata;
-  return { ...node, metadata: cleanedMetadata };
+  const cleaned: typeof metadata = { ...metadata };
+  delete cleaned.transient;
+  delete cleaned.sessionTabId;
+  return { ...node, metadata: cleaned };
 }
 
 function stripTransientMetadataFromNodes(
@@ -15,7 +20,7 @@ function stripTransientMetadataFromNodes(
 ): Record<string, TreeNode> {
   const result: Record<string, TreeNode> = {};
   for (const [id, node] of Object.entries(nodes)) {
-    result[id] = stripTransientMetadata(node);
+    result[id] = stripRuntimeOnlyMetadata(node);
   }
   return result;
 }

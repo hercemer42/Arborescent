@@ -6,6 +6,8 @@ export const STATUS_SYMBOLS: Record<NodeStatus, string> = {
   abandoned: '✗',
 };
 
+export type SessionLiveness = 'alive-attached' | 'alive-detached' | 'lost';
+
 export interface TransientMetadata {
   isCut?: boolean;
 }
@@ -46,6 +48,13 @@ export interface NodeMetadata {
   recurse?: boolean;
   nextStepContext?: boolean;
   clearSession?: boolean;
+
+  // Session lifecycle
+  sessionId?: string;
+  sessionWorkingDirectory?: string;
+  sessionLiveness?: SessionLiveness;
+  sessionStarting?: boolean;
+  sessionTabId?: string;
 
   // Archive / step settings
   archiveDestinationId?: string;

@@ -57,13 +57,21 @@ function NodeContentComponent({
   return (
     <>
       <div
-        className={`node-content ${isSelected ? 'selected' : ''}`}
+        className={`node-content ${isSelected ? 'selected' : ''}${node.metadata.sessionLiveness === 'lost' ? ' session-lost' : ''}`}
         onContextMenu={handleContextMenu}
         style={{
           paddingLeft: `${(depth * 20) + 15}px`,
           '--indent-width': `${depth * 20}px`,
         } as React.CSSProperties}
       >
+        {node.metadata.sessionLiveness === 'lost' && (
+          <span
+            role="img"
+            className="session-lost-indicator"
+            aria-label="Session lost"
+            title="Session lost — the AI session is no longer available"
+          />
+        )}
         <div className={`status-checkbox-wrapper ${!isSelected ? 'not-selected' : ''}`}>
           <StatusArea
             node={node}
