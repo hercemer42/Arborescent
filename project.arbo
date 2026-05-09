@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-09T07:40:00.553Z'
+updated: '2026-05-09T08:05:15.882Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14401,7 +14401,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children: []
+    children:
+      - 0f4e4680-4264-44b3-ae3b-7980d55791d3
     metadata:
       status: completed
       expanded: true
@@ -27136,7 +27137,6 @@ nodes:
     content: Automated tests implementation (TDD)
     children:
       - 1bf140f0-ec8e-4e18-bad5-bfa99b255d0b
-      - fab60ee2-124f-48d3-918a-25efbbcd55be
     metadata:
       status: pending
       isBlueprint: true
@@ -80652,8 +80652,8 @@ nodes:
     id: 0f4e4680-4264-44b3-ae3b-7980d55791d3
     content: Execute a node as a terminal command
     children:
-      - 13fa2075-8d82-4108-b699-c0dfe4da8a85
-      - d1353cdf-2cfc-4d05-9ac3-0568d68c8104
+      - 70118836-b11f-4097-93c4-b7eeb70b4c70
+      - 7284faa6-d802-4f3d-9585-b3b3feabfe2e
     metadata:
       status: pending
       expanded: false
@@ -81675,8 +81675,7 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
-    children:
-      - 0f4e4680-4264-44b3-ae3b-7980d55791d3
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -83046,7 +83045,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - fab60ee2-124f-48d3-918a-25efbbcd55be
     metadata:
       status: pending
       isBlueprint: true
@@ -97232,17 +97232,11 @@ nodes:
     id: 901813f7-011c-4c41-802b-53ecfdb96209
     content: '(confirm still an issue) Bug : Compare feature in feedback panel isn''t working'
     children:
-      - 75372c89-0fad-4e75-9f8c-41c6881e3a18
-      - 2208d46c-5024-4bbd-9240-fc5849a3b2ae
+      - d270757e-ec73-4287-91a5-d47ef5d0d1ef
+      - 952483bb-9e0a-406a-9783-9208f2cf5fbd
     metadata:
       status: pending
-      expanded: false
-  75372c89-0fad-4e75-9f8c-41c6881e3a18:
-    id: 75372c89-0fad-4e75-9f8c-41c6881e3a18
-    content: Everything except parent node is green
-    children: []
-    metadata:
-      status: pending
+      expanded: true
   6931d611-3198-48b5-9bb6-2c474fefec79:
     id: 6931d611-3198-48b5-9bb6-2c474fefec79
     content: Modify prompt instructions so that the AI doesn't output the updated nodelist to the terminal window
@@ -97783,19 +97777,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2208d46c-5024-4bbd-9240-fc5849a3b2ae:
-    id: 2208d46c-5024-4bbd-9240-fc5849a3b2ae
-    content: In another session it was ok...
-    children:
-      - d993ddfe-70f8-4655-9c32-44dcd882d512
-    metadata:
-      status: pending
-  d993ddfe-70f8-4655-9c32-44dcd882d512:
-    id: d993ddfe-70f8-4655-9c32-44dcd882d512
-    content: Perhaps I should wait to see if it reoccurs
-    children: []
-    metadata:
-      status: pending
   ea8e9814-aaf2-455d-ab1e-6fa79ca92937:
     id: ea8e9814-aaf2-455d-ab1e-6fa79ca92937
     content: "Currently it's just a context that says :\_"
@@ -98638,11 +98619,11 @@ nodes:
     id: fab60ee2-124f-48d3-918a-25efbbcd55be
     content: 'PR1 - Bug : The terminal tab assignment is getting confused'
     children:
-      - e2141286-8f98-4a00-bb0f-98c059727626
-      - 17c87a6d-090c-45c9-a1dc-4ef9c07b9ab7
-      - 2b73c2ea-3fa4-460c-a3a2-ac849a7171aa
+      - ef2ae734-fe42-4390-a680-f606c2656ce5
+      - ddd459a8-8ebe-486a-8eca-9ab2b4234d30
+      - c8b86926-d31a-41ac-8cd7-f19dc1774e70
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -98847,93 +98828,6 @@ nodes:
       plugins: {}
   6dde260a-f020-40f0-a7f8-08eec2dd0b88:
     id: 6dde260a-f020-40f0-a7f8-08eec2dd0b88
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2141286-8f98-4a00-bb0f-98c059727626:
-    id: e2141286-8f98-4a00-bb0f-98c059727626
-    content: User story
-    children:
-      - 37f54999-dc1c-46aa-8f48-7d1b6ae76571
-      - 2e4f3db0-a0d6-49ff-a2f6-f67ad6e77df1
-      - 8c34ee6f-89a8-498e-8446-45be99c3e5c3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  37f54999-dc1c-46aa-8f48-7d1b6ae76571:
-    id: 37f54999-dc1c-46aa-8f48-7d1b6ae76571
-    content: A warning message appears to say a terminal tab is already assigned for an automated step on another node that has its own terminal tab
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e4f3db0-a0d6-49ff-a2f6-f67ad6e77df1:
-    id: 2e4f3db0-a0d6-49ff-a2f6-f67ad6e77df1
-    content: Sometimes there are duplicate commands sent to more than one terminal window
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8c34ee6f-89a8-498e-8446-45be99c3e5c3:
-    id: 8c34ee6f-89a8-498e-8446-45be99c3e5c3
-    content: Sometimes trying to continue a workflow says that the terminal that was used originally for that workflow is now assigned to another
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  17c87a6d-090c-45c9-a1dc-4ef9c07b9ab7:
-    id: 17c87a6d-090c-45c9-a1dc-4ef9c07b9ab7
-    content: Scope hook-event delivery to the owning store
-    children:
-      - f11eaa4c-b812-42c9-ac4b-56a0311c8af4
-      - 11f1a709-0166-4b34-a9c9-d78b8dbae4d0
-      - f79b935b-29f3-443c-9e89-462b4d4f50ca
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f11eaa4c-b812-42c9-ac4b-56a0311c8af4:
-    id: f11eaa4c-b812-42c9-ac4b-56a0311c8af4
-    content: Replace broadcast via `getAllStores()` with routing to the single store that owns the session/terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  11f1a709-0166-4b34-a9c9-d78b8dbae4d0:
-    id: 11f1a709-0166-4b34-a9c9-d78b8dbae4d0
-    content: Targets the duplicate-commands symptom and the cross-store "already assigned" false positive
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f79b935b-29f3-443c-9e89-462b4d4f50ca:
-    id: f79b935b-29f3-443c-9e89-462b4d4f50ca
-    content: Also resolves the "originally-used terminal now assigned elsewhere" symptom — same root cause (cross-store hook routing), so a single fix covers all three behaviours
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b73c2ea-3fa4-460c-a3a2-ac849a7171aa:
-    id: 2b73c2ea-3fa4-460c-a3a2-ac849a7171aa
     content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
     children: []
     metadata:
@@ -99583,23 +99477,35 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  13fa2075-8d82-4108-b699-c0dfe4da8a85:
-    id: 13fa2075-8d82-4108-b699-c0dfe4da8a85
+  d270757e-ec73-4287-91a5-d47ef5d0d1ef:
+    id: d270757e-ec73-4287-91a5-d47ef5d0d1ef
+    content: Doesn't happen all the time
+    children: []
+    metadata:
+      status: pending
+  952483bb-9e0a-406a-9783-9208f2cf5fbd:
+    id: 952483bb-9e0a-406a-9783-9208f2cf5fbd
+    content: Happened in 2 out of 3 observes collaborations
+    children: []
+    metadata:
+      status: pending
+  70118836-b11f-4097-93c4-b7eeb70b4c70:
+    id: 70118836-b11f-4097-93c4-b7eeb70b4c70
     content: 📄 Product spec
     children:
-      - bac59812-e0c2-4915-b923-ca629c0dd6f2
-      - 191f94fb-9ce4-48e3-9d08-0824c3bf5d05
-      - 07207cfd-d674-4496-9baa-8efc4414fff2
-      - 8c33cabf-b174-452b-b7ae-65eefd5d1ea4
-      - 22416abe-c219-41c5-88e7-586759ffbf86
-      - 7d0f58ad-3f2b-41fe-9239-f54ae99dc293
+      - d30accac-717d-4088-bd5b-b6845d7887ab
+      - e23e3fa8-de36-46b2-8949-af83355afe0c
+      - c8560157-3b3e-46de-bec8-aada89384b87
+      - 653f8071-0d57-476b-88ed-28018607a379
+      - 04ee8084-9095-473b-a338-3b6be11b834e
+      - f7f31f51-6288-4853-8969-2e270523b506
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  bac59812-e0c2-4915-b923-ca629c0dd6f2:
-    id: bac59812-e0c2-4915-b923-ca629c0dd6f2
+  d30accac-717d-4088-bd5b-b6845d7887ab:
+    id: d30accac-717d-4088-bd5b-b6845d7887ab
     content: Context — Arborescent nodes already hold commands and snippets users keep alongside notes; today they have to be copied out and reformatted by hand before they run, so the markdown syntax leaks into the terminal.
     children: []
     metadata:
@@ -99607,8 +99513,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  191f94fb-9ce4-48e3-9d08-0824c3bf5d05:
-    id: 191f94fb-9ce4-48e3-9d08-0824c3bf5d05
+  e23e3fa8-de36-46b2-8949-af83355afe0c:
+    id: e23e3fa8-de36-46b2-8949-af83355afe0c
     content: User — Developer using Arborescent to keep runnable commands organised next to documentation
     children: []
     metadata:
@@ -99616,8 +99522,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  07207cfd-d674-4496-9baa-8efc4414fff2:
-    id: 07207cfd-d674-4496-9baa-8efc4414fff2
+  c8560157-3b3e-46de-bec8-aada89384b87:
+    id: c8560157-3b3e-46de-bec8-aada89384b87
     content: Current experience — Sending a node passes its markdown verbatim, so backticks, list bullets, and other syntax characters reach the terminal as literal text and the command fails or runs incorrectly
     children: []
     metadata:
@@ -99625,8 +99531,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8c33cabf-b174-452b-b7ae-65eefd5d1ea4:
-    id: 8c33cabf-b174-452b-b7ae-65eefd5d1ea4
+  653f8071-0d57-476b-88ed-28018607a379:
+    id: 653f8071-0d57-476b-88ed-28018607a379
     content: Goal — Let a user execute a single selected node against the terminal when the node is unambiguously a command, while keeping the same nodes available as prose when the intent is review, editing, or sharing
     children: []
     metadata:
@@ -99634,25 +99540,25 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  22416abe-c219-41c5-88e7-586759ffbf86:
-    id: 22416abe-c219-41c5-88e7-586759ffbf86
+  04ee8084-9095-473b-a338-3b6be11b834e:
+    id: 04ee8084-9095-473b-a338-3b6be11b834e
     content: Business rules
     children:
-      - d2ba600a-2dc1-4182-b1bf-49b606604780
-      - 5c56e1f0-7b7c-4212-acbd-9643c54e9d33
-      - 858fceae-43b5-4e85-96e2-85c4b858e225
-      - bd0d7490-fcab-48b7-b317-d8b29588eec9
-      - e14b3951-b3d0-4d03-95b5-9e6b18d72784
-      - 9f30f1ea-68dc-4798-9d2a-a20239526c3e
-      - 743b4bfe-e155-4ec8-bacf-1594c5247812
-      - dfa2966c-69d4-4bf2-abb9-c4e13c4f1777
+      - fbac0970-1d02-450a-94fb-01a2235459ad
+      - 2a9c8e68-9374-4b43-b8ae-bd02953fff1f
+      - f1889bdf-0c30-4dcc-9103-c5bd9a8bf0e0
+      - d3285711-99ec-4d50-bc4c-ad3d73a4e459
+      - 91101070-fec1-42c9-9914-9c13baf72b8c
+      - da1c711e-6caf-4b55-b51f-1690164dfd7c
+      - 55e73592-dadd-4b4e-b255-1bf8fc552911
+      - e91494af-f38c-44bb-8893-2b7125f0e425
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  d2ba600a-2dc1-4182-b1bf-49b606604780:
-    id: d2ba600a-2dc1-4182-b1bf-49b606604780
+  fbac0970-1d02-450a-94fb-01a2235459ad:
+    id: fbac0970-1d02-450a-94fb-01a2235459ad
     content: 1. A node is a code-node candidate only when its entire content is wrapped in backticks; a node that mixes a backticked span with any other text or block is a normal node.
     children: []
     metadata:
@@ -99660,8 +99566,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5c56e1f0-7b7c-4212-acbd-9643c54e9d33:
-    id: 5c56e1f0-7b7c-4212-acbd-9643c54e9d33
+  2a9c8e68-9374-4b43-b8ae-bd02953fff1f:
+    id: 2a9c8e68-9374-4b43-b8ae-bd02953fff1f
     content: 2. A code-node candidate is demoted to a normal node if it has children or has any context applied, since either signals review/editing intent rather than execution intent.
     children: []
     metadata:
@@ -99669,8 +99575,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  858fceae-43b5-4e85-96e2-85c4b858e225:
-    id: 858fceae-43b5-4e85-96e2-85c4b858e225
+  f1889bdf-0c30-4dcc-9103-c5bd9a8bf0e0:
+    id: f1889bdf-0c30-4dcc-9103-c5bd9a8bf0e0
     content: 3. Execution as a command happens only when the selection is exactly one code node; any selection of two or more nodes is sent as markdown, even if every selected node would individually pass the code test.
     children: []
     metadata:
@@ -99678,8 +99584,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bd0d7490-fcab-48b7-b317-d8b29588eec9:
-    id: bd0d7490-fcab-48b7-b317-d8b29588eec9
+  d3285711-99ec-4d50-bc4c-ad3d73a4e459:
+    id: d3285711-99ec-4d50-bc4c-ad3d73a4e459
     content: 4. A single-code-node send reaches the terminal as raw text with the wrapping backticks stripped and is dispatched as one command.
     children: []
     metadata:
@@ -99687,8 +99593,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e14b3951-b3d0-4d03-95b5-9e6b18d72784:
-    id: e14b3951-b3d0-4d03-95b5-9e6b18d72784
+  91101070-fec1-42c9-9914-9c13baf72b8c:
+    id: 91101070-fec1-42c9-9914-9c13baf72b8c
     content: 5. Normal-node sends are emitted as markdown to the destination and are not executed as shell commands.
     children: []
     metadata:
@@ -99696,8 +99602,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9f30f1ea-68dc-4798-9d2a-a20239526c3e:
-    id: 9f30f1ea-68dc-4798-9d2a-a20239526c3e
+  da1c711e-6caf-4b55-b51f-1690164dfd7c:
+    id: da1c711e-6caf-4b55-b51f-1690164dfd7c
     content: 6. Backticked spans inside any markdown-rendered output display as codeblocks, matching the behaviour seen in Slack, GitLab, and GitHub comment panels.
     children: []
     metadata:
@@ -99705,8 +99611,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  743b4bfe-e155-4ec8-bacf-1594c5247812:
-    id: 743b4bfe-e155-4ec8-bacf-1594c5247812
+  55e73592-dadd-4b4e-b255-1bf8fc552911:
+    id: 55e73592-dadd-4b4e-b255-1bf8fc552911
     content: 7. An empty or whitespace-only node sends nothing instead of dispatching a blank command.
     children: []
     metadata:
@@ -99714,8 +99620,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dfa2966c-69d4-4bf2-abb9-c4e13c4f1777:
-    id: dfa2966c-69d4-4bf2-abb9-c4e13c4f1777
+  e91494af-f38c-44bb-8893-2b7125f0e425:
+    id: e91494af-f38c-44bb-8893-2b7125f0e425
     content: 8. If no terminal is connected when a single-code-node send is attempted, the action surfaces a user-visible error rather than failing silently.
     children: []
     metadata:
@@ -99723,25 +99629,25 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7d0f58ad-3f2b-41fe-9239-f54ae99dc293:
-    id: 7d0f58ad-3f2b-41fe-9239-f54ae99dc293
+  f7f31f51-6288-4853-8969-2e270523b506:
+    id: f7f31f51-6288-4853-8969-2e270523b506
     content: Acceptance criteria
     children:
-      - d6faf583-ff31-4ee7-8ab5-a1601d8e1674
-      - 69e57376-6e6d-4c1a-a1b1-70a20206cb2d
-      - 9b6ca9a5-9dea-4c73-aa75-3c987cf77043
-      - b6abd1f2-a619-4dd2-a01a-8884fc410033
-      - dd31b011-a38b-4ccd-9773-05417996b2f2
-      - d42a42aa-91f5-4491-b200-01dc082671db
-      - a51172e2-1e74-49bc-9ccf-9c67d62d271d
-      - e06bc7b2-ecb1-4f7f-9996-145284d39e64
+      - b1663680-eacd-4875-83dc-7811eac35471
+      - 4dc622f1-ad68-46f2-bb59-f2ab3041bddd
+      - 470b37fd-fd08-4d7e-83d7-e429a759fa6c
+      - 592c8c43-d0a2-4f0d-ac95-8af3a2fb6bb3
+      - 27659fa4-9f91-4add-84e8-909326d65bf5
+      - 3e44970d-ec19-48ac-ac65-e0d1989b8250
+      - 861d57e3-4440-4736-913b-64b755a8e427
+      - 2290216b-9ce4-4370-a544-426520a64173
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  d6faf583-ff31-4ee7-8ab5-a1601d8e1674:
-    id: d6faf583-ff31-4ee7-8ab5-a1601d8e1674
+  b1663680-eacd-4875-83dc-7811eac35471:
+    id: b1663680-eacd-4875-83dc-7811eac35471
     content: '- [ ] A single-node selection whose entire content is a backtick block, with no children and no context, reaches the terminal as raw text with the backticks stripped'
     children: []
     metadata:
@@ -99749,8 +99655,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  69e57376-6e6d-4c1a-a1b1-70a20206cb2d:
-    id: 69e57376-6e6d-4c1a-a1b1-70a20206cb2d
+  4dc622f1-ad68-46f2-bb59-f2ab3041bddd:
+    id: 4dc622f1-ad68-46f2-bb59-f2ab3041bddd
     content: '- [ ] A node mixing a backticked span with other text is sent as markdown, not executed'
     children: []
     metadata:
@@ -99758,8 +99664,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9b6ca9a5-9dea-4c73-aa75-3c987cf77043:
-    id: 9b6ca9a5-9dea-4c73-aa75-3c987cf77043
+  470b37fd-fd08-4d7e-83d7-e429a759fa6c:
+    id: 470b37fd-fd08-4d7e-83d7-e429a759fa6c
     content: '- [ ] A backtick-only node that has children is sent as markdown, not executed'
     children: []
     metadata:
@@ -99767,8 +99673,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b6abd1f2-a619-4dd2-a01a-8884fc410033:
-    id: b6abd1f2-a619-4dd2-a01a-8884fc410033
+  592c8c43-d0a2-4f0d-ac95-8af3a2fb6bb3:
+    id: 592c8c43-d0a2-4f0d-ac95-8af3a2fb6bb3
     content: '- [ ] A backtick-only node with a context applied is sent as markdown, not executed'
     children: []
     metadata:
@@ -99776,8 +99682,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dd31b011-a38b-4ccd-9773-05417996b2f2:
-    id: dd31b011-a38b-4ccd-9773-05417996b2f2
+  27659fa4-9f91-4add-84e8-909326d65bf5:
+    id: 27659fa4-9f91-4add-84e8-909326d65bf5
     content: '- [ ] A multi-node selection is always sent as markdown, even when every selected node would individually qualify as a code node'
     children: []
     metadata:
@@ -99785,8 +99691,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d42a42aa-91f5-4491-b200-01dc082671db:
-    id: d42a42aa-91f5-4491-b200-01dc082671db
+  3e44970d-ec19-48ac-ac65-e0d1989b8250:
+    id: 3e44970d-ec19-48ac-ac65-e0d1989b8250
     content: '- [ ] Backticked spans render as codeblocks in any markdown preview surface'
     children: []
     metadata:
@@ -99794,8 +99700,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a51172e2-1e74-49bc-9ccf-9c67d62d271d:
-    id: a51172e2-1e74-49bc-9ccf-9c67d62d271d
+  861d57e3-4440-4736-913b-64b755a8e427:
+    id: 861d57e3-4440-4736-913b-64b755a8e427
     content: '- [ ] An empty node produces no terminal input'
     children: []
     metadata:
@@ -99803,8 +99709,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e06bc7b2-ecb1-4f7f-9996-145284d39e64:
-    id: e06bc7b2-ecb1-4f7f-9996-145284d39e64
+  2290216b-9ce4-4370-a544-426520a64173:
+    id: 2290216b-9ce4-4370-a544-426520a64173
     content: '- [ ] A single-code-node send with no terminal connected surfaces a user-visible error'
     children: []
     metadata:
@@ -99812,20 +99718,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d1353cdf-2cfc-4d05-9ac3-0568d68c8104:
-    id: d1353cdf-2cfc-4d05-9ac3-0568d68c8104
+  7284faa6-d802-4f3d-9585-b3b3feabfe2e:
+    id: 7284faa6-d802-4f3d-9585-b3b3feabfe2e
     content: 🔧 Implementation proposal
     children:
-      - 76904730-5206-43cc-9c39-7f1555c294b6
-      - ed60a8f8-6ab0-4bcf-96d8-a4dd6f1b87c4
-      - 4deb3288-e0de-4f72-80c5-a0c6ce8eb21d
+      - b3397ac5-54e3-4c84-8da4-b5030a6f3fe7
+      - edb13d96-3624-4fd4-a512-2c645ad9bb89
+      - d7b7b152-46b0-41b5-962a-6bbef8c51856
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  76904730-5206-43cc-9c39-7f1555c294b6:
-    id: 76904730-5206-43cc-9c39-7f1555c294b6
+  b3397ac5-54e3-4c84-8da4-b5030a6f3fe7:
+    id: b3397ac5-54e3-4c84-8da4-b5030a6f3fe7
     content: Approach — Add a node-level execute action that fires only when the selection size is exactly one and the single node passes the code test (entire content backticked, no children, no context applied). In that case the node is sent as raw text with backticks stripped through the terminal integration; every other case falls through to the existing markdown send path.
     children: []
     metadata:
@@ -99833,8 +99739,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ed60a8f8-6ab0-4bcf-96d8-a4dd6f1b87c4:
-    id: ed60a8f8-6ab0-4bcf-96d8-a4dd6f1b87c4
+  edb13d96-3624-4fd4-a512-2c645ad9bb89:
+    id: edb13d96-3624-4fd4-a512-2c645ad9bb89
     content: Touchpoints — node classifier (entire-content backtick test, hierarchy + context guards), selection-size gate, content serializer (raw vs markdown branch), node action menu, terminal/IPC bridge, preview renderer for backtick → codeblock display
     children: []
     metadata:
@@ -99842,12 +99748,169 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4deb3288-e0de-4f72-80c5-a0c6ce8eb21d:
-    id: 4deb3288-e0de-4f72-80c5-a0c6ce8eb21d
+  d7b7b152-46b0-41b5-962a-6bbef8c51856:
+    id: d7b7b152-46b0-41b5-962a-6bbef8c51856
     content: Constraints to call out — classification must be a pure function of node content + structure + applied context so the user can predict whether a send will execute; reuse the existing markdown tokenizer to detect "entirely encapsulated in backticks" rather than custom string matching; the single-node-only execution gesture should be discoverable so users learn that batching a code node with anything else turns it back into a markdown send
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef2ae734-fe42-4390-a680-f606c2656ce5:
+    id: ef2ae734-fe42-4390-a680-f606c2656ce5
+    content: User story
+    children:
+      - 4844b3cd-bead-4642-947c-4c91729d4265
+      - 9743d712-756e-4234-8799-a1b9304a60b1
+      - 0db378fd-7edf-4a19-82bf-aaafd836c711
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4844b3cd-bead-4642-947c-4c91729d4265:
+    id: 4844b3cd-bead-4642-947c-4c91729d4265
+    content: A warning message appears to say a terminal tab is already assigned for an automated step on another node that has its own terminal tab
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9743d712-756e-4234-8799-a1b9304a60b1:
+    id: 9743d712-756e-4234-8799-a1b9304a60b1
+    content: Sometimes there are duplicate commands sent to more than one terminal window
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0db378fd-7edf-4a19-82bf-aaafd836c711:
+    id: 0db378fd-7edf-4a19-82bf-aaafd836c711
+    content: Sometimes trying to continue a workflow says that the terminal that was used originally for that workflow is now assigned to another
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddd459a8-8ebe-486a-8eca-9ab2b4234d30:
+    id: ddd459a8-8ebe-486a-8eca-9ab2b4234d30
+    content: Scope hook-event delivery to the owning store
+    children:
+      - 18e34d8b-8cee-4d8f-8d19-2ae0ded2f4ac
+      - 3a9f8999-fc35-4315-ab77-9e0a93359756
+      - efe50801-c585-472e-acad-e9e74f323550
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18e34d8b-8cee-4d8f-8d19-2ae0ded2f4ac:
+    id: 18e34d8b-8cee-4d8f-8d19-2ae0ded2f4ac
+    content: Replace broadcast via `getAllStores()` with routing to the single store that owns the session/terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a9f8999-fc35-4315-ab77-9e0a93359756:
+    id: 3a9f8999-fc35-4315-ab77-9e0a93359756
+    content: Targets the duplicate-commands symptom and the cross-store "already assigned" false positive
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efe50801-c585-472e-acad-e9e74f323550:
+    id: efe50801-c585-472e-acad-e9e74f323550
+    content: Also resolves the "originally-used terminal now assigned elsewhere" symptom — same root cause (cross-store hook routing), so a single fix covers all three behaviours
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8b86926-d31a-41ac-8cd7-f19dc1774e70:
+    id: c8b86926-d31a-41ac-8cd7-f19dc1774e70
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children:
+      - b506667b-1a8d-44c8-bd7d-89f79c7e328f
+      - 287e4f73-d942-454b-bb27-761e1f4b5f2e
+      - 5e8fe32f-aa1b-4022-90f3-c21780a18cdb
+      - 4d4ae726-91fb-4702-a9a1-45edc1fa28c2
+      - b8381149-6965-4caa-9eff-2cf31a88b761
+      - e6fa6f03-a359-481a-8cfc-22f10ec9ae12
+      - dfe7a415-e672-4ace-8c48-e4836cf6e4f0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b506667b-1a8d-44c8-bd7d-89f79c7e328f:
+    id: b506667b-1a8d-44c8-bd7d-89f79c7e328f
+    content: Test work added in src/renderer/hooks/tests/useHookEventListenerRouting.test.ts (21 tests, 14 currently failing per TDD — they will go green when the routing fix lands; 6 title-only/lifecycle tests pass; existing useHookEventListener.test.ts continues to pass; lint + type-check clean)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  287e4f73-d942-454b-bb27-761e1f4b5f2e:
+    id: 287e4f73-d942-454b-bb27-761e1f4b5f2e
+    content: Routing fix landed in src/renderer/hooks/useHookEventListener.ts — SessionStart routes via terminal_id (using useTerminalStore.fileStates ownership); Stop/NeedsReview/Notification/UserPromptSubmit/unknown route via session_id (workflowSessionMap lookup); orphan events dropped with warn log; lifecycle (mount/unmount) preserved. All 21 routing tests pass; original useHookEventListener.test.ts (9 tests, harness updated to provide ownership/session-map fakes) still passes; eslint clean on changed files; tsc --noEmit clean.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e8fe32f-aa1b-4022-90f3-c21780a18cdb:
+    id: 5e8fe32f-aa1b-4022-90f3-c21780a18cdb
+    content: 'Verification: traced each User-story symptom to its mechanism in src/renderer/store/tree/actions/workflowExecutionActions.ts — `registerSession` (line 525) mutates `workflowSessionMap` and evicts prior session→terminal mappings (root cause of "now assigned to another") and, on source=''clear'', invokes `clearSessionManager.onClearConfirmed` for the running node on `terminalId` (root cause of duplicate commands when broadcast); `handleHookEvent` Stop path mutates `workflowExecutionStates` (root cause of cross-store false-positive "already assigned" since `findRunningNodeOnTerminal` reads it). Routing at the dispatch boundary in useHookEventListener.ts is the single chokepoint that prevents all three. Routing tests in tests/useHookEventListenerRouting.test.ts cover all three scenarios cross-cutting (multi-store harness): "does not register a clear-session prompt twice when both stores are open" (duplicate commands), "a SessionStart on file-A''s terminal does not corrupt file-B''s session map" (assigned-to-another), and the routing-only delivery tests for Stop/NeedsReview/Notification/UserPromptSubmit (false-positive elimination). 30/30 useHookEventListener tests pass; 2 pre-existing failures in src/renderer/store/tree/actions/tests/clearAiSessionHookHandler.test.ts ("window.electron.startKeepAwake is not a function") reproduce identically on master and are out of scope for this PR.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d4ae726-91fb-4702-a9a1-45edc1fa28c2:
+    id: 4d4ae726-91fb-4702-a9a1-45edc1fa28c2
+    content: 'Review feedback (pr-review-toolkit:code-reviewer): Bottom line — fix is correct for all three named symptoms; SessionStart→Stop "race" is a non-issue because Zustand set is synchronous and Electron IPC delivers events serially to a single listener. Action items: (1) IMPORTANT — useHookEventListener.ts:11 inside findStoreOwningTerminal does a redundant `getAllStoreEntries().find(...)` after Object.entries already yielded `filePath`; replace with `storeManager.getStoreForFile(filePath)` — functionally equivalent, eliminates a potential silent miss if entry ordering ever drifts. (2) IMPORTANT — add a test for the close-and-reopen scenario: file-A registers session → file-A closes (terminal goes) → Stop arrives for that session → assert no store touched and no false-positive warning on bystander file-B. This is a residual gap the new routing surfaces (the old broadcast tolerated it by accident; new routing silently drops with warn — correct, but uncovered). (3) IMPORTANT — add a terminal_id-collision test: when two files share a terminal_id, `findStoreOwningTerminal` returns first Object.entries match (order-dependent). Either pin "first match wins" explicitly or add an invariant assertion; today probably impossible but the routing layer doesn''t enforce it. (4) MINOR — handleHookEvent in workflowHookEventHandler.ts:63-71 still has its own session-map fallback warn; that''s defense-in-depth but produces a duplicate "dropped" log when reached. Consider distinguishing the listener-side warn ("no store owns session X") from the handler-side warn so logs aren''t ambiguous. (5) MINOR — `findStoreOwningSession` is O(F) per non-SessionStart event (Stop fires every AI turn). Fine today; if file count grows, maintain a reverse `sessionId→store` index in storeManager. (6) MINOR — `storeManager.getAllStoreEntries` is now used by routing; add a one-line intent comment so it doesn''t accidentally become the new broadcast primitive (existing broadcasters still call `getAllStores()` from useTerminalPanel.ts:17, useFeedbackClipboard.ts:107, useAppInitialization.ts:26, uiService.ts:81 — all correct for their concerns). No correctness blockers; ship after (1)+(2)+(3).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8381149-6965-4caa-9eff-2cf31a88b761:
+    id: b8381149-6965-4caa-9eff-2cf31a88b761
+    content: 'Feedback on the review (developer reply, after reading the actual code): ACCEPTED 1 of 6 findings; REJECTED the rest with reasons. — REJECT (incorrect) Finding 1 "replace getAllStoreEntries().find(...) with getStoreForFile(filePath)": getStoreForFile() is NOT a pure lookup — it AUTO-CREATES a store on miss (storeManager.ts:27-31: `if (!this.stores.has(actualPath)) { ... this.stores.set(actualPath, store); ... }`). Using it from the routing path would spuriously instantiate stores for closed files when late hook events arrive, leaking memory and causing the very cross-store contamination this PR is fixing. The current `getAllStoreEntries().find(...)` is read-only and correct. Severity exaggerated (marked IMPORTANT) — should not have been flagged. ACCEPT Finding 2 "close-and-reopen test": valid coverage gap. Will add a test where file-A registers session, file-A closes (closeFile() at storeManager.ts:59-84 destroys the store + terminals), then a Stop arrives for that session — assert no store mutated, listener warns and drops. REJECT (low probability + intentional) Finding 3 "terminal_id collision test": terminal IDs are generated as `terminal-${Date.now()}` in terminalService.ts:10 from a single renderer process; collisions require two creates in the same millisecond in the same process, which user-driven flow does not produce. Object.entries iteration is spec-deterministic (insertion order); "first-match-wins" is the natural and stable behavior, not an order-drift risk. Adding this test pins implementation detail without protecting against any real bug. Severity exaggerated; intentional behavior presented as issue. REJECT (non-issue) Finding 4 "duplicate dropped log": traced both warn paths — the listener''s `findStoreOwningSession` and the handler''s `if (!terminalId)` (workflowHookEventHandler.ts:64-71) both read `workflowSessionMap` for the SAME store. If the listener finds a store, the handler will too — the handler-side branch is unreachable via the listener path. It''s only reachable on direct test invocation. No actual duplicate log occurs in production. SKIP (acknowledged speculative) Finding 5 "O(F) hot path": reviewer themselves frames as "fine today, future-only". Premature optimization. REJECT (violates project convention) Finding 6 "intent comment on getAllStoreEntries": CLAUDE.md "Code Style"/"Comments" sections explicitly say "Comments for ''why'' not ''what''" and "If code needs a comment explaining what it does, refactor to a named function". A "use this for routing, not broadcasting" comment is a usage/what comment, not a why. If the concern is real, the right move is renaming (e.g., `getEntriesForRouting`) — but with only one routing caller today, that''s premature too. SKIP. NET PLAN: implement Finding 2 only (one new test in tests/useHookEventListenerRouting.test.ts).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6fa6f03-a359-481a-8cfc-22f10ec9ae12:
+    id: e6fa6f03-a359-481a-8cfc-22f10ec9ae12
+    content: 'Feedback summary by severity — HIGH: none; MEDIUM (accept): Finding 2 (close-and-reopen test); LOW/REJECTED (incorrect): Finding 1 (storeManager auto-creates stores, would regress the fix); LOW/REJECTED (low probability + intentional): Finding 3 (collision impossible with current ID scheme; insertion-order iteration is intentional); LOW/REJECTED (non-issue): Finding 4 (handler-side warn unreachable via listener); LOW/SKIP (speculative): Finding 5 (acknowledged future-only); LOW/REJECTED (violates conventions): Finding 6 (what-comment).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfe7a415-e672-4ace-8c48-e4836cf6e4f0:
+    id: dfe7a415-e672-4ace-8c48-e4836cf6e4f0
+    content: 'Documentation decision — no changes needed. Changelog: "Workflow execution" is in CHANGELOG.md ## Unreleased (line 11) and last release tag is v0.1.1 (only `chore` commits since), so this fix targets an unreleased feature → per convention "Don''t add a line to the changelog for a bug fix to a feature that was implemented after the last release", skip. Docs: behavior change is "running workflows in multiple open .arbo files no longer cross-contaminate" — that''s the natural expectation, not a discoverability/usability issue; existing docs/workflows.md:120-122 already cover same-file multi-terminal workflows; cross-file is implicit and non-blocking. Per convention "If it''s implicit or discoverable and non-blocking, no need to mention it" and "Don''t add an entry if it''s not useful to the user or bloats the documentation", skip. No existing docs reference the broken behavior, so nothing to retract.'
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
