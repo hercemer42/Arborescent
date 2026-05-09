@@ -358,6 +358,67 @@ describe('useHookEventListener — strict routing to owning store', () => {
       expect(a.handleHookEvent).not.toHaveBeenCalled();
       expect(b.handleHookEvent).not.toHaveBeenCalled();
     });
+
+    it('falls back to terminal_id when session_id is unknown — routes Stop to the store owning the terminal', () => {
+      const owner = makeStore('/files/owner.arbo', { registeredSessionIds: ['sess-old'] });
+      const other = makeStore('/files/other.arbo', { registeredSessionIds: [] });
+      storeEntriesRef.current = [owner, other];
+      terminalOwnership['terminal-1'] = '/files/owner.arbo';
+
+      renderHook(() => useHookEventListener());
+
+      act(() => {
+        hookEventCallback({
+          session_id: 'sess-new-not-yet-registered',
+          hook_event_name: 'Stop',
+          terminal_id: 'terminal-1',
+        });
+      });
+
+      expect(owner.handleHookEvent).toHaveBeenCalledTimes(1);
+      expect(other.handleHookEvent).not.toHaveBeenCalled();
+    });
+
+    it('falls back to terminal_id for UserPromptSubmit so the pending-ack consumer is reached even when session_id is unknown', () => {
+      const owner = makeStore('/files/owner.arbo', { registeredSessionIds: [] });
+      storeEntriesRef.current = [owner];
+      terminalOwnership['terminal-1'] = '/files/owner.arbo';
+
+      renderHook(() => useHookEventListener());
+
+      act(() => {
+        hookEventCallback({
+          session_id: 'sess-new',
+          hook_event_name: 'UserPromptSubmit',
+          terminal_id: 'terminal-1',
+        });
+      });
+
+      expect(owner.handleHookEvent).toHaveBeenCalledTimes(1);
+      expect(owner.handleHookEvent).toHaveBeenCalledWith({
+        session_id: 'sess-new',
+        hook_event_name: 'UserPromptSubmit',
+        terminal_id: 'terminal-1',
+      });
+    });
+
+    it('does not fall back to terminal_id when no open file owns that terminal — drops the event', () => {
+      const a = makeStore('/files/a.arbo', { registeredSessionIds: ['sess-a'] });
+      storeEntriesRef.current = [a];
+      // terminalOwnership left empty — no file owns 'terminal-orphan'
+
+      renderHook(() => useHookEventListener());
+
+      act(() => {
+        hookEventCallback({
+          session_id: 'sess-unknown',
+          hook_event_name: 'Stop',
+          terminal_id: 'terminal-orphan',
+        });
+      });
+
+      expect(a.handleHookEvent).not.toHaveBeenCalled();
+    });
   });
 
   describe('two open files with concurrent workflows on separate terminals', () => {

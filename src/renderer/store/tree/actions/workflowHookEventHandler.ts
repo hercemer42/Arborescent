@@ -22,6 +22,8 @@ export interface HookEventPayload {
   session_id: string;
   hook_event_name: string;
   message?: string;
+  terminal_id?: string;
+  source?: string;
 }
 
 export interface HookEventHandlerDeps {
@@ -61,7 +63,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
 
   return function handleHookEvent(event: HookEventPayload): void {
     const { workflowSessionMap } = get();
-    const terminalId = workflowSessionMap[event.session_id];
+    const terminalId = workflowSessionMap[event.session_id] || event.terminal_id;
     if (!terminalId) {
       logger.warn(
         `Hook event ${event.hook_event_name} dropped: no terminal mapped for session ${event.session_id}`,

@@ -44,6 +44,8 @@ export interface WorkflowExecutionActions {
     session_id: string;
     hook_event_name: string;
     message?: string;
+    terminal_id?: string;
+    source?: string;
   }) => void;
   initializeExecutionState: () => void;
   handleTerminalClosed: (terminalId: string) => void;

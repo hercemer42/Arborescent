@@ -52,10 +52,12 @@ export function useHookEventListener(): void {
         return;
       }
 
-      const store = findStoreOwningSession(event.session_id);
+      const store =
+        findStoreOwningSession(event.session_id) ??
+        (event.terminal_id ? findStoreOwningTerminal(event.terminal_id) : null);
       if (!store) {
         logger.warn(
-          `${event.hook_event_name} dropped — no store has session ${event.session_id} registered`,
+          `${event.hook_event_name} dropped — no store has session ${event.session_id} registered and no terminal_id fallback resolved`,
           'HookEventListener',
         );
         return;
