@@ -63,6 +63,7 @@ export interface TreeState {
   summaryVisibleNodeIds: Set<string> | null;
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
   workflowSessionMap: Record<string, string>;
+  terminalNodeAssignments: Record<string, string>;
 
   actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & SendActions & ClipboardActions & SummaryActions & WorkflowActions & WorkflowExecutionActions;
 }
@@ -126,6 +127,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       summaryVisibleNodeIds: null,
       workflowExecutionStates: {},
       workflowSessionMap: {},
+      terminalNodeAssignments: {},
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),

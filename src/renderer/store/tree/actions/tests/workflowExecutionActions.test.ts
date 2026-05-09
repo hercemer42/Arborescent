@@ -71,6 +71,7 @@ describe('createWorkflowExecutionActions', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean }>;
     workflowSessionMap: Record<string, string>;
+    terminalNodeAssignments: Record<string, string>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
 
@@ -161,6 +162,7 @@ describe('createWorkflowExecutionActions', () => {
       },
       workflowExecutionStates: {},
       workflowSessionMap: {},
+      terminalNodeAssignments: {},
       contextDeclarations: [],
     };
 

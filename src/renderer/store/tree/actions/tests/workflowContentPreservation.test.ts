@@ -125,6 +125,7 @@ describe('Workflow steps preserve the original node content', () => {
       summaryVisibleNodeIds: null,
       workflowExecutionStates: {},
       workflowSessionMap: {},
+      terminalNodeAssignments: {},
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
     };

@@ -63,6 +63,7 @@ type StoreState = {
   ancestorRegistry: AncestorRegistry;
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
   workflowSessionMap: Record<string, string>;
+  terminalNodeAssignments?: Record<string, string>;
   activeNodeId?: string | null;
 };
 
@@ -172,13 +173,43 @@ export const createWorkflowExecutionActions = (
   });
 
   function findRunningNodeOnTerminal(terminalId: string): string | null {
+    const explicit = get().terminalNodeAssignments?.[terminalId];
+    if (explicit) return explicit;
     const { workflowExecutionStates } = get();
     for (const [nodeId, entry] of Object.entries(workflowExecutionStates)) {
-      if (entry.state === "running" && entry.terminalTabId === terminalId) {
+      if (
+        (entry.state === "running" || entry.state === "awaiting-validation") &&
+        entry.terminalTabId === terminalId
+      ) {
         return nodeId;
       }
     }
     return null;
+  }
+
+  function assignTerminalToNode(terminalId: string, nodeId: string): void {
+    const { terminalNodeAssignments = {} } = get();
+    const updated: Record<string, string> = {};
+    for (const [tid, nid] of Object.entries(terminalNodeAssignments)) {
+      if (tid === terminalId || nid === nodeId) continue;
+      updated[tid] = nid;
+    }
+    updated[terminalId] = nodeId;
+    set({ terminalNodeAssignments: updated });
+  }
+
+  function releaseTerminalAssignmentForNode(nodeId: string): void {
+    const { terminalNodeAssignments = {} } = get();
+    let changed = false;
+    const updated: Record<string, string> = {};
+    for (const [tid, nid] of Object.entries(terminalNodeAssignments)) {
+      if (nid === nodeId) {
+        changed = true;
+        continue;
+      }
+      updated[tid] = nid;
+    }
+    if (changed) set({ terminalNodeAssignments: updated });
   }
 
   function startWorkflow(nodeId: string, terminalId: string | null): void {
@@ -234,6 +265,7 @@ export const createWorkflowExecutionActions = (
         [nodeId]: { state: "running" as const, terminalTabId: terminalId },
       },
     });
+    assignTerminalToNode(terminalId, nodeId);
 
     void window.electron.startKeepAwake();
 
@@ -258,6 +290,7 @@ export const createWorkflowExecutionActions = (
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
+    releaseTerminalAssignmentForNode(nodeId);
 
     void window.electron.stopKeepAwake();
 
@@ -299,6 +332,7 @@ export const createWorkflowExecutionActions = (
         [nodeId]: { state: "running", terminalTabId: terminalId },
       },
     });
+    assignTerminalToNode(terminalId, nodeId);
 
     logger.info(
       `Continuing workflow execution for node ${nodeId} on terminal ${terminalId}`,
@@ -373,6 +407,7 @@ export const createWorkflowExecutionActions = (
     delete updatedStates[nodeId];
 
     set({ workflowExecutionStates: updatedStates });
+    releaseTerminalAssignmentForNode(nodeId);
 
     if (entry) {
       void window.electron.stopKeepAwake();
@@ -569,12 +604,14 @@ export const createWorkflowExecutionActions = (
     const { workflowExecutionStates } = get();
     let stoppedCount = 0;
     const updatedStates: Record<string, WorkflowExecutionEntry> = {};
+    const rebuiltAssignments: Record<string, string> = {};
 
     for (const [nodeId, entry] of Object.entries(workflowExecutionStates)) {
       if (entry.state === "running") {
         stoppedCount++;
       } else {
         updatedStates[nodeId] = entry;
+        rebuiltAssignments[entry.terminalTabId] = nodeId;
       }
     }
 
@@ -593,6 +630,7 @@ export const createWorkflowExecutionActions = (
     set({
       workflowExecutionStates: updatedStates,
       workflowSessionMap: {},
+      terminalNodeAssignments: rebuiltAssignments,
     });
 
     if (stoppedCount > 0) {
@@ -614,6 +652,7 @@ export const createWorkflowExecutionActions = (
     clearStepTimeout: stepTimeouts.clear,
     clearPendingAck,
     clearPendingClear: clearSessionManager.clearPending,
+    releaseTerminalAssignmentForNode,
     triggerAutosave,
   });
 

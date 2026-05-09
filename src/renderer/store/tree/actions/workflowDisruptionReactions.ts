@@ -30,6 +30,8 @@ export interface DisruptionReactionDeps {
   clearPendingAck: (nodeId: string) => void;
   /** Clear any pending /clear-confirmation timer/retry for this node. */
   clearPendingClear: (nodeId: string) => void;
+  /** Release the authoritative terminal→node binding for a node so the terminal becomes free again. */
+  releaseTerminalAssignmentForNode: (nodeId: string) => void;
   triggerAutosave?: () => void;
 }
 
@@ -45,12 +47,12 @@ export interface DisruptionReactionDeps {
  * state machine.
  */
 export function createDisruptionReactions(deps: DisruptionReactionDeps): WorkflowDisruptionReactions {
-  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, clearPendingAck, clearPendingClear, triggerAutosave } = deps;
+  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, clearPendingAck, clearPendingClear, releaseTerminalAssignmentForNode, triggerAutosave } = deps;
 
   function handleTerminalClosed(terminalId: string): void {
     const { workflowExecutionStates, nodes } = get();
     const updatedStates = { ...workflowExecutionStates };
-    let changed = false;
+    const releasedNodes: string[] = [];
 
     for (const [nodeId, entry] of Object.entries(updatedStates)) {
       if (entry.terminalTabId === terminalId && entry.state === 'running') {
@@ -63,12 +65,15 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
         useToastStore
           .getState()
           .addToast(`"${nodeName}" stopped — terminal closed`, 'warning');
-        changed = true;
+        releasedNodes.push(nodeId);
       }
     }
 
-    if (changed) {
+    if (releasedNodes.length > 0) {
       set({ workflowExecutionStates: updatedStates });
+      for (const nodeId of releasedNodes) {
+        releaseTerminalAssignmentForNode(nodeId);
+      }
     }
   }
 
@@ -82,6 +87,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
+    releaseTerminalAssignmentForNode(nodeId);
 
     logger.info(`Cleared execution state for deleted node ${nodeId}`, 'WorkflowExecution');
   }
@@ -89,20 +95,23 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
   function handleStepDeleted(stepId: string): void {
     const { workflowExecutionStates, ancestorRegistry } = get();
     const updatedStates = { ...workflowExecutionStates };
-    let changed = false;
+    const releasedNodes: string[] = [];
 
     for (const [nodeId, entry] of Object.entries(updatedStates)) {
       if (entry.state === 'running') {
         const parentId = getParentIdOrNull(nodeId, ancestorRegistry);
         if (parentId === stepId) {
           delete updatedStates[nodeId];
-          changed = true;
+          releasedNodes.push(nodeId);
         }
       }
     }
 
-    if (changed) {
+    if (releasedNodes.length > 0) {
       set({ workflowExecutionStates: updatedStates });
+      for (const nodeId of releasedNodes) {
+        releaseTerminalAssignmentForNode(nodeId);
+      }
       useToastStore
         .getState()
         .addToast('Step removed — affected workflows stopped', 'warning');
@@ -124,6 +133,9 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
 
     if (completedNodes.length > 0) {
       set({ workflowExecutionStates: updatedStates });
+      for (const nodeId of completedNodes) {
+        releaseTerminalAssignmentForNode(nodeId);
+      }
       const { nodes } = get();
       for (const nodeId of completedNodes) {
         const node = nodes[nodeId];
@@ -148,6 +160,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
+    releaseTerminalAssignmentForNode(nodeId);
 
     logger.info(`Cleared execution state for manually moved node ${nodeId}`, 'WorkflowExecution');
   }
