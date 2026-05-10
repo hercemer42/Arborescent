@@ -463,14 +463,31 @@ export const createWorkflowExecutionActions = (
         return;
       } catch (error) {
         logger.error('Failed to resume parent session for recurse — falling back to fresh', error as Error, 'WorkflowExecution');
-        announceBrokenChain(nextNodeId);
-        await startWorkflow(nextNodeId, terminalId);
+        await dispatchFreshStartWithBrokenChain(nextNodeId, terminalId, parentNodeId);
         return;
       }
     }
 
-    announceBrokenChain(nextNodeId);
+    await dispatchFreshStartWithBrokenChain(nextNodeId, terminalId, parentNodeId);
+  }
+
+  async function dispatchFreshStartWithBrokenChain(
+    nextNodeId: string,
+    terminalId: string,
+    orchestratorNodeId: string,
+  ): Promise<void> {
     await startWorkflow(nextNodeId, terminalId);
+    if (get().workflowExecutionStates[nextNodeId]?.state === 'running') {
+      announceBrokenChain(nextNodeId);
+      return;
+    }
+    releaseTerminalAssignmentForNode(orchestratorNodeId);
+    useToastStore
+      .getState()
+      .addToast(
+        'Recurse halted — next step could not start (terminal busy or step ineligible)',
+        'warning',
+      );
   }
 
   async function openInheritedResumeTerminal(sessionId: string, cwd: string): Promise<string> {
