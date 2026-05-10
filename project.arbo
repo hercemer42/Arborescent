@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-10T14:21:31.957Z'
+updated: '2026-05-10T18:53:20.738Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -458,6 +458,9 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - be562c36-9f4c-40a6-ab57-a0024cb6746a
+      - c4136720-b1fb-4258-a8b3-f260531cb844
+      - 9fd342d4-ea8e-4a8e-bdc1-150c9c2698f2
       - 0f4e4680-4264-44b3-ae3b-7980d55791d3
       - 1bf140f0-ec8e-4e18-bad5-bfa99b255d0b
       - 5dd8ab00-6dbc-4955-b301-1ad9c0bd5a83
@@ -81493,6 +81496,7 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - 00ed9bd1-7eb1-46c3-b26e-ef5b51a49826
       - 815a14a2-d4f9-4f46-91f1-d603b2d3185c
       - fcb40af2-520f-47e7-8a23-4cf9e1aed962
       - 889ff4cb-3ae1-4f90-b289-12a92935efb7
@@ -96895,10 +96899,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - be562c36-9f4c-40a6-ab57-a0024cb6746a
-      - c4136720-b1fb-4258-a8b3-f260531cb844
-      - 9fd342d4-ea8e-4a8e-bdc1-150c9c2698f2
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -99263,6 +99264,7 @@ nodes:
       - 047c58db-ebd4-49f1-ad54-7358bc4c9b56
     metadata:
       status: pending
+      expanded: false
   047c58db-ebd4-49f1-ad54-7358bc4c9b56:
     id: 047c58db-ebd4-49f1-ad54-7358bc4c9b56
     content: Need to be able to stop it too
@@ -99693,6 +99695,7 @@ nodes:
       - 0137a2dc-0f22-4a5c-bce8-95142ca30484
     metadata:
       status: pending
+      expanded: false
   0137a2dc-0f22-4a5c-bce8-95142ca30484:
     id: 0137a2dc-0f22-4a5c-bce8-95142ca30484
     content: If we are associating by Group ID this shouldn't be an issue
@@ -101941,6 +101944,7 @@ nodes:
       - ac3a553a-fd04-4077-bd28-c589698c9d6b
     metadata:
       status: pending
+      expanded: false
   ac3a553a-fd04-4077-bd28-c589698c9d6b:
     id: ac3a553a-fd04-4077-bd28-c589698c9d6b
     content: Need to make it clearer in instructions that the context is just a step and to only perform that step on the content.
@@ -101956,6 +101960,7 @@ nodes:
       - e7b1228d-7c09-4af1-b4d3-bf6fc12cfcc0
     metadata:
       status: pending
+      expanded: false
   b322e5e5-5521-47c2-9f66-2f021f0ecaae:
     id: b322e5e5-5521-47c2-9f66-2f021f0ecaae
     content: Need to be more explicit about writing this back to the temporary file
@@ -108925,3 +108930,9 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  00ed9bd1-7eb1-46c3-b26e-ef5b51a49826:
+    id: 00ed9bd1-7eb1-46c3-b26e-ef5b51a49826
+    content: Bug - linked steps didn't stop at recurse node, they just kept going
+    children: []
+    metadata:
+      status: pending
