@@ -1,25 +1,23 @@
 import { ArboFile, TreeNode } from '../../shared/types';
+import { stripDroppedSessionFields } from './sessionRegistryMigrations';
+
+const RUNTIME_ONLY_FIELDS = ['transient'] as const;
 
 function stripRuntimeOnlyMetadata(node: TreeNode): TreeNode {
   const { metadata } = node;
-  const hasTransient = metadata.transient !== undefined;
-  const hasSessionTabId = metadata.sessionTabId !== undefined;
-
-  if (!hasTransient && !hasSessionTabId) {
-    return node;
-  }
+  if (metadata.transient === undefined) return node;
 
   const cleaned: typeof metadata = { ...metadata };
-  delete cleaned.transient;
-  delete cleaned.sessionTabId;
+  for (const field of RUNTIME_ONLY_FIELDS) delete cleaned[field];
   return { ...node, metadata: cleaned };
 }
 
 function stripTransientMetadataFromNodes(
   nodes: Record<string, TreeNode>
 ): Record<string, TreeNode> {
+  const withoutDropped = stripDroppedSessionFields(nodes);
   const result: Record<string, TreeNode> = {};
-  for (const [id, node] of Object.entries(nodes)) {
+  for (const [id, node] of Object.entries(withoutDropped)) {
     result[id] = stripRuntimeOnlyMetadata(node);
   }
   return result;
@@ -60,7 +58,8 @@ export function createArboFile(
   existingMeta?: { created: string; author: string },
   isBlueprint?: boolean,
   summaryDateFrom?: string | null,
-  summaryDateTo?: string | null
+  summaryDateTo?: string | null,
+  sessionRegistry?: Record<string, { cwd: string }>,
 ): ArboFile {
   const file: ArboFile = {
     format: 'Arborescent',
@@ -82,6 +81,10 @@ export function createArboFile(
 
   if (summaryDateTo) {
     file.summaryDateTo = summaryDateTo;
+  }
+
+  if (sessionRegistry && Object.keys(sessionRegistry).length > 0) {
+    file.sessionRegistry = sessionRegistry;
   }
 
   return file;

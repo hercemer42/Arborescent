@@ -33,7 +33,7 @@ import { createClearSessionManager } from "./workflowClearSession";
 import {
   createSessionResumeManager,
   captureSessionOnNode,
-  markNodeStartingSession,
+  clearBrokenChainOnNode,
   inheritSessionOnNode,
   markBrokenChainOnNode,
 } from "./workflowSessionResume";
@@ -75,6 +75,7 @@ type StoreState = {
   ancestorRegistry: AncestorRegistry;
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
   workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
   terminalNodeAssignments?: Record<string, string>;
   activeNodeId?: string | null;
 };
@@ -163,7 +164,7 @@ export const createWorkflowExecutionActions = (
     stopWorkflow: (id) => stopWorkflow(id),
   });
 
-  const sessionResumeManager = createSessionResumeManager({ get, set, triggerAutosave });
+  const sessionResumeManager = createSessionResumeManager({ get, set });
 
   // Step-timeout lifecycle lives in its own module so the toast-action
   // callback (which loops back into stopWorkflow) has an explicit seam.
@@ -227,7 +228,7 @@ export const createWorkflowExecutionActions = (
   }
 
   async function startWorkflow(nodeId: string, terminalId: string | null): Promise<void> {
-    const { nodes, ancestorRegistry, workflowExecutionStates } = get();
+    const { nodes, ancestorRegistry, workflowExecutionStates, workflowSessionMap, sessionRegistry } = get();
 
     if (
       !isEligibleForExecution(
@@ -246,21 +247,28 @@ export const createWorkflowExecutionActions = (
     );
     const route = decideWorkflowStartRoute({
       sessionId: node?.metadata.sessionId,
-      sessionLiveness: node?.metadata.sessionLiveness,
-      sessionTabId: node?.metadata.sessionTabId,
-      sessionWorkingDirectory: node?.metadata.sessionWorkingDirectory,
+      workflowSessionMap,
+      sessionRegistry,
       openTerminalIds,
     });
 
-    if (route.kind !== "spawn-fresh") {
-      await sessionResumeManager.resumeSession(nodeId);
-      const resolvedTerminalId = get().nodes[nodeId]?.metadata.sessionTabId;
-      const liveTerminalIds = new Set(
-        useTerminalStore.getState().terminals.map((t) => t.id),
-      );
-      if (resolvedTerminalId && liveTerminalIds.has(resolvedTerminalId)) {
-        startWorkflowOnTerminal(nodeId, resolvedTerminalId, "reattach");
+    if (route.kind === "focus-existing-tab") {
+      useTerminalStore.getState().setActiveTerminal(route.terminalId);
+      startWorkflowOnTerminal(nodeId, route.terminalId, "reattach");
+      return;
+    }
+
+    if (route.kind === "resume-in-new-tab" && route.cwd) {
+      try {
+        const created = await useTerminalStore.getState().createNewTerminal("Resume", route.cwd);
+        if (!created) throw new Error("Terminal not created");
+        await window.electron.terminalWrite(created.id, `claude --resume ${route.sessionId}\r`);
+        sessionResumeManager.bindSessionTab(created.id, route.sessionId);
+        startWorkflowOnTerminal(nodeId, created.id, "reattach");
         return;
+      } catch (error) {
+        logger.error("Failed to resume session for workflow start — falling back to fresh", error as Error, "WorkflowExecution");
+        // Fall through to spawn-fresh on the provided terminalId
       }
     }
 
@@ -311,7 +319,7 @@ export const createWorkflowExecutionActions = (
         ...workflowExecutionStates,
         [nodeId]: { state: "running" as const, terminalTabId: terminalId },
       },
-      nodes: mode === "spawn" ? markNodeStartingSession(nodes, nodeId, terminalId) : nodes,
+      nodes: mode === "spawn" ? clearBrokenChainOnNode(nodes, nodeId) : nodes,
     });
     assignTerminalToNode(terminalId, nodeId);
 
@@ -417,37 +425,25 @@ export const createWorkflowExecutionActions = (
 
   async function dispatchRecurseStart(nextNodeId: string, terminalId: string, parentNodeId: string): Promise<void> {
     const parent = get().nodes[parentNodeId]?.metadata;
+    const { workflowSessionMap, sessionRegistry } = get();
     const route = decideWorkflowStartRoute({
       sessionId: parent?.sessionId,
-      sessionLiveness: parent?.sessionLiveness,
-      sessionTabId: parent?.sessionTabId,
-      sessionWorkingDirectory: parent?.sessionWorkingDirectory,
+      workflowSessionMap,
+      sessionRegistry,
       openTerminalIds: new Set(useTerminalStore.getState().terminals.map((t) => t.id)),
     });
 
     if (route.kind === 'focus-existing-tab' && parent?.sessionId) {
-      const inherited = inheritSessionOnNode(
-        get().nodes,
-        nextNodeId,
-        route.terminalId,
-        parent.sessionId,
-        parent.sessionWorkingDirectory,
-      );
+      const inherited = inheritSessionOnNode(get().nodes, nextNodeId, parent.sessionId);
       if (inherited !== get().nodes) set({ nodes: inherited });
       startWorkflowOnTerminal(nextNodeId, route.terminalId, 'recurse');
       return;
     }
 
-    if (route.kind === 'resume-in-new-tab') {
+    if (route.kind === 'resume-in-new-tab' && route.cwd) {
       try {
         const newTabId = await openInheritedResumeTerminal(route.sessionId, route.cwd);
-        const inherited = inheritSessionOnNode(
-          get().nodes,
-          nextNodeId,
-          newTabId,
-          route.sessionId,
-          route.cwd,
-        );
+        const inherited = inheritSessionOnNode(get().nodes, nextNodeId, route.sessionId);
         if (inherited !== get().nodes) set({ nodes: inherited });
         sessionResumeManager.bindSessionTab(newTabId, route.sessionId);
         startWorkflowOnTerminal(nextNodeId, newTabId, 'recurse');
@@ -464,7 +460,7 @@ export const createWorkflowExecutionActions = (
     await startWorkflow(nextNodeId, terminalId);
   }
 
-  async function openInheritedResumeTerminal(sessionId: string, cwd: string | undefined): Promise<string> {
+  async function openInheritedResumeTerminal(sessionId: string, cwd: string): Promise<string> {
     const created = await useTerminalStore.getState().createNewTerminal('Resume', cwd);
     if (!created) throw new Error('Resume terminal was not created');
     await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
@@ -696,19 +692,16 @@ export const createWorkflowExecutionActions = (
     const { workflowSessionMap, nodes } = get();
 
     const updatedMap = { ...workflowSessionMap };
-    for (const [existingSession, existingTerminal] of Object.entries(
-      updatedMap,
-    )) {
+    for (const [existingSession, existingTerminal] of Object.entries(updatedMap)) {
       if (existingTerminal === terminalId) {
         delete updatedMap[existingSession];
       }
     }
-
     updatedMap[trimmed] = terminalId;
 
     const runningNodeId = findRunningNodeOnTerminal(terminalId);
     const nodesWithCapture = runningNodeId
-      ? captureSessionOnNode(nodes, runningNodeId, trimmed, terminalId)
+      ? captureSessionOnNode(nodes, runningNodeId, trimmed)
       : nodes;
 
     set({
@@ -718,7 +711,19 @@ export const createWorkflowExecutionActions = (
 
     if (runningNodeId && nodesWithCapture !== nodes) {
       triggerAutosave?.();
-      void sessionResumeManager.refreshSessionCwd(runningNodeId, terminalId);
+    }
+
+    // Async: write live cwd to sessionRegistry
+    const getCwd = window.electron.terminalGetCwd;
+    if (typeof getCwd === 'function') {
+      void getCwd(terminalId).then((cwd) => {
+        if (!cwd) return;
+        const { sessionRegistry } = get();
+        set({ sessionRegistry: { ...sessionRegistry, [trimmed]: { cwd } } });
+        triggerAutosave?.();
+      }).catch((error) => {
+        logger.warn(`terminalGetCwd failed for ${terminalId}: ${(error as Error).message}`, 'WorkflowExecution');
+      });
     }
 
     if (!usePreferencesStore.getState().hasReceivedHookEvent) {
@@ -777,6 +782,7 @@ export const createWorkflowExecutionActions = (
       workflowExecutionStates: updatedStates,
       workflowSessionMap: {},
       terminalNodeAssignments: rebuiltAssignments,
+      // sessionRegistry is NOT reset — it is persistent data loaded from file
     });
 
     if (stoppedCount > 0) {

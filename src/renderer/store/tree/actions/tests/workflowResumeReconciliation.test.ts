@@ -98,6 +98,7 @@ describe('Resume reconciliation and ack-retry hardening', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, Entry>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     terminalNodeAssignments?: Record<string, string>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
@@ -127,6 +128,7 @@ describe('Resume reconciliation and ack-retry hardening', () => {
       workflowSessionMap: {},
       terminalNodeAssignments: {},
       contextDeclarations: [],
+      sessionRegistry: {},
     };
   }
 

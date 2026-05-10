@@ -55,6 +55,7 @@ type TestState = {
   ancestorRegistry: Record<string, string[]>;
   workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
   workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
 };
 
 function buildThreeStepWorkflow(): TestState {
@@ -78,6 +79,7 @@ function buildThreeStepWorkflow(): TestState {
     },
     workflowExecutionStates: {},
     workflowSessionMap: {},
+    sessionRegistry: {},
   };
 }
 

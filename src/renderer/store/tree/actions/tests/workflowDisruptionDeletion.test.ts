@@ -55,6 +55,7 @@ describe('workflow disruption — deletion wiring', () => {
     collaboratingNodeId: string | null;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
     actions: {
       executeCommand: (cmd: unknown) => void;
@@ -149,6 +150,7 @@ describe('workflow disruption — deletion wiring', () => {
       workflowSessionMap: {},
       contextDeclarations: [],
       actions: { executeCommand: mockExecuteCommand },
+      sessionRegistry: {},
     };
 
     setState = (partial) => {

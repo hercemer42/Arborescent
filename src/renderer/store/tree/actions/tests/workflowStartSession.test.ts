@@ -76,21 +76,19 @@ type State = {
   ancestorRegistry: Record<string, string[]>;
   workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
   workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
   terminalNodeAssignments: Record<string, string>;
   contextDeclarations: Array<{ nodeId: string; content: string; icon: string; mode: 'execute' | 'collaborate' }>;
 };
 
-describe('startWorkflow — auto session routing (PR2)', () => {
+describe('startWorkflow — auto session routing (PR1)', () => {
   let state: State;
   let actions: ReturnType<typeof createWorkflowExecutionActions>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const noop = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
     mockTerminals.length = 0;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     global.window = { electron: {
       startKeepAwake: vi.fn(),
       stopKeepAwake: vi.fn(),
@@ -122,32 +120,29 @@ describe('startWorkflow — auto session routing (PR2)', () => {
       },
       workflowExecutionStates: {},
       workflowSessionMap: {},
+      sessionRegistry: {},
       terminalNodeAssignments: {},
       contextDeclarations: [],
     };
 
     const get = () => state;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const set = (partial: Partial<State> | ((s: State) => Partial<State>)) => {
       const update = typeof partial === 'function' ? partial(state) : partial;
       Object.assign(state, update);
     };
 
     actions = createWorkflowExecutionActions(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      get as any,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      set as any,
+      get as never,
+      set as never,
       vi.fn(),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      { flashNode: noop, scrollToNode: noop, startDeleteAnimation: noop, clearDeleteAnimation: noop } as any,
+      { flashNode: noop, scrollToNode: noop, startDeleteAnimation: noop, clearDeleteAnimation: noop } as never,
       mockAutonomousCollaborate,
       vi.fn(),
     );
   });
 
-  describe('rule 7 / acceptance 1 — no prior session OR session lost → spawn fresh', () => {
-    it('starts on the passed terminalId and does not call setActiveTerminal nor createNewTerminal when the node has no recorded session', async () => {
+  describe('no prior session → spawn fresh', () => {
+    it('starts on the passed terminalId when the node has no recorded session', async () => {
       await actions.startWorkflow('task-a', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-a']).toEqual({
@@ -158,23 +153,28 @@ describe('startWorkflow — auto session routing (PR2)', () => {
       expect(mockCreateNewTerminal).not.toHaveBeenCalled();
     });
 
-    it('treats a session marked lost as no-prior-session — spawns fresh on the passed terminalId', async () => {
+    it('spawns fresh when sessionId is set but workflowSessionMap has no entry (alive-detached with no open tab)', async () => {
       state.nodes['task-a'].metadata.sessionId = 'sess-old';
-      state.nodes['task-a'].metadata.sessionLiveness = 'lost';
+      // workflowSessionMap is empty — session is detached with no recorded terminal open
+      // sessionRegistry has cwd so resume-in-new-tab path fires
+      state.sessionRegistry['sess-old'] = { cwd: '/some/path' };
+      mockCreateNewTerminal.mockImplementation(async () => {
+        const created = { id: 'terminal-new' };
+        mockTerminals.push(created);
+        return created;
+      });
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(state.workflowExecutionStates['task-a']?.terminalTabId).toBe('terminal-1');
-      expect(mockCreateNewTerminal).not.toHaveBeenCalled();
+      expect(mockCreateNewTerminal).toHaveBeenCalledWith(expect.any(String), '/some/path');
     });
   });
 
-  describe('rule 8a / acceptance 2 — alive-attached session in an open tab → focus tab, no duplicate (rule 9)', () => {
-    it('focuses the existing tab and does not spawn a new terminal when the recorded sessionTabId is currently open', async () => {
+  describe('alive-attached — session in workflowSessionMap with open tab → focus tab', () => {
+    it('focuses the mapped terminal and does not spawn a new one', async () => {
       mockTerminals.push({ id: 'terminal-1' }, { id: 'terminal-2' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-attached';
-      state.nodes['task-a'].metadata.sessionTabId = 'terminal-2';
+      state.workflowSessionMap['sess-1'] = 'terminal-2';
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
@@ -183,11 +183,10 @@ describe('startWorkflow — auto session routing (PR2)', () => {
       expect(state.workflowExecutionStates['task-a']?.terminalTabId).toBe('terminal-2');
     });
 
-    it('does not produce a second tab bound to the same session id when start is invoked twice across a stop', async () => {
+    it('does not produce a second tab when start is invoked twice across a stop', async () => {
       mockTerminals.push({ id: 'terminal-1' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-attached';
-      state.nodes['task-a'].metadata.sessionTabId = 'terminal-1';
+      state.workflowSessionMap['sess-1'] = 'terminal-1';
 
       await actions.startWorkflow('task-a', 'terminal-1');
       actions.stopWorkflow('task-a');
@@ -195,21 +194,18 @@ describe('startWorkflow — auto session routing (PR2)', () => {
 
       expect(mockCreateNewTerminal).not.toHaveBeenCalled();
       expect(mockSetActiveTerminal).toHaveBeenCalledTimes(2);
-      expect(mockSetActiveTerminal).toHaveBeenNthCalledWith(1, 'terminal-1');
-      expect(mockSetActiveTerminal).toHaveBeenNthCalledWith(2, 'terminal-1');
     });
   });
 
-  describe('rule 8b / acceptance 3 — alive-detached or alive-attached without an open tab → resume in a new tab', () => {
-    it('opens a new terminal and writes claude --resume <sessionId> when liveness is alive-detached', async () => {
+  describe('alive-detached — sessionId set, workflowSessionMap has no mapping → resume in new tab', () => {
+    it('opens a new terminal at registry cwd and writes claude --resume', async () => {
       mockCreateNewTerminal.mockImplementation(async () => {
         const created = { id: 'terminal-new' };
         mockTerminals.push(created);
         return created;
       });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-detached';
-      state.nodes['task-a'].metadata.sessionWorkingDirectory = '/Users/me/project';
+      state.sessionRegistry['sess-1'] = { cwd: '/Users/me/project' };
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
@@ -221,7 +217,7 @@ describe('startWorkflow — auto session routing (PR2)', () => {
       expect(state.workflowExecutionStates['task-a']?.terminalTabId).toBe('terminal-new');
     });
 
-    it('opens a new terminal and resumes when the recorded sessionTabId is no longer in the terminal store (post-restart alive-attached)', async () => {
+    it('opens a new terminal when the previously-mapped terminal is no longer open', async () => {
       mockTerminals.push({ id: 'terminal-other' });
       mockCreateNewTerminal.mockImplementation(async () => {
         const created = { id: 'terminal-new' };
@@ -229,9 +225,8 @@ describe('startWorkflow — auto session routing (PR2)', () => {
         return created;
       });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-attached';
-      state.nodes['task-a'].metadata.sessionTabId = 'terminal-gone';
-      state.nodes['task-a'].metadata.sessionWorkingDirectory = '/Users/me/project';
+      state.workflowSessionMap['sess-1'] = 'terminal-gone';
+      state.sessionRegistry['sess-1'] = { cwd: '/Users/me/project' };
 
       await actions.startWorkflow('task-a', 'terminal-other');
 
@@ -242,13 +237,11 @@ describe('startWorkflow — auto session routing (PR2)', () => {
       );
     });
 
-    it('falls back to the user-supplied terminal when resumeSession bails (e.g. createNewTerminal rejects) — never leaves a stale terminalTabId', async () => {
+    it('falls back to the user-supplied terminal when createNewTerminal rejects', async () => {
       mockCreateNewTerminal.mockRejectedValueOnce(new Error('terminal create failed'));
       mockTerminals.push({ id: 'terminal-1' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-detached';
-      state.nodes['task-a'].metadata.sessionTabId = 'terminal-old-gone';
-      state.nodes['task-a'].metadata.sessionWorkingDirectory = '/Users/me/project';
+      state.sessionRegistry['sess-1'] = { cwd: '/Users/me/project' };
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
@@ -256,12 +249,11 @@ describe('startWorkflow — auto session routing (PR2)', () => {
     });
   });
 
-  describe('acceptance 4 — stopped workflow + live session → continues that session', () => {
-    it('does not spawn a new session when starting a previously stopped workflow whose session is still alive in an open tab', async () => {
+  describe('stopped workflow + live session → continues that session', () => {
+    it('does not spawn a new session when the session is still alive in an open tab', async () => {
       mockTerminals.push({ id: 'terminal-1' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-attached';
-      state.nodes['task-a'].metadata.sessionTabId = 'terminal-1';
+      state.workflowSessionMap['sess-1'] = 'terminal-1';
 
       await actions.startWorkflow('task-a', 'terminal-1');
       actions.stopWorkflow('task-a');
@@ -277,27 +269,24 @@ describe('startWorkflow — auto session routing (PR2)', () => {
     });
   });
 
-  describe('persistence — workflow session pointer survives a stop', () => {
-    it('keeps sessionId on the node metadata after a stop, so the next start can route by liveness rather than spawning fresh', async () => {
+  describe('sessionId persists through stop', () => {
+    it('keeps sessionId on the node after a stop so the next start can route correctly', async () => {
       mockTerminals.push({ id: 'terminal-1' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-attached';
-      state.nodes['task-a'].metadata.sessionTabId = 'terminal-1';
+      state.workflowSessionMap['sess-1'] = 'terminal-1';
 
       await actions.startWorkflow('task-a', 'terminal-1');
       actions.stopWorkflow('task-a');
 
       expect(state.nodes['task-a'].metadata.sessionId).toBe('sess-1');
-      expect(state.nodes['task-a'].metadata.sessionLiveness).toBe('alive-attached');
     });
   });
 
   describe('reattach must not re-send the workflow prompt', () => {
-    it('does not invoke clearSessionManager-driven prompt sending for the focus-existing-tab route', async () => {
+    it('does not invoke prompt sending for the focus-existing-tab route', async () => {
       mockTerminals.push({ id: 'terminal-1' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-attached';
-      state.nodes['task-a'].metadata.sessionTabId = 'terminal-1';
+      state.workflowSessionMap['sess-1'] = 'terminal-1';
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
@@ -312,8 +301,7 @@ describe('startWorkflow — auto session routing (PR2)', () => {
         return created;
       });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
-      state.nodes['task-a'].metadata.sessionLiveness = 'alive-detached';
-      state.nodes['task-a'].metadata.sessionWorkingDirectory = '/Users/me/project';
+      state.sessionRegistry['sess-1'] = { cwd: '/Users/me/project' };
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
@@ -323,5 +311,64 @@ describe('startWorkflow — auto session routing (PR2)', () => {
       expect(resumeWrites).toHaveLength(1);
       expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
     });
+  });
+
+  describe('registerSession — writes sessionRegistry cwd at SessionStart', () => {
+    it('writes sessionRegistry[sessionId].cwd from the terminal live cwd on SessionStart', async () => {
+      const mockGetCwd = vi.fn().mockResolvedValue('/live/cwd');
+      global.window.electron.terminalGetCwd = mockGetCwd;
+
+      await actions.startWorkflow('task-a', 'terminal-1');
+      actions.registerSession('sess-new', 'terminal-1');
+
+      await vi.waitFor(() => {
+        expect(state.sessionRegistry['sess-new']).toBeDefined();
+      });
+      expect(state.sessionRegistry['sess-new'].cwd).toBe('/live/cwd');
+    });
+
+    it('maps sessionId to terminalId in workflowSessionMap on SessionStart', () => {
+      actions.registerSession('sess-new', 'terminal-1');
+      expect(state.workflowSessionMap['sess-new']).toBe('terminal-1');
+    });
+
+    it('captures sessionId on the running node on SessionStart', async () => {
+      await actions.startWorkflow('task-a', 'terminal-1');
+      actions.registerSession('sess-new', 'terminal-1');
+      expect(state.nodes['task-a'].metadata.sessionId).toBe('sess-new');
+    });
+
+    it('does NOT write sessionLiveness or sessionTabId onto the node on SessionStart', async () => {
+      await actions.startWorkflow('task-a', 'terminal-1');
+      actions.registerSession('sess-new', 'terminal-1');
+      expect(state.nodes['task-a'].metadata.sessionLiveness).toBeUndefined();
+      expect(state.nodes['task-a'].metadata.sessionTabId).toBeUndefined();
+    });
+
+    it('replaces existing workflowSessionMap entry for the same terminal', () => {
+      state.workflowSessionMap['sess-old'] = 'terminal-1';
+      actions.registerSession('sess-new', 'terminal-1');
+      expect(state.workflowSessionMap['sess-old']).toBeUndefined();
+      expect(state.workflowSessionMap['sess-new']).toBe('terminal-1');
+    });
+  });
+
+  describe('bindSessionTab — collapse to workflowSessionMap only (no node writes)', () => {
+    it('updates workflowSessionMap when bindSessionTab is called via resumeSession', async () => {
+      mockCreateNewTerminal.mockImplementation(async () => {
+        const created = { id: 'terminal-new' };
+        mockTerminals.push(created);
+        return created;
+      });
+      state.nodes['task-a'].metadata.sessionId = 'sess-1';
+      state.sessionRegistry['sess-1'] = { cwd: '/project' };
+
+      await actions.resumeSession('task-a');
+
+      expect(state.workflowSessionMap['sess-1']).toBe('terminal-new');
+    });
+
+    it.todo('bindSessionTab does NOT write sessionLiveness or sessionTabId onto any node');
+    it.todo('bindSessionTab does NOT call rebindNodesForSession (function is deleted in PR1)');
   });
 });

@@ -68,6 +68,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
   };
 
   let state: TestState;
@@ -93,6 +94,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
       },
       workflowExecutionStates: {},
       workflowSessionMap: {},
+      sessionRegistry: {},
     };
 
     setState = (partial) => { state = { ...state, ...partial }; };

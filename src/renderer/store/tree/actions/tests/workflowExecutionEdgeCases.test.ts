@@ -61,6 +61,7 @@ describe('workflow execution edge cases', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
 
@@ -134,6 +135,7 @@ describe('workflow execution edge cases', () => {
         'session-abc': 'terminal-1',
       },
       contextDeclarations: [],
+      sessionRegistry: {},
     };
 
     setState = (partial) => {

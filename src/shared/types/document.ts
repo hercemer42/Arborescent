@@ -14,4 +14,5 @@ export interface ArboFile {
   summaryDateTo?: string;
   rootNodeId: string;
   nodes: Record<string, TreeNode>;
+  sessionRegistry?: Record<string, { cwd: string }>;
 }

@@ -62,6 +62,7 @@ describe('handleAutonomousFeedback — focus preservation', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; collaborating?: boolean; stopReceived?: boolean }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
     activeNodeId: string | null;
     collaboratingNodeId: string | null;
@@ -105,6 +106,7 @@ describe('handleAutonomousFeedback — focus preservation', () => {
       collaboratingNodeId: 'task-a',
       collaborationSource: 'terminal',
       feedbackFadingNodeIds: new Set(),
+      sessionRegistry: {},
     };
 
     setState = (partial) => { state = { ...state, ...partial }; };

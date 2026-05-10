@@ -315,21 +315,6 @@
   50% { opacity: 0.5; }
 }
 
-.session-lost-indicator {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-right: 4px;
-  border-radius: 50%;
-  background: var(--red-500, #ef4444);
-  vertical-align: middle;
-  flex-shrink: 0;
-}
-
-.node-content.session-lost {
-  background: var(--red-50, rgba(239, 68, 68, 0.06));
-}
-
 .broken-chain-indicator {
   display: inline-block;
   width: 8px;
@@ -343,6 +328,6 @@
   box-sizing: border-box;
 }
 
-.node-content.broken-chain:not(.session-lost) {
+.node-content.broken-chain {
   background: var(--amber-50, rgba(245, 158, 11, 0.06));
 }

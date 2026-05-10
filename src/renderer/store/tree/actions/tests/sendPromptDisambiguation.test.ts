@@ -109,6 +109,7 @@ describe('send prompt — write-back disambiguation', () => {
       terminalNodeAssignments: {},
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
+      sessionRegistry: {},
     };
 
     mockGet = vi.fn(() => mockState);

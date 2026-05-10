@@ -67,6 +67,7 @@ describe('SessionStart source:"clear" handling via registerSession', () => {
       clearing?: boolean;
     }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: unknown[];
   };
 
@@ -103,6 +104,7 @@ describe('SessionStart source:"clear" handling via registerSession', () => {
       workflowExecutionStates: {},
       workflowSessionMap: { 'session-old': 'terminal-1' },
       contextDeclarations: [],
+      sessionRegistry: {},
     };
     setState = (partial) => { state = { ...state, ...partial }; };
 

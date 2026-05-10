@@ -112,6 +112,7 @@ describe('browser collaboration guard across files', () => {
       terminalNodeAssignments: {},
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
+      sessionRegistry: {},
     };
 
     const mockGet = vi.fn(() => mockState);

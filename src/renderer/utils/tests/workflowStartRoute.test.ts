@@ -4,73 +4,72 @@ import {
   type WorkflowStartRouteInput,
 } from '../workflowStartRoute';
 
+// PR1: routing inputs now use workflowSessionMap + sessionRegistry instead of
+// stored sessionLiveness / sessionTabId / sessionWorkingDirectory on the node.
+
 const baseInput: WorkflowStartRouteInput = {
   sessionId: undefined,
-  sessionLiveness: undefined,
-  sessionTabId: undefined,
-  sessionWorkingDirectory: undefined,
+  workflowSessionMap: {},
+  sessionRegistry: {},
   openTerminalIds: new Set(),
 };
 
 describe('decideWorkflowStartRoute', () => {
-  describe('spawn-fresh — no recorded session (rule 7)', () => {
+  describe('spawn-fresh — no sessionId', () => {
     it('returns spawn-fresh when the node has never recorded a session', () => {
       expect(decideWorkflowStartRoute(baseInput)).toEqual({ kind: 'spawn-fresh' });
     });
 
-    it('returns spawn-fresh when sessionId is set but sessionLiveness is lost', () => {
-      const route = decideWorkflowStartRoute({
-        ...baseInput,
-        sessionId: 'sess-1',
-        sessionLiveness: 'lost',
-        sessionTabId: 'term-1',
-      });
-      expect(route).toEqual({ kind: 'spawn-fresh' });
+    it('treats an empty-string sessionId as no session — returns spawn-fresh', () => {
+      expect(
+        decideWorkflowStartRoute({ ...baseInput, sessionId: '' }),
+      ).toEqual({ kind: 'spawn-fresh' });
     });
 
-    it('returns spawn-fresh when sessionStarting was orphaned (no sessionId)', () => {
-      const route = decideWorkflowStartRoute({
-        ...baseInput,
-        sessionId: undefined,
-        sessionLiveness: undefined,
-        sessionTabId: 'term-1',
-      });
-      expect(route).toEqual({ kind: 'spawn-fresh' });
+    it('returns spawn-fresh when openTerminalIds is empty and there is no session', () => {
+      expect(decideWorkflowStartRoute(baseInput)).toEqual({ kind: 'spawn-fresh' });
     });
   });
 
-  describe('focus-existing-tab — session alive AND tab still open (rule 8a + rule 9)', () => {
-    it('returns focus-existing-tab when sessionTabId is in openTerminalIds and liveness is alive-attached', () => {
+  describe('focus-existing-tab — session is in workflowSessionMap AND terminal is open', () => {
+    it('returns focus-existing-tab when sessionId is mapped and the mapped terminal is open', () => {
       const route = decideWorkflowStartRoute({
         ...baseInput,
         sessionId: 'sess-1',
-        sessionLiveness: 'alive-attached',
-        sessionTabId: 'term-1',
+        workflowSessionMap: { 'sess-1': 'term-1' },
         openTerminalIds: new Set(['term-1', 'term-2']),
       });
       expect(route).toEqual({ kind: 'focus-existing-tab', terminalId: 'term-1' });
     });
 
-    it('returns focus-existing-tab even when other terminals exist — never spawns a duplicate for the same session id', () => {
+    it('uses the mapped terminal, not the passed terminalId — auto-route to session host', () => {
       const route = decideWorkflowStartRoute({
         ...baseInput,
         sessionId: 'sess-1',
-        sessionLiveness: 'alive-attached',
-        sessionTabId: 'term-2',
+        workflowSessionMap: { 'sess-1': 'term-2' },
+        openTerminalIds: new Set(['term-1', 'term-2']),
+      });
+      expect(route).toEqual({ kind: 'focus-existing-tab', terminalId: 'term-2' });
+    });
+
+    it('returns focus-existing-tab even when multiple sessions are mapped', () => {
+      const route = decideWorkflowStartRoute({
+        ...baseInput,
+        sessionId: 'sess-2',
+        workflowSessionMap: { 'sess-1': 'term-1', 'sess-2': 'term-2' },
         openTerminalIds: new Set(['term-1', 'term-2', 'term-3']),
       });
       expect(route).toEqual({ kind: 'focus-existing-tab', terminalId: 'term-2' });
     });
   });
 
-  describe('resume-in-new-tab — session resumable, tab no longer open (rule 8b)', () => {
-    it('returns resume-in-new-tab when liveness is alive-detached and there is no tab to focus', () => {
+  describe('resume-in-new-tab — sessionId set but mapped terminal is not open', () => {
+    it('returns resume-in-new-tab when the mapped terminal is no longer open', () => {
       const route = decideWorkflowStartRoute({
         ...baseInput,
         sessionId: 'sess-1',
-        sessionLiveness: 'alive-detached',
-        sessionTabId: undefined,
-        sessionWorkingDirectory: '/Users/me/project',
+        workflowSessionMap: { 'sess-1': 'term-closed' },
+        sessionRegistry: { 'sess-1': { cwd: '/Users/me/project' } },
         openTerminalIds: new Set(['term-other']),
       });
       expect(route).toEqual({
@@ -80,29 +79,27 @@ describe('decideWorkflowStartRoute', () => {
       });
     });
 
-    it('returns resume-in-new-tab when the recorded sessionTabId no longer exists in openTerminalIds (alive-attached on disk after a restart)', () => {
+    it('returns resume-in-new-tab when sessionId is set but not in workflowSessionMap', () => {
       const route = decideWorkflowStartRoute({
         ...baseInput,
         sessionId: 'sess-1',
-        sessionLiveness: 'alive-attached',
-        sessionTabId: 'term-1',
-        sessionWorkingDirectory: '/Users/me/project',
-        openTerminalIds: new Set(['term-2']),
+        workflowSessionMap: {},
+        sessionRegistry: { 'sess-1': { cwd: '/project' } },
+        openTerminalIds: new Set(['term-1']),
       });
       expect(route).toEqual({
         kind: 'resume-in-new-tab',
         sessionId: 'sess-1',
-        cwd: '/Users/me/project',
+        cwd: '/project',
       });
     });
 
-    it('returns resume-in-new-tab with cwd undefined when no working directory is recorded', () => {
+    it('returns resume-in-new-tab with undefined cwd when sessionRegistry has no entry', () => {
       const route = decideWorkflowStartRoute({
         ...baseInput,
         sessionId: 'sess-1',
-        sessionLiveness: 'alive-detached',
-        sessionTabId: undefined,
-        sessionWorkingDirectory: undefined,
+        workflowSessionMap: {},
+        sessionRegistry: {},
         openTerminalIds: new Set(),
       });
       expect(route).toEqual({
@@ -113,43 +110,27 @@ describe('decideWorkflowStartRoute', () => {
     });
   });
 
-  describe('boundary and error inputs', () => {
-    it('returns spawn-fresh when openTerminalIds is empty and there is no session', () => {
-      expect(decideWorkflowStartRoute(baseInput)).toEqual({ kind: 'spawn-fresh' });
-    });
-
-    it('treats the empty string as a missing sessionId — returns spawn-fresh', () => {
-      const route = decideWorkflowStartRoute({
-        ...baseInput,
-        sessionId: '',
-        sessionLiveness: 'alive-detached',
-      });
-      expect(route).toEqual({ kind: 'spawn-fresh' });
-    });
-  });
-
-  describe('rule 8 priority order is checked top-down', () => {
-    it('prefers focus-existing-tab over resume-in-new-tab when both could apply', () => {
+  describe('priority order', () => {
+    it('prefers focus-existing-tab over resume-in-new-tab when session is mapped and terminal open', () => {
       const route = decideWorkflowStartRoute({
         ...baseInput,
         sessionId: 'sess-1',
-        sessionLiveness: 'alive-attached',
-        sessionTabId: 'term-1',
-        sessionWorkingDirectory: '/Users/me/project',
+        workflowSessionMap: { 'sess-1': 'term-1' },
+        sessionRegistry: { 'sess-1': { cwd: '/project' } },
         openTerminalIds: new Set(['term-1']),
       });
       expect(route.kind).toBe('focus-existing-tab');
     });
 
-    it('prefers spawn-fresh over resume-in-new-tab when liveness is lost, regardless of recorded sessionId or cwd', () => {
+    it('falls through to resume-in-new-tab when mapped terminal is gone', () => {
       const route = decideWorkflowStartRoute({
         ...baseInput,
         sessionId: 'sess-1',
-        sessionLiveness: 'lost',
-        sessionWorkingDirectory: '/Users/me/project',
-        openTerminalIds: new Set(),
+        workflowSessionMap: { 'sess-1': 'term-gone' },
+        sessionRegistry: { 'sess-1': { cwd: '/project' } },
+        openTerminalIds: new Set(['term-other']),
       });
-      expect(route.kind).toBe('spawn-fresh');
+      expect(route.kind).toBe('resume-in-new-tab');
     });
   });
 });

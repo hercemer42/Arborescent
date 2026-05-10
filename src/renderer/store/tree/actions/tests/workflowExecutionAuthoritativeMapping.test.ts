@@ -88,6 +88,7 @@ describe('Authoritative terminal↔node mapping', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, Entry>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     terminalNodeAssignments: Record<string, string>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
@@ -128,6 +129,7 @@ describe('Authoritative terminal↔node mapping', () => {
       workflowSessionMap: {},
       terminalNodeAssignments: {},
       contextDeclarations: [],
+      sessionRegistry: {},
     };
   }
 

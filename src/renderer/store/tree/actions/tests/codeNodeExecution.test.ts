@@ -93,6 +93,7 @@ const buildHarness = (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     actions: { executeCommand: vi.fn() } as any,
     ...overrides,
+    sessionRegistry: {},
   } as TreeState;
 
   const get = () => state;

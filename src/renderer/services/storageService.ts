@@ -14,7 +14,7 @@ import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
 import { reconcileDuplicateChildren } from '../utils/treeInvariants';
 import { migrateExternalLinkNodes } from '../utils/migrateExternalLinkNodes';
 import { migrateContextModeFlags } from '../utils/migrateContextModeFlags';
-import { normalizeSessionLiveness } from '../utils/normalizeSessionLiveness';
+import { stripDroppedSessionFields, garbageCollectSessionRegistry } from '../utils/sessionRegistryMigrations';
 import { logger } from './logger';
 
 function logParseFailure(context: string) {
@@ -36,7 +36,9 @@ export class StorageService implements IStorageService {
     const { nodes, removed } = reconcileDuplicateChildren(data.nodes);
     const externalLinkMigrated = migrateExternalLinkNodes(nodes);
     const contextModeMigrated = migrateContextModeFlags(externalLinkMigrated);
-    const migratedNodes = normalizeSessionLiveness(contextModeMigrated);
+    const strippedNodes = stripDroppedSessionFields(contextModeMigrated);
+    const rawRegistry = data.sessionRegistry ?? {};
+    const sessionRegistry = garbageCollectSessionRegistry(strippedNodes, rawRegistry);
 
     if (removed.length > 0) {
       logger.warn(
@@ -45,15 +47,26 @@ export class StorageService implements IStorageService {
       );
     }
 
-    if (migratedNodes !== nodes || removed.length > 0) {
-      return { ...data, nodes: migratedNodes };
+    const nodesChanged = strippedNodes !== nodes || removed.length > 0;
+    const registryChanged = sessionRegistry !== rawRegistry;
+
+    if (nodesChanged || registryChanged) {
+      return {
+        ...data,
+        nodes: strippedNodes,
+        sessionRegistry: Object.keys(sessionRegistry).length > 0 ? sessionRegistry : undefined,
+      };
     }
 
     return data;
   }
 
   async saveDocument(filePath: string, data: ArboFile): Promise<void> {
-    const yamlContent = yaml.dump(data, { indent: 2, lineWidth: -1 });
+    const strippedNodes = stripDroppedSessionFields(data.nodes);
+    const cleanedData = strippedNodes !== data.nodes
+      ? { ...data, nodes: strippedNodes }
+      : data;
+    const yamlContent = yaml.dump(cleanedData, { indent: 2, lineWidth: -1 });
     await window.electron.writeFile(filePath, yamlContent);
   }
 

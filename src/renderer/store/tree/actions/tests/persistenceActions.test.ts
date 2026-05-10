@@ -16,6 +16,7 @@ describe('persistenceActions', () => {
     isFileBlueprintFile: boolean;
     summaryDateFrom: string | null;
     summaryDateTo: string | null;
+    sessionRegistry: Record<string, { cwd: string }>;
   };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createPersistenceActions>;
@@ -43,6 +44,7 @@ describe('persistenceActions', () => {
       isFileBlueprintFile: false,
       summaryDateFrom: null,
       summaryDateTo: null,
+      sessionRegistry: {},
     };
 
     setState = (partial) => {

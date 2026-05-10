@@ -87,6 +87,7 @@ describe('UserPromptSubmit ACK handling with retry', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean; collaborating?: boolean; stopReceived?: boolean }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
 
@@ -125,6 +126,7 @@ describe('UserPromptSubmit ACK handling with retry', () => {
       workflowExecutionStates: {},
       workflowSessionMap: { 'session-1': 'terminal-1' },
       contextDeclarations: [],
+      sessionRegistry: {},
     };
 
     setState = (partial) => {

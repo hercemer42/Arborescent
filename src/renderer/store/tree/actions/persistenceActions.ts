@@ -33,6 +33,7 @@ type StoreState = {
   isFileBlueprintFile: boolean;
   summaryDateFrom: string | null;
   summaryDateTo: string | null;
+  sessionRegistry: Record<string, { cwd: string }>;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 type StoreGetter = () => StoreState;
@@ -49,8 +50,8 @@ export const createPersistenceActions = (
   }
 
   async function performSave(path: string, fileMeta?: { created: string; author: string }): Promise<void> {
-    const { nodes, rootNodeId, isFileBlueprintFile, summaryDateFrom, summaryDateTo } = get();
-    const arboFile = createArboFile(nodes, rootNodeId, fileMeta, isFileBlueprintFile, summaryDateFrom, summaryDateTo);
+    const { nodes, rootNodeId, isFileBlueprintFile, summaryDateFrom, summaryDateTo, sessionRegistry } = get();
+    const arboFile = createArboFile(nodes, rootNodeId, fileMeta, isFileBlueprintFile, summaryDateFrom, summaryDateTo, sessionRegistry);
     await storage.saveDocument(path, arboFile);
   }
 
@@ -129,6 +130,7 @@ export const createPersistenceActions = (
       blueprintModeEnabled: isBlueprint,
       summaryDateFrom: null,
       summaryDateTo: null,
+      sessionRegistry: data.sessionRegistry ?? {},
     });
 
     // Restore collaboration state if there's collaboration metadata

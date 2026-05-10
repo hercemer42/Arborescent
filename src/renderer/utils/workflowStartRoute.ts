@@ -1,5 +1,3 @@
-import type { SessionLiveness } from '@shared/types';
-
 export type WorkflowStartRoute =
   | { kind: 'spawn-fresh' }
   | { kind: 'focus-existing-tab'; terminalId: string }
@@ -7,21 +5,24 @@ export type WorkflowStartRoute =
 
 export interface WorkflowStartRouteInput {
   sessionId: string | undefined;
-  sessionLiveness: SessionLiveness | undefined;
-  sessionTabId: string | undefined;
-  sessionWorkingDirectory: string | undefined;
+  workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
   openTerminalIds: ReadonlySet<string>;
 }
 
 export function decideWorkflowStartRoute(input: WorkflowStartRouteInput): WorkflowStartRoute {
-  const { sessionId, sessionLiveness, sessionTabId, sessionWorkingDirectory, openTerminalIds } = input;
+  const { sessionId, workflowSessionMap, sessionRegistry, openTerminalIds } = input;
 
   if (!sessionId) return { kind: 'spawn-fresh' };
-  if (sessionLiveness === 'lost') return { kind: 'spawn-fresh' };
 
-  if (sessionTabId && openTerminalIds.has(sessionTabId)) {
-    return { kind: 'focus-existing-tab', terminalId: sessionTabId };
+  const mappedTerminalId = workflowSessionMap[sessionId];
+  if (mappedTerminalId && openTerminalIds.has(mappedTerminalId)) {
+    return { kind: 'focus-existing-tab', terminalId: mappedTerminalId };
   }
 
-  return { kind: 'resume-in-new-tab', sessionId, cwd: sessionWorkingDirectory };
+  return {
+    kind: 'resume-in-new-tab',
+    sessionId,
+    cwd: sessionRegistry[sessionId]?.cwd,
+  };
 }

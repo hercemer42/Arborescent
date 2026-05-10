@@ -63,6 +63,7 @@ describe('Node duplication invariant during workflow operations', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
   };
 
   let state: TestState;
@@ -95,6 +96,7 @@ describe('Node duplication invariant during workflow operations', () => {
       },
       workflowExecutionStates: {},
       workflowSessionMap: {},
+      sessionRegistry: {},
     };
 
     setState = (partial) => { state = { ...state, ...partial }; };

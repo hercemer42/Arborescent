@@ -56,6 +56,7 @@ describe('workflow runner keep-awake integration', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: never[];
   };
 
@@ -82,6 +83,7 @@ describe('workflow runner keep-awake integration', () => {
       workflowExecutionStates: {},
       workflowSessionMap: {},
       contextDeclarations: [],
+      sessionRegistry: {},
     };
 
     const setState = (partial: Partial<TestState>) => {

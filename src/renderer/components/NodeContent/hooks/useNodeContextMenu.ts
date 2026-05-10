@@ -15,6 +15,7 @@ import { buildEditSubmenu, prependSpellItems } from './menuBuilders/editSubmenu'
 import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
 import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
+import { getSessionLiveness } from '../../../utils/sessionLiveness';
 import { useToastStore } from '../../../store/toast/toastStore';
 import { getAppliedContextIdWithInheritance, resolveContextFlags, resolveSendContextName, ContextFlags } from '../../../utils/nodeHelpers';
 import { flagsLabel } from '../../TreeNode/hooks/useAppliedContexts';
@@ -221,8 +222,8 @@ export function useNodeContextMenu(node: TreeNode) {
     const isExternalLink = freshNode.metadata.isExternalLink === true;
     const externalUrl = freshNode.metadata.externalUrl as string | undefined;
 
-    const sessionLiveness = freshNode.metadata.sessionLiveness;
     const sessionId = freshNode.metadata.sessionId;
+    const sessionLiveness = getSessionLiveness(freshNode, state.workflowSessionMap);
     const isWorkflowStep = freshNode.metadata.isWorkflow === true || !!getWorkflowStepPosition(freshNode.id, nodes, ancestorRegistry);
     const showResumeSession =
       isWorkflowStep

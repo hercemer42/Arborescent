@@ -72,6 +72,7 @@ describe('Clear AI session — runtime clearing phase', () => {
       clearing?: boolean;
     }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
 
@@ -108,6 +109,7 @@ describe('Clear AI session — runtime clearing phase', () => {
       workflowExecutionStates: {},
       workflowSessionMap: { 'session-1': 'terminal-1' },
       contextDeclarations: [],
+      sessionRegistry: {},
     };
   }
 

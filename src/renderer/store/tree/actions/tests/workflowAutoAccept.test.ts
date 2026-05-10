@@ -99,6 +99,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean; collaborating?: boolean; stopReceived?: boolean }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
 
@@ -160,6 +161,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       workflowExecutionStates: {},
       workflowSessionMap: {},
       contextDeclarations: [],
+      sessionRegistry: {},
     };
 
     setState = (partial) => {

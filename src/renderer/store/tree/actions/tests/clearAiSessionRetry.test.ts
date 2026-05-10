@@ -69,6 +69,7 @@ describe('Clear AI session — retry behaviour', () => {
       clearing?: boolean;
     }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: unknown[];
   };
 
@@ -106,6 +107,7 @@ describe('Clear AI session — retry behaviour', () => {
       workflowExecutionStates: {},
       workflowSessionMap: { 'session-1': 'terminal-1' },
       contextDeclarations: [],
+      sessionRegistry: {},
     };
     setState = (partial) => { state = { ...state, ...partial }; };
 

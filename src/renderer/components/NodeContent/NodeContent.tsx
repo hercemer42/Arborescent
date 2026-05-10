@@ -57,22 +57,14 @@ function NodeContentComponent({
   return (
     <>
       <div
-        className={`node-content ${isSelected ? 'selected' : ''}${node.metadata.sessionLiveness === 'lost' ? ' session-lost' : ''}${node.metadata.brokenChain === true ? ' broken-chain' : ''}`}
+        className={`node-content ${isSelected ? 'selected' : ''}${node.metadata.brokenChain === true ? ' broken-chain' : ''}`}
         onContextMenu={handleContextMenu}
         style={{
           paddingLeft: `${(depth * 20) + 15}px`,
           '--indent-width': `${depth * 20}px`,
         } as React.CSSProperties}
       >
-        {node.metadata.sessionLiveness === 'lost' && (
-          <span
-            role="img"
-            className="session-lost-indicator"
-            aria-label="Session lost"
-            title="Session lost — the AI session is no longer available"
-          />
-        )}
-        {node.metadata.brokenChain === true && node.metadata.sessionLiveness !== 'lost' && (
+        {node.metadata.brokenChain === true && (
           <span
             role="img"
             className="broken-chain-indicator"

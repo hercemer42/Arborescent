@@ -72,6 +72,7 @@ describe('workflow advancement', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
+  sessionRegistry: Record<string, { cwd: string }>;
   };
 
   let state: TestState;
@@ -152,6 +153,7 @@ describe('workflow advancement', () => {
       },
       workflowExecutionStates: {},
       workflowSessionMap: {},
+      sessionRegistry: {},
     };
 
     setState = (partial) => {
