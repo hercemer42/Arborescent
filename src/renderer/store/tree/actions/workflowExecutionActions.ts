@@ -30,6 +30,7 @@ import { createStepTimeoutManager, isNodeRunning } from "./workflowStepTimeouts"
 import { createDisruptionReactions } from "./workflowDisruptionReactions";
 import { createHookEventHandler } from "./workflowHookEventHandler";
 import { createClearSessionManager } from "./workflowClearSession";
+import { createClaudeLaunchManager } from "./workflowClaudeLaunch";
 import {
   createSessionResumeManager,
   captureSessionOnNode,
@@ -162,6 +163,11 @@ export const createWorkflowExecutionActions = (
     set,
     sendPrompt: (id, tid) => sendContentToTerminal(id, tid),
     stopWorkflow: (id) => stopWorkflow(id),
+  });
+
+  const claudeLaunchManager = createClaudeLaunchManager({
+    get,
+    sendPrompt: (id, tid) => sendContentToTerminal(id, tid),
   });
 
   const sessionResumeManager = createSessionResumeManager({ get, set });
@@ -327,7 +333,13 @@ export const createWorkflowExecutionActions = (
 
     stepTimeouts.start(nodeId);
     if (mode !== "reattach") {
-      clearSessionManager.maybeClearThenSend(nodeId, terminalId);
+      const { workflowSessionMap } = get();
+      const terminalAlreadyHasSession = Object.values(workflowSessionMap).includes(terminalId);
+      if (terminalAlreadyHasSession) {
+        clearSessionManager.maybeClearThenSend(nodeId, terminalId);
+      } else {
+        claudeLaunchManager.launchIfNeededThenSend(nodeId, terminalId);
+      }
     }
     logger.info(
       `Started workflow execution for node ${nodeId} on terminal ${terminalId} (${mode})`,
@@ -345,6 +357,7 @@ export const createWorkflowExecutionActions = (
     cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
     clearSessionManager.clearPending(nodeId);
+    claudeLaunchManager.clearPending(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -738,6 +751,8 @@ export const createWorkflowExecutionActions = (
     if (source === 'clear' && runningNodeId) {
       clearSessionManager.onClearConfirmed(runningNodeId);
     }
+
+    claudeLaunchManager.onSessionStartConfirmed(terminalId, runningNodeId ?? '');
   }
 
   const handleHookEvent = createHookEventHandler({
@@ -804,6 +819,7 @@ export const createWorkflowExecutionActions = (
     clearStepTimeout: stepTimeouts.clear,
     clearPendingAck,
     clearPendingClear: clearSessionManager.clearPending,
+    clearPendingLaunch: claudeLaunchManager.clearPending,
     releaseTerminalAssignmentForNode,
     triggerAutosave,
   });

@@ -125,7 +125,7 @@ describe('Resume reconciliation and ack-retry hardening', () => {
         'task-a': ['root', 'workflow', 'step-1'],
       },
       workflowExecutionStates: {},
-      workflowSessionMap: {},
+      workflowSessionMap: { 'session-pre': 'terminal-1' },
       terminalNodeAssignments: {},
       contextDeclarations: [],
       sessionRegistry: {},

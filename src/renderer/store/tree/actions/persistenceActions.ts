@@ -46,7 +46,7 @@ export const createPersistenceActions = (
   let autosaveTimeout: ReturnType<typeof setTimeout> | null = null;
 
   function loadDoc(nodes: Record<string, TreeNode>, rootNodeId: string): void {
-    set({ ...updateAncestorRegistry(rootNodeId, nodes), rootNodeId });
+    set({ ...updateAncestorRegistry(rootNodeId, nodes), rootNodeId, sessionRegistry: {} });
   }
 
   async function performSave(path: string, fileMeta?: { created: string; author: string }): Promise<void> {

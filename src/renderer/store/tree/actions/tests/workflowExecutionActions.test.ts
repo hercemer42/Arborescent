@@ -162,7 +162,7 @@ describe('createWorkflowExecutionActions', () => {
         'task-c': ['root', 'workflow', 'step-2'],
       },
       workflowExecutionStates: {},
-      workflowSessionMap: {},
+      workflowSessionMap: { 'session-pre': 'terminal-1' },
       terminalNodeAssignments: {},
       contextDeclarations: [],
       sessionRegistry: {},

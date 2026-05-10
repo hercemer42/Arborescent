@@ -98,6 +98,24 @@ describe('persistenceActions', () => {
       expect(state.nodes).toEqual(newNodes);
       expect(state.rootNodeId).toBe('new-root');
     });
+
+    it('resets sessionRegistry so stale entries from a prior in-memory load do not leak', () => {
+      // Simulate a prior load that populated sessionRegistry
+      state.sessionRegistry = { 'stale-sess': { cwd: '/stale/path' } };
+
+      const newNodes = {
+        'new-root': {
+          id: 'new-root',
+          content: 'New Project',
+          children: [],
+          metadata: {},
+        },
+      };
+
+      actions.loadDocument(newNodes, 'new-root');
+
+      expect(state.sessionRegistry).toEqual({});
+    });
   });
 
   describe('loadFromPath', () => {

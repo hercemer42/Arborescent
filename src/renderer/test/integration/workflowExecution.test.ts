@@ -271,6 +271,7 @@ describe('Integration: Workflow Execution', () => {
       // Must use startWorkflow again (not continueWorkflow — that's only for awaiting-validation)
       mockAutonomousCollaborate.mockClear();
       await actions.startWorkflow('task', 'term-2');
+      actions.registerSession('session-2', 'term-2');
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().workflowExecutionStates['task'].terminalTabId).toBe('term-2');

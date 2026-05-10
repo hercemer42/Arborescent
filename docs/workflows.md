@@ -123,6 +123,8 @@ Each workflow step that talks to an AI tool captures its session id on the node.
 
 **Start Workflow** auto-resumes too. If the node already has a live session in an open tab, Start focuses that tab — no duplicate is created. If the tab was closed but the session is still on disk, Start opens a new tab and runs `claude --resume`. A fresh session only spawns when the node has no recorded session or its session has been lost. Stopping a workflow does not end its underlying CLI session, so the next Start picks up where you left off.
 
+If the target terminal has no Claude session running yet, Start launches `claude` for you before sending the first prompt — no need to start it manually. The prompt is held back until the session is ready, so it lands inside the conversation rather than at the shell. Requires `claude` on your PATH; if it isn't, the step times out with the usual no-activity warning. The **Clear AI session** step option is skipped on this path since the new session is already clean — it still fires when reattaching to an existing session.
+
 Closing a terminal tab no longer terminates the underlying session — the workflow execution stops, but the conversation remains in Claude's session store. You can walk away from a running step, close the tab, and resume from a fresh tab later. This works across app restart, as long as the session is still on disk.
 
 If a session can't be resumed (gone from Claude's session store, or recorded directory removed), Resume session and the auto-resume on Start surface a toast at the moment of failure. Start the workflow again to spawn a fresh session.

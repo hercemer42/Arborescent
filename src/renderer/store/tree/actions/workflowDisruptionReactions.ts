@@ -30,12 +30,13 @@ export interface DisruptionReactionDeps {
   clearStepTimeout: (nodeId: string) => void;
   clearPendingAck: (nodeId: string) => void;
   clearPendingClear: (nodeId: string) => void;
+  clearPendingLaunch: (nodeId: string) => void;
   releaseTerminalAssignmentForNode: (nodeId: string) => void;
   triggerAutosave?: () => void;
 }
 
 export function createDisruptionReactions(deps: DisruptionReactionDeps): WorkflowDisruptionReactions {
-  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, clearPendingAck, clearPendingClear, releaseTerminalAssignmentForNode } = deps;
+  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, clearPendingAck, clearPendingClear, clearPendingLaunch, releaseTerminalAssignmentForNode } = deps;
 
   function handleTerminalClosed(terminalId: string): void {
     const { workflowExecutionStates, nodes, workflowSessionMap } = get();
@@ -51,6 +52,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
       cleanupAutonomousCollaboration(nodeId);
       clearPendingAck(nodeId);
       clearPendingClear(nodeId);
+      clearPendingLaunch(nodeId);
       releasedNodes.push(nodeId);
 
       const node = nodes[nodeId];
@@ -93,6 +95,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
     clearPendingClear(nodeId);
+    clearPendingLaunch(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -119,6 +122,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     if (releasedNodes.length > 0) {
       set({ workflowExecutionStates: updatedStates });
       for (const nodeId of releasedNodes) {
+        clearPendingLaunch(nodeId);
         releaseTerminalAssignmentForNode(nodeId);
       }
       useToastStore
@@ -143,6 +147,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     if (completedNodes.length > 0) {
       set({ workflowExecutionStates: updatedStates });
       for (const nodeId of completedNodes) {
+        clearPendingLaunch(nodeId);
         releaseTerminalAssignmentForNode(nodeId);
       }
       const { nodes } = get();
@@ -166,6 +171,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
     clearPendingClear(nodeId);
+    clearPendingLaunch(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });

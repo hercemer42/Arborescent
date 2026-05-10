@@ -159,7 +159,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
         'task-a': ['root', 'workflow', 'step-1'],
       },
       workflowExecutionStates: {},
-      workflowSessionMap: {},
+      workflowSessionMap: { 'session-pre': 'terminal-1' },
       contextDeclarations: [],
       sessionRegistry: {},
     };

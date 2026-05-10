@@ -93,7 +93,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
         'task': ['root', 'workflow', 'step-1'],
       },
       workflowExecutionStates: {},
-      workflowSessionMap: {},
+      workflowSessionMap: { 'session-pre': 'terminal-1' },
       sessionRegistry: {},
     };
 
