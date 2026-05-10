@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-10T10:49:07.942Z'
+updated: '2026-05-10T13:05:15.870Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -82867,7 +82867,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - c4136720-b1fb-4258-a8b3-f260531cb844
     metadata:
       status: pending
       isBlueprint: true
@@ -84577,7 +84578,6 @@ nodes:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
     children:
-      - c4136720-b1fb-4258-a8b3-f260531cb844
       - 9fd342d4-ea8e-4a8e-bdc1-150c9c2698f2
     metadata:
       status: pending
@@ -101856,1770 +101856,18 @@ nodes:
     id: c4136720-b1fb-4258-a8b3-f260531cb844
     content: PR2 - Universal Claude session lifecycle for any node — auto-launch Claude in fresh terminals
     children:
-      - ab8a9b33-b42b-41f5-9e06-a93b34e93c61
-      - bdf081fe-9e56-4201-8dde-6e12974a25bd
-      - 8271bde1-c8d2-4090-89ed-7ec64da58ecf
+      - 7ab9395b-5f36-4ad6-a90d-e06a6eac345f
+      - 9c401008-ef79-40f5-be47-3386b318b447
+      - 8bf36930-ad5c-4eac-95a6-c2f744fa2d5b
+      - 391a92f4-5da1-4bc5-bae0-bcb00a9a72dc
+      - 323a3667-9fcf-4a59-ba45-9e8126319f38
+      - 645d9efa-5db8-4f6f-aa3b-ae1ab94abeb6
+      - 8cae1e5f-c351-4608-9e81-4f55eb3e1c98
+      - a3fca306-1d8e-4825-b46d-1ce8c00a9f6b
+      - 63d13299-2c1b-465b-a27f-d7189b990354
     metadata:
       status: pending
       expanded: false
-      deleted: false
-      plugins: {}
-      brokenChain: true
-  ab8a9b33-b42b-41f5-9e06-a93b34e93c61:
-    id: ab8a9b33-b42b-41f5-9e06-a93b34e93c61
-    content: Subtask scope
-    children:
-      - bca3e041-2873-4def-94d0-f270cb3f3970
-      - d17d5ae6-d0ef-4772-98b3-c94b68ec218d
-      - 29ac1cac-3868-4817-88ba-2bcce25ce79a
-      - d2e01d16-6a48-4d8b-b4b6-79597cada420
-      - 124e02d1-0fda-4c17-a510-93c5a43ef240
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bca3e041-2873-4def-94d0-f270cb3f3970:
-    id: bca3e041-2873-4def-94d0-f270cb3f3970
-    content: In scope
-    children:
-      - 580fb39b-b0ac-4464-8a38-6ca021803d46
-      - f64cc7d6-c3bb-4656-825a-e63cd4f9c847
-      - f20f1ac7-e7cf-4815-95f9-be05fd7bba70
-      - 8bebf53b-67dd-48c6-9b5e-96b6831a70d0
-      - 197791af-5ae6-45da-b021-258048c9225e
-      - 0b21c46c-8bb6-4db5-828b-9930a8e5d3c1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  580fb39b-b0ac-4464-8a38-6ca021803d46:
-    id: 580fb39b-b0ac-4464-8a38-6ca021803d46
-    content: 'New factory `workflowClaudeLaunch.ts` (mirrors `workflowClearSession.ts`). Owns `pendingLaunch: Map<terminalId, nodeId>` and three methods: `launchIfNeededThenSend(nodeId, terminalId)`, `onSessionStartConfirmed(terminalId, runningNodeId)`, `clearPending(nodeId)`.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f64cc7d6-c3bb-4656-825a-e63cd4f9c847:
-    id: f64cc7d6-c3bb-4656-825a-e63cd4f9c847
-    content: '`startWorkflowOnTerminal(''spawn''|''recurse'')` swaps `clearSessionManager.maybeClearThenSend` for the new launch entry. When `workflowSessionMap` has no entry for the target terminal, the manager writes `claude\r` and defers the workflow prompt until `SessionStart` arrives; when an entry exists, prompt is sent without launch.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f20f1ac7-e7cf-4815-95f9-be05fd7bba70:
-    id: f20f1ac7-e7cf-4815-95f9-be05fd7bba70
-    content: '`registerSession` calls `onSessionStartConfirmed` for every SessionStart (auto-launch confirmation AND manually-started Claude). Capture writes node `sessionId` and `sessionRegistry[sessionId].cwd = terminalGetCwd(terminalId)`.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8bebf53b-67dd-48c6-9b5e-96b6831a70d0:
-    id: 8bebf53b-67dd-48c6-9b5e-96b6831a70d0
-    content: '`clearSession === true` is **skipped** when the auto-launch path fires — the new session is already clean. The `/clear` step continues to fire when reattaching to an existing live session.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  197791af-5ae6-45da-b021-258048c9225e:
-    id: 197791af-5ae6-45da-b021-258048c9225e
-    content: Disruption reactions (`stopWorkflow`, terminal close, node delete, step delete, manual move, recurse-counter abort) call `clearPending` to drop pending launch entries.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b21c46c-8bb6-4db5-828b-9930a8e5d3c1:
-    id: 0b21c46c-8bb6-4db5-828b-9930a8e5d3c1
-    content: No PATH check for `claude` — off-PATH installs fall through to the existing step-timeout flow.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d17d5ae6-d0ef-4772-98b3-c94b68ec218d:
-    id: d17d5ae6-d0ef-4772-98b3-c94b68ec218d
-    content: Depends on
-    children:
-      - 85d39504-ae2c-4e33-8557-8034c0507afc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  85d39504-ae2c-4e33-8557-8034c0507afc:
-    id: 85d39504-ae2c-4e33-8557-8034c0507afc
-    content: PR1 (`sessionRegistry` exists; `getSessionLiveness` available; `bindSessionTab` collapsed).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  29ac1cac-3868-4817-88ba-2bcce25ce79a:
-    id: 29ac1cac-3868-4817-88ba-2bcce25ce79a
-    content: Deferred to PR3
-    children:
-      - ba65cef8-1a59-4d20-a60e-3a9b6a2e8492
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba65cef8-1a59-4d20-a60e-3a9b6a2e8492:
-    id: ba65cef8-1a59-4d20-a60e-3a9b6a2e8492
-    content: Cwd block helper + integration in `sendActions` and Start path; capture-on-Send extension; "Are you sure?" Send modal; modal-warn on Start; cross-user-story block; `decideWorkflowStartRoute` output simplification; drop workflow gate on Resume; Resume new-tab fallback at registry cwd.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2e01d16-6a48-4d8b-b4b6-79597cada420:
-    id: d2e01d16-6a48-4d8b-b4b6-79597cada420
-    content: Acceptance criteria in scope
-    children:
-      - 845105a0-7f7b-460a-b254-c2af65d1d2ee
-      - 766f9cfd-0776-4fad-82db-57403f3d64f7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  845105a0-7f7b-460a-b254-c2af65d1d2ee:
-    id: 845105a0-7f7b-460a-b254-c2af65d1d2ee
-    content: Auto-launch ACs (all).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  766f9cfd-0776-4fad-82db-57403f3d64f7:
-    id: 766f9cfd-0776-4fad-82db-57403f3d64f7
-    content: Regression ACs touching launch / SessionStart / `/clear` ordering / recurse tier-(a)/tier-(b).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  124e02d1-0fda-4c17-a510-93c5a43ef240:
-    id: 124e02d1-0fda-4c17-a510-93c5a43ef240
-    content: Touchpoints
-    children:
-      - 2e0dd333-955f-4c97-a16e-d0f5ea59dc36
-      - 0ca5044d-cd90-434a-96b5-e8a9a7c421c3
-      - f1e4eb95-2f55-43af-8299-2d3ae457b9d8
-      - 9ccb0e50-6fe9-4f09-bfe4-4223ae90e282
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e0dd333-955f-4c97-a16e-d0f5ea59dc36:
-    id: 2e0dd333-955f-4c97-a16e-d0f5ea59dc36
-    content: '`src/renderer/store/tree/actions/workflowClaudeLaunch.ts` — new factory.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0ca5044d-cd90-434a-96b5-e8a9a7c421c3:
-    id: 0ca5044d-cd90-434a-96b5-e8a9a7c421c3
-    content: '`src/renderer/store/tree/actions/workflowExecutionActions.ts` — rewire `startWorkflowOnTerminal(''spawn''|''recurse'')`; `registerSession` invokes `onSessionStartConfirmed`.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1e4eb95-2f55-43af-8299-2d3ae457b9d8:
-    id: f1e4eb95-2f55-43af-8299-2d3ae457b9d8
-    content: '`src/renderer/store/tree/actions/workflowDisruptionReactions.ts` — `clearPending` dep wired into stop / detach paths.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ccb0e50-6fe9-4f09-bfe4-4223ae90e282:
-    id: 9ccb0e50-6fe9-4f09-bfe4-4223ae90e282
-    content: Tests — new for `workflowClaudeLaunch`; SessionStart-defer-then-prompt sequence; `/clear` skipped on auto-launch + kept on reattach; stopWorkflow cancels pending; recurse tier-(a)/tier-(b) does not auto-launch.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bdf081fe-9e56-4201-8dde-6e12974a25bd:
-    id: bdf081fe-9e56-4201-8dde-6e12974a25bd
-    content: User story
-    children:
-      - b73b5b1f-91f7-4b94-bd2d-d2e2581d7c1e
-      - 997f6267-67d5-4027-9c1d-65bac4adf27d
-      - a9206564-fcda-4e6b-abda-475d1f793fe2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b73b5b1f-91f7-4b94-bd2d-d2e2581d7c1e:
-    id: b73b5b1f-91f7-4b94-bd2d-d2e2581d7c1e
-    content: 📄 Product spec
-    children:
-      - 63cedb60-8a84-4d52-a085-271705bfd329
-      - aa1f60fb-8904-40ff-ab00-a38ade22195e
-      - bd94ca9d-a005-4a04-be1c-ffbfd54ae6e6
-      - 3326fb7a-cc32-4110-b2e7-68fa09fa1d2e
-      - 21f68a06-d322-419e-8796-fafef25471ec
-      - cf30266a-2157-4eb9-954d-ec1590ad266c
-      - d14d98dd-0706-4b30-bd95-85942532f358
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  63cedb60-8a84-4d52-a085-271705bfd329:
-    id: 63cedb60-8a84-4d52-a085-271705bfd329
-    content: 'Context — The PR1/PR2/PR3 stack established Claude session metadata on workflow nodes (`sessionId`, `sessionWorkingDirectory`) and three entry points: manual Resume, auto-resume on Start, recurse inheritance. Several gaps surface from real use: (1) `startWorkflow` never launches `claude` itself — fresh terminal + Start types the prompt at the shell, errors out, and the step times out; (2) when the user runs `claude` manually before clicking Start, Arborescent''s SessionStart capture skipped the workflow node, so resume features can''t help that chain later; (3) `Send` pushes content but doesn''t capture sessionId on the source node, so non-workflow nodes can''t use Resume; (4) `sessionLiveness`/`sessionTabId` on metadata duplicate what `workflowSessionMap` already tracks at runtime, requiring a fragile `rebindNodesForSession` to keep them in sync; (5) sending a node to a terminal whose session belongs to another node silently entangles state; (6) cwd mismatch between a node''s recorded session directory and the target terminal''s live cwd silently produces a session that Claude can''t actually resume.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa1f60fb-8904-40ff-ab00-a38ade22195e:
-    id: aa1f60fb-8904-40ff-ab00-a38ade22195e
-    content: User — anyone running workflow steps or pushing nodes to a terminal where Claude is involved.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bd94ca9d-a005-4a04-be1c-ffbfd54ae6e6:
-    id: bd94ca9d-a005-4a04-be1c-ffbfd54ae6e6
-    content: Current experience — first-time Start in a fresh terminal stalls until step timeout; manual-Claude-then-Start chains can't be resumed; Send to a session-bearing terminal silently captures the session even when the source node had its own; multiple metadata fields tracking session state can drift; the persistent `session-lost` red dot adds visual noise without unique value; cwd mismatches produce silently-broken sessions.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3326fb7a-cc32-4110-b2e7-68fa09fa1d2e:
-    id: 3326fb7a-cc32-4110-b2e7-68fa09fa1d2e
-    content: Goal — every node holds at most one `sessionId`; the runtime registry maps `sessionId → terminalId`; Send, Start workflow, and Resume session each have a clear, predictable behaviour with auto-launch filling the first-run gap and liveness derived rather than stored. Cwd mismatches are blocked upfront with a clear toast.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  21f68a06-d322-419e-8796-fafef25471ec:
-    id: 21f68a06-d322-419e-8796-fafef25471ec
-    content: 'Terminology — three distinct gestures. **Resume session** is a conversation-only gesture: opens or focuses the terminal hosting the session. Does NOT touch `workflowExecutionStates`. **Start workflow / Continue workflow** is the workflow-execution gesture: brings the workflow back to `running` and follows the same session-routing rules as Send. Resuming the conversation and resuming the workflow are independent operations.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf30266a-2157-4eb9-954d-ec1590ad266c:
-    id: cf30266a-2157-4eb9-954d-ec1590ad266c
-    content: Business rules
-    children:
-      - dbf64ae7-4b8e-48a2-8142-4fa3787a9d51
-      - cb7e63ee-e440-4ed1-8a33-d9ee65f53729
-      - f0359fac-5551-4b0a-9fe4-7a5daed67a0c
-      - 2b37ab46-3a55-46fe-a7ca-42bdfe6b9625
-      - 6db21d03-f001-45de-be59-44266e5ddcbd
-      - 8e9b4fbd-4cc5-44ff-80bd-fa515e4a8f0b
-      - 8a7ef58b-ef62-4d67-ab83-0cb3ab0cfdd3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbf64ae7-4b8e-48a2-8142-4fa3787a9d51:
-    id: dbf64ae7-4b8e-48a2-8142-4fa3787a9d51
-    content: Persistence model
-    children:
-      - 9d3f24c7-2737-429b-a6c0-ba466d67b01a
-      - 5079df93-9b44-495a-ae7f-1d72af5df690
-      - fbad5d62-7030-4cc4-833a-3d24f306a0cc
-      - f87f41c4-22ad-4653-af78-e8180a1e29c7
-      - d59989d1-cc67-4e06-901b-7785f98d2ea9
-      - 5ddb3dfb-eb2b-48b4-9155-9eebc960db24
-      - 012a5a1b-86f3-4107-8cff-e74cde13ebd9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d3f24c7-2737-429b-a6c0-ba466d67b01a:
-    id: 9d3f24c7-2737-429b-a6c0-ba466d67b01a
-    content: '1. Persistent metadata on a node, for session lifecycle: `sessionId?: string` only. PR3''s `brokenChain?: boolean` stays as a recurse-outcome marker. Nothing else on the node.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5079df93-9b44-495a-ae7f-1d72af5df690:
-    id: 5079df93-9b44-495a-ae7f-1d72af5df690
-    content: '1a. Persistent file-level structure: `sessionRegistry: Record<sessionId, { cwd: string }>`, saved alongside `nodes` in `.arbo`. Single source of truth for session-scoped data; future per-session fields can extend this entry without touching node metadata.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fbad5d62-7030-4cc4-833a-3d24f306a0cc:
-    id: fbad5d62-7030-4cc4-833a-3d24f306a0cc
-    content: 1b. On load, `sessionRegistry` entries whose `sessionId` is not referenced by any node's `metadata.sessionId` are dropped (garbage collected). The cleanup runs once per load.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f87f41c4-22ad-4653-af78-e8180a1e29c7:
-    id: f87f41c4-22ad-4653-af78-e8180a1e29c7
-    content: 2. Drop `sessionLiveness`, `sessionTabId`, `sessionStarting`, `sessionLost`, and `sessionWorkingDirectory` from `NodeMetadata`. Existing dev `.arbo` files with these fields load cleanly — the strip-fields pass on load drops them. Feature is unreleased; no production migration concerns.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d59989d1-cc67-4e06-901b-7785f98d2ea9:
-    id: d59989d1-cc67-4e06-901b-7785f98d2ea9
-    content: '3. Liveness is derived at every read via `getSessionLiveness(node, workflowSessionMap)`: registry-hit → alive-attached; sessionId set, no entry → alive-detached; no sessionId → no session. There is no persistent "lost" state; Resume failures surface a transient toast and the user retries.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5ddb3dfb-eb2b-48b4-9155-9eebc960db24:
-    id: 5ddb3dfb-eb2b-48b4-9155-9eebc960db24
-    content: 4. A `sessionId` may live on multiple nodes — explicitly allowed, no decomposition restriction. Resume on any of those nodes resumes the shared session.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  012a5a1b-86f3-4107-8cff-e74cde13ebd9:
-    id: 012a5a1b-86f3-4107-8cff-e74cde13ebd9
-    content: 5. A node holds **at most one** `sessionId`. Replacement is gated by the rules below.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb7e63ee-e440-4ed1-8a33-d9ee65f53729:
-    id: cb7e63ee-e440-4ed1-8a33-d9ee65f53729
-    content: Working-directory check (cross-cutting; applies to Send and Start workflow uniformly)
-    children:
-      - 475723be-7e6a-436b-80b3-0d2b9b416182
-      - 9bf85be4-5688-4a1e-9451-518444860c31
-      - 92107d90-0f5d-47e5-a1a1-185aaaa5efc9
-      - f4a2d668-e7f7-4b15-93b8-101702eccfb2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  475723be-7e6a-436b-80b3-0d2b9b416182:
-    id: 475723be-7e6a-436b-80b3-0d2b9b416182
-    content: '6. Whenever an action would auto-launch Claude or capture a session onto a node in the target terminal, the system queries the target terminal''s live cwd via `terminalGetCwd`. If the source node has a `sessionId` AND `sessionRegistry[sessionId].cwd` is not equal (full-path equality) to that live cwd, the action is **blocked** with a toast (no action button): "Node is mapped to `<recordedCwd>`. This terminal is in `<liveCwd>`. Open a new terminal in `<recordedCwd>`, or `cd` there first."'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9bf85be4-5688-4a1e-9451-518444860c31:
-    id: 9bf85be4-5688-4a1e-9451-518444860c31
-    content: 7. Cwd block applies uniformly to Send and Start workflow. The block fires before any session-id rules, before any IPC write to the terminal.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  92107d90-0f5d-47e5-a1a1-185aaaa5efc9:
-    id: 92107d90-0f5d-47e5-a1a1-185aaaa5efc9
-    content: '8. Sessionless source (no `sessionId`): no check; at session-capture time, the target terminal''s live cwd is written into `sessionRegistry[sessionId].cwd` and the new `sessionId` is set on the node.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4a2d668-e7f7-4b15-93b8-101702eccfb2:
-    id: f4a2d668-e7f7-4b15-93b8-101702eccfb2
-    content: 9. Resume session is exempt from the cwd check because Resume itself opens a fresh tab in `sessionRegistry[sessionId].cwd` (cwd is correct by construction).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0359fac-5551-4b0a-9fe4-7a5daed67a0c:
-    id: f0359fac-5551-4b0a-9fe4-7a5daed67a0c
-    content: Auto-launch (Start workflow / Send / recurse spawn-fresh)
-    children:
-      - 3cb9d1da-fafe-4fb7-baef-ab2b40b1da2a
-      - 94e10cc5-9d4e-4414-81d9-377dfcde729d
-      - cd619854-ee8c-4ef4-915a-38332ebe1431
-      - 4de64b56-8fc6-4973-9f91-1086948dfe0d
-      - 77b068d3-f0d1-46dd-bb51-6ed0cde6655f
-      - 075a40c1-ee17-41a3-b13d-a225e2355109
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3cb9d1da-fafe-4fb7-baef-ab2b40b1da2a:
-    id: 3cb9d1da-fafe-4fb7-baef-ab2b40b1da2a
-    content: 10. When a Start or Send action lands on a target terminal with no entry in `workflowSessionMap` (and the cwd check passes), the system writes `claude\r` and defers the workflow prompt until Claude's `SessionStart` hook for that terminal arrives.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  94e10cc5-9d4e-4414-81d9-377dfcde729d:
-    id: 94e10cc5-9d4e-4414-81d9-377dfcde729d
-    content: 11. If a sessionId is already mapped to that terminal, the system captures it onto the source node (if the node has none) and sends the prompt without launching.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd619854-ee8c-4ef4-915a-38332ebe1431:
-    id: cd619854-ee8c-4ef4-915a-38332ebe1431
-    content: '12. `clearSession === true` is **skipped** when auto-launch fires — a freshly-launched session is already clean. Sequence: launch → SessionStart → prompt. The `/clear` step only runs when reattaching to an existing live session that the user wants reset.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4de64b56-8fc6-4973-9f91-1086948dfe0d:
-    id: 4de64b56-8fc6-4973-9f91-1086948dfe0d
-    content: 13. `stopWorkflow`, disruption reactions (terminal close, node delete, step delete, manual move), and recurse-counter aborts clear pending auto-launch entries to avoid orphan prompts.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  77b068d3-f0d1-46dd-bb51-6ed0cde6655f:
-    id: 77b068d3-f0d1-46dd-bb51-6ed0cde6655f
-    content: 14. No PATH check for `claude`. Off-PATH installs fall through to the existing step-timeout flow.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  075a40c1-ee17-41a3-b13d-a225e2355109:
-    id: 075a40c1-ee17-41a3-b13d-a225e2355109
-    content: '15. Detecting "Claude is running in this terminal but Arborescent has no SessionId mapped" is not possible without reading PTY output. The hook prerequisite (the user has installed Claude Code''s SessionStart hook — already required for the rest of the stack) makes this case purely transient: the gap is the sub-second window between `claude\r` being written and the SessionStart hook firing. The race is accepted; not mitigated.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b37ab46-3a55-46fe-a7ca-42bdfe6b9625:
-    id: 2b37ab46-3a55-46fe-a7ca-42bdfe6b9625
-    content: Send (content push, one-off gesture)
-    children:
-      - 95e8d0d8-e6db-40c3-91fb-e767a7630954
-      - abb2a471-e7ac-4dc6-a58e-6885c7cdca90
-      - ca6f64c0-e234-49ce-bc3e-c547a289daeb
-      - 6ed29639-3b10-44dc-9aba-0d86ed785bcd
-      - 14f15c29-b250-491d-96a2-56bbde482fff
-      - 66571153-a01c-47d2-a246-439d79aa0e38
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  95e8d0d8-e6db-40c3-91fb-e767a7630954:
-    id: 95e8d0d8-e6db-40c3-91fb-e767a7630954
-    content: 16. Send on a sessionless source node to a terminal hosting `sessionId Y` (whether Y is mapped to other nodes or unmapped) captures Y onto the source node and sends. Multi-node-share is allowed via this path.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  abb2a471-e7ac-4dc6-a58e-6885c7cdca90:
-    id: abb2a471-e7ac-4dc6-a58e-6885c7cdca90
-    content: 17. Send on a sessionless source node to a terminal with no Claude session triggers auto-launch (rule 10) and captures the new sessionId after SessionStart.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ca6f64c0-e234-49ce-bc3e-c547a289daeb:
-    id: ca6f64c0-e234-49ce-bc3e-c547a289daeb
-    content: 18. Send on a source node with `sessionId X` to a terminal hosting the same `sessionId X` reattaches and sends.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ed29639-3b10-44dc-9aba-0d86ed785bcd:
-    id: 6ed29639-3b10-44dc-9aba-0d86ed785bcd
-    content: 19. Send on a source node with `sessionId X` to a terminal hosting `sessionId Y ≠ X` **mapped to another node** is **blocked** with a toast — would steal another chain's session.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  14f15c29-b250-491d-96a2-56bbde482fff:
-    id: 14f15c29-b250-491d-96a2-56bbde482fff
-    content: '20. Send on a source node with `sessionId X` to a terminal hosting an **unmapped** session, or hosting **no session** at all, surfaces an "Are you sure?" modal: "Node is mapped to session X. Replace with a new session here?" Yes confirms — replace `sessionId` (capture target''s session, or auto-launch if none) and proceed; cancel is a no-op.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66571153-a01c-47d2-a246-439d79aa0e38:
-    id: 66571153-a01c-47d2-a246-439d79aa0e38
-    content: 21. Send is blocked when the working-directory check (rule 6) fails — even if the session id rules would otherwise pass.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6db21d03-f001-45de-be59-44266e5ddcbd:
-    id: 6db21d03-f001-45de-be59-44266e5ddcbd
-    content: Start workflow / Continue workflow (workflow-execution gesture)
-    children:
-      - 8d80c539-0934-4776-a894-2b9439a2d627
-      - 954d36a6-5bef-4a8b-b05d-71b2f67299f1
-      - 17826112-240f-4a50-b455-4cdf21fd9dc4
-      - ba4051ff-ba61-4e9b-ac1f-41f6b874bd3f
-      - 2ef918c4-8889-4c99-9dab-f0a2e567479d
-      - 5186af33-0ad9-4ae9-a48d-2f15df10c1b9
-      - 0c7b6027-486a-48a3-8d23-205358db2231
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d80c539-0934-4776-a894-2b9439a2d627:
-    id: 8d80c539-0934-4776-a894-2b9439a2d627
-    content: 22. PR2's silent auto-route is preserved when the workflow's session is alive somewhere — the system focuses the terminal hosting the session even if the user has a different terminal focused. Routing to the existing terminal is intentional; this avoids state confusion in automated step mappings. The action focuses (or opens-and-focuses) the terminal hosting the session.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  954d36a6-5bef-4a8b-b05d-71b2f67299f1:
-    id: 954d36a6-5bef-4a8b-b05d-71b2f67299f1
-    content: '23. On Start of a *stopped* workflow whose node has `sessionId X`:'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  17826112-240f-4a50-b455-4cdf21fd9dc4:
-    id: 17826112-240f-4a50-b455-4cdf21fd9dc4
-    content: 23a. Target terminal hosts X → silent reattach (workflow → running, no prompt re-send).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba4051ff-ba61-4e9b-ac1f-41f6b874bd3f:
-    id: ba4051ff-ba61-4e9b-ac1f-41f6b874bd3f
-    content: '23b. Target terminal hosts no session, or hosts an unmapped session → modal warn: "Node is mapped to session X. Start a new session here?" Yes confirms — replace `sessionId`, run spawn-fresh + auto-launch (with `/clear` skipped per rule 12); cancel is a no-op.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2ef918c4-8889-4c99-9dab-f0a2e567479d:
-    id: 2ef918c4-8889-4c99-9dab-f0a2e567479d
-    content: 23c. Target terminal hosts a session that belongs to another user story (different `isWorkflow=true` ancestor — for non-workflow source nodes, any other node's session counts) → **blocked** with a toast that suggests Resume session or opening a new terminal. No remap modal.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5186af33-0ad9-4ae9-a48d-2f15df10c1b9:
-    id: 5186af33-0ad9-4ae9-a48d-2f15df10c1b9
-    content: 24. Start workflow is also blocked when the working-directory check (rule 6) fails. The cwd block fires before the modal-warn flow.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c7b6027-486a-48a3-8d23-205358db2231:
-    id: 0c7b6027-486a-48a3-8d23-205358db2231
-    content: 25. Resume failures from auto-resume surface a transient toast at the moment of failure. No persistent indicator is written.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e9b4fbd-4cc5-44ff-80bd-fa515e4a8f0b:
-    id: 8e9b4fbd-4cc5-44ff-80bd-fa515e4a8f0b
-    content: Resume session (conversation-only gesture)
-    children:
-      - a1c9a585-9e6d-4827-a43b-7a12bba710f1
-      - 8b0a1722-a6c7-4d3e-89fb-d5f86537c762
-      - c6803e48-34e2-41e7-91a2-14f9554f28a2
-      - 6caacc89-b07e-43b6-9e42-150632bb934e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1c9a585-9e6d-4827-a43b-7a12bba710f1:
-    id: a1c9a585-9e6d-4827-a43b-7a12bba710f1
-    content: 26. Resume session on a node with `sessionId` opens (or focuses) the terminal hosting the session; if no terminal hosts it, opens a new tab in `sessionRegistry[sessionId].cwd` and writes `claude --resume <id>\r`. Auto-routes silently regardless of which terminal the user has focused; the resulting tab is brought to focus.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b0a1722-a6c7-4d3e-89fb-d5f86537c762:
-    id: 8b0a1722-a6c7-4d3e-89fb-d5f86537c762
-    content: 27. Resume session does **not** mutate `workflowExecutionStates`. Reactivating workflow execution remains a separate Start workflow gesture; resuming the conversation and resuming the workflow are independent operations.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c6803e48-34e2-41e7-91a2-14f9554f28a2:
-    id: c6803e48-34e2-41e7-91a2-14f9554f28a2
-    content: 28. Resume session entry visibility drops the workflow-step gate. Any node with `sessionId` (and derived liveness ≠ no-session) shows the entry. Manual nodes that captured a session via Send become resumable.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6caacc89-b07e-43b6-9e42-150632bb934e:
-    id: 6caacc89-b07e-43b6-9e42-150632bb934e
-    content: 29. Resume session failure surfaces a transient toast; no persistent state is written. The user retries or opens a new terminal manually.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a7ef58b-ef62-4d67-ab83-0cb3ab0cfdd3:
-    id: 8a7ef58b-ef62-4d67-ab83-0cb3ab0cfdd3
-    content: Global
-    children:
-      - bfa8dc40-ba5c-4394-864d-e9491e4ef699
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bfa8dc40-ba5c-4394-864d-e9491e4ef699:
-    id: bfa8dc40-ba5c-4394-864d-e9491e4ef699
-    content: 30. No preference toggle, no platform-conditional branch. Behaviour is identical for every user, OS, and shell.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d14d98dd-0706-4b30-bd95-85942532f358:
-    id: d14d98dd-0706-4b30-bd95-85942532f358
-    content: Acceptance criteria
-    children:
-      - 74126767-806c-4bcc-b046-b776779aa7c1
-      - 39f19829-9ba4-461d-baf6-2254adb65821
-      - 322dc979-127f-4317-a801-a15739c22a3c
-      - c0aafdd8-7ecb-4630-8492-de15eb605dc8
-      - 8f148d8c-ceb6-4196-8a85-5a3bff70d6d3
-      - a1667205-2e4a-402e-8701-f45dc149c1a8
-      - 43840909-9fa9-4e33-9f91-87bcbcddea63
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  74126767-806c-4bcc-b046-b776779aa7c1:
-    id: 74126767-806c-4bcc-b046-b776779aa7c1
-    content: Auto-launch
-    children:
-      - c909948c-b6ad-43a8-81f5-c3b7778f52fa
-      - 10dcd829-5ed6-427f-87cc-7531f3143794
-      - a087f981-2066-4bf0-87c7-0497e2d55f99
-      - e926840e-0a2c-4f67-9968-e6148a85f0de
-      - d12e86aa-f26c-4620-888a-973282030a11
-      - bbf658a4-802f-4b0f-bd65-24c59a9ccf3d
-      - 365e73f3-aa97-48a3-a6e4-e6179750c1ed
-      - fba2351b-b6ec-4120-9dc2-924ec53c0b7d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c909948c-b6ad-43a8-81f5-c3b7778f52fa:
-    id: c909948c-b6ad-43a8-81f5-c3b7778f52fa
-    content: '- [ ] Starting a workflow on a fresh terminal (no `workflowSessionMap` entry) writes `claude\r` before sending the prompt.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  10dcd829-5ed6-427f-87cc-7531f3143794:
-    id: 10dcd829-5ed6-427f-87cc-7531f3143794
-    content: '- [ ] On the auto-launch path, the workflow prompt is sent only after `SessionStart` arrives — never typed at the shell beforehand.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a087f981-2066-4bf0-87c7-0497e2d55f99:
-    id: a087f981-2066-4bf0-87c7-0497e2d55f99
-    content: '- [ ] Starting a workflow on a terminal with a prior manual SessionStart does not write `claude\r` and does not double-spawn; the existing sessionId is captured onto the workflow node, and Resume session works on it afterwards.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e926840e-0a2c-4f67-9968-e6148a85f0de:
-    id: e926840e-0a2c-4f67-9968-e6148a85f0de
-    content: '- [ ] A workflow step with `clearSession === true` running in a fresh terminal sequences as `claude\r` → SessionStart → prompt — `/clear` is **skipped** (the new session is already clean).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d12e86aa-f26c-4620-888a-973282030a11:
-    id: d12e86aa-f26c-4620-888a-973282030a11
-    content: '- [ ] A workflow step with `clearSession === true` reattaching to an alive session sequences as `/clear` → SessionStart → prompt (existing behaviour preserved).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bbf658a4-802f-4b0f-bd65-24c59a9ccf3d:
-    id: bbf658a4-802f-4b0f-bd65-24c59a9ccf3d
-    content: '- [ ] Recurse tier-(a)/tier-(b) advances do not trigger auto-launch — they reuse the parent''s session.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  365e73f3-aa97-48a3-a6e4-e6179750c1ed:
-    id: 365e73f3-aa97-48a3-a6e4-e6179750c1ed
-    content: '- [ ] `stopWorkflow` between `claude\r` and SessionStart cancels the pending prompt; no prompt is delivered when SessionStart arrives.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fba2351b-b6ec-4120-9dc2-924ec53c0b7d:
-    id: fba2351b-b6ec-4120-9dc2-924ec53c0b7d
-    content: '- [ ] `claude` not on PATH: workflow stalls and the existing 15-minute step-timeout toast fires unchanged.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  39f19829-9ba4-461d-baf6-2254adb65821:
-    id: 39f19829-9ba4-461d-baf6-2254adb65821
-    content: Working-directory check
-    children:
-      - bec955f3-7edf-4c38-8ade-1ee89215aca3
-      - 402adcfb-a23e-4f6b-b536-c9ea40d94fe9
-      - 4bed012e-9c06-4778-a39b-e4ffad9065ec
-      - ed266d74-6adf-47ba-8d4c-185ef69cd28a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bec955f3-7edf-4c38-8ade-1ee89215aca3:
-    id: bec955f3-7edf-4c38-8ade-1ee89215aca3
-    content: '- [ ] Send on a node whose recorded session cwd (via `sessionRegistry`) is `D` to a terminal whose live cwd is not `D` blocks with a toast (no action button) naming both directories — even when session ids would otherwise match or trigger a modal.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  402adcfb-a23e-4f6b-b536-c9ea40d94fe9:
-    id: 402adcfb-a23e-4f6b-b536-c9ea40d94fe9
-    content: '- [ ] Start workflow on a node whose recorded session cwd is `D` to a terminal whose live cwd is not `D` blocks with the same toast — no remap modal is shown.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4bed012e-9c06-4778-a39b-e4ffad9065ec:
-    id: 4bed012e-9c06-4778-a39b-e4ffad9065ec
-    content: '- [ ] Sessionless source node + any terminal cwd → captures target''s cwd into `sessionRegistry[sessionId].cwd` at session-capture time; no check, no block.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed266d74-6adf-47ba-8d4c-185ef69cd28a:
-    id: ed266d74-6adf-47ba-8d4c-185ef69cd28a
-    content: '- [ ] Resume session is exempt from the cwd check (it opens a fresh tab in the registry''s recorded cwd by construction).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  322dc979-127f-4317-a801-a15739c22a3c:
-    id: 322dc979-127f-4317-a801-a15739c22a3c
-    content: Persistence simplification
-    children:
-      - d2b1267a-d581-4227-8aab-f7b7d298c227
-      - 72960b15-b4a8-458f-9279-afc43b938529
-      - 8e047022-cb9e-4f3a-8912-313750238830
-      - 2e5b9199-00b1-4b85-ae0e-62ef455432e3
-      - b28a7fc7-8d30-4c9b-8e44-d53699183013
-      - 771225f2-fb7e-41e0-9461-de49f197be3a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2b1267a-d581-4227-8aab-f7b7d298c227:
-    id: d2b1267a-d581-4227-8aab-f7b7d298c227
-    content: '- [ ] `NodeMetadata` no longer carries `sessionLiveness`, `sessionTabId`, `sessionStarting`, `sessionLost`, or `sessionWorkingDirectory`. Save round-trips only `sessionId` and (for recurse) `brokenChain`. The `.arbo` file gains a `sessionRegistry` section.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  72960b15-b4a8-458f-9279-afc43b938529:
-    id: 72960b15-b4a8-458f-9279-afc43b938529
-    content: '- [ ] Existing dev `.arbo` files with the dropped node fields load cleanly — the strip-fields pass drops them silently.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e047022-cb9e-4f3a-8912-313750238830:
-    id: 8e047022-cb9e-4f3a-8912-313750238830
-    content: '- [ ] On load, `sessionRegistry` entries with no node referencing them are dropped (garbage collected).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e5b9199-00b1-4b85-ae0e-62ef455432e3:
-    id: 2e5b9199-00b1-4b85-ae0e-62ef455432e3
-    content: '- [ ] `getSessionLiveness(node, workflowSessionMap)` helper returns the derived liveness; every UI/menu/route check uses it.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b28a7fc7-8d30-4c9b-8e44-d53699183013:
-    id: b28a7fc7-8d30-4c9b-8e44-d53699183013
-    content: '- [ ] `rebindNodesForSession` is deleted; `bindSessionTab` updates only `workflowSessionMap`.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  771225f2-fb7e-41e0-9461-de49f197be3a:
-    id: 771225f2-fb7e-41e0-9461-de49f197be3a
-    content: '- [ ] Red `session-lost` indicator on `NodeContent` and its CSS are removed; `brokenChain` (amber) remains.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c0aafdd8-7ecb-4630-8492-de15eb605dc8:
-    id: c0aafdd8-7ecb-4630-8492-de15eb605dc8
-    content: Send
-    children:
-      - 20de51a3-7eba-4b9f-a013-44c1f03cab61
-      - 73cac1f2-3ad1-49c5-8ca3-aa4e7047776e
-      - 35d7f541-9770-4d2f-8886-dbed7d0149a4
-      - e6baaa7e-b078-4762-be4e-f3d2cea0adb3
-      - 8d67f055-7e2e-484f-8423-2bf781991440
-      - 26e395f6-1c7e-421a-ad47-4ead1aad1145
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  20de51a3-7eba-4b9f-a013-44c1f03cab61:
-    id: 20de51a3-7eba-4b9f-a013-44c1f03cab61
-    content: '- [ ] Send on a sessionless source node to a terminal with a known mapped or unmapped session captures the sessionId onto the source node and sends.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  73cac1f2-3ad1-49c5-8ca3-aa4e7047776e:
-    id: 73cac1f2-3ad1-49c5-8ca3-aa4e7047776e
-    content: '- [ ] Send on a sessionless source node to a terminal with no Claude session auto-launches and captures the new sessionId after SessionStart.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  35d7f541-9770-4d2f-8886-dbed7d0149a4:
-    id: 35d7f541-9770-4d2f-8886-dbed7d0149a4
-    content: '- [ ] Send on a source node with `sessionId X` to a terminal hosting `sessionId Y ≠ X` mapped to another node blocks with a toast; the prompt is not delivered.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e6baaa7e-b078-4762-be4e-f3d2cea0adb3:
-    id: e6baaa7e-b078-4762-be4e-f3d2cea0adb3
-    content: '- [ ] Send on a source node with `sessionId X` to a terminal hosting an unmapped session, or no session at all, surfaces an "Are you sure?" modal. On confirm, the source''s `sessionId` is replaced with the captured/new id; on cancel, no-op.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d67f055-7e2e-484f-8423-2bf781991440:
-    id: 8d67f055-7e2e-484f-8423-2bf781991440
-    content: '- [ ] Send on a source node with `sessionId X` to a terminal hosting `sessionId X` reattaches and sends.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  26e395f6-1c7e-421a-ad47-4ead1aad1145:
-    id: 26e395f6-1c7e-421a-ad47-4ead1aad1145
-    content: '- [ ] Send on multiple sessionless nodes to a terminal hosting a single Claude session causes all of them to capture that sessionId; Resume session on any of them works; `sessionRegistry` has a single entry for that sessionId, not duplicated per node.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f148d8c-ceb6-4196-8a85-5a3bff70d6d3:
-    id: 8f148d8c-ceb6-4196-8a85-5a3bff70d6d3
-    content: Start workflow / Continue
-    children:
-      - 2280caf1-e4d8-4e35-a8ed-1d3e63d68a3a
-      - 27d1f315-8d5f-4c72-8218-4c5eed5d2737
-      - 7c8417f5-18a3-4880-b4e6-e550c6f056e7
-      - ded9ed6c-bd56-49be-b443-07be3f3f610d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2280caf1-e4d8-4e35-a8ed-1d3e63d68a3a:
-    id: 2280caf1-e4d8-4e35-a8ed-1d3e63d68a3a
-    content: '- [ ] Start workflow on a stopped node with `sessionId X` whose session is alive in some terminal silently reattaches in that terminal — regardless of the user''s terminal focus. Workflow → running; the resulting tab is focused; no prompt re-send.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  27d1f315-8d5f-4c72-8218-4c5eed5d2737:
-    id: 27d1f315-8d5f-4c72-8218-4c5eed5d2737
-    content: '- [ ] Start workflow on a stopped node with `sessionId X` and a target terminal that hosts no session (or an unmapped session) surfaces a modal: "Node is mapped to session X. Start a new session here?" Yes replaces `sessionId`, runs spawn-fresh; cancel is a no-op.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7c8417f5-18a3-4880-b4e6-e550c6f056e7:
-    id: 7c8417f5-18a3-4880-b4e6-e550c6f056e7
-    content: '- [ ] Start workflow on a stopped node with `sessionId X` and a target terminal that hosts a session belonging to another user story is blocked with a toast; no remap modal is shown.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ded9ed6c-bd56-49be-b443-07be3f3f610d:
-    id: ded9ed6c-bd56-49be-b443-07be3f3f610d
-    content: '- [ ] Start workflow on a node whose session can''t be resumed surfaces a transient toast at the moment of failure; no persistent state is written.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1667205-2e4a-402e-8701-f45dc149c1a8:
-    id: a1667205-2e4a-402e-8701-f45dc149c1a8
-    content: Resume session
-    children:
-      - b4e71459-89d1-4af3-9019-f5c4d36c4582
-      - 145f842d-4c24-4512-a7fd-637cf5885f22
-      - d42646c6-fcf6-4c52-8c54-84f802870d04
-      - f34e9874-8d7c-4485-b491-32e73d3463b7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4e71459-89d1-4af3-9019-f5c4d36c4582:
-    id: b4e71459-89d1-4af3-9019-f5c4d36c4582
-    content: '- [ ] Right-click → Resume session on any node with `sessionId` is shown in the menu (workflow gate dropped).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  145f842d-4c24-4512-a7fd-637cf5885f22:
-    id: 145f842d-4c24-4512-a7fd-637cf5885f22
-    content: '- [ ] Resume session opens or focuses the terminal that hosts the session; if no terminal hosts it, opens a new tab in `sessionRegistry[sessionId].cwd` and runs `claude --resume <id>\r`. The resulting tab is focused.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d42646c6-fcf6-4c52-8c54-84f802870d04:
-    id: d42646c6-fcf6-4c52-8c54-84f802870d04
-    content: '- [ ] Resume session does not transition `workflowExecutionStates`; the workflow remains stopped/awaiting. Reactivating execution is a separate Start workflow gesture.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f34e9874-8d7c-4485-b491-32e73d3463b7:
-    id: f34e9874-8d7c-4485-b491-32e73d3463b7
-    content: '- [ ] Resume session failure surfaces a transient toast; re-attempting Resume retries.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  43840909-9fa9-4e33-9f91-87bcbcddea63:
-    id: 43840909-9fa9-4e33-9f91-87bcbcddea63
-    content: Regression
-    children:
-      - 2d97c00e-6772-4702-a7a1-62951f71eb12
-      - 57ab9c80-1adf-41a7-a481-f49787c87543
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2d97c00e-6772-4702-a7a1-62951f71eb12:
-    id: 2d97c00e-6772-4702-a7a1-62951f71eb12
-    content: '- [ ] Existing PR1/PR2/PR3 tests pass after surface adjustments for the dropped metadata fields and the cwd-into-registry move.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  57ab9c80-1adf-41a7-a481-f49787c87543:
-    id: 57ab9c80-1adf-41a7-a481-f49787c87543
-    content: '- [ ] Decomposition + recurse tests still pass; `inheritSessionOnNode` writes only `sessionId` (cwd lives in `sessionRegistry`, shared across the chain).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  997f6267-67d5-4027-9c1d-65bac4adf27d:
-    id: 997f6267-67d5-4027-9c1d-65bac4adf27d
-    content: 🔧 Implementation proposal
-    children:
-      - c8026ba9-ee06-48d0-bf35-3c88e2c004f1
-      - c29321f1-2b20-45f7-a211-ac3d6bdbdb79
-      - 249cef39-cf10-413e-850a-dafaaa7bc701
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8026ba9-ee06-48d0-bf35-3c88e2c004f1:
-    id: c8026ba9-ee06-48d0-bf35-3c88e2c004f1
-    content: Approach
-    children:
-      - e0bb8ddf-99e5-4829-bcb9-e07f91debd2e
-      - 354f4ba6-7784-43ea-a768-022afe05dcd7
-      - 5f9ec55e-ff71-461a-8af8-d8d2a318fee4
-      - 40534d41-9a30-4742-a01a-41ac785985cb
-      - ef59106b-7e63-492e-87a9-c1ab0454aa6b
-      - 56c533dd-c3a3-4472-aba0-aaf7c71a29c2
-      - c40571c0-30f6-46af-8651-5267159e9a7b
-      - 3f16c316-d40d-4357-a0e9-ca78a6576f9d
-      - 11ab4b3d-2b0f-49b4-b373-20bc94c7ca2c
-      - f42d62ce-0141-464c-8e14-65b73fa9029d
-      - 167e4f5b-ef26-4dc3-a668-f4cb41d9fa9e
-      - 2f9cbde7-976e-41f6-8ddc-055a2f5ccd22
-      - edfff447-58a6-4731-ab70-e60ca0cc4a8b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0bb8ddf-99e5-4829-bcb9-e07f91debd2e:
-    id: e0bb8ddf-99e5-4829-bcb9-e07f91debd2e
-    content: 'New persistent shape on `ArboFile`: `sessionRegistry: Record<sessionId, { cwd: string }>`, saved alongside `nodes`. Load reads the registry; an unreferenced-entries GC pass runs once per load.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  354f4ba6-7784-43ea-a768-022afe05dcd7:
-    id: 354f4ba6-7784-43ea-a768-022afe05dcd7
-    content: 'New factory `workflowClaudeLaunch.ts` (mirrors `workflowClearSession.ts`). Encapsulates `pendingLaunch: Map<terminalId, nodeId>`. Three methods: `launchIfNeededThenSend(nodeId, terminalId)`, `onSessionStartConfirmed(terminalId, runningNodeId)`, `clearPending(nodeId)`. `startWorkflowOnTerminal(''spawn''|''recurse'')` swaps `clearSessionManager.maybeClearThenSend` for the new entry; `registerSession` invokes `onSessionStartConfirmed` for every SessionStart.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f9ec55e-ff71-461a-8af8-d8d2a318fee4:
-    id: 5f9ec55e-ff71-461a-8af8-d8d2a318fee4
-    content: 'On every SessionStart capture (auto-launch confirmation OR manually-started Claude SessionStart), the system writes `sessionRegistry[sessionId] = { cwd: terminalGetCwd(terminalId) }` and assigns the node''s `sessionId`. `workflowSessionMap[sessionId] = terminalId` is set as today.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  40534d41-9a30-4742-a01a-41ac785985cb:
-    id: 40534d41-9a30-4742-a01a-41ac785985cb
-    content: When auto-launch fires, the launch manager skips the `/clear` step regardless of `clearSession === true` — the session is already fresh. The `/clear` path remains for the reattach case where the user wants to reset an existing session.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef59106b-7e63-492e-87a9-c1ab0454aa6b:
-    id: ef59106b-7e63-492e-87a9-c1ab0454aa6b
-    content: '`sendActions.collaborateInTerminal` adopts the same launch/capture flow before invoking the existing send pipeline. Cwd-block, mismatch-block, and "Are you sure?" modal checks fire before any IPC write.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  56c533dd-c3a3-4472-aba0-aaf7c71a29c2:
-    id: 56c533dd-c3a3-4472-aba0-aaf7c71a29c2
-    content: '`decideWorkflowStartRoute` simplifies. Inputs: `(sessionId, sessionRegistry, workflowSessionMap, nodeId, sourceWorkflowRoot, targetTerminalCwd)`. Outputs: `''reattach''` (returns the sessionId''s current terminal), `''spawn-fresh''` (no sessionId), `''remap-warn''` (sessionId set, target hosts no session or an unmapped session), `''block''` (cross-user-story foreign session, OR cwd mismatch). The "resume-in-new-tab" path moves entirely into Resume session.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c40571c0-30f6-46af-8651-5267159e9a7b:
-    id: c40571c0-30f6-46af-8651-5267159e9a7b
-    content: 'Cwd check: pure helper `assertCwdMatch(sessionId, sessionRegistry, terminalCwd)` returns `''match'' | ''mismatch''` based on `sessionRegistry[sessionId]?.cwd` against the live cwd. Called from `sendActions` and the `decideWorkflowStartRoute` caller.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3f16c316-d40d-4357-a0e9-ca78a6576f9d:
-    id: 3f16c316-d40d-4357-a0e9-ca78a6576f9d
-    content: Liveness is a small pure helper `getSessionLiveness(node, workflowSessionMap)` used at every UI/decision call site.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  11ab4b3d-2b0f-49b4-b373-20bc94c7ca2c:
-    id: 11ab4b3d-2b0f-49b4-b373-20bc94c7ca2c
-    content: Modal-warn on Start path reuses the existing confirm-dialog pattern (parallels `showRunningWorkflowDialog`). Send's "Are you sure?" reuses the same dialog component with different copy.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f42d62ce-0141-464c-8e14-65b73fa9029d:
-    id: f42d62ce-0141-464c-8e14-65b73fa9029d
-    content: Cwd-block toast is informational only — no action button. The user opens a new terminal in the right directory themselves.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  167e4f5b-ef26-4dc3-a668-f4cb41d9fa9e:
-    id: 167e4f5b-ef26-4dc3-a668-f4cb41d9fa9e
-    content: Drop `sessionTabId`, `sessionLiveness`, `sessionStarting`, `sessionLost`, and `sessionWorkingDirectory` from `NodeMetadata`. `rebindNodesForSession` deleted. `bindSessionTab` collapses to a one-line registry update. `normalizeSessionLiveness` is replaced by a `stripDroppedSessionFields` migration plus a `garbageCollectSessionRegistry` pass on load.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f9cbde7-976e-41f6-8ddc-055a2f5ccd22:
-    id: 2f9cbde7-976e-41f6-8ddc-055a2f5ccd22
-    content: Remove the red `session-lost` indicator from `NodeContent` and its CSS. The `brokenChain` indicator stays.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  edfff447-58a6-4731-ab70-e60ca0cc4a8b:
-    id: edfff447-58a6-4731-ab70-e60ca0cc4a8b
-    content: Drop the workflow-step gate on Resume session in `useNodeContextMenu`.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c29321f1-2b20-45f7-a211-ac3d6bdbdb79:
-    id: c29321f1-2b20-45f7-a211-ac3d6bdbdb79
-    content: Touchpoints
-    children:
-      - 3b925561-c8bb-40fe-b299-ed2e76fe2a28
-      - 9cc243ff-c12d-4aaf-9785-35a11466b9fc
-      - 9d23f49a-7238-450b-a174-cb86def69750
-      - a080e98c-728c-41c9-af4a-6b4496ff7a57
-      - 641ee8c3-7647-4c9d-94f3-fd87a1eb5e05
-      - 081be685-965f-4a64-9981-ea0e96c273cd
-      - e868c1e2-5c6b-4be2-9142-b59ca7d2ab85
-      - 45706685-3c7e-40bf-b963-cefd8dfccecd
-      - e7eb97cf-265f-4cad-9ffd-6b0269b0f682
-      - b76721d5-0c34-4a2e-b856-f6d8a2916f76
-      - 4628cee8-76a3-4d47-b947-deefb861774d
-      - 34e7af9d-87d2-4ed5-ae08-576fe26f34bf
-      - f412f92a-b166-474f-ad1b-8693e4c3c5db
-      - 90e40753-f99c-4685-9a15-10daf2930ec0
-      - 47d9386d-1555-43e7-9daf-9548edc4e1c0
-      - 0f88a0e3-98f2-4738-a7a3-9e4b1e3c5c31
-      - bff9a1d0-05ec-4d9d-9a2a-f6e0cfe5f42a
-      - 8fdd7f72-894a-470e-b762-9ce72e1fb73f
-      - 2238683b-f04b-489f-8908-5cdbffa846b2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b925561-c8bb-40fe-b299-ed2e76fe2a28:
-    id: 3b925561-c8bb-40fe-b299-ed2e76fe2a28
-    content: '`src/shared/types/document.ts` — add `sessionRegistry` to `ArboFile`'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9cc243ff-c12d-4aaf-9785-35a11466b9fc:
-    id: 9cc243ff-c12d-4aaf-9785-35a11466b9fc
-    content: '`src/renderer/store/tree/treeStore.ts` — wire `sessionRegistry` slice'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d23f49a-7238-450b-a174-cb86def69750:
-    id: 9d23f49a-7238-450b-a174-cb86def69750
-    content: '`src/renderer/store/tree/actions/workflowClaudeLaunch.ts` — new factory file'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a080e98c-728c-41c9-af4a-6b4496ff7a57:
-    id: a080e98c-728c-41c9-af4a-6b4496ff7a57
-    content: '`src/renderer/store/tree/actions/workflowExecutionActions.ts` — rewire `startWorkflowOnTerminal`, `registerSession`, and the `decideWorkflowStartRoute` caller; write `sessionRegistry` on capture; drop liveness/cwd writes from node metadata'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  641ee8c3-7647-4c9d-94f3-fd87a1eb5e05:
-    id: 641ee8c3-7647-4c9d-94f3-fd87a1eb5e05
-    content: '`src/renderer/store/tree/actions/workflowSessionResume.ts` — delete `rebindNodesForSession`; collapse `bindSessionTab`; read cwd from `sessionRegistry`; strip cwd/liveness writes from helpers'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  081be685-965f-4a64-9981-ea0e96c273cd:
-    id: 081be685-965f-4a64-9981-ea0e96c273cd
-    content: '`src/renderer/store/tree/actions/workflowDisruptionReactions.ts` — `clearPendingLaunch` dep; drop sessionTabId/liveness writes from `detachSessionFromTab`'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e868c1e2-5c6b-4be2-9142-b59ca7d2ab85:
-    id: e868c1e2-5c6b-4be2-9142-b59ca7d2ab85
-    content: '`src/renderer/store/tree/actions/sendActions.ts` — capture-on-Send (writes registry); cwd-block, mismatch-block, "Are you sure?" modal checks'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  45706685-3c7e-40bf-b963-cefd8dfccecd:
-    id: 45706685-3c7e-40bf-b963-cefd8dfccecd
-    content: '`src/renderer/utils/workflowStartRoute.ts` — simplify input/output; remove resume-in-new-tab; add `''remap-warn''` and cross-user-story / cwd `''block''`; registry input'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e7eb97cf-265f-4cad-9ffd-6b0269b0f682:
-    id: e7eb97cf-265f-4cad-9ffd-6b0269b0f682
-    content: '`src/renderer/utils/sessionLiveness.ts` — new pure helper'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b76721d5-0c34-4a2e-b856-f6d8a2916f76:
-    id: b76721d5-0c34-4a2e-b856-f6d8a2916f76
-    content: '`src/renderer/utils/sessionCwdCheck.ts` — new pure helper (registry-aware)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4628cee8-76a3-4d47-b947-deefb861774d:
-    id: 4628cee8-76a3-4d47-b947-deefb861774d
-    content: '`src/shared/types/treeNode.ts` — drop fields (including `sessionWorkingDirectory`)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  34e7af9d-87d2-4ed5-ae08-576fe26f34bf:
-    id: 34e7af9d-87d2-4ed5-ae08-576fe26f34bf
-    content: '`src/renderer/utils/document.ts` — strip dropped fields on save (defensive); serialize/deserialize `sessionRegistry`'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f412f92a-b166-474f-ad1b-8693e4c3c5db:
-    id: f412f92a-b166-474f-ad1b-8693e4c3c5db
-    content: '`src/renderer/utils/normalizeSessionLiveness.ts` — replace with `stripDroppedSessionFields` + `garbageCollectSessionRegistry` migrations'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  90e40753-f99c-4685-9a15-10daf2930ec0:
-    id: 90e40753-f99c-4685-9a15-10daf2930ec0
-    content: '`src/renderer/services/storageService.ts` — wire the new migrations and `sessionRegistry` round-trip'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  47d9386d-1555-43e7-9daf-9548edc4e1c0:
-    id: 47d9386d-1555-43e7-9daf-9548edc4e1c0
-    content: '`src/renderer/components/NodeContent/NodeContent.tsx` and `.css` — remove `session-lost` indicator'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f88a0e3-98f2-4738-a7a3-9e4b1e3c5c31:
-    id: 0f88a0e3-98f2-4738-a7a3-9e4b1e3c5c31
-    content: '`src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts` — drop workflow gate; modal-warn entry on Start; "Are you sure?" on Send'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bff9a1d0-05ec-4d9d-9a2a-f6e0cfe5f42a:
-    id: bff9a1d0-05ec-4d9d-9a2a-f6e0cfe5f42a
-    content: '`docs/workflows.md` — Hook Setup updated; Resume session / Send / Start rules updated; the Resume-session vs Start-workflow distinction made explicit'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8fdd7f72-894a-470e-b762-9ce72e1fb73f:
-    id: 8fdd7f72-894a-470e-b762-9ce72e1fb73f
-    content: '`CHANGELOG.md` — single Unreleased Features entry'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2238683b-f04b-489f-8908-5cdbffa846b2:
-    id: 2238683b-f04b-489f-8908-5cdbffa846b2
-    content: Tests — new for `workflowClaudeLaunch`, capture-on-Send, mismatch-block, "Are you sure?" modal, cross-user-story-block, cwd block, registry round-trip, registry GC; existing PR1/PR2/PR3 tests adjusted for dropped fields and cwd-into-registry move
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  249cef39-cf10-413e-850a-dafaaa7bc701:
-    id: 249cef39-cf10-413e-850a-dafaaa7bc701
-    content: Constraints to call out
-    children:
-      - 572cdf7f-5be6-4ed6-be4d-7149332b89d7
-      - 75f39555-c5f5-4fd5-9fe6-bd98b6602384
-      - d759c85a-42b5-45b5-93e9-dffb0fb07c62
-      - c13ca2d5-40ce-4e06-88dd-eb3ba3e96660
-      - b849a8eb-cf3b-42b6-abb5-0465557002a9
-      - 9b1356a3-39e3-4e26-b8c8-f3d3ad7267f3
-      - 6d847273-2f10-45a3-b154-8bd00f400461
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  572cdf7f-5be6-4ed6-be4d-7149332b89d7:
-    id: 572cdf7f-5be6-4ed6-be4d-7149332b89d7
-    content: Depends on PR1 + PR2 + PR3 (all merged). This story replaces and simplifies parts of those PRs, including moving `sessionWorkingDirectory` off node metadata into a dedicated registry.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  75f39555-c5f5-4fd5-9fe6-bd98b6602384:
-    id: 75f39555-c5f5-4fd5-9fe6-bd98b6602384
-    content: No production migration concerns — feature is unreleased. Existing dev `.arbo` files with the dropped node fields are silently stripped; orphan registry entries are GC'd.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d759c85a-42b5-45b5-93e9-dffb0fb07c62:
-    id: d759c85a-42b5-45b5-93e9-dffb0fb07c62
-    content: No new IPC channel; reuses `terminalCreate`, `terminalWrite`, `terminalGetCwd`, existing hook event listener.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c13ca2d5-40ce-4e06-88dd-eb3ba3e96660:
-    id: c13ca2d5-40ce-4e06-88dd-eb3ba3e96660
-    content: 'Race window unchanged: a user typing `claude` themselves at the same instant they click Start could double-spawn. Not mitigated.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b849a8eb-cf3b-42b6-abb5-0465557002a9:
-    id: b849a8eb-cf3b-42b6-abb5-0465557002a9
-    content: No PATH check for `claude`; off-PATH installs fall through to step-timeout.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b1356a3-39e3-4e26-b8c8-f3d3ad7267f3:
-    id: 9b1356a3-39e3-4e26-b8c8-f3d3ad7267f3
-    content: No detection of "Claude running in terminal but no SessionId mapped." This case is purely transient (sub-second hook race) given the hook prerequisite.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d847273-2f10-45a3-b154-8bd00f400461:
-    id: 6d847273-2f10-45a3-b154-8bd00f400461
-    content: Worktree-aware cwd refresh is **deferred** — `sessionRegistry[sessionId].cwd` is captured at SessionStart and refined once via `terminalGetCwd`; subsequent worktree switches mid-session are a known gap to be addressed separately.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9206564-fcda-4e6b-abda-475d1f793fe2:
-    id: a9206564-fcda-4e6b-abda-475d1f793fe2
-    content: 🔬 Technical refinement
-    children:
-      - f1c13b11-1a07-498d-9fa6-5d460334771a
-      - 6e715bf9-5ef0-4a8d-8d82-4c303f53d5c0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1c13b11-1a07-498d-9fa6-5d460334771a:
-    id: f1c13b11-1a07-498d-9fa6-5d460334771a
-    content: Approach summary
-    children:
-      - 60e877a3-f0c3-41be-ade7-b59fbb251731
-      - ed2443a0-6c64-4c03-bb03-deecca0bf641
-      - ef895b97-e271-44ab-865d-714e09cd8785
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  60e877a3-f0c3-41be-ade7-b59fbb251731:
-    id: 60e877a3-f0c3-41be-ade7-b59fbb251731
-    content: 'File-level `sessionRegistry: Record<sessionId, { cwd }>` on `ArboFile` is the single source of truth for session-scoped data; node metadata collapses to `sessionId` + `brokenChain`. Routing collapses to four outcomes: `reattach | spawn-fresh | remap-warn | block`.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed2443a0-6c64-4c03-bb03-deecca0bf641:
-    id: ed2443a0-6c64-4c03-bb03-deecca0bf641
-    content: 'Changes land in three factories (`workflowClaudeLaunch` new, `workflowExecutionActions`/`workflowSessionResume` rewired, `sendActions` extended) plus pure helpers (`sessionLiveness`, `sessionCwdCheck`, `decideWorkflowStartRoute`). UI deltas are small: drop red `session-lost` dot, drop workflow gate on Resume menu entry.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef895b97-e271-44ab-865d-714e09cd8785:
-    id: ef895b97-e271-44ab-865d-714e09cd8785
-    content: 'Non-obvious: `/clear` is **skipped** on auto-launch but **kept** on reattach — same code branch, divergent behaviour, easy to misread on review. SessionStart capture handler now serves three concerns at once: auto-launch confirmation, manual-Claude-then-Start capture, and registry cwd write — be explicit about the order of writes.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e715bf9-5ef0-4a8d-8d82-4c303f53d5c0:
-    id: 6e715bf9-5ef0-4a8d-8d82-4c303f53d5c0
-    content: Flag complications
-    children:
-      - cbe693b0-d6e5-4c12-b78d-6b1e6d93d44a
-      - a37e3405-2c73-4938-af88-8fbd4419d9b6
-      - 1e6d489d-0972-4d5a-8494-cd16f5621863
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cbe693b0-d6e5-4c12-b78d-6b1e6d93d44a:
-    id: cbe693b0-d6e5-4c12-b78d-6b1e6d93d44a
-    content: Edge cases / risks not covered by current ACs
-    children:
-      - 88248358-5b46-4810-8f35-d329dea0798e
-      - 1c894b74-1caa-40dd-a5ff-be3512d6a2b9
-      - 8fe24659-2642-4f57-8d50-b7b3eb31c8a6
-      - ed4cf205-70c5-49cf-b82d-8e6b01e1d72f
-      - c9df722d-837a-4e2c-8cdf-aa460db213be
-      - c6ceba59-5388-410b-9998-4afc7d64e5d4
-      - 0c6ddf99-22f9-4447-b808-eb3a689eec5c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  88248358-5b46-4810-8f35-d329dea0798e:
-    id: 88248358-5b46-4810-8f35-d329dea0798e
-    content: '`terminalGetCwd` failure mode is unspecified. If the IPC returns null/empty (terminal not yet ready, shell hasn''t reported cwd), the cwd check could spuriously block or — worse — pass with an empty-string match. AC needed: define behaviour on cwd-fetch error (probably block-with-different-toast).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c894b74-1caa-40dd-a5ff-be3512d6a2b9:
-    id: 1c894b74-1caa-40dd-a5ff-be3512d6a2b9
-    content: 'Concurrent Sends to a fresh terminal during the auto-launch window: `pendingLaunch` is keyed by terminalId, so a second Send arriving before SessionStart needs to coalesce or reject — not specified. Without a rule, the second prompt could either be lost or fire against the wrong sessionId.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8fe24659-2642-4f57-8d50-b7b3eb31c8a6:
-    id: 8fe24659-2642-4f57-8d50-b7b3eb31c8a6
-    content: 'Multi-node-share + remap modal: confirming "new session" on one of N nodes pointing to sessionId X leaves the other N-1 nodes pointing to a now-orphaned id until next-load GC. Mid-session their derived liveness is `alive-detached` (sessionId set, no map entry) — UI may suggest Resume on a session that no longer exists. Worth surfacing.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed4cf205-70c5-49cf-b82d-8e6b01e1d72f:
-    id: ed4cf205-70c5-49cf-b82d-8e6b01e1d72f
-    content: Mid-session node delete leaves an orphan registry entry until next-load GC; long sessions accumulate dead entries in memory. Probably fine; flag for visibility.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9df722d-837a-4e2c-8cdf-aa460db213be:
-    id: c9df722d-837a-4e2c-8cdf-aa460db213be
-    content: '`brokenChain` interaction with manual remap: if the user replaces sessionId on a broken-chain node via "Are you sure?" modal, should `brokenChain` clear automatically? AC silent — recommend clear-on-remap.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c6ceba59-5388-410b-9998-4afc7d64e5d4:
-    id: c6ceba59-5388-410b-9998-4afc7d64e5d4
-    content: Resume session new-tab path opens at `sessionRegistry[sessionId].cwd`; if the directory was renamed or deleted on disk since capture, the tab opens elsewhere (shell default) and `claude --resume` fails with a confusing error. Same transient-toast path as other Resume failures, but worth documenting.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c6ddf99-22f9-4447-b808-eb3a689eec5c:
-    id: 0c6ddf99-22f9-4447-b808-eb3a689eec5c
-    content: 'Cwd block + cross-user-story Start interleave: per rule 24, cwd block fires first; user fixes cwd, then hits the foreign-session block. Two-step error reveal — acceptable but worth knowing.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a37e3405-2c73-4938-af88-8fbd4419d9b6:
-    id: a37e3405-2c73-4938-af88-8fbd4419d9b6
-    content: Out of scope (already noted; flagging residual risk)
-    children:
-      - 07841ce1-b2d4-4aeb-8918-0a9ff345d3ae
-      - 97c17f0a-d4c6-44aa-95a7-9d0edc1bd81d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  07841ce1-b2d4-4aeb-8918-0a9ff345d3ae:
-    id: 07841ce1-b2d4-4aeb-8918-0a9ff345d3ae
-    content: 'Worktree-aware cwd refresh: depends on the prepend-not-cd assumption holding. If any future workflow does `cd` mid-session, the registry drifts silently and `claude --resume` will fail. Confirm and document the prepend invariant before shipping.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  97c17f0a-d4c6-44aa-95a7-9d0edc1bd81d:
-    id: 97c17f0a-d4c6-44aa-95a7-9d0edc1bd81d
-    content: '`.arbo` portability: the registry travels with the file via git/share; recipients on other machines inherit dead sessionIds (kept by GC as long as a node references them). Documented as a follow-up sidecar move.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1e6d489d-0972-4d5a-8494-cd16f5621863:
-    id: 1e6d489d-0972-4d5a-8494-cd16f5621863
-    content: ROI
-    children:
-      - 2c126e28-73ee-443a-b381-ee603b479383
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c126e28-73ee-443a-b381-ee603b479383:
-    id: 2c126e28-73ee-443a-b381-ee603b479383
-    content: Story is large (3 factories + 6 helpers + UI deltas + migrations + ~12 ACs) but the pieces are tightly coupled at the dispatcher and metadata model — splitting forces contradictory interim states (e.g. capture-on-Send without registry → drift). Single PR is the right shape; decompose-after pattern fits.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8271bde1-c8d2-4090-89ed-7ec64da58ecf:
-    id: 8271bde1-c8d2-4090-89ed-7ec64da58ecf
-    content: Implementation note
-    children:
-      - e461704d-d8da-4806-9b30-9b8fa3b7821f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e461704d-d8da-4806-9b30-9b8fa3b7821f:
-    id: e461704d-d8da-4806-9b30-9b8fa3b7821f
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   9fd342d4-ea8e-4a8e-bdc1-150c9c2698f2:
@@ -103634,6 +101882,7 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
+      brokenChain: true
   bcbe1d33-53ef-4d30-9cfe-a0364a1d4eca:
     id: bcbe1d33-53ef-4d30-9cfe-a0364a1d4eca
     content: Running a node with an attached context through workflows causes that context to replay for every workflow step
@@ -108100,6 +106349,2237 @@ nodes:
   b8f3f9ef-eaaf-49fc-a939-da8a31ccf44d:
     id: b8f3f9ef-eaaf-49fc-a939-da8a31ccf44d
     content: '`docs/workflows.md` and `CHANGELOG.md` touchpoints in the Implementation proposal section remain `[ ]` because their bullet text describes the FULL user story (PR2 auto-launch + PR3 cwd block + modal-warn + gate drop) — the PR1-only docs work is the red-dot removal documented here, not the full Hook Setup / Send rules / modal-warn rewrite those bullets describe.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ab9395b-5f36-4ad6-a90d-e06a6eac345f:
+    id: 7ab9395b-5f36-4ad6-a90d-e06a6eac345f
+    content: Subtask scope
+    children:
+      - e707a716-a443-4874-9619-14966b624a97
+      - 20225fec-aba0-4c47-9ae8-0978655c0e69
+      - 30229b0d-661f-4725-8508-62acdc045a58
+      - 4a201978-ed38-431c-8840-39ce5e3d497d
+      - 36899e56-ca27-47d6-98b2-4112f0d562dc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e707a716-a443-4874-9619-14966b624a97:
+    id: e707a716-a443-4874-9619-14966b624a97
+    content: In scope
+    children:
+      - d5a4552c-e55e-4c60-bf14-ae52c2ea551c
+      - d28aeedd-8136-4fe8-8d53-1909007f4b02
+      - b9def2de-14c3-40f8-9479-3998472a383a
+      - bc5bb188-50a3-47b7-9277-c8472c340c28
+      - e1ce6a31-684f-4b67-8f76-98eeaacb9f55
+      - 1e4bd90d-4c9e-494b-9837-e0ba19a53919
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5a4552c-e55e-4c60-bf14-ae52c2ea551c:
+    id: d5a4552c-e55e-4c60-bf14-ae52c2ea551c
+    content: 'New factory `workflowClaudeLaunch.ts` (mirrors `workflowClearSession.ts`). Owns `pendingLaunch: Map<terminalId, nodeId>` and three methods: `launchIfNeededThenSend(nodeId, terminalId)`, `onSessionStartConfirmed(terminalId, runningNodeId)`, `clearPending(nodeId)`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d28aeedd-8136-4fe8-8d53-1909007f4b02:
+    id: d28aeedd-8136-4fe8-8d53-1909007f4b02
+    content: '`startWorkflowOnTerminal(''spawn''|''recurse'')` swaps `clearSessionManager.maybeClearThenSend` for the new launch entry. When `workflowSessionMap` has no entry for the target terminal, the manager writes `claude\r` and defers the workflow prompt until `SessionStart` arrives; when an entry exists, prompt is sent without launch.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9def2de-14c3-40f8-9479-3998472a383a:
+    id: b9def2de-14c3-40f8-9479-3998472a383a
+    content: '`registerSession` calls `onSessionStartConfirmed` for every SessionStart (auto-launch confirmation AND manually-started Claude). Capture writes node `sessionId` and `sessionRegistry[sessionId].cwd = terminalGetCwd(terminalId)`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc5bb188-50a3-47b7-9277-c8472c340c28:
+    id: bc5bb188-50a3-47b7-9277-c8472c340c28
+    content: '`clearSession === true` is **skipped** when the auto-launch path fires — the new session is already clean. The `/clear` step continues to fire when reattaching to an existing live session.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1ce6a31-684f-4b67-8f76-98eeaacb9f55:
+    id: e1ce6a31-684f-4b67-8f76-98eeaacb9f55
+    content: Disruption reactions (`stopWorkflow`, terminal close, node delete, step delete, manual move, recurse-counter abort) call `clearPending` to drop pending launch entries.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e4bd90d-4c9e-494b-9837-e0ba19a53919:
+    id: 1e4bd90d-4c9e-494b-9837-e0ba19a53919
+    content: No PATH check for `claude` — off-PATH installs fall through to the existing step-timeout flow.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20225fec-aba0-4c47-9ae8-0978655c0e69:
+    id: 20225fec-aba0-4c47-9ae8-0978655c0e69
+    content: Depends on
+    children:
+      - 64e0eccf-5785-4133-b261-0c2efcb5fe79
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64e0eccf-5785-4133-b261-0c2efcb5fe79:
+    id: 64e0eccf-5785-4133-b261-0c2efcb5fe79
+    content: PR1 (`sessionRegistry` exists; `getSessionLiveness` available; `bindSessionTab` collapsed).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30229b0d-661f-4725-8508-62acdc045a58:
+    id: 30229b0d-661f-4725-8508-62acdc045a58
+    content: Deferred to PR3
+    children:
+      - 09d8e7a3-1a49-4f14-b1dd-f669df6b17a8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09d8e7a3-1a49-4f14-b1dd-f669df6b17a8:
+    id: 09d8e7a3-1a49-4f14-b1dd-f669df6b17a8
+    content: Cwd block helper + integration in `sendActions` and Start path; capture-on-Send extension; "Are you sure?" Send modal; modal-warn on Start; cross-user-story block; `decideWorkflowStartRoute` output simplification; drop workflow gate on Resume; Resume new-tab fallback at registry cwd.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a201978-ed38-431c-8840-39ce5e3d497d:
+    id: 4a201978-ed38-431c-8840-39ce5e3d497d
+    content: Acceptance criteria in scope
+    children:
+      - d1ba30c2-f83b-42ae-82e6-739234cf1db5
+      - 0f1f4f5a-0271-49a3-901d-6847f9662f67
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1ba30c2-f83b-42ae-82e6-739234cf1db5:
+    id: d1ba30c2-f83b-42ae-82e6-739234cf1db5
+    content: Auto-launch ACs (all).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f1f4f5a-0271-49a3-901d-6847f9662f67:
+    id: 0f1f4f5a-0271-49a3-901d-6847f9662f67
+    content: Regression ACs touching launch / SessionStart / `/clear` ordering / recurse tier-(a)/tier-(b).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36899e56-ca27-47d6-98b2-4112f0d562dc:
+    id: 36899e56-ca27-47d6-98b2-4112f0d562dc
+    content: Touchpoints
+    children:
+      - 03924fb2-2162-4f0f-9cc7-f5a33b9e101f
+      - 650d9e06-906d-4bc3-a79a-30e53212e94a
+      - b1a48d4b-9535-4196-8c14-b40afe250b6f
+      - 61ffaea2-251e-4adc-a307-e0765e1094a6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03924fb2-2162-4f0f-9cc7-f5a33b9e101f:
+    id: 03924fb2-2162-4f0f-9cc7-f5a33b9e101f
+    content: '`src/renderer/store/tree/actions/workflowClaudeLaunch.ts` — new factory.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  650d9e06-906d-4bc3-a79a-30e53212e94a:
+    id: 650d9e06-906d-4bc3-a79a-30e53212e94a
+    content: '`src/renderer/store/tree/actions/workflowExecutionActions.ts` — rewire `startWorkflowOnTerminal(''spawn''|''recurse'')`; `registerSession` invokes `onSessionStartConfirmed`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1a48d4b-9535-4196-8c14-b40afe250b6f:
+    id: b1a48d4b-9535-4196-8c14-b40afe250b6f
+    content: '`src/renderer/store/tree/actions/workflowDisruptionReactions.ts` — `clearPending` dep wired into stop / detach paths.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61ffaea2-251e-4adc-a307-e0765e1094a6:
+    id: 61ffaea2-251e-4adc-a307-e0765e1094a6
+    content: Tests — new for `workflowClaudeLaunch`; SessionStart-defer-then-prompt sequence; `/clear` skipped on auto-launch + kept on reattach; stopWorkflow cancels pending; recurse tier-(a)/tier-(b) does not auto-launch.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c401008-ef79-40f5-be47-3386b318b447:
+    id: 9c401008-ef79-40f5-be47-3386b318b447
+    content: User story
+    children:
+      - e213c297-5a76-41ec-a71c-cf4becc23599
+      - 702a5174-e3dd-4bcf-ad8c-f7019786b460
+      - 3bd7d0f1-91eb-41ca-aadd-202937849eef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e213c297-5a76-41ec-a71c-cf4becc23599:
+    id: e213c297-5a76-41ec-a71c-cf4becc23599
+    content: 📄 Product spec
+    children:
+      - c5421b72-ac3f-4fe1-8016-84f0365ce34b
+      - 1796a03a-630f-4f2e-8bab-fd45ddc66231
+      - 008bbae4-fc9e-4e6b-8146-9d253a43d2f9
+      - 36eab5d6-90b7-42f2-87c1-d569f7b641fd
+      - dc2dd425-699a-4a83-903c-43c827a5726c
+      - ae9e01b1-ff7b-409f-b66f-aa983415de01
+      - 680b9d5e-b6b3-4776-8cd4-887ee82def8e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5421b72-ac3f-4fe1-8016-84f0365ce34b:
+    id: c5421b72-ac3f-4fe1-8016-84f0365ce34b
+    content: 'Context — The PR1/PR2/PR3 stack established Claude session metadata on workflow nodes (`sessionId`, `sessionWorkingDirectory`) and three entry points: manual Resume, auto-resume on Start, recurse inheritance. Several gaps surface from real use: (1) `startWorkflow` never launches `claude` itself — fresh terminal + Start types the prompt at the shell, errors out, and the step times out; (2) when the user runs `claude` manually before clicking Start, Arborescent''s SessionStart capture skipped the workflow node, so resume features can''t help that chain later; (3) `Send` pushes content but doesn''t capture sessionId on the source node, so non-workflow nodes can''t use Resume; (4) `sessionLiveness`/`sessionTabId` on metadata duplicate what `workflowSessionMap` already tracks at runtime, requiring a fragile `rebindNodesForSession` to keep them in sync; (5) sending a node to a terminal whose session belongs to another node silently entangles state; (6) cwd mismatch between a node''s recorded session directory and the target terminal''s live cwd silently produces a session that Claude can''t actually resume.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1796a03a-630f-4f2e-8bab-fd45ddc66231:
+    id: 1796a03a-630f-4f2e-8bab-fd45ddc66231
+    content: User — anyone running workflow steps or pushing nodes to a terminal where Claude is involved.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  008bbae4-fc9e-4e6b-8146-9d253a43d2f9:
+    id: 008bbae4-fc9e-4e6b-8146-9d253a43d2f9
+    content: Current experience — first-time Start in a fresh terminal stalls until step timeout; manual-Claude-then-Start chains can't be resumed; Send to a session-bearing terminal silently captures the session even when the source node had its own; multiple metadata fields tracking session state can drift; the persistent `session-lost` red dot adds visual noise without unique value; cwd mismatches produce silently-broken sessions.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  36eab5d6-90b7-42f2-87c1-d569f7b641fd:
+    id: 36eab5d6-90b7-42f2-87c1-d569f7b641fd
+    content: Goal — every node holds at most one `sessionId`; the runtime registry maps `sessionId → terminalId`; Send, Start workflow, and Resume session each have a clear, predictable behaviour with auto-launch filling the first-run gap and liveness derived rather than stored. Cwd mismatches are blocked upfront with a clear toast.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc2dd425-699a-4a83-903c-43c827a5726c:
+    id: dc2dd425-699a-4a83-903c-43c827a5726c
+    content: 'Terminology — three distinct gestures. **Resume session** is a conversation-only gesture: opens or focuses the terminal hosting the session. Does NOT touch `workflowExecutionStates`. **Start workflow / Continue workflow** is the workflow-execution gesture: brings the workflow back to `running` and follows the same session-routing rules as Send. Resuming the conversation and resuming the workflow are independent operations.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae9e01b1-ff7b-409f-b66f-aa983415de01:
+    id: ae9e01b1-ff7b-409f-b66f-aa983415de01
+    content: Business rules
+    children:
+      - 3713b77f-ffd7-4077-b619-8a90ba6b8d0e
+      - b4e91a68-2356-46e0-ae5e-c259e6f360dc
+      - becab087-6d1d-4edd-ab02-3ad58b6ae758
+      - bfe79697-e41a-46a4-adb3-86cfa9989d14
+      - 37c6750c-caed-43d8-96c2-7e6e45f53aa7
+      - 4b7623b8-83dd-4bb0-ac1a-9edc399f7226
+      - c6578607-4daa-43eb-a860-f0def74fb682
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3713b77f-ffd7-4077-b619-8a90ba6b8d0e:
+    id: 3713b77f-ffd7-4077-b619-8a90ba6b8d0e
+    content: Persistence model
+    children:
+      - 26c71e2c-99f0-4522-9cad-ec9c9446a637
+      - 8d84d8cb-e3ef-4da6-be57-df32cb5da528
+      - fe73e04d-9998-4036-a321-c98915d6261e
+      - f9b39243-e4d6-4c2d-89f5-b070936e0bee
+      - 1938dab8-a975-473e-9554-ef39c68dbf6a
+      - 4ebfd1f3-867a-42c3-9297-ce350a2b2f00
+      - af420487-9039-4417-ab07-0f28d03edca6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26c71e2c-99f0-4522-9cad-ec9c9446a637:
+    id: 26c71e2c-99f0-4522-9cad-ec9c9446a637
+    content: '1. Persistent metadata on a node, for session lifecycle: `sessionId?: string` only. PR3''s `brokenChain?: boolean` stays as a recurse-outcome marker. Nothing else on the node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d84d8cb-e3ef-4da6-be57-df32cb5da528:
+    id: 8d84d8cb-e3ef-4da6-be57-df32cb5da528
+    content: '1a. Persistent file-level structure: `sessionRegistry: Record<sessionId, { cwd: string }>`, saved alongside `nodes` in `.arbo`. Single source of truth for session-scoped data; future per-session fields can extend this entry without touching node metadata.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe73e04d-9998-4036-a321-c98915d6261e:
+    id: fe73e04d-9998-4036-a321-c98915d6261e
+    content: 1b. On load, `sessionRegistry` entries whose `sessionId` is not referenced by any node's `metadata.sessionId` are dropped (garbage collected). The cleanup runs once per load.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9b39243-e4d6-4c2d-89f5-b070936e0bee:
+    id: f9b39243-e4d6-4c2d-89f5-b070936e0bee
+    content: 2. Drop `sessionLiveness`, `sessionTabId`, `sessionStarting`, `sessionLost`, and `sessionWorkingDirectory` from `NodeMetadata`. Existing dev `.arbo` files with these fields load cleanly — the strip-fields pass on load drops them. Feature is unreleased; no production migration concerns.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1938dab8-a975-473e-9554-ef39c68dbf6a:
+    id: 1938dab8-a975-473e-9554-ef39c68dbf6a
+    content: '3. Liveness is derived at every read via `getSessionLiveness(node, workflowSessionMap)`: registry-hit → alive-attached; sessionId set, no entry → alive-detached; no sessionId → no session. There is no persistent "lost" state; Resume failures surface a transient toast and the user retries.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ebfd1f3-867a-42c3-9297-ce350a2b2f00:
+    id: 4ebfd1f3-867a-42c3-9297-ce350a2b2f00
+    content: 4. A `sessionId` may live on multiple nodes — explicitly allowed, no decomposition restriction. Resume on any of those nodes resumes the shared session.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af420487-9039-4417-ab07-0f28d03edca6:
+    id: af420487-9039-4417-ab07-0f28d03edca6
+    content: 5. A node holds **at most one** `sessionId`. Replacement is gated by the rules below.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4e91a68-2356-46e0-ae5e-c259e6f360dc:
+    id: b4e91a68-2356-46e0-ae5e-c259e6f360dc
+    content: Working-directory check (cross-cutting; applies to Send and Start workflow uniformly)
+    children:
+      - 0e10ac00-a3fc-4406-9568-71bc1364447c
+      - 362938df-2f2e-4ca3-ac53-d3b2cd95a397
+      - fdd4f08f-533d-4f3f-b63e-437ca8488f14
+      - 7fdb1b1d-19da-4a8f-bdd2-8606c41039ed
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e10ac00-a3fc-4406-9568-71bc1364447c:
+    id: 0e10ac00-a3fc-4406-9568-71bc1364447c
+    content: '6. Whenever an action would auto-launch Claude or capture a session onto a node in the target terminal, the system queries the target terminal''s live cwd via `terminalGetCwd`. If the source node has a `sessionId` AND `sessionRegistry[sessionId].cwd` is not equal (full-path equality) to that live cwd, the action is **blocked** with a toast (no action button): "Node is mapped to `<recordedCwd>`. This terminal is in `<liveCwd>`. Open a new terminal in `<recordedCwd>`, or `cd` there first."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  362938df-2f2e-4ca3-ac53-d3b2cd95a397:
+    id: 362938df-2f2e-4ca3-ac53-d3b2cd95a397
+    content: 7. Cwd block applies uniformly to Send and Start workflow. The block fires before any session-id rules, before any IPC write to the terminal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdd4f08f-533d-4f3f-b63e-437ca8488f14:
+    id: fdd4f08f-533d-4f3f-b63e-437ca8488f14
+    content: '8. Sessionless source (no `sessionId`): no check; at session-capture time, the target terminal''s live cwd is written into `sessionRegistry[sessionId].cwd` and the new `sessionId` is set on the node.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fdb1b1d-19da-4a8f-bdd2-8606c41039ed:
+    id: 7fdb1b1d-19da-4a8f-bdd2-8606c41039ed
+    content: 9. Resume session is exempt from the cwd check because Resume itself opens a fresh tab in `sessionRegistry[sessionId].cwd` (cwd is correct by construction).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  becab087-6d1d-4edd-ab02-3ad58b6ae758:
+    id: becab087-6d1d-4edd-ab02-3ad58b6ae758
+    content: Auto-launch (Start workflow / Send / recurse spawn-fresh)
+    children:
+      - 2315b57b-c147-4a4f-bf24-c03cea1bb845
+      - c73bcccd-f658-47f3-b13f-8642b2808499
+      - e06579c2-f4bd-4990-b706-df075899d67e
+      - aa2d35ed-2fef-4704-88f7-7d0dfdba988d
+      - 77d2463c-7418-4bfb-8de8-753e297d9ae9
+      - ac10b810-2451-47ad-8991-4d848357ea03
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2315b57b-c147-4a4f-bf24-c03cea1bb845:
+    id: 2315b57b-c147-4a4f-bf24-c03cea1bb845
+    content: 10. When a Start or Send action lands on a target terminal with no entry in `workflowSessionMap` (and the cwd check passes), the system writes `claude\r` and defers the workflow prompt until Claude's `SessionStart` hook for that terminal arrives.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c73bcccd-f658-47f3-b13f-8642b2808499:
+    id: c73bcccd-f658-47f3-b13f-8642b2808499
+    content: 11. If a sessionId is already mapped to that terminal, the system captures it onto the source node (if the node has none) and sends the prompt without launching.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e06579c2-f4bd-4990-b706-df075899d67e:
+    id: e06579c2-f4bd-4990-b706-df075899d67e
+    content: '12. `clearSession === true` is **skipped** when auto-launch fires — a freshly-launched session is already clean. Sequence: launch → SessionStart → prompt. The `/clear` step only runs when reattaching to an existing live session that the user wants reset.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa2d35ed-2fef-4704-88f7-7d0dfdba988d:
+    id: aa2d35ed-2fef-4704-88f7-7d0dfdba988d
+    content: 13. `stopWorkflow`, disruption reactions (terminal close, node delete, step delete, manual move), and recurse-counter aborts clear pending auto-launch entries to avoid orphan prompts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77d2463c-7418-4bfb-8de8-753e297d9ae9:
+    id: 77d2463c-7418-4bfb-8de8-753e297d9ae9
+    content: 14. No PATH check for `claude`. Off-PATH installs fall through to the existing step-timeout flow.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac10b810-2451-47ad-8991-4d848357ea03:
+    id: ac10b810-2451-47ad-8991-4d848357ea03
+    content: '15. Detecting "Claude is running in this terminal but Arborescent has no SessionId mapped" is not possible without reading PTY output. The hook prerequisite (the user has installed Claude Code''s SessionStart hook — already required for the rest of the stack) makes this case purely transient: the gap is the sub-second window between `claude\r` being written and the SessionStart hook firing. The race is accepted; not mitigated.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfe79697-e41a-46a4-adb3-86cfa9989d14:
+    id: bfe79697-e41a-46a4-adb3-86cfa9989d14
+    content: Send (content push, one-off gesture)
+    children:
+      - 7499578a-afe7-412b-a21b-402cc8e15c88
+      - 9f8d51f9-6d21-496f-8d50-e404ec56199e
+      - 26c68657-2705-4a30-9763-6fee71bc165c
+      - 674daad7-7284-4233-863b-9fcf92de9766
+      - 0acf4d41-b572-4e1a-9737-65367116ee32
+      - 4ecb2146-d53d-4d9f-9bad-e2b58fc3d8ee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7499578a-afe7-412b-a21b-402cc8e15c88:
+    id: 7499578a-afe7-412b-a21b-402cc8e15c88
+    content: 16. Send on a sessionless source node to a terminal hosting `sessionId Y` (whether Y is mapped to other nodes or unmapped) captures Y onto the source node and sends. Multi-node-share is allowed via this path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f8d51f9-6d21-496f-8d50-e404ec56199e:
+    id: 9f8d51f9-6d21-496f-8d50-e404ec56199e
+    content: 17. Send on a sessionless source node to a terminal with no Claude session triggers auto-launch (rule 10) and captures the new sessionId after SessionStart.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26c68657-2705-4a30-9763-6fee71bc165c:
+    id: 26c68657-2705-4a30-9763-6fee71bc165c
+    content: 18. Send on a source node with `sessionId X` to a terminal hosting the same `sessionId X` reattaches and sends.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  674daad7-7284-4233-863b-9fcf92de9766:
+    id: 674daad7-7284-4233-863b-9fcf92de9766
+    content: 19. Send on a source node with `sessionId X` to a terminal hosting `sessionId Y ≠ X` **mapped to another node** is **blocked** with a toast — would steal another chain's session.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0acf4d41-b572-4e1a-9737-65367116ee32:
+    id: 0acf4d41-b572-4e1a-9737-65367116ee32
+    content: '20. Send on a source node with `sessionId X` to a terminal hosting an **unmapped** session, or hosting **no session** at all, surfaces an "Are you sure?" modal: "Node is mapped to session X. Replace with a new session here?" Yes confirms — replace `sessionId` (capture target''s session, or auto-launch if none) and proceed; cancel is a no-op.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ecb2146-d53d-4d9f-9bad-e2b58fc3d8ee:
+    id: 4ecb2146-d53d-4d9f-9bad-e2b58fc3d8ee
+    content: 21. Send is blocked when the working-directory check (rule 6) fails — even if the session id rules would otherwise pass.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37c6750c-caed-43d8-96c2-7e6e45f53aa7:
+    id: 37c6750c-caed-43d8-96c2-7e6e45f53aa7
+    content: Start workflow / Continue workflow (workflow-execution gesture)
+    children:
+      - 1b3f0b00-8552-4f33-9e60-a58e47cd0088
+      - ce65686d-5d8e-4e95-b85c-2da0c33c4a9f
+      - ee4f5d56-676b-4976-980a-9c2ed7502d80
+      - 5e5dd6a1-f176-4a17-ac82-3199184a0790
+      - dac9b69b-ecae-4a26-8dbf-4be0b4387857
+      - 194d9849-f4d5-4b3c-9833-54f62ffab05c
+      - c038db79-2a5a-48fe-aa84-0987ceb588c3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b3f0b00-8552-4f33-9e60-a58e47cd0088:
+    id: 1b3f0b00-8552-4f33-9e60-a58e47cd0088
+    content: 22. PR2's silent auto-route is preserved when the workflow's session is alive somewhere — the system focuses the terminal hosting the session even if the user has a different terminal focused. Routing to the existing terminal is intentional; this avoids state confusion in automated step mappings. The action focuses (or opens-and-focuses) the terminal hosting the session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce65686d-5d8e-4e95-b85c-2da0c33c4a9f:
+    id: ce65686d-5d8e-4e95-b85c-2da0c33c4a9f
+    content: '23. On Start of a *stopped* workflow whose node has `sessionId X`:'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee4f5d56-676b-4976-980a-9c2ed7502d80:
+    id: ee4f5d56-676b-4976-980a-9c2ed7502d80
+    content: 23a. Target terminal hosts X → silent reattach (workflow → running, no prompt re-send).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e5dd6a1-f176-4a17-ac82-3199184a0790:
+    id: 5e5dd6a1-f176-4a17-ac82-3199184a0790
+    content: '23b. Target terminal hosts no session, or hosts an unmapped session → modal warn: "Node is mapped to session X. Start a new session here?" Yes confirms — replace `sessionId`, run spawn-fresh + auto-launch (with `/clear` skipped per rule 12); cancel is a no-op.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dac9b69b-ecae-4a26-8dbf-4be0b4387857:
+    id: dac9b69b-ecae-4a26-8dbf-4be0b4387857
+    content: 23c. Target terminal hosts a session that belongs to another user story (different `isWorkflow=true` ancestor — for non-workflow source nodes, any other node's session counts) → **blocked** with a toast that suggests Resume session or opening a new terminal. No remap modal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  194d9849-f4d5-4b3c-9833-54f62ffab05c:
+    id: 194d9849-f4d5-4b3c-9833-54f62ffab05c
+    content: 24. Start workflow is also blocked when the working-directory check (rule 6) fails. The cwd block fires before the modal-warn flow.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c038db79-2a5a-48fe-aa84-0987ceb588c3:
+    id: c038db79-2a5a-48fe-aa84-0987ceb588c3
+    content: 25. Resume failures from auto-resume surface a transient toast at the moment of failure. No persistent indicator is written.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b7623b8-83dd-4bb0-ac1a-9edc399f7226:
+    id: 4b7623b8-83dd-4bb0-ac1a-9edc399f7226
+    content: Resume session (conversation-only gesture)
+    children:
+      - 2cd2ac46-6170-482f-8dc6-b53ad8fe16a1
+      - 0988dd9f-5fa0-4ba7-84a7-ffedffe9ac17
+      - 52ad45e9-e7ca-4ac8-bb3c-b07ec57761b5
+      - 24834e6e-86ed-42a7-a1cf-cc43286cbd73
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cd2ac46-6170-482f-8dc6-b53ad8fe16a1:
+    id: 2cd2ac46-6170-482f-8dc6-b53ad8fe16a1
+    content: 26. Resume session on a node with `sessionId` opens (or focuses) the terminal hosting the session; if no terminal hosts it, opens a new tab in `sessionRegistry[sessionId].cwd` and writes `claude --resume <id>\r`. Auto-routes silently regardless of which terminal the user has focused; the resulting tab is brought to focus.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0988dd9f-5fa0-4ba7-84a7-ffedffe9ac17:
+    id: 0988dd9f-5fa0-4ba7-84a7-ffedffe9ac17
+    content: 27. Resume session does **not** mutate `workflowExecutionStates`. Reactivating workflow execution remains a separate Start workflow gesture; resuming the conversation and resuming the workflow are independent operations.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52ad45e9-e7ca-4ac8-bb3c-b07ec57761b5:
+    id: 52ad45e9-e7ca-4ac8-bb3c-b07ec57761b5
+    content: 28. Resume session entry visibility drops the workflow-step gate. Any node with `sessionId` (and derived liveness ≠ no-session) shows the entry. Manual nodes that captured a session via Send become resumable.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24834e6e-86ed-42a7-a1cf-cc43286cbd73:
+    id: 24834e6e-86ed-42a7-a1cf-cc43286cbd73
+    content: 29. Resume session failure surfaces a transient toast; no persistent state is written. The user retries or opens a new terminal manually.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6578607-4daa-43eb-a860-f0def74fb682:
+    id: c6578607-4daa-43eb-a860-f0def74fb682
+    content: Global
+    children:
+      - bd5dbd40-b75f-4612-a6d3-4ec4a7eded46
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd5dbd40-b75f-4612-a6d3-4ec4a7eded46:
+    id: bd5dbd40-b75f-4612-a6d3-4ec4a7eded46
+    content: 30. No preference toggle, no platform-conditional branch. Behaviour is identical for every user, OS, and shell.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  680b9d5e-b6b3-4776-8cd4-887ee82def8e:
+    id: 680b9d5e-b6b3-4776-8cd4-887ee82def8e
+    content: Acceptance criteria
+    children:
+      - 7c233638-c134-4e8a-853c-24fe30ce5f55
+      - 40b08dec-1fae-4d27-bd96-41dd1768b2d3
+      - 6ba80713-1cd5-4846-b814-7235885925ae
+      - 64d50588-10c4-4018-97ae-bb0952687e4b
+      - 0211c0a6-b8ba-44fd-8e3d-11db83b1310a
+      - 6977203b-14ae-403f-a955-75ffab9647e1
+      - d9112001-5f56-41a2-8f38-c5c57911e447
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c233638-c134-4e8a-853c-24fe30ce5f55:
+    id: 7c233638-c134-4e8a-853c-24fe30ce5f55
+    content: Auto-launch
+    children:
+      - 7d82e4cd-55b1-4996-b7da-a48c81fdb372
+      - 518b99f3-5cb3-42b9-b773-906b3a386c7d
+      - 5dd282c7-c7ca-419c-9f37-7432279d4e9e
+      - 9f16d671-6e2d-45ce-b3ab-111af4ff22a4
+      - 83c898e6-ac9e-43fb-a37e-d0089331ee8c
+      - ff648d43-487d-4596-b2ad-cd4e5e04a457
+      - 8982b1b2-74e7-40e0-b882-78d9b3e1a4c4
+      - 33194f66-de47-4a3a-8bf7-a1ad4c978454
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d82e4cd-55b1-4996-b7da-a48c81fdb372:
+    id: 7d82e4cd-55b1-4996-b7da-a48c81fdb372
+    content: '- [x] Starting a workflow on a fresh terminal (no `workflowSessionMap` entry) writes `claude\r` before sending the prompt.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  518b99f3-5cb3-42b9-b773-906b3a386c7d:
+    id: 518b99f3-5cb3-42b9-b773-906b3a386c7d
+    content: '- [x] On the auto-launch path, the workflow prompt is sent only after `SessionStart` arrives — never typed at the shell beforehand.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dd282c7-c7ca-419c-9f37-7432279d4e9e:
+    id: 5dd282c7-c7ca-419c-9f37-7432279d4e9e
+    content: '- [x] Starting a workflow on a terminal with a prior manual SessionStart does not write `claude\r` and does not double-spawn; the existing sessionId is captured onto the workflow node, and Resume session works on it afterwards.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f16d671-6e2d-45ce-b3ab-111af4ff22a4:
+    id: 9f16d671-6e2d-45ce-b3ab-111af4ff22a4
+    content: '- [x] A workflow step with `clearSession === true` running in a fresh terminal sequences as `claude\r` → SessionStart → prompt — `/clear` is **skipped** (the new session is already clean).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83c898e6-ac9e-43fb-a37e-d0089331ee8c:
+    id: 83c898e6-ac9e-43fb-a37e-d0089331ee8c
+    content: '- [x] A workflow step with `clearSession === true` reattaching to an alive session sequences as `/clear` → SessionStart → prompt (existing behaviour preserved).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff648d43-487d-4596-b2ad-cd4e5e04a457:
+    id: ff648d43-487d-4596-b2ad-cd4e5e04a457
+    content: '- [x] Recurse tier-(a)/tier-(b) advances do not trigger auto-launch — they reuse the parent''s session.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8982b1b2-74e7-40e0-b882-78d9b3e1a4c4:
+    id: 8982b1b2-74e7-40e0-b882-78d9b3e1a4c4
+    content: '- [x] `stopWorkflow` between `claude\r` and SessionStart cancels the pending prompt; no prompt is delivered when SessionStart arrives.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33194f66-de47-4a3a-8bf7-a1ad4c978454:
+    id: 33194f66-de47-4a3a-8bf7-a1ad4c978454
+    content: '- [x] `claude` not on PATH: workflow stalls and the existing 15-minute step-timeout toast fires unchanged.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40b08dec-1fae-4d27-bd96-41dd1768b2d3:
+    id: 40b08dec-1fae-4d27-bd96-41dd1768b2d3
+    content: Working-directory check
+    children:
+      - 28b5cce7-d58f-401c-bfb9-a1d457af7f5e
+      - 53992dbf-3a23-4570-a8e0-a071c446a0b7
+      - 263d02b5-830d-49eb-ba66-e4db8695a448
+      - 353a597b-1c72-43f2-9edb-7c7f5274d907
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28b5cce7-d58f-401c-bfb9-a1d457af7f5e:
+    id: 28b5cce7-d58f-401c-bfb9-a1d457af7f5e
+    content: '- [ ] Send on a node whose recorded session cwd (via `sessionRegistry`) is `D` to a terminal whose live cwd is not `D` blocks with a toast (no action button) naming both directories — even when session ids would otherwise match or trigger a modal.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53992dbf-3a23-4570-a8e0-a071c446a0b7:
+    id: 53992dbf-3a23-4570-a8e0-a071c446a0b7
+    content: '- [ ] Start workflow on a node whose recorded session cwd is `D` to a terminal whose live cwd is not `D` blocks with the same toast — no remap modal is shown.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  263d02b5-830d-49eb-ba66-e4db8695a448:
+    id: 263d02b5-830d-49eb-ba66-e4db8695a448
+    content: '- [ ] Sessionless source node + any terminal cwd → captures target''s cwd into `sessionRegistry[sessionId].cwd` at session-capture time; no check, no block.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  353a597b-1c72-43f2-9edb-7c7f5274d907:
+    id: 353a597b-1c72-43f2-9edb-7c7f5274d907
+    content: '- [ ] Resume session is exempt from the cwd check (it opens a fresh tab in the registry''s recorded cwd by construction).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ba80713-1cd5-4846-b814-7235885925ae:
+    id: 6ba80713-1cd5-4846-b814-7235885925ae
+    content: Persistence simplification
+    children:
+      - 2f495890-13af-4605-aff7-9cfcdddfcb3a
+      - 8e0dde30-d508-48f6-8c37-d3baf570b8a9
+      - a1f91d27-e757-4302-9f1e-cabd44553468
+      - dae34448-1a15-4df8-9794-b662e825d800
+      - e318c5c8-8013-4232-9773-07123cd60179
+      - e775eb66-b1fb-4bdc-bfb1-0cc5c4c4fbfb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f495890-13af-4605-aff7-9cfcdddfcb3a:
+    id: 2f495890-13af-4605-aff7-9cfcdddfcb3a
+    content: '- [x] `NodeMetadata` no longer carries `sessionLiveness`, `sessionTabId`, `sessionStarting`, `sessionLost`, or `sessionWorkingDirectory`. Save round-trips only `sessionId` and (for recurse) `brokenChain`. The `.arbo` file gains a `sessionRegistry` section.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e0dde30-d508-48f6-8c37-d3baf570b8a9:
+    id: 8e0dde30-d508-48f6-8c37-d3baf570b8a9
+    content: '- [x] Existing dev `.arbo` files with the dropped node fields load cleanly — the strip-fields pass drops them silently.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1f91d27-e757-4302-9f1e-cabd44553468:
+    id: a1f91d27-e757-4302-9f1e-cabd44553468
+    content: '- [x] On load, `sessionRegistry` entries with no node referencing them are dropped (garbage collected).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dae34448-1a15-4df8-9794-b662e825d800:
+    id: dae34448-1a15-4df8-9794-b662e825d800
+    content: '- [x] `getSessionLiveness(node, workflowSessionMap)` helper returns the derived liveness; every UI/menu/route check uses it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e318c5c8-8013-4232-9773-07123cd60179:
+    id: e318c5c8-8013-4232-9773-07123cd60179
+    content: '- [x] `rebindNodesForSession` is deleted; `bindSessionTab` updates only `workflowSessionMap`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e775eb66-b1fb-4bdc-bfb1-0cc5c4c4fbfb:
+    id: e775eb66-b1fb-4bdc-bfb1-0cc5c4c4fbfb
+    content: '- [x] Red `session-lost` indicator on `NodeContent` and its CSS are removed; `brokenChain` (amber) remains.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64d50588-10c4-4018-97ae-bb0952687e4b:
+    id: 64d50588-10c4-4018-97ae-bb0952687e4b
+    content: Send
+    children:
+      - d76e563f-3162-499e-9cac-25877ed7be92
+      - bab61943-c32d-4b2c-848c-be9389af39cd
+      - dec67864-3aad-4d6f-b84f-67a4a6f16bf2
+      - 6846d201-9ca8-4a63-8dfd-1105651a37f7
+      - 166ada73-1018-4e16-a4cc-115cf1c596ac
+      - 4c29340e-801b-4a17-8f18-57d98223bf14
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d76e563f-3162-499e-9cac-25877ed7be92:
+    id: d76e563f-3162-499e-9cac-25877ed7be92
+    content: '- [ ] Send on a sessionless source node to a terminal with a known mapped or unmapped session captures the sessionId onto the source node and sends.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bab61943-c32d-4b2c-848c-be9389af39cd:
+    id: bab61943-c32d-4b2c-848c-be9389af39cd
+    content: '- [ ] Send on a sessionless source node to a terminal with no Claude session auto-launches and captures the new sessionId after SessionStart.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dec67864-3aad-4d6f-b84f-67a4a6f16bf2:
+    id: dec67864-3aad-4d6f-b84f-67a4a6f16bf2
+    content: '- [ ] Send on a source node with `sessionId X` to a terminal hosting `sessionId Y ≠ X` mapped to another node blocks with a toast; the prompt is not delivered.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6846d201-9ca8-4a63-8dfd-1105651a37f7:
+    id: 6846d201-9ca8-4a63-8dfd-1105651a37f7
+    content: '- [ ] Send on a source node with `sessionId X` to a terminal hosting an unmapped session, or no session at all, surfaces an "Are you sure?" modal. On confirm, the source''s `sessionId` is replaced with the captured/new id; on cancel, no-op.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  166ada73-1018-4e16-a4cc-115cf1c596ac:
+    id: 166ada73-1018-4e16-a4cc-115cf1c596ac
+    content: '- [ ] Send on a source node with `sessionId X` to a terminal hosting `sessionId X` reattaches and sends.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c29340e-801b-4a17-8f18-57d98223bf14:
+    id: 4c29340e-801b-4a17-8f18-57d98223bf14
+    content: '- [ ] Send on multiple sessionless nodes to a terminal hosting a single Claude session causes all of them to capture that sessionId; Resume session on any of them works; `sessionRegistry` has a single entry for that sessionId, not duplicated per node.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0211c0a6-b8ba-44fd-8e3d-11db83b1310a:
+    id: 0211c0a6-b8ba-44fd-8e3d-11db83b1310a
+    content: Start workflow / Continue
+    children:
+      - b393f140-63ee-4152-8688-c97f77b25114
+      - 8926cc57-c881-4644-8cbb-e30bb76f57a8
+      - 5f28305e-65f3-44f1-9958-f5c0d0c69d39
+      - 687086d4-7a50-4993-a266-a3de1bf2325b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b393f140-63ee-4152-8688-c97f77b25114:
+    id: b393f140-63ee-4152-8688-c97f77b25114
+    content: '- [x] Start workflow on a stopped node with `sessionId X` whose session is alive in some terminal silently reattaches in that terminal — regardless of the user''s terminal focus. Workflow → running; the resulting tab is focused; no prompt re-send.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8926cc57-c881-4644-8cbb-e30bb76f57a8:
+    id: 8926cc57-c881-4644-8cbb-e30bb76f57a8
+    content: '- [ ] Start workflow on a stopped node with `sessionId X` and a target terminal that hosts no session (or an unmapped session) surfaces a modal: "Node is mapped to session X. Start a new session here?" Yes replaces `sessionId`, runs spawn-fresh; cancel is a no-op.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f28305e-65f3-44f1-9958-f5c0d0c69d39:
+    id: 5f28305e-65f3-44f1-9958-f5c0d0c69d39
+    content: '- [ ] Start workflow on a stopped node with `sessionId X` and a target terminal that hosts a session belonging to another user story is blocked with a toast; no remap modal is shown.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  687086d4-7a50-4993-a266-a3de1bf2325b:
+    id: 687086d4-7a50-4993-a266-a3de1bf2325b
+    content: '- [x] Start workflow on a node whose session can''t be resumed surfaces a transient toast at the moment of failure; no persistent state is written.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6977203b-14ae-403f-a955-75ffab9647e1:
+    id: 6977203b-14ae-403f-a955-75ffab9647e1
+    content: Resume session
+    children:
+      - 3b2f8f83-4916-42dc-84f4-8e1b3b22880e
+      - 3cdee899-a9a3-4ec9-8df0-66c66d48479b
+      - cbe6511a-979d-48c6-a278-4e31015b9ca4
+      - 40824f30-77fc-48cc-983a-45c0ed09d622
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b2f8f83-4916-42dc-84f4-8e1b3b22880e:
+    id: 3b2f8f83-4916-42dc-84f4-8e1b3b22880e
+    content: '- [ ] Right-click → Resume session on any node with `sessionId` is shown in the menu (workflow gate dropped).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cdee899-a9a3-4ec9-8df0-66c66d48479b:
+    id: 3cdee899-a9a3-4ec9-8df0-66c66d48479b
+    content: '- [x] Resume session opens or focuses the terminal that hosts the session; if no terminal hosts it, opens a new tab in `sessionRegistry[sessionId].cwd` and runs `claude --resume <id>\r`. The resulting tab is focused.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbe6511a-979d-48c6-a278-4e31015b9ca4:
+    id: cbe6511a-979d-48c6-a278-4e31015b9ca4
+    content: '- [x] Resume session does not transition `workflowExecutionStates`; the workflow remains stopped/awaiting. Reactivating execution is a separate Start workflow gesture.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40824f30-77fc-48cc-983a-45c0ed09d622:
+    id: 40824f30-77fc-48cc-983a-45c0ed09d622
+    content: '- [x] Resume session failure surfaces a transient toast; re-attempting Resume retries.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9112001-5f56-41a2-8f38-c5c57911e447:
+    id: d9112001-5f56-41a2-8f38-c5c57911e447
+    content: Regression
+    children:
+      - 40f03940-e30a-4f73-b22f-0517a3c4a3bb
+      - 8317c625-f0aa-4a9a-b5a4-b2bb30e4251f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40f03940-e30a-4f73-b22f-0517a3c4a3bb:
+    id: 40f03940-e30a-4f73-b22f-0517a3c4a3bb
+    content: '- [x] Existing PR1/PR2/PR3 tests pass after surface adjustments for the dropped metadata fields and the cwd-into-registry move.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8317c625-f0aa-4a9a-b5a4-b2bb30e4251f:
+    id: 8317c625-f0aa-4a9a-b5a4-b2bb30e4251f
+    content: '- [x] Decomposition + recurse tests still pass; `inheritSessionOnNode` writes only `sessionId` (cwd lives in `sessionRegistry`, shared across the chain).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  702a5174-e3dd-4bcf-ad8c-f7019786b460:
+    id: 702a5174-e3dd-4bcf-ad8c-f7019786b460
+    content: 🔧 Implementation proposal
+    children:
+      - 270ebc15-01aa-4486-8009-b8910ade5290
+      - 4288d08c-0ff5-42b5-9f15-1594897994dc
+      - 320c21ae-3e98-4492-b35e-3a56dec44fa1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  270ebc15-01aa-4486-8009-b8910ade5290:
+    id: 270ebc15-01aa-4486-8009-b8910ade5290
+    content: Approach
+    children:
+      - 251080ea-cf31-412d-8a9c-ad1ce4f4353d
+      - b4b83bd7-7607-4ce9-8383-eae249a9a832
+      - 6250d6da-83e6-46ac-8172-63df17490c88
+      - bf5ee423-4542-472c-a370-f4ed4a105086
+      - 02381c15-3e2f-494a-8352-04ec503a6c2b
+      - ca3e705a-aa3d-4c6a-99bf-ed91a8d6d907
+      - d523e574-bf7d-4e9c-8f49-d14201f83eef
+      - f512bc38-ce02-4b9b-a186-2fccdca83f34
+      - 8c9788c3-d6de-49fe-95ce-c463f177d743
+      - 5ccf3f5c-c927-4754-a984-1dafd83fcc8c
+      - 426e3707-5f27-4c2a-8110-417cf76dac06
+      - 7c319cf1-d99b-49cb-96c3-b29ad7f0e68e
+      - d842de5e-c43b-4a82-a197-92dbc6b21bf2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  251080ea-cf31-412d-8a9c-ad1ce4f4353d:
+    id: 251080ea-cf31-412d-8a9c-ad1ce4f4353d
+    content: 'New persistent shape on `ArboFile`: `sessionRegistry: Record<sessionId, { cwd: string }>`, saved alongside `nodes`. Load reads the registry; an unreferenced-entries GC pass runs once per load.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4b83bd7-7607-4ce9-8383-eae249a9a832:
+    id: b4b83bd7-7607-4ce9-8383-eae249a9a832
+    content: 'New factory `workflowClaudeLaunch.ts` (mirrors `workflowClearSession.ts`). Encapsulates `pendingLaunch: Map<terminalId, nodeId>`. Three methods: `launchIfNeededThenSend(nodeId, terminalId)`, `onSessionStartConfirmed(terminalId, runningNodeId)`, `clearPending(nodeId)`. `startWorkflowOnTerminal(''spawn''|''recurse'')` swaps `clearSessionManager.maybeClearThenSend` for the new entry; `registerSession` invokes `onSessionStartConfirmed` for every SessionStart.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6250d6da-83e6-46ac-8172-63df17490c88:
+    id: 6250d6da-83e6-46ac-8172-63df17490c88
+    content: 'On every SessionStart capture (auto-launch confirmation OR manually-started Claude SessionStart), the system writes `sessionRegistry[sessionId] = { cwd: terminalGetCwd(terminalId) }` and assigns the node''s `sessionId`. `workflowSessionMap[sessionId] = terminalId` is set as today.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf5ee423-4542-472c-a370-f4ed4a105086:
+    id: bf5ee423-4542-472c-a370-f4ed4a105086
+    content: When auto-launch fires, the launch manager skips the `/clear` step regardless of `clearSession === true` — the session is already fresh. The `/clear` path remains for the reattach case where the user wants to reset an existing session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02381c15-3e2f-494a-8352-04ec503a6c2b:
+    id: 02381c15-3e2f-494a-8352-04ec503a6c2b
+    content: '`sendActions.collaborateInTerminal` adopts the same launch/capture flow before invoking the existing send pipeline. Cwd-block, mismatch-block, and "Are you sure?" modal checks fire before any IPC write.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca3e705a-aa3d-4c6a-99bf-ed91a8d6d907:
+    id: ca3e705a-aa3d-4c6a-99bf-ed91a8d6d907
+    content: '`decideWorkflowStartRoute` simplifies. Inputs: `(sessionId, sessionRegistry, workflowSessionMap, nodeId, sourceWorkflowRoot, targetTerminalCwd)`. Outputs: `''reattach''` (returns the sessionId''s current terminal), `''spawn-fresh''` (no sessionId), `''remap-warn''` (sessionId set, target hosts no session or an unmapped session), `''block''` (cross-user-story foreign session, OR cwd mismatch). The "resume-in-new-tab" path moves entirely into Resume session.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d523e574-bf7d-4e9c-8f49-d14201f83eef:
+    id: d523e574-bf7d-4e9c-8f49-d14201f83eef
+    content: 'Cwd check: pure helper `assertCwdMatch(sessionId, sessionRegistry, terminalCwd)` returns `''match'' | ''mismatch''` based on `sessionRegistry[sessionId]?.cwd` against the live cwd. Called from `sendActions` and the `decideWorkflowStartRoute` caller.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f512bc38-ce02-4b9b-a186-2fccdca83f34:
+    id: f512bc38-ce02-4b9b-a186-2fccdca83f34
+    content: Liveness is a small pure helper `getSessionLiveness(node, workflowSessionMap)` used at every UI/decision call site.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c9788c3-d6de-49fe-95ce-c463f177d743:
+    id: 8c9788c3-d6de-49fe-95ce-c463f177d743
+    content: Modal-warn on Start path reuses the existing confirm-dialog pattern (parallels `showRunningWorkflowDialog`). Send's "Are you sure?" reuses the same dialog component with different copy.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ccf3f5c-c927-4754-a984-1dafd83fcc8c:
+    id: 5ccf3f5c-c927-4754-a984-1dafd83fcc8c
+    content: Cwd-block toast is informational only — no action button. The user opens a new terminal in the right directory themselves.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  426e3707-5f27-4c2a-8110-417cf76dac06:
+    id: 426e3707-5f27-4c2a-8110-417cf76dac06
+    content: Drop `sessionTabId`, `sessionLiveness`, `sessionStarting`, `sessionLost`, and `sessionWorkingDirectory` from `NodeMetadata`. `rebindNodesForSession` deleted. `bindSessionTab` collapses to a one-line registry update. `normalizeSessionLiveness` is replaced by a `stripDroppedSessionFields` migration plus a `garbageCollectSessionRegistry` pass on load.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c319cf1-d99b-49cb-96c3-b29ad7f0e68e:
+    id: 7c319cf1-d99b-49cb-96c3-b29ad7f0e68e
+    content: Remove the red `session-lost` indicator from `NodeContent` and its CSS. The `brokenChain` indicator stays.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d842de5e-c43b-4a82-a197-92dbc6b21bf2:
+    id: d842de5e-c43b-4a82-a197-92dbc6b21bf2
+    content: Drop the workflow-step gate on Resume session in `useNodeContextMenu`.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4288d08c-0ff5-42b5-9f15-1594897994dc:
+    id: 4288d08c-0ff5-42b5-9f15-1594897994dc
+    content: Touchpoints
+    children:
+      - 210c176c-bf22-4135-9f56-540133ed6136
+      - c3334b7a-4aa9-4bfa-964a-833ebc3a5fd0
+      - 6e0c49b9-eb90-4992-bbce-c99de615dcdb
+      - 552797e5-b7bc-41a1-b2bf-fa1d568817c3
+      - 577584dd-6077-495a-8169-4315a864bf1f
+      - 0ebb6ea4-777e-4b63-91ad-1779d4cddeb0
+      - e163bc37-ebb4-4754-b8fa-9ec1e2446b61
+      - 2ae01063-e055-4e11-8dde-c5a132e2d415
+      - c4e269c0-5913-4919-b938-aa64bae9c936
+      - 5cb6bba0-3c01-403a-a4df-77cf52be5175
+      - 7cc89fef-cfbb-4be7-8381-4c80006a229b
+      - c7f79cab-4567-4c9b-9a6f-d9b2c672458a
+      - 129e9678-2790-4ddb-bae2-c42a0556ffbf
+      - 08b01c58-02cd-4af5-9999-f3719189e182
+      - 5f59b823-6be4-4767-aaf2-f581ad3356b3
+      - 610863fb-f6d1-460f-abb0-8780c1524fec
+      - 6760348e-f48c-4f76-aff9-b3684645142d
+      - f2facaa8-024d-47e8-b289-9397889e159e
+      - 59b19210-a4e8-4151-aabf-17a332c52240
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  210c176c-bf22-4135-9f56-540133ed6136:
+    id: 210c176c-bf22-4135-9f56-540133ed6136
+    content: '`src/shared/types/document.ts` — add `sessionRegistry` to `ArboFile`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3334b7a-4aa9-4bfa-964a-833ebc3a5fd0:
+    id: c3334b7a-4aa9-4bfa-964a-833ebc3a5fd0
+    content: '`src/renderer/store/tree/treeStore.ts` — wire `sessionRegistry` slice'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e0c49b9-eb90-4992-bbce-c99de615dcdb:
+    id: 6e0c49b9-eb90-4992-bbce-c99de615dcdb
+    content: '`src/renderer/store/tree/actions/workflowClaudeLaunch.ts` — new factory file'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  552797e5-b7bc-41a1-b2bf-fa1d568817c3:
+    id: 552797e5-b7bc-41a1-b2bf-fa1d568817c3
+    content: '`src/renderer/store/tree/actions/workflowExecutionActions.ts` — rewire `startWorkflowOnTerminal`, `registerSession`, and the `decideWorkflowStartRoute` caller; write `sessionRegistry` on capture; drop liveness/cwd writes from node metadata'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  577584dd-6077-495a-8169-4315a864bf1f:
+    id: 577584dd-6077-495a-8169-4315a864bf1f
+    content: '`src/renderer/store/tree/actions/workflowSessionResume.ts` — delete `rebindNodesForSession`; collapse `bindSessionTab`; read cwd from `sessionRegistry`; strip cwd/liveness writes from helpers'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ebb6ea4-777e-4b63-91ad-1779d4cddeb0:
+    id: 0ebb6ea4-777e-4b63-91ad-1779d4cddeb0
+    content: '`src/renderer/store/tree/actions/workflowDisruptionReactions.ts` — `clearPendingLaunch` dep; drop sessionTabId/liveness writes from `detachSessionFromTab`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e163bc37-ebb4-4754-b8fa-9ec1e2446b61:
+    id: e163bc37-ebb4-4754-b8fa-9ec1e2446b61
+    content: '`src/renderer/store/tree/actions/sendActions.ts` — capture-on-Send (writes registry); cwd-block, mismatch-block, "Are you sure?" modal checks'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ae01063-e055-4e11-8dde-c5a132e2d415:
+    id: 2ae01063-e055-4e11-8dde-c5a132e2d415
+    content: '`src/renderer/utils/workflowStartRoute.ts` — simplify input/output; remove resume-in-new-tab; add `''remap-warn''` and cross-user-story / cwd `''block''`; registry input'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4e269c0-5913-4919-b938-aa64bae9c936:
+    id: c4e269c0-5913-4919-b938-aa64bae9c936
+    content: '`src/renderer/utils/sessionLiveness.ts` — new pure helper'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cb6bba0-3c01-403a-a4df-77cf52be5175:
+    id: 5cb6bba0-3c01-403a-a4df-77cf52be5175
+    content: '`src/renderer/utils/sessionCwdCheck.ts` — new pure helper (registry-aware)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7cc89fef-cfbb-4be7-8381-4c80006a229b:
+    id: 7cc89fef-cfbb-4be7-8381-4c80006a229b
+    content: '`src/shared/types/treeNode.ts` — drop fields (including `sessionWorkingDirectory`)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7f79cab-4567-4c9b-9a6f-d9b2c672458a:
+    id: c7f79cab-4567-4c9b-9a6f-d9b2c672458a
+    content: '`src/renderer/utils/document.ts` — strip dropped fields on save (defensive); serialize/deserialize `sessionRegistry`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  129e9678-2790-4ddb-bae2-c42a0556ffbf:
+    id: 129e9678-2790-4ddb-bae2-c42a0556ffbf
+    content: '`src/renderer/utils/normalizeSessionLiveness.ts` — replace with `stripDroppedSessionFields` + `garbageCollectSessionRegistry` migrations'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08b01c58-02cd-4af5-9999-f3719189e182:
+    id: 08b01c58-02cd-4af5-9999-f3719189e182
+    content: '`src/renderer/services/storageService.ts` — wire the new migrations and `sessionRegistry` round-trip'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f59b823-6be4-4767-aaf2-f581ad3356b3:
+    id: 5f59b823-6be4-4767-aaf2-f581ad3356b3
+    content: '`src/renderer/components/NodeContent/NodeContent.tsx` and `.css` — remove `session-lost` indicator'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  610863fb-f6d1-460f-abb0-8780c1524fec:
+    id: 610863fb-f6d1-460f-abb0-8780c1524fec
+    content: '`src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts` — drop workflow gate; modal-warn entry on Start; "Are you sure?" on Send'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6760348e-f48c-4f76-aff9-b3684645142d:
+    id: 6760348e-f48c-4f76-aff9-b3684645142d
+    content: '`docs/workflows.md` — Hook Setup updated; Resume session / Send / Start rules updated; the Resume-session vs Start-workflow distinction made explicit'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2facaa8-024d-47e8-b289-9397889e159e:
+    id: f2facaa8-024d-47e8-b289-9397889e159e
+    content: '`CHANGELOG.md` — single Unreleased Features entry'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59b19210-a4e8-4151-aabf-17a332c52240:
+    id: 59b19210-a4e8-4151-aabf-17a332c52240
+    content: Tests — new for `workflowClaudeLaunch`, capture-on-Send, mismatch-block, "Are you sure?" modal, cross-user-story-block, cwd block, registry round-trip, registry GC; existing PR1/PR2/PR3 tests adjusted for dropped fields and cwd-into-registry move
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  320c21ae-3e98-4492-b35e-3a56dec44fa1:
+    id: 320c21ae-3e98-4492-b35e-3a56dec44fa1
+    content: Constraints to call out
+    children:
+      - 16e496c8-1018-4302-9270-bcd82fbce5d5
+      - 3671ce35-da54-42eb-9f0e-20568293a3f4
+      - 69f79b4b-329f-42df-ace3-d1284c4930ef
+      - 4e65d726-aa50-4948-83f8-9ffb21ff4fc8
+      - 11694947-d811-4ee0-8f26-69263f5ca1aa
+      - 3febc2c7-69f5-40b0-a525-8b2630fcda7a
+      - 7c221dde-fb00-44cc-9ef0-16bb45aedb51
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16e496c8-1018-4302-9270-bcd82fbce5d5:
+    id: 16e496c8-1018-4302-9270-bcd82fbce5d5
+    content: Depends on PR1 + PR2 + PR3 (all merged). This story replaces and simplifies parts of those PRs, including moving `sessionWorkingDirectory` off node metadata into a dedicated registry.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3671ce35-da54-42eb-9f0e-20568293a3f4:
+    id: 3671ce35-da54-42eb-9f0e-20568293a3f4
+    content: No production migration concerns — feature is unreleased. Existing dev `.arbo` files with the dropped node fields are silently stripped; orphan registry entries are GC'd.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69f79b4b-329f-42df-ace3-d1284c4930ef:
+    id: 69f79b4b-329f-42df-ace3-d1284c4930ef
+    content: No new IPC channel; reuses `terminalCreate`, `terminalWrite`, `terminalGetCwd`, existing hook event listener.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e65d726-aa50-4948-83f8-9ffb21ff4fc8:
+    id: 4e65d726-aa50-4948-83f8-9ffb21ff4fc8
+    content: 'Race window unchanged: a user typing `claude` themselves at the same instant they click Start could double-spawn. Not mitigated.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11694947-d811-4ee0-8f26-69263f5ca1aa:
+    id: 11694947-d811-4ee0-8f26-69263f5ca1aa
+    content: No PATH check for `claude`; off-PATH installs fall through to step-timeout.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3febc2c7-69f5-40b0-a525-8b2630fcda7a:
+    id: 3febc2c7-69f5-40b0-a525-8b2630fcda7a
+    content: No detection of "Claude running in terminal but no SessionId mapped." This case is purely transient (sub-second hook race) given the hook prerequisite.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c221dde-fb00-44cc-9ef0-16bb45aedb51:
+    id: 7c221dde-fb00-44cc-9ef0-16bb45aedb51
+    content: Worktree-aware cwd refresh is **deferred** — `sessionRegistry[sessionId].cwd` is captured at SessionStart and refined once via `terminalGetCwd`; subsequent worktree switches mid-session are a known gap to be addressed separately.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bd7d0f1-91eb-41ca-aadd-202937849eef:
+    id: 3bd7d0f1-91eb-41ca-aadd-202937849eef
+    content: 🔬 Technical refinement
+    children:
+      - 2df3996e-3e3b-4dd4-85a6-ea2873a2a2b9
+      - 5f70972d-e451-484d-bc08-1a11da0e8f43
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2df3996e-3e3b-4dd4-85a6-ea2873a2a2b9:
+    id: 2df3996e-3e3b-4dd4-85a6-ea2873a2a2b9
+    content: Approach summary
+    children:
+      - 47c35a57-a804-49f8-b3c8-1efcc047bd7a
+      - aa29e042-e2ae-4183-b3dc-c798e63a0660
+      - d1e3847a-1996-451d-a025-d13c5ac4d63a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47c35a57-a804-49f8-b3c8-1efcc047bd7a:
+    id: 47c35a57-a804-49f8-b3c8-1efcc047bd7a
+    content: 'File-level `sessionRegistry: Record<sessionId, { cwd }>` on `ArboFile` is the single source of truth for session-scoped data; node metadata collapses to `sessionId` + `brokenChain`. Routing collapses to four outcomes: `reattach | spawn-fresh | remap-warn | block`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa29e042-e2ae-4183-b3dc-c798e63a0660:
+    id: aa29e042-e2ae-4183-b3dc-c798e63a0660
+    content: 'Changes land in three factories (`workflowClaudeLaunch` new, `workflowExecutionActions`/`workflowSessionResume` rewired, `sendActions` extended) plus pure helpers (`sessionLiveness`, `sessionCwdCheck`, `decideWorkflowStartRoute`). UI deltas are small: drop red `session-lost` dot, drop workflow gate on Resume menu entry.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1e3847a-1996-451d-a025-d13c5ac4d63a:
+    id: d1e3847a-1996-451d-a025-d13c5ac4d63a
+    content: 'Non-obvious: `/clear` is **skipped** on auto-launch but **kept** on reattach — same code branch, divergent behaviour, easy to misread on review. SessionStart capture handler now serves three concerns at once: auto-launch confirmation, manual-Claude-then-Start capture, and registry cwd write — be explicit about the order of writes.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f70972d-e451-484d-bc08-1a11da0e8f43:
+    id: 5f70972d-e451-484d-bc08-1a11da0e8f43
+    content: Flag complications
+    children:
+      - 541e0951-f55b-40b7-8f84-ee3c51d3aabe
+      - 1f1aa52c-23fb-4acf-9a95-46c5bc5ebc36
+      - 8e3367a7-fb50-4283-87c3-e4b314a2be12
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  541e0951-f55b-40b7-8f84-ee3c51d3aabe:
+    id: 541e0951-f55b-40b7-8f84-ee3c51d3aabe
+    content: Edge cases / risks not covered by current ACs
+    children:
+      - bbfe783d-22e3-453c-a6f8-40e1eef04743
+      - e479ecf9-164f-40cb-8b7b-b3ae3c9f1ff9
+      - 09f8f343-ec9a-4519-9735-a05fc7511317
+      - 7427124f-0d7d-4153-b4f6-9e0735355a49
+      - 22c9a1cd-e139-4616-9037-2aa2af2a2a6f
+      - 986d1317-6fc7-4b4d-a80e-068e915423d8
+      - 5eea02b4-78eb-4965-8370-295848bc13ac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbfe783d-22e3-453c-a6f8-40e1eef04743:
+    id: bbfe783d-22e3-453c-a6f8-40e1eef04743
+    content: '`terminalGetCwd` failure mode is unspecified. If the IPC returns null/empty (terminal not yet ready, shell hasn''t reported cwd), the cwd check could spuriously block or — worse — pass with an empty-string match. AC needed: define behaviour on cwd-fetch error (probably block-with-different-toast).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e479ecf9-164f-40cb-8b7b-b3ae3c9f1ff9:
+    id: e479ecf9-164f-40cb-8b7b-b3ae3c9f1ff9
+    content: 'Concurrent Sends to a fresh terminal during the auto-launch window: `pendingLaunch` is keyed by terminalId, so a second Send arriving before SessionStart needs to coalesce or reject — not specified. Without a rule, the second prompt could either be lost or fire against the wrong sessionId.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09f8f343-ec9a-4519-9735-a05fc7511317:
+    id: 09f8f343-ec9a-4519-9735-a05fc7511317
+    content: 'Multi-node-share + remap modal: confirming "new session" on one of N nodes pointing to sessionId X leaves the other N-1 nodes pointing to a now-orphaned id until next-load GC. Mid-session their derived liveness is `alive-detached` (sessionId set, no map entry) — UI may suggest Resume on a session that no longer exists. Worth surfacing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7427124f-0d7d-4153-b4f6-9e0735355a49:
+    id: 7427124f-0d7d-4153-b4f6-9e0735355a49
+    content: Mid-session node delete leaves an orphan registry entry until next-load GC; long sessions accumulate dead entries in memory. Probably fine; flag for visibility.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  22c9a1cd-e139-4616-9037-2aa2af2a2a6f:
+    id: 22c9a1cd-e139-4616-9037-2aa2af2a2a6f
+    content: '`brokenChain` interaction with manual remap: if the user replaces sessionId on a broken-chain node via "Are you sure?" modal, should `brokenChain` clear automatically? AC silent — recommend clear-on-remap.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  986d1317-6fc7-4b4d-a80e-068e915423d8:
+    id: 986d1317-6fc7-4b4d-a80e-068e915423d8
+    content: Resume session new-tab path opens at `sessionRegistry[sessionId].cwd`; if the directory was renamed or deleted on disk since capture, the tab opens elsewhere (shell default) and `claude --resume` fails with a confusing error. Same transient-toast path as other Resume failures, but worth documenting.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5eea02b4-78eb-4965-8370-295848bc13ac:
+    id: 5eea02b4-78eb-4965-8370-295848bc13ac
+    content: 'Cwd block + cross-user-story Start interleave: per rule 24, cwd block fires first; user fixes cwd, then hits the foreign-session block. Two-step error reveal — acceptable but worth knowing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f1aa52c-23fb-4acf-9a95-46c5bc5ebc36:
+    id: 1f1aa52c-23fb-4acf-9a95-46c5bc5ebc36
+    content: Out of scope (already noted; flagging residual risk)
+    children:
+      - d054df8d-a653-45aa-b7a1-03d639acb782
+      - 92889d15-4404-46a1-857c-260b81583390
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d054df8d-a653-45aa-b7a1-03d639acb782:
+    id: d054df8d-a653-45aa-b7a1-03d639acb782
+    content: 'Worktree-aware cwd refresh: depends on the prepend-not-cd assumption holding. If any future workflow does `cd` mid-session, the registry drifts silently and `claude --resume` will fail. Confirm and document the prepend invariant before shipping.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92889d15-4404-46a1-857c-260b81583390:
+    id: 92889d15-4404-46a1-857c-260b81583390
+    content: '`.arbo` portability: the registry travels with the file via git/share; recipients on other machines inherit dead sessionIds (kept by GC as long as a node references them). Documented as a follow-up sidecar move.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e3367a7-fb50-4283-87c3-e4b314a2be12:
+    id: 8e3367a7-fb50-4283-87c3-e4b314a2be12
+    content: ROI
+    children:
+      - 9330753d-52f0-4331-ab5a-b3f300642d94
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9330753d-52f0-4331-ab5a-b3f300642d94:
+    id: 9330753d-52f0-4331-ab5a-b3f300642d94
+    content: Story is large (3 factories + 6 helpers + UI deltas + migrations + ~12 ACs) but the pieces are tightly coupled at the dispatcher and metadata model — splitting forces contradictory interim states (e.g. capture-on-Send without registry → drift). Single PR is the right shape; decompose-after pattern fits.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bf36930-ad5c-4eac-95a6-c2f744fa2d5b:
+    id: 8bf36930-ad5c-4eac-95a6-c2f744fa2d5b
+    content: Implementation note
+    children:
+      - 2464ca8d-746d-4fae-ad05-68b5da8773df
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2464ca8d-746d-4fae-ad05-68b5da8773df:
+    id: 2464ca8d-746d-4fae-ad05-68b5da8773df
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  391a92f4-5da1-4bc5-bae0-bcb00a9a72dc:
+    id: 391a92f4-5da1-4bc5-bae0-bcb00a9a72dc
+    content: worktree
+    children:
+      - 0b7e3ef4-7ac8-47b0-a1e6-4e09085c36b3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b7e3ef4-7ac8-47b0-a1e6-4e09085c36b3:
+    id: 0b7e3ef4-7ac8-47b0-a1e6-4e09085c36b3
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-claude-auto-launch)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  323a3667-9fcf-4a59-ba45-9e8126319f38:
+    id: 323a3667-9fcf-4a59-ba45-9e8126319f38
+    content: PR2 implementation issues encountered and resolved
+    children:
+      - a4db30d3-742e-4815-b67b-33ed13dce67b
+      - d4c07389-4fb1-4f4e-897e-8bbd9e6e390b
+      - 7a0a00f3-103e-4e8f-a45b-22194516dd56
+      - 7c28e634-ffdf-41d7-8265-1f7313b165d2
+      - a873958c-3676-4446-9410-1f006e1c6a3e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4db30d3-742e-4815-b67b-33ed13dce67b:
+    id: a4db30d3-742e-4815-b67b-33ed13dce67b
+    content: 'Skipped AC rule 11 partial: rule 11 says "If a sessionId is already mapped to that terminal, the system captures it onto the source node (if the node has none) and sends the prompt without launching." I initially added a `captureExistingSessionOntoNode` helper to write the mapped sessionId onto the running node when starting on an existing-session terminal. This broke `workflowExecutionActions.test.ts` recurse-limit tests because `recurseChainKey` flips from `terminal:<id>` to `session:<id>` mid-chain when sessionId is captured, resetting the counter to zero on every iteration so the 50-iteration cap never triggers. The "captures the existing sessionId onto the workflow node" assertion in `workflowAutoLaunch.test.ts` is title-only with no body; no failing test requires the capture. Removed the capture for PR2; deferring it to PR3 where capture-on-Send naturally owns the same logic and the recurse-counter interaction can be designed cleanly (e.g. capture only on user-initiated ''spawn'', not on recurse-driven ''spawn'').'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4c07389-4fb1-4f4e-897e-8bbd9e6e390b:
+    id: d4c07389-4fb1-4f4e-897e-8bbd9e6e390b
+    content: Test mock for `terminalWrite` returns undefined in `setup.ts`. The new launch manager's `.catch()` chained directly on `window.electron.terminalWrite(...)` threw "Cannot read properties of undefined (reading 'catch')" in tests. Wrapped the call with `Promise.resolve(window.electron.terminalWrite(...)).catch(...)` so it tolerates non-Promise return types — production preload always returns a Promise, but defensive wrapping keeps tests clean without changing setup.ts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a0a00f3-103e-4e8f-a45b-22194516dd56:
+    id: 7a0a00f3-103e-4e8f-a45b-22194516dd56
+    content: 'Default `workflowSessionMap: {}` in five existing test fixtures (`workflowAutoAccept`, `workflowExecuteRouting`, `workflowExecutionActions`, `workflowResumeReconciliation`, `workflowExecution` integration) made tests hit the new auto-launch path and defer the prompt indefinitely (no SessionStart in those tests). Updated the fixtures to pre-populate `workflowSessionMap` with one entry mapping a session to the test''s terminal — simulating "Claude already running in this terminal" which is the test''s actual implicit assumption. The `workflowExecution` integration test for "stop on terminal close and allow restart on new terminal" needed an explicit `registerSession` after the post-close restart to confirm the deferred prompt — done.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c28e634-ffdf-41d7-8265-1f7313b165d2:
+    id: 7c28e634-ffdf-41d7-8265-1f7313b165d2
+    content: 'Queued PR1 review fix #3 also applied: `loadDoc` (in `persistenceActions.ts`) now resets `sessionRegistry: {}` so stale entries don''t leak across in-memory loads. Test added in `persistenceActions.test.ts`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a873958c-3676-4446-9410-1f006e1c6a3e:
+    id: a873958c-3676-4446-9410-1f006e1c6a3e
+    content: 'Final state — PR2 tests: 52/52 passing. Broader workflow + integration sweep: 1083/1090 passing (7 failures, all pre-existing master-baseline failures in `clearAiSessionExecution.test.ts`/`clearAiSessionHookHandler.test.ts`/`clearAiSessionRetry.test.ts` carried over from PR1 — fail identically without PR2''s changes). Type-check clean. ESLint: zero new errors in changed files (5 floating-promise errors in two test files I touched are pre-existing, confirmed by stash diff).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  645d9efa-5db8-4f6f-aa3b-ae1ab94abeb6:
+    id: 645d9efa-5db8-4f6f-aa3b-ae1ab94abeb6
+    content: Undone summary
+    children:
+      - 026151cb-3e35-4474-bd8b-3cf97975001d
+      - 747b36b9-1f22-4cdd-a1e7-836f89b3abd8
+      - 9bdfe0b5-69b2-4823-9a7b-0ee5f80524b8
+      - a5e04d8a-fcca-45f3-88ef-622edf3ebce2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  026151cb-3e35-4474-bd8b-3cf97975001d:
+    id: 026151cb-3e35-4474-bd8b-3cf97975001d
+    content: PR3 deferred — Send rules (16-21), Working-directory check (rules 6-9, ACs), Start workflow modal-warn / cross-user-story block (rules 23, 23b, 23c, 24), Resume workflow-gate drop (rule 28, AC), Persistence rule 4 (multi-node-share enabled by capture-on-Send) and rule 5 (replacement gating). All wait on PR3's capture-on-Send + cwd-block + modal flows.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  747b36b9-1f22-4cdd-a1e7-836f89b3abd8:
+    id: 747b36b9-1f22-4cdd-a1e7-836f89b3abd8
+    content: PR2 partial — AC rule 11 capture-onto-source-node deferred (causes recurse-counter chain-key flip; safer to land in PR3 alongside capture-on-Send). The "does not write claude\\r / does not double-spawn" half of the prior-manual-SessionStart AC is fully implemented; the "existing sessionId is captured onto the workflow node, and Resume session works on it afterwards" half is deferred. Reflected in the implementation issues node above.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bdfe0b5-69b2-4823-9a7b-0ee5f80524b8:
+    id: 9bdfe0b5-69b2-4823-9a7b-0ee5f80524b8
+    content: Documentation touchpoints (`docs/workflows.md` Hook Setup updates, `CHANGELOG.md` integrated entry, `useNodeContextMenu.ts` PR3 menu work, `workflowStartRoute.ts` output simplification with remap-warn/block) wait on PR3.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5e04d8a-fcca-45f3-88ef-622edf3ebce2:
+    id: a5e04d8a-fcca-45f3-88ef-622edf3ebce2
+    content: Technical-refinement and Constraint observation nodes are descriptive notes about design decisions, not actionable checkboxes — left unchecked except where a property holds in current code.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cae1e5f-c351-4608-9e81-4f55eb3e1c98:
+    id: 8cae1e5f-c351-4608-9e81-4f55eb3e1c98
+    content: AI refactor — convention cleanup applied
+    children:
+      - 4e8554ca-2ebc-409e-8d70-20b88945f650
+      - 51fe5a7c-0425-4bc4-9954-46281f0508b5
+      - 3c42a7c6-a66d-4b2d-8894-00b27afd27b7
+      - 32a30cc4-36be-4567-b96a-78284e93b44d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e8554ca-2ebc-409e-8d70-20b88945f650:
+    id: 4e8554ca-2ebc-409e-8d70-20b88945f650
+    content: Reviewed all PR2 diffs (3 new files, 9 modified). New `workflowClaudeLaunch.ts` factory mirrors `workflowClearSession.ts` shape (named functions inside factory, single-string export name matches convention pattern). No abandoned code, no TODO/FIXME/HACK comments, no skipped tests, no inline-arrow action factories.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51fe5a7c-0425-4bc4-9954-46281f0508b5:
+    id: 51fe5a7c-0425-4bc4-9954-46281f0508b5
+    content: Converted title-only `it('...')` placeholders to explicit `it.todo('...')` across `workflowClaudeLaunch.test.ts` (6 placeholders) and `workflowAutoLaunch.test.ts` (12 placeholders) so they show up correctly as todos in test reporting instead of silently passing as no-op tests. Also converted one degenerate test (`captures the existing sessionId onto the running node so Resume session works afterwards`) that had setup but no assertions into `it.todo` with a comment naming the deferral target (PR3 capture-on-Send) — removes a trivially-passing test that didn't actually verify anything.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c42a7c6-a66d-4b2d-8894-00b27afd27b7:
+    id: 3c42a7c6-a66d-4b2d-8894-00b27afd27b7
+    content: 'Test count after refactor: 241 total, 208 passed, 0 failed, 33 todo (was 227 passed / 14 todo before — the 19-test delta is reclassification of placeholders, not behaviour change).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32a30cc4-36be-4567-b96a-78284e93b44d:
+    id: 32a30cc4-36be-4567-b96a-78284e93b44d
+    content: 'Standard checks: `npm run type-check` clean. ESLint on all PR2 changed/new files: zero new errors (only pre-existing `import/no-cycle` warnings on `persistenceActions.ts` and `workflowExecutionActions.ts` carried over from master). Tests for changed/new files only — all pass or todo.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3fca306-1d8e-4825-b46d-1ce8c00a9f6b:
+    id: a3fca306-1d8e-4825-b46d-1ce8c00a9f6b
+    content: review feedback
+    children:
+      - 7c89e670-e2d5-40ae-bfde-73966805dcfa
+      - 9c63ac8c-3b77-4522-954c-102ec64e4ac8
+      - 86bd93a3-2797-471c-b030-b540f01b4565
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c89e670-e2d5-40ae-bfde-73966805dcfa:
+    id: 7c89e670-e2d5-40ae-bfde-73966805dcfa
+    content: Must fix
+    children:
+      - 7c1d1287-830b-4925-a88c-0965db2723ab
+      - 6f52b38c-9076-439a-b2df-269b7ab27717
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c1d1287-830b-4925-a88c-0965db2723ab:
+    id: 7c1d1287-830b-4925-a88c-0965db2723ab
+    content: '`clearAllPending` parity gap — `claudeLaunchManager` lacks the `clearAllPending` that `clearSessionManager` exposes. `workflowExecutionActions.ts:794` (`initializeExecutionState`) calls `clearSessionManager.clearAllPending()` but skips the launch manager. After file-load, orphaned pending launches survive in the same store instance; a later SessionStart on that terminal id will fire `sendPrompt` against a node that may no longer be running or no longer exist in the loaded document. Fix: add `clearAllPending` mirroring `workflowClearSession.ts:51–55` and call it from `initializeExecutionState`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f52b38c-9076-439a-b2df-269b7ab27717:
+    id: 6f52b38c-9076-439a-b2df-269b7ab27717
+    content: Trust-boundary risk in `terminalHasSession` — `workflowClaudeLaunch.ts:33` checks only `workflowSessionMap`. If Claude was started outside Arborescent or the SessionStart hook isn't installed, `claude\r` is typed into a live Claude prompt as user input. Detection isn't fully solvable without PTY reads, but at minimum add a `// why` comment near `workflowClaudeLaunch.ts:38–43` documenting the trust boundary. PR3's cwd-block will provide additional defense; the comment makes the boundary explicit for reviewers.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c63ac8c-3b77-4522-954c-102ec64e4ac8:
+    id: 9c63ac8c-3b77-4522-954c-102ec64e4ac8
+    content: Nice to have
+    children:
+      - 76a895aa-0968-4bf4-94a4-e6260fd4a4ff
+      - 29ed6247-7b06-4925-82cf-02aeada81b4f
+      - e1ebdc43-0875-4691-ad30-ecefe4edbfcb
+      - d3e9b313-caa4-430c-8649-1e4af79b3f0a
+      - 418421f7-e8af-4db9-abb4-e19db145a455
+      - dd4fcc16-dad6-462b-bc19-93cbe4a05356
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76a895aa-0968-4bf4-94a4-e6260fd4a4ff:
+    id: 76a895aa-0968-4bf4-94a4-e6260fd4a4ff
+    content: Concurrent-launch coalescing — `launchIfNeededThenSend` silently overwrites a prior `pendingLaunch` for the same terminal (`workflowClaudeLaunch.ts:38`). Pick a deterministic policy (reject-second or warn-and-replace) and author the matching test; the `it.todo` at `workflowClaudeLaunch.test.ts:144` already flags this gap.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29ed6247-7b06-4925-82cf-02aeada81b4f:
+    id: 29ed6247-7b06-4925-82cf-02aeada81b4f
+    content: Boundary-input tests at `workflowClaudeLaunch.test.ts:148–149` (empty `terminalId`/`nodeId`) are `it.todo` but the early-return guard at `workflowClaudeLaunch.ts:31` is shipped. Convert to real assertions now — they protect the branch you actually shipped.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1ebdc43-0875-4691-ad30-ecefe4edbfcb:
+    id: e1ebdc43-0875-4691-ad30-ecefe4edbfcb
+    content: Error-path tests at `workflowClaudeLaunch.test.ts:138–140` (`terminalWrite` rejection) are `it.todo`. The leak-prevention branch at `workflowClaudeLaunch.ts:39–42` is the only mitigation against orphaned pending entries on write failure — cover it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3e9b313-caa4-430c-8649-1e4af79b3f0a:
+    id: d3e9b313-caa4-430c-8649-1e4af79b3f0a
+    content: '`runningNodeId` carry-through invariant (`workflowExecutionActions.ts:755` → `workflowClaudeLaunch.ts:49`): when pending and running ids disagree (advance-to-next-step happened mid-launch), the prompt is delivered to whichever is now running on the terminal. Probably correct but load-bearing and uncovered. The `it.todo` at `workflowClaudeLaunch.test.ts:112` flags this.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  418421f7-e8af-4db9-abb4-e19db145a455:
+    id: 418421f7-e8af-4db9-abb4-e19db145a455
+    content: Comment parity — `workflowClearSession.ts:33–39` carries a "why this manager exists" preamble above the factory; the new file is a near-mirror but lacks the parallel block. Add one explaining the launch/defer/confirm triad.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd4fcc16-dad6-462b-bc19-93cbe4a05356:
+    id: dd4fcc16-dad6-462b-bc19-93cbe4a05356
+    content: Naming — both managers expose `clearPending`. Disambiguated at deps level via `clearPendingClear` / `clearPendingLaunch` in `workflowDisruptionReactions.ts:32–33`. Stylistic only; consider `clearPendingForNode` if the launch manager also gains `clearAllPending`.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86bd93a3-2797-471c-b030-b540f01b4565:
+    id: 86bd93a3-2797-471c-b030-b540f01b4565
+    content: Verdict
+    children:
+      - befc6b6c-aa3b-4158-aa19-bcae23b39315
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  befc6b6c-aa3b-4158-aa19-bcae23b39315:
+    id: befc6b6c-aa3b-4158-aa19-bcae23b39315
+    content: 'fix-then-ship — launch/defer/confirm sequence is correct; disruption-handler coverage is comprehensive across stop, terminal-close, node-delete, step-delete, all-steps-removed, and manual-move; `/clear` skip-on-fresh / keep-on-reattach logic is right; the new factory mirrors `clearSessionManager` cleanly. Two real defects warrant fixing before merge: (1) `clearAllPending` parity gap, (2) trust-boundary documentation comment. Remaining items are test-coverage gaps already self-flagged via `it.todo` and minor polish.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  63d13299-2c1b-465b-a27f-d7189b990354:
+    id: 63d13299-2c1b-465b-a27f-d7189b990354
+    content: feedback
+    children:
+      - 7900e1f2-e930-42b4-ac94-111044fa5be0
+      - 6b03b3c7-0085-401a-a125-dd586323f9b6
+      - 817fd424-dfed-4a23-9353-031a5f42ab24
+      - f93d4b82-47fa-442f-85d1-6806ddfd2d3e
+      - a0e4438a-8818-4ea2-82a8-1773bbf5b301
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7900e1f2-e930-42b4-ac94-111044fa5be0:
+    id: 7900e1f2-e930-42b4-ac94-111044fa5be0
+    content: 'Severity: agree, fix in this branch (low priority but trivial)'
+    children:
+      - e1392fc2-c6e1-40ca-8368-78345bf0dfe7
+      - dfba134c-8f1d-43fe-addd-2518cb8692a3
+      - c97ceaa9-eaf7-47e1-bca9-ed824da77059
+      - a89499f7-cfba-426f-8542-5998336d66ea
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1392fc2-c6e1-40ca-8368-78345bf0dfe7:
+    id: e1392fc2-c6e1-40ca-8368-78345bf0dfe7
+    content: '`clearAllPending` parity (originally **must fix**, downgraded to **low**) — reviewer''s framing of the bug is wrong: `initializeExecutionState` runs once per app launch (`useAppInitialization.ts:27`), before any `launchIfNeededThenSend` could register a pending entry, and `loadDoc` does NOT call `initializeExecutionState`. Real-life surface is zero. Test-isolation surface only (multi-`init` test sequences could leak across runs). Fix is still warranted because (a) it''s 5 lines mirroring `workflowClearSession.ts:51–55`, (b) parity with the sibling manager is good hygiene, (c) future scenarios that re-run `initializeExecutionState` won''t surprise.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfba134c-8f1d-43fe-addd-2518cb8692a3:
+    id: dfba134c-8f1d-43fe-addd-2518cb8692a3
+    content: Comment parity — agree. Add a brief "why this manager exists" preamble above `createClaudeLaunchManager` mirroring `workflowClearSession.ts:33–39`. Pure clarity; CLAUDE.md says comments should explain "why".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c97ceaa9-eaf7-47e1-bca9-ed824da77059:
+    id: c97ceaa9-eaf7-47e1-bca9-ed824da77059
+    content: Boundary-input tests (`workflowClaudeLaunch.test.ts:148–149`) — agree. Early-return guard at `workflowClaudeLaunch.ts:31` is shipped; covering it is two-line additions per test. Convert from `it.todo`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a89499f7-cfba-426f-8542-5998336d66ea:
+    id: a89499f7-cfba-426f-8542-5998336d66ea
+    content: Error-path tests for `terminalWrite` rejection (`workflowClaudeLaunch.test.ts:138–140`) — agree. `terminalWrite` rarely rejects in production (PTY is local) but the leak-prevention branch IS the only mitigation if it does. Convert from `it.todo`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b03b3c7-0085-401a-a125-dd586323f9b6:
+    id: 6b03b3c7-0085-401a-a125-dd586323f9b6
+    content: 'Severity: disagree on framing (intentional behaviour presented as defect)'
+    children:
+      - 3f91357a-919c-4fa5-bc56-3bcfb1a1138f
+      - 3af0ebb1-fd57-4d57-8b78-b6da2fe08a10
+      - 3c95109b-385e-422d-b67b-ba771b4092d0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f91357a-919c-4fa5-bc56-3bcfb1a1138f:
+    id: 3f91357a-919c-4fa5-bc56-3bcfb1a1138f
+    content: 'Trust-boundary "must fix" was **intentional behaviour presented as an issue**. Spec rule 15 explicitly accepts this race: *"Detecting ''Claude is running in this terminal but Arborescent has no SessionId mapped'' is not possible without reading PTY output. The hook prerequisite (the user has installed Claude Code''s SessionStart hook — already required for the rest of the stack) makes this case purely transient: the gap is the sub-second window between `claude\r` being written and the SessionStart hook firing. The race is accepted; not mitigated."*'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3af0ebb1-fd57-4d57-8b78-b6da2fe08a10:
+    id: 3af0ebb1-fd57-4d57-8b78-b6da2fe08a10
+    content: 'The reviewer''s "if the SessionStart hook isn''t installed" framing is a non-scenario: without the hook, the entire PR1/PR2/PR3 stack is non-functional (no `registerSession` ever fires, no `sessionRegistry` ever populates, no Resume ever works). There is nothing for `terminalHasSession` to "miss" because the whole feature has no operational state. Calling this a defect mis-scopes the PR boundary.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c95109b-385e-422d-b67b-ba771b4092d0:
+    id: 3c95109b-385e-422d-b67b-ba771b4092d0
+    content: 'Action: add a brief explanatory comment at `workflowClaudeLaunch.ts:38–43` noting the hook prerequisite + transient race acceptance, citing rule 15. This is a clarity improvement, not a defect remediation. Severity: low.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  817fd424-dfed-4a23-9353-031a5f42ab24:
+    id: 817fd424-dfed-4a23-9353-031a5f42ab24
+    content: 'Severity: low probability — defer to PR3'
+    children:
+      - 8547ddbf-5ac7-4105-9364-afd3c6785596
+      - 00fb55d8-2234-4068-9a2e-f1a53696cc11
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8547ddbf-5ac7-4105-9364-afd3c6785596:
+    id: 8547ddbf-5ac7-4105-9364-afd3c6785596
+    content: Concurrent-launch coalescing — `terminalNodeAssignments` already prevents two workflows targeting the same terminal at the dispatcher level above `claudeLaunchManager`, and the realistic race window is sub-second between `claude\r` write and SessionStart. The author's `it.todo` at `workflowClaudeLaunch.test.ts:144` is the right disposition; revisit when PR3's capture-on-Send naturally exercises the same dispatch surface.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00fb55d8-2234-4068-9a2e-f1a53696cc11:
+    id: 00fb55d8-2234-4068-9a2e-f1a53696cc11
+    content: '`runningNodeId` carry-through invariant — practically unreachable in the auto-launch path: a workflow on its first step has no advance trigger between `claude\r` and SessionStart (advance requires the prompt to land + Claude to ack). The `runningNodeId ?? pendingNodeId` fallback at `workflowClaudeLaunch.ts:49` is a defensive guard against the registerSession arg being empty, not against id divergence. `it.todo` at line 112 stays — defer to PR3 when capture-on-Send genuinely produces divergent ids.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f93d4b82-47fa-442f-85d1-6806ddfd2d3e:
+    id: f93d4b82-47fa-442f-85d1-6806ddfd2d3e
+    content: 'Severity: stylistic — leave as is'
+    children:
+      - 1b63856e-b992-4398-95eb-b4c7e617f389
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b63856e-b992-4398-95eb-b4c7e617f389:
+    id: 1b63856e-b992-4398-95eb-b4c7e617f389
+    content: Naming `clearPending` collision — both managers share the method name; deps-level disambiguation via `clearPendingClear` / `clearPendingLaunch` in `workflowDisruptionReactions.ts:32–33` works fine and is already shipped. Renaming to `clearPendingForNode` is churn for no behavioural gain and would require touching the disruption reactions and all five call sites.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0e4438a-8818-4ea2-82a8-1773bbf5b301:
+    id: a0e4438a-8818-4ea2-82a8-1773bbf5b301
+    content: Recommendation summary
+    children:
+      - 18c4bcdb-fd05-459e-8e32-fc8732034ca2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18c4bcdb-fd05-459e-8e32-fc8732034ca2:
+    id: 18c4bcdb-fd05-459e-8e32-fc8732034ca2
+    content: 'Apply the four "agree, fix" items as a single cleanup commit on this branch (~30 lines of code + 4 test bodies + 1 comment block). Push back on the trust-boundary "must fix" framing in the PR conversation (intentional per rule 15). Defer the two low-probability items to PR3''s natural surface. Skip the naming churn. Net result: PR2 ships with two trivial improvements applied and the spec-aligned design boundaries clearly documented.'
     children: []
     metadata:
       status: completed
