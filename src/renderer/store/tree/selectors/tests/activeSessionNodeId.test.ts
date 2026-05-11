@@ -27,14 +27,48 @@ describe('selectActiveSessionNodeId', () => {
     expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-A');
   });
 
-  it('returns null when the focused terminal hosts only a non-running workflow step', () => {
+  it('returns the awaiting-validation step nodeId when its terminal is focused', () => {
     const state: SessionSelectorState = {
       ...emptyState,
       workflowExecutionStates: {
         'node-A': { state: 'awaiting-validation', terminalTabId: 'terminal-1' },
       },
     };
+    expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-A');
+  });
+
+  it('returns null when an awaiting-validation step is bound to a different terminal than the one focused', () => {
+    const state: SessionSelectorState = {
+      ...emptyState,
+      workflowExecutionStates: {
+        'node-A': { state: 'awaiting-validation', terminalTabId: 'terminal-2' },
+      },
+    };
     expect(selectActiveSessionNodeId(state, 'terminal-1')).toBeNull();
+  });
+
+  it('prefers an awaiting-validation step on the focused terminal over a running step on another terminal', () => {
+    const state: SessionSelectorState = {
+      ...emptyState,
+      workflowExecutionStates: {
+        'node-A': { state: 'awaiting-validation', terminalTabId: 'terminal-1' },
+        'node-B': { state: 'running', terminalTabId: 'terminal-2' },
+      },
+    };
+    expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-A');
+  });
+
+  it('prefers an awaiting-validation workflow step over a concurrent collaboration on the same terminal', () => {
+    const state: SessionSelectorState = {
+      ...emptyState,
+      workflowExecutionStates: {
+        'node-A': { state: 'awaiting-validation', terminalTabId: 'terminal-1' },
+      },
+      collaboratingNodeId: 'node-B',
+      collaborationSource: 'terminal',
+      collaboratingTerminalId: 'terminal-1',
+    };
+    expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-A');
   });
 
   it('returns null when a step is running on a different terminal than the one focused', () => {

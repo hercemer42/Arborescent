@@ -13,8 +13,8 @@ export function selectActiveSessionNodeId(
 ): string | null {
   if (!activeTerminalId) return null;
 
-  const runningStepNodeId = findRunningStepOnTerminal(state.workflowExecutionStates, activeTerminalId);
-  if (runningStepNodeId) return runningStepNodeId;
+  const activeStepNodeId = findActiveStepOnTerminal(state.workflowExecutionStates, activeTerminalId);
+  if (activeStepNodeId) return activeStepNodeId;
 
   if (
     state.collaboratingNodeId &&
@@ -27,12 +27,13 @@ export function selectActiveSessionNodeId(
   return null;
 }
 
-function findRunningStepOnTerminal(
+function findActiveStepOnTerminal(
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>,
   terminalId: string
 ): string | null {
   for (const [nodeId, entry] of Object.entries(workflowExecutionStates)) {
-    if (entry.state === 'running' && entry.terminalTabId === terminalId) {
+    if (entry.terminalTabId !== terminalId) continue;
+    if (entry.state === 'running' || entry.state === 'awaiting-validation') {
       return nodeId;
     }
   }
