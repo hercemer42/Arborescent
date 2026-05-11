@@ -20,6 +20,8 @@ vi.stubGlobal('window', {
   electron: {
     terminalWrite: mockTerminalWrite,
     stopFeedbackFileWatcher: vi.fn(),
+    startKeepAwake: vi.fn(),
+    stopKeepAwake: vi.fn(),
   },
 });
 
