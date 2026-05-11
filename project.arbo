@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-11T05:56:34.360Z'
+updated: '2026-05-11T06:03:25.100Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23701,6 +23701,7 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
+      - 5f82fc03-c5c0-4a9c-b5ab-0c7fd99fed78
       - 850f875c-f771-40be-9432-fd212a7f583c
       - a45e5394-9ae7-4823-ac2a-387cb0223cfe
     metadata:
@@ -82870,8 +82871,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - fcb40af2-520f-47e7-8a23-4cf9e1aed962
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -96899,7 +96899,8 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children: []
+    children:
+      - fcb40af2-520f-47e7-8a23-4cf9e1aed962
     metadata:
       status: pending
       isBlueprint: true
@@ -109279,6 +109280,40 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  5f82fc03-c5c0-4a9c-b5ab-0c7fd99fed78:
+    id: 5f82fc03-c5c0-4a9c-b5ab-0c7fd99fed78
+    content: Bug - Continue workflow is continuing in the wrong terminal
+    children:
+      - 7315259c-c665-4eb4-a4aa-da3c8db62ddb
+      - f553dc6b-e9cc-4c85-849b-f4153654926c
+      - f76d2163-7cb7-450d-9efe-37510451a9c6
+      - e2041e76-8134-4c67-9909-16d1c20ba5a9
+    metadata:
+      status: pending
+  7315259c-c665-4eb4-a4aa-da3c8db62ddb:
+    id: 7315259c-c665-4eb4-a4aa-da3c8db62ddb
+    content: Happened when I had an unassigned terminal focused
+    children: []
+    metadata:
+      status: pending
+  f553dc6b-e9cc-4c85-849b-f4153654926c:
+    id: f553dc6b-e9cc-4c85-849b-f4153654926c
+    content: But the assigned terminal was also open but in the background
+    children: []
+    metadata:
+      status: pending
+  f76d2163-7cb7-450d-9efe-37510451a9c6:
+    id: f76d2163-7cb7-450d-9efe-37510451a9c6
+    content: In this case, the workflow should continue in the assigned terminal
+    children: []
+    metadata:
+      status: pending
+  e2041e76-8134-4c67-9909-16d1c20ba5a9:
+    id: e2041e76-8134-4c67-9909-16d1c20ba5a9
+    content: But the assigned terminal should be focused
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   a504e066-6432-458b-b655-95afaf9cd1a6:
     cwd: /Users/brianfox/dev/Arborescent
