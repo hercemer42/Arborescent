@@ -208,6 +208,24 @@ export function useNodeContextMenu(node: TreeNode) {
       onMoveToPreviousStep: () => { actions.moveToPreviousStep(node.id); autoStartAfterMove(node.id); },
     });
 
+    const resolveContinueTerminal = async (): Promise<string | null> => {
+      const entry = store.getState().workflowExecutionStates[node.id];
+      const assignedId = entry?.state === 'awaiting-validation' ? entry.terminalTabId : null;
+      const terminalState = useTerminalStore.getState();
+      const assignedStillOpen = !!assignedId && terminalState.terminals.some(t => t.id === assignedId);
+      if (assignedStillOpen) {
+        terminalState.setActiveTerminal(assignedId);
+        return assignedId;
+      }
+      if (assignedId) {
+        useToastStore.getState().addToast(
+          'Assigned terminal is no longer open — continuing in the focused terminal instead.',
+          'warning',
+        );
+      }
+      return terminalState.openTerminal();
+    };
+
     const workflowExecutionItems = buildWorkflowExecutionItems({
       node: freshNode,
       nodes,
@@ -215,7 +233,7 @@ export function useNodeContextMenu(node: TreeNode) {
       workflowExecutionStates: state.workflowExecutionStates,
       onStartWorkflow: () => getTerminalId().then(tid => actions.startWorkflow(node.id, tid)),
       onStopWorkflow: () => actions.stopWorkflow(node.id),
-      onContinueWorkflow: () => getTerminalId().then(tid => actions.continueWorkflow(node.id, tid)),
+      onContinueWorkflow: () => resolveContinueTerminal().then(tid => actions.continueWorkflow(node.id, tid)),
     });
 
     const isHyperlink = freshNode.metadata.isHyperlink === true;
