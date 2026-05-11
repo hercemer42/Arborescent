@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-11T06:03:25.100Z'
+updated: '2026-05-11T06:18:16.374Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -15221,6 +15221,7 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - fcb40af2-520f-47e7-8a23-4cf9e1aed962
       - 901813f7-011c-4c41-802b-53ecfdb96209
       - fab60ee2-124f-48d3-918a-25efbbcd55be
       - 629bc0db-be09-4f61-b904-bf4371f3b6ad
@@ -23701,7 +23702,7 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 5f82fc03-c5c0-4a9c-b5ab-0c7fd99fed78
+      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
       - 850f875c-f771-40be-9432-fd212a7f583c
       - a45e5394-9ae7-4823-ac2a-387cb0223cfe
     metadata:
@@ -81497,9 +81498,9 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - 82b26361-f377-48bf-b027-f786b59782f7
+      - 0285aef9-2f1c-4a3c-ad08-b75d799ab4ce
       - da075573-4db3-4805-ba22-2c0127a3f978
-      - 00ed9bd1-7eb1-46c3-b26e-ef5b51a49826
-      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
       - cfd38a28-0349-4873-8780-177e444d7cd3
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
     metadata:
@@ -82871,7 +82872,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 5f82fc03-c5c0-4a9c-b5ab-0c7fd99fed78
     metadata:
       status: pending
       isBlueprint: true
@@ -96899,8 +96901,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - fcb40af2-520f-47e7-8a23-4cf9e1aed962
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -99315,6 +99316,7 @@ nodes:
       - 7590167e-41a8-40d6-b5a5-d772c7ba28ce
       - 5a4339c2-ab43-47ba-8fbe-06e53cd9155f
       - 58b87b6b-fb12-4c3b-af12-1c3c0f9ba582
+      - 980f10ad-f4a6-4c4b-b6d2-8706d04850ff
     metadata:
       status: pending
   7590167e-41a8-40d6-b5a5-d772c7ba28ce:
@@ -101936,13 +101938,15 @@ nodes:
       status: pending
   889ff4cb-3ae1-4f90-b289-12a92935efb7:
     id: 889ff4cb-3ae1-4f90-b289-12a92935efb7
-    content: 'Bug : Still issues with comparison showing everything but parent node in green'
+    content: Reliable comparison highlighting in feedback panel
     children:
       - aed97283-4d1f-4d8e-9e9a-d40d97de9ed0
       - 3ca047ba-dfd0-4f66-b238-478baad50101
-      - 0ac04c1b-9c41-4fa1-bb67-db429c1cb350
     metadata:
       status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
   d0da6881-00bd-405b-8dbf-1603876d5450:
     id: d0da6881-00bd-405b-8dbf-1603876d5450
     content: Feedback mechanism should use a hook instead of a file
@@ -108887,47 +108891,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  00ed9bd1-7eb1-46c3-b26e-ef5b51a49826:
-    id: 00ed9bd1-7eb1-46c3-b26e-ef5b51a49826
-    content: Bug - linked steps don't stop at recurse node, they just kept going
-    children:
-      - 9b34eda6-984d-4d14-ab41-7b4283f92daf
-    metadata:
-      status: pending
-  9b34eda6-984d-4d14-ab41-7b4283f92daf:
-    id: 9b34eda6-984d-4d14-ab41-7b4283f92daf
-    content: Noticed after a session that
-    children:
-      - efc4578b-3527-49f9-a36f-421380645ce0
-      - 7fbdce5e-e875-4138-97d1-bb3daefe4846
-      - 99976448-50fe-4cfd-84a9-2642cdc9c7e0
-      - 235d87f8-7236-4391-a825-bca2a449083f
-    metadata:
-      status: pending
-  efc4578b-3527-49f9-a36f-421380645ce0:
-    id: efc4578b-3527-49f9-a36f-421380645ce0
-    content: With a User story node that was decomposed into 3 PRs
-    children: []
-    metadata:
-      status: pending
-  7fbdce5e-e875-4138-97d1-bb3daefe4846:
-    id: 7fbdce5e-e875-4138-97d1-bb3daefe4846
-    content: All three PRs progressed past the node which 'recursion' was marked on
-    children: []
-    metadata:
-      status: pending
-  99976448-50fe-4cfd-84a9-2642cdc9c7e0:
-    id: 99976448-50fe-4cfd-84a9-2642cdc9c7e0
-    content: Would expect each PR to stop on the recursion node and await user interaction before proceeding
-    children: []
-    metadata:
-      status: pending
-  235d87f8-7236-4391-a825-bca2a449083f:
-    id: 235d87f8-7236-4391-a825-bca2a449083f
-    content: Regardless of if that step is automated
-    children: []
-    metadata:
-      status: pending
   fcb40af2-520f-47e7-8a23-4cf9e1aed962:
     id: fcb40af2-520f-47e7-8a23-4cf9e1aed962
     content: 'Bug : Had a case where the agent created a worktree and then continued with the rest of the implementation without being asked'
@@ -108942,27 +108905,9 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  3ca047ba-dfd0-4f66-b238-478baad50101:
-    id: 3ca047ba-dfd0-4f66-b238-478baad50101
-    content: Either the comparison or the UUID replacement isn't working every time
-    children: []
-    metadata:
-      status: pending
-  0ac04c1b-9c41-4fa1-bb67-db429c1cb350:
-    id: 0ac04c1b-9c41-4fa1-bb67-db429c1cb350
-    content: ''
-    children: []
-    metadata:
-      status: pending
-  aed97283-4d1f-4d8e-9e9a-d40d97de9ed0:
-    id: aed97283-4d1f-4d8e-9e9a-d40d97de9ed0
-    content: "This is in cases where the feedback panel is opened,\_"
-    children: []
-    metadata:
-      status: pending
   da075573-4db3-4805-ba22-2c0127a3f978:
     id: da075573-4db3-4805-ba22-2c0127a3f978
-    content: Bug - sometimes the terminal scrollbar dissapears
+    content: Bug - sometimes the terminal scrollbar disappears
     children:
       - b1da9b46-7bff-47c5-9a93-4fc5fe7c775f
       - cd91f1a9-28d4-43ed-a854-b1cd625adf5d
@@ -108970,7 +108915,7 @@ nodes:
       - 55513215-e10a-4620-b7a8-6f877872424c
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   b1da9b46-7bff-47c5-9a93-4fc5fe7c775f:
     id: b1da9b46-7bff-47c5-9a93-4fc5fe7c775f
     content: I can't scroll up in the claude session
@@ -109284,40 +109229,632 @@ nodes:
     id: 5f82fc03-c5c0-4a9c-b5ab-0c7fd99fed78
     content: Bug - Continue workflow is continuing in the wrong terminal
     children:
-      - 7315259c-c665-4eb4-a4aa-da3c8db62ddb
-      - f553dc6b-e9cc-4c85-849b-f4153654926c
-      - f76d2163-7cb7-450d-9efe-37510451a9c6
-      - e2041e76-8134-4c67-9909-16d1c20ba5a9
+      - f0486a88-b51c-48e7-b291-5a9265e97c1b
+      - 66a7fd0c-f1ec-4dd5-b97f-fd1def4043cb
+      - 181ae53c-15db-4054-b6d9-759e275e0440
+      - 1eeaf096-2c83-4d69-904f-acbd2ad7746e
+      - a77bd469-7908-4bb7-8df9-a3072066b1dc
+      - bd0fcbf2-7e06-4c51-b90a-3595fa713c00
+      - 08343d36-ffe5-41dd-9c0b-b5303e446034
+      - 6f837ddc-f5c8-4c3c-a4b0-5f2cdc8ec7a5
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  0285aef9-2f1c-4a3c-ad08-b75d799ab4ce:
+    id: 0285aef9-2f1c-4a3c-ad08-b75d799ab4ce
+    content: Bug - node isn't highlighted when its assigned terminal is focused
+    children:
+      - 8b563ff8-a5a8-43e3-b901-2f41c31d7db4
+      - 25e0c631-f969-44c9-b514-2a17822d48d1
     metadata:
       status: pending
-  7315259c-c665-4eb4-a4aa-da3c8db62ddb:
-    id: 7315259c-c665-4eb4-a4aa-da3c8db62ddb
+      expanded: false
+  8b563ff8-a5a8-43e3-b901-2f41c31d7db4:
+    id: 8b563ff8-a5a8-43e3-b901-2f41c31d7db4
+    content: Check the commit history, we should have already implemented this
+    children: []
+    metadata:
+      status: pending
+  25e0c631-f969-44c9-b514-2a17822d48d1:
+    id: 25e0c631-f969-44c9-b514-2a17822d48d1
+    content: Tell me if not
+    children: []
+    metadata:
+      status: pending
+  82b26361-f377-48bf-b027-f786b59782f7:
+    id: 82b26361-f377-48bf-b027-f786b59782f7
+    content: Bug - broken tests
+    children:
+      - dff38c36-a254-40dd-b42e-375f1ad97db1
+    metadata:
+      status: pending
+      expanded: false
+  dff38c36-a254-40dd-b42e-375f1ad97db1:
+    id: dff38c36-a254-40dd-b42e-375f1ad97db1
+    content: Find & fix
+    children: []
+    metadata:
+      status: pending
+  980f10ad-f4a6-4c4b-b6d2-8706d04850ff:
+    id: 980f10ad-f4a6-4c4b-b6d2-8706d04850ff
+    content: Or 'Resend workflow'
+    children: []
+    metadata:
+      status: pending
+  aed97283-4d1f-4d8e-9e9a-d40d97de9ed0:
+    id: aed97283-4d1f-4d8e-9e9a-d40d97de9ed0
+    content: 📄 Product spec
+    children:
+      - cb519833-49c2-4cfb-877f-f66bc34e4f45
+      - 3fa3a189-7b05-4668-a426-92bb60f660ea
+      - ceb32a2f-fe18-4dd5-9fff-faa5a84e1764
+      - 2def3ed4-cfda-4df2-a003-d779abf4d836
+      - 3f49724a-5f9a-4e55-b86c-3c7ce5d96cdd
+      - 8c582fac-7bfb-4641-bf15-bc8cb5b9ecd2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb519833-49c2-4cfb-877f-f66bc34e4f45:
+    id: cb519833-49c2-4cfb-877f-f66bc34e4f45
+    content: 'Context: the feedback panel renders a before/after diff using green highlighting to mark nodes the AI changed; currently every descendant appears green while the parent stays unhighlighted, and the behaviour is intermittent — pointing at either the UUID-placeholder replacement step or the snapshot/comparison pass'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fa3a189-7b05-4668-a426-92bb60f660ea:
+    id: 3fa3a189-7b05-4668-a426-92bb60f660ea
+    content: 'User: Arborescent user reviewing the result of an AI feedback response in the feedback panel'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceb32a2f-fe18-4dd5-9fff-faa5a84e1764:
+    id: ceb32a2f-fe18-4dd5-9fff-faa5a84e1764
+    content: 'Current experience: opening the panel highlights nearly the whole subtree in green except the parent node, so the diff carries no useful signal and the user cannot tell what the AI actually changed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2def3ed4-cfda-4df2-a003-d779abf4d836:
+    id: 2def3ed4-cfda-4df2-a003-d779abf4d836
+    content: 'Goal: green highlighting appears only on nodes whose comparable content genuinely differs between the pre- and post-feedback states'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f49724a-5f9a-4e55-b86c-3c7ce5d96cdd:
+    id: 3f49724a-5f9a-4e55-b86c-3c7ce5d96cdd
+    content: Business rules
+    children:
+      - 2e7b365e-4199-4eda-bb07-07d892e5eee0
+      - ab9b853f-cb82-4038-a3e2-690ed0d20a51
+      - 135d4103-76b4-4c82-b178-5c1631c9633e
+      - 06f94100-faf5-428b-a9c8-d909dc3fa3a8
+      - 3a94e07a-5d97-4f87-8a8e-0539b5ee546b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e7b365e-4199-4eda-bb07-07d892e5eee0:
+    id: 2e7b365e-4199-4eda-bb07-07d892e5eee0
+    content: UUID placeholders introduced by the feedback pipeline are fully resolved on both snapshots before comparison runs, so placeholder identifiers never produce spurious differences
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab9b853f-cb82-4038-a3e2-690ed0d20a51:
+    id: ab9b853f-cb82-4038-a3e2-690ed0d20a51
+    content: A node is highlighted as changed if and only if its own comparable content (text, type, ordered child identities) differs from its counterpart
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  135d4103-76b4-4c82-b178-5c1631c9633e:
+    id: 135d4103-76b4-4c82-b178-5c1631c9633e
+    content: Parent and child nodes are subject to the same comparison rule — no implicit parent exemption
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  06f94100-faf5-428b-a9c8-d909dc3fa3a8:
+    id: 06f94100-faf5-428b-a9c8-d909dc3fa3a8
+    content: Re-opening the panel on the same feedback response yields identical highlighting across opens
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a94e07a-5d97-4f87-8a8e-0539b5ee546b:
+    id: 3a94e07a-5d97-4f87-8a8e-0539b5ee546b
+    content: If comparison cannot complete, the panel surfaces a clear non-silent error rather than defaulting to a fully-green diff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c582fac-7bfb-4641-bf15-bc8cb5b9ecd2:
+    id: 8c582fac-7bfb-4641-bf15-bc8cb5b9ecd2
+    content: Acceptance criteria
+    children:
+      - 3ce0e27d-15ec-489c-8b35-a76e63725a74
+      - 272dccb9-f7cb-45aa-95e3-7854729861ca
+      - aa70077f-459d-434c-b105-9e9aafc65044
+      - 8b3ee0fc-f8fd-4e1d-8676-15d854bc692c
+      - ab893628-02c0-4a61-9b77-68de506ca87c
+      - 88bae34f-b7d8-4c40-bcc4-9512fe423e50
+      - 0513493a-8134-40c1-9664-8855ff8f27a2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ce0e27d-15ec-489c-8b35-a76e63725a74:
+    id: 3ce0e27d-15ec-489c-8b35-a76e63725a74
+    content: '- [ ] Opening the panel on an unchanged subtree shows zero green highlights'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  272dccb9-f7cb-45aa-95e3-7854729861ca:
+    id: 272dccb9-f7cb-45aa-95e3-7854729861ca
+    content: '- [ ] A single-node edit produces a single green highlight on that node only'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa70077f-459d-434c-b105-9e9aafc65044:
+    id: aa70077f-459d-434c-b105-9e9aafc65044
+    content: '- [ ] UUID placeholders are resolved on both snapshots before per-node comparison runs'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b3ee0fc-f8fd-4e1d-8676-15d854bc692c:
+    id: 8b3ee0fc-f8fd-4e1d-8676-15d854bc692c
+    content: '- [ ] Parent and child nodes use the same comparison rule, with no parent-exempt path'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab893628-02c0-4a61-9b77-68de506ca87c:
+    id: ab893628-02c0-4a61-9b77-68de506ca87c
+    content: '- [ ] Re-opening the panel on the same response gives identical highlighting across opens'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88bae34f-b7d8-4c40-bcc4-9512fe423e50:
+    id: 88bae34f-b7d8-4c40-bcc4-9512fe423e50
+    content: '- [ ] Comparison stays within the existing panel-open performance budget on deep subtrees'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0513493a-8134-40c1-9664-8855ff8f27a2:
+    id: 0513493a-8134-40c1-9664-8855ff8f27a2
+    content: '- [ ] A comparison failure surfaces a visible error state rather than a silent all-green render'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ca047ba-dfd0-4f66-b238-478baad50101:
+    id: 3ca047ba-dfd0-4f66-b238-478baad50101
+    content: 🔧 Implementation proposal
+    children:
+      - 98285d29-c0b7-4b3c-8422-25167b266b62
+      - 1f827e5e-6bce-430d-8f05-e3f9803b530e
+      - 956e4fb0-f1cf-42e6-8621-c61da7b6a799
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98285d29-c0b7-4b3c-8422-25167b266b62:
+    id: 98285d29-c0b7-4b3c-8422-25167b266b62
+    content: 'Approach: trace the feedback-panel diff pipeline end to end — placeholder replacement, snapshot capture, node-level comparison, highlight rendering — isolate whether the parent-exempt symptom originates in comparison or rendering, then tighten per-node comparison to operate on normalised, placeholder-resolved content for both sides'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f827e5e-6bce-430d-8f05-e3f9803b530e:
+    id: 1f827e5e-6bce-430d-8f05-e3f9803b530e
+    content: Touchpoints
+    children:
+      - 0777b976-ba12-457e-9fb6-47f6824432ea
+      - 27aec291-a1e7-4211-a607-b79cce5e2ddd
+      - 3cf4b21a-57a9-491f-8139-e87eef7b398f
+      - 28bdd875-cffc-404f-91ba-7a8801a9d272
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0777b976-ba12-457e-9fb6-47f6824432ea:
+    id: 0777b976-ba12-457e-9fb6-47f6824432ea
+    content: Renderer feedback-panel comparison utility
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27aec291-a1e7-4211-a607-b79cce5e2ddd:
+    id: 27aec291-a1e7-4211-a607-b79cce5e2ddd
+    content: UUID placeholder replacement step in the feedback pipeline
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cf4b21a-57a9-491f-8139-e87eef7b398f:
+    id: 3cf4b21a-57a9-491f-8139-e87eef7b398f
+    content: Highlight rendering in the feedback panel component
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28bdd875-cffc-404f-91ba-7a8801a9d272:
+    id: 28bdd875-cffc-404f-91ba-7a8801a9d272
+    content: Tests covering the comparison utility and feedback-panel diff rendering
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  956e4fb0-f1cf-42e6-8621-c61da7b6a799:
+    id: 956e4fb0-f1cf-42e6-8621-c61da7b6a799
+    content: 'Constraints to call out: the intermittent symptom points at an ordering issue between UUID replacement and snapshot capture — the fix must guarantee replacement is complete on both snapshots before comparison runs, not rely on timing'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0486a88-b51c-48e7-b291-5a9265e97c1b:
+    id: f0486a88-b51c-48e7-b291-5a9265e97c1b
+    content: worktree
+    children:
+      - 2744c01b-f06f-4553-9ab9-e4a8947bdcbb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2744c01b-f06f-4553-9ab9-e4a8947bdcbb:
+    id: 2744c01b-f06f-4553-9ab9-e4a8947bdcbb
+    content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-continue-workflow-terminal)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66a7fd0c-f1ec-4dd5-b97f-fd1def4043cb:
+    id: 66a7fd0c-f1ec-4dd5-b97f-fd1def4043cb
     content: Happened when I had an unassigned terminal focused
     children: []
     metadata:
-      status: pending
-  f553dc6b-e9cc-4c85-849b-f4153654926c:
-    id: f553dc6b-e9cc-4c85-849b-f4153654926c
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  181ae53c-15db-4054-b6d9-759e275e0440:
+    id: 181ae53c-15db-4054-b6d9-759e275e0440
     content: But the assigned terminal was also open but in the background
     children: []
     metadata:
-      status: pending
-  f76d2163-7cb7-450d-9efe-37510451a9c6:
-    id: f76d2163-7cb7-450d-9efe-37510451a9c6
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1eeaf096-2c83-4d69-904f-acbd2ad7746e:
+    id: 1eeaf096-2c83-4d69-904f-acbd2ad7746e
     content: In this case, the workflow should continue in the assigned terminal
     children: []
     metadata:
-      status: pending
-  e2041e76-8134-4c67-9909-16d1c20ba5a9:
-    id: e2041e76-8134-4c67-9909-16d1c20ba5a9
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a77bd469-7908-4bb7-8df9-a3072066b1dc:
+    id: a77bd469-7908-4bb7-8df9-a3072066b1dc
     content: But the assigned terminal should be focused
     children: []
     metadata:
-      status: pending
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd0fcbf2-7e06-4c51-b90a-3595fa713c00:
+    id: bd0fcbf2-7e06-4c51-b90a-3595fa713c00
+    content: Technical refinement
+    children:
+      - 018108ac-629c-4431-9db2-6fdf3dba59fd
+      - 647e01e3-8922-4ee0-838e-158dc066a3fc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  018108ac-629c-4431-9db2-6fdf3dba59fd:
+    id: 018108ac-629c-4431-9db2-6fdf3dba59fd
+    content: Flag complications
+    children:
+      - 9b5a3bb7-d356-4f86-8227-f31a3cce84e3
+      - 6bc49b1f-2204-4f58-8f21-f4cca0dcb1eb
+      - 2acff529-abbc-4f92-9eb3-6ad900c961f0
+      - d1035693-17a3-4801-bf1b-c97768c724ba
+      - fd88894b-5330-4bcb-8d48-c512ddce11ab
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b5a3bb7-d356-4f86-8227-f31a3cce84e3:
+    id: 9b5a3bb7-d356-4f86-8227-f31a3cce84e3
+    content: 'Edge case: assigned terminal tab was closed since awaiting-validation — fall back to focused terminal and surface a toast so the user knows the binding moved'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bc49b1f-2204-4f58-8f21-f4cca0dcb1eb:
+    id: 6bc49b1f-2204-4f58-8f21-f4cca0dcb1eb
+    content: 'Edge case: focused terminal is already bound to a different running node — must not silently steal it; existing assignment guard should still trigger'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2acff529-abbc-4f92-9eb3-6ad900c961f0:
+    id: 2acff529-abbc-4f92-9eb3-6ad900c961f0
+    content: 'Out of scope: changing the binding model for `startWorkflow` (only `continueWorkflow` resolves from awaiting-validation state)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1035693-17a3-4801-bf1b-c97768c724ba:
+    id: d1035693-17a3-4801-bf1b-c97768c724ba
+    content: 'Out of scope: behaviour when no awaiting-validation entry exists (the menu item shouldn''t be present in that case)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd88894b-5330-4bcb-8d48-c512ddce11ab:
+    id: fd88894b-5330-4bcb-8d48-c512ddce11ab
+    content: 'Risk: focusing the background terminal will steal focus from whatever the user is typing in — acceptable since they invoked Continue'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  647e01e3-8922-4ee0-838e-158dc066a3fc:
+    id: 647e01e3-8922-4ee0-838e-158dc066a3fc
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - 6973f690-159a-4536-97c9-3a96dd5b056b
+      - 4cc5f073-f4a6-458b-948c-512064cf0b8c
+      - 2d4ce3d9-9f1c-4a00-af9b-b79291920459
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6973f690-159a-4536-97c9-3a96dd5b056b:
+    id: 6973f690-159a-4536-97c9-3a96dd5b056b
+    content: Source the terminal from `workflowExecutionStates[nodeId].terminalTabId` (already tracked on the awaiting-validation entry), not from the focused-terminal lookup the context menu currently uses
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cc5f073-f4a6-458b-948c-512064cf0b8c:
+    id: 4cc5f073-f4a6-458b-948c-512064cf0b8c
+    content: After resolving, activate that terminal tab in the terminal store so it becomes focused before `continueWorkflow` runs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d4ce3d9-9f1c-4a00-af9b-b79291920459:
+    id: 2d4ce3d9-9f1c-4a00-af9b-b79291920459
+    content: Change lands in the Continue Workflow menu wiring; the `continueWorkflow` action already accepts an explicit terminalId so no signature change is needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08343d36-ffe5-41dd-9c0b-b5303e446034:
+    id: 08343d36-ffe5-41dd-9c0b-b5303e446034
+    content: review feedback
+    children:
+      - 0871f866-c228-4294-8bac-43a5892ac285
+      - 3c1958f4-9904-4c07-a74c-8aaabef479d7
+      - 2160287e-7c16-4f77-9d56-cdbd17487b20
+      - 970e150f-e4c6-4992-984d-2f3d3944da14
+      - 95fba7cb-4cc7-4cc9-8075-424ee53c7627
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0871f866-c228-4294-8bac-43a5892ac285:
+    id: 0871f866-c228-4294-8bac-43a5892ac285
+    content: Approved — no Critical or Important findings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c1958f4-9904-4c07-a74c-8aaabef479d7:
+    id: 3c1958f4-9904-4c07-a74c-8aaabef479d7
+    content: Resolution at click time via `store.getState()` is consistent with the project's one-time-read pattern; tab activation + toast are appropriate side effects for the component layer
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2160287e-7c16-4f77-9d56-cdbd17487b20:
+    id: 2160287e-7c16-4f77-9d56-cdbd17487b20
+    content: The action-layer `findRunningNodeOnTerminal` guard in `continueWorkflow` (workflowExecutionActions.ts:389) remains the authority on terminal stealing and is unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  970e150f-e4c6-4992-984d-2f3d3944da14:
+    id: 970e150f-e4c6-4992-984d-2f3d3944da14
+    content: 'Test coverage hits the four meaningful branches: assigned-present routing, focus side effect, closed-tab fallback with toast, no stale `setActiveTerminal` on fallback'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95fba7cb-4cc7-4cc9-8075-424ee53c7627:
+    id: 95fba7cb-4cc7-4cc9-8075-424ee53c7627
+    content: 'Pre-existing gap noted (out of scope): `continueWorkflow` does not re-validate that the assigned terminal still exists between resolution and action; not caused or worsened by this fix'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f837ddc-f5c8-4c3c-a4b0-5f2cdc8ec7a5:
+    id: 6f837ddc-f5c8-4c3c-a4b0-5f2cdc8ec7a5
+    content: feedback
+    children:
+      - 37f08ba3-8305-48ee-8e44-751d64cac077
+      - 41b032c0-c852-4e69-aafa-88786cdbdc0d
+      - a32987af-dbc6-4cb1-9b50-97c60c427667
+      - b83751de-e0be-4f1d-a9c5-010734d8e94f
+      - eb5d9d98-7d9e-45a1-8d66-7ad692e90894
+      - f91ec294-b7e0-469e-983e-bfc3bac02181
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  37f08ba3-8305-48ee-8e44-751d64cac077:
+    id: 37f08ba3-8305-48ee-8e44-751d64cac077
+    content: No action items — reviewer's notes are all below their own threshold and the one race-condition observation is pre-existing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41b032c0-c852-4e69-aafa-88786cdbdc0d:
+    id: 41b032c0-c852-4e69-aafa-88786cdbdc0d
+    content: Critical / Important — none flagged, none found on re-read
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a32987af-dbc6-4cb1-9b50-97c60c427667:
+    id: a32987af-dbc6-4cb1-9b50-97c60c427667
+    content: Minor — em dash in toast text is intentional and matches existing toast copy in the codebase, no change needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b83751de-e0be-4f1d-a9c5-010734d8e94f:
+    id: b83751de-e0be-4f1d-a9c5-010734d8e94f
+    content: Minor — `resolveContinueTerminal` placement inside `buildMenuItems` is deliberate since it closes over `node.id` and `store`; matches the existing `autoStartAfterMove` helper above it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb5d9d98-7d9e-45a1-8d66-7ad692e90894:
+    id: eb5d9d98-7d9e-45a1-8d66-7ad692e90894
+    content: Minor — O(n) `terminals.some(...)` lookup is fine; terminal counts are tiny in practice (single-digit), not worth indexing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f91ec294-b7e0-469e-983e-bfc3bac02181:
+    id: f91ec294-b7e0-469e-983e-bfc3bac02181
+    content: Low-probability — resolve→action race where the assigned tab is closed in the millisecond gap is pre-existing in `continueWorkflow`, requires user to close the very tab they just selected, and would be caught by the next user-visible cycle; out of scope for this fix
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   a504e066-6432-458b-b655-95afaf9cd1a6:
     cwd: /Users/brianfox/dev/Arborescent
   33f4812f-5668-466f-8b37-55e8cbea1b3a:
     cwd: /Users/brianfox/dev/Arborescent
   104b53fe-f2ec-4fb8-933a-04657922f785:
+    cwd: /Users/brianfox/dev/Arborescent
+  6d275e4d-ffeb-4e82-ae23-896f224adc68:
+    cwd: /Users/brianfox/dev/Arborescent
+  02471748-68a7-4533-b01f-30b7d27078ea:
+    cwd: /Users/brianfox/dev/Arborescent
+  987ff262-a120-4da5-91a2-a3b56272c865:
+    cwd: /Users/brianfox/dev/Arborescent
+  24d24654-1307-462b-9746-f842245ce3c1:
     cwd: /Users/brianfox/dev/Arborescent
