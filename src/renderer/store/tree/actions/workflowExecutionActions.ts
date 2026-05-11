@@ -596,6 +596,31 @@ export const createWorkflowExecutionActions = (
     }
 
     const actualParentIds = findAllParentsOf(nodes, nodeId);
+    const previousParentId = actualParentIds[0];
+
+    if (previousParentId) {
+      const previousStep = nodes[previousParentId];
+      const decompositionStepId = findDecompositionStepInWorkflow(
+        previousParentId,
+        nodes,
+        ancestorRegistry,
+      );
+      if (previousStep?.metadata.recurse === true && decompositionStepId !== null) {
+        const terminalId = entry.terminalTabId;
+        const nodeName = nodes[nodeId]?.content || nodeId;
+        stopWorkflow(nodeId);
+        useToastStore
+          .getState()
+          .addToast(
+            `"${nodeName}" halted at recurse step — handing off to next decomposed sibling`,
+            "info",
+          );
+        triggerAutosave?.();
+        checkRecurse(previousParentId, terminalId, nodeId);
+        return;
+      }
+    }
+
     let updatedNodes = removeNodeFromAllParents(nodes, nodeId);
 
     if (!updatedNodes[nextStepId].children.includes(nodeId)) {
@@ -652,7 +677,6 @@ export const createWorkflowExecutionActions = (
       );
     }
 
-    const previousParentId = actualParentIds[0];
     if (previousParentId) {
       checkRecurse(previousParentId, entry.terminalTabId, nodeId);
     }
@@ -925,37 +949,6 @@ export const createWorkflowExecutionActions = (
         .addToast("Feedback could not be parsed — workflow stopped", "error");
       void notifyWorkflowEvent("alert", "Feedback parse error", "Feedback could not be parsed");
       return;
-    }
-
-    // Guard against the AI writing the CONTEXT tree instead of the CONTENT
-    // list back to the temp file. Without this check, AcceptFeedbackCommand
-    // would silently swap the workflow node with the context how-to. We only
-    // enforce it for non-decomposition steps since decomposition legitimately
-    // produces roots whose content differs from the single input.
-    if (!decomposition) {
-      const parsedRoot = parsed.nodes[parsed.rootNodeId];
-      const originalContent = nodes[nodeId].content;
-      if (parsedRoot && parsedRoot.content !== originalContent) {
-        logger.error(
-          `Content-root mismatch on auto-accept for node ${nodeId}: parsed "${parsedRoot.content}" vs original "${originalContent}"`,
-          new Error("Feedback root mismatch"),
-          "WorkflowExecution",
-        );
-        stopWorkflow(nodeId);
-        cleanupAutonomousCollaboration(nodeId);
-        useToastStore
-          .getState()
-          .addToast(
-            "Auto-accept rejected — feedback root does not match the node. Workflow stopped.",
-            "error",
-          );
-        void notifyWorkflowEvent(
-          "alert",
-          "Feedback root mismatch",
-          "AI returned a different root than the node — accept was rejected",
-        );
-        return;
-      }
     }
 
     const archiveConfig = getArchiveConfigForNode(nodeId, nodes, ancestorRegistry);

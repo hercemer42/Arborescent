@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-10T18:53:20.738Z'
+updated: '2026-05-11T05:50:30.632Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -81496,9 +81496,8 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - da075573-4db3-4805-ba22-2c0127a3f978
       - 00ed9bd1-7eb1-46c3-b26e-ef5b51a49826
-      - 815a14a2-d4f9-4f46-91f1-d603b2d3185c
-      - fcb40af2-520f-47e7-8a23-4cf9e1aed962
       - 889ff4cb-3ae1-4f90-b289-12a92935efb7
       - cfd38a28-0349-4873-8780-177e444d7cd3
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
@@ -82871,7 +82870,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - fcb40af2-520f-47e7-8a23-4cf9e1aed962
     metadata:
       status: pending
       isBlueprint: true
@@ -90239,7 +90239,7 @@ nodes:
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   042ee811-0108-4574-9a4c-2a7909572178:
     id: 042ee811-0108-4574-9a4c-2a7909572178
     content: Refactor right click menu
@@ -101831,6 +101831,7 @@ nodes:
       - b8271124-9374-40e1-ab13-db50aa372c26
     metadata:
       status: pending
+      expanded: false
   b8271124-9374-40e1-ab13-db50aa372c26:
     id: b8271124-9374-40e1-ab13-db50aa372c26
     content: Not useful if we open it in another machine
@@ -101897,6 +101898,7 @@ nodes:
       - 08cfb637-a489-4162-88e2-b8eac5b03ddb
     metadata:
       status: pending
+      expanded: false
   08cfb637-a489-4162-88e2-b8eac5b03ddb:
     id: 08cfb637-a489-4162-88e2-b8eac5b03ddb
     content: When we start a workflow on a node with an attached context, warn the user before preceding.
@@ -101934,43 +101936,10 @@ nodes:
   889ff4cb-3ae1-4f90-b289-12a92935efb7:
     id: 889ff4cb-3ae1-4f90-b289-12a92935efb7
     content: 'Bug : Still issues with comparison showing everything but parent node in green'
-    children: []
-    metadata:
-      status: pending
-  fcb40af2-520f-47e7-8a23-4cf9e1aed962:
-    id: fcb40af2-520f-47e7-8a23-4cf9e1aed962
-    content: 'Bug : Had a case where the agent created a worktree and then continued with the rest of the implementation'
     children:
-      - ac3a553a-fd04-4077-bd28-c589698c9d6b
-    metadata:
-      status: pending
-      expanded: false
-  ac3a553a-fd04-4077-bd28-c589698c9d6b:
-    id: ac3a553a-fd04-4077-bd28-c589698c9d6b
-    content: Need to make it clearer in instructions that the context is just a step and to only perform that step on the content.
-    children: []
-    metadata:
-      status: pending
-  815a14a2-d4f9-4f46-91f1-d603b2d3185c:
-    id: 815a14a2-d4f9-4f46-91f1-d603b2d3185c
-    content: 'Bug : Claude writes the worktree info directly to project.arbo'
-    children:
-      - b322e5e5-5521-47c2-9f66-2f021f0ecaae
-      - 536b26b1-9423-41b8-8bcd-e6b1d8e07ad9
-      - e7b1228d-7c09-4af1-b4d3-bf6fc12cfcc0
-    metadata:
-      status: pending
-      expanded: false
-  b322e5e5-5521-47c2-9f66-2f021f0ecaae:
-    id: b322e5e5-5521-47c2-9f66-2f021f0ecaae
-    content: Need to be more explicit about writing this back to the temporary file
-    children: []
-    metadata:
-      status: pending
-  536b26b1-9423-41b8-8bcd-e6b1d8e07ad9:
-    id: 536b26b1-9423-41b8-8bcd-e6b1d8e07ad9
-    content: Can have a universal instruction - any node additions get written to temporary file in collaborate mode
-    children: []
+      - aed97283-4d1f-4d8e-9e9a-d40d97de9ed0
+      - 3ca047ba-dfd0-4f66-b238-478baad50101
+      - 0ac04c1b-9c41-4fa1-bb67-db429c1cb350
     metadata:
       status: pending
   d0da6881-00bd-405b-8dbf-1603876d5450:
@@ -101993,19 +101962,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  e7b1228d-7c09-4af1-b4d3-bf6fc12cfcc0:
-    id: e7b1228d-7c09-4af1-b4d3-bf6fc12cfcc0
-    content: This was with Sonnet mind you
-    children:
-      - f430b6c0-07f3-4ce3-87b2-6021b935c090
-    metadata:
-      status: pending
-  f430b6c0-07f3-4ce3-87b2-6021b935c090:
-    id: f430b6c0-07f3-4ce3-87b2-6021b935c090
-    content: Perhaps it's not an issue with Opus
-    children: []
-    metadata:
-      status: pending
   f77205f2-e73d-40a8-a993-33d1db64fd56:
     id: f77205f2-e73d-40a8-a993-33d1db64fd56
     content: Subtask scope
@@ -108932,7 +108888,401 @@ nodes:
       plugins: {}
   00ed9bd1-7eb1-46c3-b26e-ef5b51a49826:
     id: 00ed9bd1-7eb1-46c3-b26e-ef5b51a49826
-    content: Bug - linked steps didn't stop at recurse node, they just kept going
+    content: Bug - linked steps don't stop at recurse node, they just kept going
+    children:
+      - 9b34eda6-984d-4d14-ab41-7b4283f92daf
+    metadata:
+      status: pending
+  9b34eda6-984d-4d14-ab41-7b4283f92daf:
+    id: 9b34eda6-984d-4d14-ab41-7b4283f92daf
+    content: Noticed after a session that
+    children:
+      - efc4578b-3527-49f9-a36f-421380645ce0
+      - 7fbdce5e-e875-4138-97d1-bb3daefe4846
+      - 99976448-50fe-4cfd-84a9-2642cdc9c7e0
+      - 235d87f8-7236-4391-a825-bca2a449083f
+    metadata:
+      status: pending
+  efc4578b-3527-49f9-a36f-421380645ce0:
+    id: efc4578b-3527-49f9-a36f-421380645ce0
+    content: With a User story node that was decomposed into 3 PRs
     children: []
     metadata:
       status: pending
+  7fbdce5e-e875-4138-97d1-bb3daefe4846:
+    id: 7fbdce5e-e875-4138-97d1-bb3daefe4846
+    content: All three PRs progressed past the node which 'recursion' was marked on
+    children: []
+    metadata:
+      status: pending
+  99976448-50fe-4cfd-84a9-2642cdc9c7e0:
+    id: 99976448-50fe-4cfd-84a9-2642cdc9c7e0
+    content: Would expect each PR to stop on the recursion node and await user interaction before proceeding
+    children: []
+    metadata:
+      status: pending
+  235d87f8-7236-4391-a825-bca2a449083f:
+    id: 235d87f8-7236-4391-a825-bca2a449083f
+    content: Regardless of if that step is automated
+    children: []
+    metadata:
+      status: pending
+  fcb40af2-520f-47e7-8a23-4cf9e1aed962:
+    id: fcb40af2-520f-47e7-8a23-4cf9e1aed962
+    content: 'Bug : Had a case where the agent created a worktree and then continued with the rest of the implementation without being asked'
+    children:
+      - 11e62c79-a30d-4de4-ad1a-701eef053587
+      - 2fe941e1-3ffb-4057-8e50-a29dcec14b86
+      - 97bceb8e-2724-4973-ad3f-1d99a83ff79a
+      - 921a6a98-af54-4a6e-b261-8f10e9f1be51
+      - 06afefeb-acf5-4537-a1fb-c41b6aeab4bd
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  3ca047ba-dfd0-4f66-b238-478baad50101:
+    id: 3ca047ba-dfd0-4f66-b238-478baad50101
+    content: Either the comparison or the UUID replacement isn't working every time
+    children: []
+    metadata:
+      status: pending
+  0ac04c1b-9c41-4fa1-bb67-db429c1cb350:
+    id: 0ac04c1b-9c41-4fa1-bb67-db429c1cb350
+    content: ''
+    children: []
+    metadata:
+      status: pending
+  aed97283-4d1f-4d8e-9e9a-d40d97de9ed0:
+    id: aed97283-4d1f-4d8e-9e9a-d40d97de9ed0
+    content: "This is in cases where the feedback panel is opened,\_"
+    children: []
+    metadata:
+      status: pending
+  da075573-4db3-4805-ba22-2c0127a3f978:
+    id: da075573-4db3-4805-ba22-2c0127a3f978
+    content: Bug - sometimes the terminal scrollbar dissapears
+    children:
+      - b1da9b46-7bff-47c5-9a93-4fc5fe7c775f
+      - cd91f1a9-28d4-43ed-a854-b1cd625adf5d
+      - facdf5eb-52cd-4ba7-b119-4c0d142a6345
+      - 55513215-e10a-4620-b7a8-6f877872424c
+    metadata:
+      status: pending
+      expanded: true
+  b1da9b46-7bff-47c5-9a93-4fc5fe7c775f:
+    id: b1da9b46-7bff-47c5-9a93-4fc5fe7c775f
+    content: I can't scroll up in the claude session
+    children: []
+    metadata:
+      status: pending
+  cd91f1a9-28d4-43ed-a854-b1cd625adf5d:
+    id: cd91f1a9-28d4-43ed-a854-b1cd625adf5d
+    content: I have to ask it another question
+    children: []
+    metadata:
+      status: pending
+  facdf5eb-52cd-4ba7-b119-4c0d142a6345:
+    id: facdf5eb-52cd-4ba7-b119-4c0d142a6345
+    content: Maybe it's a claude code bug and not an arborescent one
+    children: []
+    metadata:
+      status: pending
+  55513215-e10a-4620-b7a8-6f877872424c:
+    id: 55513215-e10a-4620-b7a8-6f877872424c
+    content: Check their issues list
+    children: []
+    metadata:
+      status: pending
+  11e62c79-a30d-4de4-ad1a-701eef053587:
+    id: 11e62c79-a30d-4de4-ad1a-701eef053587
+    content: worktree
+    children:
+      - cd5b4d82-1ac5-4b27-b357-f88f064b850e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd5b4d82-1ac5-4b27-b357-f88f064b850e:
+    id: cd5b4d82-1ac5-4b27-b357-f88f064b850e
+    content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-workflow-step-wording)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fe941e1-3ffb-4057-8e50-a29dcec14b86:
+    id: 2fe941e1-3ffb-4057-8e50-a29dcec14b86
+    content: Need to make it clearer in instructions that the context is just a step and to only perform that step on the content.
+    children:
+      - 43c4759b-c04c-4be1-a92b-9319bcc6abb2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43c4759b-c04c-4be1-a92b-9319bcc6abb2:
+    id: 43c4759b-c04c-4be1-a92b-9319bcc6abb2
+    content: 'Proposed wording: "The context represents a step in a workflow. Apply only this step when following instructions in the content. Don''t anticipate the next step, it will be sent afterwards."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97bceb8e-2724-4973-ad3f-1d99a83ff79a:
+    id: 97bceb8e-2724-4973-ad3f-1d99a83ff79a
+    content: Technical refinement
+    children:
+      - 0ef462d7-e6f2-4d5f-bd95-45ac07913607
+      - bcdb6f8d-7863-44cd-bafd-86d916079869
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ef462d7-e6f2-4d5f-bd95-45ac07913607:
+    id: 0ef462d7-e6f2-4d5f-bd95-45ac07913607
+    content: Flag complications
+    children:
+      - f69a56e1-efcb-42a2-9b27-9d04264dfc0e
+      - 5ff99b89-8655-4172-a2bb-e052363638db
+      - 060c2295-8bcd-4489-8ac3-5dfb1836f0e2
+      - 0240f386-b731-4929-937e-e92f2d739c4b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f69a56e1-efcb-42a2-9b27-9d04264dfc0e:
+    id: f69a56e1-efcb-42a2-9b27-9d04264dfc0e
+    content: Hard to reproduce — depends on model interpretation; fix may not be verifiable without repeated trials
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ff99b89-8655-4172-a2bb-e052363638db:
+    id: 5ff99b89-8655-4172-a2bb-e052363638db
+    content: 'Risk of over-constraining: legitimate contexts that genuinely expect multi-action execution must not be blocked by the new wording'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  060c2295-8bcd-4489-8ac3-5dfb1836f0e2:
+    id: 060c2295-8bcd-4489-8ac3-5dfb1836f0e2
+    content: 'Out of scope: why the agent chose to spawn a worktree at all — this only addresses over-execution, not the trigger'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0240f386-b731-4929-937e-e92f2d739c4b:
+    id: 0240f386-b731-4929-937e-e92f2d739c4b
+    content: '"Next step will be sent afterwards" implies a sequenced sender — verify all callers actually follow up, or the agent may stall waiting'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcdb6f8d-7863-44cd-bafd-86d916079869:
+    id: bcdb6f8d-7863-44cd-bafd-86d916079869
+    content: Summarise the approach
+    children:
+      - ae0c7330-975d-4701-aae0-9e8316b7e68d
+      - 78e1ae31-a0a4-4d53-b8f8-c8ea84de51d6
+      - 4c6525c6-4429-4eec-887b-47e0d5211770
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae0c7330-975d-4701-aae0-9e8316b7e68d:
+    id: ae0c7330-975d-4701-aae0-9e8316b7e68d
+    content: Prompt/template change in the step-instruction wrapper — no logic change, lands wherever step contexts are injected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78e1ae31-a0a4-4d53-b8f8-c8ea84de51d6:
+    id: 78e1ae31-a0a4-4d53-b8f8-c8ea84de51d6
+    content: Insert the workflow-step framing + explicit "do not anticipate the next step" clause at the top of the context block
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c6525c6-4429-4eec-887b-47e0d5211770:
+    id: 4c6525c6-4429-4eec-887b-47e0d5211770
+    content: 'Non-obvious: fix is wording-only, so regressions can recur silently if the template is later edited without this constraint in mind'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  921a6a98-af54-4a6e-b261-8f10e9f1be51:
+    id: 921a6a98-af54-4a6e-b261-8f10e9f1be51
+    content: review feedback
+    children:
+      - c1cfcee0-a795-4b1d-9c65-0c3b972c4bc0
+      - ebf25c64-e10e-49c3-871b-6738a7287ab0
+      - 7ecf07ee-c454-477a-b385-8a3881886635
+      - 051fbe7d-1b99-494e-b37b-fa3fa427ebb0
+      - 0451d185-b958-4d90-82b4-f8db08bea7b9
+      - 4ae9fe67-0960-44f8-a068-ddb0d7f08a28
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1cfcee0-a795-4b1d-9c65-0c3b972c4bc0:
+    id: c1cfcee0-a795-4b1d-9c65-0c3b972c4bc0
+    content: 'No blockers. Diff is minimal: one constant + two interpolations + 10 tests. Conventions clean (SCREAMING_SNAKE_CASE, no JSDoc, no ticket refs, negative test for bare-send).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebf25c64-e10e-49c3-871b-6738a7287ab0:
+    id: ebf25c64-e10e-49c3-871b-6738a7287ab0
+    content: 'Framing placement (first line after CONTEXT:/REVIEW CONTEXT: header, before OUTPUT FORMAT) is correct — that''s where the bug surfaces. Moving it to INSTRUCTIONS would be worse.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ecf07ee-c454-477a-b385-8a3881886635:
+    id: 7ecf07ee-c454-477a-b385-8a3881886635
+    content: Constant lives in promptBuilder.ts next to BASE_INSTRUCTION_RULES — both are prompt-fragment strings consumed by sendActions.ts, consistent ownership.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  051fbe7d-1b99-494e-b37b-fa3fa427ebb0:
+    id: 051fbe7d-1b99-494e-b37b-fa3fa427ebb0
+    content: 'Wording stall-risk on the final workflow step is theoretical only — OUTPUT FORMAT + output target already give a terminating instruction. Watch in real usage; safer alternative if revisited: "Don''t anticipate or perform any next step; if there is one, it will be sent afterwards."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0451d185-b958-4d90-82b4-f8db08bea7b9:
+    id: 0451d185-b958-4d90-82b4-f8db08bea7b9
+    content: 'Test coverage notes (non-blocking): decomposition branch not explicitly pinned (framing is upstream of getOutputFormat so logically covered); autonomous-collaborate path not explicitly asserted (same producer as terminal-collaborate); describe block named "web execute mode" actually tests both-flags-on via buildWebExecutePrompt, not execute-only — cosmetic only.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ae9fe67-0960-44f8-a068-ddb0d7f08a28:
+    id: 4ae9fe67-0960-44f8-a068-ddb0d7f08a28
+    content: 'Latent risk: promptBuilder.ts also exports buildExecutePrompt/buildStructuredPrompt which currently have no production callers and do NOT receive the framing. If ever wired up, framing will silently not apply. Out of scope for this fix; mental note only.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06afefeb-acf5-4537-a1fb-c41b6aeab4bd:
+    id: 06afefeb-acf5-4537-a1fb-c41b6aeab4bd
+    content: feedback
+    children:
+      - be6c68d6-28d7-438f-b2db-d13e9e286c2c
+      - eab34f10-54e2-4b40-bbf4-6dec62031295
+      - 0c30ee66-226b-427a-b1cf-13f795f8fd29
+      - 11f6fb5a-e370-4689-ba95-71f6afe2fd40
+      - 534535bb-7034-48e0-a324-0ac54b68d6ff
+      - b2cb9a6d-c196-4369-883c-8f75ea56a01e
+      - b9ac314f-7780-4c9d-ba9b-fbee13cf5516
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be6c68d6-28d7-438f-b2db-d13e9e286c2c:
+    id: be6c68d6-28d7-438f-b2db-d13e9e286c2c
+    content: 'Blockers: none. Agreed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eab34f10-54e2-4b40-bbf4-6dec62031295:
+    id: eab34f10-54e2-4b40-bbf4-6dec62031295
+    content: 'Major: none. Agreed — the review itself classified everything below blocker.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c30ee66-226b-427a-b1cf-13f795f8fd29:
+    id: 0c30ee66-226b-427a-b1cf-13f795f8fd29
+    content: 'Minor — rejected: "describe block ''web execute mode'' is misleading". Pushback — the existing test file already uses identical phrasing for the both-flags-on path: `describe(''collaborateInTerminal with execute mode'', ...)` and `describe(''autonomousCollaborateInTerminal with execute mode'', ...)` both invoke `{ collaborate: true, execute: true }`. "execute mode" is the established shorthand in this file for that path; my naming is consistent with the convention. No change.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11f6fb5a-e370-4689-ba95-71f6afe2fd40:
+    id: 11f6fb5a-e370-4689-ba95-71f6afe2fd40
+    content: 'Low-probability — accepted as-is, no action: wording stall-risk on terminal workflow step. The terminating instructions (OUTPUT FORMAT, output target, "Report what you did") make a stall very unlikely. Reviewer''s "safer alternative" wording is longer for no measurable gain. Will revisit only if observed in real usage.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  534535bb-7034-48e0-a324-0ac54b68d6ff:
+    id: 534535bb-7034-48e0-a324-0ac54b68d6ff
+    content: 'Low-probability — accepted as-is, no action: decomposition branch and autonomous-collaborate path not explicitly pinned. Both share the same producer (`buildExecuteInstructions` / `buildCollaborateInstructions`) as paths already asserted, and framing injection is upstream of the branch points. Additional tests would assert the same injection site with different downstream content — redundant.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2cb9a6d-c196-4369-883c-8f75ea56a01e:
+    id: b2cb9a6d-c196-4369-883c-8f75ea56a01e
+    content: 'Low-probability — accepted as-is, no action: latent risk on `buildExecutePrompt`/`buildStructuredPrompt` in promptBuilder.ts. Confirmed via grep: zero production callers exist; only test mocks reference them. Adding framing to dead code paths violates the "minimal change" rule. If anyone wires them up later, they will see they don''t go through `buildExecuteInstructions` and can extend appropriately.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9ac314f-7780-4c9d-ba9b-fbee13cf5516:
+    id: b9ac314f-7780-4c9d-ba9b-fbee13cf5516
+    content: 'Net: no code changes required from the review. All non-validation findings correctly self-classified as non-blocking; one (describe-block naming) rests on a false premise about the existing convention.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+sessionRegistry:
+  a504e066-6432-458b-b655-95afaf9cd1a6:
+    cwd: /Users/brianfox/dev/Arborescent
+  33f4812f-5668-466f-8b37-55e8cbea1b3a:
+    cwd: /Users/brianfox/dev/Arborescent
+  104b53fe-f2ec-4fb8-933a-04657922f785:
+    cwd: /Users/brianfox/dev/Arborescent

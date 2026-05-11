@@ -1135,6 +1135,82 @@ describe('createWorkflowExecutionActions', () => {
     });
   });
 
+  describe('halt at recurse step for decomposed siblings', () => {
+    beforeEach(() => {
+      state.nodes['step-1'].metadata.decomposition = true;
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.nodes['step-2'].metadata.recurse = true;
+      state.nodes['step-3'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('halts a decomposed sibling at the recurse step instead of advancing to the next step', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-2'].children = ['task-a'];
+      state.nodes['step-1'].children = ['task-b'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.advanceNode('task-a');
+
+      expect(state.nodes['step-3'].children).not.toContain('task-a');
+      expect(state.nodes['step-2'].children).toContain('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+
+      vi.advanceTimersByTime(2500);
+      expect(state.workflowExecutionStates['task-b']).toBeDefined();
+
+      vi.useRealTimers();
+    });
+
+    it('halts the last decomposed sibling at the recurse step even when no waiting siblings remain', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-2'].children = ['task-a'];
+      state.nodes['step-1'].children = [];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.advanceNode('task-a');
+
+      expect(state.nodes['step-3'].children).not.toContain('task-a');
+      expect(state.nodes['step-2'].children).toContain('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+
+      vi.advanceTimersByTime(2500);
+      expect(Object.keys(state.workflowExecutionStates)).toHaveLength(0);
+
+      vi.useRealTimers();
+    });
+
+    it('does NOT halt at a recurse step when the workflow has no decomposition step', () => {
+      state.nodes['step-1'].metadata.decomposition = false;
+      state.nodes['step-2'].children = ['task-a'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.advanceNode('task-a');
+
+      expect(state.nodes['step-3'].children).toContain('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeDefined();
+    });
+
+    it('does NOT halt when the just-completed step has no recurse flag (decomposed workflow, non-recurse step)', () => {
+      state.nodes['step-2'].metadata.recurse = false;
+      state.nodes['step-2'].children = ['task-a'];
+      state.nodes['step-1'].children = ['task-b'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.advanceNode('task-a');
+
+      expect(state.nodes['step-3'].children).toContain('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeDefined();
+    });
+  });
+
   describe('recurse safety limit', () => {
     it('should stop recursing and show warning after exceeding safety limit', () => {
       vi.useFakeTimers();
