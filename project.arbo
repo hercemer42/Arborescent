@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-11T06:38:23.216Z'
+updated: '2026-05-11T06:39:57.057Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25612,8 +25612,7 @@ nodes:
   fbf20e91-d852-4406-9815-952fa7727f33:
     id: fbf20e91-d852-4406-9815-952fa7727f33
     content: Test pass & issue resolution
-    children:
-      - a45e5394-9ae7-4823-ac2a-387cb0223cfe
+    children: []
     metadata:
       status: pending
       appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -82868,9 +82867,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 0285aef9-2f1c-4a3c-ad08-b75d799ab4ce
-      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -93220,7 +93217,8 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children: []
+    children:
+      - a45e5394-9ae7-4823-ac2a-387cb0223cfe
     metadata:
       status: pending
       isBlueprint: true
@@ -96898,7 +96896,9 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children: []
+    children:
+      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
+      - 0285aef9-2f1c-4a3c-ad08-b75d799ab4ce
     metadata:
       status: pending
       isBlueprint: true
@@ -99225,11 +99225,11 @@ nodes:
     id: a45e5394-9ae7-4823-ac2a-387cb0223cfe
     content: Bug - can't stop a workflow in pause, can only continue
     children:
-      - 3928cc24-8d48-4c53-b5d5-f4ef39405bc4
-      - 42945015-b039-4211-bdd0-855bf447c0c5
-      - f89b86eb-c146-4e38-8f41-9e8e52566841
-      - a6f5457f-6b8b-431d-98c8-2817f8e5c6ce
-      - 9c2966cd-3809-4c04-8800-ebf76a9258ec
+      - e015c1ab-c756-44d8-b5a3-b7cb0bc1a535
+      - 440221ea-6fcc-4801-b419-48cd832a81be
+      - d6431c97-c2b6-4037-a99c-e6dbfc6b9438
+      - 6bf8509a-83c7-4d18-84df-4161c4f2be66
+      - a819939e-8b95-47dc-a4ec-bf97504ba178
     metadata:
       status: completed
       expanded: false
@@ -101903,10 +101903,10 @@ nodes:
     id: 889ff4cb-3ae1-4f90-b289-12a92935efb7
     content: Reliable comparison highlighting in feedback panel
     children:
-      - cf27ada8-0a11-4579-810d-187ee6b3ad0d
-      - c987dcff-df28-48a8-b8a8-a0c8cd993834
-      - 76ff9bf0-1610-4693-9c57-9b09fff030df
-      - 5520fefc-3a22-4721-ad6f-6bca5664a0e6
+      - 4d936471-3cad-4167-91b9-888e4c561ac3
+      - 52e4bf28-e6ce-4dd8-8560-9c959a30d199
+      - 065b54ef-868b-439b-9fd8-eade4c63539f
+      - 0f6a367c-16a7-4296-9019-154cfb07fa71
     metadata:
       status: pending
       expanded: false
@@ -109986,163 +109986,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3928cc24-8d48-4c53-b5d5-f4ef39405bc4:
-    id: 3928cc24-8d48-4c53-b5d5-f4ef39405bc4
+  4d936471-3cad-4167-91b9-888e4c561ac3:
+    id: 4d936471-3cad-4167-91b9-888e4c561ac3
     content: worktree
     children:
-      - 2a7b5fb0-0dbf-4e69-8dae-dc303106b5f0
+      - 8ae442ee-46d3-4e62-afd4-49c8c8424eb5
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2a7b5fb0-0dbf-4e69-8dae-dc303106b5f0:
-    id: 2a7b5fb0-0dbf-4e69-8dae-dc303106b5f0
-    content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-workflow-stop-from-pause)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  42945015-b039-4211-bdd0-855bf447c0c5:
-    id: 42945015-b039-4211-bdd0-855bf447c0c5
-    content: Need to be able to stop it too
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f89b86eb-c146-4e38-8f41-9e8e52566841:
-    id: f89b86eb-c146-4e38-8f41-9e8e52566841
-    content: Show 'Stop workflow' in right click menu for paused workflows
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a6f5457f-6b8b-431d-98c8-2817f8e5c6ce:
-    id: a6f5457f-6b8b-431d-98c8-2817f8e5c6ce
-    content: Technical refinement
-    children:
-      - 6480109d-0109-44af-b3ba-c9c26f654a01
-      - 6059d7ea-2b19-4581-a333-31f7a90fde7e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6480109d-0109-44af-b3ba-c9c26f654a01:
-    id: 6480109d-0109-44af-b3ba-c9c26f654a01
-    content: Flag complications
-    children:
-      - b6b1060d-7a0f-4349-be6f-1380ffcd62ff
-      - 3a164eca-1732-4660-9297-691b2761aba7
-      - 78c28c8a-3c32-4749-99ce-718336129c7c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6b1060d-7a0f-4349-be6f-1380ffcd62ff:
-    id: b6b1060d-7a0f-4349-be6f-1380ffcd62ff
-    content: '`stopWorkflow` currently early-returns unless state is `running` — must also accept `awaiting-validation`, and cleanup paths (`stepTimeouts`, autonomous collab, pending ACKs, terminal assignment release) need to be safe for the paused case'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a164eca-1732-4660-9297-691b2761aba7:
-    id: 3a164eca-1732-4660-9297-691b2761aba7
-    content: Escape-key handler (`uiService.ts`) only stops running nodes today; existing test asserts it does NOT stop awaiting-validation — decide whether to extend Escape too or keep it menu-only (out of scope by default)
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  78c28c8a-3c32-4749-99ce-718336129c7c:
-    id: 78c28c8a-3c32-4749-99ce-718336129c7c
-    content: 'Risk: a node deleted/moved while paused already clears state via separate handlers — confirm Stop on paused doesn''t double-fire or fight those paths'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6059d7ea-2b19-4581-a333-31f7a90fde7e:
-    id: 6059d7ea-2b19-4581-a333-31f7a90fde7e
-    content: Summarise the approach in 2-3 bullets
-    children:
-      - cdbc9340-d91a-46d3-8890-5a5249cdfa74
-      - 8e832ec7-a1ff-4b4b-89a0-bdeda829749d
-      - c0bae075-5f31-4d7a-a557-5015e74dd4f5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cdbc9340-d91a-46d3-8890-5a5249cdfa74:
-    id: cdbc9340-d91a-46d3-8890-5a5249cdfa74
-    content: Relax the state guard in `stopWorkflow` (workflowExecutionActions.ts:354) to also handle `awaiting-validation`
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e832ec7-a1ff-4b4b-89a0-bdeda829749d:
-    id: 8e832ec7-a1ff-4b4b-89a0-bdeda829749d
-    content: In `buildWorkflowExecutionItems` (useWorkflowSubmenu.ts:86), return both `Stop Workflow` and `Continue Workflow` for the awaiting-validation branch
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c0bae075-5f31-4d7a-a557-5015e74dd4f5:
-    id: c0bae075-5f31-4d7a-a557-5015e74dd4f5
-    content: 'Non-obvious: paused entries hold a terminal assignment and possibly a pending clear-session/Claude-launch — Stop must funnel through the same cleanup as the running case, not a shortcut delete of the state entry'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c2966cd-3809-4c04-8800-ebf76a9258ec:
-    id: 9c2966cd-3809-4c04-8800-ebf76a9258ec
-    content: Technical decomposition
-    children:
-      - ca5de2ed-668d-4792-b802-2d09f3869590
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ca5de2ed-668d-4792-b802-2d09f3869590:
-    id: ca5de2ed-668d-4792-b802-2d09f3869590
-    content: Single PR — menu entry and the `stopWorkflow` guard relaxation must land together, otherwise the new menu item either does nothing or the guard change is unreachable from the UI. Overlapping code paths and shared cleanup mean the changes must be reviewed together.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf27ada8-0a11-4579-810d-187ee6b3ad0d:
-    id: cf27ada8-0a11-4579-810d-187ee6b3ad0d
-    content: worktree
-    children:
-      - 68995ad9-a1e9-459d-b0ab-d50953e2a612
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  68995ad9-a1e9-459d-b0ab-d50953e2a612:
-    id: 68995ad9-a1e9-459d-b0ab-d50953e2a612
+  8ae442ee-46d3-4e62-afd4-49c8c8424eb5:
+    id: 8ae442ee-46d3-4e62-afd4-49c8c8424eb5
     content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-feedback-comparison)'
     children: []
     metadata:
@@ -110150,23 +110005,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c987dcff-df28-48a8-b8a8-a0c8cd993834:
-    id: c987dcff-df28-48a8-b8a8-a0c8cd993834
+  52e4bf28-e6ce-4dd8-8560-9c959a30d199:
+    id: 52e4bf28-e6ce-4dd8-8560-9c959a30d199
     content: 📄 Product spec
     children:
-      - c1d8a0d7-d1a3-43d8-91d3-fa9344479c69
-      - 0be0cb15-0528-4b84-b4a4-a7168cca5b37
-      - 290a0c79-3052-4bb7-a2f0-f1a379ddba12
-      - bcfb05a6-7088-40ee-b54a-2d1e9616c605
-      - d151d9ae-9dac-45b1-b31b-ceb9abca8c66
-      - 524b8b3c-9e6d-49e1-aa51-be8ed0bb91b0
+      - 2b74f677-c3dd-490f-b4de-ab9af5b58b6d
+      - d8ca0536-7990-461f-aa11-5c6d2084f1f5
+      - bcad089d-7510-400d-8f2b-c0d0eb612304
+      - d7443ce0-f656-4205-b330-2b8723ea79cd
+      - 942fcbe2-a03a-4d53-8eb9-279f2bc22a19
+      - cf7de690-4b98-4d2c-bd36-261c78920e59
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  c1d8a0d7-d1a3-43d8-91d3-fa9344479c69:
-    id: c1d8a0d7-d1a3-43d8-91d3-fa9344479c69
+  2b74f677-c3dd-490f-b4de-ab9af5b58b6d:
+    id: 2b74f677-c3dd-490f-b4de-ab9af5b58b6d
     content: 'Context: the feedback panel renders a before/after diff using green highlighting to mark nodes the AI changed; the cascade trigger is AI rewording or expansion that defeats LCS-exact sibling matching — when `pendingAdded.length > pendingRemoved.length` at flush time the excess is minted as ''added'' (green); parent-unhighlighted is by design (root content is classified independently from its children)'
     children: []
     metadata:
@@ -110174,8 +110029,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0be0cb15-0528-4b84-b4a4-a7168cca5b37:
-    id: 0be0cb15-0528-4b84-b4a4-a7168cca5b37
+  d8ca0536-7990-461f-aa11-5c6d2084f1f5:
+    id: d8ca0536-7990-461f-aa11-5c6d2084f1f5
     content: 'User: Arborescent user reviewing the result of an AI feedback response in the feedback panel'
     children: []
     metadata:
@@ -110183,8 +110038,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  290a0c79-3052-4bb7-a2f0-f1a379ddba12:
-    id: 290a0c79-3052-4bb7-a2f0-f1a379ddba12
+  bcad089d-7510-400d-8f2b-c0d0eb612304:
+    id: bcad089d-7510-400d-8f2b-c0d0eb612304
     content: 'Current experience: opening the panel highlights nearly the whole subtree in green except the parent node, so the diff carries no useful signal and the user cannot tell what the AI actually changed'
     children: []
     metadata:
@@ -110192,8 +110047,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bcfb05a6-7088-40ee-b54a-2d1e9616c605:
-    id: bcfb05a6-7088-40ee-b54a-2d1e9616c605
+  d7443ce0-f656-4205-b330-2b8723ea79cd:
+    id: d7443ce0-f656-4205-b330-2b8723ea79cd
     content: 'Goal: green highlighting appears only on siblings that have no similar counterpart in the prior subtree'
     children: []
     metadata:
@@ -110201,24 +110056,24 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d151d9ae-9dac-45b1-b31b-ceb9abca8c66:
-    id: d151d9ae-9dac-45b1-b31b-ceb9abca8c66
+  942fcbe2-a03a-4d53-8eb9-279f2bc22a19:
+    id: 942fcbe2-a03a-4d53-8eb9-279f2bc22a19
     content: Business rules
     children:
-      - 8a823cfd-dc1a-40db-9996-7d71a0d2e44c
-      - d024618e-b792-4b8b-acaa-26b6be535208
-      - c7a134f8-e1e3-4979-9b83-62939d1016eb
-      - abd2b638-d65f-46c9-b84a-8d0550fcc4e7
-      - a46cc299-c97a-4158-a939-2b7ae4c83457
-      - 87ea9c20-951d-4652-b21f-f5a96ae21133
-      - 36ba5cd9-2607-4124-829f-a4fdbefa0d8a
+      - 59d12a4b-332a-4a6d-9c1a-a40c594d8142
+      - 96e61911-7829-4d9b-8a6b-a8273b09d01c
+      - f06cbda7-000e-4660-a4b5-9770901f2ff0
+      - cf4efc9f-9ffd-44c0-8e44-e45e2ad2b2c5
+      - b748665f-e32c-4741-8c3f-12c2d8defe11
+      - 05e12580-6ee2-46d5-b4a0-a9b9d515723f
+      - 023b4529-f0a9-4470-ae9d-4c4c90785301
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  8a823cfd-dc1a-40db-9996-7d71a0d2e44c:
-    id: 8a823cfd-dc1a-40db-9996-7d71a0d2e44c
+  59d12a4b-332a-4a6d-9c1a-a40c594d8142:
+    id: 59d12a4b-332a-4a6d-9c1a-a40c594d8142
     content: UUID placeholders introduced by the feedback pipeline are fully resolved on both snapshots before comparison runs, so placeholder identifiers never produce spurious differences
     children: []
     metadata:
@@ -110226,8 +110081,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d024618e-b792-4b8b-acaa-26b6be535208:
-    id: d024618e-b792-4b8b-acaa-26b6be535208
+  96e61911-7829-4d9b-8a6b-a8273b09d01c:
+    id: 96e61911-7829-4d9b-8a6b-a8273b09d01c
     content: A node is highlighted as changed if and only if its own comparable content (text, type, ordered child identities) differs from its counterpart
     children: []
     metadata:
@@ -110235,8 +110090,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c7a134f8-e1e3-4979-9b83-62939d1016eb:
-    id: c7a134f8-e1e3-4979-9b83-62939d1016eb
+  f06cbda7-000e-4660-a4b5-9770901f2ff0:
+    id: f06cbda7-000e-4660-a4b5-9770901f2ff0
     content: Parent and child nodes are subject to the same comparison rule — no implicit parent exemption
     children: []
     metadata:
@@ -110244,8 +110099,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  abd2b638-d65f-46c9-b84a-8d0550fcc4e7:
-    id: abd2b638-d65f-46c9-b84a-8d0550fcc4e7
+  cf4efc9f-9ffd-44c0-8e44-e45e2ad2b2c5:
+    id: cf4efc9f-9ffd-44c0-8e44-e45e2ad2b2c5
     content: Re-opening the panel on the same feedback response yields identical highlighting across opens
     children: []
     metadata:
@@ -110253,8 +110108,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a46cc299-c97a-4158-a939-2b7ae4c83457:
-    id: a46cc299-c97a-4158-a939-2b7ae4c83457
+  b748665f-e32c-4741-8c3f-12c2d8defe11:
+    id: b748665f-e32c-4741-8c3f-12c2d8defe11
     content: If comparison cannot complete, the panel surfaces a clear non-silent error rather than defaulting to a fully-green diff
     children: []
     metadata:
@@ -110262,8 +110117,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  87ea9c20-951d-4652-b21f-f5a96ae21133:
-    id: 87ea9c20-951d-4652-b21f-f5a96ae21133
+  05e12580-6ee2-46d5-b4a0-a9b9d515723f:
+    id: 05e12580-6ee2-46d5-b4a0-a9b9d515723f
     content: After the LCS-exact pass on siblings, leftover removed and added entries are paired by content similarity above a configurable threshold; only entries with no similar counterpart are minted as 'added' (mirrors `git diff -M` rename detection)
     children: []
     metadata:
@@ -110271,8 +110126,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  36ba5cd9-2607-4124-829f-a4fdbefa0d8a:
-    id: 36ba5cd9-2607-4124-829f-a4fdbefa0d8a
+  023b4529-f0a9-4470-ae9d-4c4c90785301:
+    id: 023b4529-f0a9-4470-ae9d-4c4c90785301
     content: Parent nodes are classified independently from their descendants — a parent whose own text is unchanged stays 'unchanged' even when its descendants are modified (mirrors git's line-level diff semantics)
     children: []
     metadata:
@@ -110280,26 +110135,26 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  524b8b3c-9e6d-49e1-aa51-be8ed0bb91b0:
-    id: 524b8b3c-9e6d-49e1-aa51-be8ed0bb91b0
+  cf7de690-4b98-4d2c-bd36-261c78920e59:
+    id: cf7de690-4b98-4d2c-bd36-261c78920e59
     content: Acceptance criteria
     children:
-      - 35320e9b-238e-4eb0-8afa-a850142f9c31
-      - fb92d2ec-52bd-4935-82dc-ecfe14fab38e
-      - ffd5f2ef-57dc-4e4c-8345-fb4b728dc110
-      - 455a4e6f-9648-48ab-8928-36f590cb9452
-      - 96480d6a-c746-4b57-a774-8c8b71ec0848
-      - 2a83ca5c-92a6-4ae7-a906-c84906a0fb5a
-      - 674e4ad7-6661-44d0-9829-da0b6c91bee5
-      - 6a89e7d7-2173-4816-8ffb-f1a300ea7b9f
-      - 12fbd26a-ed9b-4243-804f-494e0a7e84d3
+      - 1c3d16d8-eccc-4ef8-9428-b0c7a9362b6b
+      - 7d3c1549-97ba-445e-897f-2cfcbe08528d
+      - e581b5b7-0e5a-4a81-b843-d542a4219578
+      - d69c9168-7470-45d0-85b2-180d9b1dc653
+      - 201fe567-6748-4b27-ae65-4435b04f775f
+      - edbae4c5-0460-430a-b051-e4cd00940d11
+      - 5ab42b60-1876-4173-9b45-6a8f84e2910e
+      - 485e5a21-f9e4-47a0-954b-f3fd5ccabf93
+      - d9bb1d23-fac1-42e4-89b7-10233929bbe7
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  35320e9b-238e-4eb0-8afa-a850142f9c31:
-    id: 35320e9b-238e-4eb0-8afa-a850142f9c31
+  1c3d16d8-eccc-4ef8-9428-b0c7a9362b6b:
+    id: 1c3d16d8-eccc-4ef8-9428-b0c7a9362b6b
     content: '- [ ] Opening the panel on an unchanged subtree shows zero green highlights'
     children: []
     metadata:
@@ -110307,8 +110162,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fb92d2ec-52bd-4935-82dc-ecfe14fab38e:
-    id: fb92d2ec-52bd-4935-82dc-ecfe14fab38e
+  7d3c1549-97ba-445e-897f-2cfcbe08528d:
+    id: 7d3c1549-97ba-445e-897f-2cfcbe08528d
     content: '- [ ] A single-node edit produces a single green highlight on that node only'
     children: []
     metadata:
@@ -110316,8 +110171,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ffd5f2ef-57dc-4e4c-8345-fb4b728dc110:
-    id: ffd5f2ef-57dc-4e4c-8345-fb4b728dc110
+  e581b5b7-0e5a-4a81-b843-d542a4219578:
+    id: e581b5b7-0e5a-4a81-b843-d542a4219578
     content: '- [ ] UUID placeholders are resolved on both snapshots before per-node comparison runs'
     children: []
     metadata:
@@ -110325,8 +110180,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  455a4e6f-9648-48ab-8928-36f590cb9452:
-    id: 455a4e6f-9648-48ab-8928-36f590cb9452
+  d69c9168-7470-45d0-85b2-180d9b1dc653:
+    id: d69c9168-7470-45d0-85b2-180d9b1dc653
     content: '- [ ] Parent and child nodes use the same comparison rule, with no parent-exempt path'
     children: []
     metadata:
@@ -110334,8 +110189,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  96480d6a-c746-4b57-a774-8c8b71ec0848:
-    id: 96480d6a-c746-4b57-a774-8c8b71ec0848
+  201fe567-6748-4b27-ae65-4435b04f775f:
+    id: 201fe567-6748-4b27-ae65-4435b04f775f
     content: '- [ ] Re-opening the panel on the same response gives identical highlighting across opens'
     children: []
     metadata:
@@ -110343,8 +110198,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2a83ca5c-92a6-4ae7-a906-c84906a0fb5a:
-    id: 2a83ca5c-92a6-4ae7-a906-c84906a0fb5a
+  edbae4c5-0460-430a-b051-e4cd00940d11:
+    id: edbae4c5-0460-430a-b051-e4cd00940d11
     content: '- [ ] Comparison stays within the existing panel-open performance budget on deep subtrees'
     children: []
     metadata:
@@ -110352,8 +110207,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  674e4ad7-6661-44d0-9829-da0b6c91bee5:
-    id: 674e4ad7-6661-44d0-9829-da0b6c91bee5
+  5ab42b60-1876-4173-9b45-6a8f84e2910e:
+    id: 5ab42b60-1876-4173-9b45-6a8f84e2910e
     content: '- [ ] A comparison failure surfaces a visible error state rather than a silent all-green render'
     children: []
     metadata:
@@ -110361,8 +110216,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6a89e7d7-2173-4816-8ffb-f1a300ea7b9f:
-    id: 6a89e7d7-2173-4816-8ffb-f1a300ea7b9f
+  485e5a21-f9e4-47a0-954b-f3fd5ccabf93:
+    id: 485e5a21-f9e4-47a0-954b-f3fd5ccabf93
     content: '- [ ] When the AI returns more children than prior with reworded content, siblings above the similarity threshold pair as ''modified''; only those below the threshold mint as ''added'''
     children: []
     metadata:
@@ -110370,8 +110225,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  12fbd26a-ed9b-4243-804f-494e0a7e84d3:
-    id: 12fbd26a-ed9b-4243-804f-494e0a7e84d3
+  d9bb1d23-fac1-42e4-89b7-10233929bbe7:
+    id: d9bb1d23-fac1-42e4-89b7-10233929bbe7
     content: '- [ ] A parent whose own text is unchanged is classified ''unchanged'' even when its descendants are modified'
     children: []
     metadata:
@@ -110379,20 +110234,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  76ff9bf0-1610-4693-9c57-9b09fff030df:
-    id: 76ff9bf0-1610-4693-9c57-9b09fff030df
+  065b54ef-868b-439b-9fd8-eade4c63539f:
+    id: 065b54ef-868b-439b-9fd8-eade4c63539f
     content: 🔧 Implementation proposal
     children:
-      - 869d5015-179f-41cc-aca0-d4ce948ab4d4
-      - beb058eb-0f46-4d55-9f9e-fa8f089346cc
-      - 835a8ddf-bd5b-48a2-8a7d-56ec0ca084ab
+      - ed67ad70-d2b0-4f5b-9058-9a77f5bc64cd
+      - 66e3a31d-4d00-427d-89ee-170f5b7aaa83
+      - 9a0a2c09-44e6-4036-bfb5-ee800d16d74b
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  869d5015-179f-41cc-aca0-d4ce948ab4d4:
-    id: 869d5015-179f-41cc-aca0-d4ce948ab4d4
+  ed67ad70-d2b0-4f5b-9058-9a77f5bc64cd:
+    id: ed67ad70-d2b0-4f5b-9058-9a77f5bc64cd
     content: 'Approach: add a similarity-pair fallback after the LCS-exact pass in `reconcileChildren`, modelled on `git diff -M` rename detection — score excess `pendingRemoved` × `pendingAdded` entries by content similarity (Levenshtein or token-Jaccard), pair the best matches above a threshold as ''modified'', and mint only the orphans as ''added''; LCS strict-equality stays as the first pass'
     children: []
     metadata:
@@ -110400,21 +110255,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  beb058eb-0f46-4d55-9f9e-fa8f089346cc:
-    id: beb058eb-0f46-4d55-9f9e-fa8f089346cc
+  66e3a31d-4d00-427d-89ee-170f5b7aaa83:
+    id: 66e3a31d-4d00-427d-89ee-170f5b7aaa83
     content: Touchpoints
     children:
-      - d16382f0-fd1c-4269-9fdd-799c7be31abb
-      - 3daa3f70-f585-47e6-a669-31821a60a970
-      - a8638644-c97d-4e15-a262-83ceeeb48770
-      - 8f9ae125-30ea-4e2f-8327-cb79626607b2
+      - 66b80e13-fdda-44e2-a116-eca14c19cd1d
+      - 025e0f4d-6482-44d4-984f-bec68b2d5050
+      - 9bd416a7-d411-416c-b784-bb51bcd45657
+      - 5abffa9e-a670-4886-ac7a-05687aead478
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  d16382f0-fd1c-4269-9fdd-799c7be31abb:
-    id: d16382f0-fd1c-4269-9fdd-799c7be31abb
+  66b80e13-fdda-44e2-a116-eca14c19cd1d:
+    id: 66b80e13-fdda-44e2-a116-eca14c19cd1d
     content: Renderer feedback-panel comparison utility
     children: []
     metadata:
@@ -110422,8 +110277,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3daa3f70-f585-47e6-a669-31821a60a970:
-    id: 3daa3f70-f585-47e6-a669-31821a60a970
+  025e0f4d-6482-44d4-984f-bec68b2d5050:
+    id: 025e0f4d-6482-44d4-984f-bec68b2d5050
     content: UUID placeholder replacement step in the feedback pipeline
     children: []
     metadata:
@@ -110431,8 +110286,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a8638644-c97d-4e15-a262-83ceeeb48770:
-    id: a8638644-c97d-4e15-a262-83ceeeb48770
+  9bd416a7-d411-416c-b784-bb51bcd45657:
+    id: 9bd416a7-d411-416c-b784-bb51bcd45657
     content: Highlight rendering in the feedback panel component
     children: []
     metadata:
@@ -110440,8 +110295,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8f9ae125-30ea-4e2f-8327-cb79626607b2:
-    id: 8f9ae125-30ea-4e2f-8327-cb79626607b2
+  5abffa9e-a670-4886-ac7a-05687aead478:
+    id: 5abffa9e-a670-4886-ac7a-05687aead478
     content: Tests covering the comparison utility and feedback-panel diff rendering
     children: []
     metadata:
@@ -110449,8 +110304,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  835a8ddf-bd5b-48a2-8a7d-56ec0ca084ab:
-    id: 835a8ddf-bd5b-48a2-8a7d-56ec0ca084ab
+  9a0a2c09-44e6-4036-bfb5-ee800d16d74b:
+    id: 9a0a2c09-44e6-4036-bfb5-ee800d16d74b
     content: 'Constraints to call out: the cascade is driven by LCS-exact''s brittleness against AI rewording/expansion, not by snapshot ordering or placeholder timing; similarity threshold must be tuned (default ≥0.5 like git); pairwise similarity is O(N×M) on the excess, acceptable because N and M are typically small'
     children: []
     metadata:
@@ -110458,38 +110313,38 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5520fefc-3a22-4721-ad6f-6bca5664a0e6:
-    id: 5520fefc-3a22-4721-ad6f-6bca5664a0e6
+  0f6a367c-16a7-4296-9019-154cfb07fa71:
+    id: 0f6a367c-16a7-4296-9019-154cfb07fa71
     content: Technical refinement
     children:
-      - 5b483d4b-940f-45a8-90e9-f2ff5b629560
-      - 49001c21-a8e5-40ed-a526-f4b4ccce46e7
-      - 6c6afb4c-c7ef-411b-927e-ceb33ffc5d6d
-      - 4b3b7e36-2f56-471e-bf56-8265307417c4
+      - fe19b3d3-b182-4257-b90f-f98ca5755bb4
+      - cdbe922f-3dcd-495e-9e14-f0f3a15c0da3
+      - ab3d5388-2a9e-4d87-91eb-1f37457b834e
+      - d24ed1b2-7d16-4984-bf98-c6c6d71a5e65
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  5b483d4b-940f-45a8-90e9-f2ff5b629560:
-    id: 5b483d4b-940f-45a8-90e9-f2ff5b629560
+  fe19b3d3-b182-4257-b90f-f98ca5755bb4:
+    id: fe19b3d3-b182-4257-b90f-f98ca5755bb4
     content: Flag complications
     children:
-      - f6bcc256-e91e-4aa0-92c3-bf5528c709c2
-      - 287037b5-a86b-4c6e-a9e5-41442002672f
-      - fc2db80b-ef0a-4b10-971c-6590012aadbd
-      - 756bfe1f-00cd-476d-9a40-ff33430295f0
-      - 92c92507-d45d-49f6-9a7e-07a400a6045f
-      - 041685ee-fa0b-479b-9d61-c31a73370326
-      - 3592d361-aa31-49ba-9f23-242324481293
-      - 941d661e-27f4-451e-ac5c-2c0bfafe300e
+      - 0c4647bc-7015-49fd-ab55-72bc606e8e88
+      - 2a48ffb4-45e9-48a6-b941-03562e691116
+      - 2a05d7a9-4d54-4148-88fb-b0a58e361793
+      - ad17e579-2629-4c90-b68e-f1f0f1da800e
+      - 04301d13-8df0-4811-b931-13d0228c7e30
+      - 1838c76f-04c2-480c-af7e-ef8375f78349
+      - 5de0493f-5441-45a8-bffd-e34b00fc4270
+      - d019c0c1-6e48-4a9f-bbd6-8132bdd3aa48
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  f6bcc256-e91e-4aa0-92c3-bf5528c709c2:
-    id: f6bcc256-e91e-4aa0-92c3-bf5528c709c2
+  0c4647bc-7015-49fd-ab55-72bc606e8e88:
+    id: 0c4647bc-7015-49fd-ab55-72bc606e8e88
     content: 'The "everything green except parent" symptom is a cascade — confirmed mechanism: `pendingAdded.length > pendingRemoved.length` at flush time, excess minted as ''added'' via `mintAddedSubtree`; parent stays ''unchanged'' because root is classified independently of its children'
     children: []
     metadata:
@@ -110497,8 +110352,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  287037b5-a86b-4c6e-a9e5-41442002672f:
-    id: 287037b5-a86b-4c6e-a9e5-41442002672f
+  2a48ffb4-45e9-48a6-b941-03562e691116:
+    id: 2a48ffb4-45e9-48a6-b941-03562e691116
     content: Sibling pairing in reconcileChildren uses exact `content === content` via diffArrays — any AI-introduced whitespace, line-ending, or formatting drift breaks the match and triggers the cascade; this is the most likely root cause of the intermittent symptom
     children: []
     metadata:
@@ -110506,8 +110361,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fc2db80b-ef0a-4b10-971c-6590012aadbd:
-    id: fc2db80b-ef0a-4b10-971c-6590012aadbd
+  2a05d7a9-4d54-4148-88fb-b0a58e361793:
+    id: 2a05d7a9-4d54-4148-88fb-b0a58e361793
     content: 'The bug report''s "UUID replacement" is ambiguous — the only UUID handling in reconcileFeedback is the mint-fresh path for added subtrees; if the user means an in-content reference-resolution step, that step doesn''t currently exist and adding it is a larger scope — worth clarifying before committing to AC #3'
     children: []
     metadata:
@@ -110515,8 +110370,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  756bfe1f-00cd-476d-9a40-ff33430295f0:
-    id: 756bfe1f-00cd-476d-9a40-ff33430295f0
+  ad17e579-2629-4c90-b68e-f1f0f1da800e:
+    id: ad17e579-2629-4c90-b68e-f1f0f1da800e
     content: AC "comparison failure surfaces an error" may be over-engineered — the algorithm cannot fail in the strict sense, it only produces poor pairings; suggest dropping unless there is a real failure mode in mind
     children: []
     metadata:
@@ -110524,8 +110379,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  92c92507-d45d-49f6-9a7e-07a400a6045f:
-    id: 92c92507-d45d-49f6-9a7e-07a400a6045f
+  04301d13-8df0-4811-b931-13d0228c7e30:
+    id: 04301d13-8df0-4811-b931-13d0228c7e30
     content: AC "existing panel-open performance budget" is undefined in the repo — either pick a concrete target (e.g. <100ms for 200 nodes) or drop the criterion
     children: []
     metadata:
@@ -110533,8 +110388,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  041685ee-fa0b-479b-9d61-c31a73370326:
-    id: 041685ee-fa0b-479b-9d61-c31a73370326
+  1838c76f-04c2-480c-af7e-ef8375f78349:
+    id: 1838c76f-04c2-480c-af7e-ef8375f78349
     content: 'Out of scope: switching to a tree-structure-aware diff (e.g. tree edit distance) — would resolve reorder-plus-edit cascades but is a substantial rewrite with poor ROI for this bug'
     children: []
     metadata:
@@ -110542,8 +110397,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3592d361-aa31-49ba-9f23-242324481293:
-    id: 3592d361-aa31-49ba-9f23-242324481293
+  5de0493f-5441-45a8-bffd-e34b00fc4270:
+    id: 5de0493f-5441-45a8-bffd-e34b00fc4270
     content: The real cascade trigger is `pendingAdded > pendingRemoved`, not whitespace drift — happens when AI expands one bullet into several or rewords content so LCS-exact finds no matches
     children: []
     metadata:
@@ -110551,8 +110406,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  941d661e-27f4-451e-ac5c-2c0bfafe300e:
-    id: 941d661e-27f4-451e-ac5c-2c0bfafe300e
+  d019c0c1-6e48-4a9f-bbd6-8132bdd3aa48:
+    id: d019c0c1-6e48-4a9f-bbd6-8132bdd3aa48
     content: Parent-unhighlighted is by design, not a missing comparison — `reconcileFeedback.ts:52-53` classifies root independently; visually surprising but correct, and matches git's line-level semantics
     children: []
     metadata:
@@ -110560,21 +110415,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  49001c21-a8e5-40ed-a526-f4b4ccce46e7:
-    id: 49001c21-a8e5-40ed-a526-f4b4ccce46e7
+  cdbe922f-3dcd-495e-9e14-f0f3a15c0da3:
+    id: cdbe922f-3dcd-495e-9e14-f0f3a15c0da3
     content: Approach summary
     children:
-      - b36a816e-8eb2-4148-bcce-5d930815994b
-      - 5ed5c43d-eedb-4ee9-9df7-5dcd9042dee8
-      - 69700bea-1a1f-43b9-bd87-c4fb85a07859
-      - 4248b674-4953-4346-9f6a-773ce0061261
+      - cd5b187d-3ba9-4f99-882d-1b1c9f758b5c
+      - 403f9f46-d860-4e3e-89de-cc9b90b7b445
+      - 01ffbb23-4540-4ff3-8a73-1d537e962125
+      - d4160648-5686-4b82-a131-608df156f9b1
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  b36a816e-8eb2-4148-bcce-5d930815994b:
-    id: b36a816e-8eb2-4148-bcce-5d930815994b
+  cd5b187d-3ba9-4f99-882d-1b1c9f758b5c:
+    id: cd5b187d-3ba9-4f99-882d-1b1c9f758b5c
     content: 'Single hot spot: reconcileFeedback.reconcileChildren — the comparator and the cascade-on-miss live here; normalising whitespace/line endings in the comparator is the smallest viable fix'
     children: []
     metadata:
@@ -110582,8 +110437,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5ed5c43d-eedb-4ee9-9df7-5dcd9042dee8:
-    id: 5ed5c43d-eedb-4ee9-9df7-5dcd9042dee8
+  403f9f46-d860-4e3e-89de-cc9b90b7b445:
+    id: 403f9f46-d860-4e3e-89de-cc9b90b7b445
     content: Add a failing test that pairs a near-identical subtree with one whitespace-only sibling diff and asserts only that sibling flips to modified — this reproduces the cascade as observed
     children: []
     metadata:
@@ -110591,8 +110446,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  69700bea-1a1f-43b9-bd87-c4fb85a07859:
-    id: 69700bea-1a1f-43b9-bd87-c4fb85a07859
+  01ffbb23-4540-4ff3-8a73-1d537e962125:
+    id: 01ffbb23-4540-4ff3-8a73-1d537e962125
     content: 'Non-obvious for reviewer: the asymmetry between root and descendants is by design (root classified independently at lines 52–53, children via diffArrays) — fix lands at the children-comparator level, not by introducing a parent rule'
     children: []
     metadata:
@@ -110600,8 +110455,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4248b674-4953-4346-9f6a-773ce0061261:
-    id: 4248b674-4953-4346-9f6a-773ce0061261
+  d4160648-5686-4b82-a131-608df156f9b1:
+    id: d4160648-5686-4b82-a131-608df156f9b1
     content: 'Fix design borrowed from `git diff -M`: strict equality in the LCS pass, similarity-pair as a fallback for the excess — keeps the fast path strict and adds tolerance only where it''s needed'
     children: []
     metadata:
@@ -110609,8 +110464,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6c6afb4c-c7ef-411b-927e-ceb33ffc5d6d:
-    id: 6c6afb4c-c7ef-411b-927e-ceb33ffc5d6d
+  ab3d5388-2a9e-4d87-91eb-1f37457b834e:
+    id: ab3d5388-2a9e-4d87-91eb-1f37457b834e
     content: 'Decomposition decision: single PR — the fix is one tight change to reconcileFeedback.reconcileChildren and its tests; splitting would leave the symptom unresolved on every intermediate merge'
     children: []
     metadata:
@@ -110618,12 +110473,157 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4b3b7e36-2f56-471e-bf56-8265307417c4:
-    id: 4b3b7e36-2f56-471e-bf56-8265307417c4
+  d24ed1b2-7d16-4984-bf98-c6c6d71a5e65:
+    id: d24ed1b2-7d16-4984-bf98-c6c6d71a5e65
     content: 'TDD note: the whitespace cascade hypothesis from the refinement was not reproducible — the algorithm pairs unmatched removed+added segments by position in flush() and classifies them as ''modified'', not ''added''. Added 2 concrete regression tests (twice-invocation stability; unrelated workspace nodes in priorNodes) and left 4 boundary cases as `it.todo` (whitespace pair-vs-classify is uncertain under different fix strategies; reorder detection depends on whether the fix touches the LCS layer; mutation/immutable-update tests depend on defensive-copy decisions). Needs user input on a confirmed cascade repro or which post-fix behaviour to pin (e.g., whitespace-differ should be ''unchanged'' under a trimming comparator, or ''modified'' under lenient-pair + strict-classify).'
     children: []
     metadata:
       status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e015c1ab-c756-44d8-b5a3-b7cb0bc1a535:
+    id: e015c1ab-c756-44d8-b5a3-b7cb0bc1a535
+    content: worktree
+    children:
+      - b9483af0-7b78-4d19-b933-4c9287f1ac5d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9483af0-7b78-4d19-b933-4c9287f1ac5d:
+    id: b9483af0-7b78-4d19-b933-4c9287f1ac5d
+    content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-workflow-stop-from-pause)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  440221ea-6fcc-4801-b419-48cd832a81be:
+    id: 440221ea-6fcc-4801-b419-48cd832a81be
+    content: Need to be able to stop it too
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6431c97-c2b6-4037-a99c-e6dbfc6b9438:
+    id: d6431c97-c2b6-4037-a99c-e6dbfc6b9438
+    content: Show 'Stop workflow' in right click menu for paused workflows
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bf8509a-83c7-4d18-84df-4161c4f2be66:
+    id: 6bf8509a-83c7-4d18-84df-4161c4f2be66
+    content: Technical refinement
+    children:
+      - 8c834b23-78d5-4221-8e9d-435214b1d7d1
+      - dd23cfa5-b823-410d-8adb-7b0c100a88ac
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c834b23-78d5-4221-8e9d-435214b1d7d1:
+    id: 8c834b23-78d5-4221-8e9d-435214b1d7d1
+    content: Flag complications
+    children:
+      - 4b37443a-7129-4ce9-a30d-9708e6e905d3
+      - 8e4c3d57-9f1d-4164-b9ad-e829a0771d51
+      - f01957f1-fd9a-42b2-80c7-9c18a576b0b5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b37443a-7129-4ce9-a30d-9708e6e905d3:
+    id: 4b37443a-7129-4ce9-a30d-9708e6e905d3
+    content: '`stopWorkflow` currently early-returns unless state is `running` — must also accept `awaiting-validation`, and cleanup paths (`stepTimeouts`, autonomous collab, pending ACKs, terminal assignment release) need to be safe for the paused case'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e4c3d57-9f1d-4164-b9ad-e829a0771d51:
+    id: 8e4c3d57-9f1d-4164-b9ad-e829a0771d51
+    content: Escape-key handler (`uiService.ts`) only stops running nodes today; existing test asserts it does NOT stop awaiting-validation — decide whether to extend Escape too or keep it menu-only (out of scope by default)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f01957f1-fd9a-42b2-80c7-9c18a576b0b5:
+    id: f01957f1-fd9a-42b2-80c7-9c18a576b0b5
+    content: 'Risk: a node deleted/moved while paused already clears state via separate handlers — confirm Stop on paused doesn''t double-fire or fight those paths'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd23cfa5-b823-410d-8adb-7b0c100a88ac:
+    id: dd23cfa5-b823-410d-8adb-7b0c100a88ac
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - 7978152f-15ab-4ab5-a7e3-8b2a3fa1cb5e
+      - 51944539-62f5-419a-803d-9bb840693e64
+      - 73dfd363-c8ec-478c-ab19-2f363248dbc1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7978152f-15ab-4ab5-a7e3-8b2a3fa1cb5e:
+    id: 7978152f-15ab-4ab5-a7e3-8b2a3fa1cb5e
+    content: Relax the state guard in `stopWorkflow` (workflowExecutionActions.ts:354) to also handle `awaiting-validation`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51944539-62f5-419a-803d-9bb840693e64:
+    id: 51944539-62f5-419a-803d-9bb840693e64
+    content: In `buildWorkflowExecutionItems` (useWorkflowSubmenu.ts:86), return both `Stop Workflow` and `Continue Workflow` for the awaiting-validation branch
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73dfd363-c8ec-478c-ab19-2f363248dbc1:
+    id: 73dfd363-c8ec-478c-ab19-2f363248dbc1
+    content: 'Non-obvious: paused entries hold a terminal assignment and possibly a pending clear-session/Claude-launch — Stop must funnel through the same cleanup as the running case, not a shortcut delete of the state entry'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a819939e-8b95-47dc-a4ec-bf97504ba178:
+    id: a819939e-8b95-47dc-a4ec-bf97504ba178
+    content: Technical decomposition
+    children:
+      - 27229b3b-36e7-457f-88f4-db673101b262
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27229b3b-36e7-457f-88f4-db673101b262:
+    id: 27229b3b-36e7-457f-88f4-db673101b262
+    content: Single PR — menu entry and the `stopWorkflow` guard relaxation must land together, otherwise the new menu item either does nothing or the guard change is unreachable from the UI. Overlapping code paths and shared cleanup mean the changes must be reviewed together.
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
