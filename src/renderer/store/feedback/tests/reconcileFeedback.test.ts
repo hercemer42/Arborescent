@@ -409,11 +409,207 @@ describe('reconcileFeedback (compare bug — parent untouched, descendants all g
     }
   });
 
-  it.todo('does not regress to all-added when reconcile is invoked with the same priorNodes reference twice in a row');
+  it('does not regress to all-added when reconcile is invoked with the same priorNodes reference twice in a row', () => {
+    const prior = priorTree([
+      makeNode('p1', 'kept-1'),
+      makeNode('p2', 'kept-2'),
+    ]);
+    const next = newTree([
+      makeNode('n1', 'kept-1'),
+      makeNode('n2', 'edited-2'),
+    ]);
+
+    const args = {
+      priorRootId: prior.rootId,
+      priorNodes: prior.nodes,
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback' as const,
+    };
+
+    reconcileFeedback(args);
+    const view = reconcileFeedback(args);
+
+    expect(view.classifications.p1).toBe('unchanged');
+    expect(view.classifications.p2).toBe('modified');
+    const addedClassifications = Object.values(view.classifications).filter((c) => c === 'added');
+    expect(addedClassifications).toEqual([]);
+  });
+
   it.todo('is unaffected by mutations to priorNodes that occur after reconcileFeedback returns');
   it.todo('is unaffected by an external caller replacing priorNodes entries (immutable update style) on the store between capture and reconcile');
-  it.todo('treats a child whose content differs only by trailing whitespace as modified, not added (LCS comparator boundary case)');
-  it.todo('treats a child whose content differs only by leading whitespace as modified, not added (LCS comparator boundary case)');
-  it.todo('treats reordered children with unchanged content as unchanged rather than added+removed pairs');
-  it.todo('does not classify the entire descendant set as added when priorNodes contains the collaborating subtree plus unrelated workspace nodes');
+
+  it('treats a child whose content differs only by trailing whitespace as modified, not added (LCS comparator boundary case)', () => {
+    const prior = priorTree([
+      makeNode('p1', 'kept-1'),
+      makeNode('p2', 'edited'),
+    ]);
+    const next = newTree([
+      makeNode('n1', 'kept-1'),
+      makeNode('n2', 'edited '),
+    ]);
+
+    const view = reconcileFeedback({
+      priorRootId: prior.rootId,
+      priorNodes: prior.nodes,
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback',
+    });
+
+    expect(view.idMap.n2).toBe('p2');
+    expect(view.classifications.p2).toBe('modified');
+    const addedClassifications = Object.values(view.classifications).filter((c) => c === 'added');
+    expect(addedClassifications).toEqual([]);
+  });
+
+  it('treats a child whose content differs only by leading whitespace as modified, not added (LCS comparator boundary case)', () => {
+    const prior = priorTree([
+      makeNode('p1', 'kept-1'),
+      makeNode('p2', 'edited'),
+    ]);
+    const next = newTree([
+      makeNode('n1', 'kept-1'),
+      makeNode('n2', ' edited'),
+    ]);
+
+    const view = reconcileFeedback({
+      priorRootId: prior.rootId,
+      priorNodes: prior.nodes,
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback',
+    });
+
+    expect(view.idMap.n2).toBe('p2');
+    expect(view.classifications.p2).toBe('modified');
+    const addedClassifications = Object.values(view.classifications).filter((c) => c === 'added');
+    expect(addedClassifications).toEqual([]);
+  });
+
+  it('treats reordered children with unchanged content as unchanged rather than added+removed pairs', () => {
+    const prior = priorTree([
+      makeNode('p1', 'first'),
+      makeNode('p2', 'second'),
+      makeNode('p3', 'third'),
+    ]);
+    const next = newTree([
+      makeNode('n1', 'third'),
+      makeNode('n2', 'first'),
+      makeNode('n3', 'second'),
+    ]);
+
+    const view = reconcileFeedback({
+      priorRootId: prior.rootId,
+      priorNodes: prior.nodes,
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback',
+    });
+
+    expect(view.idMap.n1).toBe('p3');
+    expect(view.idMap.n2).toBe('p1');
+    expect(view.idMap.n3).toBe('p2');
+    expect(view.classifications.p1).toBe('unchanged');
+    expect(view.classifications.p2).toBe('unchanged');
+    expect(view.classifications.p3).toBe('unchanged');
+    const addedClassifications = Object.values(view.classifications).filter((c) => c === 'added');
+    expect(addedClassifications).toEqual([]);
+  });
+
+  it('position-pairs balanced leftovers below the similarity threshold as modified rather than add+remove', () => {
+    const prior = priorTree([
+      makeNode('p1', 'alpha'),
+      makeNode('p2', 'beta'),
+    ]);
+    const next = newTree([
+      makeNode('n1', 'gamma'),
+      makeNode('n2', 'delta'),
+    ]);
+
+    const view = reconcileFeedback({
+      priorRootId: prior.rootId,
+      priorNodes: prior.nodes,
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback',
+    });
+
+    expect(view.idMap.n1).toBe('p1');
+    expect(view.idMap.n2).toBe('p2');
+    expect(view.classifications.p1).toBe('modified');
+    expect(view.classifications.p2).toBe('modified');
+    expect(view.removed).toEqual([]);
+    const addedClassifications = Object.values(view.classifications).filter((c) => c === 'added');
+    expect(addedClassifications).toEqual([]);
+  });
+
+  it('pairs reworded children by similarity even when interleaved with wholly new siblings (git diff -M style)', () => {
+    const prior = priorTree([
+      makeNode('p1', 'The quick brown fox jumps over the lazy dog'),
+      makeNode('p2', 'Pack my box with five dozen liquor jugs'),
+      makeNode('p3', 'Sphinx of black quartz judge my vow'),
+    ]);
+    const next = newTree([
+      makeNode('n1', 'Brand new bullet inserted at front'),
+      makeNode('n2', 'The quick brown fox jumps over a lazy dog'),
+      makeNode('n3', 'Another wholly unrelated new bullet'),
+      makeNode('n4', 'Pack my box with five dozen liquor jugs!'),
+      makeNode('n5', 'Sphinx of black quartz, judge my vow'),
+    ]);
+
+    const view = reconcileFeedback({
+      priorRootId: prior.rootId,
+      priorNodes: prior.nodes,
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback',
+    });
+
+    expect(view.idMap.n2).toBe('p1');
+    expect(view.idMap.n4).toBe('p2');
+    expect(view.idMap.n5).toBe('p3');
+    expect(view.classifications.p1).toBe('modified');
+    expect(view.classifications.p2).toBe('modified');
+    expect(view.classifications.p3).toBe('modified');
+
+    const n1Resolved = view.idMap.n1;
+    const n3Resolved = view.idMap.n3;
+    expect(view.classifications[n1Resolved]).toBe('added');
+    expect(view.classifications[n3Resolved]).toBe('added');
+  });
+
+  it('does not classify the entire descendant set as added when priorNodes contains the collaborating subtree plus unrelated workspace nodes', () => {
+    const collaboratingParent = makeNode(PRIOR_PARENT_ID, 'parent', ['p1', 'p2']);
+    const collaboratingChild1 = makeNode('p1', 'kept-1');
+    const collaboratingChild2 = makeNode('p2', 'kept-2');
+    const unrelatedRoot = makeNode('unrelated-root', 'unrelated root', ['unrelated-1']);
+    const unrelatedChild = makeNode('unrelated-1', 'unrelated content');
+    const priorNodes = buildTree([
+      collaboratingParent,
+      collaboratingChild1,
+      collaboratingChild2,
+      unrelatedRoot,
+      unrelatedChild,
+    ]);
+
+    const next = newTree([
+      makeNode('n1', 'kept-1'),
+      makeNode('n2', 'kept-2'),
+    ]);
+
+    const view = reconcileFeedback({
+      priorRootId: PRIOR_PARENT_ID,
+      priorNodes,
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback',
+    });
+
+    expect(view.classifications[PRIOR_PARENT_ID]).toBe('unchanged');
+    expect(view.classifications.p1).toBe('unchanged');
+    expect(view.classifications.p2).toBe('unchanged');
+    const addedClassifications = Object.values(view.classifications).filter((c) => c === 'added');
+    expect(addedClassifications).toEqual([]);
+  });
 });

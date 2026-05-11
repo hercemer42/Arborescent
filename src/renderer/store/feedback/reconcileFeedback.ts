@@ -57,6 +57,13 @@ export function reconcileFeedback(input: ReconcileInput): ReconcilePanelView {
   return view;
 }
 
+interface RemovedCandidate {
+  node: TreeNode;
+  index: number;
+}
+
+const SIMILARITY_THRESHOLD = 0.5;
+
 function reconcileChildren(
   priorParent: TreeNode,
   newParent: TreeNode,
@@ -75,43 +82,37 @@ function reconcileChildren(
     comparator: (a, b) => a.content === b.content,
   });
 
-  let priorCursor = 0;
-  let pendingRemoved: Array<{ node: TreeNode; index: number }> = [];
-  let pendingAdded: TreeNode[] = [];
+  const { leftoverRemoved, leftoverAdded } = processSegments(
+    segments, priorParent, priorNodes, newNodes, view,
+  );
+  const pairing = pairLeftovers(leftoverRemoved, leftoverAdded);
+  applyLeftoverPairing(pairing, priorParent.id, priorNodes, newNodes, view);
+}
 
-  const flush = () => {
-    const pairCount = Math.min(pendingRemoved.length, pendingAdded.length);
-    for (let i = 0; i < pairCount; i++) {
-      pairAsModified(pendingRemoved[i].node, pendingAdded[i], priorNodes, newNodes, view);
-    }
-    for (let i = pairCount; i < pendingRemoved.length; i++) {
-      const removed = pendingRemoved[i];
-      view.removed.push({
-        priorId: removed.node.id,
-        parentPriorId: priorParent.id,
-        index: removed.index,
-        node: removed.node,
-      });
-    }
-    for (let i = pairCount; i < pendingAdded.length; i++) {
-      mintAddedSubtree(pendingAdded[i].id, newNodes, view);
-    }
-    pendingRemoved = [];
-    pendingAdded = [];
-  };
+type DiffSegments = ReturnType<typeof diffArrays<TreeNode>>;
+
+function processSegments(
+  segments: DiffSegments,
+  priorParent: TreeNode,
+  priorNodes: Record<string, TreeNode>,
+  newNodes: Record<string, TreeNode>,
+  view: ReconcilePanelView,
+): { leftoverRemoved: RemovedCandidate[]; leftoverAdded: TreeNode[] } {
+  const leftoverRemoved: RemovedCandidate[] = [];
+  const leftoverAdded: TreeNode[] = [];
+  let priorCursor = 0;
 
   for (const segment of segments) {
     if (segment.added) {
       for (const node of segment.value) {
-        pendingAdded.push(node);
+        leftoverAdded.push(node);
       }
     } else if (segment.removed) {
       for (const node of segment.value) {
-        pendingRemoved.push({ node, index: priorCursor });
+        leftoverRemoved.push({ node, index: priorCursor });
         priorCursor++;
       }
     } else {
-      flush();
       for (const node of segment.value) {
         const priorChild = priorParent.children[priorCursor]
           ? priorNodes[priorParent.children[priorCursor]]
@@ -123,7 +124,111 @@ function reconcileChildren(
       }
     }
   }
-  flush();
+
+  return { leftoverRemoved, leftoverAdded };
+}
+
+interface LeftoverPairing {
+  paired: Array<{ removedEntry: RemovedCandidate; addedNode: TreeNode }>;
+  unpairedRemoved: RemovedCandidate[];
+  unpairedAdded: TreeNode[];
+}
+
+function applyLeftoverPairing(
+  pairing: LeftoverPairing,
+  parentPriorId: string,
+  priorNodes: Record<string, TreeNode>,
+  newNodes: Record<string, TreeNode>,
+  view: ReconcilePanelView,
+): void {
+  for (const { removedEntry, addedNode } of pairing.paired) {
+    if (removedEntry.node.content === addedNode.content) {
+      pairAsUnchanged(removedEntry.node, addedNode, priorNodes, newNodes, view);
+    } else {
+      pairAsModified(removedEntry.node, addedNode, priorNodes, newNodes, view);
+    }
+  }
+
+  for (const removed of pairing.unpairedRemoved) {
+    view.removed.push({
+      priorId: removed.node.id,
+      parentPriorId,
+      index: removed.index,
+      node: removed.node,
+    });
+  }
+  for (const added of pairing.unpairedAdded) {
+    mintAddedSubtree(added.id, newNodes, view);
+  }
+}
+
+function pairLeftovers(removed: RemovedCandidate[], added: TreeNode[]): LeftoverPairing {
+  if (removed.length === 0 || added.length === 0) {
+    return { paired: [], unpairedRemoved: removed, unpairedAdded: added };
+  }
+
+  const usedRemoved = new Set<number>();
+  const usedAdded = new Set<number>();
+  const paired: Array<{ removedEntry: RemovedCandidate; addedNode: TreeNode }> = [];
+
+  const scores: Array<{ r: number; a: number; score: number }> = [];
+  for (let i = 0; i < removed.length; i++) {
+    for (let j = 0; j < added.length; j++) {
+      const score = contentSimilarity(removed[i].node.content, added[j].content);
+      if (score >= SIMILARITY_THRESHOLD) {
+        scores.push({ r: i, a: j, score });
+      }
+    }
+  }
+  scores.sort((x, y) => y.score - x.score);
+  for (const { r, a } of scores) {
+    if (usedRemoved.has(r) || usedAdded.has(a)) continue;
+    usedRemoved.add(r);
+    usedAdded.add(a);
+    paired.push({ removedEntry: removed[r], addedNode: added[a] });
+  }
+
+  const remainingRemoved: RemovedCandidate[] = [];
+  for (let i = 0; i < removed.length; i++) {
+    if (!usedRemoved.has(i)) remainingRemoved.push(removed[i]);
+  }
+  const remainingAdded: TreeNode[] = [];
+  for (let j = 0; j < added.length; j++) {
+    if (!usedAdded.has(j)) remainingAdded.push(added[j]);
+  }
+
+  // Below-threshold leftovers still pair by position so a single low-similarity rename
+  // (e.g. 'original' → 'edited', Jaccard 0) classifies as modified rather than add+remove —
+  // matches the pre-similarity-pair behaviour users already expect for one-off edits.
+  const positionPairCount = Math.min(remainingRemoved.length, remainingAdded.length);
+  for (let k = 0; k < positionPairCount; k++) {
+    paired.push({ removedEntry: remainingRemoved[k], addedNode: remainingAdded[k] });
+  }
+
+  return {
+    paired,
+    unpairedRemoved: remainingRemoved.slice(positionPairCount),
+    unpairedAdded: remainingAdded.slice(positionPairCount),
+  };
+}
+
+function contentSimilarity(a: string, b: string): number {
+  if (a === b) return 1;
+  const aTokens = tokenize(a);
+  const bTokens = tokenize(b);
+  if (aTokens.size === 0 && bTokens.size === 0) return 1;
+  if (aTokens.size === 0 || bTokens.size === 0) return 0;
+
+  let intersection = 0;
+  for (const token of aTokens) {
+    if (bTokens.has(token)) intersection++;
+  }
+  const union = aTokens.size + bTokens.size - intersection;
+  return intersection / union;
+}
+
+function tokenize(text: string): Set<string> {
+  return new Set(text.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean));
 }
 
 function pairAsUnchanged(
