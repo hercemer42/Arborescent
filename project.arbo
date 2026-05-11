@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-11T06:18:16.374Z'
+updated: '2026-05-11T06:19:38.995Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23702,7 +23702,6 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
       - 850f875c-f771-40be-9432-fd212a7f583c
       - a45e5394-9ae7-4823-ac2a-387cb0223cfe
     metadata:
@@ -82872,8 +82871,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 5f82fc03-c5c0-4a9c-b5ab-0c7fd99fed78
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -84582,7 +84580,8 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children: []
+    children:
+      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
     metadata:
       status: pending
       isBlueprint: true
@@ -96901,7 +96900,8 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children: []
+    children:
+      - 5f82fc03-c5c0-4a9c-b5ab-0c7fd99fed78
     metadata:
       status: pending
       isBlueprint: true
@@ -101940,8 +101940,9 @@ nodes:
     id: 889ff4cb-3ae1-4f90-b289-12a92935efb7
     content: Reliable comparison highlighting in feedback panel
     children:
-      - aed97283-4d1f-4d8e-9e9a-d40d97de9ed0
-      - 3ca047ba-dfd0-4f66-b238-478baad50101
+      - d3927589-5a54-4a9b-96a8-bfab1474841d
+      - 1086513c-63c6-4c3d-87a3-948069bd681c
+      - 5bcfaad7-573f-4858-a1c2-a6fbba588743
     metadata:
       status: pending
       expanded: false
@@ -109283,274 +109284,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  aed97283-4d1f-4d8e-9e9a-d40d97de9ed0:
-    id: aed97283-4d1f-4d8e-9e9a-d40d97de9ed0
-    content: 📄 Product spec
-    children:
-      - cb519833-49c2-4cfb-877f-f66bc34e4f45
-      - 3fa3a189-7b05-4668-a426-92bb60f660ea
-      - ceb32a2f-fe18-4dd5-9fff-faa5a84e1764
-      - 2def3ed4-cfda-4df2-a003-d779abf4d836
-      - 3f49724a-5f9a-4e55-b86c-3c7ce5d96cdd
-      - 8c582fac-7bfb-4641-bf15-bc8cb5b9ecd2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb519833-49c2-4cfb-877f-f66bc34e4f45:
-    id: cb519833-49c2-4cfb-877f-f66bc34e4f45
-    content: 'Context: the feedback panel renders a before/after diff using green highlighting to mark nodes the AI changed; currently every descendant appears green while the parent stays unhighlighted, and the behaviour is intermittent — pointing at either the UUID-placeholder replacement step or the snapshot/comparison pass'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3fa3a189-7b05-4668-a426-92bb60f660ea:
-    id: 3fa3a189-7b05-4668-a426-92bb60f660ea
-    content: 'User: Arborescent user reviewing the result of an AI feedback response in the feedback panel'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ceb32a2f-fe18-4dd5-9fff-faa5a84e1764:
-    id: ceb32a2f-fe18-4dd5-9fff-faa5a84e1764
-    content: 'Current experience: opening the panel highlights nearly the whole subtree in green except the parent node, so the diff carries no useful signal and the user cannot tell what the AI actually changed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2def3ed4-cfda-4df2-a003-d779abf4d836:
-    id: 2def3ed4-cfda-4df2-a003-d779abf4d836
-    content: 'Goal: green highlighting appears only on nodes whose comparable content genuinely differs between the pre- and post-feedback states'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3f49724a-5f9a-4e55-b86c-3c7ce5d96cdd:
-    id: 3f49724a-5f9a-4e55-b86c-3c7ce5d96cdd
-    content: Business rules
-    children:
-      - 2e7b365e-4199-4eda-bb07-07d892e5eee0
-      - ab9b853f-cb82-4038-a3e2-690ed0d20a51
-      - 135d4103-76b4-4c82-b178-5c1631c9633e
-      - 06f94100-faf5-428b-a9c8-d909dc3fa3a8
-      - 3a94e07a-5d97-4f87-8a8e-0539b5ee546b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e7b365e-4199-4eda-bb07-07d892e5eee0:
-    id: 2e7b365e-4199-4eda-bb07-07d892e5eee0
-    content: UUID placeholders introduced by the feedback pipeline are fully resolved on both snapshots before comparison runs, so placeholder identifiers never produce spurious differences
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab9b853f-cb82-4038-a3e2-690ed0d20a51:
-    id: ab9b853f-cb82-4038-a3e2-690ed0d20a51
-    content: A node is highlighted as changed if and only if its own comparable content (text, type, ordered child identities) differs from its counterpart
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  135d4103-76b4-4c82-b178-5c1631c9633e:
-    id: 135d4103-76b4-4c82-b178-5c1631c9633e
-    content: Parent and child nodes are subject to the same comparison rule — no implicit parent exemption
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  06f94100-faf5-428b-a9c8-d909dc3fa3a8:
-    id: 06f94100-faf5-428b-a9c8-d909dc3fa3a8
-    content: Re-opening the panel on the same feedback response yields identical highlighting across opens
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a94e07a-5d97-4f87-8a8e-0539b5ee546b:
-    id: 3a94e07a-5d97-4f87-8a8e-0539b5ee546b
-    content: If comparison cannot complete, the panel surfaces a clear non-silent error rather than defaulting to a fully-green diff
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8c582fac-7bfb-4641-bf15-bc8cb5b9ecd2:
-    id: 8c582fac-7bfb-4641-bf15-bc8cb5b9ecd2
-    content: Acceptance criteria
-    children:
-      - 3ce0e27d-15ec-489c-8b35-a76e63725a74
-      - 272dccb9-f7cb-45aa-95e3-7854729861ca
-      - aa70077f-459d-434c-b105-9e9aafc65044
-      - 8b3ee0fc-f8fd-4e1d-8676-15d854bc692c
-      - ab893628-02c0-4a61-9b77-68de506ca87c
-      - 88bae34f-b7d8-4c40-bcc4-9512fe423e50
-      - 0513493a-8134-40c1-9664-8855ff8f27a2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ce0e27d-15ec-489c-8b35-a76e63725a74:
-    id: 3ce0e27d-15ec-489c-8b35-a76e63725a74
-    content: '- [ ] Opening the panel on an unchanged subtree shows zero green highlights'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  272dccb9-f7cb-45aa-95e3-7854729861ca:
-    id: 272dccb9-f7cb-45aa-95e3-7854729861ca
-    content: '- [ ] A single-node edit produces a single green highlight on that node only'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa70077f-459d-434c-b105-9e9aafc65044:
-    id: aa70077f-459d-434c-b105-9e9aafc65044
-    content: '- [ ] UUID placeholders are resolved on both snapshots before per-node comparison runs'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b3ee0fc-f8fd-4e1d-8676-15d854bc692c:
-    id: 8b3ee0fc-f8fd-4e1d-8676-15d854bc692c
-    content: '- [ ] Parent and child nodes use the same comparison rule, with no parent-exempt path'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab893628-02c0-4a61-9b77-68de506ca87c:
-    id: ab893628-02c0-4a61-9b77-68de506ca87c
-    content: '- [ ] Re-opening the panel on the same response gives identical highlighting across opens'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  88bae34f-b7d8-4c40-bcc4-9512fe423e50:
-    id: 88bae34f-b7d8-4c40-bcc4-9512fe423e50
-    content: '- [ ] Comparison stays within the existing panel-open performance budget on deep subtrees'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0513493a-8134-40c1-9664-8855ff8f27a2:
-    id: 0513493a-8134-40c1-9664-8855ff8f27a2
-    content: '- [ ] A comparison failure surfaces a visible error state rather than a silent all-green render'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ca047ba-dfd0-4f66-b238-478baad50101:
-    id: 3ca047ba-dfd0-4f66-b238-478baad50101
-    content: 🔧 Implementation proposal
-    children:
-      - 98285d29-c0b7-4b3c-8422-25167b266b62
-      - 1f827e5e-6bce-430d-8f05-e3f9803b530e
-      - 956e4fb0-f1cf-42e6-8621-c61da7b6a799
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  98285d29-c0b7-4b3c-8422-25167b266b62:
-    id: 98285d29-c0b7-4b3c-8422-25167b266b62
-    content: 'Approach: trace the feedback-panel diff pipeline end to end — placeholder replacement, snapshot capture, node-level comparison, highlight rendering — isolate whether the parent-exempt symptom originates in comparison or rendering, then tighten per-node comparison to operate on normalised, placeholder-resolved content for both sides'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1f827e5e-6bce-430d-8f05-e3f9803b530e:
-    id: 1f827e5e-6bce-430d-8f05-e3f9803b530e
-    content: Touchpoints
-    children:
-      - 0777b976-ba12-457e-9fb6-47f6824432ea
-      - 27aec291-a1e7-4211-a607-b79cce5e2ddd
-      - 3cf4b21a-57a9-491f-8139-e87eef7b398f
-      - 28bdd875-cffc-404f-91ba-7a8801a9d272
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0777b976-ba12-457e-9fb6-47f6824432ea:
-    id: 0777b976-ba12-457e-9fb6-47f6824432ea
-    content: Renderer feedback-panel comparison utility
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  27aec291-a1e7-4211-a607-b79cce5e2ddd:
-    id: 27aec291-a1e7-4211-a607-b79cce5e2ddd
-    content: UUID placeholder replacement step in the feedback pipeline
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3cf4b21a-57a9-491f-8139-e87eef7b398f:
-    id: 3cf4b21a-57a9-491f-8139-e87eef7b398f
-    content: Highlight rendering in the feedback panel component
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  28bdd875-cffc-404f-91ba-7a8801a9d272:
-    id: 28bdd875-cffc-404f-91ba-7a8801a9d272
-    content: Tests covering the comparison utility and feedback-panel diff rendering
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  956e4fb0-f1cf-42e6-8621-c61da7b6a799:
-    id: 956e4fb0-f1cf-42e6-8621-c61da7b6a799
-    content: 'Constraints to call out: the intermittent symptom points at an ordering issue between UUID replacement and snapshot capture — the fix must guarantee replacement is complete on both snapshots before comparison runs, not rely on timing'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   f0486a88-b51c-48e7-b291-5a9265e97c1b:
     id: f0486a88-b51c-48e7-b291-5a9265e97c1b
     content: worktree
@@ -109840,6 +109573,393 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3927589-5a54-4a9b-96a8-bfab1474841d:
+    id: d3927589-5a54-4a9b-96a8-bfab1474841d
+    content: 📄 Product spec
+    children:
+      - 1264d814-02e5-4e25-a93c-8c6789dfa822
+      - 1590a6af-12bb-4778-a85f-e49cfb50a0fd
+      - 24935e05-6177-4543-8689-669404ae5686
+      - 651b38d8-3197-4ac1-baaa-051d39782684
+      - 687483bc-f1a4-4731-b3e9-3c8b69e851f0
+      - 09f6f207-9ccc-4f68-8769-302a97eae081
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1264d814-02e5-4e25-a93c-8c6789dfa822:
+    id: 1264d814-02e5-4e25-a93c-8c6789dfa822
+    content: 'Context: the feedback panel renders a before/after diff using green highlighting to mark nodes the AI changed; currently every descendant appears green while the parent stays unhighlighted, and the behaviour is intermittent — pointing at either the UUID-placeholder replacement step or the snapshot/comparison pass'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1590a6af-12bb-4778-a85f-e49cfb50a0fd:
+    id: 1590a6af-12bb-4778-a85f-e49cfb50a0fd
+    content: 'User: Arborescent user reviewing the result of an AI feedback response in the feedback panel'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24935e05-6177-4543-8689-669404ae5686:
+    id: 24935e05-6177-4543-8689-669404ae5686
+    content: 'Current experience: opening the panel highlights nearly the whole subtree in green except the parent node, so the diff carries no useful signal and the user cannot tell what the AI actually changed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  651b38d8-3197-4ac1-baaa-051d39782684:
+    id: 651b38d8-3197-4ac1-baaa-051d39782684
+    content: 'Goal: green highlighting appears only on nodes whose comparable content genuinely differs between the pre- and post-feedback states'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  687483bc-f1a4-4731-b3e9-3c8b69e851f0:
+    id: 687483bc-f1a4-4731-b3e9-3c8b69e851f0
+    content: Business rules
+    children:
+      - 522c62e3-d587-4aa3-87a7-78f756359e24
+      - c4f558ac-d818-4717-8fb4-9b14c1522320
+      - 567a4880-baaf-4593-b5a7-08a506494e1c
+      - 25529a4c-81e2-4480-b766-6434063f0a22
+      - 03fc57b2-62d4-4dbd-a0c9-20ac958e2a1f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  522c62e3-d587-4aa3-87a7-78f756359e24:
+    id: 522c62e3-d587-4aa3-87a7-78f756359e24
+    content: UUID placeholders introduced by the feedback pipeline are fully resolved on both snapshots before comparison runs, so placeholder identifiers never produce spurious differences
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4f558ac-d818-4717-8fb4-9b14c1522320:
+    id: c4f558ac-d818-4717-8fb4-9b14c1522320
+    content: A node is highlighted as changed if and only if its own comparable content (text, type, ordered child identities) differs from its counterpart
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  567a4880-baaf-4593-b5a7-08a506494e1c:
+    id: 567a4880-baaf-4593-b5a7-08a506494e1c
+    content: Parent and child nodes are subject to the same comparison rule — no implicit parent exemption
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  25529a4c-81e2-4480-b766-6434063f0a22:
+    id: 25529a4c-81e2-4480-b766-6434063f0a22
+    content: Re-opening the panel on the same feedback response yields identical highlighting across opens
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03fc57b2-62d4-4dbd-a0c9-20ac958e2a1f:
+    id: 03fc57b2-62d4-4dbd-a0c9-20ac958e2a1f
+    content: If comparison cannot complete, the panel surfaces a clear non-silent error rather than defaulting to a fully-green diff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09f6f207-9ccc-4f68-8769-302a97eae081:
+    id: 09f6f207-9ccc-4f68-8769-302a97eae081
+    content: Acceptance criteria
+    children:
+      - aa777f24-a064-4efa-bb18-927c641e32f0
+      - 8d4ac407-2ece-4992-9f6e-5b0287aaab38
+      - 2d91c279-19f3-47da-9959-5fbbb00b8538
+      - 044a05b6-8b60-48d6-992f-e9760ee443bf
+      - 07ab6939-c64d-4aff-8814-b4546b6a788c
+      - d9d6c32a-679f-43dc-9e85-c1616a225122
+      - 6d0c2776-8ff7-4e2d-a87c-aeb9f0d375e0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa777f24-a064-4efa-bb18-927c641e32f0:
+    id: aa777f24-a064-4efa-bb18-927c641e32f0
+    content: '- [ ] Opening the panel on an unchanged subtree shows zero green highlights'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d4ac407-2ece-4992-9f6e-5b0287aaab38:
+    id: 8d4ac407-2ece-4992-9f6e-5b0287aaab38
+    content: '- [ ] A single-node edit produces a single green highlight on that node only'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d91c279-19f3-47da-9959-5fbbb00b8538:
+    id: 2d91c279-19f3-47da-9959-5fbbb00b8538
+    content: '- [ ] UUID placeholders are resolved on both snapshots before per-node comparison runs'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  044a05b6-8b60-48d6-992f-e9760ee443bf:
+    id: 044a05b6-8b60-48d6-992f-e9760ee443bf
+    content: '- [ ] Parent and child nodes use the same comparison rule, with no parent-exempt path'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07ab6939-c64d-4aff-8814-b4546b6a788c:
+    id: 07ab6939-c64d-4aff-8814-b4546b6a788c
+    content: '- [ ] Re-opening the panel on the same response gives identical highlighting across opens'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9d6c32a-679f-43dc-9e85-c1616a225122:
+    id: d9d6c32a-679f-43dc-9e85-c1616a225122
+    content: '- [ ] Comparison stays within the existing panel-open performance budget on deep subtrees'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d0c2776-8ff7-4e2d-a87c-aeb9f0d375e0:
+    id: 6d0c2776-8ff7-4e2d-a87c-aeb9f0d375e0
+    content: '- [ ] A comparison failure surfaces a visible error state rather than a silent all-green render'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1086513c-63c6-4c3d-87a3-948069bd681c:
+    id: 1086513c-63c6-4c3d-87a3-948069bd681c
+    content: 🔧 Implementation proposal
+    children:
+      - 0e9e3f87-fafe-425a-a508-96c29756ff66
+      - 7b53a514-3005-4b36-93b9-2fb16f912f8b
+      - 08f8ebe5-70c5-4fbd-a407-0cb7edb2e9c4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e9e3f87-fafe-425a-a508-96c29756ff66:
+    id: 0e9e3f87-fafe-425a-a508-96c29756ff66
+    content: 'Approach: trace the feedback-panel diff pipeline end to end — placeholder replacement, snapshot capture, node-level comparison, highlight rendering — isolate whether the parent-exempt symptom originates in comparison or rendering, then tighten per-node comparison to operate on normalised, placeholder-resolved content for both sides'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b53a514-3005-4b36-93b9-2fb16f912f8b:
+    id: 7b53a514-3005-4b36-93b9-2fb16f912f8b
+    content: Touchpoints
+    children:
+      - 8d37f438-ab95-4d4a-ba15-f2c1e40ce49e
+      - 86534b91-291c-4cf7-b7cd-d84a71c87c77
+      - 3c3a2950-4f0e-4b83-b3af-840ae826f205
+      - a6a6154a-ee87-4f8e-954b-2e11c5e909f7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d37f438-ab95-4d4a-ba15-f2c1e40ce49e:
+    id: 8d37f438-ab95-4d4a-ba15-f2c1e40ce49e
+    content: Renderer feedback-panel comparison utility
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86534b91-291c-4cf7-b7cd-d84a71c87c77:
+    id: 86534b91-291c-4cf7-b7cd-d84a71c87c77
+    content: UUID placeholder replacement step in the feedback pipeline
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c3a2950-4f0e-4b83-b3af-840ae826f205:
+    id: 3c3a2950-4f0e-4b83-b3af-840ae826f205
+    content: Highlight rendering in the feedback panel component
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6a6154a-ee87-4f8e-954b-2e11c5e909f7:
+    id: a6a6154a-ee87-4f8e-954b-2e11c5e909f7
+    content: Tests covering the comparison utility and feedback-panel diff rendering
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08f8ebe5-70c5-4fbd-a407-0cb7edb2e9c4:
+    id: 08f8ebe5-70c5-4fbd-a407-0cb7edb2e9c4
+    content: 'Constraints to call out: the intermittent symptom points at an ordering issue between UUID replacement and snapshot capture — the fix must guarantee replacement is complete on both snapshots before comparison runs, not rely on timing'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bcfaad7-573f-4858-a1c2-a6fbba588743:
+    id: 5bcfaad7-573f-4858-a1c2-a6fbba588743
+    content: Technical refinement
+    children:
+      - d611e794-8f5e-40f0-b96b-5454686e2b21
+      - f4f987a1-1728-4f01-9ab0-4b6a342f80ef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d611e794-8f5e-40f0-b96b-5454686e2b21:
+    id: d611e794-8f5e-40f0-b96b-5454686e2b21
+    content: Flag complications
+    children:
+      - 514f5cfe-4555-4c95-9566-39acc4ba4a0a
+      - a0afafd1-fa93-4958-92ad-884a55b6bcdb
+      - 7b367d6f-6981-4229-95fc-d4bef050a908
+      - 5b6d7601-5ef5-4c13-ba30-a164b14a687a
+      - df158c31-0d7d-4ed4-b034-383dec8b97b1
+      - bf89a6a5-be55-44e0-acc2-dd7858ade1d3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  514f5cfe-4555-4c95-9566-39acc4ba4a0a:
+    id: 514f5cfe-4555-4c95-9566-39acc4ba4a0a
+    content: 'The "everything green except parent" symptom is a cascade, not a parent-exemption: when any child fails to pair by content, mintAddedSubtree mints its whole subtree as ''added'' with fresh UUIDs — every descendant lights up while the root remains ''unchanged'' because the root is classified separately before the children diff runs'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0afafd1-fa93-4958-92ad-884a55b6bcdb:
+    id: a0afafd1-fa93-4958-92ad-884a55b6bcdb
+    content: Sibling pairing in reconcileChildren uses exact `content === content` via diffArrays — any AI-introduced whitespace, line-ending, or formatting drift breaks the match and triggers the cascade; this is the most likely root cause of the intermittent symptom
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b367d6f-6981-4229-95fc-d4bef050a908:
+    id: 7b367d6f-6981-4229-95fc-d4bef050a908
+    content: 'The bug report''s "UUID replacement" is ambiguous — the only UUID handling in reconcileFeedback is the mint-fresh path for added subtrees; if the user means an in-content reference-resolution step, that step doesn''t currently exist and adding it is a larger scope — worth clarifying before committing to AC #3'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b6d7601-5ef5-4c13-ba30-a164b14a687a:
+    id: 5b6d7601-5ef5-4c13-ba30-a164b14a687a
+    content: AC "comparison failure surfaces an error" may be over-engineered — the algorithm cannot fail in the strict sense, it only produces poor pairings; suggest dropping unless there is a real failure mode in mind
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  df158c31-0d7d-4ed4-b034-383dec8b97b1:
+    id: df158c31-0d7d-4ed4-b034-383dec8b97b1
+    content: AC "existing panel-open performance budget" is undefined in the repo — either pick a concrete target (e.g. <100ms for 200 nodes) or drop the criterion
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf89a6a5-be55-44e0-acc2-dd7858ade1d3:
+    id: bf89a6a5-be55-44e0-acc2-dd7858ade1d3
+    content: 'Out of scope: switching to a tree-structure-aware diff (e.g. tree edit distance) — would resolve reorder-plus-edit cascades but is a substantial rewrite with poor ROI for this bug'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4f987a1-1728-4f01-9ab0-4b6a342f80ef:
+    id: f4f987a1-1728-4f01-9ab0-4b6a342f80ef
+    content: Approach summary
+    children:
+      - c3d6ca20-960f-4ec5-abd4-196c6f0bab5e
+      - f53d5e1e-0232-4a9a-863b-c68a01b39783
+      - 92e78067-3192-4730-bbf1-3fa34bd8cf57
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3d6ca20-960f-4ec5-abd4-196c6f0bab5e:
+    id: c3d6ca20-960f-4ec5-abd4-196c6f0bab5e
+    content: 'Single hot spot: reconcileFeedback.reconcileChildren — the comparator and the cascade-on-miss live here; normalising whitespace/line endings in the comparator is the smallest viable fix'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f53d5e1e-0232-4a9a-863b-c68a01b39783:
+    id: f53d5e1e-0232-4a9a-863b-c68a01b39783
+    content: Add a failing test that pairs a near-identical subtree with one whitespace-only sibling diff and asserts only that sibling flips to modified — this reproduces the cascade as observed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92e78067-3192-4730-bbf1-3fa34bd8cf57:
+    id: 92e78067-3192-4730-bbf1-3fa34bd8cf57
+    content: 'Non-obvious for reviewer: the asymmetry between root and descendants is by design (root classified independently at lines 52–53, children via diffArrays) — fix lands at the children-comparator level, not by introducing a parent rule'
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}
