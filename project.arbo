@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-11T06:46:44.968Z'
+updated: '2026-05-11T07:26:30.893Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -15221,6 +15221,8 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - 0285aef9-2f1c-4a3c-ad08-b75d799ab4ce
+      - a45e5394-9ae7-4823-ac2a-387cb0223cfe
       - fcb40af2-520f-47e7-8a23-4cf9e1aed962
       - 901813f7-011c-4c41-802b-53ecfdb96209
       - fab60ee2-124f-48d3-918a-25efbbcd55be
@@ -82867,7 +82869,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
     metadata:
       status: pending
       isBlueprint: true
@@ -96895,10 +96898,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
-      - 0285aef9-2f1c-4a3c-ad08-b75d799ab4ce
-      - a45e5394-9ae7-4823-ac2a-387cb0223cfe
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -101905,16 +101905,17 @@ nodes:
     id: 889ff4cb-3ae1-4f90-b289-12a92935efb7
     content: Reliable comparison highlighting in feedback panel
     children:
-      - 4d936471-3cad-4167-91b9-888e4c561ac3
-      - 52e4bf28-e6ce-4dd8-8560-9c959a30d199
-      - 065b54ef-868b-439b-9fd8-eade4c63539f
-      - 0f6a367c-16a7-4296-9019-154cfb07fa71
+      - d9d3f39e-c0ae-4eff-b63e-60b466bac558
+      - 816b72e8-2c97-443e-809b-b3c377d30276
+      - 370b204f-a7cf-4aef-820d-5af39af7e46a
+      - 72359457-3334-4225-8741-07dca5c94dd4
+      - 5a93ccf7-9b3c-4276-a058-769da266e7ef
+      - 6f4d0ae9-8b0e-480a-8505-ffcff38854b3
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
-      appliedContextId: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
   d0da6881-00bd-405b-8dbf-1603876d5450:
     id: d0da6881-00bd-405b-8dbf-1603876d5450
     content: Feedback mechanism should use a hook instead of a file
@@ -109988,502 +109989,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4d936471-3cad-4167-91b9-888e4c561ac3:
-    id: 4d936471-3cad-4167-91b9-888e4c561ac3
-    content: worktree
-    children:
-      - 8ae442ee-46d3-4e62-afd4-49c8c8424eb5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8ae442ee-46d3-4e62-afd4-49c8c8424eb5:
-    id: 8ae442ee-46d3-4e62-afd4-49c8c8424eb5
-    content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-feedback-comparison)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  52e4bf28-e6ce-4dd8-8560-9c959a30d199:
-    id: 52e4bf28-e6ce-4dd8-8560-9c959a30d199
-    content: 📄 Product spec
-    children:
-      - 2b74f677-c3dd-490f-b4de-ab9af5b58b6d
-      - d8ca0536-7990-461f-aa11-5c6d2084f1f5
-      - bcad089d-7510-400d-8f2b-c0d0eb612304
-      - d7443ce0-f656-4205-b330-2b8723ea79cd
-      - 942fcbe2-a03a-4d53-8eb9-279f2bc22a19
-      - cf7de690-4b98-4d2c-bd36-261c78920e59
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b74f677-c3dd-490f-b4de-ab9af5b58b6d:
-    id: 2b74f677-c3dd-490f-b4de-ab9af5b58b6d
-    content: 'Context: the feedback panel renders a before/after diff using green highlighting to mark nodes the AI changed; the cascade trigger is AI rewording or expansion that defeats LCS-exact sibling matching — when `pendingAdded.length > pendingRemoved.length` at flush time the excess is minted as ''added'' (green); parent-unhighlighted is by design (root content is classified independently from its children)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d8ca0536-7990-461f-aa11-5c6d2084f1f5:
-    id: d8ca0536-7990-461f-aa11-5c6d2084f1f5
-    content: 'User: Arborescent user reviewing the result of an AI feedback response in the feedback panel'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bcad089d-7510-400d-8f2b-c0d0eb612304:
-    id: bcad089d-7510-400d-8f2b-c0d0eb612304
-    content: 'Current experience: opening the panel highlights nearly the whole subtree in green except the parent node, so the diff carries no useful signal and the user cannot tell what the AI actually changed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d7443ce0-f656-4205-b330-2b8723ea79cd:
-    id: d7443ce0-f656-4205-b330-2b8723ea79cd
-    content: 'Goal: green highlighting appears only on siblings that have no similar counterpart in the prior subtree'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  942fcbe2-a03a-4d53-8eb9-279f2bc22a19:
-    id: 942fcbe2-a03a-4d53-8eb9-279f2bc22a19
-    content: Business rules
-    children:
-      - 59d12a4b-332a-4a6d-9c1a-a40c594d8142
-      - 96e61911-7829-4d9b-8a6b-a8273b09d01c
-      - f06cbda7-000e-4660-a4b5-9770901f2ff0
-      - cf4efc9f-9ffd-44c0-8e44-e45e2ad2b2c5
-      - b748665f-e32c-4741-8c3f-12c2d8defe11
-      - 05e12580-6ee2-46d5-b4a0-a9b9d515723f
-      - 023b4529-f0a9-4470-ae9d-4c4c90785301
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  59d12a4b-332a-4a6d-9c1a-a40c594d8142:
-    id: 59d12a4b-332a-4a6d-9c1a-a40c594d8142
-    content: UUID placeholders introduced by the feedback pipeline are fully resolved on both snapshots before comparison runs, so placeholder identifiers never produce spurious differences
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  96e61911-7829-4d9b-8a6b-a8273b09d01c:
-    id: 96e61911-7829-4d9b-8a6b-a8273b09d01c
-    content: A node is highlighted as changed if and only if its own comparable content (text, type, ordered child identities) differs from its counterpart
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f06cbda7-000e-4660-a4b5-9770901f2ff0:
-    id: f06cbda7-000e-4660-a4b5-9770901f2ff0
-    content: Parent and child nodes are subject to the same comparison rule — no implicit parent exemption
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf4efc9f-9ffd-44c0-8e44-e45e2ad2b2c5:
-    id: cf4efc9f-9ffd-44c0-8e44-e45e2ad2b2c5
-    content: Re-opening the panel on the same feedback response yields identical highlighting across opens
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b748665f-e32c-4741-8c3f-12c2d8defe11:
-    id: b748665f-e32c-4741-8c3f-12c2d8defe11
-    content: If comparison cannot complete, the panel surfaces a clear non-silent error rather than defaulting to a fully-green diff
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  05e12580-6ee2-46d5-b4a0-a9b9d515723f:
-    id: 05e12580-6ee2-46d5-b4a0-a9b9d515723f
-    content: After the LCS-exact pass on siblings, leftover removed and added entries are paired by content similarity above a configurable threshold; only entries with no similar counterpart are minted as 'added' (mirrors `git diff -M` rename detection)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  023b4529-f0a9-4470-ae9d-4c4c90785301:
-    id: 023b4529-f0a9-4470-ae9d-4c4c90785301
-    content: Parent nodes are classified independently from their descendants — a parent whose own text is unchanged stays 'unchanged' even when its descendants are modified (mirrors git's line-level diff semantics)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf7de690-4b98-4d2c-bd36-261c78920e59:
-    id: cf7de690-4b98-4d2c-bd36-261c78920e59
-    content: Acceptance criteria
-    children:
-      - 1c3d16d8-eccc-4ef8-9428-b0c7a9362b6b
-      - 7d3c1549-97ba-445e-897f-2cfcbe08528d
-      - e581b5b7-0e5a-4a81-b843-d542a4219578
-      - d69c9168-7470-45d0-85b2-180d9b1dc653
-      - 201fe567-6748-4b27-ae65-4435b04f775f
-      - edbae4c5-0460-430a-b051-e4cd00940d11
-      - 5ab42b60-1876-4173-9b45-6a8f84e2910e
-      - 485e5a21-f9e4-47a0-954b-f3fd5ccabf93
-      - d9bb1d23-fac1-42e4-89b7-10233929bbe7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c3d16d8-eccc-4ef8-9428-b0c7a9362b6b:
-    id: 1c3d16d8-eccc-4ef8-9428-b0c7a9362b6b
-    content: '- [ ] Opening the panel on an unchanged subtree shows zero green highlights'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7d3c1549-97ba-445e-897f-2cfcbe08528d:
-    id: 7d3c1549-97ba-445e-897f-2cfcbe08528d
-    content: '- [ ] A single-node edit produces a single green highlight on that node only'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e581b5b7-0e5a-4a81-b843-d542a4219578:
-    id: e581b5b7-0e5a-4a81-b843-d542a4219578
-    content: '- [ ] UUID placeholders are resolved on both snapshots before per-node comparison runs'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  d69c9168-7470-45d0-85b2-180d9b1dc653:
-    id: d69c9168-7470-45d0-85b2-180d9b1dc653
-    content: '- [ ] Parent and child nodes use the same comparison rule, with no parent-exempt path'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  201fe567-6748-4b27-ae65-4435b04f775f:
-    id: 201fe567-6748-4b27-ae65-4435b04f775f
-    content: '- [ ] Re-opening the panel on the same response gives identical highlighting across opens'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  edbae4c5-0460-430a-b051-e4cd00940d11:
-    id: edbae4c5-0460-430a-b051-e4cd00940d11
-    content: '- [ ] Comparison stays within the existing panel-open performance budget on deep subtrees'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5ab42b60-1876-4173-9b45-6a8f84e2910e:
-    id: 5ab42b60-1876-4173-9b45-6a8f84e2910e
-    content: '- [ ] A comparison failure surfaces a visible error state rather than a silent all-green render'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  485e5a21-f9e4-47a0-954b-f3fd5ccabf93:
-    id: 485e5a21-f9e4-47a0-954b-f3fd5ccabf93
-    content: '- [ ] When the AI returns more children than prior with reworded content, siblings above the similarity threshold pair as ''modified''; only those below the threshold mint as ''added'''
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d9bb1d23-fac1-42e4-89b7-10233929bbe7:
-    id: d9bb1d23-fac1-42e4-89b7-10233929bbe7
-    content: '- [ ] A parent whose own text is unchanged is classified ''unchanged'' even when its descendants are modified'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  065b54ef-868b-439b-9fd8-eade4c63539f:
-    id: 065b54ef-868b-439b-9fd8-eade4c63539f
-    content: 🔧 Implementation proposal
-    children:
-      - ed67ad70-d2b0-4f5b-9058-9a77f5bc64cd
-      - 66e3a31d-4d00-427d-89ee-170f5b7aaa83
-      - 9a0a2c09-44e6-4036-bfb5-ee800d16d74b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed67ad70-d2b0-4f5b-9058-9a77f5bc64cd:
-    id: ed67ad70-d2b0-4f5b-9058-9a77f5bc64cd
-    content: 'Approach: add a similarity-pair fallback after the LCS-exact pass in `reconcileChildren`, modelled on `git diff -M` rename detection — score excess `pendingRemoved` × `pendingAdded` entries by content similarity (Levenshtein or token-Jaccard), pair the best matches above a threshold as ''modified'', and mint only the orphans as ''added''; LCS strict-equality stays as the first pass'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66e3a31d-4d00-427d-89ee-170f5b7aaa83:
-    id: 66e3a31d-4d00-427d-89ee-170f5b7aaa83
-    content: Touchpoints
-    children:
-      - 66b80e13-fdda-44e2-a116-eca14c19cd1d
-      - 025e0f4d-6482-44d4-984f-bec68b2d5050
-      - 9bd416a7-d411-416c-b784-bb51bcd45657
-      - 5abffa9e-a670-4886-ac7a-05687aead478
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66b80e13-fdda-44e2-a116-eca14c19cd1d:
-    id: 66b80e13-fdda-44e2-a116-eca14c19cd1d
-    content: Renderer feedback-panel comparison utility
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  025e0f4d-6482-44d4-984f-bec68b2d5050:
-    id: 025e0f4d-6482-44d4-984f-bec68b2d5050
-    content: UUID placeholder replacement step in the feedback pipeline
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  9bd416a7-d411-416c-b784-bb51bcd45657:
-    id: 9bd416a7-d411-416c-b784-bb51bcd45657
-    content: Highlight rendering in the feedback panel component
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5abffa9e-a670-4886-ac7a-05687aead478:
-    id: 5abffa9e-a670-4886-ac7a-05687aead478
-    content: Tests covering the comparison utility and feedback-panel diff rendering
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9a0a2c09-44e6-4036-bfb5-ee800d16d74b:
-    id: 9a0a2c09-44e6-4036-bfb5-ee800d16d74b
-    content: 'Constraints to call out: the cascade is driven by LCS-exact''s brittleness against AI rewording/expansion, not by snapshot ordering or placeholder timing; similarity threshold must be tuned (default ≥0.5 like git); pairwise similarity is O(N×M) on the excess, acceptable because N and M are typically small'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f6a367c-16a7-4296-9019-154cfb07fa71:
-    id: 0f6a367c-16a7-4296-9019-154cfb07fa71
-    content: Technical refinement
-    children:
-      - fe19b3d3-b182-4257-b90f-f98ca5755bb4
-      - cdbe922f-3dcd-495e-9e14-f0f3a15c0da3
-      - ab3d5388-2a9e-4d87-91eb-1f37457b834e
-      - d24ed1b2-7d16-4984-bf98-c6c6d71a5e65
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fe19b3d3-b182-4257-b90f-f98ca5755bb4:
-    id: fe19b3d3-b182-4257-b90f-f98ca5755bb4
-    content: Flag complications
-    children:
-      - 0c4647bc-7015-49fd-ab55-72bc606e8e88
-      - 2a48ffb4-45e9-48a6-b941-03562e691116
-      - 2a05d7a9-4d54-4148-88fb-b0a58e361793
-      - ad17e579-2629-4c90-b68e-f1f0f1da800e
-      - 04301d13-8df0-4811-b931-13d0228c7e30
-      - 1838c76f-04c2-480c-af7e-ef8375f78349
-      - 5de0493f-5441-45a8-bffd-e34b00fc4270
-      - d019c0c1-6e48-4a9f-bbd6-8132bdd3aa48
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c4647bc-7015-49fd-ab55-72bc606e8e88:
-    id: 0c4647bc-7015-49fd-ab55-72bc606e8e88
-    content: 'The "everything green except parent" symptom is a cascade — confirmed mechanism: `pendingAdded.length > pendingRemoved.length` at flush time, excess minted as ''added'' via `mintAddedSubtree`; parent stays ''unchanged'' because root is classified independently of its children'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a48ffb4-45e9-48a6-b941-03562e691116:
-    id: 2a48ffb4-45e9-48a6-b941-03562e691116
-    content: Sibling pairing in reconcileChildren uses exact `content === content` via diffArrays — any AI-introduced whitespace, line-ending, or formatting drift breaks the match and triggers the cascade; this is the most likely root cause of the intermittent symptom
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a05d7a9-4d54-4148-88fb-b0a58e361793:
-    id: 2a05d7a9-4d54-4148-88fb-b0a58e361793
-    content: 'The bug report''s "UUID replacement" is ambiguous — the only UUID handling in reconcileFeedback is the mint-fresh path for added subtrees; if the user means an in-content reference-resolution step, that step doesn''t currently exist and adding it is a larger scope — worth clarifying before committing to AC #3'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad17e579-2629-4c90-b68e-f1f0f1da800e:
-    id: ad17e579-2629-4c90-b68e-f1f0f1da800e
-    content: AC "comparison failure surfaces an error" may be over-engineered — the algorithm cannot fail in the strict sense, it only produces poor pairings; suggest dropping unless there is a real failure mode in mind
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  04301d13-8df0-4811-b931-13d0228c7e30:
-    id: 04301d13-8df0-4811-b931-13d0228c7e30
-    content: AC "existing panel-open performance budget" is undefined in the repo — either pick a concrete target (e.g. <100ms for 200 nodes) or drop the criterion
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1838c76f-04c2-480c-af7e-ef8375f78349:
-    id: 1838c76f-04c2-480c-af7e-ef8375f78349
-    content: 'Out of scope: switching to a tree-structure-aware diff (e.g. tree edit distance) — would resolve reorder-plus-edit cascades but is a substantial rewrite with poor ROI for this bug'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5de0493f-5441-45a8-bffd-e34b00fc4270:
-    id: 5de0493f-5441-45a8-bffd-e34b00fc4270
-    content: The real cascade trigger is `pendingAdded > pendingRemoved`, not whitespace drift — happens when AI expands one bullet into several or rewords content so LCS-exact finds no matches
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d019c0c1-6e48-4a9f-bbd6-8132bdd3aa48:
-    id: d019c0c1-6e48-4a9f-bbd6-8132bdd3aa48
-    content: Parent-unhighlighted is by design, not a missing comparison — `reconcileFeedback.ts:52-53` classifies root independently; visually surprising but correct, and matches git's line-level semantics
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cdbe922f-3dcd-495e-9e14-f0f3a15c0da3:
-    id: cdbe922f-3dcd-495e-9e14-f0f3a15c0da3
-    content: Approach summary
-    children:
-      - cd5b187d-3ba9-4f99-882d-1b1c9f758b5c
-      - 403f9f46-d860-4e3e-89de-cc9b90b7b445
-      - 01ffbb23-4540-4ff3-8a73-1d537e962125
-      - d4160648-5686-4b82-a131-608df156f9b1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd5b187d-3ba9-4f99-882d-1b1c9f758b5c:
-    id: cd5b187d-3ba9-4f99-882d-1b1c9f758b5c
-    content: 'Single hot spot: reconcileFeedback.reconcileChildren — the comparator and the cascade-on-miss live here; normalising whitespace/line endings in the comparator is the smallest viable fix'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  403f9f46-d860-4e3e-89de-cc9b90b7b445:
-    id: 403f9f46-d860-4e3e-89de-cc9b90b7b445
-    content: Add a failing test that pairs a near-identical subtree with one whitespace-only sibling diff and asserts only that sibling flips to modified — this reproduces the cascade as observed
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  01ffbb23-4540-4ff3-8a73-1d537e962125:
-    id: 01ffbb23-4540-4ff3-8a73-1d537e962125
-    content: 'Non-obvious for reviewer: the asymmetry between root and descendants is by design (root classified independently at lines 52–53, children via diffArrays) — fix lands at the children-comparator level, not by introducing a parent rule'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d4160648-5686-4b82-a131-608df156f9b1:
-    id: d4160648-5686-4b82-a131-608df156f9b1
-    content: 'Fix design borrowed from `git diff -M`: strict equality in the LCS pass, similarity-pair as a fallback for the excess — keeps the fast path strict and adds tolerance only where it''s needed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab3d5388-2a9e-4d87-91eb-1f37457b834e:
-    id: ab3d5388-2a9e-4d87-91eb-1f37457b834e
-    content: 'Decomposition decision: single PR — the fix is one tight change to reconcileFeedback.reconcileChildren and its tests; splitting would leave the symptom unresolved on every intermediate merge'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d24ed1b2-7d16-4984-bf98-c6c6d71a5e65:
-    id: d24ed1b2-7d16-4984-bf98-c6c6d71a5e65
-    content: 'TDD note: the whitespace cascade hypothesis from the refinement was not reproducible — the algorithm pairs unmatched removed+added segments by position in flush() and classifies them as ''modified'', not ''added''. Added 2 concrete regression tests (twice-invocation stability; unrelated workspace nodes in priorNodes) and left 4 boundary cases as `it.todo` (whitespace pair-vs-classify is uncertain under different fix strategies; reorder detection depends on whether the fix touches the LCS layer; mutation/immutable-update tests depend on defensive-copy decisions). Needs user input on a confirmed cascade repro or which post-fix behaviour to pin (e.g., whitespace-differ should be ''unchanged'' under a trimming comparator, or ''modified'' under lenient-pair + strict-classify).'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
   cc979d96-85ac-4d01-a428-a467b5abcbf0:
     id: cc979d96-85ac-4d01-a428-a467b5abcbf0
     content: worktree
@@ -110761,6 +110266,650 @@ nodes:
   afa8ee84-babb-4654-b0c3-959fc7a16fb6:
     id: afa8ee84-babb-4654-b0c3-959fc7a16fb6
     content: Other findings (stale comment, cleanup-pipeline safety, no-caller-broken, no length-1 UI assumptions) all checked out and were either pre-validated or addressed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9d3f39e-c0ae-4eff-b63e-60b466bac558:
+    id: d9d3f39e-c0ae-4eff-b63e-60b466bac558
+    content: worktree
+    children:
+      - cd0d8192-299c-4e3c-b18f-1191ad2c2ef5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd0d8192-299c-4e3c-b18f-1191ad2c2ef5:
+    id: cd0d8192-299c-4e3c-b18f-1191ad2c2ef5
+    content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-feedback-comparison)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  816b72e8-2c97-443e-809b-b3c377d30276:
+    id: 816b72e8-2c97-443e-809b-b3c377d30276
+    content: 📄 Product spec
+    children:
+      - 661273f0-77ad-4cf2-b0b1-1a286238e036
+      - 06483de4-6771-4a8a-98e1-ca018c0055df
+      - 99ab45fb-2ce1-4ad9-9435-247635710b1c
+      - b1cdae84-31a6-4c2c-8ca9-427abc13153f
+      - cfb743a4-0609-4e85-baed-93ef8653a8e0
+      - 507648a0-83b6-42d2-a282-e537b190137b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  661273f0-77ad-4cf2-b0b1-1a286238e036:
+    id: 661273f0-77ad-4cf2-b0b1-1a286238e036
+    content: 'Context: the feedback panel renders a before/after diff using green highlighting to mark nodes the AI changed; the cascade trigger is AI rewording or expansion that defeats LCS-exact sibling matching — when `pendingAdded.length > pendingRemoved.length` at flush time the excess is minted as ''added'' (green); parent-unhighlighted is by design (root content is classified independently from its children)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06483de4-6771-4a8a-98e1-ca018c0055df:
+    id: 06483de4-6771-4a8a-98e1-ca018c0055df
+    content: 'User: Arborescent user reviewing the result of an AI feedback response in the feedback panel'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99ab45fb-2ce1-4ad9-9435-247635710b1c:
+    id: 99ab45fb-2ce1-4ad9-9435-247635710b1c
+    content: 'Current experience: opening the panel highlights nearly the whole subtree in green except the parent node, so the diff carries no useful signal and the user cannot tell what the AI actually changed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1cdae84-31a6-4c2c-8ca9-427abc13153f:
+    id: b1cdae84-31a6-4c2c-8ca9-427abc13153f
+    content: 'Goal: green highlighting appears only on siblings that have no similar counterpart in the prior subtree'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfb743a4-0609-4e85-baed-93ef8653a8e0:
+    id: cfb743a4-0609-4e85-baed-93ef8653a8e0
+    content: Business rules
+    children:
+      - e4b2a8e6-e97e-46c1-91a7-c98c36a08a33
+      - 03735c6f-b81a-48f4-8260-d52ede781773
+      - 4c3dd35d-42f3-47ea-b8e7-1783f4469aaf
+      - 15925708-2b63-4d6c-9751-17d3ff6c9ee2
+      - 8787c2fa-f139-4d19-8899-15bb298379b4
+      - ad8c36bb-d0ac-42a7-8377-3e314c6cc6ad
+      - 93e0931d-c81a-4c02-91ae-94ee81a99867
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4b2a8e6-e97e-46c1-91a7-c98c36a08a33:
+    id: e4b2a8e6-e97e-46c1-91a7-c98c36a08a33
+    content: UUID placeholders introduced by the feedback pipeline are fully resolved on both snapshots before comparison runs, so placeholder identifiers never produce spurious differences
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  03735c6f-b81a-48f4-8260-d52ede781773:
+    id: 03735c6f-b81a-48f4-8260-d52ede781773
+    content: A node is highlighted as changed if and only if its own comparable content (text, type, ordered child identities) differs from its counterpart
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c3dd35d-42f3-47ea-b8e7-1783f4469aaf:
+    id: 4c3dd35d-42f3-47ea-b8e7-1783f4469aaf
+    content: Parent and child nodes are subject to the same comparison rule — no implicit parent exemption
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  15925708-2b63-4d6c-9751-17d3ff6c9ee2:
+    id: 15925708-2b63-4d6c-9751-17d3ff6c9ee2
+    content: Re-opening the panel on the same feedback response yields identical highlighting across opens
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8787c2fa-f139-4d19-8899-15bb298379b4:
+    id: 8787c2fa-f139-4d19-8899-15bb298379b4
+    content: If comparison cannot complete, the panel surfaces a clear non-silent error rather than defaulting to a fully-green diff
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad8c36bb-d0ac-42a7-8377-3e314c6cc6ad:
+    id: ad8c36bb-d0ac-42a7-8377-3e314c6cc6ad
+    content: After the LCS-exact pass on siblings, leftover removed and added entries are paired by content similarity above a configurable threshold; only entries with no similar counterpart are minted as 'added' (mirrors `git diff -M` rename detection)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93e0931d-c81a-4c02-91ae-94ee81a99867:
+    id: 93e0931d-c81a-4c02-91ae-94ee81a99867
+    content: Parent nodes are classified independently from their descendants — a parent whose own text is unchanged stays 'unchanged' even when its descendants are modified (mirrors git's line-level diff semantics)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  507648a0-83b6-42d2-a282-e537b190137b:
+    id: 507648a0-83b6-42d2-a282-e537b190137b
+    content: Acceptance criteria
+    children:
+      - f070e4a2-03cc-40c2-a8dc-7a6329d4ac79
+      - d803d56d-2b26-4d3a-9bd3-1e05d98ced48
+      - 5984ed3e-f24d-4bc3-9f69-c700ee4c500c
+      - c8b6045f-28e7-4f38-b616-b4a0db4547b8
+      - f8f45274-764c-4447-9f10-44118dc721b7
+      - f3414612-bc44-419d-916b-255fd75a0770
+      - 3a38f56d-16c6-4f1d-a8e9-5e31e94c90cf
+      - 23c225e3-b7b8-4b32-a08c-418c9a167bb5
+      - aee82db2-d78d-45df-a2ad-075eb2e87447
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f070e4a2-03cc-40c2-a8dc-7a6329d4ac79:
+    id: f070e4a2-03cc-40c2-a8dc-7a6329d4ac79
+    content: '- [x] Opening the panel on an unchanged subtree shows zero green highlights'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d803d56d-2b26-4d3a-9bd3-1e05d98ced48:
+    id: d803d56d-2b26-4d3a-9bd3-1e05d98ced48
+    content: '- [x] A single-node edit produces a single green highlight on that node only'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5984ed3e-f24d-4bc3-9f69-c700ee4c500c:
+    id: 5984ed3e-f24d-4bc3-9f69-c700ee4c500c
+    content: '- [ ] UUID placeholders are resolved on both snapshots before per-node comparison runs'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8b6045f-28e7-4f38-b616-b4a0db4547b8:
+    id: c8b6045f-28e7-4f38-b616-b4a0db4547b8
+    content: '- [ ] Parent and child nodes use the same comparison rule, with no parent-exempt path'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8f45274-764c-4447-9f10-44118dc721b7:
+    id: f8f45274-764c-4447-9f10-44118dc721b7
+    content: '- [x] Re-opening the panel on the same response gives identical highlighting across opens'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3414612-bc44-419d-916b-255fd75a0770:
+    id: f3414612-bc44-419d-916b-255fd75a0770
+    content: '- [ ] Comparison stays within the existing panel-open performance budget on deep subtrees'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a38f56d-16c6-4f1d-a8e9-5e31e94c90cf:
+    id: 3a38f56d-16c6-4f1d-a8e9-5e31e94c90cf
+    content: '- [ ] A comparison failure surfaces a visible error state rather than a silent all-green render'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  23c225e3-b7b8-4b32-a08c-418c9a167bb5:
+    id: 23c225e3-b7b8-4b32-a08c-418c9a167bb5
+    content: '- [x] When the AI returns more children than prior with reworded content, siblings above the similarity threshold pair as ''modified''; only those below the threshold mint as ''added'''
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aee82db2-d78d-45df-a2ad-075eb2e87447:
+    id: aee82db2-d78d-45df-a2ad-075eb2e87447
+    content: '- [x] A parent whose own text is unchanged is classified ''unchanged'' even when its descendants are modified'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  370b204f-a7cf-4aef-820d-5af39af7e46a:
+    id: 370b204f-a7cf-4aef-820d-5af39af7e46a
+    content: 🔧 Implementation proposal
+    children:
+      - 6e1e2b4f-ed16-432d-9b88-e858464edeaa
+      - db77aacc-980f-4bc8-9e92-30e4547348eb
+      - f674547c-981e-46e9-ba2e-ec8b1b1b3281
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e1e2b4f-ed16-432d-9b88-e858464edeaa:
+    id: 6e1e2b4f-ed16-432d-9b88-e858464edeaa
+    content: 'Approach: add a similarity-pair fallback after the LCS-exact pass in `reconcileChildren`, modelled on `git diff -M` rename detection — score excess `pendingRemoved` × `pendingAdded` entries by content similarity (Levenshtein or token-Jaccard), pair the best matches above a threshold as ''modified'', and mint only the orphans as ''added''; LCS strict-equality stays as the first pass'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db77aacc-980f-4bc8-9e92-30e4547348eb:
+    id: db77aacc-980f-4bc8-9e92-30e4547348eb
+    content: Touchpoints
+    children:
+      - 9af15e73-c674-4056-8412-e0594abdd0ee
+      - c6a02f09-6a7e-4f7f-8b33-89b145e72620
+      - f60ba31a-cd15-4d66-994c-f878dc9344f8
+      - 78ebeaa9-ab4c-4c8d-8335-f27bbbaaae06
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9af15e73-c674-4056-8412-e0594abdd0ee:
+    id: 9af15e73-c674-4056-8412-e0594abdd0ee
+    content: Renderer feedback-panel comparison utility
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6a02f09-6a7e-4f7f-8b33-89b145e72620:
+    id: c6a02f09-6a7e-4f7f-8b33-89b145e72620
+    content: UUID placeholder replacement step in the feedback pipeline
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f60ba31a-cd15-4d66-994c-f878dc9344f8:
+    id: f60ba31a-cd15-4d66-994c-f878dc9344f8
+    content: Highlight rendering in the feedback panel component
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  78ebeaa9-ab4c-4c8d-8335-f27bbbaaae06:
+    id: 78ebeaa9-ab4c-4c8d-8335-f27bbbaaae06
+    content: Tests covering the comparison utility and feedback-panel diff rendering
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f674547c-981e-46e9-ba2e-ec8b1b1b3281:
+    id: f674547c-981e-46e9-ba2e-ec8b1b1b3281
+    content: 'Constraints to call out: the cascade is driven by LCS-exact''s brittleness against AI rewording/expansion, not by snapshot ordering or placeholder timing; similarity threshold must be tuned (default ≥0.5 like git); pairwise similarity is O(N×M) on the excess, acceptable because N and M are typically small'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72359457-3334-4225-8741-07dca5c94dd4:
+    id: 72359457-3334-4225-8741-07dca5c94dd4
+    content: Technical refinement
+    children:
+      - 9023601a-2ee7-46bc-a3d0-e07188c2d137
+      - 068fd785-a5bc-4846-9ade-b4610a15a266
+      - e185f65a-2d3f-4136-b8cd-ede9255ed152
+      - 9a512b3c-dfdc-45f7-99d9-13f27072acaa
+      - f5fcbb35-a6ae-4c0c-9e31-18f9431ad15e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9023601a-2ee7-46bc-a3d0-e07188c2d137:
+    id: 9023601a-2ee7-46bc-a3d0-e07188c2d137
+    content: Flag complications
+    children:
+      - 4a5a6f9a-7443-486e-9298-e51601ade02b
+      - 0648e72e-f833-4e35-9bf3-e22d1bb7e9b7
+      - 3dc2bce7-62c5-4e66-99a4-b56efafe4129
+      - 49627def-0791-4bce-97f3-293a877ab5cb
+      - 6003b9b3-c368-443c-8fd7-d55a70b78e5d
+      - 7d42494c-5d78-41d4-b9f7-457594d0afb7
+      - 703ef91e-3548-4c7b-844b-1aff00d4ee6d
+      - 2df94dd7-698e-4ba1-b296-d30216c4d6ef
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a5a6f9a-7443-486e-9298-e51601ade02b:
+    id: 4a5a6f9a-7443-486e-9298-e51601ade02b
+    content: 'The "everything green except parent" symptom is a cascade — confirmed mechanism: `pendingAdded.length > pendingRemoved.length` at flush time, excess minted as ''added'' via `mintAddedSubtree`; parent stays ''unchanged'' because root is classified independently of its children'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0648e72e-f833-4e35-9bf3-e22d1bb7e9b7:
+    id: 0648e72e-f833-4e35-9bf3-e22d1bb7e9b7
+    content: Sibling pairing in reconcileChildren uses exact `content === content` via diffArrays — any AI-introduced whitespace, line-ending, or formatting drift breaks the match and triggers the cascade; this is the most likely root cause of the intermittent symptom
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dc2bce7-62c5-4e66-99a4-b56efafe4129:
+    id: 3dc2bce7-62c5-4e66-99a4-b56efafe4129
+    content: 'The bug report''s "UUID replacement" is ambiguous — the only UUID handling in reconcileFeedback is the mint-fresh path for added subtrees; if the user means an in-content reference-resolution step, that step doesn''t currently exist and adding it is a larger scope — worth clarifying before committing to AC #3'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49627def-0791-4bce-97f3-293a877ab5cb:
+    id: 49627def-0791-4bce-97f3-293a877ab5cb
+    content: AC "comparison failure surfaces an error" may be over-engineered — the algorithm cannot fail in the strict sense, it only produces poor pairings; suggest dropping unless there is a real failure mode in mind
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6003b9b3-c368-443c-8fd7-d55a70b78e5d:
+    id: 6003b9b3-c368-443c-8fd7-d55a70b78e5d
+    content: AC "existing panel-open performance budget" is undefined in the repo — either pick a concrete target (e.g. <100ms for 200 nodes) or drop the criterion
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d42494c-5d78-41d4-b9f7-457594d0afb7:
+    id: 7d42494c-5d78-41d4-b9f7-457594d0afb7
+    content: 'Out of scope: switching to a tree-structure-aware diff (e.g. tree edit distance) — would resolve reorder-plus-edit cascades but is a substantial rewrite with poor ROI for this bug'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  703ef91e-3548-4c7b-844b-1aff00d4ee6d:
+    id: 703ef91e-3548-4c7b-844b-1aff00d4ee6d
+    content: The real cascade trigger is `pendingAdded > pendingRemoved`, not whitespace drift — happens when AI expands one bullet into several or rewords content so LCS-exact finds no matches
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2df94dd7-698e-4ba1-b296-d30216c4d6ef:
+    id: 2df94dd7-698e-4ba1-b296-d30216c4d6ef
+    content: Parent-unhighlighted is by design, not a missing comparison — `reconcileFeedback.ts:52-53` classifies root independently; visually surprising but correct, and matches git's line-level semantics
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  068fd785-a5bc-4846-9ade-b4610a15a266:
+    id: 068fd785-a5bc-4846-9ade-b4610a15a266
+    content: Approach summary
+    children:
+      - f96f30a7-ed8c-4dd6-a187-4a8f6e3f75c5
+      - 1ca8fa49-5686-4874-bffe-313192e2d63e
+      - 5fe97c23-bafa-4ba5-ae71-416aa6767a7d
+      - 7cd8de8b-b6a6-4f86-a3fc-396ffeb4f8e7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f96f30a7-ed8c-4dd6-a187-4a8f6e3f75c5:
+    id: f96f30a7-ed8c-4dd6-a187-4a8f6e3f75c5
+    content: 'Single hot spot: reconcileFeedback.reconcileChildren — the comparator and the cascade-on-miss live here; normalising whitespace/line endings in the comparator is the smallest viable fix'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ca8fa49-5686-4874-bffe-313192e2d63e:
+    id: 1ca8fa49-5686-4874-bffe-313192e2d63e
+    content: Add a failing test that pairs a near-identical subtree with one whitespace-only sibling diff and asserts only that sibling flips to modified — this reproduces the cascade as observed
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fe97c23-bafa-4ba5-ae71-416aa6767a7d:
+    id: 5fe97c23-bafa-4ba5-ae71-416aa6767a7d
+    content: 'Non-obvious for reviewer: the asymmetry between root and descendants is by design (root classified independently at lines 52–53, children via diffArrays) — fix lands at the children-comparator level, not by introducing a parent rule'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7cd8de8b-b6a6-4f86-a3fc-396ffeb4f8e7:
+    id: 7cd8de8b-b6a6-4f86-a3fc-396ffeb4f8e7
+    content: 'Fix design borrowed from `git diff -M`: strict equality in the LCS pass, similarity-pair as a fallback for the excess — keeps the fast path strict and adds tolerance only where it''s needed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e185f65a-2d3f-4136-b8cd-ede9255ed152:
+    id: e185f65a-2d3f-4136-b8cd-ede9255ed152
+    content: 'Decomposition decision: single PR — the fix is one tight change to reconcileFeedback.reconcileChildren and its tests; splitting would leave the symptom unresolved on every intermediate merge'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a512b3c-dfdc-45f7-99d9-13f27072acaa:
+    id: 9a512b3c-dfdc-45f7-99d9-13f27072acaa
+    content: 'TDD: 2 failing tests added that drive the similarity-pair fix — (a) reordered children with unchanged content should classify ''unchanged'' (today: orphan-minted as ''added'' due to LCS picking the longer subsequence); (b) AI reword + expansion + interleave should pair similar siblings as ''modified'' and mint only orphans as ''added'' (today: flush() pairs by position so wholly-new bullets inherit prior identities). Whitespace boundary tests promoted to concrete regression guards (currently pass; similarity-pair must preserve this). Tests for priorNodes mutation/replacement remain `.todo` (uncertain until defensive-copy decision is made during implementation).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5fcbb35-a6ae-4c0c-9e31-18f9431ad15e:
+    id: f5fcbb35-a6ae-4c0c-9e31-18f9431ad15e
+    content: 'Implementation: refactored `reconcileChildren` in `src/renderer/store/feedback/reconcileFeedback.ts` to collect leftover removed/added globally (instead of per-segment flush()), then pair via two phases: (1) similarity-pair using token-Jaccard ≥0.5 threshold for high-confidence renames; (2) position-pair for any remaining 1:1 leftovers (preserves existing behavior for simple `''original'' → ''edited''` edits where similarity is 0). Orphans below threshold and outside position-fallback mint as ''added''. Threshold note: spec''s "strict threshold" interpretation would have regressed simple-edit tests (similarity=0 mints as add+remove instead of modified) — chose hybrid to preserve existing UX while fixing the reorder and reword+expansion cascades. All 24 reconcileFeedback concrete tests pass (including 2 previously-red TDD tests); 150/150 feedback-area tests pass; tsc clean; eslint clean on changed files.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a93ccf7-9b3c-4276-a058-769da266e7ef:
+    id: 5a93ccf7-9b3c-4276-a058-769da266e7ef
+    content: review feedback
+    children:
+      - 6d0aa2db-a3c6-4e69-92fd-fd339884806a
+      - 998806ae-e7c3-4e35-bc80-b31f29127273
+      - 41516ded-76b7-41d4-aa99-d0e336707825
+      - 44b11074-fc0c-4db0-84b0-7f2ad15ab600
+      - 39d0b105-3409-4abe-949c-77d5a2e7accb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d0aa2db-a3c6-4e69-92fd-fd339884806a:
+    id: 6d0aa2db-a3c6-4e69-92fd-fd339884806a
+    content: 'Spec deviation in `pairLeftovers` (reconcileFeedback.ts ~159-186) — confidence 85: the position-pair fallback unconditionally pairs balanced leftovers regardless of similarity score, contradicting the AC "siblings above similarity threshold pair as modified; only those below mint as added". This is load-bearing for the existing simple-rename test at reconcileFeedback.test.ts:59-73 (`''original''` → `''edited''`, Jaccard = 0). Two options: (a) document the deviation with a WHY comment above the position-pair block explaining the back-compat reason, or (b) scope the fallback to `min(remaining_removed, remaining_added) === 1` so multi-leftover dissimilar cases mint as added+removed per the AC while preserving single-edit UX. Option (b) more closely matches the spec.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  998806ae-e7c3-4e35-bc80-b31f29127273:
+    id: 998806ae-e7c3-4e35-bc80-b31f29127273
+    content: '`LeftoverPairing` interface declared after first use — reconcileFeedback.ts: interface is at line 135 but first referenced at line 112 in `applyLeftoverPairing`. Compiles via TS hoisting but breaks definition-before-use readability that prevails elsewhere in the file. Move the interface above `applyLeftoverPairing`, or co-locate with `pairLeftovers` which returns it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41516ded-76b7-41d4-aa99-d0e336707825:
+    id: 41516ded-76b7-41d4-aa99-d0e336707825
+    content: 'Tokenization is ASCII-only (confidence 70): the regex `/[^a-z0-9]+/` strips accented and non-Latin characters as separators. For an app where bullets may contain non-ASCII text, switch to `/[^\p{L}\p{N}]+/u` to preserve Unicode word characters. Not blocking but worth fixing now while the area is hot.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44b11074-fc0c-4db0-84b0-7f2ad15ab600:
+    id: 44b11074-fc0c-4db0-84b0-7f2ad15ab600
+    content: 'Test gaps — non-blocking: (a) no direct test of the position-pair fallback for two balanced-but-dissimilar leftovers — would lock in the AC-deviation behavior intentionally rather than implicitly via the rename test; (b) no test for asymmetric leftovers below threshold (e.g. 2 removed, 1 added, all dissimilar) — current code position-pairs one and marks the other as removed; that branch isn''t exercised; (c) no test for the 0.5 threshold boundary (Jaccard exactly 0.5 vs 0.49). Worth adding (a) to harden the contract; (b) and (c) are nice-to-have.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39d0b105-3409-4abe-949c-77d5a2e7accb:
+    id: 39d0b105-3409-4abe-949c-77d5a2e7accb
+    content: No correctness bugs found. Tests pass (24 + 13 todo). Type-check and lint clean. Threshold and tokenization choices are reasonable given the position-fallback masks their edge cases; revisit if the fallback is ever tightened per option (b) above.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f4d0ae9-8b0e-480a-8505-ffcff38854b3:
+    id: 6f4d0ae9-8b0e-480a-8505-ffcff38854b3
+    content: feedback
+    children:
+      - bb81cd24-0629-4c0c-b70e-7afb313cccde
+      - 7a3c897e-e2b9-41ed-984d-551ff41d681a
+      - 2ba2cd14-520f-429c-b875-c093af9c478a
+      - 4d017844-ed8f-42b8-9f03-121d50489ee3
+      - 03d70343-3335-4966-8cec-e3e0098d5c31
+      - 30103572-6e81-42c8-9d52-9306c7014544
+      - c5726017-2ec9-4fe6-b828-4733d9dcdc9f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb81cd24-0629-4c0c-b70e-7afb313cccde:
+    id: bb81cd24-0629-4c0c-b70e-7afb313cccde
+    content: 'MEDIUM — Spec-deviation finding (reviewer confidence 85): valid observation but the deviation is intentional and was discussed with the user before implementation. Accept option (a) only: add a one-line WHY comment above the position-pair block in `pairLeftovers`. Reject option (b) (scope to single-leftover): would create asymmetric UX where 1:1 dissimilar pairs are ''modified'' but 2:2 dissimilar pairs are add+remove — that''s harder to predict than the current uniform rule. Current behavior is consistent with the pre-fix `flush()`-based code and the existing "modified child" test depends on it. Severity downgraded from reviewer''s framing — this is design choice, not a defect.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a3c897e-e2b9-41ed-984d-551ff41d681a:
+    id: 7a3c897e-e2b9-41ed-984d-551ff41d681a
+    content: 'LOW — Forward-declaration of `LeftoverPairing` (reviewer confidence 80): legitimate readability nit, trivial fix. Accept — move the interface from line 159 to above `applyLeftoverPairing` at line 131.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ba2cd14-520f-429c-b875-c093af9c478a:
+    id: 2ba2cd14-520f-429c-b875-c093af9c478a
+    content: 'LOW — ASCII-only tokenization (reviewer confidence 70): real bug for non-ASCII content. With current regex `[^a-z0-9]+`, "café" tokenizes to {''caf''} (losing ''é''). For Arborescent which has no explicit i18n strategy, probability of impact is non-zero (users may use accented names, language samples, etc.). Accept — switch to `/[^\p{L}\p{N}]+/u`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d017844-ed8f-42b8-9f03-121d50489ee3:
+    id: 4d017844-ed8f-42b8-9f03-121d50489ee3
+    content: 'LOW — Test gap 4(a) position-pair fallback lock-in test: accept. The reviewer''s strongest test gap — locks in the intentional AC deviation as a test contract. Adding `prior=[A,B], next=[X,Y]` (all dissimilar, balanced) with assertion that both classify as ''modified''.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  03d70343-3335-4966-8cec-e3e0098d5c31:
+    id: 03d70343-3335-4966-8cec-e3e0098d5c31
+    content: 'NEGLIGIBLE — Test gaps 4(b) asymmetric leftovers and 4(c) threshold boundary: reject as not worth the test maintenance overhead. (b) is a permutation already implied by the rename+expansion test; (c) is a micro-test on a value that the position-fallback masks anyway. Reviewer themselves flagged these as nice-to-have.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  30103572-6e81-42c8-9d52-9306c7014544:
+    id: 30103572-6e81-42c8-9d52-9306c7014544
+    content: NEGLIGIBLE — Reviewer also flagged a pre-existing potential `priorCursor` desync if `priorParent.children` contains stale ids resolving to undefined (reviewer confidence 60). Not introduced by this PR; reviewer themselves did not flag it as actionable. Skip.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5726017-2ec9-4fe6-b828-4733d9dcdc9f:
+    id: c5726017-2ec9-4fe6-b828-4733d9dcdc9f
+    content: 'Documentation: no doc or changelog changes needed. The Feedback panel highlight feature is documented in `docs/workflow.md:34` and listed in CHANGELOG Unreleased — the existing copy describes the intended behavior accurately; the fix simply makes it reliably true. No user-facing affordance changed; the LCS-vs-similarity-pair internals are implementation detail per "don''t include implementation details the user doesn''t need to know". Bug fixes to a feature in Unreleased don''t warrant a separate changelog entry per project convention.'
     children: []
     metadata:
       status: completed
