@@ -1692,4 +1692,132 @@ describe('sendActions', () => {
       expect(clipboardContent).toContain('Output the complete updated list in a markdown code block.');
     });
   });
+
+  describe('workflow-step framing in context block', () => {
+    const FRAMING_SENTENCE = 'The context represents a step in a workflow';
+    const NO_ANTICIPATE_SENTENCE = "Don't anticipate the next step";
+
+    describe('terminal execute mode', () => {
+      beforeEach(() => {
+        mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+      });
+
+      it('includes the workflow-step framing sentence in the prompt', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(FRAMING_SENTENCE);
+      });
+
+      it("includes the 'do not anticipate the next step' clause in the prompt", async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(NO_ANTICIPATE_SENTENCE);
+      });
+
+      it('places the framing inside the CONTEXT block (after the CONTEXT: header)', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        const headerIdx = terminalContent.indexOf('CONTEXT:');
+        const framingIdx = terminalContent.indexOf(FRAMING_SENTENCE);
+        expect(headerIdx).toBeGreaterThan(-1);
+        expect(framingIdx).toBeGreaterThan(headerIdx);
+      });
+
+      it('places the framing before the OUTPUT FORMAT block (so it sits with the per-step context, not the trailing format spec)', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        const framingIdx = terminalContent.indexOf(FRAMING_SENTENCE);
+        const outputFormatIdx = terminalContent.indexOf('OUTPUT FORMAT:');
+        expect(framingIdx).toBeGreaterThan(-1);
+        expect(outputFormatIdx).toBeGreaterThan(framingIdx);
+      });
+    });
+
+    describe('terminal collaborate mode', () => {
+      it('includes the workflow-step framing sentence in the prompt', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1');
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(FRAMING_SENTENCE);
+      });
+
+      it('places the framing inside the REVIEW CONTEXT block (after the REVIEW CONTEXT: header)', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1');
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        const headerIdx = terminalContent.indexOf('REVIEW CONTEXT:');
+        const framingIdx = terminalContent.indexOf(FRAMING_SENTENCE);
+        expect(headerIdx).toBeGreaterThan(-1);
+        expect(framingIdx).toBeGreaterThan(headerIdx);
+      });
+    });
+
+    describe('autonomous terminal execute mode', () => {
+      beforeEach(() => {
+        mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+      });
+
+      it('includes the workflow-step framing sentence in the prompt', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(FRAMING_SENTENCE);
+        expect(terminalContent).toContain(NO_ANTICIPATE_SENTENCE);
+      });
+    });
+
+    describe('web execute mode', () => {
+      beforeEach(() => {
+        mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+      });
+
+      it('includes the workflow-step framing sentence in the clipboard prompt', async () => {
+        await actions.collaborate('child1', { collaborate: true, execute: true });
+
+        const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+        expect(clipboardContent).toContain(FRAMING_SENTENCE);
+        expect(clipboardContent).toContain(NO_ANTICIPATE_SENTENCE);
+      });
+    });
+
+    describe('web collaborate mode', () => {
+      it('includes the workflow-step framing sentence in the clipboard prompt', async () => {
+        await actions.collaborate('child1');
+
+        const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+        expect(clipboardContent).toContain(FRAMING_SENTENCE);
+        expect(clipboardContent).toContain(NO_ANTICIPATE_SENTENCE);
+      });
+    });
+
+    describe('bare send (no applied context)', () => {
+      it('does not inject the workflow-step framing when no context is applied (framing belongs only inside a CONTEXT block)', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+        mockState.nodes.child1.metadata.appliedContextId = undefined;
+
+        await actions.collaborateInTerminal('child1', 'terminal-1');
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).not.toContain(FRAMING_SENTENCE);
+      });
+    });
+  });
 });

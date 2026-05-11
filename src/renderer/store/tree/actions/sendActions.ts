@@ -9,7 +9,7 @@ import {
   getContextDeclarations,
   ContextFlags,
 } from '../../../utils/nodeHelpers';
-import { BASE_INSTRUCTION_RULES, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
+import { BASE_INSTRUCTION_RULES, STEP_CONTEXT_FRAMING, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
@@ -89,6 +89,8 @@ function buildCollaborateInstructions(reviewContext: string, outputTarget: strin
 - Output ONLY the updated list (no commentary).${inlineChecks}
 
 REVIEW CONTEXT:
+${STEP_CONTEXT_FRAMING}
+
 ${reviewContext.trimEnd()}
 
 ${getOutputFormat(decomposition)}
@@ -174,6 +176,8 @@ function buildExecuteInstructions(executeContext: string, outputTarget: string, 
 - Making file changes, writing code, and running commands is expected and required.${inlineChecks}
 
 CONTEXT:
+${STEP_CONTEXT_FRAMING}
+
 ${executeContext.trimEnd()}
 
 ${SINGLE_ROOT_OUTPUT_FORMAT}
