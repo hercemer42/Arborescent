@@ -243,7 +243,7 @@ describe('buildWorkflowExecutionItems', () => {
     expect(result[0].label).toBe('Stop Workflow');
   });
 
-  it('should show Continue Workflow for awaiting-validation nodes regardless of step type', () => {
+  it('should show Continue Workflow and Stop Workflow for awaiting-validation nodes regardless of step type', () => {
     const result = buildWorkflowExecutionItems({
       node: workflowNodes['task'],
       nodes: workflowNodes,
@@ -252,8 +252,42 @@ describe('buildWorkflowExecutionItems', () => {
       ...defaultCallbacks,
     });
 
-    expect(result).toHaveLength(1);
-    expect(result[0].label).toBe('Continue Workflow');
+    expect(result).toHaveLength(2);
+    expect(result.map(item => item.label)).toEqual(
+      expect.arrayContaining(['Continue Workflow', 'Stop Workflow']),
+    );
+  });
+
+  it('should wire Stop Workflow click to onStopWorkflow for awaiting-validation nodes', () => {
+    const onStopWorkflow = vi.fn();
+    const result = buildWorkflowExecutionItems({
+      node: workflowNodes['task'],
+      nodes: workflowNodes,
+      ancestorRegistry: ancestors,
+      workflowExecutionStates: { 'task': { state: 'awaiting-validation', terminalTabId: 'tab1' } },
+      ...defaultCallbacks,
+      onStopWorkflow,
+    });
+
+    const stopItem = result.find(item => item.label === 'Stop Workflow');
+    stopItem?.onClick?.();
+    expect(onStopWorkflow).toHaveBeenCalledTimes(1);
+  });
+
+  it('should wire Continue Workflow click to onContinueWorkflow for awaiting-validation nodes', () => {
+    const onContinueWorkflow = vi.fn();
+    const result = buildWorkflowExecutionItems({
+      node: workflowNodes['task'],
+      nodes: workflowNodes,
+      ancestorRegistry: ancestors,
+      workflowExecutionStates: { 'task': { state: 'awaiting-validation', terminalTabId: 'tab1' } },
+      ...defaultCallbacks,
+      onContinueWorkflow,
+    });
+
+    const continueItem = result.find(item => item.label === 'Continue Workflow');
+    continueItem?.onClick?.();
+    expect(onContinueWorkflow).toHaveBeenCalledTimes(1);
   });
 });
 

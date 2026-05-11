@@ -270,13 +270,41 @@ describe('createWorkflowExecutionActions', () => {
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should be a no-op if node is awaiting-validation', () => {
+    it('should clear execution state for awaiting-validation nodes', () => {
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
       actions.stopWorkflow('task-a');
 
-      // stopWorkflow only works on running nodes
-      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+    });
+
+    it('should release terminal assignment when stopping an awaiting-validation node', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+      state.terminalNodeAssignments = { 'terminal-1': 'task-a' };
+
+      actions.stopWorkflow('task-a');
+
+      expect(state.terminalNodeAssignments['terminal-1']).toBeUndefined();
+    });
+
+    it('should allow restarting after stopping from awaiting-validation', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.stopWorkflow('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+
+      actions.startWorkflow('task-a', 'terminal-1');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
+    });
+
+    it('should not affect another node when stopping an awaiting-validation node', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+      state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-2' };
+
+      actions.stopWorkflow('task-a');
+
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+      expect(state.workflowExecutionStates['task-c'].state).toBe('running');
     });
 
     it('should allow restarting after stop', () => {

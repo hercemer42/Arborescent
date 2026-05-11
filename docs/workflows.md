@@ -98,7 +98,7 @@ For automated advancement to work, you need to configure your AI tool to send ho
 
 ## Stopping and Continuing
 
-You can stop a running workflow at any time: right-click → **Stop Workflow**, or press `Escape` while the running node is selected. The execution state is cleared — to run again, use **Start Workflow**.
+You can stop a workflow at any time — running, or paused awaiting checkpoint validation: right-click → **Stop Workflow**. While running you can also press `Escape` on the selected node. The execution state is cleared — to run again, use **Start Workflow**.
 
 A workflow also stops automatically when something disrupts the running item:
 

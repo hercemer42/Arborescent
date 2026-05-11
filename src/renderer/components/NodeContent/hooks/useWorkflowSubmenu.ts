@@ -84,7 +84,10 @@ export function buildWorkflowExecutionItems({
   }
 
   if (entry?.state === 'awaiting-validation') {
-    return [{ label: 'Continue Workflow', onClick: onContinueWorkflow }];
+    return [
+      { label: 'Continue Workflow', onClick: onContinueWorkflow },
+      { label: 'Stop Workflow', onClick: onStopWorkflow },
+    ];
   }
 
   if (isEligibleForExecution(node.id, nodes, ancestorRegistry, workflowExecutionStates)) {

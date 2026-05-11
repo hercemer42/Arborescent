@@ -199,10 +199,6 @@ describe('Authoritative terminal↔node mapping', () => {
     });
 
     it('frees the terminal when completeWorkflow is called from awaiting-validation', () => {
-      // stopWorkflow is a deliberate no-op for awaiting-validation
-      // (pinned by existing tests). The valid transition out of
-      // awaiting-validation that ends the workflow is completeWorkflow,
-      // which must release the binding.
       actions.startWorkflow('task-a', 'terminal-1');
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       actions.completeWorkflow('task-a');

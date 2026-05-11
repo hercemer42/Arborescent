@@ -351,7 +351,7 @@ export const createWorkflowExecutionActions = (
   function stopWorkflow(nodeId: string): void {
     const { workflowExecutionStates } = get();
     const entry = workflowExecutionStates[nodeId];
-    if (!entry || entry.state !== "running") return;
+    if (!entry || (entry.state !== "running" && entry.state !== "awaiting-validation")) return;
 
     stepTimeouts.clear(nodeId);
     cleanupAutonomousCollaboration(nodeId);
