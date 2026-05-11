@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-11T06:39:57.057Z'
+updated: '2026-05-11T06:45:13.966Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -82867,7 +82867,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - a45e5394-9ae7-4823-ac2a-387cb0223cfe
     metadata:
       status: pending
       isBlueprint: true
@@ -93217,8 +93218,7 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children:
-      - a45e5394-9ae7-4823-ac2a-387cb0223cfe
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -99225,11 +99225,13 @@ nodes:
     id: a45e5394-9ae7-4823-ac2a-387cb0223cfe
     content: Bug - can't stop a workflow in pause, can only continue
     children:
-      - e015c1ab-c756-44d8-b5a3-b7cb0bc1a535
-      - 440221ea-6fcc-4801-b419-48cd832a81be
-      - d6431c97-c2b6-4037-a99c-e6dbfc6b9438
-      - 6bf8509a-83c7-4d18-84df-4161c4f2be66
-      - a819939e-8b95-47dc-a4ec-bf97504ba178
+      - cc979d96-85ac-4d01-a428-a467b5abcbf0
+      - f54c8203-d9ea-46a6-8fc9-dbba82c2d2b5
+      - fdc5c4cd-97f6-4d79-982a-9d6c55c2c749
+      - 4b30656a-2ac5-4412-b4ae-99b7ff1c8cb6
+      - 28f00667-fbc7-420b-b89e-91f742358de3
+      - 05e24da4-1984-41ca-b57b-c1a3af92baa1
+      - 8b677b12-b3cd-4e64-a033-b810624ab744
     metadata:
       status: completed
       expanded: false
@@ -110482,18 +110484,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e015c1ab-c756-44d8-b5a3-b7cb0bc1a535:
-    id: e015c1ab-c756-44d8-b5a3-b7cb0bc1a535
+  cc979d96-85ac-4d01-a428-a467b5abcbf0:
+    id: cc979d96-85ac-4d01-a428-a467b5abcbf0
     content: worktree
     children:
-      - b9483af0-7b78-4d19-b933-4c9287f1ac5d
+      - b40c2b78-fb9c-4da1-bd62-9c67c50d3248
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b9483af0-7b78-4d19-b933-4c9287f1ac5d:
-    id: b9483af0-7b78-4d19-b933-4c9287f1ac5d
+  b40c2b78-fb9c-4da1-bd62-9c67c50d3248:
+    id: b40c2b78-fb9c-4da1-bd62-9c67c50d3248
     content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-workflow-stop-from-pause)'
     children: []
     metadata:
@@ -110501,8 +110503,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  440221ea-6fcc-4801-b419-48cd832a81be:
-    id: 440221ea-6fcc-4801-b419-48cd832a81be
+  f54c8203-d9ea-46a6-8fc9-dbba82c2d2b5:
+    id: f54c8203-d9ea-46a6-8fc9-dbba82c2d2b5
     content: Need to be able to stop it too
     children: []
     metadata:
@@ -110510,8 +110512,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d6431c97-c2b6-4037-a99c-e6dbfc6b9438:
-    id: d6431c97-c2b6-4037-a99c-e6dbfc6b9438
+  fdc5c4cd-97f6-4d79-982a-9d6c55c2c749:
+    id: fdc5c4cd-97f6-4d79-982a-9d6c55c2c749
     content: Show 'Stop workflow' in right click menu for paused workflows
     children: []
     metadata:
@@ -110519,31 +110521,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6bf8509a-83c7-4d18-84df-4161c4f2be66:
-    id: 6bf8509a-83c7-4d18-84df-4161c4f2be66
+  4b30656a-2ac5-4412-b4ae-99b7ff1c8cb6:
+    id: 4b30656a-2ac5-4412-b4ae-99b7ff1c8cb6
     content: Technical refinement
     children:
-      - 8c834b23-78d5-4221-8e9d-435214b1d7d1
-      - dd23cfa5-b823-410d-8adb-7b0c100a88ac
+      - 16a75a47-781f-4d5c-8986-72b3118babfe
+      - c2d9f91b-fd06-4418-939a-701a8bad51ab
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8c834b23-78d5-4221-8e9d-435214b1d7d1:
-    id: 8c834b23-78d5-4221-8e9d-435214b1d7d1
+  16a75a47-781f-4d5c-8986-72b3118babfe:
+    id: 16a75a47-781f-4d5c-8986-72b3118babfe
     content: Flag complications
     children:
-      - 4b37443a-7129-4ce9-a30d-9708e6e905d3
-      - 8e4c3d57-9f1d-4164-b9ad-e829a0771d51
-      - f01957f1-fd9a-42b2-80c7-9c18a576b0b5
+      - 6c6aff12-28fb-42ad-8f05-b2bafa4290cf
+      - fe49f204-7e77-475a-aba0-0a7e2e9aca0c
+      - e97df43a-ff4a-4053-b5d4-1fa165e49b63
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  4b37443a-7129-4ce9-a30d-9708e6e905d3:
-    id: 4b37443a-7129-4ce9-a30d-9708e6e905d3
+  6c6aff12-28fb-42ad-8f05-b2bafa4290cf:
+    id: 6c6aff12-28fb-42ad-8f05-b2bafa4290cf
     content: '`stopWorkflow` currently early-returns unless state is `running` — must also accept `awaiting-validation`, and cleanup paths (`stepTimeouts`, autonomous collab, pending ACKs, terminal assignment release) need to be safe for the paused case'
     children: []
     metadata:
@@ -110551,8 +110553,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8e4c3d57-9f1d-4164-b9ad-e829a0771d51:
-    id: 8e4c3d57-9f1d-4164-b9ad-e829a0771d51
+  fe49f204-7e77-475a-aba0-0a7e2e9aca0c:
+    id: fe49f204-7e77-475a-aba0-0a7e2e9aca0c
     content: Escape-key handler (`uiService.ts`) only stops running nodes today; existing test asserts it does NOT stop awaiting-validation — decide whether to extend Escape too or keep it menu-only (out of scope by default)
     children: []
     metadata:
@@ -110560,8 +110562,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f01957f1-fd9a-42b2-80c7-9c18a576b0b5:
-    id: f01957f1-fd9a-42b2-80c7-9c18a576b0b5
+  e97df43a-ff4a-4053-b5d4-1fa165e49b63:
+    id: e97df43a-ff4a-4053-b5d4-1fa165e49b63
     content: 'Risk: a node deleted/moved while paused already clears state via separate handlers — confirm Stop on paused doesn''t double-fire or fight those paths'
     children: []
     metadata:
@@ -110569,20 +110571,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dd23cfa5-b823-410d-8adb-7b0c100a88ac:
-    id: dd23cfa5-b823-410d-8adb-7b0c100a88ac
+  c2d9f91b-fd06-4418-939a-701a8bad51ab:
+    id: c2d9f91b-fd06-4418-939a-701a8bad51ab
     content: Summarise the approach in 2-3 bullets
     children:
-      - 7978152f-15ab-4ab5-a7e3-8b2a3fa1cb5e
-      - 51944539-62f5-419a-803d-9bb840693e64
-      - 73dfd363-c8ec-478c-ab19-2f363248dbc1
+      - f87d868b-0b75-4d4d-8447-d54f172920b7
+      - ac76182e-53c6-42d5-b724-b555eaac2a0d
+      - 384a643c-4933-4c02-920d-b3555d688f57
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7978152f-15ab-4ab5-a7e3-8b2a3fa1cb5e:
-    id: 7978152f-15ab-4ab5-a7e3-8b2a3fa1cb5e
+  f87d868b-0b75-4d4d-8447-d54f172920b7:
+    id: f87d868b-0b75-4d4d-8447-d54f172920b7
     content: Relax the state guard in `stopWorkflow` (workflowExecutionActions.ts:354) to also handle `awaiting-validation`
     children: []
     metadata:
@@ -110590,8 +110592,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  51944539-62f5-419a-803d-9bb840693e64:
-    id: 51944539-62f5-419a-803d-9bb840693e64
+  ac76182e-53c6-42d5-b724-b555eaac2a0d:
+    id: ac76182e-53c6-42d5-b724-b555eaac2a0d
     content: In `buildWorkflowExecutionItems` (useWorkflowSubmenu.ts:86), return both `Stop Workflow` and `Continue Workflow` for the awaiting-validation branch
     children: []
     metadata:
@@ -110599,8 +110601,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  73dfd363-c8ec-478c-ab19-2f363248dbc1:
-    id: 73dfd363-c8ec-478c-ab19-2f363248dbc1
+  384a643c-4933-4c02-920d-b3555d688f57:
+    id: 384a643c-4933-4c02-920d-b3555d688f57
     content: 'Non-obvious: paused entries hold a terminal assignment and possibly a pending clear-session/Claude-launch — Stop must funnel through the same cleanup as the running case, not a shortcut delete of the state entry'
     children: []
     metadata:
@@ -110608,19 +110610,157 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a819939e-8b95-47dc-a4ec-bf97504ba178:
-    id: a819939e-8b95-47dc-a4ec-bf97504ba178
+  28f00667-fbc7-420b-b89e-91f742358de3:
+    id: 28f00667-fbc7-420b-b89e-91f742358de3
     content: Technical decomposition
     children:
-      - 27229b3b-36e7-457f-88f4-db673101b262
+      - 0ebc8015-99fd-45c5-b861-0a707dc5defc
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  27229b3b-36e7-457f-88f4-db673101b262:
-    id: 27229b3b-36e7-457f-88f4-db673101b262
+  0ebc8015-99fd-45c5-b861-0a707dc5defc:
+    id: 0ebc8015-99fd-45c5-b861-0a707dc5defc
     content: Single PR — menu entry and the `stopWorkflow` guard relaxation must land together, otherwise the new menu item either does nothing or the guard change is unreachable from the UI. Overlapping code paths and shared cleanup mean the changes must be reviewed together.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05e24da4-1984-41ca-b57b-c1a3af92baa1:
+    id: 05e24da4-1984-41ca-b57b-c1a3af92baa1
+    content: review feedback
+    children:
+      - de5caba2-4953-4ffe-bdab-f55ddc510a62
+      - aac26ae3-f692-49c5-84b1-b9a0c78fd332
+      - a930713a-7db9-4ecd-8102-6fe363337deb
+      - 4d1d1d0b-6737-4657-80b6-24d43957b9ac
+      - 3739a43e-e34d-41be-8e7e-defdd6faa3fa
+      - c2ea7e57-76cd-415a-b036-2cbcb8f1e8ef
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de5caba2-4953-4ffe-bdab-f55ddc510a62:
+    id: de5caba2-4953-4ffe-bdab-f55ddc510a62
+    content: 'Verdict: clean, ship-ready. No blockers found.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aac26ae3-f692-49c5-84b1-b9a0c78fd332:
+    id: aac26ae3-f692-49c5-84b1-b9a0c78fd332
+    content: 'Confirmed safe: every cleanup step in `stopWorkflow` is idempotent when called on a paused entry — `stepTimeouts.clear` no-ops if absent, `cleanupAutonomousCollaboration` guards on `collab && kind === ''autonomous''`, `clearPendingAck` guards on entry, the two `clearPending` managers are no-op-safe, `releaseTerminalAssignmentForNode` only mutates if changed, and `stopKeepAwake` is ref-counted (the running→awaiting-validation transition does NOT release keep-awake, so stopping from paused correctly balances the initial start increment).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a930713a-7db9-4ecd-8102-6fe363337deb:
+    id: a930713a-7db9-4ecd-8102-6fe363337deb
+    content: 'No caller relied on the old no-op behavior: `failAckRetryCap` only reached from running; `workflowClearSession` only fires after running timeouts; `escapeWorkflowPause` (uiService.ts:262) explicitly filters to `state === ''running''`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d1d1d0b-6737-4657-80b6-24d43957b9ac:
+    id: 4d1d1d0b-6737-4657-80b6-24d43957b9ac
+    content: No UI assumes a single item from `buildWorkflowExecutionItems` — consumed via spread in `useNodeContextMenu.ts:262`, no `length === 1` checks anywhere.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3739a43e-e34d-41be-8e7e-defdd6faa3fa:
+    id: 3739a43e-e34d-41be-8e7e-defdd6faa3fa
+    content: 'Fixed: stale comment at `workflowExecutionAuthoritativeMapping.test.ts:202` (referenced the old "stopWorkflow no-op for awaiting-validation" contract) was deleted — the test itself remains valid (completeWorkflow from awaiting-validation releases the binding).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2ea7e57-76cd-415a-b036-2cbcb8f1e8ef:
+    id: c2ea7e57-76cd-415a-b036-2cbcb8f1e8ef
+    content: 'Nice-to-have not done: paused-specific side-effect assertions (stopKeepAwake call, pending-ack clear, autonomous-collab cleanup when stopping from awaiting-validation). Currently covered transitively via the running-state tests in `workflowKeepAwake.test.ts` etc., but a paused-state assertion would lock in the new contract explicitly. Reviewer flagged this as ~60% confidence, non-blocking.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b677b12-b3cd-4e64-a033-b810624ab744:
+    id: 8b677b12-b3cd-4e64-a033-b810624ab744
+    content: feedback
+    children:
+      - f5cf8c0b-954d-4bb8-9659-29172972bf89
+      - accb96cb-e4bd-4d1f-a074-2f5d5bb88000
+      - afa8ee84-babb-4654-b0c3-959fc7a16fb6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5cf8c0b-954d-4bb8-9659-29172972bf89:
+    id: f5cf8c0b-954d-4bb8-9659-29172972bf89
+    content: 'Severity: minor — declining the nice-to-have, accepting the comment fix.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  accb96cb-e4bd-4d1f-a074-2f5d5bb88000:
+    id: accb96cb-e4bd-4d1f-a074-2f5d5bb88000
+    content: 'Reviewer''s nice-to-have (paused-state side-effect assertions) tests unreachable states for two of the three side effects, so the suggestion exaggerates value:'
+    children:
+      - 58e7e89d-5253-496b-bdf6-6f725295e81c
+      - 931d871d-668e-4a1c-bf58-213c41ae57ab
+      - 99a79483-ec24-41ed-8bca-24095e391fc6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  58e7e89d-5253-496b-bdf6-6f725295e81c:
+    id: 58e7e89d-5253-496b-bdf6-6f725295e81c
+    content: 'Pending-ACK clear: `registerPendingAck` is called only on send (workflowExecutionActions.ts:707). The ack is consumed via the UserPromptSubmit hook BEFORE the Stop hook fires and transitions the entry to awaiting-validation. There is no execution path where an entry is in `awaiting-validation` AND has a live pending ACK — asserting `clearPendingAck` runs from a paused entry tests an impossible state.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  931d871d-668e-4a1c-bf58-213c41ae57ab:
+    id: 931d871d-668e-4a1c-bf58-213c41ae57ab
+    content: 'Autonomous-collab cleanup: autonomous collaboration is registered only for autonomous steps (the path at workflowExecutionActions.ts:704-708 runs inside the autonomous-collab branch). Autonomous steps transition running→advanced; only checkpoint steps transition running→awaiting-validation. So a paused entry has no autonomous-collab to clean — also an impossible state.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99a79483-ec24-41ed-8bca-24095e391fc6:
+    id: 99a79483-ec24-41ed-8bca-24095e391fc6
+    content: '`stopKeepAwake` call: legitimate (ref-count must balance) but already transitively asserted by the existing running-state keep-awake test, and the cleanup is a single unconditional `void window.electron.stopKeepAwake()` past the guard — the existing "should clear execution state for awaiting-validation nodes" test proves the function ran past the guard. Adding a paused-specific assertion requires mocking `window.electron.stopKeepAwake` for marginal additional coverage.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  afa8ee84-babb-4654-b0c3-959fc7a16fb6:
+    id: afa8ee84-babb-4654-b0c3-959fc7a16fb6
+    content: Other findings (stale comment, cleanup-pipeline safety, no-caller-broken, no length-1 UI assumptions) all checked out and were either pre-validated or addressed.
     children: []
     metadata:
       status: completed
