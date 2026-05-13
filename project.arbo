@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-13T07:05:09.370Z'
+updated: '2026-05-13T07:44:57.186Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -15222,6 +15222,7 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - edb7e049-5b2b-4cd7-8dd0-cb6608deb029
       - 13fff619-671c-45a2-ba57-b62e78554ab2
       - efbca8cd-3999-41b4-a101-43d2def19c4e
       - 0285aef9-2f1c-4a3c-ad08-b75d799ab4ce
@@ -81502,7 +81503,6 @@ nodes:
     content: User story creation
     children:
       - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
-      - a88ad8a1-693d-4f97-afad-7147328c68a2
       - cfd38a28-0349-4873-8780-177e444d7cd3
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
     metadata:
@@ -82874,7 +82874,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - a88ad8a1-693d-4f97-afad-7147328c68a2
     metadata:
       status: pending
       isBlueprint: true
@@ -90176,6 +90177,7 @@ nodes:
       - 042ee811-0108-4574-9a4c-2a7909572178
       - 25bb85f2-b25e-4736-afa5-bfd44d213894
       - d77cf522-0636-4a76-b9bf-7b33b4cc65cb
+      - d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
     metadata:
       status: pending
       expanded: true
@@ -96837,8 +96839,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - edb7e049-5b2b-4cd7-8dd0-cb6608deb029
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -110661,18 +110662,21 @@ nodes:
       plugins: {}
   a88ad8a1-693d-4f97-afad-7147328c68a2:
     id: a88ad8a1-693d-4f97-afad-7147328c68a2
-    content: Replace terminal name with session ID
+    content: Replace terminal tab name with current Arborescent task title
     children:
-      - 3b77470f-60f5-47c8-b686-c5598756850c
-      - 5c74f2d8-94d6-4f80-8631-cebcff3903df
-      - d70b3de9-4f74-4b48-a693-b7edf52ff616
+      - 766b98f4-e90c-4a09-ad58-b2b5713269cc
+      - 14a0e80e-dacb-48f9-9833-77e513261035
+      - ac00c638-b956-4ad6-8145-c2c10a7fa906
+      - 66cd30a0-96e7-476e-8b4b-9c58bd9dba01
+      - 0732f276-1293-4355-95ce-1b364d7adc90
+      - 72297c12-aee6-446c-845b-c9929bda47d1
+      - 506789b6-fee5-4070-a1f5-f221902a1c1f
+      - 9c70da8d-0126-4904-ba4c-79bcd45f1d7f
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
-      appliedContextId: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
-      feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-a88ad8a1-693d-4f97-afad-7147328c68a2.arbo
   e31a700c-3788-44b5-a878-3f3f2ca942c4:
     id: e31a700c-3788-44b5-a878-3f3f2ca942c4
     content: Skills auto-bridge
@@ -114233,323 +114237,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3b77470f-60f5-47c8-b686-c5598756850c:
-    id: 3b77470f-60f5-47c8-b686-c5598756850c
-    content: 📄 Product spec
-    children:
-      - d7b6ee5c-1526-450e-9d99-71e064255984
-      - 4fe82c6d-b4fb-4fca-a158-25845331fb03
-      - 99b6533a-3263-4717-9806-7fcb2e22cacc
-      - 106da596-9378-4ee8-a0a8-50303c508e65
-      - c11c29e5-31e3-45c1-9798-3c49a2c9fa4b
-      - e679c1c4-3f5a-4cec-9be2-32dd46624a78
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d7b6ee5c-1526-450e-9d99-71e064255984:
-    id: d7b6ee5c-1526-450e-9d99-71e064255984
-    content: Context — Terminal sessions are currently labelled by their working folder or worktree name. When several sessions run in the same folder/worktree, labels collide and sessions become visually indistinguishable.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fe82c6d-b4fb-4fca-a158-25845331fb03:
-    id: 4fe82c6d-b4fb-4fca-a158-25845331fb03
-    content: User — Developer running multiple concurrent terminal sessions, often several in the same project or worktree at once.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  99b6533a-3263-4717-9806-7fcb2e22cacc:
-    id: 99b6533a-3263-4717-9806-7fcb2e22cacc
-    content: Current experience — Two or more terminals opened in the same folder share an identical label; the user has to focus each one to know which is which, breaking flow when switching contexts.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  106da596-9378-4ee8-a0a8-50303c508e65:
-    id: 106da596-9378-4ee8-a0a8-50303c508e65
-    content: Goal — Give every terminal a unique, stable label while keeping the folder/worktree path one interaction away.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c11c29e5-31e3-45c1-9798-3c49a2c9fa4b:
-    id: c11c29e5-31e3-45c1-9798-3c49a2c9fa4b
-    content: Business rules
-    children:
-      - 958193db-8d36-45bd-9084-366140bf2fe3
-      - 8c890339-0fcf-435a-ba59-1a2380317da7
-      - 9c3c386c-b7b3-4489-be19-afe6cf2705d4
-      - 0a86831c-9f0b-4f18-99da-f5b3674c3654
-      - 7b0f458d-b904-4ef4-9ee5-8f6c7eff8e97
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  958193db-8d36-45bd-9084-366140bf2fe3:
-    id: 958193db-8d36-45bd-9084-366140bf2fe3
-    content: 1. Each terminal label must display its session ID in place of the folder/worktree name.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8c890339-0fcf-435a-ba59-1a2380317da7:
-    id: 8c890339-0fcf-435a-ba59-1a2380317da7
-    content: 2. Session IDs shown in labels must be unique among concurrently open sessions and short enough to read at a glance.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c3c386c-b7b3-4489-be19-afe6cf2705d4:
-    id: 9c3c386c-b7b3-4489-be19-afe6cf2705d4
-    content: 3. Hovering a terminal label must reveal the full folder/worktree path associated with that session.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0a86831c-9f0b-4f18-99da-f5b3674c3654:
-    id: 0a86831c-9f0b-4f18-99da-f5b3674c3654
-    content: 4. The hovered path must reflect the session's current working directory at hover time, not a stale value captured at session start.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b0f458d-b904-4ef4-9ee5-8f6c7eff8e97:
-    id: 7b0f458d-b904-4ef4-9ee5-8f6c7eff8e97
-    content: 5. If no session ID is available, the label must fall back to the previous folder-based label rather than render blank.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e679c1c4-3f5a-4cec-9be2-32dd46624a78:
-    id: e679c1c4-3f5a-4cec-9be2-32dd46624a78
-    content: Acceptance criteria
-    children:
-      - 01421775-152f-4b7c-bfc8-695a7d620086
-      - cb0803db-8d48-448c-b388-106a290011e8
-      - 7f81e4c7-8a7c-49c0-8ea1-dbf68e7addcd
-      - f990580d-758a-49a3-b99d-960ecd665cb9
-      - a0c51678-b10e-484b-bb90-7a081b6d61ef
-      - 0ab0b324-35b0-4767-bc86-d946c627adfc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  01421775-152f-4b7c-bfc8-695a7d620086:
-    id: 01421775-152f-4b7c-bfc8-695a7d620086
-    content: '- [ ] Opening a new terminal shows a session ID as its label, not the folder name.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb0803db-8d48-448c-b388-106a290011e8:
-    id: cb0803db-8d48-448c-b388-106a290011e8
-    content: '- [ ] Two terminals opened in the same folder display visually distinct labels.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f81e4c7-8a7c-49c0-8ea1-dbf68e7addcd:
-    id: 7f81e4c7-8a7c-49c0-8ea1-dbf68e7addcd
-    content: '- [ ] Hovering a terminal label surfaces its folder/worktree path within a short delay and dismisses on mouse-out.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f990580d-758a-49a3-b99d-960ecd665cb9:
-    id: f990580d-758a-49a3-b99d-960ecd665cb9
-    content: '- [ ] The hover tooltip handles long paths gracefully (truncation or wrapping) without overflowing the screen.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a0c51678-b10e-484b-bb90-7a081b6d61ef:
-    id: a0c51678-b10e-484b-bb90-7a081b6d61ef
-    content: '- [ ] Labels remain stable for the lifetime of the session and do not change on `cd`.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0ab0b324-35b0-4767-bc86-d946c627adfc:
-    id: 0ab0b324-35b0-4767-bc86-d946c627adfc
-    content: '- [ ] Folder/worktree context remains reachable without a pointer (keyboard or focused-session detail view) so the feature is accessible.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5c74f2d8-94d6-4f80-8631-cebcff3903df:
-    id: 5c74f2d8-94d6-4f80-8631-cebcff3903df
-    content: 🔧 Implementation proposal
-    children:
-      - 277f6180-769e-4cc2-a861-ce143625b7f0
-      - bdf4856a-1743-422c-9fd3-334c2048dd8c
-      - 6bfb5c73-e019-43f1-8402-fbb97b0b2848
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  277f6180-769e-4cc2-a861-ce143625b7f0:
-    id: 277f6180-769e-4cc2-a861-ce143625b7f0
-    content: Approach — Switch the terminal label renderer to read from the session-ID provider instead of the folder/worktree resolver, and attach a hover tooltip backed by the existing path lookup.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bdf4856a-1743-422c-9fd3-334c2048dd8c:
-    id: bdf4856a-1743-422c-9fd3-334c2048dd8c
-    content: Touchpoints
-    children:
-      - f6968e24-94d8-4735-8f84-2cbdf06ba1e2
-      - 80cd8127-3db2-428a-ab27-82bc858fa757
-      - d7d9819c-d45f-466d-8872-b5ffef173289
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f6968e24-94d8-4735-8f84-2cbdf06ba1e2:
-    id: f6968e24-94d8-4735-8f84-2cbdf06ba1e2
-    content: Terminal label/title renderer (primary change).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  80cd8127-3db2-428a-ab27-82bc858fa757:
-    id: 80cd8127-3db2-428a-ab27-82bc858fa757
-    content: Session metadata accessor — must expose a short, stable, human-readable session ID.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d7d9819c-d45f-466d-8872-b5ffef173289:
-    id: d7d9819c-d45f-466d-8872-b5ffef173289
-    content: Hover/tooltip UI primitive — reuse if one already exists; otherwise the smallest possible addition.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6bfb5c73-e019-43f1-8402-fbb97b0b2848:
-    id: 6bfb5c73-e019-43f1-8402-fbb97b0b2848
-    content: Constraints to call out
-    children:
-      - 4d010a48-a152-49d4-a2cd-158bf44d4dce
-      - f58d038e-f902-4e96-9e35-00b1a4d76782
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4d010a48-a152-49d4-a2cd-158bf44d4dce:
-    id: 4d010a48-a152-49d4-a2cd-158bf44d4dce
-    content: Session IDs need a short human-readable form; raw UUIDs are unusable as labels and will harm scannability.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f58d038e-f902-4e96-9e35-00b1a4d76782:
-    id: f58d038e-f902-4e96-9e35-00b1a4d76782
-    content: Hover is inaccessible to keyboard-only and touch users, so folder context must remain reachable through another affordance.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d70b3de9-4f74-4b48-a693-b7edf52ff616:
-    id: d70b3de9-4f74-4b48-a693-b7edf52ff616
-    content: ⚠️ Challenges and pushback
-    children:
-      - af732438-b033-494f-ada2-6fa7b647b25c
-      - 571c6319-2c25-4802-82d1-f8f34c2d8530
-      - 5c21893d-5c9e-4ed6-aa9b-861fb41481eb
-      - 7e2ab1e1-0464-4996-afd7-30301980c0d7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  af732438-b033-494f-ada2-6fa7b647b25c:
-    id: af732438-b033-494f-ada2-6fa7b647b25c
-    content: UX regression risk — the folder/worktree name is the highest-signal label most of the time; replacing it with an opaque ID pessimises the common case to fix a collision case.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  571c6319-2c25-4802-82d1-f8f34c2d8530:
-    id: 571c6319-2c25-4802-82d1-f8f34c2d8530
-    content: Hover hides the primary context behind an interaction, which is bad for discoverability and excludes keyboard/touch users.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5c21893d-5c9e-4ed6-aa9b-861fb41481eb:
-    id: 5c21893d-5c9e-4ed6-aa9b-861fb41481eb
-    content: Simpler alternative — keep the folder/worktree label and only append a short disambiguator (e.g. `repo (2)`) when collisions occur; the session ID can live in the tooltip instead. Recommend this path unless there is a stated need to surface the raw session ID (e.g. correlating with logs or external tooling), which has not been provided.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7e2ab1e1-0464-4996-afd7-30301980c0d7:
-    id: 7e2ab1e1-0464-4996-afd7-30301980c0d7
-    content: No explicit use case is stated for showing the session ID itself; if the underlying need is disambiguation, the proposed inversion is over-engineered relative to a counter suffix.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   1e783002-84bd-4595-abbc-db715f941a18:
     id: 1e783002-84bd-4595-abbc-db715f941a18
     content: Automated CI pipelines
@@ -115586,6 +115273,601 @@ nodes:
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b:
+    id: d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
+    content: Make Claude specific, remove references to other AIs.
+    children:
+      - c11d295d-dba8-435a-97aa-e3809786cb4b
+    metadata:
+      status: pending
+  c11d295d-dba8-435a-97aa-e3809786cb4b:
+    id: c11d295d-dba8-435a-97aa-e3809786cb4b
+    content: Or at least say - advanced features only work with Opus 4.5+, ideally 4.7
+    children: []
+    metadata:
+      status: pending
+  766b98f4-e90c-4a09-ad58-b2b5713269cc:
+    id: 766b98f4-e90c-4a09-ad58-b2b5713269cc
+    content: worktree
+    children:
+      - 66ecc424-c8bd-43c4-8249-961d1de0e0bb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66ecc424-c8bd-43c4-8249-961d1de0e0bb:
+    id: 66ecc424-c8bd-43c4-8249-961d1de0e0bb
+    content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-tab-title)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14a0e80e-dacb-48f9-9833-77e513261035:
+    id: 14a0e80e-dacb-48f9-9833-77e513261035
+    content: 📄 Product spec
+    children:
+      - aab02ba7-78aa-4c40-9dcd-a3b40a0c9c0c
+      - c28857af-0802-493d-b721-2a516dfe4d4f
+      - abd24bcf-ac6a-4b07-a56a-67e5a8bb12c4
+      - 5e935728-56df-4d5c-887e-a8fd0b3b5b2e
+      - 29336589-c74f-4e40-920a-f078affe0b9d
+      - 902107af-c1df-497e-88ea-63cc4d916e15
+      - 536d07c1-1be2-42fa-b469-1941b6bffcdc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aab02ba7-78aa-4c40-9dcd-a3b40a0c9c0c:
+    id: aab02ba7-78aa-4c40-9dcd-a3b40a0c9c0c
+    content: Context — When Claude Code is driving an Arborescent task inside a terminal tab, the tab keeps its generic default label ("Terminal 1", "Terminal 2", etc.). Across multiple tabs there is no way to tell which tab is working on which task.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c28857af-0802-493d-b721-2a516dfe4d4f:
+    id: c28857af-0802-493d-b721-2a516dfe4d4f
+    content: Definition — "Task" in this spec means the root node of the node tree that Arborescent sends to Claude for review (the top-level `#` heading of the submitted content).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abd24bcf-ac6a-4b07-a56a-67e5a8bb12c4:
+    id: abd24bcf-ac6a-4b07-a56a-67e5a8bb12c4
+    content: User — Developer running Claude Code via Arborescent across one or more terminal tabs.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e935728-56df-4d5c-887e-a8fd0b3b5b2e:
+    id: 5e935728-56df-4d5c-887e-a8fd0b3b5b2e
+    content: Current experience — Every tab shows a generic "Terminal N" label regardless of the active task; identifying the tab that is working on a given story means clicking each one to inspect it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29336589-c74f-4e40-920a-f078affe0b9d:
+    id: 29336589-c74f-4e40-920a-f078affe0b9d
+    content: Goal — A tab driving an Arborescent task self-identifies by that task's title; the title updates whenever a new task is sent.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  902107af-c1df-497e-88ea-63cc4d916e15:
+    id: 902107af-c1df-497e-88ea-63cc4d916e15
+    content: Business rules
+    children:
+      - e7fad340-8296-46a7-a06c-22614dd27f89
+      - 0ee19260-f648-4451-88e9-f1a96551e2cf
+      - b37de3cb-97b0-46f5-816f-35562b5845c5
+      - 031778aa-8504-4747-9cd3-afb3a0772351
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7fad340-8296-46a7-a06c-22614dd27f89:
+    id: e7fad340-8296-46a7-a06c-22614dd27f89
+    content: 1. When Arborescent sends a new task to Claude in a tab, the tab title must be set to that task's title (the root node of the submitted tree).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ee19260-f648-4451-88e9-f1a96551e2cf:
+    id: 0ee19260-f648-4451-88e9-f1a96551e2cf
+    content: 2. The title must update each time a new task is sent in the same tab (per-task, not per-session).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b37de3cb-97b0-46f5-816f-35562b5845c5:
+    id: b37de3cb-97b0-46f5-816f-35562b5845c5
+    content: 3. Once set, the title is not required to be reverted or cleared — a stale title after the task ends or the session exits is acceptable. The next task overwrites it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  031778aa-8504-4747-9cd3-afb3a0772351:
+    id: 031778aa-8504-4747-9cd3-afb3a0772351
+    content: 4. Tabs not running Claude/Arborescent must be unaffected.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  536d07c1-1be2-42fa-b469-1941b6bffcdc:
+    id: 536d07c1-1be2-42fa-b469-1941b6bffcdc
+    content: Acceptance criteria
+    children:
+      - 74cd29fd-7000-45b4-a1da-731a659c2a31
+      - 14da464f-ef88-4439-a4e4-15483cd9e14c
+      - e7aa60c5-fff2-4944-bddb-3720617a4fb3
+      - ba84cf34-1f80-4c9f-b4cb-1657bafe0507
+      - 1a00b211-96f8-48e5-9f2e-2ac46f4fa008
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74cd29fd-7000-45b4-a1da-731a659c2a31:
+    id: 74cd29fd-7000-45b4-a1da-731a659c2a31
+    content: '- [x] When Arborescent sends a task to a tab, the tab title becomes that task''s title.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14da464f-ef88-4439-a4e4-15483cd9e14c:
+    id: 14da464f-ef88-4439-a4e4-15483cd9e14c
+    content: '- [x] When a new task is sent to the same tab, the tab title updates to the new task.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7aa60c5-fff2-4944-bddb-3720617a4fb3:
+    id: e7aa60c5-fff2-4944-bddb-3720617a4fb3
+    content: '- [x] Long titles are truncated in the tab with ellipses and the full title shows on hover (handled natively by the terminal).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba84cf34-1f80-4c9f-b4cb-1657bafe0507:
+    id: ba84cf34-1f80-4c9f-b4cb-1657bafe0507
+    content: '- [x] A `claude` session running outside of Arborescent leaves the tab title alone (no-op, no empty title).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a00b211-96f8-48e5-9f2e-2ac46f4fa008:
+    id: 1a00b211-96f8-48e5-9f2e-2ac46f4fa008
+    content: '- [x] Tabs running other commands (shell, vim, etc.) are unaffected.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac00c638-b956-4ad6-8145-c2c10a7fa906:
+    id: ac00c638-b956-4ad6-8145-c2c10a7fa906
+    content: 🔧 Implementation proposal
+    children:
+      - 6dbe058b-e3cf-4e3c-b11f-1e67a4c46e21
+      - 1b1d7feb-4acc-49f5-9eb5-34dcd751887a
+      - 2b56f218-63ba-45fc-98c9-3fc0d0211628
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dbe058b-e3cf-4e3c-b11f-1e67a4c46e21:
+    id: 6dbe058b-e3cf-4e3c-b11f-1e67a4c46e21
+    content: Approach — On the boundary where Arborescent submits a task to Claude (a `UserPromptSubmit`-style hook is the natural fit), extract the root node title from the submitted tree and emit an OSC 2 title-set escape sequence with it. No exit-time restore needed. The terminal handles truncation and hover-to-show-full natively, so no custom UI is needed.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b1d7feb-4acc-49f5-9eb5-34dcd751887a:
+    id: 1b1d7feb-4acc-49f5-9eb5-34dcd751887a
+    content: Touchpoints
+    children:
+      - a6181541-0aec-41e6-ab45-1af2853a6676
+      - 16c8cda4-5c56-4ddc-b68f-4f85e11e6f61
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6181541-0aec-41e6-ab45-1af2853a6676:
+    id: a6181541-0aec-41e6-ab45-1af2853a6676
+    content: '`UserPromptSubmit` hook (or equivalent inside the Arborescent integration) — extract the root node title and emit OSC 2.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  16c8cda4-5c56-4ddc-b68f-4f85e11e6f61:
+    id: 16c8cda4-5c56-4ddc-b68f-4f85e11e6f61
+    content: Optional opt-out setting if the behaviour should not apply globally.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b56f218-63ba-45fc-98c9-3fc0d0211628:
+    id: 2b56f218-63ba-45fc-98c9-3fc0d0211628
+    content: Constraints to call out
+    children:
+      - fdd2aa7c-9120-471e-8114-e5062522b0ba
+      - 54eeda58-d6d5-48da-b834-b6b15d3f3261
+      - 4e4a4260-adc7-4b4e-8753-431094ec04a2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdd2aa7c-9120-471e-8114-e5062522b0ba:
+    id: fdd2aa7c-9120-471e-8114-e5062522b0ba
+    content: Depends on the terminal honouring OSC 2 title sequences and providing tab-tooltip-on-hover — verify in Ghostty before relying on the hover behaviour.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  54eeda58-d6d5-48da-b834-b6b15d3f3261:
+    id: 54eeda58-d6d5-48da-b834-b6b15d3f3261
+    content: Multiplexers (tmux, screen) intercept OSC title sequences; behaviour inside a multiplexer needs verification.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e4a4260-adc7-4b4e-8753-431094ec04a2:
+    id: 4e4a4260-adc7-4b4e-8753-431094ec04a2
+    content: The root node title must be extracted reliably from whatever Arborescent sends; empty/missing titles must skip the title-set entirely rather than blank the tab.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66cd30a0-96e7-476e-8b4b-9c58bd9dba01:
+    id: 66cd30a0-96e7-476e-8b4b-9c58bd9dba01
+    content: ⚠️ Challenges and pushback
+    children:
+      - b87f27c1-6f0c-4430-8675-7506757887f8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b87f27c1-6f0c-4430-8675-7506757887f8:
+    id: b87f27c1-6f0c-4430-8675-7506757887f8
+    content: Out-of-scope sessions — a bare `claude` session with no Arborescent task gets no benefit from this feature; make sure that path is a clean no-op rather than degrading the existing default label.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0732f276-1293-4355-95ce-1b364d7adc90:
+    id: 0732f276-1293-4355-95ce-1b364d7adc90
+    content: 🛠️ Technical refinement
+    children:
+      - 601992a2-0369-4a4e-bed3-5fe481c7b5e2
+      - 4c9cf3a4-8fc2-4497-b1f9-01b4f4fd190c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  601992a2-0369-4a4e-bed3-5fe481c7b5e2:
+    id: 601992a2-0369-4a4e-bed3-5fe481c7b5e2
+    content: Complications
+    children:
+      - 99d1845d-9715-4bee-b757-4cf028ae7347
+      - 9b8982f2-eb5f-4aad-953b-64137c3c7167
+      - f6187be8-981d-4b25-9486-dbec0959192a
+      - 83e4ac20-ca29-4a89-b42d-d19861830e60
+      - 71d8f9e6-c006-4a93-a2b9-c1bade4f668b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99d1845d-9715-4bee-b757-4cf028ae7347:
+    id: 99d1845d-9715-4bee-b757-4cf028ae7347
+    content: Title needs sanitisation — the raw H1 line contains the `[ ]` checkbox marker and may include emoji or stray control characters; these must be stripped before being inlined into an OSC escape sequence so they cannot break the terminal state.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b8982f2-eb5f-4aad-953b-64137c3c7167:
+    id: 9b8982f2-eb5f-4aad-953b-64137c3c7167
+    content: Non-TTY contexts — when stdout is not a terminal (CI, piped runs, headless), the escape sequence must be skipped silently rather than written as raw bytes into a log.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6187be8-981d-4b25-9486-dbec0959192a:
+    id: f6187be8-981d-4b25-9486-dbec0959192a
+    content: Ownership of the emission — if this lives in a per-user `UserPromptSubmit` hook, adoption is opt-in and uneven; if Arborescent's integration emits it directly, every user benefits without setup. Strong preference for the latter to make the ROI worthwhile.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83e4ac20-ca29-4a89-b42d-d19861830e60:
+    id: 83e4ac20-ca29-4a89-b42d-d19861830e60
+    content: Multiplexer gap accepted — tmux/screen do not pass OSC 2 through to the host terminal by default; adding tmux passthrough wrapping is out of scope for v1 and would be added later only if a user actually hits it.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  71d8f9e6-c006-4a93-a2b9-c1bade4f668b:
+    id: 71d8f9e6-c006-4a93-a2b9-c1bade4f668b
+    content: Out of scope — title restoration on task end, bare `claude` sessions, folder/worktree information in the title, and any new UI surface.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c9cf3a4-8fc2-4497-b1f9-01b4f4fd190c:
+    id: 4c9cf3a4-8fc2-4497-b1f9-01b4f4fd190c
+    content: Approach summary
+    children:
+      - 6c8e29df-901b-4a12-b7ff-ec9124bab46a
+      - 0f8fc5fd-0acd-4362-b8a0-d4bf9cf4be4e
+      - 61e1f87a-fa34-4c4a-9b93-49260bb91674
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c8e29df-901b-4a12-b7ff-ec9124bab46a:
+    id: 6c8e29df-901b-4a12-b7ff-ec9124bab46a
+    content: 'Title emission lives on the Arborescent side at the moment a new task is dispatched: extract the root H1, strip the checkbox marker and any control characters, then write `\e]2;<title>\a` to stdout. Fire-and-forget per task.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f8fc5fd-0acd-4362-b8a0-d4bf9cf4be4e:
+    id: 0f8fc5fd-0acd-4362-b8a0-d4bf9cf4be4e
+    content: No state to track, no cleanup, no Claude Code core changes — the entire mechanism is a single outbound escape sequence on each task boundary.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61e1f87a-fa34-4c4a-9b93-49260bb91674:
+    id: 61e1f87a-fa34-4c4a-9b93-49260bb91674
+    content: Non-obvious caveat — this only works in terminals that honour OSC 2 on stdout; tmux/screen and non-TTY contexts are silent no-ops by design.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  72297c12-aee6-446c-845b-c9929bda47d1:
+    id: 72297c12-aee6-446c-845b-c9929bda47d1
+    content: Implementation note — clarification discovered during test design
+    children:
+      - 75d9002c-0ef2-4073-8bd7-95c07950736e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75d9002c-0ef2-4073-8bd7-95c07950736e:
+    id: 75d9002c-0ef2-4073-8bd7-95c07950736e
+    content: Approach in this codebase is NOT an OSC 2 escape sequence — Arborescent renders its own React tab UI, so the title lives in `TerminalInfo.title` in the Zustand `terminalStore` and is updated via `updateTerminal(id, { title })`. The spec's OSC-based approach was a useful mental model but does not match the runtime; the implementation needs to call `updateTerminal` from `sendNodeToTerminal` and `executeNodeInTerminal` after extracting the task title from `node.content`. Tests now drive this behaviour.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  506789b6-fee5-4070-a1f5-f221902a1c1f:
+    id: 506789b6-fee5-4070-a1f5-f221902a1c1f
+    content: review feedback
+    children:
+      - be669e5d-2ef4-49a2-b44b-b1cb0b920df0
+      - b377d1f5-dcff-4fb3-a8e6-28d9ba8ce3c4
+      - 891aa77a-824a-4b1d-b55b-4047f3d30c89
+      - ed5905ec-edf2-47e1-bad1-c39572918d06
+      - a094a425-2066-43fc-9928-6a96db5fcfa8
+      - c176f4dc-dfad-4297-a18e-ff6c4b3e1ca5
+      - 60df47cd-fa37-4f09-a7dc-a6c6fa228c33
+      - 5c0b278e-1231-4f20-8917-65e5ff8b50a0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be669e5d-2ef4-49a2-b44b-b1cb0b920df0:
+    id: be669e5d-2ef4-49a2-b44b-b1cb0b920df0
+    content: No blocking issues. Type-check, lint (only pre-existing `import/no-cycle` warning on `terminalStore.ts:6` from master), and all 38 tests pass after the symmetry test was added.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b377d1f5-dcff-4fb3-a8e6-28d9ba8ce3c4:
+    id: b377d1f5-dcff-4fb3-a8e6-28d9ba8ce3c4
+    content: 'AC3 (long-title hover) is satisfied — `Tab.css` `text-overflow: ellipsis` truncates the visible span at `max-width: 200px`, and `Tab.tsx:64` sets the HTML `title` attribute to the full `displayName`, so the native browser tooltip on hover shows the un-truncated task title. Worth one manual smoke test in dev with a deliberately long title before merging.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  891aa77a-824a-4b1d-b55b-4047f3d30c89:
+    id: 891aa77a-824a-4b1d-b55b-4047f3d30c89
+    content: '3-line duplication between `sendNodeToTerminal` and `executeNodeInTerminal` (extract title + conditional `updateTerminal`) was left inline by deliberate choice — reviewer agreed: "Inlining is fine. Extracting a helper would be one indirection for two callers with no current third use case."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed5905ec-edf2-47e1-bad1-c39572918d06:
+    id: ed5905ec-edf2-47e1-bad1-c39572918d06
+    content: '`// eslint-disable-next-line no-control-regex` on the `[\x00-\x1F\x7F]` pattern in `terminalTabTitle.ts` is the idiomatic way to express the intentional control-character match — the rule is an "are you sure?" gate, not a bug detector.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a094a425-2066-43fc-9928-6a96db5fcfa8:
+    id: a094a425-2066-43fc-9928-6a96db5fcfa8
+    content: 'Per-send retitle is spec-compliant. Subtle hazard noted for the future: if a manual tab-rename UX ever lands, the next send would silently clobber the user''s rename. Worth flagging if/when that feature is added — not in scope here.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c176f4dc-dfad-4297-a18e-ff6c4b3e1ca5:
+    id: c176f4dc-dfad-4297-a18e-ff6c4b3e1ca5
+    content: 'Test coverage gap raised by reviewer: `executeNodeInTerminal` lacked a fresh-terminal title-set test that mirrors the existing `sendNodeToTerminal` one. Added — `it(''sets the title on a freshly created terminal when none is active'', ...)` in `terminalStoreTaskTitle.test.ts`. All other risks are covered: happy path, multi-send, empty-content no-op, sibling-tab isolation, write-failure, creation-failure.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60df47cd-fa37-4f09-a7dc-a6c6fa228c33:
+    id: 60df47cd-fa37-4f09-a7dc-a6c6fa228c33
+    content: '`import type { TreeNode }` in `terminalTabTitle.ts` is correct under strict module syntax. Codebase is mixed but my use is on-pattern.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c0b278e-1231-4f20-8917-65e5ff8b50a0:
+    id: 5c0b278e-1231-4f20-8917-65e5ff8b50a0
+    content: 'File naming / location / shape all conform: `utils/terminalTabTitle.ts` follows the `utils/<purposeCamelCase>.ts` convention (`nodeCloning.ts`, `parentLookup.ts`), tests live in `tests/` subdirs, mock pattern uses `vi.hoisted` + `mockImplementation` (not `mockReturnValueOnce` / `mockRejectedValueOnce`), state reset in `beforeEach`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c70da8d-0126-4904-ba4c-79bcd45f1d7f:
+    id: 9c70da8d-0126-4904-ba4c-79bcd45f1d7f
+    content: review resolution
+    children:
+      - 9c31d1ae-b920-4ca3-9e56-fae6f3412f52
+      - aa6c618f-2596-487b-ab8c-14cc8b2ef997
+      - b01025a3-6423-451e-b108-659728e7fbf4
+      - 4d9d719f-4aa7-4d66-a121-889e62a6e791
+      - 5c205c1c-b747-4c1c-a446-75800b7521a1
+      - 33adfecb-d983-4e13-9133-773330415123
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c31d1ae-b920-4ca3-9e56-fae6f3412f52:
+    id: 9c31d1ae-b920-4ca3-9e56-fae6f3412f52
+    content: Major issues fixed — none, the review had no blockers.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa6c618f-2596-487b-ab8c-14cc8b2ef997:
+    id: aa6c618f-2596-487b-ab8c-14cc8b2ef997
+    content: Minor issues fixed — added the symmetric fresh-terminal title-set test for `executeNodeInTerminal` (mirrors the existing `sendNodeToTerminal` case). Brings `terminalStoreTaskTitle.test.ts` to 10 passing tests, 38 across changed-file tests overall.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b01025a3-6423-451e-b108-659728e7fbf4:
+    id: b01025a3-6423-451e-b108-659728e7fbf4
+    content: Feedback skipped — extending the C0-stripping regex to also cover Unicode bidi/zero-width controls (U+200B-200F, U+202A-202E). Reviewer's own confidence was 70 and they did not flag it; node content comes from the user-edited tree, not from clipboard paste straight into the tab title, so the threat surface is essentially nil. Widening the regex would be over-engineering.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d9d719f-4aa7-4d66-a121-889e62a6e791:
+    id: 4d9d719f-4aa7-4d66-a121-889e62a6e791
+    content: Feedback skipped — the manual smoke test for hover with long titles (`~250-char ASCII` and `mixed CJK + emoji`). Acknowledged and noted as a pre-merge manual verification step for the human reviewer; not something to execute in this automated step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c205c1c-b747-4c1c-a446-75800b7521a1:
+    id: 5c205c1c-b747-4c1c-a446-75800b7521a1
+    content: Feedback skipped — the "manual tab-rename UX would silently get clobbered" backlog hazard. Not an issue today (no rename UX exists); flagged for revisit if/when a rename feature lands.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33adfecb-d983-4e13-9133-773330415123:
+    id: 33adfecb-d983-4e13-9133-773330415123
+    content: Feedback dismissed — reviewer's second-pass comment about a `useEffect` dep array and a "title-setter closure capturing `terminalId`" in "the tab component". The diff does not modify any `useEffect` or any tab component. The title update is performed synchronously inside two Zustand store actions (`sendNodeToTerminal` / `executeNodeInTerminal`) where `terminalId` is a local `const` resolved from `await get().openTerminal(...)`, used immediately, and not retained across renders or callbacks. No closure-capture or reparenting concern applies. Misread of the diff, not a real finding.
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
