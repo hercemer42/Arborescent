@@ -143,4 +143,116 @@ describe('selectActiveSessionNodeId', () => {
   it('treats undefined activeTerminalId the same as null', () => {
     expect(selectActiveSessionNodeId(emptyState, undefined as unknown as string | null)).toBeNull();
   });
+
+  describe('durable origin association (terminalOrigins)', () => {
+    function withOrigins(
+      base: SessionSelectorState,
+      origins: Record<string, string>,
+    ): SessionSelectorState {
+      return { ...base, terminalOrigins: origins };
+    }
+
+    it('returns the focused terminal’s origin nodeId when no workflow step and no collaboration apply', () => {
+      const state = withOrigins(emptyState, { 'terminal-1': 'node-origin' });
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-origin');
+    });
+
+    it('returns the origin nodeId after a workflow step has finished (idle scenario the bug reproduces — entry gone from map)', () => {
+      const state = withOrigins(
+        { ...emptyState, workflowExecutionStates: {} },
+        { 'terminal-1': 'node-origin' },
+      );
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-origin');
+    });
+
+    it('prefers a running workflow step on the focused terminal over the terminal’s origin', () => {
+      const state = withOrigins(
+        {
+          ...emptyState,
+          workflowExecutionStates: {
+            'node-current': { state: 'running', terminalTabId: 'terminal-1' },
+          },
+        },
+        { 'terminal-1': 'node-origin' },
+      );
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-current');
+    });
+
+    it('prefers an awaiting-validation workflow step on the focused terminal over the terminal’s origin', () => {
+      const state = withOrigins(
+        {
+          ...emptyState,
+          workflowExecutionStates: {
+            'node-current': { state: 'awaiting-validation', terminalTabId: 'terminal-1' },
+          },
+        },
+        { 'terminal-1': 'node-origin' },
+      );
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-current');
+    });
+
+    it('prefers an active terminal collaboration on the focused terminal over the terminal’s origin', () => {
+      const state = withOrigins(
+        {
+          ...emptyState,
+          collaboratingNodeId: 'node-collab',
+          collaborationSource: 'terminal',
+          collaboratingTerminalId: 'terminal-1',
+        },
+        { 'terminal-1': 'node-origin' },
+      );
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-collab');
+    });
+
+    it('does not leak another terminal’s origin onto the focused terminal', () => {
+      const state = withOrigins(emptyState, {
+        'terminal-1': 'node-A',
+        'terminal-2': 'node-B',
+      });
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-A');
+      expect(selectActiveSessionNodeId(state, 'terminal-2')).toBe('node-B');
+    });
+
+    it('returns null when the focused terminal has no origin entry', () => {
+      const state = withOrigins(emptyState, { 'other-terminal': 'node-X' });
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBeNull();
+    });
+
+    it('returns null when activeTerminalId is null even if origins are populated', () => {
+      const state = withOrigins(emptyState, { 'terminal-1': 'node-origin' });
+      expect(selectActiveSessionNodeId(state, null)).toBeNull();
+    });
+
+    it('still returns the focused terminal’s origin when the origin node has a running step on a different terminal', () => {
+      const state = withOrigins(
+        {
+          ...emptyState,
+          workflowExecutionStates: {
+            'node-origin': { state: 'running', terminalTabId: 'terminal-2' },
+          },
+        },
+        { 'terminal-1': 'node-origin' },
+      );
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-origin');
+    });
+
+    it('is idempotent — repeated calls return the same value with no observable side-effects', () => {
+      const state = withOrigins(emptyState, { 'terminal-1': 'node-origin' });
+      const first = selectActiveSessionNodeId(state, 'terminal-1');
+      const second = selectActiveSessionNodeId(state, 'terminal-1');
+      const third = selectActiveSessionNodeId(state, 'terminal-1');
+      expect(first).toBe('node-origin');
+      expect(second).toBe('node-origin');
+      expect(third).toBe('node-origin');
+    });
+
+    it('treats a missing terminalOrigins record as no origin (back-compat with existing callers)', () => {
+      expect(selectActiveSessionNodeId(emptyState, 'terminal-1')).toBeNull();
+    });
+
+    it('returns null for an empty terminalOrigins object', () => {
+      const state = withOrigins(emptyState, {});
+      expect(selectActiveSessionNodeId(state, 'terminal-1')).toBeNull();
+    });
+  });
 });

@@ -5,6 +5,7 @@ export interface SessionSelectorState {
   collaboratingNodeId: string | null;
   collaborationSource: 'browser' | 'terminal' | null;
   collaboratingTerminalId: string | null;
+  terminalOrigins?: Record<string, string>;
 }
 
 export function selectActiveSessionNodeId(
@@ -24,7 +25,7 @@ export function selectActiveSessionNodeId(
     return state.collaboratingNodeId;
   }
 
-  return null;
+  return state.terminalOrigins?.[activeTerminalId] ?? null;
 }
 
 function findActiveStepOnTerminal(

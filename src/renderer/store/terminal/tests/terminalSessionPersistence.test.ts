@@ -380,4 +380,98 @@ describe('terminal session per-file persistence', () => {
       expect(pending).toHaveLength(5);
     });
   });
+
+  describe('originNodeId persistence', () => {
+    it('saves originNodeId for each terminal entry', async () => {
+      useTerminalStore.getState().setActiveFile('/a.arbo');
+      useTerminalStore.getState().addTerminal({
+        id: 'term-1', title: 'Terminal', cwd: '/home/user',
+        shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+        originNodeId: 'node-origin',
+      });
+
+      await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
+      const lastCall = mockSaveTerminalSession.mock.calls[mockSaveTerminalSession.mock.calls.length - 1][0];
+      expect(lastCall.fileStates['/a.arbo'].terminals[0]).toEqual(
+        expect.objectContaining({ originNodeId: 'node-origin' }),
+      );
+    });
+
+    it('omits originNodeId from the saved entry when the terminal has no origin', async () => {
+      useTerminalStore.getState().setActiveFile('/a.arbo');
+      useTerminalStore.getState().addTerminal({
+        id: 'term-1', title: 'Terminal', cwd: '/home/user',
+        shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+      });
+
+      await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
+      const lastCall = mockSaveTerminalSession.mock.calls[mockSaveTerminalSession.mock.calls.length - 1][0];
+      const saved = lastCall.fileStates['/a.arbo'].terminals[0];
+      expect(saved.originNodeId).toBeUndefined();
+    });
+
+    it('restoreTerminalSession carries originNodeId into pendingRestore', async () => {
+      mockGetTerminalSession.mockResolvedValue({
+        fileStates: {
+          '/a.arbo': {
+            terminals: [
+              { title: 'Terminal', cwd: '/home/user', originNodeId: 'node-A' },
+              { title: 'Build', cwd: '/proj', originNodeId: 'node-B' },
+            ],
+            activeTerminalIndex: 0,
+          },
+        },
+      });
+
+      await useTerminalStore.getState().restoreTerminalSession();
+
+      const pending = useTerminalStore.getState().fileStates['/a.arbo'].pendingRestore;
+      expect(pending?.[0]).toEqual(
+        expect.objectContaining({ originNodeId: 'node-A' }),
+      );
+      expect(pending?.[1]).toEqual(
+        expect.objectContaining({ originNodeId: 'node-B' }),
+      );
+    });
+
+    it('materializeRestoredTerminals propagates originNodeId onto the recreated TerminalInfo', async () => {
+      useTerminalStore.setState({
+        currentFilePath: '/a.arbo',
+        terminals: [],
+        activeTerminalId: null,
+        fileStates: {
+          '/a.arbo': {
+            terminals: [],
+            activeTerminalId: null,
+            pendingRestore: [
+              { title: 'Terminal', cwd: '/home/user', originNodeId: 'node-origin' },
+            ],
+          },
+        },
+      });
+
+      await useTerminalStore.getState().materializeRestoredTerminals();
+
+      expect(useTerminalStore.getState().terminals[0].originNodeId).toBe('node-origin');
+    });
+
+    it('restores a legacy saved session that has no originNodeId field on its entries', async () => {
+      mockGetTerminalSession.mockResolvedValue({
+        fileStates: {
+          '/a.arbo': {
+            terminals: [{ title: 'Terminal', cwd: '/home/user' }],
+            activeTerminalIndex: 0,
+          },
+        },
+      });
+
+      await expect(
+        useTerminalStore.getState().restoreTerminalSession(),
+      ).resolves.not.toThrow();
+
+      const pending = useTerminalStore.getState().fileStates['/a.arbo'].pendingRestore;
+      expect(pending).toHaveLength(1);
+      expect(pending?.[0].originNodeId).toBeUndefined();
+    });
+  });
 });

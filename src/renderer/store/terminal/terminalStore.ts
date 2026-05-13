@@ -15,6 +15,7 @@ export interface TerminalInfo {
   shellCommand: string;
   shellArgs: string[];
   pinnedToBottom: boolean;
+  originNodeId?: string;
 }
 
 interface FileTerminalState {
@@ -35,10 +36,10 @@ interface TerminalState {
   setActiveTerminal: (id: string | null) => void;
   updateTerminal: (id: string, updates: Partial<TerminalInfo>) => void;
   togglePinnedToBottom: (id: string) => void;
-  openTerminal: () => Promise<string | null>;
+  openTerminal: (originNodeId?: string) => Promise<string | null>;
   sendNodeToTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
   executeNodeInTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
-  createNewTerminal: (title?: string, cwd?: string) => Promise<TerminalInfo | null>;
+  createNewTerminal: (title?: string, cwd?: string, originNodeId?: string) => Promise<TerminalInfo | null>;
   closeTerminal: (id: string) => Promise<void>;
   closeFileTerminals: (filePath: string) => Promise<void>;
   restoreTerminalSession: () => Promise<void>;
@@ -80,10 +81,14 @@ async function buildTerminalSession(
   for (const [filePath, state] of Object.entries(fileStates)) {
     if (state.terminals.length === 0 && !state.pendingRestore?.length) continue;
     const terminals: TerminalSessionEntry[] = await Promise.all(
-      state.terminals.map(async (t) => ({
-        title: t.title,
-        cwd: await refreshLiveCwd(t),
-      })),
+      state.terminals.map(async (t) => {
+        const entry: TerminalSessionEntry = {
+          title: t.title,
+          cwd: await refreshLiveCwd(t),
+        };
+        if (t.originNodeId) entry.originNodeId = t.originNodeId;
+        return entry;
+      }),
     );
     const activeIndex = state.activeTerminalId
       ? state.terminals.findIndex((t) => t.id === state.activeTerminalId)
@@ -186,16 +191,16 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     set({ terminals: newTerminals, fileStates: newFileStates });
   },
 
-  openTerminal: async () => {
+  openTerminal: async (originNodeId?: string) => {
     const { activeTerminalId } = get();
     if (activeTerminalId) return activeTerminalId;
 
-    await get().createNewTerminal();
+    await get().createNewTerminal(undefined, undefined, originNodeId);
     return get().activeTerminalId;
   },
 
   sendNodeToTerminal: async (node: TreeNode, nodes: Record<string, TreeNode>) => {
-    const terminalId = await get().openTerminal();
+    const terminalId = await get().openTerminal(node.id || undefined);
     if (!terminalId) {
       logger.error('Failed to create terminal', new Error('No terminal available'), 'TerminalStore');
       return;
@@ -211,7 +216,7 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
   },
 
   executeNodeInTerminal: async (node: TreeNode, nodes: Record<string, TreeNode>) => {
-    const terminalId = await get().openTerminal();
+    const terminalId = await get().openTerminal(node.id || undefined);
     if (!terminalId) {
       logger.error('Failed to create terminal', new Error('No terminal available'), 'TerminalStore');
       return;
@@ -226,12 +231,13 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     }
   },
 
-  createNewTerminal: async (title = 'Terminal', cwd) => {
+  createNewTerminal: async (title = 'Terminal', cwd, originNodeId) => {
     try {
       const terminalInfo = await createTerminalService(title, undefined, undefined, cwd);
-      get().addTerminal(terminalInfo);
-      logger.info(`Created new terminal: ${terminalInfo.id}`, 'TerminalStore');
-      return terminalInfo;
+      const enriched = originNodeId ? { ...terminalInfo, originNodeId } : terminalInfo;
+      get().addTerminal(enriched);
+      logger.info(`Created new terminal: ${enriched.id}`, 'TerminalStore');
+      return enriched;
     } catch (error) {
       logger.error('Failed to create terminal', error as Error, 'TerminalStore');
       return null;
@@ -285,7 +291,10 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     for (const entry of pending) {
       try {
         const terminalInfo = await createTerminalService(entry.title, undefined, undefined, entry.cwd);
-        get().addTerminal(terminalInfo);
+        const restored = entry.originNodeId
+          ? { ...terminalInfo, originNodeId: entry.originNodeId }
+          : terminalInfo;
+        get().addTerminal(restored);
       } catch (error) {
         logger.error('Failed to restore terminal', error as Error, 'TerminalStore');
       }

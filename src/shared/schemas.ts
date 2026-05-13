@@ -57,6 +57,7 @@ export const BrowserSessionSchema = z.object({
 const TerminalSessionEntrySchema = z.object({
   title: z.string(),
   cwd: z.string(),
+  originNodeId: z.string().optional(),
 });
 
 const TerminalFileStateSchema = z.object({

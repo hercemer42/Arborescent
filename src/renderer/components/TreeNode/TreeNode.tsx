@@ -45,7 +45,16 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   });
   const isFeedbackFading = useStore((state) => state.feedbackFadingNodeIds.has(nodeId));
   const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
-  const isActiveSession = useStore((state) => selectActiveSessionNodeId(state, activeTerminalId) === nodeId);
+  const activeTerminalOriginNodeId = useTerminalStore((state) => {
+    if (!state.activeTerminalId) return null;
+    return state.terminals.find((t) => t.id === state.activeTerminalId)?.originNodeId ?? null;
+  });
+  const isActiveSession = useStore((state) => {
+    const terminalOrigins = activeTerminalId && activeTerminalOriginNodeId
+      ? { [activeTerminalId]: activeTerminalOriginNodeId }
+      : undefined;
+    return selectActiveSessionNodeId({ ...state, terminalOrigins }, activeTerminalId) === nodeId;
+  });
   const isCutNode = node?.metadata.transient?.isCut === true;
 
   const appliedContext = useAppliedContext(node);
