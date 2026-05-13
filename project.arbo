@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-13T06:14:48.777Z'
+updated: '2026-05-13T06:16:52.389Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -81500,7 +81500,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - edb7e049-5b2b-4cd7-8dd0-cb6608deb029
       - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
       - a88ad8a1-693d-4f97-afad-7147328c68a2
       - cfd38a28-0349-4873-8780-177e444d7cd3
@@ -82874,8 +82873,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - dcfc7c37-60b4-440a-8f43-6006cd405d64
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -84584,7 +84582,8 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children: []
+    children:
+      - edb7e049-5b2b-4cd7-8dd0-cb6608deb029
     metadata:
       status: pending
       isBlueprint: true
@@ -96842,7 +96841,8 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children: []
+    children:
+      - dcfc7c37-60b4-440a-8f43-6006cd405d64
     metadata:
       status: pending
       isBlueprint: true
@@ -110976,13 +110976,13 @@ nodes:
     id: edb7e049-5b2b-4cd7-8dd0-cb6608deb029
     content: Bug — automated workflow stalls after decomposition (step advancement + session affinity)
     children:
-      - 73242a4a-6387-48e5-951e-d7cb9150cf5e
-      - 96cc0187-3c3b-4ae4-bbb4-ee01ba8393fd
-      - f32f6d68-e00b-44b2-bd77-66bd013c7f43
-      - 6d8d954a-88c3-48ac-a93e-15df0d3c5c61
+      - 1d7f2b97-22d8-426a-81bf-ad1c334b35ad
+      - 62c868e1-9023-49fd-a24f-75cc350a1edc
+      - bd0cf411-79d7-48fd-aeb3-af2029358e56
+      - 9718e4be-e4c4-464a-959f-a8a016999902
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       appliedContextId: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
@@ -113579,662 +113579,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  73242a4a-6387-48e5-951e-d7cb9150cf5e:
-    id: 73242a4a-6387-48e5-951e-d7cb9150cf5e
-    content: User story — Decomposed children auto-advance to the next workflow step and continue playing in the originating session
-    children:
-      - f85f7c27-f826-42ba-b629-d67fe5218e46
-      - 19775f4a-7305-4ab6-b566-474e5a5922a9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f85f7c27-f826-42ba-b629-d67fe5218e46:
-    id: f85f7c27-f826-42ba-b629-d67fe5218e46
-    content: 📄 Product spec
-    children:
-      - 4681b8ec-8025-4816-8882-968cb7ac4670
-      - b82869a7-d639-491c-9064-48daa313ec3a
-      - ba672870-8f4d-4d95-8721-8d4d2c3adaa0
-      - c4ef4a13-2192-4a29-be18-69133842dccb
-      - b61c88fe-dcb3-4cf6-8eea-d8db305f8adf
-      - e841ea75-42b5-4493-af41-ae3c6067baf2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4681b8ec-8025-4816-8882-968cb7ac4670:
-    id: 4681b8ec-8025-4816-8882-968cb7ac4670
-    content: Context — a workflow step can decompose a node into children; the recurse engine currently replays the same step on each new child, risking a second decomposition on work just produced. Today the AI typically declines to re-decompose, so the bug is masked by luck rather than guarded by logic. Even if that scheduling were fixed, the terminal session that ran the decomposing step is bound to the parent node, so attempting to play any of the resulting children in the same session fails with "session is already assigned to another node" — subsequent step calls have nowhere to land.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b82869a7-d639-491c-9064-48daa313ec3a:
-    id: b82869a7-d639-491c-9064-48daa313ec3a
-    content: User — Arborescent power users running multi-step automated workflows with AI decomposition, who expect siblings to continue in the originating session without manual rebinding.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba672870-8f4d-4d95-8721-8d4d2c3adaa0:
-    id: ba672870-8f4d-4d95-8721-8d4d2c3adaa0
-    content: Current experience — after a decompose step finishes on the parent, the runner enters the freshly created children at the same step and automation visibly stalls. The session remains locked to the parent, so children cannot be played in it manually and auto-advance has no valid routing target. The user must intervene manually, rebind sessions, or open new ones — undermining the automation promise.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4ef4a13-2192-4a29-be18-69133842dccb:
-    id: c4ef4a13-2192-4a29-be18-69133842dccb
-    content: Goal — children produced by a decomposition step automatically start at the step that follows the producing step and play sequentially in the originating session, with the active child holding the visual focus (blue bar + tinted terminal tab).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b61c88fe-dcb3-4cf6-8eea-d8db305f8adf:
-    id: b61c88fe-dcb3-4cf6-8eea-d8db305f8adf
-    content: Business rules
-    children:
-      - 2310ff95-188e-4b16-b5db-fc19130d3d94
-      - 43db3d81-9a48-4f71-a482-282dddaccc96
-      - c271ab3c-5ca5-4903-b883-7def844c67f4
-      - 4cee91ba-636a-46b7-9b42-a495969c5e0b
-      - 547270a5-43e4-4089-aa62-94f7437da293
-      - 542f41b7-f111-41fb-be5b-c9bc4690f43d
-      - 39d02323-42eb-444a-b82e-f698eb35e581
-      - 3abb9901-e7e4-4dbf-a258-3196a7d6b0c5
-      - d474d224-717e-4190-9d4e-fc1e3f748c00
-      - 0e376d37-3f3b-49b6-9ffc-88b7bc6a5609
-      - e252a67d-0d01-48c4-bb9e-9d9fb81e085d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2310ff95-188e-4b16-b5db-fc19130d3d94:
-    id: 2310ff95-188e-4b16-b5db-fc19130d3d94
-    content: 1. When an automated workflow step produces child nodes via decomposition, each child enters the workflow at the step immediately after the producing step.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  43db3d81-9a48-4f71-a482-282dddaccc96:
-    id: 43db3d81-9a48-4f71-a482-282dddaccc96
-    content: 2. The producing step does not execute on any node it just created within the same recurse pass.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c271ab3c-5ca5-4903-b883-7def844c67f4:
-    id: c271ab3c-5ca5-4903-b883-7def844c67f4
-    content: 3. If the producing step is the final step in the workflow, no further step is scheduled on the new children.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4cee91ba-636a-46b7-9b42-a495969c5e0b:
-    id: 4cee91ba-636a-46b7-9b42-a495969c5e0b
-    content: 4. Non-decomposition steps continue to advance on the same node — the rescheduling rule targets only nodes newly produced by decomposition.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  547270a5-43e4-4089-aa62-94f7437da293:
-    id: 547270a5-43e4-4089-aa62-94f7437da293
-    content: 5. Resuming a workflow after restart places existing children at the correct downstream step and does not retrigger decomposition on them.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  542f41b7-f111-41fb-be5b-c9bc4690f43d:
-    id: 542f41b7-f111-41fb-be5b-c9bc4690f43d
-    content: 6. When a session decomposes a node, the resulting children inherit a session affinity with that session as a group.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  39d02323-42eb-444a-b82e-f698eb35e581:
-    id: 39d02323-42eb-444a-b82e-f698eb35e581
-    content: 7. Playing any child of that group in the bound session is allowed and does not raise "session already assigned".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3abb9901-e7e4-4dbf-a258-3196a7d6b0c5:
-    id: 3abb9901-e7e4-4dbf-a258-3196a7d6b0c5
-    content: 8. At any moment exactly one child of the group is "active" in the session — only the active child shows the blue focus bar and tints its bound terminal tab.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d474d224-717e-4190-9d4e-fc1e3f748c00:
-    id: d474d224-717e-4190-9d4e-fc1e3f748c00
-    content: 9. When a step completes on the active child and the runner advances to the next sibling, focus transfers visually; the previous child loses the blue bar and tab tint.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0e376d37-3f3b-49b6-9ffc-88b7bc6a5609:
-    id: 0e376d37-3f3b-49b6-9ffc-88b7bc6a5609
-    content: 10. In automated mode the first child plays first; siblings follow in deterministic order once the previous sibling's downstream step completes.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e252a67d-0d01-48c4-bb9e-9d9fb81e085d:
-    id: e252a67d-0d01-48c4-bb9e-9d9fb81e085d
-    content: 11. A session cannot be bound to children from a decomposition group it did not produce — the existing strict guard still applies to foreign nodes.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e841ea75-42b5-4493-af41-ae3c6067baf2:
-    id: e841ea75-42b5-4493-af41-ae3c6067baf2
-    content: Acceptance criteria
-    children:
-      - 9d643871-de1f-4962-8037-9be9d7c37f83
-      - 0f247035-2487-4572-89e3-1c54359ecad3
-      - 1923fb40-b506-4342-9ff5-a52955b93f88
-      - 460aa92b-6646-49c9-b725-5b37f4a9660b
-      - c6abcf71-ed89-4271-aaa4-1eb3295af76a
-      - e19fd2b1-80cd-464c-a3a1-4f6b039c5e16
-      - f5576d13-3425-4659-bbf8-09565d88c556
-      - 64b22279-f234-4627-8d14-3657b2443c6a
-      - add4c021-f5fb-40a4-99c8-08dace09979c
-      - 6ec94478-da92-4b45-b022-91d574838d1e
-      - 5dd6092d-8aff-4467-b64e-7495a18fc8e9
-      - 17732d7a-91c9-4ee1-8048-a9d407e37915
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d643871-de1f-4962-8037-9be9d7c37f83:
-    id: 9d643871-de1f-4962-8037-9be9d7c37f83
-    content: Running an automated workflow whose Nth step decomposes a node results in each child entering the workflow at step N+1
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f247035-2487-4572-89e3-1c54359ecad3:
-    id: 0f247035-2487-4572-89e3-1c54359ecad3
-    content: The decomposing step does not re-execute on any node it just produced within the same recurse pass
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1923fb40-b506-4342-9ff5-a52955b93f88:
-    id: 1923fb40-b506-4342-9ff5-a52955b93f88
-    content: When the decomposing step is the last step, children are scheduled with no further workflow step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  460aa92b-6646-49c9-b725-5b37f4a9660b:
-    id: 460aa92b-6646-49c9-b725-5b37f4a9660b
-    content: Non-decomposing steps still advance on the same node, unchanged
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c6abcf71-ed89-4271-aaa4-1eb3295af76a:
-    id: c6abcf71-ed89-4271-aaa4-1eb3295af76a
-    content: Workflow resume after app restart places previously decomposed children at the correct next step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e19fd2b1-80cd-464c-a3a1-4f6b039c5e16:
-    id: e19fd2b1-80cd-464c-a3a1-4f6b039c5e16
-    content: After an automated decomposition step finishes, the first child auto-plays in the same session that ran the parent
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f5576d13-3425-4659-bbf8-09565d88c556:
-    id: f5576d13-3425-4659-bbf8-09565d88c556
-    content: Subsequent siblings play in the same session in deterministic order after each previous sibling's downstream step completes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  64b22279-f234-4627-8d14-3657b2443c6a:
-    id: 64b22279-f234-4627-8d14-3657b2443c6a
-    content: Manually triggering "play" on any decomposed child in the originating session succeeds (no "session already assigned" error)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  add4c021-f5fb-40a4-99c8-08dace09979c:
-    id: add4c021-f5fb-40a4-99c8-08dace09979c
-    content: The blue focus bar and tinted terminal tab follow the currently active child, and only the active child carries them
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ec94478-da92-4b45-b022-91d574838d1e:
-    id: 6ec94478-da92-4b45-b022-91d574838d1e
-    content: Attempting to play a node outside the decomposition group in that session still raises the existing assignment error
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5dd6092d-8aff-4467-b64e-7495a18fc8e9:
-    id: 5dd6092d-8aff-4467-b64e-7495a18fc8e9
-    content: After app restart the session's active-child pointer is restored, not silently reset to the parent
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  17732d7a-91c9-4ee1-8048-a9d407e37915:
-    id: 17732d7a-91c9-4ee1-8048-a9d407e37915
-    content: No regression in token / AI-call count for workflows that already terminated correctly
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  19775f4a-7305-4ab6-b566-474e5a5922a9:
-    id: 19775f4a-7305-4ab6-b566-474e5a5922a9
-    content: 🔧 Implementation proposal
-    children:
-      - 987c02ae-bd3e-48b8-93a6-208318301b2e
-      - a3e7475d-054d-4bf6-87d5-53726baee00d
-      - f2d8cae2-c7ee-4220-b3f9-50b06e44b6b5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  987c02ae-bd3e-48b8-93a6-208318301b2e:
-    id: 987c02ae-bd3e-48b8-93a6-208318301b2e
-    content: 'Approach — in the recurse / workflow runner, when a step completes and the diff includes newly created child nodes, schedule those children at `currentStepIndex + 1` instead of inheriting `currentStepIndex`, treating decomposition output as a step transition for the children. In parallel, expand the session↔node binding from a single node to a (group, active-child) pair: the decomposition output forms the group, the runner advances the active-child pointer as steps complete, and focus rendering reads from the active-child pointer rather than a static node binding.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a3e7475d-054d-4bf6-87d5-53726baee00d:
-    id: a3e7475d-054d-4bf6-87d5-53726baee00d
-    content: Touchpoints
-    children:
-      - f1a8972e-f0d2-44c4-8a94-6d4116bbdf91
-      - 00529b9e-0b52-4f37-b6c2-52849d5b8284
-      - 7c3dfd3c-519c-40ea-882d-fed67c61678f
-      - a6784e25-ac9d-43d7-9cbf-c9b39d25f9eb
-      - 970c3b78-6d71-492e-80bb-5a2b939c9ce9
-      - 2e040bed-a76c-4c4f-a1b9-4f057b04d6b7
-      - f80e5f83-e564-4cdf-9f26-e9e0e5357ce5
-      - da5ac84e-560d-4414-9bfa-ead86a867874
-      - e3e7c9c5-34ac-496d-a64d-070bd2089fdd
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1a8972e-f0d2-44c4-8a94-6d4116bbdf91:
-    id: f1a8972e-f0d2-44c4-8a94-6d4116bbdf91
-    content: Workflow / recurse service in `src/renderer/services/`
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  00529b9e-0b52-4f37-b6c2-52849d5b8284:
-    id: 00529b9e-0b52-4f37-b6c2-52849d5b8284
-    content: Workflow store actions that track per-node step position
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7c3dfd3c-519c-40ea-882d-fed67c61678f:
-    id: 7c3dfd3c-519c-40ea-882d-fed67c61678f
-    content: Serialization of the node→step pointer for resume compatibility
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a6784e25-ac9d-43d7-9cbf-c9b39d25f9eb:
-    id: a6784e25-ac9d-43d7-9cbf-c9b39d25f9eb
-    content: Session-binding store and the "session already assigned" guard
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  970c3b78-6d71-492e-80bb-5a2b939c9ce9:
-    id: 970c3b78-6d71-492e-80bb-5a2b939c9ce9
-    content: Workflow runner — carry the active-child pointer forward when advancing siblings
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e040bed-a76c-4c4f-a1b9-4f057b04d6b7:
-    id: 2e040bed-a76c-4c4f-a1b9-4f057b04d6b7
-    content: Focus / blue-bar rendering logic in the tree view
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f80e5f83-e564-4cdf-9f26-e9e0e5357ce5:
-    id: f80e5f83-e564-4cdf-9f26-e9e0e5357ce5
-    content: Terminal tab tint logic — must follow the active child, not the group root
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  da5ac84e-560d-4414-9bfa-ead86a867874:
-    id: da5ac84e-560d-4414-9bfa-ead86a867874
-    content: Persistence of session binding for resume
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e3e7c9c5-34ac-496d-a64d-070bd2089fdd:
-    id: e3e7c9c5-34ac-496d-a64d-070bd2089fdd
-    content: Tests covering recurse + decomposition interaction, final-step decomposition, resume-after-restart, manual play of siblings in the originating session, sequential auto-play across siblings, focus transitions, and restart restore
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f2d8cae2-c7ee-4220-b3f9-50b06e44b6b5:
-    id: f2d8cae2-c7ee-4220-b3f9-50b06e44b6b5
-    content: Constraints to call out
-    children:
-      - b8cb6997-5752-488f-a790-336e1f17840c
-      - db4da465-a2c5-4b82-b52a-e16c7bab45ac
-      - ba185c84-5625-4a98-8bfd-e85e0f67be29
-      - b3ae2860-96b2-412d-89c5-4d5ff4ae68a4
-      - 47c1df1f-7fa7-4355-8f9a-7bdde26c8dad
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b8cb6997-5752-488f-a790-336e1f17840c:
-    id: b8cb6997-5752-488f-a790-336e1f17840c
-    content: Children created before the fix may carry the producing step index in saved state — resume must coerce them forward or leave them alone deterministically
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  db4da465-a2c5-4b82-b52a-e16c7bab45ac:
-    id: db4da465-a2c5-4b82-b52a-e16c7bab45ac
-    content: If the workflow engine has no first-class notion of "next step" for a given node, the fix may require a small refactor before the rule can be enforced
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba185c84-5625-4a98-8bfd-e85e0f67be29:
-    id: ba185c84-5625-4a98-8bfd-e85e0f67be29
-    content: The "session already assigned" guard must stay strict for unrelated nodes — only the decomposition group is exempt
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b3ae2860-96b2-412d-89c5-4d5ff4ae68a4:
-    id: b3ae2860-96b2-412d-89c5-4d5ff4ae68a4
-    content: Visual focus state and the runtime active-child pointer must share a single source of truth, or the blue bar and the runner will disagree
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  47c1df1f-7fa7-4355-8f9a-7bdde26c8dad:
-    id: 47c1df1f-7fa7-4355-8f9a-7bdde26c8dad
-    content: Recent commits 9c202a0 (terminal tab tint) and 47a317f (session pairing visibility) already shape this surface — this change should layer on, not refight, those decisions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  96cc0187-3c3b-4ae4-bbb4-ee01ba8393fd:
-    id: 96cc0187-3c3b-4ae4-bbb4-ee01ba8393fd
-    content: Released element — acceptance criteria for the whole shipped bug fix
-    children:
-      - ed98f899-a0e5-4ee3-b919-55bfd082a182
-      - 7ba03d9e-b7a9-4c52-9bdc-7c578d639ebd
-      - 8b4911ee-dfa6-4112-bc11-1ff366d339d0
-      - 5fd40bd4-94eb-476d-a439-c4ac384415a5
-      - fd02cd5d-7642-4946-be2e-0c2e1bbd2e28
-      - 344c728f-0e01-468e-8198-9e6fcdb0085f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed98f899-a0e5-4ee3-b919-55bfd082a182:
-    id: ed98f899-a0e5-4ee3-b919-55bfd082a182
-    content: An automated workflow that decomposes a node plays its children through to completion without manual intervention
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ba03d9e-b7a9-4c52-9bdc-7c578d639ebd:
-    id: 7ba03d9e-b7a9-4c52-9bdc-7c578d639ebd
-    content: The decomposing step never executes a second time on its own output within the same recurse pass
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b4911ee-dfa6-4112-bc11-1ff366d339d0:
-    id: 8b4911ee-dfa6-4112-bc11-1ff366d339d0
-    content: All children of a decomposition share the originating session; the currently active child carries the blue bar and tab tint
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5fd40bd4-94eb-476d-a439-c4ac384415a5:
-    id: 5fd40bd4-94eb-476d-a439-c4ac384415a5
-    content: Manual play of any decomposed child in the originating session works
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd02cd5d-7642-4946-be2e-0c2e1bbd2e28:
-    id: fd02cd5d-7642-4946-be2e-0c2e1bbd2e28
-    content: Saved workflows from before the fix resume without phantom or duplicate steps and without orphaned session bindings
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  344c728f-0e01-468e-8198-9e6fcdb0085f:
-    id: 344c728f-0e01-468e-8198-9e6fcdb0085f
-    content: Existing single-node step progression and the strict guard against foreign-node session assignment are unchanged
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f32f6d68-e00b-44b2-bd77-66bd013c7f43:
-    id: f32f6d68-e00b-44b2-bd77-66bd013c7f43
-    content: Splitting decision — single chunk
-    children:
-      - 94d76585-7048-4712-aaba-63b8af432d61
-      - c9e00238-faf9-4b93-9d97-672f5478277e
-      - 19bec3ab-d00e-49b4-8d89-26eae60de8d5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  94d76585-7048-4712-aaba-63b8af432d61:
-    id: 94d76585-7048-4712-aaba-63b8af432d61
-    content: 'One coherent behavioural change: step advancement and session group affinity are two halves of the same automation gap; shipping only one leaves the workflow still stalled.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9e00238-faf9-4b93-9d97-672f5478277e:
-    id: c9e00238-faf9-4b93-9d97-672f5478277e
-    content: No feature-flag-worthy surface — the combined rule is either correct or it is not.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  19bec3ab-d00e-49b4-8d89-26eae60de8d5:
-    id: 19bec3ab-d00e-49b4-8d89-26eae60de8d5
-    content: Not split — the underlying rules form a single decision and slicing would create review churn without aiding clarity.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d8d954a-88c3-48ac-a93e-15df0d3c5c61:
-    id: 6d8d954a-88c3-48ac-a93e-15df0d3c5c61
-    content: Challenges and ROI
-    children:
-      - 97a134e4-4e42-4070-bba6-90cddbf5d455
-      - 5f768e13-2998-4a26-b3a5-297c2375c05b
-      - 5ebd811d-b110-461e-b951-d82f590e0a3f
-      - 84a13b80-de90-45ad-b012-8c5f3f5b6b4d
-      - 0ef6af01-272a-4b7b-bf1e-4a15a6aa2e9b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  97a134e4-4e42-4070-bba6-90cddbf5d455:
-    id: 97a134e4-4e42-4070-bba6-90cddbf5d455
-    content: UX — automation currently appears to "almost work" and silently stalls; users blame the AI rather than the runner. Fixing both halves restores the automation promise.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f768e13-2998-4a26-b3a5-297c2375c05b:
-    id: 5f768e13-2998-4a26-b3a5-297c2375c05b
-    content: Over-engineering risk — do not introduce a generic "step transition policy" or "session group manager"; patch the child-scheduling site and widen the binding type minimally.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5ebd811d-b110-461e-b951-d82f590e0a3f:
-    id: 5ebd811d-b110-461e-b951-d82f590e0a3f
-    content: Out of scope — undo/redo of decomposition, AI-side guardrails against re-decomposing, playing one decomposition group across multiple sessions, reassigning a session to a foreign group
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  84a13b80-de90-45ad-b012-8c5f3f5b6b4d:
-    id: 84a13b80-de90-45ad-b012-8c5f3f5b6b4d
-    content: ROI — high. Saves AI calls, prevents silently malformed trees, eliminates the most common "session already assigned" friction, and makes automated workflows actually automatic.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0ef6af01-272a-4b7b-bf1e-4a15a6aa2e9b:
-    id: 0ef6af01-272a-4b7b-bf1e-4a15a6aa2e9b
-    content: Push-back — none; the bug has a reproducible user-visible failure mode in the current build.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   e9309e0b-bed2-4cd5-bc41-7212efb6c556:
     id: e9309e0b-bed2-4cd5-bc41-7212efb6c556
     content: worktree
@@ -115119,6 +114463,662 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  1d7f2b97-22d8-426a-81bf-ad1c334b35ad:
+    id: 1d7f2b97-22d8-426a-81bf-ad1c334b35ad
+    content: User story — Decomposed children auto-advance to the next workflow step and continue playing in the originating session
+    children:
+      - f2b9f1e9-5ba0-4d52-a095-ee595c6294b1
+      - a2b0fb9a-eda6-4ab5-a1b1-027e4f8d18e8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2b9f1e9-5ba0-4d52-a095-ee595c6294b1:
+    id: f2b9f1e9-5ba0-4d52-a095-ee595c6294b1
+    content: 📄 Product spec
+    children:
+      - 3f6a3579-748f-4ef0-9611-70f334b81e0a
+      - 5e65b9f1-952f-4a9e-9fe6-7ae06ccc3418
+      - 40d96395-db2a-433d-9763-789ff573c28d
+      - 61163068-1246-4115-9790-db42444168b1
+      - cab1675d-a161-4b1d-b445-1ae5b4104625
+      - a627b88f-31a3-4409-958b-7e67992b7398
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f6a3579-748f-4ef0-9611-70f334b81e0a:
+    id: 3f6a3579-748f-4ef0-9611-70f334b81e0a
+    content: Context — a workflow step can decompose a node into children; the recurse engine currently replays the same step on each new child, risking a second decomposition on work just produced. Today the AI typically declines to re-decompose, so the bug is masked by luck rather than guarded by logic. Even if that scheduling were fixed, the terminal session that ran the decomposing step is bound to the parent node, so attempting to play any of the resulting children in the same session fails with "session is already assigned to another node" — subsequent step calls have nowhere to land.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e65b9f1-952f-4a9e-9fe6-7ae06ccc3418:
+    id: 5e65b9f1-952f-4a9e-9fe6-7ae06ccc3418
+    content: User — Arborescent power users running multi-step automated workflows with AI decomposition, who expect siblings to continue in the originating session without manual rebinding.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  40d96395-db2a-433d-9763-789ff573c28d:
+    id: 40d96395-db2a-433d-9763-789ff573c28d
+    content: Current experience — after a decompose step finishes on the parent, the runner enters the freshly created children at the same step and automation visibly stalls. The session remains locked to the parent, so children cannot be played in it manually and auto-advance has no valid routing target. The user must intervene manually, rebind sessions, or open new ones — undermining the automation promise.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61163068-1246-4115-9790-db42444168b1:
+    id: 61163068-1246-4115-9790-db42444168b1
+    content: Goal — children produced by a decomposition step automatically start at the step that follows the producing step and play sequentially in the originating session, with the active child holding the visual focus (blue bar + tinted terminal tab).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cab1675d-a161-4b1d-b445-1ae5b4104625:
+    id: cab1675d-a161-4b1d-b445-1ae5b4104625
+    content: Business rules
+    children:
+      - e5e23e03-7baa-49cc-9165-8e2a98f0e4bd
+      - 94a2a0ce-7b92-4fe4-9644-a075df9b5fa2
+      - 7397a99a-ac7b-4fa9-96b0-5b59d3bebd71
+      - 5c3d0f82-ebc6-4776-a009-7bd8c20ab431
+      - 81487721-ba6a-47fa-a688-70d45153b8c4
+      - d6c5207c-bc39-4936-96bc-2033879644c8
+      - 0b020198-ec73-4d67-ac75-84a6d744f0d8
+      - d0d3b524-b5f6-4952-ae5e-a51fc2d40871
+      - fc26d149-2716-4df6-b0fc-20a9ceb0a009
+      - e29fe1d6-d740-43c8-9a76-c5776b4bb1c5
+      - 00fbbccd-2cb3-4fdf-80f5-ae9867e540f3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5e23e03-7baa-49cc-9165-8e2a98f0e4bd:
+    id: e5e23e03-7baa-49cc-9165-8e2a98f0e4bd
+    content: 1. When an automated workflow step produces child nodes via decomposition, each child enters the workflow at the step immediately after the producing step.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94a2a0ce-7b92-4fe4-9644-a075df9b5fa2:
+    id: 94a2a0ce-7b92-4fe4-9644-a075df9b5fa2
+    content: 2. The producing step does not execute on any node it just created within the same recurse pass.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7397a99a-ac7b-4fa9-96b0-5b59d3bebd71:
+    id: 7397a99a-ac7b-4fa9-96b0-5b59d3bebd71
+    content: 3. If the producing step is the final step in the workflow, the new children are created but no further step is queued for them; the runner does not loop, does not re-fire the producing step on them, and does not error — they terminate cleanly like any node that has finished its workflow.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c3d0f82-ebc6-4776-a009-7bd8c20ab431:
+    id: 5c3d0f82-ebc6-4776-a009-7bd8c20ab431
+    content: 4. Non-decomposition steps continue to advance on the same node — the rescheduling rule targets only nodes newly produced by decomposition.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81487721-ba6a-47fa-a688-70d45153b8c4:
+    id: 81487721-ba6a-47fa-a688-70d45153b8c4
+    content: 5. Resuming a workflow after restart places existing children at the correct downstream step and does not retrigger decomposition on them.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6c5207c-bc39-4936-96bc-2033879644c8:
+    id: d6c5207c-bc39-4936-96bc-2033879644c8
+    content: 6. When a session decomposes a node, the resulting children inherit a session affinity with that session as a group.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b020198-ec73-4d67-ac75-84a6d744f0d8:
+    id: 0b020198-ec73-4d67-ac75-84a6d744f0d8
+    content: 7. Playing any child of that group in the bound session is allowed and does not raise "session already assigned".
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0d3b524-b5f6-4952-ae5e-a51fc2d40871:
+    id: d0d3b524-b5f6-4952-ae5e-a51fc2d40871
+    content: 8. At any moment exactly one child of the group is "active" in the session — only the active child shows the blue focus bar and tints its bound terminal tab.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc26d149-2716-4df6-b0fc-20a9ceb0a009:
+    id: fc26d149-2716-4df6-b0fc-20a9ceb0a009
+    content: 9. When a step completes on the active child and the runner advances to the next sibling, focus transfers visually; the previous child loses the blue bar and tab tint.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e29fe1d6-d740-43c8-9a76-c5776b4bb1c5:
+    id: e29fe1d6-d740-43c8-9a76-c5776b4bb1c5
+    content: 10. In automated mode the first child plays first; siblings follow in deterministic order once the previous sibling's downstream step completes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00fbbccd-2cb3-4fdf-80f5-ae9867e540f3:
+    id: 00fbbccd-2cb3-4fdf-80f5-ae9867e540f3
+    content: 11. A session cannot be bound to children from a decomposition group it did not produce — the existing strict guard still applies to foreign nodes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a627b88f-31a3-4409-958b-7e67992b7398:
+    id: a627b88f-31a3-4409-958b-7e67992b7398
+    content: Acceptance criteria
+    children:
+      - f9b10877-f0b8-4781-b22c-1bd54df67603
+      - 8de1fb2b-1990-468a-bcbb-24ce243e38c0
+      - 17243ab9-bb01-455b-9166-c743dcbfd273
+      - 14fc0fce-0745-4c7e-9609-7e06386f7027
+      - 54e25b22-6764-45f7-87cd-2c243d20bde4
+      - 0c7f98f4-6283-4ce9-a5ea-1b036cb781e9
+      - 9b670b05-c822-4068-b187-11d964db20d4
+      - 3d2323e1-33b4-457d-8626-52bfd9782888
+      - 9190757d-2d68-45aa-b729-4d0a7576e11f
+      - 95082c6b-766e-4c91-9100-dff49f115ff8
+      - 6444da93-5378-45a9-858d-a08db3f9345d
+      - 0507dfdd-6d0e-4bb8-84a1-db28e0bb0a17
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9b10877-f0b8-4781-b22c-1bd54df67603:
+    id: f9b10877-f0b8-4781-b22c-1bd54df67603
+    content: Running an automated workflow whose Nth step decomposes a node results in each child entering the workflow at step N+1
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8de1fb2b-1990-468a-bcbb-24ce243e38c0:
+    id: 8de1fb2b-1990-468a-bcbb-24ce243e38c0
+    content: The decomposing step does not re-execute on any node it just produced within the same recurse pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17243ab9-bb01-455b-9166-c743dcbfd273:
+    id: 17243ab9-bb01-455b-9166-c743dcbfd273
+    content: When the decomposing step is the final step in the workflow, children are created and left terminal — no further step is scheduled, the runner does not loop or re-fire the producing step, and no error is raised
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14fc0fce-0745-4c7e-9609-7e06386f7027:
+    id: 14fc0fce-0745-4c7e-9609-7e06386f7027
+    content: Non-decomposing steps still advance on the same node, unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54e25b22-6764-45f7-87cd-2c243d20bde4:
+    id: 54e25b22-6764-45f7-87cd-2c243d20bde4
+    content: Workflow resume after app restart places previously decomposed children at the correct next step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c7f98f4-6283-4ce9-a5ea-1b036cb781e9:
+    id: 0c7f98f4-6283-4ce9-a5ea-1b036cb781e9
+    content: After an automated decomposition step finishes, the first child auto-plays in the same session that ran the parent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b670b05-c822-4068-b187-11d964db20d4:
+    id: 9b670b05-c822-4068-b187-11d964db20d4
+    content: Subsequent siblings play in the same session in deterministic order after each previous sibling's downstream step completes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d2323e1-33b4-457d-8626-52bfd9782888:
+    id: 3d2323e1-33b4-457d-8626-52bfd9782888
+    content: Manually triggering "play" on any decomposed child in the originating session succeeds (no "session already assigned" error)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9190757d-2d68-45aa-b729-4d0a7576e11f:
+    id: 9190757d-2d68-45aa-b729-4d0a7576e11f
+    content: The blue focus bar and tinted terminal tab follow the currently active child, and only the active child carries them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95082c6b-766e-4c91-9100-dff49f115ff8:
+    id: 95082c6b-766e-4c91-9100-dff49f115ff8
+    content: Attempting to play a node outside the decomposition group in that session still raises the existing assignment error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6444da93-5378-45a9-858d-a08db3f9345d:
+    id: 6444da93-5378-45a9-858d-a08db3f9345d
+    content: After app restart the session's active-child pointer is restored, not silently reset to the parent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0507dfdd-6d0e-4bb8-84a1-db28e0bb0a17:
+    id: 0507dfdd-6d0e-4bb8-84a1-db28e0bb0a17
+    content: No regression in token / AI-call count for workflows that already terminated correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2b0fb9a-eda6-4ab5-a1b1-027e4f8d18e8:
+    id: a2b0fb9a-eda6-4ab5-a1b1-027e4f8d18e8
+    content: 🔧 Implementation proposal
+    children:
+      - 61060786-46a2-4f2c-b1e3-e6dc4b08010a
+      - af7b5b10-f346-40c7-85f3-d39e571ca83c
+      - 1f8e5006-2cff-4299-9856-370d9f4e62c2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61060786-46a2-4f2c-b1e3-e6dc4b08010a:
+    id: 61060786-46a2-4f2c-b1e3-e6dc4b08010a
+    content: 'Approach — in the recurse / workflow runner, when a step completes and the diff includes newly created child nodes, schedule those children at `currentStepIndex + 1` instead of inheriting `currentStepIndex`, treating decomposition output as a step transition for the children. In parallel, expand the session↔node binding from a single node to a (group, active-child) pair: the decomposition output forms the group, the runner advances the active-child pointer as steps complete, and focus rendering reads from the active-child pointer rather than a static node binding.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af7b5b10-f346-40c7-85f3-d39e571ca83c:
+    id: af7b5b10-f346-40c7-85f3-d39e571ca83c
+    content: Touchpoints
+    children:
+      - 5a923634-0404-4301-ac64-940dc4577431
+      - 4d64fb9a-3c22-4b94-9c06-4214647cadd4
+      - 0de4397b-baee-4b28-9424-229c004771bc
+      - b971798f-a1dd-415d-a1ca-8800819bd956
+      - 7f2a8e33-e6b0-4971-98d7-75b92980e10e
+      - 1c110f6e-a607-451e-b5a2-4e032c64ab7e
+      - 0016a010-610d-4ca7-ab60-1dfdcc87f952
+      - 98566d41-02da-454f-bc28-5778469ddd15
+      - 53e5443e-6d6b-4816-ac58-6378a16125fd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a923634-0404-4301-ac64-940dc4577431:
+    id: 5a923634-0404-4301-ac64-940dc4577431
+    content: Workflow / recurse service in `src/renderer/services/`
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d64fb9a-3c22-4b94-9c06-4214647cadd4:
+    id: 4d64fb9a-3c22-4b94-9c06-4214647cadd4
+    content: Workflow store actions that track per-node step position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0de4397b-baee-4b28-9424-229c004771bc:
+    id: 0de4397b-baee-4b28-9424-229c004771bc
+    content: Serialization of the node→step pointer for resume compatibility
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b971798f-a1dd-415d-a1ca-8800819bd956:
+    id: b971798f-a1dd-415d-a1ca-8800819bd956
+    content: Session-binding store and the "session already assigned" guard
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f2a8e33-e6b0-4971-98d7-75b92980e10e:
+    id: 7f2a8e33-e6b0-4971-98d7-75b92980e10e
+    content: Workflow runner — carry the active-child pointer forward when advancing siblings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c110f6e-a607-451e-b5a2-4e032c64ab7e:
+    id: 1c110f6e-a607-451e-b5a2-4e032c64ab7e
+    content: Focus / blue-bar rendering logic in the tree view
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0016a010-610d-4ca7-ab60-1dfdcc87f952:
+    id: 0016a010-610d-4ca7-ab60-1dfdcc87f952
+    content: Terminal tab tint logic — must follow the active child, not the group root
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98566d41-02da-454f-bc28-5778469ddd15:
+    id: 98566d41-02da-454f-bc28-5778469ddd15
+    content: Persistence of session binding for resume
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53e5443e-6d6b-4816-ac58-6378a16125fd:
+    id: 53e5443e-6d6b-4816-ac58-6378a16125fd
+    content: Tests covering recurse + decomposition interaction, final-step decomposition, resume-after-restart, manual play of siblings in the originating session, sequential auto-play across siblings, focus transitions, and restart restore
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f8e5006-2cff-4299-9856-370d9f4e62c2:
+    id: 1f8e5006-2cff-4299-9856-370d9f4e62c2
+    content: Constraints to call out
+    children:
+      - f9cefc80-b6c7-4b60-a73c-ee43bdb92586
+      - 32340500-57bd-4a17-b283-4896751ddd33
+      - ae06e068-cb1f-4e35-977c-2498d3055919
+      - 4e3c63bd-e50a-455a-a7bf-0a8330b665a8
+      - 2e7e77af-356a-4802-8cd3-dd5ca41024a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9cefc80-b6c7-4b60-a73c-ee43bdb92586:
+    id: f9cefc80-b6c7-4b60-a73c-ee43bdb92586
+    content: Children created before the fix may carry the producing step index in saved state — resume must coerce them forward or leave them alone deterministically
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32340500-57bd-4a17-b283-4896751ddd33:
+    id: 32340500-57bd-4a17-b283-4896751ddd33
+    content: If the workflow engine has no first-class notion of "next step" for a given node, the fix may require a small refactor before the rule can be enforced
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae06e068-cb1f-4e35-977c-2498d3055919:
+    id: ae06e068-cb1f-4e35-977c-2498d3055919
+    content: The "session already assigned" guard must stay strict for unrelated nodes — only the decomposition group is exempt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e3c63bd-e50a-455a-a7bf-0a8330b665a8:
+    id: 4e3c63bd-e50a-455a-a7bf-0a8330b665a8
+    content: Visual focus state and the runtime active-child pointer must share a single source of truth, or the blue bar and the runner will disagree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e7e77af-356a-4802-8cd3-dd5ca41024a7:
+    id: 2e7e77af-356a-4802-8cd3-dd5ca41024a7
+    content: Recent commits 9c202a0 (terminal tab tint) and 47a317f (session pairing visibility) already shape this surface — this change should layer on, not refight, those decisions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62c868e1-9023-49fd-a24f-75cc350a1edc:
+    id: 62c868e1-9023-49fd-a24f-75cc350a1edc
+    content: Released element — acceptance criteria for the whole shipped bug fix
+    children:
+      - 00d89eae-fa7b-472a-936a-a21ed0c4c3e1
+      - 1c8694d7-c601-4d8d-b63f-6badc23ed9ca
+      - 068587d5-4ab1-481a-aa5c-f2b9b26ad971
+      - 45d8aa31-0e9c-4e03-88b4-4d7610a6f04e
+      - 6bdeac5e-8aea-4e65-9806-645a1adaf46d
+      - 17e46bd8-1a81-4ef1-a213-c5a773157d48
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00d89eae-fa7b-472a-936a-a21ed0c4c3e1:
+    id: 00d89eae-fa7b-472a-936a-a21ed0c4c3e1
+    content: An automated workflow that decomposes a node plays its children through to completion without manual intervention
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c8694d7-c601-4d8d-b63f-6badc23ed9ca:
+    id: 1c8694d7-c601-4d8d-b63f-6badc23ed9ca
+    content: The decomposing step never executes a second time on its own output within the same recurse pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  068587d5-4ab1-481a-aa5c-f2b9b26ad971:
+    id: 068587d5-4ab1-481a-aa5c-f2b9b26ad971
+    content: All children of a decomposition share the originating session; the currently active child carries the blue bar and tab tint
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45d8aa31-0e9c-4e03-88b4-4d7610a6f04e:
+    id: 45d8aa31-0e9c-4e03-88b4-4d7610a6f04e
+    content: Manual play of any decomposed child in the originating session works
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bdeac5e-8aea-4e65-9806-645a1adaf46d:
+    id: 6bdeac5e-8aea-4e65-9806-645a1adaf46d
+    content: Saved workflows from before the fix resume without phantom or duplicate steps and without orphaned session bindings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17e46bd8-1a81-4ef1-a213-c5a773157d48:
+    id: 17e46bd8-1a81-4ef1-a213-c5a773157d48
+    content: Existing single-node step progression and the strict guard against foreign-node session assignment are unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd0cf411-79d7-48fd-aeb3-af2029358e56:
+    id: bd0cf411-79d7-48fd-aeb3-af2029358e56
+    content: Splitting decision — single chunk
+    children:
+      - 4d3fd519-c738-424e-982b-11ae13de8b5f
+      - 03fca43d-b00a-4ba5-8627-21258c65835b
+      - 01cae992-cce7-48cf-84f9-dfa8e8550d04
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d3fd519-c738-424e-982b-11ae13de8b5f:
+    id: 4d3fd519-c738-424e-982b-11ae13de8b5f
+    content: 'One coherent behavioural change: step advancement and session group affinity are two halves of the same automation gap; shipping only one leaves the workflow still stalled.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03fca43d-b00a-4ba5-8627-21258c65835b:
+    id: 03fca43d-b00a-4ba5-8627-21258c65835b
+    content: No feature-flag-worthy surface — the combined rule is either correct or it is not.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01cae992-cce7-48cf-84f9-dfa8e8550d04:
+    id: 01cae992-cce7-48cf-84f9-dfa8e8550d04
+    content: Not split — the underlying rules form a single decision and slicing would create review churn without aiding clarity.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9718e4be-e4c4-464a-959f-a8a016999902:
+    id: 9718e4be-e4c4-464a-959f-a8a016999902
+    content: Challenges and ROI
+    children:
+      - 43e07815-a4b8-44c2-a2ab-2101b79c746c
+      - 800b7bab-d4d0-4647-a321-93094781b4e0
+      - dbc9f93f-8c27-4f08-b859-ccd8d7fc0b03
+      - bc76636d-c892-43f3-8e6c-24cc4be1559b
+      - a8745da2-22ce-44a1-9591-f551dce7a768
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43e07815-a4b8-44c2-a2ab-2101b79c746c:
+    id: 43e07815-a4b8-44c2-a2ab-2101b79c746c
+    content: UX — automation currently appears to "almost work" and silently stalls; users blame the AI rather than the runner. Fixing both halves restores the automation promise.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  800b7bab-d4d0-4647-a321-93094781b4e0:
+    id: 800b7bab-d4d0-4647-a321-93094781b4e0
+    content: Over-engineering risk — do not introduce a generic "step transition policy" or "session group manager"; patch the child-scheduling site and widen the binding type minimally.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbc9f93f-8c27-4f08-b859-ccd8d7fc0b03:
+    id: dbc9f93f-8c27-4f08-b859-ccd8d7fc0b03
+    content: Out of scope — undo/redo of decomposition, AI-side guardrails against re-decomposing, playing one decomposition group across multiple sessions, reassigning a session to a foreign group
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc76636d-c892-43f3-8e6c-24cc4be1559b:
+    id: bc76636d-c892-43f3-8e6c-24cc4be1559b
+    content: ROI — high. Saves AI calls, prevents silently malformed trees, eliminates the most common "session already assigned" friction, and makes automated workflows actually automatic.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8745da2-22ce-44a1-9591-f551dce7a768:
+    id: a8745da2-22ce-44a1-9591-f551dce7a768
+    content: Push-back — none; the bug has a reproducible user-visible failure mode in the current build.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   9d7f3565-ab30-489e-a789-2cd59c075a35:
     cwd: /Users/brianfox/dev/Arborescent
@@ -115133,4 +115133,6 @@ sessionRegistry:
   b89259b7-3cdf-4ec1-b4a8-d505ca3826cd:
     cwd: /Users/brianfox/dev/Arborescent
   29b4768e-f5e0-4180-84b1-5fed0e0d6a77:
+    cwd: /Users/brianfox/dev/Arborescent
+  a1081f93-f43a-48ad-9e1b-b086540305cb:
     cwd: /Users/brianfox/dev/Arborescent
