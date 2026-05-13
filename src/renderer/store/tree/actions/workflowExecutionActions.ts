@@ -509,6 +509,32 @@ export const createWorkflowExecutionActions = (
     );
   }
 
+  function advanceDecomposedSiblingToNextStep(siblingId: string): boolean {
+    const { nodes, ancestorRegistry } = get();
+    const nextStepId = findNextStepTarget(siblingId, nodes, ancestorRegistry);
+    if (!nextStepId) return false;
+
+    let updatedNodes = removeNodeFromAllParents(nodes, siblingId);
+    if (!updatedNodes[nextStepId].children.includes(siblingId)) {
+      updatedNodes = {
+        ...updatedNodes,
+        [nextStepId]: {
+          ...updatedNodes[nextStepId],
+          children: [...updatedNodes[nextStepId].children, siblingId],
+        },
+      };
+    }
+    const updatedRegistry = moveNodeInRegistry(
+      ancestorRegistry,
+      siblingId,
+      nextStepId,
+      updatedNodes,
+    );
+    set({ nodes: updatedNodes, ancestorRegistry: updatedRegistry });
+    triggerAutosave?.();
+    return true;
+  }
+
   function checkRecurse(stepId: string, terminalId: string, completedNodeId: string): void {
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
 
@@ -521,6 +547,16 @@ export const createWorkflowExecutionActions = (
         : null);
 
     if (sibling) {
+      if (!advanceDecomposedSiblingToNextStep(sibling)) {
+        recurseCounters.delete(recurseChainKey(completedNodeId, terminalId));
+        useToastStore
+          .getState()
+          .addToast(
+            "Decomposition at final step — children retained, no downstream step to run",
+            "info",
+          );
+        return;
+      }
       scheduleRecurseStart(sibling, terminalId, completedNodeId);
       return;
     }

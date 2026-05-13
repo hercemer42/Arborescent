@@ -1243,16 +1243,11 @@ describe('createWorkflowExecutionActions', () => {
     it('should stop recursing and show warning after exceeding safety limit', () => {
       vi.useFakeTimers();
 
-      // Single-step workflow with decomposition + recurse: 52 sibling tasks at the decomp step
       state.nodes['step-1'].metadata.stepType = 'autonomous';
       state.nodes['step-1'].metadata.recurse = true;
       state.nodes['step-1'].metadata.decomposition = true;
-      state.nodes['workflow'].children = ['step-1'];
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
       state.workflowSessionMap = { 'session-1': 'terminal-1' };
-      delete state.nodes['step-2'];
-      delete state.nodes['step-3'];
-      delete state.ancestorRegistry['step-2'];
-      delete state.ancestorRegistry['step-3'];
 
       const taskIds: string[] = [];
       for (let i = 0; i < 52; i++) {
@@ -1321,6 +1316,89 @@ describe('createWorkflowExecutionActions', () => {
     });
   });
 
+  describe('decomposed siblings advance to next workflow step', () => {
+    it('moves the next waiting child of the decomposition step out to step N+1 instead of re-running step N on it', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-1'].metadata.decomposition = true;
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+
+      state.nodes['step-1'].children = ['task-a', 'task-b'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      expect(state.nodes['step-2'].children).toContain('task-a');
+      expect(state.nodes['step-1'].children).not.toContain('task-a');
+      expect(state.ancestorRegistry['task-a']).toEqual(['root', 'workflow', 'step-2']);
+
+      vi.useRealTimers();
+    });
+
+    it('moves each pending sibling out of the decomposition step across successive recurse passes', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-1'].metadata.decomposition = true;
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+
+      state.nodes['step-1'].children = ['task-a', 'task-b'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(3000);
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(3000);
+
+      expect(state.nodes['step-1'].children).not.toContain('task-a');
+      expect(state.nodes['step-1'].children).not.toContain('task-b');
+      expect(state.nodes['step-3'].children).toContain('task-a');
+      expect(state.nodes['step-2'].children).toContain('task-b');
+
+      vi.useRealTimers();
+    });
+
+    it('terminates the recurse chain cleanly when the decomposition step is the final step (no infinite loop, no error)', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-1'].metadata.decomposition = true;
+      state.nodes['workflow'].children = ['step-1'];
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+      delete state.nodes['step-2'];
+      delete state.nodes['step-3'];
+      delete state.ancestorRegistry['step-2'];
+      delete state.ancestorRegistry['step-3'];
+
+      state.nodes['step-1'].children = ['task-a', 'task-b', 'task-c'];
+      state.ancestorRegistry['task-c'] = ['root', 'workflow', 'step-1'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(10000);
+
+      expect(state.nodes['step-1'].children).toEqual(expect.arrayContaining(['task-b', 'task-c']));
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
+      expect(state.workflowExecutionStates['task-c']).toBeUndefined();
+      expect(mockAddToast).not.toHaveBeenCalledWith(
+        expect.stringContaining('Recurse limit reached'),
+        'warning',
+      );
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('Decomposition at final step'),
+        'info',
+      );
+
+      vi.useRealTimers();
+    });
+  });
+
   describe('notification wiring', () => {
     beforeEach(() => {
       state.workflowSessionMap = { 'session-1': 'terminal-1' };
@@ -1359,11 +1437,7 @@ describe('createWorkflowExecutionActions', () => {
 
       state.nodes['step-1'].metadata.recurse = true;
       state.nodes['step-1'].metadata.decomposition = true;
-      state.nodes['workflow'].children = ['step-1'];
-      delete state.nodes['step-2'];
-      delete state.nodes['step-3'];
-      delete state.ancestorRegistry['step-2'];
-      delete state.ancestorRegistry['step-3'];
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
 
       const taskIds: string[] = [];
       for (let i = 0; i < 52; i++) {
