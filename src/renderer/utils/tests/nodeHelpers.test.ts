@@ -21,6 +21,7 @@ import {
   getInheritedContextId,
   BASIC_EXECUTE_CONTEXT_ID,
   BASIC_REVIEW_CONTEXT_ID,
+  REVISE_AFTER_DISCUSSION_CONTEXT_ID,
 } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
@@ -1263,6 +1264,52 @@ describe('synthetic context id handling', () => {
 
   it('returns empty contexts for collaboration when a synthetic id is applied (no real declaration to attach)', () => {
     const node = createNode('node-1', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
+    const nodes = { 'node-1': node };
+    const ancestorRegistry = { 'node-1': [] };
+
+    expect(getContextsForCollaboration('node-1', nodes, ancestorRegistry)).toEqual([]);
+  });
+});
+
+describe('REVISE_AFTER_DISCUSSION_CONTEXT_ID', () => {
+  const createNode = (id: string, metadata = {}): TreeNode => ({
+    id,
+    content: 'Test',
+    children: [],
+    metadata,
+  });
+
+  it('exposes a stable synthetic id distinct from other built-ins', () => {
+    expect(REVISE_AFTER_DISCUSSION_CONTEXT_ID).toBeTruthy();
+    expect(REVISE_AFTER_DISCUSSION_CONTEXT_ID).not.toBe(BASIC_EXECUTE_CONTEXT_ID);
+    expect(REVISE_AFTER_DISCUSSION_CONTEXT_ID).not.toBe(BASIC_REVIEW_CONTEXT_ID);
+  });
+
+  it('resolveContextFlags returns collaborate-only flags', () => {
+    expect(resolveContextFlags(REVISE_AFTER_DISCUSSION_CONTEXT_ID, {}, [])).toEqual({
+      collaborate: true,
+      execute: false,
+    });
+  });
+
+  it('resolveSendContextName returns the human label', () => {
+    expect(resolveSendContextName(REVISE_AFTER_DISCUSSION_CONTEXT_ID, {})).toBe(
+      'Revise after discussion',
+    );
+  });
+
+  it('getAppliedContextIdWithInheritance preserves the synthetic id when set directly on a node', () => {
+    const node = createNode('node-1', { appliedContextId: REVISE_AFTER_DISCUSSION_CONTEXT_ID });
+    const nodes = { 'node-1': node };
+    const ancestorRegistry = { 'node-1': [] };
+
+    expect(getAppliedContextIdWithInheritance('node-1', nodes, ancestorRegistry)).toBe(
+      REVISE_AFTER_DISCUSSION_CONTEXT_ID,
+    );
+  });
+
+  it('getContextsForCollaboration returns empty when the synthetic id is applied (no real declaration to attach)', () => {
+    const node = createNode('node-1', { appliedContextId: REVISE_AFTER_DISCUSSION_CONTEXT_ID });
     const nodes = { 'node-1': node };
     const ancestorRegistry = { 'node-1': [] };
 

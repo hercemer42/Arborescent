@@ -19,9 +19,14 @@ export { cloneNodesWithNewIds } from './nodeCloning';
 
 export const BASIC_EXECUTE_CONTEXT_ID = '__basic_execute__';
 export const BASIC_REVIEW_CONTEXT_ID = '__basic_review__';
+export const REVISE_AFTER_DISCUSSION_CONTEXT_ID = '__revise_after_discussion__';
 
 function isSyntheticContextId(id: string): boolean {
-  return id === BASIC_EXECUTE_CONTEXT_ID || id === BASIC_REVIEW_CONTEXT_ID;
+  return (
+    id === BASIC_EXECUTE_CONTEXT_ID
+    || id === BASIC_REVIEW_CONTEXT_ID
+    || id === REVISE_AFTER_DISCUSSION_CONTEXT_ID
+  );
 }
 
 export function getAppliedContextIdWithInheritance(
@@ -237,6 +242,7 @@ export interface ContextDeclaration {
 const DEFAULT_FLAGS: ContextFlags = { collaborate: true, execute: false };
 const BASIC_EXECUTE_FLAGS: ContextFlags = { collaborate: true, execute: true };
 const BASIC_REVIEW_FLAGS: ContextFlags = { collaborate: true, execute: false };
+const REVISE_AFTER_DISCUSSION_FLAGS: ContextFlags = { collaborate: true, execute: false };
 
 function readFlagsFromNode(node: TreeNode): ContextFlags {
   const collaborate = node.metadata.collaborate;
@@ -277,6 +283,7 @@ export function resolveContextFlags(
   if (!contextId) return DEFAULT_FLAGS;
   if (contextId === BASIC_EXECUTE_CONTEXT_ID) return BASIC_EXECUTE_FLAGS;
   if (contextId === BASIC_REVIEW_CONTEXT_ID) return BASIC_REVIEW_FLAGS;
+  if (contextId === REVISE_AFTER_DISCUSSION_CONTEXT_ID) return REVISE_AFTER_DISCUSSION_FLAGS;
   const declaration = contextDeclarations.find(d => d.nodeId === contextId);
   if (declaration) {
     return { collaborate: declaration.collaborate, execute: declaration.execute };
@@ -295,6 +302,7 @@ export function resolveSendContextName(
   if (!contextId) return undefined;
   if (contextId === BASIC_EXECUTE_CONTEXT_ID) return 'Basic execution';
   if (contextId === BASIC_REVIEW_CONTEXT_ID) return 'Basic review';
+  if (contextId === REVISE_AFTER_DISCUSSION_CONTEXT_ID) return 'Revise after discussion';
   const contextNode = nodes[contextId];
   if (!contextNode) return undefined;
   const content = contextNode.content;

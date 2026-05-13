@@ -6,6 +6,7 @@ import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
 import { useSpellcheckStore } from '../../../../store/spellcheck/spellcheckStore';
 import { useTerminalStore } from '../../../../store/terminal/terminalStore';
+import { REVISE_AFTER_DISCUSSION_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 
 // Helper to create mock event with DOM elements
 function createMockContextMenuEvent(x: number, y: number) {
@@ -387,7 +388,7 @@ describe('useNodeContextMenu', () => {
         sendItem!.onClick!();
       });
 
-      expect(mockCollaborateInTerminal).toHaveBeenCalledWith('test-node', 'terminal-1', { collaborate: true, execute: false });
+      expect(mockCollaborateInTerminal).toHaveBeenCalledWith('test-node', 'terminal-1', { collaborate: true, execute: false }, undefined);
     });
 
     it('should show toast when no panel is open', async () => {
@@ -885,6 +886,225 @@ describe('useNodeContextMenu', () => {
       const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
       expect(editMenu).toBeDefined();
       expect(editMenu?.submenu?.find(item => item.label === 'Delete')).toBeDefined();
+    });
+  });
+
+  describe("'Revise after discussion' menu item", () => {
+    it('should be present on a normal workspace node', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const reviseItem = result.current.contextMenuItems.find(
+        item => item.label === 'Revise after discussion',
+      );
+      expect(reviseItem).toBeDefined();
+      expect(reviseItem?.onClick).toBeDefined();
+      expect(reviseItem?.submenu).toBeUndefined();
+    });
+
+    it('should be placed directly under Send', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const labels = result.current.contextMenuItems.map(item => item.label);
+      const sendIndex = labels.indexOf('Send');
+      const reviseIndex = labels.indexOf('Revise after discussion');
+
+      expect(sendIndex).toBeGreaterThanOrEqual(0);
+      expect(reviseIndex).toBe(sendIndex + 1);
+    });
+
+    it('should not appear on hyperlink nodes', async () => {
+      const hyperlinkNode: TreeNode = {
+        id: 'hyperlink-node',
+        content: 'Linked',
+        children: [],
+        metadata: { isHyperlink: true, linkedNodeId: 'test-node' },
+      };
+
+      store.setState({
+        nodes: { 'hyperlink-node': hyperlinkNode, 'test-node': mockNode },
+        rootNodeId: 'test-node',
+        ancestorRegistry: { 'hyperlink-node': [], 'test-node': [] },
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(hyperlinkNode), { wrapper });
+      await openContextMenu(result);
+
+      expect(
+        result.current.contextMenuItems.find(item => item.label === 'Revise after discussion'),
+      ).toBeUndefined();
+    });
+
+    it('should not appear on external-link nodes', async () => {
+      const externalLinkNode: TreeNode = {
+        id: 'external-link-node',
+        content: 'https://example.com',
+        children: [],
+        metadata: { isExternalLink: true, externalUrl: 'https://example.com' },
+      };
+
+      store.setState({
+        nodes: { 'external-link-node': externalLinkNode },
+        rootNodeId: 'external-link-node',
+        ancestorRegistry: { 'external-link-node': [] },
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(externalLinkNode), { wrapper });
+      await openContextMenu(result);
+
+      expect(
+        result.current.contextMenuItems.find(item => item.label === 'Revise after discussion'),
+      ).toBeUndefined();
+    });
+
+    it('should not appear in the feedback tree', async () => {
+      store.setState({ treeType: 'feedback' });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      expect(
+        result.current.contextMenuItems.find(item => item.label === 'Revise after discussion'),
+      ).toBeUndefined();
+    });
+
+    it('should route to collaborateInTerminal with the synthetic override id when terminal is active', async () => {
+      const mockCollaborateInTerminal = vi.fn().mockResolvedValue(undefined);
+      const mockSetAppliedContext = vi.fn();
+      store.setState({
+        actions: {
+          ...store.getState().actions,
+          collaborateInTerminal: mockCollaborateInTerminal,
+          setAppliedContext: mockSetAppliedContext,
+          deleteNode: mockDeleteNode,
+          copyNodes: mockCopyNodes,
+          cutNodes: mockCutNodes,
+          pasteNodes: mockPasteNodes,
+          toggleNodeSelection: mockToggleNodeSelection,
+          selectNode: mockSelectNode,
+          clearSelection: mockClearSelection,
+          setRememberedVisualX: mockSetRememberedVisualX,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+      });
+
+      const { usePanelStore } = await import('../../../../store/panel/panelStore');
+      usePanelStore.setState({ activeContent: 'terminal' });
+
+      const originalState = useTerminalStore.getState();
+      useTerminalStore.setState({
+        ...originalState,
+        openTerminal: vi.fn().mockResolvedValue('terminal-1'),
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      const reviseItem = result.current.contextMenuItems.find(
+        item => item.label === 'Revise after discussion',
+      );
+      await act(async () => {
+        await reviseItem!.onClick!();
+      });
+
+      expect(mockCollaborateInTerminal).toHaveBeenCalledWith(
+        'test-node',
+        'terminal-1',
+        { collaborate: true, execute: false },
+        REVISE_AFTER_DISCUSSION_CONTEXT_ID,
+      );
+      expect(mockSetAppliedContext).not.toHaveBeenCalled();
+    });
+
+    it('should route to collaborate (browser) with the synthetic override id when browser is active', async () => {
+      const mockCollaborate = vi.fn().mockResolvedValue(undefined);
+      const mockSetAppliedContext = vi.fn();
+      store.setState({
+        actions: {
+          ...store.getState().actions,
+          collaborate: mockCollaborate,
+          setAppliedContext: mockSetAppliedContext,
+          deleteNode: mockDeleteNode,
+          copyNodes: mockCopyNodes,
+          cutNodes: mockCutNodes,
+          pasteNodes: mockPasteNodes,
+          toggleNodeSelection: mockToggleNodeSelection,
+          selectNode: mockSelectNode,
+          clearSelection: mockClearSelection,
+          setRememberedVisualX: mockSetRememberedVisualX,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+      });
+
+      const { usePanelStore } = await import('../../../../store/panel/panelStore');
+      usePanelStore.setState({ activeContent: 'browser' });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      const reviseItem = result.current.contextMenuItems.find(
+        item => item.label === 'Revise after discussion',
+      );
+      await act(async () => {
+        await reviseItem!.onClick!();
+      });
+
+      expect(mockCollaborate).toHaveBeenCalledWith(
+        'test-node',
+        { collaborate: true, execute: false },
+        REVISE_AFTER_DISCUSSION_CONTEXT_ID,
+      );
+      expect(mockSetAppliedContext).not.toHaveBeenCalled();
+    });
+
+    it('should not invoke any send when no terminal and no browser is open', async () => {
+      const mockCollaborate = vi.fn().mockResolvedValue(undefined);
+      const mockCollaborateInTerminal = vi.fn().mockResolvedValue(undefined);
+      store.setState({
+        actions: {
+          ...store.getState().actions,
+          collaborate: mockCollaborate,
+          collaborateInTerminal: mockCollaborateInTerminal,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+      });
+
+      const { usePanelStore } = await import('../../../../store/panel/panelStore');
+      usePanelStore.setState({ activeContent: null });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      const reviseItem = result.current.contextMenuItems.find(
+        item => item.label === 'Revise after discussion',
+      );
+      await act(async () => {
+        await reviseItem!.onClick!();
+      });
+
+      expect(mockCollaborate).not.toHaveBeenCalled();
+      expect(mockCollaborateInTerminal).not.toHaveBeenCalled();
+    });
+
+    it('is disabled when the node is currently being collaborated on, and Cancel collaboration is visible', async () => {
+      store.setState({ collaboratingNodeId: 'test-node' });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      const reviseItem = result.current.contextMenuItems.find(
+        item => item.label === 'Revise after discussion',
+      );
+      expect(reviseItem).toBeDefined();
+      expect(reviseItem?.disabled).toBe(true);
+
+      const cancelItem = result.current.contextMenuItems.find(
+        item => item.label === 'Cancel collaboration',
+      );
+      expect(cancelItem).toBeDefined();
     });
   });
 });

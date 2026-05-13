@@ -5,6 +5,7 @@ import {
   getAppliedContextIdWithInheritance,
   BASIC_EXECUTE_CONTEXT_ID,
   BASIC_REVIEW_CONTEXT_ID,
+  REVISE_AFTER_DISCUSSION_CONTEXT_ID,
   resolveContextFlags,
   getContextDeclarations,
   ContextFlags,
@@ -42,6 +43,12 @@ const DEFAULT_REVIEW_CONTEXT = `You are reviewing a hierarchical task list. Plea
 - Analyze the content and suggest improvements, additions or reorganization
 - Add any missing items that would make the list more complete
 - Fix any issues or inconsistencies that you find
+
+`;
+
+const DEFAULT_REVISE_CONTEXT = `Revise the following specification based on our discussion.
+- Check anything that is complete as done and anything not yet implemented as undone.
+- Only update specifically the things that we have done. Keep the rest intact.
 
 `;
 
@@ -214,22 +221,27 @@ interface SendPayloadArgs {
   /** Required for terminal targets when collaborate is on; ignored otherwise. */
   feedbackResponseFile?: string;
   sessionId?: string;
+  /** One-shot context override — supersedes the node's stored applied-context for this send only. */
+  overrideContextId?: string;
 }
 
 function buildSendPayload(args: SendPayloadArgs): string {
-  const { nodeId, state, flags, target, decomposition, feedbackResponseFile, sessionId = '' } = args;
-  const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+  const { nodeId, state, flags, target, decomposition, feedbackResponseFile, sessionId = '', overrideContextId } = args;
+  const resolvedContextId = overrideContextId
+    ?? getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
   const { contextPrefix, nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
 
-  if (!appliedContextId) {
+  if (!resolvedContextId) {
     return nodeContent;
   }
 
   let instructionContext: string;
-  if (appliedContextId === BASIC_EXECUTE_CONTEXT_ID) {
+  if (resolvedContextId === BASIC_EXECUTE_CONTEXT_ID) {
     instructionContext = DEFAULT_EXECUTE_CONTEXT;
-  } else if (appliedContextId === BASIC_REVIEW_CONTEXT_ID) {
+  } else if (resolvedContextId === BASIC_REVIEW_CONTEXT_ID) {
     instructionContext = DEFAULT_REVIEW_CONTEXT;
+  } else if (resolvedContextId === REVISE_AFTER_DISCUSSION_CONTEXT_ID) {
+    instructionContext = DEFAULT_REVISE_CONTEXT;
   } else {
     instructionContext = contextPrefix;
   }
@@ -277,8 +289,8 @@ export interface SendActions {
   startCollaboration: (nodeId: string) => void;
   cancelCollaboration: () => void;
   acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
-  collaborate: (nodeId: string, flags?: ContextFlags) => Promise<void>;
-  collaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags) => Promise<void>;
+  collaborate: (nodeId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
+  collaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
   autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags) => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
   processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
@@ -379,7 +391,7 @@ export function createSendActions(
       );
     },
 
-    collaborate: async (nodeId: string, flags?: ContextFlags) => {
+    collaborate: async (nodeId: string, flags?: ContextFlags, overrideContextId?: string) => {
       const state = get();
 
       const node = state.nodes[nodeId];
@@ -389,9 +401,10 @@ export function createSendActions(
       }
 
       try {
-        const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+        const storedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+        const effectiveContextId = overrideContextId ?? storedContextId;
 
-        if (appliedContextId) {
+        if (effectiveContextId) {
           const blockingStore = getAllStores?.().find(
             s => s.getState().collaboratingNodeId !== null && s.getState().collaborationSource === 'browser'
           );
@@ -412,7 +425,7 @@ export function createSendActions(
           }
         }
 
-        const resolvedFlags = flags ?? flagsForContext(appliedContextId, state);
+        const resolvedFlags = flags ?? flagsForContext(effectiveContextId, state);
         const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
         const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
         const clipboardContent = buildSendPayload({
@@ -421,10 +434,11 @@ export function createSendActions(
           flags: resolvedFlags,
           target: 'web',
           decomposition: effectiveDecomposition,
+          overrideContextId,
         });
         await navigator.clipboard.writeText(clipboardContent);
 
-        if (!appliedContextId) {
+        if (!effectiveContextId) {
           useToastStore.getState().addToast(
             'Copied node content to clipboard — paste into the browser.',
             'info'
@@ -451,7 +465,7 @@ export function createSendActions(
       }
     },
 
-    collaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags) => {
+    collaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => {
       const state = get();
 
       if (!terminalId) {
@@ -477,9 +491,10 @@ export function createSendActions(
           return;
         }
 
-        const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+        const storedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+        const effectiveContextId = overrideContextId ?? storedContextId;
 
-        if (!appliedContextId) {
+        if (!effectiveContextId) {
           const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
           await executeInTerminal(terminalId, nodeContent);
           logger.info(`Sent bare node content to terminal for node: ${nodeId}`, 'SendActions');
@@ -492,7 +507,7 @@ export function createSendActions(
           return;
         }
 
-        const resolvedFlags = flags ?? flagsForContext(appliedContextId, state);
+        const resolvedFlags = flags ?? flagsForContext(effectiveContextId, state);
         const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
         const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
 
@@ -509,6 +524,7 @@ export function createSendActions(
           target: 'terminal',
           decomposition: effectiveDecomposition,
           feedbackResponseFile,
+          overrideContextId,
         });
 
         await executeInTerminal(terminalId, terminalInstruction);

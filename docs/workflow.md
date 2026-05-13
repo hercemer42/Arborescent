@@ -40,6 +40,8 @@ Two built-in contexts are available when no user-defined context is applied:
 
 Keyboard shortcuts: `Ctrl+E` (send in terminal), `Ctrl+Shift+E` (send in browser).
 
+For the common "we discussed it in chat, fold the decisions back in" loop, right-click → **Revise after discussion** sends the branch with a one-shot revision prompt instead of the applied context. The branch's stored context is unchanged — it's a single send, not a state change.
+
 ### Run a Branch as a Command
 
 A branch whose entire content is a single backticked snippet runs in the terminal as a raw command rather than as markdown. Wrap a one-liner with single backticks (`` `npm install` ``) or a multi-line script with triple backticks. The branch must have no children and no context applied — both signal review or editing intent — and only single-branch selections execute. Anything else falls back to the regular markdown send.

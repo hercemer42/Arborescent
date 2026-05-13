@@ -17,7 +17,7 @@ import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepCo
 import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
 import { getSessionLiveness } from '../../../utils/sessionLiveness';
 import { useToastStore } from '../../../store/toast/toastStore';
-import { getAppliedContextIdWithInheritance, resolveContextFlags, resolveSendContextName, ContextFlags } from '../../../utils/nodeHelpers';
+import { getAppliedContextIdWithInheritance, resolveContextFlags, resolveSendContextName, ContextFlags, REVISE_AFTER_DISCUSSION_CONTEXT_ID } from '../../../utils/nodeHelpers';
 import { flagsLabel } from '../../TreeNode/hooks/useAppliedContexts';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useCustomizeDialogStore } from '../../../store/customizeDialog/customizeDialogStore';
@@ -49,7 +49,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
     const isNodeBeingCollaborated = collaboratingNodeId === node.id;
 
-    const handleSendInTerminal = async (flags: ContextFlags) => {
+    const handleSendInTerminal = async (flags: ContextFlags, overrideContextId?: string) => {
       const terminalId = await useTerminalStore.getState().openTerminal();
       if (!terminalId) {
         logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
@@ -57,17 +57,36 @@ export function useNodeContextMenu(node: TreeNode) {
       }
       try {
         showTerminal();
-        await actions.collaborateInTerminal(node.id, terminalId, flags);
+        await actions.collaborateInTerminal(node.id, terminalId, flags, overrideContextId);
       } catch (error) {
         logger.error('Failed to send to terminal', error as Error, 'Context Menu');
       }
     };
 
-    const handleSendInBrowser = async (flags: ContextFlags) => {
+    const handleSendInBrowser = async (flags: ContextFlags, overrideContextId?: string) => {
       try {
-        await actions.collaborate(node.id, flags);
+        await actions.collaborate(node.id, flags, overrideContextId);
       } catch (error) {
         logger.error('Failed to send to browser', error as Error, 'Context Menu');
+      }
+    };
+
+    const routeSend = async (flags: ContextFlags, overrideContextId?: string) => {
+      const activeContent = usePanelStore.getState().activeContent;
+
+      if (activeContent === 'terminal') {
+        await handleSendInTerminal(flags, overrideContextId);
+      } else if (activeContent === 'browser') {
+        await handleSendInBrowser(flags, overrideContextId);
+      } else if (activeContent === 'feedback') {
+        const hasTerminal = useTerminalStore.getState().terminals.length > 0;
+        if (hasTerminal) {
+          await handleSendInTerminal(flags, overrideContextId);
+        } else {
+          useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
+        }
+      } else {
+        useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
       }
     };
 
@@ -121,24 +140,10 @@ export function useNodeContextMenu(node: TreeNode) {
     const appliedContextId = getAppliedContextIdWithInheritance(node.id, nodes, ancestorRegistry);
     const sendFlags: ContextFlags = resolveContextFlags(appliedContextId, nodes, contextDeclarations);
 
-    const handleSend = async () => {
-      const activeContent = usePanelStore.getState().activeContent;
+    const handleSend = () => routeSend(sendFlags);
 
-      if (activeContent === 'terminal') {
-        await handleSendInTerminal(sendFlags);
-      } else if (activeContent === 'browser') {
-        await handleSendInBrowser(sendFlags);
-      } else if (activeContent === 'feedback') {
-        const hasTerminal = useTerminalStore.getState().terminals.length > 0;
-        if (hasTerminal) {
-          await handleSendInTerminal(sendFlags);
-        } else {
-          useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
-        }
-      } else {
-        useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
-      }
-    };
+    const reviseFlags = resolveContextFlags(REVISE_AFTER_DISCUSSION_CONTEXT_ID, nodes, contextDeclarations);
+    const handleRevise = () => routeSend(reviseFlags, REVISE_AFTER_DISCUSSION_CONTEXT_ID);
 
     const sendContextName = resolveSendContextName(appliedContextId, nodes);
 
@@ -276,6 +281,11 @@ export function useNodeContextMenu(node: TreeNode) {
           ? `${flagsLabel(sendFlags.collaborate, sendFlags.execute)}: ${sendContextName}`
           : flagsLabel(sendFlags.collaborate, sendFlags.execute),
         onClick: handleSend,
+      }] : []),
+      ...(!isHyperlink && !isExternalLink ? [{
+        label: 'Revise after discussion',
+        onClick: handleRevise,
+        disabled: isNodeBeingCollaborated,
       }] : []),
       ...(isNodeBeingCollaborated ? [{
         label: 'Cancel collaboration',
