@@ -1,8 +1,10 @@
 import { Anchor } from 'lucide-react';
 import { useTerminalStore } from '../../store/terminal/terminalStore';
 import { usePanelStore } from '../../store/panel/panelStore';
+import { useStore } from '../../store/tree/useStore';
 import { Terminal } from './Terminal';
 import { Tab } from '../Tab';
+import { selectAssociatedTerminalId } from '../../store/tree/selectors/associatedTerminalId';
 import './TerminalPanel.css';
 import { useTerminalPanel } from './hooks/useTerminalPanel';
 
@@ -10,10 +12,17 @@ export function TerminalPanel() {
   const { terminals, activeTerminalId, setActiveTerminal, togglePinnedToBottom, fileStates } = useTerminalStore();
   const panelPosition = usePanelStore((state) => state.panelPosition);
   const togglePanelPosition = usePanelStore((state) => state.togglePanelPosition);
+  const activeNodeId = useStore((state) => state.activeNodeId);
   const { handleNewTerminal, handleCloseTerminal } = useTerminalPanel();
 
   const activeTerminal = terminals.find((t) => t.id === activeTerminalId);
   const isPinned = activeTerminal?.pinnedToBottom ?? true;
+
+  const terminalOrigins: Record<string, string> = {};
+  for (const term of terminals) {
+    if (term.originNodeId) terminalOrigins[term.id] = term.originNodeId;
+  }
+  const associatedTerminalId = selectAssociatedTerminalId({ terminalOrigins }, activeNodeId);
 
   // Keep every file's xterm mounted so buffers survive file switches — unmounting would dispose them.
   const allTerminals = Object.values(fileStates ?? {}).flatMap((state) => state.terminals);
@@ -27,6 +36,7 @@ export function TerminalPanel() {
               key={term.id}
               displayName={term.title}
               isActive={activeTerminalId === term.id}
+              isAssociated={associatedTerminalId === term.id}
               onClick={() => setActiveTerminal(term.id)}
               onClose={() => handleCloseTerminal(term.id)}
             />

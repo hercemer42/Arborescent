@@ -8,6 +8,7 @@ interface TabProps {
   displayName: string;
   fullName?: string;
   isActive: boolean;
+  isAssociated?: boolean;
   isBlueprintMode?: boolean;
   isSummaryMode?: boolean;
   isZoomTab?: boolean;
@@ -28,6 +29,7 @@ export const Tab = memo(function Tab({
   displayName,
   fullName,
   isActive,
+  isAssociated,
   isBlueprintMode,
   isSummaryMode,
   isZoomTab,
@@ -45,6 +47,7 @@ export const Tab = memo(function Tab({
   const classNames = [
     'tab',
     isActive && 'active',
+    !isActive && isAssociated && 'associated',
     isActive && isBlueprintMode && 'blueprint-mode',
     isActive && isSummaryMode && 'summary-mode',
     isZoomTab && 'zoom-tab',

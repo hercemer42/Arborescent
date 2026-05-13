@@ -141,7 +141,7 @@ If the parent session is gone (lost from Claude's session store), the next sibli
 
 You can run multiple items through the same workflow simultaneously — each in its own terminal tab. Each item advances independently based on the step types it encounters. Start each item with **Run Workflow** and select a different terminal tab for each one.
 
-The active terminal's bound node is marked in the tree with a thin blue stripe on the left edge, so you can see at a glance which item the focused tab is driving. Switching tabs moves the stripe; it never changes your selection.
+The active terminal's bound node is marked in the tree with a thin blue stripe on the left edge, so you can see at a glance which item the focused tab is driving. Focusing an item with a bound terminal tints that tab blue — so you can find its terminal even when another tab is active. Switching tabs moves the stripe; it never changes your selection.
 
 ## Moving Items Manually
 

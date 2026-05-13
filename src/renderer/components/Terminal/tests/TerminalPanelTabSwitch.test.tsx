@@ -5,6 +5,14 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 
 vi.mock('../../../store/terminal/terminalStore');
 
+const { mockTreeState } = vi.hoisted(() => ({
+  mockTreeState: { activeNodeId: null as string | null },
+}));
+
+vi.mock('../../../store/tree/useStore', () => ({
+  useStore: vi.fn((selector) => selector ? selector(mockTreeState) : mockTreeState),
+}));
+
 vi.mock('../../../store/panel/panelStore', () => ({
   usePanelStore: vi.fn((selector: (state: { panelPosition: string; togglePanelPosition: () => void }) => unknown) => {
     const state = {
@@ -85,6 +93,7 @@ describe('TerminalPanel — tab switching visibility', () => {
     vi.clearAllMocks();
     mockSetActiveTerminal = vi.fn();
     mockTogglePinnedToBottom = vi.fn();
+    mockTreeState.activeNodeId = null;
   });
 
   describe('display:block / display:none visibility control', () => {

@@ -97,4 +97,98 @@ describe('Tab', () => {
     expect(handleClick).not.toHaveBeenCalled();
     expect(handleClose).toHaveBeenCalledOnce();
   });
+
+  describe('associated (linked to focused node) state', () => {
+    it('applies the associated class when isAssociated is true and the tab is not active', () => {
+      render(
+        <Tab
+          displayName="term-1"
+          isActive={false}
+          isAssociated={true}
+          onClick={vi.fn()}
+          onClose={vi.fn()}
+        />,
+      );
+
+      const tab = screen.getByText('term-1').closest('.tab');
+      expect(tab).toHaveClass('associated');
+    });
+
+    it('does not apply the associated class when the tab is the active tab (active wins on conflict)', () => {
+      render(
+        <Tab
+          displayName="term-1"
+          isActive={true}
+          isAssociated={true}
+          onClick={vi.fn()}
+          onClose={vi.fn()}
+        />,
+      );
+
+      const tab = screen.getByText('term-1').closest('.tab');
+      expect(tab).toHaveClass('active');
+      expect(tab).not.toHaveClass('associated');
+    });
+
+    it('does not apply the associated class when isAssociated is false', () => {
+      render(
+        <Tab
+          displayName="term-1"
+          isActive={false}
+          isAssociated={false}
+          onClick={vi.fn()}
+          onClose={vi.fn()}
+        />,
+      );
+
+      const tab = screen.getByText('term-1').closest('.tab');
+      expect(tab).not.toHaveClass('associated');
+    });
+
+    it('does not apply the associated class when isAssociated is omitted (default)', () => {
+      render(
+        <Tab
+          displayName="term-1"
+          isActive={false}
+          onClick={vi.fn()}
+          onClose={vi.fn()}
+        />,
+      );
+
+      const tab = screen.getByText('term-1').closest('.tab');
+      expect(tab).not.toHaveClass('associated');
+    });
+
+    it('still renders the active class when isActive is true regardless of isAssociated', () => {
+      render(
+        <Tab
+          displayName="term-1"
+          isActive={true}
+          isAssociated={false}
+          onClick={vi.fn()}
+          onClose={vi.fn()}
+        />,
+      );
+
+      const tab = screen.getByText('term-1').closest('.tab');
+      expect(tab).toHaveClass('active');
+    });
+
+    it('does not interfere with the existing close-button behavior when associated', async () => {
+      const user = userEvent.setup();
+      const handleClose = vi.fn();
+      render(
+        <Tab
+          displayName="term-1"
+          isActive={false}
+          isAssociated={true}
+          onClick={vi.fn()}
+          onClose={handleClose}
+        />,
+      );
+
+      await user.click(screen.getByRole('button', { name: 'Close tab' }));
+      expect(handleClose).toHaveBeenCalledOnce();
+    });
+  });
 });

@@ -6,6 +6,14 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 // Mock the terminal store
 vi.mock('../../../store/terminal/terminalStore');
 
+const { mockTreeState } = vi.hoisted(() => ({
+  mockTreeState: { activeNodeId: null as string | null },
+}));
+
+vi.mock('../../../store/tree/useStore', () => ({
+  useStore: vi.fn((selector) => selector ? selector(mockTreeState) : mockTreeState),
+}));
+
 // Mock the panel store
 const mockTogglePanelPosition = vi.fn();
 vi.mock('../../../store/panel/panelStore', () => ({
@@ -27,13 +35,18 @@ vi.mock('../Terminal', () => ({
 
 // Mock the Tab component
 vi.mock('../../Tab', () => ({
-  Tab: ({ displayName, onClick, onClose, isActive }: {
+  Tab: ({ displayName, onClick, onClose, isActive, isAssociated }: {
     displayName: string;
     onClick: () => void;
     onClose: () => void;
     isActive: boolean;
+    isAssociated?: boolean;
   }) => (
-    <div data-testid={`tab-${displayName}`} className={isActive ? 'active' : ''}>
+    <div
+      data-testid={`tab-${displayName}`}
+      className={isActive ? 'active' : ''}
+      data-associated={isAssociated ? 'true' : 'false'}
+    >
       <button onClick={onClick}>Tab: {displayName}</button>
       <button onClick={onClose} data-testid={`close-${displayName}`}>Close</button>
     </div>
@@ -51,6 +64,7 @@ vi.mock('../hooks/useTerminalPanel', () => ({
 describe('TerminalPanel', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockTreeState.activeNodeId = null;
   });
 
   it('should render empty state when no terminals', () => {
@@ -186,5 +200,88 @@ describe('TerminalPanel', () => {
 
     expect(screen.getByText('⬇')).toBeInTheDocument();
     expect(screen.getByTitle('Switch to bottom panel')).toBeInTheDocument();
+  });
+
+  describe('associated tab wiring (focused node → matching terminal)', () => {
+    function setupTerminals(terminals: { id: string; title: string; originNodeId?: string }[], activeTerminalId: string | null) {
+      const full = terminals.map((t) => ({
+        ...t,
+        cwd: '/home',
+        shellCommand: 'bash',
+        shellArgs: [] as string[],
+        pinnedToBottom: true,
+      }));
+      (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
+        terminals: full,
+        activeTerminalId,
+        setActiveTerminal: vi.fn(),
+        togglePinnedToBottom: vi.fn(),
+        fileStates: { '/current.arbo': { terminals: full, activeTerminalId } },
+      });
+    }
+
+    it('marks the terminal whose originNodeId matches the focused node as associated', () => {
+      mockTreeState.activeNodeId = 'node-A';
+      setupTerminals(
+        [
+          { id: 'term-1', title: 'Terminal 1', originNodeId: 'node-A' },
+          { id: 'term-2', title: 'Terminal 2', originNodeId: 'node-B' },
+        ],
+        'term-2',
+      );
+
+      render(<TerminalPanel />);
+
+      expect(screen.getByTestId('tab-Terminal 1')).toHaveAttribute('data-associated', 'true');
+      expect(screen.getByTestId('tab-Terminal 2')).toHaveAttribute('data-associated', 'false');
+    });
+
+    it('marks no tab as associated when no node is focused', () => {
+      mockTreeState.activeNodeId = null;
+      setupTerminals(
+        [
+          { id: 'term-1', title: 'Terminal 1', originNodeId: 'node-A' },
+          { id: 'term-2', title: 'Terminal 2', originNodeId: 'node-B' },
+        ],
+        'term-1',
+      );
+
+      render(<TerminalPanel />);
+
+      expect(screen.getByTestId('tab-Terminal 1')).toHaveAttribute('data-associated', 'false');
+      expect(screen.getByTestId('tab-Terminal 2')).toHaveAttribute('data-associated', 'false');
+    });
+
+    it('marks no tab as associated when the focused node has no bound terminal', () => {
+      mockTreeState.activeNodeId = 'node-orphan';
+      setupTerminals(
+        [
+          { id: 'term-1', title: 'Terminal 1', originNodeId: 'node-A' },
+          { id: 'term-2', title: 'Terminal 2', originNodeId: 'node-B' },
+        ],
+        'term-1',
+      );
+
+      render(<TerminalPanel />);
+
+      expect(screen.getByTestId('tab-Terminal 1')).toHaveAttribute('data-associated', 'false');
+      expect(screen.getByTestId('tab-Terminal 2')).toHaveAttribute('data-associated', 'false');
+    });
+
+    it('marks no tab as associated when terminals have no originNodeId at all', () => {
+      mockTreeState.activeNodeId = 'node-A';
+      setupTerminals(
+        [
+          { id: 'term-1', title: 'Terminal 1' },
+          { id: 'term-2', title: 'Terminal 2' },
+        ],
+        'term-1',
+      );
+
+      render(<TerminalPanel />);
+
+      expect(screen.getByTestId('tab-Terminal 1')).toHaveAttribute('data-associated', 'false');
+      expect(screen.getByTestId('tab-Terminal 2')).toHaveAttribute('data-associated', 'false');
+    });
   });
 });
