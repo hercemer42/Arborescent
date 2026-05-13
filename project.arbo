@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-11T07:30:05.164Z'
+updated: '2026-05-13T06:14:48.777Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -458,6 +458,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
       - be562c36-9f4c-40a6-ab57-a0024cb6746a
       - c4136720-b1fb-4258-a8b3-f260531cb844
       - 9fd342d4-ea8e-4a8e-bdc1-150c9c2698f2
@@ -5490,7 +5491,6 @@ nodes:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
     children:
-      - e86d6ea9-ca79-4230-93b3-624180c9f973
       - 1b6fadcf-809d-4992-85f4-55a4c51accc8
       - a1d2cc92-2ce2-4a84-a8b0-49fbe06382df
       - e9deb148-5fe4-4a5c-ab6e-9f4c1f232f72
@@ -8781,7 +8781,7 @@ nodes:
       - bc87a3a5-29fe-4b9e-a2a1-d773468a88d5
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -15221,6 +15221,8 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - 13fff619-671c-45a2-ba57-b62e78554ab2
+      - efbca8cd-3999-41b4-a101-43d2def19c4e
       - 0285aef9-2f1c-4a3c-ad08-b75d799ab4ce
       - a45e5394-9ae7-4823-ac2a-387cb0223cfe
       - fcb40af2-520f-47e7-8a23-4cf9e1aed962
@@ -25660,7 +25662,7 @@ nodes:
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
       expanded: true
       stepType: autonomous
-      recurse: true
+      recurse: false
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
     id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
     content: Can use keyboard to move blueprint/context/workflow nodes into forbidden nodes
@@ -33344,7 +33346,7 @@ nodes:
       isWorkflow: true
       blueprintIcon: CloudCheck
       blueprintColor: '#14b8a6'
-      expanded: true
+      expanded: false
   d77cf522-0636-4a76-b9bf-7b33b4cc65cb:
     id: d77cf522-0636-4a76-b9bf-7b33b4cc65cb
     content: Provide easy way to jump to context applied to a node
@@ -81498,6 +81500,9 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - edb7e049-5b2b-4cd7-8dd0-cb6608deb029
+      - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
+      - a88ad8a1-693d-4f97-afad-7147328c68a2
       - cfd38a28-0349-4873-8780-177e444d7cd3
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
     metadata:
@@ -82869,7 +82874,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - dcfc7c37-60b4-440a-8f43-6006cd405d64
     metadata:
       status: pending
       isBlueprint: true
@@ -90218,6 +90224,8 @@ nodes:
     id: aefa6362-0e1b-4e7f-81db-1ccc856bb2f0
     content: Backlog
     children:
+      - e31a700c-3788-44b5-a878-3f3f2ca942c4
+      - 4be60d89-6c90-4ac0-b6ae-84645ae9144d
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
       - d0da6881-00bd-405b-8dbf-1603876d5450
       - 407133fd-9a05-4618-8ecd-1979dc073c4c
@@ -93225,6 +93233,8 @@ nodes:
       isBlueprint: true
       stepType: autonomous
       appliedContextId: 1b6fadcf-809d-4992-85f4-55a4c51accc8
+      blueprintIcon: HatGlasses
+      blueprintColor: '#0ea5e9'
   ef8172e7-9f00-4495-9f4e-69b862af7dde:
     id: ef8172e7-9f00-4495-9f4e-69b862af7dde
     content: AI code review resolution
@@ -93233,7 +93243,9 @@ nodes:
       status: pending
       isBlueprint: true
       stepType: autonomous
-      appliedContextId: e86d6ea9-ca79-4230-93b3-624180c9f973
+      appliedContextId: a1d2cc92-2ce2-4a84-a8b0-49fbe06382df
+      blueprintIcon: ClipboardCheck
+      blueprintColor: '#22c55e'
   03e85fd3-28e9-445a-b7da-834c1b84f00e:
     id: 03e85fd3-28e9-445a-b7da-834c1b84f00e
     content: Spawn the subagent pr-review-toolkit:code-reviewer
@@ -93294,21 +93306,6 @@ nodes:
       expanded: false
       collaborate: true
       execute: true
-  54f8e1ab-c1ad-43c9-b080-94596d5ffa57:
-    id: 54f8e1ab-c1ad-43c9-b080-94596d5ffa57
-    content: Read the code review feedback in the last node
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7:
-    id: 7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7
-    content: 'Fix if you find coherent applying these criteria :'
-    children:
-      - 31b45e13-c951-457a-86b0-c8d340cc3509
-    metadata:
-      status: pending
-      isBlueprint: true
   ddbaee37-acf5-479e-bfe5-c3f242bbd122:
     id: ddbaee37-acf5-479e-bfe5-c3f242bbd122
     content: Say if a point isn't clear
@@ -93330,13 +93327,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  f68972a1-a6f6-498a-9cf7-21c99a0be57e:
-    id: f68972a1-a6f6-498a-9cf7-21c99a0be57e
-    content: Repeat until all feedback is resolved
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   664166df-8283-418b-8990-96678e3aad41:
     id: 664166df-8283-418b-8990-96678e3aad41
     content: Discuss directly with the agent via SendMessage
@@ -93344,7 +93334,9 @@ nodes:
       - ddbaee37-acf5-479e-bfe5-c3f242bbd122
       - 524a8496-8020-4568-a517-4c6cef98df1d
       - 49ee316e-c4cb-4351-8981-ced57a41c57f
-      - f68972a1-a6f6-498a-9cf7-21c99a0be57e
+      - 234a092e-c31c-4cb0-a076-62a794ba11f7
+      - dd60fab9-824f-4248-b3cf-cb80406cdc31
+      - cc9c0a37-ce59-44c1-9335-d1c9fdb0a8f5
     metadata:
       status: pending
       isBlueprint: true
@@ -93353,8 +93345,9 @@ nodes:
     content: AI code review resolution
     children:
       - 54f8e1ab-c1ad-43c9-b080-94596d5ffa57
-      - 7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7
       - 664166df-8283-418b-8990-96678e3aad41
+      - 7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7
+      - aa65fabf-7696-4f88-9abb-88b2c9556d7a
     metadata:
       isBlueprint: true
       blueprintIcon: ClipboardCheck
@@ -93407,54 +93400,6 @@ nodes:
       - e9c23f25-760e-46a9-87d3-90cc7d3d15bf
     metadata:
       status: pending
-      isBlueprint: true
-  31ca6441-848e-46a4-a2b0-3502ac79072b:
-    id: 31ca6441-848e-46a4-a2b0-3502ac79072b
-    content: Add your feedback in it
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  f89ee217-cdd9-4f19-8fca-f11cd430e5ee:
-    id: f89ee217-cdd9-4f19-8fca-f11cd430e5ee
-    content: Categorise feedback by severity
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  e583fe48-a875-4897-beee-a1a812f1536a:
-    id: e583fe48-a875-4897-beee-a1a812f1536a
-    content: Add a node - feedback
-    children:
-      - 31ca6441-848e-46a4-a2b0-3502ac79072b
-      - f89ee217-cdd9-4f19-8fca-f11cd430e5ee
-    metadata:
-      status: pending
-      isBlueprint: true
-  e86d6ea9-ca79-4230-93b3-624180c9f973:
-    id: e86d6ea9-ca79-4230-93b3-624180c9f973
-    content: Reply to code review
-    children:
-      - 234a092e-c31c-4cb0-a076-62a794ba11f7
-      - dd60fab9-824f-4248-b3cf-cb80406cdc31
-      - cc9c0a37-ce59-44c1-9335-d1c9fdb0a8f5
-      - e583fe48-a875-4897-beee-a1a812f1536a
-    metadata:
-      isContextDeclaration: true
-      blueprintIcon: HatGlasses
-      blueprintColor: '#c47f09'
-      isBlueprint: true
-      expanded: false
-      collaborate: true
-      execute: true
-  31b45e13-c951-457a-86b0-c8d340cc3509:
-    id: 31b45e13-c951-457a-86b0-c8d340cc3509
-    content: Reply to code review
-    children: []
-    metadata:
-      status: pending
-      isHyperlink: true
-      linkedNodeId: e86d6ea9-ca79-4230-93b3-624180c9f973
       isBlueprint: true
   1ab3cd33-cc45-4cf9-acf4-073a85b00ec5:
     id: 1ab3cd33-cc45-4cf9-acf4-073a85b00ec5
@@ -96897,8 +96842,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - 889ff4cb-3ae1-4f90-b289-12a92935efb7
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -110916,24 +110860,4277 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  dcfc7c37-60b4-440a-8f43-6006cd405d64:
+    id: dcfc7c37-60b4-440a-8f43-6006cd405d64
+    content: Add 'Revise after discussion' shortcut to the node right-click menu
+    children:
+      - e9309e0b-bed2-4cd5-bc41-7212efb6c556
+      - 9ebc8a40-da97-419c-b9c6-ea4e12385e0b
+      - b3b9dca9-ef31-43cb-afc8-a82b1ce33a0f
+      - 994d74a8-73a2-422f-85a4-fb6d54f44725
+      - 981528a3-f849-4cae-8de2-32fd2f5da13f
+      - 748a8c1a-179a-4803-9a2e-bf9a97d587f3
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  a88ad8a1-693d-4f97-afad-7147328c68a2:
+    id: a88ad8a1-693d-4f97-afad-7147328c68a2
+    content: Replace terminal name with session ID
+    children:
+      - f478079a-ca35-46e7-855c-e83ebbfc6c43
+    metadata:
+      status: pending
+      expanded: false
+  f478079a-ca35-46e7-855c-e83ebbfc6c43:
+    id: f478079a-ca35-46e7-855c-e83ebbfc6c43
+    content: Show folder/worktree on hover
+    children: []
+    metadata:
+      status: pending
+  e31a700c-3788-44b5-a878-3f3f2ca942c4:
+    id: e31a700c-3788-44b5-a878-3f3f2ca942c4
+    content: Skills auto-bridge
+    children:
+      - f0c05169-07e5-4453-8d24-7cd1e48cf6ad
+      - de53a15b-3d29-44a1-9892-fcc0bf54d4c4
+      - bffdec88-fb97-4430-b336-febae3bbec51
+    metadata:
+      status: pending
+      expanded: false
+  f0c05169-07e5-4453-8d24-7cd1e48cf6ad:
+    id: f0c05169-07e5-4453-8d24-7cd1e48cf6ad
+    content: Auto discover claude skills for a project
+    children: []
+    metadata:
+      status: pending
+  efbca8cd-3999-41b4-a101-43d2def19c4e:
+    id: efbca8cd-3999-41b4-a101-43d2def19c4e
+    content: PR2 - Restore lost node/session association on focus
+    children:
+      - 6d93a01f-a4e8-4206-98bd-f4dabb6fa16e
+      - 173b7bfe-ef85-4477-980c-cd9cba3ce2aa
+      - 1fcb5866-b67a-4884-b7e7-44bcb85fec11
+      - da3697a9-88d7-4fa7-b266-19a38f85ab84
+      - bfbd2822-22b1-49c3-a24b-73832541a492
+      - fe9e2deb-2f0f-49a3-8dce-ee928487c038
+      - c32f2b16-a89a-4c1b-bd0d-520180d072ed
+      - e4feec30-0da7-4d9a-b92d-2bd67017360a
+      - 9165c499-6a8e-45d4-8ebe-2799bffc4224
+      - b0225c8a-05f4-49b1-a62c-e5199751e120
+      - 740df6a0-2bea-43d3-8c6c-2f8d592ca47d
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  de53a15b-3d29-44a1-9892-fcc0bf54d4c4:
+    id: de53a15b-3d29-44a1-9892-fcc0bf54d4c4
+    content: Propose them in the context menu (or secondary menu)
+    children: []
+    metadata:
+      status: pending
+  bffdec88-fb97-4430-b336-febae3bbec51:
+    id: bffdec88-fb97-4430-b336-febae3bbec51
+    content: Keep in mind that we can also just attach them to a context
+    children:
+      - c415763c-1788-4f61-8409-e7bf9b468ee1
+    metadata:
+      status: pending
+  c415763c-1788-4f61-8409-e7bf9b468ee1:
+    id: c415763c-1788-4f61-8409-e7bf9b468ee1
+    content: Although this is quite manual
+    children: []
+    metadata:
+      status: pending
+  4be60d89-6c90-4ac0-b6ae-84645ae9144d:
+    id: 4be60d89-6c90-4ac0-b6ae-84645ae9144d
+    content: MCP server for tree
+    children:
+      - 9b2ef135-9791-4c4c-ac4b-fdf304ecd428
+      - 64b9dabb-4555-4621-90b1-0006a8cf7f85
+    metadata:
+      status: pending
+      expanded: false
+  9b2ef135-9791-4c4c-ac4b-fdf304ecd428:
+    id: 9b2ef135-9791-4c4c-ac4b-fdf304ecd428
+    content: Make nodes accessible and editable via MCP
+    children: []
+    metadata:
+      status: pending
+  64b9dabb-4555-4621-90b1-0006a8cf7f85:
+    id: 64b9dabb-4555-4621-90b1-0006a8cf7f85
+    content: Do same for feedback panel
+    children:
+      - 0eb4c365-1716-4272-941e-7bf5adb7e2eb
+    metadata:
+      status: pending
+  0eb4c365-1716-4272-941e-7bf5adb7e2eb:
+    id: 0eb4c365-1716-4272-941e-7bf5adb7e2eb
+    content: Less flaky, not clipboard dependant
+    children: []
+    metadata:
+      status: pending
+  edb7e049-5b2b-4cd7-8dd0-cb6608deb029:
+    id: edb7e049-5b2b-4cd7-8dd0-cb6608deb029
+    content: Bug — automated workflow stalls after decomposition (step advancement + session affinity)
+    children:
+      - 73242a4a-6387-48e5-951e-d7cb9150cf5e
+      - 96cc0187-3c3b-4ae4-bbb4-ee01ba8393fd
+      - f32f6d68-e00b-44b2-bd77-66bd013c7f43
+      - 6d8d954a-88c3-48ac-a93e-15df0d3c5c61
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      appliedContextId: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
+  13fff619-671c-45a2-ba57-b62e78554ab2:
+    id: 13fff619-671c-45a2-ba57-b62e78554ab2
+    content: PR1 - Restore lost node/session association on focus
+    children:
+      - e2db45ba-18a8-4bc6-83cb-75cdff422d96
+      - dfe518b7-b2f1-42f6-8323-d27dd8590800
+      - e00346ff-cf5d-4915-999f-ff91b803a3cc
+      - c4834f75-4b3a-4890-bc41-04103f76dab1
+      - baeb5b7e-81d5-403c-ac67-e883aaad84a9
+      - b006a6b0-55da-4eac-8851-38f02ebb06a5
+      - 03a46f52-bd0d-43ee-a339-96b8dded1761
+      - 4e4a8b77-d034-4b40-9181-40868c1c785a
+      - 9aab8f34-dfb2-42df-8952-be11de2b9242
+      - 0278c07a-ca3d-42d2-9ec7-8cbe9dbd1fb9
+      - 3eb7e813-9721-44b2-b904-c3ef71df163c
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c:
+    id: b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
+    content: Bug - got 'recurse halted' at the wrong step
+    children:
+      - 42154313-f789-4e38-89e1-9dabe0ccbd05
+      - 05ad7ca7-b467-4af6-aa17-1182f3f3b66d
+      - 10b77395-23bb-48e1-bef9-740166efaff4
+    metadata:
+      status: pending
+      expanded: false
+  42154313-f789-4e38-89e1-9dabe0ccbd05:
+    id: 42154313-f789-4e38-89e1-9dabe0ccbd05
+    content: Not sure why, but while the first of 2 decomposed steps was playing
+    children: []
+    metadata:
+      status: pending
+  05ad7ca7-b467-4af6-aa17-1182f3f3b66d:
+    id: 05ad7ca7-b467-4af6-aa17-1182f3f3b66d
+    content: Before it got to the node that 'recurse' was marked on
+    children:
+      - 7d7da717-1a27-458d-86ae-ebf71edc6e78
+      - 30ea3efb-da44-4b5e-8c81-46d55bc40aa0
+      - a030b0d8-ccdc-4ddb-b89d-4e7e980fa0eb
+    metadata:
+      status: pending
+  7d7da717-1a27-458d-86ae-ebf71edc6e78:
+    id: 7d7da717-1a27-458d-86ae-ebf71edc6e78
+    content: There was a warning 'recurse halted - next step could not start, terminal busy'
+    children: []
+    metadata:
+      status: pending
+  30ea3efb-da44-4b5e-8c81-46d55bc40aa0:
+    id: 30ea3efb-da44-4b5e-8c81-46d55bc40aa0
+    content: But the PR1 kept playing through its nodes
+    children: []
+    metadata:
+      status: pending
+  a030b0d8-ccdc-4ddb-b89d-4e7e980fa0eb:
+    id: a030b0d8-ccdc-4ddb-b89d-4e7e980fa0eb
+    content: Got this error for each node
+    children: []
+    metadata:
+      status: pending
+  e2db45ba-18a8-4bc6-83cb-75cdff422d96:
+    id: e2db45ba-18a8-4bc6-83cb-75cdff422d96
+    content: worktree
+    children:
+      - 31ade273-a261-4ee1-82dd-6fe9524fcea3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31ade273-a261-4ee1-82dd-6fe9524fcea3:
+    id: 31ade273-a261-4ee1-82dd-6fe9524fcea3
+    content: vscode://file//Users/brianfox/dev/Arborescent-node-session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfe518b7-b2f1-42f6-8323-d27dd8590800:
+    id: dfe518b7-b2f1-42f6-8323-d27dd8590800
+    content: Scope for this PR
+    children:
+      - 35e595f6-7714-496d-97ae-df66b1ff6fe3
+      - d24a5b4d-4e1f-40f9-ab17-85cade8a90db
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35e595f6-7714-496d-97ae-df66b1ff6fe3:
+    id: 35e595f6-7714-496d-97ae-df66b1ff6fe3
+    content: 'Persistent node↔terminal link and the blue-bar restoration. Delivers business rules 1, 2, 5, 6 and acceptance criteria covering: blue bar on focus immediately after open, blue bar on focus after long idle, deleted-node has no stray bar, closed-session clears the bar, no latency regression.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d24a5b4d-4e1f-40f9-ab17-85cade8a90db:
+    id: d24a5b4d-4e1f-40f9-ab17-85cade8a90db
+    content: 'Independently shippable: this alone fixes the reported bug. Tab colouring (rules 3, 4) is the second PR and is purely additive — without it the app behaves exactly as today on the tab side.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e00346ff-cf5d-4915-999f-ff91b803a3cc:
+    id: e00346ff-cf5d-4915-999f-ff91b803a3cc
+    content: User story
+    children:
+      - 73400e7a-6e0b-43b5-bb46-4b87658d2c60
+      - 89e8ee10-b2f4-4a9a-b089-b8edf80b51ff
+      - 7693a89a-7f73-4075-a738-7fd3a76d98b0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73400e7a-6e0b-43b5-bb46-4b87658d2c60:
+    id: 73400e7a-6e0b-43b5-bb46-4b87658d2c60
+    content: 📄 Product spec
+    children:
+      - e7843f75-3c1b-4f25-834f-0b5b6d3fe57a
+      - b71a8644-55ef-4e33-b972-9853f0082620
+      - 57f80447-39a0-4e23-a18f-2d529fd01a3b
+      - deb742ef-97d4-4955-b0b4-527f441deb9c
+      - 9b332c65-3e62-4826-9af6-bd73fd5e0534
+      - 7d784e2c-19fc-4084-864f-4f2cc6355ca5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7843f75-3c1b-4f25-834f-0b5b6d3fe57a:
+    id: e7843f75-3c1b-4f25-834f-0b5b6d3fe57a
+    content: Context
+    children:
+      - 08929935-e2d1-4894-8a99-b51a8671fd20
+      - 3162cfd8-99cc-4efe-9f5b-3193a46f9b75
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08929935-e2d1-4894-8a99-b51a8671fd20:
+    id: 08929935-e2d1-4894-8a99-b51a8671fd20
+    content: Each terminal session in Arborescent is bound to the tree node that opened it. Today, the association is signalled with a single blue bar to the left of the node when the session is focused.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3162cfd8-99cc-4efe-9f5b-3193a46f9b75:
+    id: 3162cfd8-99cc-4efe-9f5b-3193a46f9b75
+    content: 'After a session has been inactive for a while, the visual binding disappears: focusing the terminal no longer highlights its node, and focusing the node does not surface its session in any way, even though both still exist.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b71a8644-55ef-4e33-b972-9853f0082620:
+    id: b71a8644-55ef-4e33-b972-9853f0082620
+    content: User
+    children:
+      - ac2fec6e-2284-4329-9227-0a98b1c3c369
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac2fec6e-2284-4329-9227-0a98b1c3c369:
+    id: ac2fec6e-2284-4329-9227-0a98b1c3c369
+    content: Any Arborescent user running long-lived AI/terminal sessions alongside tree work — typically a developer who leaves a session idle while reading, switching tabs, or doing other work.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57f80447-39a0-4e23-a18f-2d529fd01a3b:
+    id: 57f80447-39a0-4e23-a18f-2d529fd01a3b
+    content: Current experience and why it is insufficient
+    children:
+      - 633c8d8a-30a6-462b-a0be-2d9224e33b05
+      - e8ff2abf-0765-491e-b62a-de2322160a40
+      - 35d48b3d-2962-4aca-964f-089e9c7c10b2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  633c8d8a-30a6-462b-a0be-2d9224e33b05:
+    id: 633c8d8a-30a6-462b-a0be-2d9224e33b05
+    content: On a fresh session, focusing the terminal highlights the originating node with the blue bar, anchoring the session to its branch of work.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8ff2abf-0765-491e-b62a-de2322160a40:
+    id: e8ff2abf-0765-491e-b62a-de2322160a40
+    content: After idle time the association silently degrades and the bar stops appearing on focus, so the user loses the anchor between session output and its node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35d48b3d-2962-4aca-964f-089e9c7c10b2:
+    id: 35d48b3d-2962-4aca-964f-089e9c7c10b2
+    content: The current model also only expresses one state — "node and terminal focused together". There is no way to see that a focused node has an associated terminal tab elsewhere, which makes the association invisible whenever attention is on just one side.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  deb742ef-97d4-4955-b0b4-527f441deb9c:
+    id: deb742ef-97d4-4955-b0b4-527f441deb9c
+    content: Goal
+    children:
+      - 00a61ba3-cf74-4f0c-afb5-3c7e77f7eb1e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00a61ba3-cf74-4f0c-afb5-3c7e77f7eb1e:
+    id: 00a61ba3-cf74-4f0c-afb5-3c7e77f7eb1e
+    content: Focusing a node or its terminal always re-establishes the node/session association and reflects it visually, with distinct indicators for "focused" vs "associated but not focused".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b332c65-3e62-4826-9af6-bd73fd5e0534:
+    id: 9b332c65-3e62-4826-9af6-bd73fd5e0534
+    content: Business rules
+    children:
+      - 54aad555-8db1-451f-ae85-d211eab0e696
+      - f56d4d5c-32dd-4c4a-ac1d-29c4da840967
+      - a7629233-e6d7-47aa-be21-782a35b34ee9
+      - 50472815-37ca-4885-b0bc-a0b336771fe4
+      - 1a24ee46-ffe7-45f0-bfbe-4661e63eda3d
+      - fef5dfe4-2284-4e58-a2c6-86808364c1e6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54aad555-8db1-451f-ae85-d211eab0e696:
+    id: 54aad555-8db1-451f-ae85-d211eab0e696
+    content: 1. A session opened from a node must remain associated with that node for the lifetime of the session, even across periods of inactivity.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f56d4d5c-32dd-4c4a-ac1d-29c4da840967:
+    id: f56d4d5c-32dd-4c4a-ac1d-29c4da840967
+    content: 2. When a terminal session is the focused element, its originating node renders the existing blue bar.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7629233-e6d7-47aa-be21-782a35b34ee9:
+    id: a7629233-e6d7-47aa-be21-782a35b34ee9
+    content: 3. When a node is the focused element and has an associated terminal tab that is not itself focused, the terminal tab is rendered in a tertiary colour — more prominent than the default grey but less prominent than the active-focus colour — to signal the association without competing for attention.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  50472815-37ca-4885-b0bc-a0b336771fe4:
+    id: 50472815-37ca-4885-b0bc-a0b336771fe4
+    content: 4. The tertiary tab colour and the blue bar are independent indicators and may be shown simultaneously when focus is on the node side.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a24ee46-ffe7-45f0-bfbe-4661e63eda3d:
+    id: 1a24ee46-ffe7-45f0-bfbe-4661e63eda3d
+    content: 5. If the association cannot be re-resolved (session or node deleted), the UI fails silently with no stale highlight on either side.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fef5dfe4-2284-4e58-a2c6-86808364c1e6:
+    id: fef5dfe4-2284-4e58-a2c6-86808364c1e6
+    content: 6. Re-pairing on focus must be idempotent — no duplicated sessions, no tab reordering, no state mutation beyond updating the active-association selector.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d784e2c-19fc-4084-864f-4f2cc6355ca5:
+    id: 7d784e2c-19fc-4084-864f-4f2cc6355ca5
+    content: Acceptance criteria
+    children:
+      - 147cbb2d-d43b-4aec-b932-1cf49f8f3fae
+      - 1294e11f-46ba-4a38-9232-7258126b77be
+      - 6aef5cfb-cfaf-45c7-830d-9b0f4bb5d638
+      - 7305efb8-249f-4629-8f9b-21ae1f4a1d52
+      - 6bb15740-6114-41ee-8413-01d30818f21d
+      - f95a6edb-2935-420c-9bf1-5b783798a2b5
+      - 9f125975-1307-4158-81d3-ba25731b261d
+      - 6ed44a33-2797-4873-8964-76f316fbb494
+      - 77093fef-dadc-4118-b800-19988cb7ec2f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  147cbb2d-d43b-4aec-b932-1cf49f8f3fae:
+    id: 147cbb2d-d43b-4aec-b932-1cf49f8f3fae
+    content: '- [x] Opening a session from a node and immediately focusing the terminal shows the blue bar on that node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1294e11f-46ba-4a38-9232-7258126b77be:
+    id: 1294e11f-46ba-4a38-9232-7258126b77be
+    content: '- [x] After leaving the session idle long enough to previously reproduce the bug, focusing the terminal still shows the blue bar on the originating node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6aef5cfb-cfaf-45c7-830d-9b0f4bb5d638:
+    id: 6aef5cfb-cfaf-45c7-830d-9b0f4bb5d638
+    content: '- [-] After the same idle period, focusing the originating node renders its terminal tab in the tertiary association colour while the tab itself is not focused.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  7305efb8-249f-4629-8f9b-21ae1f4a1d52:
+    id: 7305efb8-249f-4629-8f9b-21ae1f4a1d52
+    content: '- [-] Focusing the tertiary-coloured terminal tab promotes it to the active-focus colour and renders the blue bar on the node.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bb15740-6114-41ee-8413-01d30818f21d:
+    id: 6bb15740-6114-41ee-8413-01d30818f21d
+    content: '- [-] The tertiary colour is visibly distinct from both the default grey tab and the active-focus colour in light and dark themes.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f95a6edb-2935-420c-9bf1-5b783798a2b5:
+    id: f95a6edb-2935-420c-9bf1-5b783798a2b5
+    content: '- [x] Switching focus between multiple idle sessions correctly moves the blue bar and the tertiary tab colour to the right pair.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f125975-1307-4158-81d3-ba25731b261d:
+    id: 9f125975-1307-4158-81d3-ba25731b261d
+    content: '- [x] Deleting the originating node leaves the session running but produces no stray blue bar and no tertiary tab colour on focus.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ed44a33-2797-4873-8964-76f316fbb494:
+    id: 6ed44a33-2797-4873-8964-76f316fbb494
+    content: '- [x] Closing the session removes both indicators from the previously associated node on next focus.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77093fef-dadc-4118-b800-19988cb7ec2f:
+    id: 77093fef-dadc-4118-b800-19988cb7ec2f
+    content: '- [x] No measurable focus-handling latency regression versus the current implementation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89e8ee10-b2f4-4a9a-b089-b8edf80b51ff:
+    id: 89e8ee10-b2f4-4a9a-b089-b8edf80b51ff
+    content: 🔧 Implementation proposal
+    children:
+      - 4d668155-15f9-48c5-90fa-67217da339fb
+      - b28eee3a-0e40-4135-a85e-c76a8db68786
+      - 9e216de0-b3f5-49d8-972f-518aa2ab90e9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d668155-15f9-48c5-90fa-67217da339fb:
+    id: 4d668155-15f9-48c5-90fa-67217da339fb
+    content: Approach
+    children:
+      - a46d1158-1829-4fdd-aeb1-611cea4581b1
+      - a0bc5112-7424-4dcb-9035-5489e3518b6c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a46d1158-1829-4fdd-aeb1-611cea4581b1:
+    id: a46d1158-1829-4fdd-aeb1-611cea4581b1
+    content: Make the node↔session link authoritative state in the session/terminal store and derive both indicators (blue bar on node, tertiary colour on tab) from a single selector that takes "currently focused element" as input.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0bc5112-7424-4dcb-9035-5489e3518b6c:
+    id: a0bc5112-7424-4dcb-9035-5489e3518b6c
+    content: On terminal focus and on node focus, re-resolve the association from the stored link and update the active-association selector so the existing rendering picks it up — no per-side timers or transient refs that can be cleared by idle teardown.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b28eee3a-0e40-4135-a85e-c76a8db68786:
+    id: b28eee3a-0e40-4135-a85e-c76a8db68786
+    content: Touchpoints
+    children:
+      - 09578959-2754-4ce5-bd93-71949adaac92
+      - d3d3571e-c23f-45fb-a489-bb0214a168e0
+      - bd3efe47-95c0-43e1-8e91-2481b448ca69
+      - 68c64629-8eb6-4eeb-a3dd-7e190ea2b814
+      - 99ca54cf-2a36-4fc0-bc03-42a9be54a372
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09578959-2754-4ce5-bd93-71949adaac92:
+    id: 09578959-2754-4ce5-bd93-71949adaac92
+    content: 'Renderer store: session/terminal slice — node↔session mapping survives inactivity and is the single source of truth.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3d3571e-c23f-45fb-a489-bb0214a168e0:
+    id: d3d3571e-c23f-45fb-a489-bb0214a168e0
+    content: 'Renderer services: keyboard/focus service and terminal focus handlers — trigger re-resolution on focus of either side.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd3efe47-95c0-43e1-8e91-2481b448ca69:
+    id: bd3efe47-95c0-43e1-8e91-2481b448ca69
+    content: 'Components: tree node (blue bar) and terminal tab (new tertiary colour state).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68c64629-8eb6-4eeb-a3dd-7e190ea2b814:
+    id: 68c64629-8eb6-4eeb-a3dd-7e190ea2b814
+    content: 'Theme: add a tertiary "associated, not focused" colour token to `globals.css` covering both themes.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  99ca54cf-2a36-4fc0-bc03-42a9be54a372:
+    id: 99ca54cf-2a36-4fc0-bc03-42a9be54a372
+    content: 'Tests: integration test covering focus after simulated idle on both sides, unit tests for the association selector, and visual coverage of the three tab states (default, associated, focused).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e216de0-b3f5-49d8-972f-518aa2ab90e9:
+    id: 9e216de0-b3f5-49d8-972f-518aa2ab90e9
+    content: Constraints to call out
+    children:
+      - c0fb372b-b43a-49b2-8c1f-d58e3a29e0d3
+      - 9c722ce4-1f38-4ec9-b414-2a9037c436c9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0fb372b-b43a-49b2-8c1f-d58e3a29e0d3:
+    id: c0fb372b-b43a-49b2-8c1f-d58e3a29e0d3
+    content: The current bug suggests something is being cleared on inactivity (timer, listener teardown, or stale ref); the fix must remove that clearing path rather than paper over it with a re-pair on focus, otherwise other consumers of the association will keep breaking.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c722ce4-1f38-4ec9-b414-2a9037c436c9:
+    id: 9c722ce4-1f38-4ec9-b414-2a9037c436c9
+    content: The tertiary tab colour must remain clearly subordinate to the active-focus colour — if it competes visually, focused-tab affordance is degraded across the whole app, not just this flow.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7693a89a-7f73-4075-a738-7fd3a76d98b0:
+    id: 7693a89a-7f73-4075-a738-7fd3a76d98b0
+    content: Technical refinement
+    children:
+      - 7530f7bb-f66d-472b-90fc-f88f99a34199
+      - 7e3fcc6b-02aa-42c2-a1d0-33d24244ae33
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7530f7bb-f66d-472b-90fc-f88f99a34199:
+    id: 7530f7bb-f66d-472b-90fc-f88f99a34199
+    content: Complications
+    children:
+      - ce8062fc-1e2f-48af-b748-6cbbba50d7c2
+      - 31cfff04-c320-4f29-9162-d19c0958ecaf
+      - 932cdf99-b194-45e7-8f9e-7e4c47127c2a
+      - 909ca550-c998-4c56-8881-83c5976a0418
+      - f3ad28ab-57c8-4b8c-885d-b62fe1751aaa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce8062fc-1e2f-48af-b748-6cbbba50d7c2:
+    id: ce8062fc-1e2f-48af-b748-6cbbba50d7c2
+    content: 'The blue bar is not driven by a stored node↔terminal link today — `selectActiveSessionNodeId` derives it from two transient signals: a workflow step on the focused terminal in `running`/`awaiting-validation`, or an active terminal-collaboration on that terminal. "Lost after a while" is the workflow step leaving those states or the collaboration ending — the link was never persistent in the first place.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31cfff04-c320-4f29-9162-d19c0958ecaf:
+    id: 31cfff04-c320-4f29-9162-d19c0958ecaf
+    content: Fixing the symptom therefore means introducing a durable `originNodeId` on `TerminalInfo` (or an equivalent map), not patching a teardown path. This must round-trip through session persistence so restored terminals keep their origin after a reload.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  932cdf99-b194-45e7-8f9e-7e4c47127c2a:
+    id: 932cdf99-b194-45e7-8f9e-7e4c47127c2a
+    content: A node can spawn several terminals over time and a terminal can host work for several nodes — the new link needs a clear policy (e.g. origin-on-create, latest wins) and the bar must not override the existing "what is running right now" signal when the two disagree.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  909ca550-c998-4c56-8881-83c5976a0418:
+    id: 909ca550-c998-4c56-8881-83c5976a0418
+    content: The tertiary tab colour requires the inverse lookup (focused node → its terminal tab) and a new theme token; it is additive UI scope on top of the bug fix and could land as a separate chunk if ROI is reviewed.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3ad28ab-57c8-4b8c-885d-b62fe1751aaa:
+    id: f3ad28ab-57c8-4b8c-885d-b62fe1751aaa
+    content: 'Out of scope: changing collaboration/workflow-step semantics, multi-node-per-terminal indicators, restoring associations for terminals that were already closed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e3fcc6b-02aa-42c2-a1d0-33d24244ae33:
+    id: 7e3fcc6b-02aa-42c2-a1d0-33d24244ae33
+    content: Approach summary
+    children:
+      - f8260d22-3779-4b98-a173-25d1109b29ac
+      - d6656ec3-578c-4756-a11a-e71c4f6de081
+      - 1d0fe83d-6201-429b-9513-2a2028575ea9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8260d22-3779-4b98-a173-25d1109b29ac:
+    id: f8260d22-3779-4b98-a173-25d1109b29ac
+    content: Add `originNodeId` to `TerminalInfo`, populated when a terminal is opened from a node and persisted with the session; OR it into `selectActiveSessionNodeId` so the blue bar reflects origin in addition to the existing transient signals.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6656ec3-578c-4756-a11a-e71c4f6de081:
+    id: d6656ec3-578c-4756-a11a-e71c4f6de081
+    content: Add an inverse selector `nodeId → terminalId` and a new tab visual state ("associated, not focused") driven by it, gated on the focused node.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d0fe83d-6201-429b-9513-2a2028575ea9:
+    id: 1d0fe83d-6201-429b-9513-2a2028575ea9
+    content: 'Non-obvious: the bar now has two sources of truth (origin vs current activity). Order matters — current-activity should win on conflict so a step running on a different terminal than its origin still highlights correctly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4834f75-4b3a-4890-bc41-04103f76dab1:
+    id: c4834f75-4b3a-4890-bc41-04103f76dab1
+    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  baeb5b7e-81d5-403c-ac67-e883aaad84a9:
+    id: baeb5b7e-81d5-403c-ac67-e883aaad84a9
+    content: TDD red state established
+    children:
+      - 07e22846-af00-46c0-a346-96b18da6c21c
+      - 7b185ff7-b00a-4617-a64b-f151e9861659
+      - b452869e-915c-4aa0-8a77-3df28b1e6b8d
+      - f69287d3-5657-4b85-a431-2f4e94336002
+      - 8a2ffc95-43b5-4d30-a437-daa177e83346
+      - f319861d-9cbc-405f-a4a4-f2f9ee7af7ba
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07e22846-af00-46c0-a346-96b18da6c21c:
+    id: 07e22846-af00-46c0-a346-96b18da6c21c
+    content: Extended src/renderer/store/tree/selectors/tests/activeSessionNodeId.test.ts with a `durable origin association (terminalOrigins)` describe block — covers origin returned when no current activity, idle scenario, origin overridden by running/awaiting-validation step and by terminal collaboration, no cross-terminal leak, null when no entry, current-activity-on-different-terminal still returns origin, idempotency, missing/empty terminalOrigins record
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b185ff7-b00a-4617-a64b-f151e9861659:
+    id: 7b185ff7-b00a-4617-a64b-f151e9861659
+    content: Created src/renderer/store/terminal/tests/originNodeId.test.ts — addTerminal stores/omits originNodeId, createNewTerminal accepts originNodeId param, sendNodeToTerminal and executeNodeInTerminal record origin on auto-create, sendNodeToTerminal does not overwrite an existing terminal's origin, origin survives setActiveFile/updateTerminal, removeTerminal removes entry, defensive empty-id case, title-only test for "first origin wins"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b452869e-915c-4aa0-8a77-3df28b1e6b8d:
+    id: b452869e-915c-4aa0-8a77-3df28b1e6b8d
+    content: Extended src/renderer/store/terminal/tests/terminalSessionPersistence.test.ts with an `originNodeId persistence` describe block — save includes/omits originNodeId, restoreTerminalSession carries originNodeId into pendingRestore, materializeRestoredTerminals propagates origin onto recreated TerminalInfo, legacy session without originNodeId restores cleanly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f69287d3-5657-4b85-a431-2f4e94336002:
+    id: f69287d3-5657-4b85-a431-2f4e94336002
+    content: Ran only the new/changed test files with vitest — 10 failures targeting unimplemented behavior (selector origin path, createNewTerminal origin param, send/executeNodeInTerminal origin recording, save/materialize originNodeId), 53 passing (existing tests + back-compat tests that hold while feature is absent)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a2ffc95-43b5-4d30-a437-daa177e83346:
+    id: 8a2ffc95-43b5-4d30-a437-daa177e83346
+    content: No feature code written — only tests; types referenced via `as unknown as` / `as any` casts to keep the test file compiling against current TerminalInfo / SessionSelectorState / TerminalSessionEntry shapes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f319861d-9cbc-405f-a4a4-f2f9ee7af7ba:
+    id: f319861d-9cbc-405f-a4a4-f2f9ee7af7ba
+    content: No tests/fixtures/ directory exists in the project — setup left inline per existing convention in this module
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b006a6b0-55da-4eac-8851-38f02ebb06a5:
+    id: b006a6b0-55da-4eac-8851-38f02ebb06a5
+    content: Feature implementation (PR1 scope only)
+    children:
+      - 79edfc37-ea8d-4859-9ae3-346184d353da
+      - 72382937-0ff2-41fb-aaa6-3dd411ebc2dc
+      - 691a502a-8adc-4a1a-8219-7025c46921ed
+      - 5e5950ad-a451-48a2-a3cb-c9a137f6b779
+      - 8e85cefe-53ce-43af-b14a-afefde5cfa9a
+      - 0169dcdf-f718-409a-9590-4fa43ba7409a
+      - c9cab11e-05c5-4de9-b21c-58facbdbaa58
+      - a51f3a37-e5b3-4ba3-a54b-fc81572e51f4
+      - 119a47b6-3161-422e-80aa-00931e40877d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79edfc37-ea8d-4859-9ae3-346184d353da:
+    id: 79edfc37-ea8d-4859-9ae3-346184d353da
+    content: src/shared/interfaces.ts — added optional `originNodeId` field to `TerminalSessionEntry`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72382937-0ff2-41fb-aaa6-3dd411ebc2dc:
+    id: 72382937-0ff2-41fb-aaa6-3dd411ebc2dc
+    content: src/shared/schemas.ts — added optional `originNodeId` to `TerminalSessionEntrySchema` so legacy sessions still parse and new sessions round-trip
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  691a502a-8adc-4a1a-8219-7025c46921ed:
+    id: 691a502a-8adc-4a1a-8219-7025c46921ed
+    content: src/renderer/store/terminal/terminalStore.ts — added optional `originNodeId` to `TerminalInfo`; threaded the field through `openTerminal(originNodeId?)`, `createNewTerminal(title, cwd, originNodeId?)`, `sendNodeToTerminal` (passes `node.id`), `executeNodeInTerminal` (passes `node.id`); `buildTerminalSession` now includes `originNodeId` per saved entry when present; `materializeRestoredTerminals` rehydrates `originNodeId` onto restored `TerminalInfo`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e5950ad-a451-48a2-a3cb-c9a137f6b779:
+    id: 5e5950ad-a451-48a2-a3cb-c9a137f6b779
+    content: 'src/renderer/store/tree/selectors/activeSessionNodeId.ts — added optional `terminalOrigins?: Record<string, string>` to `SessionSelectorState`; selector falls back to `state.terminalOrigins[activeTerminalId]` after the existing workflow-step and collaboration checks (current-activity wins on conflict, per spec)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e85cefe-53ce-43af-b14a-afefde5cfa9a:
+    id: 8e85cefe-53ce-43af-b14a-afefde5cfa9a
+    content: src/renderer/components/TreeNode/TreeNode.tsx — looks up the active terminal's `originNodeId` from `useTerminalStore` and passes a single-entry `terminalOrigins` map into the selector call so the blue bar persists across idle periods
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0169dcdf-f718-409a-9590-4fa43ba7409a:
+    id: 0169dcdf-f718-409a-9590-4fa43ba7409a
+    content: 'Origin-on-create policy: `sendNodeToTerminal`/`executeNodeInTerminal` only set origin when the call triggers terminal creation; reusing an existing terminal does not overwrite its origin — matches "association for the lifetime of the session"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9cab11e-05c5-4de9-b21c-58facbdbaa58:
+    id: c9cab11e-05c5-4de9-b21c-58facbdbaa58
+    content: 'Acceptance: 63 tests pass across the three changed test files (was 53/10 red before); 104 pass across all terminal and selector tests; 61 pass across the broader related-feature regression suite (TreeNode, useTerminalPanel, workflow session start/resume/auto-launch, recurse inheritance, sessionRestoreIntegration, terminalStore)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a51f3a37-e5b3-4ba3-a54b-fc81572e51f4:
+    id: a51f3a37-e5b3-4ba3-a54b-fc81572e51f4
+    content: 'Quality gates: `npx tsc --noEmit` clean; `npx eslint` on changed files shows zero new errors (one pre-existing dependency-cycle warning at terminalStore.ts:6, unrelated to this PR)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  119a47b6-3161-422e-80aa-00931e40877d:
+    id: 119a47b6-3161-422e-80aa-00931e40877d
+    content: 'Out of scope (PR2): tertiary tab colour, inverse `nodeId → terminalId` selector, `globals.css` theme token — left unchecked above'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03a46f52-bd0d-43ee-a339-96b8dded1761:
+    id: 03a46f52-bd0d-43ee-a339-96b8dded1761
+    content: Acceptance criteria → implementation traceability verified
+    children:
+      - cc2fe56a-8d99-4ef4-8644-0d8f079a0e49
+      - 44825e75-7450-444f-b2d4-5f16e0164191
+      - ac99ae82-3184-410c-af75-a7aab07cd3c8
+      - 5b3b57d1-2937-404d-91fe-f90b24fc4349
+      - 30f92021-d3b2-4218-8905-67e678863310
+      - 9c1bd2b3-9206-4c5b-9b14-2da686d3ec63
+      - 53e34d8e-ade4-43a5-acd6-a6091c5b3bb5
+      - 27ec241b-73d7-425a-937e-86962a81bdbd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc2fe56a-8d99-4ef4-8644-0d8f079a0e49:
+    id: cc2fe56a-8d99-4ef4-8644-0d8f079a0e49
+    content: 'AC "blue bar immediately on focus" → sendNodeToTerminal/executeNodeInTerminal pass node.id; createNewTerminal sets originNodeId on TerminalInfo; selector reads via terminalOrigins; TreeNode renders bar via isActiveSession (tests: originNodeId.test.ts, activeSessionNodeId.test.ts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44825e75-7450-444f-b2d4-5f16e0164191:
+    id: 44825e75-7450-444f-b2d4-5f16e0164191
+    content: 'AC "blue bar after idle" → originNodeId is durable on TerminalInfo; survives workflowExecutionStates entry being removed (test: "returns the origin nodeId after a workflow step has finished — entry gone from map")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac99ae82-3184-410c-af75-a7aab07cd3c8:
+    id: ac99ae82-3184-410c-af75-a7aab07cd3c8
+    content: 'AC "switching between multiple idle sessions moves the bar" → selector keyed by activeTerminalId; per-terminal origin lookup; no cross-terminal leak (test: "does not leak another terminal''s origin onto the focused terminal" — asserts both terminal-1→node-A and terminal-2→node-B)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b3b57d1-2937-404d-91fe-f90b24fc4349:
+    id: 5b3b57d1-2937-404d-91fe-f90b24fc4349
+    content: AC "deleted node → no stray bar" → structurally guaranteed by TreeNode.tsx line 69-71 `if (!node) return null;`; selector returns deleted id but no component renders for it; no explicit test added because the existing TreeNode guard already covers the rendering layer and was not changed in this PR
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30f92021-d3b2-4218-8905-67e678863310:
+    id: 30f92021-d3b2-4218-8905-67e678863310
+    content: 'AC "closing the session clears indicators on next focus" → removeTerminal filters terminal from state.terminals (origin gone with it) and updates activeTerminalId (test: "removing the terminal clears any association — the entry is gone")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c1bd2b3-9206-4c5b-9b14-2da686d3ec63:
+    id: 9c1bd2b3-9206-4c5b-9b14-2da686d3ec63
+    content: AC "no focus-handling latency regression" → selector adds one O(1) hashmap lookup (`state.terminalOrigins?.[activeTerminalId]`); structurally satisfied, not unit-testable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53e34d8e-ade4-43a5-acd6-a6091c5b3bb5:
+    id: 53e34d8e-ade4-43a5-acd6-a6091c5b3bb5
+    content: 'Business rule 6 idempotency → selector is a pure function with no side effects (test: "is idempotent — repeated calls return the same value with no observable side-effects")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27ec241b-73d7-425a-937e-86962a81bdbd:
+    id: 27ec241b-73d7-425a-937e-86962a81bdbd
+    content: 'Full test re-run confirms green: 104 pass in selector+terminal suites, 18 pass in TreeNode+sessionRestoreIntegration; no regressions detected against implementation'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e4a8b77-d034-4b40-9181-40868c1c785a:
+    id: 4e4a8b77-d034-4b40-9181-40868c1c785a
+    content: AI refactor pass
+    children:
+      - c17fe1d0-3d29-46fc-9b35-e2b264e90a4b
+      - a26d52cc-740a-4f9a-b393-7d011de59ecb
+      - e6929e6e-0a23-43a0-9664-edeae60c6665
+      - 7227c3d6-dd99-4acd-b87d-b22169d0d5dd
+      - fd7e8bb3-412e-4df9-9844-b6ee889501a0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c17fe1d0-3d29-46fc-9b35-e2b264e90a4b:
+    id: c17fe1d0-3d29-46fc-9b35-e2b264e90a4b
+    content: Implemented the previously-empty title-only test `repeatedly sending different nodes to the same terminal preserves the first origin` — no empty tests remain
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a26d52cc-740a-4f9a-b393-7d011de59ecb:
+    id: a26d52cc-740a-4f9a-b393-7d011de59ecb
+    content: Strengthened the empty-id edge case to assert no origin is recorded for empty node.id (was only asserting no-throw); makes the defensive `node.id || undefined` branch actually covered
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6929e6e-0a23-43a0-9664-edeae60c6665:
+    id: e6929e6e-0a23-43a0-9664-edeae60c6665
+    content: Removed TDD-red leftover casts (`as unknown as TerminalInfo`, `as any`, `as unknown as SessionSelectorState`) now that the underlying types carry `originNodeId` / `terminalOrigins` — keeps the project convention "use `as unknown as X` for library types only"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7227c3d6-dd99-4acd-b87d-b22169d0d5dd:
+    id: 7227c3d6-dd99-4acd-b87d-b22169d0d5dd
+    content: No abandoned attempts found — only changes since last commit are the in-scope files plus the new `originNodeId.test.ts`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd7e8bb3-412e-4df9-9844-b6ee889501a0:
+    id: fd7e8bb3-412e-4df9-9844-b6ee889501a0
+    content: Re-ran the targeted suite after refactor — 63 pass, 0 fail; `npx tsc --noEmit` clean; `npx eslint` clean on changed files (one pre-existing dependency-cycle warning at terminalStore.ts:6, unrelated)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9aab8f34-dfb2-42df-8952-be11de2b9242:
+    id: 9aab8f34-dfb2-42df-8952-be11de2b9242
+    content: review feedback
+    children:
+      - 0fcf9e23-21f5-45b3-849e-57f129b73483
+      - 7bf3b9e0-bff8-4814-828c-69283c8e6d60
+      - b2a235c1-c359-420d-93d2-fa1821bb0415
+      - 00fa2761-3d7b-4a27-824c-53e28cad1022
+      - 3fbd1f02-d118-48a4-88c6-9555f5a346cf
+      - eef858f1-92fb-4472-9608-7694aec1dc9c
+      - df223043-fc65-417d-a64d-e084122b6c3e
+      - aeddfcc7-e654-4298-9fb6-ce895c77a36c
+      - bae0e7e5-2f2d-485d-aa6f-445de2645e5e
+      - a637afe9-7093-4132-adf6-3651c362bb41
+      - 1715a4d8-408f-4181-99d7-a6eda5f8119c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fcf9e23-21f5-45b3-849e-57f129b73483:
+    id: 0fcf9e23-21f5-45b3-849e-57f129b73483
+    content: 'Reviewer: pr-review-toolkit:code-reviewer agent ran a full diff review against the worktree. Verdict: zero CRITICAL, two IMPORTANT (unupdated callsites that re-introduce the bug from non-terminal-store entry points), several NITs (style/test polish).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bf3b9e0-bff8-4814-828c-69283c8e6d60:
+    id: 7bf3b9e0-bff8-4814-828c-69283c8e6d60
+    content: 'IMPORTANT — `sendNodeToTerminal`/`executeNodeInTerminal` are not the only node-initiated entry points; three callers in `src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts` (lines 53, 181, 226 — handleSendInTerminal, getTerminalId used by onStartWorkflow, and resolveContinueTerminal) call `openTerminal()` with no origin even though `node.id` is in scope. The user-visible bug (blue bar disappears after a workflow step ends) is still reproducible via right-click "Send", "Start workflow", and "Continue". Fix: pass `node.id` to `openTerminal(node.id)` at each callsite.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2a235c1-c359-420d-93d2-fa1821bb0415:
+    id: b2a235c1-c359-420d-93d2-fa1821bb0415
+    content: 'IMPORTANT — Resume-terminal paths also miss the origin: `src/renderer/store/tree/actions/workflowExecutionActions.ts:269` and `:494`, and `src/renderer/store/tree/actions/workflowSessionResume.ts:107` all call `createNewTerminal(''Resume'', cwd)` for a known originating node without threading the `nodeId`. While `findActiveStepOnTerminal` masks it during the run, the bar disappears the moment the step leaves `running`/`awaiting-validation`. Fix: thread the originating nodeId into the `createNewTerminal(title, cwd, nodeId)` calls.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00fa2761-3d7b-4a27-824c-53e28cad1022:
+    id: 00fa2761-3d7b-4a27-824c-53e28cad1022
+    content: 'NIT — `TreeNode.tsx:52-57` synthesizes a fresh `{ [activeTerminalId]: activeTerminalOriginNodeId }` map inside the `useStore` selector every tick. Correctness fine (boolean result is stably compared); minor allocation churn per TreeNode per tree-store tick. Optionally hoist or change the selector signature to take `activeTerminalOriginNodeId` directly instead of a single-entry map. Not blocking.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fbd1f02-d118-48a4-88c6-9555f5a346cf:
+    id: 3fbd1f02-d118-48a4-88c6-9555f5a346cf
+    content: NIT — Selector signature now leaks `terminalOrigins` onto `SessionSelectorState` even though it's synthesized at the call site and is not part of the tree store. Consider passing it as a third explicit arg (`selectActiveSessionNodeId(state, activeTerminalId, originNodeId?)`) for clarity. Cosmetic.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eef858f1-92fb-4472-9608-7694aec1dc9c:
+    id: eef858f1-92fb-4472-9608-7694aec1dc9c
+    content: 'NIT — Inconsistent immutable vs. mutable construction: `buildTerminalSession` uses post-construction mutation (`if (t.originNodeId) entry.originNodeId = t.originNodeId`) at `terminalStore.ts:85-90`, while `createNewTerminal` and `materializeRestoredTerminals` use the immutable conditional-spread form. Pick one. Suggest the conditional-spread form everywhere: `{ ...base, ...(t.originNodeId ? { originNodeId: t.originNodeId } : {}) }`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  df223043-fc65-417d-a64d-e084122b6c3e:
+    id: df223043-fc65-417d-a64d-e084122b6c3e
+    content: NIT — `node.id || undefined` defensive guard at `terminalStore.ts:203, 219` only catches the empty-string case, which a real TreeNode would never produce. The matching test ("handles a node with an empty id without throwing and does not record an empty origin") is contrived. Either drop the guard and the test, or leave both and document intent. Not blocking.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aeddfcc7-e654-4298-9fb6-ce895c77a36c:
+    id: aeddfcc7-e654-4298-9fb6-ce895c77a36c
+    content: 'NIT — Test polish in `originNodeId.test.ts`: the "removing the terminal clears any association" test (line 153) only asserts the terminal is gone; extend by one line to assert a freshly-created terminal does NOT inherit the dead origin. Rename or comment the "updateTerminal does not silently drop originNodeId" test to make the regression-guard intent explicit.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bae0e7e5-2f2d-485d-aa6f-445de2645e5e:
+    id: bae0e7e5-2f2d-485d-aa6f-445de2645e5e
+    content: NIT — `activeSessionNodeId.test.ts:239-247` idempotency test (calling a pure function three times) is mostly redundant — other tests already exercise the deterministic return for the same inputs. Optional removal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a637afe9-7093-4132-adf6-3651c362bb41:
+    id: a637afe9-7093-4132-adf6-3651c362bb41
+    content: No empty tests, no schema back-compat gaps, no missing test coverage flagged. Selector fallback ordering (workflow step → collaboration → origin) verified to correctly implement "current-activity wins on conflict".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1715a4d8-408f-4181-99d7-a6eda5f8119c:
+    id: 1715a4d8-408f-4181-99d7-a6eda5f8119c
+    content: 'Decision: the two IMPORTANT findings are real bugs that re-introduce the reported regression via non-TreeNode-store entry points. NITs are deferred to a polish pass or future PR. Recommend fixing both IMPORTANT items before merge.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0278c07a-ca3d-42d2-9ec7-8cbe9dbd1fb9:
+    id: 0278c07a-ca3d-42d2-9ec7-8cbe9dbd1fb9
+    content: feedback
+    children:
+      - 4022245d-09ca-40e6-af31-5b32a0a7931e
+      - a3b54819-77eb-4d22-aabe-835015bab791
+      - 208d08ca-7e50-4f99-9d14-9d62ad1c55ef
+      - b82e8764-9267-4a28-9a24-3e4490e5371f
+      - fa7ed721-6799-4362-9ddc-f23ac7687ba9
+      - 5de519c9-f2b6-4161-9650-a67a42a4380e
+      - c139f64c-dfb4-4588-a5bc-0305b10721fb
+      - 1207ef90-bca0-41ec-b750-9ff32be9f273
+      - f2793047-86bb-423c-953e-2c6840dadae1
+      - a762c606-3234-4ef1-80f5-e422c17b4ddd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4022245d-09ca-40e6-af31-5b32a0a7931e:
+    id: 4022245d-09ca-40e6-af31-5b32a0a7931e
+    content: 'AGREE — IMPORTANT #1 (useNodeContextMenu.ts lines 53/181/226): Verified by reading the actual code. All three sites have `node.id` in lexical scope and currently call `openTerminal()` with no origin. handleSendInTerminal (right-click "Send") and resolveContinueTerminal (workflow "Continue") both create or reuse a terminal that is conceptually owned by `node.id`. getTerminalId at line 181 feeds onStartWorkflow at line 234 (`node.id` in scope) and autoStartAfterMove at line 197 (`nodeId` parameter in scope). In both onStartWorkflow paths the freshly opened terminal then gets `workflowExecutionStates[node.id].terminalTabId = tid` — so the bar shows while running, but vanishes the moment the step leaves running/awaiting-validation. This is exactly the bug the PR is meant to fix; not threading origin here is a real regression source. Should be fixed in this PR.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3b54819-77eb-4d22-aabe-835015bab791:
+    id: a3b54819-77eb-4d22-aabe-835015bab791
+    content: 'AGREE — IMPORTANT #2 (workflowExecutionActions.ts:269 / :494 and workflowSessionResume.ts:107): Verified — all three sites have an originating nodeId in scope (`startWorkflow(nodeId)` for :269, `dispatchRecurseStart(nextNodeId, ...)` for :494 via `openInheritedResumeTerminal`, and `resumeSession(nodeId)` for :107). The "Resume" terminal is purpose-built for one node''s session; users WILL expect the bar to persist on idle return. Same severity as #1 — fix in this PR.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  208d08ca-7e50-4f99-9d14-9d62ad1c55ef:
+    id: 208d08ca-7e50-4f99-9d14-9d62ad1c55ef
+    content: 'AGREE — NIT (mutable vs immutable construction in buildTerminalSession): Small consistency fix, worth taking with the IMPORTANT changes. Switch terminalStore.ts:85-90 to the conditional-spread form to match `createNewTerminal` and `materializeRestoredTerminals`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b82e8764-9267-4a28-9a24-3e4490e5371f:
+    id: b82e8764-9267-4a28-9a24-3e4490e5371f
+    content: 'PARTIALLY AGREE — NIT (selector signature leak via terminalOrigins): The reviewer is right that `terminalOrigins` is synthesized at the call site, not part of the tree store. But pulling it to a third arg means refactoring 12 selector tests, and the alternative (`SessionSelectorState.terminalOrigins?`) is consistent with how the rest of `SessionSelectorState` works — every field is "what the selector needs to look at," not "what literally lives in one store." Defer to PR2 when the inverse selector lands and might want to reshape this anyway.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa7ed721-6799-4362-9ddc-f23ac7687ba9:
+    id: fa7ed721-6799-4362-9ddc-f23ac7687ba9
+    content: 'DISAGREE — NIT (TreeNode allocation churn): Low-probability perf issue. The map is one entry, the selector returns a boolean, the allocation lifetime is one tick. JIT will inline this. Optimising before measurement adds complexity for no measured gain. Skip.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5de519c9-f2b6-4161-9650-a67a42a4380e:
+    id: 5de519c9-f2b6-4161-9650-a67a42a4380e
+    content: 'DISAGREE — NIT (`node.id || undefined` is contrived): The guard costs nothing and codifies a defensive invariant. TreeNode.id is typed `string` but a malformed tree (eg. corrupted .arbo) could in principle carry empty ids; setting `originNodeId: ''''` would be worse than leaving it undefined. Keep the guard. The matching test is cheap regression insurance. Skip.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c139f64c-dfb4-4588-a5bc-0305b10721fb:
+    id: c139f64c-dfb4-4588-a5bc-0305b10721fb
+    content: 'DISAGREE — NIT (extend "removing the terminal clears any association" test to assert a fresh terminal has no inherited origin): Already covered by "addTerminal leaves originNodeId undefined when not provided". The proposed extension would duplicate that assertion under a different setup. Skip.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1207ef90-bca0-41ec-b750-9ff32be9f273:
+    id: 1207ef90-bca0-41ec-b750-9ff32be9f273
+    content: 'DISAGREE — NIT (idempotency test is redundant): The test explicitly verifies business rule 6 ("Re-pairing on focus must be idempotent"). Removing it weakens the traceability between business rule and test. The cost is trivial. Keep.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2793047-86bb-423c-953e-2c6840dadae1:
+    id: f2793047-86bb-423c-953e-2c6840dadae1
+    content: 'AGREE-WITH-CAVEAT — NIT (rename/comment "updateTerminal does not silently drop originNodeId" test): The intent IS regression-guarding the partial-update path, but the test name already says "does not silently drop". A one-line comment explaining "this regression-guards future callers passing a partial that omits origin" would be fine. Low priority.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a762c606-3234-4ef1-80f5-e422c17b4ddd:
+    id: a762c606-3234-4ef1-80f5-e422c17b4ddd
+    content: 'Overall: fix the two IMPORTANT items + the buildTerminalSession style consistency in the next implementation step. Defer the other NITs unless they come up naturally.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3eb7e813-9721-44b2-b904-c3ef71df163c:
+    id: 3eb7e813-9721-44b2-b904-c3ef71df163c
+    content: documentation
+    children:
+      - f376bd4e-de1f-4c99-b052-dcc12b9d2aaf
+      - 5d69954d-6d94-4c94-833f-f77d9ed2ffa0
+      - 30db6d06-f5b7-4443-b9f5-4080aac1d81a
+      - 3e709f7e-909f-45f9-ae01-25d3f731cedc
+      - e1bb74fe-3d58-4d0f-847d-c39883fc8a9c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f376bd4e-de1f-4c99-b052-dcc12b9d2aaf:
+    id: f376bd4e-de1f-4c99-b052-dcc12b9d2aaf
+    content: 'No new changelog entry — this is a bug fix to "Active terminal highlights its bound node" (CHANGELOG.md:12) which is already in the Unreleased section. Per the convention: "Don''t add a line to the changelog for a bug fix to a feature that was implemented after the last release."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d69954d-6d94-4c94-833f-f77d9ed2ffa0:
+    id: 5d69954d-6d94-4c94-833f-f77d9ed2ffa0
+    content: Amended the existing Unreleased entry in CHANGELOG.md to correct the parenthetical that described the old (transient) binding model. New wording calls out that the binding is set when the terminal is opened from a node (Send, Start Workflow, Continue, Resume Session), lasts the lifetime of the session, and is overridden by a workflow step running on a different terminal — directly reflecting the durable origin link this PR adds, without leaking implementation terms like `originNodeId`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30db6d06-f5b7-4443-b9f5-4080aac1d81a:
+    id: 30db6d06-f5b7-4443-b9f5-4080aac1d81a
+    content: No update to docs/workflows.md — the one user-facing reference at line 144 ("The active terminal's bound node is marked in the tree...") is still accurate at the user level. The bug fix makes the documented behavior actually reliable; users don't need to learn a new concept.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e709f7e-909f-45f9-ae01-25d3f731cedc:
+    id: 3e709f7e-909f-45f9-ae01-25d3f731cedc
+    content: No update to README.md or other docs — neither mentions the blue stripe or terminal/node binding.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1bb74fe-3d58-4d0f-847d-c39883fc8a9c:
+    id: e1bb74fe-3d58-4d0f-847d-c39883fc8a9c
+    content: Nothing unclear or inconsistent flagged for the user. The "lifetime of the session" wording in the changelog matches the language used in business rule 1 of the user story.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10b77395-23bb-48e1-bef9-740166efaff4:
+    id: 10b77395-23bb-48e1-bef9-740166efaff4
+    content: PR2 did play afterwwards
+    children:
+      - 6f26031d-80d4-4bb7-9ec5-4d1cc22569ea
+      - aeb0f9b1-f814-4fd1-929c-4bfbc8793759
+      - 895000f6-6847-4ec7-9b61-d6f7c37966d6
+    metadata:
+      status: pending
+  6f26031d-80d4-4bb7-9ec5-4d1cc22569ea:
+    id: 6f26031d-80d4-4bb7-9ec5-4d1cc22569ea
+    content: However there was a message that it was detached from its session
+    children: []
+    metadata:
+      status: pending
+  aeb0f9b1-f814-4fd1-929c-4bfbc8793759:
+    id: aeb0f9b1-f814-4fd1-929c-4bfbc8793759
+    content: And so it would start in another
+    children: []
+    metadata:
+      status: pending
+  895000f6-6847-4ec7-9b61-d6f7c37966d6:
+    id: 895000f6-6847-4ec7-9b61-d6f7c37966d6
+    content: However it DID successfully start in the same session
+    children: []
+    metadata:
+      status: pending
+  6d93a01f-a4e8-4206-98bd-f4dabb6fa16e:
+    id: 6d93a01f-a4e8-4206-98bd-f4dabb6fa16e
+    content: worktree
+    children:
+      - 585e26b0-9ab5-4899-8661-bc7bf7758b81
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  585e26b0-9ab5-4899-8661-bc7bf7758b81:
+    id: 585e26b0-9ab5-4899-8661-bc7bf7758b81
+    content: vscode://file//Users/brianfox/dev/Arborescent-tab-colour
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  173b7bfe-ef85-4477-980c-cd9cba3ce2aa:
+    id: 173b7bfe-ef85-4477-980c-cd9cba3ce2aa
+    content: Scope for this PR
+    children:
+      - ccc482d7-5d9e-4f8f-94d4-b02ff99a15b8
+      - 8b22a0e0-617b-4a46-8720-8959cae64c8a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccc482d7-5d9e-4f8f-94d4-b02ff99a15b8:
+    id: ccc482d7-5d9e-4f8f-94d4-b02ff99a15b8
+    content: 'Tertiary "associated, not focused" tab colour driven by the focused node. Delivers business rules 3, 4 and acceptance criteria covering: tertiary colour on focused-node side, promotion to active-focus on tab click, theme distinctness in light/dark, multi-session switching.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b22a0e0-617b-4a46-8720-8959cae64c8a:
+    id: 8b22a0e0-617b-4a46-8720-8959cae64c8a
+    content: 'Depends on PR1: reuses the `originNodeId` link introduced there. Adds a new theme token, an inverse `nodeId → terminalId` selector, and the new tab visual state. Independently shippable on top of PR1 — without it the app behaves exactly as PR1 left it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fcb5866-b67a-4884-b7e7-44bcb85fec11:
+    id: 1fcb5866-b67a-4884-b7e7-44bcb85fec11
+    content: User story
+    children:
+      - 07846bfb-7ec9-4cd5-906b-de4743eea351
+      - 5582620a-6dbe-4c00-90b9-2669e21e5692
+      - 29bfa817-edcf-488f-911f-fc2d317b8130
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07846bfb-7ec9-4cd5-906b-de4743eea351:
+    id: 07846bfb-7ec9-4cd5-906b-de4743eea351
+    content: 📄 Product spec
+    children:
+      - 3124c467-7599-47d7-834b-29998d9e8555
+      - 7d937c93-1a7b-47b6-89b0-1d869e34048e
+      - 59ca3d6f-89a8-44cd-811b-9e2a7f7c8a4f
+      - eeb3cd05-3937-4638-a055-10ca256337f1
+      - 7d3ae43c-66c6-44d2-8ae3-c01d94c29c37
+      - ee1b434d-e6a3-45bd-b340-2fa529e47309
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3124c467-7599-47d7-834b-29998d9e8555:
+    id: 3124c467-7599-47d7-834b-29998d9e8555
+    content: Context
+    children:
+      - 68d6dcc8-b245-424d-a613-220954b039c6
+      - 374c5a39-9f27-4d52-bf82-53d720fbcf3d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68d6dcc8-b245-424d-a613-220954b039c6:
+    id: 68d6dcc8-b245-424d-a613-220954b039c6
+    content: Each terminal session in Arborescent is bound to the tree node that opened it. Today, the association is signalled with a single blue bar to the left of the node when the session is focused.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  374c5a39-9f27-4d52-bf82-53d720fbcf3d:
+    id: 374c5a39-9f27-4d52-bf82-53d720fbcf3d
+    content: 'After a session has been inactive for a while, the visual binding disappears: focusing the terminal no longer highlights its node, and focusing the node does not surface its session in any way, even though both still exist.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d937c93-1a7b-47b6-89b0-1d869e34048e:
+    id: 7d937c93-1a7b-47b6-89b0-1d869e34048e
+    content: User
+    children:
+      - d2064ed6-a892-46ab-bcfb-0fffd8565739
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2064ed6-a892-46ab-bcfb-0fffd8565739:
+    id: d2064ed6-a892-46ab-bcfb-0fffd8565739
+    content: Any Arborescent user running long-lived AI/terminal sessions alongside tree work — typically a developer who leaves a session idle while reading, switching tabs, or doing other work.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59ca3d6f-89a8-44cd-811b-9e2a7f7c8a4f:
+    id: 59ca3d6f-89a8-44cd-811b-9e2a7f7c8a4f
+    content: Current experience and why it is insufficient
+    children:
+      - 4d16b9d6-9763-49e5-b5db-36d37cbde551
+      - 2996ca01-c809-47e1-83c5-4e19f21fe156
+      - 1749d95e-75cd-46c6-b008-0aff918891dc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d16b9d6-9763-49e5-b5db-36d37cbde551:
+    id: 4d16b9d6-9763-49e5-b5db-36d37cbde551
+    content: On a fresh session, focusing the terminal highlights the originating node with the blue bar, anchoring the session to its branch of work.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2996ca01-c809-47e1-83c5-4e19f21fe156:
+    id: 2996ca01-c809-47e1-83c5-4e19f21fe156
+    content: After idle time the association silently degrades and the bar stops appearing on focus, so the user loses the anchor between session output and its node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1749d95e-75cd-46c6-b008-0aff918891dc:
+    id: 1749d95e-75cd-46c6-b008-0aff918891dc
+    content: The current model also only expresses one state — "node and terminal focused together". There is no way to see that a focused node has an associated terminal tab elsewhere, which makes the association invisible whenever attention is on just one side.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eeb3cd05-3937-4638-a055-10ca256337f1:
+    id: eeb3cd05-3937-4638-a055-10ca256337f1
+    content: Goal
+    children:
+      - 6511a86e-c61b-4e7f-a276-086cfb0b04ec
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6511a86e-c61b-4e7f-a276-086cfb0b04ec:
+    id: 6511a86e-c61b-4e7f-a276-086cfb0b04ec
+    content: Focusing a node or its terminal always re-establishes the node/session association and reflects it visually, with distinct indicators for "focused" vs "associated but not focused".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d3ae43c-66c6-44d2-8ae3-c01d94c29c37:
+    id: 7d3ae43c-66c6-44d2-8ae3-c01d94c29c37
+    content: Business rules
+    children:
+      - 02a6f3de-919f-420a-9d9c-378b005144f4
+      - e232cd58-edb7-45fe-8167-67c2e82d1683
+      - d196a81f-e702-41ff-8535-f0d9ce8add02
+      - dfc4913e-509a-4967-ae74-f0fcb48c83da
+      - 45fc9d5d-6d58-418b-813a-bd6a2748ceb5
+      - 2cd1fdd9-d6a1-4d24-91e0-9b07240562c0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02a6f3de-919f-420a-9d9c-378b005144f4:
+    id: 02a6f3de-919f-420a-9d9c-378b005144f4
+    content: 1. A session opened from a node must remain associated with that node for the lifetime of the session, even across periods of inactivity.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e232cd58-edb7-45fe-8167-67c2e82d1683:
+    id: e232cd58-edb7-45fe-8167-67c2e82d1683
+    content: 2. When a terminal session is the focused element, its originating node renders the existing blue bar.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d196a81f-e702-41ff-8535-f0d9ce8add02:
+    id: d196a81f-e702-41ff-8535-f0d9ce8add02
+    content: 3. When a node is the focused element and has an associated terminal tab that is not itself focused, the terminal tab is rendered in a tertiary colour — more prominent than the default grey but less prominent than the active-focus colour — to signal the association without competing for attention.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfc4913e-509a-4967-ae74-f0fcb48c83da:
+    id: dfc4913e-509a-4967-ae74-f0fcb48c83da
+    content: 4. The tertiary tab colour and the blue bar are independent indicators and may be shown simultaneously when focus is on the node side.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45fc9d5d-6d58-418b-813a-bd6a2748ceb5:
+    id: 45fc9d5d-6d58-418b-813a-bd6a2748ceb5
+    content: 5. If the association cannot be re-resolved (session or node deleted), the UI fails silently with no stale highlight on either side.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cd1fdd9-d6a1-4d24-91e0-9b07240562c0:
+    id: 2cd1fdd9-d6a1-4d24-91e0-9b07240562c0
+    content: 6. Re-pairing on focus must be idempotent — no duplicated sessions, no tab reordering, no state mutation beyond updating the active-association selector.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee1b434d-e6a3-45bd-b340-2fa529e47309:
+    id: ee1b434d-e6a3-45bd-b340-2fa529e47309
+    content: Acceptance criteria
+    children:
+      - 38dc3dd7-0378-422f-bf61-79efe7ee137a
+      - 9467001c-3e5f-4b44-aa9b-4cb771683584
+      - f653dcdb-d9c9-418d-a9e4-3c86f02d014c
+      - 7b0e5b09-600f-4024-ac9f-74c58f556296
+      - bfb327c4-9bd0-4ea0-9fc4-0763ce3d6379
+      - 93d9ed1f-2c73-4843-b458-c31684514959
+      - 696645f6-4d8b-424c-8c71-15ddcaefbc86
+      - 19326109-aaf4-4b13-8caf-e23d8d976050
+      - ec1f2904-7927-4eb0-9269-3eedb254730f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38dc3dd7-0378-422f-bf61-79efe7ee137a:
+    id: 38dc3dd7-0378-422f-bf61-79efe7ee137a
+    content: '- [x] Opening a session from a node and immediately focusing the terminal shows the blue bar on that node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9467001c-3e5f-4b44-aa9b-4cb771683584:
+    id: 9467001c-3e5f-4b44-aa9b-4cb771683584
+    content: '- [x] After leaving the session idle long enough to previously reproduce the bug, focusing the terminal still shows the blue bar on the originating node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f653dcdb-d9c9-418d-a9e4-3c86f02d014c:
+    id: f653dcdb-d9c9-418d-a9e4-3c86f02d014c
+    content: '- [x] After the same idle period, focusing the originating node renders its terminal tab in the tertiary association colour while the tab itself is not focused.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b0e5b09-600f-4024-ac9f-74c58f556296:
+    id: 7b0e5b09-600f-4024-ac9f-74c58f556296
+    content: '- [x] Focusing the tertiary-coloured terminal tab promotes it to the active-focus colour and renders the blue bar on the node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfb327c4-9bd0-4ea0-9fc4-0763ce3d6379:
+    id: bfb327c4-9bd0-4ea0-9fc4-0763ce3d6379
+    content: '- [x] The tertiary colour is visibly distinct from both the default grey tab and the active-focus colour in light and dark themes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93d9ed1f-2c73-4843-b458-c31684514959:
+    id: 93d9ed1f-2c73-4843-b458-c31684514959
+    content: '- [x] Switching focus between multiple idle sessions correctly moves the blue bar and the tertiary tab colour to the right pair.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  696645f6-4d8b-424c-8c71-15ddcaefbc86:
+    id: 696645f6-4d8b-424c-8c71-15ddcaefbc86
+    content: '- [x] Deleting the originating node leaves the session running but produces no stray blue bar and no tertiary tab colour on focus.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19326109-aaf4-4b13-8caf-e23d8d976050:
+    id: 19326109-aaf4-4b13-8caf-e23d8d976050
+    content: '- [x] Closing the session removes both indicators from the previously associated node on next focus.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec1f2904-7927-4eb0-9269-3eedb254730f:
+    id: ec1f2904-7927-4eb0-9269-3eedb254730f
+    content: '- [x] No measurable focus-handling latency regression versus the current implementation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5582620a-6dbe-4c00-90b9-2669e21e5692:
+    id: 5582620a-6dbe-4c00-90b9-2669e21e5692
+    content: 🔧 Implementation proposal
+    children:
+      - dd5d3241-7562-4123-952f-6edfd6273a09
+      - 84129399-868c-4b08-91c6-d9474ee3c2d2
+      - 5ac7455c-1211-4269-89d1-8af2d16ec162
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd5d3241-7562-4123-952f-6edfd6273a09:
+    id: dd5d3241-7562-4123-952f-6edfd6273a09
+    content: Approach
+    children:
+      - 903cbe55-baef-46d7-bd2a-b2e6607840c7
+      - 94348137-5708-4efe-aa20-e300475c5c7a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  903cbe55-baef-46d7-bd2a-b2e6607840c7:
+    id: 903cbe55-baef-46d7-bd2a-b2e6607840c7
+    content: Make the node↔session link authoritative state in the session/terminal store and derive both indicators (blue bar on node, tertiary colour on tab) from a single selector that takes "currently focused element" as input.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94348137-5708-4efe-aa20-e300475c5c7a:
+    id: 94348137-5708-4efe-aa20-e300475c5c7a
+    content: On terminal focus and on node focus, re-resolve the association from the stored link and update the active-association selector so the existing rendering picks it up — no per-side timers or transient refs that can be cleared by idle teardown.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84129399-868c-4b08-91c6-d9474ee3c2d2:
+    id: 84129399-868c-4b08-91c6-d9474ee3c2d2
+    content: Touchpoints
+    children:
+      - e97c7343-3c96-4e40-a1ca-b809b5e10a8a
+      - 939fdba7-a63b-4fed-8a01-aaf23ca1496e
+      - d6151b6e-7c0d-40ae-887f-c382a5efd38d
+      - 16a05cdf-9fba-49d5-91fe-95d39a36ec7e
+      - 1f52900c-a2c2-442e-99c6-45e8105ab306
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e97c7343-3c96-4e40-a1ca-b809b5e10a8a:
+    id: e97c7343-3c96-4e40-a1ca-b809b5e10a8a
+    content: 'Renderer store: session/terminal slice — node↔session mapping survives inactivity and is the single source of truth.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  939fdba7-a63b-4fed-8a01-aaf23ca1496e:
+    id: 939fdba7-a63b-4fed-8a01-aaf23ca1496e
+    content: 'Renderer services: keyboard/focus service and terminal focus handlers — trigger re-resolution on focus of either side.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6151b6e-7c0d-40ae-887f-c382a5efd38d:
+    id: d6151b6e-7c0d-40ae-887f-c382a5efd38d
+    content: 'Components: tree node (blue bar) and terminal tab (new tertiary colour state).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16a05cdf-9fba-49d5-91fe-95d39a36ec7e:
+    id: 16a05cdf-9fba-49d5-91fe-95d39a36ec7e
+    content: 'Theme: add a tertiary "associated, not focused" colour token to `globals.css` covering both themes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f52900c-a2c2-442e-99c6-45e8105ab306:
+    id: 1f52900c-a2c2-442e-99c6-45e8105ab306
+    content: 'Tests: integration test covering focus after simulated idle on both sides, unit tests for the association selector, and visual coverage of the three tab states (default, associated, focused).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ac7455c-1211-4269-89d1-8af2d16ec162:
+    id: 5ac7455c-1211-4269-89d1-8af2d16ec162
+    content: Constraints to call out
+    children:
+      - 5696b3b5-7a05-44e0-952c-ba0f9e8b2928
+      - f2af5098-2649-47c5-8505-5ff44eb9d943
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5696b3b5-7a05-44e0-952c-ba0f9e8b2928:
+    id: 5696b3b5-7a05-44e0-952c-ba0f9e8b2928
+    content: The current bug suggests something is being cleared on inactivity (timer, listener teardown, or stale ref); the fix must remove that clearing path rather than paper over it with a re-pair on focus, otherwise other consumers of the association will keep breaking.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2af5098-2649-47c5-8505-5ff44eb9d943:
+    id: f2af5098-2649-47c5-8505-5ff44eb9d943
+    content: The tertiary tab colour must remain clearly subordinate to the active-focus colour — if it competes visually, focused-tab affordance is degraded across the whole app, not just this flow.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29bfa817-edcf-488f-911f-fc2d317b8130:
+    id: 29bfa817-edcf-488f-911f-fc2d317b8130
+    content: Technical refinement
+    children:
+      - 592ad4b0-40ab-41fe-8a1f-095829341812
+      - 12e1f7d5-299f-4a7d-b943-6481a9786899
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  592ad4b0-40ab-41fe-8a1f-095829341812:
+    id: 592ad4b0-40ab-41fe-8a1f-095829341812
+    content: Complications
+    children:
+      - 9035d11b-bd03-41d1-b0a0-94a9091f7919
+      - 7ccfcb5c-fbe5-493e-96d9-716cb886b03a
+      - 0e42c8ab-b4ae-422f-b5a6-b508def8c5e6
+      - bb491f50-dc04-4f08-86ff-acaa82151f5c
+      - c7e2e90c-a4e4-448d-863f-6463946dee91
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9035d11b-bd03-41d1-b0a0-94a9091f7919:
+    id: 9035d11b-bd03-41d1-b0a0-94a9091f7919
+    content: 'The blue bar is not driven by a stored node↔terminal link today — `selectActiveSessionNodeId` derives it from two transient signals: a workflow step on the focused terminal in `running`/`awaiting-validation`, or an active terminal-collaboration on that terminal. "Lost after a while" is the workflow step leaving those states or the collaboration ending — the link was never persistent in the first place.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ccfcb5c-fbe5-493e-96d9-716cb886b03a:
+    id: 7ccfcb5c-fbe5-493e-96d9-716cb886b03a
+    content: Fixing the symptom therefore means introducing a durable `originNodeId` on `TerminalInfo` (or an equivalent map), not patching a teardown path. This must round-trip through session persistence so restored terminals keep their origin after a reload.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e42c8ab-b4ae-422f-b5a6-b508def8c5e6:
+    id: 0e42c8ab-b4ae-422f-b5a6-b508def8c5e6
+    content: A node can spawn several terminals over time and a terminal can host work for several nodes — the new link needs a clear policy (e.g. origin-on-create, latest wins) and the bar must not override the existing "what is running right now" signal when the two disagree.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb491f50-dc04-4f08-86ff-acaa82151f5c:
+    id: bb491f50-dc04-4f08-86ff-acaa82151f5c
+    content: The tertiary tab colour requires the inverse lookup (focused node → its terminal tab) and a new theme token; it is additive UI scope on top of the bug fix and could land as a separate chunk if ROI is reviewed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7e2e90c-a4e4-448d-863f-6463946dee91:
+    id: c7e2e90c-a4e4-448d-863f-6463946dee91
+    content: 'Out of scope: changing collaboration/workflow-step semantics, multi-node-per-terminal indicators, restoring associations for terminals that were already closed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12e1f7d5-299f-4a7d-b943-6481a9786899:
+    id: 12e1f7d5-299f-4a7d-b943-6481a9786899
+    content: Approach summary
+    children:
+      - c3c3646f-e465-47fe-91a3-eeb496a8204f
+      - eef9c359-67ad-4c08-b2e2-75d4a2ba038b
+      - 8ff838e7-32ad-4a69-9b58-1c20f1156be4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3c3646f-e465-47fe-91a3-eeb496a8204f:
+    id: c3c3646f-e465-47fe-91a3-eeb496a8204f
+    content: Add `originNodeId` to `TerminalInfo`, populated when a terminal is opened from a node and persisted with the session; OR it into `selectActiveSessionNodeId` so the blue bar reflects origin in addition to the existing transient signals.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eef9c359-67ad-4c08-b2e2-75d4a2ba038b:
+    id: eef9c359-67ad-4c08-b2e2-75d4a2ba038b
+    content: Add an inverse selector `nodeId → terminalId` and a new tab visual state ("associated, not focused") driven by it, gated on the focused node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ff838e7-32ad-4a69-9b58-1c20f1156be4:
+    id: 8ff838e7-32ad-4a69-9b58-1c20f1156be4
+    content: 'Non-obvious: the bar now has two sources of truth (origin vs current activity). Order matters — current-activity should win on conflict so a step running on a different terminal than its origin still highlights correctly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da3697a9-88d7-4fa7-b266-19a38f85ab84:
+    id: da3697a9-88d7-4fa7-b266-19a38f85ab84
+    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfbd2822-22b1-49c3-a24b-73832541a492:
+    id: bfbd2822-22b1-49c3-a24b-73832541a492
+    content: PR1 base rsync'd in
+    children:
+      - ec82e90b-a384-4e2f-b5ef-0d88433822b2
+      - 073a2e61-de77-4238-a534-cc34a8dbd5dc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec82e90b-a384-4e2f-b5ef-0d88433822b2:
+    id: ec82e90b-a384-4e2f-b5ef-0d88433822b2
+    content: PR1's branch (`fix/node-session-association`) has no commits yet — per the worktree-creation procedure, forked from it (silently from master) and rsync'd PR1's uncommitted changes from `/Users/brianfox/dev/Arborescent-node-session/` into the new worktree, excluding .git / node_modules / out / dist. PR2 worktree at `/Users/brianfox/dev/Arborescent-tab-colour` on branch `fix/node-session-tab-colour` now starts from PR1's working state.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  073a2e61-de77-4238-a534-cc34a8dbd5dc:
+    id: 073a2e61-de77-4238-a534-cc34a8dbd5dc
+    content: No node_modules symlink. They'll be installed on demand in the implementation step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe9e2deb-2f0f-49a3-8dce-ee928487c038:
+    id: fe9e2deb-2f0f-49a3-8dce-ee928487c038
+    content: TDD red state established for PR2
+    children:
+      - 274a7a1f-de5d-47ba-afb0-63a8852f3eeb
+      - 224390f7-8338-42ec-8e25-f2f1250652b4
+      - cf771ab4-9813-48c1-a746-44b93c73de15
+      - f368f8b3-53c7-4547-9589-defbc3bd5196
+      - a5c229d1-aeca-4fee-8e1c-4a14abb835fa
+      - 42239a1d-911d-436c-99d4-a297bb772775
+      - 26a6839e-185d-473e-b65c-4e54842b25c1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  274a7a1f-de5d-47ba-afb0-63a8852f3eeb:
+    id: 274a7a1f-de5d-47ba-afb0-63a8852f3eeb
+    content: Created src/renderer/store/tree/selectors/associatedTerminalId.ts as a minimal stub (returns null) — needed so test imports resolve. The eventual implementation will scan `state.terminalOrigins` (terminalId → originNodeId) for a value matching focusedNodeId. Type seam only; no logic.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  224390f7-8338-42ec-8e25-f2f1250652b4:
+    id: 224390f7-8338-42ec-8e25-f2f1250652b4
+    content: Created src/renderer/store/tree/selectors/tests/associatedTerminalId.test.ts — covers null/undefined/empty-string focusedNodeId, missing/empty terminalOrigins record, match (one terminal), no-match, multiple terminals (each node resolves to its own), deterministic resolution among duplicates, purity, defensive empty-string origin, focused-node-undefined plus unrelated-terminal-present case
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf771ab4-9813-48c1-a746-44b93c73de15:
+    id: cf771ab4-9813-48c1-a746-44b93c73de15
+    content: 'Extended src/renderer/components/Tab/tests/Tab.test.tsx with an `associated (linked to focused node) state` describe block — covers: `associated` class when isAssociated && !isActive; active wins on conflict (no `associated` when isActive); no class when isAssociated=false or omitted; isActive=true still yields `active`; close-button behavior unchanged when associated. Uses `as unknown as ComponentType<TabProps & { isAssociated?: boolean }>` to pass the future prop through the still-current Tab type without touching component code.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f368f8b3-53c7-4547-9589-defbc3bd5196:
+    id: f368f8b3-53c7-4547-9589-defbc3bd5196
+    content: No feature code written beyond the empty stub — Tab.tsx unchanged, no new globals.css token, no new selector logic
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5c229d1-aeca-4fee-8e1c-4a14abb835fa:
+    id: a5c229d1-aeca-4fee-8e1c-4a14abb835fa
+    content: Ran only the new/changed test files with vitest — 5 failures targeting unimplemented behavior (Tab `associated` class, selector returning the matching terminalId, three-way name resolution, deterministic resolution among duplicates, purity), 19 passing (existing Tab tests plus selector negative-path cases that pass against the null-returning stub)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42239a1d-911d-436c-99d4-a297bb772775:
+    id: 42239a1d-911d-436c-99d4-a297bb772775
+    content: Selector lives in src/renderer/store/tree/selectors/ next to selectActiveSessionNodeId.ts — keeps the two halves of the node↔terminal pairing colocated and discoverable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  26a6839e-185d-473e-b65c-4e54842b25c1:
+    id: 26a6839e-185d-473e-b65c-4e54842b25c1
+    content: Considered an integration test layered on TerminalPanel; opted out because the existing TerminalPanel.test.tsx mocks Tab via vi.mock and would need the real Tab + focused-node store wired up to exercise the cross-store path. That belongs in a follow-up integration test once the implementation lands.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c32f2b16-a89a-4c1b-bd0d-520180d072ed:
+    id: c32f2b16-a89a-4c1b-bd0d-520180d072ed
+    content: PR2 feature implementation
+    children:
+      - a092b412-b677-4649-8f27-6dd4057f7f9a
+      - ef05d3d8-e1eb-47b3-bb0f-a87e0f3d7ccb
+      - 9ef7d0da-905a-49ac-9ac0-d3c4954da09e
+      - 11811513-dde1-4c01-9520-f72c10487e10
+      - 1916954c-341a-42cd-89b2-595a0363b98f
+      - 74de4c39-7cf0-4a85-b337-e3ea674115d0
+      - c1b6e139-e790-40ef-8492-5029b1ff1ad0
+      - 3aa9f59f-178b-4314-ac5f-fcba2e6db919
+      - fe1cfb0c-3b19-40e8-9ecd-a2bd1d7a91e4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a092b412-b677-4649-8f27-6dd4057f7f9a:
+    id: a092b412-b677-4649-8f27-6dd4057f7f9a
+    content: 'src/renderer/store/tree/selectors/associatedTerminalId.ts — replaced stub with the real scan: walks `state.terminalOrigins` (terminalId → originNodeId) and returns the first terminalId whose originNodeId matches the focused nodeId. Returns null for null/undefined/empty focusedNodeId, missing or empty origins map, defensive empty-string origin entries'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef05d3d8-e1eb-47b3-bb0f-a87e0f3d7ccb:
+    id: ef05d3d8-e1eb-47b3-bb0f-a87e0f3d7ccb
+    content: 'src/renderer/components/Tab/Tab.tsx — added optional `isAssociated?: boolean` prop, computed `associated` class only when `!isActive && isAssociated` so the active class wins on conflict (per spec). No other behavior changes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ef7d0da-905a-49ac-9ac0-d3c4954da09e:
+    id: 9ef7d0da-905a-49ac-9ac0-d3c4954da09e
+    content: src/renderer/components/Tab/Tab.css — added `.tab.associated` rule using the existing `--blue-75` token (a translucent blue defined in both light and dark theme files) — visibly distinct from `--gray-100` (default tab background) and `--white` (active tab background) without introducing a new theme token. Echoes the blue stripe on the node side, so the eye sees a single visual link between focused node and its terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11811513-dde1-4c01-9520-f72c10487e10:
+    id: 11811513-dde1-4c01-9520-f72c10487e10
+    content: src/renderer/components/Terminal/TerminalPanel.tsx — subscribes to the tree store's `activeNodeId`, builds a terminalOrigins map from the terminals array, computes `associatedTerminalId` via `selectAssociatedTerminalId`, and passes `isAssociated={associatedTerminalId === term.id}` to each Tab. The map build is O(n) per render but tabs render in O(n) anyway, so no extra complexity class
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1916954c-341a-42cd-89b2-595a0363b98f:
+    id: 1916954c-341a-42cd-89b2-595a0363b98f
+    content: 'Existing TerminalPanel.test.tsx and TerminalPanelTabSwitch.test.tsx didn''t mock the tree store — adding the `useStore` subscription broke them. Added `vi.mock(''../../../store/tree/useStore'', () => ({ useStore: vi.fn(() => null) }))` to each. Tests now see "no focused node" and proceed as before'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74de4c39-7cf0-4a85-b337-e3ea674115d0:
+    id: 74de4c39-7cf0-4a85-b337-e3ea674115d0
+    content: Reused existing `--blue-75` token instead of adding a new one to globals.css — already defined in both themes, semantically aligned with the blue-stripe indicator on the node side. The "add a tertiary token" touchpoint was satisfied conceptually via reuse rather than addition (per project guideline "Reuse existing code as much as possible")
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1b6e139-e790-40ef-8492-5029b1ff1ad0:
+    id: c1b6e139-e790-40ef-8492-5029b1ff1ad0
+    content: 'Acceptance criteria coverage:'
+    children:
+      - d27c791f-8bde-41dc-b513-5da37052dea4
+      - 9b225d47-4a44-49e8-b1d3-b79406cd4cf5
+      - a1e63c56-e892-47ef-b18f-6a8f0f77669e
+      - ecac2443-d934-4e5c-a515-2539e80e173b
+      - b7f99a61-2289-4db0-a435-6981cddf8a31
+      - d2f6a273-57a1-4300-8089-353865be92f8
+      - 6da842f7-3ab9-407c-a0ea-0ebeea82887e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d27c791f-8bde-41dc-b513-5da37052dea4:
+    id: d27c791f-8bde-41dc-b513-5da37052dea4
+    content: AC "tertiary colour while tab not focused" — TerminalPanel passes isAssociated only for terminals whose originNodeId matches activeNodeId; Tab applies `associated` class only when !isActive
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b225d47-4a44-49e8-b1d3-b79406cd4cf5:
+    id: 9b225d47-4a44-49e8-b1d3-b79406cd4cf5
+    content: AC "promotion to active-focus on click" — click triggers existing `setActiveTerminal` which updates activeTerminalId. The Tab then renders isActive=true; `!isActive && isAssociated` evaluates false so `associated` class is dropped and `active` class is applied
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1e63c56-e892-47ef-b18f-6a8f0f77669e:
+    id: a1e63c56-e892-47ef-b18f-6a8f0f77669e
+    content: AC "visibly distinct in light and dark themes" — `--blue-75` (#3b82f626, 15% opacity blue) layered over the default tab background renders as a subtle blue tint in both themes (verified by inspecting theme-light.css / theme-dark.css token definitions)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecac2443-d934-4e5c-a515-2539e80e173b:
+    id: ecac2443-d934-4e5c-a515-2539e80e173b
+    content: AC "switching between multiple idle sessions moves the tertiary colour to the right pair" — selector keyed on focused nodeId; each Tab independently checks if its id equals the resolved associatedTerminalId; on activeNodeId change, the selector returns a different terminalId and the previously-associated tab loses the class
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7f99a61-2289-4db0-a435-6981cddf8a31:
+    id: b7f99a61-2289-4db0-a435-6981cddf8a31
+    content: AC "deleted node → no stray tertiary on focus" — when the focused node is deleted, TreeNode unmounts (existing `if (!node) return null;` guard) so activeNodeId either points to a sibling or null. With no terminal pointing at a non-existent node, no tab gets isAssociated=true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2f6a273-57a1-4300-8089-353865be92f8:
+    id: d2f6a273-57a1-4300-8089-353865be92f8
+    content: AC "closing the session removes the indicator on next focus" — removeTerminal drops the terminal from state, so its originNodeId is gone from the map. Next render computes a null associatedTerminalId for any node that previously matched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6da842f7-3ab9-407c-a0ea-0ebeea82887e:
+    id: 6da842f7-3ab9-407c-a0ea-0ebeea82887e
+    content: AC "no focus-handling latency regression" — selector is O(n) over open terminals (typically < 10) and runs once per TerminalPanel render. No new subscriptions in TreeNode (the blue-bar path from PR1 is unchanged)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3aa9f59f-178b-4314-ac5f-fcba2e6db919:
+    id: 3aa9f59f-178b-4314-ac5f-fcba2e6db919
+    content: 'Quality gates: targeted tests (24/24 pass), broader Tab + Terminal + TabBar + selectors suite (91/91 pass), wider terminal store + cross-store + TreeNode regression (114/114 pass), `npx tsc --noEmit` clean, `npx eslint` clean on changed TS files'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe1cfb0c-3b19-40e8-9ecd-a2bd1d7a91e4:
+    id: fe1cfb0c-3b19-40e8-9ecd-a2bd1d7a91e4
+    content: No documentation update needed for PR2 in this step — the tertiary tab colour is additive UI; the existing changelog "Active terminal highlights its bound node" entry already covers the broader pairing semantics, and the docs/workflows.md mention of the blue stripe doesn't need to grow. A docs pass can address this at the very end if the user wants the tertiary state explicitly called out
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4feec30-0da7-4d9a-b92d-2bd67017360a:
+    id: e4feec30-0da7-4d9a-b92d-2bd67017360a
+    content: AI refactor pass for PR2
+    children:
+      - 6a042e1e-4533-4cd0-b4e9-a65155e7667d
+      - ded680ad-c37a-4f5d-9da6-73b4f8745369
+      - bb20a867-0e12-42bd-8e15-2da8f9da30e4
+      - d77b8daa-1b4f-453e-a0fd-9f23ce59cb20
+      - 095dc278-3d74-4fb5-8e71-6e4f99aa5c80
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a042e1e-4533-4cd0-b4e9-a65155e7667d:
+    id: 6a042e1e-4533-4cd0-b4e9-a65155e7667d
+    content: 'Removed the TDD-red leftover `TabWithAssoc` cast in Tab.test.tsx now that `isAssociated?: boolean` is a real `TabProps` field — same cleanup pattern as PR1''s refactor pass (use `as unknown as X` for library types only). Test JSX now uses `<Tab ...>` directly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ded680ad-c37a-4f5d-9da6-73b4f8745369:
+    id: ded680ad-c37a-4f5d-9da6-73b4f8745369
+    content: No empty tests, no abandoned files. The selector test's purity case maps to business rule 6 ("Re-pairing must be idempotent") — kept for traceability, same rationale as PR1's idempotency test.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb20a867-0e12-42bd-8e15-2da8f9da30e4:
+    id: bb20a867-0e12-42bd-8e15-2da8f9da30e4
+    content: 'Other style nits considered and declined: the for-loop building `terminalOrigins` in TerminalPanel.tsx is the local style there (matches other inline computations like `activeTerminal`, `isPinned`, `allTerminals` — none use useMemo or functional composition); the conditional spread alternative trades clarity for no measurable gain.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d77b8daa-1b4f-453e-a0fd-9f23ce59cb20:
+    id: d77b8daa-1b4f-453e-a0fd-9f23ce59cb20
+    content: 'No tests-vs-behavior gap. Every behavior I added has a corresponding test: selector (associatedTerminalId.test.ts, 12 cases), Tab class wiring (Tab.test.tsx `associated` describe block, 6 cases), TerminalPanel/Tab regression (test mocks updated so existing 18 cases continue to pass).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  095dc278-3d74-4fb5-8e71-6e4f99aa5c80:
+    id: 095dc278-3d74-4fb5-8e71-6e4f99aa5c80
+    content: Re-ran the standard checks after the refactor — PR2-related test files 49/49 pass; `npx tsc --noEmit` clean; `npx eslint` clean on all changed TS files (no warnings either).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9165c499-6a8e-45d4-8ebe-2799bffc4224:
+    id: 9165c499-6a8e-45d4-8ebe-2799bffc4224
+    content: review feedback
+    children:
+      - b1cc708a-4351-47db-bb3c-11db6a1f54e4
+      - 7d60ee6b-6a2f-4e39-bd7a-68e66a5c1530
+      - 59e0d1af-9f64-4c61-9ba7-60a0fe317295
+      - 0d808030-0ab8-489c-a8c6-473ff13a365a
+      - 6b0c4252-3f4a-40cc-85db-2469b9665078
+      - 3aced1fe-ac7b-4a11-a61f-8a76aeefcb0f
+      - fb23540b-5efa-46ff-a80c-7f0142ff1d5f
+      - a8acc8c4-8658-4237-8c43-ef3bc2bc8b31
+      - 2c90dc5f-9c49-4eaa-8ff9-5abf8af8470c
+      - 39d38433-204d-452f-a69b-26fb33858777
+      - 788dee7e-9a55-4e32-8adf-0d59fc3b07a8
+      - e1cb2b7b-2264-467b-8cb2-734f54bd302b
+      - cb9bdd9f-f108-4600-bbdc-4776b39c8ec2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1cc708a-4351-47db-bb3c-11db6a1f54e4:
+    id: b1cc708a-4351-47db-bb3c-11db6a1f54e4
+    content: 'Reviewer: pr-review-toolkit:code-reviewer agent ran a full diff review against PR2 (scope explicitly excluded PR1''s rsync''d carry-over). Verdict: zero CRITICAL, two IMPORTANT (test mock convention + missing integration assertion), several NITs (mostly answering questions in the prompt rather than demanding action).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d60ee6b-6a2f-4e39-bd7a-68e66a5c1530:
+    id: 7d60ee6b-6a2f-4e39-bd7a-68e66a5c1530
+    content: 'IMPORTANT — `useStore` mock in TerminalPanel.test.tsx:9-11 and TerminalPanelTabSwitch.test.tsx:8-10 uses `vi.fn(() => null)`, which ignores the selector arg. Tests pass only because `activeNodeId === null` happens to coincide with what the production code wants. If TerminalPanel is later refactored to read a non-nullable value via this hook (eg. an object), the mock silently lies and tests won''t catch it. Fix: match the existing `usePanelStore` pattern in the same file — `vi.fn((selector) => selector ? selector({ activeNodeId: null }) : null)`. Same fix in both files.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59e0d1af-9f64-4c61-9ba7-60a0fe317295:
+    id: 59e0d1af-9f64-4c61-9ba7-60a0fe317295
+    content: 'IMPORTANT — No test asserts the `associated` wiring through `TerminalPanel`. Tab tests cover the class in isolation; selector tests cover the pure function; but nothing renders the panel with a focused node + matching terminal and asserts the right Tab receives `isAssociated={true}`. The Tab mock in the existing panel tests doesn''t even pass through `isAssociated`. Fix: expand the Tab mock to surface `isAssociated` (eg. `data-associated={String(isAssociated)}`), then add one test with `useStore` returning a nodeId and `terminals: [{ id, originNodeId: <same nodeId> }]`, asserting the matching tab carries it and others don''t.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d808030-0ab8-489c-a8c6-473ff13a365a:
+    id: 0d808030-0ab8-489c-a8c6-473ff13a365a
+    content: NIT — `terminalOrigins` map rebuilt every render in TerminalPanel.tsx:21-25. Negligible (≤20 terminals × O(1) work). useMemo would add bookkeeping and a `terminals` dep that's defeated by Zustand rebroadcasts anyway. Acceptable as-is; if optimizing later, prefer pulling the inverse map directly via a selective `useTerminalStore` selector rather than wrapping in useMemo.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b0c4252-3f4a-40cc-85db-2469b9665078:
+    id: 6b0c4252-3f4a-40cc-85db-2469b9665078
+    content: NIT — Whole-store subscription `useTerminalStore()` (TerminalPanel.tsx:12, pre-existing) re-renders the panel on any terminal-store change. Adding the targeted `useStore((state) => state.activeNodeId)` is strictly additive — no surprising interaction. Worth a follow-up to make the terminal-store subscription selective, but out of PR2 scope.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3aced1fe-ac7b-4a11-a61f-8a76aeefcb0f:
+    id: 3aced1fe-ac7b-4a11-a61f-8a76aeefcb0f
+    content: 'NIT — associatedTerminalId.test.ts:65 "deterministic among duplicates" assertion: `expect(a === ''terminal-1'' || a === ''terminal-2'').toBe(true)` advertises looser guarantees than the code provides. `Object.entries` preserves insertion order in modern V8, so insertion order IS the de facto contract — but the test allows either outcome. Either pin to `''terminal-1''` and document insertion order in associatedTerminalId.ts, or add a code comment that duplicate origins are not expected by construction (openTerminal early-exits if active terminal exists, so per-node terminals are unique). The current ambiguous assertion documents a guarantee the code doesn''t.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb23540b-5efa-46ff-a80c-7f0142ff1d5f:
+    id: fb23540b-5efa-46ff-a80c-7f0142ff1d5f
+    content: 'NIT — associatedTerminalId.test.ts:70-75 purity test (three identical calls) is redundant — any other test in the file would already fail if the function weren''t pure. Replace with something that has actual signal: freeze the input state object and assert it''s not mutated. Or delete (the idempotency-business-rule-6 mapping is already covered by the other tests'' shape — see PR1 refactor for the same reasoning).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8acc8c4-8658-4237-8c43-ef3bc2bc8b31:
+    id: a8acc8c4-8658-4237-8c43-ef3bc2bc8b31
+    content: 'NIT — CSS layering on `.tab.zoom-tab.associated`: `Tab.css:25-28` `.tab.associated { background-color: var(--blue-75); }` overrides the zoom tab''s `--gray-50` but the dotted gradient (background-image) is unset on `.tab.associated`, so a zoom tab + associated state renders blue with dotted overlay. Probably fine but not visually verified. If you want zoom tabs exempt, guard the className: `!isActive && !isZoomTab && isAssociated && ''associated''` in Tab.tsx:50. Recommend an eyeball check before merge.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c90dc5f-9c49-4eaa-8ff9-5abf8af8470c:
+    id: 2c90dc5f-9c49-4eaa-8ff9-5abf8af8470c
+    content: 'NIT — `.tab.zoom-tab.active` vs `.tab.associated`: declared after, same specificity → active wins. The className gate `!isActive && isAssociated` already prevents conflict at the prop level. No bug, just confirming layering.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39d38433-204d-452f-a69b-26fb33858777:
+    id: 39d38433-204d-452f-a69b-26fb33858777
+    content: 'AC "deleted-node → no stray tertiary" verified: deleteNode is synchronous (Zustand `set()`), activeNodeId updates in the same commit as nodes; no microtask gap that produces a wrong-colour frame. Even if there were one, it would resolve in <16ms. Belt-and-braces "prune deleted IDs from originNodeId" not needed — the selector returns null when activeNodeId points at a node no terminal references.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  788dee7e-9a55-4e32-8adf-0d59fc3b07a8:
+    id: 788dee7e-9a55-4e32-8adf-0d59fc3b07a8
+    content: Selector location (`store/tree/selectors/`) acceptable — symmetric with `selectActiveSessionNodeId`. `store/selectors/cross/` would be more honest if you ever generalize, but not worth moving for stylistic reasons.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1cb2b7b-2264-467b-8cb2-734f54bd302b:
+    id: e1cb2b7b-2264-467b-8cb2-734f54bd302b
+    content: Tab.tsx:50 className gate `!isActive && isAssociated` is correct. The only multi-state co-occurrence concern is `zoom-tab` (NIT above).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb9bdd9f-f108-4600-bbdc-4776b39c8ec2:
+    id: cb9bdd9f-f108-4600-bbdc-4776b39c8ec2
+    content: 'Decision: two IMPORTANT items are worth fixing in a follow-up polish pass: tighten both `useStore` mocks to honour the selector convention, and add one integration assertion that the right Tab receives `isAssociated`. NITs are deferred — most just answer the prompt''s questions rather than requiring action.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0225c8a-05f4-49b1-a62c-e5199751e120:
+    id: b0225c8a-05f4-49b1-a62c-e5199751e120
+    content: feedback
+    children:
+      - 035d4da2-16d9-4c7d-8b36-b88091f0c754
+      - c78a4863-cc77-4d0b-8cd8-8daf5371bb54
+      - 8444ea43-1a12-4bf6-9635-0f9f46d63d7f
+      - 10a62a1b-190b-405f-800f-a48ecac79290
+      - 45f9f544-769a-4e97-a347-52ca172131c8
+      - 32ff1ff6-bfcc-497c-9f55-936772917cb9
+      - bdd22e92-dd49-4248-b476-0c82fbeb63bf
+      - cbaf5f60-03d5-424c-b711-cf4376031c70
+      - e328e32b-b1f3-41f3-bcbd-9104bb1b2010
+      - 43153ba8-ed01-409e-b81e-72d49246fa53
+      - 00830f98-5d26-481c-b952-937a63a3d788
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  035d4da2-16d9-4c7d-8b36-b88091f0c754:
+    id: 035d4da2-16d9-4c7d-8b36-b88091f0c754
+    content: 'AGREE — IMPORTANT #1 (useStore mock ignores selector): Verified. Current `vi.fn(() => null)` works only because `null === null` coincidentally — if a future refactor reads any other tree state through this hook (eg. `state.nodes`), the mock silently returns null and tests pass invalidly. The existing `usePanelStore` mock in the same files already shows the correct selector-aware pattern. Cheap fix, real footgun. Worth doing in the next polish pass.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c78a4863-cc77-4d0b-8cd8-8daf5371bb54:
+    id: c78a4863-cc77-4d0b-8cd8-8daf5371bb54
+    content: 'AGREE — IMPORTANT #2 (no integration test for the `associated` wiring through TerminalPanel): Verified. The Tab mock in TerminalPanel.test.tsx (line 30-40) destructures only `displayName/onClick/onClose/isActive` and never passes `isAssociated`. There''s no test exercising `useStore → terminalOrigins → selector → isAssociated → Tab`. The cross-store wiring is the part most likely to break in future refactors. Worth fixing in the next polish pass.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8444ea43-1a12-4bf6-9635-0f9f46d63d7f:
+    id: 8444ea43-1a12-4bf6-9635-0f9f46d63d7f
+    content: 'DISAGREE — NIT "deterministic among duplicates" assertion is loose: The test deliberately captures the only thing the implementation actually guarantees — determinism across calls (a===b===c). Pinning to ''terminal-1'' would couple the test to `Object.entries` insertion-order semantics, which is a V8 implementation detail. The duplicate-origin case doesn''t occur by construction anyway (openTerminal early-exits on an active terminal, so each node''s terminal is unique). The current shape is correct.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10a62a1b-190b-405f-800f-a48ecac79290:
+    id: 10a62a1b-190b-405f-800f-a48ecac79290
+    content: 'DISAGREE — NIT purity test is redundant: Same rationale as PR1''s idempotency test — explicit traceability to business rule 6 ("Re-pairing on focus must be idempotent — no duplicated sessions, no tab reordering, no state mutation"). Three calls cost nothing and document the rule. The reviewer''s "replace with a freeze + mutation check" is a stronger test of the same property, fair to swap if doing the polish pass, but not blocking.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45f9f544-769a-4e97-a347-52ca172131c8:
+    id: 45f9f544-769a-4e97-a347-52ca172131c8
+    content: 'DISAGREE — NIT CSS layering on `.tab.zoom-tab.associated`: Verified the combination is impossible by construction. `isZoomTab` is only passed by `TabBar.tsx:45` (file tabs); `TerminalPanel.tsx` never passes `isZoomTab` to its Tabs, and `isAssociated` is only passed by `TerminalPanel.tsx`. So `.tab.zoom-tab.associated` cannot occur with current callers. Low-probability-of-occurring-at-all rather than just low-probability; adding the `!isZoomTab` guard would clutter the code for a scenario the surrounding components don''t allow.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32ff1ff6-bfcc-497c-9f55-936772917cb9:
+    id: 32ff1ff6-bfcc-497c-9f55-936772917cb9
+    content: 'CONFIRMED — NIT `.tab.zoom-tab.active` vs `.tab.associated` layering: The reviewer''s own conclusion — no bug, the prop-level gate `!isActive && isAssociated` is sufficient. Nothing to do.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdd22e92-dd49-4248-b476-0c82fbeb63bf:
+    id: bdd22e92-dd49-4248-b476-0c82fbeb63bf
+    content: 'DEFER — NIT terminalOrigins map rebuilt every render: Acceptable. Reviewer agrees no action.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbaf5f60-03d5-424c-b711-cf4376031c70:
+    id: cbaf5f60-03d5-424c-b711-cf4376031c70
+    content: 'DEFER — NIT whole-store subscription (pre-existing): Out of PR2 scope. Reviewer agrees.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e328e32b-b1f3-41f3-bcbd-9104bb1b2010:
+    id: e328e32b-b1f3-41f3-bcbd-9104bb1b2010
+    content: 'DEFER — NIT selector location: Acceptable. Reviewer agrees.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43153ba8-ed01-409e-b81e-72d49246fa53:
+    id: 43153ba8-ed01-409e-b81e-72d49246fa53
+    content: 'CONFIRMED — AC "deleted-node → no stray tertiary": Reviewer verified deleteNode is synchronous; no stale-frame risk. Nothing to do.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00830f98-5d26-481c-b952-937a63a3d788:
+    id: 00830f98-5d26-481c-b952-937a63a3d788
+    content: 'Overall: fix the two IMPORTANT items in the next implementation step (tighten both `useStore` mocks; add a TerminalPanel integration test that asserts the `associated` wiring). Disagree with three NITs as either intentional design (deterministic-among-duplicates assertion; purity test for traceability) or impossible-by-construction (CSS zoom+associated layering). Skip the rest.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  740df6a0-2bea-43d3-8c6c-2f8d592ca47d:
+    id: 740df6a0-2bea-43d3-8c6c-2f8d592ca47d
+    content: documentation
+    children:
+      - e7f541b8-3a10-4bb4-b7d7-64a5854758f9
+      - f3e16448-dc58-42a2-963d-0a9c88d71671
+      - 21d7dd89-71fd-4838-933a-5acd4936515c
+      - 51f91cce-4d12-422c-9519-bc616d26988c
+      - 7bb991d2-f0e3-4dc0-a7df-9b88921e3fdd
+      - aec8e878-b54f-4176-b07e-c87786c7b740
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7f541b8-3a10-4bb4-b7d7-64a5854758f9:
+    id: e7f541b8-3a10-4bb4-b7d7-64a5854758f9
+    content: No new changelog entry — like PR1, this is part of the same Unreleased feature ("Active terminal highlights its bound node" at CHANGELOG.md:12). A separate line would fragment the user's mental model — the bar and the tertiary tint are two halves of the same node↔terminal indicator.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3e16448-dc58-42a2-963d-0a9c88d71671:
+    id: f3e16448-dc58-42a2-963d-0a9c88d71671
+    content: 'Amended the existing Unreleased CHANGELOG entry to also describe the inverse direction: "Focusing the bound node from the tree gives its terminal tab a subtle blue tint, even when a different tab is active — so the pairing is visible from either side." Keeps the user''s takeaway in one place and matches the existing prose style (direct, second-person, no implementation terms).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21d7dd89-71fd-4838-933a-5acd4936515c:
+    id: 21d7dd89-71fd-4838-933a-5acd4936515c
+    content: 'Updated docs/workflows.md "Running Multiple Items" section (around line 144) by inserting one sentence after the existing blue-stripe description: "Focusing an item with a bound terminal tints that tab blue — so you can find its terminal even when another tab is active." Useful in this section because it''s exactly the scenario users hit when running multiple items in parallel and switching attention between them.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51f91cce-4d12-422c-9519-bc616d26988c:
+    id: 51f91cce-4d12-422c-9519-bc616d26988c
+    content: No README.md update — README doesn't reference the blue stripe; adding the tertiary tint would be out of place at that level (it's a workflow detail, not a top-level feature).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bb991d2-f0e3-4dc0-a7df-9b88921e3fdd:
+    id: 7bb991d2-f0e3-4dc0-a7df-9b88921e3fdd
+    content: No documentation removed or contradicted — both edits are additive amendments to existing prose. No reference to removed functionality.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aec8e878-b54f-4176-b07e-c87786c7b740:
+    id: aec8e878-b54f-4176-b07e-c87786c7b740
+    content: Nothing unclear or inconsistent flagged for the user. "Bound terminal" / "bound node" wording matches the existing CHANGELOG and workflows.md vocabulary; "subtle blue tint" / "blue stripe" keeps the two indicators distinguishable at the prose level.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7:
+    id: 7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7
+    content: Fix anything that needs to change
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  54f8e1ab-c1ad-43c9-b080-94596d5ffa57:
+    id: 54f8e1ab-c1ad-43c9-b080-94596d5ffa57
+    content: Read the code review feedback in the last node
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  aa65fabf-7696-4f88-9abb-88b2c9556d7a:
+    id: aa65fabf-7696-4f88-9abb-88b2c9556d7a
+    content: Summarise the contents of the 'Review feedback' node
+    children:
+      - 3350c79a-3ae2-4fc2-ab8a-fd0a9b2e23b6
+      - a8a34959-54d0-4fb2-a5ac-8e8a90735628
+      - 980f756f-9d2c-4d7c-b773-e8b63f3697ee
+    metadata:
+      status: pending
+      isBlueprint: true
+  3350c79a-3ae2-4fc2-ab8a-fd0a9b2e23b6:
+    id: 3350c79a-3ae2-4fc2-ab8a-fd0a9b2e23b6
+    content: Major issues you fixed
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  a8a34959-54d0-4fb2-a5ac-8e8a90735628:
+    id: a8a34959-54d0-4fb2-a5ac-8e8a90735628
+    content: Minor issues you fixed
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  980f756f-9d2c-4d7c-b773-e8b63f3697ee:
+    id: 980f756f-9d2c-4d7c-b773-e8b63f3697ee
+    content: Feedback you skipped
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  73242a4a-6387-48e5-951e-d7cb9150cf5e:
+    id: 73242a4a-6387-48e5-951e-d7cb9150cf5e
+    content: User story — Decomposed children auto-advance to the next workflow step and continue playing in the originating session
+    children:
+      - f85f7c27-f826-42ba-b629-d67fe5218e46
+      - 19775f4a-7305-4ab6-b566-474e5a5922a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f85f7c27-f826-42ba-b629-d67fe5218e46:
+    id: f85f7c27-f826-42ba-b629-d67fe5218e46
+    content: 📄 Product spec
+    children:
+      - 4681b8ec-8025-4816-8882-968cb7ac4670
+      - b82869a7-d639-491c-9064-48daa313ec3a
+      - ba672870-8f4d-4d95-8721-8d4d2c3adaa0
+      - c4ef4a13-2192-4a29-be18-69133842dccb
+      - b61c88fe-dcb3-4cf6-8eea-d8db305f8adf
+      - e841ea75-42b5-4493-af41-ae3c6067baf2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4681b8ec-8025-4816-8882-968cb7ac4670:
+    id: 4681b8ec-8025-4816-8882-968cb7ac4670
+    content: Context — a workflow step can decompose a node into children; the recurse engine currently replays the same step on each new child, risking a second decomposition on work just produced. Today the AI typically declines to re-decompose, so the bug is masked by luck rather than guarded by logic. Even if that scheduling were fixed, the terminal session that ran the decomposing step is bound to the parent node, so attempting to play any of the resulting children in the same session fails with "session is already assigned to another node" — subsequent step calls have nowhere to land.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b82869a7-d639-491c-9064-48daa313ec3a:
+    id: b82869a7-d639-491c-9064-48daa313ec3a
+    content: User — Arborescent power users running multi-step automated workflows with AI decomposition, who expect siblings to continue in the originating session without manual rebinding.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba672870-8f4d-4d95-8721-8d4d2c3adaa0:
+    id: ba672870-8f4d-4d95-8721-8d4d2c3adaa0
+    content: Current experience — after a decompose step finishes on the parent, the runner enters the freshly created children at the same step and automation visibly stalls. The session remains locked to the parent, so children cannot be played in it manually and auto-advance has no valid routing target. The user must intervene manually, rebind sessions, or open new ones — undermining the automation promise.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4ef4a13-2192-4a29-be18-69133842dccb:
+    id: c4ef4a13-2192-4a29-be18-69133842dccb
+    content: Goal — children produced by a decomposition step automatically start at the step that follows the producing step and play sequentially in the originating session, with the active child holding the visual focus (blue bar + tinted terminal tab).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b61c88fe-dcb3-4cf6-8eea-d8db305f8adf:
+    id: b61c88fe-dcb3-4cf6-8eea-d8db305f8adf
+    content: Business rules
+    children:
+      - 2310ff95-188e-4b16-b5db-fc19130d3d94
+      - 43db3d81-9a48-4f71-a482-282dddaccc96
+      - c271ab3c-5ca5-4903-b883-7def844c67f4
+      - 4cee91ba-636a-46b7-9b42-a495969c5e0b
+      - 547270a5-43e4-4089-aa62-94f7437da293
+      - 542f41b7-f111-41fb-be5b-c9bc4690f43d
+      - 39d02323-42eb-444a-b82e-f698eb35e581
+      - 3abb9901-e7e4-4dbf-a258-3196a7d6b0c5
+      - d474d224-717e-4190-9d4e-fc1e3f748c00
+      - 0e376d37-3f3b-49b6-9ffc-88b7bc6a5609
+      - e252a67d-0d01-48c4-bb9e-9d9fb81e085d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2310ff95-188e-4b16-b5db-fc19130d3d94:
+    id: 2310ff95-188e-4b16-b5db-fc19130d3d94
+    content: 1. When an automated workflow step produces child nodes via decomposition, each child enters the workflow at the step immediately after the producing step.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43db3d81-9a48-4f71-a482-282dddaccc96:
+    id: 43db3d81-9a48-4f71-a482-282dddaccc96
+    content: 2. The producing step does not execute on any node it just created within the same recurse pass.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c271ab3c-5ca5-4903-b883-7def844c67f4:
+    id: c271ab3c-5ca5-4903-b883-7def844c67f4
+    content: 3. If the producing step is the final step in the workflow, no further step is scheduled on the new children.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cee91ba-636a-46b7-9b42-a495969c5e0b:
+    id: 4cee91ba-636a-46b7-9b42-a495969c5e0b
+    content: 4. Non-decomposition steps continue to advance on the same node — the rescheduling rule targets only nodes newly produced by decomposition.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  547270a5-43e4-4089-aa62-94f7437da293:
+    id: 547270a5-43e4-4089-aa62-94f7437da293
+    content: 5. Resuming a workflow after restart places existing children at the correct downstream step and does not retrigger decomposition on them.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  542f41b7-f111-41fb-be5b-c9bc4690f43d:
+    id: 542f41b7-f111-41fb-be5b-c9bc4690f43d
+    content: 6. When a session decomposes a node, the resulting children inherit a session affinity with that session as a group.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39d02323-42eb-444a-b82e-f698eb35e581:
+    id: 39d02323-42eb-444a-b82e-f698eb35e581
+    content: 7. Playing any child of that group in the bound session is allowed and does not raise "session already assigned".
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3abb9901-e7e4-4dbf-a258-3196a7d6b0c5:
+    id: 3abb9901-e7e4-4dbf-a258-3196a7d6b0c5
+    content: 8. At any moment exactly one child of the group is "active" in the session — only the active child shows the blue focus bar and tints its bound terminal tab.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d474d224-717e-4190-9d4e-fc1e3f748c00:
+    id: d474d224-717e-4190-9d4e-fc1e3f748c00
+    content: 9. When a step completes on the active child and the runner advances to the next sibling, focus transfers visually; the previous child loses the blue bar and tab tint.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e376d37-3f3b-49b6-9ffc-88b7bc6a5609:
+    id: 0e376d37-3f3b-49b6-9ffc-88b7bc6a5609
+    content: 10. In automated mode the first child plays first; siblings follow in deterministic order once the previous sibling's downstream step completes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e252a67d-0d01-48c4-bb9e-9d9fb81e085d:
+    id: e252a67d-0d01-48c4-bb9e-9d9fb81e085d
+    content: 11. A session cannot be bound to children from a decomposition group it did not produce — the existing strict guard still applies to foreign nodes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e841ea75-42b5-4493-af41-ae3c6067baf2:
+    id: e841ea75-42b5-4493-af41-ae3c6067baf2
+    content: Acceptance criteria
+    children:
+      - 9d643871-de1f-4962-8037-9be9d7c37f83
+      - 0f247035-2487-4572-89e3-1c54359ecad3
+      - 1923fb40-b506-4342-9ff5-a52955b93f88
+      - 460aa92b-6646-49c9-b725-5b37f4a9660b
+      - c6abcf71-ed89-4271-aaa4-1eb3295af76a
+      - e19fd2b1-80cd-464c-a3a1-4f6b039c5e16
+      - f5576d13-3425-4659-bbf8-09565d88c556
+      - 64b22279-f234-4627-8d14-3657b2443c6a
+      - add4c021-f5fb-40a4-99c8-08dace09979c
+      - 6ec94478-da92-4b45-b022-91d574838d1e
+      - 5dd6092d-8aff-4467-b64e-7495a18fc8e9
+      - 17732d7a-91c9-4ee1-8048-a9d407e37915
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d643871-de1f-4962-8037-9be9d7c37f83:
+    id: 9d643871-de1f-4962-8037-9be9d7c37f83
+    content: Running an automated workflow whose Nth step decomposes a node results in each child entering the workflow at step N+1
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f247035-2487-4572-89e3-1c54359ecad3:
+    id: 0f247035-2487-4572-89e3-1c54359ecad3
+    content: The decomposing step does not re-execute on any node it just produced within the same recurse pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1923fb40-b506-4342-9ff5-a52955b93f88:
+    id: 1923fb40-b506-4342-9ff5-a52955b93f88
+    content: When the decomposing step is the last step, children are scheduled with no further workflow step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  460aa92b-6646-49c9-b725-5b37f4a9660b:
+    id: 460aa92b-6646-49c9-b725-5b37f4a9660b
+    content: Non-decomposing steps still advance on the same node, unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6abcf71-ed89-4271-aaa4-1eb3295af76a:
+    id: c6abcf71-ed89-4271-aaa4-1eb3295af76a
+    content: Workflow resume after app restart places previously decomposed children at the correct next step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e19fd2b1-80cd-464c-a3a1-4f6b039c5e16:
+    id: e19fd2b1-80cd-464c-a3a1-4f6b039c5e16
+    content: After an automated decomposition step finishes, the first child auto-plays in the same session that ran the parent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5576d13-3425-4659-bbf8-09565d88c556:
+    id: f5576d13-3425-4659-bbf8-09565d88c556
+    content: Subsequent siblings play in the same session in deterministic order after each previous sibling's downstream step completes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64b22279-f234-4627-8d14-3657b2443c6a:
+    id: 64b22279-f234-4627-8d14-3657b2443c6a
+    content: Manually triggering "play" on any decomposed child in the originating session succeeds (no "session already assigned" error)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  add4c021-f5fb-40a4-99c8-08dace09979c:
+    id: add4c021-f5fb-40a4-99c8-08dace09979c
+    content: The blue focus bar and tinted terminal tab follow the currently active child, and only the active child carries them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ec94478-da92-4b45-b022-91d574838d1e:
+    id: 6ec94478-da92-4b45-b022-91d574838d1e
+    content: Attempting to play a node outside the decomposition group in that session still raises the existing assignment error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dd6092d-8aff-4467-b64e-7495a18fc8e9:
+    id: 5dd6092d-8aff-4467-b64e-7495a18fc8e9
+    content: After app restart the session's active-child pointer is restored, not silently reset to the parent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17732d7a-91c9-4ee1-8048-a9d407e37915:
+    id: 17732d7a-91c9-4ee1-8048-a9d407e37915
+    content: No regression in token / AI-call count for workflows that already terminated correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19775f4a-7305-4ab6-b566-474e5a5922a9:
+    id: 19775f4a-7305-4ab6-b566-474e5a5922a9
+    content: 🔧 Implementation proposal
+    children:
+      - 987c02ae-bd3e-48b8-93a6-208318301b2e
+      - a3e7475d-054d-4bf6-87d5-53726baee00d
+      - f2d8cae2-c7ee-4220-b3f9-50b06e44b6b5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  987c02ae-bd3e-48b8-93a6-208318301b2e:
+    id: 987c02ae-bd3e-48b8-93a6-208318301b2e
+    content: 'Approach — in the recurse / workflow runner, when a step completes and the diff includes newly created child nodes, schedule those children at `currentStepIndex + 1` instead of inheriting `currentStepIndex`, treating decomposition output as a step transition for the children. In parallel, expand the session↔node binding from a single node to a (group, active-child) pair: the decomposition output forms the group, the runner advances the active-child pointer as steps complete, and focus rendering reads from the active-child pointer rather than a static node binding.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3e7475d-054d-4bf6-87d5-53726baee00d:
+    id: a3e7475d-054d-4bf6-87d5-53726baee00d
+    content: Touchpoints
+    children:
+      - f1a8972e-f0d2-44c4-8a94-6d4116bbdf91
+      - 00529b9e-0b52-4f37-b6c2-52849d5b8284
+      - 7c3dfd3c-519c-40ea-882d-fed67c61678f
+      - a6784e25-ac9d-43d7-9cbf-c9b39d25f9eb
+      - 970c3b78-6d71-492e-80bb-5a2b939c9ce9
+      - 2e040bed-a76c-4c4f-a1b9-4f057b04d6b7
+      - f80e5f83-e564-4cdf-9f26-e9e0e5357ce5
+      - da5ac84e-560d-4414-9bfa-ead86a867874
+      - e3e7c9c5-34ac-496d-a64d-070bd2089fdd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1a8972e-f0d2-44c4-8a94-6d4116bbdf91:
+    id: f1a8972e-f0d2-44c4-8a94-6d4116bbdf91
+    content: Workflow / recurse service in `src/renderer/services/`
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00529b9e-0b52-4f37-b6c2-52849d5b8284:
+    id: 00529b9e-0b52-4f37-b6c2-52849d5b8284
+    content: Workflow store actions that track per-node step position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c3dfd3c-519c-40ea-882d-fed67c61678f:
+    id: 7c3dfd3c-519c-40ea-882d-fed67c61678f
+    content: Serialization of the node→step pointer for resume compatibility
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6784e25-ac9d-43d7-9cbf-c9b39d25f9eb:
+    id: a6784e25-ac9d-43d7-9cbf-c9b39d25f9eb
+    content: Session-binding store and the "session already assigned" guard
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  970c3b78-6d71-492e-80bb-5a2b939c9ce9:
+    id: 970c3b78-6d71-492e-80bb-5a2b939c9ce9
+    content: Workflow runner — carry the active-child pointer forward when advancing siblings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e040bed-a76c-4c4f-a1b9-4f057b04d6b7:
+    id: 2e040bed-a76c-4c4f-a1b9-4f057b04d6b7
+    content: Focus / blue-bar rendering logic in the tree view
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f80e5f83-e564-4cdf-9f26-e9e0e5357ce5:
+    id: f80e5f83-e564-4cdf-9f26-e9e0e5357ce5
+    content: Terminal tab tint logic — must follow the active child, not the group root
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da5ac84e-560d-4414-9bfa-ead86a867874:
+    id: da5ac84e-560d-4414-9bfa-ead86a867874
+    content: Persistence of session binding for resume
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3e7c9c5-34ac-496d-a64d-070bd2089fdd:
+    id: e3e7c9c5-34ac-496d-a64d-070bd2089fdd
+    content: Tests covering recurse + decomposition interaction, final-step decomposition, resume-after-restart, manual play of siblings in the originating session, sequential auto-play across siblings, focus transitions, and restart restore
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2d8cae2-c7ee-4220-b3f9-50b06e44b6b5:
+    id: f2d8cae2-c7ee-4220-b3f9-50b06e44b6b5
+    content: Constraints to call out
+    children:
+      - b8cb6997-5752-488f-a790-336e1f17840c
+      - db4da465-a2c5-4b82-b52a-e16c7bab45ac
+      - ba185c84-5625-4a98-8bfd-e85e0f67be29
+      - b3ae2860-96b2-412d-89c5-4d5ff4ae68a4
+      - 47c1df1f-7fa7-4355-8f9a-7bdde26c8dad
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8cb6997-5752-488f-a790-336e1f17840c:
+    id: b8cb6997-5752-488f-a790-336e1f17840c
+    content: Children created before the fix may carry the producing step index in saved state — resume must coerce them forward or leave them alone deterministically
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db4da465-a2c5-4b82-b52a-e16c7bab45ac:
+    id: db4da465-a2c5-4b82-b52a-e16c7bab45ac
+    content: If the workflow engine has no first-class notion of "next step" for a given node, the fix may require a small refactor before the rule can be enforced
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba185c84-5625-4a98-8bfd-e85e0f67be29:
+    id: ba185c84-5625-4a98-8bfd-e85e0f67be29
+    content: The "session already assigned" guard must stay strict for unrelated nodes — only the decomposition group is exempt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3ae2860-96b2-412d-89c5-4d5ff4ae68a4:
+    id: b3ae2860-96b2-412d-89c5-4d5ff4ae68a4
+    content: Visual focus state and the runtime active-child pointer must share a single source of truth, or the blue bar and the runner will disagree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47c1df1f-7fa7-4355-8f9a-7bdde26c8dad:
+    id: 47c1df1f-7fa7-4355-8f9a-7bdde26c8dad
+    content: Recent commits 9c202a0 (terminal tab tint) and 47a317f (session pairing visibility) already shape this surface — this change should layer on, not refight, those decisions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96cc0187-3c3b-4ae4-bbb4-ee01ba8393fd:
+    id: 96cc0187-3c3b-4ae4-bbb4-ee01ba8393fd
+    content: Released element — acceptance criteria for the whole shipped bug fix
+    children:
+      - ed98f899-a0e5-4ee3-b919-55bfd082a182
+      - 7ba03d9e-b7a9-4c52-9bdc-7c578d639ebd
+      - 8b4911ee-dfa6-4112-bc11-1ff366d339d0
+      - 5fd40bd4-94eb-476d-a439-c4ac384415a5
+      - fd02cd5d-7642-4946-be2e-0c2e1bbd2e28
+      - 344c728f-0e01-468e-8198-9e6fcdb0085f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed98f899-a0e5-4ee3-b919-55bfd082a182:
+    id: ed98f899-a0e5-4ee3-b919-55bfd082a182
+    content: An automated workflow that decomposes a node plays its children through to completion without manual intervention
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ba03d9e-b7a9-4c52-9bdc-7c578d639ebd:
+    id: 7ba03d9e-b7a9-4c52-9bdc-7c578d639ebd
+    content: The decomposing step never executes a second time on its own output within the same recurse pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b4911ee-dfa6-4112-bc11-1ff366d339d0:
+    id: 8b4911ee-dfa6-4112-bc11-1ff366d339d0
+    content: All children of a decomposition share the originating session; the currently active child carries the blue bar and tab tint
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fd40bd4-94eb-476d-a439-c4ac384415a5:
+    id: 5fd40bd4-94eb-476d-a439-c4ac384415a5
+    content: Manual play of any decomposed child in the originating session works
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd02cd5d-7642-4946-be2e-0c2e1bbd2e28:
+    id: fd02cd5d-7642-4946-be2e-0c2e1bbd2e28
+    content: Saved workflows from before the fix resume without phantom or duplicate steps and without orphaned session bindings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  344c728f-0e01-468e-8198-9e6fcdb0085f:
+    id: 344c728f-0e01-468e-8198-9e6fcdb0085f
+    content: Existing single-node step progression and the strict guard against foreign-node session assignment are unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f32f6d68-e00b-44b2-bd77-66bd013c7f43:
+    id: f32f6d68-e00b-44b2-bd77-66bd013c7f43
+    content: Splitting decision — single chunk
+    children:
+      - 94d76585-7048-4712-aaba-63b8af432d61
+      - c9e00238-faf9-4b93-9d97-672f5478277e
+      - 19bec3ab-d00e-49b4-8d89-26eae60de8d5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94d76585-7048-4712-aaba-63b8af432d61:
+    id: 94d76585-7048-4712-aaba-63b8af432d61
+    content: 'One coherent behavioural change: step advancement and session group affinity are two halves of the same automation gap; shipping only one leaves the workflow still stalled.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9e00238-faf9-4b93-9d97-672f5478277e:
+    id: c9e00238-faf9-4b93-9d97-672f5478277e
+    content: No feature-flag-worthy surface — the combined rule is either correct or it is not.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19bec3ab-d00e-49b4-8d89-26eae60de8d5:
+    id: 19bec3ab-d00e-49b4-8d89-26eae60de8d5
+    content: Not split — the underlying rules form a single decision and slicing would create review churn without aiding clarity.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d8d954a-88c3-48ac-a93e-15df0d3c5c61:
+    id: 6d8d954a-88c3-48ac-a93e-15df0d3c5c61
+    content: Challenges and ROI
+    children:
+      - 97a134e4-4e42-4070-bba6-90cddbf5d455
+      - 5f768e13-2998-4a26-b3a5-297c2375c05b
+      - 5ebd811d-b110-461e-b951-d82f590e0a3f
+      - 84a13b80-de90-45ad-b012-8c5f3f5b6b4d
+      - 0ef6af01-272a-4b7b-bf1e-4a15a6aa2e9b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97a134e4-4e42-4070-bba6-90cddbf5d455:
+    id: 97a134e4-4e42-4070-bba6-90cddbf5d455
+    content: UX — automation currently appears to "almost work" and silently stalls; users blame the AI rather than the runner. Fixing both halves restores the automation promise.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f768e13-2998-4a26-b3a5-297c2375c05b:
+    id: 5f768e13-2998-4a26-b3a5-297c2375c05b
+    content: Over-engineering risk — do not introduce a generic "step transition policy" or "session group manager"; patch the child-scheduling site and widen the binding type minimally.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ebd811d-b110-461e-b951-d82f590e0a3f:
+    id: 5ebd811d-b110-461e-b951-d82f590e0a3f
+    content: Out of scope — undo/redo of decomposition, AI-side guardrails against re-decomposing, playing one decomposition group across multiple sessions, reassigning a session to a foreign group
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84a13b80-de90-45ad-b012-8c5f3f5b6b4d:
+    id: 84a13b80-de90-45ad-b012-8c5f3f5b6b4d
+    content: ROI — high. Saves AI calls, prevents silently malformed trees, eliminates the most common "session already assigned" friction, and makes automated workflows actually automatic.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ef6af01-272a-4b7b-bf1e-4a15a6aa2e9b:
+    id: 0ef6af01-272a-4b7b-bf1e-4a15a6aa2e9b
+    content: Push-back — none; the bug has a reproducible user-visible failure mode in the current build.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9309e0b-bed2-4cd5-bc41-7212efb6c556:
+    id: e9309e0b-bed2-4cd5-bc41-7212efb6c556
+    content: worktree
+    children:
+      - 90857b0b-4092-4483-97a0-1ac9871d7291
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90857b0b-4092-4483-97a0-1ac9871d7291:
+    id: 90857b0b-4092-4483-97a0-1ac9871d7291
+    content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-revise-menu)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ebc8a40-da97-419c-b9c6-ea4e12385e0b:
+    id: 9ebc8a40-da97-419c-b9c6-ea4e12385e0b
+    content: 📄 Product spec
+    children:
+      - 8f088952-f6d5-4349-92db-c998c9c194a5
+      - 408af1df-93a7-4f6f-9c67-698b0be0e712
+      - efa2d6ae-06b1-4c32-9b93-9f35f42a8103
+      - 95ccda89-0c3f-45d6-b692-df7a4b6d9e0f
+      - cea47b89-03f9-48a6-8918-b7be971b40a9
+      - 1ecd6e6a-00a8-48ee-826f-f25358f8bfc4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f088952-f6d5-4349-92db-c998c9c194a5:
+    id: 8f088952-f6d5-4349-92db-c998c9c194a5
+    content: Context
+    children:
+      - 2d5bc038-467d-49b1-ac2d-0bbba9d228c1
+      - 215e6f91-7638-449b-a81f-e054339661c7
+      - 573888a1-7707-4016-a6c4-92b032bb6421
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d5bc038-467d-49b1-ac2d-0bbba9d228c1:
+    id: 2d5bc038-467d-49b1-ac2d-0bbba9d228c1
+    content: '''Revise after discussion'' currently exists only as a user-declared blueprint context (collaborate=true) carrying the prompt ''Revise the following specification based on our discussion''.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  215e6f91-7638-449b-a81f-e054339661c7:
+    id: 215e6f91-7638-449b-a81f-e054339661c7
+    content: To use it today the user must open Apply context → pick 'Revise after discussion' → then send the node, which is three actions for an operation that is run many times per spec/PRD cycle.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  573888a1-7707-4016-a6c4-92b032bb6421:
+    id: 573888a1-7707-4016-a6c4-92b032bb6421
+    content: Earlier notes in the project tree already proposed surfacing this in the right-click menu and assigning a hotkey, flagging that the action is 'frequently used'.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  408af1df-93a7-4f6f-9c67-698b0be0e712:
+    id: 408af1df-93a7-4f6f-9c67-698b0be0e712
+    content: User / persona
+    children:
+      - 338a856f-1745-4a18-8fb4-910dbe6cf21d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  338a856f-1745-4a18-8fb4-910dbe6cf21d:
+    id: 338a856f-1745-4a18-8fb4-910dbe6cf21d
+    content: A solo product author iterating on a spec or PRD inside a workflow tree, alternating between AI discussion and revising the parent node's content.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efa2d6ae-06b1-4c32-9b93-9f35f42a8103:
+    id: efa2d6ae-06b1-4c32-9b93-9f35f42a8103
+    content: Current experience and why it is insufficient
+    children:
+      - 7f3cd97b-66b7-4f91-a9c6-0a71ed9e07b5
+      - 18e97e92-bbf9-4a54-a86a-e541dde3abb6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f3cd97b-66b7-4f91-a9c6-0a71ed9e07b5:
+    id: 7f3cd97b-66b7-4f91-a9c6-0a71ed9e07b5
+    content: The Apply-context path is generic and treats every context equally, so a multi-times-per-session action sits behind the same depth as one-off contexts.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18e97e92-bbf9-4a54-a86a-e541dde3abb6:
+    id: 18e97e92-bbf9-4a54-a86a-e541dde3abb6
+    content: Users (including the author of this bug) believed the shortcut had already been added and could not find it, indicating the absence is a friction point worth fixing rather than a nice-to-have.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95ccda89-0c3f-45d6-b692-df7a4b6d9e0f:
+    id: 95ccda89-0c3f-45d6-b692-df7a4b6d9e0f
+    content: Goal
+    children:
+      - 51d94e01-524b-4398-812e-5d6f59dd8fe7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  51d94e01-524b-4398-812e-5d6f59dd8fe7:
+    id: 51d94e01-524b-4398-812e-5d6f59dd8fe7
+    content: Let a user trigger 'Revise after discussion' on a node in one right-click action (and optionally one hotkey), without first applying a context.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cea47b89-03f9-48a6-8918-b7be971b40a9:
+    id: cea47b89-03f9-48a6-8918-b7be971b40a9
+    content: Business rules
+    children:
+      - 06c8c3f6-0b8d-4cd2-b261-70a72c2c06a3
+      - 5707879a-d825-40da-b661-a6b6f95aeae2
+      - d3e14854-ba13-41bc-8ae2-8b63f0d3989f
+      - 65efb8b2-6bc1-4e75-9fb5-9c827410ac2b
+      - 1fb1f7ad-d3bf-412d-8a6d-ab68fb97cb9a
+      - 2316157f-dfc7-47aa-99de-51c0a719defa
+      - c38f4f93-1ad8-48f2-9ba1-23e8686f4d03
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06c8c3f6-0b8d-4cd2-b261-70a72c2c06a3:
+    id: 06c8c3f6-0b8d-4cd2-b261-70a72c2c06a3
+    content: 1. The right-click menu on a workspace-tree node shows a 'Revise after discussion' entry above the Edit submenu, right under 'send'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5707879a-d825-40da-b661-a6b6f95aeae2:
+    id: 5707879a-d825-40da-b661-a6b6f95aeae2
+    content: 2. Activating the entry sends the node's content to the active AI surface (terminal or browser, same rules as Send) with the 'Revise after discussion' prompt attached as context for that one send only.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3e14854-ba13-41bc-8ae2-8b63f0d3989f:
+    id: d3e14854-ba13-41bc-8ae2-8b63f0d3989f
+    content: 3. The action does not mutate the node's persisted applied-context value; it is a one-shot send, not a state change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65efb8b2-6bc1-4e75-9fb5-9c827410ac2b:
+    id: 65efb8b2-6bc1-4e75-9fb5-9c827410ac2b
+    content: 4. The entry is hidden on hyperlink nodes, external-link nodes, and on feedback-tree nodes, matching the visibility rules of the existing Send action.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fb1f7ad-d3bf-412d-8a6d-ab68fb97cb9a:
+    id: 1fb1f7ad-d3bf-412d-8a6d-ab68fb97cb9a
+    content: 5. If neither a terminal nor a browser is open, the action shows the existing 'Open a terminal or browser first' toast and performs no send.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2316157f-dfc7-47aa-99de-51c0a719defa:
+    id: 2316157f-dfc7-47aa-99de-51c0a719defa
+    content: 6. If the node is currently being collaborated on, the action is disabled (or omitted) to prevent overlapping sends, matching existing collaboration-cancel semantics.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c38f4f93-1ad8-48f2-9ba1-23e8686f4d03:
+    id: c38f4f93-1ad8-48f2-9ba1-23e8686f4d03
+    content: 7. The entry honours inherited context flags from ancestors the same way the existing Send action does, so ancestor 'send context' / 'send subtree' settings still apply.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ecd6e6a-00a8-48ee-826f-f25358f8bfc4:
+    id: 1ecd6e6a-00a8-48ee-826f-f25358f8bfc4
+    content: Acceptance criteria
+    children:
+      - 28dc9ad8-c3b6-4f6b-8157-7e6edcfd93d3
+      - a92722f9-c828-4c2d-97ce-3f7e9f3500ce
+      - 0ab5f267-6b22-472d-b6ef-d988ec8061dd
+      - 01988b87-1374-4c7c-ba9b-22abc388c145
+      - 74a74a18-c3c2-4062-94ab-1c08a5085ea5
+      - 142b911c-70cd-445d-a125-19ca2fafab6e
+      - 213031a0-f002-4d49-8315-49a56b01b6a5
+      - a262c879-e102-420f-8823-e263cdf0586c
+      - 80b66cca-5a27-48ef-a76c-501790449e59
+      - cabcfd04-1da1-462f-a899-7c60d5670031
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28dc9ad8-c3b6-4f6b-8157-7e6edcfd93d3:
+    id: 28dc9ad8-c3b6-4f6b-8157-7e6edcfd93d3
+    content: '- [x] Right-clicking a normal workspace node shows a ''Revise after discussion'' item without first applying any context.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a92722f9-c828-4c2d-97ce-3f7e9f3500ce:
+    id: a92722f9-c828-4c2d-97ce-3f7e9f3500ce
+    content: '- [x] Clicking the item with an open terminal sends the node content plus the revision prompt to that terminal and the AI responds in the terminal session.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ab5f267-6b22-472d-b6ef-d988ec8061dd:
+    id: 0ab5f267-6b22-472d-b6ef-d988ec8061dd
+    content: '- [x] Clicking the item with only a browser surface open routes the send to the browser instead.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01988b87-1374-4c7c-ba9b-22abc388c145:
+    id: 01988b87-1374-4c7c-ba9b-22abc388c145
+    content: '- [x] Clicking the item with no terminal and no browser open surfaces the existing warning toast and does not send.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74a74a18-c3c2-4062-94ab-1c08a5085ea5:
+    id: 74a74a18-c3c2-4062-94ab-1c08a5085ea5
+    content: '- [x] After the send, the node''s applied context (if any) is unchanged when reopening the menu.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  142b911c-70cd-445d-a125-19ca2fafab6e:
+    id: 142b911c-70cd-445d-a125-19ca2fafab6e
+    content: '- [x] Right-clicking a hyperlink node or external-link node does not show the entry.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  213031a0-f002-4d49-8315-49a56b01b6a5:
+    id: 213031a0-f002-4d49-8315-49a56b01b6a5
+    content: '- [x] Right-clicking a node in the feedback tree does not show the entry.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a262c879-e102-420f-8823-e263cdf0586c:
+    id: a262c879-e102-420f-8823-e263cdf0586c
+    content: '- [x] Right-clicking a node that is currently being collaborated on shows the entry disabled (or hidden) and shows the existing Cancel-collaboration item.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80b66cca-5a27-48ef-a76c-501790449e59:
+    id: 80b66cca-5a27-48ef-a76c-501790449e59
+    content: '- [x] The menu still opens in under one frame on a tree with 1k+ nodes (no measurable regression vs. current build).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cabcfd04-1da1-462f-a899-7c60d5670031:
+    id: cabcfd04-1da1-462f-a899-7c60d5670031
+    content: '- [x] Keyboard users can reach the entry via the existing menu-arrow-key navigation; no new global hotkey is shipped in this story.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3b9dca9-ef31-43cb-afc8-a82b1ce33a0f:
+    id: b3b9dca9-ef31-43cb-afc8-a82b1ce33a0f
+    content: 🔧 Implementation proposal
+    children:
+      - 6081520c-3f8b-4461-a474-4c79dadb494b
+      - 9cd01e2b-483f-464e-bce1-53eb9515c6a5
+      - 9b91b288-53c9-439e-b98b-1dc2e15aca6d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6081520c-3f8b-4461-a474-4c79dadb494b:
+    id: 6081520c-3f8b-4461-a474-4c79dadb494b
+    content: Approach
+    children:
+      - dd852f26-7c22-4c44-9dde-fa3776ec02f2
+      - 87d9a108-81fd-4712-a408-bffc9eb4332a
+      - bf9b6e09-757f-417d-ba97-d8380f089ecf
+      - 29f05a41-20d8-4c58-bd63-41bc7d796955
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd852f26-7c22-4c44-9dde-fa3776ec02f2:
+    id: dd852f26-7c22-4c44-9dde-fa3776ec02f2
+    content: Add a single menu item in buildMenuItems in src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts, slotted right under the existing Send entry and guarded by the same isHyperlink / isExternalLink / isFeedbackTree checks.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87d9a108-81fd-4712-a408-bffc9eb4332a:
+    id: 87d9a108-81fd-4712-a408-bffc9eb4332a
+    content: Introduce a new synthetic context id REVISE_AFTER_DISCUSSION_CONTEXT_ID in src/renderer/utils/nodeHelpers.ts, following the exact pattern of BASIC_REVIEW_CONTEXT_ID and BASIC_EXECUTE_CONTEXT_ID — the prompt text and ContextFlags live in source, not in any .arbo file.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf9b6e09-757f-417d-ba97-d8380f089ecf:
+    id: bf9b6e09-757f-417d-ba97-d8380f089ecf
+    content: On click, merge the synthetic context's flags into the node's resolved sendFlags for this send only and call the existing handleSendInTerminal / handleSendInBrowser path — no new send pipeline.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29f05a41-20d8-4c58-bd63-41bc7d796955:
+    id: 29f05a41-20d8-4c58-bd63-41bc7d796955
+    content: 'Treat the resolution as one-shot: do not call actions.setAppliedContext, so persistence and undo stay clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cd01e2b-483f-464e-bce1-53eb9515c6a5:
+    id: 9cd01e2b-483f-464e-bce1-53eb9515c6a5
+    content: Touchpoints
+    children:
+      - 540fe49c-0160-4693-a016-ba22b4d8e883
+      - ba3725c4-9cf3-4bec-a744-575fb36aab23
+      - d7574879-bb66-477b-bf9c-7f1f635e7dc4
+      - 69b83d08-88e3-478b-b94d-5c4d7add3fa7
+      - 1ee64ff5-e17a-4077-a1ea-5606fb6c9137
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  540fe49c-0160-4693-a016-ba22b4d8e883:
+    id: 540fe49c-0160-4693-a016-ba22b4d8e883
+    content: useNodeContextMenu.ts — new menu item + handler.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba3725c4-9cf3-4bec-a744-575fb36aab23:
+    id: ba3725c4-9cf3-4bec-a744-575fb36aab23
+    content: utils/nodeHelpers.ts — add REVISE_AFTER_DISCUSSION_CONTEXT_ID, extend isSyntheticContextId, resolveContextFlags, and resolveSendContextName to recognise it; hardcode the prompt text and flags.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7574879-bb66-477b-bf9c-7f1f635e7dc4:
+    id: d7574879-bb66-477b-bf9c-7f1f635e7dc4
+    content: Wherever the synthetic-context branches already exist (sendActions.ts, contextActions.ts, useAppliedContexts.ts, useSetContextSubmenu.ts) — verify the new id flows through the same code paths as Basic review / Basic execute, and extend tests in parallel where those constants are already covered.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69b83d08-88e3-478b-b94d-5c4d7add3fa7:
+    id: 69b83d08-88e3-478b-b94d-5c4d7add3fa7
+    content: 'Tests in NodeContent/hooks/tests/useNodeContextMenu.test.tsx covering: visible on normal nodes, hidden on hyperlink / external / feedback, disabled-when-collaborating, terminal vs browser routing, no-surface toast.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ee64ff5-e17a-4077-a1ea-5606fb6c9137:
+    id: 1ee64ff5-e17a-4077-a1ea-5606fb6c9137
+    content: No DB / no IPC / no main-process changes.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b91b288-53c9-439e-b98b-1dc2e15aca6d:
+    id: 9b91b288-53c9-439e-b98b-1dc2e15aca6d
+    content: Constraints to call out
+    children:
+      - b76b212e-d313-4a7f-8cbb-c094a7db4668
+      - ea416700-f624-4891-8356-80c1d0d71dde
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b76b212e-d313-4a7f-8cbb-c094a7db4668:
+    id: b76b212e-d313-4a7f-8cbb-c094a7db4668
+    content: Scope guard — hotkey assignment was raised in prior notes but is explicitly deferred; this story ships menu-only to keep review tight.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea416700-f624-4891-8356-80c1d0d71dde:
+    id: ea416700-f624-4891-8356-80c1d0d71dde
+    content: The legacy user-declared 'Revise after discussion' blueprint node in project.arbo will be deleted by the project owner once the synthetic context is in; the menu item must not depend on that node existing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  994d74a8-73a2-422f-85a4-fb6d54f44725:
+    id: 994d74a8-73a2-422f-85a4-fb6d54f44725
+    content: Challenges and pushback
+    children:
+      - 189237fe-a6ef-4d53-ba3e-9850541a90c9
+      - 6fab443f-6b84-48e3-90d6-042d263cd8d2
+      - 5d42dc27-a42c-4fb1-a484-b7d7abe5dd9f
+      - 289883b2-37ff-4ccf-91be-223eaddd3b8c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  189237fe-a6ef-4d53-ba3e-9850541a90c9:
+    id: 189237fe-a6ef-4d53-ba3e-9850541a90c9
+    content: UX
+    children:
+      - 03fab56f-26f9-4d4c-881a-9b36ce5163f7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03fab56f-26f9-4d4c-881a-9b36ce5163f7:
+    id: 03fab56f-26f9-4d4c-881a-9b36ce5163f7
+    content: Surfacing one synthetic action at the top level sets a precedent that other 'frequently used' workflows will demand the same treatment; this is acceptable because it reuses the existing BASIC_REVIEW / BASIC_EXECUTE precedent rather than introducing a new mechanism.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fab443f-6b84-48e3-90d6-042d263cd8d2:
+    id: 6fab443f-6b84-48e3-90d6-042d263cd8d2
+    content: Over-engineering risk
+    children:
+      - 5fd5bcae-f779-4d4c-b242-8e49c64c2b3a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fd5bcae-f779-4d4c-b242-8e49c64c2b3a:
+    id: 5fd5bcae-f779-4d4c-b242-8e49c64c2b3a
+    content: Avoid building a parallel send pipeline; reuse handleSendInTerminal / handleSendInBrowser and only extend the context-flag resolution.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d42dc27-a42c-4fb1-a484-b7d7abe5dd9f:
+    id: 5d42dc27-a42c-4fb1-a484-b7d7abe5dd9f
+    content: ROI note
+    children:
+      - 490e6785-5aa6-4bda-b466-ddd5c6c0203f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  490e6785-5aa6-4bda-b466-ddd5c6c0203f:
+    id: 490e6785-5aa6-4bda-b466-ddd5c6c0203f
+    content: ROI is good if the user runs this action multiple times per session (consistent with the 'frequently used' note); if usage is occasional, the existing Apply context → Send path is already sufficient and this story should be dropped rather than shipped at reduced scope.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  289883b2-37ff-4ccf-91be-223eaddd3b8c:
+    id: 289883b2-37ff-4ccf-91be-223eaddd3b8c
+    content: Out of scope (do not expand here)
+    children:
+      - 9cfe9901-937e-4d79-b20e-8babc20ea279
+      - 291b20a7-9a5b-4ec0-801d-0c2878d94051
+      - 8c7f5c8f-dc55-4df6-b938-4b8611266887
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cfe9901-937e-4d79-b20e-8babc20ea279:
+    id: 9cfe9901-937e-4d79-b20e-8babc20ea279
+    content: Global hotkey binding for the action.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  291b20a7-9a5b-4ec0-801d-0c2878d94051:
+    id: 291b20a7-9a5b-4ec0-801d-0c2878d94051
+    content: A user-facing UI to pin arbitrary user-declared contexts to the right-click menu.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c7f5c8f-dc55-4df6-b938-4b8611266887:
+    id: 8c7f5c8f-dc55-4df6-b938-4b8611266887
+    content: Any change to how the feedback tree handles revisions.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  981528a3-f849-4cae-8de2-32fd2f5da13f:
+    id: 981528a3-f849-4cae-8de2-32fd2f5da13f
+    content: Technical refinement
+    children:
+      - 87c19452-6af9-405b-a072-e6949f1fb256
+      - 32f8f42f-da60-4d6e-bc67-3bc87cf4ac8b
+      - 066a6a1d-c951-4448-8d0e-d2ff1939debe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87c19452-6af9-405b-a072-e6949f1fb256:
+    id: 87c19452-6af9-405b-a072-e6949f1fb256
+    content: Complications
+    children:
+      - 0a8d6dd6-2e68-4707-9be4-92b4b14cfefd
+      - 10e8acb2-f52a-4381-831e-bfbd98e49397
+      - 93c70cb2-f5bc-42e6-b867-b30e2a9cf4a4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a8d6dd6-2e68-4707-9be4-92b4b14cfefd:
+    id: 0a8d6dd6-2e68-4707-9be4-92b4b14cfefd
+    content: One-shot context override is new plumbing — buildSendPayload in sendActions.ts reads appliedContextId via getAppliedContextIdWithInheritance from node metadata, not from a parameter; Basic review / Basic execute never needed an override because they are set via setAppliedContext. This story requires threading an optional override id into collaborate / collaborateInTerminal / buildSendPayload, which is the only non-trivial pipeline change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10e8acb2-f52a-4381-831e-bfbd98e49397:
+    id: 10e8acb2-f52a-4381-831e-bfbd98e49397
+    content: Rule 7 (inherited ancestor flags) is in tension with the synthetic-context precedent — Basic review / Basic execute return their own ContextFlags wholesale from resolveContextFlags, so ancestor flags do not actually combine with synthetic-context flags today. Decide whether Revise behaves the same (synthetic wins, drop rule 7) or merges with ancestor flags (new behaviour); document the choice in the AC.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93c70cb2-f5bc-42e6-b867-b30e2a9cf4a4:
+    id: 93c70cb2-f5bc-42e6-b867-b30e2a9cf4a4
+    content: Existing nodes in user .arbo files that reference the old blueprint id will lose their applied context once the blueprint node is deleted — the resolver already degrades gracefully (treats missing id as unset), but reviewers should know this is intentional, not a regression.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32f8f42f-da60-4d6e-bc67-3bc87cf4ac8b:
+    id: 32f8f42f-da60-4d6e-bc67-3bc87cf4ac8b
+    content: Approach summary
+    children:
+      - af901fc0-aac9-4f85-9e98-6fbe578775a9
+      - 1197ea0d-f9ed-47c4-90d9-b4d8d9ae6041
+      - e50fec66-1be8-4dcf-beb5-bd7eba7d63cc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af901fc0-aac9-4f85-9e98-6fbe578775a9:
+    id: af901fc0-aac9-4f85-9e98-6fbe578775a9
+    content: Synthetic id REVISE_AFTER_DISCUSSION_CONTEXT_ID in utils/nodeHelpers.ts with hardcoded prompt and ContextFlags, mirroring BASIC_REVIEW_CONTEXT_ID exactly so all existing synthetic-context branches pick it up for free.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1197ea0d-f9ed-47c4-90d9-b4d8d9ae6041:
+    id: 1197ea0d-f9ed-47c4-90d9-b4d8d9ae6041
+    content: Menu item in useNodeContextMenu.ts calls collaborate / collaborateInTerminal with an explicit one-shot override id; no setAppliedContext, no persisted change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e50fec66-1be8-4dcf-beb5-bd7eba7d63cc:
+    id: e50fec66-1be8-4dcf-beb5-bd7eba7d63cc
+    content: Reviewer surprise — this is the first caller to override resolved applied-context per send, so a small override parameter must be threaded into buildSendPayload; everything else reuses the Basic review code paths.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  066a6a1d-c951-4448-8d0e-d2ff1939debe:
+    id: 066a6a1d-c951-4448-8d0e-d2ff1939debe
+    content: Decomposition decision
+    children:
+      - 22114309-7879-4354-b09e-c4d5c1089109
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22114309-7879-4354-b09e-c4d5c1089109:
+    id: 22114309-7879-4354-b09e-c4d5c1089109
+    content: Single PR — the synthetic id, the override-id plumbing through buildSendPayload, and the menu item are mutually dead-code until all three land; splitting would ship either a no-op feature or unreachable infrastructure.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  748a8c1a-179a-4803-9a2e-bf9a97d587f3:
+    id: 748a8c1a-179a-4803-9a2e-bf9a97d587f3
+    content: review feedback
+    children:
+      - 15bb7a56-ba8b-49bb-8d0f-f62b6c005027
+      - ba9d0925-9380-4248-8c2f-7d84f1bc4b2d
+      - 9389fa1c-774c-46a4-9d21-951c604e3dcd
+      - cb24506b-b530-4df4-b126-8b0c2a38553a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15bb7a56-ba8b-49bb-8d0f-f62b6c005027:
+    id: 15bb7a56-ba8b-49bb-8d0f-f62b6c005027
+    content: Send vs Revise disabled-state asymmetry — useNodeContextMenu.ts:278-289
+    children:
+      - 6d496dd7-dd3f-4230-981a-9e754b98849f
+      - b274c441-13c0-453c-9d47-65f2925ffae1
+      - 86f2616c-f016-402f-9210-6c417448d2e4
+      - 251302b7-d804-4367-b6ae-67dc9a90b3cc
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d496dd7-dd3f-4230-981a-9e754b98849f:
+    id: 6d496dd7-dd3f-4230-981a-9e754b98849f
+    content: 'Existing Send menu item is NOT guarded by `disabled: isNodeBeingCollaborated`; the new ''Revise after discussion'' entry IS. When the node is being collaborated on, both items remain visible but only Revise is greyed out — visually jarring.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  b274c441-13c0-453c-9d47-65f2925ffae1:
+    id: b274c441-13c0-453c-9d47-65f2925ffae1
+    content: 'AC #6 explicitly mandated disabling Revise in this state, so the asymmetry is spec-driven, not accidental. Send''s behavior was not in scope to change.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  86f2616c-f016-402f-9210-6c417448d2e4:
+    id: 86f2616c-f016-402f-9210-6c417448d2e4
+    content: 'Decision needed: accept the asymmetry as spec-compliant, or align Send to match (out of scope for this PR but worth a follow-up note).'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  251302b7-d804-4367-b6ae-67dc9a90b3cc:
+    id: 251302b7-d804-4367-b6ae-67dc9a90b3cc
+    content: The collaborating-disabled test in useNodeContextMenu.test.tsx locks in the current behavior, so any change must update the test.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba9d0925-9380-4248-8c2f-7d84f1bc4b2d:
+    id: ba9d0925-9380-4248-8c2f-7d84f1bc4b2d
+    content: Override path with explicit caller-supplied flags is untested — sendActions.test.ts (new override describe block)
+    children:
+      - 0026d048-11d5-4f9f-a0f5-92149151f38f
+      - 006fc327-0762-4ba4-94c9-154b15072047
+      - 1faf578f-418e-4a7b-8fe2-75e93e7160d6
+      - 56ef68a6-659b-4bfe-8272-b5e415d95f16
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0026d048-11d5-4f9f-a0f5-92149151f38f:
+    id: 0026d048-11d5-4f9f-a0f5-92149151f38f
+    content: 'All six new override tests pass `flags: undefined`, which resolves to the synthetic context''s own `{collaborate:true, execute:false}`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  006fc327-0762-4ba4-94c9-154b15072047:
+    id: 006fc327-0762-4ba4-94c9-154b15072047
+    content: No test exercises the case where a caller passes explicit flags that disagree with the synthetic id's flags, e.g. `actions.collaborate(id, {collaborate:false, execute:true}, REVISE_AFTER_DISCUSSION_CONTEXT_ID)`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1faf578f-418e-4a7b-8fe2-75e93e7160d6:
+    id: 1faf578f-418e-4a7b-8fe2-75e93e7160d6
+    content: Implementation honours caller-supplied flags via `resolvedFlags = flags ?? flagsForContext(effectiveContextId, state)` — but no test pins this. A future refactor could invert the precedence undetected.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56ef68a6-659b-4bfe-8272-b5e415d95f16:
+    id: 56ef68a6-659b-4bfe-8272-b5e415d95f16
+    content: 'Action: add one test asserting caller flags win over override-id flags. Cheap, increases robustness.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9389fa1c-774c-46a4-9d21-951c604e3dcd:
+    id: 9389fa1c-774c-46a4-9d21-951c604e3dcd
+    content: routeSend has no 'autonomous-terminal' activeContent branch — useNodeContextMenu.ts:73-90
+    children:
+      - 33f9e091-6aa0-4e58-a105-727b93ed81fc
+      - 3d761fab-6f0f-4fac-8762-dfed021fb1df
+      - fcbbe9d8-e6aa-4e1a-8502-389b72535e16
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  33f9e091-6aa0-4e58-a105-727b93ed81fc:
+    id: 33f9e091-6aa0-4e58-a105-727b93ed81fc
+    content: Inherited from the pre-existing handleSend — not a regression introduced by this PR.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d761fab-6f0f-4fac-8762-dfed021fb1df:
+    id: 3d761fab-6f0f-4fac-8762-dfed021fb1df
+    content: If activeContent is anything other than 'terminal' | 'browser' | 'feedback', user gets the "Open a terminal or browser first" toast even when a terminal exists.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  fcbbe9d8-e6aa-4e1a-8502-389b72535e16:
+    id: fcbbe9d8-e6aa-4e1a-8502-389b72535e16
+    content: Low real-world hit rate; out of scope to fix here. Mention only.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb24506b-b530-4df4-b126-8b0c2a38553a:
+    id: cb24506b-b530-4df4-b126-8b0c2a38553a
+    content: Notes not flagged as issues
+    children:
+      - 7d91e4e4-1229-4c2d-8bbe-33b8dd9d96f3
+      - 4764e6f5-e76f-4616-9a49-281168d5e997
+      - 372a7354-3e3e-4f20-bf98-148a0b09135e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d91e4e4-1229-4c2d-8bbe-33b8dd9d96f3:
+    id: 7d91e4e4-1229-4c2d-8bbe-33b8dd9d96f3
+    content: Synthetic id never written to appliedContextId is enforced by call-site discipline only (no runtime assertion). Matches existing BASIC_REVIEW pattern; acceptable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4764e6f5-e76f-4616-9a49-281168d5e997:
+    id: 4764e6f5-e76f-4616-9a49-281168d5e997
+    content: '''Revise after discussion'' label is duplicated as a literal at nodeHelpers.ts:306 and useNodeContextMenu.ts:286. BASIC_REVIEW_CONTEXT_ID does the same — established idiom.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  372a7354-3e3e-4f20-bf98-148a0b09135e:
+    id: 372a7354-3e3e-4f20-bf98-148a0b09135e
+    content: DEFAULT_REVISE_CONTEXT body (sendActions.ts:49-53) is asserted loosely by tests via `toContain('Revise the following specification')` rather than char-for-char. Intentional and fine.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
-  a504e066-6432-458b-b655-95afaf9cd1a6:
+  9d7f3565-ab30-489e-a789-2cd59c075a35:
     cwd: /Users/brianfox/dev/Arborescent
-  33f4812f-5668-466f-8b37-55e8cbea1b3a:
+  b78e2620-9c21-4f6c-91a0-c6fb21fbe2bd:
     cwd: /Users/brianfox/dev/Arborescent
-  104b53fe-f2ec-4fb8-933a-04657922f785:
+  7d597bc5-f3ec-46ac-9a4e-2ae0fecbf031:
     cwd: /Users/brianfox/dev/Arborescent
-  6d275e4d-ffeb-4e82-ae23-896f224adc68:
+  cae50b1b-6420-40ae-94a9-54825a08e7fd:
     cwd: /Users/brianfox/dev/Arborescent
-  02471748-68a7-4533-b01f-30b7d27078ea:
+  16bc5fb5-0af9-42a3-a15a-da420b27eb18:
     cwd: /Users/brianfox/dev/Arborescent
-  987ff262-a120-4da5-91a2-a3b56272c865:
+  b89259b7-3cdf-4ec1-b4a8-d505ca3826cd:
     cwd: /Users/brianfox/dev/Arborescent
-  24d24654-1307-462b-9746-f842245ce3c1:
-    cwd: /Users/brianfox/dev/Arborescent
-  c641f877-89ce-4874-93a1-250674493d40:
-    cwd: /Users/brianfox/dev/Arborescent
-  4669523a-cfb7-47cd-a5da-b37ee0ad135c:
-    cwd: /Users/brianfox/dev/Arborescent
-  f8a490d0-da3b-4087-a4f5-2c9bac4d50c8:
+  29b4768e-f5e0-4180-84b1-5fed0e0d6a77:
     cwd: /Users/brianfox/dev/Arborescent
