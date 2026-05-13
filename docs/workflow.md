@@ -92,6 +92,8 @@ Drag the panel edge to resize. Toggle between side and bottom position with the 
 
 Open a new terminal with `+` in the terminal tab bar. Switch between terminals by clicking their tabs — running processes and content are preserved when switching. Close a terminal with `×` on its tab.
 
+Sending or executing a branch into a terminal renames the tab to that branch's title (full title on hover). The tab keeps the title until the next branch is sent.
+
 ### Terminal scroll lock
 
 Some terminal AI tools (like Claude Code) redraw the screen while processing, which can scroll you away from the output. Click the anchor icon in the terminal tab bar to fix the view to the bottom of the terminal. Click it again to turn it off.

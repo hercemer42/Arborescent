@@ -7,6 +7,7 @@ import { createTerminal as createTerminalService } from '../../services/terminal
 import { StorageService } from '../../services/storageService';
 import { logger } from '../../services/logger';
 import { resolveToSourceFilePath } from '../../utils/zoomPath';
+import { extractTaskTitle } from '../../utils/terminalTabTitle';
 
 export interface TerminalInfo {
   id: string;
@@ -206,6 +207,11 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
       return;
     }
 
+    const taskTitle = extractTaskTitle(node);
+    if (taskTitle) {
+      get().updateTerminal(terminalId, { title: taskTitle });
+    }
+
     try {
       const formattedContent = exportNodeAsMarkdown(node, nodes);
       await window.electron.terminalWrite(terminalId, formattedContent + '\n');
@@ -220,6 +226,11 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     if (!terminalId) {
       logger.error('Failed to create terminal', new Error('No terminal available'), 'TerminalStore');
       return;
+    }
+
+    const taskTitle = extractTaskTitle(node);
+    if (taskTitle) {
+      get().updateTerminal(terminalId, { title: taskTitle });
     }
 
     try {
