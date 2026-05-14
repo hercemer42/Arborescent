@@ -306,7 +306,7 @@ export interface SendActions {
   acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
   collaborate: (nodeId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
   collaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
-  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags) => Promise<string>;
+  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
   processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
@@ -561,7 +561,7 @@ export function createSendActions(
       }
     },
 
-    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags): Promise<string> => {
+    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string): Promise<string> => {
       const state = get();
 
       if (!terminalId) {
@@ -573,16 +573,17 @@ export function createSendActions(
         throw new Error(`Node ${nodeId} not found`);
       }
 
-      const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+      const effectiveContextId = overrideContextId
+        ?? getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
 
-      if (!appliedContextId) {
+      if (!effectiveContextId) {
         const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
         await executeInTerminal(terminalId, nodeContent);
         logger.info(`Sent bare node content to terminal autonomously for node: ${nodeId}`, 'SendActions');
         return '';
       }
 
-      const resolvedFlags = flags ?? flagsForContext(appliedContextId, state);
+      const resolvedFlags = flags ?? flagsForContext(effectiveContextId, state);
       const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
       const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
       const sessionId = findSessionIdForTerminal(state.workflowSessionMap, terminalId);
@@ -601,6 +602,7 @@ export function createSendActions(
         decomposition: effectiveDecomposition,
         feedbackResponseFile,
         sessionId,
+        overrideContextId,
       });
 
       await executeInTerminal(terminalId, terminalInstruction);

@@ -275,7 +275,7 @@ describe('Integration: Workflow Execution', () => {
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().workflowExecutionStates['task'].terminalTabId).toBe('term-2');
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'term-2', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }));
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'term-2', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }), undefined);
     });
 
     it('should handle app restart mid-workflow', async () => {
@@ -536,7 +536,7 @@ describe('Integration: Workflow Execution', () => {
       await actions.startWorkflow('task', 'term-1');
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().nodes['s2'].children).toContain('task');
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'term-1', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }));
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'term-1', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }), undefined);
     });
   });
 });

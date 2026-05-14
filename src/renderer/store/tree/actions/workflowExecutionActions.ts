@@ -20,6 +20,7 @@ import { AcceptFeedbackCommand } from "../commands/AcceptFeedbackCommand";
 import { StepType } from "../commands/SetStepTypeCommand";
 import {
   getAppliedContextIdWithInheritance,
+  getInheritedContextId,
   resolveContextFlags,
   getContextDeclarations,
 } from "../../../utils/nodeHelpers";
@@ -88,7 +89,7 @@ export const createWorkflowExecutionActions = (
   set: (partial: Partial<StoreState>) => void,
   triggerAutosave?: () => void,
   visualEffects?: VisualEffectsActions,
-  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string, flags?: import('../../../utils/nodeHelpers').ContextFlags) => Promise<string>,
+  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string, flags?: import('../../../utils/nodeHelpers').ContextFlags, overrideContextId?: string) => Promise<string>,
   executeCommand?: (command: { execute: () => void; undo: () => void; description?: string }) => void,
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
@@ -801,27 +802,33 @@ export const createWorkflowExecutionActions = (
     }
   }
 
+  // Autonomous workflow path: a step's context (walked from ancestors only)
+  // overrides the working node's own attached context. Manual steps halt the
+  // workflow and rely on the user's explicit 'send' action, which does not
+  // apply this override — that asymmetry is intentional.
   function sendContentToTerminal(nodeId: string, terminalId: string): void {
     try {
       const { nodes, ancestorRegistry } = get();
       const node = nodes[nodeId];
       if (!node) return;
 
-      const contextId = getAppliedContextIdWithInheritance(
+      const stepContextOverride = getInheritedContextId(
         nodeId,
         nodes,
         ancestorRegistry,
       );
+      const effectiveContextId = stepContextOverride
+        ?? getAppliedContextIdWithInheritance(nodeId, nodes, ancestorRegistry);
       const contextDeclarations = getContextDeclarations(nodes);
-      const flags = resolveContextFlags(contextId, nodes, contextDeclarations);
+      const flags = resolveContextFlags(effectiveContextId, nodes, contextDeclarations);
 
       if (!autonomousCollaborateInTerminal) return;
 
-      if (contextId && flags.collaborate) {
+      if (effectiveContextId && flags.collaborate) {
         setCollaboratingFlag(nodeId);
       }
 
-      autonomousCollaborateInTerminal(nodeId, terminalId, flags).then((feedbackFilePath) => {
+      autonomousCollaborateInTerminal(nodeId, terminalId, flags, stepContextOverride).then((feedbackFilePath) => {
         if (feedbackFilePath) {
           registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
           registerPendingAck(nodeId, terminalId);

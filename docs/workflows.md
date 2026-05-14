@@ -86,7 +86,7 @@ What happens at each step depends on its type:
 - **Checkpoint** — Content is sent to the terminal. When the AI finishes, the feedback panel opens for you to review the result. Right-click → **Next step** to advance to the next step and resume execution there, or **Resend step** to send the current step again on the same terminal (use this when the AI paused with a question and you want to answer it in place). Advancing from the last step completes the workflow automatically.
 - **Manual** — The item waits at the step. Nothing is sent automatically. Use **Send** to send content, then **Next step** to advance manually.
 
-Each step's content is sent with its applied context. If no context is applied, the branch's raw content is sent without scaffolding — apply **Basic execution** (Collaborate & Execute) to get the AI to make changes and update item statuses.
+The **step's applied context** takes precedence over the working item's own context — that's how you steer the AI differently at each phase of the workflow. If the step has no applied context (and inherits none from the workflow chain), the working item's own context applies. If neither has a context, the branch's raw content is sent without scaffolding — apply **Basic execution** (Collaborate & Execute) to get the AI to make changes and update item statuses. Manual sends (right-click → **Send**) are unaffected by step contexts and always use the working item's own context.
 
 A green flash and toast notification confirm each advancement. If the item reaches the final step and completes, the workflow ends and a completion toast appears.
 

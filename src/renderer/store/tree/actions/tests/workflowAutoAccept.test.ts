@@ -540,7 +540,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
 
       actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false });
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined);
     });
   });
 

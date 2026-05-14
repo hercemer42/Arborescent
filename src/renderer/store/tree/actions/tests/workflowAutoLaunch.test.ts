@@ -206,6 +206,7 @@ describe('Auto-launch — Claude is started in fresh terminals before the prompt
         'task-a',
         'terminal-fresh',
         expect.any(Object),
+        undefined,
       );
     });
 
@@ -244,6 +245,7 @@ describe('Auto-launch — Claude is started in fresh terminals before the prompt
         'task-a',
         'terminal-1',
         expect.any(Object),
+        undefined,
       );
     });
 
@@ -293,6 +295,7 @@ describe('Auto-launch — Claude is started in fresh terminals before the prompt
         'task-a',
         'terminal-fresh',
         expect.any(Object),
+        undefined,
       );
     });
   });
@@ -341,6 +344,7 @@ describe('Auto-launch — Claude is started in fresh terminals before the prompt
         'task-a',
         'terminal-1',
         expect.any(Object),
+        undefined,
       );
     });
   });
