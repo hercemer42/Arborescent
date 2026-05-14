@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T17:33:23.927Z'
+updated: '2026-05-14T18:05:16.914Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14412,7 +14412,7 @@ nodes:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
     children:
-      - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
+      - cfd38a28-0349-4873-8780-177e444d7cd3
     metadata:
       status: completed
       expanded: true
@@ -25620,7 +25620,8 @@ nodes:
   fbf20e91-d852-4406-9815-952fa7727f33:
     id: fbf20e91-d852-4406-9815-952fa7727f33
     content: Test pass & issue resolution
-    children: []
+    children:
+      - a1ccb0fd-fa01-428d-afb2-17d3e219d110
     metadata:
       status: pending
       appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -27155,7 +27156,8 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children: []
+    children:
+      - 0196d5bf-8124-4785-ad1b-8768819b6b00
     metadata:
       status: pending
       isBlueprint: true
@@ -81507,10 +81509,7 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - a1ccb0fd-fa01-428d-afb2-17d3e219d110
-      - cfd38a28-0349-4873-8780-177e444d7cd3
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
-      - 0196d5bf-8124-4785-ad1b-8768819b6b00
     metadata:
       status: pending
       expanded: true
@@ -82880,7 +82879,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
     metadata:
       status: pending
       isBlueprint: true
@@ -90253,7 +90253,7 @@ nodes:
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   042ee811-0108-4574-9a4c-2a7909572178:
     id: 042ee811-0108-4574-9a4c-2a7909572178
     content: Refactor right click menu
@@ -98979,68 +98979,18 @@ nodes:
       plugins: {}
   cfd38a28-0349-4873-8780-177e444d7cd3:
     id: cfd38a28-0349-4873-8780-177e444d7cd3
-    content: Problem - Continue workflow advances to the next step
+    content: User story — Replace single "Continue workflow" action with explicit "Resend step" and "Next step" actions
     children:
-      - d02f6ad7-5a04-4b6a-9b4c-5eaf9319da4c
-      - 10c2a35d-8c22-4f91-9756-fcffd86b4179
-      - 9b2ee64f-f590-477c-b6c7-8c0bb39a5eb9
+      - 9830d948-af7d-4efa-9d85-ca48badbe09e
+      - d0713fdd-16ff-4a24-966d-d5be50b04591
+      - 7aa50235-b240-4c58-9e48-c365e307e3e0
+      - 3a47f017-7c68-42a9-bf17-1844f4655214
+      - fb31caca-23fd-451e-9b9d-335bccb2c06b
     metadata:
       status: pending
       expanded: false
-  d02f6ad7-5a04-4b6a-9b4c-5eaf9319da4c:
-    id: d02f6ad7-5a04-4b6a-9b4c-5eaf9319da4c
-    content: Not always what we want
-    children: []
-    metadata:
-      status: pending
-  10c2a35d-8c22-4f91-9756-fcffd86b4179:
-    id: 10c2a35d-8c22-4f91-9756-fcffd86b4179
-    content: If the workflow is paused because the AI has questions
-    children:
-      - 03d33f5d-4ec5-4cc9-a110-8cd54d92f75c
-    metadata:
-      status: pending
-  03d33f5d-4ec5-4cc9-a110-8cd54d92f75c:
-    id: 03d33f5d-4ec5-4cc9-a110-8cd54d92f75c
-    content: We should reply the same step
-    children: []
-    metadata:
-      status: pending
-  9b2ee64f-f590-477c-b6c7-8c0bb39a5eb9:
-    id: 9b2ee64f-f590-477c-b6c7-8c0bb39a5eb9
-    content: If the workflow is paused because it requires validation
-    children:
-      - 76f49d0b-0b49-4708-bcaf-e3893c17f62c
-    metadata:
-      status: pending
-  76f49d0b-0b49-4708-bcaf-e3893c17f62c:
-    id: 76f49d0b-0b49-4708-bcaf-e3893c17f62c
-    content: We should move onto next step
-    children:
-      - 7590167e-41a8-40d6-b5a5-d772c7ba28ce
-      - 5a4339c2-ab43-47ba-8fbe-06e53cd9155f
-      - 58b87b6b-fb12-4c3b-af12-1c3c0f9ba582
-      - 980f10ad-f4a6-4c4b-b6d2-8706d04850ff
-    metadata:
-      status: pending
-  7590167e-41a8-40d6-b5a5-d772c7ba28ce:
-    id: 7590167e-41a8-40d6-b5a5-d772c7ba28ce
-    content: Note - we already have a next step mechanism
-    children: []
-    metadata:
-      status: pending
-  5a4339c2-ab43-47ba-8fbe-06e53cd9155f:
-    id: 5a4339c2-ab43-47ba-8fbe-06e53cd9155f
-    content: Could think of reserving 'Continue workflow' for AI paused steps
-    children: []
-    metadata:
-      status: pending
-  58b87b6b-fb12-4c3b-af12-1c3c0f9ba582:
-    id: 58b87b6b-fb12-4c3b-af12-1c3c0f9ba582
-    content: Or 'Replay workflow step' could be clearer
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   0705d0e8-51b1-461d-854d-b439cc259e79:
     id: 0705d0e8-51b1-461d-854d-b439cc259e79
     content: User story
@@ -99397,19 +99347,16 @@ nodes:
       plugins: {}
   0196d5bf-8124-4785-ad1b-8768819b6b00:
     id: 0196d5bf-8124-4785-ad1b-8768819b6b00
-    content: Problem - didn't account for what happens when there are more than one decomposition steps
+    content: Missing functionality — Recurse step has no defined behaviour when multiple decomposition steps are siblings in a workflow
     children:
-      - 0137a2dc-0f22-4a5c-bce8-95142ca30484
-      - 6456f5ff-1a8b-4f95-a66b-c751b284deac
+      - e371fd31-9191-431c-92f0-9d8583148147
+      - ded358db-9af4-458f-8e3c-580fd7721424
+      - 0e9e2cbb-395b-4d27-a9f6-68570a9be89b
     metadata:
       status: pending
       expanded: false
-  0137a2dc-0f22-4a5c-bce8-95142ca30484:
-    id: 0137a2dc-0f22-4a5c-bce8-95142ca30484
-    content: If we are associating by Group ID this shouldn't be an issue
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   38b6c364-ee26-4975-986c-8bfd0249c083:
     id: 38b6c364-ee26-4975-986c-8bfd0249c083
     content: 📄 Product spec
@@ -108931,12 +108878,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  980f10ad-f4a6-4c4b-b6d2-8706d04850ff:
-    id: 980f10ad-f4a6-4c4b-b6d2-8706d04850ff
-    content: Or 'Resend workflow'
-    children: []
-    metadata:
-      status: pending
   f0486a88-b51c-48e7-b291-5a9265e97c1b:
     id: f0486a88-b51c-48e7-b291-5a9265e97c1b
     content: worktree
@@ -109229,12 +109170,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6456f5ff-1a8b-4f95-a66b-c751b284deac:
-    id: 6456f5ff-1a8b-4f95-a66b-c751b284deac
-    content: Recurse should always associate with the closest decomposition step in its siblings
-    children: []
-    metadata:
-      status: pending
   6103742e-fec2-4864-b547-6d84006eb266:
     id: 6103742e-fec2-4864-b547-6d84006eb266
     content: worktree
@@ -110797,9 +110732,10 @@ nodes:
     id: b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
     content: Bug - got 'recurse halted' at the wrong step
     children:
-      - fd11ff8d-d89a-415c-8307-431405c3624e
-      - f7197d58-a432-4ee2-96a3-2707a0a76f9a
-      - 722beb77-5ba2-4ac6-bde3-fd3d5688b230
+      - 19f825d7-108e-4318-857c-a777bf5382d3
+      - fc1a9ab1-99a0-4949-b03e-662c87c0f5c7
+      - 650006a8-3e5e-4bb7-b212-3efa56b63fe4
+      - 034fc3bd-c1f5-4062-8cad-ecba690e47d0
     metadata:
       status: pending
       expanded: false
@@ -116237,9 +116173,11 @@ nodes:
     children:
       - d022f7da-e919-469e-b242-a6e120f95f09
       - c38f4ca3-d34f-4020-bcae-47f798da149e
+      - 71826f5f-2c98-4f60-835b-e903cb3c0736
+      - fd115145-cc1b-40db-a416-9941335b13a3
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   d022f7da-e919-469e-b242-a6e120f95f09:
     id: d022f7da-e919-469e-b242-a6e120f95f09
     content: Create a context at the end that analyses the session and suggests improvements that may have been made in the context or instructions sent or other methods that might have improved it.
@@ -117100,14 +117038,16 @@ nodes:
     id: a1ccb0fd-fa01-428d-afb2-17d3e219d110
     content: Restore node→terminal blue-bar association across claude session resume
     children:
-      - 0de2e964-9312-4196-97f9-2e0b5611687e
-      - de14c3b0-fc69-4798-aaaf-30a5e2687f67
-      - dbb82056-2cba-472a-99dd-1d17915eb6f0
-      - 471a0797-92e2-44b9-a05d-7b4bbbe8fb1d
-      - 7f83ca0a-913a-4d7c-b8c4-14f467e036a4
+      - f39096a5-aebd-47ed-b2d2-e475ce780976
+      - 4cb30731-a30c-4ca0-9759-7e9272c5bc5b
+      - abadfe46-2b85-41d3-be01-123aa1083a6a
+      - 3018ddc3-c07f-49cf-8b59-be2986da9145
+      - 901c47b4-c26c-42dd-a688-1283d68c3727
+      - ecd30d0b-976f-4f92-8214-365853ec7e79
+      - 839d7e5d-db4a-4458-8b14-1704d864779b
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   c577b3e4-78ac-4eaf-98aa-054b93853291:
@@ -117118,7 +117058,7 @@ nodes:
       - 61ba1be9-d4a5-4533-8077-5082e0bd496f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   29696c88-4103-422f-bc9b-4f1ace442f25:
     id: 29696c88-4103-422f-bc9b-4f1ace442f25
     content: Consider having workflow step inherit context icon if it doesn't already have one
@@ -117157,393 +117097,916 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  0de2e964-9312-4196-97f9-2e0b5611687e:
-    id: 0de2e964-9312-4196-97f9-2e0b5611687e
-    content: 📄 Product spec
-    children:
-      - c4aca20b-aa72-4851-a05b-c4aef5801acb
-      - ed94d4f8-1328-428d-a333-5898608b64ea
-      - e6cb9f7f-98fb-428a-929c-53764bf341cd
-      - 9720a728-709c-4300-a5c9-e82c03918a30
-      - 7a885f61-cdf5-41a5-9aae-0954ac743b46
-      - f898a683-9065-4db0-b6bb-90e59eb16106
-      - 758991eb-7a67-4b86-bac0-a65145df351a
-      - 3715bcd5-e8af-4191-a34a-055464f5b8ab
-      - 3c00fee6-a5d4-455d-ad8b-e38a7c6521da
-      - 76704452-d202-4489-9227-9619ffb47b7e
-      - 933ff489-a77a-4097-9a99-9443ea4dacf1
-      - 4ba17a37-b463-4ae6-84ef-b8f5c7a91dc7
-      - c41cda67-fb31-438e-976c-506756ab98d5
-      - 204f2cc9-2a1f-4b53-8198-a7d94b1378cd
-      - 381aa705-c314-41d3-b1bc-d3c03c45436a
-      - b14a3ba8-f1ce-4571-9d6b-be65a1ff5fb8
-      - a9af4f6a-620b-4dba-a6ff-1e85eb105bc2
-      - f6271cfd-9947-4e7c-b216-bfe713d4450e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4aca20b-aa72-4851-a05b-c4aef5801acb:
-    id: c4aca20b-aa72-4851-a05b-c4aef5801acb
-    content: Context — terminals carry a blue gutter bar next to the node that was last played into them, communicating "this terminal owns that node"
+  71826f5f-2c98-4f60-835b-e903cb3c0736:
+    id: 71826f5f-2c98-4f60-835b-e903cb3c0736
+    content: This will pair well with MCP so we can direct Claude to open a ticket in a given node
     children: []
     metadata:
       status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed94d4f8-1328-428d-a333-5898608b64ea:
-    id: ed94d4f8-1328-428d-a333-5898608b64ea
-    content: Context — the association is held as `originNodeId` on the terminal record (terminalStore) and is already persisted across app restarts via StorageService
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e6cb9f7f-98fb-428a-929c-53764bf341cd:
-    id: e6cb9f7f-98fb-428a-929c-53764bf341cd
-    content: Context — when a user closes a terminal and starts a fresh one to run `claude --resume`, the new terminal has no `originNodeId`, so the blue bar is lost even though the user is conceptually back in the same session
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9720a728-709c-4300-a5c9-e82c03918a30:
-    id: 9720a728-709c-4300-a5c9-e82c03918a30
-    content: User — Arborescent user running multi-turn Claude sessions across long workflows; routinely closes terminals (resource pressure, crashes, reorganisation) and reattaches via `claude --resume`
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a885f61-cdf5-41a5-9aae-0954ac743b46:
-    id: 7a885f61-cdf5-41a5-9aae-0954ac743b46
-    content: Current experience — visual link is dropped on reopen; user has to remember which fresh terminal belongs to which node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f898a683-9065-4db0-b6bb-90e59eb16106:
-    id: f898a683-9065-4db0-b6bb-90e59eb16106
-    content: Goal — when a terminal resumes a previously-played claude session, restore the original node↔terminal association so the blue gutter bar reappears automatically
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  758991eb-7a67-4b86-bac0-a65145df351a:
-    id: 758991eb-7a67-4b86-bac0-a65145df351a
-    content: Business rule — when a node is played into a terminal that launches `claude`, the claude session id is captured and persisted alongside `originNodeId`
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3715bcd5-e8af-4191-a34a-055464f5b8ab:
-    id: 3715bcd5-e8af-4191-a34a-055464f5b8ab
-    content: Business rule — when a terminal launches with a command that resumes a known claude session id (`claude --resume <id>` or `claude -c` against a recorded session), the persisted `originNodeId` for that session id is seeded onto the new terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c00fee6-a5d4-455d-ad8b-e38a7c6521da:
-    id: 3c00fee6-a5d4-455d-ad8b-e38a7c6521da
-    content: Business rule — if the same claude session has been associated with several nodes over time, the most recently played node wins
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  76704452-d202-4489-9227-9619ffb47b7e:
-    id: 76704452-d202-4489-9227-9619ffb47b7e
-    content: Business rule — if the previously associated node no longer exists in the tree, no association is restored and no error is surfaced
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  933ff489-a77a-4097-9a99-9443ea4dacf1:
-    id: 933ff489-a77a-4097-9a99-9443ea4dacf1
-    content: 'Business rule — restoration is silent: no toast, no log; only the blue bar reappears'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ba17a37-b463-4ae6-84ef-b8f5c7a91dc7:
-    id: 4ba17a37-b463-4ae6-84ef-b8f5c7a91dc7
-    content: Business rule — mapping persists across full app restart, not just in-session close/reopen
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c41cda67-fb31-438e-976c-506756ab98d5:
-    id: c41cda67-fb31-438e-976c-506756ab98d5
-    content: Acceptance criterion — play node X in a terminal running claude, close the terminal, open a new terminal that resumes the same claude session → node X shows the blue bar within one render
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  204f2cc9-2a1f-4b53-8198-a7d94b1378cd:
-    id: 204f2cc9-2a1f-4b53-8198-a7d94b1378cd
-    content: Acceptance criterion — two concurrent terminals each resume a different claude session; each blue bar lands on the correct node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  381aa705-c314-41d3-b1bc-d3c03c45436a:
-    id: 381aa705-c314-41d3-b1bc-d3c03c45436a
-    content: Acceptance criterion — if the originally played node was deleted before resume, the new terminal opens cleanly with no blue bar and no error toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b14a3ba8-f1ce-4571-9d6b-be65a1ff5fb8:
-    id: b14a3ba8-f1ce-4571-9d6b-be65a1ff5fb8
-    content: Acceptance criterion — restoration survives a full app restart between close and resume
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9af4f6a-620b-4dba-a6ff-1e85eb105bc2:
-    id: a9af4f6a-620b-4dba-a6ff-1e85eb105bc2
-    content: Acceptance criterion — resuming a session that was never tracked (e.g. started outside Arborescent) leaves the terminal with no `originNodeId` and no error
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f6271cfd-9947-4e7c-b216-bfe713d4450e:
-    id: f6271cfd-9947-4e7c-b216-bfe713d4450e
-    content: 'Acceptance criterion — non-functional: restoration completes before the terminal accepts its first user keystroke (no perceptible flicker on the blue bar)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  de14c3b0-fc69-4798-aaaf-30a5e2687f67:
-    id: de14c3b0-fc69-4798-aaaf-30a5e2687f67
-    content: 🔧 Implementation proposal
-    children:
-      - 9fa2110d-b780-4d3d-8101-6311e28b21f2
-      - c7c3aaf9-3fe6-41e6-9760-8850ff4793ef
-      - 6755d416-a917-4c63-996b-c1efe5d5edc3
-      - aa78c682-fc67-4a36-a66c-13bfca1a2131
-      - 11b7ea1b-6c09-47d2-99ed-eefbb3646f9c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9fa2110d-b780-4d3d-8101-6311e28b21f2:
-    id: 9fa2110d-b780-4d3d-8101-6311e28b21f2
-    content: Approach — extend the existing terminal-session persistence with a `claudeSessionId → originNodeId` map; capture the session id when a node is played into a claude terminal; on terminal-create, inspect launch args and seed `originNodeId` from the map before first render
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c7c3aaf9-3fe6-41e6-9760-8850ff4793ef:
-    id: c7c3aaf9-3fe6-41e6-9760-8850ff4793ef
-    content: Touchpoints — terminalStore (seed `originNodeId` on create from session-id lookup), terminalHandlers (sniff claude launch args / capture session id from PTY), StorageService and shared/interfaces (extend persisted shape with the session→node map), terminal session restore path (no UI change; TreeNode already reads `originNodeId`)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6755d416-a917-4c63-996b-c1efe5d5edc3:
-    id: 6755d416-a917-4c63-996b-c1efe5d5edc3
-    content: 'Constraint — load-bearing dependency: a reliable way to read the claude session id. Pick one of (a) launch claude with an explicit `--session-id <uuid>` Arborescent generates, or (b) parse stdout for the session header. Decide before coding — (a) is simpler and avoids stdout parsing fragility'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa78c682-fc67-4a36-a66c-13bfca1a2131:
-    id: aa78c682-fc67-4a36-a66c-13bfca1a2131
-    content: Constraint — restoration must be idempotent if the user reopens the same session twice
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  11b7ea1b-6c09-47d2-99ed-eefbb3646f9c:
-    id: 11b7ea1b-6c09-47d2-99ed-eefbb3646f9c
-    content: Constraint — only act on claude launches; do not pollute the persisted map with non-claude shells
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbb82056-2cba-472a-99dd-1d17915eb6f0:
-    id: dbb82056-2cba-472a-99dd-1d17915eb6f0
-    content: Single shippable chunk — do not split
-    children:
-      - 562a25ba-b134-4a67-a7cb-552a4ba1f90b
-      - 4fa03ffe-3e84-4647-9969-14062459ec61
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  562a25ba-b134-4a67-a7cb-552a4ba1f90b:
-    id: 562a25ba-b134-4a67-a7cb-552a4ba1f90b
-    content: Capture without restore delivers zero user value; restore without capture is impossible — both halves must ship together to realise the blue bar reappearing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fa03ffe-3e84-4647-9969-14062459ec61:
-    id: 4fa03ffe-3e84-4647-9969-14062459ec61
-    content: Feature is small enough that a flag-gated split adds churn without review benefit
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  471a0797-92e2-44b9-a05d-7b4bbbe8fb1d:
-    id: 471a0797-92e2-44b9-a05d-7b4bbbe8fb1d
-    content: Challenges and pushback
-    children:
-      - 126c256b-e90a-478c-90be-3d364e3e8e65
-      - fb2809b8-98b7-4d97-98c4-4af4fd10cfc7
-      - cd130755-4d96-48ef-aa2d-bedf812f7f4e
-      - a9c3dd51-6429-4a68-b308-78eaa1f3010f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  126c256b-e90a-478c-90be-3d364e3e8e65:
-    id: 126c256b-e90a-478c-90be-3d364e3e8e65
-    content: ROI is moderate-to-low — the blue bar is a UX nicety, not a workflow-blocker; weigh the session-id plumbing against this before committing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fb2809b8-98b7-4d97-98c4-4af4fd10cfc7:
-    id: fb2809b8-98b7-4d97-98c4-4af4fd10cfc7
-    content: If claude CLI does not accept a caller-supplied `--session-id`, the fallback (stdout parsing) is brittle and may not be worth the payoff — confirm CLI surface first
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd130755-4d96-48ef-aa2d-bedf812f7f4e:
-    id: cd130755-4d96-48ef-aa2d-bedf812f7f4e
-    content: Cheaper alternative to evaluate — key the persisted map on `(filePath, terminalSlotIndex)` instead of claude session id, so "the Nth terminal in this file" reattaches to its last `originNodeId` on reopen. Cheaper, no CLI sniffing, but incorrect if the user reorders terminals between close and reopen
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9c3dd51-6429-4a68-b308-78eaa1f3010f:
-    id: a9c3dd51-6429-4a68-b308-78eaa1f3010f
-    content: UX risk — if a user resumes a stale session whose node has drifted in meaning, the restored blue bar may mislead more than help. Acceptable given the rule that deleted nodes restore nothing, but worth noting
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f83ca0a-913a-4d7c-b8c4-14f467e036a4:
-    id: 7f83ca0a-913a-4d7c-b8c4-14f467e036a4
-    content: Out of scope
-    children:
-      - 3900d2ee-eadb-49aa-bb97-f2a0390513ea
-      - c7b33ade-6172-4704-a5f3-cf680370091a
-      - 3be9fa12-dc5c-4251-aeba-97020d8a29b1
-      - 5391a427-cec9-49ba-a85d-962d013aa316
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3900d2ee-eadb-49aa-bb97-f2a0390513ea:
-    id: 3900d2ee-eadb-49aa-bb97-f2a0390513ea
-    content: Restoring terminal scrollback or pty buffer contents
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c7b33ade-6172-4704-a5f3-cf680370091a:
-    id: c7b33ade-6172-4704-a5f3-cf680370091a
-    content: Tracking a list of every node ever played in a session (only the most-recent mapping matters)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3be9fa12-dc5c-4251-aeba-97020d8a29b1:
-    id: 3be9fa12-dc5c-4251-aeba-97020d8a29b1
-    content: Auto-launching `claude --resume` from a closed terminal entry
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5391a427-cec9-49ba-a85d-962d013aa316:
-    id: 5391a427-cec9-49ba-a85d-962d013aa316
-    content: Cross-machine session sync
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd11ff8d-d89a-415c-8307-431405c3624e:
-    id: fd11ff8d-d89a-415c-8307-431405c3624e
+  9830d948-af7d-4efa-9d85-ca48badbe09e:
+    id: 9830d948-af7d-4efa-9d85-ca48badbe09e
     content: worktree
     children:
-      - a554b74f-c69f-4d08-9915-6e9bbe4c383c
+      - c254405a-df29-4073-8538-3b7f114226ae
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a554b74f-c69f-4d08-9915-6e9bbe4c383c:
-    id: a554b74f-c69f-4d08-9915-6e9bbe4c383c
+  c254405a-df29-4073-8538-3b7f114226ae:
+    id: c254405a-df29-4073-8538-3b7f114226ae
+    content: vscode://file/Users/brianfox/dev/Arborescent-resend-next-step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0713fdd-16ff-4a24-966d-d5be50b04591:
+    id: d0713fdd-16ff-4a24-966d-d5be50b04591
+    content: 📄 Product spec
+    children:
+      - cfd467dd-fa98-400a-b6df-60aaa7421b6c
+      - d02fc6fe-06ee-4ba4-aa7b-2bc158694daa
+      - ea15e023-36c5-4898-b921-db58f07a3ed3
+      - e234aa32-1164-4b91-855f-a3c54861ef84
+      - 1e095d1f-fa4e-4fb0-af78-89fa16bd71a4
+      - 70c39a2b-0c7d-446d-bb94-29a3dce42529
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfd467dd-fa98-400a-b6df-60aaa7421b6c:
+    id: cfd467dd-fa98-400a-b6df-60aaa7421b6c
+    content: Context
+    children:
+      - 9ee4f092-dfdf-4e10-a52e-a5da4557a389
+      - 0c799587-83bb-40e7-bcdd-e8556719d169
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ee4f092-dfdf-4e10-a52e-a5da4557a389:
+    id: 9ee4f092-dfdf-4e10-a52e-a5da4557a389
+    content: Workflow runs can pause for two distinct reasons — the AI came back with a question on the current step, or the step finished and awaits user validation before moving on
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c799587-83bb-40e7-bcdd-e8556719d169:
+    id: 0c799587-83bb-40e7-bcdd-e8556719d169
+    content: Today a single "Continue workflow" action always advances to the next step, conflating those two cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d02fc6fe-06ee-4ba4-aa7b-2bc158694daa:
+    id: d02fc6fe-06ee-4ba4-aa7b-2bc158694daa
+    content: User
+    children:
+      - 32c185f7-a4f2-4b3d-94c6-77c1ad8ae170
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32c185f7-a4f2-4b3d-94c6-77c1ad8ae170:
+    id: 32c185f7-a4f2-4b3d-94c6-77c1ad8ae170
+    content: Arborescent user driving a workflow with AI collaboration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea15e023-36c5-4898-b921-db58f07a3ed3:
+    id: ea15e023-36c5-4898-b921-db58f07a3ed3
+    content: Current experience and why it is insufficient
+    children:
+      - 29f4f4b2-8da6-4e37-8e6c-34cc58583a38
+      - 27982e23-d3e0-4726-a256-15b1cad1e80c
+      - 709b877f-28ff-48b9-a530-ac81b39d6ec3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29f4f4b2-8da6-4e37-8e6c-34cc58583a38:
+    id: 29f4f4b2-8da6-4e37-8e6c-34cc58583a38
+    content: '"Continue workflow" silently advances even when the AI paused with a question, losing the chance to answer in place'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27982e23-d3e0-4726-a256-15b1cad1e80c:
+    id: 27982e23-d3e0-4726-a256-15b1cad1e80c
+    content: No clear distinct action exists to re-engage the current step vs move forward, so users risk skipping unresolved AI questions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  709b877f-28ff-48b9-a530-ac81b39d6ec3:
+    id: 709b877f-28ff-48b9-a530-ac81b39d6ec3
+    content: Action label "Continue" reads as forward motion regardless of intent, masking the difference
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e234aa32-1164-4b91-855f-a3c54861ef84:
+    id: e234aa32-1164-4b91-855f-a3c54861ef84
+    content: Goal
+    children:
+      - 3ca09fd3-572a-4ba8-ab97-7126338e80d3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ca09fd3-572a-4ba8-ab97-7126338e80d3:
+    id: 3ca09fd3-572a-4ba8-ab97-7126338e80d3
+    content: Replace the single "Continue workflow" action with two explicitly labelled actions — "Resend step" and "Next step" — so users pick the intent themselves
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e095d1f-fa4e-4fb0-af78-89fa16bd71a4:
+    id: 1e095d1f-fa4e-4fb0-af78-89fa16bd71a4
+    content: Business rules
+    children:
+      - 1033697b-c0a6-4ea1-b226-6d5537c9a584
+      - 8c9ddd33-fc20-4118-a80c-bbb32c1a8625
+      - 584ee5d1-6ea7-49df-9091-ca7937fa15e6
+      - fe8a35ab-7714-4bc2-8b32-93d7dc2a1d8a
+      - 5242cb3f-3dc3-40d7-839d-dc32eff8a9e6
+      - 30c14cd6-bb82-47dd-8231-1c1c7630da16
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1033697b-c0a6-4ea1-b226-6d5537c9a584:
+    id: 1033697b-c0a6-4ea1-b226-6d5537c9a584
+    content: 1. "Next step" preserves current visibility rules — it appears for a node in a workflow step that is not currently running and for a paused workflow, and is hidden while a workflow is running
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c9ddd33-fc20-4118-a80c-bbb32c1a8625:
+    id: 8c9ddd33-fc20-4118-a80c-bbb32c1a8625
+    content: 2. "Resend step" appears when there is a prior send on the current step that can be re-sent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  584ee5d1-6ea7-49df-9091-ca7937fa15e6:
+    id: 584ee5d1-6ea7-49df-9091-ca7937fa15e6
+    content: 3. "Resend step" re-sends to the current step and does not advance the workflow pointer
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe8a35ab-7714-4bc2-8b32-93d7dc2a1d8a:
+    id: fe8a35ab-7714-4bc2-8b32-93d7dc2a1d8a
+    content: 4. "Next step" advances to the next step via the existing next-step mechanism
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5242cb3f-3dc3-40d7-839d-dc32eff8a9e6:
+    id: 5242cb3f-3dc3-40d7-839d-dc32eff8a9e6
+    content: 5. Labels are fixed and identical regardless of why the step paused — the user decides which action fits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30c14cd6-bb82-47dd-8231-1c1c7630da16:
+    id: 30c14cd6-bb82-47dd-8231-1c1c7630da16
+    content: 6. Neither action depends on the system knowing or inferring the pause reason
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70c39a2b-0c7d-446d-bb94-29a3dce42529:
+    id: 70c39a2b-0c7d-446d-bb94-29a3dce42529
+    content: Acceptance criteria
+    children:
+      - 2629fdec-0b77-469f-b90d-e62d363760b6
+      - 8dcb1e69-ce99-4d1d-9084-51cf90b6e7a2
+      - b2aae4c9-1d82-414a-bb7e-38018b035a94
+      - 0617e868-66f2-4def-95bf-aa821edfddc6
+      - 9e47bc7a-0941-427b-8542-173c91019ffd
+      - 6ecbeb44-8836-42c8-8cba-ccc139bd9df8
+      - e6cea27a-95d4-43f6-8d61-f18d6828c4fd
+      - 00f31687-5947-4a1a-ae37-328277e67536
+      - ea01ed34-43e1-455e-9f51-e911932e3420
+      - 239fc57a-d5a8-4355-9392-56ce4cc43c50
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2629fdec-0b77-469f-b90d-e62d363760b6:
+    id: 2629fdec-0b77-469f-b90d-e62d363760b6
+    content: '- [ ] "Next step" is visible for a node in a workflow step that is not currently running'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8dcb1e69-ce99-4d1d-9084-51cf90b6e7a2:
+    id: 8dcb1e69-ce99-4d1d-9084-51cf90b6e7a2
+    content: '- [ ] "Next step" is visible for a paused workflow'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2aae4c9-1d82-414a-bb7e-38018b035a94:
+    id: b2aae4c9-1d82-414a-bb7e-38018b035a94
+    content: '- [ ] "Next step" is hidden while a workflow is running'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0617e868-66f2-4def-95bf-aa821edfddc6:
+    id: 0617e868-66f2-4def-95bf-aa821edfddc6
+    content: '- [ ] "Resend step" is visible whenever there is a prior send on the current step that can be re-sent'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e47bc7a-0941-427b-8542-173c91019ffd:
+    id: 9e47bc7a-0941-427b-8542-173c91019ffd
+    content: '- [ ] When both actions are visible, they appear side by side'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ecbeb44-8836-42c8-8cba-ccc139bd9df8:
+    id: 6ecbeb44-8836-42c8-8cba-ccc139bd9df8
+    content: '- [ ] "Resend step" re-sends to the same step and preserves attached contexts plus any user edits to the step content'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6cea27a-95d4-43f6-8d61-f18d6828c4fd:
+    id: e6cea27a-95d4-43f6-8d61-f18d6828c4fd
+    content: '- [ ] "Next step" advances using the existing next-step flow and its existing keyboard shortcut'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00f31687-5947-4a1a-ae37-328277e67536:
+    id: 00f31687-5947-4a1a-ae37-328277e67536
+    content: '- [ ] Labels read "Resend step" and "Next step" verbatim'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea01ed34-43e1-455e-9f51-e911932e3420:
+    id: ea01ed34-43e1-455e-9f51-e911932e3420
+    content: '- [ ] Keyboard shortcuts for each action are documented and distinct'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  239fc57a-d5a8-4355-9392-56ce4cc43c50:
+    id: 239fc57a-d5a8-4355-9392-56ce4cc43c50
+    content: '- [ ] No pause-reason metadata is required on the step for either action to work'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7aa50235-b240-4c58-9e48-c365e307e3e0:
+    id: 7aa50235-b240-4c58-9e48-c365e307e3e0
+    content: 🔧 Implementation proposal
+    children:
+      - 74dfba20-57a2-4a36-be89-094003cf4b97
+      - 815afeaf-2b2e-41ba-ac84-f10b001b649b
+      - 1789cec5-aa5c-4ba1-a892-8d82bacddcfb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74dfba20-57a2-4a36-be89-094003cf4b97:
+    id: 74dfba20-57a2-4a36-be89-094003cf4b97
+    content: Approach
+    children:
+      - b2e6597c-6d08-44f3-9d26-d77ae4fd7f34
+      - 6bbe5c11-5842-4b04-a1bd-f70d72bb4c51
+      - 5a676cea-355c-4b8a-ab01-115787df00d9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2e6597c-6d08-44f3-9d26-d77ae4fd7f34:
+    id: b2e6597c-6d08-44f3-9d26-d77ae4fd7f34
+    content: Add a new "Resend step" action alongside the existing next-step action, each governed by its own visibility rule
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bbe5c11-5842-4b04-a1bd-f70d72bb4c51:
+    id: 6bbe5c11-5842-4b04-a1bd-f70d72bb4c51
+    content: Rename the legacy "Continue workflow" entry point to "Next step" (or retire it in favour of the existing next-step action if already present)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a676cea-355c-4b8a-ab01-115787df00d9:
+    id: 5a676cea-355c-4b8a-ab01-115787df00d9
+    content: No pause-reason state, no inference — the two actions are independent and idempotent from the user's perspective
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  815afeaf-2b2e-41ba-ac84-f10b001b649b:
+    id: 815afeaf-2b2e-41ba-ac84-f10b001b649b
+    content: Touchpoints
+    children:
+      - a954c3b7-cd78-49d8-838c-dd7a5e63085a
+      - c866e5f3-601a-42a8-9799-26957c699033
+      - 6e649cfd-369f-4848-92f3-55581dcf7de0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a954c3b7-cd78-49d8-838c-dd7a5e63085a:
+    id: a954c3b7-cd78-49d8-838c-dd7a5e63085a
+    content: Renderer UI — workflow control surface buttons, labels, tooltips, and visibility wiring for the two actions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c866e5f3-601a-42a8-9799-26957c699033:
+    id: c866e5f3-601a-42a8-9799-26957c699033
+    content: Store actions — add resend-current-step action; reuse existing advance-to-next-step action
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e649cfd-369f-4848-92f3-55581dcf7de0:
+    id: 6e649cfd-369f-4848-92f3-55581dcf7de0
+    content: Keyboard shortcuts — assign a distinct binding to "Resend step"; keep existing next-step binding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1789cec5-aa5c-4ba1-a892-8d82bacddcfb:
+    id: 1789cec5-aa5c-4ba1-a892-8d82bacddcfb
+    content: Constraints to call out
+    children:
+      - 9824b097-bf16-4d80-99fb-eae8ac262b08
+      - 47455cba-0a77-4950-9aa1-cfa95d9a5013
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9824b097-bf16-4d80-99fb-eae8ac262b08:
+    id: 9824b097-bf16-4d80-99fb-eae8ac262b08
+    content: Naming is user-facing and fixed by this spec — "Resend step" and "Next step"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47455cba-0a77-4950-9aa1-cfa95d9a5013:
+    id: 47455cba-0a77-4950-9aa1-cfa95d9a5013
+    content: '"Next step" visibility must match the existing behaviour exactly — do not regress the running-workflow hide rule'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a47f017-7c68-42a9-bf17-1844f4655214:
+    id: 3a47f017-7c68-42a9-bf17-1844f4655214
+    content: Challenges
+    children:
+      - 64d4da04-6451-4e20-a189-b0438d756708
+      - 55f96e72-d847-4b47-9f71-587741c7fa09
+      - 66337b93-28db-426e-9e8c-8042ab15b889
+      - d1ce1f53-19a4-4453-8ff7-fd7e456a5458
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64d4da04-6451-4e20-a189-b0438d756708:
+    id: 64d4da04-6451-4e20-a189-b0438d756708
+    content: Single shippable element — one user story, no split; both actions ship together for the disambiguation to land
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55f96e72-d847-4b47-9f71-587741c7fa09:
+    id: 55f96e72-d847-4b47-9f71-587741c7fa09
+    content: ROI is good — minimal implementation, removes a real footgun where AI questions get silently skipped
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66337b93-28db-426e-9e8c-8042ab15b889:
+    id: 66337b93-28db-426e-9e8c-8042ab15b889
+    content: Out of scope — auto-detecting AI question vs final answer, or any pause-reason inference; this story deliberately leaves the choice to the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1ce1f53-19a4-4453-8ff7-fd7e456a5458:
+    id: d1ce1f53-19a4-4453-8ff7-fd7e456a5458
+    content: Out of scope — redesigning the broader workflow control panel beyond these two actions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb31caca-23fd-451e-9b9d-335bccb2c06b:
+    id: fb31caca-23fd-451e-9b9d-335bccb2c06b
+    content: Technical refinement
+    children:
+      - 1324810c-31fb-4d0f-834a-04aa47651668
+      - bf2f6809-93ad-461a-98e1-ce3b914d43e1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1324810c-31fb-4d0f-834a-04aa47651668:
+    id: 1324810c-31fb-4d0f-834a-04aa47651668
+    content: Complications
+    children:
+      - 3dd1cf6e-415f-4b89-8e9c-36bc392c67a4
+      - 7048fe73-e93b-4640-b07a-68150ba483bc
+      - ee480f60-8f90-4615-80d7-1a04ec192eb1
+      - 58779f66-e691-4fb7-b756-6b92578f644a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dd1cf6e-415f-4b89-8e9c-36bc392c67a4:
+    id: 3dd1cf6e-415f-4b89-8e9c-36bc392c67a4
+    content: '"Resend step" visibility needs a concrete predicate — pin down what counts as "a prior send" (likely: the step has been sent at least once in the current session), and decide whether that state persists across file reloads'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7048fe73-e93b-4640-b07a-68150ba483bc:
+    id: 7048fe73-e93b-4640-b07a-68150ba483bc
+    content: UI placement of the two actions is not specified — button row vs. menu vs. keyboard-only affects discoverability and should be settled before implementation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee480f60-8f90-4615-80d7-1a04ec192eb1:
+    id: ee480f60-8f90-4615-80d7-1a04ec192eb1
+    content: New keyboard binding for "Resend step" must not collide with the xterm.js terminal panel (which can swallow keys) or with existing shortcuts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58779f66-e691-4fb7-b756-6b92578f644a:
+    id: 58779f66-e691-4fb7-b756-6b92578f644a
+    content: If the legacy "Continue workflow" entry point already aliases to advance-step, the rename is trivial; if it has bespoke wiring, the split may touch more surfaces than the spec implies — worth a quick audit before estimating
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf2f6809-93ad-461a-98e1-ce3b914d43e1:
+    id: bf2f6809-93ad-461a-98e1-ce3b914d43e1
+    content: Approach summary
+    children:
+      - 8d07d58a-8d58-4677-9d5c-91d9e883aa44
+      - d793161e-b0de-4f8c-9dcd-188454f19b23
+      - a0213068-a9b3-4299-a190-d2035f240807
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d07d58a-8d58-4677-9d5c-91d9e883aa44:
+    id: 8d07d58a-8d58-4677-9d5c-91d9e883aa44
+    content: Two independent actions on the workflow control surface, each with its own visibility predicate — no shared state machine, no pause-reason inference
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d793161e-b0de-4f8c-9dcd-188454f19b23:
+    id: d793161e-b0de-4f8c-9dcd-188454f19b23
+    content: '"Resend step" reuses the existing send pipeline (contexts + step content) but skips the workflow-advance side effect; "Next step" wires to the existing advance-to-next-step action'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0213068-a9b3-4299-a190-d2035f240807:
+    id: a0213068-a9b3-4299-a190-d2035f240807
+    content: Non-obvious — the "prior send" predicate behind "Resend step" visibility is the only new piece of state in this story; everything else is rewiring existing actions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e371fd31-9191-431c-92f0-9d8583148147:
+    id: e371fd31-9191-431c-92f0-9d8583148147
+    content: worktree
+    children:
+      - 462f289f-828b-4b95-ad8e-ea67ff38596a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  462f289f-828b-4b95-ad8e-ea67ff38596a:
+    id: 462f289f-828b-4b95-ad8e-ea67ff38596a
+    content: vscode://file/Users/brianfox/dev/Arborescent-recurse
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ded358db-9af4-458f-8e3c-580fd7721424:
+    id: ded358db-9af4-458f-8e3c-580fd7721424
+    content: 📄 Spec
+    children:
+      - 61b288bf-0577-4c16-9a1b-7d146427ba65
+      - b5afd283-1ac6-4393-a3fc-3a8c996021fd
+      - 88143025-02e7-459a-8cc7-066095f8c531
+      - da4f93ec-e908-45af-8526-5e6c1af41c98
+      - 15951e02-2963-49b4-8e2e-6962e0888b8a
+      - f1b790b5-3a2a-4d01-aa1b-f290735d0e0e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61b288bf-0577-4c16-9a1b-7d146427ba65:
+    id: 61b288bf-0577-4c16-9a1b-7d146427ba65
+    content: Summary
+    children:
+      - 486a16f8-b317-4bed-ba0e-a1d4162f20d8
+      - c6c5ba68-7020-4a82-acfd-68ffd283d207
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  486a16f8-b317-4bed-ba0e-a1d4162f20d8:
+    id: 486a16f8-b317-4bed-ba0e-a1d4162f20d8
+    content: When two or more decomposition steps sit as siblings in the same workflow chain, the Recurse step's target is unspecified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6c5ba68-7020-4a82-acfd-68ffd283d207:
+    id: c6c5ba68-7020-4a82-acfd-68ffd283d207
+    content: Multiple decomposed elements within a single decomposition step are not affected — that case already works
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5afd283-1ac6-4393-a3fc-3a8c996021fd:
+    id: b5afd283-1ac6-4393-a3fc-3a8c996021fd
+    content: Trigger conditions
+    children:
+      - a2127fe8-063e-4cdd-b9ad-7d082e4bb97f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2127fe8-063e-4cdd-b9ad-7d082e4bb97f:
+    id: a2127fe8-063e-4cdd-b9ad-7d082e4bb97f
+    content: A workflow contains two or more decomposition steps as sibling workflow steps, followed later in the same sibling chain by a Recurse step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88143025-02e7-459a-8cc7-066095f8c531:
+    id: 88143025-02e7-459a-8cc7-066095f8c531
+    content: Desired behaviour
+    children:
+      - be54f31f-3ce7-4f03-a638-fec4f3777f73
+      - 8ff8b214-d113-4ea5-a30b-57b157e479fe
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be54f31f-3ce7-4f03-a638-fec4f3777f73:
+    id: be54f31f-3ce7-4f03-a638-fec4f3777f73
+    content: Recurse must always associate with the nearest preceding decomposition step among its sibling workflow steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ff8b214-d113-4ea5-a30b-57b157e479fe:
+    id: 8ff8b214-d113-4ea5-a30b-57b157e479fe
+    content: Any decomposition steps earlier in the sibling chain are ignored
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da4f93ec-e908-45af-8526-5e6c1af41c98:
+    id: da4f93ec-e908-45af-8526-5e6c1af41c98
+    content: Proposed approach
+    children:
+      - 97eed8d1-3bf6-477b-82f3-73d03230995d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97eed8d1-3bf6-477b-82f3-73d03230995d:
+    id: 97eed8d1-3bf6-477b-82f3-73d03230995d
+    content: Resolve Recurse target by walking backward through sibling workflow steps and binding to the first decomposition step encountered
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15951e02-2963-49b4-8e2e-6962e0888b8a:
+    id: 15951e02-2963-49b4-8e2e-6962e0888b8a
+    content: Acceptance criteria
+    children:
+      - 608fda29-3565-48f7-84c5-e38c7ea59ed3
+      - eef9100f-204e-4820-a480-9dc87590824c
+      - 2db6dd6b-7a37-49ef-bb91-78eebfbde904
+      - 53b6e001-ee57-4d01-9970-6c7fa9e81afe
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  608fda29-3565-48f7-84c5-e38c7ea59ed3:
+    id: 608fda29-3565-48f7-84c5-e38c7ea59ed3
+    content: '- [ ] With multiple decomposition steps as siblings, Recurse iterates the output of the nearest preceding decomposition step only'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eef9100f-204e-4820-a480-9dc87590824c:
+    id: eef9100f-204e-4820-a480-9dc87590824c
+    content: '- [ ] Earlier decomposition steps in the same sibling chain are not iterated by that Recurse'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2db6dd6b-7a37-49ef-bb91-78eebfbde904:
+    id: 2db6dd6b-7a37-49ef-bb91-78eebfbde904
+    content: '- [ ] Workflows with a single decomposition step retain existing behaviour (no regression)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53b6e001-ee57-4d01-9970-6c7fa9e81afe:
+    id: 53b6e001-ee57-4d01-9970-6c7fa9e81afe
+    content: '- [ ] A Recurse step with no preceding decomposition step among its siblings surfaces a clear error rather than silently picking an arbitrary target'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1b790b5-3a2a-4d01-aa1b-f290735d0e0e:
+    id: f1b790b5-3a2a-4d01-aa1b-f290735d0e0e
+    content: Out of scope
+    children:
+      - 0abcb72d-2949-461f-ad16-bc1a4cdad3a4
+      - 21ce7760-3682-4572-b605-68c5f086e53a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0abcb72d-2949-461f-ad16-bc1a4cdad3a4:
+    id: 0abcb72d-2949-461f-ad16-bc1a4cdad3a4
+    content: Cross-level recurse targeting (Recurse referencing a decomposition outside its sibling chain — no ancestry climbing)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21ce7760-3682-4572-b605-68c5f086e53a:
+    id: 21ce7760-3682-4572-b605-68c5f086e53a
+    content: Group ID or explicit-target pairing mechanisms — revisit only if the positional rule proves insufficient
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e9e2cbb-395b-4d27-a9f6-68570a9be89b:
+    id: 0e9e2cbb-395b-4d27-a9f6-68570a9be89b
+    content: Technical refinement
+    children:
+      - a266983a-2914-4ff8-b264-fed1050483bc
+      - adf4ce4c-1cc8-4ef9-a851-3a06790ed9d7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a266983a-2914-4ff8-b264-fed1050483bc:
+    id: a266983a-2914-4ff8-b264-fed1050483bc
+    content: Approach summary
+    children:
+      - a8212f35-7372-4e8a-8baa-c6c93b365f07
+      - 6bc48d86-6683-40bb-8716-617216218172
+      - 5014981a-2b44-4a3d-a26d-c74770692c12
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8212f35-7372-4e8a-8baa-c6c93b365f07:
+    id: a8212f35-7372-4e8a-8baa-c6c93b365f07
+    content: Small change localised to the workflow runtime where a Recurse step resolves its iteration target — replace whatever the current resolution does with a backward scan of sibling workflow steps for the first decomposition step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bc48d86-6683-40bb-8716-617216218172:
+    id: 6bc48d86-6683-40bb-8716-617216218172
+    content: No data-model or file-format change; .arbo workflows remain forward/backward compatible
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5014981a-2b44-4a3d-a26d-c74770692c12:
+    id: 5014981a-2b44-4a3d-a26d-c74770692c12
+    content: No new UI affordances — error path for "no preceding decomposition" should reuse existing workflow-error surfacing rather than invent a new one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  adf4ce4c-1cc8-4ef9-a851-3a06790ed9d7:
+    id: adf4ce4c-1cc8-4ef9-a851-3a06790ed9d7
+    content: Complications
+    children:
+      - 728a7d9f-19ae-4661-bf19-98055ef4bff2
+      - 4bd53649-4bd4-4cb8-ae2b-35f0118945f2
+      - 9f61141b-39c7-4ed3-9357-4239109ec431
+      - 10820a86-6df1-4ef7-bb9c-5ce3817dff1e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  728a7d9f-19ae-4661-bf19-98055ef4bff2:
+    id: 728a7d9f-19ae-4661-bf19-98055ef4bff2
+    content: Earlier decomposition steps in the same sibling chain become orphans with no Recurse pair — by design, but worth confirming no existing workflow relies on their output being iterated downstream
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bd53649-4bd4-4cb8-ae2b-35f0118945f2:
+    id: 4bd53649-4bd4-4cb8-ae2b-35f0118945f2
+    content: Resolution timing matters — needs to be deterministic at the point Recurse executes (sibling structure can change as a workflow is edited), not cached from an earlier parse
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f61141b-39c7-4ed3-9357-4239109ec431:
+    id: 9f61141b-39c7-4ed3-9357-4239109ec431
+    content: '"Decomposition step" definition needs to be unambiguous in code — anything with decomposition enabled counts, regardless of whether it actually produced multiple outputs at runtime'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  10820a86-6df1-4ef7-bb9c-5ce3817dff1e:
+    id: 10820a86-6df1-4ef7-bb9c-5ce3817dff1e
+    content: Low ROI risk — implementation is a few lines; main cost is test coverage for the multi-decomposition and no-preceding-decomposition cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19f825d7-108e-4318-857c-a777bf5382d3:
+    id: 19f825d7-108e-4318-857c-a777bf5382d3
+    content: worktree
+    children:
+      - dfae5b36-50d5-4265-90cb-ccce3f62b509
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfae5b36-50d5-4265-90cb-ccce3f62b509:
+    id: dfae5b36-50d5-4265-90cb-ccce3f62b509
     content: vscode://file//Users/brianfox/dev/Arborescent-recurse-status
     children: []
     metadata:
@@ -117551,47 +118014,47 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f7197d58-a432-4ee2-96a3-2707a0a76f9a:
-    id: f7197d58-a432-4ee2-96a3-2707a0a76f9a
+  fc1a9ab1-99a0-4949-b03e-662c87c0f5c7:
+    id: fc1a9ab1-99a0-4949-b03e-662c87c0f5c7
     content: User story
     children:
-      - 026ad8d7-a4f1-4706-b328-6dcdbccdfa40
-      - ff16df6d-b9d9-4e6e-8fbb-83331d23c50f
-      - 048ccf09-cf5f-44e6-afee-abae15733a55
-      - 716cb822-065e-430e-a49c-50c50889e9c2
+      - 5a75a2ab-d937-4405-9cd1-c700d3c6c63c
+      - b99cd99d-b231-41f0-9731-59cca0885856
+      - 094f5138-5b80-42b2-9660-8d7918614c45
+      - abda6284-f1ab-41bd-9d7b-07d45fc8ba0b
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  026ad8d7-a4f1-4706-b328-6dcdbccdfa40:
-    id: 026ad8d7-a4f1-4706-b328-6dcdbccdfa40
+  5a75a2ab-d937-4405-9cd1-c700d3c6c63c:
+    id: 5a75a2ab-d937-4405-9cd1-c700d3c6c63c
     content: Title — Fix misleading recurse status messages during multi-step playback
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ff16df6d-b9d9-4e6e-8fbb-83331d23c50f:
-    id: ff16df6d-b9d9-4e6e-8fbb-83331d23c50f
+  b99cd99d-b231-41f0-9731-59cca0885856:
+    id: b99cd99d-b231-41f0-9731-59cca0885856
     content: 📄 Product spec
     children:
-      - 46436fb5-7aff-4899-8c6d-8db2eb2418c1
-      - 3495821e-f2b1-4c35-8da3-99a23fef42b4
-      - b5902f2a-d6b6-446a-aaf0-378a6821d0cf
-      - d6003ea5-1486-4576-98b4-a8ed937ca176
-      - 19ee7581-b717-42e5-88bb-70b7d644b256
-      - 3558d735-0866-4e2e-bfdc-01adda42edae
-      - 7c09d915-4e3b-403c-b5a9-84e9bf362323
-      - 8a91ad17-8edf-46df-8a27-aaa10b9f4af4
+      - ee69ca40-f55c-42b2-a159-c4a56be0b796
+      - 9d46235b-607c-4c75-ba72-2a5d2bece723
+      - 500312ac-a5d9-4783-9881-fc384f7b3575
+      - 2f1a829e-b129-469e-bc05-95d02c84651d
+      - 2d0bff30-698b-4c4b-a331-3db3878c2ea1
+      - 55de067c-4d8f-4a67-b087-908976735a11
+      - 3ee1f30f-45ed-41b1-98c7-17a678eb4ecd
+      - 3324c434-2211-4d76-810c-8dd4b8f2fc11
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  46436fb5-7aff-4899-8c6d-8db2eb2418c1:
-    id: 46436fb5-7aff-4899-8c6d-8db2eb2418c1
+  ee69ca40-f55c-42b2-a159-c4a56be0b796:
+    id: ee69ca40-f55c-42b2-a159-c4a56be0b796
     content: Context — recurse mode plays a sequence of decomposed steps; status warnings should reflect the actual recurse boundary, not intermediate node activity
     children: []
     metadata:
@@ -117599,8 +118062,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3495821e-f2b1-4c35-8da3-99a23fef42b4:
-    id: 3495821e-f2b1-4c35-8da3-99a23fef42b4
+  9d46235b-607c-4c75-ba72-2a5d2bece723:
+    id: 9d46235b-607c-4c75-ba72-2a5d2bece723
     content: User — Arborescent power user driving multi-step workflows via recurse
     children: []
     metadata:
@@ -117608,8 +118071,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b5902f2a-d6b6-446a-aaf0-378a6821d0cf:
-    id: b5902f2a-d6b6-446a-aaf0-378a6821d0cf
+  500312ac-a5d9-4783-9881-fc384f7b3575:
+    id: 500312ac-a5d9-4783-9881-fc384f7b3575
     content: Current experience — spurious 'recurse halted - next step could not start, terminal busy' warning fires on every node of PR1 before reaching the recurse-marked node on PR2
     children: []
     metadata:
@@ -117617,8 +118080,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d6003ea5-1486-4576-98b4-a8ed937ca176:
-    id: d6003ea5-1486-4576-98b4-a8ed937ca176
+  2f1a829e-b129-469e-bc05-95d02c84651d:
+    id: 2f1a829e-b129-469e-bc05-95d02c84651d
     content: Current experience — a 'detached from session, will start in another' message appears even though PR2 successfully starts in the same session
     children: []
     metadata:
@@ -117626,8 +118089,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  19ee7581-b717-42e5-88bb-70b7d644b256:
-    id: 19ee7581-b717-42e5-88bb-70b7d644b256
+  2d0bff30-698b-4c4b-a331-3db3878c2ea1:
+    id: 2d0bff30-698b-4c4b-a331-3db3878c2ea1
     content: Why insufficient — false halt warnings and misleading session messages erode trust in recurse status; users cannot distinguish real halts from noise
     children: []
     metadata:
@@ -117635,218 +118098,218 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3558d735-0866-4e2e-bfdc-01adda42edae:
-    id: 3558d735-0866-4e2e-bfdc-01adda42edae
+  55de067c-4d8f-4a67-b087-908976735a11:
+    id: 55de067c-4d8f-4a67-b087-908976735a11
     content: Goal — recurse status messages reflect actual playback state; halt and session-attachment warnings fire only when they correspond to a real outcome
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7c09d915-4e3b-403c-b5a9-84e9bf362323:
-    id: 7c09d915-4e3b-403c-b5a9-84e9bf362323
+  3ee1f30f-45ed-41b1-98c7-17a678eb4ecd:
+    id: 3ee1f30f-45ed-41b1-98c7-17a678eb4ecd
     content: Business rules
     children:
-      - 6468ea3a-28dc-4dae-b60f-f241297daa1b
-      - 78ce4254-fb4f-40e9-9f68-2936a416fdae
-      - 8f4b5bf0-8729-4b73-9385-bdea108886fb
-      - 1fee1e51-52ed-405e-8094-9bad052724d0
+      - 90ac3150-3cfe-4b36-b740-497421c44d30
+      - ea978013-92db-4474-a88c-143b5dcbea32
+      - b3d39c1b-9463-4282-8125-152a4760a477
+      - 3ed0a9aa-39fa-497e-bca2-cb7776edfa0a
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6468ea3a-28dc-4dae-b60f-f241297daa1b:
-    id: 6468ea3a-28dc-4dae-b60f-f241297daa1b
+  90ac3150-3cfe-4b36-b740-497421c44d30:
+    id: 90ac3150-3cfe-4b36-b740-497421c44d30
     content: 1. The 'recurse halted - terminal busy' warning must only fire when the recurse-target node cannot start because the terminal is busy
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  78ce4254-fb4f-40e9-9f68-2936a416fdae:
-    id: 78ce4254-fb4f-40e9-9f68-2936a416fdae
+  ea978013-92db-4474-a88c-143b5dcbea32:
+    id: ea978013-92db-4474-a88c-143b5dcbea32
     content: 2. Intermediate nodes between the trigger and the recurse-marked node must not emit recurse-halted warnings
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8f4b5bf0-8729-4b73-9385-bdea108886fb:
-    id: 8f4b5bf0-8729-4b73-9385-bdea108886fb
+  b3d39c1b-9463-4282-8125-152a4760a477:
+    id: b3d39c1b-9463-4282-8125-152a4760a477
     content: 3. Session-attachment messages must reflect the actual session outcome — no 'detached' message when playback continues in the same session
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  1fee1e51-52ed-405e-8094-9bad052724d0:
-    id: 1fee1e51-52ed-405e-8094-9bad052724d0
+  3ed0a9aa-39fa-497e-bca2-cb7776edfa0a:
+    id: 3ed0a9aa-39fa-497e-bca2-cb7776edfa0a
     content: 4. Real halt scenarios at the recurse boundary must still surface the warning unchanged
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8a91ad17-8edf-46df-8a27-aaa10b9f4af4:
-    id: 8a91ad17-8edf-46df-8a27-aaa10b9f4af4
+  3324c434-2211-4d76-810c-8dd4b8f2fc11:
+    id: 3324c434-2211-4d76-810c-8dd4b8f2fc11
     content: Acceptance criteria
     children:
-      - 73e81c5c-15d8-4b97-95e7-8f12102220d7
-      - cbe09fa7-c6b7-412e-a70f-de17ea365932
-      - 20d03f74-5afa-4fb8-b120-3926dc272e6f
-      - 54686a49-c8bf-4895-9a8f-7e6ce513b77b
-      - f34442c5-608d-405f-b83f-933749ee0ef8
+      - 7de97218-ce84-4701-bdaf-87b04f524567
+      - 739c2059-0afa-453c-b0a9-1b2eaf8352a4
+      - c6e7cf09-39f5-417a-9acc-53f5ad5e4f96
+      - e99571da-3a2e-45a7-8d3f-07e84643c709
+      - fd2c5c4a-3027-4ace-808e-e9814b5cdabd
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  73e81c5c-15d8-4b97-95e7-8f12102220d7:
-    id: 73e81c5c-15d8-4b97-95e7-8f12102220d7
-    content: '- [ ] Playing two decomposed steps with recurse marked on PR2 produces no ''recurse halted'' warning during PR1''s nodes'
+  7de97218-ce84-4701-bdaf-87b04f524567:
+    id: 7de97218-ce84-4701-bdaf-87b04f524567
+    content: '- [x] Playing two decomposed steps with recurse marked on PR2 produces no ''recurse halted'' warning during PR1''s nodes'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  cbe09fa7-c6b7-412e-a70f-de17ea365932:
-    id: cbe09fa7-c6b7-412e-a70f-de17ea365932
-    content: '- [ ] ''recurse halted - terminal busy'' warning only appears when the recurse-target node genuinely cannot start'
+  739c2059-0afa-453c-b0a9-1b2eaf8352a4:
+    id: 739c2059-0afa-453c-b0a9-1b2eaf8352a4
+    content: '- [x] ''recurse halted - terminal busy'' warning only appears when the recurse-target node genuinely cannot start'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  20d03f74-5afa-4fb8-b120-3926dc272e6f:
-    id: 20d03f74-5afa-4fb8-b120-3926dc272e6f
-    content: '- [ ] When PR2 starts in the same session, no ''detached from session, will start in another'' message is shown'
+  c6e7cf09-39f5-417a-9acc-53f5ad5e4f96:
+    id: c6e7cf09-39f5-417a-9acc-53f5ad5e4f96
+    content: '- [x] When PR2 starts in the same session, no ''detached from session, will start in another'' message is shown'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  54686a49-c8bf-4895-9a8f-7e6ce513b77b:
-    id: 54686a49-c8bf-4895-9a8f-7e6ce513b77b
-    content: '- [ ] A genuine terminal-busy halt at the recurse target still surfaces the warning correctly'
+  e99571da-3a2e-45a7-8d3f-07e84643c709:
+    id: e99571da-3a2e-45a7-8d3f-07e84643c709
+    content: '- [x] A genuine terminal-busy halt at the recurse target still surfaces the warning correctly'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f34442c5-608d-405f-b83f-933749ee0ef8:
-    id: f34442c5-608d-405f-b83f-933749ee0ef8
-    content: '- [ ] A genuine detach-and-reattach to a new session still surfaces the session message correctly'
+  fd2c5c4a-3027-4ace-808e-e9814b5cdabd:
+    id: fd2c5c4a-3027-4ace-808e-e9814b5cdabd
+    content: '- [x] A genuine detach-and-reattach to a new session still surfaces the session message correctly'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  048ccf09-cf5f-44e6-afee-abae15733a55:
-    id: 048ccf09-cf5f-44e6-afee-abae15733a55
+  094f5138-5b80-42b2-9660-8d7918614c45:
+    id: 094f5138-5b80-42b2-9660-8d7918614c45
     content: 🔧 Implementation proposal
     children:
-      - 5b202f8b-541b-4098-9f92-e3b5b0ff2cd7
-      - d21b487f-a216-40c9-97cc-ebd24a5b0b06
-      - 89da5b90-154f-4719-bc25-238dcde8c00a
+      - ba2c0876-47fc-4a09-ad2f-f53a41b42a9a
+      - c4ed17ff-6023-438d-889b-ec698b4edf50
+      - e8bd61bf-5e61-44c2-a803-3ff3b5ce9c15
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  5b202f8b-541b-4098-9f92-e3b5b0ff2cd7:
-    id: 5b202f8b-541b-4098-9f92-e3b5b0ff2cd7
+  ba2c0876-47fc-4a09-ad2f-f53a41b42a9a:
+    id: ba2c0876-47fc-4a09-ad2f-f53a41b42a9a
     content: Approach — gate recurse halt-warning emission on the recurse-target node only; correct session-attachment status to read the actual attached session at the moment playback begins, not the predicted one
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d21b487f-a216-40c9-97cc-ebd24a5b0b06:
-    id: d21b487f-a216-40c9-97cc-ebd24a5b0b06
+  c4ed17ff-6023-438d-889b-ec698b4edf50:
+    id: c4ed17ff-6023-438d-889b-ec698b4edf50
     content: Touchpoints — recurse playback service, terminal session manager, feedback/status surface that emits warnings
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  89da5b90-154f-4719-bc25-238dcde8c00a:
-    id: 89da5b90-154f-4719-bc25-238dcde8c00a
+  e8bd61bf-5e61-44c2-a803-3ff3b5ce9c15:
+    id: e8bd61bf-5e61-44c2-a803-3ff3b5ce9c15
     content: Constraints — verify that suppressing intermediate-node warnings does not mask a real race where the terminal stays busy through the recurse boundary; the 'terminal busy' signal may currently be firing as a teardown race from the prior node
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  716cb822-065e-430e-a49c-50c50889e9c2:
-    id: 716cb822-065e-430e-a49c-50c50889e9c2
+  abda6284-f1ab-41bd-9d7b-07d45fc8ba0b:
+    id: abda6284-f1ab-41bd-9d7b-07d45fc8ba0b
     content: Technical refinement
     children:
-      - b1fdb86b-5e10-4f37-81d2-c4e0a4115b20
-      - 7a6392e4-b4f3-4929-8422-882e1bc3c12f
+      - 3d83b169-fda3-4d8d-803c-a034d8f583e6
+      - d2a40313-46a4-4b74-99fd-5a20ecd1ec09
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b1fdb86b-5e10-4f37-81d2-c4e0a4115b20:
-    id: b1fdb86b-5e10-4f37-81d2-c4e0a4115b20
+  3d83b169-fda3-4d8d-803c-a034d8f583e6:
+    id: 3d83b169-fda3-4d8d-803c-a034d8f583e6
     content: Complications
     children:
-      - 6429fefc-3b65-4723-82e0-79985c947dd2
-      - 5ac6f4fb-75bc-4132-80f7-7484027f2c4e
-      - 4a9b800f-0a33-4951-a2d2-d60a74249dda
-      - 2b0b3b9a-4058-48d8-85a5-1b0c6cb088f5
-      - 529c65e1-f707-423b-8acd-30cc8726648b
-      - 7e780963-8651-4746-9683-5f95b4d23e5e
-      - 38c30fb8-c807-4053-aac2-7119990ebfa9
+      - 46ad5343-1dc4-408d-9e89-20e63dc0210e
+      - 79b3a8bb-8b99-416f-a010-c40b42d72e89
+      - 3a7e1bf0-dd18-42dd-ab3a-233e7ef89935
+      - 16c8598a-dcc8-4ec0-8dda-47f3f14ff676
+      - 2bc881e3-f871-4f0b-bce0-c7014b667638
+      - 040dcf1a-8787-4e70-9b4c-a471bc57f53f
+      - a7c12bf0-1c3d-4464-a09c-620fe8e049e4
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6429fefc-3b65-4723-82e0-79985c947dd2:
-    id: 6429fefc-3b65-4723-82e0-79985c947dd2
+  46ad5343-1dc4-408d-9e89-20e63dc0210e:
+    id: 46ad5343-1dc4-408d-9e89-20e63dc0210e
     content: Risk — 'terminal busy' on intermediate nodes may not be a false positive but a teardown race from the prior node; merely suppressing the warning could mask a real bug that resurfaces at the recurse boundary later
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  5ac6f4fb-75bc-4132-80f7-7484027f2c4e:
-    id: 5ac6f4fb-75bc-4132-80f7-7484027f2c4e
+  79b3a8bb-8b99-416f-a010-c40b42d72e89:
+    id: 79b3a8bb-8b99-416f-a010-c40b42d72e89
     content: Risk — session-attachment status is currently emitted before the attach resolves; moving emission to post-attach may surface ordering bugs in callers that listen for the message
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  4a9b800f-0a33-4951-a2d2-d60a74249dda:
-    id: 4a9b800f-0a33-4951-a2d2-d60a74249dda
+  3a7e1bf0-dd18-42dd-ab3a-233e7ef89935:
+    id: 3a7e1bf0-dd18-42dd-ab3a-233e7ef89935
     content: 'Edge case — recurse marked on a deeply-nested node (not a top-level sibling): halt-gating must target the actual recurse node, not the nearest ancestor'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2b0b3b9a-4058-48d8-85a5-1b0c6cb088f5:
-    id: 2b0b3b9a-4058-48d8-85a5-1b0c6cb088f5
+  16c8598a-dcc8-4ec0-8dda-47f3f14ff676:
+    id: 16c8598a-dcc8-4ec0-8dda-47f3f14ff676
     content: 'Edge case — recurse marked on the currently-playing node, or multiple recurse marks in a single chain: behaviour must be defined'
     children: []
     metadata:
@@ -117854,8 +118317,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  529c65e1-f707-423b-8acd-30cc8726648b:
-    id: 529c65e1-f707-423b-8acd-30cc8726648b
+  2bc881e3-f871-4f0b-bce0-c7014b667638:
+    id: 2bc881e3-f871-4f0b-bce0-c7014b667638
     content: 'Edge case — user cancels playback mid-chain: no spurious halt warning should fire on the cancelled boundary'
     children: []
     metadata:
@@ -117863,78 +118326,78 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7e780963-8651-4746-9683-5f95b4d23e5e:
-    id: 7e780963-8651-4746-9683-5f95b4d23e5e
+  040dcf1a-8787-4e70-9b4c-a471bc57f53f:
+    id: 040dcf1a-8787-4e70-9b4c-a471bc57f53f
     content: Out of scope — redesigning the recurse model, visual treatment of recurse markers, multi-terminal recurse
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  38c30fb8-c807-4053-aac2-7119990ebfa9:
-    id: 38c30fb8-c807-4053-aac2-7119990ebfa9
+  a7c12bf0-1c3d-4464-a09c-620fe8e049e4:
+    id: a7c12bf0-1c3d-4464-a09c-620fe8e049e4
     content: ROI — UX-only defect; recurse completes successfully. Keep fix scoped to status emission unless the teardown-race investigation forces a deeper change
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7a6392e4-b4f3-4929-8422-882e1bc3c12f:
-    id: 7a6392e4-b4f3-4929-8422-882e1bc3c12f
+  d2a40313-46a4-4b74-99fd-5a20ecd1ec09:
+    id: d2a40313-46a4-4b74-99fd-5a20ecd1ec09
     content: Approach summary
     children:
-      - f2b669e2-2e8a-4321-a90b-4114ef725a58
-      - 4c639239-5912-4bf5-91db-7531249a0402
-      - 9633e131-4ace-4f75-aa7b-bb90aaf6c21f
+      - fc0f1a70-9eb4-43a2-9e94-6ed49a575964
+      - 5fe32e0f-22c8-444a-b93b-c60a9f627e04
+      - 275e9b9d-e3f4-4050-92ce-29d6030b9f5c
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f2b669e2-2e8a-4321-a90b-4114ef725a58:
-    id: f2b669e2-2e8a-4321-a90b-4114ef725a58
+  fc0f1a70-9eb4-43a2-9e94-6ed49a575964:
+    id: fc0f1a70-9eb4-43a2-9e94-6ed49a575964
     content: Restrict recurse halt-warning emission to the recurse-target node by checking node identity in the playback loop before surfacing the message
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  4c639239-5912-4bf5-91db-7531249a0402:
-    id: 4c639239-5912-4bf5-91db-7531249a0402
+  5fe32e0f-22c8-444a-b93b-c60a9f627e04:
+    id: 5fe32e0f-22c8-444a-b93b-c60a9f627e04
     content: Resolve session-attachment status from the actual attached session after attach completes, instead of from the predicted session at dispatch time
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  9633e131-4ace-4f75-aa7b-bb90aaf6c21f:
-    id: 9633e131-4ace-4f75-aa7b-bb90aaf6c21f
+  275e9b9d-e3f4-4050-92ce-29d6030b9f5c:
+    id: 275e9b9d-e3f4-4050-92ce-29d6030b9f5c
     content: Non-obvious — 'terminal busy' may be a teardown-race symptom; investigation may show the right fix is awaiting terminal-idle at the recurse boundary rather than gating the warning
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  722beb77-5ba2-4ac6-bde3-fd3d5688b230:
-    id: 722beb77-5ba2-4ac6-bde3-fd3d5688b230
+  650006a8-3e5e-4bb7-b212-3efa56b63fe4:
+    id: 650006a8-3e5e-4bb7-b212-3efa56b63fe4
     content: Challenge
     children:
-      - 62139807-7c93-487a-b449-a559369b00c4
-      - 77d6b3f7-7726-4665-9304-e8e1f7e3465a
-      - d6dcc031-af9b-4df3-8bd5-7d6347dd214c
-      - e6622735-4f53-41f4-b14f-f8fa06666ac4
+      - 5a4ef69e-df84-4023-8910-94a2b9d9648b
+      - ea34c33b-f9e8-4ea4-90a6-01b6d781f632
+      - 653f735b-280e-44dd-920a-66efa6367490
+      - e39ef7ab-d88a-4885-940a-24209f573543
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  62139807-7c93-487a-b449-a559369b00c4:
-    id: 62139807-7c93-487a-b449-a559369b00c4
+  5a4ef69e-df84-4023-8910-94a2b9d9648b:
+    id: 5a4ef69e-df84-4023-8910-94a2b9d9648b
     content: Bug, not feature — user-story framing is heavier than this needs; a defect ticket with repro + expected behaviour carries the same information with less ceremony
     children: []
     metadata:
@@ -117942,8 +118405,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  77d6b3f7-7726-4665-9304-e8e1f7e3465a:
-    id: 77d6b3f7-7726-4665-9304-e8e1f7e3465a
+  ea34c33b-f9e8-4ea4-90a6-01b6d781f632:
+    id: ea34c33b-f9e8-4ea4-90a6-01b6d781f632
     content: Repro steps are missing — exact tree shape, where recurse was marked, and which session was attached are needed before the fix targets the right code path
     children: []
     metadata:
@@ -117951,8 +118414,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d6dcc031-af9b-4df3-8bd5-7d6347dd214c:
-    id: d6dcc031-af9b-4df3-8bd5-7d6347dd214c
+  653f735b-280e-44dd-920a-66efa6367490:
+    id: 653f735b-280e-44dd-920a-66efa6367490
     content: Two symptoms (spurious halt warning + misleading detach message) may have independent root causes — keep as one ticket only if investigation confirms shared origin, otherwise split
     children: []
     metadata:
@@ -117960,8 +118423,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e6622735-4f53-41f4-b14f-f8fa06666ac4:
-    id: e6622735-4f53-41f4-b14f-f8fa06666ac4
+  e39ef7ab-d88a-4885-940a-24209f573543:
+    id: e39ef7ab-d88a-4885-940a-24209f573543
     content: Severity is UX/trust, not functional — recurse still completed successfully; weigh fix priority against features that unblock real workflows
     children: []
     metadata:
@@ -117969,10 +118432,642 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  034fc3bd-c1f5-4062-8cad-ecba690e47d0:
+    id: 034fc3bd-c1f5-4062-8cad-ecba690e47d0
+    content: review feedback
+    children:
+      - 4feb8108-ae0a-4ee3-bede-f526d216ae1b
+      - 7dc47498-5e4b-4fce-8f9f-63a7a0071d79
+      - f3ba64a4-f74d-46d4-a5cd-f5333a4af0d0
+      - 33ce0162-a086-4d30-a449-71150dfd3467
+      - 8230f160-1358-4e3f-81f4-b660c3f17638
+      - 5f49bd7b-867a-4fca-9f36-f6585e558d99
+      - 0f00bab9-8bd0-4ad0-a7a3-d0094dc450fa
+      - 15234ef4-6c03-4df1-bb2a-7723696715d0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4feb8108-ae0a-4ee3-bede-f526d216ae1b:
+    id: 4feb8108-ae0a-4ee3-bede-f526d216ae1b
+    content: Correctness gate verified — traced all three callers of checkRecurse; guard only fires on intermediate autonomous-to-autonomous advance from advanceNode line 717; the recurse-marked-step path (line 655) and completeWorkflow path (line 618) both pre-delete orchestrator state before calling, so the guard correctly skips and the schedule fires
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dc47498-5e4b-4fce-8f9f-63a7a0071d79:
+    id: 7dc47498-5e4b-4fce-8f9f-63a7a0071d79
+    content: Recurse safety-limit test in workflowExecutionActions.test.ts loops via the recurse-marked branch (each iteration calls stopWorkflow before checkRecurse), so the guard does not break it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3ba64a4-f74d-46d4-a5cd-f5333a4af0d0:
+    id: f3ba64a4-f74d-46d4-a5cd-f5333a4af0d0
+    content: Added 'why' comment above the guard explaining the non-local correctness argument across all three callers (CLAUDE.md alignment)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33ce0162-a086-4d30-a449-71150dfd3467:
+    id: 33ce0162-a086-4d30-a449-71150dfd3467
+    content: Quote style (single quotes around 'running') is consistent with the local recurse-dispatch neighborhood (lines 439-510); not a project-wide nit
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8230f160-1358-4e3f-81f4-b660c3f17638:
+    id: 8230f160-1358-4e3f-81f4-b660c3f17638
+    content: Title-only stubs in recurseStatusMessages.test.ts match existing convention from recurseZombieState.test.ts and recurseSessionInheritance.test.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f49bd7b-867a-4fca-9f36-f6585e558d99:
+    id: 5f49bd7b-867a-4fca-9f36-f6585e558d99
+    content: Open suggestion — current concrete test asserts halt-toast absence and tree-position invariant but does not directly assert scheduleRecurseStart was not invoked; a future refactor moving the guard after the sibling-advance call would still pass the test (left as acknowledged-but-not-blocking)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f00bab9-8bd0-4ad0-a7a3-d0094dc450fa:
+    id: 0f00bab9-8bd0-4ad0-a7a3-d0094dc450fa
+    content: 3-line change scope is minimal and well-targeted; no over-engineering
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15234ef4-6c03-4df1-bb2a-7723696715d0:
+    id: 15234ef4-6c03-4df1-bb2a-7723696715d0
+    content: All 104 tests in workflowExecutionActions.test.ts pass after the comment addition
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f39096a5-aebd-47ed-b2d2-e475ce780976:
+    id: f39096a5-aebd-47ed-b2d2-e475ce780976
+    content: worktree
+    children:
+      - 02c4c944-2dd6-4138-8ffc-cb68b38408fb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02c4c944-2dd6-4138-8ffc-cb68b38408fb:
+    id: 02c4c944-2dd6-4138-8ffc-cb68b38408fb
+    content: vscode://file/Users/brianfox/dev/Arborescent-claude-session-reattach
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cb30731-a30c-4ca0-9759-7e9272c5bc5b:
+    id: 4cb30731-a30c-4ca0-9759-7e9272c5bc5b
+    content: 📄 Product spec
+    children:
+      - e9f1e6b6-e5af-4c1b-9d93-7b79f065aec9
+      - d48a6264-b8ec-43e4-9e72-a5c129eed349
+      - c033553d-90af-4c2d-bd98-22ca51bea351
+      - 7fbe9a18-fc4f-42fb-882f-cec1fd5012f3
+      - 7b68d38e-5edf-479f-a053-7537ab370c93
+      - c1501cf8-6f74-4c0c-812e-00aae7232fc9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9f1e6b6-e5af-4c1b-9d93-7b79f065aec9:
+    id: e9f1e6b6-e5af-4c1b-9d93-7b79f065aec9
+    content: Context
+    children:
+      - 23615a4e-0644-40fa-af76-3989198d10aa
+      - e55b6305-e9bc-453b-80c1-6639b453a87c
+      - dfa52251-301e-4410-b953-559bc4c5e816
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23615a4e-0644-40fa-af76-3989198d10aa:
+    id: 23615a4e-0644-40fa-af76-3989198d10aa
+    content: terminals carry a blue gutter bar next to the node that was last played into them, communicating "this terminal owns that node"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e55b6305-e9bc-453b-80c1-6639b453a87c:
+    id: e55b6305-e9bc-453b-80c1-6639b453a87c
+    content: the association is held as `originNodeId` on the terminal record (terminalStore) and is already persisted across app restarts via StorageService
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfa52251-301e-4410-b953-559bc4c5e816:
+    id: dfa52251-301e-4410-b953-559bc4c5e816
+    content: when a user closes a terminal and starts a fresh one to run `claude --resume`, the new terminal has no `originNodeId`, so the blue bar is lost even though the user is conceptually back in the same session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d48a6264-b8ec-43e4-9e72-a5c129eed349:
+    id: d48a6264-b8ec-43e4-9e72-a5c129eed349
+    content: User — Arborescent user running multi-turn Claude sessions across long workflows; routinely closes terminals (resource pressure, crashes, reorganisation) and reattaches via `claude --resume`
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c033553d-90af-4c2d-bd98-22ca51bea351:
+    id: c033553d-90af-4c2d-bd98-22ca51bea351
+    content: Current experience — visual link is dropped on reopen; user has to remember which fresh terminal belongs to which node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fbe9a18-fc4f-42fb-882f-cec1fd5012f3:
+    id: 7fbe9a18-fc4f-42fb-882f-cec1fd5012f3
+    content: Goal — when a terminal resumes a previously-played claude session, restore the original node↔terminal association so the blue gutter bar reappears automatically
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b68d38e-5edf-479f-a053-7537ab370c93:
+    id: 7b68d38e-5edf-479f-a053-7537ab370c93
+    content: Business rules
+    children:
+      - b527386f-b044-47b8-9adf-761ec2da21ac
+      - 85d1aed8-7c07-4962-89db-09f5b94b9930
+      - fac28234-d994-47b4-89d0-0135fd704371
+      - 2ecb0768-7dd1-4994-9654-db665ff67258
+      - cf2d0a04-a418-4a16-b51a-d7bc3cb32d47
+      - 39b40c65-a4cd-43bf-9278-d09c68277ae0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b527386f-b044-47b8-9adf-761ec2da21ac:
+    id: b527386f-b044-47b8-9adf-761ec2da21ac
+    content: when a node is played into a terminal that launches `claude`, the claude session id is captured and persisted alongside `originNodeId`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85d1aed8-7c07-4962-89db-09f5b94b9930:
+    id: 85d1aed8-7c07-4962-89db-09f5b94b9930
+    content: when a terminal launches with a command that resumes a known claude session id (`claude --resume <id>` or `claude -c` against a recorded session), the persisted `originNodeId` for that session id is seeded onto the new terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fac28234-d994-47b4-89d0-0135fd704371:
+    id: fac28234-d994-47b4-89d0-0135fd704371
+    content: if the same claude session has been associated with several nodes over time, the most recently played node wins
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ecb0768-7dd1-4994-9654-db665ff67258:
+    id: 2ecb0768-7dd1-4994-9654-db665ff67258
+    content: if the previously associated node no longer exists in the tree, no association is restored and no error is surfaced
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf2d0a04-a418-4a16-b51a-d7bc3cb32d47:
+    id: cf2d0a04-a418-4a16-b51a-d7bc3cb32d47
+    content: 'restoration is silent: no toast, no log; only the blue bar reappears'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39b40c65-a4cd-43bf-9278-d09c68277ae0:
+    id: 39b40c65-a4cd-43bf-9278-d09c68277ae0
+    content: mapping persists across full app restart, not just in-session close/reopen
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1501cf8-6f74-4c0c-812e-00aae7232fc9:
+    id: c1501cf8-6f74-4c0c-812e-00aae7232fc9
+    content: Acceptance criteria
+    children:
+      - 0842432a-06cf-4b95-8922-128547134cc1
+      - 6332df2e-3474-4daa-aa35-3cfb33282bdc
+      - 3bf33db1-f258-4d28-9475-9df8b02985aa
+      - 0dfbb10c-f0a8-4ac5-a9f6-e0d14234cec6
+      - ae09b57d-0318-46ee-913b-4c9c7467978b
+      - fc3dea6a-2942-4a32-a881-f75b9dc4d161
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0842432a-06cf-4b95-8922-128547134cc1:
+    id: 0842432a-06cf-4b95-8922-128547134cc1
+    content: play node X in a terminal running claude, close the terminal, open a new terminal that resumes the same claude session → node X shows the blue bar within one render
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6332df2e-3474-4daa-aa35-3cfb33282bdc:
+    id: 6332df2e-3474-4daa-aa35-3cfb33282bdc
+    content: two concurrent terminals each resume a different claude session; each blue bar lands on the correct node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bf33db1-f258-4d28-9475-9df8b02985aa:
+    id: 3bf33db1-f258-4d28-9475-9df8b02985aa
+    content: if the originally played node was deleted before resume, the new terminal opens cleanly with no blue bar and no error toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dfbb10c-f0a8-4ac5-a9f6-e0d14234cec6:
+    id: 0dfbb10c-f0a8-4ac5-a9f6-e0d14234cec6
+    content: restoration survives a full app restart between close and resume
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae09b57d-0318-46ee-913b-4c9c7467978b:
+    id: ae09b57d-0318-46ee-913b-4c9c7467978b
+    content: resuming a session that was never tracked (e.g. started outside Arborescent) leaves the terminal with no `originNodeId` and no error
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc3dea6a-2942-4a32-a881-f75b9dc4d161:
+    id: fc3dea6a-2942-4a32-a881-f75b9dc4d161
+    content: 'non-functional: restoration completes before the terminal accepts its first user keystroke (no perceptible flicker on the blue bar)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abadfe46-2b85-41d3-be01-123aa1083a6a:
+    id: abadfe46-2b85-41d3-be01-123aa1083a6a
+    content: 🔧 Implementation proposal
+    children:
+      - 0acb571e-e3e4-4842-97b8-e4cef3f68a4a
+      - f472d561-22de-49c6-a12a-06c90228c814
+      - d82204c7-9777-467c-93c1-92093aef612e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0acb571e-e3e4-4842-97b8-e4cef3f68a4a:
+    id: 0acb571e-e3e4-4842-97b8-e4cef3f68a4a
+    content: Approach — extend the existing terminal-session persistence with a `claudeSessionId → originNodeId` map; capture the session id when a node is played into a claude terminal; on terminal-create, inspect launch args and seed `originNodeId` from the map before first render
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f472d561-22de-49c6-a12a-06c90228c814:
+    id: f472d561-22de-49c6-a12a-06c90228c814
+    content: Touchpoints — terminalStore (seed `originNodeId` on create from session-id lookup), terminalHandlers (sniff claude launch args / capture session id from PTY), StorageService and shared/interfaces (extend persisted shape with the session→node map), terminal session restore path (no UI change; TreeNode already reads `originNodeId`)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d82204c7-9777-467c-93c1-92093aef612e:
+    id: d82204c7-9777-467c-93c1-92093aef612e
+    content: Constraints
+    children:
+      - 00b026d0-241b-4565-a6d3-2ecb706a1872
+      - e4f1e481-c717-47e7-849f-45e4bc3b60d3
+      - 9d8b31c5-f7cc-4364-8b81-cef1a60267ce
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00b026d0-241b-4565-a6d3-2ecb706a1872:
+    id: 00b026d0-241b-4565-a6d3-2ecb706a1872
+    content: 'load-bearing dependency: a reliable way to read the claude session id. Pick one of (a) launch claude with an explicit `--session-id <uuid>` Arborescent generates, or (b) parse stdout for the session header. Decide before coding — (a) is simpler and avoids stdout parsing fragility'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4f1e481-c717-47e7-849f-45e4bc3b60d3:
+    id: e4f1e481-c717-47e7-849f-45e4bc3b60d3
+    content: restoration must be idempotent if the user reopens the same session twice
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d8b31c5-f7cc-4364-8b81-cef1a60267ce:
+    id: 9d8b31c5-f7cc-4364-8b81-cef1a60267ce
+    content: only act on claude launches; do not pollute the persisted map with non-claude shells
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3018ddc3-c07f-49cf-8b59-be2986da9145:
+    id: 3018ddc3-c07f-49cf-8b59-be2986da9145
+    content: Single shippable chunk — do not split
+    children:
+      - 4af9d00d-0e0c-4981-b472-20e8c8de4d61
+      - 8bfdfc25-d09f-4f4c-b566-684682746f44
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4af9d00d-0e0c-4981-b472-20e8c8de4d61:
+    id: 4af9d00d-0e0c-4981-b472-20e8c8de4d61
+    content: Capture without restore delivers zero user value; restore without capture is impossible — both halves must ship together to realise the blue bar reappearing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bfdfc25-d09f-4f4c-b566-684682746f44:
+    id: 8bfdfc25-d09f-4f4c-b566-684682746f44
+    content: Feature is small enough that a flag-gated split adds churn without review benefit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  901c47b4-c26c-42dd-a688-1283d68c3727:
+    id: 901c47b4-c26c-42dd-a688-1283d68c3727
+    content: Challenges and pushback
+    children:
+      - 101025ce-53ad-43c1-a0ca-d47ef0c39f8a
+      - 209dcb35-debb-42a2-b5e5-6fbaabfb0338
+      - af8cd0e5-d30d-484b-8aed-8fe302219ca6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  101025ce-53ad-43c1-a0ca-d47ef0c39f8a:
+    id: 101025ce-53ad-43c1-a0ca-d47ef0c39f8a
+    content: ROI is moderate-to-low — the blue bar is a UX nicety, not a workflow-blocker; weigh the session-id plumbing against this before committing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  209dcb35-debb-42a2-b5e5-6fbaabfb0338:
+    id: 209dcb35-debb-42a2-b5e5-6fbaabfb0338
+    content: If claude CLI does not accept a caller-supplied `--session-id`, the fallback (stdout parsing) is brittle and may not be worth the payoff — confirm CLI surface first
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af8cd0e5-d30d-484b-8aed-8fe302219ca6:
+    id: af8cd0e5-d30d-484b-8aed-8fe302219ca6
+    content: UX risk — if a user resumes a stale session whose node has drifted in meaning, the restored blue bar may mislead more than help. Acceptable given the rule that deleted nodes restore nothing, but worth noting
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecd30d0b-976f-4f92-8214-365853ec7e79:
+    id: ecd30d0b-976f-4f92-8214-365853ec7e79
+    content: Out of scope
+    children:
+      - d6102070-3f14-4e5f-9eba-31363ae897db
+      - 22bf33db-f613-40a6-8285-5a3169b1fe1c
+      - cd947a36-9581-49d8-88f5-be2b7c382825
+      - 7ae6174c-fb6d-412c-ac9c-4528aa380ba6
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6102070-3f14-4e5f-9eba-31363ae897db:
+    id: d6102070-3f14-4e5f-9eba-31363ae897db
+    content: Restoring terminal scrollback or pty buffer contents
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  22bf33db-f613-40a6-8285-5a3169b1fe1c:
+    id: 22bf33db-f613-40a6-8285-5a3169b1fe1c
+    content: Tracking a list of every node ever played in a session (only the most-recent mapping matters)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd947a36-9581-49d8-88f5-be2b7c382825:
+    id: cd947a36-9581-49d8-88f5-be2b7c382825
+    content: Auto-launching `claude --resume` from a closed terminal entry
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ae6174c-fb6d-412c-ac9c-4528aa380ba6:
+    id: 7ae6174c-fb6d-412c-ac9c-4528aa380ba6
+    content: Cross-machine session sync
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  839d7e5d-db4a-4458-8b14-1704d864779b:
+    id: 839d7e5d-db4a-4458-8b14-1704d864779b
+    content: Technical refinement
+    children:
+      - 67700144-b35b-4fae-9bd8-c06192f538a5
+      - eee51781-18cf-416b-9a2c-5d49f3419527
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67700144-b35b-4fae-9bd8-c06192f538a5:
+    id: 67700144-b35b-4fae-9bd8-c06192f538a5
+    content: Complications
+    children:
+      - 33898dd1-6625-46c4-a380-b6043c9ebf38
+      - c50d7296-e618-4aee-bde4-9c45efec6c5b
+      - 169c4e50-14fa-43ed-b144-41e997d8c9cf
+      - 89578f9f-bd71-45cd-b168-9402787913e6
+      - 2c4265ec-581a-4d9f-87c7-a68656a788f7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33898dd1-6625-46c4-a380-b6043c9ebf38:
+    id: 33898dd1-6625-46c4-a380-b6043c9ebf38
+    content: '`claude` CLI exposes `--session-id <uuid>` (verified) — Arborescent can mint the id at play-time and skip stdout sniffing entirely; this collapses the previous "load-bearing dependency" risk'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c50d7296-e618-4aee-bde4-9c45efec6c5b:
+    id: c50d7296-e618-4aee-bde4-9c45efec6c5b
+    content: '`claude --continue` resumes the most recent session of the cwd without an explicit id in argv, so argv parsing alone cannot route it back to a node — recommend scoping `--continue` out of this story'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  169c4e50-14fa-43ed-b144-41e997d8c9cf:
+    id: 169c4e50-14fa-43ed-b144-41e997d8c9cf
+    content: '`claude --resume <id> --fork-session` mints a new session id on resume; the original mapping won''t follow the fork. Acceptable (fork is a deliberate divergence) but should be documented'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89578f9f-bd71-45cd-b168-9402787913e6:
+    id: 89578f9f-bd71-45cd-b168-9402787913e6
+    content: the session→node map grows without bound across the app's lifetime; needs a pruning rule — prune on node delete is the cheapest; capping or aligning with claude's own retention window are alternatives
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c4265ec-581a-4d9f-87c7-a68656a788f7:
+    id: 2c4265ec-581a-4d9f-87c7-a68656a788f7
+    content: the existing `originNodeId` persistence already covers app restart with the same terminal record; the only genuine gap is the manual close → fresh-terminal → `--resume` path — frame the scope tightly so this isn't sold as fixing a non-existent bug
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eee51781-18cf-416b-9a2c-5d49f3419527:
+    id: eee51781-18cf-416b-9a2c-5d49f3419527
+    content: Approach summary
+    children:
+      - fe14a422-379e-4962-88f4-8155a66a1d45
+      - 54579ca3-6a04-412c-9578-d83caa8ab1f9
+      - 91bb7760-5930-43ad-98c5-f397369e1051
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe14a422-379e-4962-88f4-8155a66a1d45:
+    id: fe14a422-379e-4962-88f4-8155a66a1d45
+    content: mint a UUID at play-time, launch claude with `--session-id <uuid>`, and persist `(uuid → nodeId)` in StorageService alongside the existing TerminalSession
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54579ca3-6a04-412c-9578-d83caa8ab1f9:
+    id: 54579ca3-6a04-412c-9578-d83caa8ab1f9
+    content: on terminal create, parse argv for `claude --resume <id>` / `-r <id>`; if the id is in the map, seed `originNodeId` on the new terminal before first render
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91bb7760-5930-43ad-98c5-f397369e1051:
+    id: 91bb7760-5930-43ad-98c5-f397369e1051
+    content: non-obvious — capture is essentially free because Arborescent owns the id at launch; the gnarly pieces are argv parsing on resume and the lifecycle of the map (pruning, forks, the deliberately-unsupported `--continue`)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd115145-cc1b-40db-a416-9941335b13a3:
+    id: fd115145-cc1b-40db-a416-9941335b13a3
+    content: Can imagine features like automated refactoring
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   d613b377-2fc5-41b6-9d85-92dc28b38eb0:
     cwd: /Users/brianfox/dev/Arborescent
   e7626089-f911-411d-b33a-b4997004ea1b:
     cwd: /Users/brianfox/dev/Arborescent
   d8469abe-5715-4d5c-bf09-da1d2ba10fb4:
+    cwd: /Users/brianfox/dev/Arborescent
+  b034c6a0-ec14-4710-adba-b37588fc7b30:
+    cwd: /Users/brianfox/dev/Arborescent
+  d8d1863f-71bb-4e23-b369-3727d983ecc5:
     cwd: /Users/brianfox/dev/Arborescent
