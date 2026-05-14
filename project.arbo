@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T18:38:18.056Z'
+updated: '2026-05-14T19:03:33.523Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14412,7 +14412,7 @@ nodes:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
     children:
-      - bcbe1d33-53ef-4d30-9cfe-a0364a1d4eca
+      - 73a9f9b7-ad3e-4100-aacf-41a71b826f37
     metadata:
       status: completed
       expanded: true
@@ -27155,7 +27155,8 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children: []
+    children:
+      - 1669d542-34dd-4525-8480-d58008bb176a
     metadata:
       status: pending
       isBlueprint: true
@@ -81506,7 +81507,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 6271bb65-1cd3-4d48-b4af-918d1d60fe19
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
     metadata:
       status: pending
@@ -81540,7 +81540,8 @@ nodes:
   2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4:
     id: 2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4
     content: Worktree creation
-    children: []
+    children:
+      - bef765c8-a092-419d-b39d-ac19d7b6c00b
     metadata:
       status: pending
       isBlueprint: true
@@ -82877,7 +82878,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - bcbe1d33-53ef-4d30-9cfe-a0364a1d4eca
     metadata:
       status: pending
       isBlueprint: true
@@ -90226,6 +90228,7 @@ nodes:
     id: aefa6362-0e1b-4e7f-81db-1ccc856bb2f0
     content: Backlog
     children:
+      - 2fd1018e-8c00-46da-90c1-6dcd2aed34cb
       - c577b3e4-78ac-4eaf-98aa-054b93853291
       - d4dab575-76d3-493b-893a-5d758ba9b84c
       - c5a7860c-e6ba-40ed-99c3-c0f2883e516c
@@ -90250,7 +90253,7 @@ nodes:
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   042ee811-0108-4574-9a4c-2a7909572178:
     id: 042ee811-0108-4574-9a4c-2a7909572178
     content: Refactor right click menu
@@ -96847,8 +96850,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - a1ccb0fd-fa01-428d-afb2-17d3e219d110
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -101552,12 +101554,13 @@ nodes:
     id: bcbe1d33-53ef-4d30-9cfe-a0364a1d4eca
     content: Workflow step contexts override node-attached contexts during workflow execution
     children:
-      - dec95a5e-f6de-4047-8966-a2aa268ca62b
-      - 798b26a8-fe9e-4da0-90bb-b75614c11360
-      - 25a0c4d6-0c71-4c02-a09c-8ccf145f702b
-      - 6d2ce894-39ff-47d6-8f2a-014ab7b56d5f
-      - 79d67405-5e21-4b2f-9808-1b00e3a5644b
-      - ccbf4624-b44d-45a1-8b79-0d7b0c2cce0e
+      - 5d6041d2-eb52-483a-9135-fd7c1ad2fe84
+      - 32a8ce0a-0bec-4ffe-9864-f63f5700782c
+      - 31aefef9-15b2-4e6f-ae9e-d46f299929e1
+      - 462e5ffb-1950-4ecf-a4a7-c0ebc700a492
+      - e590a1d7-677d-4ebb-b250-4b37a019bb17
+      - 64660285-a118-410d-a547-5d2ea91a4e59
+      - 251ac4d5-9e44-4744-9a19-59e211f794c2
     metadata:
       status: pending
       expanded: false
@@ -117062,6 +117065,7 @@ nodes:
       - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
       - cfd38a28-0349-4873-8780-177e444d7cd3
+      - a1ccb0fd-fa01-428d-afb2-17d3e219d110
     metadata:
       status: pending
       isBlueprint: true
@@ -118048,16 +118052,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6271bb65-1cd3-4d48-b4af-918d1d60fe19:
-    id: 6271bb65-1cd3-4d48-b4af-918d1d60fe19
-    content: Bug - workflows are getting stuck in the 'feature implementation' and 'AI code review resolution' steps
-    children:
-      - c9418755-89a2-4594-a9ff-1439ae285858
-      - 0259d66c-cf9d-4d3f-9d66-f98709399a3e
-      - 07285ce8-49c9-442f-8333-f04d6d93d14a
-      - 8628e251-ddb4-40f5-94e2-cf658b1be340
-    metadata:
-      status: pending
   b8f36b89-b8e1-4287-8ebf-1dff08a66aa6:
     id: b8f36b89-b8e1-4287-8ebf-1dff08a66aa6
     content: worktree
@@ -118702,44 +118696,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c9418755-89a2-4594-a9ff-1439ae285858:
-    id: c9418755-89a2-4594-a9ff-1439ae285858
-    content: The still have the green arrow and Arborescent thinks they are playing.
-    children: []
-    metadata:
-      status: pending
-  0259d66c-cf9d-4d3f-9d66-f98709399a3e:
-    id: 0259d66c-cf9d-4d3f-9d66-f98709399a3e
-    content: However, in the claude code session in the terminal, the next context wasn't sent
-    children:
-      - d82374c1-5b38-4f2a-aea5-c4d9324a61f0
-      - ab5e37d2-3b7a-4d47-a6d7-4c018ad33d74
-    metadata:
-      status: pending
-  d82374c1-5b38-4f2a-aea5-c4d9324a61f0:
-    id: d82374c1-5b38-4f2a-aea5-c4d9324a61f0
-    content: And the node did not move onto the next step
-    children: []
-    metadata:
-      status: pending
-  ab5e37d2-3b7a-4d47-a6d7-4c018ad33d74:
-    id: ab5e37d2-3b7a-4d47-a6d7-4c018ad33d74
-    content: Even though the current step had finished.
-    children: []
-    metadata:
-      status: pending
-  07285ce8-49c9-442f-8333-f04d6d93d14a:
-    id: 07285ce8-49c9-442f-8333-f04d6d93d14a
-    content: It could be an issue with hooks not firing
-    children: []
-    metadata:
-      status: pending
-  8628e251-ddb4-40f5-94e2-cf658b1be340:
-    id: 8628e251-ddb4-40f5-94e2-cf658b1be340
-    content: Or could be an issue with claude code firing the stop hook but not being ready to receive new input
-    children: []
-    metadata:
-      status: pending
   0eabd460-567c-40a0-b45f-136f0b2fce46:
     id: 0eabd460-567c-40a0-b45f-136f0b2fce46
     content: worktree
@@ -119392,18 +119348,1194 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dec95a5e-f6de-4047-8966-a2aa268ca62b:
-    id: dec95a5e-f6de-4047-8966-a2aa268ca62b
+  2fd1018e-8c00-46da-90c1-6dcd2aed34cb:
+    id: 2fd1018e-8c00-46da-90c1-6dcd2aed34cb
+    content: Make logs more robust
+    children:
+      - aae5f065-a519-4605-b8f1-ca3ac18ca92d
+      - 1879c36d-b075-4ead-b40d-c4ffee4fda89
+      - aab51044-dc96-417b-955a-7962ce8ff2fc
+      - 8434b46d-d22b-4b6f-81b1-b024877dc788
+    metadata:
+      status: pending
+      expanded: false
+  aae5f065-a519-4605-b8f1-ca3ac18ca92d:
+    id: aae5f065-a519-4605-b8f1-ca3ac18ca92d
+    content: Observability is a vital feedback loop
+    children: []
+    metadata:
+      status: pending
+  1879c36d-b075-4ead-b40d-c4ffee4fda89:
+    id: 1879c36d-b075-4ead-b40d-c4ffee4fda89
+    content: And Claude should be able to auto-survey it
+    children:
+      - da0d1308-3b96-49a8-b146-08dadc8b25ce
+    metadata:
+      status: pending
+  da0d1308-3b96-49a8-b146-08dadc8b25ce:
+    id: da0d1308-3b96-49a8-b146-08dadc8b25ce
+    content: Kind of like a sixth sense
+    children: []
+    metadata:
+      status: pending
+  aab51044-dc96-417b-955a-7962ce8ff2fc:
+    id: aab51044-dc96-417b-955a-7962ce8ff2fc
+    content: And we need to add an observability workflow step
+    children:
+      - dee45e3e-94d7-4212-875a-ec35726db339
+    metadata:
+      status: pending
+  dee45e3e-94d7-4212-875a-ec35726db339:
+    id: dee45e3e-94d7-4212-875a-ec35726db339
+    content: So that we can have better debug logging
+    children: []
+    metadata:
+      status: pending
+  8434b46d-d22b-4b6f-81b1-b024877dc788:
+    id: 8434b46d-d22b-4b6f-81b1-b024877dc788
+    content: And remind Claude to check logs whenever there is a bug
+    children:
+      - f9f2501d-0d77-421f-8d55-e770e65ac5ea
+    metadata:
+      status: pending
+  f9f2501d-0d77-421f-8d55-e770e65ac5ea:
+    id: f9f2501d-0d77-421f-8d55-e770e65ac5ea
+    content: And implement logs if a bug occurred that a log did not reveal
+    children: []
+    metadata:
+      status: pending
+  bef765c8-a092-419d-b39d-ac19d7b6c00b:
+    id: bef765c8-a092-419d-b39d-ac19d7b6c00b
+    content: PR2 - Bug — workflows stall in 'feature implementation' and 'AI code review resolution' steps (race fix + safety reaper)
+    children:
+      - 93c78a62-c6c3-423e-8393-0b7468d3d861
+      - 5f19dd09-1f6c-4ef1-9bf0-79a7ea6776c4
+      - 0e5b09a3-0edc-4a52-9581-77f644b7f536
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  93c78a62-c6c3-423e-8393-0b7468d3d861:
+    id: 93c78a62-c6c3-423e-8393-0b7468d3d861
+    content: Scope of this PR
+    children:
+      - 92fe731d-8389-4ac2-b241-d325ca68a6bf
+      - dd231dca-b19b-469d-96b6-1e5f35f86b1d
+      - b22797c3-2bf1-412f-af22-f137eb6ce381
+      - dc5d0f17-49dd-4730-8049-daaa0e91b425
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92fe731d-8389-4ac2-b241-d325ca68a6bf:
+    id: 92fe731d-8389-4ac2-b241-d325ca68a6bf
+    content: Fix the autonomous feedback / Stop-hook convergence so the node advances exactly once
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd231dca-b19b-469d-96b6-1e5f35f86b1d:
+    id: dd231dca-b19b-469d-96b6-1e5f35f86b1d
+    content: Add a step-timeout reaper as a backstop for any other dropped-hook stalls
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b22797c3-2bf1-412f-af22-f137eb6ce381:
+    id: b22797c3-2bf1-412f-af22-f137eb6ce381
+    content: Surface a stuck/error state on the node when the workflow cannot advance, instead of leaving a false-positive green 'playing' indicator
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc5d0f17-49dd-4730-8049-daaa0e91b425:
+    id: dc5d0f17-49dd-4730-8049-daaa0e91b425
+    content: Depends on PR1 logging being available to verify the fix in real workflows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f19dd09-1f6c-4ef1-9bf0-79a7ea6776c4:
+    id: 5f19dd09-1f6c-4ef1-9bf0-79a7ea6776c4
+    content: User story
+    children:
+      - 26165a45-ab04-40d7-9620-06ba39835925
+      - 8632693e-8c19-4c29-86af-e03370fa60b3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26165a45-ab04-40d7-9620-06ba39835925:
+    id: 26165a45-ab04-40d7-9620-06ba39835925
+    content: 🐞 Bug ticket
+    children:
+      - 66befa93-60a7-4065-a505-5e0bd5385046
+      - 5c35c5d3-3aca-4f42-af04-65e6de8eba74
+      - a3c24c67-5382-4c1e-90d2-5b9c4b8680de
+      - d0dd119b-af6c-4091-b0ae-6ef1bb73795b
+      - 9b43d083-a6ba-43c8-bb2d-d20c16514824
+      - 338c6d00-dd43-47af-af00-50464c4abd0f
+      - 0cbb079b-e53a-4cbe-b59b-4bdf9d077801
+      - afe39b9f-aa76-4858-ad13-cc692256936d
+      - f909c033-7a06-4325-a5e8-163c9f5fca13
+      - e0c7de96-fe25-467b-a280-8beddd07706b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66befa93-60a7-4065-a505-5e0bd5385046:
+    id: 66befa93-60a7-4065-a505-5e0bd5385046
+    content: Summary
+    children:
+      - ca423fa7-efef-4025-875c-3c593a3cc30a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca423fa7-efef-4025-875c-3c593a3cc30a:
+    id: ca423fa7-efef-4025-875c-3c593a3cc30a
+    content: 'Workflows get stuck mid-run: Arborescent shows the node as still playing (green arrow), but the Claude Code terminal never receives the next context and the node does not advance to the next step.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c35c5d3-3aca-4f42-af04-65e6de8eba74:
+    id: 5c35c5d3-3aca-4f42-af04-65e6de8eba74
+    content: Affected steps
+    children:
+      - 83ee490c-1edd-4994-8aa5-ff9c36d86d7c
+      - cb7b3aa4-4210-4ef8-b8fd-67dd99d310e6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  83ee490c-1edd-4994-8aa5-ff9c36d86d7c:
+    id: 83ee490c-1edd-4994-8aa5-ff9c36d86d7c
+    content: Feature implementation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb7b3aa4-4210-4ef8-b8fd-67dd99d310e6:
+    id: cb7b3aa4-4210-4ef8-b8fd-67dd99d310e6
+    content: AI code review resolution
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3c24c67-5382-4c1e-90d2-5b9c4b8680de:
+    id: a3c24c67-5382-4c1e-90d2-5b9c4b8680de
+    content: Observed behaviour
+    children:
+      - 7b455ae4-8d77-4090-9349-48ef5a7e5b5d
+      - d89c4e44-e16a-498c-a40d-592a4459e689
+      - 68ed374c-9498-44ec-88f0-2c927230e04a
+      - a2b6c89b-8b4a-479d-b452-2f176c085268
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b455ae4-8d77-4090-9349-48ef5a7e5b5d:
+    id: 7b455ae4-8d77-4090-9349-48ef5a7e5b5d
+    content: Node displays the green 'playing' indicator in Arborescent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d89c4e44-e16a-498c-a40d-592a4459e689:
+    id: d89c4e44-e16a-498c-a40d-592a4459e689
+    content: Current step has finished in the terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68ed374c-9498-44ec-88f0-2c927230e04a:
+    id: 68ed374c-9498-44ec-88f0-2c927230e04a
+    content: Next context is not sent to the Claude Code session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2b6c89b-8b4a-479d-b452-2f176c085268:
+    id: a2b6c89b-8b4a-479d-b452-2f176c085268
+    content: Node does not transition to the next step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0dd119b-af6c-4091-b0ae-6ef1bb73795b:
+    id: d0dd119b-af6c-4091-b0ae-6ef1bb73795b
+    content: Expected behaviour
+    children:
+      - 4bdeee2d-0882-4957-ae21-2e55f70f2557
+      - a1e7514c-5f35-46e1-bf1e-c2844b5e5891
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bdeee2d-0882-4957-ae21-2e55f70f2557:
+    id: 4bdeee2d-0882-4957-ae21-2e55f70f2557
+    content: When the current step finishes, the next context is sent to the terminal and the node advances to the next step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1e7514c-5f35-46e1-bf1e-c2844b5e5891:
+    id: a1e7514c-5f35-46e1-bf1e-c2844b5e5891
+    content: The green 'playing' indicator reflects actual run state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b43d083-a6ba-43c8-bb2d-d20c16514824:
+    id: 9b43d083-a6ba-43c8-bb2d-d20c16514824
+    content: Suspected causes
+    children:
+      - ab29abfe-04e3-4900-86cb-234b362fb222
+      - 65f21313-43a3-4457-9acf-c7ae8c402c0a
+      - 7b476654-d07e-4ff4-a4c6-7d9134f95e65
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab29abfe-04e3-4900-86cb-234b362fb222:
+    id: ab29abfe-04e3-4900-86cb-234b362fb222
+    content: 'Primary hypothesis — race in advanceOrClearCollaborating (workflowExecutionActions.ts:1037-1050) — when autonomous feedback is parsed before the Stop hook arrives, the node only clears `collaborating: false` and waits for a subsequent Stop; if that Stop is later dropped the node stays `state: ''running''` indefinitely'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65f21313-43a3-4457-9acf-c7ae8c402c0a:
+    id: 65f21313-43a3-4457-9acf-c7ae8c402c0a
+    content: Secondary — Stop hook gets dropped by handleHookEvent because workflowSessionMap has no entry for the session_id (session-id change) or findRunningNodeOnTerminal returns null
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b476654-d07e-4ff4-a4c6-7d9134f95e65:
+    id: 7b476654-d07e-4ff4-a4c6-7d9134f95e65
+    content: Secondary — Stop hook fires, but Claude Code is not yet ready to receive new input (race between hook emission and prompt readiness)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  338c6d00-dd43-47af-af00-50464c4abd0f:
+    id: 338c6d00-dd43-47af-af00-50464c4abd0f
+    content: Reproduction
+    children:
+      - fee679b7-9419-4150-bbe9-5854d0fbda14
+      - 1f86ffe1-bef9-4f94-8634-e1ba0ca274fe
+      - 733e5a89-f5a0-46c3-b772-d40216dad187
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fee679b7-9419-4150-bbe9-5854d0fbda14:
+    id: fee679b7-9419-4150-bbe9-5854d0fbda14
+    content: Run a workflow that includes 'feature implementation' or 'AI code review resolution' against a Claude Code terminal session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f86ffe1-bef9-4f94-8634-e1ba0ca274fe:
+    id: 1f86ffe1-bef9-4f94-8634-e1ba0ca274fe
+    content: Observe step completion in the terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  733e5a89-f5a0-46c3-b772-d40216dad187:
+    id: 733e5a89-f5a0-46c3-b772-d40216dad187
+    content: Note that Arborescent does not advance and no new context is sent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cbb079b-e53a-4cbe-b59b-4bdf9d077801:
+    id: 0cbb079b-e53a-4cbe-b59b-4bdf9d077801
+    content: Impact
+    children:
+      - e8c6ad10-e3b2-4a48-9eff-a5578af1a9a2
+      - cb7d980c-0caa-415c-a11d-aac931d4fd09
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8c6ad10-e3b2-4a48-9eff-a5578af1a9a2:
+    id: e8c6ad10-e3b2-4a48-9eff-a5578af1a9a2
+    content: Workflows silently halt; user must manually intervene to resume progress
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb7d980c-0caa-415c-a11d-aac931d4fd09:
+    id: cb7d980c-0caa-415c-a11d-aac931d4fd09
+    content: Breaks the core autonomous-progression promise of the workflow runner
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  afe39b9f-aa76-4858-ad13-cc692256936d:
+    id: afe39b9f-aa76-4858-ad13-cc692256936d
+    content: Scope — fix the stall
+    children:
+      - 2add0535-ec0a-4275-978f-b6c292c31c4c
+      - f628f388-3472-417f-8f93-674dffdc9ab3
+      - 312327f0-0ffe-40b5-8fd8-1e52e55c8dae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2add0535-ec0a-4275-978f-b6c292c31c4c:
+    id: 2add0535-ec0a-4275-978f-b6c292c31c4c
+    content: Make autonomous feedback + Stop convergence deterministic so the node always advances exactly once when both signals have been observed, regardless of arrival order
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f628f388-3472-417f-8f93-674dffdc9ab3:
+    id: f628f388-3472-417f-8f93-674dffdc9ab3
+    content: Ensure Stop hooks that arrive after collaborating has cleared still trigger advance (or are no longer needed because feedback already advanced)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  312327f0-0ffe-40b5-8fd8-1e52e55c8dae:
+    id: 312327f0-0ffe-40b5-8fd8-1e52e55c8dae
+    content: Surface an error state on the node when the workflow cannot advance, instead of leaving the green 'playing' indicator on a stuck node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f909c033-7a06-4325-a5e8-163c9f5fca13:
+    id: f909c033-7a06-4325-a5e8-163c9f5fca13
+    content: Acceptance criteria (this PR)
+    children:
+      - 7d4a6620-c31f-4ef9-a247-203c4b7ca14d
+      - 246fe7a6-e969-499b-9eed-c4c8a43708e7
+      - 29257c17-02ee-4567-9dcb-9cb5522d8f20
+      - 3b84e989-c83d-4417-8d3a-4387717ec264
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d4a6620-c31f-4ef9-a247-203c4b7ca14d:
+    id: 7d4a6620-c31f-4ef9-a247-203c4b7ca14d
+    content: '- [ ] Race in advanceOrClearCollaborating is fixed: regardless of arrival order of feedback and Stop, the node advances exactly once'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  246fe7a6-e969-499b-9eed-c4c8a43708e7:
+    id: 246fe7a6-e969-499b-9eed-c4c8a43708e7
+    content: '- [ ] Node advances to the next step within a bounded time after the current step finishes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29257c17-02ee-4567-9dcb-9cb5522d8f20:
+    id: 29257c17-02ee-4567-9dcb-9cb5522d8f20
+    content: '- [ ] When the workflow cannot advance, the green ''playing'' indicator is cleared and an error/stuck state is surfaced to the user'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b84e989-c83d-4417-8d3a-4387717ec264:
+    id: 3b84e989-c83d-4417-8d3a-4387717ec264
+    content: '- [ ] Regression test (integration or scripted) covers: feedback-before-Stop, Stop-before-feedback, dropped-Stop scenarios for autonomous step transitions'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0c7de96-fe25-467b-a280-8beddd07706b:
+    id: e0c7de96-fe25-467b-a280-8beddd07706b
+    content: Investigation notes to capture
+    children:
+      - 6cbce835-30e7-4bb2-8c5b-e1139a887997
+      - 54ed45a9-de4c-4310-9b54-587ecb8fac6f
+      - daddf654-757d-447a-9d7c-c2e0b403f2fb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cbce835-30e7-4bb2-8c5b-e1139a887997:
+    id: 6cbce835-30e7-4bb2-8c5b-e1139a887997
+    content: Whether stop hooks fire for these step types (now visible in persistent logs from PR1)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54ed45a9-de4c-4310-9b54-587ecb8fac6f:
+    id: 54ed45a9-de4c-4310-9b54-587ecb8fac6f
+    content: Timing between hook fire and Claude Code prompt readiness
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  daddf654-757d-447a-9d7c-c2e0b403f2fb:
+    id: daddf654-757d-447a-9d7c-c2e0b403f2fb
+    content: Any differences in hook config between affected and unaffected steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8632693e-8c19-4c29-86af-e03370fa60b3:
+    id: 8632693e-8c19-4c29-86af-e03370fa60b3
+    content: Technical refinement
+    children:
+      - 5f9683a8-ae15-4d12-b425-e55b27c94dfc
+      - 6ed6d89e-59b9-4b1f-8e10-8499c67d1639
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f9683a8-ae15-4d12-b425-e55b27c94dfc:
+    id: 5f9683a8-ae15-4d12-b425-e55b27c94dfc
+    content: Complications
+    children:
+      - e69ddcf9-5422-4247-b594-866719bff690
+      - 651542db-f7f6-4a8c-8ced-93113ba95a8f
+      - 73830236-9cf5-4db3-a12d-4d0290fb0b49
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e69ddcf9-5422-4247-b594-866719bff690:
+    id: e69ddcf9-5422-4247-b594-866719bff690
+    content: Fixing the advance race naively (always advancing on feedback) risks double-advance when Stop has already pre-deferred via stopReceived — the fix must be idempotent against a node id + step id, not just a flag flip
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  651542db-f7f6-4a8c-8ced-93113ba95a8f:
+    id: 651542db-f7f6-4a8c-8ced-93113ba95a8f
+    content: A safety-net step timeout / reaper is still useful even after the race fix, because dropped Stop hooks (session-id miss, auth, parse) will keep happening — without it the same class of stall returns the next time a hook is dropped for any other reason
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  73830236-9cf5-4db3-a12d-4d0290fb0b49:
+    id: 73830236-9cf5-4db3-a12d-4d0290fb0b49
+    content: Out of scope — restructuring the broader workflow state machine, remote telemetry, or shipping logs off-device
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ed6d89e-59b9-4b1f-8e10-8499c67d1639:
+    id: 6ed6d89e-59b9-4b1f-8e10-8499c67d1639
+    content: Approach
+    children:
+      - fd19ac45-c49b-4beb-96ba-6ef593ccda05
+      - b43a93d3-d7d6-4481-b9b0-52163dcce3b8
+      - 543b4556-0ac6-4039-87bd-c127e3563d90
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd19ac45-c49b-4beb-96ba-6ef593ccda05:
+    id: fd19ac45-c49b-4beb-96ba-6ef593ccda05
+    content: Collapse advanceOrClearCollaborating into an idempotent "advance once per (nodeId, stepId)" gate; whichever of feedback or Stop arrives last triggers the advance, duplicates become no-ops
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b43a93d3-d7d6-4481-b9b0-52163dcce3b8:
+    id: b43a93d3-d7d6-4481-b9b0-52163dcce3b8
+    content: Add a step timeout reaper as a backstop for dropped hooks — when triggered, transition the node to a stuck/error state and clear the green 'playing' indicator
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  543b4556-0ac6-4039-87bd-c127e3563d90:
+    id: 543b4556-0ac6-4039-87bd-c127e3563d90
+    content: Touchpoints — workflowExecutionActions.ts (advanceOrClearCollaborating, step timeouts, error state), workflowHookEventHandler.ts (idempotent Stop handling)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e5b09a3-0edc-4a52-9581-77f644b7f536:
+    id: 0e5b09a3-0edc-4a52-9581-77f644b7f536
+    content: Subtask note
+    children:
+      - 382eecab-18a4-42fe-8759-a1b655aef6af
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  382eecab-18a4-42fe-8759-a1b655aef6af:
+    id: 382eecab-18a4-42fe-8759-a1b655aef6af
+    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  73a9f9b7-ad3e-4100-aacf-41a71b826f37:
+    id: 73a9f9b7-ad3e-4100-aacf-41a71b826f37
+    content: 'Bug: Splitting a node into two PRs blocks replaying them in the original session'
+    children:
+      - 8eeb6d2a-d663-48b3-8b2b-a01d88c4b1c4
+      - 7515ff0c-295e-4eab-83fe-273d80d3b634
+      - f1ada0e4-0849-4015-8570-a73cd9966e9a
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  1669d542-34dd-4525-8480-d58008bb176a:
+    id: 1669d542-34dd-4525-8480-d58008bb176a
+    content: PR1 - Bug — workflows stall in 'feature implementation' and 'AI code review resolution' steps (observability / logging)
+    children:
+      - af60943b-3255-43b6-9539-db45011b041b
+      - 16c3374f-8f97-4967-aad3-801f8d40ad85
+      - 4fcb78b9-05e5-4ebe-a88b-5de10307c7be
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  af60943b-3255-43b6-9539-db45011b041b:
+    id: af60943b-3255-43b6-9539-db45011b041b
+    content: Scope of this PR
+    children:
+      - a670d9ce-9094-4d37-a602-27e1aaa351c1
+      - fc921ced-dab9-4e79-8371-2ec9b62844db
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a670d9ce-9094-4d37-a602-27e1aaa351c1:
+    id: a670d9ce-9094-4d37-a602-27e1aaa351c1
+    content: Persistent workflow + hook activity logging only — no behaviour changes to the workflow engine
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc921ced-dab9-4e79-8371-2ec9b62844db:
+    id: fc921ced-dab9-4e79-8371-2ec9b62844db
+    content: Lands first so the race-fix PR can be validated against real on-disk logs instead of guesses
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16c3374f-8f97-4967-aad3-801f8d40ad85:
+    id: 16c3374f-8f97-4967-aad3-801f8d40ad85
+    content: User story
+    children:
+      - 14f2af6c-9059-4a0e-a7df-819ce59ac665
+      - 43ca2151-f3cd-48cd-b08a-e33e85837f3e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14f2af6c-9059-4a0e-a7df-819ce59ac665:
+    id: 14f2af6c-9059-4a0e-a7df-819ce59ac665
+    content: 🐞 Bug ticket
+    children:
+      - 860868a5-3fe8-4f79-b2d1-33518abff4f4
+      - a47a8085-1d07-46c0-afa0-bd81987c84c6
+      - a3959408-f5d5-4f10-a826-cd4667e822b4
+      - 3cfcba5d-6230-47af-9ae5-ea85ebd23bf8
+      - c427f36c-21bb-4751-bade-93fa36432b0f
+      - 0b421b7a-65b7-4e35-9055-4d02ccb1a6d9
+      - a76213ec-60ed-4947-8675-3f9bbd7ebc92
+      - d0b35dcb-b18d-4edd-a104-0e4239b58973
+      - 829228dc-f44d-4f0c-991f-3bc1712fbc40
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  860868a5-3fe8-4f79-b2d1-33518abff4f4:
+    id: 860868a5-3fe8-4f79-b2d1-33518abff4f4
+    content: Summary
+    children:
+      - a102efdc-2206-409a-9b14-e5c5ba36524d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a102efdc-2206-409a-9b14-e5c5ba36524d:
+    id: a102efdc-2206-409a-9b14-e5c5ba36524d
+    content: 'Workflows get stuck mid-run: Arborescent shows the node as still playing (green arrow), but the Claude Code terminal never receives the next context and the node does not advance to the next step.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a47a8085-1d07-46c0-afa0-bd81987c84c6:
+    id: a47a8085-1d07-46c0-afa0-bd81987c84c6
+    content: Affected steps
+    children:
+      - fb397614-1935-40e7-9bfd-f6e0223b7014
+      - c36e996e-c748-4bde-befb-3530909ebca3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb397614-1935-40e7-9bfd-f6e0223b7014:
+    id: fb397614-1935-40e7-9bfd-f6e0223b7014
+    content: Feature implementation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c36e996e-c748-4bde-befb-3530909ebca3:
+    id: c36e996e-c748-4bde-befb-3530909ebca3
+    content: AI code review resolution
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3959408-f5d5-4f10-a826-cd4667e822b4:
+    id: a3959408-f5d5-4f10-a826-cd4667e822b4
+    content: Observed behaviour
+    children:
+      - fdc59523-a95b-4cfd-9c18-4d00d7d32fe8
+      - d17b23eb-cb9e-4a94-99fa-146fc45079d4
+      - 6fe818c5-1700-44c2-9415-7e3cfe4a063c
+      - f3143605-e0a2-40bc-b6b7-6d0331b25f59
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdc59523-a95b-4cfd-9c18-4d00d7d32fe8:
+    id: fdc59523-a95b-4cfd-9c18-4d00d7d32fe8
+    content: Node displays the green 'playing' indicator in Arborescent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d17b23eb-cb9e-4a94-99fa-146fc45079d4:
+    id: d17b23eb-cb9e-4a94-99fa-146fc45079d4
+    content: Current step has finished in the terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fe818c5-1700-44c2-9415-7e3cfe4a063c:
+    id: 6fe818c5-1700-44c2-9415-7e3cfe4a063c
+    content: Next context is not sent to the Claude Code session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3143605-e0a2-40bc-b6b7-6d0331b25f59:
+    id: f3143605-e0a2-40bc-b6b7-6d0331b25f59
+    content: Node does not transition to the next step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cfcba5d-6230-47af-9ae5-ea85ebd23bf8:
+    id: 3cfcba5d-6230-47af-9ae5-ea85ebd23bf8
+    content: Expected behaviour
+    children:
+      - 5876723c-3eee-43f2-b01a-645395170777
+      - ccbb2a9a-db74-4c1f-bad4-e674f7d560a6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5876723c-3eee-43f2-b01a-645395170777:
+    id: 5876723c-3eee-43f2-b01a-645395170777
+    content: When the current step finishes, the next context is sent to the terminal and the node advances to the next step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccbb2a9a-db74-4c1f-bad4-e674f7d560a6:
+    id: ccbb2a9a-db74-4c1f-bad4-e674f7d560a6
+    content: The green 'playing' indicator reflects actual run state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c427f36c-21bb-4751-bade-93fa36432b0f:
+    id: c427f36c-21bb-4751-bade-93fa36432b0f
+    content: Suspected causes
+    children:
+      - a32a83b9-1b4a-4b23-9c89-bfdf1b67329d
+      - 64527399-15bc-46da-8f54-02780262a780
+      - eb4c6a0c-a96d-4c28-bf41-6ab4a018559b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a32a83b9-1b4a-4b23-9c89-bfdf1b67329d:
+    id: a32a83b9-1b4a-4b23-9c89-bfdf1b67329d
+    content: 'Primary hypothesis — race in advanceOrClearCollaborating (workflowExecutionActions.ts:1037-1050) — when autonomous feedback is parsed before the Stop hook arrives, the node only clears `collaborating: false` and waits for a subsequent Stop; if that Stop is later dropped the node stays `state: ''running''` indefinitely'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64527399-15bc-46da-8f54-02780262a780:
+    id: 64527399-15bc-46da-8f54-02780262a780
+    content: Secondary — Stop hook gets dropped by handleHookEvent because workflowSessionMap has no entry for the session_id (session-id change) or findRunningNodeOnTerminal returns null
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb4c6a0c-a96d-4c28-bf41-6ab4a018559b:
+    id: eb4c6a0c-a96d-4c28-bf41-6ab4a018559b
+    content: Secondary — Stop hook fires, but Claude Code is not yet ready to receive new input (race between hook emission and prompt readiness)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b421b7a-65b7-4e35-9055-4d02ccb1a6d9:
+    id: 0b421b7a-65b7-4e35-9055-4d02ccb1a6d9
+    content: Reproduction
+    children:
+      - 451a1e54-cc3d-485f-82e5-3fd0975b4293
+      - c8ac1473-f6fd-4460-b91f-92ddced10b46
+      - c4180341-8397-43fb-8b52-26ce1ca0150d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  451a1e54-cc3d-485f-82e5-3fd0975b4293:
+    id: 451a1e54-cc3d-485f-82e5-3fd0975b4293
+    content: Run a workflow that includes 'feature implementation' or 'AI code review resolution' against a Claude Code terminal session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8ac1473-f6fd-4460-b91f-92ddced10b46:
+    id: c8ac1473-f6fd-4460-b91f-92ddced10b46
+    content: Observe step completion in the terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4180341-8397-43fb-8b52-26ce1ca0150d:
+    id: c4180341-8397-43fb-8b52-26ce1ca0150d
+    content: Note that Arborescent does not advance and no new context is sent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a76213ec-60ed-4947-8675-3f9bbd7ebc92:
+    id: a76213ec-60ed-4947-8675-3f9bbd7ebc92
+    content: Impact
+    children:
+      - 288889fd-bad9-45e7-b51d-4f845cc42641
+      - 308bc2b1-07fd-4954-834a-ab91e2ed5e40
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  288889fd-bad9-45e7-b51d-4f845cc42641:
+    id: 288889fd-bad9-45e7-b51d-4f845cc42641
+    content: Workflows silently halt; user must manually intervene to resume progress
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  308bc2b1-07fd-4954-834a-ab91e2ed5e40:
+    id: 308bc2b1-07fd-4954-834a-ab91e2ed5e40
+    content: Breaks the core autonomous-progression promise of the workflow runner
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0b35dcb-b18d-4edd-a104-0e4239b58973:
+    id: d0b35dcb-b18d-4edd-a104-0e4239b58973
+    content: Scope — workflow + hook activity logging
+    children:
+      - 48ab5842-cd3e-4552-a6a3-23267839f7c4
+      - e10cfeef-dbcd-49fc-a8e4-b4d080f3ad9f
+      - 7d238af8-c2ca-48a9-a0ba-51ea33d0caad
+      - dcdc92b7-96d4-4f8e-bdcf-8eeada4001fd
+      - fdfb44fd-4a87-4a9f-acef-17fd9efbb3dc
+      - 5ac037df-6dad-4721-9bc3-94ac50a12516
+      - d2fcfd41-1fa7-482e-b164-d94ae103b684
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48ab5842-cd3e-4552-a6a3-23267839f7c4:
+    id: 48ab5842-cd3e-4552-a6a3-23267839f7c4
+    content: Persistent on-disk log file for workflow-engine and hook-server events (currently logger only writes to console + in-memory buffer, lost on app restart)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e10cfeef-dbcd-49fc-a8e4-b4d080f3ad9f:
+    id: e10cfeef-dbcd-49fc-a8e4-b4d080f3ad9f
+    content: Log every hook request received (event name, session_id, terminal_id, resolved node_id from workflowSessionMap, drop reason if any)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d238af8-c2ca-48a9-a0ba-51ea33d0caad:
+    id: 7d238af8-c2ca-48a9-a0ba-51ea33d0caad
+    content: Include node_id on every workflow + hook log line so a single node's lifecycle can be traced by grep
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcdc92b7-96d4-4f8e-bdcf-8eeada4001fd:
+    id: dcdc92b7-96d4-4f8e-bdcf-8eeada4001fd
+    content: Log every workflow state transition (node id, step id, from-state → to-state, trigger event)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdfb44fd-4a87-4a9f-acef-17fd9efbb3dc:
+    id: fdfb44fd-4a87-4a9f-acef-17fd9efbb3dc
+    content: Log collaborating / stopReceived / needsReview flag changes for autonomous steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ac037df-6dad-4721-9bc3-94ac50a12516:
+    id: 5ac037df-6dad-4721-9bc3-94ac50a12516
+    content: Log rotation or size cap so the file does not grow unbounded
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2fcfd41-1fa7-482e-b164-d94ae103b684:
+    id: d2fcfd41-1fa7-482e-b164-d94ae103b684
+    content: Log file location surfaced in-app (menu item or settings) so it can be opened or attached to bug reports
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  829228dc-f44d-4f0c-991f-3bc1712fbc40:
+    id: 829228dc-f44d-4f0c-991f-3bc1712fbc40
+    content: Acceptance criteria (this PR)
+    children:
+      - 66fc6754-b505-4954-a4e6-6bfba5903552
+      - 57457e97-253e-4672-8e6e-118570e27e22
+      - b45b7ac2-cb8b-4a0d-88e1-cf66e2a59388
+      - 879bcba6-9766-47c2-8d3a-3d221abc743a
+      - 84ed4346-087e-4056-99bb-428d96f3b349
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66fc6754-b505-4954-a4e6-6bfba5903552:
+    id: 66fc6754-b505-4954-a4e6-6bfba5903552
+    content: '- [ ] Dropped Stop hooks are visibly logged with the specific drop reason (no terminal mapped / no running node / auth / parse)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57457e97-253e-4672-8e6e-118570e27e22:
+    id: 57457e97-253e-4672-8e6e-118570e27e22
+    content: '- [ ] Workflow + hook events are written to a persistent log file in the Arborescent app-support directory'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b45b7ac2-cb8b-4a0d-88e1-cf66e2a59388:
+    id: b45b7ac2-cb8b-4a0d-88e1-cf66e2a59388
+    content: '- [ ] Log file has a size cap or rotation policy'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  879bcba6-9766-47c2-8d3a-3d221abc743a:
+    id: 879bcba6-9766-47c2-8d3a-3d221abc743a
+    content: '- [ ] Users can locate or open the log file from within the app'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84ed4346-087e-4056-99bb-428d96f3b349:
+    id: 84ed4346-087e-4056-99bb-428d96f3b349
+    content: '- [ ] Every workflow + hook log line includes the node_id when one is resolvable'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43ca2151-f3cd-48cd-b08a-e33e85837f3e:
+    id: 43ca2151-f3cd-48cd-b08a-e33e85837f3e
+    content: Technical refinement
+    children:
+      - 4a880555-540d-4576-85ba-8b038912519d
+      - 66330187-3720-442c-b2b1-cf6c5ddbc7e8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a880555-540d-4576-85ba-8b038912519d:
+    id: 4a880555-540d-4576-85ba-8b038912519d
+    content: Complications
+    children:
+      - 5ac6e9d2-8c8a-40a4-845f-99a725cea7ac
+      - 0564a2c0-4a4f-4f5d-a473-83fcae831daf
+      - 5dc0328a-1141-44c4-8e76-2c52224c4ecf
+      - 42478f29-db92-47a2-8e1b-0f17d73dc4c9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ac6e9d2-8c8a-40a4-845f-99a725cea7ac:
+    id: 5ac6e9d2-8c8a-40a4-845f-99a725cea7ac
+    content: Renderer can't write files directly — workflow-state logs originate in the renderer store and must be shipped to the main process over IPC before hitting disk
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0564a2c0-4a4f-4f5d-a473-83fcae831daf:
+    id: 0564a2c0-4a4f-4f5d-a473-83fcae831daf
+    content: Logger is also used in worker-thread contexts where electron is unavailable (see existing guard in main/services/logger.ts) — file sink must degrade gracefully there
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dc0328a-1141-44c4-8e76-2c52224c4ecf:
+    id: 5dc0328a-1141-44c4-8e76-2c52224c4ecf
+    content: Hook server runs in main but resolves node_id from renderer-owned state (workflowSessionMap) — main needs either a snapshot of that map or has to log the unresolved event and let the renderer log the resolution, otherwise node_id may be missing on the hook line
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42478f29-db92-47a2-8e1b-0f17d73dc4c9:
+    id: 42478f29-db92-47a2-8e1b-0f17d73dc4c9
+    content: Log rotation needs a single writer to avoid interleaved lines if multiple main-process modules log concurrently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66330187-3720-442c-b2b1-cf6c5ddbc7e8:
+    id: 66330187-3720-442c-b2b1-cf6c5ddbc7e8
+    content: Approach
+    children:
+      - 386b663e-73ae-45ba-8aa5-10499108ee6b
+      - 28274f93-d9bf-44ba-bb03-be9929ee2fea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  386b663e-73ae-45ba-8aa5-10499108ee6b:
+    id: 386b663e-73ae-45ba-8aa5-10499108ee6b
+    content: Extend the existing BaseLogger with an append-only file sink in main (userData/logs/arborescent.log with size-based rotation); renderer logs route through a new IPC channel to that sink; keep the in-memory ring buffer for export
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28274f93-d9bf-44ba-bb03-be9929ee2fea:
+    id: 28274f93-d9bf-44ba-bb03-be9929ee2fea
+    content: Touchpoints — main/services/logger.ts (file sink + rotation), shared/services/logger/BaseLogger.ts (structured node_id field), preload + ipc bridge, menuService.ts (Help → Open log), workflowExecutionActions + workflowHookEventHandler (tag every line with node_id, log state transitions), hookServer.ts (log node_id once resolution is available)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fcb78b9-05e5-4ebe-a88b-5de10307c7be:
+    id: 4fcb78b9-05e5-4ebe-a88b-5de10307c7be
+    content: Subtask note
+    children:
+      - 1feb593f-df46-4fa2-9182-1e8790094eae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1feb593f-df46-4fa2-9182-1e8790094eae:
+    id: 1feb593f-df46-4fa2-9182-1e8790094eae
+    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d6041d2-eb52-483a-9135-fd7c1ad2fe84:
+    id: 5d6041d2-eb52-483a-9135-fd7c1ad2fe84
     content: worktree
     children:
-      - 8ba9a475-72b1-4878-9718-9dc9e5dc064d
+      - 3007380c-8da8-4b6f-9e3d-72c6625be9ef
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8ba9a475-72b1-4878-9718-9dc9e5dc064d:
-    id: 8ba9a475-72b1-4878-9718-9dc9e5dc064d
+  3007380c-8da8-4b6f-9e3d-72c6625be9ef:
+    id: 3007380c-8da8-4b6f-9e3d-72c6625be9ef
     content: vscode://file/Users/brianfox/dev/Arborescent-step-context-override
     children: []
     metadata:
@@ -119411,300 +120543,300 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  798b26a8-fe9e-4da0-90bb-b75614c11360:
-    id: 798b26a8-fe9e-4da0-90bb-b75614c11360
+  32a8ce0a-0bec-4ffe-9864-f63f5700782c:
+    id: 32a8ce0a-0bec-4ffe-9864-f63f5700782c
     content: 📄 Product spec
     children:
-      - 317c6d79-242d-403d-8430-93a917171c06
-      - a8f4773c-a5ed-4005-b19b-7b09554db515
-      - 946da466-a6c4-437d-b687-eeb30637a22f
-      - 185cef03-1878-4de5-b2e5-638b8fcc5b97
-      - 8b6c31ae-5f32-4ceb-947f-c9103dbc9401
-      - 4ea0954d-f776-4952-a347-f17dbabf62c1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  317c6d79-242d-403d-8430-93a917171c06:
-    id: 317c6d79-242d-403d-8430-93a917171c06
-    content: Context
-    children:
-      - 17ec855f-05ce-4073-95b4-f95437358b8b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  17ec855f-05ce-4073-95b4-f95437358b8b:
-    id: 17ec855f-05ce-4073-95b4-f95437358b8b
-    content: Starting a workflow on a node that already has an attached context causes that context to replay in every workflow step, redundantly inflating prompts and diluting the step-specific instruction
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a8f4773c-a5ed-4005-b19b-7b09554db515:
-    id: a8f4773c-a5ed-4005-b19b-7b09554db515
-    content: User
-    children:
-      - 03eabff5-2fab-4ee5-a596-28dee24a1670
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  03eabff5-2fab-4ee5-a596-28dee24a1670:
-    id: 03eabff5-2fab-4ee5-a596-28dee24a1670
-    content: Workflow author or operator who triggers a workflow on a node that carries its own attached or inherited context
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  946da466-a6c4-437d-b687-eeb30637a22f:
-    id: 946da466-a6c4-437d-b687-eeb30637a22f
-    content: Current experience
-    children:
-      - 8bdb696e-fa47-4fc9-a1f2-1bea64c17acb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8bdb696e-fa47-4fc9-a1f2-1bea64c17acb:
-    id: 8bdb696e-fa47-4fc9-a1f2-1bea64c17acb
-    content: The node's attached context is silently concatenated to each step's prompt with no indication to the user, producing noisy, repetitive context and unpredictable step behavior
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  185cef03-1878-4de5-b2e5-638b8fcc5b97:
-    id: 185cef03-1878-4de5-b2e5-638b8fcc5b97
-    content: Goal
-    children:
-      - 807bfb1d-e4ce-44f2-a41a-2773412b0b9f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  807bfb1d-e4ce-44f2-a41a-2773412b0b9f:
-    id: 807bfb1d-e4ce-44f2-a41a-2773412b0b9f
-    content: Workflow step contexts uniformly override a node's non-step context during workflow execution; no UI changes, no warnings, no persistence
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b6c31ae-5f32-4ceb-947f-c9103dbc9401:
-    id: 8b6c31ae-5f32-4ceb-947f-c9103dbc9401
-    content: Business rules
-    children:
-      - 6ff3fe3f-4411-4cf6-8b3f-3842a4859a8f
-      - 965036b7-ba8c-4856-84b8-99936dff2212
-      - 1185ffc5-7323-4c81-a1ca-ed4764600f1f
-      - 2a9dca76-9a91-41b9-84bc-8d83843b9cfc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ff3fe3f-4411-4cf6-8b3f-3842a4859a8f:
-    id: 6ff3fe3f-4411-4cf6-8b3f-3842a4859a8f
-    content: 1. When the workflow step defines a context, it overrides the node's non-step contexts (direct or ancestor-inherited) uniformly across all step types (automated, checkpoint, and manual)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  965036b7-ba8c-4856-84b8-99936dff2212:
-    id: 965036b7-ba8c-4856-84b8-99936dff2212
-    content: 2. When the workflow step has no context, the node's context (direct or ancestor-inherited) applies as today
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1185ffc5-7323-4c81-a1ca-ed4764600f1f:
-    id: 1185ffc5-7323-4c81-a1ca-ed4764600f1f
-    content: 3. The override applies only for the lifetime of the workflow run and does not mutate the node's attached context definition
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a9dca76-9a91-41b9-84bc-8d83843b9cfc:
-    id: 2a9dca76-9a91-41b9-84bc-8d83843b9cfc
-    content: 4. Users who want to send a node with its attached context can use the existing 'send' mechanism rather than starting a workflow
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ea0954d-f776-4952-a347-f17dbabf62c1:
-    id: 4ea0954d-f776-4952-a347-f17dbabf62c1
-    content: Acceptance criteria
-    children:
-      - 6aa3015d-151f-45a8-a4e6-94e889f0e69b
-      - 79f00ae8-658f-4991-b213-868fc4038106
-      - e3e7dc48-a905-43e1-b2ad-77975df99929
-      - 239cad28-c114-4a91-b6c0-5a78be13f995
-      - 30e204fd-5503-4db1-84f0-5d3721983652
-      - ea168696-4026-4fa2-9064-376e6e0f8ad1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6aa3015d-151f-45a8-a4e6-94e889f0e69b:
-    id: 6aa3015d-151f-45a8-a4e6-94e889f0e69b
-    content: '- [ ] When the step defines a context and the node has a context, the step''s context is sent and the node''s non-step context is suppressed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  79f00ae8-658f-4991-b213-868fc4038106:
-    id: 79f00ae8-658f-4991-b213-868fc4038106
-    content: '- [ ] When the step defines a context and the node has no other context, the step''s context is sent'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e3e7dc48-a905-43e1-b2ad-77975df99929:
-    id: e3e7dc48-a905-43e1-b2ad-77975df99929
-    content: '- [ ] When the step has no context and the node has a context (direct or ancestor-inherited), the node''s context is sent'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  239cad28-c114-4a91-b6c0-5a78be13f995:
-    id: 239cad28-c114-4a91-b6c0-5a78be13f995
-    content: '- [ ] Override behavior is uniform across automated, checkpoint, and manual step types'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  30e204fd-5503-4db1-84f0-5d3721983652:
-    id: 30e204fd-5503-4db1-84f0-5d3721983652
-    content: '- [ ] The node''s attached context definition is unchanged after the workflow ends'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ea168696-4026-4fa2-9064-376e6e0f8ad1:
-    id: ea168696-4026-4fa2-9064-376e6e0f8ad1
-    content: '- [ ] No new toast, modal, persistent per-node flag, or UI indicator change is introduced'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  25a0c4d6-0c71-4c02-a09c-8ccf145f702b:
-    id: 25a0c4d6-0c71-4c02-a09c-8ccf145f702b
-    content: 🔧 Implementation proposal
-    children:
-      - cdcc4f8a-d5fe-4d95-813e-7205b84a46b4
-      - 05d16a94-387e-45b3-8949-d2a8493144d4
-      - 03f7d1c7-25eb-4b24-9f40-753d9223c78d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cdcc4f8a-d5fe-4d95-813e-7205b84a46b4:
-    id: cdcc4f8a-d5fe-4d95-813e-7205b84a46b4
-    content: Approach
-    children:
-      - 679d6aa8-fe12-4d9b-82e2-c128295a0ad9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  679d6aa8-fe12-4d9b-82e2-c128295a0ad9:
-    id: 679d6aa8-fe12-4d9b-82e2-c128295a0ad9
-    content: In the context resolution path used by workflow step execution, prefer the step's context over the node's non-step contexts when both are present, uniformly across step types. No UI changes required.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  05d16a94-387e-45b3-8949-d2a8493144d4:
-    id: 05d16a94-387e-45b3-8949-d2a8493144d4
-    content: Touchpoints
-    children:
-      - 005410ce-f869-4518-9394-9637a9e40ab8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  005410ce-f869-4518-9394-9637a9e40ab8:
-    id: 005410ce-f869-4518-9394-9637a9e40ab8
-    content: Context resolution used when assembling step prompts (workflow store)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  03f7d1c7-25eb-4b24-9f40-753d9223c78d:
-    id: 03f7d1c7-25eb-4b24-9f40-753d9223c78d
-    content: Constraints to call out
-    children:
-      - ac53bf68-a35c-40ca-9cd6-f4ad3050296a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac53bf68-a35c-40ca-9cd6-f4ad3050296a:
-    id: ac53bf68-a35c-40ca-9cd6-f4ad3050296a
-    content: None — change is isolated to context resolution
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d2ce894-39ff-47d6-8f2a-014ab7b56d5f:
-    id: 6d2ce894-39ff-47d6-8f2a-014ab7b56d5f
-    content: Challenges and pushback (resolved)
-    children:
-      - 7c2d8873-e596-471a-9984-52206d640bea
-      - f8b19536-117a-42f9-a478-a5c3c880b95e
-      - 494096bb-c4bf-4bc3-b66e-f9b5a1051877
-      - 11406b30-35fc-444b-a842-4b5fbb137fe2
-      - 07378a4e-657b-45dd-be60-cee8a4972071
+      - f9a63dea-4328-4313-aee3-7097d35427ec
+      - fe0b9f7b-2fec-4074-a7fe-4cbc0dcb7b66
+      - f935a431-95ea-483f-abf4-c1993d0b8d42
+      - 476558a2-0a46-4fd0-9ecf-76ff993f3cc7
+      - 3ec47e6f-abda-43fe-9577-269909828d42
+      - 0089e2b6-f3c9-4be9-9f20-33dcb3c75823
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7c2d8873-e596-471a-9984-52206d640bea:
-    id: 7c2d8873-e596-471a-9984-52206d640bea
+  f9a63dea-4328-4313-aee3-7097d35427ec:
+    id: f9a63dea-4328-4313-aee3-7097d35427ec
+    content: Context
+    children:
+      - 327b41df-c6d6-4f3f-80a6-c4d7657c14eb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  327b41df-c6d6-4f3f-80a6-c4d7657c14eb:
+    id: 327b41df-c6d6-4f3f-80a6-c4d7657c14eb
+    content: Starting a workflow on a node that already has an attached context causes that context to replay in every workflow step, redundantly inflating prompts and diluting the step-specific instruction
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe0b9f7b-2fec-4074-a7fe-4cbc0dcb7b66:
+    id: fe0b9f7b-2fec-4074-a7fe-4cbc0dcb7b66
+    content: User
+    children:
+      - 75e5c519-2306-46ae-8385-e6cbd428d332
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75e5c519-2306-46ae-8385-e6cbd428d332:
+    id: 75e5c519-2306-46ae-8385-e6cbd428d332
+    content: Workflow author or operator who triggers a workflow on a node that carries its own attached or inherited context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f935a431-95ea-483f-abf4-c1993d0b8d42:
+    id: f935a431-95ea-483f-abf4-c1993d0b8d42
+    content: Current experience
+    children:
+      - 0ef66275-d398-45e0-88dd-713a04602f44
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ef66275-d398-45e0-88dd-713a04602f44:
+    id: 0ef66275-d398-45e0-88dd-713a04602f44
+    content: The node's attached context is silently concatenated to each step's prompt with no indication to the user, producing noisy, repetitive context and unpredictable step behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  476558a2-0a46-4fd0-9ecf-76ff993f3cc7:
+    id: 476558a2-0a46-4fd0-9ecf-76ff993f3cc7
+    content: Goal
+    children:
+      - f4d79fb8-b69e-4eed-998a-8aad97b8aca5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4d79fb8-b69e-4eed-998a-8aad97b8aca5:
+    id: f4d79fb8-b69e-4eed-998a-8aad97b8aca5
+    content: Workflow step contexts uniformly override a node's non-step context during workflow execution; no UI changes, no warnings, no persistence
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ec47e6f-abda-43fe-9577-269909828d42:
+    id: 3ec47e6f-abda-43fe-9577-269909828d42
+    content: Business rules
+    children:
+      - d747786a-c07f-43cd-8c51-bfd394e0ceea
+      - 3fc2c03b-dcf5-4d12-b560-36dcd0e99d37
+      - 88a83373-7492-45cb-a5f8-a5f7d933c491
+      - 0ac8bd6b-bf58-48e4-8bfd-5aa33e29f14a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d747786a-c07f-43cd-8c51-bfd394e0ceea:
+    id: d747786a-c07f-43cd-8c51-bfd394e0ceea
+    content: 1. When the workflow step defines a context, it overrides the node's non-step contexts (direct or ancestor-inherited) uniformly across all step types (automated, checkpoint, and manual)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fc2c03b-dcf5-4d12-b560-36dcd0e99d37:
+    id: 3fc2c03b-dcf5-4d12-b560-36dcd0e99d37
+    content: 2. When the workflow step has no context, the node's context (direct or ancestor-inherited) applies as today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88a83373-7492-45cb-a5f8-a5f7d933c491:
+    id: 88a83373-7492-45cb-a5f8-a5f7d933c491
+    content: 3. The override applies only for the lifetime of the workflow run and does not mutate the node's attached context definition
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ac8bd6b-bf58-48e4-8bfd-5aa33e29f14a:
+    id: 0ac8bd6b-bf58-48e4-8bfd-5aa33e29f14a
+    content: 4. Users who want to send a node with its attached context can use the existing 'send' mechanism rather than starting a workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0089e2b6-f3c9-4be9-9f20-33dcb3c75823:
+    id: 0089e2b6-f3c9-4be9-9f20-33dcb3c75823
+    content: Acceptance criteria
+    children:
+      - 6bb9f5cd-6dc3-4517-b7db-473a5042a72a
+      - 96742b8c-9daf-460e-9d24-b380fbe3f8f0
+      - 767adbea-6c5f-4e10-a681-ab55b303cdeb
+      - 9a4cd3e0-86ba-4b7b-b497-f3d49a6bafe4
+      - 8b3cb451-901f-4f50-ad50-389204768691
+      - 38342898-66cf-46b5-9ff0-3ed0f234935e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bb9f5cd-6dc3-4517-b7db-473a5042a72a:
+    id: 6bb9f5cd-6dc3-4517-b7db-473a5042a72a
+    content: '- [x] When the step defines a context and the node has a context, the step''s context is sent and the node''s non-step context is suppressed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96742b8c-9daf-460e-9d24-b380fbe3f8f0:
+    id: 96742b8c-9daf-460e-9d24-b380fbe3f8f0
+    content: '- [x] When the step defines a context and the node has no other context, the step''s context is sent'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  767adbea-6c5f-4e10-a681-ab55b303cdeb:
+    id: 767adbea-6c5f-4e10-a681-ab55b303cdeb
+    content: '- [x] When the step has no context and the node has a context (direct or ancestor-inherited), the node''s context is sent'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a4cd3e0-86ba-4b7b-b497-f3d49a6bafe4:
+    id: 9a4cd3e0-86ba-4b7b-b497-f3d49a6bafe4
+    content: '- [x] Override behavior is uniform across automated, checkpoint, and manual step types'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b3cb451-901f-4f50-ad50-389204768691:
+    id: 8b3cb451-901f-4f50-ad50-389204768691
+    content: '- [x] The node''s attached context definition is unchanged after the workflow ends'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38342898-66cf-46b5-9ff0-3ed0f234935e:
+    id: 38342898-66cf-46b5-9ff0-3ed0f234935e
+    content: '- [x] No new toast, modal, persistent per-node flag, or UI indicator change is introduced'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31aefef9-15b2-4e6f-ae9e-d46f299929e1:
+    id: 31aefef9-15b2-4e6f-ae9e-d46f299929e1
+    content: 🔧 Implementation proposal
+    children:
+      - ed33c5c3-71b6-4cef-a8fd-b9dfe5414ad9
+      - f56cd8a0-32c2-42fc-982d-aed91c41fea7
+      - c4a1de16-d961-4f35-a501-d33a2115ab25
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed33c5c3-71b6-4cef-a8fd-b9dfe5414ad9:
+    id: ed33c5c3-71b6-4cef-a8fd-b9dfe5414ad9
+    content: Approach
+    children:
+      - 51b4e306-7b52-4e03-84b8-b65c516312de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51b4e306-7b52-4e03-84b8-b65c516312de:
+    id: 51b4e306-7b52-4e03-84b8-b65c516312de
+    content: In the context resolution path used by workflow step execution, prefer the step's context over the node's non-step contexts when both are present, uniformly across step types. No UI changes required.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f56cd8a0-32c2-42fc-982d-aed91c41fea7:
+    id: f56cd8a0-32c2-42fc-982d-aed91c41fea7
+    content: Touchpoints
+    children:
+      - 8d3af8c7-07f2-4246-85f1-2ba9578e8f0b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d3af8c7-07f2-4246-85f1-2ba9578e8f0b:
+    id: 8d3af8c7-07f2-4246-85f1-2ba9578e8f0b
+    content: Context resolution used when assembling step prompts (workflow store)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4a1de16-d961-4f35-a501-d33a2115ab25:
+    id: c4a1de16-d961-4f35-a501-d33a2115ab25
+    content: Constraints to call out
+    children:
+      - ecf17807-8398-4188-8780-6fa39f30d615
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecf17807-8398-4188-8780-6fa39f30d615:
+    id: ecf17807-8398-4188-8780-6fa39f30d615
+    content: None — change is isolated to context resolution
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  462e5ffb-1950-4ecf-a4a7-c0ebc700a492:
+    id: 462e5ffb-1950-4ecf-a4a7-c0ebc700a492
+    content: Challenges and pushback (resolved)
+    children:
+      - 10468fc9-3420-46c3-b3f1-259f2eb4f577
+      - f836ab81-6cd7-40f3-8481-65f603358ef5
+      - 469cc2e3-349d-47f6-92af-ca4074e0a2c7
+      - 638aa86f-8c7b-4584-a25d-62de3258059f
+      - 860355f8-38c2-4a5a-b8c4-d318b7f98f27
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10468fc9-3420-46c3-b3f1-259f2eb4f577:
+    id: 10468fc9-3420-46c3-b3f1-259f2eb4f577
     content: 'Blocking dialog every run is friction — resolved: no dialog'
     children: []
     metadata:
@@ -119712,8 +120844,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f8b19536-117a-42f9-a478-a5c3c880b95e:
-    id: f8b19536-117a-42f9-a478-a5c3c880b95e
+  f836ab81-6cd7-40f3-8481-65f603358ef5:
+    id: f836ab81-6cd7-40f3-8481-65f603358ef5
     content: 'Diverging behavior across step types creates two modes — resolved: override applies uniformly across all workflow step types'
     children: []
     metadata:
@@ -119721,8 +120853,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  494096bb-c4bf-4bc3-b66e-f9b5a1051877:
-    id: 494096bb-c4bf-4bc3-b66e-f9b5a1051877
+  469cc2e3-349d-47f6-92af-ca4074e0a2c7:
+    id: 469cc2e3-349d-47f6-92af-ca4074e0a2c7
     content: 'No opt-in path for users wanting attached context included — resolved: the existing ''send'' mechanism is the escape hatch'
     children: []
     metadata:
@@ -119730,8 +120862,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  11406b30-35fc-444b-a842-4b5fbb137fe2:
-    id: 11406b30-35fc-444b-a842-4b5fbb137fe2
+  638aa86f-8c7b-4584-a25d-62de3258059f:
+    id: 638aa86f-8c7b-4584-a25d-62de3258059f
     content: 'ROI of a one-time toast plus per-node persistent flag is poor — resolved: drop the toast entirely'
     children: []
     metadata:
@@ -119739,8 +120871,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  07378a4e-657b-45dd-be60-cee8a4972071:
-    id: 07378a4e-657b-45dd-be60-cee8a4972071
+  860355f8-38c2-4a5a-b8c4-d318b7f98f27:
+    id: 860355f8-38c2-4a5a-b8c4-d318b7f98f27
     content: 'Shadowed context indicator adds complexity for marginal value — resolved: drop the indicator change; override is sensible default behavior and needs no affordance'
     children: []
     metadata:
@@ -119748,138 +120880,604 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  79d67405-5e21-4b2f-9808-1b00e3a5644b:
-    id: 79d67405-5e21-4b2f-9808-1b00e3a5644b
+  e590a1d7-677d-4ebb-b250-4b37a019bb17:
+    id: e590a1d7-677d-4ebb-b250-4b37a019bb17
     content: Shippability
     children:
-      - 3e37ba17-0a36-425d-94b8-b3862f2627cc
+      - f8c97534-3a8e-4cb8-93f0-22e9028af5d8
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3e37ba17-0a36-425d-94b8-b3862f2627cc:
-    id: 3e37ba17-0a36-425d-94b8-b3862f2627cc
+  f8c97534-3a8e-4cb8-93f0-22e9028af5d8:
+    id: f8c97534-3a8e-4cb8-93f0-22e9028af5d8
     content: Single chunk — scope is small and self-contained
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ccbf4624-b44d-45a1-8b79-0d7b0c2cce0e:
-    id: ccbf4624-b44d-45a1-8b79-0d7b0c2cce0e
+  64660285-a118-410d-a547-5d2ea91a4e59:
+    id: 64660285-a118-410d-a547-5d2ea91a4e59
     content: Technical refinement
     children:
-      - 789dab30-3263-4e87-a091-5f000eb1e5eb
-      - 6ace34fe-3dd8-4944-908e-2b6a93168f44
-      - a6e49963-c55d-445c-b6f2-0828c5b5fcb2
+      - d339da64-9856-4b96-bb5a-e77e123bd39b
+      - 2812811c-769b-497b-9f2c-49239f8c6460
+      - b96a6231-f1ec-4251-8c8d-a97b0972234d
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  789dab30-3263-4e87-a091-5f000eb1e5eb:
-    id: 789dab30-3263-4e87-a091-5f000eb1e5eb
+  d339da64-9856-4b96-bb5a-e77e123bd39b:
+    id: d339da64-9856-4b96-bb5a-e77e123bd39b
     content: Complications
     children:
-      - 9d47cfc7-1256-4ff2-a919-c49b6422efd5
-      - f496803f-390f-4779-96b4-0db403993571
-      - 247666f9-7cb2-4057-b650-f5b89646c422
-      - 6cf6cc69-6487-411a-9ba6-6deaba1026f8
-      - 3515478d-1bfd-4287-9fa8-3d2b1bff8b80
+      - 6ab8d2f3-d7b8-4e54-9152-3a507ff4d735
+      - 7ecf7363-24dc-4de0-8293-26a6e7f57f86
+      - 9ee7b578-4647-4c14-9e2d-c093029759ba
+      - 45f11d9b-4cdc-42f9-826f-98a2136b95df
+      - 0558cea8-24c4-4762-abba-fc1f8aa45f0f
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  9d47cfc7-1256-4ff2-a919-c49b6422efd5:
-    id: 9d47cfc7-1256-4ff2-a919-c49b6422efd5
+  6ab8d2f3-d7b8-4e54-9152-3a507ff4d735:
+    id: 6ab8d2f3-d7b8-4e54-9152-3a507ff4d735
     content: Workflow advance re-parents the working node under the current step node, so the working node's natural ancestor-inheritance already flows through the step — but the resolver does not distinguish "applied on the working node" from "inherited through the step", which is exactly the distinction the spec depends on
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f496803f-390f-4779-96b4-0db403993571:
-    id: f496803f-390f-4779-96b4-0db403993571
+  7ecf7363-24dc-4de0-8293-26a6e7f57f86:
+    id: 7ecf7363-24dc-4de0-8293-26a6e7f57f86
     content: 'Defining "step context" precisely: the closest applied context found by walking ancestors starting from the working node''s *parent* (the step), not from the working node itself'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  247666f9-7cb2-4057-b650-f5b89646c422:
-    id: 247666f9-7cb2-4057-b650-f5b89646c422
+  9ee7b578-4647-4c14-9e2d-c093029759ba:
+    id: 9ee7b578-4647-4c14-9e2d-c093029759ba
     content: 'Rule 2 edge case: when the step chain has no context, walking further up reaches the workflow root, whose own context may then leak in via inheritance — needs an explicit decision on whether the walk should stop at the workflow root or include it'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6cf6cc69-6487-411a-9ba6-6deaba1026f8:
-    id: 6cf6cc69-6487-411a-9ba6-6deaba1026f8
+  45f11d9b-4cdc-42f9-826f-98a2136b95df:
+    id: 45f11d9b-4cdc-42f9-826f-98a2136b95df
     content: '`autonomousCollaborateInTerminal` (used by workflow execution) does not currently accept the `overrideContextId` that `buildSendPayload` and the non-autonomous send paths already support — closing that gap is the natural shape of the fix'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3515478d-1bfd-4287-9fa8-3d2b1bff8b80:
-    id: 3515478d-1bfd-4287-9fa8-3d2b1bff8b80
+  0558cea8-24c4-4762-abba-fc1f8aa45f0f:
+    id: 0558cea8-24c4-4762-abba-fc1f8aa45f0f
     content: Once the override semantics are settled, ROI is fine; the risk is design ambiguity, not implementation effort
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6ace34fe-3dd8-4944-908e-2b6a93168f44:
-    id: 6ace34fe-3dd8-4944-908e-2b6a93168f44
+  2812811c-769b-497b-9f2c-49239f8c6460:
+    id: 2812811c-769b-497b-9f2c-49239f8c6460
     content: Approach summary
     children:
-      - 00542635-dca5-4d3a-a027-945a53d48f36
-      - 77b1f45d-c32d-493a-94b2-b10dacd106f3
-      - 069a21a8-5e38-4dfb-b1ec-703fec8d0509
+      - 6bb98ec3-4168-4e1f-b1a3-701fc7224bea
+      - ded0c869-8df4-4e83-9fbc-b2f494c229be
+      - 383e0650-533d-451e-bea8-f411f520ec5e
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  00542635-dca5-4d3a-a027-945a53d48f36:
-    id: 00542635-dca5-4d3a-a027-945a53d48f36
+  6bb98ec3-4168-4e1f-b1a3-701fc7224bea:
+    id: 6bb98ec3-4168-4e1f-b1a3-701fc7224bea
     content: In `sendContentToTerminal` (workflowExecutionActions), compute a step-effective context by resolving applied context from the working node's parent upward, and pass it as a one-shot override
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  77b1f45d-c32d-493a-94b2-b10dacd106f3:
-    id: 77b1f45d-c32d-493a-94b2-b10dacd106f3
+  ded0c869-8df4-4e83-9fbc-b2f494c229be:
+    id: ded0c869-8df4-4e83-9fbc-b2f494c229be
     content: Plumb `overrideContextId` through `autonomousCollaborateInTerminal` into the existing `buildSendPayload` override path (already supported there)
     children: []
     metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  383e0650-533d-451e-bea8-f411f520ec5e:
+    id: 383e0650-533d-451e-bea8-f411f520ec5e
+    content: 'Non-obvious: the bug exists because the working node is re-parented under the step, but the resolver returns the working node''s own applied context first — so the step is never consulted unless the working node has nothing applied'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b96a6231-f1ec-4251-8c8d-a97b0972234d:
+    id: b96a6231-f1ec-4251-8c8d-a97b0972234d
+    content: Tests written (TDD red phase) — src/renderer/store/tree/actions/tests/workflowStepContextOverride.test.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  251ac4d5-9e44-4744-9a19-59e211f794c2:
+    id: 251ac4d5-9e44-4744-9a19-59e211f794c2
+    content: review feedback
+    children:
+      - 52112e41-e3fc-4df2-8065-487d1dc140bf
+      - 11200ec2-fb57-479d-ae2d-6e083013454a
+      - b49f6be9-fda6-41a2-89d1-593b140982bf
+      - 2a9ef995-4d6e-40c1-ba7c-fc33679017f4
+      - 5611d50a-6a81-4d74-a947-2bcdd81a0a83
+      - 69ab0319-75ce-418d-aae0-31926eccf46b
+      - 893d2f23-e9d7-434d-ae79-269e310e58c2
+      - 35dc4d9a-bf8e-4b19-bc25-cba6e1e01014
+      - 492ef070-813c-4c25-98e8-fc0e7bcf1666
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52112e41-e3fc-4df2-8065-487d1dc140bf:
+    id: 52112e41-e3fc-4df2-8065-487d1dc140bf
+    content: No critical issues found
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11200ec2-fb57-479d-ae2d-6e083013454a:
+    id: 11200ec2-fb57-479d-ae2d-6e083013454a
+    content: Suggestion — drop the conditional arg-count call in workflowExecutionActions.ts:751-753; pass stepContextOverride unconditionally (its type is string|undefined which the param accepts) and update the ~14 existing toHaveBeenCalledWith assertions. The branching reads as semantic but is purely test-mock placation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b49f6be9-fda6-41a2-89d1-593b140982bf:
+    id: b49f6be9-fda6-41a2-89d1-593b140982bf
+    content: Suggestion — combine the two ancestor walks in sendContentToTerminal (getInheritedContextId then getAppliedContextIdWithInheritance fallback re-walks the same chain). Consider a single getStepEffectiveContextId helper returning both override and effective value.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a9ef995-4d6e-40c1-ba7c-fc33679017f4:
+    id: 2a9ef995-4d6e-40c1-ba7c-fc33679017f4
+    content: Suggestion — manual-step path uses collaborateInTerminal with no override, diverging from autonomous behavior. Likely intentional (user authority on manual sends) but deserves a code comment in sendContentToTerminal so it isn't "fixed" later.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5611d50a-6a81-4d74-a947-2bcdd81a0a83:
+    id: 5611d50a-6a81-4d74-a947-2bcdd81a0a83
+    content: Nit — appliedContextId → effectiveContextId rename is correct; consider matching rename of resolvedContextId in buildSendPayload for consistency
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  69ab0319-75ce-418d-aae0-31926eccf46b:
+    id: 69ab0319-75ce-418d-aae0-31926eccf46b
+    content: 'Nit — test gap: no test for working-node and step sharing the same context id (dedup/double-prefix check)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  893d2f23-e9d7-434d-ae79-269e310e58c2:
+    id: 893d2f23-e9d7-434d-ae79-269e310e58c2
+    content: 'Nit — test gap: tests mock buildContentWithContext and only verify call-arg plumbing; a regression in buildSendPayload''s use of overrideContextId would pass undetected'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  35dc4d9a-bf8e-4b19-bc25-cba6e1e01014:
+    id: 35dc4d9a-bf8e-4b19-bc25-cba6e1e01014
+    content: 'Nit — test gap: no test for an override id pointing to a deleted/non-existent context node (synthetic ids covered, real-but-missing not)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  492ef070-813c-4c25-98e8-fc0e7bcf1666:
+    id: 492ef070-813c-4c25-98e8-fc0e7bcf1666
+    content: Nit — advancement tests check lastCall[3] but not workflow-state side effects after re-parenting under override logic
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8eeb6d2a-d663-48b3-8b2b-a01d88c4b1c4:
+    id: 8eeb6d2a-d663-48b3-8b2b-a01d88c4b1c4
+    content: worktree
+    children:
+      - fe44ce99-3c24-4ddc-b580-701ba330ef24
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe44ce99-3c24-4ddc-b580-701ba330ef24:
+    id: fe44ce99-3c24-4ddc-b580-701ba330ef24
+    content: vscode://file/Users/brianfox/dev/Arborescent-split-session-ownership
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7515ff0c-295e-4eab-83fe-273d80d3b634:
+    id: 7515ff0c-295e-4eab-83fe-273d80d3b634
+    content: 🐞 Bug ticket
+    children:
+      - 71a09632-7d13-48a4-bc89-e5da684da5e5
+      - f60869c8-c2ac-4d5f-b66b-e6d8cfafa5ae
+      - cf43f32d-c1c2-4da1-acfc-584c05836d9b
+      - 0bea09fb-a83e-417f-91af-a16b859030a5
+      - 9af825ce-319c-4a33-b35a-292d236e3d46
+      - 4199b1b2-2b9b-4fab-bff0-cf62dca39745
+    metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  069a21a8-5e38-4dfb-b1ec-703fec8d0509:
-    id: 069a21a8-5e38-4dfb-b1ec-703fec8d0509
-    content: 'Non-obvious: the bug exists because the working node is re-parented under the step, but the resolver returns the working node''s own applied context first — so the step is never consulted unless the working node has nothing applied'
+  71a09632-7d13-48a4-bc89-e5da684da5e5:
+    id: 71a09632-7d13-48a4-bc89-e5da684da5e5
+    content: Summary
+    children:
+      - 5061520d-f2f3-4bb8-a88f-09aee1eaa4fc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5061520d-f2f3-4bb8-a88f-09aee1eaa4fc:
+    id: 5061520d-f2f3-4bb8-a88f-09aee1eaa4fc
+    content: When a node is split into two PRs, attempting to play either PR in the same session as the original node fails with "session is already in use"
     children: []
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  a6e49963-c55d-445c-b6f2-0828c5b5fcb2:
-    id: a6e49963-c55d-445c-b6f2-0828c5b5fcb2
-    content: Tests written (TDD red phase) — src/renderer/store/tree/actions/tests/workflowStepContextOverride.test.ts
+  f60869c8-c2ac-4d5f-b66b-e6d8cfafa5ae:
+    id: f60869c8-c2ac-4d5f-b66b-e6d8cfafa5ae
+    content: Current behaviour
+    children:
+      - 3326a3fa-20d2-4d3b-bb38-ff0f5eb63ba9
+      - a5cddc92-fa65-4275-a80e-cbbdf28e7003
+      - 72ea7cc0-b0ee-4f08-8925-31df1480cfae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3326a3fa-20d2-4d3b-bb38-ff0f5eb63ba9:
+    id: 3326a3fa-20d2-4d3b-bb38-ff0f5eb63ba9
+    content: The session remains owned by the original (pre-split) group ID
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5cddc92-fa65-4275-a80e-cbbdf28e7003:
+    id: a5cddc92-fa65-4275-a80e-cbbdf28e7003
+    content: Newly created split nodes carry a different group ID and are rejected when they try to attach to the existing session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72ea7cc0-b0ee-4f08-8925-31df1480cfae:
+    id: 72ea7cc0-b0ee-4f08-8925-31df1480cfae
+    content: User is forced to start a new session, losing continuity with the original work
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf43f32d-c1c2-4da1-acfc-584c05836d9b:
+    id: cf43f32d-c1c2-4da1-acfc-584c05836d9b
+    content: Expected behaviour
+    children:
+      - ea1e5c0f-6bd2-4cfd-8893-8505f59b013f
+      - 4aeae488-db1e-453d-bf9a-73b737e6c850
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea1e5c0f-6bd2-4cfd-8893-8505f59b013f:
+    id: ea1e5c0f-6bd2-4cfd-8893-8505f59b013f
+    content: Both resulting PR nodes should be playable in the same session as the original node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aeae488-db1e-453d-bf9a-73b737e6c850:
+    id: 4aeae488-db1e-453d-bf9a-73b737e6c850
+    content: Session ownership should follow the split — i.e. transfer/extend to the new group ID(s)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bea09fb-a83e-417f-91af-a16b859030a5:
+    id: 0bea09fb-a83e-417f-91af-a16b859030a5
+    content: Steps to reproduce
+    children:
+      - da400fe8-c804-49a9-98a2-a9d25c3c09b8
+      - 0341a6e7-3ceb-414a-9c25-674e48ff6934
+      - 3d2742a6-fb9b-40a1-b412-aa6e67185893
+      - bb207958-9d4f-4711-a126-0d2855affe4d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da400fe8-c804-49a9-98a2-a9d25c3c09b8:
+    id: da400fe8-c804-49a9-98a2-a9d25c3c09b8
+    content: Start a session on a node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0341a6e7-3ceb-414a-9c25-674e48ff6934:
+    id: 0341a6e7-3ceb-414a-9c25-674e48ff6934
+    content: Split that node into two PRs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d2742a6-fb9b-40a1-b412-aa6e67185893:
+    id: 3d2742a6-fb9b-40a1-b412-aa6e67185893
+    content: Attempt to play one of the resulting PR nodes in the same session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb207958-9d4f-4711-a126-0d2855affe4d:
+    id: bb207958-9d4f-4711-a126-0d2855affe4d
+    content: Observe "session is already in use" error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9af825ce-319c-4a33-b35a-292d236e3d46:
+    id: 9af825ce-319c-4a33-b35a-292d236e3d46
+    content: Proposed fix direction
+    children:
+      - 8d1ddd50-20a9-49e4-a1a4-86abb59b812d
+      - 18d486f5-6e6a-4529-91a0-6805e8141613
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d1ddd50-20a9-49e4-a1a4-86abb59b812d:
+    id: 8d1ddd50-20a9-49e4-a1a4-86abb59b812d
+    content: Transfer session ownership to the new group ID(s) when a node is split
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18d486f5-6e6a-4529-91a0-6805e8141613:
+    id: 18d486f5-6e6a-4529-91a0-6805e8141613
+    content: Ensure both child PR nodes can claim/share the existing session rather than being blocked by stale ownership
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4199b1b2-2b9b-4fab-bff0-cf62dca39745:
+    id: 4199b1b2-2b9b-4fab-bff0-cf62dca39745
+    content: Acceptance criteria
+    children:
+      - 2a5c4dcf-f3e7-4295-b29e-2a5cc740e77b
+      - 49c0a5fd-1e02-40c3-85cd-20b2ee508d73
+      - 656fe2bf-fd37-4630-9314-3cc09998db7c
+      - 2ca288a4-5a64-42d5-b865-7fe4d9b3b2a8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a5c4dcf-f3e7-4295-b29e-2a5cc740e77b:
+    id: 2a5c4dcf-f3e7-4295-b29e-2a5cc740e77b
+    content: '- [ ] After splitting a node into two PRs, playing either PR in the original session succeeds without error'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49c0a5fd-1e02-40c3-85cd-20b2ee508d73:
+    id: 49c0a5fd-1e02-40c3-85cd-20b2ee508d73
+    content: '- [ ] The "session is already in use" error no longer triggers for split descendants of the session''s original node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  656fe2bf-fd37-4630-9314-3cc09998db7c:
+    id: 656fe2bf-fd37-4630-9314-3cc09998db7c
+    content: '- [ ] Session ownership records reflect the new group ID(s) post-split'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ca288a4-5a64-42d5-b865-7fe4d9b3b2a8:
+    id: 2ca288a4-5a64-42d5-b865-7fe4d9b3b2a8
+    content: '- [ ] No regression for the non-split case: an unrelated node still cannot hijack an in-use session'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1ada0e4-0849-4015-8570-a73cd9966e9a:
+    id: f1ada0e4-0849-4015-8570-a73cd9966e9a
+    content: Technical refinement
+    children:
+      - 8540915a-499e-4416-98ba-b76dcfea7c01
+      - 5a4c07bf-df7a-4c8a-b42e-7fc907e47cb4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8540915a-499e-4416-98ba-b76dcfea7c01:
+    id: 8540915a-499e-4416-98ba-b76dcfea7c01
+    content: Complications
+    children:
+      - 29d963dd-4296-48df-bdbe-8da4dc387291
+      - 7f93e286-5e9f-470f-88a5-4d51124f46a8
+      - a4a53d9a-2647-446e-80bc-c25b358cab97
+      - 549da696-b2df-431f-98df-8f1f38ae295f
+      - ed714f34-b754-41d4-b35b-c50c13e098c2
+      - d13eabec-e0b9-48e9-ba2a-f1553ad953c9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29d963dd-4296-48df-bdbe-8da4dc387291:
+    id: 29d963dd-4296-48df-bdbe-8da4dc387291
+    content: Ownership model is currently single-owner (one group ID per session) — supporting two split descendants means either transferring ownership to a shared group key or allowing a small set of co-owners
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f93e286-5e9f-470f-88a5-4d51124f46a8:
+    id: 7f93e286-5e9f-470f-88a5-4d51124f46a8
+    content: Race when both split PRs attempt to attach concurrently — define a deterministic claim order or accept first-wins with no error for the second
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4a53d9a-2647-446e-80bc-c25b358cab97:
+    id: a4a53d9a-2647-446e-80bc-c25b358cab97
+    content: Recursive splits (splitting an already-split PR) must keep working — ownership rewrite has to be re-entrant, not a one-shot transfer
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  549da696-b2df-431f-98df-8f1f38ae295f:
+    id: 549da696-b2df-431f-98df-8f1f38ae295f
+    content: Need to decide what happens if the original node still exists post-split — does it retain access, lose it, or share it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed714f34-b754-41d4-b35b-c50c13e098c2:
+    id: ed714f34-b754-41d4-b35b-c50c13e098c2
+    content: 'Out of scope: cross-tree session sharing, manual session re-assignment UI, session ownership across file reload'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d13eabec-e0b9-48e9-ba2a-f1553ad953c9:
+    id: d13eabec-e0b9-48e9-ba2a-f1553ad953c9
+    content: 'ROI: scoped fix, high user-visible value (continuity of Claude session through refactor) — complexity acceptable'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a4c07bf-df7a-4c8a-b42e-7fc907e47cb4:
+    id: 5a4c07bf-df7a-4c8a-b42e-7fc907e47cb4
+    content: Approach
+    children:
+      - 9e184991-b16e-43d3-90b0-9e115be6cda6
+      - 903b9607-600d-4377-8948-0099ca9550ca
+      - 12a5786f-729b-4f2e-8e0d-a13532aee501
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e184991-b16e-43d3-90b0-9e115be6cda6:
+    id: 9e184991-b16e-43d3-90b0-9e115be6cda6
+    content: Rewrite session ownership at split time so the workflow-session map points to the new descendant group ID(s) rather than the stale pre-split ID — lands in the split action path alongside the session registry update
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  903b9607-600d-4377-8948-0099ca9550ca:
+    id: 903b9607-600d-4377-8948-0099ca9550ca
+    content: Treat session ownership as "any descendant of the original owner group" rather than strict ID equality on the claim check, so both PR halves and future re-splits validate without further bookkeeping
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  12a5786f-729b-4f2e-8e0d-a13532aee501:
+    id: 12a5786f-729b-4f2e-8e0d-a13532aee501
+    content: 'Non-obvious: the blue-bar / terminal association restored in commit de02219 keys off the same ownership record, so the split-time rewrite must preserve that binding or the visual link will silently break'
     children: []
     metadata:
       status: pending
@@ -119900,4 +121498,10 @@ sessionRegistry:
   4d6b0d80-2690-4d59-8caa-157fdd16860e:
     cwd: /Users/brianfox/dev/Arborescent
   de898a68-a5fc-4166-acd5-90e811fef0c9:
+    cwd: /Users/brianfox/dev/Arborescent
+  2d48e5a5-be16-4834-b9df-e09120cd41ce:
+    cwd: /Users/brianfox/dev/Arborescent
+  41eac8fc-9b7f-4962-a16c-e692c1f12cb2:
+    cwd: /Users/brianfox/dev/Arborescent
+  8e79b42c-2b18-4e3f-afb5-8d4f7bd115c1:
     cwd: /Users/brianfox/dev/Arborescent
