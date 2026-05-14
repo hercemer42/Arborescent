@@ -62,6 +62,9 @@ export class SplitNodeCommand extends BaseCommand {
     if (shouldInheritBlueprint(targetParentId, nodes, ancestorRegistry)) {
       metadata.isBlueprint = true;
     }
+    if (typeof sourceNode.metadata.sessionId === 'string' && sourceNode.metadata.sessionId.length > 0) {
+      metadata.sessionId = sourceNode.metadata.sessionId;
+    }
     const newNode = createTreeNode(this.newNodeId, { content: this.contentAfter, metadata });
 
     const updatedChildren = [...targetParent.children];
