@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-13T07:47:22.596Z'
+updated: '2026-05-14T16:29:59.453Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -458,6 +458,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - a88ad8a1-693d-4f97-afad-7147328c68a2
       - dcfc7c37-60b4-440a-8f43-6006cd405d64
       - 889ff4cb-3ae1-4f90-b289-12a92935efb7
       - be562c36-9f4c-40a6-ab57-a0024cb6746a
@@ -25473,7 +25474,8 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children: []
+    children:
+      - 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
     metadata:
       status: pending
       isBlueprint: true
@@ -71124,6 +71126,7 @@ nodes:
       - 4f4b72e7-b0ae-43ce-bd54-23c1e180f3e1
       - 3301b9ca-8c70-477a-a3c1-41d15642bb8b
       - 3c920ee5-223f-4f5b-bbfd-b004ff0475fa
+      - 450b7fd7-cd1d-4e72-8bbf-ede45444a65d
     metadata:
       status: pending
       expanded: false
@@ -81504,6 +81507,7 @@ nodes:
     children:
       - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
       - cfd38a28-0349-4873-8780-177e444d7cd3
+      - bb863ed8-a5b4-4fb0-8140-2939b997845d
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
     metadata:
       status: pending
@@ -84611,6 +84615,8 @@ nodes:
       blueprintIcon: Scissors
       blueprintColor: '#ef4444'
       isBlueprint: true
+      collaborate: true
+      execute: false
   9773cf52-2f90-46a0-b8e0-d38673eb58ec:
     id: 9773cf52-2f90-46a0-b8e0-d38673eb58ec
     content: PR1 - Independent collaborate and execute flags on context — data, prompt composition, four-state behaviour
@@ -90170,6 +90176,7 @@ nodes:
     id: 2e8242e4-fcd4-4321-b9ed-3c797810e057
     content: For release
     children:
+      - 4be60d89-6c90-4ac0-b6ae-84645ae9144d
       - 45f1a5a0-dae3-4080-97ed-b8e324b79a64
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
       - 8c43f7e5-31af-4bae-821a-431599ed979c
@@ -90219,8 +90226,8 @@ nodes:
     id: aefa6362-0e1b-4e7f-81db-1ccc856bb2f0
     content: Backlog
     children:
+      - c5a7860c-e6ba-40ed-99c3-c0f2883e516c
       - e31a700c-3788-44b5-a878-3f3f2ca942c4
-      - 4be60d89-6c90-4ac0-b6ae-84645ae9144d
       - 1e783002-84bd-4595-abbc-db715f941a18
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
       - d0da6881-00bd-405b-8dbf-1603876d5450
@@ -96838,8 +96845,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - a88ad8a1-693d-4f97-afad-7147328c68a2
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -110738,6 +110744,8 @@ nodes:
     children:
       - 9b2ef135-9791-4c4c-ac4b-fdf304ecd428
       - 64b9dabb-4555-4621-90b1-0006a8cf7f85
+      - 50780b3f-c0e2-4557-8217-e0e74d75458c
+      - 1cbfd216-aa66-4b71-bdf4-9a438b2621af
     metadata:
       status: pending
       expanded: false
@@ -115871,22 +115879,1017 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  54e74d74-45ba-4a81-96b9-9ccafa3c2d74:
+    id: 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
+    content: Prevent silent data loss between workflow steps in feedback prompts
+    children:
+      - bc02df7e-5c50-4f7d-9de9-a5784f1d835b
+      - c9d8bab7-67e7-4ae4-93f0-fe1cf3ff74e7
+      - 9fd31aac-e500-47b4-a139-082a76743d82
+      - 304ea8b6-b7a2-4bb0-9899-de46fe6b6c00
+      - 1247849c-e935-4798-aa37-9cc66445a5a6
+      - c0790539-ac96-4a65-b8de-698266c72fa6
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  bb863ed8-a5b4-4fb0-8140-2939b997845d:
+    id: bb863ed8-a5b4-4fb0-8140-2939b997845d
+    content: Restore visible "Resume session" entry in node context menu
+    children:
+      - 7c7492c1-ecb7-410a-9554-c25005697356
+      - aaf38892-937d-4340-89d5-cb8ef8131ac5
+      - 889075ca-fea4-424e-b69f-faef9b24c989
+      - 083d5436-9c91-43a7-97f3-39ef9d2b7c24
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  c5a7860c-e6ba-40ed-99c3-c0f2883e516c:
+    id: c5a7860c-e6ba-40ed-99c3-c0f2883e516c
+    content: Right click terminal tab
+    children:
+      - 76e4461d-174a-4244-aad7-b1ee55913980
+    metadata:
+      status: pending
+      expanded: false
+  76e4461d-174a-4244-aad7-b1ee55913980:
+    id: 76e4461d-174a-4244-aad7-b1ee55913980
+    content: Open new tab in same directory
+    children: []
+    metadata:
+      status: pending
+  450b7fd7-cd1d-4e72-8bbf-ede45444a65d:
+    id: 450b7fd7-cd1d-4e72-8bbf-ede45444a65d
+    content: This twins well with MCP - if we use MCP instead of clipboard or temporary files to populate the feedback panels, we can have one per session
+    children: []
+    metadata:
+      status: pending
+  50780b3f-c0e2-4557-8217-e0e74d75458c:
+    id: 50780b3f-c0e2-4557-8217-e0e74d75458c
+    content: Replace the temporary file mechanism entirely
+    children: []
+    metadata:
+      status: pending
+  1cbfd216-aa66-4b71-bdf4-9a438b2621af:
+    id: 1cbfd216-aa66-4b71-bdf4-9a438b2621af
+    content: Keep clipboard mechanism for browser mode
+    children:
+      - 65db98ac-0785-45e2-8043-a903be1c5937
+    metadata:
+      status: pending
+  65db98ac-0785-45e2-8043-a903be1c5937:
+    id: 65db98ac-0785-45e2-8043-a903be1c5937
+    content: Unless - check if browser claude can integrate with local MCP (don't think so)
+    children: []
+    metadata:
+      status: pending
+  7c7492c1-ecb7-410a-9554-c25005697356:
+    id: 7c7492c1-ecb7-410a-9554-c25005697356
+    content: 📄 Product spec
+    children:
+      - f0ee2cf7-0d39-419f-b447-c9627d926ff0
+      - 8253c6b1-ba8e-4104-90da-3079745163b6
+      - f235ec0f-0223-4244-a64c-96b7a4cb550a
+      - e42a5ef2-95a3-4610-b7ec-122352f2f0b7
+      - 97c1f583-042a-4b17-977f-3fe43bd360aa
+      - 505a0894-f4e6-4fd4-b6df-d14aa72cecd2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0ee2cf7-0d39-419f-b447-c9627d926ff0:
+    id: f0ee2cf7-0d39-419f-b447-c9627d926ff0
+    content: Context — the resumable-sessions feature shipped in e84dd49 (manual resume), 89892f2 (auto-attach on Start), 2219213 (recurse chains stay in session), b51451a (liveness derived from workflowSessionMap instead of stored on the node). The right-click "Resume session" item lives at useNodeContextMenu.ts:251–268. The user reports it not appearing on nodes that should still have a live AI session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8253c6b1-ba8e-4104-90da-3079745163b6:
+    id: 8253c6b1-ba8e-4104-90da-3079745163b6
+    content: User — operator running multi-step workflows who needs to re-enter a paused or detached AI conversation from the tree without losing context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f235ec0f-0223-4244-a64c-96b7a4cb550a:
+    id: f235ec0f-0223-4244-a64c-96b7a4cb550a
+    content: Current experience — the user expects a "Resume session" item on workflow nodes whose AI session is still alive, sees none, and has to start fresh (losing the conversation) or work out manually which terminal tab to refocus
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e42a5ef2-95a3-4610-b7ec-122352f2f0b7:
+    id: e42a5ef2-95a3-4610-b7ec-122352f2f0b7
+    content: Goal — resuming an alive AI session is a reliable, discoverable one-click action from the workflow node's right-click menu
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97c1f583-042a-4b17-977f-3fe43bd360aa:
+    id: 97c1f583-042a-4b17-977f-3fe43bd360aa
+    content: Business rules
+    children:
+      - 2becf06b-aa2b-453c-8b21-e6bbe76e6022
+      - e8b780fa-5561-4f9a-8337-3f21c350e65c
+      - 31615ee6-afaf-493e-ba48-a42fbc84613c
+      - 90ef6d4a-4114-4c3f-91d6-e9da66176dd7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2becf06b-aa2b-453c-8b21-e6bbe76e6022:
+    id: 2becf06b-aa2b-453c-8b21-e6bbe76e6022
+    content: 1. "Resume session" must appear on any workflow step whose recorded sessionId resolves to a live session (alive-attached or alive-detached) via getSessionLiveness against workflowSessionMap
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8b780fa-5561-4f9a-8337-3f21c350e65c:
+    id: e8b780fa-5561-4f9a-8337-3f21c350e65c
+    content: 2. The item must be hidden only when there is genuinely nothing to resume — no sessionId on the node, or liveness is dead
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31615ee6-afaf-493e-ba48-a42fbc84613c:
+    id: 31615ee6-afaf-493e-ba48-a42fbc84613c
+    content: 3. Click behaviour preserves the existing three-tier route — focus the bound tab when alive-attached, open a new tab and run claude --resume when alive-detached
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  90ef6d4a-4114-4c3f-91d6-e9da66176dd7:
+    id: 90ef6d4a-4114-4c3f-91d6-e9da66176dd7
+    content: 4. Failures must surface a transient toast (per the b51451a decision to drop the persistent sessionLost indicator); never a silent no-op
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  505a0894-f4e6-4fd4-b6df-d14aa72cecd2:
+    id: 505a0894-f4e6-4fd4-b6df-d14aa72cecd2
+    content: Acceptance criteria
+    children:
+      - 57bf566c-6ff0-4387-aa7c-6d35cd6fee87
+      - f026d11b-c94a-4e56-afcd-f6a1c9634fa2
+      - 4548d557-e6c5-43a6-8609-20d36c0b7f26
+      - ea659ccc-8b3c-41ca-bbf5-48590f8a1398
+      - 67259ffa-5446-427e-9d1b-8181a6825e52
+      - 2a3cbfe6-71c6-4ffe-b54b-656c82a41886
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57bf566c-6ff0-4387-aa7c-6d35cd6fee87:
+    id: 57bf566c-6ff0-4387-aa7c-6d35cd6fee87
+    content: '- [ ] A workflow step with a recorded sessionId backed by a running terminal session shows "Resume session" in its right-click menu'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f026d11b-c94a-4e56-afcd-f6a1c9634fa2:
+    id: f026d11b-c94a-4e56-afcd-f6a1c9634fa2
+    content: '- [ ] After app restart, the same node still shows "Resume session" provided the underlying session is alive (workflowSessionMap is populated before the first menu open)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4548d557-e6c5-43a6-8609-20d36c0b7f26:
+    id: 4548d557-e6c5-43a6-8609-20d36c0b7f26
+    content: '- [ ] A non-workflow node, or a workflow step with no sessionId, does not show "Resume session"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea659ccc-8b3c-41ca-bbf5-48590f8a1398:
+    id: ea659ccc-8b3c-41ca-bbf5-48590f8a1398
+    content: '- [ ] Clicking the item focuses the previously bound terminal tab when alive-attached, or opens a new tab and runs claude --resume when alive-detached'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67259ffa-5446-427e-9d1b-8181a6825e52:
+    id: 67259ffa-5446-427e-9d1b-8181a6825e52
+    content: '- [ ] Resume failure shows a toast and logs via the Context Menu logger; no silent failure'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a3cbfe6-71c6-4ffe-b54b-656c82a41886:
+    id: 2a3cbfe6-71c6-4ffe-b54b-656c82a41886
+    content: '- [ ] Regression test in useNodeContextMenuResumeSession.test.ts covers the "live session present, item must appear" case for each liveness state'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaf38892-937d-4340-89d5-cb8ef8131ac5:
+    id: aaf38892-937d-4340-89d5-cb8ef8131ac5
+    content: 🔧 Implementation proposal
+    children:
+      - 29404ffe-7eaa-43a0-aea4-d35e2e367393
+      - 20d85db1-27db-417d-a175-6b95911f3781
+      - c7b2c2cb-cd1a-4810-be06-75f87284f73c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29404ffe-7eaa-43a0-aea4-d35e2e367393:
+    id: 29404ffe-7eaa-43a0-aea4-d35e2e367393
+    content: Approach — investigate the showResumeSession predicate and the liveness derivation introduced in b51451a before changing behaviour. Most likely root cause is that workflowSessionMap is empty or incomplete at the moment the menu opens (e.g., on cold start, before the liveness probe has populated it), so getSessionLiveness returns a non-alive value for sessions that are in fact alive
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20d85db1-27db-417d-a175-6b95911f3781:
+    id: 20d85db1-27db-417d-a175-6b95911f3781
+    content: Touchpoints
+    children:
+      - 1749fe84-ab0d-4155-bd65-6a05f877061b
+      - 647188bc-f611-40db-84ab-0ccaa2d5b50a
+      - f529fd4e-fd74-427a-844e-75921215cec8
+      - cbed9e29-f71a-4e65-89ec-d3009cbf2dab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1749fe84-ab0d-4155-bd65-6a05f877061b:
+    id: 1749fe84-ab0d-4155-bd65-6a05f877061b
+    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts — the showResumeSession predicate at line 251
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  647188bc-f611-40db-84ab-0ccaa2d5b50a:
+    id: 647188bc-f611-40db-84ab-0ccaa2d5b50a
+    content: src/renderer/utils/normalizeSessionLiveness.ts and workflowSessionMap population on app start — ensure the map is hydrated before the first context menu render
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f529fd4e-fd74-427a-844e-75921215cec8:
+    id: f529fd4e-fd74-427a-844e-75921215cec8
+    content: src/renderer/store/tree/actions/workflowSessionResume.ts — confirm resumeSession degrades gracefully if shown for an edge-case liveness state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbed9e29-f71a-4e65-89ec-d3009cbf2dab:
+    id: cbed9e29-f71a-4e65-89ec-d3009cbf2dab
+    content: Tests — extend useNodeContextMenuResumeSession.test.ts with cases for cold-start liveness and each alive-* state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7b2c2cb-cd1a-4810-be06-75f87284f73c:
+    id: c7b2c2cb-cd1a-4810-be06-75f87284f73c
+    content: Constraints to call out
+    children:
+      - 79bee931-5ce8-45aa-8947-f14b1a9fefa4
+      - 53709e13-f6c4-44d0-9c0a-80065dbb390b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  79bee931-5ce8-45aa-8947-f14b1a9fefa4:
+    id: 79bee931-5ce8-45aa-8947-f14b1a9fefa4
+    content: b51451a deliberately removed stored sessionLiveness/sessionLost from NodeMetadata — do not reintroduce a persisted flag as a shortcut
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53709e13-f6c4-44d0-9c0a-80065dbb390b:
+    id: 53709e13-f6c4-44d0-9c0a-80065dbb390b
+    content: The fix must not make "Resume session" appear for dead sessions; a non-functional menu item is worse than a missing one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  889075ca-fea4-424e-b69f-faef9b24c989:
+    id: 889075ca-fea4-424e-b69f-faef9b24c989
+    content: Scope
+    children:
+      - 05a410aa-3a5d-4549-a08c-72c3e6b1e5cd
+      - 05b39eb1-6c95-474d-9691-37d4c4efe5a5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05a410aa-3a5d-4549-a08c-72c3e6b1e5cd:
+    id: 05a410aa-3a5d-4549-a08c-72c3e6b1e5cd
+    content: Single chunk — the fix is one predicate plus its liveness data source; splitting would be churn
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05b39eb1-6c95-474d-9691-37d4c4efe5a5:
+    id: 05b39eb1-6c95-474d-9691-37d4c4efe5a5
+    content: No feature flag — bug fix, not a behaviour change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  083d5436-9c91-43a7-97f3-39ef9d2b7c24:
+    id: 083d5436-9c91-43a7-97f3-39ef9d2b7c24
+    content: Challenges raised
+    children:
+      - 3dcb3393-34b5-4e81-aacd-f529ad2c6350
+      - 7b7f6997-f3d2-4778-9021-dccbd78d7179
+      - 2e8d0d4e-617a-451e-ad5c-1f23deb045b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dcb3393-34b5-4e81-aacd-f529ad2c6350:
+    id: 3dcb3393-34b5-4e81-aacd-f529ad2c6350
+    content: Reproduce before fixing — confirm the menu is genuinely missing in a fresh repro (start workflow, let it complete, restart app, right-click the step) rather than driven by a stale project.arbo state, before touching the predicate
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b7f6997-f3d2-4778-9021-dccbd78d7179:
+    id: 7b7f6997-f3d2-4778-9021-dccbd78d7179
+    content: Avoid over-engineering — do not add a new persisted liveness flag or a polling loop; the right fix is to ensure workflowSessionMap is populated at the right time, not to denormalise liveness back onto nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e8d0d4e-617a-451e-ad5c-1f23deb045b9:
+    id: 2e8d0d4e-617a-451e-ad5c-1f23deb045b9
+    content: If the root cause is the liveness probe rather than the predicate, fix the probe — loosening the predicate so dead sessions show "Resume session" trades one bad UX for a worse one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc02df7e-5c50-4f7d-9de9-a5784f1d835b:
+    id: bc02df7e-5c50-4f7d-9de9-a5784f1d835b
+    content: worktree
+    children:
+      - ac6d2b93-aa26-4679-a1a0-81bbf09f824b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac6d2b93-aa26-4679-a1a0-81bbf09f824b:
+    id: ac6d2b93-aa26-4679-a1a0-81bbf09f824b
+    content: vscode://file/Users/brianfox/dev/Arborescent-feedback-data-loss
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9d8bab7-67e7-4ae4-93f0-fe1cf3ff74e7:
+    id: c9d8bab7-67e7-4ae4-93f0-fe1cf3ff74e7
+    content: 📄 Product spec
+    children:
+      - a806432e-010e-4e8d-9574-7f670ae8079f
+      - b70670b8-7833-4211-a51b-1d64738a5c13
+      - 5c64c0dd-7e88-423a-9610-aca0d4d57e88
+      - 16c3f53c-8931-4ee6-9e53-0d4461f28786
+      - 30f63271-ed74-46fd-8b21-4ced0f951ba8
+      - 345951c1-20cc-4030-8020-89ae9acb9671
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a806432e-010e-4e8d-9574-7f670ae8079f:
+    id: a806432e-010e-4e8d-9574-7f670ae8079f
+    content: Context
+    children:
+      - e1d596fb-fb4b-4365-8739-bce49caa3c7c
+      - 863d57ae-d81a-494a-a90e-e124cb09005c
+      - cd788efe-3cd7-4db2-bd63-0e6af996d2d6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1d596fb-fb4b-4365-8739-bce49caa3c7c:
+    id: e1d596fb-fb4b-4365-8739-bce49caa3c7c
+    content: Arborescent chains multi-step prompts where each step receives the previous step's output as CONTENT
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  863d57ae-d81a-494a-a90e-e124cb09005c:
+    id: 863d57ae-d81a-494a-a90e-e124cb09005c
+    content: The parser preparing CONTENT preserves only markdown heading lines and silently drops paragraph lines
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd788efe-3cd7-4db2-bd63-0e6af996d2d6:
+    id: cd788efe-3cd7-4db2-bd63-0e6af996d2d6
+    content: Step copy and OUTPUT FORMAT rules do not advertise this restriction, so the assistant can write values that vanish
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b70670b8-7833-4211-a51b-1d64738a5c13:
+    id: b70670b8-7833-4211-a51b-1d64738a5c13
+    content: User
+    children:
+      - dd0f0a0e-2318-4bf8-9009-981a978fa148
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd0f0a0e-2318-4bf8-9009-981a978fa148:
+    id: dd0f0a0e-2318-4bf8-9009-981a978fa148
+    content: Arborescent user running multi-step workflows that need values produced in one step to be available in later steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c64c0dd-7e88-423a-9610-aca0d4d57e88:
+    id: 5c64c0dd-7e88-423a-9610-aca0d4d57e88
+    content: Current experience
+    children:
+      - 52883d8c-5d38-4645-b51b-acb3cbd35afd
+      - 09d4c1e5-9ebd-4cd3-b16c-295eb231501e
+      - d02d99df-7213-435b-a994-73a777334761
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  52883d8c-5d38-4645-b51b-acb3cbd35afd:
+    id: 52883d8c-5d38-4645-b51b-acb3cbd35afd
+    content: A step instructs the assistant to record a value "underneath" a node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09d4c1e5-9ebd-4cd3-b16c-295eb231501e:
+    id: 09d4c1e5-9ebd-4cd3-b16c-295eb231501e
+    content: The assistant writes the value as a plain paragraph line beneath the heading
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d02d99df-7213-435b-a994-73a777334761:
+    id: d02d99df-7213-435b-a994-73a777334761
+    content: The next step receives CONTENT with only the heading and no value, with no warning that data was lost
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16c3f53c-8931-4ee6-9e53-0d4461f28786:
+    id: 16c3f53c-8931-4ee6-9e53-0d4461f28786
+    content: Goal
+    children:
+      - cb6544ea-5562-4265-994f-0868f61fbaf3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb6544ea-5562-4265-994f-0868f61fbaf3:
+    id: cb6544ea-5562-4265-994f-0868f61fbaf3
+    content: Values the assistant is asked to persist always reach the next workflow step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30f63271-ed74-46fd-8b21-4ced0f951ba8:
+    id: 30f63271-ed74-46fd-8b21-4ced0f951ba8
+    content: Business rules
+    children:
+      - cb1339d3-83f3-46b4-9ac9-6762fa0326ca
+      - ca3ec2e5-8b8a-469f-9423-4ae8dce1d343
+      - c3245a95-a18d-4e4b-99a4-5e47640544e1
+      - 27e21a87-e7f9-4926-a50f-5c2bf80ef375
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb1339d3-83f3-46b4-9ac9-6762fa0326ca:
+    id: cb1339d3-83f3-46b4-9ac9-6762fa0326ca
+    content: 1. OUTPUT FORMAT must state that only heading lines persist between steps and all other content is discarded
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca3ec2e5-8b8a-469f-9423-4ae8dce1d343:
+    id: ca3ec2e5-8b8a-469f-9423-4ae8dce1d343
+    content: 2. OUTPUT FORMAT must include at least one worked example showing a text value captured as its own heading line
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3245a95-a18d-4e4b-99a4-5e47640544e1:
+    id: c3245a95-a18d-4e4b-99a4-5e47640544e1
+    content: 3. Built-in step copy must use "as a child node" wording rather than spatial words like "underneath" or "below" when persistence is required
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27e21a87-e7f9-4926-a50f-5c2bf80ef375:
+    id: 27e21a87-e7f9-4926-a50f-5c2bf80ef375
+    content: 4. The parser must emit a non-blocking warning whenever it drops non-heading content, naming the dropped line, so data loss is detectable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  345951c1-20cc-4030-8020-89ae9acb9671:
+    id: 345951c1-20cc-4030-8020-89ae9acb9671
+    content: Acceptance criteria
+    children:
+      - d2044b24-0302-4db0-a9f8-f71f0150111b
+      - b0450876-dd81-4907-be33-5b90dfb0c173
+      - d32efa05-3e25-4b15-ae24-f5a2a1edfa1d
+      - ab4dc90f-3af8-4bc8-98c9-1d16d0b6dd4e
+      - 4ef40289-d423-45b3-ad30-a2d11654f4a9
+      - 9d8994bf-342e-4c93-959a-501436ad5a2e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2044b24-0302-4db0-a9f8-f71f0150111b:
+    id: d2044b24-0302-4db0-a9f8-f71f0150111b
+    content: OUTPUT FORMAT in the feedback prompt explicitly states non-heading lines are discarded between steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0450876-dd81-4907-be33-5b90dfb0c173:
+    id: b0450876-dd81-4907-be33-5b90dfb0c173
+    content: OUTPUT FORMAT includes a worked example of a text value captured as its own heading line
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d32efa05-3e25-4b15-ae24-f5a2a1edfa1d:
+    id: d32efa05-3e25-4b15-ae24-f5a2a1edfa1d
+    content: All built-in step templates that require value persistence use "as a child node" wording, with no "underneath" or "below" remaining
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab4dc90f-3af8-4bc8-98c9-1d16d0b6dd4e:
+    id: ab4dc90f-3af8-4bc8-98c9-1d16d0b6dd4e
+    content: Parser logs a structured warning when it drops non-heading content, including the dropped line content
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ef40289-d423-45b3-ad30-a2d11654f4a9:
+    id: 4ef40289-d423-45b3-ad30-a2d11654f4a9
+    content: 'Regression test passes: a two-step workflow whose step 1 emits a text value preserves that value into step 2 CONTENT'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d8994bf-342e-4c93-959a-501436ad5a2e:
+    id: 9d8994bf-342e-4c93-959a-501436ad5a2e
+    content: Existing workflows that already used headings correctly continue to pass unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fd31aac-e500-47b4-a139-082a76743d82:
+    id: 9fd31aac-e500-47b4-a139-082a76743d82
+    content: 🔧 Implementation proposal
+    children:
+      - 022c0cdd-079f-452b-85b6-aa7d1203864d
+      - 70f1e195-4d71-45b0-acec-030d612ed720
+      - 06ad8c89-9886-4cb5-918e-95dfe1e52129
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  022c0cdd-079f-452b-85b6-aa7d1203864d:
+    id: 022c0cdd-079f-452b-85b6-aa7d1203864d
+    content: Approach
+    children:
+      - 767e3d46-8ab6-4a50-914f-05a4f61b2273
+      - e1a9b663-7229-40d6-b433-0c030c608b28
+      - f5b9eb9a-58fe-49e1-bf38-2429c2500083
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  767e3d46-8ab6-4a50-914f-05a4f61b2273:
+    id: 767e3d46-8ab6-4a50-914f-05a4f61b2273
+    content: Edit the feedback prompt template's OUTPUT FORMAT block to add the persistence rule and a value-as-heading example
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1a9b663-7229-40d6-b433-0c030c608b28:
+    id: e1a9b663-7229-40d6-b433-0c030c608b28
+    content: Sweep built-in step templates and replace spatial wording with "as a child node" where the assistant must persist a value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5b9eb9a-58fe-49e1-bf38-2429c2500083:
+    id: f5b9eb9a-58fe-49e1-bf38-2429c2500083
+    content: Add a warning path in the markdown-to-tree parser that records dropped non-heading lines and forwards them to the logging surface
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70f1e195-4d71-45b0-acec-030d612ed720:
+    id: 70f1e195-4d71-45b0-acec-030d612ed720
+    content: Touchpoints
+    children:
+      - f933b4d3-2591-4ebd-808f-29af5281ca48
+      - f8686b2d-15df-40bc-87f4-f5b236a34ac0
+      - 6b1028c8-24d8-4de0-b519-e8227f63eb6e
+      - a34061e7-26e2-4a5f-b116-3fc3f36be492
+      - 898b4249-5abd-4923-866d-f4b1a209fe6b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f933b4d3-2591-4ebd-808f-29af5281ca48:
+    id: f933b4d3-2591-4ebd-808f-29af5281ca48
+    content: Feedback prompt template OUTPUT FORMAT section and examples
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8686b2d-15df-40bc-87f4-f5b236a34ac0:
+    id: f8686b2d-15df-40bc-87f4-f5b236a34ac0
+    content: Built-in workflow step library wording
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b1028c8-24d8-4de0-b519-e8227f63eb6e:
+    id: 6b1028c8-24d8-4de0-b519-e8227f63eb6e
+    content: Markdown-to-tree parser in shared/
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a34061e7-26e2-4a5f-b116-3fc3f36be492:
+    id: a34061e7-26e2-4a5f-b116-3fc3f36be492
+    content: Parser unit tests and a two-step workflow integration test
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  898b4249-5abd-4923-866d-f4b1a209fe6b:
+    id: 898b4249-5abd-4923-866d-f4b1a209fe6b
+    content: Console logging surface for the dropped-content warning
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06ad8c89-9886-4cb5-918e-95dfe1e52129:
+    id: 06ad8c89-9886-4cb5-918e-95dfe1e52129
+    content: Constraints to call out
+    children:
+      - 52986dc4-27ca-4718-baaf-c82ae62e5f57
+      - 643d0fea-33a1-4cab-baba-03cdb420e274
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52986dc4-27ca-4718-baaf-c82ae62e5f57:
+    id: 52986dc4-27ca-4718-baaf-c82ae62e5f57
+    content: User-authored workflows may rely on existing wording — the warning must stay non-blocking and not fail the step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  643d0fea-33a1-4cab-baba-03cdb420e274:
+    id: 643d0fea-33a1-4cab-baba-03cdb420e274
+    content: Prompt changes only take effect for new step executions, not in-flight runs already mid-workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  304ea8b6-b7a2-4bb0-9899-de46fe6b6c00:
+    id: 304ea8b6-b7a2-4bb0-9899-de46fe6b6c00
+    content: Splitting decision
+    children:
+      - 7e47f24f-026b-4f24-8214-dcfdbb092841
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e47f24f-026b-4f24-8214-dcfdbb092841:
+    id: 7e47f24f-026b-4f24-8214-dcfdbb092841
+    content: Ship as a single chunk
+    children:
+      - dd0e381c-374f-4ba1-8c2f-1bc7f7b5f0b5
+      - 196a5be0-aaaa-4266-9c5a-8a069f5b7387
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd0e381c-374f-4ba1-8c2f-1bc7f7b5f0b5:
+    id: dd0e381c-374f-4ba1-8c2f-1bc7f7b5f0b5
+    content: Prompt copy fix and parser warning together solve the reported bug — neither is independently valuable to users
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  196a5be0-aaaa-4266-9c5a-8a069f5b7387:
+    id: 196a5be0-aaaa-4266-9c5a-8a069f5b7387
+    content: No feature-flag boundary or independent PM review value justifies a split
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1247849c-e935-4798-aa37-9cc66445a5a6:
+    id: 1247849c-e935-4798-aa37-9cc66445a5a6
+    content: Challenges and pushback
+    children:
+      - aa971a69-3dd3-4ca9-b49e-2e51c589efeb
+      - 4cc5ba1f-ea65-4829-a6d2-b9345fb58cc7
+      - ac446425-7b4b-4e26-a085-3c9eaa393a4c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa971a69-3dd3-4ca9-b49e-2e51c589efeb:
+    id: aa971a69-3dd3-4ca9-b49e-2e51c589efeb
+    content: The parser warning has the lowest ROI of the three changes — prompt copy fixes remove the root cause at the source
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cc5ba1f-ea65-4829-a6d2-b9345fb58cc7:
+    id: 4cc5ba1f-ea65-4829-a6d2-b9345fb58cc7
+    content: Keep the warning console-only in v1 to avoid noisy modals — promote to a UI indicator only if the bug recurs after the prompt fixes ship
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac446425-7b4b-4e26-a085-3c9eaa393a4c:
+    id: ac446425-7b4b-4e26-a085-3c9eaa393a4c
+    content: No scope additions proposed — resist expanding into a broader parser rewrite or richer block-preservation model
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0790539-ac96-4a65-b8de-698266c72fa6:
+    id: c0790539-ac96-4a65-b8de-698266c72fa6
+    content: Technical refinement
+    children:
+      - 9ac50863-d16b-4836-a849-e2dd42181c6d
+      - 26c3de7d-d03d-4200-a2e2-d77c1cb0b31d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ac50863-d16b-4836-a849-e2dd42181c6d:
+    id: 9ac50863-d16b-4836-a849-e2dd42181c6d
+    content: Complications
+    children:
+      - 9766e72c-86f3-4118-a56c-26dbbd8f4503
+      - 3839eb59-9d9e-4bb7-9ed5-c318e4b0ec0e
+      - 92547e4d-63dd-44d6-9d36-932fb874fc3d
+      - 54708a57-2a2d-4c5a-9da2-4223d8001472
+      - 2a2f2b62-4d77-4afa-ac0a-7d2c10457659
+      - 8041134a-e6ef-41e7-9d2d-19de1d5156f1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9766e72c-86f3-4118-a56c-26dbbd8f4503:
+    id: 9766e72c-86f3-4118-a56c-26dbbd8f4503
+    content: Two OUTPUT FORMAT constants exist in src/renderer/store/tree/actions/sendActions.ts (SINGLE_ROOT and DECOMPOSITION variants) — both need the new persistence rule and example, not just one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3839eb59-9d9e-4bb7-9ed5-c318e4b0ec0e:
+    id: 3839eb59-9d9e-4bb7-9ed5-c318e4b0ec0e
+    content: Grep for "underneath"/"below" in src/renderer/services/feedback and src/renderer/data returned no hits — rule 3 has no targets in our own copy and effectively reduces to a docs convention for user-authored steps, which we cannot enforce at runtime
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92547e4d-63dd-44d6-9d36-932fb874fc3d:
+    id: 92547e4d-63dd-44d6-9d36-932fb874fc3d
+    content: The parser at src/renderer/utils/markdown.ts has no warning sink today — console.warn is the only cheap path and may be invisible in autonomous/terminal flows where stdout is not surfaced to the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54708a57-2a2d-4c5a-9da2-4223d8001472:
+    id: 54708a57-2a2d-4c5a-9da2-4223d8001472
+    content: 'Edge case not in acceptance criteria: indented list items, fenced code blocks, and blockquotes are all dropped by parseLine alongside paragraphs — decide whether the warning covers all non-heading lines or only paragraph text'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a2f2b62-4d77-4afa-ac0a-7d2c10457659:
+    id: 2a2f2b62-4d77-4afa-ac0a-7d2c10457659
+    content: 'Explicitly out of scope: a parser rewrite to preserve non-heading content as node bodies, and any IPC/store/UI work to surface warnings as toasts'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8041134a-e6ef-41e7-9d2d-19de1d5156f1:
+    id: 8041134a-e6ef-41e7-9d2d-19de1d5156f1
+    content: 'ROI flag: the parser warning is the lowest-leverage piece — prompt fixes alone should close most recurrences; consider dropping the warning from v1 if implementation cost grows'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26c3de7d-d03d-4200-a2e2-d77c1cb0b31d:
+    id: 26c3de7d-d03d-4200-a2e2-d77c1cb0b31d
+    content: Approach summary
+    children:
+      - 45ace0ad-817d-4406-8a66-a5ae4d57f40d
+      - 465fdf50-97ba-4f68-8163-cdaa7e474aee
+      - d3cac782-d333-489a-856a-1ab640d41c7a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45ace0ad-817d-4406-8a66-a5ae4d57f40d:
+    id: 45ace0ad-817d-4406-8a66-a5ae4d57f40d
+    content: Two OUTPUT FORMAT constants in src/renderer/store/tree/actions/sendActions.ts get the new persistence rule plus a heading-style text-value example
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  465fdf50-97ba-4f68-8163-cdaa7e474aee:
+    id: 465fdf50-97ba-4f68-8163-cdaa7e474aee
+    content: parseMarkdown in src/renderer/utils/markdown.ts gains a side-channel that console.warns each dropped non-empty, non-heading line — contained to one file, no new IPC or store wiring
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3cac782-d333-489a-856a-1ab640d41c7a:
+    id: d3cac782-d333-489a-856a-1ab640d41c7a
+    content: 'Surprise to flag for the reviewer: built-in step copy contains no "underneath"/"below" today, so rule 3 lands as a contributor-guideline change rather than a code sweep'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
-  9d7f3565-ab30-489e-a789-2cd59c075a35:
+  d8a79774-5a44-4b58-804e-282c35b9e0f5:
     cwd: /Users/brianfox/dev/Arborescent
-  b78e2620-9c21-4f6c-91a0-c6fb21fbe2bd:
+  41763cde-e4af-46de-a7bc-4b339e7c5e95:
     cwd: /Users/brianfox/dev/Arborescent
-  7d597bc5-f3ec-46ac-9a4e-2ae0fecbf031:
+  8081edde-8011-4e24-9810-9002deaf828c:
     cwd: /Users/brianfox/dev/Arborescent
-  cae50b1b-6420-40ae-94a9-54825a08e7fd:
-    cwd: /Users/brianfox/dev/Arborescent
-  16bc5fb5-0af9-42a3-a15a-da420b27eb18:
-    cwd: /Users/brianfox/dev/Arborescent
-  b89259b7-3cdf-4ec1-b4a8-d505ca3826cd:
-    cwd: /Users/brianfox/dev/Arborescent
-  29b4768e-f5e0-4180-84b1-5fed0e0d6a77:
-    cwd: /Users/brianfox/dev/Arborescent
-  a1081f93-f43a-48ad-9e1b-b086540305cb:
-    cwd: /Users/brianfox/dev/Arborescent
-  8bcf78a2-9ad7-4a97-b41f-fe0bcb015448:
-    cwd: /Users/brianfox
