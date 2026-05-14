@@ -1,7 +1,9 @@
+import { useSyncExternalStore } from 'react';
 import { Anchor } from 'lucide-react';
 import { useTerminalStore } from '../../store/terminal/terminalStore';
 import { usePanelStore } from '../../store/panel/panelStore';
-import { useStore } from '../../store/tree/useStore';
+import { useFilesStore } from '../../store/files/filesStore';
+import { storeManager } from '../../store/storeManager';
 import { Terminal } from './Terminal';
 import { Tab } from '../Tab';
 import { selectAssociatedTerminalId } from '../../store/tree/selectors/associatedTerminalId';
@@ -12,7 +14,22 @@ export function TerminalPanel() {
   const { terminals, activeTerminalId, setActiveTerminal, togglePinnedToBottom, fileStates } = useTerminalStore();
   const panelPosition = usePanelStore((state) => state.panelPosition);
   const togglePanelPosition = usePanelStore((state) => state.togglePanelPosition);
-  const activeNodeId = useStore((state) => state.activeNodeId);
+
+  // Read activeNodeId via storeManager rather than useStore — TerminalPanel
+  // renders outside the workspace's TreeStoreContext.Provider.
+  const activeFilePath = useFilesStore((state) => state.activeFilePath);
+  const activeNodeId = useSyncExternalStore(
+    (callback) => {
+      if (!activeFilePath) return () => {};
+      return storeManager.getStoreForFile(activeFilePath).subscribe(callback);
+    },
+    () => {
+      if (!activeFilePath) return null;
+      return storeManager.getStoreForFile(activeFilePath).getState().activeNodeId;
+    },
+    () => null
+  );
+
   const { handleNewTerminal, handleCloseTerminal } = useTerminalPanel();
 
   const activeTerminal = terminals.find((t) => t.id === activeTerminalId);

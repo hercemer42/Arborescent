@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T16:43:57.726Z'
+updated: '2026-05-14T16:49:45.437Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33399,6 +33399,7 @@ nodes:
       - bdceb696-248d-4199-9182-db0689445c07
       - ddd90208-5752-46cf-b72a-5fcbe040b2e0
       - 3406993a-2a35-4c96-9aa8-55d63dccc55f
+      - b3dc5362-ca81-4cbe-8558-2800fa41354f
     metadata:
       status: pending
       isBlueprint: true
@@ -90251,7 +90252,7 @@ nodes:
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   042ee811-0108-4574-9a4c-2a7909572178:
     id: 042ee811-0108-4574-9a4c-2a7909572178
     content: Refactor right click menu
@@ -96848,8 +96849,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -117192,14 +117192,41 @@ nodes:
     content: Context & Workflow step icons are redundant
     children:
       - 29696c88-4103-422f-bc9b-4f1ace442f25
+      - 61ba1be9-d4a5-4533-8077-5082e0bd496f
     metadata:
       status: pending
+      expanded: true
   29696c88-4103-422f-bc9b-4f1ace442f25:
     id: 29696c88-4103-422f-bc9b-4f1ace442f25
     content: Consider having workflow step inherit context icon if it doesn't already have one
     children: []
     metadata:
       status: pending
+  61ba1be9-d4a5-4533-8077-5082e0bd496f:
+    id: 61ba1be9-d4a5-4533-8077-5082e0bd496f
+    content: Only issue with that is if we can also give a workflow step an icon
+    children:
+      - 8176ffec-e60a-438c-a262-1eb076ca124d
+    metadata:
+      status: pending
+  8176ffec-e60a-438c-a262-1eb076ca124d:
+    id: 8176ffec-e60a-438c-a262-1eb076ca124d
+    content: Nothing differentiates between workflows with or without contexts attached
+    children: []
+    metadata:
+      status: pending
+  b3dc5362-ca81-4cbe-8558-2800fa41354f:
+    id: b3dc5362-ca81-4cbe-8558-2800fa41354f
+    content: Done
+    children:
+      - 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
+    metadata:
+      status: pending
+      isBlueprint: true
+      stepType: manual
+      blueprintIcon: CheckSquare2
+      blueprintColor: '#22c55e'
+      expanded: true
 sessionRegistry:
   d8a79774-5a44-4b58-804e-282c35b9e0f5:
     cwd: /Users/brianfox/dev/Arborescent

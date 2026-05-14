@@ -10,8 +10,20 @@ const { mockTreeState } = vi.hoisted(() => ({
   mockTreeState: { activeNodeId: null as string | null },
 }));
 
-vi.mock('../../../store/tree/useStore', () => ({
-  useStore: vi.fn((selector) => selector ? selector(mockTreeState) : mockTreeState),
+vi.mock('../../../store/files/filesStore', () => ({
+  useFilesStore: vi.fn((selector) => {
+    const state = { activeFilePath: '/current.arbo' };
+    return selector ? selector(state) : state;
+  }),
+}));
+
+vi.mock('../../../store/storeManager', () => ({
+  storeManager: {
+    getStoreForFile: () => ({
+      subscribe: () => () => {},
+      getState: () => mockTreeState,
+    }),
+  },
 }));
 
 // Mock the panel store
