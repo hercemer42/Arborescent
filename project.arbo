@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T16:49:45.437Z'
+updated: '2026-05-14T17:33:23.927Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14411,7 +14411,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children: []
+    children:
+      - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
     metadata:
       status: completed
       expanded: true
@@ -81506,7 +81507,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
       - a1ccb0fd-fa01-428d-afb2-17d3e219d110
       - cfd38a28-0349-4873-8780-177e444d7cd3
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
@@ -84248,6 +84248,7 @@ nodes:
     content: User story creation
     children:
       - 0115e83a-d44c-402a-b94c-c084e76c2424
+      - 5cb7bf1b-8461-4206-9d38-e624b970a2ce
       - 9766dc8a-5af5-4c87-876b-c71b5c990731
       - aa4fb158-9949-40d7-8e28-d328565c27a9
       - f7668485-f034-4371-826b-f721fbe8c3bb
@@ -110796,45 +110797,14 @@ nodes:
     id: b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
     content: Bug - got 'recurse halted' at the wrong step
     children:
-      - 42154313-f789-4e38-89e1-9dabe0ccbd05
-      - 05ad7ca7-b467-4af6-aa17-1182f3f3b66d
-      - 10b77395-23bb-48e1-bef9-740166efaff4
+      - fd11ff8d-d89a-415c-8307-431405c3624e
+      - f7197d58-a432-4ee2-96a3-2707a0a76f9a
+      - 722beb77-5ba2-4ac6-bde3-fd3d5688b230
     metadata:
       status: pending
       expanded: false
-  42154313-f789-4e38-89e1-9dabe0ccbd05:
-    id: 42154313-f789-4e38-89e1-9dabe0ccbd05
-    content: Not sure why, but while the first of 2 decomposed steps was playing
-    children: []
-    metadata:
-      status: pending
-  05ad7ca7-b467-4af6-aa17-1182f3f3b66d:
-    id: 05ad7ca7-b467-4af6-aa17-1182f3f3b66d
-    content: Before it got to the node that 'recurse' was marked on
-    children:
-      - 7d7da717-1a27-458d-86ae-ebf71edc6e78
-      - 30ea3efb-da44-4b5e-8c81-46d55bc40aa0
-      - a030b0d8-ccdc-4ddb-b89d-4e7e980fa0eb
-    metadata:
-      status: pending
-  7d7da717-1a27-458d-86ae-ebf71edc6e78:
-    id: 7d7da717-1a27-458d-86ae-ebf71edc6e78
-    content: There was a warning 'recurse halted - next step could not start, terminal busy'
-    children: []
-    metadata:
-      status: pending
-  30ea3efb-da44-4b5e-8c81-46d55bc40aa0:
-    id: 30ea3efb-da44-4b5e-8c81-46d55bc40aa0
-    content: But the PR1 kept playing through its nodes
-    children: []
-    metadata:
-      status: pending
-  a030b0d8-ccdc-4ddb-b89d-4e7e980fa0eb:
-    id: a030b0d8-ccdc-4ddb-b89d-4e7e980fa0eb
-    content: Got this error for each node
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   e2db45ba-18a8-4bc6-83cb-75cdff422d96:
     id: e2db45ba-18a8-4bc6-83cb-75cdff422d96
     content: worktree
@@ -112034,33 +112004,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  10b77395-23bb-48e1-bef9-740166efaff4:
-    id: 10b77395-23bb-48e1-bef9-740166efaff4
-    content: PR2 did play afterwwards
-    children:
-      - 6f26031d-80d4-4bb7-9ec5-4d1cc22569ea
-      - aeb0f9b1-f814-4fd1-929c-4bfbc8793759
-      - 895000f6-6847-4ec7-9b61-d6f7c37966d6
-    metadata:
-      status: pending
-  6f26031d-80d4-4bb7-9ec5-4d1cc22569ea:
-    id: 6f26031d-80d4-4bb7-9ec5-4d1cc22569ea
-    content: However there was a message that it was detached from its session
-    children: []
-    metadata:
-      status: pending
-  aeb0f9b1-f814-4fd1-929c-4bfbc8793759:
-    id: aeb0f9b1-f814-4fd1-929c-4bfbc8793759
-    content: And so it would start in another
-    children: []
-    metadata:
-      status: pending
-  895000f6-6847-4ec7-9b61-d6f7c37966d6:
-    id: 895000f6-6847-4ec7-9b61-d6f7c37966d6
-    content: However it DID successfully start in the same session
-    children: []
-    metadata:
-      status: pending
   6d93a01f-a4e8-4206-98bd-f4dabb6fa16e:
     id: 6d93a01f-a4e8-4206-98bd-f4dabb6fa16e
     content: worktree
@@ -117155,38 +117098,18 @@ nodes:
       plugins: {}
   a1ccb0fd-fa01-428d-afb2-17d3e219d110:
     id: a1ccb0fd-fa01-428d-afb2-17d3e219d110
-    content: Should reattach claude session on open
+    content: Restore node→terminal blue-bar association across claude session resume
     children:
-      - 3c4b4e69-bdb2-4754-9bba-0b366bbd4da7
-      - f184563a-8602-4e9c-a8c0-70bc19f0e13c
-      - 15484500-2aa2-49ba-9227-6f4df1523b62
-      - 2800d75a-e47e-4330-a9c9-702d6d738cce
+      - 0de2e964-9312-4196-97f9-2e0b5611687e
+      - de14c3b0-fc69-4798-aaaf-30a5e2687f67
+      - dbb82056-2cba-472a-99dd-1d17915eb6f0
+      - 471a0797-92e2-44b9-a05d-7b4bbbe8fb1d
+      - 7f83ca0a-913a-4d7c-b8c4-14f467e036a4
     metadata:
       status: pending
-  3c4b4e69-bdb2-4754-9bba-0b366bbd4da7:
-    id: 3c4b4e69-bdb2-4754-9bba-0b366bbd4da7
-    content: If a node has been played in a terminal
-    children: []
-    metadata:
-      status: pending
-  f184563a-8602-4e9c-a8c0-70bc19f0e13c:
-    id: f184563a-8602-4e9c-a8c0-70bc19f0e13c
-    content: And that terminal gets closed and reopened, and the claude session resumed
-    children: []
-    metadata:
-      status: pending
-  15484500-2aa2-49ba-9227-6f4df1523b62:
-    id: 15484500-2aa2-49ba-9227-6f4df1523b62
-    content: We should map it to the node that was previously played in it
-    children: []
-    metadata:
-      status: pending
-  2800d75a-e47e-4330-a9c9-702d6d738cce:
-    id: 2800d75a-e47e-4330-a9c9-702d6d738cce
-    content: So that it gets the 'Blue' bar to the left of the gutter
-    children: []
-    metadata:
-      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
   c577b3e4-78ac-4eaf-98aa-054b93853291:
     id: c577b3e4-78ac-4eaf-98aa-054b93853291
     content: Context & Workflow step icons are redundant
@@ -117226,11 +117149,830 @@ nodes:
       stepType: manual
       blueprintIcon: CheckSquare2
       blueprintColor: '#22c55e'
+      expanded: false
+  5cb7bf1b-8461-4206-9d38-e624b970a2ce:
+    id: 5cb7bf1b-8461-4206-9d38-e624b970a2ce
+    content: If the subject is a bug, ignore these instructions, and instead write it up as a bug ticket
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  0de2e964-9312-4196-97f9-2e0b5611687e:
+    id: 0de2e964-9312-4196-97f9-2e0b5611687e
+    content: 📄 Product spec
+    children:
+      - c4aca20b-aa72-4851-a05b-c4aef5801acb
+      - ed94d4f8-1328-428d-a333-5898608b64ea
+      - e6cb9f7f-98fb-428a-929c-53764bf341cd
+      - 9720a728-709c-4300-a5c9-e82c03918a30
+      - 7a885f61-cdf5-41a5-9aae-0954ac743b46
+      - f898a683-9065-4db0-b6bb-90e59eb16106
+      - 758991eb-7a67-4b86-bac0-a65145df351a
+      - 3715bcd5-e8af-4191-a34a-055464f5b8ab
+      - 3c00fee6-a5d4-455d-ad8b-e38a7c6521da
+      - 76704452-d202-4489-9227-9619ffb47b7e
+      - 933ff489-a77a-4097-9a99-9443ea4dacf1
+      - 4ba17a37-b463-4ae6-84ef-b8f5c7a91dc7
+      - c41cda67-fb31-438e-976c-506756ab98d5
+      - 204f2cc9-2a1f-4b53-8198-a7d94b1378cd
+      - 381aa705-c314-41d3-b1bc-d3c03c45436a
+      - b14a3ba8-f1ce-4571-9d6b-be65a1ff5fb8
+      - a9af4f6a-620b-4dba-a6ff-1e85eb105bc2
+      - f6271cfd-9947-4e7c-b216-bfe713d4450e
+    metadata:
+      status: pending
       expanded: true
+      deleted: false
+      plugins: {}
+  c4aca20b-aa72-4851-a05b-c4aef5801acb:
+    id: c4aca20b-aa72-4851-a05b-c4aef5801acb
+    content: Context — terminals carry a blue gutter bar next to the node that was last played into them, communicating "this terminal owns that node"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed94d4f8-1328-428d-a333-5898608b64ea:
+    id: ed94d4f8-1328-428d-a333-5898608b64ea
+    content: Context — the association is held as `originNodeId` on the terminal record (terminalStore) and is already persisted across app restarts via StorageService
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6cb9f7f-98fb-428a-929c-53764bf341cd:
+    id: e6cb9f7f-98fb-428a-929c-53764bf341cd
+    content: Context — when a user closes a terminal and starts a fresh one to run `claude --resume`, the new terminal has no `originNodeId`, so the blue bar is lost even though the user is conceptually back in the same session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9720a728-709c-4300-a5c9-e82c03918a30:
+    id: 9720a728-709c-4300-a5c9-e82c03918a30
+    content: User — Arborescent user running multi-turn Claude sessions across long workflows; routinely closes terminals (resource pressure, crashes, reorganisation) and reattaches via `claude --resume`
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a885f61-cdf5-41a5-9aae-0954ac743b46:
+    id: 7a885f61-cdf5-41a5-9aae-0954ac743b46
+    content: Current experience — visual link is dropped on reopen; user has to remember which fresh terminal belongs to which node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f898a683-9065-4db0-b6bb-90e59eb16106:
+    id: f898a683-9065-4db0-b6bb-90e59eb16106
+    content: Goal — when a terminal resumes a previously-played claude session, restore the original node↔terminal association so the blue gutter bar reappears automatically
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  758991eb-7a67-4b86-bac0-a65145df351a:
+    id: 758991eb-7a67-4b86-bac0-a65145df351a
+    content: Business rule — when a node is played into a terminal that launches `claude`, the claude session id is captured and persisted alongside `originNodeId`
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3715bcd5-e8af-4191-a34a-055464f5b8ab:
+    id: 3715bcd5-e8af-4191-a34a-055464f5b8ab
+    content: Business rule — when a terminal launches with a command that resumes a known claude session id (`claude --resume <id>` or `claude -c` against a recorded session), the persisted `originNodeId` for that session id is seeded onto the new terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c00fee6-a5d4-455d-ad8b-e38a7c6521da:
+    id: 3c00fee6-a5d4-455d-ad8b-e38a7c6521da
+    content: Business rule — if the same claude session has been associated with several nodes over time, the most recently played node wins
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76704452-d202-4489-9227-9619ffb47b7e:
+    id: 76704452-d202-4489-9227-9619ffb47b7e
+    content: Business rule — if the previously associated node no longer exists in the tree, no association is restored and no error is surfaced
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  933ff489-a77a-4097-9a99-9443ea4dacf1:
+    id: 933ff489-a77a-4097-9a99-9443ea4dacf1
+    content: 'Business rule — restoration is silent: no toast, no log; only the blue bar reappears'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ba17a37-b463-4ae6-84ef-b8f5c7a91dc7:
+    id: 4ba17a37-b463-4ae6-84ef-b8f5c7a91dc7
+    content: Business rule — mapping persists across full app restart, not just in-session close/reopen
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c41cda67-fb31-438e-976c-506756ab98d5:
+    id: c41cda67-fb31-438e-976c-506756ab98d5
+    content: Acceptance criterion — play node X in a terminal running claude, close the terminal, open a new terminal that resumes the same claude session → node X shows the blue bar within one render
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  204f2cc9-2a1f-4b53-8198-a7d94b1378cd:
+    id: 204f2cc9-2a1f-4b53-8198-a7d94b1378cd
+    content: Acceptance criterion — two concurrent terminals each resume a different claude session; each blue bar lands on the correct node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  381aa705-c314-41d3-b1bc-d3c03c45436a:
+    id: 381aa705-c314-41d3-b1bc-d3c03c45436a
+    content: Acceptance criterion — if the originally played node was deleted before resume, the new terminal opens cleanly with no blue bar and no error toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b14a3ba8-f1ce-4571-9d6b-be65a1ff5fb8:
+    id: b14a3ba8-f1ce-4571-9d6b-be65a1ff5fb8
+    content: Acceptance criterion — restoration survives a full app restart between close and resume
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9af4f6a-620b-4dba-a6ff-1e85eb105bc2:
+    id: a9af4f6a-620b-4dba-a6ff-1e85eb105bc2
+    content: Acceptance criterion — resuming a session that was never tracked (e.g. started outside Arborescent) leaves the terminal with no `originNodeId` and no error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6271cfd-9947-4e7c-b216-bfe713d4450e:
+    id: f6271cfd-9947-4e7c-b216-bfe713d4450e
+    content: 'Acceptance criterion — non-functional: restoration completes before the terminal accepts its first user keystroke (no perceptible flicker on the blue bar)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  de14c3b0-fc69-4798-aaaf-30a5e2687f67:
+    id: de14c3b0-fc69-4798-aaaf-30a5e2687f67
+    content: 🔧 Implementation proposal
+    children:
+      - 9fa2110d-b780-4d3d-8101-6311e28b21f2
+      - c7c3aaf9-3fe6-41e6-9760-8850ff4793ef
+      - 6755d416-a917-4c63-996b-c1efe5d5edc3
+      - aa78c682-fc67-4a36-a66c-13bfca1a2131
+      - 11b7ea1b-6c09-47d2-99ed-eefbb3646f9c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fa2110d-b780-4d3d-8101-6311e28b21f2:
+    id: 9fa2110d-b780-4d3d-8101-6311e28b21f2
+    content: Approach — extend the existing terminal-session persistence with a `claudeSessionId → originNodeId` map; capture the session id when a node is played into a claude terminal; on terminal-create, inspect launch args and seed `originNodeId` from the map before first render
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7c3aaf9-3fe6-41e6-9760-8850ff4793ef:
+    id: c7c3aaf9-3fe6-41e6-9760-8850ff4793ef
+    content: Touchpoints — terminalStore (seed `originNodeId` on create from session-id lookup), terminalHandlers (sniff claude launch args / capture session id from PTY), StorageService and shared/interfaces (extend persisted shape with the session→node map), terminal session restore path (no UI change; TreeNode already reads `originNodeId`)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6755d416-a917-4c63-996b-c1efe5d5edc3:
+    id: 6755d416-a917-4c63-996b-c1efe5d5edc3
+    content: 'Constraint — load-bearing dependency: a reliable way to read the claude session id. Pick one of (a) launch claude with an explicit `--session-id <uuid>` Arborescent generates, or (b) parse stdout for the session header. Decide before coding — (a) is simpler and avoids stdout parsing fragility'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa78c682-fc67-4a36-a66c-13bfca1a2131:
+    id: aa78c682-fc67-4a36-a66c-13bfca1a2131
+    content: Constraint — restoration must be idempotent if the user reopens the same session twice
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11b7ea1b-6c09-47d2-99ed-eefbb3646f9c:
+    id: 11b7ea1b-6c09-47d2-99ed-eefbb3646f9c
+    content: Constraint — only act on claude launches; do not pollute the persisted map with non-claude shells
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbb82056-2cba-472a-99dd-1d17915eb6f0:
+    id: dbb82056-2cba-472a-99dd-1d17915eb6f0
+    content: Single shippable chunk — do not split
+    children:
+      - 562a25ba-b134-4a67-a7cb-552a4ba1f90b
+      - 4fa03ffe-3e84-4647-9969-14062459ec61
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  562a25ba-b134-4a67-a7cb-552a4ba1f90b:
+    id: 562a25ba-b134-4a67-a7cb-552a4ba1f90b
+    content: Capture without restore delivers zero user value; restore without capture is impossible — both halves must ship together to realise the blue bar reappearing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fa03ffe-3e84-4647-9969-14062459ec61:
+    id: 4fa03ffe-3e84-4647-9969-14062459ec61
+    content: Feature is small enough that a flag-gated split adds churn without review benefit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  471a0797-92e2-44b9-a05d-7b4bbbe8fb1d:
+    id: 471a0797-92e2-44b9-a05d-7b4bbbe8fb1d
+    content: Challenges and pushback
+    children:
+      - 126c256b-e90a-478c-90be-3d364e3e8e65
+      - fb2809b8-98b7-4d97-98c4-4af4fd10cfc7
+      - cd130755-4d96-48ef-aa2d-bedf812f7f4e
+      - a9c3dd51-6429-4a68-b308-78eaa1f3010f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  126c256b-e90a-478c-90be-3d364e3e8e65:
+    id: 126c256b-e90a-478c-90be-3d364e3e8e65
+    content: ROI is moderate-to-low — the blue bar is a UX nicety, not a workflow-blocker; weigh the session-id plumbing against this before committing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb2809b8-98b7-4d97-98c4-4af4fd10cfc7:
+    id: fb2809b8-98b7-4d97-98c4-4af4fd10cfc7
+    content: If claude CLI does not accept a caller-supplied `--session-id`, the fallback (stdout parsing) is brittle and may not be worth the payoff — confirm CLI surface first
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd130755-4d96-48ef-aa2d-bedf812f7f4e:
+    id: cd130755-4d96-48ef-aa2d-bedf812f7f4e
+    content: Cheaper alternative to evaluate — key the persisted map on `(filePath, terminalSlotIndex)` instead of claude session id, so "the Nth terminal in this file" reattaches to its last `originNodeId` on reopen. Cheaper, no CLI sniffing, but incorrect if the user reorders terminals between close and reopen
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9c3dd51-6429-4a68-b308-78eaa1f3010f:
+    id: a9c3dd51-6429-4a68-b308-78eaa1f3010f
+    content: UX risk — if a user resumes a stale session whose node has drifted in meaning, the restored blue bar may mislead more than help. Acceptable given the rule that deleted nodes restore nothing, but worth noting
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f83ca0a-913a-4d7c-b8c4-14f467e036a4:
+    id: 7f83ca0a-913a-4d7c-b8c4-14f467e036a4
+    content: Out of scope
+    children:
+      - 3900d2ee-eadb-49aa-bb97-f2a0390513ea
+      - c7b33ade-6172-4704-a5f3-cf680370091a
+      - 3be9fa12-dc5c-4251-aeba-97020d8a29b1
+      - 5391a427-cec9-49ba-a85d-962d013aa316
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3900d2ee-eadb-49aa-bb97-f2a0390513ea:
+    id: 3900d2ee-eadb-49aa-bb97-f2a0390513ea
+    content: Restoring terminal scrollback or pty buffer contents
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7b33ade-6172-4704-a5f3-cf680370091a:
+    id: c7b33ade-6172-4704-a5f3-cf680370091a
+    content: Tracking a list of every node ever played in a session (only the most-recent mapping matters)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3be9fa12-dc5c-4251-aeba-97020d8a29b1:
+    id: 3be9fa12-dc5c-4251-aeba-97020d8a29b1
+    content: Auto-launching `claude --resume` from a closed terminal entry
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5391a427-cec9-49ba-a85d-962d013aa316:
+    id: 5391a427-cec9-49ba-a85d-962d013aa316
+    content: Cross-machine session sync
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd11ff8d-d89a-415c-8307-431405c3624e:
+    id: fd11ff8d-d89a-415c-8307-431405c3624e
+    content: worktree
+    children:
+      - a554b74f-c69f-4d08-9915-6e9bbe4c383c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a554b74f-c69f-4d08-9915-6e9bbe4c383c:
+    id: a554b74f-c69f-4d08-9915-6e9bbe4c383c
+    content: vscode://file//Users/brianfox/dev/Arborescent-recurse-status
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7197d58-a432-4ee2-96a3-2707a0a76f9a:
+    id: f7197d58-a432-4ee2-96a3-2707a0a76f9a
+    content: User story
+    children:
+      - 026ad8d7-a4f1-4706-b328-6dcdbccdfa40
+      - ff16df6d-b9d9-4e6e-8fbb-83331d23c50f
+      - 048ccf09-cf5f-44e6-afee-abae15733a55
+      - 716cb822-065e-430e-a49c-50c50889e9c2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  026ad8d7-a4f1-4706-b328-6dcdbccdfa40:
+    id: 026ad8d7-a4f1-4706-b328-6dcdbccdfa40
+    content: Title — Fix misleading recurse status messages during multi-step playback
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff16df6d-b9d9-4e6e-8fbb-83331d23c50f:
+    id: ff16df6d-b9d9-4e6e-8fbb-83331d23c50f
+    content: 📄 Product spec
+    children:
+      - 46436fb5-7aff-4899-8c6d-8db2eb2418c1
+      - 3495821e-f2b1-4c35-8da3-99a23fef42b4
+      - b5902f2a-d6b6-446a-aaf0-378a6821d0cf
+      - d6003ea5-1486-4576-98b4-a8ed937ca176
+      - 19ee7581-b717-42e5-88bb-70b7d644b256
+      - 3558d735-0866-4e2e-bfdc-01adda42edae
+      - 7c09d915-4e3b-403c-b5a9-84e9bf362323
+      - 8a91ad17-8edf-46df-8a27-aaa10b9f4af4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  46436fb5-7aff-4899-8c6d-8db2eb2418c1:
+    id: 46436fb5-7aff-4899-8c6d-8db2eb2418c1
+    content: Context — recurse mode plays a sequence of decomposed steps; status warnings should reflect the actual recurse boundary, not intermediate node activity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3495821e-f2b1-4c35-8da3-99a23fef42b4:
+    id: 3495821e-f2b1-4c35-8da3-99a23fef42b4
+    content: User — Arborescent power user driving multi-step workflows via recurse
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5902f2a-d6b6-446a-aaf0-378a6821d0cf:
+    id: b5902f2a-d6b6-446a-aaf0-378a6821d0cf
+    content: Current experience — spurious 'recurse halted - next step could not start, terminal busy' warning fires on every node of PR1 before reaching the recurse-marked node on PR2
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6003ea5-1486-4576-98b4-a8ed937ca176:
+    id: d6003ea5-1486-4576-98b4-a8ed937ca176
+    content: Current experience — a 'detached from session, will start in another' message appears even though PR2 successfully starts in the same session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19ee7581-b717-42e5-88bb-70b7d644b256:
+    id: 19ee7581-b717-42e5-88bb-70b7d644b256
+    content: Why insufficient — false halt warnings and misleading session messages erode trust in recurse status; users cannot distinguish real halts from noise
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3558d735-0866-4e2e-bfdc-01adda42edae:
+    id: 3558d735-0866-4e2e-bfdc-01adda42edae
+    content: Goal — recurse status messages reflect actual playback state; halt and session-attachment warnings fire only when they correspond to a real outcome
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c09d915-4e3b-403c-b5a9-84e9bf362323:
+    id: 7c09d915-4e3b-403c-b5a9-84e9bf362323
+    content: Business rules
+    children:
+      - 6468ea3a-28dc-4dae-b60f-f241297daa1b
+      - 78ce4254-fb4f-40e9-9f68-2936a416fdae
+      - 8f4b5bf0-8729-4b73-9385-bdea108886fb
+      - 1fee1e51-52ed-405e-8094-9bad052724d0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6468ea3a-28dc-4dae-b60f-f241297daa1b:
+    id: 6468ea3a-28dc-4dae-b60f-f241297daa1b
+    content: 1. The 'recurse halted - terminal busy' warning must only fire when the recurse-target node cannot start because the terminal is busy
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  78ce4254-fb4f-40e9-9f68-2936a416fdae:
+    id: 78ce4254-fb4f-40e9-9f68-2936a416fdae
+    content: 2. Intermediate nodes between the trigger and the recurse-marked node must not emit recurse-halted warnings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f4b5bf0-8729-4b73-9385-bdea108886fb:
+    id: 8f4b5bf0-8729-4b73-9385-bdea108886fb
+    content: 3. Session-attachment messages must reflect the actual session outcome — no 'detached' message when playback continues in the same session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fee1e51-52ed-405e-8094-9bad052724d0:
+    id: 1fee1e51-52ed-405e-8094-9bad052724d0
+    content: 4. Real halt scenarios at the recurse boundary must still surface the warning unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a91ad17-8edf-46df-8a27-aaa10b9f4af4:
+    id: 8a91ad17-8edf-46df-8a27-aaa10b9f4af4
+    content: Acceptance criteria
+    children:
+      - 73e81c5c-15d8-4b97-95e7-8f12102220d7
+      - cbe09fa7-c6b7-412e-a70f-de17ea365932
+      - 20d03f74-5afa-4fb8-b120-3926dc272e6f
+      - 54686a49-c8bf-4895-9a8f-7e6ce513b77b
+      - f34442c5-608d-405f-b83f-933749ee0ef8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  73e81c5c-15d8-4b97-95e7-8f12102220d7:
+    id: 73e81c5c-15d8-4b97-95e7-8f12102220d7
+    content: '- [ ] Playing two decomposed steps with recurse marked on PR2 produces no ''recurse halted'' warning during PR1''s nodes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbe09fa7-c6b7-412e-a70f-de17ea365932:
+    id: cbe09fa7-c6b7-412e-a70f-de17ea365932
+    content: '- [ ] ''recurse halted - terminal busy'' warning only appears when the recurse-target node genuinely cannot start'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20d03f74-5afa-4fb8-b120-3926dc272e6f:
+    id: 20d03f74-5afa-4fb8-b120-3926dc272e6f
+    content: '- [ ] When PR2 starts in the same session, no ''detached from session, will start in another'' message is shown'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54686a49-c8bf-4895-9a8f-7e6ce513b77b:
+    id: 54686a49-c8bf-4895-9a8f-7e6ce513b77b
+    content: '- [ ] A genuine terminal-busy halt at the recurse target still surfaces the warning correctly'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f34442c5-608d-405f-b83f-933749ee0ef8:
+    id: f34442c5-608d-405f-b83f-933749ee0ef8
+    content: '- [ ] A genuine detach-and-reattach to a new session still surfaces the session message correctly'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  048ccf09-cf5f-44e6-afee-abae15733a55:
+    id: 048ccf09-cf5f-44e6-afee-abae15733a55
+    content: 🔧 Implementation proposal
+    children:
+      - 5b202f8b-541b-4098-9f92-e3b5b0ff2cd7
+      - d21b487f-a216-40c9-97cc-ebd24a5b0b06
+      - 89da5b90-154f-4719-bc25-238dcde8c00a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b202f8b-541b-4098-9f92-e3b5b0ff2cd7:
+    id: 5b202f8b-541b-4098-9f92-e3b5b0ff2cd7
+    content: Approach — gate recurse halt-warning emission on the recurse-target node only; correct session-attachment status to read the actual attached session at the moment playback begins, not the predicted one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d21b487f-a216-40c9-97cc-ebd24a5b0b06:
+    id: d21b487f-a216-40c9-97cc-ebd24a5b0b06
+    content: Touchpoints — recurse playback service, terminal session manager, feedback/status surface that emits warnings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89da5b90-154f-4719-bc25-238dcde8c00a:
+    id: 89da5b90-154f-4719-bc25-238dcde8c00a
+    content: Constraints — verify that suppressing intermediate-node warnings does not mask a real race where the terminal stays busy through the recurse boundary; the 'terminal busy' signal may currently be firing as a teardown race from the prior node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  716cb822-065e-430e-a49c-50c50889e9c2:
+    id: 716cb822-065e-430e-a49c-50c50889e9c2
+    content: Technical refinement
+    children:
+      - b1fdb86b-5e10-4f37-81d2-c4e0a4115b20
+      - 7a6392e4-b4f3-4929-8422-882e1bc3c12f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1fdb86b-5e10-4f37-81d2-c4e0a4115b20:
+    id: b1fdb86b-5e10-4f37-81d2-c4e0a4115b20
+    content: Complications
+    children:
+      - 6429fefc-3b65-4723-82e0-79985c947dd2
+      - 5ac6f4fb-75bc-4132-80f7-7484027f2c4e
+      - 4a9b800f-0a33-4951-a2d2-d60a74249dda
+      - 2b0b3b9a-4058-48d8-85a5-1b0c6cb088f5
+      - 529c65e1-f707-423b-8acd-30cc8726648b
+      - 7e780963-8651-4746-9683-5f95b4d23e5e
+      - 38c30fb8-c807-4053-aac2-7119990ebfa9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6429fefc-3b65-4723-82e0-79985c947dd2:
+    id: 6429fefc-3b65-4723-82e0-79985c947dd2
+    content: Risk — 'terminal busy' on intermediate nodes may not be a false positive but a teardown race from the prior node; merely suppressing the warning could mask a real bug that resurfaces at the recurse boundary later
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ac6f4fb-75bc-4132-80f7-7484027f2c4e:
+    id: 5ac6f4fb-75bc-4132-80f7-7484027f2c4e
+    content: Risk — session-attachment status is currently emitted before the attach resolves; moving emission to post-attach may surface ordering bugs in callers that listen for the message
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a9b800f-0a33-4951-a2d2-d60a74249dda:
+    id: 4a9b800f-0a33-4951-a2d2-d60a74249dda
+    content: 'Edge case — recurse marked on a deeply-nested node (not a top-level sibling): halt-gating must target the actual recurse node, not the nearest ancestor'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b0b3b9a-4058-48d8-85a5-1b0c6cb088f5:
+    id: 2b0b3b9a-4058-48d8-85a5-1b0c6cb088f5
+    content: 'Edge case — recurse marked on the currently-playing node, or multiple recurse marks in a single chain: behaviour must be defined'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  529c65e1-f707-423b-8acd-30cc8726648b:
+    id: 529c65e1-f707-423b-8acd-30cc8726648b
+    content: 'Edge case — user cancels playback mid-chain: no spurious halt warning should fire on the cancelled boundary'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e780963-8651-4746-9683-5f95b4d23e5e:
+    id: 7e780963-8651-4746-9683-5f95b4d23e5e
+    content: Out of scope — redesigning the recurse model, visual treatment of recurse markers, multi-terminal recurse
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  38c30fb8-c807-4053-aac2-7119990ebfa9:
+    id: 38c30fb8-c807-4053-aac2-7119990ebfa9
+    content: ROI — UX-only defect; recurse completes successfully. Keep fix scoped to status emission unless the teardown-race investigation forces a deeper change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a6392e4-b4f3-4929-8422-882e1bc3c12f:
+    id: 7a6392e4-b4f3-4929-8422-882e1bc3c12f
+    content: Approach summary
+    children:
+      - f2b669e2-2e8a-4321-a90b-4114ef725a58
+      - 4c639239-5912-4bf5-91db-7531249a0402
+      - 9633e131-4ace-4f75-aa7b-bb90aaf6c21f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2b669e2-2e8a-4321-a90b-4114ef725a58:
+    id: f2b669e2-2e8a-4321-a90b-4114ef725a58
+    content: Restrict recurse halt-warning emission to the recurse-target node by checking node identity in the playback loop before surfacing the message
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c639239-5912-4bf5-91db-7531249a0402:
+    id: 4c639239-5912-4bf5-91db-7531249a0402
+    content: Resolve session-attachment status from the actual attached session after attach completes, instead of from the predicted session at dispatch time
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9633e131-4ace-4f75-aa7b-bb90aaf6c21f:
+    id: 9633e131-4ace-4f75-aa7b-bb90aaf6c21f
+    content: Non-obvious — 'terminal busy' may be a teardown-race symptom; investigation may show the right fix is awaiting terminal-idle at the recurse boundary rather than gating the warning
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  722beb77-5ba2-4ac6-bde3-fd3d5688b230:
+    id: 722beb77-5ba2-4ac6-bde3-fd3d5688b230
+    content: Challenge
+    children:
+      - 62139807-7c93-487a-b449-a559369b00c4
+      - 77d6b3f7-7726-4665-9304-e8e1f7e3465a
+      - d6dcc031-af9b-4df3-8bd5-7d6347dd214c
+      - e6622735-4f53-41f4-b14f-f8fa06666ac4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62139807-7c93-487a-b449-a559369b00c4:
+    id: 62139807-7c93-487a-b449-a559369b00c4
+    content: Bug, not feature — user-story framing is heavier than this needs; a defect ticket with repro + expected behaviour carries the same information with less ceremony
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77d6b3f7-7726-4665-9304-e8e1f7e3465a:
+    id: 77d6b3f7-7726-4665-9304-e8e1f7e3465a
+    content: Repro steps are missing — exact tree shape, where recurse was marked, and which session was attached are needed before the fix targets the right code path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6dcc031-af9b-4df3-8bd5-7d6347dd214c:
+    id: d6dcc031-af9b-4df3-8bd5-7d6347dd214c
+    content: Two symptoms (spurious halt warning + misleading detach message) may have independent root causes — keep as one ticket only if investigation confirms shared origin, otherwise split
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6622735-4f53-41f4-b14f-f8fa06666ac4:
+    id: e6622735-4f53-41f4-b14f-f8fa06666ac4
+    content: Severity is UX/trust, not functional — recurse still completed successfully; weigh fix priority against features that unblock real workflows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
-  d8a79774-5a44-4b58-804e-282c35b9e0f5:
+  d613b377-2fc5-41b6-9d85-92dc28b38eb0:
     cwd: /Users/brianfox/dev/Arborescent
-  41763cde-e4af-46de-a7bc-4b339e7c5e95:
+  e7626089-f911-411d-b33a-b4997004ea1b:
     cwd: /Users/brianfox/dev/Arborescent
-  8081edde-8011-4e24-9810-9002deaf828c:
+  d8469abe-5715-4d5c-bf09-da1d2ba10fb4:
     cwd: /Users/brianfox/dev/Arborescent

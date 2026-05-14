@@ -60,7 +60,15 @@ const HEADING_PERSISTENCE_RULES = `- Only heading lines persist between steps; n
 - To preserve a value (text, URL, etc.) into later steps, capture it as its own heading line — as a child node, never as a paragraph beneath a heading.
 - Example (capturing a value as a heading line):
   ## [ ] Recorded value
-  ### [ ] the text you want to preserve`;
+  ### [ ] the text you want to preserve
+- For lists (rules, criteria, items), keep the category heading and nest each entry beneath it as a child — do not flatten the entries into siblings of the category.
+- Example (grouping a list under its category heading):
+  ## [ ] Business rules
+  ### [ ] first rule as a complete sentence
+  ### [ ] second rule as a complete sentence
+  ## [ ] Acceptance criteria
+  ### [ ] first criterion, independently testable
+  ### [ ] second criterion, independently testable`;
 
 const SINGLE_ROOT_OUTPUT_FORMAT = `OUTPUT FORMAT:
 - Must have exactly one root node (single # heading)
