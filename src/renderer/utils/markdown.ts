@@ -1,6 +1,7 @@
 import { TreeNode, NodeStatus, STATUS_SYMBOLS } from '../../shared/types';
 import { v4 as uuidv4 } from 'uuid';
 import { createTreeNode } from './nodeConstruction';
+import { logger } from '../services/logger';
 
 export type NodesMap = Record<string, TreeNode>;
 
@@ -179,6 +180,12 @@ export interface ParsedMarkdownResult {
   allNodes: Record<string, TreeNode>;
 }
 
+const HEADING_PREFIX_PATTERN = /^#{1,6}(\s|$)/;
+
+function isLikelyHeadingMarker(trimmedLine: string): boolean {
+  return HEADING_PREFIX_PATTERN.test(trimmedLine);
+}
+
 export function parseMarkdown(markdown: string): ParsedMarkdownResult {
   let content = markdown.trim();
   if (content.startsWith('```')) {
@@ -190,11 +197,16 @@ export function parseMarkdown(markdown: string): ParsedMarkdownResult {
   const rootNodes: TreeNode[] = [];
   const allNodes: Record<string, TreeNode> = {};
   const stack: { node: TreeNode; depth: number }[] = [];
+  const droppedLines: string[] = [];
 
   for (const line of lines) {
     const parsed = parseLine(line);
 
     if (!parsed) {
+      const trimmedLine = line.trim();
+      if (trimmedLine !== '' && !isLikelyHeadingMarker(trimmedLine)) {
+        droppedLines.push(trimmedLine);
+      }
       continue;
     }
 
@@ -234,6 +246,12 @@ export function parseMarkdown(markdown: string): ParsedMarkdownResult {
       }
 
       stack.push({ node: newNode, depth });
+    }
+  }
+
+  if (rootNodes.length > 0) {
+    for (const dropped of droppedLines) {
+      logger.warn(`dropped non-heading line: ${dropped}`, 'parseMarkdown');
     }
   }
 

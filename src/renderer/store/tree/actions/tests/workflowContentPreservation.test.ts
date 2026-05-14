@@ -306,4 +306,36 @@ describe('Workflow steps preserve the original node content', () => {
       expect(prompt).toContain('Do NOT rewrite, reorganize, retitle');
     });
   });
+
+  describe('OUTPUT FORMAT advertises that only heading lines persist between steps', () => {
+    it('states explicitly that non-heading lines are discarded between steps', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: false });
+      const prompt = getTerminalPrompt(executeInTerminal);
+
+      const outputFormatBlock = prompt.split('OUTPUT FORMAT:')[1]?.split('===END INSTRUCTIONS===')[0] ?? '';
+      expect(outputFormatBlock).toMatch(/only heading lines.*persist|non-heading.*(discarded|dropped|stripped)/i);
+    });
+
+    it('includes a worked example showing a value captured as its own heading line', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: false });
+      const prompt = getTerminalPrompt(executeInTerminal);
+
+      const outputFormatBlock = prompt.split('OUTPUT FORMAT:')[1]?.split('===END INSTRUCTIONS===')[0] ?? '';
+      expect(outputFormatBlock).toMatch(/(value|capture|persist).{0,80}\n.*###?\s*\[\s\]/is);
+    });
+
+    it('uses "as a child node" wording rather than spatial words like "underneath" or "below" when persistence is required', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: false });
+      const prompt = getTerminalPrompt(executeInTerminal);
+
+      const outputFormatBlock = prompt.split('OUTPUT FORMAT:')[1]?.split('===END INSTRUCTIONS===')[0] ?? '';
+      expect(outputFormatBlock).not.toMatch(/\bunderneath\b/i);
+      expect(outputFormatBlock).not.toMatch(/place.*\bbelow\b.*the.*(node|heading)/i);
+    });
+
+    it.todo('OUTPUT FORMAT in the decomposition variant also advertises the heading-persistence rule');
+  });
 });

@@ -56,11 +56,17 @@ const AUTONOMOUS_INLINE_CHECKS_CLAUSE = '- If you need to run checks (build, tes
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
+const HEADING_PERSISTENCE_RULES = `- Only heading lines persist between steps; non-heading lines are discarded by the parser.
+- To preserve a value (text, URL, etc.) into later steps, capture it as its own heading line — as a child node, never as a paragraph beneath a heading.
+- Example (capturing a value as a heading line):
+  ## [ ] Recorded value
+  ### [ ] the text you want to preserve`;
+
 const SINGLE_ROOT_OUTPUT_FORMAT = `OUTPUT FORMAT:
 - Must have exactly one root node (single # heading)
 - Use markdown headings for hierarchy (# root, ## child, ### grandchild)
 - Use [ ] for pending items, [x] for completed, [-] for failed
-- Example: "## [ ] Task name" or "### [x] Completed task"
+${HEADING_PERSISTENCE_RULES}
 - Constrain your feedback to bullet points using markdown headings — no prose.`;
 
 const DECOMPOSITION_OUTPUT_FORMAT = `OUTPUT FORMAT:
@@ -82,6 +88,7 @@ const DECOMPOSITION_OUTPUT_FORMAT = `OUTPUT FORMAT:
 # [ ] Second item
 ## [ ] Sub-item of second
 # [ ] Third item
+${HEADING_PERSISTENCE_RULES}
 - Constrain your feedback to bullet points using markdown headings — no prose.`;
 
 function getOutputFormat(decomposition: boolean): string {
