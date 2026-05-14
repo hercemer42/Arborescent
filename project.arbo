@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T16:29:59.453Z'
+updated: '2026-05-14T16:42:13.135Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8783,7 +8783,7 @@ nodes:
       - bc87a3a5-29fe-4b9e-a2a1-d773468a88d5
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -25474,8 +25474,7 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children:
-      - 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -62991,6 +62990,7 @@ nodes:
     children:
       - 1e2d807d-6ba3-4500-8e56-e8055c5b9ef7
       - c4ee813a-5071-4fa8-be7f-96a0e94a4971
+      - f4e74183-728d-4eea-ba34-725257462589
       - 2abe5631-fe1c-4065-b085-4549d1f52adc
     metadata:
       status: pending
@@ -82878,7 +82878,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
     metadata:
       status: pending
       isBlueprint: true
@@ -90226,6 +90227,7 @@ nodes:
     id: aefa6362-0e1b-4e7f-81db-1ccc856bb2f0
     content: Backlog
     children:
+      - d4dab575-76d3-493b-893a-5d758ba9b84c
       - c5a7860c-e6ba-40ed-99c3-c0f2883e516c
       - e31a700c-3788-44b5-a878-3f3f2ca942c4
       - 1e783002-84bd-4595-abbc-db715f941a18
@@ -115291,6 +115293,7 @@ nodes:
       - c11d295d-dba8-435a-97aa-e3809786cb4b
     metadata:
       status: pending
+      expanded: false
   c11d295d-dba8-435a-97aa-e3809786cb4b:
     id: c11d295d-dba8-435a-97aa-e3809786cb4b
     content: Or at least say - advanced features only work with Opus 4.5+, ideally 4.7
@@ -115883,12 +115886,13 @@ nodes:
     id: 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
     content: Prevent silent data loss between workflow steps in feedback prompts
     children:
-      - bc02df7e-5c50-4f7d-9de9-a5784f1d835b
-      - c9d8bab7-67e7-4ae4-93f0-fe1cf3ff74e7
-      - 9fd31aac-e500-47b4-a139-082a76743d82
-      - 304ea8b6-b7a2-4bb0-9899-de46fe6b6c00
-      - 1247849c-e935-4798-aa37-9cc66445a5a6
-      - c0790539-ac96-4a65-b8de-698266c72fa6
+      - ad050c2f-74d0-4c2b-899c-2b1893b5f3e3
+      - 108253ea-227f-4f36-b08d-9179436d63e9
+      - fccc0e50-e637-4644-a32d-ac39527f477b
+      - fee35694-888d-4a00-846d-37f73085270e
+      - 9f47f005-f4ee-449b-b417-4e41c632056f
+      - b0892c48-97e0-4c78-ae43-35df7e9b631c
+      - 973addb0-3992-4d01-9263-b911b8b36414
     metadata:
       status: pending
       expanded: false
@@ -116282,18 +116286,110 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bc02df7e-5c50-4f7d-9de9-a5784f1d835b:
-    id: bc02df7e-5c50-4f7d-9de9-a5784f1d835b
+  d4dab575-76d3-493b-893a-5d758ba9b84c:
+    id: d4dab575-76d3-493b-893a-5d758ba9b84c
+    content: Recursive learning
+    children:
+      - d022f7da-e919-469e-b242-a6e120f95f09
+      - c38f4ca3-d34f-4020-bcae-47f798da149e
+    metadata:
+      status: pending
+      expanded: false
+  d022f7da-e919-469e-b242-a6e120f95f09:
+    id: d022f7da-e919-469e-b242-a6e120f95f09
+    content: Create a context at the end that analyses the session and suggests improvements that may have been made in the context or instructions sent or other methods that might have improved it.
+    children:
+      - c065cde9-5c96-4757-b375-2822c3088b1d
+      - 3d4957e8-0170-4d40-87f1-a0faf10951c0
+      - 31067c54-2f62-43bd-9fb6-f402aa7e1ac8
+    metadata:
+      status: pending
+      expanded: false
+  c065cde9-5c96-4757-b375-2822c3088b1d:
+    id: c065cde9-5c96-4757-b375-2822c3088b1d
+    content: Minimize to 4 short suggestions
+    children: []
+    metadata:
+      status: pending
+  3d4957e8-0170-4d40-87f1-a0faf10951c0:
+    id: 3d4957e8-0170-4d40-87f1-a0faf10951c0
+    content: Create a separate node for these
+    children:
+      - ee84c981-40a7-4483-a5b5-30a198612833
+      - c5d0156f-9f07-4ba0-beb4-1db8397870f2
+    metadata:
+      status: pending
+  31067c54-2f62-43bd-9fb6-f402aa7e1ac8:
+    id: 31067c54-2f62-43bd-9fb6-f402aa7e1ac8
+    content: Implies sending with MCP
+    children: []
+    metadata:
+      status: pending
+  ee84c981-40a7-4483-a5b5-30a198612833:
+    id: ee84c981-40a7-4483-a5b5-30a198612833
+    content: Can be a cumulative suggestion base
+    children: []
+    metadata:
+      status: pending
+  c5d0156f-9f07-4ba0-beb4-1db8397870f2:
+    id: c5d0156f-9f07-4ba0-beb4-1db8397870f2
+    content: Can scan it to avoid duplication
+    children:
+      - bb6a9f2c-40cb-4efa-a1da-f6b98b526e88
+    metadata:
+      status: pending
+  bb6a9f2c-40cb-4efa-a1da-f6b98b526e88:
+    id: bb6a9f2c-40cb-4efa-a1da-f6b98b526e88
+    content: And build on existing feedbacks
+    children: []
+    metadata:
+      status: pending
+  c38f4ca3-d34f-4020-bcae-47f798da149e:
+    id: c38f4ca3-d34f-4020-bcae-47f798da149e
+    content: Can also use this to log bugs/refactors outside the scope of the current effort
+    children: []
+    metadata:
+      status: pending
+  f4e74183-728d-4eea-ba34-725257462589:
+    id: f4e74183-728d-4eea-ba34-725257462589
+    content: What about multiple projects ?
+    children:
+      - 807fa23c-811c-4668-9885-70f80dba44ff
+      - 9d2cb504-4471-43ce-925a-c471fac61a60
+      - e51e766c-6c9d-4bad-85a6-e607873f7b7f
+    metadata:
+      status: pending
+      expanded: false
+  807fa23c-811c-4668-9885-70f80dba44ff:
+    id: 807fa23c-811c-4668-9885-70f80dba44ff
+    content: Up to user, can always set path in root dev folder for example
+    children: []
+    metadata:
+      status: pending
+  9d2cb504-4471-43ce-925a-c471fac61a60:
+    id: 9d2cb504-4471-43ce-925a-c471fac61a60
+    content: No obligation to set a project path
+    children: []
+    metadata:
+      status: pending
+  e51e766c-6c9d-4bad-85a6-e607873f7b7f:
+    id: e51e766c-6c9d-4bad-85a6-e607873f7b7f
+    content: Can be just a setting - if it's blank, it's the home folder
+    children: []
+    metadata:
+      status: pending
+  ad050c2f-74d0-4c2b-899c-2b1893b5f3e3:
+    id: ad050c2f-74d0-4c2b-899c-2b1893b5f3e3
     content: worktree
     children:
-      - ac6d2b93-aa26-4679-a1a0-81bbf09f824b
+      - e456e6c9-8392-4c32-9245-b57abf40fb3d
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ac6d2b93-aa26-4679-a1a0-81bbf09f824b:
-    id: ac6d2b93-aa26-4679-a1a0-81bbf09f824b
+  e456e6c9-8392-4c32-9245-b57abf40fb3d:
+    id: e456e6c9-8392-4c32-9245-b57abf40fb3d
     content: vscode://file/Users/brianfox/dev/Arborescent-feedback-data-loss
     children: []
     metadata:
@@ -116301,35 +116397,35 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c9d8bab7-67e7-4ae4-93f0-fe1cf3ff74e7:
-    id: c9d8bab7-67e7-4ae4-93f0-fe1cf3ff74e7
+  108253ea-227f-4f36-b08d-9179436d63e9:
+    id: 108253ea-227f-4f36-b08d-9179436d63e9
     content: 📄 Product spec
     children:
-      - a806432e-010e-4e8d-9574-7f670ae8079f
-      - b70670b8-7833-4211-a51b-1d64738a5c13
-      - 5c64c0dd-7e88-423a-9610-aca0d4d57e88
-      - 16c3f53c-8931-4ee6-9e53-0d4461f28786
-      - 30f63271-ed74-46fd-8b21-4ced0f951ba8
-      - 345951c1-20cc-4030-8020-89ae9acb9671
+      - ab56dbf3-3457-4fcb-89b7-1badd3d33526
+      - 1bd03a14-db84-4baa-819a-bf9bd9e423ce
+      - 70884435-69c6-43f3-b1e8-a27628a4059a
+      - 2fb193c5-ac83-4a52-b521-6a265870e45d
+      - d801726f-a564-40eb-a0a6-4ee77eef956b
+      - e27332b5-59a9-41b9-86c6-7114246b953f
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  a806432e-010e-4e8d-9574-7f670ae8079f:
-    id: a806432e-010e-4e8d-9574-7f670ae8079f
+  ab56dbf3-3457-4fcb-89b7-1badd3d33526:
+    id: ab56dbf3-3457-4fcb-89b7-1badd3d33526
     content: Context
     children:
-      - e1d596fb-fb4b-4365-8739-bce49caa3c7c
-      - 863d57ae-d81a-494a-a90e-e124cb09005c
-      - cd788efe-3cd7-4db2-bd63-0e6af996d2d6
+      - e7ecf807-6ea1-42b6-a849-3fe4c4922543
+      - fce49a1d-8a4a-45b9-9cf0-61eb5b087a9d
+      - 6f736e1b-95f3-42c3-b2a1-ff42b4b97858
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  e1d596fb-fb4b-4365-8739-bce49caa3c7c:
-    id: e1d596fb-fb4b-4365-8739-bce49caa3c7c
+  e7ecf807-6ea1-42b6-a849-3fe4c4922543:
+    id: e7ecf807-6ea1-42b6-a849-3fe4c4922543
     content: Arborescent chains multi-step prompts where each step receives the previous step's output as CONTENT
     children: []
     metadata:
@@ -116337,8 +116433,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  863d57ae-d81a-494a-a90e-e124cb09005c:
-    id: 863d57ae-d81a-494a-a90e-e124cb09005c
+  fce49a1d-8a4a-45b9-9cf0-61eb5b087a9d:
+    id: fce49a1d-8a4a-45b9-9cf0-61eb5b087a9d
     content: The parser preparing CONTENT preserves only markdown heading lines and silently drops paragraph lines
     children: []
     metadata:
@@ -116346,8 +116442,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cd788efe-3cd7-4db2-bd63-0e6af996d2d6:
-    id: cd788efe-3cd7-4db2-bd63-0e6af996d2d6
+  6f736e1b-95f3-42c3-b2a1-ff42b4b97858:
+    id: 6f736e1b-95f3-42c3-b2a1-ff42b4b97858
     content: Step copy and OUTPUT FORMAT rules do not advertise this restriction, so the assistant can write values that vanish
     children: []
     metadata:
@@ -116355,18 +116451,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b70670b8-7833-4211-a51b-1d64738a5c13:
-    id: b70670b8-7833-4211-a51b-1d64738a5c13
+  1bd03a14-db84-4baa-819a-bf9bd9e423ce:
+    id: 1bd03a14-db84-4baa-819a-bf9bd9e423ce
     content: User
     children:
-      - dd0f0a0e-2318-4bf8-9009-981a978fa148
+      - 81177c3e-4f47-490c-84d6-fd03c0e461c8
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  dd0f0a0e-2318-4bf8-9009-981a978fa148:
-    id: dd0f0a0e-2318-4bf8-9009-981a978fa148
+  81177c3e-4f47-490c-84d6-fd03c0e461c8:
+    id: 81177c3e-4f47-490c-84d6-fd03c0e461c8
     content: Arborescent user running multi-step workflows that need values produced in one step to be available in later steps
     children: []
     metadata:
@@ -116374,20 +116470,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5c64c0dd-7e88-423a-9610-aca0d4d57e88:
-    id: 5c64c0dd-7e88-423a-9610-aca0d4d57e88
+  70884435-69c6-43f3-b1e8-a27628a4059a:
+    id: 70884435-69c6-43f3-b1e8-a27628a4059a
     content: Current experience
     children:
-      - 52883d8c-5d38-4645-b51b-acb3cbd35afd
-      - 09d4c1e5-9ebd-4cd3-b16c-295eb231501e
-      - d02d99df-7213-435b-a994-73a777334761
+      - 5540b4f4-c0b3-45d6-96de-a88189c78293
+      - d36bb246-1861-46b6-bd54-b02ae236710a
+      - 85cf3fb2-521c-4fed-ba2a-b3ffb1d9bff4
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  52883d8c-5d38-4645-b51b-acb3cbd35afd:
-    id: 52883d8c-5d38-4645-b51b-acb3cbd35afd
+  5540b4f4-c0b3-45d6-96de-a88189c78293:
+    id: 5540b4f4-c0b3-45d6-96de-a88189c78293
     content: A step instructs the assistant to record a value "underneath" a node
     children: []
     metadata:
@@ -116395,8 +116491,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  09d4c1e5-9ebd-4cd3-b16c-295eb231501e:
-    id: 09d4c1e5-9ebd-4cd3-b16c-295eb231501e
+  d36bb246-1861-46b6-bd54-b02ae236710a:
+    id: d36bb246-1861-46b6-bd54-b02ae236710a
     content: The assistant writes the value as a plain paragraph line beneath the heading
     children: []
     metadata:
@@ -116404,8 +116500,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d02d99df-7213-435b-a994-73a777334761:
-    id: d02d99df-7213-435b-a994-73a777334761
+  85cf3fb2-521c-4fed-ba2a-b3ffb1d9bff4:
+    id: 85cf3fb2-521c-4fed-ba2a-b3ffb1d9bff4
     content: The next step receives CONTENT with only the heading and no value, with no warning that data was lost
     children: []
     metadata:
@@ -116413,18 +116509,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  16c3f53c-8931-4ee6-9e53-0d4461f28786:
-    id: 16c3f53c-8931-4ee6-9e53-0d4461f28786
+  2fb193c5-ac83-4a52-b521-6a265870e45d:
+    id: 2fb193c5-ac83-4a52-b521-6a265870e45d
     content: Goal
     children:
-      - cb6544ea-5562-4265-994f-0868f61fbaf3
+      - 2b85962e-d679-4400-a5ca-e3e981f6eab1
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  cb6544ea-5562-4265-994f-0868f61fbaf3:
-    id: cb6544ea-5562-4265-994f-0868f61fbaf3
+  2b85962e-d679-4400-a5ca-e3e981f6eab1:
+    id: 2b85962e-d679-4400-a5ca-e3e981f6eab1
     content: Values the assistant is asked to persist always reach the next workflow step
     children: []
     metadata:
@@ -116432,21 +116528,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  30f63271-ed74-46fd-8b21-4ced0f951ba8:
-    id: 30f63271-ed74-46fd-8b21-4ced0f951ba8
+  d801726f-a564-40eb-a0a6-4ee77eef956b:
+    id: d801726f-a564-40eb-a0a6-4ee77eef956b
     content: Business rules
     children:
-      - cb1339d3-83f3-46b4-9ac9-6762fa0326ca
-      - ca3ec2e5-8b8a-469f-9423-4ae8dce1d343
-      - c3245a95-a18d-4e4b-99a4-5e47640544e1
-      - 27e21a87-e7f9-4926-a50f-5c2bf80ef375
+      - d5b59ee2-ea8a-4617-88a3-0b4f78d94d23
+      - fbfcccbc-1a70-44fd-8f0d-a9862d3ca375
+      - 0b14d537-d2ef-44d2-922e-3cd197b4c088
+      - cdaa1305-5504-42ed-894b-13e793161fa4
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  cb1339d3-83f3-46b4-9ac9-6762fa0326ca:
-    id: cb1339d3-83f3-46b4-9ac9-6762fa0326ca
+  d5b59ee2-ea8a-4617-88a3-0b4f78d94d23:
+    id: d5b59ee2-ea8a-4617-88a3-0b4f78d94d23
     content: 1. OUTPUT FORMAT must state that only heading lines persist between steps and all other content is discarded
     children: []
     metadata:
@@ -116454,8 +116550,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ca3ec2e5-8b8a-469f-9423-4ae8dce1d343:
-    id: ca3ec2e5-8b8a-469f-9423-4ae8dce1d343
+  fbfcccbc-1a70-44fd-8f0d-a9862d3ca375:
+    id: fbfcccbc-1a70-44fd-8f0d-a9862d3ca375
     content: 2. OUTPUT FORMAT must include at least one worked example showing a text value captured as its own heading line
     children: []
     metadata:
@@ -116463,8 +116559,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c3245a95-a18d-4e4b-99a4-5e47640544e1:
-    id: c3245a95-a18d-4e4b-99a4-5e47640544e1
+  0b14d537-d2ef-44d2-922e-3cd197b4c088:
+    id: 0b14d537-d2ef-44d2-922e-3cd197b4c088
     content: 3. Built-in step copy must use "as a child node" wording rather than spatial words like "underneath" or "below" when persistence is required
     children: []
     metadata:
@@ -116472,8 +116568,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  27e21a87-e7f9-4926-a50f-5c2bf80ef375:
-    id: 27e21a87-e7f9-4926-a50f-5c2bf80ef375
+  cdaa1305-5504-42ed-894b-13e793161fa4:
+    id: cdaa1305-5504-42ed-894b-13e793161fa4
     content: 4. The parser must emit a non-blocking warning whenever it drops non-heading content, naming the dropped line, so data loss is detectable
     children: []
     metadata:
@@ -116481,23 +116577,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  345951c1-20cc-4030-8020-89ae9acb9671:
-    id: 345951c1-20cc-4030-8020-89ae9acb9671
+  e27332b5-59a9-41b9-86c6-7114246b953f:
+    id: e27332b5-59a9-41b9-86c6-7114246b953f
     content: Acceptance criteria
     children:
-      - d2044b24-0302-4db0-a9f8-f71f0150111b
-      - b0450876-dd81-4907-be33-5b90dfb0c173
-      - d32efa05-3e25-4b15-ae24-f5a2a1edfa1d
-      - ab4dc90f-3af8-4bc8-98c9-1d16d0b6dd4e
-      - 4ef40289-d423-45b3-ad30-a2d11654f4a9
-      - 9d8994bf-342e-4c93-959a-501436ad5a2e
+      - c6a4f07b-b033-460b-8846-0fcc13996abc
+      - 36028ab1-ecd2-42b7-8a82-730bf15e621d
+      - bf4c02af-20d6-4139-896c-d4195943e703
+      - a2848770-9fe8-49d9-a0fe-f3aba16c7992
+      - b5ad45dc-97fd-4a49-b37d-0c49c7f167f5
+      - cda06dc6-e5c2-4e03-b08f-a917aeeb1466
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d2044b24-0302-4db0-a9f8-f71f0150111b:
-    id: d2044b24-0302-4db0-a9f8-f71f0150111b
+  c6a4f07b-b033-460b-8846-0fcc13996abc:
+    id: c6a4f07b-b033-460b-8846-0fcc13996abc
     content: OUTPUT FORMAT in the feedback prompt explicitly states non-heading lines are discarded between steps
     children: []
     metadata:
@@ -116505,8 +116601,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b0450876-dd81-4907-be33-5b90dfb0c173:
-    id: b0450876-dd81-4907-be33-5b90dfb0c173
+  36028ab1-ecd2-42b7-8a82-730bf15e621d:
+    id: 36028ab1-ecd2-42b7-8a82-730bf15e621d
     content: OUTPUT FORMAT includes a worked example of a text value captured as its own heading line
     children: []
     metadata:
@@ -116514,8 +116610,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d32efa05-3e25-4b15-ae24-f5a2a1edfa1d:
-    id: d32efa05-3e25-4b15-ae24-f5a2a1edfa1d
+  bf4c02af-20d6-4139-896c-d4195943e703:
+    id: bf4c02af-20d6-4139-896c-d4195943e703
     content: All built-in step templates that require value persistence use "as a child node" wording, with no "underneath" or "below" remaining
     children: []
     metadata:
@@ -116523,8 +116619,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ab4dc90f-3af8-4bc8-98c9-1d16d0b6dd4e:
-    id: ab4dc90f-3af8-4bc8-98c9-1d16d0b6dd4e
+  a2848770-9fe8-49d9-a0fe-f3aba16c7992:
+    id: a2848770-9fe8-49d9-a0fe-f3aba16c7992
     content: Parser logs a structured warning when it drops non-heading content, including the dropped line content
     children: []
     metadata:
@@ -116532,8 +116628,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4ef40289-d423-45b3-ad30-a2d11654f4a9:
-    id: 4ef40289-d423-45b3-ad30-a2d11654f4a9
+  b5ad45dc-97fd-4a49-b37d-0c49c7f167f5:
+    id: b5ad45dc-97fd-4a49-b37d-0c49c7f167f5
     content: 'Regression test passes: a two-step workflow whose step 1 emits a text value preserves that value into step 2 CONTENT'
     children: []
     metadata:
@@ -116541,8 +116637,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9d8994bf-342e-4c93-959a-501436ad5a2e:
-    id: 9d8994bf-342e-4c93-959a-501436ad5a2e
+  cda06dc6-e5c2-4e03-b08f-a917aeeb1466:
+    id: cda06dc6-e5c2-4e03-b08f-a917aeeb1466
     content: Existing workflows that already used headings correctly continue to pass unchanged
     children: []
     metadata:
@@ -116550,32 +116646,32 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9fd31aac-e500-47b4-a139-082a76743d82:
-    id: 9fd31aac-e500-47b4-a139-082a76743d82
+  fccc0e50-e637-4644-a32d-ac39527f477b:
+    id: fccc0e50-e637-4644-a32d-ac39527f477b
     content: 🔧 Implementation proposal
     children:
-      - 022c0cdd-079f-452b-85b6-aa7d1203864d
-      - 70f1e195-4d71-45b0-acec-030d612ed720
-      - 06ad8c89-9886-4cb5-918e-95dfe1e52129
+      - 59f0c0ea-2c3c-42de-a112-a46ab10da2c2
+      - e3f470d8-68c6-43bb-b6b6-3bf3cf6ede4a
+      - 07c52927-f8ed-4818-b0f7-5d466583172c
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  022c0cdd-079f-452b-85b6-aa7d1203864d:
-    id: 022c0cdd-079f-452b-85b6-aa7d1203864d
+  59f0c0ea-2c3c-42de-a112-a46ab10da2c2:
+    id: 59f0c0ea-2c3c-42de-a112-a46ab10da2c2
     content: Approach
     children:
-      - 767e3d46-8ab6-4a50-914f-05a4f61b2273
-      - e1a9b663-7229-40d6-b433-0c030c608b28
-      - f5b9eb9a-58fe-49e1-bf38-2429c2500083
+      - 5dad63e2-6475-4b5c-acb7-06ddd5a04c15
+      - f1fd1a61-03ed-446e-91c9-a220e248a0b8
+      - 614b09ec-44dd-48f0-adb3-0beb2e798a20
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  767e3d46-8ab6-4a50-914f-05a4f61b2273:
-    id: 767e3d46-8ab6-4a50-914f-05a4f61b2273
+  5dad63e2-6475-4b5c-acb7-06ddd5a04c15:
+    id: 5dad63e2-6475-4b5c-acb7-06ddd5a04c15
     content: Edit the feedback prompt template's OUTPUT FORMAT block to add the persistence rule and a value-as-heading example
     children: []
     metadata:
@@ -116583,8 +116679,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e1a9b663-7229-40d6-b433-0c030c608b28:
-    id: e1a9b663-7229-40d6-b433-0c030c608b28
+  f1fd1a61-03ed-446e-91c9-a220e248a0b8:
+    id: f1fd1a61-03ed-446e-91c9-a220e248a0b8
     content: Sweep built-in step templates and replace spatial wording with "as a child node" where the assistant must persist a value
     children: []
     metadata:
@@ -116592,8 +116688,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f5b9eb9a-58fe-49e1-bf38-2429c2500083:
-    id: f5b9eb9a-58fe-49e1-bf38-2429c2500083
+  614b09ec-44dd-48f0-adb3-0beb2e798a20:
+    id: 614b09ec-44dd-48f0-adb3-0beb2e798a20
     content: Add a warning path in the markdown-to-tree parser that records dropped non-heading lines and forwards them to the logging surface
     children: []
     metadata:
@@ -116601,22 +116697,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  70f1e195-4d71-45b0-acec-030d612ed720:
-    id: 70f1e195-4d71-45b0-acec-030d612ed720
+  e3f470d8-68c6-43bb-b6b6-3bf3cf6ede4a:
+    id: e3f470d8-68c6-43bb-b6b6-3bf3cf6ede4a
     content: Touchpoints
     children:
-      - f933b4d3-2591-4ebd-808f-29af5281ca48
-      - f8686b2d-15df-40bc-87f4-f5b236a34ac0
-      - 6b1028c8-24d8-4de0-b519-e8227f63eb6e
-      - a34061e7-26e2-4a5f-b116-3fc3f36be492
-      - 898b4249-5abd-4923-866d-f4b1a209fe6b
+      - 865b242e-9560-4621-a94a-4e6893c591fb
+      - c97b6b57-58e0-4772-928a-9f8c478711db
+      - f68f2d2d-dccd-4df6-8884-72480753cdd1
+      - 2d9901b3-d508-449f-8285-b4307ea1b6dc
+      - 77b516b7-d5cb-426c-bcb7-980e56097f9b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f933b4d3-2591-4ebd-808f-29af5281ca48:
-    id: f933b4d3-2591-4ebd-808f-29af5281ca48
+  865b242e-9560-4621-a94a-4e6893c591fb:
+    id: 865b242e-9560-4621-a94a-4e6893c591fb
     content: Feedback prompt template OUTPUT FORMAT section and examples
     children: []
     metadata:
@@ -116624,8 +116720,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f8686b2d-15df-40bc-87f4-f5b236a34ac0:
-    id: f8686b2d-15df-40bc-87f4-f5b236a34ac0
+  c97b6b57-58e0-4772-928a-9f8c478711db:
+    id: c97b6b57-58e0-4772-928a-9f8c478711db
     content: Built-in workflow step library wording
     children: []
     metadata:
@@ -116633,8 +116729,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6b1028c8-24d8-4de0-b519-e8227f63eb6e:
-    id: 6b1028c8-24d8-4de0-b519-e8227f63eb6e
+  f68f2d2d-dccd-4df6-8884-72480753cdd1:
+    id: f68f2d2d-dccd-4df6-8884-72480753cdd1
     content: Markdown-to-tree parser in shared/
     children: []
     metadata:
@@ -116642,8 +116738,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a34061e7-26e2-4a5f-b116-3fc3f36be492:
-    id: a34061e7-26e2-4a5f-b116-3fc3f36be492
+  2d9901b3-d508-449f-8285-b4307ea1b6dc:
+    id: 2d9901b3-d508-449f-8285-b4307ea1b6dc
     content: Parser unit tests and a two-step workflow integration test
     children: []
     metadata:
@@ -116651,8 +116747,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  898b4249-5abd-4923-866d-f4b1a209fe6b:
-    id: 898b4249-5abd-4923-866d-f4b1a209fe6b
+  77b516b7-d5cb-426c-bcb7-980e56097f9b:
+    id: 77b516b7-d5cb-426c-bcb7-980e56097f9b
     content: Console logging surface for the dropped-content warning
     children: []
     metadata:
@@ -116660,19 +116756,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  06ad8c89-9886-4cb5-918e-95dfe1e52129:
-    id: 06ad8c89-9886-4cb5-918e-95dfe1e52129
+  07c52927-f8ed-4818-b0f7-5d466583172c:
+    id: 07c52927-f8ed-4818-b0f7-5d466583172c
     content: Constraints to call out
     children:
-      - 52986dc4-27ca-4718-baaf-c82ae62e5f57
-      - 643d0fea-33a1-4cab-baba-03cdb420e274
+      - 4bd53241-7e8d-46b4-8fdc-ab8fe5422305
+      - d4c708b7-a91d-469d-a821-75b1679864d6
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  52986dc4-27ca-4718-baaf-c82ae62e5f57:
-    id: 52986dc4-27ca-4718-baaf-c82ae62e5f57
+  4bd53241-7e8d-46b4-8fdc-ab8fe5422305:
+    id: 4bd53241-7e8d-46b4-8fdc-ab8fe5422305
     content: User-authored workflows may rely on existing wording — the warning must stay non-blocking and not fail the step
     children: []
     metadata:
@@ -116680,8 +116776,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  643d0fea-33a1-4cab-baba-03cdb420e274:
-    id: 643d0fea-33a1-4cab-baba-03cdb420e274
+  d4c708b7-a91d-469d-a821-75b1679864d6:
+    id: d4c708b7-a91d-469d-a821-75b1679864d6
     content: Prompt changes only take effect for new step executions, not in-flight runs already mid-workflow
     children: []
     metadata:
@@ -116689,29 +116785,29 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  304ea8b6-b7a2-4bb0-9899-de46fe6b6c00:
-    id: 304ea8b6-b7a2-4bb0-9899-de46fe6b6c00
+  fee35694-888d-4a00-846d-37f73085270e:
+    id: fee35694-888d-4a00-846d-37f73085270e
     content: Splitting decision
     children:
-      - 7e47f24f-026b-4f24-8214-dcfdbb092841
+      - f41a4272-27be-48ae-a1ae-7f20248a3306
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  7e47f24f-026b-4f24-8214-dcfdbb092841:
-    id: 7e47f24f-026b-4f24-8214-dcfdbb092841
+  f41a4272-27be-48ae-a1ae-7f20248a3306:
+    id: f41a4272-27be-48ae-a1ae-7f20248a3306
     content: Ship as a single chunk
     children:
-      - dd0e381c-374f-4ba1-8c2f-1bc7f7b5f0b5
-      - 196a5be0-aaaa-4266-9c5a-8a069f5b7387
+      - da65ec60-0c9c-4a7b-80b9-678a9711e212
+      - c484d7bc-6baf-4df0-80d9-560110c1d6bd
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  dd0e381c-374f-4ba1-8c2f-1bc7f7b5f0b5:
-    id: dd0e381c-374f-4ba1-8c2f-1bc7f7b5f0b5
+  da65ec60-0c9c-4a7b-80b9-678a9711e212:
+    id: da65ec60-0c9c-4a7b-80b9-678a9711e212
     content: Prompt copy fix and parser warning together solve the reported bug — neither is independently valuable to users
     children: []
     metadata:
@@ -116719,8 +116815,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  196a5be0-aaaa-4266-9c5a-8a069f5b7387:
-    id: 196a5be0-aaaa-4266-9c5a-8a069f5b7387
+  c484d7bc-6baf-4df0-80d9-560110c1d6bd:
+    id: c484d7bc-6baf-4df0-80d9-560110c1d6bd
     content: No feature-flag boundary or independent PM review value justifies a split
     children: []
     metadata:
@@ -116728,20 +116824,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1247849c-e935-4798-aa37-9cc66445a5a6:
-    id: 1247849c-e935-4798-aa37-9cc66445a5a6
+  9f47f005-f4ee-449b-b417-4e41c632056f:
+    id: 9f47f005-f4ee-449b-b417-4e41c632056f
     content: Challenges and pushback
     children:
-      - aa971a69-3dd3-4ca9-b49e-2e51c589efeb
-      - 4cc5ba1f-ea65-4829-a6d2-b9345fb58cc7
-      - ac446425-7b4b-4e26-a085-3c9eaa393a4c
+      - 6c224e83-8695-485d-86c4-1e8cd9e54501
+      - 571a4b7a-75b6-4f7a-a765-acd25091ca34
+      - 48a7c815-34bc-410a-98d8-f22e057d7d07
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  aa971a69-3dd3-4ca9-b49e-2e51c589efeb:
-    id: aa971a69-3dd3-4ca9-b49e-2e51c589efeb
+  6c224e83-8695-485d-86c4-1e8cd9e54501:
+    id: 6c224e83-8695-485d-86c4-1e8cd9e54501
     content: The parser warning has the lowest ROI of the three changes — prompt copy fixes remove the root cause at the source
     children: []
     metadata:
@@ -116749,8 +116845,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4cc5ba1f-ea65-4829-a6d2-b9345fb58cc7:
-    id: 4cc5ba1f-ea65-4829-a6d2-b9345fb58cc7
+  571a4b7a-75b6-4f7a-a765-acd25091ca34:
+    id: 571a4b7a-75b6-4f7a-a765-acd25091ca34
     content: Keep the warning console-only in v1 to avoid noisy modals — promote to a UI indicator only if the bug recurs after the prompt fixes ship
     children: []
     metadata:
@@ -116758,8 +116854,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ac446425-7b4b-4e26-a085-3c9eaa393a4c:
-    id: ac446425-7b4b-4e26-a085-3c9eaa393a4c
+  48a7c815-34bc-410a-98d8-f22e057d7d07:
+    id: 48a7c815-34bc-410a-98d8-f22e057d7d07
     content: No scope additions proposed — resist expanding into a broader parser rewrite or richer block-preservation model
     children: []
     metadata:
@@ -116767,34 +116863,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c0790539-ac96-4a65-b8de-698266c72fa6:
-    id: c0790539-ac96-4a65-b8de-698266c72fa6
+  b0892c48-97e0-4c78-ae43-35df7e9b631c:
+    id: b0892c48-97e0-4c78-ae43-35df7e9b631c
     content: Technical refinement
     children:
-      - 9ac50863-d16b-4836-a849-e2dd42181c6d
-      - 26c3de7d-d03d-4200-a2e2-d77c1cb0b31d
+      - 40694cbf-b398-480d-a984-3b5e0de08899
+      - 586ae34d-690a-478a-a053-1ac7f7ce5a76
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  9ac50863-d16b-4836-a849-e2dd42181c6d:
-    id: 9ac50863-d16b-4836-a849-e2dd42181c6d
+  40694cbf-b398-480d-a984-3b5e0de08899:
+    id: 40694cbf-b398-480d-a984-3b5e0de08899
     content: Complications
     children:
-      - 9766e72c-86f3-4118-a56c-26dbbd8f4503
-      - 3839eb59-9d9e-4bb7-9ed5-c318e4b0ec0e
-      - 92547e4d-63dd-44d6-9d36-932fb874fc3d
-      - 54708a57-2a2d-4c5a-9da2-4223d8001472
-      - 2a2f2b62-4d77-4afa-ac0a-7d2c10457659
-      - 8041134a-e6ef-41e7-9d2d-19de1d5156f1
+      - 9d018462-196b-4c05-8551-04da9c77b0ce
+      - e970a793-400e-4609-8a77-a08ad268e117
+      - fb41a49e-886e-4834-a066-c28ade8f9601
+      - 52db59d8-c458-43ec-82e2-2537b33063f4
+      - 33faf44d-571a-4524-94c9-f7a209729099
+      - afceba54-b9d8-4cae-af0c-1480ec65ee13
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  9766e72c-86f3-4118-a56c-26dbbd8f4503:
-    id: 9766e72c-86f3-4118-a56c-26dbbd8f4503
+  9d018462-196b-4c05-8551-04da9c77b0ce:
+    id: 9d018462-196b-4c05-8551-04da9c77b0ce
     content: Two OUTPUT FORMAT constants exist in src/renderer/store/tree/actions/sendActions.ts (SINGLE_ROOT and DECOMPOSITION variants) — both need the new persistence rule and example, not just one
     children: []
     metadata:
@@ -116802,8 +116898,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3839eb59-9d9e-4bb7-9ed5-c318e4b0ec0e:
-    id: 3839eb59-9d9e-4bb7-9ed5-c318e4b0ec0e
+  e970a793-400e-4609-8a77-a08ad268e117:
+    id: e970a793-400e-4609-8a77-a08ad268e117
     content: Grep for "underneath"/"below" in src/renderer/services/feedback and src/renderer/data returned no hits — rule 3 has no targets in our own copy and effectively reduces to a docs convention for user-authored steps, which we cannot enforce at runtime
     children: []
     metadata:
@@ -116811,8 +116907,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  92547e4d-63dd-44d6-9d36-932fb874fc3d:
-    id: 92547e4d-63dd-44d6-9d36-932fb874fc3d
+  fb41a49e-886e-4834-a066-c28ade8f9601:
+    id: fb41a49e-886e-4834-a066-c28ade8f9601
     content: The parser at src/renderer/utils/markdown.ts has no warning sink today — console.warn is the only cheap path and may be invisible in autonomous/terminal flows where stdout is not surfaced to the user
     children: []
     metadata:
@@ -116820,8 +116916,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  54708a57-2a2d-4c5a-9da2-4223d8001472:
-    id: 54708a57-2a2d-4c5a-9da2-4223d8001472
+  52db59d8-c458-43ec-82e2-2537b33063f4:
+    id: 52db59d8-c458-43ec-82e2-2537b33063f4
     content: 'Edge case not in acceptance criteria: indented list items, fenced code blocks, and blockquotes are all dropped by parseLine alongside paragraphs — decide whether the warning covers all non-heading lines or only paragraph text'
     children: []
     metadata:
@@ -116829,8 +116925,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2a2f2b62-4d77-4afa-ac0a-7d2c10457659:
-    id: 2a2f2b62-4d77-4afa-ac0a-7d2c10457659
+  33faf44d-571a-4524-94c9-f7a209729099:
+    id: 33faf44d-571a-4524-94c9-f7a209729099
     content: 'Explicitly out of scope: a parser rewrite to preserve non-heading content as node bodies, and any IPC/store/UI work to surface warnings as toasts'
     children: []
     metadata:
@@ -116838,8 +116934,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8041134a-e6ef-41e7-9d2d-19de1d5156f1:
-    id: 8041134a-e6ef-41e7-9d2d-19de1d5156f1
+  afceba54-b9d8-4cae-af0c-1480ec65ee13:
+    id: afceba54-b9d8-4cae-af0c-1480ec65ee13
     content: 'ROI flag: the parser warning is the lowest-leverage piece — prompt fixes alone should close most recurrences; consider dropping the warning from v1 if implementation cost grows'
     children: []
     metadata:
@@ -116847,20 +116943,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  26c3de7d-d03d-4200-a2e2-d77c1cb0b31d:
-    id: 26c3de7d-d03d-4200-a2e2-d77c1cb0b31d
+  586ae34d-690a-478a-a053-1ac7f7ce5a76:
+    id: 586ae34d-690a-478a-a053-1ac7f7ce5a76
     content: Approach summary
     children:
-      - 45ace0ad-817d-4406-8a66-a5ae4d57f40d
-      - 465fdf50-97ba-4f68-8163-cdaa7e474aee
-      - d3cac782-d333-489a-856a-1ab640d41c7a
+      - d3cf0202-2352-4d95-ac3f-d84e5b4ca7bb
+      - c25a9e40-ba5c-4816-8548-03b00a96006d
+      - 6792738d-8bd8-4b26-a742-a2b299d6df2e
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  45ace0ad-817d-4406-8a66-a5ae4d57f40d:
-    id: 45ace0ad-817d-4406-8a66-a5ae4d57f40d
+  d3cf0202-2352-4d95-ac3f-d84e5b4ca7bb:
+    id: d3cf0202-2352-4d95-ac3f-d84e5b4ca7bb
     content: Two OUTPUT FORMAT constants in src/renderer/store/tree/actions/sendActions.ts get the new persistence rule plus a heading-style text-value example
     children: []
     metadata:
@@ -116868,8 +116964,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  465fdf50-97ba-4f68-8163-cdaa7e474aee:
-    id: 465fdf50-97ba-4f68-8163-cdaa7e474aee
+  c25a9e40-ba5c-4816-8548-03b00a96006d:
+    id: c25a9e40-ba5c-4816-8548-03b00a96006d
     content: parseMarkdown in src/renderer/utils/markdown.ts gains a side-channel that console.warns each dropped non-empty, non-heading line — contained to one file, no new IPC or store wiring
     children: []
     metadata:
@@ -116877,9 +116973,178 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d3cac782-d333-489a-856a-1ab640d41c7a:
-    id: d3cac782-d333-489a-856a-1ab640d41c7a
+  6792738d-8bd8-4b26-a742-a2b299d6df2e:
+    id: 6792738d-8bd8-4b26-a742-a2b299d6df2e
     content: 'Surprise to flag for the reviewer: built-in step copy contains no "underneath"/"below" today, so rule 3 lands as a contributor-guideline change rather than a code sweep'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  973addb0-3992-4d01-9263-b911b8b36414:
+    id: 973addb0-3992-4d01-9263-b911b8b36414
+    content: review feedback
+    children:
+      - 21c7569f-6eab-4c07-ab47-bd01adf2e690
+      - f7d756b1-a43c-4a26-bf61-c8feff46c4fb
+      - f10235d8-94f2-45ae-9d5b-11537527229f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21c7569f-6eab-4c07-ab47-bd01adf2e690:
+    id: 21c7569f-6eab-4c07-ab47-bd01adf2e690
+    content: Important - Clipboard plain-text paste now spams logger.warn per line
+    children:
+      - 6f33a8bf-040d-4a3b-942f-af581b85e1b6
+      - 8de82816-b20e-4f9c-8475-fb3c47454f3c
+      - b33d896c-8ac3-44b1-ab4c-79f11e2f8a81
+      - d441ead3-f1fe-4d8c-86dd-c3438a892fe8
+      - db31cd9b-e2b5-4b88-9d71-0dba658a5663
+      - daa4800c-8ae8-4960-acd1-6d5876ea39f9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f33a8bf-040d-4a3b-942f-af581b85e1b6:
+    id: 6f33a8bf-040d-4a3b-942f-af581b85e1b6
+    content: handleExternalPaste in src/renderer/store/tree/actions/clipboardPasteHandlers.ts:385 feeds arbitrary clipboard text into parseMarkdown
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8de82816-b20e-4f9c-8475-fb3c47454f3c:
+    id: 8de82816-b20e-4f9c-8475-fb3c47454f3c
+    content: Pasting prose now emits N logger.warn calls before the handler cleanly returns 'no-content' (rootNodes.length === 0)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b33d896c-8ac3-44b1-ab4c-79f11e2f8a81:
+    id: b33d896c-8ac3-44b1-ab4c-79f11e2f8a81
+    content: Warnings are only useful when some content parsed and the rest was silently dropped (rootNodes.length > 0)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d441ead3-f1fe-4d8c-86dd-c3438a892fe8:
+    id: d441ead3-f1fe-4d8c-86dd-c3438a892fe8
+    content: Fix recommendation A - collect dropped lines in parseMarkdown and only emit warnings if rootNodes.length > 0
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db31cd9b-e2b5-4b88-9d71-0dba658a5663:
+    id: db31cd9b-e2b5-4b88-9d71-0dba658a5663
+    content: Fix recommendation B - short-circuit handleExternalPaste when no '#' heading appears in text
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  daa4800c-8ae8-4960-acd1-6d5876ea39f9:
+    id: daa4800c-8ae8-4960-acd1-6d5876ea39f9
+    content: Test markdown.parseMarkdownWarnings.test.ts currently codifies the noisy behavior in 'warns for each line of plain text input' — that test must flip if option A is taken
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7d756b1-a43c-4a26-bf61-c8feff46c4fb:
+    id: f7d756b1-a43c-4a26-bf61-c8feff46c4fb
+    content: Important - Decomposition-variant test is a no-op assertion
+    children:
+      - 835ac4b2-9bd9-4e90-92a1-a4c2cdbd5454
+      - 98f50b45-a8d8-46ff-8c22-5fa8794f0a6b
+      - 3f95c870-75a9-4431-8524-cb7e9b6f572b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  835ac4b2-9bd9-4e90-92a1-a4c2cdbd5454:
+    id: 835ac4b2-9bd9-4e90-92a1-a4c2cdbd5454
+    content: workflowContentPreservation.test.ts has an it() block with an empty body for the decomposition OUTPUT FORMAT test
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98f50b45-a8d8-46ff-8c22-5fa8794f0a6b:
+    id: 98f50b45-a8d8-46ff-8c22-5fa8794f0a6b
+    content: Vitest reports it green which is misleading
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f95c870-75a9-4431-8524-cb7e9b6f572b:
+    id: 3f95c870-75a9-4431-8524-cb7e9b6f572b
+    content: Fix - change it() to it.todo() so it shows as pending instead of green
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f10235d8-94f2-45ae-9d5b-11537527229f:
+    id: f10235d8-94f2-45ae-9d5b-11537527229f
+    content: Below-threshold notes (no action required)
+    children:
+      - 7a70382c-e63e-4a6e-8c63-ac7e3551b524
+      - b1a9fca1-df2d-419e-b933-6a7ec26e6fbd
+      - cf3db8b2-05e7-4f3a-86b5-19daf615785a
+      - 346ddb5b-c78f-4376-8cce-4ed406052e53
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a70382c-e63e-4a6e-8c63-ac7e3551b524:
+    id: 7a70382c-e63e-4a6e-8c63-ac7e3551b524
+    content: 'Regex ^#{1,6}(\s|$) correctly suppresses bare ## and warns on prose; behavior matches parseLine''s null-return cases'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1a9fca1-df2d-419e-b933-6a7ec26e6fbd:
+    id: b1a9fca1-df2d-419e-b933-6a7ec26e6fbd
+    content: HEADING_PERSISTENCE_RULES example indentation matches surrounding WRONG/CORRECT blocks in DECOMPOSITION_OUTPUT_FORMAT
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf3db8b2-05e7-4f3a-86b5-19daf615785a:
+    id: cf3db8b2-05e7-4f3a-86b5-19daf615785a
+    content: '"beneath" in OUTPUT FORMAT reads as the forbidden placement contrasted with the prescribed "as a child node" — not confusing in context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  346ddb5b-c78f-4376-8cce-4ed406052e53:
+    id: 346ddb5b-c78f-4376-8cce-4ed406052e53
+    content: logger.warn(message, 'parseMarkdown') matches the project's (message, context) logger contract
     children: []
     metadata:
       status: completed
