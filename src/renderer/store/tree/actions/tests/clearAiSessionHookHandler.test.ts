@@ -61,7 +61,7 @@ describe('SessionStart source:"clear" handling via registerSession', () => {
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, {
-      state: 'running' | 'awaiting-validation';
+      state: 'running' | 'awaiting-validation' | 'stuck';
       terminalTabId: string;
       needsReview?: boolean;
       collaborating?: boolean;

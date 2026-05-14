@@ -70,7 +70,7 @@ describe('createWorkflowExecutionActions', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation' | 'stuck'; terminalTabId: string; needsReview?: boolean }>;
     workflowSessionMap: Record<string, string>;
   sessionRegistry: Record<string, { cwd: string }>;
     terminalNodeAssignments: Record<string, string>;
@@ -1032,15 +1032,16 @@ describe('createWorkflowExecutionActions', () => {
   });
 
   describe('step timeout', () => {
-    it('should show timeout dialog after configured interval', () => {
+    it('transitions the node to stuck state and surfaces a Resume toast when the timeout fires', () => {
       vi.useFakeTimers();
 
       actions.startWorkflow('task-a', 'terminal-1');
 
       vi.advanceTimersByTime(10 * 60 * 1000); // 10 minutes
 
+      expect(state.workflowExecutionStates['task-a']?.state).toBe('stuck');
       expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('taking longer than expected'),
+        expect.stringContaining('stuck'),
         expect.anything(),
         expect.objectContaining({ actions: expect.any(Array) })
       );
@@ -1629,13 +1630,13 @@ describe('createWorkflowExecutionActions', () => {
       expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Review requested', expect.any(String));
     });
 
-    it('should notify alert on step timeout', () => {
+    it('notifies an alert when a step transitions to stuck via the reaper', () => {
       vi.useFakeTimers();
 
       actions.startWorkflow('task-a', 'terminal-1');
       vi.advanceTimersByTime(10 * 60 * 1000);
 
-      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Step timeout', expect.any(String));
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Workflow step stuck', expect.any(String));
 
       vi.useRealTimers();
     });

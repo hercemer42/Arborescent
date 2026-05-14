@@ -53,7 +53,7 @@ describe('workflow disruption — deletion wiring', () => {
     activeNodeId: string | null;
     cursorPosition: number;
     collaboratingNodeId: string | null;
-    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation' | 'stuck'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
   sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];

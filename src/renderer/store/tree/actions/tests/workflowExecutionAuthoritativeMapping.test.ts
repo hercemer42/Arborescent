@@ -81,7 +81,7 @@ vi.stubGlobal('window', {
 });
 
 describe('Authoritative terminal↔node mapping', () => {
-  type Entry = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean };
+  type Entry = { state: 'running' | 'awaiting-validation' | 'stuck'; terminalTabId: string; needsReview?: boolean };
   type TestState = {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;

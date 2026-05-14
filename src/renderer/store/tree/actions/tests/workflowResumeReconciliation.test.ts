@@ -86,7 +86,7 @@ vi.mock('@/services/workflowNotification', () => ({
 
 describe('Resume reconciliation and ack-retry hardening', () => {
   type Entry = {
-    state: 'running' | 'awaiting-validation';
+    state: 'running' | 'awaiting-validation' | 'stuck';
     terminalTabId: string;
     needsReview?: boolean;
     collaborating?: boolean;

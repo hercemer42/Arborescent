@@ -47,6 +47,7 @@ export type { WorkflowExecutionEntry };
 export interface WorkflowExecutionActions {
   startWorkflow: (nodeId: string, terminalId: string | null) => Promise<void>;
   stopWorkflow: (nodeId: string) => void;
+  resumeStuckNode: (nodeId: string) => void;
   continueWorkflow: (nodeId: string, terminalId: string | null) => void;
   resendStep: (nodeId: string, terminalId: string | null) => void;
   completeWorkflow: (nodeId: string) => void;
@@ -181,17 +182,7 @@ export const createWorkflowExecutionActions = (
       usePreferencesStore.getState().stepTimeoutMinutes ?? DEFAULT_STEP_TIMEOUT_MINUTES,
     isStillRunning: (nodeId) => isNodeRunning(get().workflowExecutionStates, nodeId),
     onTimeout: (nodeId) => {
-      const hasHooks = usePreferencesStore.getState().hasReceivedHookEvent;
-      const message = hasHooks
-        ? "Step is taking longer than expected. Verify your AI tool is running."
-        : "Step is taking longer than expected. Ensure Claude Code hooks are configured for automatic advancement. See docs/workflows.md for setup.";
-      useToastStore.getState().addToast(message, "warning", {
-        actions: [
-          { label: "Dismiss", onClick: () => {} },
-          { label: "Stop", onClick: () => stopWorkflow(nodeId) },
-        ],
-      });
-      void notifyWorkflowEvent("alert", "Step timeout", message);
+      markNodeStuck(nodeId);
     },
   });
 
@@ -385,7 +376,14 @@ export const createWorkflowExecutionActions = (
   function stopWorkflow(nodeId: string): void {
     const { workflowExecutionStates } = get();
     const entry = workflowExecutionStates[nodeId];
-    if (!entry || (entry.state !== "running" && entry.state !== "awaiting-validation")) return;
+    if (
+      !entry ||
+      (entry.state !== "running" &&
+        entry.state !== "awaiting-validation" &&
+        entry.state !== "stuck")
+    ) {
+      return;
+    }
 
     stepTimeouts.clear(nodeId);
     cleanupAutonomousCollaboration(nodeId);
@@ -402,7 +400,72 @@ export const createWorkflowExecutionActions = (
     logger.info(
       `Stopped workflow execution for node ${nodeId}`,
       "WorkflowExecution",
+      { nodeId },
     );
+  }
+
+  function markNodeStuck(nodeId: string): void {
+    const { workflowExecutionStates } = get();
+    const entry = workflowExecutionStates[nodeId];
+    // awaiting-validation is a user-driven gate, not a reaper concern —
+    // only running steps can be considered "stuck waiting for a hook".
+    if (!entry || entry.state !== "running") return;
+
+    stepTimeouts.clear(nodeId);
+    set({
+      workflowExecutionStates: {
+        ...workflowExecutionStates,
+        [nodeId]: {
+          ...entry,
+          state: "stuck",
+          collaborating: false,
+          stopReceived: false,
+        },
+      },
+    });
+
+    const hasHooks = usePreferencesStore.getState().hasReceivedHookEvent;
+    const message = hasHooks
+      ? "Workflow step is stuck — no completion signal received. Resume to advance to the next step (if Claude has finished), Stop to abandon."
+      : "Workflow step is stuck. Ensure Claude Code hooks are configured for automatic advancement. See docs/workflows.md for setup.";
+
+    useToastStore.getState().addToast(message, "warning", {
+      persistent: true,
+      actions: [
+        { label: "Resume", onClick: () => resumeStuckNode(nodeId) },
+        { label: "Stop", onClick: () => stopWorkflow(nodeId) },
+      ],
+    });
+    void notifyWorkflowEvent("alert", "Workflow step stuck", message);
+    logger.warn(
+      `Workflow step stuck on terminal ${entry.terminalTabId} — no hook resolution within timeout`,
+      "WorkflowExecution",
+      { nodeId },
+    );
+  }
+
+  function resumeStuckNode(nodeId: string): void {
+    const { workflowExecutionStates } = get();
+    const entry = workflowExecutionStates[nodeId];
+    if (!entry || entry.state !== "stuck") return;
+
+    // Restoring state='running' allows advanceNode's running-state guard to
+    // pass; the user clicking Resume is positive confirmation that Claude
+    // finished and the workflow should proceed, so we advance immediately
+    // rather than just restart the timer (which would deterministically
+    // time out again for any genuinely-dropped Stop).
+    set({
+      workflowExecutionStates: {
+        ...workflowExecutionStates,
+        [nodeId]: { ...entry, state: "running" },
+      },
+    });
+    logger.info(
+      `Resuming stuck workflow step on terminal ${entry.terminalTabId} — user-confirmed advance`,
+      "WorkflowExecution",
+      { nodeId },
+    );
+    advanceNode(nodeId);
   }
 
   function continueWorkflow(nodeId: string, terminalId: string | null): void {
@@ -1064,6 +1127,20 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
+    // Reaper-then-feedback race: if the step-timeout fired (transitioning to
+    // 'stuck') just before this feedback arrived, treat the feedback as
+    // positive proof that Claude finished and recover the run by putting the
+    // entry back to 'running' before accepting. The advance below then
+    // proceeds normally instead of leaving the user in a stuck→resume loop.
+    if (entry.state === "stuck") {
+      set({
+        workflowExecutionStates: {
+          ...workflowExecutionStates,
+          [nodeId]: { ...entry, state: "running", stopReceived: true },
+        },
+      });
+    }
+
     const decomposition = isDecompositionEnabled(nodeId, nodes, ancestorRegistry);
     const parsed = parseFeedbackContent(content, decomposition);
 
@@ -1133,6 +1210,7 @@ export const createWorkflowExecutionActions = (
   return {
     startWorkflow,
     stopWorkflow,
+    resumeStuckNode,
     continueWorkflow,
     resendStep,
     completeWorkflow,

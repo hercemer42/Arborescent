@@ -1,26 +1,22 @@
 import type { MouseEvent } from 'react';
 import { createElement } from 'react';
-import { Asterisk, Cog, Link, Pause, Play } from 'lucide-react';
+import { AlertCircle, Asterisk, Cog, Link, Pause, Play } from 'lucide-react';
 import type { TreeNode, NodeStatus } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import type { LucideIcon } from '../ui/CustomizeDialog/CustomizeDialog';
 import { useStepConfigDialogStore } from '../../store/stepConfigDialog/stepConfigDialogStore';
 import { getStepTypeLabel } from './hooks/useWorkflowIndicator';
 
-export type ExecutionState = 'running' | 'awaiting-validation' | null;
+export type ExecutionState = 'running' | 'awaiting-validation' | 'stuck' | null;
 export type StepType = 'manual' | 'checkpoint' | 'autonomous';
 
 interface WorkflowOverlayProps {
   executionState: ExecutionState;
   onStop: () => void;
+  onResume: () => void;
 }
 
-/**
- * Running / awaiting-validation badge shown on top of the checkbox or
- * the blueprint icon. Extracted because the two branches of the
- * status-area tree render it identically.
- */
-function WorkflowOverlay({ executionState, onStop }: WorkflowOverlayProps) {
+function WorkflowOverlay({ executionState, onStop, onResume }: WorkflowOverlayProps) {
   if (executionState === 'running') {
     return (
       <button
@@ -47,6 +43,21 @@ function WorkflowOverlay({ executionState, onStop }: WorkflowOverlayProps) {
       </span>
     );
   }
+  if (executionState === 'stuck') {
+    return (
+      <button
+        className="workflow-execution-overlay stuck"
+        title="Stuck — click to resume"
+        aria-label="Resume stuck workflow"
+        onClick={(e) => {
+          e.stopPropagation();
+          onResume();
+        }}
+      >
+        <AlertCircle size={16} fill="currentColor" />
+      </button>
+    );
+  }
   return null;
 }
 
@@ -70,6 +81,7 @@ interface StatusAreaProps {
   onContextIconClick: (e: MouseEvent) => void;
   onToggleStatus: (nodeId: string) => void;
   onStopWorkflow: () => void;
+  onResumeStuckNode: () => void;
 }
 
 /**
@@ -99,6 +111,7 @@ export function StatusArea({
   onContextIconClick,
   onToggleStatus,
   onStopWorkflow,
+  onResumeStuckNode,
 }: StatusAreaProps) {
   if (isLink) {
     const title = isExternalLink
@@ -175,7 +188,7 @@ export function StatusArea({
             {stepNumber}
           </span>
         )}
-        <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} />
+        <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} onResume={onResumeStuckNode} />
       </span>
     );
   }
@@ -186,7 +199,7 @@ export function StatusArea({
         status={node.metadata.status as NodeStatus | undefined}
         onToggle={() => onToggleStatus(node.id)}
       />
-      <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} />
+      <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} onResume={onResumeStuckNode} />
     </span>
   );
 }

@@ -64,6 +64,7 @@ interface BuildWorkflowExecutionItemsParams {
   onStartWorkflow: () => void;
   onStopWorkflow: () => void;
   onResendStep: () => void;
+  onResumeStuckNode: () => void;
 }
 
 export function buildWorkflowExecutionItems({
@@ -74,6 +75,7 @@ export function buildWorkflowExecutionItems({
   onStartWorkflow,
   onStopWorkflow,
   onResendStep,
+  onResumeStuckNode,
 }: BuildWorkflowExecutionItemsParams): ContextMenuItem[] {
   if (!isChildOfWorkflowStep(node.id, nodes, ancestorRegistry)) return [];
 
@@ -86,6 +88,13 @@ export function buildWorkflowExecutionItems({
   if (entry?.state === 'awaiting-validation') {
     return [
       { label: 'Resend step', onClick: onResendStep },
+      { label: 'Stop Workflow', onClick: onStopWorkflow },
+    ];
+  }
+
+  if (entry?.state === 'stuck') {
+    return [
+      { label: 'Resume', onClick: onResumeStuckNode },
       { label: 'Stop Workflow', onClick: onStopWorkflow },
     ];
   }
@@ -123,7 +132,8 @@ export function buildWorkflowNavigationItems({
 }: BuildWorkflowNavigationItemsParams): ContextMenuItem[] {
   if (!isChildOfWorkflowStep(node.id, nodes, ancestorRegistry)) return [];
   if (collaboratingNodeId === node.id) return [];
-  if (workflowExecutionStates?.[node.id]?.state === 'running') return [];
+  const navState = workflowExecutionStates?.[node.id]?.state;
+  if (navState === 'running' || navState === 'stuck') return [];
 
   const items: ContextMenuItem[] = [];
 
