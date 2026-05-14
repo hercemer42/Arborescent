@@ -547,6 +547,13 @@ export const createWorkflowExecutionActions = (
         : null);
 
     if (sibling) {
+      // Recurse-marked and completeWorkflow paths pre-delete the orchestrator's state
+      // before calling checkRecurse; if it is still running we are in the intermediate
+      // autonomous-to-autonomous advance from advanceNode, where scheduling would
+      // dispatch to a still-busy terminal and surface a false halt toast.
+      if (workflowExecutionStates[completedNodeId]?.state === 'running') {
+        return;
+      }
       if (!advanceDecomposedSiblingToNextStep(sibling)) {
         recurseCounters.delete(recurseChainKey(completedNodeId, terminalId));
         useToastStore

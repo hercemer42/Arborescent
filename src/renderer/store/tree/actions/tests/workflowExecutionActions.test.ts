@@ -1587,4 +1587,29 @@ describe('createWorkflowExecutionActions', () => {
       vi.useRealTimers();
     });
   });
+
+  describe('intermediate autonomous advance does not fire spurious recurse halt', () => {
+    it('does not schedule a recurse start for a waiting sibling while the orchestrator is still running on the terminal', () => {
+      vi.useFakeTimers();
+      state.nodes['step-1'].metadata.decomposition = true;
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(3000);
+
+      expect(state.workflowExecutionStates['task-a']?.state).toBe('running');
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
+      expect(state.nodes['step-1'].children).toContain('task-b');
+      expect(state.nodes['step-2'].children).not.toContain('task-b');
+
+      const haltCalls = mockAddToast.mock.calls.filter(
+        (call) => typeof call[0] === 'string' && call[0].includes('Recurse halted'),
+      );
+      expect(haltCalls).toHaveLength(0);
+
+      vi.useRealTimers();
+    });
+  });
 });
