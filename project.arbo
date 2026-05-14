@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T16:42:13.135Z'
+updated: '2026-05-14T16:43:57.726Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -81506,6 +81506,7 @@ nodes:
     content: User story creation
     children:
       - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
+      - a1ccb0fd-fa01-428d-afb2-17d3e219d110
       - cfd38a28-0349-4873-8780-177e444d7cd3
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
@@ -82878,8 +82879,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -90227,6 +90227,7 @@ nodes:
     id: aefa6362-0e1b-4e7f-81db-1ccc856bb2f0
     content: Backlog
     children:
+      - c577b3e4-78ac-4eaf-98aa-054b93853291
       - d4dab575-76d3-493b-893a-5d758ba9b84c
       - c5a7860c-e6ba-40ed-99c3-c0f2883e516c
       - e31a700c-3788-44b5-a878-3f3f2ca942c4
@@ -96847,7 +96848,8 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children: []
+    children:
+      - 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
     metadata:
       status: pending
       isBlueprint: true
@@ -117151,6 +117153,53 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  a1ccb0fd-fa01-428d-afb2-17d3e219d110:
+    id: a1ccb0fd-fa01-428d-afb2-17d3e219d110
+    content: Should reattach claude session on open
+    children:
+      - 3c4b4e69-bdb2-4754-9bba-0b366bbd4da7
+      - f184563a-8602-4e9c-a8c0-70bc19f0e13c
+      - 15484500-2aa2-49ba-9227-6f4df1523b62
+      - 2800d75a-e47e-4330-a9c9-702d6d738cce
+    metadata:
+      status: pending
+  3c4b4e69-bdb2-4754-9bba-0b366bbd4da7:
+    id: 3c4b4e69-bdb2-4754-9bba-0b366bbd4da7
+    content: If a node has been played in a terminal
+    children: []
+    metadata:
+      status: pending
+  f184563a-8602-4e9c-a8c0-70bc19f0e13c:
+    id: f184563a-8602-4e9c-a8c0-70bc19f0e13c
+    content: And that terminal gets closed and reopened, and the claude session resumed
+    children: []
+    metadata:
+      status: pending
+  15484500-2aa2-49ba-9227-6f4df1523b62:
+    id: 15484500-2aa2-49ba-9227-6f4df1523b62
+    content: We should map it to the node that was previously played in it
+    children: []
+    metadata:
+      status: pending
+  2800d75a-e47e-4330-a9c9-702d6d738cce:
+    id: 2800d75a-e47e-4330-a9c9-702d6d738cce
+    content: So that it gets the 'Blue' bar to the left of the gutter
+    children: []
+    metadata:
+      status: pending
+  c577b3e4-78ac-4eaf-98aa-054b93853291:
+    id: c577b3e4-78ac-4eaf-98aa-054b93853291
+    content: Context & Workflow step icons are redundant
+    children:
+      - 29696c88-4103-422f-bc9b-4f1ace442f25
+    metadata:
+      status: pending
+  29696c88-4103-422f-bc9b-4f1ace442f25:
+    id: 29696c88-4103-422f-bc9b-4f1ace442f25
+    content: Consider having workflow step inherit context icon if it doesn't already have one
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   d8a79774-5a44-4b58-804e-282c35b9e0f5:
     cwd: /Users/brianfox/dev/Arborescent
