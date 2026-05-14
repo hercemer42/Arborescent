@@ -296,7 +296,8 @@ export function findDecompositionStepInWorkflow(
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
 ): string | null {
-  const workflowId = ancestorRegistry[stepId]?.findLast(
+  const ancestors = ancestorRegistry[stepId] ?? [];
+  const workflowId = ancestors.findLast(
     (ancestorId) => nodes[ancestorId]?.metadata.isWorkflow === true,
   );
   if (!workflowId) return null;
@@ -304,7 +305,20 @@ export function findDecompositionStepInWorkflow(
   const workflow = nodes[workflowId];
   if (!workflow) return null;
 
-  return workflow.children.find((childId) => nodes[childId]?.metadata.decomposition === true) ?? null;
+  const workflowAncestorIndex = ancestors.lastIndexOf(workflowId);
+  const siblingId = ancestors[workflowAncestorIndex + 1] ?? stepId;
+
+  const siblingIndex = workflow.children.indexOf(siblingId);
+  if (siblingIndex === -1) return null;
+
+  for (let i = siblingIndex; i >= 0; i--) {
+    const childId = workflow.children[i];
+    if (nodes[childId]?.metadata.decomposition === true) {
+      return childId;
+    }
+  }
+
+  return null;
 }
 
 export function findNextWaitingNode(

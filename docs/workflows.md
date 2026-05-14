@@ -72,6 +72,8 @@ A safety limit of 50 sequential recurse iterations per terminal prevents runaway
 
 These two options work together. Enable decomposition on an earlier step to split one item into many, then enable recurse on a later step to process them all. Step 1 decomposes a problem into user stories, step 2 processes each user story through an implementation workflow — all automatically. Recurse without decomposition is a misconfiguration; decomposition without recurse just produces siblings you start manually.
 
+If the workflow has multiple decomposition steps, each recurse step pairs with the nearest decomposition step earlier in the chain — pair each decomposition with its own downstream recurse to process every batch.
+
 ## Running a Workflow
 
 Place an item inside an autonomous or checkpoint workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.

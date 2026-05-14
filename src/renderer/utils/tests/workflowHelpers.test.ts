@@ -494,6 +494,88 @@ describe('workflowHelpers', () => {
 
       expect(findDecompositionStepInWorkflow('inner-s1', nodes, registry)).toBeNull();
     });
+
+    it('returns the nearest preceding decomposition step when multiple decomposition steps exist as siblings', () => {
+      const nodes: Record<string, TreeNode> = {
+        'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
+        'workflow': { id: 'workflow', content: 'WF', children: ['s1', 'decomp-a', 's3', 'decomp-b', 's5'], metadata: { isBlueprint: true, isWorkflow: true } },
+        's1': { id: 's1', content: 'S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
+        'decomp-a': { id: 'decomp-a', content: 'Decomp A', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true } },
+        's3': { id: 's3', content: 'S3', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
+        'decomp-b': { id: 'decomp-b', content: 'Decomp B', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true } },
+        's5': { id: 's5', content: 'S5', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', recurse: true } },
+      };
+      const registry = {
+        'root': [],
+        'workflow': ['root'],
+        's1': ['root', 'workflow'],
+        'decomp-a': ['root', 'workflow'],
+        's3': ['root', 'workflow'],
+        'decomp-b': ['root', 'workflow'],
+        's5': ['root', 'workflow'],
+      };
+
+      expect(findDecompositionStepInWorkflow('s5', nodes, registry)).toBe('decomp-b');
+    });
+
+    it('ignores decomposition steps that appear after the input step in the sibling chain', () => {
+      const nodes: Record<string, TreeNode> = {
+        'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
+        'workflow': { id: 'workflow', content: 'WF', children: ['s1', 'decomp-a', 's3', 'decomp-b', 's5'], metadata: { isBlueprint: true, isWorkflow: true } },
+        's1': { id: 's1', content: 'S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
+        'decomp-a': { id: 'decomp-a', content: 'Decomp A', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true } },
+        's3': { id: 's3', content: 'S3', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', recurse: true } },
+        'decomp-b': { id: 'decomp-b', content: 'Decomp B', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true } },
+        's5': { id: 's5', content: 'S5', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
+      };
+      const registry = {
+        'root': [],
+        'workflow': ['root'],
+        's1': ['root', 'workflow'],
+        'decomp-a': ['root', 'workflow'],
+        's3': ['root', 'workflow'],
+        'decomp-b': ['root', 'workflow'],
+        's5': ['root', 'workflow'],
+      };
+
+      expect(findDecompositionStepInWorkflow('s3', nodes, registry)).toBe('decomp-a');
+    });
+
+    it('returns null when every decomposition step appears after the input step', () => {
+      const nodes: Record<string, TreeNode> = {
+        'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
+        'workflow': { id: 'workflow', content: 'WF', children: ['s1', 'decomp-a', 'decomp-b'], metadata: { isBlueprint: true, isWorkflow: true } },
+        's1': { id: 's1', content: 'S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', recurse: true } },
+        'decomp-a': { id: 'decomp-a', content: 'Decomp A', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true } },
+        'decomp-b': { id: 'decomp-b', content: 'Decomp B', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true } },
+      };
+      const registry = {
+        'root': [],
+        'workflow': ['root'],
+        's1': ['root', 'workflow'],
+        'decomp-a': ['root', 'workflow'],
+        'decomp-b': ['root', 'workflow'],
+      };
+
+      expect(findDecompositionStepInWorkflow('s1', nodes, registry)).toBeNull();
+    });
+
+    it('returns the input step itself when it is the decomposition step (preserves single-step decomp+recurse case)', () => {
+      const nodes: Record<string, TreeNode> = {
+        'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
+        'workflow': { id: 'workflow', content: 'WF', children: ['s1', 'decomp-self'], metadata: { isBlueprint: true, isWorkflow: true } },
+        's1': { id: 's1', content: 'S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
+        'decomp-self': { id: 'decomp-self', content: 'Decomp+Recurse', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true, recurse: true } },
+      };
+      const registry = {
+        'root': [],
+        'workflow': ['root'],
+        's1': ['root', 'workflow'],
+        'decomp-self': ['root', 'workflow'],
+      };
+
+      expect(findDecompositionStepInWorkflow('decomp-self', nodes, registry)).toBe('decomp-self');
+    });
   });
 
   describe('findNextWaitingNode', () => {
