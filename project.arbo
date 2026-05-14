@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T19:04:50.482Z'
+updated: '2026-05-14T19:13:37.481Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33772,8 +33772,7 @@ nodes:
   6d973cbb-3c7c-4ac4-925d-ffd5d659332c:
     id: 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
     content: Feature verification
-    children:
-      - 73a9f9b7-ad3e-4100-aacf-41a71b826f37
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -82878,7 +82877,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 73a9f9b7-ad3e-4100-aacf-41a71b826f37
     metadata:
       status: pending
       isBlueprint: true
@@ -96849,8 +96849,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - bcbe1d33-53ef-4d30-9cfe-a0364a1d4eca
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -117066,6 +117065,7 @@ nodes:
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
       - cfd38a28-0349-4873-8780-177e444d7cd3
       - a1ccb0fd-fa01-428d-afb2-17d3e219d110
+      - bcbe1d33-53ef-4d30-9cfe-a0364a1d4eca
     metadata:
       status: pending
       isBlueprint: true
@@ -119967,9 +119967,10 @@ nodes:
     id: 73a9f9b7-ad3e-4100-aacf-41a71b826f37
     content: 'Bug: Splitting a node into two PRs blocks replaying them in the original session'
     children:
-      - fdf7b016-81e1-4faf-9381-d08fdca81899
-      - 4732ec30-b372-4fda-9834-fd22dd37a321
-      - 07f1bdc1-ba71-4857-a3b9-069bca63c987
+      - d66c7ee8-02a5-4830-81fa-af9aea9e8d3f
+      - 732eacdb-065c-4451-8a93-f372f6fed92c
+      - f6c3315e-edc3-4c4d-b7ab-719b6db86706
+      - b660204c-b0e5-4b17-b9fe-6fda98187a18
     metadata:
       status: pending
       expanded: false
@@ -121117,18 +121118,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fdf7b016-81e1-4faf-9381-d08fdca81899:
-    id: fdf7b016-81e1-4faf-9381-d08fdca81899
+  d66c7ee8-02a5-4830-81fa-af9aea9e8d3f:
+    id: d66c7ee8-02a5-4830-81fa-af9aea9e8d3f
     content: worktree
     children:
-      - 0603368d-81ff-43ef-a9b9-9b49affe1301
+      - 9c0e91cf-e270-4020-be98-c4ddb32e568e
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  0603368d-81ff-43ef-a9b9-9b49affe1301:
-    id: 0603368d-81ff-43ef-a9b9-9b49affe1301
+  9c0e91cf-e270-4020-be98-c4ddb32e568e:
+    id: 9c0e91cf-e270-4020-be98-c4ddb32e568e
     content: vscode://file/Users/brianfox/dev/Arborescent-split-session-ownership
     children: []
     metadata:
@@ -121136,33 +121137,33 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4732ec30-b372-4fda-9834-fd22dd37a321:
-    id: 4732ec30-b372-4fda-9834-fd22dd37a321
+  732eacdb-065c-4451-8a93-f372f6fed92c:
+    id: 732eacdb-065c-4451-8a93-f372f6fed92c
     content: 🐞 Bug ticket
     children:
-      - 14f51f51-be42-419a-83bc-2d861d6bfe7d
-      - 2125d053-8576-4665-aa8e-e737e265f506
-      - 35d2b68a-11b0-4d66-b2cd-0f7f6c16b1f8
-      - 7abd00e8-fa8d-4f31-af5d-71dba7c088d6
-      - 837f2eb2-c96c-43ae-99dd-047dbb5eaf42
-      - c2d4e45b-5bfe-49a3-b078-0bb75fd8827b
+      - c091bc61-bd0a-4dac-8d55-efe343f72fcc
+      - 2e1544ef-d787-445f-9f8e-36abd2047a04
+      - 9cb44182-fb5e-45e0-bcd2-f16f6e085511
+      - da14b431-1014-435e-be3f-ee2ffed9dc58
+      - a5684759-38cb-4bbe-b1a8-03cb902b8389
+      - 8ac2e897-e4c2-494b-9e99-f32764339921
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  14f51f51-be42-419a-83bc-2d861d6bfe7d:
-    id: 14f51f51-be42-419a-83bc-2d861d6bfe7d
+  c091bc61-bd0a-4dac-8d55-efe343f72fcc:
+    id: c091bc61-bd0a-4dac-8d55-efe343f72fcc
     content: Summary
     children:
-      - 9cf7b1a6-7d21-4909-9c77-2b3df6b09de5
+      - ff97e0e4-9bfa-45ba-9f89-df619a993f71
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  9cf7b1a6-7d21-4909-9c77-2b3df6b09de5:
-    id: 9cf7b1a6-7d21-4909-9c77-2b3df6b09de5
+  ff97e0e4-9bfa-45ba-9f89-df619a993f71:
+    id: ff97e0e4-9bfa-45ba-9f89-df619a993f71
     content: When a node is split into two PRs, attempting to play either PR in the same session as the original node fails with "session is already in use"
     children: []
     metadata:
@@ -121170,20 +121171,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2125d053-8576-4665-aa8e-e737e265f506:
-    id: 2125d053-8576-4665-aa8e-e737e265f506
+  2e1544ef-d787-445f-9f8e-36abd2047a04:
+    id: 2e1544ef-d787-445f-9f8e-36abd2047a04
     content: Current behaviour
     children:
-      - f72310fe-0b7b-4367-8d29-2a0ab4798dad
-      - 514b4172-6484-4794-a229-7a4c799ec158
-      - 743db440-d266-4c69-a093-643c6ed48534
+      - 01d823e8-60fd-4113-a3cc-d27b41c983e3
+      - f40d04b4-8ba2-443d-a78d-ec55c34b8815
+      - 8333a152-0838-421e-a71a-545be05a152a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f72310fe-0b7b-4367-8d29-2a0ab4798dad:
-    id: f72310fe-0b7b-4367-8d29-2a0ab4798dad
+  01d823e8-60fd-4113-a3cc-d27b41c983e3:
+    id: 01d823e8-60fd-4113-a3cc-d27b41c983e3
     content: The session remains owned by the original (pre-split) group ID
     children: []
     metadata:
@@ -121191,8 +121192,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  514b4172-6484-4794-a229-7a4c799ec158:
-    id: 514b4172-6484-4794-a229-7a4c799ec158
+  f40d04b4-8ba2-443d-a78d-ec55c34b8815:
+    id: f40d04b4-8ba2-443d-a78d-ec55c34b8815
     content: Newly created split nodes carry a different group ID and are rejected when they try to attach to the existing session
     children: []
     metadata:
@@ -121200,8 +121201,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  743db440-d266-4c69-a093-643c6ed48534:
-    id: 743db440-d266-4c69-a093-643c6ed48534
+  8333a152-0838-421e-a71a-545be05a152a:
+    id: 8333a152-0838-421e-a71a-545be05a152a
     content: User is forced to start a new session, losing continuity with the original work
     children: []
     metadata:
@@ -121209,19 +121210,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  35d2b68a-11b0-4d66-b2cd-0f7f6c16b1f8:
-    id: 35d2b68a-11b0-4d66-b2cd-0f7f6c16b1f8
+  9cb44182-fb5e-45e0-bcd2-f16f6e085511:
+    id: 9cb44182-fb5e-45e0-bcd2-f16f6e085511
     content: Expected behaviour
     children:
-      - 4345f333-edf1-4b74-973e-dc13150a71f4
-      - fa0c53d8-8bd8-4a4c-8c58-705d1c1c4f7a
+      - 1c1e0a88-a83d-4653-bac6-1d6dec90e8b1
+      - fe24a61e-aaac-4e45-9cba-974774ad1c88
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  4345f333-edf1-4b74-973e-dc13150a71f4:
-    id: 4345f333-edf1-4b74-973e-dc13150a71f4
+  1c1e0a88-a83d-4653-bac6-1d6dec90e8b1:
+    id: 1c1e0a88-a83d-4653-bac6-1d6dec90e8b1
     content: Both resulting PR nodes should be playable in the same session as the original node
     children: []
     metadata:
@@ -121229,8 +121230,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fa0c53d8-8bd8-4a4c-8c58-705d1c1c4f7a:
-    id: fa0c53d8-8bd8-4a4c-8c58-705d1c1c4f7a
+  fe24a61e-aaac-4e45-9cba-974774ad1c88:
+    id: fe24a61e-aaac-4e45-9cba-974774ad1c88
     content: Session ownership should follow the split — i.e. transfer/extend to the new group ID(s)
     children: []
     metadata:
@@ -121238,21 +121239,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7abd00e8-fa8d-4f31-af5d-71dba7c088d6:
-    id: 7abd00e8-fa8d-4f31-af5d-71dba7c088d6
+  da14b431-1014-435e-be3f-ee2ffed9dc58:
+    id: da14b431-1014-435e-be3f-ee2ffed9dc58
     content: Steps to reproduce
     children:
-      - fa2e35cc-671e-4503-9a2d-fe9065b4b034
-      - 7c131423-4cef-4400-93c0-bd5b7b3ef6d6
-      - c3d7bc0c-3cb8-443c-8808-bca5f3f786ac
-      - e4d63f2e-4929-423d-8118-04153ce3df28
+      - 6d36fb68-a36b-4429-b011-1fce9f7dae85
+      - 9c12f6fe-bae0-4cb2-89e2-d264a8534722
+      - 0ed1bb3c-978a-45dd-930e-9e9e32d7b045
+      - 52f70c93-3ff1-46a2-bfcc-db0e61b126ea
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  fa2e35cc-671e-4503-9a2d-fe9065b4b034:
-    id: fa2e35cc-671e-4503-9a2d-fe9065b4b034
+  6d36fb68-a36b-4429-b011-1fce9f7dae85:
+    id: 6d36fb68-a36b-4429-b011-1fce9f7dae85
     content: Start a session on a node
     children: []
     metadata:
@@ -121260,8 +121261,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7c131423-4cef-4400-93c0-bd5b7b3ef6d6:
-    id: 7c131423-4cef-4400-93c0-bd5b7b3ef6d6
+  9c12f6fe-bae0-4cb2-89e2-d264a8534722:
+    id: 9c12f6fe-bae0-4cb2-89e2-d264a8534722
     content: Split that node into two PRs
     children: []
     metadata:
@@ -121269,8 +121270,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c3d7bc0c-3cb8-443c-8808-bca5f3f786ac:
-    id: c3d7bc0c-3cb8-443c-8808-bca5f3f786ac
+  0ed1bb3c-978a-45dd-930e-9e9e32d7b045:
+    id: 0ed1bb3c-978a-45dd-930e-9e9e32d7b045
     content: Attempt to play one of the resulting PR nodes in the same session
     children: []
     metadata:
@@ -121278,8 +121279,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e4d63f2e-4929-423d-8118-04153ce3df28:
-    id: e4d63f2e-4929-423d-8118-04153ce3df28
+  52f70c93-3ff1-46a2-bfcc-db0e61b126ea:
+    id: 52f70c93-3ff1-46a2-bfcc-db0e61b126ea
     content: Observe "session is already in use" error
     children: []
     metadata:
@@ -121287,19 +121288,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  837f2eb2-c96c-43ae-99dd-047dbb5eaf42:
-    id: 837f2eb2-c96c-43ae-99dd-047dbb5eaf42
+  a5684759-38cb-4bbe-b1a8-03cb902b8389:
+    id: a5684759-38cb-4bbe-b1a8-03cb902b8389
     content: Proposed fix direction
     children:
-      - 80b3f632-2167-4b39-9dfd-8c885e1f3f9d
-      - ac10cedb-5e52-4a04-b8f6-bb1db594ce99
+      - f5e27a95-acf3-4fa6-bb52-48cf62367b7e
+      - 419aa104-77ec-4b76-8f63-203b49898bc6
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  80b3f632-2167-4b39-9dfd-8c885e1f3f9d:
-    id: 80b3f632-2167-4b39-9dfd-8c885e1f3f9d
+  f5e27a95-acf3-4fa6-bb52-48cf62367b7e:
+    id: f5e27a95-acf3-4fa6-bb52-48cf62367b7e
     content: Transfer session ownership to the new group ID(s) when a node is split
     children: []
     metadata:
@@ -121307,8 +121308,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ac10cedb-5e52-4a04-b8f6-bb1db594ce99:
-    id: ac10cedb-5e52-4a04-b8f6-bb1db594ce99
+  419aa104-77ec-4b76-8f63-203b49898bc6:
+    id: 419aa104-77ec-4b76-8f63-203b49898bc6
     content: Ensure both child PR nodes can claim/share the existing session rather than being blocked by stale ownership
     children: []
     metadata:
@@ -121316,21 +121317,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c2d4e45b-5bfe-49a3-b078-0bb75fd8827b:
-    id: c2d4e45b-5bfe-49a3-b078-0bb75fd8827b
+  8ac2e897-e4c2-494b-9e99-f32764339921:
+    id: 8ac2e897-e4c2-494b-9e99-f32764339921
     content: Acceptance criteria
     children:
-      - fd294189-d25b-41ee-9e1e-6beda7d274bb
-      - 7d867ab5-1043-48db-bdff-966819743645
-      - 1dcc974a-e654-4eee-93cb-456c165d640b
-      - b8a482ff-8e1b-46f7-93c2-5842a0c89d7e
+      - 06dc7f42-6151-4442-b819-c78ce4e81c73
+      - 2a6b6bfe-45e3-47cb-9abc-53f56a410ea9
+      - 557a4a06-1951-4719-a31b-0e87e57cefd1
+      - 5a8b27ca-0d23-4662-ad0d-677bcaf34d90
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  fd294189-d25b-41ee-9e1e-6beda7d274bb:
-    id: fd294189-d25b-41ee-9e1e-6beda7d274bb
+  06dc7f42-6151-4442-b819-c78ce4e81c73:
+    id: 06dc7f42-6151-4442-b819-c78ce4e81c73
     content: '- [ ] After splitting a node into two PRs, playing either PR in the original session succeeds without error'
     children: []
     metadata:
@@ -121338,8 +121339,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7d867ab5-1043-48db-bdff-966819743645:
-    id: 7d867ab5-1043-48db-bdff-966819743645
+  2a6b6bfe-45e3-47cb-9abc-53f56a410ea9:
+    id: 2a6b6bfe-45e3-47cb-9abc-53f56a410ea9
     content: '- [ ] The "session is already in use" error no longer triggers for split descendants of the session''s original node'
     children: []
     metadata:
@@ -121347,8 +121348,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1dcc974a-e654-4eee-93cb-456c165d640b:
-    id: 1dcc974a-e654-4eee-93cb-456c165d640b
+  557a4a06-1951-4719-a31b-0e87e57cefd1:
+    id: 557a4a06-1951-4719-a31b-0e87e57cefd1
     content: '- [ ] Session ownership records reflect the new group ID(s) post-split'
     children: []
     metadata:
@@ -121356,8 +121357,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b8a482ff-8e1b-46f7-93c2-5842a0c89d7e:
-    id: b8a482ff-8e1b-46f7-93c2-5842a0c89d7e
+  5a8b27ca-0d23-4662-ad0d-677bcaf34d90:
+    id: 5a8b27ca-0d23-4662-ad0d-677bcaf34d90
     content: '- [ ] No regression for the non-split case: an unrelated node still cannot hijack an in-use session'
     children: []
     metadata:
@@ -121365,34 +121366,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  07f1bdc1-ba71-4857-a3b9-069bca63c987:
-    id: 07f1bdc1-ba71-4857-a3b9-069bca63c987
+  f6c3315e-edc3-4c4d-b7ab-719b6db86706:
+    id: f6c3315e-edc3-4c4d-b7ab-719b6db86706
     content: Technical refinement
     children:
-      - bfc8e4e2-78a0-4fb2-a3a6-3fabd1f28f29
-      - a76f4cab-c6b6-44eb-b343-1c26f0e605f1
+      - 5718bf52-0cf8-467e-b1f0-532d43edbfc9
+      - 7ace8101-91e2-4d67-a9ac-f0159344a354
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  bfc8e4e2-78a0-4fb2-a3a6-3fabd1f28f29:
-    id: bfc8e4e2-78a0-4fb2-a3a6-3fabd1f28f29
+  5718bf52-0cf8-467e-b1f0-532d43edbfc9:
+    id: 5718bf52-0cf8-467e-b1f0-532d43edbfc9
     content: Complications
     children:
-      - 556febaf-eeeb-4311-b6b9-ab9c2cbe9a15
-      - a060305c-4e8c-4248-8d9d-9addbe5505ea
-      - 0efe00f6-3e73-4090-8c00-f4f41393dfb3
-      - 2c2dcf8b-05d6-4df3-8e21-1fe60c735589
-      - 9952df61-1bd1-4160-9563-f91fce4635ed
-      - 6c38e409-ddae-4763-adca-3c8b9f0941ce
+      - ce010d90-26a5-495d-85a8-cbdc4ee203f0
+      - 5e3c9215-2e20-4da2-8773-d5ae9b37192a
+      - f18c653a-db22-4559-9def-cf1f85d7990a
+      - 00e9d077-bf9f-4daa-8e11-2c728a377d02
+      - 6b0539ee-60a3-4012-9256-21b71199a80a
+      - c55621e6-e362-4bae-8115-8eb885bd9f96
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  556febaf-eeeb-4311-b6b9-ab9c2cbe9a15:
-    id: 556febaf-eeeb-4311-b6b9-ab9c2cbe9a15
+  ce010d90-26a5-495d-85a8-cbdc4ee203f0:
+    id: ce010d90-26a5-495d-85a8-cbdc4ee203f0
     content: Ownership model is currently single-owner (one group ID per session) — supporting two split descendants means either transferring ownership to a shared group key or allowing a small set of co-owners
     children: []
     metadata:
@@ -121400,8 +121401,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a060305c-4e8c-4248-8d9d-9addbe5505ea:
-    id: a060305c-4e8c-4248-8d9d-9addbe5505ea
+  5e3c9215-2e20-4da2-8773-d5ae9b37192a:
+    id: 5e3c9215-2e20-4da2-8773-d5ae9b37192a
     content: Race when both split PRs attempt to attach concurrently — define a deterministic claim order or accept first-wins with no error for the second
     children: []
     metadata:
@@ -121409,8 +121410,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0efe00f6-3e73-4090-8c00-f4f41393dfb3:
-    id: 0efe00f6-3e73-4090-8c00-f4f41393dfb3
+  f18c653a-db22-4559-9def-cf1f85d7990a:
+    id: f18c653a-db22-4559-9def-cf1f85d7990a
     content: Recursive splits (splitting an already-split PR) must keep working — ownership rewrite has to be re-entrant, not a one-shot transfer
     children: []
     metadata:
@@ -121418,8 +121419,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2c2dcf8b-05d6-4df3-8e21-1fe60c735589:
-    id: 2c2dcf8b-05d6-4df3-8e21-1fe60c735589
+  00e9d077-bf9f-4daa-8e11-2c728a377d02:
+    id: 00e9d077-bf9f-4daa-8e11-2c728a377d02
     content: Need to decide what happens if the original node still exists post-split — does it retain access, lose it, or share it
     children: []
     metadata:
@@ -121427,8 +121428,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9952df61-1bd1-4160-9563-f91fce4635ed:
-    id: 9952df61-1bd1-4160-9563-f91fce4635ed
+  6b0539ee-60a3-4012-9256-21b71199a80a:
+    id: 6b0539ee-60a3-4012-9256-21b71199a80a
     content: 'Out of scope: cross-tree session sharing, manual session re-assignment UI, session ownership across file reload'
     children: []
     metadata:
@@ -121436,8 +121437,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6c38e409-ddae-4763-adca-3c8b9f0941ce:
-    id: 6c38e409-ddae-4763-adca-3c8b9f0941ce
+  c55621e6-e362-4bae-8115-8eb885bd9f96:
+    id: c55621e6-e362-4bae-8115-8eb885bd9f96
     content: 'ROI: scoped fix, high user-visible value (continuity of Claude session through refactor) — complexity acceptable'
     children: []
     metadata:
@@ -121445,20 +121446,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a76f4cab-c6b6-44eb-b343-1c26f0e605f1:
-    id: a76f4cab-c6b6-44eb-b343-1c26f0e605f1
+  7ace8101-91e2-4d67-a9ac-f0159344a354:
+    id: 7ace8101-91e2-4d67-a9ac-f0159344a354
     content: Approach
     children:
-      - 4994ba69-3fc2-44cb-a238-6fc404d07b89
-      - c694d126-96d7-43f9-87e7-da6b0e1da9e0
-      - bba60f03-6f30-4f72-972b-dad058a3c412
+      - ef95fcf2-8e6a-4161-98c1-0e433e8cc746
+      - 21509cb0-dbf2-42e8-a784-0d3f06968ee7
+      - 73b24981-ac74-4a06-9d30-34b38fb50f52
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  4994ba69-3fc2-44cb-a238-6fc404d07b89:
-    id: 4994ba69-3fc2-44cb-a238-6fc404d07b89
+  ef95fcf2-8e6a-4161-98c1-0e433e8cc746:
+    id: ef95fcf2-8e6a-4161-98c1-0e433e8cc746
     content: Rewrite session ownership at split time so the workflow-session map points to the new descendant group ID(s) rather than the stale pre-split ID — lands in the split action path alongside the session registry update
     children: []
     metadata:
@@ -121466,8 +121467,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c694d126-96d7-43f9-87e7-da6b0e1da9e0:
-    id: c694d126-96d7-43f9-87e7-da6b0e1da9e0
+  21509cb0-dbf2-42e8-a784-0d3f06968ee7:
+    id: 21509cb0-dbf2-42e8-a784-0d3f06968ee7
     content: Treat session ownership as "any descendant of the original owner group" rather than strict ID equality on the claim check, so both PR halves and future re-splits validate without further bookkeeping
     children: []
     metadata:
@@ -121475,9 +121476,98 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bba60f03-6f30-4f72-972b-dad058a3c412:
-    id: bba60f03-6f30-4f72-972b-dad058a3c412
+  73b24981-ac74-4a06-9d30-34b38fb50f52:
+    id: 73b24981-ac74-4a06-9d30-34b38fb50f52
     content: 'Non-obvious: the blue-bar / terminal association restored in commit de02219 keys off the same ownership record, so the split-time rewrite must preserve that binding or the visual link will silently break'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b660204c-b0e5-4b17-b9fe-6fda98187a18:
+    id: b660204c-b0e5-4b17-b9fe-6fda98187a18
+    content: review feedback
+    children:
+      - 44d263e5-86cc-4caf-9931-8f4d26a4aa5d
+      - d1223ed4-c06a-4e6c-869c-0be3e9ee593d
+      - 9ceac729-d3ce-4ffa-8c92-ca3fed396c81
+      - 0df35f4c-cab2-46da-b592-016ee159c641
+      - 3c4d60e9-aa18-4f1f-ae86-f7543978882f
+      - 86556a1f-7573-4f77-81c6-1674754c5cb9
+      - 5b4cd32c-14fb-4fb2-9e61-b918e1e767cb
+      - d9cc225e-0fe4-48d7-b6c9-2e1f32285a71
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44d263e5-86cc-4caf-9931-8f4d26a4aa5d:
+    id: 44d263e5-86cc-4caf-9931-8f4d26a4aa5d
+    content: No critical or important issues found in the diff
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1223ed4-c06a-4e6c-869c-0be3e9ee593d:
+    id: d1223ed4-c06a-4e6c-869c-0be3e9ee593d
+    content: SplitNodeCommand.ts:65-67 — sessionId-propagation guard (typeof string + length>0) matches the write-site idiom at workflowDisruptionReactions.ts:60; consistent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ceac729-d3ce-4ffa-8c92-ca3fed396c81:
+    id: 9ceac729-d3ce-4ffa-8c92-ca3fed396c81
+    content: Test file follows SplitNodeCommand.test.ts conventions (imports, beforeEach, describe nesting, vi.fn shape) — no changes needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0df35f4c-cab2-46da-b592-016ee159c641:
+    id: 0df35f4c-cab2-46da-b592-016ee159c641
+    content: findNodeIdBySessionId (workflowExecutionActions.ts:222) returns first iteration match — after a split there are two candidates; only called from reattachOriginNodeForResumedSession fallback path; JS insertion order means original source wins, which is the desired target; low-impact, optional one-line comment documenting the many-to-one mapping
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c4d60e9-aa18-4f1f-ae86-f7543978882f:
+    id: 3c4d60e9-aa18-4f1f-ae86-f7543978882f
+    content: Blue-bar / terminalNodeAssignments / originNodeId all keyed off terminal-side state, NOT sessionId — split halves do not diverge; associatedTerminalId selector lights only the half whose id matches originNodeId, which is the correct semantic
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86556a1f-7573-4f77-81c6-1674754c5cb9:
+    id: 86556a1f-7573-4f77-81c6-1674754c5cb9
+    content: '"Terminal tab is already assigned to a running workflow node" toast keyed off workflowExecutionStates not sessionId — fires only if user starts the second half while first is mid-step (correct semantics, not a regression)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b4cd32c-14fb-4fb2-9e61-b918e1e767cb:
+    id: 5b4cd32c-14fb-4fb2-9e61-b918e1e767cb
+    content: brokenChain edge case already handled by construction — SplitNodeCommand builds new node metadata from scratch (line 61), so source.brokenChain is never copied; the .todo could be promoted to a real test asserting brokenChain is undefined on the new half — would pass today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9cc225e-0fe4-48d7-b6c9-2e1f32285a71:
+    id: d9cc225e-0fe4-48d7-b6c9-2e1f32285a71
+    content: 'Minor nits below threshold: could use sourceNode.metadata.sessionId?.trim().length to match recurseChainKey style (workflowExecutionActions.ts:494); tests could read nodes[''pr2''] directly instead of setState.mock.calls — neither is a defect'
     children: []
     metadata:
       status: completed
