@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T18:19:00.632Z'
+updated: '2026-05-14T18:21:31.346Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -82876,8 +82876,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 0196d5bf-8124-4785-ad1b-8768819b6b00
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -96849,7 +96848,8 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children: []
+    children:
+      - 0196d5bf-8124-4785-ad1b-8768819b6b00
     metadata:
       status: pending
       isBlueprint: true
@@ -101562,7 +101562,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-      feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-bcbe1d33-53ef-4d30-9cfe-a0364a1d4eca.arbo
   889ff4cb-3ae1-4f90-b289-12a92935efb7:
     id: 889ff4cb-3ae1-4f90-b289-12a92935efb7
     content: Reliable comparison highlighting in feedback panel
@@ -117612,412 +117611,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  6fe9557b-850d-4c36-ae42-ddad1aeb8b00:
-    id: 6fe9557b-850d-4c36-ae42-ddad1aeb8b00
-    content: 📄 Product spec
-    children:
-      - 73c274ec-41d9-4c9b-8e2f-0b8a51065da8
-      - cfd9ca59-2f64-497b-90da-809760197556
-      - ca4756fa-ee0d-47bb-bbe4-737f61c28ba2
-      - a7f5ef0a-5986-458b-9fc4-a46a768e03a6
-      - 848b9752-8172-4f18-83b6-000bb5716e89
-      - 70b2fd97-e8b0-4997-a9d9-ee5cbc647223
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  73c274ec-41d9-4c9b-8e2f-0b8a51065da8:
-    id: 73c274ec-41d9-4c9b-8e2f-0b8a51065da8
-    content: Context
-    children:
-      - 19deb678-162e-4c56-92ed-490087d5d3f6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  19deb678-162e-4c56-92ed-490087d5d3f6:
-    id: 19deb678-162e-4c56-92ed-490087d5d3f6
-    content: Starting a workflow on a node that already has an attached context causes that context to replay in every workflow step, redundantly inflating prompts and diluting the step-specific instruction
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cfd9ca59-2f64-497b-90da-809760197556:
-    id: cfd9ca59-2f64-497b-90da-809760197556
-    content: User
-    children:
-      - 933de41d-0a4f-4f97-98e6-59cb648bf8b3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  933de41d-0a4f-4f97-98e6-59cb648bf8b3:
-    id: 933de41d-0a4f-4f97-98e6-59cb648bf8b3
-    content: Workflow author or operator who triggers a workflow on a node that carries its own attached or inherited context
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ca4756fa-ee0d-47bb-bbe4-737f61c28ba2:
-    id: ca4756fa-ee0d-47bb-bbe4-737f61c28ba2
-    content: Current experience
-    children:
-      - 6a2a7058-2493-483c-9619-cd9e48e48226
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a2a7058-2493-483c-9619-cd9e48e48226:
-    id: 6a2a7058-2493-483c-9619-cd9e48e48226
-    content: The node's attached context is silently concatenated to each step's prompt with no indication to the user, producing noisy, repetitive context and unpredictable step behavior
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a7f5ef0a-5986-458b-9fc4-a46a768e03a6:
-    id: a7f5ef0a-5986-458b-9fc4-a46a768e03a6
-    content: Goal
-    children:
-      - d18ce9c4-9ffb-4acd-9dcc-e04040eb98f4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d18ce9c4-9ffb-4acd-9dcc-e04040eb98f4:
-    id: d18ce9c4-9ffb-4acd-9dcc-e04040eb98f4
-    content: Workflow step contexts take precedence over a node's attached context during workflow execution, with the user warned about the override before the workflow starts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  848b9752-8172-4f18-83b6-000bb5716e89:
-    id: 848b9752-8172-4f18-83b6-000bb5716e89
-    content: Business rules
-    children:
-      - 6414b098-69e5-4a3f-b7f8-2c1f1826b57a
-      - d2d6e889-cb55-4572-98ac-eae698ee4f68
-      - f79c524c-7aef-4bb6-86e5-ba4acc1548bd
-      - 0d87cfec-2d78-4773-939c-47afe413c3f6
-      - 442a7632-2eaf-4eb7-82af-af5bca698f75
-      - 0a429dff-8acf-44d9-82e9-fcc3dd761c4d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6414b098-69e5-4a3f-b7f8-2c1f1826b57a:
-    id: 6414b098-69e5-4a3f-b7f8-2c1f1826b57a
-    content: 1. When a workflow is initiated on a node that has one or more attached or inherited contexts, the system shows a confirmation warning before the workflow proceeds
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2d6e889-cb55-4572-98ac-eae698ee4f68:
-    id: d2d6e889-cb55-4572-98ac-eae698ee4f68
-    content: 2. The warning states that the node's attached contexts will be ignored in favor of the workflow step contexts for the duration of the workflow
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f79c524c-7aef-4bb6-86e5-ba4acc1548bd:
-    id: f79c524c-7aef-4bb6-86e5-ba4acc1548bd
-    content: 3. The user can confirm to start the workflow or cancel to abort with no side effects
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d87cfec-2d78-4773-939c-47afe413c3f6:
-    id: 0d87cfec-2d78-4773-939c-47afe413c3f6
-    content: 4. For automated and checkpoint steps, workflow step contexts override the node's attached contexts; the attached contexts are not sent
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  442a7632-2eaf-4eb7-82af-af5bca698f75:
-    id: 442a7632-2eaf-4eb7-82af-af5bca698f75
-    content: 5. If the target node has no attached or inherited context, no warning is shown and the workflow starts normally
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0a429dff-8acf-44d9-82e9-fcc3dd761c4d:
-    id: 0a429dff-8acf-44d9-82e9-fcc3dd761c4d
-    content: 6. The override applies only for the lifetime of the workflow run and does not mutate the node's attached context definition
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  70b2fd97-e8b0-4997-a9d9-ee5cbc647223:
-    id: 70b2fd97-e8b0-4997-a9d9-ee5cbc647223
-    content: Acceptance criteria
-    children:
-      - f5dfafed-5bab-41da-a5b8-f084ccb2f771
-      - 985fc412-aec1-49e4-ab84-6809193207ec
-      - 473e0d1e-6bab-4eee-bbcc-274751aac271
-      - cb320deb-d75c-4518-8c2e-9e503adec22b
-      - d9fea8a3-a2b7-4359-8054-a03561077a37
-      - 95c81bdd-0e73-489a-a42c-40161e24d171
-      - 09515e00-a730-42e8-a86a-76b9b36175ef
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f5dfafed-5bab-41da-a5b8-f084ccb2f771:
-    id: f5dfafed-5bab-41da-a5b8-f084ccb2f771
-    content: '- [ ] Starting a workflow on a node with an attached context displays a confirmation dialog before any step runs'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  985fc412-aec1-49e4-ab84-6809193207ec:
-    id: 985fc412-aec1-49e4-ab84-6809193207ec
-    content: '- [ ] The dialog text clearly explains that attached contexts will be overridden by workflow step contexts'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  473e0d1e-6bab-4eee-bbcc-274751aac271:
-    id: 473e0d1e-6bab-4eee-bbcc-274751aac271
-    content: '- [ ] Confirm proceeds with the workflow; Cancel aborts cleanly with no step executed and no state change'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb320deb-d75c-4518-8c2e-9e503adec22b:
-    id: cb320deb-d75c-4518-8c2e-9e503adec22b
-    content: '- [ ] During execution, automated and checkpoint steps receive only the step''s context, not the node''s attached context'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d9fea8a3-a2b7-4359-8054-a03561077a37:
-    id: d9fea8a3-a2b7-4359-8054-a03561077a37
-    content: '- [ ] Starting a workflow on a node without any attached or inherited context proceeds without the warning'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  95c81bdd-0e73-489a-a42c-40161e24d171:
-    id: 95c81bdd-0e73-489a-a42c-40161e24d171
-    content: '- [ ] Inherited contexts from ancestor nodes trigger the warning the same as directly attached contexts'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09515e00-a730-42e8-a86a-76b9b36175ef:
-    id: 09515e00-a730-42e8-a86a-76b9b36175ef
-    content: '- [ ] The node''s attached context is unchanged after the workflow ends'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  599a18ac-fd26-4d97-8b42-2cb5865c1acc:
-    id: 599a18ac-fd26-4d97-8b42-2cb5865c1acc
-    content: 🔧 Implementation proposal
-    children:
-      - ed4fca49-de20-44e0-ba2d-8b8cf0c65f1b
-      - 74724ec5-ee75-4a06-acca-b0222bd33b42
-      - f8c4e7f2-c0fc-4b5b-b7bc-e44f012b2a28
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed4fca49-de20-44e0-ba2d-8b8cf0c65f1b:
-    id: ed4fca49-de20-44e0-ba2d-8b8cf0c65f1b
-    content: Approach
-    children:
-      - e80d3e1f-2cc3-409a-a470-89d15a6ec69f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e80d3e1f-2cc3-409a-a470-89d15a6ec69f:
-    id: e80d3e1f-2cc3-409a-a470-89d15a6ec69f
-    content: Add a pre-flight check at workflow start that inspects the target node's effective context set and surfaces a confirmation modal if non-empty. Update the context resolution path used by workflow step execution to suppress the node's attached contexts for automated and checkpoint steps.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  74724ec5-ee75-4a06-acca-b0222bd33b42:
-    id: 74724ec5-ee75-4a06-acca-b0222bd33b42
-    content: Touchpoints
-    children:
-      - 302f05a5-5d84-4cc9-a49c-eef2090bc8da
-      - 503273f9-c840-4a3e-af1d-ee72cf7db00f
-      - 34effe8a-c0cc-404c-aeb5-006d4ebae560
-      - 507a9ad5-257e-4e22-8c14-1a102463560a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  302f05a5-5d84-4cc9-a49c-eef2090bc8da:
-    id: 302f05a5-5d84-4cc9-a49c-eef2090bc8da
-    content: Workflow start action in the Zustand workflow store
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  503273f9-c840-4a3e-af1d-ee72cf7db00f:
-    id: 503273f9-c840-4a3e-af1d-ee72cf7db00f
-    content: Context resolution used when assembling step prompts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  34effe8a-c0cc-404c-aeb5-006d4ebae560:
-    id: 34effe8a-c0cc-404c-aeb5-006d4ebae560
-    content: New confirmation dialog component and wiring
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  507a9ad5-257e-4e22-8c14-1a102463560a:
-    id: 507a9ad5-257e-4e22-8c14-1a102463560a
-    content: Workflow run state to flag that override mode is active
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f8c4e7f2-c0fc-4b5b-b7bc-e44f012b2a28:
-    id: f8c4e7f2-c0fc-4b5b-b7bc-e44f012b2a28
-    content: Constraints to call out
-    children:
-      - e88c0c78-2a3a-4869-8855-84fcff8f43c2
-      - 5138c8e4-953b-4bad-bcd4-58214b26d02a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e88c0c78-2a3a-4869-8855-84fcff8f43c2:
-    id: e88c0c78-2a3a-4869-8855-84fcff8f43c2
-    content: Behavior for non-automated/manual steps is not specified by the source request; the implementation needs an explicit decision rather than silently diverging from automated steps
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5138c8e4-953b-4bad-bcd4-58214b26d02a:
-    id: 5138c8e4-953b-4bad-bcd4-58214b26d02a
-    content: Inherited contexts must be detected, not just directly attached ones, or the warning will silently miss the most common case
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f17269f0-ec3a-4c2f-b656-d1a6e4fd1b86:
-    id: f17269f0-ec3a-4c2f-b656-d1a6e4fd1b86
-    content: Challenges and pushback
-    children:
-      - eddf7dad-d0f2-42ed-bb01-b890ad3c7856
-      - 5185ff0b-9ca3-418e-94c3-e75d85ea1926
-      - d730983c-adeb-4dbd-a88a-32b5aa2d27fb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eddf7dad-d0f2-42ed-bb01-b890ad3c7856:
-    id: eddf7dad-d0f2-42ed-bb01-b890ad3c7856
-    content: If override is always the correct behavior, a blocking dialog on every run is friction — consider a one-time educational toast plus a settings toggle instead
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5185ff0b-9ca3-418e-94c3-e75d85ea1926:
-    id: 5185ff0b-9ca3-418e-94c3-e75d85ea1926
-    content: Rule scoping automated/checkpoint steps differently from other step types risks two execution modes; recommend applying the override uniformly across all workflow step types unless there is a concrete use case for the split
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d730983c-adeb-4dbd-a88a-32b5aa2d27fb:
-    id: d730983c-adeb-4dbd-a88a-32b5aa2d27fb
-    content: No opt-in path exists for users who deliberately want the attached context included; if that use case is real it should be a per-workflow setting, not a forced binary
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  61a98a54-de14-46c3-9464-7203cff218f0:
-    id: 61a98a54-de14-46c3-9464-7203cff218f0
-    content: Shippability
-    children:
-      - 593eba7d-87cc-4f2a-908d-cdddaedda6ac
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  593eba7d-87cc-4f2a-908d-cdddaedda6ac:
-    id: 593eba7d-87cc-4f2a-908d-cdddaedda6ac
-    content: Single chunk — warning dialog and override behavior must ship together; splitting would leave either silent overrides or a warning with no effect
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   5abdf545-1610-49f5-9d89-33a31b296bd3:
     id: 5abdf545-1610-49f5-9d89-33a31b296bd3
     content: worktree
@@ -119742,6 +119335,442 @@ nodes:
   ad8eda7a-c295-469e-bca5-319e23191227:
     id: ad8eda7a-c295-469e-bca5-319e23191227
     content: FYI — all four `createNewTerminal` call sites that thread `nodeId` are correct; non-resume call sites correctly omit it; test setup resets `useTerminalStore` cleanly per `beforeEach`
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fe9557b-850d-4c36-ae42-ddad1aeb8b00:
+    id: 6fe9557b-850d-4c36-ae42-ddad1aeb8b00
+    content: 📄 Product spec
+    children:
+      - 73c274ec-41d9-4c9b-8e2f-0b8a51065da8
+      - cfd9ca59-2f64-497b-90da-809760197556
+      - ca4756fa-ee0d-47bb-bbe4-737f61c28ba2
+      - a7f5ef0a-5986-458b-9fc4-a46a768e03a6
+      - 848b9752-8172-4f18-83b6-000bb5716e89
+      - 70b2fd97-e8b0-4997-a9d9-ee5cbc647223
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  73c274ec-41d9-4c9b-8e2f-0b8a51065da8:
+    id: 73c274ec-41d9-4c9b-8e2f-0b8a51065da8
+    content: Context
+    children:
+      - 19deb678-162e-4c56-92ed-490087d5d3f6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19deb678-162e-4c56-92ed-490087d5d3f6:
+    id: 19deb678-162e-4c56-92ed-490087d5d3f6
+    content: Starting a workflow on a node that already has an attached context causes that context to replay in every workflow step, redundantly inflating prompts and diluting the step-specific instruction
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfd9ca59-2f64-497b-90da-809760197556:
+    id: cfd9ca59-2f64-497b-90da-809760197556
+    content: User
+    children:
+      - 933de41d-0a4f-4f97-98e6-59cb648bf8b3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  933de41d-0a4f-4f97-98e6-59cb648bf8b3:
+    id: 933de41d-0a4f-4f97-98e6-59cb648bf8b3
+    content: Workflow author or operator who triggers a workflow on a node that carries its own attached or inherited context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca4756fa-ee0d-47bb-bbe4-737f61c28ba2:
+    id: ca4756fa-ee0d-47bb-bbe4-737f61c28ba2
+    content: Current experience
+    children:
+      - 6a2a7058-2493-483c-9619-cd9e48e48226
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a2a7058-2493-483c-9619-cd9e48e48226:
+    id: 6a2a7058-2493-483c-9619-cd9e48e48226
+    content: The node's attached context is silently concatenated to each step's prompt with no indication to the user, producing noisy, repetitive context and unpredictable step behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7f5ef0a-5986-458b-9fc4-a46a768e03a6:
+    id: a7f5ef0a-5986-458b-9fc4-a46a768e03a6
+    content: Goal
+    children:
+      - d18ce9c4-9ffb-4acd-9dcc-e04040eb98f4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d18ce9c4-9ffb-4acd-9dcc-e04040eb98f4:
+    id: d18ce9c4-9ffb-4acd-9dcc-e04040eb98f4
+    content: Workflow step contexts uniformly override a node's attached context during workflow execution, with a first-time informational toast surfaced only when the step's context would displace a non-step-sourced context on the node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  848b9752-8172-4f18-83b6-000bb5716e89:
+    id: 848b9752-8172-4f18-83b6-000bb5716e89
+    content: Business rules
+    children:
+      - 6414b098-69e5-4a3f-b7f8-2c1f1826b57a
+      - d2d6e889-cb55-4572-98ac-eae698ee4f68
+      - 442a7632-2eaf-4eb7-82af-af5bca698f75
+      - f79c524c-7aef-4bb6-86e5-ba4acc1548bd
+      - 0d87cfec-2d78-4773-939c-47afe413c3f6
+      - b3a658ba-2990-44c0-8880-be8e51a2bbe8
+      - 0a429dff-8acf-44d9-82e9-fcc3dd761c4d
+      - 8ed9bf96-daba-4463-8727-67f62028a4e4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6414b098-69e5-4a3f-b7f8-2c1f1826b57a:
+    id: 6414b098-69e5-4a3f-b7f8-2c1f1826b57a
+    content: 1. A toast is shown only when the workflow step defines a context AND the target node has a context that did not originate from the step (i.e., directly attached by the user, or inherited from an ancestor node)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2d6e889-cb55-4572-98ac-eae698ee4f68:
+    id: d2d6e889-cb55-4572-98ac-eae698ee4f68
+    content: 2. If the workflow step defines a context and the target node has no other context, no toast is shown and the step context applies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  442a7632-2eaf-4eb7-82af-af5bca698f75:
+    id: 442a7632-2eaf-4eb7-82af-af5bca698f75
+    content: 3. If the workflow step has no context and the target node has a context (direct or ancestor-inherited), no toast is shown and the node's context applies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f79c524c-7aef-4bb6-86e5-ba4acc1548bd:
+    id: f79c524c-7aef-4bb6-86e5-ba4acc1548bd
+    content: 4. The toast is non-blocking and informational, stating that the node's non-step context is being ignored in favor of the step's context for the duration of the workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d87cfec-2d78-4773-939c-47afe413c3f6:
+    id: 0d87cfec-2d78-4773-939c-47afe413c3f6
+    content: 5. The toast is shown only on the first qualifying workflow run per node; subsequent runs on the same node do not re-surface it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3a658ba-2990-44c0-8880-be8e51a2bbe8:
+    id: b3a658ba-2990-44c0-8880-be8e51a2bbe8
+    content: 6. Workflow step contexts uniformly override the node's non-step contexts across all step types (automated, checkpoint, and manual)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a429dff-8acf-44d9-82e9-fcc3dd761c4d:
+    id: 0a429dff-8acf-44d9-82e9-fcc3dd761c4d
+    content: 7. The override applies only for the lifetime of the workflow run and does not mutate the node's attached context definition
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ed9bf96-daba-4463-8727-67f62028a4e4:
+    id: 8ed9bf96-daba-4463-8727-67f62028a4e4
+    content: 8. Users who want to send a node with its attached context can use the existing 'send' mechanism rather than starting a workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70b2fd97-e8b0-4997-a9d9-ee5cbc647223:
+    id: 70b2fd97-e8b0-4997-a9d9-ee5cbc647223
+    content: Acceptance criteria
+    children:
+      - f5dfafed-5bab-41da-a5b8-f084ccb2f771
+      - 985fc412-aec1-49e4-ab84-6809193207ec
+      - 473e0d1e-6bab-4eee-bbcc-274751aac271
+      - d9fea8a3-a2b7-4359-8054-a03561077a37
+      - 95c81bdd-0e73-489a-a42c-40161e24d171
+      - d7ea92bc-121e-436e-9667-69821cafedbe
+      - cb320deb-d75c-4518-8c2e-9e503adec22b
+      - 09515e00-a730-42e8-a86a-76b9b36175ef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5dfafed-5bab-41da-a5b8-f084ccb2f771:
+    id: f5dfafed-5bab-41da-a5b8-f084ccb2f771
+    content: '- [ ] Starting a workflow where the step has a context and the node has a directly attached context surfaces a non-blocking informational toast on the first occurrence'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  985fc412-aec1-49e4-ab84-6809193207ec:
+    id: 985fc412-aec1-49e4-ab84-6809193207ec
+    content: '- [ ] Starting a workflow where the step has a context and the node has an ancestor-inherited context (not sourced from the step) surfaces the same toast on the first occurrence'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  473e0d1e-6bab-4eee-bbcc-274751aac271:
+    id: 473e0d1e-6bab-4eee-bbcc-274751aac271
+    content: '- [ ] Starting a workflow where the step has a context and the node has no other context proceeds without any toast'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9fea8a3-a2b7-4359-8054-a03561077a37:
+    id: d9fea8a3-a2b7-4359-8054-a03561077a37
+    content: '- [ ] Starting a workflow where the step has no context and the node has a context proceeds without any toast, and the node''s context is applied'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95c81bdd-0e73-489a-a42c-40161e24d171:
+    id: 95c81bdd-0e73-489a-a42c-40161e24d171
+    content: '- [ ] Subsequent workflow runs on the same node do not re-surface the toast once shown'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7ea92bc-121e-436e-9667-69821cafedbe:
+    id: d7ea92bc-121e-436e-9667-69821cafedbe
+    content: '- [ ] The workflow starts immediately without waiting for any toast acknowledgement'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb320deb-d75c-4518-8c2e-9e503adec22b:
+    id: cb320deb-d75c-4518-8c2e-9e503adec22b
+    content: '- [ ] During execution, all step types (automated, checkpoint, manual) receive only the step''s context when override applies, not the node''s non-step context'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09515e00-a730-42e8-a86a-76b9b36175ef:
+    id: 09515e00-a730-42e8-a86a-76b9b36175ef
+    content: '- [ ] The node''s attached context is unchanged after the workflow ends'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  599a18ac-fd26-4d97-8b42-2cb5865c1acc:
+    id: 599a18ac-fd26-4d97-8b42-2cb5865c1acc
+    content: 🔧 Implementation proposal
+    children:
+      - ed4fca49-de20-44e0-ba2d-8b8cf0c65f1b
+      - 74724ec5-ee75-4a06-acca-b0222bd33b42
+      - f8c4e7f2-c0fc-4b5b-b7bc-e44f012b2a28
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed4fca49-de20-44e0-ba2d-8b8cf0c65f1b:
+    id: ed4fca49-de20-44e0-ba2d-8b8cf0c65f1b
+    content: Approach
+    children:
+      - e80d3e1f-2cc3-409a-a470-89d15a6ec69f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e80d3e1f-2cc3-409a-a470-89d15a6ec69f:
+    id: e80d3e1f-2cc3-409a-a470-89d15a6ec69f
+    content: At workflow start, determine whether the step defines a context and whether the node has a non-step-sourced context (direct attachment or ancestor inheritance). When both are present and the per-node toast flag is unset, emit a one-time informational toast. Update the context resolution path used by workflow step execution to suppress the node's non-step contexts uniformly across all step types when the step defines a context.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74724ec5-ee75-4a06-acca-b0222bd33b42:
+    id: 74724ec5-ee75-4a06-acca-b0222bd33b42
+    content: Touchpoints
+    children:
+      - 302f05a5-5d84-4cc9-a49c-eef2090bc8da
+      - 503273f9-c840-4a3e-af1d-ee72cf7db00f
+      - 34effe8a-c0cc-404c-aeb5-006d4ebae560
+      - 507a9ad5-257e-4e22-8c14-1a102463560a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  302f05a5-5d84-4cc9-a49c-eef2090bc8da:
+    id: 302f05a5-5d84-4cc9-a49c-eef2090bc8da
+    content: Workflow start action in the Zustand workflow store
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  503273f9-c840-4a3e-af1d-ee72cf7db00f:
+    id: 503273f9-c840-4a3e-af1d-ee72cf7db00f
+    content: Context resolution used when assembling step prompts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  34effe8a-c0cc-404c-aeb5-006d4ebae560:
+    id: 34effe8a-c0cc-404c-aeb5-006d4ebae560
+    content: Toast feedback service
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  507a9ad5-257e-4e22-8c14-1a102463560a:
+    id: 507a9ad5-257e-4e22-8c14-1a102463560a
+    content: Per-node persistent flag tracking whether the override toast has already been shown for that node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8c4e7f2-c0fc-4b5b-b7bc-e44f012b2a28:
+    id: f8c4e7f2-c0fc-4b5b-b7bc-e44f012b2a28
+    content: Constraints to call out
+    children:
+      - e88c0c78-2a3a-4869-8855-84fcff8f43c2
+      - 5138c8e4-953b-4bad-bcd4-58214b26d02a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e88c0c78-2a3a-4869-8855-84fcff8f43c2:
+    id: e88c0c78-2a3a-4869-8855-84fcff8f43c2
+    content: Context source must be distinguishable — direct attachment, ancestor inheritance, and step-derived must be separable so the warning condition can be evaluated correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5138c8e4-953b-4bad-bcd4-58214b26d02a:
+    id: 5138c8e4-953b-4bad-bcd4-58214b26d02a
+    content: Per-node toast-shown state needs to persist with the document so the toast does not re-appear across sessions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f17269f0-ec3a-4c2f-b656-d1a6e4fd1b86:
+    id: f17269f0-ec3a-4c2f-b656-d1a6e4fd1b86
+    content: Challenges and pushback (resolved)
+    children:
+      - eddf7dad-d0f2-42ed-bb01-b890ad3c7856
+      - 5185ff0b-9ca3-418e-94c3-e75d85ea1926
+      - d730983c-adeb-4dbd-a88a-32b5aa2d27fb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eddf7dad-d0f2-42ed-bb01-b890ad3c7856:
+    id: eddf7dad-d0f2-42ed-bb01-b890ad3c7856
+    content: 'Blocking dialog every run is friction — resolved: use a first-time-only informational toast per node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5185ff0b-9ca3-418e-94c3-e75d85ea1926:
+    id: 5185ff0b-9ca3-418e-94c3-e75d85ea1926
+    content: 'Diverging behavior across step types creates two modes — resolved: override applies uniformly across all workflow step types'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d730983c-adeb-4dbd-a88a-32b5aa2d27fb:
+    id: d730983c-adeb-4dbd-a88a-32b5aa2d27fb
+    content: 'No opt-in path for users wanting attached context included — resolved: the existing ''send'' mechanism is the escape hatch; no per-workflow setting needed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61a98a54-de14-46c3-9464-7203cff218f0:
+    id: 61a98a54-de14-46c3-9464-7203cff218f0
+    content: Shippability
+    children:
+      - 593eba7d-87cc-4f2a-908d-cdddaedda6ac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  593eba7d-87cc-4f2a-908d-cdddaedda6ac:
+    id: 593eba7d-87cc-4f2a-908d-cdddaedda6ac
+    content: Single chunk — toast and override behavior must ship together; splitting would leave either silent overrides or a toast with no effect
     children: []
     metadata:
       status: pending
