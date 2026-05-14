@@ -215,6 +215,14 @@ Stop fires when Claude returns to its prompt. If Claude backgrounds a long-runni
 
 If any of these are missing, workflows may start but will not behave correctly. A setup guide appears the first time you run a workflow if no hook events have been received. Once hooks are working, the guide won't appear again.
 
+## Activity log
+
+When a workflow stalls or a step doesn't advance the way you expected, open the activity log to see what Arborescent received and how it routed each event. Use **Help → Open Log File** in the menu.
+
+Each line is tagged with the workflow node it concerns when one was resolvable, so you can follow a single node's lifecycle with `grep node=<node-id>`. Dropped hooks are tagged with a reason — `no terminal mapped`, `no running node`, `invalid auth token`, or `invalid payload body` — so you can tell apart a hook that never arrived from one that arrived and was discarded.
+
+The log is appended to across sessions and rotates at 5 MB, keeping the three previous files (`arborescent.log.1` through `.3`). Attach the file to bug reports.
+
 ## Dragging Workflows
 
 Drag a workflow into any blueprint node. Drops into non-blueprint nodes, workflow steps, and contexts are rejected with an error message.

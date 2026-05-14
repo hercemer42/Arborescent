@@ -131,4 +131,17 @@ export interface ElectronAPI {
 
   // Hook server bridge
   onHookEvent: (callback: (event: HookEventPayload) => void) => Unsubscribe;
+
+  // Persistent activity log
+  appendLog: (entry: AppendLogPayload) => Promise<void>;
+  openLogFile: () => Promise<void>;
+  getLogFilePath: () => Promise<string | null>;
+}
+
+export interface AppendLogPayload {
+  level: 'debug' | 'info' | 'warn' | 'error';
+  message: string;
+  context?: string;
+  nodeId?: string;
+  errorStack?: string;
 }

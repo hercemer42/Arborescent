@@ -31,13 +31,14 @@ describe('menuService', () => {
       Object.defineProperty(process, 'platform', { value: originalPlatform });
     });
 
-    it('should set application menu to null on non-macOS', () => {
+    it('should still register a menu on non-macOS so the Help submenu is reachable', () => {
       const originalPlatform = process.platform;
       Object.defineProperty(process, 'platform', { value: 'linux' });
 
       createApplicationMenu();
 
-      expect(Menu.setApplicationMenu).toHaveBeenCalledWith(null);
+      expect(Menu.buildFromTemplate).toHaveBeenCalledTimes(1);
+      expect(Menu.setApplicationMenu).toHaveBeenCalledTimes(1);
 
       Object.defineProperty(process, 'platform', { value: originalPlatform });
     });

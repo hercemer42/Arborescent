@@ -60,7 +60,7 @@ describe('MainLogger', () => {
     it('should not send to renderer when notifyRenderer is false', () => {
       mockGetAllWindows.mockReturnValue([mockWindow]);
 
-      logger.error('Test error', undefined, undefined, false);
+      logger.error('Test error', undefined, undefined, undefined, false);
 
       expect(mockWindow.webContents.send).not.toHaveBeenCalled();
     });

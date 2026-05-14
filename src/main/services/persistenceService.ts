@@ -22,7 +22,7 @@ export async function saveLastUsedDirectory(filePath: string): Promise<void> {
     await fs.writeFile(lastDirPath, directory, 'utf-8');
     logger.info(`Saved last directory: ${directory}`, 'Persistence');
   } catch (error) {
-    logger.error('Failed to save last directory', error instanceof Error ? error : undefined, 'Persistence', false);
+    logger.error('Failed to save last directory', error instanceof Error ? error : undefined, 'Persistence', undefined, false);
   }
 }
 
@@ -33,7 +33,7 @@ export async function saveJsonFile(fileName: string, content: string, logName: s
     await fs.writeFile(filePath, content, 'utf-8');
     logger.info(`${logName} saved`, 'Persistence');
   } catch (error) {
-    logger.error(`Failed to save ${logName}`, error instanceof Error ? error : undefined, 'Persistence', false);
+    logger.error(`Failed to save ${logName}`, error instanceof Error ? error : undefined, 'Persistence', undefined, false);
   }
 }
 
@@ -49,7 +49,7 @@ export async function loadJsonFile(fileName: string, logName: string): Promise<s
       logger.info(`No ${logName.toLowerCase()} file found`, 'Persistence');
       return null;
     }
-    logger.error(`Failed to load ${logName.toLowerCase()}`, error instanceof Error ? error : undefined, 'Persistence', false);
+    logger.error(`Failed to load ${logName.toLowerCase()}`, error instanceof Error ? error : undefined, 'Persistence', undefined, false);
     return null;
   }
 }

@@ -1,4 +1,4 @@
-import { LogLevel, LogEntry, Logger } from './LoggerInterface';
+import { LogLevel, LogEntry, LogMeta, Logger } from './LoggerInterface';
 
 const LOG_LEVEL_PRIORITY: Record<LogLevel, number> = {
   debug: 0,
@@ -24,32 +24,38 @@ export abstract class BaseLogger implements Logger {
   protected maxLogs = 1000;
   protected minLevel: LogLevel = getMinLogLevel();
 
-  debug(message: string, context?: string): void {
-    this.log('debug', message, context);
+  debug(message: string, context?: string, meta?: LogMeta): void {
+    this.log('debug', message, context, undefined, meta);
   }
 
-  info(message: string, context?: string): void {
-    this.log('info', message, context);
+  info(message: string, context?: string, meta?: LogMeta): void {
+    this.log('info', message, context, undefined, meta);
   }
 
-  warn(message: string, context?: string): void {
-    this.log('warn', message, context);
+  warn(message: string, context?: string, meta?: LogMeta): void {
+    this.log('warn', message, context, undefined, meta);
   }
 
-  abstract error(message: string, error?: Error, context?: string): void;
+  abstract error(message: string, error?: Error, context?: string, meta?: LogMeta): void;
 
   protected shouldLog(level: LogLevel): boolean {
     return LOG_LEVEL_PRIORITY[level] >= LOG_LEVEL_PRIORITY[this.minLevel];
   }
 
-  protected log(level: LogLevel, message: string, context?: string, error?: Error): void {
-    // Always store in memory for debugging/export
+  protected log(
+    level: LogLevel,
+    message: string,
+    context?: string,
+    error?: Error,
+    meta?: LogMeta,
+  ): void {
     const entry: LogEntry = {
       timestamp: new Date(),
       level,
       message,
       context,
       error,
+      nodeId: meta?.nodeId,
     };
 
     this.logs.push(entry);
@@ -57,15 +63,21 @@ export abstract class BaseLogger implements Logger {
       this.logs.shift();
     }
 
-    // Only output to console if level meets threshold
     if (this.shouldLog(level)) {
-      this.output(level, message, context, error);
+      this.output(level, message, context, error, meta);
     }
   }
 
-  protected output(level: LogLevel, message: string, context?: string, error?: Error): void {
-    const prefix = context ? `[${context}]` : '';
-    const formattedMessage = `${prefix} ${message}`;
+  protected output(
+    level: LogLevel,
+    message: string,
+    context?: string,
+    error?: Error,
+    meta?: LogMeta,
+  ): void {
+    const contextTag = context ? `[${context}]` : '';
+    const nodeTag = meta?.nodeId ? `[node=${meta.nodeId}]` : '';
+    const formattedMessage = `${contextTag}${nodeTag} ${message}`;
 
     switch (level) {
       case 'debug':
@@ -96,11 +108,13 @@ export abstract class BaseLogger implements Logger {
   }
 
   exportLogs(): string {
-    return this.logs
-      .map(
-        (entry) =>
-          `[${entry.timestamp.toISOString()}] ${entry.level.toUpperCase()} ${entry.context ? `[${entry.context}] ` : ''}${entry.message}${entry.error ? `\n${entry.error.stack}` : ''}`
-      )
-      .join('\n');
+    return this.logs.map((entry) => formatLogEntry(entry)).join('\n');
   }
+}
+
+export function formatLogEntry(entry: LogEntry): string {
+  const contextToken = entry.context ? `[${entry.context}] ` : '';
+  const nodeToken = entry.nodeId ? `[node=${entry.nodeId}] ` : '';
+  const errorTail = entry.error ? `\n${entry.error.stack}` : '';
+  return `[${entry.timestamp.toISOString()}] ${entry.level.toUpperCase()} ${contextToken}${nodeToken}${entry.message}${errorTail}`;
 }

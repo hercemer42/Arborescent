@@ -12,7 +12,7 @@ export function registerFileHandlers(): void {
       return content;
     } catch (error) {
       const message = `Failed to read file: ${filePath}`;
-      logger.error(message, error instanceof Error ? error : undefined, 'IPC', true);
+      logger.error(message, error instanceof Error ? error : undefined, 'IPC', undefined, true);
       throw error;
     }
   });
@@ -24,7 +24,7 @@ export function registerFileHandlers(): void {
       logger.info(`File written: ${filePath}`, 'IPC');
     } catch (error) {
       const message = `Failed to write file: ${filePath}`;
-      logger.error(message, error instanceof Error ? error : undefined, 'IPC', true);
+      logger.error(message, error instanceof Error ? error : undefined, 'IPC', undefined, true);
       throw error;
     }
   });

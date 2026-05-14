@@ -15,7 +15,7 @@ export function registerTempFileHandlers(): void {
       await fs.mkdir(dir, { recursive: true });
       return dir;
     } catch (error) {
-      logger.error('Failed to create temp directory', error instanceof Error ? error : undefined, 'IPC', true);
+      logger.error('Failed to create temp directory', error instanceof Error ? error : undefined, 'IPC', undefined, true);
       throw error;
     }
   });
@@ -30,7 +30,7 @@ export function registerTempFileHandlers(): void {
       logger.info(`Temp file created: ${filePath}`, 'IPC');
       return filePath;
     } catch (error) {
-      logger.error(`Failed to create temp file: ${fileName}`, error instanceof Error ? error : undefined, 'IPC', true);
+      logger.error(`Failed to create temp file: ${fileName}`, error instanceof Error ? error : undefined, 'IPC', undefined, true);
       throw error;
     }
   });
@@ -42,7 +42,7 @@ export function registerTempFileHandlers(): void {
       await fs.unlink(filePath);
       logger.info(`Temp file deleted: ${filePath}`, 'IPC');
     } catch (error) {
-      logger.error(`Failed to delete temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', false);
+      logger.error(`Failed to delete temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', undefined, false);
     }
   });
 
@@ -53,7 +53,7 @@ export function registerTempFileHandlers(): void {
       const files = await fs.readdir(dir);
       return files.map(file => path.join(dir, file));
     } catch (error) {
-      logger.error('Failed to list temp files', error instanceof Error ? error : undefined, 'IPC', false);
+      logger.error('Failed to list temp files', error instanceof Error ? error : undefined, 'IPC', undefined, false);
       return [];
     }
   });
@@ -66,7 +66,7 @@ export function registerTempFileHandlers(): void {
       logger.info(`Temp file read: ${filePath}`, 'IPC');
       return content;
     } catch (error) {
-      logger.error(`Failed to read temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', false);
+      logger.error(`Failed to read temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', undefined, false);
       return null;
     }
   });

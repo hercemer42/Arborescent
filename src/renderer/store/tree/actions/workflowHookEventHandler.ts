@@ -84,6 +84,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
     logger.info(
       `Hook event ${event.hook_event_name} for node ${runningNodeId} on terminal ${terminalId}`,
       'WorkflowExecution',
+      { nodeId: runningNodeId },
     );
 
     if (event.hook_event_name === 'UserPromptSubmit') {
@@ -123,6 +124,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
         logger.info(
           `Hook Stop ignored: node ${runningNodeId} has no workflow step position`,
           'WorkflowExecution',
+          { nodeId: runningNodeId },
         );
         return;
       }
@@ -132,6 +134,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
       logger.info(
         `Hook Stop at step ${position.currentStepId} (type=${stepType}) for node ${runningNodeId}`,
         'WorkflowExecution',
+        { nodeId: runningNodeId },
       );
 
       if (stepType === 'autonomous') {
@@ -177,10 +180,17 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
           logger.info(
             `Stop deferred for collaborating node ${runningNodeId} — waiting for feedback`,
             'WorkflowExecution',
+            { nodeId: runningNodeId },
           );
         } else {
           advanceNode(runningNodeId);
         }
+      } else if (stepType === 'manual') {
+        logger.info(
+          `Hook Stop ignored: manual step ${position.currentStepId} — user drives advancement`,
+          'WorkflowExecution',
+          { nodeId: runningNodeId },
+        );
       } else if (stepType === 'checkpoint') {
         clearStepTimeout(runningNodeId);
         const { nodes: currentNodes, ancestorRegistry: currentRegistry } = get();

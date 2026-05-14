@@ -127,4 +127,7 @@ global.window.electron = {
   onHookEvent: vi.fn().mockReturnValue(vi.fn()),
   startKeepAwake: vi.fn().mockResolvedValue(undefined),
   stopKeepAwake: vi.fn().mockResolvedValue(undefined),
+  appendLog: vi.fn().mockResolvedValue(undefined),
+  openLogFile: vi.fn().mockResolvedValue(undefined),
+  getLogFilePath: vi.fn().mockResolvedValue(null),
 };

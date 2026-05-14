@@ -122,6 +122,9 @@ const api: ElectronAPI = {
     ipcRenderer.on('hook-event', listener);
     return () => ipcRenderer.removeListener('hook-event', listener);
   },
+  appendLog: (entry) => ipcRenderer.invoke('log:append', entry),
+  openLogFile: () => ipcRenderer.invoke('log:open'),
+  getLogFilePath: () => ipcRenderer.invoke('log:get-path'),
 };
 
 contextBridge.exposeInMainWorld('electron', api);
