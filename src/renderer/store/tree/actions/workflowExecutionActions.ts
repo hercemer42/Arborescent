@@ -209,6 +209,38 @@ export const createWorkflowExecutionActions = (
     return null;
   }
 
+  function findCapturableNodeForTerminal(terminalId: string): string | null {
+    const running = findRunningNodeOnTerminal(terminalId);
+    if (running) return running;
+    const originNodeId = useTerminalStore
+      .getState()
+      .terminals.find((t) => t.id === terminalId)?.originNodeId;
+    if (originNodeId && get().nodes[originNodeId]) return originNodeId;
+    return null;
+  }
+
+  function findNodeIdBySessionId(sessionId: string): string | null {
+    const { nodes } = get();
+    for (const [nodeId, node] of Object.entries(nodes)) {
+      if (node.metadata.sessionId === sessionId) return nodeId;
+    }
+    return null;
+  }
+
+  function reattachOriginNodeForResumedSession(terminalId: string, sessionId: string): void {
+    const reattachNodeId = findNodeIdBySessionId(sessionId);
+    if (!reattachNodeId) return;
+    const terminalStore = useTerminalStore.getState();
+    const terminal = terminalStore.terminals.find((t) => t.id === terminalId);
+    if (terminal && !terminal.originNodeId) {
+      terminalStore.updateTerminal(terminalId, { originNodeId: reattachNodeId });
+      logger.info(
+        `Reattached terminal ${terminalId} to node ${reattachNodeId} via sessionId ${sessionId}`,
+        'WorkflowExecution',
+      );
+    }
+  }
+
   function assignTerminalToNode(terminalId: string, nodeId: string): void {
     const { terminalNodeAssignments = {} } = get();
     const updated: Record<string, string> = {};
@@ -267,7 +299,7 @@ export const createWorkflowExecutionActions = (
 
     if (route.kind === "resume-in-new-tab" && route.cwd) {
       try {
-        const created = await useTerminalStore.getState().createNewTerminal("Resume", route.cwd);
+        const created = await useTerminalStore.getState().createNewTerminal("Resume", route.cwd, nodeId);
         if (!created) throw new Error("Terminal not created");
         await window.electron.terminalWrite(created.id, `claude --resume ${route.sessionId}\r`);
         sessionResumeManager.bindSessionTab(created.id, route.sessionId);
@@ -499,7 +531,7 @@ export const createWorkflowExecutionActions = (
 
     if (route.kind === 'resume-in-new-tab' && route.cwd) {
       try {
-        const newTabId = await openInheritedResumeTerminal(route.sessionId, route.cwd);
+        const newTabId = await openInheritedResumeTerminal(route.sessionId, route.cwd, nextNodeId);
         const inherited = inheritSessionOnNode(get().nodes, nextNodeId, route.sessionId);
         if (inherited !== get().nodes) set({ nodes: inherited });
         sessionResumeManager.bindSessionTab(newTabId, route.sessionId);
@@ -534,8 +566,8 @@ export const createWorkflowExecutionActions = (
       );
   }
 
-  async function openInheritedResumeTerminal(sessionId: string, cwd: string): Promise<string> {
-    const created = await useTerminalStore.getState().createNewTerminal('Resume', cwd);
+  async function openInheritedResumeTerminal(sessionId: string, cwd: string, originNodeId?: string): Promise<string> {
+    const created = await useTerminalStore.getState().createNewTerminal('Resume', cwd, originNodeId);
     if (!created) throw new Error('Resume terminal was not created');
     await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
     return created.id;
@@ -841,8 +873,9 @@ export const createWorkflowExecutionActions = (
     updatedMap[trimmed] = terminalId;
 
     const runningNodeId = findRunningNodeOnTerminal(terminalId);
-    const nodesWithCapture = runningNodeId
-      ? captureSessionOnNode(nodes, runningNodeId, trimmed)
+    const captureNodeId = findCapturableNodeForTerminal(terminalId);
+    const nodesWithCapture = captureNodeId
+      ? captureSessionOnNode(nodes, captureNodeId, trimmed)
       : nodes;
 
     set({
@@ -850,8 +883,12 @@ export const createWorkflowExecutionActions = (
       nodes: nodesWithCapture,
     });
 
-    if (runningNodeId && nodesWithCapture !== nodes) {
+    if (captureNodeId && nodesWithCapture !== nodes) {
       triggerAutosave?.();
+    }
+
+    if (!captureNodeId) {
+      reattachOriginNodeForResumedSession(terminalId, trimmed);
     }
 
     // Async: write live cwd to sessionRegistry

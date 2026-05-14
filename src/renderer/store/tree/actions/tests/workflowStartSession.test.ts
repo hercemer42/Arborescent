@@ -166,7 +166,7 @@ describe('startWorkflow — auto session routing (PR1)', () => {
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(mockCreateNewTerminal).toHaveBeenCalledWith(expect.any(String), '/some/path');
+      expect(mockCreateNewTerminal).toHaveBeenCalledWith(expect.any(String), '/some/path', 'task-a');
     });
   });
 
@@ -209,7 +209,7 @@ describe('startWorkflow — auto session routing (PR1)', () => {
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(mockCreateNewTerminal).toHaveBeenCalledWith(expect.any(String), '/Users/me/project');
+      expect(mockCreateNewTerminal).toHaveBeenCalledWith(expect.any(String), '/Users/me/project', 'task-a');
       expect(mockTerminalWrite).toHaveBeenCalledWith(
         'terminal-new',
         expect.stringContaining('claude --resume sess-1'),

@@ -104,7 +104,7 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
     }
 
     try {
-      const created = await useTerminalStore.getState().createNewTerminal('Resume', cwd);
+      const created = await useTerminalStore.getState().createNewTerminal('Resume', cwd, nodeId);
       if (!created) throw new Error('Resume terminal was not created');
       await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
       bindSessionTab(created.id, sessionId);

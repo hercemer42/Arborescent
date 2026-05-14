@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode } from '@shared/types';
 
 import { createWorkflowExecutionActions } from '../workflowExecutionActions';
+import { useTerminalStore } from '../../../terminal/terminalStore';
 
 vi.mock('../../../services/logger', () => ({
   logger: {
@@ -207,6 +208,26 @@ describe('createWorkflowExecutionActions', () => {
 
       expect(state.workflowExecutionStates['task-b']).toBeUndefined();
       expect(mockAddToast).toHaveBeenCalled();
+    });
+
+    it('should NOT reject when the terminal merely carries a stale originNodeId (blue bar) but no running workflow', async () => {
+      useTerminalStore.setState({
+        terminals: [],
+        activeTerminalId: null,
+        currentFilePath: '/test.arbo',
+        fileStates: { '/test.arbo': { terminals: [], activeTerminalId: null } },
+      });
+      useTerminalStore.getState().addTerminal({
+        id: 'terminal-1', title: 'Stale', cwd: '/tmp',
+        shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+        originNodeId: 'task-a',
+      });
+
+      await actions.startWorkflow('task-b', 'terminal-1');
+
+      expect(state.workflowExecutionStates['task-b']).toEqual(
+        expect.objectContaining({ state: 'running', terminalTabId: 'terminal-1' })
+      );
     });
 
     it('should show toast if no terminal tab is available', () => {
@@ -680,6 +701,127 @@ describe('createWorkflowExecutionActions', () => {
 
       expect(state.workflowSessionMap['session-1']).toBe('terminal-1');
       expect(state.workflowSessionMap['session-2']).toBe('terminal-2');
+    });
+
+    describe('node↔terminal reattach on resume', () => {
+      beforeEach(() => {
+        useTerminalStore.setState({
+          terminals: [],
+          activeTerminalId: null,
+          currentFilePath: '/test.arbo',
+          fileStates: { '/test.arbo': { terminals: [], activeTerminalId: null } },
+        });
+      });
+
+      it('seeds originNodeId on a fresh terminal when a node carries the matching sessionId', () => {
+        state.nodes['task-a'].metadata.sessionId = 'session-reattach';
+        useTerminalStore.getState().addTerminal({
+          id: 'fresh-terminal', title: 'Resume', cwd: '/tmp',
+          shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+        });
+
+        actions.registerSession('session-reattach', 'fresh-terminal');
+
+        const terminal = useTerminalStore.getState().terminals.find((t) => t.id === 'fresh-terminal');
+        expect(terminal?.originNodeId).toBe('task-a');
+      });
+
+      it('does not overwrite an existing originNodeId when reattaching', () => {
+        state.nodes['task-a'].metadata.sessionId = 'session-reattach';
+        useTerminalStore.getState().addTerminal({
+          id: 'existing-bound', title: 'Existing', cwd: '/tmp',
+          shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+          originNodeId: 'task-b',
+        });
+
+        actions.registerSession('session-reattach', 'existing-bound');
+
+        const terminal = useTerminalStore.getState().terminals.find((t) => t.id === 'existing-bound');
+        expect(terminal?.originNodeId).toBe('task-b');
+      });
+
+      it('leaves originNodeId undefined when no node carries the sessionId (untracked session)', () => {
+        useTerminalStore.getState().addTerminal({
+          id: 'fresh-terminal', title: 'Resume', cwd: '/tmp',
+          shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+        });
+
+        actions.registerSession('session-never-seen', 'fresh-terminal');
+
+        const terminal = useTerminalStore.getState().terminals.find((t) => t.id === 'fresh-terminal');
+        expect(terminal?.originNodeId).toBeUndefined();
+      });
+
+      it('leaves originNodeId undefined when the previously-associated node has been deleted before resume', () => {
+        state.nodes['task-a'].metadata.sessionId = 'session-orphan';
+        delete state.nodes['task-a'];
+        useTerminalStore.getState().addTerminal({
+          id: 'fresh-terminal', title: 'Resume', cwd: '/tmp',
+          shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+        });
+
+        actions.registerSession('session-orphan', 'fresh-terminal');
+
+        const terminal = useTerminalStore.getState().terminals.find((t) => t.id === 'fresh-terminal');
+        expect(terminal?.originNodeId).toBeUndefined();
+        expect(mockAddToast).not.toHaveBeenCalled();
+      });
+
+      it('keeps two parallel resumes independent — each terminal gets its own node', () => {
+        state.nodes['task-a'].metadata.sessionId = 'session-A';
+        state.nodes['task-b'].metadata.sessionId = 'session-B';
+        useTerminalStore.getState().addTerminal({
+          id: 'terminal-A', title: 'A', cwd: '/tmp',
+          shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+        });
+        useTerminalStore.getState().addTerminal({
+          id: 'terminal-B', title: 'B', cwd: '/tmp',
+          shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+        });
+
+        actions.registerSession('session-A', 'terminal-A');
+        actions.registerSession('session-B', 'terminal-B');
+
+        const all = useTerminalStore.getState().terminals;
+        expect(all.find((t) => t.id === 'terminal-A')?.originNodeId).toBe('task-a');
+        expect(all.find((t) => t.id === 'terminal-B')?.originNodeId).toBe('task-b');
+      });
+    });
+
+    describe('capture for plain plays via originNodeId fallback', () => {
+      beforeEach(() => {
+        useTerminalStore.setState({
+          terminals: [],
+          activeTerminalId: null,
+          currentFilePath: '/test.arbo',
+          fileStates: { '/test.arbo': { terminals: [], activeTerminalId: null } },
+        });
+      });
+
+      it('captures sessionId on the node when the terminal has originNodeId but no workflow assignment', () => {
+        useTerminalStore.getState().addTerminal({
+          id: 'plain-play-terminal', title: 'Play', cwd: '/tmp',
+          shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+          originNodeId: 'task-a',
+        });
+
+        actions.registerSession('session-plain', 'plain-play-terminal');
+
+        expect(state.nodes['task-a'].metadata.sessionId).toBe('session-plain');
+      });
+
+      it('does not capture when the terminal has an originNodeId pointing to a node that no longer exists', () => {
+        useTerminalStore.getState().addTerminal({
+          id: 'ghost-origin', title: 'Ghost', cwd: '/tmp',
+          shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+          originNodeId: 'deleted-node',
+        });
+        const captured = { ...state.nodes };
+
+        actions.registerSession('session-ghost', 'ghost-origin');
+
+        expect(state.nodes).toEqual(captured);
+      });
     });
   });
 
