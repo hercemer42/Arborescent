@@ -63,7 +63,7 @@ interface BuildWorkflowExecutionItemsParams {
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
   onStartWorkflow: () => void;
   onStopWorkflow: () => void;
-  onContinueWorkflow: () => void;
+  onResendStep: () => void;
 }
 
 export function buildWorkflowExecutionItems({
@@ -73,7 +73,7 @@ export function buildWorkflowExecutionItems({
   workflowExecutionStates,
   onStartWorkflow,
   onStopWorkflow,
-  onContinueWorkflow,
+  onResendStep,
 }: BuildWorkflowExecutionItemsParams): ContextMenuItem[] {
   if (!isChildOfWorkflowStep(node.id, nodes, ancestorRegistry)) return [];
 
@@ -85,7 +85,7 @@ export function buildWorkflowExecutionItems({
 
   if (entry?.state === 'awaiting-validation') {
     return [
-      { label: 'Continue Workflow', onClick: onContinueWorkflow },
+      { label: 'Resend step', onClick: onResendStep },
       { label: 'Stop Workflow', onClick: onStopWorkflow },
     ];
   }
@@ -123,7 +123,7 @@ export function buildWorkflowNavigationItems({
 }: BuildWorkflowNavigationItemsParams): ContextMenuItem[] {
   if (!isChildOfWorkflowStep(node.id, nodes, ancestorRegistry)) return [];
   if (collaboratingNodeId === node.id) return [];
-  if (workflowExecutionStates?.[node.id]) return [];
+  if (workflowExecutionStates?.[node.id]?.state === 'running') return [];
 
   const items: ContextMenuItem[] = [];
 
@@ -136,4 +136,26 @@ export function buildWorkflowNavigationItems({
   }
 
   return items;
+}
+
+export function combineExecutionAndNavigationItems(
+  executionItems: ContextMenuItem[],
+  navigationItems: ContextMenuItem[],
+  resumeSessionItem: ContextMenuItem | null = null,
+): ContextMenuItem[] {
+  const resendIdx = executionItems.findIndex(item => item.label === 'Resend step');
+  const nextStepIdx = navigationItems.findIndex(item => item.label === 'Next step');
+  const resume = resumeSessionItem ? [resumeSessionItem] : [];
+
+  if (resendIdx < 0 || nextStepIdx < 0) {
+    return [...executionItems, ...resume, ...navigationItems];
+  }
+
+  return [
+    ...executionItems.slice(0, resendIdx + 1),
+    navigationItems[nextStepIdx],
+    ...executionItems.slice(resendIdx + 1),
+    ...resume,
+    ...navigationItems.filter((_, i) => i !== nextStepIdx),
+  ];
 }

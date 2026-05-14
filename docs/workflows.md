@@ -83,7 +83,7 @@ Place an item inside an autonomous or checkpoint workflow step, then right-click
 What happens at each step depends on its type:
 
 - **Autonomous** — Content is sent to the terminal. When the AI finishes, the result is applied automatically and the item advances to the next step. With a Collaborate state the node content is replaced; with Collaborate & Execute the item statuses are updated; with Execute or Action no feedback is expected and the step advances on AI completion. If the feedback can't be parsed, or if the AI flags questions during the run, the workflow pauses — resume it manually.
-- **Checkpoint** — Content is sent to the terminal. When the AI finishes, the feedback panel opens for you to review the result before continuing. Right-click → **Continue Workflow** to advance to the next step and resume. If the checkpoint is the last step, the workflow completes automatically.
+- **Checkpoint** — Content is sent to the terminal. When the AI finishes, the feedback panel opens for you to review the result. Right-click → **Next step** to advance to the next step and resume execution there, or **Resend step** to send the current step again on the same terminal (use this when the AI paused with a question and you want to answer it in place). Advancing from the last step completes the workflow automatically.
 - **Manual** — The item waits at the step. Nothing is sent automatically. Use **Send** to send content, then **Next step** to advance manually.
 
 Each step's content is sent with its applied context. If no context is applied, the branch's raw content is sent without scaffolding — apply **Basic execution** (Collaborate & Execute) to get the AI to make changes and update item statuses.
@@ -113,9 +113,9 @@ A toast notification tells you what happened. Reordering the item within the sam
 
 Deleting a running item stops its workflow immediately and releases the terminal.
 
-**Continue Workflow** is only available for checkpoint steps that have finished — it advances the item to the next step and resumes execution if that step is autonomous or checkpoint.
+A paused checkpoint step (awaiting validation) offers two distinct actions. **Resend step** re-sends the current step on the same terminal without advancing — pick this when the AI asked you a question and you've edited the step content with your answer. **Next step** advances to the next workflow step and resumes execution there if that step is autonomous or checkpoint.
 
-On app restart, all previously running items are stopped. Checkpoint items awaiting validation are preserved. Reopen a terminal and start or continue them as needed.
+On app restart, all previously running items are stopped. Checkpoint items awaiting validation are preserved. Reopen a terminal and resend or advance them as needed.
 
 Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — you need to start the workflow again.
 

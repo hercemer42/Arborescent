@@ -112,7 +112,7 @@ describe('buildWorkflowExecutionItems', () => {
   const defaultCallbacks = {
     onStartWorkflow: vi.fn(),
     onStopWorkflow: vi.fn(),
-    onContinueWorkflow: vi.fn(),
+    onResendStep: vi.fn(),
   };
 
   it('should return empty array for nodes not inside a workflow step', () => {
@@ -243,7 +243,7 @@ describe('buildWorkflowExecutionItems', () => {
     expect(result[0].label).toBe('Stop Workflow');
   });
 
-  it('should show Continue Workflow and Stop Workflow for awaiting-validation nodes regardless of step type', () => {
+  it('should show Resend step and Stop Workflow for awaiting-validation nodes regardless of step type', () => {
     const result = buildWorkflowExecutionItems({
       node: workflowNodes['task'],
       nodes: workflowNodes,
@@ -254,7 +254,7 @@ describe('buildWorkflowExecutionItems', () => {
 
     expect(result).toHaveLength(2);
     expect(result.map(item => item.label)).toEqual(
-      expect.arrayContaining(['Continue Workflow', 'Stop Workflow']),
+      expect.arrayContaining(['Resend step', 'Stop Workflow']),
     );
   });
 
@@ -274,20 +274,20 @@ describe('buildWorkflowExecutionItems', () => {
     expect(onStopWorkflow).toHaveBeenCalledTimes(1);
   });
 
-  it('should wire Continue Workflow click to onContinueWorkflow for awaiting-validation nodes', () => {
-    const onContinueWorkflow = vi.fn();
+  it('should wire Resend step click to onResendStep for awaiting-validation nodes', () => {
+    const onResendStep = vi.fn();
     const result = buildWorkflowExecutionItems({
       node: workflowNodes['task'],
       nodes: workflowNodes,
       ancestorRegistry: ancestors,
       workflowExecutionStates: { 'task': { state: 'awaiting-validation', terminalTabId: 'tab1' } },
       ...defaultCallbacks,
-      onContinueWorkflow,
+      onResendStep,
     });
 
-    const continueItem = result.find(item => item.label === 'Continue Workflow');
-    continueItem?.onClick?.();
-    expect(onContinueWorkflow).toHaveBeenCalledTimes(1);
+    const resendItem = result.find(item => item.label === 'Resend step');
+    resendItem?.onClick?.();
+    expect(onResendStep).toHaveBeenCalledTimes(1);
   });
 });
 

@@ -54,9 +54,9 @@ const baseAncestors = {
   task: ['root', 'workflow', 'step-1'],
 };
 
-describe('useNodeContextMenu — Continue Workflow terminal binding', () => {
+describe('useNodeContextMenu — Resend step terminal binding', () => {
   let store: TreeStore;
-  let mockContinueWorkflow: ReturnType<typeof vi.fn>;
+  let mockResendStep: ReturnType<typeof vi.fn>;
   let mockSetActiveTerminal: ReturnType<typeof vi.fn>;
   let mockOpenTerminal: ReturnType<typeof vi.fn>;
 
@@ -64,7 +64,7 @@ describe('useNodeContextMenu — Continue Workflow terminal binding', () => {
     vi.clearAllMocks();
     useToastStore.setState({ toasts: [] });
 
-    mockContinueWorkflow = vi.fn();
+    mockResendStep = vi.fn();
     mockSetActiveTerminal = vi.fn();
     mockOpenTerminal = vi.fn().mockResolvedValue('focused-terminal');
 
@@ -80,7 +80,7 @@ describe('useNodeContextMenu — Continue Workflow terminal binding', () => {
         task: { state: 'awaiting-validation', terminalTabId: 'assigned-terminal' },
       },
       actions: {
-        continueWorkflow: mockContinueWorkflow,
+        resendStep: mockResendStep,
         deleteNode: vi.fn(),
         copyNodes: vi.fn(),
         cutNodes: vi.fn(),
@@ -118,29 +118,29 @@ describe('useNodeContextMenu — Continue Workflow terminal binding', () => {
     });
   }
 
-  async function clickContinueWorkflow() {
+  async function clickResendStep() {
     const { result } = renderHook(() => useNodeContextMenu(taskNode), { wrapper });
     await openContextMenu(result);
-    const continueItem = result.current.contextMenuItems.find(item => item.label === 'Continue Workflow');
-    expect(continueItem).toBeDefined();
+    const resendItem = result.current.contextMenuItems.find(item => item.label === 'Resend step');
+    expect(resendItem).toBeDefined();
     await act(async () => {
-      await continueItem!.onClick!();
+      await resendItem!.onClick!();
     });
   }
 
-  it('routes Continue Workflow to the terminal bound to the awaiting-validation entry, not the focused terminal', async () => {
+  it('routes Resend step to the terminal bound to the awaiting-validation entry, not the focused terminal', async () => {
     seedTerminals({ assignedPresent: true, activeTerminalId: 'focused-terminal' });
 
-    await clickContinueWorkflow();
+    await clickResendStep();
 
-    expect(mockContinueWorkflow).toHaveBeenCalledTimes(1);
-    expect(mockContinueWorkflow).toHaveBeenCalledWith('task', 'assigned-terminal');
+    expect(mockResendStep).toHaveBeenCalledTimes(1);
+    expect(mockResendStep).toHaveBeenCalledWith('task', 'assigned-terminal');
   });
 
-  it('focuses the assigned terminal tab before continuing the workflow', async () => {
+  it('focuses the assigned terminal tab before resending the step', async () => {
     seedTerminals({ assignedPresent: true, activeTerminalId: 'focused-terminal' });
 
-    await clickContinueWorkflow();
+    await clickResendStep();
 
     expect(mockSetActiveTerminal).toHaveBeenCalledWith('assigned-terminal');
   });
@@ -148,16 +148,16 @@ describe('useNodeContextMenu — Continue Workflow terminal binding', () => {
   it('falls back to the focused terminal and surfaces a toast when the assigned terminal tab was closed', async () => {
     seedTerminals({ assignedPresent: false, activeTerminalId: 'focused-terminal' });
 
-    await clickContinueWorkflow();
+    await clickResendStep();
 
-    expect(mockContinueWorkflow).toHaveBeenCalledWith('task', 'focused-terminal');
+    expect(mockResendStep).toHaveBeenCalledWith('task', 'focused-terminal');
     expect(useToastStore.getState().toasts.length).toBeGreaterThan(0);
   });
 
   it('does not call setActiveTerminal when falling back to the focused terminal', async () => {
     seedTerminals({ assignedPresent: false, activeTerminalId: 'focused-terminal' });
 
-    await clickContinueWorkflow();
+    await clickResendStep();
 
     expect(mockSetActiveTerminal).not.toHaveBeenCalledWith('assigned-terminal');
   });

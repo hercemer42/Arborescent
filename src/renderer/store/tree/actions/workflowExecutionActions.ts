@@ -47,6 +47,7 @@ export interface WorkflowExecutionActions {
   startWorkflow: (nodeId: string, terminalId: string | null) => Promise<void>;
   stopWorkflow: (nodeId: string) => void;
   continueWorkflow: (nodeId: string, terminalId: string | null) => void;
+  resendStep: (nodeId: string, terminalId: string | null) => void;
   completeWorkflow: (nodeId: string) => void;
   advanceNode: (nodeId: string) => void;
   registerSession: (sessionId: string, terminalId: string, source?: string) => void;
@@ -411,6 +412,49 @@ export const createWorkflowExecutionActions = (
     );
 
     advanceNode(nodeId);
+  }
+
+  function resendStep(nodeId: string, terminalId: string | null): void {
+    const { workflowExecutionStates } = get();
+    const entry = workflowExecutionStates[nodeId];
+    if (!entry || entry.state !== "awaiting-validation") return;
+
+    if (terminalId === null) {
+      useToastStore
+        .getState()
+        .addToast(
+          "No terminal tab available. Open a terminal to resend the step.",
+          "warning",
+        );
+      return;
+    }
+
+    const existingNodeId = findRunningNodeOnTerminal(terminalId);
+    if (existingNodeId && existingNodeId !== nodeId) {
+      useToastStore
+        .getState()
+        .addToast(
+          "Terminal tab is already assigned to a running workflow node.",
+          "warning",
+        );
+      return;
+    }
+
+    set({
+      workflowExecutionStates: {
+        ...workflowExecutionStates,
+        [nodeId]: { state: "running", terminalTabId: terminalId },
+      },
+    });
+    assignTerminalToNode(terminalId, nodeId);
+
+    stepTimeouts.start(nodeId);
+    clearSessionManager.maybeClearThenSend(nodeId, terminalId);
+
+    logger.info(
+      `Resending step for node ${nodeId} on terminal ${terminalId}`,
+      "WorkflowExecution",
+    );
   }
 
   function recurseChainKey(parentNodeId: string, terminalId: string): string {
@@ -1046,6 +1090,7 @@ export const createWorkflowExecutionActions = (
     startWorkflow,
     stopWorkflow,
     continueWorkflow,
+    resendStep,
     completeWorkflow,
     advanceNode,
     registerSession,

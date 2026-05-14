@@ -414,6 +414,72 @@ describe('createWorkflowExecutionActions', () => {
     });
   });
 
+  describe('resendStep', () => {
+    it('should transition awaiting-validation to running without moving the node and bind the passed terminal', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.resendStep('task-a', 'terminal-1');
+
+      expect(state.workflowExecutionStates['task-a']).toEqual({
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      });
+      expect(state.nodes['step-1'].children).toContain('task-a');
+      expect(state.nodes['step-2'].children).not.toContain('task-a');
+    });
+
+    it('should rebind the terminal when the user resends on a different terminal than was previously assigned', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.resendStep('task-a', 'terminal-3');
+
+      expect(state.workflowExecutionStates['task-a']).toEqual({
+        state: 'running',
+        terminalTabId: 'terminal-3',
+      });
+    });
+
+    it('should be a no-op if node is not awaiting-validation', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+      const previous = state.workflowExecutionStates['task-a'];
+
+      actions.resendStep('task-a', 'terminal-1');
+
+      expect(state.workflowExecutionStates['task-a']).toEqual(previous);
+    });
+
+    it('should be a no-op if node has no execution state', () => {
+      actions.resendStep('task-a', 'terminal-1');
+
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+    });
+
+    it('should show toast when no terminal is available', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.resendStep('task-a', null);
+
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('terminal'),
+        'warning',
+      );
+    });
+
+    it('should reject if terminal is assigned to another running node', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+      state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-2' };
+
+      actions.resendStep('task-a', 'terminal-2');
+
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('already assigned'),
+        'warning',
+      );
+    });
+  });
+
   describe('completeWorkflow', () => {
     it('should clear execution state entirely', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };

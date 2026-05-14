@@ -9,7 +9,7 @@ import { usePanelStore } from '../../../store/panel/panelStore';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { buildStatusSubmenu } from './useStatusSubmenu';
-import { buildWorkflowSubmenu, buildWorkflowExecutionItems, buildWorkflowNavigationItems } from './useWorkflowSubmenu';
+import { buildWorkflowSubmenu, buildWorkflowExecutionItems, buildWorkflowNavigationItems, combineExecutionAndNavigationItems } from './useWorkflowSubmenu';
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
 import { buildEditSubmenu, prependSpellItems } from './menuBuilders/editSubmenu';
 import { logger } from '../../../services/logger';
@@ -213,7 +213,7 @@ export function useNodeContextMenu(node: TreeNode) {
       onMoveToPreviousStep: () => { actions.moveToPreviousStep(node.id); autoStartAfterMove(node.id); },
     });
 
-    const resolveContinueTerminal = async (): Promise<string | null> => {
+    const resolveResendTerminal = async (): Promise<string | null> => {
       const entry = store.getState().workflowExecutionStates[node.id];
       const assignedId = entry?.state === 'awaiting-validation' ? entry.terminalTabId : null;
       const terminalState = useTerminalStore.getState();
@@ -224,7 +224,7 @@ export function useNodeContextMenu(node: TreeNode) {
       }
       if (assignedId) {
         useToastStore.getState().addToast(
-          'Assigned terminal is no longer open — continuing in the focused terminal instead.',
+          'Assigned terminal is no longer open — resending in the focused terminal instead.',
           'warning',
         );
       }
@@ -238,7 +238,7 @@ export function useNodeContextMenu(node: TreeNode) {
       workflowExecutionStates: state.workflowExecutionStates,
       onStartWorkflow: () => getTerminalId().then(tid => actions.startWorkflow(node.id, tid)),
       onStopWorkflow: () => actions.stopWorkflow(node.id),
-      onContinueWorkflow: () => resolveContinueTerminal().then(tid => actions.continueWorkflow(node.id, tid)),
+      onResendStep: () => resolveResendTerminal().then(tid => actions.resendStep(node.id, tid)),
     });
 
     const isHyperlink = freshNode.metadata.isHyperlink === true;
@@ -264,9 +264,11 @@ export function useNodeContextMenu(node: TreeNode) {
     };
 
     const baseMenuItems: ContextMenuItem[] = [
-      ...workflowExecutionItems,
-      ...(showResumeSession ? [{ label: 'Resume session', onClick: handleResumeSession }] : []),
-      ...workflowNavigationItems,
+      ...combineExecutionAndNavigationItems(
+        workflowExecutionItems,
+        workflowNavigationItems,
+        showResumeSession ? { label: 'Resume session', onClick: handleResumeSession } : null,
+      ),
       ...(isExternalLink && externalUrl ? [{
         label: 'Open in external browser',
         onClick: () => {
