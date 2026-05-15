@@ -339,12 +339,17 @@ export function findNextWaitingNode(
 export function findNextDecomposedSibling(
   stepId: string,
   nodes: Record<string, TreeNode>,
-  executionStates: Record<string, { state: string }>
+  executionStates: Record<string, { state: string }>,
+  excludeNodeId?: string,
 ): string | null {
   const step = nodes[stepId];
   if (!step || step.metadata.decomposition !== true) return null;
 
-  return findNextWaitingNode(stepId, nodes, executionStates);
+  for (const childId of step.children) {
+    if (childId === excludeNodeId) continue;
+    if (!executionStates[childId]) return childId;
+  }
+  return null;
 }
 
 export function getArchiveConfigForNode(

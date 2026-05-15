@@ -57,6 +57,19 @@
   cursor: pointer;
 }
 
+.step-config-checkbox-label--disabled {
+  color: var(--gray-400);
+  cursor: not-allowed;
+}
+
+.step-config-checkbox-label--disabled:hover {
+  background: transparent;
+}
+
+.step-config-checkbox-label--disabled input[type="checkbox"] {
+  cursor: not-allowed;
+}
+
 .step-config-description {
   font-size: 13px;
   color: var(--gray-400);

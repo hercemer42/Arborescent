@@ -1526,7 +1526,7 @@ describe('createWorkflowExecutionActions', () => {
   });
 
   describe('decomposed siblings advance to next workflow step', () => {
-    it('moves the next waiting child of the decomposition step out to step N+1 instead of re-running step N on it', () => {
+    it('moves the next waiting sibling (not the just-completed node) out to step N+1 on recurse hand-off', () => {
       vi.useFakeTimers();
 
       state.nodes['step-1'].metadata.stepType = 'autonomous';
@@ -1540,9 +1540,10 @@ describe('createWorkflowExecutionActions', () => {
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
 
-      expect(state.nodes['step-2'].children).toContain('task-a');
-      expect(state.nodes['step-1'].children).not.toContain('task-a');
-      expect(state.ancestorRegistry['task-a']).toEqual(['root', 'workflow', 'step-2']);
+      expect(state.nodes['step-2'].children).toContain('task-b');
+      expect(state.nodes['step-1'].children).not.toContain('task-b');
+      expect(state.ancestorRegistry['task-b']).toEqual(['root', 'workflow', 'step-2']);
+      expect(state.nodes['step-1'].children).toContain('task-a');
 
       vi.useRealTimers();
     });
@@ -1564,10 +1565,9 @@ describe('createWorkflowExecutionActions', () => {
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
       vi.advanceTimersByTime(3000);
 
-      expect(state.nodes['step-1'].children).not.toContain('task-a');
       expect(state.nodes['step-1'].children).not.toContain('task-b');
-      expect(state.nodes['step-3'].children).toContain('task-a');
-      expect(state.nodes['step-2'].children).toContain('task-b');
+      expect(state.nodes['step-3'].children).toContain('task-b');
+      expect(state.nodes['step-2'].children).toContain('task-a');
 
       vi.useRealTimers();
     });

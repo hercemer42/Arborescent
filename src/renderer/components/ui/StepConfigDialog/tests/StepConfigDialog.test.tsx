@@ -285,4 +285,49 @@ describe('StepConfigDialog', () => {
 
     it.todo('the helper text uses the light-grey description style consistent with other step-config descriptions');
   });
+
+  describe('decomposition and recurse mutual exclusion', () => {
+    it('disables the recurse checkbox when decomposition is set', () => {
+      render(<StepConfigDialog {...defaultProps} decomposition={true} recurse={false} />);
+
+      const recurseCheckbox = screen.getByLabelText(/recurse/i) as HTMLInputElement;
+      expect(recurseCheckbox.disabled).toBe(true);
+    });
+
+    it('disables the decomposition checkbox when recurse is set', () => {
+      render(<StepConfigDialog {...defaultProps} decomposition={false} recurse={true} />);
+
+      const decompositionCheckbox = screen.getByLabelText(/decomposition/i) as HTMLInputElement;
+      expect(decompositionCheckbox.disabled).toBe(true);
+    });
+
+    it('leaves both checkboxes enabled when neither is set', () => {
+      render(<StepConfigDialog {...defaultProps} decomposition={false} recurse={false} />);
+
+      const decompositionCheckbox = screen.getByLabelText(/decomposition/i) as HTMLInputElement;
+      const recurseCheckbox = screen.getByLabelText(/recurse/i) as HTMLInputElement;
+      expect(decompositionCheckbox.disabled).toBe(false);
+      expect(recurseCheckbox.disabled).toBe(false);
+    });
+
+    it('still allows unchecking decomposition (the side that is set) so the user can free up the other option', () => {
+      render(<StepConfigDialog {...defaultProps} decomposition={true} recurse={false} />);
+
+      const decompositionCheckbox = screen.getByLabelText(/decomposition/i) as HTMLInputElement;
+      expect(decompositionCheckbox.disabled).toBe(false);
+      fireEvent.click(decompositionCheckbox);
+
+      expect(defaultProps.onDecompositionChange).toHaveBeenCalledWith('node-1', false);
+    });
+
+    it('still allows unchecking recurse (the side that is set) so the user can free up the other option', () => {
+      render(<StepConfigDialog {...defaultProps} decomposition={false} recurse={true} />);
+
+      const recurseCheckbox = screen.getByLabelText(/recurse/i) as HTMLInputElement;
+      expect(recurseCheckbox.disabled).toBe(false);
+      fireEvent.click(recurseCheckbox);
+
+      expect(defaultProps.onRecurseChange).toHaveBeenCalledWith('node-1', false);
+    });
+  });
 });

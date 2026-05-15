@@ -681,9 +681,9 @@ export const createWorkflowExecutionActions = (
     const decompositionStepId = findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry);
 
     const sibling =
-      findNextDecomposedSibling(stepId, nodes, workflowExecutionStates)
+      findNextDecomposedSibling(stepId, nodes, workflowExecutionStates, completedNodeId)
       ?? (decompositionStepId
-        ? findNextDecomposedSibling(decompositionStepId, nodes, workflowExecutionStates)
+        ? findNextDecomposedSibling(decompositionStepId, nodes, workflowExecutionStates, completedNodeId)
         : null);
 
     if (sibling) {

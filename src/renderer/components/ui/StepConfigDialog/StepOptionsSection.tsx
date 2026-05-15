@@ -15,23 +15,28 @@ export function StepOptionsSection({
   onRecurseChange,
   onClearSessionChange,
 }: StepOptionsSectionProps) {
+  const decompositionDisabled = recurse && !decomposition;
+  const recurseDisabled = decomposition && !recurse;
+
   return (
     <>
       <div className="step-config-section-label step-config-section-separator">Options</div>
-      <label className="step-config-checkbox-label">
+      <label className={`step-config-checkbox-label${decompositionDisabled ? ' step-config-checkbox-label--disabled' : ''}`}>
         <input
           type="checkbox"
           checked={decomposition}
+          disabled={decompositionDisabled}
           onChange={(e) => onDecompositionChange(e.target.checked)}
           aria-label="Decomposition"
         />
         Decomposition
       </label>
       <div className="step-config-description">AI response creates multiple sibling nodes instead of replacing the original. Pair with Recurse on a later step to play each sibling forward automatically.</div>
-      <label className="step-config-checkbox-label">
+      <label className={`step-config-checkbox-label${recurseDisabled ? ' step-config-checkbox-label--disabled' : ''}`}>
         <input
           type="checkbox"
           checked={recurse}
+          disabled={recurseDisabled}
           onChange={(e) => onRecurseChange(e.target.checked)}
           aria-label="Recurse"
         />
