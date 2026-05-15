@@ -1,10 +1,11 @@
 import { TreeNode } from '../../../../shared/types';
 import { useStore } from '../../../store/tree/useStore';
-import { getWorkflowStepNumber } from '../../../utils/workflowHelpers';
+import { getWorkflowStepNumber, hasAncestorWorkflow } from '../../../utils/workflowHelpers';
 import { StepType } from '../../../store/tree/commands/SetStepTypeCommand';
 
 interface WorkflowIndicator {
   isWorkflow: boolean;
+  isInsideWorkflow: boolean;
   stepNumber: number | null;
   stepType: StepType;
 }
@@ -23,10 +24,14 @@ export function useWorkflowIndicator(node: TreeNode): WorkflowIndicator {
   const isWorkflow = node.metadata.isWorkflow === true;
   const stepType = (node.metadata.stepType as StepType) || 'manual';
 
+  const isInsideWorkflow = useStore((state) =>
+    hasAncestorWorkflow(node.id, state.nodes, state.ancestorRegistry),
+  );
+
   const stepNumber = useStore((state) => {
     if (isWorkflow) return null;
     return getWorkflowStepNumber(node.id, state.nodes, state.ancestorRegistry);
   });
 
-  return { isWorkflow, stepNumber, stepType };
+  return { isWorkflow, isInsideWorkflow, stepNumber, stepType };
 }

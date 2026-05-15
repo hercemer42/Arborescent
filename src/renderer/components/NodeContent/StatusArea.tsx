@@ -74,6 +74,7 @@ interface StatusAreaProps {
   blueprintColor: string | undefined;
   isInheritingBlueprintIcon: boolean;
   isWorkflow: boolean;
+  isInsideWorkflow: boolean;
   stepNumber: number | null;
   stepType: StepType;
   executionState: ExecutionState;
@@ -104,6 +105,7 @@ export function StatusArea({
   blueprintColor,
   isInheritingBlueprintIcon,
   isWorkflow,
+  isInsideWorkflow,
   stepNumber,
   stepType,
   executionState,
@@ -158,19 +160,22 @@ export function StatusArea({
   }
 
   if (node.metadata.isBlueprint) {
+    const isWorkflowStep = isInsideWorkflow && !isWorkflow;
     const blueprintClass = isInheritingBlueprintIcon
       ? 'blueprint-indicator blueprint-inherited'
       : 'blueprint-indicator';
     return (
       <span className="blueprint-icon-wrapper">
-        <button
-          className={blueprintClass}
-          title="Click to change icon"
-          onClick={onBlueprintIconClick}
-          style={blueprintColor ? { color: blueprintColor } : undefined}
-        >
-          {createElement(BlueprintIcon, { size: 19 })}
-        </button>
+        {!isWorkflowStep && (
+          <button
+            className={blueprintClass}
+            title="Click to change icon"
+            onClick={onBlueprintIconClick}
+            style={blueprintColor ? { color: blueprintColor } : undefined}
+          >
+            {createElement(BlueprintIcon, { size: 19 })}
+          </button>
+        )}
         {isWorkflow && (
           <span className="workflow-indicator">
             <Cog size={19} strokeWidth={1} />

@@ -40,7 +40,7 @@ function NodeContentComponent({
 
   const { isContextDeclaration, isContextChild, ContextIcon, contextColor } = useContextIcon(node);
   const { BlueprintIcon, blueprintColor, isInherited: isInheritingBlueprintIcon } = useBlueprintIcon(node);
-  const { isWorkflow, stepNumber, stepType } = useWorkflowIndicator(node);
+  const { isWorkflow, isInsideWorkflow, stepNumber, stepType } = useWorkflowIndicator(node);
   const { executionState, stopWorkflow, resumeStuckNode } = useWorkflowExecutionOverlay(node);
 
   const isHyperlink = node.metadata.isHyperlink === true;
@@ -86,6 +86,7 @@ function NodeContentComponent({
             blueprintColor={blueprintColor}
             isInheritingBlueprintIcon={isInheritingBlueprintIcon}
             isWorkflow={isWorkflow}
+            isInsideWorkflow={isInsideWorkflow}
             stepNumber={stepNumber}
             stepType={stepType}
             executionState={executionState}

@@ -348,4 +348,102 @@ describe('NodeContent', () => {
     });
   });
 
+  describe('workflow step blueprint icon suppression', () => {
+    const workflowRoot: TreeNode = {
+      id: 'wf-root',
+      content: 'Workflow',
+      children: ['step-1'],
+      metadata: {
+        isWorkflow: true,
+        isBlueprint: true,
+        blueprintIcon: 'cog',
+        blueprintColor: '#333',
+      },
+    };
+
+    const workflowStep: TreeNode = {
+      id: 'step-1',
+      content: 'First step',
+      children: [],
+      metadata: {
+        isBlueprint: true,
+        blueprintIcon: 'diamond',
+        blueprintColor: '#f00',
+      },
+    };
+
+    beforeEach(() => {
+      store.setState({
+        nodes: {
+          'wf-root': workflowRoot,
+          'step-1': workflowStep,
+        },
+        ancestorRegistry: {
+          'wf-root': [],
+          'step-1': ['wf-root'],
+        },
+      });
+    });
+
+    it('does not render the blueprint-indicator button for a workflow step', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={workflowStep} depth={1} />
+      );
+      expect(container.querySelector('.blueprint-indicator')).not.toBeInTheDocument();
+    });
+
+    it('still renders the workflow step number for a workflow step', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={workflowStep} depth={1} />
+      );
+      expect(container.querySelector('.workflow-step-number')).toBeInTheDocument();
+    });
+
+    it('renders the blueprint-indicator button for the workflow root itself', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={workflowRoot} depth={0} />
+      );
+      const button = container.querySelector('.blueprint-indicator');
+      expect(button).toBeInTheDocument();
+      expect(button?.tagName.toLowerCase()).toBe('button');
+    });
+
+    it('suppresses the icon even when the workflow step carries its own bespoke blueprintIcon', () => {
+      const stepWithOwnIcon: TreeNode = {
+        ...workflowStep,
+        metadata: { ...workflowStep.metadata, blueprintIcon: 'star' },
+      };
+      store.setState({
+        nodes: { 'wf-root': workflowRoot, 'step-1': stepWithOwnIcon },
+        ancestorRegistry: { 'wf-root': [], 'step-1': ['wf-root'] },
+      });
+      const { container } = renderWithProvider(
+        <NodeContent node={stepWithOwnIcon} depth={1} />
+      );
+      expect(container.querySelector('.blueprint-indicator')).not.toBeInTheDocument();
+    });
+
+    it('preserves the blueprint-indicator button on a blueprint node with no workflow ancestor', () => {
+      const standaloneBlueprint: TreeNode = {
+        id: 'standalone',
+        content: 'Standalone blueprint',
+        children: [],
+        metadata: { isBlueprint: true, blueprintIcon: 'folder' },
+      };
+      store.setState({
+        nodes: { standalone: standaloneBlueprint },
+        ancestorRegistry: { standalone: [] },
+      });
+      const { container } = renderWithProvider(
+        <NodeContent node={standaloneBlueprint} depth={0} />
+      );
+      expect(container.querySelector('.blueprint-indicator')).toBeInTheDocument();
+    });
+
+    it('keeps the workflow step recognised as a blueprint element via its isBlueprint metadata', () => {
+      renderWithProvider(<NodeContent node={workflowStep} depth={1} />);
+      expect(workflowStep.metadata.isBlueprint).toBe(true);
+    });
+  });
+
 });

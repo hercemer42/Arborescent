@@ -101,6 +101,70 @@ describe('StorageService', () => {
       expect(result.nodes.link.metadata.externalUrl).toBeUndefined();
       expect(result.nodes.link.metadata.status).toBe('pending');
     });
+
+    it('should preserve context declaration icon and color when the declaration lives under a workflow', async () => {
+      const legacyFile: ArboFile = {
+        ...mockArboFile,
+        nodes: {
+          root: { id: 'root', content: 'Root', children: ['workflow'], metadata: {} },
+          workflow: {
+            id: 'workflow',
+            content: 'Workflow',
+            children: ['ctx-decl'],
+            metadata: { isWorkflow: true, isBlueprint: true, blueprintIcon: 'cog' },
+          },
+          'ctx-decl': {
+            id: 'ctx-decl',
+            content: 'My Context',
+            children: [],
+            metadata: {
+              isContextDeclaration: true,
+              isBlueprint: true,
+              blueprintIcon: 'lightbulb',
+              blueprintColor: '#3b82f6',
+            },
+          },
+        },
+      };
+      vi.mocked(window.electron.readFile).mockResolvedValue(yaml.dump(legacyFile));
+
+      const result = await storage.loadDocument('/path/to/ctx-in-workflow.arbo');
+
+      expect(result.nodes['ctx-decl'].metadata.blueprintIcon).toBe('lightbulb');
+      expect(result.nodes['ctx-decl'].metadata.blueprintColor).toBe('#3b82f6');
+      expect(result.nodes['ctx-decl'].metadata.isContextDeclaration).toBe(true);
+    });
+
+    it('should strip bespoke blueprintIcon from workflow step descendants on load while preserving the workflow root icon', async () => {
+      const legacyFile: ArboFile = {
+        ...mockArboFile,
+        nodes: {
+          root: { id: 'root', content: 'Root', children: ['workflow'], metadata: {} },
+          workflow: {
+            id: 'workflow',
+            content: 'Workflow',
+            children: ['step-1'],
+            metadata: { isWorkflow: true, isBlueprint: true, blueprintIcon: 'cog', blueprintColor: '#333' },
+          },
+          'step-1': {
+            id: 'step-1',
+            content: 'Step',
+            children: [],
+            metadata: { isBlueprint: true, blueprintIcon: 'diamond', blueprintColor: '#f00', status: 'pending' },
+          },
+        },
+      };
+      vi.mocked(window.electron.readFile).mockResolvedValue(yaml.dump(legacyFile));
+
+      const result = await storage.loadDocument('/path/to/legacy-icons.arbo');
+
+      expect(result.nodes['step-1'].metadata.blueprintIcon).toBeUndefined();
+      expect(result.nodes['step-1'].metadata.blueprintColor).toBeUndefined();
+      expect(result.nodes['step-1'].metadata.isBlueprint).toBe(true);
+      expect(result.nodes['step-1'].metadata.status).toBe('pending');
+      expect(result.nodes.workflow.metadata.blueprintIcon).toBe('cog');
+      expect(result.nodes.workflow.metadata.blueprintColor).toBe('#333');
+    });
   });
 
   describe('saveDocument', () => {

@@ -15,7 +15,7 @@ The branch becomes part of your blueprint. Its ancestors are automatically inclu
 
 To include descendants too: **Blueprint** → **Add with descendants**.
 
-Blueprint branches display custom icons instead of checkboxes. Click the icon to change it.
+Blueprint branches display custom icons instead of checkboxes. Click the icon to change it. Workflow steps are the exception — they show only their step number, with the applied context's gutter icon carrying the visual identity.
 
 ## Blueprint Mode
 

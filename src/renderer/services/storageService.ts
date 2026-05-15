@@ -14,6 +14,7 @@ import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
 import { reconcileDuplicateChildren } from '../utils/treeInvariants';
 import { migrateExternalLinkNodes } from '../utils/migrateExternalLinkNodes';
 import { migrateContextModeFlags } from '../utils/migrateContextModeFlags';
+import { migrateWorkflowStepIcons } from '../utils/migrateWorkflowStepIcons';
 import { stripDroppedSessionFields, garbageCollectSessionRegistry } from '../utils/sessionRegistryMigrations';
 import { logger } from './logger';
 
@@ -36,7 +37,8 @@ export class StorageService implements IStorageService {
     const { nodes, removed } = reconcileDuplicateChildren(data.nodes);
     const externalLinkMigrated = migrateExternalLinkNodes(nodes);
     const contextModeMigrated = migrateContextModeFlags(externalLinkMigrated);
-    const strippedNodes = stripDroppedSessionFields(contextModeMigrated);
+    const workflowStepIconMigrated = migrateWorkflowStepIcons(contextModeMigrated);
+    const strippedNodes = stripDroppedSessionFields(workflowStepIconMigrated);
     const rawRegistry = data.sessionRegistry ?? {};
     const sessionRegistry = garbageCollectSessionRegistry(strippedNodes, rawRegistry);
 
