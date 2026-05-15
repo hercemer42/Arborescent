@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-14T21:50:59.504Z'
+updated: '2026-05-15T09:20:19.462Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -76720,7 +76720,7 @@ nodes:
       status: pending
       isBlueprint: true
       isWorkflow: true
-      expanded: true
+      expanded: false
   f639c9d8-6e35-4478-8798-91d8b991ebec:
     id: f639c9d8-6e35-4478-8798-91d8b991ebec
     content: Not getting system notifications when focused on another application
@@ -81505,6 +81505,7 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - 7d2ae656-854a-4f5e-a465-43cf99d25d03
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
     metadata:
       status: pending
@@ -82875,7 +82876,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - c577b3e4-78ac-4eaf-98aa-054b93853291
     metadata:
       status: pending
       isBlueprint: true
@@ -90184,7 +90186,7 @@ nodes:
       - d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   1fb08d66-e49f-4bbe-ba21-acd2e04a5d73:
     id: 1fb08d66-e49f-4bbe-ba21-acd2e04a5d73
     content: Would be cool if we can send a command for claude to switch to different effort levels depending on the task
@@ -90225,7 +90227,6 @@ nodes:
     content: Backlog
     children:
       - 2fd1018e-8c00-46da-90c1-6dcd2aed34cb
-      - c577b3e4-78ac-4eaf-98aa-054b93853291
       - d4dab575-76d3-493b-893a-5d758ba9b84c
       - c5a7860c-e6ba-40ed-99c3-c0f2883e516c
       - e31a700c-3788-44b5-a878-3f3f2ca942c4
@@ -110662,7 +110663,7 @@ nodes:
       - 1cbfd216-aa66-4b71-bdf4-9a438b2621af
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   9b2ef135-9791-4c4c-ac4b-fdf304ecd428:
     id: 9b2ef135-9791-4c4c-ac4b-fdf304ecd428
     content: Make nodes accessible and editable via MCP
@@ -117025,34 +117026,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  c577b3e4-78ac-4eaf-98aa-054b93853291:
-    id: c577b3e4-78ac-4eaf-98aa-054b93853291
-    content: Context & Workflow step icons are redundant
-    children:
-      - 29696c88-4103-422f-bc9b-4f1ace442f25
-      - 61ba1be9-d4a5-4533-8077-5082e0bd496f
-    metadata:
-      status: pending
-      expanded: false
-  29696c88-4103-422f-bc9b-4f1ace442f25:
-    id: 29696c88-4103-422f-bc9b-4f1ace442f25
-    content: Consider having workflow step inherit context icon if it doesn't already have one
-    children: []
-    metadata:
-      status: pending
-  61ba1be9-d4a5-4533-8077-5082e0bd496f:
-    id: 61ba1be9-d4a5-4533-8077-5082e0bd496f
-    content: Only issue with that is if we can also give a workflow step an icon
-    children:
-      - 8176ffec-e60a-438c-a262-1eb076ca124d
-    metadata:
-      status: pending
-  8176ffec-e60a-438c-a262-1eb076ca124d:
-    id: 8176ffec-e60a-438c-a262-1eb076ca124d
-    content: Nothing differentiates between workflows with or without contexts attached
-    children: []
-    metadata:
-      status: pending
   b3dc5362-ca81-4cbe-8558-2800fa41354f:
     id: b3dc5362-ca81-4cbe-8558-2800fa41354f
     content: Done
@@ -119406,13 +119379,11 @@ nodes:
       status: pending
   bef765c8-a092-419d-b39d-ac19d7b6c00b:
     id: bef765c8-a092-419d-b39d-ac19d7b6c00b
-    content: Worktree creation
+    content: PR2 - Bug — workflows stall in 'feature implementation' and 'AI code review resolution' steps (race fix + safety reaper)
     children:
       - a9c85b40-61a8-4ce0-87ce-e76875d0d03b
       - f1405b11-c165-483e-9da4-39ff6380a5fc
       - 5033c5e7-dadd-4301-9590-7accf65ac68d
-      - a40757d7-8d72-4eaf-8bb1-c975278eab58
-      - 8e1ce2b5-a997-4a36-9500-94b248399465
     metadata:
       status: completed
       expanded: false
@@ -121179,13 +121150,29 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  c577b3e4-78ac-4eaf-98aa-054b93853291:
+    id: c577b3e4-78ac-4eaf-98aa-054b93853291
+    content: Remove bespoke node icon from workflow steps
+    children:
+      - 422bbd03-a709-4e54-95b4-fbf4530fb398
+      - 5b6761a1-0424-40c0-a86d-5e4627b3b631
+      - aa866473-789e-4c35-a89a-0974e36b1c9d
+      - 3d76bdc9-8cda-482b-8fc2-edbc0fe18b3d
+      - fb7b6bfe-7c9f-45ca-90dc-168519867833
+      - daaf7479-86b5-49ea-9e4b-23886350c406
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
   a9c85b40-61a8-4ce0-87ce-e76875d0d03b:
     id: a9c85b40-61a8-4ce0-87ce-e76875d0d03b
-    content: Make a new worktree for this feature
+    content: Scope of this PR
     children:
       - d1f7dab4-513d-4e37-a64e-41c42dd38475
       - a9349d6f-3e83-47f3-8cc5-f586a1986715
       - b516651a-2c33-4121-81b7-4d03899a26c1
+      - ba38b3b7-fb47-465e-a52d-8b25d30794f0
     metadata:
       status: completed
       expanded: true
@@ -121193,27 +121180,7 @@ nodes:
       plugins: {}
   d1f7dab4-513d-4e37-a64e-41c42dd38475:
     id: d1f7dab4-513d-4e37-a64e-41c42dd38475
-    content: Check if you've already created a worktree
-    children:
-      - 8ea7bdf7-5d8e-4dc2-a673-83213b025d8c
-      - d9cb465d-fa85-42bc-adb9-fad5c40a3ec2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8ea7bdf7-5d8e-4dc2-a673-83213b025d8c:
-    id: 8ea7bdf7-5d8e-4dc2-a673-83213b025d8c
-    content: Might have happened in another session
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d9cb465d-fa85-42bc-adb9-fad5c40a3ec2:
-    id: d9cb465d-fa85-42bc-adb9-fad5c40a3ec2
-    content: In which case just use that one
+    content: Fix the autonomous feedback / Stop-hook convergence so the node advances exactly once
     children: []
     metadata:
       status: completed
@@ -121222,27 +121189,7 @@ nodes:
       plugins: {}
   a9349d6f-3e83-47f3-8cc5-f586a1986715:
     id: a9349d6f-3e83-47f3-8cc5-f586a1986715
-    content: If this work is a follow up to the current active branch then fork the current branch
-    children:
-      - 940de8b5-204a-487a-b983-50abe7c73ac2
-      - 439330c8-826b-4889-b712-4f482253ef08
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  940de8b5-204a-487a-b983-50abe7c73ac2:
-    id: 940de8b5-204a-487a-b983-50abe7c73ac2
-    content: Make sure the parent branch has at least one commit before forking; otherwise the worktree silently forks from main and the parent's uncommitted work has to be rsynced in
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  439330c8-826b-4889-b712-4f482253ef08:
-    id: 439330c8-826b-4889-b712-4f482253ef08
-    content: If it is not related then fork main branch instead
+    content: Add a step-timeout reaper as a backstop for any other dropped-hook stalls
     children: []
     metadata:
       status: completed
@@ -121251,7 +121198,16 @@ nodes:
       plugins: {}
   b516651a-2c33-4121-81b7-4d03899a26c1:
     id: b516651a-2c33-4121-81b7-4d03899a26c1
-    content: Do not symlink node modules
+    content: Surface a stuck/error state on the node when the workflow cannot advance, instead of leaving a false-positive green 'playing' indicator
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba38b3b7-fb47-465e-a52d-8b25d30794f0:
+    id: ba38b3b7-fb47-465e-a52d-8b25d30794f0
+    content: Depends on PR1 logging being available to verify the fix in real workflows
     children: []
     metadata:
       status: completed
@@ -121260,12 +121216,10 @@ nodes:
       plugins: {}
   f1405b11-c165-483e-9da4-39ff6380a5fc:
     id: f1405b11-c165-483e-9da4-39ff6380a5fc
-    content: Add a node 'worktree' as the first child of the parent
+    content: User story
     children:
       - ac9e39bc-6606-42b5-9ad2-31fc2577bace
       - a911e588-5052-4a9d-ab91-551ded63a061
-      - 36204cea-9517-498a-8f68-8e993e77d488
-      - 87c7e392-5271-4092-9b69-1b3c3b3433e0
     metadata:
       status: completed
       expanded: true
@@ -121273,7 +121227,377 @@ nodes:
       plugins: {}
   ac9e39bc-6606-42b5-9ad2-31fc2577bace:
     id: ac9e39bc-6606-42b5-9ad2-31fc2577bace
-    content: Don't do this directly to the project file
+    content: 🐞 Bug ticket
+    children:
+      - 6e66e588-613a-4850-934e-876026f789a0
+      - b291ff1e-c677-435d-8546-5ee42e29a5c1
+      - 57a7e980-63bf-43a3-a6b8-57032020328c
+      - 8ddc16d2-b307-468e-8a78-df1004f2fc5e
+      - b3d3e340-fa2a-4850-b87b-a2c8db39e042
+      - aa3891e0-76de-453a-af63-4b8a4e9685f2
+      - 930969d6-8b3e-47ec-89a2-a421f20e1896
+      - ef8f84d3-fedb-456f-859f-7b5e91d2e829
+      - a250319a-959b-4f0b-a5fe-9013f8739012
+      - d6af919c-975b-4e86-8e4c-16ae21b21bd0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e66e588-613a-4850-934e-876026f789a0:
+    id: 6e66e588-613a-4850-934e-876026f789a0
+    content: Summary
+    children:
+      - 2edb3f9c-db25-4aeb-b087-aa1dc9e1afbe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2edb3f9c-db25-4aeb-b087-aa1dc9e1afbe:
+    id: 2edb3f9c-db25-4aeb-b087-aa1dc9e1afbe
+    content: 'Workflows get stuck mid-run: Arborescent shows the node as still playing (green arrow), but the Claude Code terminal never receives the next context and the node does not advance to the next step.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b291ff1e-c677-435d-8546-5ee42e29a5c1:
+    id: b291ff1e-c677-435d-8546-5ee42e29a5c1
+    content: Affected steps
+    children:
+      - b364eab3-50cf-49a8-85de-3b4c7594bf74
+      - 08b89a68-32b7-424c-8eec-cfb2a4f867a5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b364eab3-50cf-49a8-85de-3b4c7594bf74:
+    id: b364eab3-50cf-49a8-85de-3b4c7594bf74
+    content: Feature implementation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08b89a68-32b7-424c-8eec-cfb2a4f867a5:
+    id: 08b89a68-32b7-424c-8eec-cfb2a4f867a5
+    content: AI code review resolution
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57a7e980-63bf-43a3-a6b8-57032020328c:
+    id: 57a7e980-63bf-43a3-a6b8-57032020328c
+    content: Observed behaviour
+    children:
+      - 1d144cfb-26b8-40fc-9ba5-4d5cb1b934ca
+      - 81780bb4-447c-468f-962a-aa49ea65c25a
+      - d64059e8-1016-42ec-aff4-ebd461a44c00
+      - e9c3b4b3-ff9c-45cd-93ff-611d9986a4be
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d144cfb-26b8-40fc-9ba5-4d5cb1b934ca:
+    id: 1d144cfb-26b8-40fc-9ba5-4d5cb1b934ca
+    content: Node displays the green 'playing' indicator in Arborescent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81780bb4-447c-468f-962a-aa49ea65c25a:
+    id: 81780bb4-447c-468f-962a-aa49ea65c25a
+    content: Current step has finished in the terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d64059e8-1016-42ec-aff4-ebd461a44c00:
+    id: d64059e8-1016-42ec-aff4-ebd461a44c00
+    content: Next context is not sent to the Claude Code session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9c3b4b3-ff9c-45cd-93ff-611d9986a4be:
+    id: e9c3b4b3-ff9c-45cd-93ff-611d9986a4be
+    content: Node does not transition to the next step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ddc16d2-b307-468e-8a78-df1004f2fc5e:
+    id: 8ddc16d2-b307-468e-8a78-df1004f2fc5e
+    content: Expected behaviour
+    children:
+      - 96c080df-282e-4e78-8a1e-f867a3d606af
+      - ae4e4f92-aa53-48ff-904a-f938530f0a46
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96c080df-282e-4e78-8a1e-f867a3d606af:
+    id: 96c080df-282e-4e78-8a1e-f867a3d606af
+    content: When the current step finishes, the next context is sent to the terminal and the node advances to the next step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae4e4f92-aa53-48ff-904a-f938530f0a46:
+    id: ae4e4f92-aa53-48ff-904a-f938530f0a46
+    content: The green 'playing' indicator reflects actual run state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3d3e340-fa2a-4850-b87b-a2c8db39e042:
+    id: b3d3e340-fa2a-4850-b87b-a2c8db39e042
+    content: Suspected causes
+    children:
+      - e918e56e-bb2e-4eef-9601-e5d35e6675a8
+      - d11ef0b1-f521-4d77-a079-07f582b25eb9
+      - 77556cd9-85f7-4efa-8573-ade4779bd300
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e918e56e-bb2e-4eef-9601-e5d35e6675a8:
+    id: e918e56e-bb2e-4eef-9601-e5d35e6675a8
+    content: 'Primary hypothesis — race in advanceOrClearCollaborating (workflowExecutionActions.ts:1037-1050) — when autonomous feedback is parsed before the Stop hook arrives, the node only clears `collaborating: false` and waits for a subsequent Stop; if that Stop is later dropped the node stays `state: ''running''` indefinitely'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d11ef0b1-f521-4d77-a079-07f582b25eb9:
+    id: d11ef0b1-f521-4d77-a079-07f582b25eb9
+    content: Secondary — Stop hook gets dropped by handleHookEvent because workflowSessionMap has no entry for the session_id (session-id change) or findRunningNodeOnTerminal returns null
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77556cd9-85f7-4efa-8573-ade4779bd300:
+    id: 77556cd9-85f7-4efa-8573-ade4779bd300
+    content: Secondary — Stop hook fires, but Claude Code is not yet ready to receive new input (race between hook emission and prompt readiness)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa3891e0-76de-453a-af63-4b8a4e9685f2:
+    id: aa3891e0-76de-453a-af63-4b8a4e9685f2
+    content: Reproduction
+    children:
+      - 435e4e4d-922b-46c5-858d-98c92abbd385
+      - 0e52b5f0-97c7-47d7-8706-8a6932575942
+      - 9dc7ecf1-80c1-46d0-95b3-f74eed0d93d2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  435e4e4d-922b-46c5-858d-98c92abbd385:
+    id: 435e4e4d-922b-46c5-858d-98c92abbd385
+    content: Run a workflow that includes 'feature implementation' or 'AI code review resolution' against a Claude Code terminal session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e52b5f0-97c7-47d7-8706-8a6932575942:
+    id: 0e52b5f0-97c7-47d7-8706-8a6932575942
+    content: Observe step completion in the terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9dc7ecf1-80c1-46d0-95b3-f74eed0d93d2:
+    id: 9dc7ecf1-80c1-46d0-95b3-f74eed0d93d2
+    content: Note that Arborescent does not advance and no new context is sent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  930969d6-8b3e-47ec-89a2-a421f20e1896:
+    id: 930969d6-8b3e-47ec-89a2-a421f20e1896
+    content: Impact
+    children:
+      - ba9141ea-4b73-47f5-aee9-1dc642680a11
+      - 7072d115-10af-4953-ac3d-df8b887606f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba9141ea-4b73-47f5-aee9-1dc642680a11:
+    id: ba9141ea-4b73-47f5-aee9-1dc642680a11
+    content: Workflows silently halt; user must manually intervene to resume progress
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7072d115-10af-4953-ac3d-df8b887606f5:
+    id: 7072d115-10af-4953-ac3d-df8b887606f5
+    content: Breaks the core autonomous-progression promise of the workflow runner
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef8f84d3-fedb-456f-859f-7b5e91d2e829:
+    id: ef8f84d3-fedb-456f-859f-7b5e91d2e829
+    content: Scope — fix the stall
+    children:
+      - f3612293-8abd-4992-8b09-0d02413e9aa6
+      - 9200b601-67f7-451e-bb71-ffb0ff54f28c
+      - 7d7fd1fd-04b4-4463-bc79-029b2742a1d9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3612293-8abd-4992-8b09-0d02413e9aa6:
+    id: f3612293-8abd-4992-8b09-0d02413e9aa6
+    content: Make autonomous feedback + Stop convergence deterministic so the node always advances exactly once when both signals have been observed, regardless of arrival order
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9200b601-67f7-451e-bb71-ffb0ff54f28c:
+    id: 9200b601-67f7-451e-bb71-ffb0ff54f28c
+    content: Ensure Stop hooks that arrive after collaborating has cleared still trigger advance (or are no longer needed because feedback already advanced)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d7fd1fd-04b4-4463-bc79-029b2742a1d9:
+    id: 7d7fd1fd-04b4-4463-bc79-029b2742a1d9
+    content: Surface an error state on the node when the workflow cannot advance, instead of leaving the green 'playing' indicator on a stuck node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a250319a-959b-4f0b-a5fe-9013f8739012:
+    id: a250319a-959b-4f0b-a5fe-9013f8739012
+    content: Acceptance criteria (this PR)
+    children:
+      - 195f023e-b66c-4e4d-92c3-bf06f5e311b6
+      - 3a58816b-fb48-45f6-8eda-e13e786c8c0e
+      - 8eaab9e0-2d19-481b-b2ad-e3dc6734000d
+      - e92b6845-b43a-4f58-85ce-04938e846805
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  195f023e-b66c-4e4d-92c3-bf06f5e311b6:
+    id: 195f023e-b66c-4e4d-92c3-bf06f5e311b6
+    content: '- [ ] Race in advanceOrClearCollaborating is fixed: regardless of arrival order of feedback and Stop, the node advances exactly once'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a58816b-fb48-45f6-8eda-e13e786c8c0e:
+    id: 3a58816b-fb48-45f6-8eda-e13e786c8c0e
+    content: '- [x] Node advances to the next step within a bounded time after the current step finishes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8eaab9e0-2d19-481b-b2ad-e3dc6734000d:
+    id: 8eaab9e0-2d19-481b-b2ad-e3dc6734000d
+    content: '- [x] When the workflow cannot advance, the green ''playing'' indicator is cleared and an error/stuck state is surfaced to the user'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e92b6845-b43a-4f58-85ce-04938e846805:
+    id: e92b6845-b43a-4f58-85ce-04938e846805
+    content: '- [x] Regression test (integration or scripted) covers: feedback-before-Stop, Stop-before-feedback, dropped-Stop scenarios for autonomous step transitions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6af919c-975b-4e86-8e4c-16ae21b21bd0:
+    id: d6af919c-975b-4e86-8e4c-16ae21b21bd0
+    content: Investigation notes to capture
+    children:
+      - cce585c3-c075-49c2-a3bb-c2230037107a
+      - 87246362-6517-47d9-bfee-a9685eb12edf
+      - 586a24bd-f993-46b6-9610-aca2be837fd5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cce585c3-c075-49c2-a3bb-c2230037107a:
+    id: cce585c3-c075-49c2-a3bb-c2230037107a
+    content: Whether stop hooks fire for these step types (now visible in persistent logs from PR1)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87246362-6517-47d9-bfee-a9685eb12edf:
+    id: 87246362-6517-47d9-bfee-a9685eb12edf
+    content: Timing between hook fire and Claude Code prompt readiness
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  586a24bd-f993-46b6-9610-aca2be837fd5:
+    id: 586a24bd-f993-46b6-9610-aca2be837fd5
+    content: Any differences in hook config between affected and unaffected steps
     children: []
     metadata:
       status: completed
@@ -121282,45 +121606,87 @@ nodes:
       plugins: {}
   a911e588-5052-4a9d-ab91-551ded63a061:
     id: a911e588-5052-4a9d-ab91-551ded63a061
-    content: Write the node to the feedback file directly as per the instructions
+    content: Technical refinement
+    children:
+      - 9abbaee0-7325-4596-89ec-775a6fc58bee
+      - 90e32546-3a8b-4669-9f11-655c226a0d48
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9abbaee0-7325-4596-89ec-775a6fc58bee:
+    id: 9abbaee0-7325-4596-89ec-775a6fc58bee
+    content: Complications
+    children:
+      - 5c755f62-8bf7-4469-9634-7a425be2032b
+      - e9b603aa-2b0d-42c6-93a4-c3787656ecdd
+      - cec60957-a5fe-4030-9739-1574b4e4bde4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c755f62-8bf7-4469-9634-7a425be2032b:
+    id: 5c755f62-8bf7-4469-9634-7a425be2032b
+    content: Fixing the advance race naively (always advancing on feedback) risks double-advance when Stop has already pre-deferred via stopReceived — the fix must be idempotent against a node id + step id, not just a flag flip
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9b603aa-2b0d-42c6-93a4-c3787656ecdd:
+    id: e9b603aa-2b0d-42c6-93a4-c3787656ecdd
+    content: A safety-net step timeout / reaper is still useful even after the race fix, because dropped Stop hooks (session-id miss, auth, parse) will keep happening — without it the same class of stall returns the next time a hook is dropped for any other reason
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  36204cea-9517-498a-8f68-8e993e77d488:
-    id: 36204cea-9517-498a-8f68-8e993e77d488
-    content: Under it add a URI link to open vscode on the workree
-    children:
-      - 083e2fd8-7b81-4050-91a0-815bffec50e5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  083e2fd8-7b81-4050-91a0-815bffec50e5:
-    id: 083e2fd8-7b81-4050-91a0-815bffec50e5
-    content: vscode://file/Users/brianfox/dev/Arborescent-workflow-race
+  cec60957-a5fe-4030-9739-1574b4e4bde4:
+    id: cec60957-a5fe-4030-9739-1574b4e4bde4
+    content: Out of scope — restructuring the broader workflow state machine, remote telemetry, or shipping logs off-device
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  87c7e392-5271-4092-9b69-1b3c3b3433e0:
-    id: 87c7e392-5271-4092-9b69-1b3c3b3433e0
-    content: If the first child of the parent already contains a link, to linear for example
+  90e32546-3a8b-4669-9f11-655c226a0d48:
+    id: 90e32546-3a8b-4669-9f11-655c226a0d48
+    content: Approach
     children:
-      - 8bcc2180-6a3d-4a8d-9b26-549398edd908
+      - 9c45052b-b52a-49cd-bd04-bf861cd9dfaf
+      - be556f18-0ea0-43f8-ae4b-a68cefa7273a
+      - e835d442-7b97-4ca9-b6af-1fcb4fb31998
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8bcc2180-6a3d-4a8d-9b26-549398edd908:
-    id: 8bcc2180-6a3d-4a8d-9b26-549398edd908
-    content: Create the worktree node as the second child instead
+  9c45052b-b52a-49cd-bd04-bf861cd9dfaf:
+    id: 9c45052b-b52a-49cd-bd04-bf861cd9dfaf
+    content: Collapse advanceOrClearCollaborating into an idempotent "advance once per (nodeId, stepId)" gate; whichever of feedback or Stop arrives last triggers the advance, duplicates become no-ops
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be556f18-0ea0-43f8-ae4b-a68cefa7273a:
+    id: be556f18-0ea0-43f8-ae4b-a68cefa7273a
+    content: Add a step timeout reaper as a backstop for dropped hooks — when triggered, transition the node to a stuck/error state and clear the green 'playing' indicator
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e835d442-7b97-4ca9-b6af-1fcb4fb31998:
+    id: e835d442-7b97-4ca9-b6af-1fcb4fb31998
+    content: Touchpoints — workflowExecutionActions.ts (advanceOrClearCollaborating, step timeouts, error state), workflowHookEventHandler.ts (idempotent Stop handling)
     children: []
     metadata:
       status: completed
@@ -121329,11 +121695,9 @@ nodes:
       plugins: {}
   5033c5e7-dadd-4301-9590-7accf65ac68d:
     id: 5033c5e7-dadd-4301-9590-7accf65ac68d
-    content: Worktree details
+    content: Subtask note
     children:
       - 13610eed-1394-4490-81f4-f343f28264e8
-      - a1b90536-9a26-467f-949e-64bb8528e1dc
-      - 47496e3a-c61d-4092-9499-7cdcc4a6c049
     metadata:
       status: completed
       expanded: true
@@ -121341,167 +121705,639 @@ nodes:
       plugins: {}
   13610eed-1394-4490-81f4-f343f28264e8:
     id: 13610eed-1394-4490-81f4-f343f28264e8
-    content: 'Path: /Users/brianfox/dev/Arborescent-workflow-race'
+    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a1b90536-9a26-467f-949e-64bb8528e1dc:
-    id: a1b90536-9a26-467f-949e-64bb8528e1dc
-    content: 'Branch: fix/workflow-advance-race'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  47496e3a-c61d-4092-9499-7cdcc4a6c049:
-    id: 47496e3a-c61d-4092-9499-7cdcc4a6c049
-    content: 'Forked from: master (PR1 logging already merged in at 2cfe319)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a40757d7-8d72-4eaf-8bb1-c975278eab58:
-    id: a40757d7-8d72-4eaf-8bb1-c975278eab58
-    content: Review feedback
+  7d2ae656-854a-4f5e-a465-43cf99d25d03:
+    id: 7d2ae656-854a-4f5e-a465-43cf99d25d03
+    content: '''Next step'' doesn''t unpause a paused workflow'
     children:
-      - 4e258086-66ba-4851-958e-a1e2f016a440
-      - 31fd7f5b-d216-4d8c-bcf0-802958109211
-      - da9ffb3e-67d2-401c-b61b-893f509d1afe
-      - 55e281dc-4986-4fae-8b67-d428ed4be23d
-      - 49f3e5a3-6abf-43f0-828e-05b12f551295
-      - a74b7167-99b5-4089-80f4-16a04a8b5a23
-      - e066bf7d-e959-4550-b148-8ec73a08608f
+      - 17fbf82e-0f92-4efd-bdae-496c8d791dc5
+      - 00146ccb-c9e7-44d6-b364-52d86c411379
+    metadata:
+      status: pending
+  17fbf82e-0f92-4efd-bdae-496c8d791dc5:
+    id: 17fbf82e-0f92-4efd-bdae-496c8d791dc5
+    content: It advances the workflow to the next step but the prompt isn't sent
+    children: []
+    metadata:
+      status: pending
+  00146ccb-c9e7-44d6-b364-52d86c411379:
+    id: 00146ccb-c9e7-44d6-b364-52d86c411379
+    content: It should advance, unpause, send the prompt
+    children: []
+    metadata:
+      status: pending
+  422bbd03-a709-4e54-95b4-fbf4530fb398:
+    id: 422bbd03-a709-4e54-95b4-fbf4530fb398
+    content: worktree
+    children:
+      - 06fd0b9b-fae8-4e71-9230-c60add39b49b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  4e258086-66ba-4851-958e-a1e2f016a440:
-    id: 4e258086-66ba-4851-958e-a1e2f016a440
-    content: BLOCKER — idempotency claim unsupported; the "advances exactly once when Stop arrives twice" test passes only because step-2 is the terminal step (advanceNode → findNextStepTarget=null → completeWorkflow deletes the entry); in a 3+ step workflow a duplicate Stop would advance to step-3, advanceNode only guards entry.state !== 'running'; needs either a real per-(nodeId, stepId) advance gate or a 3-step regression fixture that demonstrates the gap before deferring the gate to a follow-up PR
+  06fd0b9b-fae8-4e71-9230-c60add39b49b:
+    id: 06fd0b9b-fae8-4e71-9230-c60add39b49b
+    content: vscode://file//Users/brianfox/dev/Arborescent-workflow-step-icon
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  31fd7f5b-d216-4d8c-bcf0-802958109211:
-    id: 31fd7f5b-d216-4d8c-bcf0-802958109211
-    content: BLOCKER — reaper-then-feedback race silently swallows feedback; if markNodeStuck fires just before handleAutonomousFeedback arrives (dropped-Stop scenario), markNodeStuck clears collaborating=false then handleAutonomousFeedback applies AcceptFeedbackCommand (content merged) and calls advanceOrClearCollaborating which is a no-op because stopReceived=false and collaborating=false; node stays stuck forever; Resume only restarts the timer; user loops stuck→resume→stuck; either handleAutonomousFeedback must auto-recover from stuck (transition to running and advance) or resumeStuckNode should look for buffered feedback
+  5b6761a1-0424-40c0-a86d-5e4627b3b631:
+    id: 5b6761a1-0424-40c0-a86d-5e4627b3b631
+    content: 📄 Product spec
+    children:
+      - 52187553-b9f2-4457-9ec0-240629d282d4
+      - c9010fe1-ecc6-4636-99f8-346fd879940b
+      - 5f9b258f-ea98-4175-ab58-38bdf876114d
+      - 683ceb06-46eb-4f62-aa03-99e645c82594
+      - 14c75a80-bd0f-42a9-a1d9-429d120a185f
+      - 41bb5cbb-d216-4b8e-9d9c-3721d644e128
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52187553-b9f2-4457-9ec0-240629d282d4:
+    id: 52187553-b9f2-4457-9ec0-240629d282d4
+    content: Context
+    children:
+      - d3d9465c-3eda-4770-a19b-086f36adf2b9
+      - 3483d788-2499-4639-9f51-28225a337bfa
+      - ec4d315d-81bb-46bd-ad3b-47b4ad3c907d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3d9465c-3eda-4770-a19b-086f36adf2b9:
+    id: d3d9465c-3eda-4770-a19b-086f36adf2b9
+    content: Workflow step rows currently render a bespoke node icon alongside the gutter context icon, and the user hand-sets each step's node icon to mirror the applied context — duplicate visual signal, ongoing manual work.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  da9ffb3e-67d2-401c-b61b-893f509d1afe:
-    id: da9ffb3e-67d2-401c-b61b-893f509d1afe
-    content: MAJOR — resumeStuckNode only restarts the step-timeout, never re-sends or re-prompts; if Claude already emitted its terminal Stop (the dropped-Stop fallback case) restarting the timer will deterministically time out again; either re-issue a prompt analogous to resendStep, or change the toast wording so it's clear Resume = "give more wall-clock, no new signal sent"
+  3483d788-2499-4639-9f51-28225a337bfa:
+    id: 3483d788-2499-4639-9f51-28225a337bfa
+    content: The gutter already conveys context attachment for every node type in the tree, so the workflow step's node icon is a second channel for information already shown.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  55e281dc-4986-4fae-8b67-d428ed4be23d:
-    id: 55e281dc-4986-4fae-8b67-d428ed4be23d
-    content: MAJOR — loosening stopWorkflow's state guard silently changes Notification hook semantics; workflowHookEventHandler.ts Notification branch calls stopWorkflow(runningNodeId) which previously no-op'd against awaiting-validation, now tears them down; no regression test for Notification arriving at an awaiting-validation checkpoint; either restore the state filter at the call site or add a test asserting the new behaviour
+  ec4d315d-81bb-46bd-ad3b-47b4ad3c907d:
+    id: ec4d315d-81bb-46bd-ad3b-47b4ad3c907d
+    content: Context-less workflow steps are rare in practice; almost every step carries an applied context.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  49f3e5a3-6abf-43f0-828e-05b12f551295:
-    id: 49f3e5a3-6abf-43f0-828e-05b12f551295
-    content: MINOR — workflowAdvanceRace.test.ts:167-176 "late Stop after advance" only asserts step-2.children count, never that the late Stop was rejected; in current code the late Stop actually fires advanceNode → completeWorkflow deletes the entry; add expect(state.workflowExecutionStates['task-a']).toBeDefined() and expect(mockAddToast).not.toHaveBeenCalledWith(/Workflow complete/, …) to make the test fail meaningfully
+  c9010fe1-ecc6-4636-99f8-346fd879940b:
+    id: c9010fe1-ecc6-4636-99f8-346fd879940b
+    content: Persona
+    children:
+      - 569c8d6d-5f32-40e0-be2c-09bea732fe13
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  569c8d6d-5f32-40e0-be2c-09bea732fe13:
+    id: 569c8d6d-5f32-40e0-be2c-09bea732fe13
+    content: Arborescent user building workflows where most steps have an applied context.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a74b7167-99b5-4089-80f4-16a04a8b5a23:
-    id: a74b7167-99b5-4089-80f4-16a04a8b5a23
-    content: MINOR — Resume's preference re-read works (getTimeoutMinutes called fresh on each start) but no test locks the contract — add "change stepTimeoutMinutes while node is stuck, Resume, new timer respects new value"
+  5f9b258f-ea98-4175-ab58-38bdf876114d:
+    id: 5f9b258f-ea98-4175-ab58-38bdf876114d
+    content: Current experience
+    children:
+      - 2ad9f1a7-7024-4541-8976-5fe31fc079ad
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ad9f1a7-7024-4541-8976-5fe31fc079ad:
+    id: 2ad9f1a7-7024-4541-8976-5fe31fc079ad
+    content: Each workflow step row shows the gutter context icon, the step number, a bespoke node icon, and the label. The gutter icon and the manually-mirrored node icon duplicate one another and require maintenance whenever the applied context changes.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  683ceb06-46eb-4f62-aa03-99e645c82594:
+    id: 683ceb06-46eb-4f62-aa03-99e645c82594
+    content: Goal
+    children:
+      - c36fe25e-f050-436d-a9ac-baca1e1690e0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c36fe25e-f050-436d-a9ac-baca1e1690e0:
+    id: c36fe25e-f050-436d-a9ac-baca1e1690e0
+    content: Collapse workflow step rows to a single icon channel by dropping the bespoke node icon, leaving the gutter as the sole signal for context attachment.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14c75a80-bd0f-42a9-a1d9-429d120a185f:
+    id: 14c75a80-bd0f-42a9-a1d9-429d120a185f
+    content: Business rules
+    children:
+      - c498ec77-e7fc-45c4-9dad-cadd923e2136
+      - d7395660-2c40-4fa5-8e89-e49cd14eb8f2
+      - 01aac9ef-8943-4f59-bbbf-6318b9370fba
+      - 3c236297-6191-47da-bf11-835aa92bc2b0
+      - bf6e3bc5-39fc-4182-abd7-fdb24abb7dcf
+      - 4cfb5100-9752-46e2-82a3-7a05aa681510
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c498ec77-e7fc-45c4-9dad-cadd923e2136:
+    id: c498ec77-e7fc-45c4-9dad-cadd923e2136
+    content: Workflow step nodes no longer support a bespoke node icon and no longer expose an affordance to set one.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7395660-2c40-4fa5-8e89-e49cd14eb8f2:
+    id: d7395660-2c40-4fa5-8e89-e49cd14eb8f2
+    content: A workflow step row renders the step number, the label, and — when a context is attached — the gutter context icon, nothing else in the icon slots.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01aac9ef-8943-4f59-bbbf-6318b9370fba:
+    id: 01aac9ef-8943-4f59-bbbf-6318b9370fba
+    content: The gutter remains the sole visual signal for context attachment across all node types, consistent with non-workflow nodes.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c236297-6191-47da-bf11-835aa92bc2b0:
+    id: 3c236297-6191-47da-bf11-835aa92bc2b0
+    content: Non-workflow node types retain their current node icon and gutter behaviour unchanged.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf6e3bc5-39fc-4182-abd7-fdb24abb7dcf:
+    id: bf6e3bc5-39fc-4182-abd7-fdb24abb7dcf
+    content: Workflow steps retain their blueprint status and all other blueprint-element behaviour; only the bespoke icon affordance is removed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cfb5100-9752-46e2-82a3-7a05aa681510:
+    id: 4cfb5100-9752-46e2-82a3-7a05aa681510
+    content: Loading a workflow blueprint that previously persisted a bespoke icon on a workflow step strips that field silently; other fields are unaffected.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41bb5cbb-d216-4b8e-9d9c-3721d644e128:
+    id: 41bb5cbb-d216-4b8e-9d9c-3721d644e128
+    content: Acceptance criteria
+    children:
+      - e6cc86e1-15ed-4dc3-8f04-9b653ee8a538
+      - 94ea5be1-bf17-44b1-9d5a-2255e015d095
+      - c2c9d9de-c61c-499f-8cb7-9e67002c2346
+      - b409c5fd-1405-4eec-acc6-ee5e67f5b7a4
+      - 92b7d99a-5f55-4e42-9e55-a70ced311ab8
+      - 92477d51-6b50-4609-a9c7-313e5c59516e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6cc86e1-15ed-4dc3-8f04-9b653ee8a538:
+    id: e6cc86e1-15ed-4dc3-8f04-9b653ee8a538
+    content: A workflow step row renders step number, label, and the gutter context icon when a context is applied — no inline node icon under any condition.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94ea5be1-bf17-44b1-9d5a-2255e015d095:
+    id: 94ea5be1-bf17-44b1-9d5a-2255e015d095
+    content: The icon-picker affordance is not available on workflow step nodes.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2c9d9de-c61c-499f-8cb7-9e67002c2346:
+    id: c2c9d9de-c61c-499f-8cb7-9e67002c2346
+    content: Non-workflow nodes retain their existing node icon rendering and icon-picker affordance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b409c5fd-1405-4eec-acc6-ee5e67f5b7a4:
+    id: b409c5fd-1405-4eec-acc6-ee5e67f5b7a4
+    content: A workflow step continues to be recognised and treated as a blueprint element after the change — only the icon affordance is gone.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92b7d99a-5f55-4e42-9e55-a70ced311ab8:
+    id: 92b7d99a-5f55-4e42-9e55-a70ced311ab8
+    content: Opening an `.arbo` file that previously stored a bespoke icon on a workflow step loads without error; the icon field is dropped and the step renders per the new rule.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92477d51-6b50-4609-a9c7-313e5c59516e:
+    id: 92477d51-6b50-4609-a9c7-313e5c59516e
+    content: Keyboard navigation, focus order, and screen-reader labels for workflow step rows remain unchanged.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa866473-789e-4c35-a89a-0974e36b1c9d:
+    id: aa866473-789e-4c35-a89a-0974e36b1c9d
+    content: 🔧 Implementation proposal
+    children:
+      - b81d384a-671f-48e8-aada-c21a7afe5a6f
+      - fad66aaa-2751-40bf-aec9-56c8a68c2d1d
+      - 10c78f6c-a925-45cf-bdcd-20f58f24aaca
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b81d384a-671f-48e8-aada-c21a7afe5a6f:
+    id: b81d384a-671f-48e8-aada-c21a7afe5a6f
+    content: Approach
+    children:
+      - c0f8bcf5-a16c-436c-9d25-966b85b646c2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0f8bcf5-a16c-436c-9d25-966b85b646c2:
+    id: c0f8bcf5-a16c-436c-9d25-966b85b646c2
+    content: Remove the node-icon rendering branch for workflow step rows in the tree row renderer, hide the icon-picker control on workflow step nodes, and strip any persisted node icon from workflow step entries during blueprint deserialisation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fad66aaa-2751-40bf-aec9-56c8a68c2d1d:
+    id: fad66aaa-2751-40bf-aec9-56c8a68c2d1d
+    content: Touchpoints
+    children:
+      - faf0054b-6bfd-4184-bcfe-f63f9e6118ff
+      - 4b27823f-def7-4e40-9b5a-b4ba1acb26c2
+      - e91f864b-aa33-40dc-a26e-41f5a109fe4e
+      - c02a9967-3c41-4431-8950-2fbd0527ab94
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  faf0054b-6bfd-4184-bcfe-f63f9e6118ff:
+    id: faf0054b-6bfd-4184-bcfe-f63f9e6118ff
+    content: Tree row renderer for workflow steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b27823f-def7-4e40-9b5a-b4ba1acb26c2:
+    id: 4b27823f-def7-4e40-9b5a-b4ba1acb26c2
+    content: Node icon picker and any context menu entries scoped to workflow step nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e91f864b-aa33-40dc-a26e-41f5a109fe4e:
+    id: e91f864b-aa33-40dc-a26e-41f5a109fe4e
+    content: Blueprint deserialisation path — drop persisted node icons on workflow steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c02a9967-3c41-4431-8950-2fbd0527ab94:
+    id: c02a9967-3c41-4431-8950-2fbd0527ab94
+    content: Tests covering the rendered row shape and the deserialisation drop
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10c78f6c-a925-45cf-bdcd-20f58f24aaca:
+    id: 10c78f6c-a925-45cf-bdcd-20f58f24aaca
+    content: Constraints to call out
+    children:
+      - 5be929ac-2a72-493b-879f-3a0e446df2ef
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5be929ac-2a72-493b-879f-3a0e446df2ef:
+    id: 5be929ac-2a72-493b-879f-3a0e446df2ef
+    content: One-way `.arbo` migration — once a file is saved under the new rule, any previously persisted workflow-step node icon is gone. Acceptable because the field becomes vestigial, but worth confirming before shipping.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d76bdc9-8cda-482b-8fc2-edbc0fe18b3d:
+    id: 3d76bdc9-8cda-482b-8fc2-edbc0fe18b3d
+    content: Challenges and pushback
+    children:
+      - 7a79e88e-9dab-4a84-98e0-f1461549f31b
+      - 640b4820-c596-49e5-8339-2f968f07a48b
+      - 87f6024d-994e-4e58-becb-b3af65030221
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a79e88e-9dab-4a84-98e0-f1461549f31b:
+    id: 7a79e88e-9dab-4a84-98e0-f1461549f31b
+    content: ROI is high — eliminates ongoing manual icon-mirroring work and removes a UI affordance in exchange for one clear rule, with no precedence model or new indicator to maintain.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  640b4820-c596-49e5-8339-2f968f07a48b:
+    id: 640b4820-c596-49e5-8339-2f968f07a48b
+    content: The only loss is bespoke iconography on context-less workflow steps; user has confirmed those are rare and most still carry an applied context, so practical impact is zero.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87f6024d-994e-4e58-becb-b3af65030221:
+    id: 87f6024d-994e-4e58-becb-b3af65030221
+    content: Out of scope — node icon behaviour on non-workflow nodes, the gutter mechanism itself, and any redesign of the context icon picker.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb7b6bfe-7c9f-45ca-90dc-168519867833:
+    id: fb7b6bfe-7c9f-45ca-90dc-168519867833
+    content: Technical refinement
+    children:
+      - cce6b2f6-6efe-436e-843e-81307deeb50b
+      - 6b735d1a-2f94-409f-a49b-edab75d08acd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cce6b2f6-6efe-436e-843e-81307deeb50b:
+    id: cce6b2f6-6efe-436e-843e-81307deeb50b
+    content: Complications
+    children:
+      - d74cfc1b-c6d0-4a26-85c2-dc6579781608
+      - 20c67770-4310-4fd8-912a-daf5da0dbc25
+      - 396ee2a9-7efe-4410-8daa-52104de45db8
+      - 7aeda2db-9fa0-4437-a0bb-2d461e61867b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d74cfc1b-c6d0-4a26-85c2-dc6579781608:
+    id: d74cfc1b-c6d0-4a26-85c2-dc6579781608
+    content: Blueprint icons already inherit from ancestors via `useBlueprintIcon` — a workflow step with no own `blueprintIcon` currently renders the workflow root's icon. Stripping the per-step field alone does not stop rendering; the change has to suppress blueprint-icon rendering on workflow step rows at render time, not only at the data layer.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20c67770-4310-4fd8-912a-daf5da0dbc25:
+    id: 20c67770-4310-4fd8-912a-daf5da0dbc25
+    content: '`blueprintIcon` / `blueprintColor` are the same metadata fields used by workflow roots (`isWorkflow: true`) and workflow steps (`isBlueprint: true` descendants). Render-time suppression and `.arbo` migration must target steps only — workflow root nodes must keep their icon and picker as the blueprint''s identity source.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  396ee2a9-7efe-4410-8daa-52104de45db8:
+    id: 396ee2a9-7efe-4410-8daa-52104de45db8
+    content: Existing NodeContent tests and any snapshot tests that assert blueprint-icon presence on workflow step rows will need to flip to asserting its absence.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7aeda2db-9fa0-4437-a0bb-2d461e61867b:
+    id: 7aeda2db-9fa0-4437-a0bb-2d461e61867b
+    content: Reaffirmed out of scope — workflow root icon behaviour, ancestor inheritance for non-workflow blueprint nodes, and any redesign of the icon-picker component itself.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b735d1a-2f94-409f-a49b-edab75d08acd:
+    id: 6b735d1a-2f94-409f-a49b-edab75d08acd
+    content: Approach summary
+    children:
+      - de443336-cb52-43c1-8fc2-30d46b6f80b2
+      - a86f4242-0832-46c0-8e32-4cbf6a31dd49
+      - 9bef4805-705b-433e-8bf1-d89c3ebdf3a8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de443336-cb52-43c1-8fc2-30d46b6f80b2:
+    id: de443336-cb52-43c1-8fc2-30d46b6f80b2
+    content: Gate blueprint-icon rendering and the icon-picker affordance in NodeContent so workflow step rows (`isBlueprint` and not `isWorkflow`) skip both — neither own nor inherited icon is shown.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a86f4242-0832-46c0-8e32-4cbf6a31dd49:
+    id: a86f4242-0832-46c0-8e32-4cbf6a31dd49
+    content: Drop `blueprintIcon` / `blueprintColor` from workflow step entries during `.arbo` deserialisation while preserving them on workflow root nodes.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bef4805-705b-433e-8bf1-d89c3ebdf3a8:
+    id: 9bef4805-705b-433e-8bf1-d89c3ebdf3a8
+    content: Non-obvious for the reviewer — blueprint icons cascade via ancestor lookup, so the visible change comes from render-time suppression on step rows, not from the data migration; the migration is housekeeping to keep persisted state clean.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  daaf7479-86b5-49ea-9e4b-23886350c406:
+    id: daaf7479-86b5-49ea-9e4b-23886350c406
+    content: review feedback
+    children:
+      - 1c32767f-568e-41cc-ab5b-aded2edf022f
+      - 968012c6-93f0-475a-91d4-cbf969390bcf
+      - a44a7753-49f8-4bec-a550-bc94d2767020
+      - d8fec4a2-f4c2-4f47-8092-3bc0a5033247
+      - 5d638f42-5871-43e7-b1bf-34565bc0e2dd
+      - a517fd53-075e-4e2e-a08a-048e769f2d7e
+      - 46467c06-7f73-4f82-b59f-286b84512130
+      - e4cb9831-7de5-46cf-b006-b82e9ecb7d59
+      - 8d8c66ff-d0c3-4497-a033-e26e99c06861
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c32767f-568e-41cc-ab5b-aded2edf022f:
+    id: 1c32767f-568e-41cc-ab5b-aded2edf022f
+    content: 'CRITICAL — migration strips blueprintIcon and blueprintColor from context declarations nested inside a workflow, destroying their visual identity. Context declarations (`isContextDeclaration: true`) store their icon and color in the same `blueprintIcon`/`blueprintColor` fields used by workflow blueprints; `useContextIcon.ts:36-37` reads them directly. `useContextIcon.ts:25-28` then propagates those values to every descendant that inherits the context. The current migration `findIdsToStrip` in `src/renderer/utils/migrateWorkflowStepIcons.ts:14-19` only excludes `isWorkflow:true` nodes, so any context-declaration node placed anywhere under an `isWorkflow:true` ancestor gets stripped on load, breaking its own icon and the inherited icon for every node applying that context.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  968012c6-93f0-475a-91d4-cbf969390bcf:
+    id: 968012c6-93f0-475a-91d4-cbf969390bcf
+    content: CRITICAL FIX — in `findIdsToStrip`, also skip nodes with `node.metadata.isContextDeclaration === true`. Add a migration unit test for "context declaration inside a workflow keeps its blueprintIcon/blueprintColor" and a NodeContent or storageService integration test asserting the context-declaration row renders with its icon after load.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a44a7753-49f8-4bec-a550-bc94d2767020:
+    id: a44a7753-49f8-4bec-a550-bc94d2767020
+    content: SUGGESTION — `useWorkflowIndicator` (`hooks/useWorkflowIndicator.ts:27-34`) runs two separate `useStore` subscriptions that each consult `ancestorRegistry` and `nodes`. Consider one combined selector (or short-circuit `stepNumber` when `!isInsideWorkflow`) to halve subscription cost on a hot per-node render path.
     children: []
     metadata:
       status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  e066bf7d-e959-4550-b148-8ec73a08608f:
-    id: e066bf7d-e959-4550-b148-8ec73a08608f
-    content: NIT — markNodeStuck guards state === 'running' (line ~403); the double-guard against awaiting-validation deserves a one-line comment explaining why awaiting-validation is not a stuck candidate (user-driven gate, not reaper concern)
+  d8fec4a2-f4c2-4f47-8092-3bc0a5033247:
+    id: d8fec4a2-f4c2-4f47-8092-3bc0a5033247
+    content: SUGGESTION — `NodeContent.tsx:42` still calls `useBlueprintIcon` for workflow step rows even though `StatusArea` gates the resulting button off. The unused work includes a `useStore` subscription that walks the ancestor chain to compute the inherited icon. Skip the call (or memoise to no-op) for workflow steps.
     children: []
     metadata:
-      status: completed
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  8e1ce2b5-a997-4a36-9500-94b248399465:
-    id: 8e1ce2b5-a997-4a36-9500-94b248399465
-    content: Resolution summary
-    children:
-      - da1e1ff0-b7e3-4dda-9726-099795cfb962
-      - f160dfe4-c774-4d9d-b54f-30d0710473f7
-      - 331be15f-dcab-4a57-b50c-9cdd55908d7e
+  5d638f42-5871-43e7-b1bf-34565bc0e2dd:
+    id: 5d638f42-5871-43e7-b1bf-34565bc0e2dd
+    content: NIT — migration test "returns the original map reference when there is nothing to migrate" (`migrateWorkflowStepIcons.test.ts`) asserts `result === input`. The production guard at `migrateWorkflowStepIcons.ts:43` only short-circuits when no work is needed; relying on identity is a contract nothing else depends on. Consider relaxing the assertion or renaming the test.
+    children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  da1e1ff0-b7e3-4dda-9726-099795cfb962:
-    id: da1e1ff0-b7e3-4dda-9726-099795cfb962
-    content: Major fixes — handleAutonomousFeedback now recovers from stuck state (transitions to running + sets stopReceived=true so advanceOrClearCollaborating's advance branch fires) which closes the reaper-then-feedback race; resumeStuckNode now advances the node (positive user confirmation that Claude finished) instead of restarting the timer to a guaranteed re-timeout; stopWorkflow state guard restored as explicit running/awaiting-validation/stuck allowlist so Notification semantics are unchanged
+  a517fd53-075e-4e2e-a08a-048e769f2d7e:
+    id: a517fd53-075e-4e2e-a08a-048e769f2d7e
+    content: NIT — `migrateWorkflowStepIcons` walks from roots-as-orphans (`migrateWorkflowStepIcons.ts:5-8, 25-27`). The other migrations (`migrateExternalLinkNodes`, `migrateContextModeFlags`) iterate `Object.entries(nodes)` directly. Match that pattern — iterate every node and consult `ancestorRegistry` (or compute it cheaply) — to mirror existing convention and remove the orphan-cycle blind spot.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  f160dfe4-c774-4d9d-b54f-30d0710473f7:
-    id: f160dfe4-c774-4d9d-b54f-30d0710473f7
-    content: Minor fixes — idempotency test renamed to "a duplicate Stop on the terminal step still completes only once" and now asserts no "Workflow complete" toast on duplicate (proves no double-success path); added a 3-step "known gap — duplicate Stop after feedback-before-Stop ordering over-advances" test that captures the actual per-step-gate gap (passing as documentation of behaviour the deferred follow-up PR will invert); added comment on markNodeStuck explaining awaiting-validation is excluded as a user-driven gate; toast wording for stuck state updated to "Resume to advance to the next step (if Claude has finished), Stop to abandon" reflecting the new advance semantics
+  46467c06-7f73-4f82-b59f-286b84512130:
+    id: 46467c06-7f73-4f82-b59f-286b84512130
+    content: 'NIT — `storageService.ts:40` migration ordering: a one-line intent comment ("strip after context-mode migration so flags resolve first") would help future maintainers reason about insertion points.'
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  331be15f-dcab-4a57-b50c-9cdd55908d7e:
-    id: 331be15f-dcab-4a57-b50c-9cdd55908d7e
-    content: Skipped — Resume timer-preference reread test (MINOR 6) no longer applies because Resume no longer restarts the timer; the underlying createStepTimeoutManager.getTimeoutMinutes re-read on each start() call is already covered by the existing primitive tests in workflowStepTimeoutStuckState.test.ts
+  e4cb9831-7de5-46cf-b006-b82e9ecb7d59:
+    id: e4cb9831-7de5-46cf-b006-b82e9ecb7d59
+    content: NIT — the render-gate in `StatusArea.tsx:163` (`isWorkflowStep = isInsideWorkflow && !isWorkflow`) and the data migration are belt-and-braces. Decide whether both layers should stay indefinitely or whether the render gate is only needed until the migration is stable across all opened files.
     children: []
     metadata:
-      status: pending
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d8c66ff-d0c3-4497-a033-e26e99c06861:
+    id: 8d8c66ff-d0c3-4497-a033-e26e99c06861
+    content: NIT — `reconcileDuplicateChildren` runs before any migration (`storageService.ts:37`). If reconciliation removes a duplicate reference that was a step's only path to a workflow ancestor, the migration won't visit it. Probably not a real scenario, but a unit test for "step reachable from a workflow only via a non-deduped parent" would close the door.
+    children: []
+    metadata:
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
 sessionRegistry:
-  d613b377-2fc5-41b6-9d85-92dc28b38eb0:
-    cwd: /Users/brianfox/dev/Arborescent
-  e7626089-f911-411d-b33a-b4997004ea1b:
-    cwd: /Users/brianfox/dev/Arborescent
-  d8469abe-5715-4d5c-bf09-da1d2ba10fb4:
-    cwd: /Users/brianfox/dev/Arborescent
-  b034c6a0-ec14-4710-adba-b37588fc7b30:
-    cwd: /Users/brianfox/dev/Arborescent
-  d8d1863f-71bb-4e23-b369-3727d983ecc5:
-    cwd: /Users/brianfox/dev/Arborescent
-  4d6b0d80-2690-4d59-8caa-157fdd16860e:
-    cwd: /Users/brianfox/dev/Arborescent
-  de898a68-a5fc-4166-acd5-90e811fef0c9:
-    cwd: /Users/brianfox/dev/Arborescent
-  2d48e5a5-be16-4834-b9df-e09120cd41ce:
-    cwd: /Users/brianfox/dev/Arborescent
-  41eac8fc-9b7f-4962-a16c-e692c1f12cb2:
+  ed67a423-cede-4882-acbb-eb96ebb0e425:
     cwd: /Users/brianfox/dev/Arborescent
   8e79b42c-2b18-4e3f-afb5-8d4f7bd115c1:
     cwd: /Users/brianfox/dev/Arborescent
