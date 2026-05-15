@@ -31,16 +31,22 @@ vi.mock('../../../preferences/preferencesStore', () => ({
 }));
 
 describe('createWorkflowActions', () => {
+  type WorkflowExecutionStateValue = {
+    state: 'running' | 'awaiting-validation' | 'stuck';
+    terminalTabId: string;
+  };
   type TestState = {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
+    workflowExecutionStates?: Record<string, WorkflowExecutionStateValue>;
   };
   let state: TestState;
   let setState: (partial: Partial<TestState>) => void;
   let actions: ReturnType<typeof createWorkflowActions>;
   let mockTriggerAutosave: ReturnType<typeof vi.fn>;
   let mockExecuteCommand: ReturnType<typeof vi.fn>;
+  let mockContinueWorkflow: ReturnType<typeof vi.fn>;
   let mockVisualEffects: { flashNode: ReturnType<typeof vi.fn>; scrollToNode: ReturnType<typeof vi.fn>; startDeleteAnimation: ReturnType<typeof vi.fn>; clearDeleteAnimation: ReturnType<typeof vi.fn> };
 
   beforeEach(() => {
@@ -126,6 +132,7 @@ describe('createWorkflowActions', () => {
     mockPrefsState.hasSeenWorkflowDeclarationToast = false;
     mockTriggerAutosave = vi.fn();
     mockExecuteCommand = vi.fn((command) => command.execute());
+    mockContinueWorkflow = vi.fn();
     mockVisualEffects = {
       flashNode: vi.fn(),
       scrollToNode: vi.fn(),
@@ -138,7 +145,8 @@ describe('createWorkflowActions', () => {
       setState,
       mockTriggerAutosave,
       mockExecuteCommand,
-      mockVisualEffects
+      mockVisualEffects,
+      mockContinueWorkflow,
     );
   });
 
@@ -404,6 +412,91 @@ describe('createWorkflowActions', () => {
 
       expect(state.nodes['nested-wf'].metadata.expanded).toBe(true);
       expect(state.nodes['nested-step'].children).toContain('item-a');
+    });
+
+    describe('when the workflow is paused (awaiting-validation)', () => {
+      beforeEach(() => {
+        state.workflowExecutionStates = {
+          'item-a': { state: 'awaiting-validation', terminalTabId: 'term-1' },
+        };
+      });
+
+      it('delegates to continueWorkflow with the paused node and its terminal', () => {
+        actions.moveToNextStep('item-a');
+
+        expect(mockContinueWorkflow).toHaveBeenCalledTimes(1);
+        expect(mockContinueWorkflow).toHaveBeenCalledWith('item-a', 'term-1');
+      });
+
+      it('does not issue a separate MoveNodeCommand — the unpause path owns the move and send', () => {
+        actions.moveToNextStep('item-a');
+
+        expect(mockExecuteCommand).not.toHaveBeenCalled();
+        expect(state.nodes['step-2'].children).not.toContain('item-a');
+        expect(state.nodes['step-1'].children).toContain('item-a');
+      });
+
+      it('still flashes the node so the user gets the same visual confirmation as a normal advance', () => {
+        actions.moveToNextStep('item-a');
+
+        expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('item-a');
+      });
+
+      it('is a no-op when there is no next step, even if paused', () => {
+        state.workflowExecutionStates = {
+          'item-c': { state: 'awaiting-validation', terminalTabId: 'term-1' },
+        };
+
+        actions.moveToNextStep('item-c');
+
+        expect(mockContinueWorkflow).not.toHaveBeenCalled();
+        expect(mockExecuteCommand).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('when the workflow has no execution entry for the node', () => {
+      it('behaves as today — structural move via MoveNodeCommand, no continueWorkflow call', () => {
+        state.workflowExecutionStates = {};
+
+        actions.moveToNextStep('item-a');
+
+        expect(mockContinueWorkflow).not.toHaveBeenCalled();
+        expect(mockExecuteCommand).toHaveBeenCalled();
+        expect(state.nodes['step-2'].children).toContain('item-a');
+      });
+
+      it('also behaves as today when workflowExecutionStates is undefined entirely', () => {
+        state.workflowExecutionStates = undefined;
+
+        actions.moveToNextStep('item-a');
+
+        expect(mockContinueWorkflow).not.toHaveBeenCalled();
+        expect(mockExecuteCommand).toHaveBeenCalled();
+      });
+    });
+
+    describe('when the workflow is in stuck or running state', () => {
+      it('does not unpause when stuck — only awaiting-validation is treated as resumable by Next step', () => {
+        state.workflowExecutionStates = {
+          'item-a': { state: 'stuck', terminalTabId: 'term-1' },
+        };
+
+        actions.moveToNextStep('item-a');
+
+        expect(mockContinueWorkflow).not.toHaveBeenCalled();
+        expect(mockExecuteCommand).toHaveBeenCalled();
+      });
+
+      it('does not delegate when the node is already running', () => {
+        state.workflowExecutionStates = {
+          'item-a': { state: 'running', terminalTabId: 'term-1' },
+        };
+
+        actions.moveToNextStep('item-a');
+
+        expect(mockContinueWorkflow).not.toHaveBeenCalled();
+        expect(mockExecuteCommand).toHaveBeenCalled();
+      });
     });
   });
 

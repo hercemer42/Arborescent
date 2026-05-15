@@ -14,6 +14,7 @@ import {
   collectDescendantWorkflows,
   findNextStepTarget,
   findPreviousStepTarget,
+  WorkflowExecutionEntry,
 } from '../../../utils/workflowHelpers';
 
 export interface WorkflowActions {
@@ -32,6 +33,7 @@ type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   ancestorRegistry: AncestorRegistry;
+  workflowExecutionStates?: Record<string, WorkflowExecutionEntry>;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
@@ -40,7 +42,8 @@ export const createWorkflowActions = (
   set: StoreSetter,
   triggerAutosave?: () => void,
   executeCommand?: (command: Command) => void,
-  visualEffects?: VisualEffectsActions
+  visualEffects?: VisualEffectsActions,
+  continueWorkflow?: (nodeId: string, terminalId: string | null) => void,
 ): WorkflowActions => {
 
   function declareAsWorkflow(nodeId: string): void {
@@ -134,11 +137,18 @@ export const createWorkflowActions = (
   }
 
   function moveToNextStep(nodeId: string): void {
-    const { nodes, ancestorRegistry } = get();
+    const { nodes, ancestorRegistry, workflowExecutionStates } = get();
     const nextStepId = findNextStepTarget(nodeId, nodes, ancestorRegistry);
     if (!nextStepId) return;
 
     expandAncestorsToStep(nextStepId);
+
+    const entry = workflowExecutionStates?.[nodeId];
+    if (entry?.state === 'awaiting-validation' && continueWorkflow) {
+      continueWorkflow(nodeId, entry.terminalTabId);
+      visualEffects?.flashNode(nodeId);
+      return;
+    }
 
     const command = new MoveNodeCommand(
       nodeId,

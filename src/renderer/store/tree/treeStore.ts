@@ -97,6 +97,25 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       persistenceActions.autoSave
     );
 
+    const workflowExecutionRef: { continueWorkflow?: (nodeId: string, terminalId: string | null) => void } = {};
+    const workflowActions = createWorkflowActions(
+      get,
+      set,
+      persistenceActions.autoSave,
+      historyActions.executeCommand,
+      visualEffectsActions,
+      (nodeId, terminalId) => workflowExecutionRef.continueWorkflow?.(nodeId, terminalId),
+    );
+    const workflowExecutionActions = createWorkflowExecutionActions(
+      get,
+      set,
+      persistenceActions.autoSave,
+      visualEffectsActions,
+      sendActions.autonomousCollaborateInTerminal,
+      historyActions.executeCommand,
+    );
+    workflowExecutionRef.continueWorkflow = workflowExecutionActions.continueWorkflow;
+
     return {
       nodes: {},
       rootNodeId: '',
@@ -145,8 +164,8 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         ...sendActions,
         ...clipboardActions,
         ...createSummaryActions(get, set, persistenceActions.autoSave),
-        ...createWorkflowActions(get, set, persistenceActions.autoSave, historyActions.executeCommand, visualEffectsActions),
-        ...createWorkflowExecutionActions(get, set, persistenceActions.autoSave, visualEffectsActions, sendActions.autonomousCollaborateInTerminal, historyActions.executeCommand),
+        ...workflowActions,
+        ...workflowExecutionActions,
       },
     };
   });
