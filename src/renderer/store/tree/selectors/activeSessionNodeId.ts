@@ -1,3 +1,4 @@
+import type { TreeNode } from '../../../../shared/types';
 import type { WorkflowExecutionEntry } from '../../../utils/workflowHelpers';
 
 export interface SessionSelectorState {
@@ -5,7 +6,8 @@ export interface SessionSelectorState {
   collaboratingNodeId: string | null;
   collaborationSource: 'browser' | 'terminal' | null;
   collaboratingTerminalId: string | null;
-  terminalOrigins?: Record<string, string>;
+  workflowSessionMap?: Record<string, string>;
+  nodes?: Record<string, TreeNode>;
 }
 
 export function selectActiveSessionNodeId(
@@ -25,7 +27,7 @@ export function selectActiveSessionNodeId(
     return state.collaboratingNodeId;
   }
 
-  return state.terminalOrigins?.[activeTerminalId] ?? null;
+  return findNodeOwningTerminalSession(state, activeTerminalId);
 }
 
 function findActiveStepOnTerminal(
@@ -37,6 +39,39 @@ function findActiveStepOnTerminal(
     if (entry.state === 'running' || entry.state === 'awaiting-validation') {
       return nodeId;
     }
+  }
+  return null;
+}
+
+function findNodeOwningTerminalSession(
+  state: SessionSelectorState,
+  terminalId: string,
+): string | null {
+  const sessionId = reverseLookupSessionId(state.workflowSessionMap, terminalId);
+  if (!sessionId) return null;
+  return findLiveNodeWithSessionId(state.nodes, sessionId);
+}
+
+function reverseLookupSessionId(
+  workflowSessionMap: Record<string, string> | undefined,
+  terminalId: string,
+): string | null {
+  if (!workflowSessionMap) return null;
+  for (const [sessionId, mappedTerminalId] of Object.entries(workflowSessionMap)) {
+    if (mappedTerminalId === terminalId) return sessionId;
+  }
+  return null;
+}
+
+function findLiveNodeWithSessionId(
+  nodes: Record<string, TreeNode> | undefined,
+  sessionId: string,
+): string | null {
+  if (!nodes) return null;
+  for (const [nodeId, node] of Object.entries(nodes)) {
+    if (node.metadata.sessionId !== sessionId) continue;
+    if (node.metadata.brokenChain === true) continue;
+    return nodeId;
   }
   return null;
 }
