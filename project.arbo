@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-15T09:21:54.461Z'
+updated: '2026-05-15T12:01:58.572Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -81505,7 +81505,7 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 7d2ae656-854a-4f5e-a465-43cf99d25d03
+      - 323e1527-c30a-46e9-959a-9ac19cd00900
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
     metadata:
       status: pending
@@ -82876,7 +82876,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 7d2ae656-854a-4f5e-a465-43cf99d25d03
     metadata:
       status: pending
       isBlueprint: true
@@ -96846,8 +96847,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - c577b3e4-78ac-4eaf-98aa-054b93853291
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -117039,13 +117039,14 @@ nodes:
       - 73a9f9b7-ad3e-4100-aacf-41a71b826f37
       - 1669d542-34dd-4525-8480-d58008bb176a
       - bef765c8-a092-419d-b39d-ac19d7b6c00b
+      - c577b3e4-78ac-4eaf-98aa-054b93853291
     metadata:
       status: pending
       isBlueprint: true
       stepType: manual
       blueprintIcon: CheckSquare2
       blueprintColor: '#22c55e'
-      expanded: false
+      expanded: true
   5cb7bf1b-8461-4206-9d38-e624b970a2ce:
     id: 5cb7bf1b-8461-4206-9d38-e624b970a2ce
     content: If the subject is a bug, ignore these instructions, and instead write it up as a bug ticket
@@ -121714,24 +121715,22 @@ nodes:
       plugins: {}
   7d2ae656-854a-4f5e-a465-43cf99d25d03:
     id: 7d2ae656-854a-4f5e-a465-43cf99d25d03
-    content: '''Next step'' doesn''t unpause a paused workflow'
+    content: 'Bug: ''Next step'' does not unpause a paused workflow'
     children:
-      - 17fbf82e-0f92-4efd-bdae-496c8d791dc5
-      - 00146ccb-c9e7-44d6-b364-52d86c411379
+      - 1a8cdfae-6627-47af-9d42-6e1835591fa2
+      - c6b77c37-3518-4532-9345-b88dab2ff74b
+      - a07b21ab-ce1e-41ea-a936-043a52ef9549
+      - 72124289-b2bb-40f3-9289-541c85fa8030
+      - e6ab3015-e61f-456a-b793-4648edac9d06
+      - 6f79ec9a-3f8f-4f67-9945-c3cdd9ac4d1f
+      - b89cbdfb-fde3-43ac-ae61-87405a68e744
+      - 2cd4971a-b7e9-474f-8fef-d1e8617416e3
+      - 7b373c4a-568f-485b-a68a-a6585af2c95e
     metadata:
-      status: pending
-  17fbf82e-0f92-4efd-bdae-496c8d791dc5:
-    id: 17fbf82e-0f92-4efd-bdae-496c8d791dc5
-    content: It advances the workflow to the next step but the prompt isn't sent
-    children: []
-    metadata:
-      status: pending
-  00146ccb-c9e7-44d6-b364-52d86c411379:
-    id: 00146ccb-c9e7-44d6-b364-52d86c411379
-    content: It should advance, unpause, send the prompt
-    children: []
-    metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
   422bbd03-a709-4e54-95b4-fbf4530fb398:
     id: 422bbd03-a709-4e54-95b4-fbf4530fb398
     content: worktree
@@ -122336,8 +122335,478 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  323e1527-c30a-46e9-959a-9ac19cd00900:
+    id: 323e1527-c30a-46e9-959a-9ac19cd00900
+    content: Fill it in here
+    children: []
+    metadata:
+      status: pending
+      feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-323e1527-c30a-46e9-959a-9ac19cd00900.arbo
+  1a8cdfae-6627-47af-9d42-6e1835591fa2:
+    id: 1a8cdfae-6627-47af-9d42-6e1835591fa2
+    content: worktree
+    children:
+      - ff47caf9-9229-4d68-b70e-0123f8816fbd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff47caf9-9229-4d68-b70e-0123f8816fbd:
+    id: ff47caf9-9229-4d68-b70e-0123f8816fbd
+    content: vscode://file/Users/brianfox/dev/Arborescent-next-step-unpause
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6b77c37-3518-4532-9345-b88dab2ff74b:
+    id: c6b77c37-3518-4532-9345-b88dab2ff74b
+    content: Summary
+    children:
+      - 953883fd-3caa-42c1-b72c-7286a466d5c9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  953883fd-3caa-42c1-b72c-7286a466d5c9:
+    id: 953883fd-3caa-42c1-b72c-7286a466d5c9
+    content: When a workflow is paused, invoking 'Next step' advances the cursor to the next step but does not unpause the workflow, so the prompt for the new step is never sent.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a07b21ab-ce1e-41ea-a936-043a52ef9549:
+    id: a07b21ab-ce1e-41ea-a936-043a52ef9549
+    content: Steps to reproduce
+    children:
+      - 3859c645-831a-44e2-b916-639d795eda89
+      - e2d34d97-b744-4832-b4c6-0535299b0abf
+      - 5328a39a-2a72-44ce-b3fd-38a968a3d63d
+      - 221a7705-c6c9-46d3-9fb9-0f110ce4b492
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3859c645-831a-44e2-b916-639d795eda89:
+    id: 3859c645-831a-44e2-b916-639d795eda89
+    content: Start a workflow and let it reach a paused state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2d34d97-b744-4832-b4c6-0535299b0abf:
+    id: e2d34d97-b744-4832-b4c6-0535299b0abf
+    content: Trigger the 'Next step' action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5328a39a-2a72-44ce-b3fd-38a968a3d63d:
+    id: 5328a39a-2a72-44ce-b3fd-38a968a3d63d
+    content: Observe that the workflow advances to the next step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  221a7705-c6c9-46d3-9fb9-0f110ce4b492:
+    id: 221a7705-c6c9-46d3-9fb9-0f110ce4b492
+    content: Observe that the prompt is not sent to the terminal/agent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72124289-b2bb-40f3-9289-541c85fa8030:
+    id: 72124289-b2bb-40f3-9289-541c85fa8030
+    content: Expected behaviour
+    children:
+      - fd19e497-c115-46a0-b8a5-8c1e9ae30be2
+      - 6dffc52f-b735-40bc-9eb0-da7a21a3aa8c
+      - ec63dd88-309d-4f08-916e-e0afcfb29d2c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd19e497-c115-46a0-b8a5-8c1e9ae30be2:
+    id: fd19e497-c115-46a0-b8a5-8c1e9ae30be2
+    content: '''Next step'' advances the workflow to the next step'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dffc52f-b735-40bc-9eb0-da7a21a3aa8c:
+    id: 6dffc52f-b735-40bc-9eb0-da7a21a3aa8c
+    content: '''Next step'' unpauses the workflow as part of the same action'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec63dd88-309d-4f08-916e-e0afcfb29d2c:
+    id: ec63dd88-309d-4f08-916e-e0afcfb29d2c
+    content: The prompt for the newly active step is sent automatically
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6ab3015-e61f-456a-b793-4648edac9d06:
+    id: e6ab3015-e61f-456a-b793-4648edac9d06
+    content: Actual behaviour
+    children:
+      - 36f5e930-8e88-45e5-93ae-3e5e5ddf9558
+      - acb1c94d-e89e-4cec-b7b9-be331b63382b
+      - ef27e3b2-e081-4610-8e38-28da4ec06628
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36f5e930-8e88-45e5-93ae-3e5e5ddf9558:
+    id: 36f5e930-8e88-45e5-93ae-3e5e5ddf9558
+    content: Workflow advances to the next step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acb1c94d-e89e-4cec-b7b9-be331b63382b:
+    id: acb1c94d-e89e-4cec-b7b9-be331b63382b
+    content: Workflow remains paused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef27e3b2-e081-4610-8e38-28da4ec06628:
+    id: ef27e3b2-e081-4610-8e38-28da4ec06628
+    content: Prompt is not sent, leaving the workflow stalled until the user manually unpauses
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f79ec9a-3f8f-4f67-9945-c3cdd9ac4d1f:
+    id: 6f79ec9a-3f8f-4f67-9945-c3cdd9ac4d1f
+    content: Impact
+    children:
+      - 0ce42f88-3e95-43e2-92d3-1a1754808e6c
+      - b32ba8b6-aea6-4e58-90c0-0d08d59f71c7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ce42f88-3e95-43e2-92d3-1a1754808e6c:
+    id: 0ce42f88-3e95-43e2-92d3-1a1754808e6c
+    content: '''Next step'' is effectively broken when the workflow is in a paused state, forcing an extra manual unpause action to actually progress'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b32ba8b6-aea6-4e58-90c0-0d08d59f71c7:
+    id: b32ba8b6-aea6-4e58-90c0-0d08d59f71c7
+    content: Breaks the mental model that 'Next step' is a single action that moves the workflow forward
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b89cbdfb-fde3-43ac-ae61-87405a68e744:
+    id: b89cbdfb-fde3-43ac-ae61-87405a68e744
+    content: Acceptance criteria
+    children:
+      - ac93729f-88e2-419d-b579-790ab3489c7e
+      - d5b3fa1c-19a2-45d2-b173-f25aa8b24ea4
+      - 8500ecb2-ef85-42b5-876f-920321ea6b3d
+      - 23d4c9a4-db59-45d4-8105-a62c8826dd2b
+      - 2beddb2d-c5a4-4f1e-b10f-0490b1b009c7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac93729f-88e2-419d-b579-790ab3489c7e:
+    id: ac93729f-88e2-419d-b579-790ab3489c7e
+    content: Invoking 'Next step' on a paused workflow advances to the next step, clears the paused state, and sends the prompt in a single action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5b3fa1c-19a2-45d2-b173-f25aa8b24ea4:
+    id: d5b3fa1c-19a2-45d2-b173-f25aa8b24ea4
+    content: Invoking 'Next step' on a running (non-paused) workflow continues to behave as it does today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8500ecb2-ef85-42b5-876f-920321ea6b3d:
+    id: 8500ecb2-ef85-42b5-876f-920321ea6b3d
+    content: Invoking 'Next step' on a node where the workflow is NOT running stays the same as today — no change in behaviour
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23d4c9a4-db59-45d4-8105-a62c8826dd2b:
+    id: 23d4c9a4-db59-45d4-8105-a62c8826dd2b
+    content: No regression in pause/resume behaviour when 'Next step' is not invoked
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2beddb2d-c5a4-4f1e-b10f-0490b1b009c7:
+    id: 2beddb2d-c5a4-4f1e-b10f-0490b1b009c7
+    content: The unpause + advance + send sequence is atomic from the user's perspective — no intermediate state where the workflow is advanced but idle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cd4971a-b7e9-474f-8fef-d1e8617416e3:
+    id: 2cd4971a-b7e9-474f-8fef-d1e8617416e3
+    content: Technical refinement
+    children:
+      - 8ad993dc-0390-4d4a-a78e-348c50180578
+      - 29f813ed-d2ed-4978-9493-2d54792fe36d
+      - 1243aa18-ac13-4bb7-8516-848fe552c648
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ad993dc-0390-4d4a-a78e-348c50180578:
+    id: 8ad993dc-0390-4d4a-a78e-348c50180578
+    content: Approach
+    children:
+      - f7465734-d7c1-4031-bd40-9d2a4263f70a
+      - 6e23db55-da73-431a-8c8b-37730d4fb68a
+      - 42e25865-12ef-4e00-b7d3-8d552c792f31
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7465734-d7c1-4031-bd40-9d2a4263f70a:
+    id: f7465734-d7c1-4031-bd40-9d2a4263f70a
+    content: Fix lives in moveToNextStep in src/renderer/store/tree/actions/workflowActions.ts — today it only performs a structural MoveNodeCommand and never touches workflow execution state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e23db55-da73-431a-8c8b-37730d4fb68a:
+    id: 6e23db55-da73-431a-8c8b-37730d4fb68a
+    content: When the node has a workflowExecutionStates entry in 'awaiting-validation', transition it to 'running' before advancing, mirroring what continueWorkflow already does, so advanceNode's state==='running' gate passes and sendContentToTerminal fires
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42e25865-12ef-4e00-b7d3-8d552c792f31:
+    id: 42e25865-12ef-4e00-b7d3-8d552c792f31
+    content: Prefer reusing continueWorkflow's transition path (or extracting the unpause+advance sequence) rather than duplicating the state mutation in moveToNextStep
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29f813ed-d2ed-4978-9493-2d54792fe36d:
+    id: 29f813ed-d2ed-4978-9493-2d54792fe36d
+    content: Complications
+    children:
+      - 8fda2e40-15b3-4317-8897-a0e87939aff5
+      - 74a5552b-638d-4012-b05f-31a02ec4eb32
+      - 0a21adf4-fa79-43f1-bc53-0dec812a8693
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fda2e40-15b3-4317-8897-a0e87939aff5:
+    id: 8fda2e40-15b3-4317-8897-a0e87939aff5
+    content: Two ways to advance now exist (continueWorkflow for resume, moveToNextStep for manual next) — make sure the unified path doesn't double-send the prompt or fire advanceNode twice
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74a5552b-638d-4012-b05f-31a02ec4eb32:
+    id: 74a5552b-638d-4012-b05f-31a02ec4eb32
+    content: advanceNode schedules the prompt send via a 1s setTimeout — ensure the unpause transition happens before that timer is armed, otherwise the 'awaiting-validation' guard could race
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a21adf4-fa79-43f1-bc53-0dec812a8693:
+    id: 0a21adf4-fa79-43f1-bc53-0dec812a8693
+    content: No behavioural change required when the node has no execution entry or is in 'stuck' state — keep current early-return semantics
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1243aa18-ac13-4bb7-8516-848fe552c648:
+    id: 1243aa18-ac13-4bb7-8516-848fe552c648
+    content: Out of scope
+    children:
+      - f5be5788-47a3-4237-a96e-0daf0630393e
+      - 79b32be4-12de-4d43-9d2e-3815e6bfc800
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5be5788-47a3-4237-a96e-0daf0630393e:
+    id: f5be5788-47a3-4237-a96e-0daf0630393e
+    content: Renaming 'Next step' or splitting it into separate resume vs. advance affordances
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79b32be4-12de-4d43-9d2e-3815e6bfc800:
+    id: 79b32be4-12de-4d43-9d2e-3815e6bfc800
+    content: Reworking the 1s setTimeout in advanceNode or the broader awaiting-validation lifecycle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b373c4a-568f-485b-a68a-a6585af2c95e:
+    id: 7b373c4a-568f-485b-a68a-a6585af2c95e
+    content: review feedback
+    children:
+      - ef877f5c-3bf3-42d4-ba52-fba3eda62b29
+      - 71e2dfce-039d-4b38-b7fb-998fef2c9e7e
+      - 47511656-2603-408c-8aaf-77424fc2b4d4
+      - 3273ef90-6647-420a-a0c7-cac3b70a45d3
+      - 98a353a4-3b69-4705-914d-1cf4234cef91
+      - 3ab3c1e7-1011-4ba2-8757-84b72fb2982d
+      - a3330e17-960b-4e63-a9f0-587dbb9afdc8
+      - 71e8fa90-a70d-43fe-a634-5f6732686633
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef877f5c-3bf3-42d4-ba52-fba3eda62b29:
+    id: ef877f5c-3bf3-42d4-ba52-fba3eda62b29
+    content: 'Verdict: ship as-is; no required changes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71e2dfce-039d-4b38-b7fb-998fef2c9e7e:
+    id: 71e2dfce-039d-4b38-b7fb-998fef2c9e7e
+    content: Reviewer confirmed forward-reference holder in treeStore.ts is safe (both factories run synchronously before store is exposed)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47511656-2603-408c-8aaf-77424fc2b4d4:
+    id: 47511656-2603-408c-8aaf-77424fc2b4d4
+    content: 'Reviewer confirmed no double-advance/double-send risk: autoStartAfterMove''s startWorkflow short-circuits via isEligibleForExecution because the entry is now in ''running'' state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3273ef90-6647-420a-a0c7-cac3b70a45d3:
+    id: 3273ef90-6647-420a-a0c7-cac3b70a45d3
+    content: Reviewer confirmed expandAncestorsToStep before delegation only flips metadata.expanded; advanceNode re-reads fresh nodes from get() so the pre-expansion is purely cosmetic and safe
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98a353a4-3b69-4705-914d-1cf4234cef91:
+    id: 98a353a4-3b69-4705-914d-1cf4234cef91
+    content: 'Nit (optional): continueWorkflow is an optional parameter — if a future caller omits it, paused nodes would silently fall through to the old broken path; consider making it required or documenting why optionality is preserved'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ab3c1e7-1011-4ba2-8757-84b72fb2982d:
+    id: 3ab3c1e7-1011-4ba2-8757-84b72fb2982d
+    content: 'Nit (optional): forward-reference holder in treeStore.ts could alternately be replaced by a thunk that reads get().actions.continueWorkflow at call time; stylistic only, current pattern accepted'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3330e17-960b-4e63-a9f0-587dbb9afdc8:
+    id: a3330e17-960b-4e63-a9f0-587dbb9afdc8
+    content: 'Nit (optional): in moveToNextStep, the destructured `nodes` is dead in the paused-branch — not worth refactoring'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71e8fa90-a70d-43fe-a634-5f6732686633:
+    id: 71e8fa90-a70d-43fe-a634-5f6732686633
+    content: Type-check clean, lint clean for changed files, 42/42 tests passing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   ed67a423-cede-4882-acbb-eb96ebb0e425:
     cwd: /Users/brianfox/dev/Arborescent
   8e79b42c-2b18-4e3f-afb5-8d4f7bd115c1:
+    cwd: /Users/brianfox/dev/Arborescent
+  1957f53c-d0fe-48ad-98e7-d94edb949a03:
     cwd: /Users/brianfox/dev/Arborescent
