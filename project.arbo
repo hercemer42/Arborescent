@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-15T12:03:30.127Z'
+updated: '2026-05-15T12:31:39.653Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -60403,9 +60403,18 @@ nodes:
   8c43f7e5-31af-4bae-821a-431599ed979c:
     id: 8c43f7e5-31af-4bae-821a-431599ed979c
     content: Right click, send to workflow
-    children: []
+    children:
+      - 67e0a55e-54ee-472e-b3db-e7acc950f4f1
+      - e7afbe1e-d6b7-4664-800e-b8bae992c76c
+      - 7a7cc620-9dc5-4c18-9fcc-ed4d1330fd25
+      - d6fb6288-baef-4d16-aed9-3dbcd7393693
+      - d46bc7a6-f37e-41d8-a21c-3c73d4845394
+      - 451f0598-7d2f-47d8-be9b-23b6fdd5b798
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
   bc94874b-be12-4d72-841c-d33c364d69f9:
     id: bc94874b-be12-4d72-841c-d33c364d69f9
     content: Problem
@@ -81505,7 +81514,8 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 323e1527-c30a-46e9-959a-9ac19cd00900
+      - b8a6fe6f-a8d9-4df5-9f5f-23a822593bdc
+      - 8c43f7e5-31af-4bae-821a-431599ed979c
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
     metadata:
       status: pending
@@ -82876,7 +82886,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 323e1527-c30a-46e9-959a-9ac19cd00900
     metadata:
       status: pending
       isBlueprint: true
@@ -90178,7 +90189,6 @@ nodes:
       - 4be60d89-6c90-4ac0-b6ae-84645ae9144d
       - 45f1a5a0-dae3-4080-97ed-b8e324b79a64
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
-      - 8c43f7e5-31af-4bae-821a-431599ed979c
       - 042ee811-0108-4574-9a4c-2a7909572178
       - 25bb85f2-b25e-4736-afa5-bfd44d213894
       - d77cf522-0636-4a76-b9bf-7b33b4cc65cb
@@ -96846,8 +96856,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - 7d2ae656-854a-4f5e-a465-43cf99d25d03
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -117040,6 +117049,7 @@ nodes:
       - 1669d542-34dd-4525-8480-d58008bb176a
       - bef765c8-a092-419d-b39d-ac19d7b6c00b
       - c577b3e4-78ac-4eaf-98aa-054b93853291
+      - 7d2ae656-854a-4f5e-a465-43cf99d25d03
     metadata:
       status: pending
       isBlueprint: true
@@ -122337,11 +122347,19 @@ nodes:
       plugins: {}
   323e1527-c30a-46e9-959a-9ac19cd00900:
     id: 323e1527-c30a-46e9-959a-9ac19cd00900
-    content: Fill it in here
-    children: []
+    content: Blue bar binds to the node owning the terminal's claude session
+    children:
+      - 8b537adc-bff6-4f97-aca0-7bc472fb8481
+      - bdcf7101-a4ef-4bea-8f36-a3c9d0c95d66
+      - 6386313a-5a25-4884-b192-795a92bca891
+      - a14f1075-9e0e-4411-8a78-5c1687e5ae7f
+      - 86e2874d-42a7-47b5-922a-42ebad908aa8
+      - 3f1f7947-b2fb-4bb0-b919-1d1da1510af5
     metadata:
-      status: pending
-      feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-323e1527-c30a-46e9-959a-9ac19cd00900.arbo
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
   1a8cdfae-6627-47af-9d42-6e1835591fa2:
     id: 1a8cdfae-6627-47af-9d42-6e1835591fa2
     content: worktree
@@ -122803,10 +122821,1267 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  67e0a55e-54ee-472e-b3db-e7acc950f4f1:
+    id: 67e0a55e-54ee-472e-b3db-e7acc950f4f1
+    content: Title
+    children:
+      - 24640877-2d58-44ba-97a3-cfece6c96b42
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24640877-2d58-44ba-97a3-cfece6c96b42:
+    id: 24640877-2d58-44ba-97a3-cfece6c96b42
+    content: Right-click "Send to workflow" — copy a node into another workflow tree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7afbe1e-d6b7-4664-800e-b8bae992c76c:
+    id: e7afbe1e-d6b7-4664-800e-b8bae992c76c
+    content: 📄 Product spec
+    children:
+      - e836a438-43dd-461b-9434-c0eab661df87
+      - 8ea6f8f7-a763-49b5-ba52-974197d90914
+      - 474ee5bd-0a4b-42c8-83d4-9cac1d10e453
+      - 14c9f369-e48b-4b9e-88dd-bb7b316565b4
+      - a5f09931-056a-44b4-b344-bb0ef8edaabf
+      - 6c4c5f91-3fae-487b-b786-a838545b0f61
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e836a438-43dd-461b-9434-c0eab661df87:
+    id: e836a438-43dd-461b-9434-c0eab661df87
+    content: Context
+    children:
+      - d43991ba-e599-4a88-9efc-adb05fb5f7cf
+      - 769731ee-e9db-4bc7-ba5b-9a870c5d5d62
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d43991ba-e599-4a88-9efc-adb05fb5f7cf:
+    id: d43991ba-e599-4a88-9efc-adb05fb5f7cf
+    content: Arborescent's right-click menu already supports sending a node to AI destinations (browser, terminal) with inherited contexts attached
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  769731ee-e9db-4bc7-ba5b-9a870c5d5d62:
+    id: 769731ee-e9db-4bc7-ba5b-9a870c5d5d62
+    content: Users often want to reuse a node — or its accumulated context — inside another workflow tree, but the only path today is manual recreation or copy/paste, which drops context attachments
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ea6f8f7-a763-49b5-ba52-974197d90914:
+    id: 8ea6f8f7-a763-49b5-ba52-974197d90914
+    content: User
+    children:
+      - 59c00f1f-772a-4cf6-b5ad-748bb9136ae3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59c00f1f-772a-4cf6-b5ad-748bb9136ae3:
+    id: 59c00f1f-772a-4cf6-b5ad-748bb9136ae3
+    content: Arborescent power user maintaining several workflow trees in parallel and moving ideas, drafts, or context-rich nodes between them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  474ee5bd-0a4b-42c8-83d4-9cac1d10e453:
+    id: 474ee5bd-0a4b-42c8-83d4-9cac1d10e453
+    content: Current experience
+    children:
+      - 2353e6dd-9c35-4674-8406-00fac4b0c7fb
+      - 293a5f60-c290-4d44-857c-98785dc7fbbb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2353e6dd-9c35-4674-8406-00fac4b0c7fb:
+    id: 2353e6dd-9c35-4674-8406-00fac4b0c7fb
+    content: User opens both source and destination workflows, copies text from the source node, switches workflows, creates a new node, pastes the text, and re-attaches any contexts by hand
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  293a5f60-c290-4d44-857c-98785dc7fbbb:
+    id: 293a5f60-c290-4d44-857c-98785dc7fbbb
+    content: The copy loses every inherited context, breaking the "define once, apply anywhere" promise the moment a node crosses workflow boundaries
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14c9f369-e48b-4b9e-88dd-bb7b316565b4:
+    id: 14c9f369-e48b-4b9e-88dd-bb7b316565b4
+    content: Goal
+    children:
+      - fa9d0d66-ff30-47ce-8c63-b27fa7b67e49
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa9d0d66-ff30-47ce-8c63-b27fa7b67e49:
+    id: fa9d0d66-ff30-47ce-8c63-b27fa7b67e49
+    content: Let a user right-click any node and copy it into another workflow tree as a new node, with attached contexts preserved, in a single menu step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5f09931-056a-44b4-b344-bb0ef8edaabf:
+    id: a5f09931-056a-44b4-b344-bb0ef8edaabf
+    content: Business rules
+    children:
+      - 2cab89d7-90e3-490c-b051-5a995a7ef0ee
+      - 910dd61c-3720-49d6-bfae-42122edfe634
+      - 5418ef46-8fdf-4538-b781-26745d528b45
+      - f2686122-4aab-4fa5-8b6c-b8cda19e1003
+      - b70e9cc1-69ab-4cf6-b746-12e616b9500d
+      - 97d4ecce-5492-4d24-9958-3fffbd1d6975
+      - 0eee46ee-8cc9-4ac5-8d51-1566e751e459
+      - 604feae3-f8bc-4b56-a809-496c3dd3418f
+      - 7a54e54d-0d44-4d85-a508-b8811e253a8d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cab89d7-90e3-490c-b051-5a995a7ef0ee:
+    id: 2cab89d7-90e3-490c-b051-5a995a7ef0ee
+    content: Right-clicking a node exposes a "Send to workflow" entry in the existing send context menu, alongside browser and terminal destinations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  910dd61c-3720-49d6-bfae-42122edfe634:
+    id: 910dd61c-3720-49d6-bfae-42122edfe634
+    content: Selecting the entry opens a workflow picker listing other open workflows first, then recently opened ones, then all known workflows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5418ef46-8fdf-4538-b781-26745d528b45:
+    id: 5418ef46-8fdf-4538-b781-26745d528b45
+    content: The picker must support type-to-filter and full keyboard navigation (arrows, Enter, Escape)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2686122-4aab-4fa5-8b6c-b8cda19e1003:
+    id: f2686122-4aab-4fa5-8b6c-b8cda19e1003
+    content: Selecting a workflow inserts a new node whose content and attached contexts mirror the source, as a child of the destination workflow's currently focused node, or under its root when none is focused
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b70e9cc1-69ab-4cf6-b746-12e616b9500d:
+    id: b70e9cc1-69ab-4cf6-b746-12e616b9500d
+    content: Children of the source node are not included — the action sends the single node only
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97d4ecce-5492-4d24-9958-3fffbd1d6975:
+    id: 97d4ecce-5492-4d24-9958-3fffbd1d6975
+    content: The source workflow must remain unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0eee46ee-8cc9-4ac5-8d51-1566e751e459:
+    id: 0eee46ee-8cc9-4ac5-8d51-1566e751e459
+    content: Sending to the workflow the node already lives in is allowed and produces a sibling copy under the focused parent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  604feae3-f8bc-4b56-a809-496c3dd3418f:
+    id: 604feae3-f8bc-4b56-a809-496c3dd3418f
+    content: Cancelling the picker (Escape or click-outside) leaves all workflows unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a54e54d-0d44-4d85-a508-b8811e253a8d:
+    id: 7a54e54d-0d44-4d85-a508-b8811e253a8d
+    content: If the destination cannot accept the node (read-only, missing), surface an inline error and do not mutate state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c4c5f91-3fae-487b-b786-a838545b0f61:
+    id: 6c4c5f91-3fae-487b-b786-a838545b0f61
+    content: Acceptance criteria
+    children:
+      - d65c856c-077a-4785-8f68-5728a15d403b
+      - 9f6c437d-d2a3-4fa1-b4ad-506be2c026ac
+      - 9ac3c58f-4997-4907-8a23-874e05a33b8a
+      - 44edcc72-0a36-41cf-87c3-16284a10f76f
+      - a2a0f438-21ac-449d-b8ba-fdca32658fba
+      - 59f5d4a8-f671-4481-a93c-39b9b34ad5e9
+      - 6a796625-258e-4747-807b-8359eca74c66
+      - 933263bf-3e5c-43b0-993f-a51110286f2d
+      - 69490908-3896-4d89-9c23-5f8f91e69a92
+      - 911eada1-ba70-45f1-92f5-c0154e8e3f8c
+      - fa58b1f2-4f3d-4142-80b2-e2d48f9e4fdf
+      - d69f823e-d008-4d21-b0cf-eebac3b58bb2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d65c856c-077a-4785-8f68-5728a15d403b:
+    id: d65c856c-077a-4785-8f68-5728a15d403b
+    content: Right-clicking a node shows "Send to workflow" in the context menu
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f6c437d-d2a3-4fa1-b4ad-506be2c026ac:
+    id: 9f6c437d-d2a3-4fa1-b4ad-506be2c026ac
+    content: Selecting the entry opens a picker with other open workflows listed first
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ac3c58f-4997-4907-8a23-874e05a33b8a:
+    id: 9ac3c58f-4997-4907-8a23-874e05a33b8a
+    content: Typing in the picker filters the list by workflow title
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  44edcc72-0a36-41cf-87c3-16284a10f76f:
+    id: 44edcc72-0a36-41cf-87c3-16284a10f76f
+    content: Pressing Enter or clicking a workflow inserts a new node in the destination and closes the picker
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2a0f438-21ac-449d-b8ba-fdca32658fba:
+    id: a2a0f438-21ac-449d-b8ba-fdca32658fba
+    content: The new node's text matches the source byte-for-byte
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59f5d4a8-f671-4481-a93c-39b9b34ad5e9:
+    id: 59f5d4a8-f671-4481-a93c-39b9b34ad5e9
+    content: Contexts attached to the source node are attached to the new node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a796625-258e-4747-807b-8359eca74c66:
+    id: 6a796625-258e-4747-807b-8359eca74c66
+    content: Children of the source node are not copied
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  933263bf-3e5c-43b0-993f-a51110286f2d:
+    id: 933263bf-3e5c-43b0-993f-a51110286f2d
+    content: The source workflow is left unchanged in every flow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69490908-3896-4d89-9c23-5f8f91e69a92:
+    id: 69490908-3896-4d89-9c23-5f8f91e69a92
+    content: Pressing Escape closes the picker without mutating any workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  911eada1-ba70-45f1-92f5-c0154e8e3f8c:
+    id: 911eada1-ba70-45f1-92f5-c0154e8e3f8c
+    content: The picker is fully keyboard operable end-to-end
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa58b1f2-4f3d-4142-80b2-e2d48f9e4fdf:
+    id: fa58b1f2-4f3d-4142-80b2-e2d48f9e4fdf
+    content: Sending to a non-writable workflow surfaces a visible error and performs no mutation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d69f823e-d008-4d21-b0cf-eebac3b58bb2:
+    id: d69f823e-d008-4d21-b0cf-eebac3b58bb2
+    content: Action completes within 100ms for nodes under 10KB
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a7cc620-9dc5-4c18-9fcc-ed4d1330fd25:
+    id: 7a7cc620-9dc5-4c18-9fcc-ed4d1330fd25
+    content: 🔧 Implementation proposal
+    children:
+      - 54b5bb44-2321-4ff0-ae82-6aacd58b08e6
+      - 70715bb7-40e8-46cd-b6b7-f5063e95e64e
+      - df53ed93-75d9-40fd-a698-ea1d89222621
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54b5bb44-2321-4ff0-ae82-6aacd58b08e6:
+    id: 54b5bb44-2321-4ff0-ae82-6aacd58b08e6
+    content: Approach
+    children:
+      - db6faae9-2903-4e9f-8364-17385244ea89
+      - c940d442-259e-4a59-b0eb-db29ca28e3a5
+      - 9205afb5-462a-4f98-8aa7-a5c9cd0a25e0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db6faae9-2903-4e9f-8364-17385244ea89:
+    id: db6faae9-2903-4e9f-8364-17385244ea89
+    content: Extend the existing right-click send menu (currently routing to browser/terminal) with a new in-app "Send to workflow" destination, reusing the existing dispatcher
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c940d442-259e-4a59-b0eb-db29ca28e3a5:
+    id: c940d442-259e-4a59-b0eb-db29ca28e3a5
+    content: Add a `sendNodeToWorkflow(sourceNodeId, destWorkflowId, destParentNodeId?)` action in `renderer/store/tree/actions/`, cloning the node's text and context refs and inserting via existing tree insert primitives
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9205afb5-462a-4f98-8aa7-a5c9cd0a25e0:
+    id: 9205afb5-462a-4f98-8aa7-a5c9cd0a25e0
+    content: Build a WorkflowPicker modal in `renderer/components/` backed by the workflows store, mirroring the keyboard-navigable list pattern already used by existing in-app pickers
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70715bb7-40e8-46cd-b6b7-f5063e95e64e:
+    id: 70715bb7-40e8-46cd-b6b7-f5063e95e64e
+    content: Touchpoints
+    children:
+      - b9e65140-38fd-4adc-a829-3685177ef842
+      - a95a2c8d-c0c5-413e-b146-41b843f17523
+      - ce01108f-babe-4128-a63c-a206287df8ba
+      - 4212c5db-4791-4f2c-9fbe-de7ac3a07028
+      - 17b2913e-895f-4f9f-944b-e4db6315777b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9e65140-38fd-4adc-a829-3685177ef842:
+    id: b9e65140-38fd-4adc-a829-3685177ef842
+    content: renderer/components — extend the node context menu and add the new WorkflowPicker modal with co-located hook and CSS
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a95a2c8d-c0c5-413e-b146-41b843f17523:
+    id: a95a2c8d-c0c5-413e-b146-41b843f17523
+    content: renderer/store/tree/actions — new sendNodeToWorkflow action plus unit tests
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce01108f-babe-4128-a63c-a206287df8ba:
+    id: ce01108f-babe-4128-a63c-a206287df8ba
+    content: renderer/store — read access to the workflows list (open, recent, all)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4212c5db-4791-4f2c-9fbe-de7ac3a07028:
+    id: 4212c5db-4791-4f2c-9fbe-de7ac3a07028
+    content: renderer/services — extend the existing send dispatcher if it does not already route to in-app destinations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17b2913e-895f-4f9f-944b-e4db6315777b:
+    id: 17b2913e-895f-4f9f-944b-e4db6315777b
+    content: tests — unit tests for the action and picker filtering; one integration test covering right-click through inserted node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  df53ed93-75d9-40fd-a698-ea1d89222621:
+    id: df53ed93-75d9-40fd-a698-ea1d89222621
+    content: Constraints to call out
+    children:
+      - 86a6254c-91c3-415c-a152-ca0d845c0904
+      - 0e1bf7ba-8e58-40af-b40e-fcb39c71844e
+      - 1c19da83-18bf-450f-9f3c-68f6af1d9cb5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86a6254c-91c3-415c-a152-ca0d845c0904:
+    id: 86a6254c-91c3-415c-a152-ca0d845c0904
+    content: Context attachments are stored by reference — confirm whether destination workflows can resolve those references; if not, the copy must deep-clone the contexts, which changes the data model
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e1bf7ba-8e58-40af-b40e-fcb39c71844e:
+    id: 0e1bf7ba-8e58-40af-b40e-fcb39c71844e
+    content: When the destination workflow is not currently mounted, the action must load it (or queue the insert) — decide between load-and-jump versus background-insert-with-toast before building UI
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c19da83-18bf-450f-9f3c-68f6af1d9cb5:
+    id: 1c19da83-18bf-450f-9f3c-68f6af1d9cb5
+    content: Single-node-only is a deliberate simplification — surfacing it so reviewers do not assume subtree copy
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6fb6288-baef-4d16-aed9-3dbcd7393693:
+    id: d6fb6288-baef-4d16-aed9-3dbcd7393693
+    content: Acceptance criteria for the released element
+    children:
+      - 9ad920ea-1d10-44cf-b473-76541e7132fb
+      - 1f025593-d4ca-465b-aaa2-16a9c683e227
+      - 0608cd6c-c479-4063-a6fe-c9036c6ceef0
+      - d8b1fa4d-0255-4d0c-a5f7-da21497434c5
+      - d383347b-8e45-48e5-9f4e-efaea7a504d2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ad920ea-1d10-44cf-b473-76541e7132fb:
+    id: 9ad920ea-1d10-44cf-b473-76541e7132fb
+    content: Right-click on a node exposes "Send to workflow" in the send submenu
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f025593-d4ca-465b-aaa2-16a9c683e227:
+    id: 1f025593-d4ca-465b-aaa2-16a9c683e227
+    content: Workflow picker opens, filters by typing, navigates by keyboard, and confirms by Enter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0608cd6c-c479-4063-a6fe-c9036c6ceef0:
+    id: 0608cd6c-c479-4063-a6fe-c9036c6ceef0
+    content: Selecting a destination inserts a new node with matching text and attached contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8b1fa4d-0255-4d0c-a5f7-da21497434c5:
+    id: d8b1fa4d-0255-4d0c-a5f7-da21497434c5
+    content: Source workflow is untouched in all flows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d383347b-8e45-48e5-9f4e-efaea7a504d2:
+    id: d383347b-8e45-48e5-9f4e-efaea7a504d2
+    content: Failure modes (read-only or missing destination, context resolution failure) surface a visible error rather than silently dropping the action
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d46bc7a6-f37e-41d8-a21c-3c73d4845394:
+    id: d46bc7a6-f37e-41d8-a21c-3c73d4845394
+    content: Chunking decision
+    children:
+      - 940fd6bb-da19-461a-91b4-4caebf388f76
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  940fd6bb-da19-461a-91b4-4caebf388f76:
+    id: 940fd6bb-da19-461a-91b4-4caebf388f76
+    content: Ship as one chunk — the menu entry, picker, and action have no independent user value when separated, and the scope is small enough that splitting would be churn
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  451f0598-7d2f-47d8-be9b-23b6fdd5b798:
+    id: 451f0598-7d2f-47d8-be9b-23b6fdd5b798
+    content: Challenges and risks
+    children:
+      - 6052eda3-eae7-4da7-bedd-87c5d918a319
+      - 9b7a8aac-c54d-49e6-ab29-4765937f49e6
+      - fae2c546-0c5d-4f18-9e83-9fcbb0c768f7
+      - 9ef413c0-c8ac-4643-a3cb-ae639efacf0d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6052eda3-eae7-4da7-bedd-87c5d918a319:
+    id: 6052eda3-eae7-4da7-bedd-87c5d918a319
+    content: 'UX: another modal in an app that already opens several — the picker must reuse the existing in-app picker pattern to avoid pattern proliferation'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b7a8aac-c54d-49e6-ab29-4765937f49e6:
+    id: 9b7a8aac-c54d-49e6-ab29-4765937f49e6
+    content: 'Over-engineering risk: do not generalise to "send to any tree-like surface" or add a subtree depth selector; scope is single node into another workflow'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fae2c546-0c5d-4f18-9e83-9fcbb0c768f7:
+    id: fae2c546-0c5d-4f18-9e83-9fcbb0c768f7
+    content: 'ROI: high for multi-workflow users; existing right-click send pipeline absorbs most of the cost, so added complexity is modest'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ef413c0-c8ac-4643-a3cb-ae639efacf0d:
+    id: 9ef413c0-c8ac-4643-a3cb-ae639efacf0d
+    content: 'Out of scope: sending entire subtrees, drag-and-drop equivalent, moving (rather than copying) a node between workflows, sending arbitrary selected text rather than a node'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8a6fe6f-a8d9-4df5-9f5f-23a822593bdc:
+    id: b8a6fe6f-a8d9-4df5-9f5f-23a822593bdc
+    content: Spec the bug here
+    children: []
+    metadata:
+      status: pending
+      feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-b8a6fe6f-a8d9-4df5-9f5f-23a822593bdc.arbo
+  8b537adc-bff6-4f97-aca0-7bc472fb8481:
+    id: 8b537adc-bff6-4f97-aca0-7bc472fb8481
+    content: worktree
+    children:
+      - a20c5d59-d6b4-42ab-a717-d886c01ef7cb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a20c5d59-d6b4-42ab-a717-d886c01ef7cb:
+    id: a20c5d59-d6b4-42ab-a717-d886c01ef7cb
+    content: vscode://file//Users/brianfox/dev/Arborescent-blue-bar-session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdcf7101-a4ef-4bea-8f36-a3c9d0c95d66:
+    id: bdcf7101-a4ef-4bea-8f36-a3c9d0c95d66
+    content: 📄 Product spec
+    children:
+      - 135f9cc7-e310-4293-a47d-39e183bf1da9
+      - 770006e9-952c-483b-bcb3-093576ecd85e
+      - e68aca11-2a1f-4356-9f1c-cf56a1f78ec3
+      - 3cbdc36b-ed02-4769-9b89-1ededb793cc7
+      - 9c901153-19ef-410a-91ab-a16414140f2d
+      - 510155de-acfd-4160-b3ed-d6aa7b11d523
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  135f9cc7-e310-4293-a47d-39e183bf1da9:
+    id: 135f9cc7-e310-4293-a47d-39e183bf1da9
+    content: Context
+    children:
+      - 87528e07-cee8-4bc6-9420-ab4ed594b481
+      - b2025812-a4b7-4ccf-8386-4b07d5dd1fb8
+      - db762129-8220-431c-b173-42b46a2f7a77
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87528e07-cee8-4bc6-9420-ab4ed594b481:
+    id: 87528e07-cee8-4bc6-9420-ab4ed594b481
+    content: When a node runs a workflow step in a terminal, the tree shows a blue stripe on the node to indicate the binding. The stripe vanishes the moment the step transitions out of `running` / `awaiting-validation`, even though the node still owns the terminal's claude session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2025812-a4b7-4ccf-8386-4b07d5dd1fb8:
+    id: b2025812-a4b7-4ccf-8386-4b07d5dd1fb8
+    content: The current selector `selectActiveSessionNodeId` falls back to `term.originNodeId` between step runs. `originNodeId` is set once — at the first session capture for that terminal — and never advances as the node continues through subsequent steps, so the binding goes stale.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db762129-8220-431c-b173-42b46a2f7a77:
+    id: db762129-8220-431c-b173-42b46a2f7a77
+    content: 'The data model already tracks node-to-session ownership canonically: `node.metadata.sessionId` records the claude session id a node owns, and `workflowSessionMap` records which terminal a session id is currently on. The fallback path just consults the wrong concept.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  770006e9-952c-483b-bcb3-093576ecd85e:
+    id: 770006e9-952c-483b-bcb3-093576ecd85e
+    content: Persona
+    children:
+      - ef3d633c-60f5-4926-97c8-38a6fce80fc2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef3d633c-60f5-4926-97c8-38a6fce80fc2:
+    id: ef3d633c-60f5-4926-97c8-38a6fce80fc2
+    content: Arborescent user running a node through a multi-step workflow on a single terminal, who expects the blue bar to stay on that node for the lifetime of the claude session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e68aca11-2a1f-4356-9f1c-cf56a1f78ec3:
+    id: e68aca11-2a1f-4356-9f1c-cf56a1f78ec3
+    content: Current experience
+    children:
+      - acacfe57-4233-4d32-b953-d9fba89d2cfe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acacfe57-4233-4d32-b953-d9fba89d2cfe:
+    id: acacfe57-4233-4d32-b953-d9fba89d2cfe
+    content: The bar appears while a step is `running` or `awaiting-validation`, then disappears between steps. After several step transitions the bar fails to return — even though the terminal still has the same claude session and the node still owns it via `metadata.sessionId`. The user loses visual confirmation of which node a focused terminal belongs to.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cbdc36b-ed02-4769-9b89-1ededb793cc7:
+    id: 3cbdc36b-ed02-4769-9b89-1ededb793cc7
+    content: Goal
+    children:
+      - 7fb2ee73-c686-467a-bac9-f8b5e14dc884
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fb2ee73-c686-467a-bac9-f8b5e14dc884:
+    id: 7fb2ee73-c686-467a-bac9-f8b5e14dc884
+    content: The blue bar follows the node that currently owns the active terminal's claude session, regardless of whether a workflow step is in flight.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c901153-19ef-410a-91ab-a16414140f2d:
+    id: 9c901153-19ef-410a-91ab-a16414140f2d
+    content: Business rules
+    children:
+      - cffd16f3-1137-4681-bd06-9e06514436db
+      - 94233942-1b3a-4910-9bfb-72dd29bec66c
+      - b128309b-7513-4e2f-ae1e-b9079227bd56
+      - a9b6bf7d-b952-48ed-8a7e-a71751d6954f
+      - 70397c65-e819-4a15-ac26-34ccc89d00d9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cffd16f3-1137-4681-bd06-9e06514436db:
+    id: cffd16f3-1137-4681-bd06-9e06514436db
+    content: Whenever the active terminal has a captured claude session id, the bar appears on the node whose `metadata.sessionId` equals that id.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94233942-1b3a-4910-9bfb-72dd29bec66c:
+    id: 94233942-1b3a-4910-9bfb-72dd29bec66c
+    content: An in-flight workflow step (`running` or `awaiting-validation`) and an in-flight collaborate send continue to drive the bar when active, taking precedence over the session-ownership match.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b128309b-7513-4e2f-ae1e-b9079227bd56:
+    id: b128309b-7513-4e2f-ae1e-b9079227bd56
+    content: When the active terminal has no captured session id (e.g. before claude first replied, or a shell terminal), the selector returns `null` and no bar is drawn, rather than freezing on a stale origin.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9b6bf7d-b952-48ed-8a7e-a71751d6954f:
+    id: a9b6bf7d-b952-48ed-8a7e-a71751d6954f
+    content: Switching focus between terminals updates the bar to follow the newly-focused terminal's owning node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70397c65-e819-4a15-ac26-34ccc89d00d9:
+    id: 70397c65-e819-4a15-ac26-34ccc89d00d9
+    content: If no node carries a matching `metadata.sessionId` for the terminal's session id, no bar is drawn — the selector does not bind arbitrarily.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  510155de-acfd-4160-b3ed-d6aa7b11d523:
+    id: 510155de-acfd-4160-b3ed-d6aa7b11d523
+    content: Acceptance criteria
+    children:
+      - ccbe5895-8367-4b82-ab47-0deaa811c5f8
+      - c63f611c-fae1-4f95-b151-9130fc468d4b
+      - c687878e-bc2b-4e10-9fc9-be81d72f846f
+      - 20678b6b-f8a5-4c66-8b3c-2c2ce8f90d6f
+      - 12417de5-6e77-45a6-9e58-dc9ede65d084
+      - f7c4064d-4b4c-4d13-81d2-e6aa60949530
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccbe5895-8367-4b82-ab47-0deaa811c5f8:
+    id: ccbe5895-8367-4b82-ab47-0deaa811c5f8
+    content: A node that was just played into a terminal continues to show the blue bar after its workflow step finishes, as long as the terminal's claude session is unchanged and the node still owns it via `metadata.sessionId`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c63f611c-fae1-4f95-b151-9130fc468d4b:
+    id: c63f611c-fae1-4f95-b151-9130fc468d4b
+    content: As a node advances through multiple workflow steps on the same terminal, the bar stays on that node across step transitions without flicker.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c687878e-bc2b-4e10-9fc9-be81d72f846f:
+    id: c687878e-bc2b-4e10-9fc9-be81d72f846f
+    content: A terminal that holds a resumed claude session shows the bar on the node it was resumed for, not on whichever node first registered any session on that terminal.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20678b6b-f8a5-4c66-8b3c-2c2ce8f90d6f:
+    id: 20678b6b-f8a5-4c66-8b3c-2c2ce8f90d6f
+    content: Focusing a different terminal moves the bar to the node owning that terminal's session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12417de5-6e77-45a6-9e58-dc9ede65d084:
+    id: 12417de5-6e77-45a6-9e58-dc9ede65d084
+    content: A terminal with no claude session shows no bar on any node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7c4064d-4b4c-4d13-81d2-e6aa60949530:
+    id: f7c4064d-4b4c-4d13-81d2-e6aa60949530
+    content: An in-flight running or awaiting-validation step still wins over the session-ownership match — so the bar can hop transiently to a recurse sibling or sub-node while it's actively running, then return to the parent node owning the session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6386313a-5a25-4884-b192-795a92bca891:
+    id: 6386313a-5a25-4884-b192-795a92bca891
+    content: 🔧 Implementation proposal
+    children:
+      - 1bf17de5-32fc-4192-8fd4-d967df1e711c
+      - 76a73b20-3400-41a8-ba8a-d0b80d2e5e99
+      - 2e540011-ec91-4f2c-81fb-367dafcce12b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bf17de5-32fc-4192-8fd4-d967df1e711c:
+    id: 1bf17de5-32fc-4192-8fd4-d967df1e711c
+    content: Approach
+    children:
+      - cd6ecb97-c8bf-4dcd-a13b-9f851cdcb99c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd6ecb97-c8bf-4dcd-a13b-9f851cdcb99c:
+    id: cd6ecb97-c8bf-4dcd-a13b-9f851cdcb99c
+    content: 'Add a new branch in `selectActiveSessionNodeId` between the collaborate check and the `terminalOrigins` fallback: reverse-lookup the active terminal''s session id from `workflowSessionMap`, then find the node whose `metadata.sessionId` equals that id (the helper `findNodeIdBySessionId` already exists at `workflowExecutionActions.ts:214`). Demote `terminalOrigins` to a final fallback or remove its role for the bar entirely once the session-ownership path proves stable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76a73b20-3400-41a8-ba8a-d0b80d2e5e99:
+    id: 76a73b20-3400-41a8-ba8a-d0b80d2e5e99
+    content: Touchpoints
+    children:
+      - 6c4134f5-074e-45db-881c-73de93143a4f
+      - 9e30de68-1cf2-49d1-a00c-57bb88c2ed40
+      - 1c5c53bf-2e5a-483a-a781-a9e68169dc6d
+      - 32f6002e-5b13-4c1f-93c3-7ba7735985f9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c4134f5-074e-45db-881c-73de93143a4f:
+    id: 6c4134f5-074e-45db-881c-73de93143a4f
+    content: '`src/renderer/store/tree/selectors/activeSessionNodeId.ts` — new branch and selector input shape (must see `workflowSessionMap` and `nodes`, or a precomputed reverse index)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e30de68-1cf2-49d1-a00c-57bb88c2ed40:
+    id: 9e30de68-1cf2-49d1-a00c-57bb88c2ed40
+    content: '`src/renderer/components/TreeNode/TreeNode.tsx` — pass the additional state slices into the selector call, or move the reverse-lookup into a memoised store selector'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c5c53bf-2e5a-483a-a781-a9e68169dc6d:
+    id: 1c5c53bf-2e5a-483a-a781-a9e68169dc6d
+    content: Tests in `src/renderer/store/tree/selectors/tests/activeSessionNodeId.test.ts` — cover the new branch, precedence vs running step and collaborate, no-session fallthrough, and stale-origin avoidance
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32f6002e-5b13-4c1f-93c3-7ba7735985f9:
+    id: 32f6002e-5b13-4c1f-93c3-7ba7735985f9
+    content: Optional cleanup of `term.originNodeId` write paths if the field is no longer load-bearing for the bar
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e540011-ec91-4f2c-81fb-367dafcce12b:
+    id: 2e540011-ec91-4f2c-81fb-367dafcce12b
+    content: Constraints to call out
+    children:
+      - 1ffa0229-407e-4ab7-82b4-07a944c27845
+      - 8fd94f80-1006-4672-aeef-360f92455b2a
+      - d3f61fc9-b205-4ddb-ba41-3b5947ce4ca6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ffa0229-407e-4ab7-82b4-07a944c27845:
+    id: 1ffa0229-407e-4ab7-82b4-07a944c27845
+    content: Performance — a naive `Object.entries(nodes)` scan on every render of every visible node is O(N×M). Either compute a reverse `sessionId → nodeId` index in the store (kept in sync with `captureSessionOnNode` and node deletion paths) or memoise per render.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fd94f80-1006-4672-aeef-360f92455b2a:
+    id: 8fd94f80-1006-4672-aeef-360f92455b2a
+    content: Backward compatibility — existing `.arbo` files already populate `metadata.sessionId` for nodes that have captured a session. Nodes without one are simply unbound, which matches the new "no session → no bar" rule. No migration required.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3f61fc9-b205-4ddb-ba41-3b5947ce4ca6:
+    id: d3f61fc9-b205-4ddb-ba41-3b5947ce4ca6
+    content: Don't regress the manual-resume fix (`de02219`). Its intent was to restore the bar after a manual `claude --resume`. The new selector branch handles that case the same way as advancement, since both rely on `metadata.sessionId` being set on the resumed node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a14f1075-9e0e-4411-8a78-5c1687e5ae7f:
+    id: a14f1075-9e0e-4411-8a78-5c1687e5ae7f
+    content: Challenges and pushback
+    children:
+      - 0dfa01a9-aa22-4c8a-beff-c0734c01171e
+      - 5a30117f-aded-4285-af40-fe2f45d0a0b7
+      - 4b8e47e7-fc2a-4449-9231-c073315910d7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dfa01a9-aa22-4c8a-beff-c0734c01171e:
+    id: 0dfa01a9-aa22-4c8a-beff-c0734c01171e
+    content: Worth doing — the bug is observable in normal use and the fix is small. The data model already supports the right behaviour; only the selector is wired to the wrong concept.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a30117f-aded-4285-af40-fe2f45d0a0b7:
+    id: 5a30117f-aded-4285-af40-fe2f45d0a0b7
+    content: Watch for unbound claude sessions (e.g. a `--resume` for a session id that was never captured on any node). The selector must return `null` in that case rather than bind arbitrarily.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b8e47e7-fc2a-4449-9231-c073315910d7:
+    id: 4b8e47e7-fc2a-4449-9231-c073315910d7
+    content: Out of scope — redesigning how `originNodeId` is captured or whether terminals should always carry a node-of-record. This change targets the bar's source of truth only.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86e2874d-42a7-47b5-922a-42ebad908aa8:
+    id: 86e2874d-42a7-47b5-922a-42ebad908aa8
+    content: Technical refinement
+    children:
+      - df9c442e-35c5-465c-86cc-26889fdf557d
+      - c8a6ab8a-4c21-4314-9ffd-ade6215c1910
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df9c442e-35c5-465c-86cc-26889fdf557d:
+    id: df9c442e-35c5-465c-86cc-26889fdf557d
+    content: Complications
+    children:
+      - baae808d-ac7c-469c-9c89-583f1344c972
+      - 1e569894-fc19-4f8d-a227-3ac11b35a086
+      - ba31944c-6906-446e-ab4c-6099a49ee2b0
+      - 84338ad8-4682-42ec-9dd4-d7aeaf3dfceb
+      - 3e6dd4be-b9ff-4a7c-810d-056958ace4e9
+      - 915e09e3-c7d7-4271-b867-42ea84442c58
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  baae808d-ac7c-469c-9c89-583f1344c972:
+    id: baae808d-ac7c-469c-9c89-583f1344c972
+    content: '`metadata.sessionId` is not unique across nodes. Recurse explicitly inherits the parent''s sessionId onto each generated sibling (`workflowExecutionActions.ts:583`, plus `inheritSessionOnNode` cascades to descendants), so at idle a single sessionId can map to a parent and several siblings simultaneously. The selector needs a deterministic tiebreak — leading candidate: prefer the node whose own metadata recorded the session most recently, otherwise prefer the leaf-most non-brokenChain match, otherwise the first match. Picking arbitrarily would put the bar in surprising places after a recurse run.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e569894-fc19-4f8d-a227-3ac11b35a086:
+    id: 1e569894-fc19-4f8d-a227-3ac11b35a086
+    content: '`metadata.brokenChain === true` marks a node whose recorded sessionId is stale (the session was lost and a fresh one started downstream). The reverse-lookup must skip brokenChain nodes; otherwise the bar relights on a dead binding when the matching session id is still recorded on an obsolete node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba31944c-6906-446e-ab4c-6099a49ee2b0:
+    id: ba31944c-6906-446e-ab4c-6099a49ee2b0
+    content: '`originNodeId` has a second consumer beyond the bar: terminal-session persistence saves and restores it as part of `<userData>` tab state. Demoting it for the bar is safe; deleting the field is not, until that path is audited.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84338ad8-4682-42ec-9dd4-d7aeaf3dfceb:
+    id: 84338ad8-4682-42ec-9dd4-d7aeaf3dfceb
+    content: '`terminalNodeAssignments` is a third, transient mapping (cleared on step release) already consulted inside `findRunningNodeOnTerminal`. The new branch sits below that, so it doesn''t compete — flagging only because future readers may wonder which mapping owns what.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e6dd4be-b9ff-4a7c-810d-056958ace4e9:
+    id: 3e6dd4be-b9ff-4a7c-810d-056958ace4e9
+    content: Out of scope — tracking a per-terminal "currently focused node within a shared session" to fully resolve the recurse-tie case in real time. Reasonable follow-up; not needed if the heuristic above is good enough.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  915e09e3-c7d7-4271-b867-42ea84442c58:
+    id: 915e09e3-c7d7-4271-b867-42ea84442c58
+    content: ROI stays high as long as the tiebreak design is constrained. If we end up adding a new piece of tracked state to pick between equal-sessionId nodes, the scope creeps and a separate user story should own that.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8a6ab8a-4c21-4314-9ffd-ade6215c1910:
+    id: c8a6ab8a-4c21-4314-9ffd-ade6215c1910
+    content: Approach summary
+    children:
+      - b09552e2-74b5-471a-93fb-008ceaa62dcb
+      - 02ca594e-ebd9-4d98-bb64-ff57b73f5eb8
+      - 71afd3dc-e92f-4713-8b31-b90af32e0ad0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b09552e2-74b5-471a-93fb-008ceaa62dcb:
+    id: b09552e2-74b5-471a-93fb-008ceaa62dcb
+    content: 'New branch in `selectActiveSessionNodeId`: reverse-lookup the active terminal''s sessionId from `workflowSessionMap`, resolve it to a node via a precomputed `sessionId → nodeId` index on the store (kept in sync with `captureSessionOnNode`, `inheritSessionOnNode`, and node deletion). The first two existing branches keep priority; `terminalOrigins` drops to a last-resort fallback.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02ca594e-ebd9-4d98-bb64-ff57b73f5eb8:
+    id: 02ca594e-ebd9-4d98-bb64-ff57b73f5eb8
+    content: Index must store a list per sessionId (not a single nodeId) so the tiebreak rule (skip brokenChain, prefer deepest/most-recent) can apply at selector time without rescanning `nodes`.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  71afd3dc-e92f-4713-8b31-b90af32e0ad0:
+    id: 71afd3dc-e92f-4713-8b31-b90af32e0ad0
+    content: Non-obvious — both halves of the join already exist (`workflowSessionMap` is maintained in `registerSession`, `metadata.sessionId` is written by `captureSessionOnNode` / `inheritSessionOnNode`). The fix is the join, not new tracking. No `.arbo` migration; existing files just start binding correctly on next render.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f1f7947-b2fb-4bb0-b919-1d1da1510af5:
+    id: 3f1f7947-b2fb-4bb0-b919-1d1da1510af5
+    content: review feedback
+    children:
+      - 69744f84-0139-431e-9fd6-acfabc106ba8
+      - b6d48d5f-b043-42ef-b1c6-065e50abbd7d
+      - 961588fb-f420-4de5-a650-915296c5c9a5
+      - b8a0aece-fc27-449d-a3be-d4f156ce6b05
+      - da685f6f-e600-427c-86d0-117e1e9bf972
+      - 74aa6348-3263-454f-866f-087923ab36c0
+      - 6807b130-4f07-4222-92a2-5472d3c173f9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69744f84-0139-431e-9fd6-acfabc106ba8:
+    id: 69744f84-0139-431e-9fd6-acfabc106ba8
+    content: VERDICT — ship it. No critical or important findings. Selector body matches spec; `terminalOrigins` removal is correctly scoped (forward selector only); reverse-direction `selectAssociatedTerminalId` and `originNodeId` write paths in `terminalStore.ts` left intact for terminal-session persistence; deleted `durable origin association` describe block was pinning the dropped behaviour — its removal is correct, not a regression.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6d48d5f-b043-42ef-b1c6-065e50abbd7d:
+    id: b6d48d5f-b043-42ef-b1c6-065e50abbd7d
+    content: Cross-references verified — `nodes` and `workflowSessionMap` are top-level fields on `TreeState` (`treeStore.ts:36, 65`); `metadata.sessionId` and `metadata.brokenChain` exist on `NodeMetadata` (`src/shared/types/treeNode.ts:51-52`); the brokenChain-skip predicate matches the canonical pattern in `workflowSessionResume.ts:70`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  961588fb-f420-4de5-a650-915296c5c9a5:
+    id: 961588fb-f420-4de5-a650-915296c5c9a5
+    content: 'NIT — `findNodeOwningTerminalSession` empty-string sessionId edge: `if (!sessionId) return null` would coerce an empty-string key from `workflowSessionMap` to "no match", but the codebase never writes empty-string session ids, so the guard is defensive. Contract holds: reverse-lookup returns `null` (not `undefined` or `''''`) when nothing matches. No action.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8a0aece-fc27-449d-a3be-d4f156ce6b05:
+    id: b8a0aece-fc27-449d-a3be-d4f156ce6b05
+    content: NIT — iteration-order tiebreak (first non-brokenChain match wins) is deterministic for a given `nodes` snapshot but not stable across renames/moves; matches the spec's "leaf-most / most-recent heuristic is open" stance and is already documented by the title-only test `tiebreak when multiple non-brokenChain nodes share the same sessionId (recurse-inherited)`.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  da685f6f-e600-427c-86d0-117e1e9bf972:
+    id: da685f6f-e600-427c-86d0-117e1e9bf972
+    content: NIT — `TreeNode.tsx` subscription costs O(N) scan per row per any store update (selection, drag-hover, flashing trigger it). For large trees a `nodesBySessionId` index would help; spec explicitly accepts this as a follow-up.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  74aa6348-3263-454f-866f-087923ab36c0:
+    id: 74aa6348-3263-454f-866f-087923ab36c0
+    content: NIT — test description at `activeSessionNodeId.test.ts:277` ("updates when focus switches to a different terminal") describes a temporal behaviour but the body just calls the pure selector twice with two terminal ids. Functionally correct, title over-promises. Trivial.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6807b130-4f07-4222-92a2-5472d3c173f9:
+    id: 6807b130-4f07-4222-92a2-5472d3c173f9
+    content: 'NIT — pre-existing, not in this diff: `activeSessionNodeId.test.ts:149` uses redundant `undefined as unknown as string | null` cast. Leave alone.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   ed67a423-cede-4882-acbb-eb96ebb0e425:
     cwd: /Users/brianfox/dev/Arborescent
   8e79b42c-2b18-4e3f-afb5-8d4f7bd115c1:
     cwd: /Users/brianfox/dev/Arborescent
   1957f53c-d0fe-48ad-98e7-d94edb949a03:
+    cwd: /Users/brianfox/dev/Arborescent
+  3020e5a5-dbcd-4a54-b84b-15a747f4da65:
     cwd: /Users/brianfox/dev/Arborescent
