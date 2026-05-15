@@ -1,5 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, getParentIdOrNull } from '../../../utils/nodeHelpers';
+import { getParentIdOrNull } from '../../../utils/nodeHelpers';
+import { expandCollapsedAncestors } from '../../../utils/nodeExpansion';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { usePreferencesStore } from '../../preferences/preferencesStore';
@@ -119,20 +120,9 @@ export const createWorkflowActions = (
 
   function expandAncestorsToStep(stepId: string): void {
     const { nodes, ancestorRegistry } = get();
-    const ancestors = ancestorRegistry[stepId] || [];
-    let updatedNodes = nodes;
-    let needsUpdate = false;
-
-    for (const ancestorId of ancestors) {
-      const ancestor = updatedNodes[ancestorId];
-      if (ancestor && ancestor.children.length > 0 && ancestor.metadata.expanded === false) {
-        updatedNodes = updateNodeMetadata(updatedNodes, ancestorId, { expanded: true });
-        needsUpdate = true;
-      }
-    }
-
-    if (needsUpdate) {
-      set({ nodes: updatedNodes });
+    const result = expandCollapsedAncestors(nodes, ancestorRegistry, stepId);
+    if (result.changed) {
+      set({ nodes: result.nodes });
     }
   }
 

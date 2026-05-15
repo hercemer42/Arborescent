@@ -15,6 +15,7 @@ import { createClipboardActions, ClipboardActions } from './actions/clipboardAct
 import { createSummaryActions, SummaryActions } from './actions/summaryActions';
 import { createWorkflowActions, WorkflowActions } from './actions/workflowActions';
 import { createWorkflowExecutionActions, WorkflowExecutionActions, WorkflowExecutionEntry } from './actions/workflowExecutionActions';
+import { createSendToWorkflowActions, SendToWorkflowActions } from './actions/sendToWorkflowActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '../../services/storageService';
 import { storeManager } from '../storeManager';
@@ -66,7 +67,7 @@ export interface TreeState {
   sessionRegistry: Record<string, { cwd: string }>;
   terminalNodeAssignments: Record<string, string>;
 
-  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & SendActions & ClipboardActions & SummaryActions & WorkflowActions & WorkflowExecutionActions;
+  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & SendActions & ClipboardActions & SummaryActions & WorkflowActions & WorkflowExecutionActions & SendToWorkflowActions;
 }
 
 const storageService = new StorageService();
@@ -166,6 +167,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         ...createSummaryActions(get, set, persistenceActions.autoSave),
         ...workflowActions,
         ...workflowExecutionActions,
+        ...createSendToWorkflowActions(get, set, persistenceActions.autoSave, visualEffectsActions, historyActions.executeCommand),
       },
     };
   });

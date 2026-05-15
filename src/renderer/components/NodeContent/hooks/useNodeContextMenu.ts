@@ -11,6 +11,7 @@ import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { buildStatusSubmenu } from './useStatusSubmenu';
 import { buildWorkflowSubmenu, buildWorkflowExecutionItems, buildWorkflowNavigationItems, combineExecutionAndNavigationItems } from './useWorkflowSubmenu';
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
+import { buildSendToWorkflowSubmenu } from './useSendToWorkflowSubmenu';
 import { buildEditSubmenu, prependSpellItems } from './menuBuilders/editSubmenu';
 import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
@@ -153,6 +154,13 @@ export function useNodeContextMenu(node: TreeNode) {
       ancestorRegistry,
       contextDeclarations,
       onSetAppliedContext: handleSetAppliedContext,
+    });
+
+    const sendToWorkflowSubmenuItems = buildSendToWorkflowSubmenu({
+      sourceNodeId: node.id,
+      nodes,
+      ancestorRegistry,
+      onSendToWorkflow: (destWorkflowId) => actions.moveNodeToWorkflow(node.id, destWorkflowId),
     });
 
     const handleSetContextFlags = async (flags: ContextFlags) => {
@@ -298,6 +306,10 @@ export function useNodeContextMenu(node: TreeNode) {
       ...(!isHyperlink && !isExternalLink && setContextSubmenuItems ? [{
         label: 'Apply context',
         submenu: setContextSubmenuItems,
+      }] : []),
+      ...(!isHyperlink && !isExternalLink && sendToWorkflowSubmenuItems ? [{
+        label: 'Send to workflow',
+        submenu: sendToWorkflowSubmenuItems,
       }] : []),
       ...(!isHyperlink && !isExternalLink && blueprintMenuItem ? [blueprintMenuItem] : []),
       ...(!isHyperlink && !isExternalLink && workflowMenuItem ? [workflowMenuItem] : []),

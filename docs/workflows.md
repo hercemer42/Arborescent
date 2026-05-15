@@ -149,6 +149,14 @@ The active terminal's bound node is marked in the tree with a thin blue stripe o
 
 Right-click an item inside a workflow step → **Next step** or **Previous step**. The item moves to the adjacent step. If the destination step is Autonomous or Checkpoint, the workflow starts automatically on a terminal — no need to right-click **Start Workflow** separately. Moving to a Manual step just moves the item without starting anything. Step numbers update automatically when you reorder, add, or remove steps.
 
+## Sending Items to a Workflow
+
+Right-click any branch → **Send to workflow** → pick a destination. The branch and its subtree move under the destination workflow's first step, the view jumps there, and the branch flashes on arrival.
+
+The submenu lists every workflow in the current file, alphabetically. The workflow the branch already lives in is included — pick it to relocate the branch under that workflow's first step. Workflows inside the branch's own subtree (or the branch itself, if it's a workflow) are excluded to prevent cycles.
+
+Attached contexts on the branch and its descendants survive the move. Undoable with `Ctrl+Z`.
+
 ## Nesting Workflows
 
 Declare a workflow step as its own workflow to create sub-phases. Step numbers follow depth-first order across the entire tree:
