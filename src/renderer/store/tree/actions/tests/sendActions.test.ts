@@ -1686,6 +1686,29 @@ describe('sendActions', () => {
       expect(terminalContent).toContain('Write your reviewed/updated list to this file:');
     });
 
+    it('collaborate-only terminal prompt keeps the generic placeholder so review/revise/decompose can reword the root', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.collaborateInTerminal('child1', 'terminal-1');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      const heredocBody = terminalContent.split("cat <<'EOF' >")[1] ?? '';
+      expect(heredocBody).toContain('[Your content here]');
+      expect(heredocBody).not.toContain('remainder of the CONTENT list');
+    });
+
+    it('both-mode (collaborate + execute) terminal prompt pins the root heading in the heredoc placeholder so marker-flip steps cannot accidentally re-emit a different root', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      const heredocBody = terminalContent.split("cat <<'EOF' >")[1] ?? '';
+      expect(heredocBody).toContain('Child 1');
+      expect(heredocBody).toContain('remainder of the CONTENT list');
+      expect(heredocBody).not.toContain('[Your content here]');
+    });
+
     it('web collaborate prompt still requests list output in a markdown code block (regression guard for browser flow)', async () => {
       await actions.collaborate('child1');
 

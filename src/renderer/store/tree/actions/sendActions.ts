@@ -134,11 +134,20 @@ function buildWebExecutePrompt(executeContext: string, content: string): string 
 
 const WRITE_ONCE_INSTRUCTION = 'Only write to the file once - fully consider your response beforehand.';
 
-function buildFileWriteCommand(outputFilePath: string): string {
+function extractContentRootHeading(content: string): string | null {
+  const trimmed = content.trimStart();
+  const firstHeadingMatch = trimmed.match(/^#[^\n]*/);
+  return firstHeadingMatch ? firstHeadingMatch[0] : null;
+}
+
+function buildFileWriteCommand(outputFilePath: string, expectedRoot?: string | null): string {
   const outputDir = outputFilePath.substring(0, outputFilePath.lastIndexOf('/'));
+  const placeholder = expectedRoot
+    ? `${expectedRoot}\n[remainder of the CONTENT list — copy verbatim, only flipping status markers]`
+    : '[Your content here]';
   return `Use this command to write the file safely:
 mkdir -p ${outputDir} && cat <<'EOF' > ${outputFilePath}
-[Your content here]
+${placeholder}
 EOF`;
 }
 
@@ -155,7 +164,7 @@ function buildExecuteOnlyOutputTarget(): string {
   return `IMPORTANT: Make the requested code changes in the codebase. Report what you did in your terminal output.`;
 }
 
-function buildBothOutputTarget(outputFilePath: string): string {
+function buildBothOutputTarget(outputFilePath: string, content: string): string {
   return `IMPORTANT: Make the requested code changes in the codebase. Then write the list from the CONTENT section back to this file with completed items marked [x] and failed items [-]:
 ${outputFilePath}
 - Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
@@ -166,7 +175,7 @@ ${outputFilePath}
 - If issues were encountered, append a single new child node at the end of the list describing them
 ${WRITE_ONCE_INSTRUCTION}
 
-${buildFileWriteCommand(outputFilePath)}`;
+${buildFileWriteCommand(outputFilePath, extractContentRootHeading(content))}`;
 }
 
 function buildTerminalCollaboratePrompt(reviewContext: string, content: string, outputFilePath: string, decomposition: boolean = false, isAutonomous: boolean = false): string {
@@ -208,7 +217,7 @@ ${outputTarget}${needsReview}`;
 }
 
 function buildTerminalBothPrompt(executeContext: string, content: string, outputFilePath: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false): string {
-  const outputTarget = buildBothOutputTarget(outputFilePath);
+  const outputTarget = buildBothOutputTarget(outputFilePath, content);
   const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
