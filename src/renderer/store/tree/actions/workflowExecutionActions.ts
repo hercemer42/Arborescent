@@ -357,14 +357,16 @@ export const createWorkflowExecutionActions = (
     void window.electron.startKeepAwake();
 
     stepTimeouts.start(nodeId);
-    if (mode !== "reattach") {
-      const { workflowSessionMap } = get();
-      const terminalAlreadyHasSession = Object.values(workflowSessionMap).includes(terminalId);
-      if (terminalAlreadyHasSession) {
-        clearSessionManager.maybeClearThenSend(nodeId, terminalId);
-      } else {
-        claudeLaunchManager.launchIfNeededThenSend(nodeId, terminalId);
-      }
+    // Dispatch runs uniformly for spawn / reattach / recurse — isEligibleForExecution
+    // upstream already rules out genuinely-running nodes, so every call here is a
+    // fresh send. The branch below only decides whether claude needs to be auto-launched
+    // first.
+    const { workflowSessionMap } = get();
+    const terminalAlreadyHasSession = Object.values(workflowSessionMap).includes(terminalId);
+    if (terminalAlreadyHasSession) {
+      clearSessionManager.maybeClearThenSend(nodeId, terminalId);
+    } else {
+      claudeLaunchManager.launchIfNeededThenSend(nodeId, terminalId);
     }
     logger.info(
       `Started workflow execution for node ${nodeId} on terminal ${terminalId} (${mode})`,

@@ -249,7 +249,7 @@ describe('startWorkflow — auto session routing (PR1)', () => {
     });
   });
 
-  describe('stopped workflow + live session → continues that session', () => {
+  describe('stopped workflow + live session → reuses the tab and re-sends the prompt', () => {
     it('does not spawn a new session when the session is still alive in an open tab', async () => {
       mockTerminals.push({ id: 'terminal-1' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
@@ -265,7 +265,12 @@ describe('startWorkflow — auto session routing (PR1)', () => {
 
       expect(mockCreateNewTerminal).not.toHaveBeenCalled();
       expect(mockSetActiveTerminal).toHaveBeenCalledWith('terminal-1');
-      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith(
+        'task-a',
+        'terminal-1',
+        expect.any(Object),
+        undefined,
+      );
     });
   });
 
@@ -282,19 +287,23 @@ describe('startWorkflow — auto session routing (PR1)', () => {
     });
   });
 
-  describe('reattach must not re-send the workflow prompt', () => {
-    it('does not invoke prompt sending for the focus-existing-tab route', async () => {
+  describe('user-initiated start sends the workflow prompt on every route', () => {
+    it('sends the prompt on the focus-existing-tab route', async () => {
       mockTerminals.push({ id: 'terminal-1' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
       state.workflowSessionMap['sess-1'] = 'terminal-1';
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
-      expect(mockTerminalWrite).not.toHaveBeenCalled();
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith(
+        'task-a',
+        'terminal-1',
+        expect.any(Object),
+        undefined,
+      );
     });
 
-    it('does not invoke prompt sending for the resume-in-new-tab route after writing claude --resume', async () => {
+    it('sends the prompt on the resume-in-new-tab route after writing claude --resume', async () => {
       mockCreateNewTerminal.mockImplementation(async () => {
         const created = { id: 'terminal-new' };
         mockTerminals.push(created);
@@ -309,7 +318,12 @@ describe('startWorkflow — auto session routing (PR1)', () => {
         (call) => typeof call[1] === 'string' && (call[1] as string).includes('--resume sess-1'),
       );
       expect(resumeWrites).toHaveLength(1);
-      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith(
+        'task-a',
+        'terminal-new',
+        expect.any(Object),
+        undefined,
+      );
     });
   });
 
