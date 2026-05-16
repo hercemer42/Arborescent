@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-16T09:42:30.222Z'
+updated: '2026-05-16T12:40:42.577Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33397,7 +33397,6 @@ nodes:
       - ef8172e7-9f00-4495-9f4e-69b862af7dde
       - bdceb696-248d-4199-9182-db0689445c07
       - ddd90208-5752-46cf-b72a-5fcbe040b2e0
-      - 3406993a-2a35-4c96-9aa8-55d63dccc55f
       - b3dc5362-ca81-4cbe-8558-2800fa41354f
     metadata:
       status: pending
@@ -81556,7 +81555,8 @@ nodes:
   2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4:
     id: 2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4
     content: Worktree creation
-    children: []
+    children:
+      - 4be60d89-6c90-4ac0-b6ae-84645ae9144d
     metadata:
       status: pending
       isBlueprint: true
@@ -82890,19 +82890,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ddd90208-5752-46cf-b72a-5fcbe040b2e0:
-    id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
-    content: Merge to master
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-      blueprintIcon: GitMerge
-      blueprintColor: '#ef4444'
-      appliedContextId: f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
-      stepType: autonomous
-      recurse: false
-      expanded: true
   26d204d2-540c-4f9c-9de1-ac16b1c51065:
     id: 26d204d2-540c-4f9c-9de1-ac16b1c51065
     content: Verify pipelines
@@ -84603,8 +84590,7 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children:
-      - 4be60d89-6c90-4ac0-b6ae-84645ae9144d
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -96860,19 +96846,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  3406993a-2a35-4c96-9aa8-55d63dccc55f:
-    id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
-    content: Delete worktree
-    children:
-      - 5566fa98-3512-4a00-8b46-b39c6972c64b
-    metadata:
-      status: pending
-      isBlueprint: true
-      blueprintIcon: RemoveFormatting
-      blueprintColor: '#14b8a6'
-      stepType: autonomous
-      appliedContextId: 44b69d24-730a-4af1-95dd-7b2aface6c13
-      recurse: false
   278831ef-224c-46f3-aa1e-9707da5b27ff:
     id: 278831ef-224c-46f3-aa1e-9707da5b27ff
     content: Verify that the PR has been merged to main
@@ -117012,6 +116985,7 @@ nodes:
       - 323e1527-c30a-46e9-959a-9ac19cd00900
       - b8a6fe6f-a8d9-4df5-9f5f-23a822593bdc
       - 8c43f7e5-31af-4bae-821a-431599ed979c
+      - 5566fa98-3512-4a00-8b46-b39c6972c64b
     metadata:
       status: pending
       isBlueprint: true
@@ -125287,6 +125261,7 @@ nodes:
       deleted: false
       plugins: {}
       sessionId: de898a68-a5fc-4166-acd5-90e811fef0c9
+      brokenChain: true
   8e934094-703c-416f-bab5-eef9da050f87:
     id: 8e934094-703c-416f-bab5-eef9da050f87
     content: Product spec
@@ -127253,6 +127228,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  ddd90208-5752-46cf-b72a-5fcbe040b2e0:
+    id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
+    content: Merge to master
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: GitMerge
+      blueprintColor: '#ef4444'
+      appliedContextId: f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
+      stepType: autonomous
+      recurse: false
+      expanded: true
 sessionRegistry:
   ed67a423-cede-4882-acbb-eb96ebb0e425:
     cwd: /Users/brianfox/dev/Arborescent
