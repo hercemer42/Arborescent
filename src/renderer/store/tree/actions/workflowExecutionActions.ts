@@ -1198,6 +1198,10 @@ export const createWorkflowExecutionActions = (
       }
     }
 
+    if (decompositionStepId) {
+      releaseOrchestratorAfterDecompositionHandoff(nodeId);
+    }
+
     cleanupAutonomousCollaboration(nodeId);
     useToastStore.getState().addToast("Feedback auto-accepted", "info");
     logger.info(`Auto-accepted feedback for node ${nodeId} (${parsed.nodeCount} nodes)`, "WorkflowExecution");
@@ -1207,6 +1211,16 @@ export const createWorkflowExecutionActions = (
     if (decompositionStepId && entry.terminalTabId) {
       checkRecurse(decompositionStepId, entry.terminalTabId, nodeId);
     }
+  }
+
+  function releaseOrchestratorAfterDecompositionHandoff(orchestratorNodeId: string): void {
+    stepTimeouts.clear(orchestratorNodeId);
+    releaseTerminalAssignmentForNode(orchestratorNodeId);
+    const { workflowExecutionStates: latestStates } = get();
+    if (!latestStates[orchestratorNodeId]) return;
+    const nextStates = { ...latestStates };
+    delete nextStates[orchestratorNodeId];
+    set({ workflowExecutionStates: nextStates });
   }
 
   return {
