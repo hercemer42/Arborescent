@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-15T13:25:21.748Z'
+updated: '2026-05-16T09:41:00.217Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -82893,7 +82893,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 5566fa98-3512-4a00-8b46-b39c6972c64b
     metadata:
       status: pending
       isBlueprint: true
@@ -84603,7 +84604,8 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children: []
+    children:
+      - 4be60d89-6c90-4ac0-b6ae-84645ae9144d
     metadata:
       status: pending
       isBlueprint: true
@@ -90193,7 +90195,6 @@ nodes:
     content: For release
     children:
       - b65fcda6-1c15-4780-8d77-3861ee5a4ded
-      - 4be60d89-6c90-4ac0-b6ae-84645ae9144d
       - 45f1a5a0-dae3-4080-97ed-b8e324b79a64
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
       - 042ee811-0108-4574-9a4c-2a7909572178
@@ -96863,8 +96864,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - 8c43f7e5-31af-4bae-821a-431599ed979c
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -110670,36 +110670,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  4be60d89-6c90-4ac0-b6ae-84645ae9144d:
-    id: 4be60d89-6c90-4ac0-b6ae-84645ae9144d
-    content: MCP server for tree
-    children:
-      - 9b2ef135-9791-4c4c-ac4b-fdf304ecd428
-      - 64b9dabb-4555-4621-90b1-0006a8cf7f85
-      - 50780b3f-c0e2-4557-8217-e0e74d75458c
-      - 1cbfd216-aa66-4b71-bdf4-9a438b2621af
-    metadata:
-      status: pending
-      expanded: false
-  9b2ef135-9791-4c4c-ac4b-fdf304ecd428:
-    id: 9b2ef135-9791-4c4c-ac4b-fdf304ecd428
-    content: Make nodes accessible and editable via MCP
-    children: []
-    metadata:
-      status: pending
-  64b9dabb-4555-4621-90b1-0006a8cf7f85:
-    id: 64b9dabb-4555-4621-90b1-0006a8cf7f85
-    content: Do same for feedback panel
-    children:
-      - 0eb4c365-1716-4272-941e-7bf5adb7e2eb
-    metadata:
-      status: pending
-  0eb4c365-1716-4272-941e-7bf5adb7e2eb:
-    id: 0eb4c365-1716-4272-941e-7bf5adb7e2eb
-    content: Less flaky, not clipboard dependant
-    children: []
-    metadata:
-      status: pending
   13fff619-671c-45a2-ba57-b62e78554ab2:
     id: 13fff619-671c-45a2-ba57-b62e78554ab2
     content: PR1 - Restore lost node/session association on focus
@@ -115804,25 +115774,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  50780b3f-c0e2-4557-8217-e0e74d75458c:
-    id: 50780b3f-c0e2-4557-8217-e0e74d75458c
-    content: Replace the temporary file mechanism entirely
-    children: []
-    metadata:
-      status: pending
-  1cbfd216-aa66-4b71-bdf4-9a438b2621af:
-    id: 1cbfd216-aa66-4b71-bdf4-9a438b2621af
-    content: Keep clipboard mechanism for browser mode
-    children:
-      - 65db98ac-0785-45e2-8043-a903be1c5937
-    metadata:
-      status: pending
-  65db98ac-0785-45e2-8043-a903be1c5937:
-    id: 65db98ac-0785-45e2-8043-a903be1c5937
-    content: Unless - check if browser claude can integrate with local MCP (don't think so)
-    children: []
-    metadata:
-      status: pending
   7c7492c1-ecb7-410a-9554-c25005697356:
     id: 7c7492c1-ecb7-410a-9554-c25005697356
     content: 📄 Product spec
@@ -117060,6 +117011,7 @@ nodes:
       - 7d2ae656-854a-4f5e-a465-43cf99d25d03
       - 323e1527-c30a-46e9-959a-9ac19cd00900
       - b8a6fe6f-a8d9-4df5-9f5f-23a822593bdc
+      - 8c43f7e5-31af-4bae-821a-431599ed979c
     metadata:
       status: pending
       isBlueprint: true
@@ -117067,6 +117019,7 @@ nodes:
       blueprintIcon: CheckSquare2
       blueprintColor: '#22c55e'
       expanded: false
+      recurse: true
   5cb7bf1b-8461-4206-9d38-e624b970a2ce:
     id: 5cb7bf1b-8461-4206-9d38-e624b970a2ce
     content: If the subject is a bug, ignore these instructions, and instead write it up as a bug ticket
@@ -125321,6 +125274,1985 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  4be60d89-6c90-4ac0-b6ae-84645ae9144d:
+    id: 4be60d89-6c90-4ac0-b6ae-84645ae9144d
+    content: Replace file watcher and terminal paste with MCP and hooks for Claude Code
+    children:
+      - 8e934094-703c-416f-bab5-eef9da050f87
+      - 1f4a68a8-766a-4faa-b442-bdf0dceb515f
+      - b967cf5d-b1ac-48ef-bf6f-6bda0c0f8915
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: de898a68-a5fc-4166-acd5-90e811fef0c9
+  8e934094-703c-416f-bab5-eef9da050f87:
+    id: 8e934094-703c-416f-bab5-eef9da050f87
+    content: Product spec
+    children:
+      - cc3f06fe-bdc3-43e2-9f52-640f99ddea2c
+      - 68787488-5cfd-4ac5-a972-e0f00537c827
+      - 9328a3bd-76fc-4ffc-84a1-ba569c40a37f
+      - 2b3fd623-3ad0-48bb-8242-a03d40b6d05f
+      - b788080d-aac1-432b-9193-bd56adb63ce1
+      - 5cf0298b-4f81-4620-8268-f223c19463c3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc3f06fe-bdc3-43e2-9f52-640f99ddea2c:
+    id: cc3f06fe-bdc3-43e2-9f52-640f99ddea2c
+    content: Context
+    children:
+      - a1d8c43f-9a4b-4286-a63f-d6bbddbeabc8
+      - 725b6137-0a43-4e31-81e0-68b6605473e0
+      - 03600676-f220-4050-b4c5-e8418983bfcc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1d8c43f-9a4b-4286-a63f-d6bbddbeabc8:
+    id: a1d8c43f-9a4b-4286-a63f-d6bbddbeabc8
+    content: Arborescent drives Claude Code in a terminal so users can run structured AI-collaborative workflows from a tree of decomposed nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  725b6137-0a43-4e31-81e0-68b6605473e0:
+    id: 725b6137-0a43-4e31-81e0-68b6605473e0
+    content: The current integration relies on temporary files watched by Arborescent for AI output and on pasting prompts into the terminal timed against Claude Code's idle state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03600676-f220-4050-b4c5-e8418983bfcc:
+    id: 03600676-f220-4050-b4c5-e8418983bfcc
+    content: Both mechanisms are flaky and break down under multiple sessions, rapid turn-chaining, and concurrent file-path collisions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68787488-5cfd-4ac5-a972-e0f00537c827:
+    id: 68787488-5cfd-4ac5-a972-e0f00537c827
+    content: User
+    children:
+      - 783ffdb2-7a7c-4c3f-912b-6ce74b869e3d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  783ffdb2-7a7c-4c3f-912b-6ce74b869e3d:
+    id: 783ffdb2-7a7c-4c3f-912b-6ce74b869e3d
+    content: An Arborescent user driving AI-collaborative workflows in Claude Code from a tree of nodes, each potentially bound to its own session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9328a3bd-76fc-4ffc-84a1-ba569c40a37f:
+    id: 9328a3bd-76fc-4ffc-84a1-ba569c40a37f
+    content: Current experience and why it is insufficient
+    children:
+      - 491c3d6a-9aa4-4f23-bc09-c8fc3ffbdd10
+      - 33e991fd-3e4b-4219-874f-fb1e079e1531
+      - 6c6714c0-acf9-47e8-8b8f-031f39426ba4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  491c3d6a-9aa4-4f23-bc09-c8fc3ffbdd10:
+    id: 491c3d6a-9aa4-4f23-bc09-c8fc3ffbdd10
+    content: AI output is correlated to nodes by file path which becomes unreliable when sessions share a directory or run concurrently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33e991fd-3e4b-4219-874f-fb1e079e1531:
+    id: 33e991fd-3e4b-4219-874f-fb1e079e1531
+    content: Prompt delivery via terminal paste depends on idle detection and misfires when the terminal is not yet ready for input
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c6714c0-acf9-47e8-8b8f-031f39426ba4:
+    id: 6c6714c0-acf9-47e8-8b8f-031f39426ba4
+    content: Attaching to an already-running Claude Code session loses context because no durable session-to-node mapping exists beyond what node.metadata.sessionId already stores
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b3fd623-3ad0-48bb-8242-a03d40b6d05f:
+    id: 2b3fd623-3ad0-48bb-8242-a03d40b6d05f
+    content: Goal
+    children:
+      - 6bf17748-8f54-4805-bbc0-ad1829900167
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bf17748-8f54-4805-bbc0-ad1829900167:
+    id: 6bf17748-8f54-4805-bbc0-ad1829900167
+    content: Move AI output and prompt delivery onto a local MCP server and Claude Code lifecycle hooks so communication is structured, session-keyed, and resilient to timing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b788080d-aac1-432b-9193-bd56adb63ce1:
+    id: b788080d-aac1-432b-9193-bd56adb63ce1
+    content: Business rules
+    children:
+      - 37629a30-d3bd-4111-bd15-b6e63d6d826e
+      - 5be0d112-9a86-43e9-b54e-a713da284626
+      - ef341357-b9de-48f4-8197-2fe24b48e876
+      - 626547f0-26c5-4af6-8f64-0fd01c2d1e5b
+      - f3fd0b49-9dd0-4a26-9fc3-25cd8c8ad03c
+      - aba46923-f1c7-435f-8681-fc778077182a
+      - 07e4f4fb-75db-414d-a1aa-5f9be55f2a9f
+      - 029ba135-8c83-4d8b-918d-b58db7152449
+      - 981908f8-2f2c-4080-90e8-7d2efa49f349
+      - b7d2ade1-b16c-4367-85a3-408c0d5f03de
+      - aa5ad49b-aa05-4ef3-a073-263fc8132c71
+      - 6367e238-6d4d-4f52-a89c-f4c905f38892
+      - d0a494bd-2c3e-4a20-833d-38fee43e5b29
+      - a9106bc1-fc9f-4ef9-ba1d-8d3ec047b685
+      - e20795ac-c0d7-4ef8-a0c5-e81de8dafb73
+      - bf6c1bba-7879-4279-bc46-3b2158e5b245
+      - 443ec2f6-d060-480d-9e7d-1001b70c72d3
+      - 27f06e29-f1b1-4f66-ad16-c6d11170de58
+      - ac4e2c34-4d49-4cf6-9853-0e04ff52f5d5
+      - 44bbe40b-0af7-4712-aa87-bf17c9b8f928
+      - 3b45e67d-91d9-4a1b-9b01-be00942b8c43
+      - f1048a62-33bd-44c9-8542-cb561b03bdcb
+      - ca749f9a-8293-43d2-b5f9-98313e754c80
+      - 490622c0-0be9-4fc8-a663-f9e67b3e9147
+      - 5cc0b18d-a134-4c2e-a959-19c8bd3018c9
+      - f7fe42ee-9768-4558-a536-2d21eb23535a
+      - e48a74ae-a0de-40b2-9ab6-c1c8aec4d4c5
+      - 3ac49f47-560a-4223-84a2-72da00655510
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37629a30-d3bd-4111-bd15-b6e63d6d826e:
+    id: 37629a30-d3bd-4111-bd15-b6e63d6d826e
+    content: An Arborescent-hosted MCP server exposes read tools that work in any mode and structural write tools gated by the bound step's execute and collaborate booleans
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5be0d112-9a86-43e9-b54e-a713da284626:
+    id: 5be0d112-9a86-43e9-b54e-a713da284626
+    content: When execute is checked and collaborate is not, no tree-modifying tools may be called
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef341357-b9de-48f4-8197-2fe24b48e876:
+    id: ef341357-b9de-48f4-8197-2fe24b48e876
+    content: When collaborate is checked and execute is not, every tree-modifying tool may be called
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  626547f0-26c5-4af6-8f64-0fd01c2d1e5b:
+    id: 626547f0-26c5-4af6-8f64-0fd01c2d1e5b
+    content: When both execute and collaborate are checked, only additions and check-offs may be called
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3fd0b49-9dd0-4a26-9fc3-25cd8c8ad03c:
+    id: f3fd0b49-9dd0-4a26-9fc3-25cd8c8ad03c
+    content: When the bound step is automatic, successful mutations apply directly to the node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aba46923-f1c7-435f-8681-fc778077182a:
+    id: aba46923-f1c7-435f-8681-fc778077182a
+    content: When the bound step is not automatic, successful mutations route to the feedback panel as proposals that require user review
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07e4f4fb-75db-414d-a1aa-5f9be55f2a9f:
+    id: 07e4f4fb-75db-414d-a1aa-5f9be55f2a9f
+    content: Pending feedback panel proposals are not visible to Claude until the user resolves them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  029ba135-8c83-4d8b-918d-b58db7152449:
+    id: 029ba135-8c83-4d8b-918d-b58db7152449
+    content: Mode and routing are resolved server-side on every tool call against the current binding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  981908f8-2f2c-4080-90e8-7d2efa49f349:
+    id: 981908f8-2f2c-4080-90e8-7d2efa49f349
+    content: The MCP server delegates mode authority and routing to the existing in-app permission logic rather than reimplementing it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7d2ade1-b16c-4367-85a3-408c0d5f03de:
+    id: b7d2ade1-b16c-4367-85a3-408c0d5f03de
+    content: Session-to-node binding is keyed by Claude Code session ID and persisted on node.metadata.sessionId
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa5ad49b-aa05-4ef3-a073-263fc8132c71:
+    id: aa5ad49b-aa05-4ef3-a073-263fc8132c71
+    content: When Arborescent spawns Claude Code, the node UUID is passed via the ARBORESCENT_NODE_UUID environment variable and read by the SessionStart hook
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6367e238-6d4d-4f52-a89c-f4c905f38892:
+    id: 6367e238-6d4d-4f52-a89c-f4c905f38892
+    content: Existing prompt construction rules continue to apply unchanged when Arborescent sends prompts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0a494bd-2c3e-4a20-833d-38fee43e5b29:
+    id: d0a494bd-2c3e-4a20-833d-38fee43e5b29
+    content: Arborescent prepends a node UUID marker to every prompt it sends for sessions it is driving, and the UserPromptSubmit hook reads it for session-to-node binding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9106bc1-fc9f-4ef9-ba1d-8d3ec047b685:
+    id: a9106bc1-fc9f-4ef9-ba1d-8d3ec047b685
+    content: UserPromptSubmit is the single authority that registers session-to-node bindings regardless of which spawn case applies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e20795ac-c0d7-4ef8-a0c5-e81de8dafb73:
+    id: e20795ac-c0d7-4ef8-a0c5-e81de8dafb73
+    content: Re-binding a session already bound to a different node prompts the user with a confirmation dialog naming both nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf6c1bba-7879-4279-bc46-3b2158e5b245:
+    id: bf6c1bba-7879-4279-bc46-3b2158e5b245
+    content: Foreign Claude Code sessions not spawned by Arborescent can be discovered and manually bound to a node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  443ec2f6-d060-480d-9e7d-1001b70c72d3:
+    id: 443ec2f6-d060-480d-9e7d-1001b70c72d3
+    content: All three prompt-arrival paths — SessionStart hook context injection, Stop hook block decision, and idle TTY fallback — supply only a trigger to call next_instruction; prompt content is always retrieved from the MCP queue
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27f06e29-f1b1-4f66-ad16-c6d11170de58:
+    id: 27f06e29-f1b1-4f66-ad16-c6d11170de58
+    content: When the Stop hook fires and the per-session queue is non-empty, the hook returns a block decision telling Claude to call next_instruction via MCP, keeping the agent loop active
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac4e2c34-4d49-4cf6-9853-0e04ff52f5d5:
+    id: ac4e2c34-4d49-4cf6-9853-0e04ff52f5d5
+    content: The Stop hook tracks a local iteration counter and refuses to block past a configured cap regardless of queue state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  44bbe40b-0af7-4712-aa87-bf17c9b8f928:
+    id: 44bbe40b-0af7-4712-aa87-bf17c9b8f928
+    content: When Claude Code is fully idle and a new prompt is enqueued, Arborescent pastes a fixed trigger string telling Claude to call next_instruction via MCP — never the prompt content itself
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b45e67d-91d9-4a1b-9b01-be00942b8c43:
+    id: 3b45e67d-91d9-4a1b-9b01-be00942b8c43
+    content: Inbound correlation from MCP calls to nodes uses session ID via findNodeIdBySessionId, not file paths
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1048a62-33bd-44c9-8542-cb561b03bdcb:
+    id: f1048a62-33bd-44c9-8542-cb561b03bdcb
+    content: Manual send via right-click constructs the prompt using existing rules and routes through the same MCP queue and trigger mechanism as workflow sends
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca749f9a-8293-43d2-b5f9-98313e754c80:
+    id: ca749f9a-8293-43d2-b5f9-98313e754c80
+    content: Manual send establishes a session-to-node binding via the UUID marker when at least one of execute or collaborate is checked on the node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  490622c0-0be9-4fc8-a663-f9e67b3e9147:
+    id: 490622c0-0be9-4fc8-a663-f9e67b3e9147
+    content: Action mode means neither execute nor collaborate is checked, and the prompt is only the attached context, or only the node content if no context is attached, without instruction wrapping
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cc0b18d-a134-4c2e-a959-19c8bd3018c9:
+    id: 5cc0b18d-a134-4c2e-a959-19c8bd3018c9
+    content: Action mode does not establish or change session-to-node binding, and any existing binding on the session is preserved
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7fe42ee-9768-4558-a536-2d21eb23535a:
+    id: f7fe42ee-9768-4558-a536-2d21eb23535a
+    content: Manual send mode authority follows the same execute and collaborate boolean rules as workflow sends
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e48a74ae-a0de-40b2-9ab6-c1c8aec4d4c5:
+    id: e48a74ae-a0de-40b2-9ab6-c1c8aec4d4c5
+    content: Manual send output in non-action mode routes to the feedback panel regardless of step-type backing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ac49f47-560a-4223-84a2-72da00655510:
+    id: 3ac49f47-560a-4223-84a2-72da00655510
+    content: Browser-mode flows continue to use the existing clipboard mechanism and are not affected by the terminal-side rewrite
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cf0298b-4f81-4620-8268-f223c19463c3:
+    id: 5cf0298b-4f81-4620-8268-f223c19463c3
+    content: Acceptance criteria
+    children:
+      - fb18314f-1fa3-4760-aa9a-82b53d236af4
+      - 1ce9abce-703e-4c72-9302-18d18a7d946f
+      - d2ce0260-c609-4caa-8101-7c2fe1fa7c1d
+      - 2ff8ccea-dd11-42bc-ac0e-ad4bcff97d82
+      - 17d71307-e7c0-4233-97d1-62185cd40fd5
+      - 98de68de-867c-4a18-b7b7-eb34bbd80d2c
+      - f2d20fed-f66c-493c-bfe2-9cc85f01578e
+      - 6c04f6c1-e539-4bba-9f51-ba0e3823df93
+      - 7f412820-ba62-4977-ac9e-4021f95f46cc
+      - abcea6df-5411-4198-bbc9-81f4219e8840
+      - 59f9ad86-45af-4d13-8498-38b5400fb4ba
+      - 7c62775a-4302-4543-9c9f-681c78278a83
+      - 7c7a207a-387b-4bec-a721-ade979b792c2
+      - a10f663d-e91c-484b-b9d7-601b3b6ee0ba
+      - cd5332fc-7dde-4661-b5c1-fedb17c02b2f
+      - 9fd08a10-483f-4847-b416-0ecb84193331
+      - 72e67364-dd95-4ec1-9245-6a3eb6e5efe5
+      - a088759f-f2da-47c2-ab62-080eda9cb1bd
+      - a3d0a058-567c-4747-8924-16d63498674d
+      - ce90ab91-c271-4a04-85a3-5e75fabbbabd
+      - c00063a3-3a62-4dee-82ee-1ca018f2dadf
+      - 2f8eba98-4ae6-4100-a398-a7bd4940c78e
+      - 59db2b9e-cb0a-49f1-8310-c593b39ee3ae
+      - e85cff6c-4bba-47ee-9f67-8bfaa95f3a78
+      - 94dede3d-b065-41b7-90ff-5b6a1bced840
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb18314f-1fa3-4760-aa9a-82b53d236af4:
+    id: fb18314f-1fa3-4760-aa9a-82b53d236af4
+    content: A session spawned by Arborescent receives its binding via SessionStart hook context injection before its first user turn
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ce9abce-703e-4c72-9302-18d18a7d946f:
+    id: 1ce9abce-703e-4c72-9302-18d18a7d946f
+    content: A session already running at the time of an Arborescent prompt receives its binding via the UserPromptSubmit hook on that first prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2ce0260-c609-4caa-8101-7c2fe1fa7c1d:
+    id: d2ce0260-c609-4caa-8101-7c2fe1fa7c1d
+    content: Calling a tree-modifying MCP tool in execute-only mode returns a descriptive error stating that the current step does not permit node modifications
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ff8ccea-dd11-42bc-ac0e-ad4bcff97d82:
+    id: 2ff8ccea-dd11-42bc-ac0e-ad4bcff97d82
+    content: Calling set_node_content, delete_node, move_node, or set_node_metadata in execute-and-collaborate mode returns a descriptive error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17d71307-e7c0-4233-97d1-62185cd40fd5:
+    id: 17d71307-e7c0-4233-97d1-62185cd40fd5
+    content: Calling add_child_node, append_to_node, or mark_step_complete in collaborate-only or execute-and-collaborate mode succeeds
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98de68de-867c-4a18-b7b7-eb34bbd80d2c:
+    id: 98de68de-867c-4a18-b7b7-eb34bbd80d2c
+    content: A successful mutation against a bound automatic step is reflected immediately on the node in the tree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2d20fed-f66c-493c-bfe2-9cc85f01578e:
+    id: f2d20fed-f66c-493c-bfe2-9cc85f01578e
+    content: A successful mutation against a bound non-automatic step appears in the feedback panel as a pending proposal that the user can accept or reject
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c04f6c1-e539-4bba-9f51-ba0e3823df93:
+    id: 6c04f6c1-e539-4bba-9f51-ba0e3823df93
+    content: get_node returns content, metadata, and the current effective mode for the bound step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f412820-ba62-4977-ac9e-4021f95f46cc:
+    id: 7f412820-ba62-4977-ac9e-4021f95f46cc
+    content: submit_step_output writes directly to the node for automatic steps and to the feedback panel for non-automatic steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abcea6df-5411-4198-bbc9-81f4219e8840:
+    id: abcea6df-5411-4198-bbc9-81f4219e8840
+    content: When Claude omits submit_step_output, the Stop hook captures the response and submits it once on Claude's behalf
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59f9ad86-45af-4d13-8498-38b5400fb4ba:
+    id: 59f9ad86-45af-4d13-8498-38b5400fb4ba
+    content: A prompt enqueued while Claude is actively working triggers the Stop hook on the next turn boundary to tell Claude to call next_instruction via MCP, with no terminal paste
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c62775a-4302-4543-9c9f-681c78278a83:
+    id: 7c62775a-4302-4543-9c9f-681c78278a83
+    content: A prompt enqueued while Claude is fully idle is delivered by pasting a fixed trigger string into the terminal that instructs Claude to call next_instruction via MCP
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c7a207a-387b-4bec-a721-ade979b792c2:
+    id: 7c7a207a-387b-4bec-a721-ade979b792c2
+    content: No prompt content ever travels through the TTY or hook payloads — all three arrival paths only trigger Claude to fetch content from the MCP queue
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a10f663d-e91c-484b-b9d7-601b3b6ee0ba:
+    id: a10f663d-e91c-484b-b9d7-601b3b6ee0ba
+    content: Stop hook chaining stops after the configured iteration cap and surfaces the cap event to the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd5332fc-7dde-4661-b5c1-fedb17c02b2f:
+    id: cd5332fc-7dde-4661-b5c1-fedb17c02b2f
+    content: A re-bind to a different node on an already-bound session triggers a confirmation dialog naming both nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fd08a10-483f-4847-b416-0ecb84193331:
+    id: 9fd08a10-483f-4847-b416-0ecb84193331
+    content: Session-to-terminal and terminal-to-node mappings survive an Arborescent restart
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72e67364-dd95-4ec1-9245-6a3eb6e5efe5:
+    id: 72e67364-dd95-4ec1-9245-6a3eb6e5efe5
+    content: The temporary file watcher is removed from terminal-mode flows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a088759f-f2da-47c2-ab62-080eda9cb1bd:
+    id: a088759f-f2da-47c2-ab62-080eda9cb1bd
+    content: No MCP tool exposes pending unresolved proposals to Claude
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3d0a058-567c-4747-8924-16d63498674d:
+    id: a3d0a058-567c-4747-8924-16d63498674d
+    content: Right-clicking a node and sending it to the terminal enqueues the prompt via the MCP queue and uses the unified trigger delivery mechanism
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce90ab91-c271-4a04-85a3-5e75fabbbabd:
+    id: ce90ab91-c271-4a04-85a3-5e75fabbbabd
+    content: A manual send with at least one of execute or collaborate checked binds the session to the node via the UUID marker on UserPromptSubmit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c00063a3-3a62-4dee-82ee-1ca018f2dadf:
+    id: c00063a3-3a62-4dee-82ee-1ca018f2dadf
+    content: A manual send in action mode does not bind or rebind the session, and preserves any existing binding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f8eba98-4ae6-4100-a398-a7bd4940c78e:
+    id: 2f8eba98-4ae6-4100-a398-a7bd4940c78e
+    content: Action mode sends only the attached context, or the node content if no context is attached, with no instruction wrapping
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59db2b9e-cb0a-49f1-8310-c593b39ee3ae:
+    id: 59db2b9e-cb0a-49f1-8310-c593b39ee3ae
+    content: A manual send response in non-action mode lands in the feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e85cff6c-4bba-47ee-9f67-8bfaa95f3a78:
+    id: e85cff6c-4bba-47ee-9f67-8bfaa95f3a78
+    content: A submit_step_output call from an unbound session is a graceful no-op
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94dede3d-b065-41b7-90ff-5b6a1bced840:
+    id: 94dede3d-b065-41b7-90ff-5b6a1bced840
+    content: Manual send to browser is unaffected by the terminal-side rewrite and continues to use the clipboard
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f4a68a8-766a-4faa-b442-bdf0dceb515f:
+    id: 1f4a68a8-766a-4faa-b442-bdf0dceb515f
+    content: Implementation proposal
+    children:
+      - 59c6cbba-d942-404f-b7bd-c55b97cee3a2
+      - c009c56b-28e4-444b-818b-9432d5e659a4
+      - 6bc12026-35f9-40ff-8eff-45bfa6715bc4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59c6cbba-d942-404f-b7bd-c55b97cee3a2:
+    id: 59c6cbba-d942-404f-b7bd-c55b97cee3a2
+    content: Approach
+    children:
+      - d86fec68-f349-4212-830a-d11f0663c8ea
+      - 9d60faca-b639-47ae-9187-c3c7fb5873ea
+      - cfe50ebb-5900-48a8-87c3-197e7ee37553
+      - 5324a54d-ffc0-4541-bb53-2e94db42dcfe
+      - fac575e8-7a2d-490f-8c5e-fbe9fc789b6f
+      - 56f35b29-df22-4e84-b614-27ef6a00bb1f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d86fec68-f349-4212-830a-d11f0663c8ea:
+    id: d86fec68-f349-4212-830a-d11f0663c8ea
+    content: Add a local MCP server hosted in the Electron main process exposing tree and feedback-panel tools and consulting the existing permission logic on every call
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d60faca-b639-47ae-9187-c3c7fb5873ea:
+    id: 9d60faca-b639-47ae-9187-c3c7fb5873ea
+    content: Add SessionStart, UserPromptSubmit, and Stop hook scripts that talk to the MCP server for binding registration, queue draining, and response capture
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfe50ebb-5900-48a8-87c3-197e7ee37553:
+    id: cfe50ebb-5900-48a8-87c3-197e7ee37553
+    content: Refactor inbound event correlation to use Claude Code session IDs against node.metadata.sessionId via the existing findNodeIdBySessionId helper, removing the file-path-based feedbackCollaborations correlation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5324a54d-ffc0-4541-bb53-2e94db42dcfe:
+    id: 5324a54d-ffc0-4541-bb53-2e94db42dcfe
+    content: Extend persistence to cover session-to-terminal and terminal-to-node mappings that are currently in-memory only
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fac575e8-7a2d-490f-8c5e-fbe9fc789b6f:
+    id: fac575e8-7a2d-490f-8c5e-fbe9fc789b6f
+    content: Keep the terminal-paste fallback gated to the fully-idle path only and limited to a fixed trigger string, and retire the temporary file watcher
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56f35b29-df22-4e84-b614-27ef6a00bb1f:
+    id: 56f35b29-df22-4e84-b614-27ef6a00bb1f
+    content: Reuse the existing buildSendPayload branching including the action-mode branch, and route its output through the MCP queue instead of direct terminal write
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c009c56b-28e4-444b-818b-9432d5e659a4:
+    id: c009c56b-28e4-444b-818b-9432d5e659a4
+    content: Touchpoints
+    children:
+      - f06aaff2-576d-4d4a-9149-ac0ffecdd9ba
+      - 5fcc6f00-ffe1-4e26-bb9e-5c01eddc0c6c
+      - 9eaa7287-2a12-4df2-b0c6-27ca8b68d14a
+      - 74b422eb-5189-4b25-86ac-27899c3f726f
+      - 747b7d24-9bae-4275-a3e6-1334d4e2ab7a
+      - bb915c93-ada5-48e2-bd5c-7e5fe8e3b652
+      - b89d19eb-d2a9-4077-9b12-8dccea104e2c
+      - a5c6b968-4ae7-4786-b689-ad9e0245e3c7
+      - 371b3125-3b4f-408c-a0b7-96eb622f2249
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f06aaff2-576d-4d4a-9149-ac0ffecdd9ba:
+    id: f06aaff2-576d-4d4a-9149-ac0ffecdd9ba
+    content: New MCP server module in the main process with tool handlers and a shared permission gate
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fcc6f00-ffe1-4e26-bb9e-5c01eddc0c6c:
+    id: 5fcc6f00-ffe1-4e26-bb9e-5c01eddc0c6c
+    content: Hook scripts shipped with the app and registered into Claude Code settings on first run
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9eaa7287-2a12-4df2-b0c6-27ca8b68d14a:
+    id: 9eaa7287-2a12-4df2-b0c6-27ca8b68d14a
+    content: workflowExecutionActions.ts for binding registration, queue draining, and proposal routing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74b422eb-5189-4b25-86ac-27899c3f726f:
+    id: 74b422eb-5189-4b25-86ac-27899c3f726f
+    content: sendActions.ts for routing manual send and action mode through the MCP queue
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  747b7d24-9bae-4275-a3e6-1334d4e2ab7a:
+    id: 747b7d24-9bae-4275-a3e6-1334d4e2ab7a
+    content: terminalStore.ts for terminal lifecycle and the new persisted assignment field
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb915c93-ada5-48e2-bd5c-7e5fe8e3b652:
+    id: bb915c93-ada5-48e2-bd5c-7e5fe8e3b652
+    content: Persistence layer additions for session-to-terminal and terminal-to-node assignments
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b89d19eb-d2a9-4077-9b12-8dccea104e2c:
+    id: b89d19eb-d2a9-4077-9b12-8dccea104e2c
+    content: Feedback panel UI to render proposals with accept and reject controls
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5c6b968-4ae7-4786-b689-ad9e0245e3c7:
+    id: a5c6b968-4ae7-4786-b689-ad9e0245e3c7
+    content: Re-binding confirmation dialog and foreign-session discovery UI
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  371b3125-3b4f-408c-a0b7-96eb622f2249:
+    id: 371b3125-3b4f-408c-a0b7-96eb622f2249
+    content: Tests covering the authority matrix, step-type routing, hook flows, manual send and action mode binding behaviour, and the Stop hook iteration cap
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bc12026-35f9-40ff-8eff-45bfa6715bc4:
+    id: 6bc12026-35f9-40ff-8eff-45bfa6715bc4
+    content: Constraints
+    children:
+      - 417ed417-c603-4e3e-8a1a-abe77b4feefd
+      - d78d6557-2ac0-45ba-89f7-0b5b61ac6cba
+      - 345c168e-b03b-4cb9-b378-b6040fe0718e
+      - 5a8d815d-709b-4c09-9c72-9935bcfa1587
+      - 2a9b7555-7d24-4475-b851-c29f9f82aaf8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  417ed417-c603-4e3e-8a1a-abe77b4feefd:
+    id: 417ed417-c603-4e3e-8a1a-abe77b4feefd
+    content: The MCP server must consult the same permission gate as the UI so allowed actions never drift between surfaces
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d78d6557-2ac0-45ba-89f7-0b5b61ac6cba:
+    id: d78d6557-2ac0-45ba-89f7-0b5b61ac6cba
+    content: The Stop hook iteration cap must live on the Arborescent side because Claude Code's stop_hook_active flag is advisory only
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  345c168e-b03b-4cb9-b378-b6040fe0718e:
+    id: 345c168e-b03b-4cb9-b378-b6040fe0718e
+    content: UserPromptSubmit must succeed even when the MCP server is briefly unreachable, logging and proceeding rather than blocking the user's prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a8d815d-709b-4c09-9c72-9935bcfa1587:
+    id: 5a8d815d-709b-4c09-9c72-9935bcfa1587
+    content: Migration of existing in-memory bindings into the new persistence shape must happen on first launch without losing prior session associations stored in .arbo files
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a9b7555-7d24-4475-b851-c29f9f82aaf8:
+    id: 2a9b7555-7d24-4475-b851-c29f9f82aaf8
+    content: Action mode must not write the UUID marker into the prompt so that UserPromptSubmit treats it as a non-binding send
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b967cf5d-b1ac-48ef-bf6f-6bda0c0f8915:
+    id: b967cf5d-b1ac-48ef-bf6f-6bda0c0f8915
+    content: Technical refinement
+    children:
+      - af8040d5-1b3d-40cf-881c-a81f7c54ae72
+      - 1403758d-b9a5-4a29-bed0-6cc427a87d8c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af8040d5-1b3d-40cf-881c-a81f7c54ae72:
+    id: af8040d5-1b3d-40cf-881c-a81f7c54ae72
+    content: Complications
+    children:
+      - e5d480b1-024e-4036-ac2e-0fa9fe02cc90
+      - 559a4e13-ee29-453d-bccc-0dce291c679d
+      - 009584c8-5acf-4611-b4cf-56576ca2aeeb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5d480b1-024e-4036-ac2e-0fa9fe02cc90:
+    id: e5d480b1-024e-4036-ac2e-0fa9fe02cc90
+    content: Edge cases and risks
+    children:
+      - aa5331d9-ea10-4d14-b414-f9d90c8106a0
+      - e475515c-88cc-4a94-8303-7a2d050f3287
+      - aa743a17-8197-42b8-9552-6c4314984a8d
+      - 1ca68b4b-5b6e-411c-9590-3d94eba1cf6e
+      - 6a7d691a-bff8-4917-9c63-7149df8a568a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa5331d9-ea10-4d14-b414-f9d90c8106a0:
+    id: aa5331d9-ea10-4d14-b414-f9d90c8106a0
+    content: UserPromptSubmit must strip the UUID marker before Claude reads the prompt, otherwise the marker accumulates in conversation history and pollutes the model's context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e475515c-88cc-4a94-8303-7a2d050f3287:
+    id: e475515c-88cc-4a94-8303-7a2d050f3287
+    content: Hook installation into the user's Claude Code settings must merge with existing user customizations rather than overwrite them, or upgrades will silently break user-customised hook chains
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa743a17-8197-42b8-9552-6c4314984a8d:
+    id: aa743a17-8197-42b8-9552-6c4314984a8d
+    content: In action mode the session retains its prior binding, so writebacks from a node sent in action mode still land on the previously bound node — needs a UX cue or the user will be surprised when feedback appears on an unrelated tree node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ca68b4b-5b6e-411c-9590-3d94eba1cf6e:
+    id: 1ca68b4b-5b6e-411c-9590-3d94eba1cf6e
+    content: An Arborescent crash mid-turn causes Claude's in-flight MCP calls to fail; persisted state covers resync on restart but pending proposals not yet accepted are lost
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a7d691a-bff8-4917-9c63-7149df8a568a:
+    id: 6a7d691a-bff8-4917-9c63-7149df8a568a
+    content: The Stop hook iteration cap is the only thing preventing runaway chaining; surfacing a "cap reached, queue paused" state to the user is essential and the UX is not yet specified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  559a4e13-ee29-453d-bccc-0dce291c679d:
+    id: 559a4e13-ee29-453d-bccc-0dce291c679d
+    content: Out of scope
+    children:
+      - 13915a63-c8c1-47e7-a7f4-266e2b008086
+      - 1805dd42-263e-4787-851b-a9bc76b23e00
+      - 48edf859-969f-4368-81a5-980bd79b84e4
+      - c5316c7a-ef19-4bb2-9f2d-6cfd93226c52
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13915a63-c8c1-47e7-a7f4-266e2b008086:
+    id: 13915a63-c8c1-47e7-a7f4-266e2b008086
+    content: Streaming feedback updates within a turn — output is batched once per turn at turn end by design
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1805dd42-263e-4787-851b-a9bc76b23e00:
+    id: 1805dd42-263e-4787-851b-a9bc76b23e00
+    content: Multiple concurrent Claude Code sessions bound to the same node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48edf859-969f-4368-81a5-980bd79b84e4:
+    id: 48edf859-969f-4368-81a5-980bd79b84e4
+    content: Reverting accepted proposals beyond the existing undo system
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5316c7a-ef19-4bb2-9f2d-6cfd93226c52:
+    id: c5316c7a-ef19-4bb2-9f2d-6cfd93226c52
+    content: Browser-mode changes — the clipboard path is preserved untouched
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  009584c8-5acf-4611-b4cf-56576ca2aeeb:
+    id: 009584c8-5acf-4611-b4cf-56576ca2aeeb
+    content: ROI concerns
+    children:
+      - 87de246b-3ec1-4cd9-9b7c-2f376da9ca4c
+      - e4685bfd-b06a-48f6-9bbd-6a4e9b17cb82
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87de246b-3ec1-4cd9-9b7c-2f376da9ca4c:
+    id: 87de246b-3ec1-4cd9-9b7c-2f376da9ca4c
+    content: The Stop hook safety net that auto-submits when Claude omits submit_step_output adds permanent code on an unverified assumption; validate first that prompt-engineering does not reliably trigger the call before building the safety net
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4685bfd-b06a-48f6-9bbd-6a4e9b17cb82:
+    id: e4685bfd-b06a-48f6-9bbd-6a4e9b17cb82
+    content: Foreign-session discovery may rarely fire in practice; consider deferring the discovery UX to a follow-up unless usage data supports v1
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1403758d-b9a5-4a29-bed0-6cc427a87d8c:
+    id: 1403758d-b9a5-4a29-bed0-6cc427a87d8c
+    content: Approach summary
+    children:
+      - a336e96d-434c-4d0f-a8d1-c79b1e81d1f1
+      - 5f7af5ae-53cb-47c8-9ae2-4c3195d2e320
+      - 2de41009-99c7-471a-9b66-04ff1ba98fc4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a336e96d-434c-4d0f-a8d1-c79b1e81d1f1:
+    id: a336e96d-434c-4d0f-a8d1-c79b1e81d1f1
+    content: Add a local MCP server in the Electron main process plus three Claude Code lifecycle hook scripts — SessionStart, UserPromptSubmit, Stop — that together replace the file-watcher and timed-paste integration with a session-keyed bidirectional channel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f7af5ae-53cb-47c8-9ae2-4c3195d2e320:
+    id: 5f7af5ae-53cb-47c8-9ae2-4c3195d2e320
+    content: Prompt content always lives in the MCP queue; all three delivery paths emit only a trigger that tells Claude to call next_instruction, so content never travels through TTY or hook payloads
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2de41009-99c7-471a-9b66-04ff1ba98fc4:
+    id: 2de41009-99c7-471a-9b66-04ff1ba98fc4
+    content: Binding is established by UserPromptSubmit reading a UUID marker prepended to every Arborescent-driven prompt except action mode, making that hook the single authority for the session-to-node map
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5566fa98-3512-4a00-8b46-b39c6972c64b:
+    id: 5566fa98-3512-4a00-8b46-b39c6972c64b
+    content: 'Bug: Restarting a stopped workflow shows green arrow but never sends the prompt to the terminal'
+    children:
+      - 9478c0b3-0212-4454-bef6-ab634e0616c7
+      - 3fac4bda-c1a9-4b7e-b2bc-377c5110a2ee
+      - ea44ea54-f6e7-414d-a4b1-bf00267dd88c
+      - 47738833-7cbb-416c-bff6-e48f4513651f
+      - 8e670e4e-8609-4828-928c-56935c9e50cb
+      - 194094bd-e49d-446a-b317-7da03c07974d
+      - 986805a8-8036-4d5a-8391-231e94ddf77d
+      - 99a5ed17-b0fd-4dda-859e-38c36389ef3c
+      - 62b95ab2-1cdf-4135-9ab2-0adf58196330
+      - 0016fcfc-23cc-46fc-862e-9d49260ba342
+      - 34359045-3bd6-4ea0-bccc-5003674e9cae
+      - 808c675d-e973-4b9e-aafb-2de3ddd03375
+      - d6fb7e61-2598-4f87-bd94-545b92f9ce34
+      - 65ee6e06-9c36-4708-9cd0-f706e8b2dbaa
+      - 0ccbe645-ec3d-48a0-889e-3207004273d2
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  9478c0b3-0212-4454-bef6-ab634e0616c7:
+    id: 9478c0b3-0212-4454-bef6-ab634e0616c7
+    content: worktree
+    children:
+      - 1619eb55-288f-4a1f-8624-45f9d0e44c4b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1619eb55-288f-4a1f-8624-45f9d0e44c4b:
+    id: 1619eb55-288f-4a1f-8624-45f9d0e44c4b
+    content: vscode://file//Users/brianfox/dev/Arborescent-workflow-restart-no-prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fac4bda-c1a9-4b7e-b2bc-377c5110a2ee:
+    id: 3fac4bda-c1a9-4b7e-b2bc-377c5110a2ee
+    content: Summary
+    children:
+      - 58bb671e-7c8b-4e41-a5b3-cb3b80a628cc
+      - 385d41a9-0381-4ae1-b17c-42009214296f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58bb671e-7c8b-4e41-a5b3-cb3b80a628cc:
+    id: 58bb671e-7c8b-4e41-a5b3-cb3b80a628cc
+    content: After a workflow is stopped and then started again, the run indicator (green arrow) appears as if execution resumed, but no prompt is dispatched to the terminal and no error is surfaced
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  385d41a9-0381-4ae1-b17c-42009214296f:
+    id: 385d41a9-0381-4ae1-b17c-42009214296f
+    content: Reproduces even after killing the terminal and resuming the session in a fresh terminal — the resumed session attaches correctly, but Start Workflow still produces a green arrow with no prompt sent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea44ea54-f6e7-414d-a4b1-bf00267dd88c:
+    id: ea44ea54-f6e7-414d-a4b1-bf00267dd88c
+    content: Steps to reproduce
+    children:
+      - c436fb5f-a77b-4d32-bf21-30ca1dbd7431
+      - e0eaa413-cb6f-49a8-9ef9-2df760b2839f
+      - d4d250d6-89aa-4926-ab9b-f9ab853515e8
+      - 6063d28a-eb52-46b2-92cb-6f67012dc6b0
+      - c5dca4f1-7ee8-4f6f-b134-61c3cc298498
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c436fb5f-a77b-4d32-bf21-30ca1dbd7431:
+    id: c436fb5f-a77b-4d32-bf21-30ca1dbd7431
+    content: Start a workflow that sends a prompt to the terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0eaa413-cb6f-49a8-9ef9-2df760b2839f:
+    id: e0eaa413-cb6f-49a8-9ef9-2df760b2839f
+    content: Stop the workflow while it is running
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4d250d6-89aa-4926-ab9b-f9ab853515e8:
+    id: d4d250d6-89aa-4926-ab9b-f9ab853515e8
+    content: Start the same workflow again from the same node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6063d28a-eb52-46b2-92cb-6f67012dc6b0:
+    id: 6063d28a-eb52-46b2-92cb-6f67012dc6b0
+    content: Observe the green arrow indicator appear on the active node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5dca4f1-7ee8-4f6f-b134-61c3cc298498:
+    id: c5dca4f1-7ee8-4f6f-b134-61c3cc298498
+    content: Observe that the terminal receives no prompt and no error is shown in the UI or logs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47738833-7cbb-416c-bff6-e48f4513651f:
+    id: 47738833-7cbb-416c-bff6-e48f4513651f
+    content: Additional reproduction path
+    children:
+      - edb6d7de-ebf3-489a-aa65-4bf6b284bdf8
+      - 3ab89fe5-b16e-431a-81dd-68fb32321e4a
+      - a80c6159-fa53-4b37-9014-952cd07256aa
+      - 6ef59ee0-b38b-44d0-a7e8-1fb195fb1756
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  edb6d7de-ebf3-489a-aa65-4bf6b284bdf8:
+    id: edb6d7de-ebf3-489a-aa65-4bf6b284bdf8
+    content: After hitting the bug, kill the terminal entirely
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ab89fe5-b16e-431a-81dd-68fb32321e4a:
+    id: 3ab89fe5-b16e-431a-81dd-68fb32321e4a
+    content: Resume the Claude Code session from another node — the resumed session opens in a new terminal correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a80c6159-fa53-4b37-9014-952cd07256aa:
+    id: a80c6159-fa53-4b37-9014-952cd07256aa
+    content: Hit Start Workflow on the resumed node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ef59ee0-b38b-44d0-a7e8-1fb195fb1756:
+    id: 6ef59ee0-b38b-44d0-a7e8-1fb195fb1756
+    content: 'Same failure: green arrow appears, no prompt is sent, no error'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e670e4e-8609-4828-928c-56935c9e50cb:
+    id: 8e670e4e-8609-4828-928c-56935c9e50cb
+    content: Reproduction context
+    children:
+      - f0c853df-8609-4413-bca2-18f7fb941fec
+      - e12aa667-9f0b-4946-9c7c-3d556ef22946
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0c853df-8609-4413-bca2-18f7fb941fec:
+    id: f0c853df-8609-4413-bca2-18f7fb941fec
+    content: 'Affected session ID: de898a68-a5fc-4166-acd5-90e811fef0c9'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e12aa667-9f0b-4946-9c7c-3d556ef22946:
+    id: e12aa667-9f0b-4946-9c7c-3d556ef22946
+    content: 'Affected node title: Replace file watcher and terminal paste with MCP and hooks for Claude Code'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  194094bd-e49d-446a-b317-7da03c07974d:
+    id: 194094bd-e49d-446a-b317-7da03c07974d
+    content: Expected behaviour
+    children:
+      - 21396e89-e0e7-4ee5-a709-b847a5186115
+      - cdcec80a-8bbd-40b9-9daf-522f3e6c442f
+      - 8923ee27-ee2e-4d9c-b6cd-aa486a1fd96d
+      - 128deef6-c516-4fe2-9f38-bac074696edc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21396e89-e0e7-4ee5-a709-b847a5186115:
+    id: 21396e89-e0e7-4ee5-a709-b847a5186115
+    content: Starting a previously stopped workflow re-dispatches the current step's prompt to the terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdcec80a-8bbd-40b9-9daf-522f3e6c442f:
+    id: cdcec80a-8bbd-40b9-9daf-522f3e6c442f
+    content: Resuming a session into a fresh terminal and starting the workflow dispatches the prompt to that terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8923ee27-ee2e-4d9c-b6cd-aa486a1fd96d:
+    id: 8923ee27-ee2e-4d9c-b6cd-aa486a1fd96d
+    content: The green arrow indicator only appears when execution actually begins
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  128deef6-c516-4fe2-9f38-bac074696edc:
+    id: 128deef6-c516-4fe2-9f38-bac074696edc
+    content: If dispatch fails, the user sees a clear error and the workflow does not enter a "running" visual state
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  986805a8-8036-4d5a-8391-231e94ddf77d:
+    id: 986805a8-8036-4d5a-8391-231e94ddf77d
+    content: Actual behaviour
+    children:
+      - eb64e9dc-fbdd-4ea8-9293-f6c997d7b86a
+      - 673b1761-d7f9-4f39-b15b-6e13c7eb1eca
+      - 1cdb9ac5-6a8a-4535-ae74-d51bc6430485
+      - 9cfb403f-4aed-4fc7-bec4-2f65810c0c91
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb64e9dc-fbdd-4ea8-9293-f6c997d7b86a:
+    id: eb64e9dc-fbdd-4ea8-9293-f6c997d7b86a
+    content: Green arrow indicator is rendered, suggesting the workflow is running
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  673b1761-d7f9-4f39-b15b-6e13c7eb1eca:
+    id: 673b1761-d7f9-4f39-b15b-6e13c7eb1eca
+    content: No prompt text is written to the terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cdb9ac5-6a8a-4535-ae74-d51bc6430485:
+    id: 1cdb9ac5-6a8a-4535-ae74-d51bc6430485
+    content: No error is logged or shown to the user — silent failure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cfb403f-4aed-4fc7-bec4-2f65810c0c91:
+    id: 9cfb403f-4aed-4fc7-bec4-2f65810c0c91
+    content: Persists across terminal kill + session resume, so the bad state is not tied to a single terminal instance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  99a5ed17-b0fd-4dda-859e-38c36389ef3c:
+    id: 99a5ed17-b0fd-4dda-859e-38c36389ef3c
+    content: Impact
+    children:
+      - 86ef18b8-0621-4a19-83ea-e035ac029428
+      - d3074322-46dd-4989-9362-a55c8057fae6
+      - 21b3347d-2ae3-4326-a35c-375962bb7b86
+      - c372cb5e-2694-4055-b708-866dadee31bd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86ef18b8-0621-4a19-83ea-e035ac029428:
+    id: 86ef18b8-0621-4a19-83ea-e035ac029428
+    content: Workflow appears broken with no diagnostic — user must restart the app to recover
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3074322-46dd-4989-9362-a55c8057fae6:
+    id: d3074322-46dd-4989-9362-a55c8057fae6
+    content: Killing the terminal and resuming the session is not a viable workaround
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21b3347d-2ae3-4326-a35c-375962bb7b86:
+    id: 21b3347d-2ae3-4326-a35c-375962bb7b86
+    content: 'Trust-eroding: the run-state UI lies about what is actually happening'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c372cb5e-2694-4055-b708-866dadee31bd:
+    id: c372cb5e-2694-4055-b708-866dadee31bd
+    content: Blocks the natural stop/restart loop that is core to iterating with AI in the terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62b95ab2-1cdf-4135-9ab2-0adf58196330:
+    id: 62b95ab2-1cdf-4135-9ab2-0adf58196330
+    content: Suspected area
+    children:
+      - 2ba2a256-74e0-4022-9415-7dbb3c7220bb
+      - c74d736a-58bd-4d84-a763-76f8d6ac2f02
+      - af504dca-346f-482b-8df6-1ee67e4f4f48
+      - dfbd51d9-3051-4d21-9cc6-16a4642b55b8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ba2a256-74e0-4022-9415-7dbb3c7220bb:
+    id: 2ba2a256-74e0-4022-9415-7dbb3c7220bb
+    content: Workflow runtime state is stuck in a "running" or "dispatched" flag after Stop, causing subsequent Start handlers to no-op the send
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c74d736a-58bd-4d84-a763-76f8d6ac2f02:
+    id: c74d736a-58bd-4d84-a763-76f8d6ac2f02
+    content: Bad state appears to live in the workflow/node store rather than the terminal session, since killing and reopening the terminal does not clear it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af504dca-346f-482b-8df6-1ee67e4f4f48:
+    id: af504dca-346f-482b-8df6-1ee67e4f4f48
+    content: Start action sets UI state (green arrow) before — or independently of — the terminal send, and the send is being short-circuited without surfacing an error
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfbd51d9-3051-4d21-9cc6-16a4642b55b8:
+    id: dfbd51d9-3051-4d21-9cc6-16a4642b55b8
+    content: Missing error propagation from the terminal send path back to the workflow runner and the UI
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0016fcfc-23cc-46fc-862e-9d49260ba342:
+    id: 0016fcfc-23cc-46fc-862e-9d49260ba342
+    content: Acceptance criteria
+    children:
+      - b2b04d08-7afd-4539-95b1-e9ae75c9aa90
+      - 8ffac989-1e55-4a0a-97f5-032e2810f3b5
+      - f8d46344-3d35-4917-97f2-c11ba21ab9f2
+      - d5e5d97d-2379-492b-bca3-ddb0d689fd36
+      - 3dfa2cbd-8b3e-4e8f-aacc-2640bf809679
+      - 906f0c1a-b30d-4ee9-a600-506df9d19808
+      - a6ce78ef-d68a-4d97-9833-46bb9e9d0d95
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2b04d08-7afd-4539-95b1-e9ae75c9aa90:
+    id: b2b04d08-7afd-4539-95b1-e9ae75c9aa90
+    content: Stopping a workflow fully resets the runtime state required to re-dispatch on next start
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ffac989-1e55-4a0a-97f5-032e2810f3b5:
+    id: 8ffac989-1e55-4a0a-97f5-032e2810f3b5
+    content: Starting a previously stopped workflow dispatches the prompt to the terminal exactly once
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8d46344-3d35-4917-97f2-c11ba21ab9f2:
+    id: f8d46344-3d35-4917-97f2-c11ba21ab9f2
+    content: Killing and reopening the terminal, then starting the workflow, dispatches the prompt to the new terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5e5d97d-2379-492b-bca3-ddb0d689fd36:
+    id: d5e5d97d-2379-492b-bca3-ddb0d689fd36
+    content: The green arrow indicator is bound to actual dispatch success, not to the start action firing
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dfa2cbd-8b3e-4e8f-aacc-2640bf809679:
+    id: 3dfa2cbd-8b3e-4e8f-aacc-2640bf809679
+    content: Any failure in the dispatch path surfaces a visible error to the user and logs the failure
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  906f0c1a-b30d-4ee9-a600-506df9d19808:
+    id: 906f0c1a-b30d-4ee9-a600-506df9d19808
+    content: Regression test covers stop → start on a single node and asserts the terminal receives the prompt
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6ce78ef-d68a-4d97-9833-46bb9e9d0d95:
+    id: a6ce78ef-d68a-4d97-9833-46bb9e9d0d95
+    content: Regression test covers stop → kill terminal → resume session → start and asserts the prompt is sent to the new terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34359045-3bd6-4ea0-bccc-5003674e9cae:
+    id: 34359045-3bd6-4ea0-bccc-5003674e9cae
+    content: Notes
+    children:
+      - aaa0ff1c-4071-41f0-beaa-8786461f6bdc
+      - 0521dd97-2a8a-4740-8582-c8b12283bed9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaa0ff1c-4071-41f0-beaa-8786461f6bdc:
+    id: aaa0ff1c-4071-41f0-beaa-8786461f6bdc
+    content: No error in console or UI — silent failure path must be closed as part of the fix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0521dd97-2a8a-4740-8582-c8b12283bed9:
+    id: 0521dd97-2a8a-4740-8582-c8b12283bed9
+    content: Workaround currently appears to require a full app restart
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  808c675d-e973-4b9e-aafb-2de3ddd03375:
+    id: 808c675d-e973-4b9e-aafb-2de3ddd03375
+    content: Technical refinement
+    children:
+      - 0d3c5a42-ccb2-4894-8523-aa12f2c311d1
+      - 99bef675-5e29-4647-a226-a1536b950cdf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d3c5a42-ccb2-4894-8523-aa12f2c311d1:
+    id: 0d3c5a42-ccb2-4894-8523-aa12f2c311d1
+    content: Approach summary
+    children:
+      - 9d5a6738-3cd9-4835-aa18-fdd8b56da18e
+      - 1221e797-48c3-4265-a026-28b3bdabf4d2
+      - f7828769-1444-4ae9-a6e6-913ada5f6b8a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d5a6738-3cd9-4835-aa18-fdd8b56da18e:
+    id: 9d5a6738-3cd9-4835-aa18-fdd8b56da18e
+    content: Root cause is in startWorkflowOnTerminal — "reattach" mode intentionally skips the prompt send, but the route decision sends a post-stop restart down the "focus-existing-tab" → "reattach" branch because stopWorkflow does not clear workflowSessionMap. Green arrow is set unconditionally, hence the silent failure.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1221e797-48c3-4265-a026-28b3bdabf4d2:
+    id: 1221e797-48c3-4265-a026-28b3bdabf4d2
+    content: 'Fix lands in src/renderer/store/tree/actions/workflowExecutionActions.ts: distinguish "rejoin an in-flight run" from "user-initiated (re)start". When no live execution state exists for the node, the send path (launchIfNeededThenSend / maybeClearThenSend) must run even on the focus-existing-tab and resume-in-new-tab routes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7828769-1444-4ae9-a6e6-913ada5f6b8a:
+    id: f7828769-1444-4ae9-a6e6-913ada5f6b8a
+    content: Same code path handles both reproductions — the post-stop case and the kill-terminal-then-resume case both end up in reattach mode, so a single fix in the send-gating logic covers both.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99bef675-5e29-4647-a226-a1536b950cdf:
+    id: 99bef675-5e29-4647-a226-a1536b950cdf
+    content: Complications
+    children:
+      - 9908f487-a2df-4822-9a46-253b666bb0b6
+      - 6cc75a3b-c8a0-45ef-bc30-000de53d12e5
+      - e4aec54f-462c-4fed-8a1f-cdb5773ee356
+      - c19d927c-9612-4a06-9cbe-5d3a95b9f9f2
+      - 6d019aac-a61e-4ab9-9d94-12b07373a40b
+      - 07f48662-1bae-402f-bc8c-ebffc1b875dd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9908f487-a2df-4822-9a46-253b666bb0b6:
+    id: 9908f487-a2df-4822-9a46-253b666bb0b6
+    content: Must not double-send in genuine reattach scenarios where another tab is still mid-run for the same node — gate the new send on workflowExecutionStates[nodeId] being absent, not on route kind alone.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cc75a3b-c8a0-45ef-bc30-000de53d12e5:
+    id: 6cc75a3b-c8a0-45ef-bc30-000de53d12e5
+    content: resume-in-new-tab branch also ends in reattach mode after spawning the new terminal — the fix must cover this path or the kill-terminal repro will remain broken.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4aec54f-462c-4fed-8a1f-cdb5773ee356:
+    id: e4aec54f-462c-4fed-8a1f-cdb5773ee356
+    content: Decide explicitly whether a post-stop restart should call clearSessionManager.maybeClearThenSend (wipe context) or launchIfNeededThenSend (preserve) — current code picks based on terminalAlreadyHasSession, which is correct only if we treat restart as a fresh send on the same session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c19d927c-9612-4a06-9cbe-5d3a95b9f9f2:
+    id: c19d927c-9612-4a06-9cbe-5d3a95b9f9f2
+    content: Surfacing dispatch errors requires plumbing rejection from window.electron.terminalWrite back through the launch managers — currently fire-and-forget; in scope for the "no silent failure" acceptance criterion.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d019aac-a61e-4ab9-9d94-12b07373a40b:
+    id: 6d019aac-a61e-4ab9-9d94-12b07373a40b
+    content: Out of scope — redesigning the workflow lifecycle FSM, changing the route decision contract, broader dispatch telemetry.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07f48662-1bae-402f-bc8c-ebffc1b875dd:
+    id: 07f48662-1bae-402f-bc8c-ebffc1b875dd
+    content: ROI is high — narrow change in one file plus two regression tests already called out in acceptance criteria.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6fb7e61-2598-4f87-bd94-545b92f9ce34:
+    id: d6fb7e61-2598-4f87-bd94-545b92f9ce34
+    content: Notes on TDD red phase
+    children:
+      - 2d184191-ee05-4f52-8283-ca1bef2ec973
+      - 6a1ad765-4bac-4fab-bfe2-a3dd0c938b28
+      - 412affd9-fb1b-4e8e-a2fb-bf6454c30066
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d184191-ee05-4f52-8283-ca1bef2ec973:
+    id: 2d184191-ee05-4f52-8283-ca1bef2ec973
+    content: Added src/renderer/store/tree/actions/tests/workflowRestartSendsPrompt.test.ts with failing tests for stop→start (3 specs) and stop→kill→resume→start (2 specs), plus a guard test that genuine reattach without a stop must not double-send (passes today, preserved).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a1ad765-4bac-4fab-bfe2-a3dd0c938b28:
+    id: 6a1ad765-4bac-4fab-bfe2-a3dd0c938b28
+    content: Dispatch-failure acceptance criteria (no silent failure, indicator gated on dispatch) left as it.todo title-only specs because the wiring of error propagation is uncertain pre-implementation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  412affd9-fb1b-4e8e-a2fb-bf6454c30066:
+    id: 412affd9-fb1b-4e8e-a2fb-bf6454c30066
+    content: Existing assertion in workflowStartSession.test.ts "stopped workflow + live session → continues that session" / "reattach must not re-send the workflow prompt" asserts the current buggy behavior — these will need to be inverted or removed during the fix step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65ee6e06-9c36-4708-9cd0-f706e8b2dbaa:
+    id: 65ee6e06-9c36-4708-9cd0-f706e8b2dbaa
+    content: Implementation report
+    children:
+      - 98dd533a-2d6d-4da6-8acf-112fc9409fe2
+      - 6954115a-de6c-45e4-aa26-9dac746dffea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98dd533a-2d6d-4da6-8acf-112fc9409fe2:
+    id: 98dd533a-2d6d-4da6-8acf-112fc9409fe2
+    content: Implemented
+    children:
+      - 89898fec-2624-45dd-8cd5-c89e1e27bcdd
+      - 7672d47a-a4ff-434d-b9c6-8a057056ba0c
+      - 28a8edfd-a066-49e0-90c4-774a2c8ee5b5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89898fec-2624-45dd-8cd5-c89e1e27bcdd:
+    id: 89898fec-2624-45dd-8cd5-c89e1e27bcdd
+    content: Removed the `if (mode !== "reattach")` guard in startWorkflowOnTerminal so every user-initiated start (focus-existing-tab, resume-in-new-tab, spawn-fresh) runs maybeClearThenSend / launchIfNeededThenSend; isEligibleForExecution already rules out genuinely-running nodes upstream so there is no double-send risk
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7672d47a-a4ff-434d-b9c6-8a057056ba0c:
+    id: 7672d47a-a4ff-434d-b9c6-8a057056ba0c
+    content: Inverted the two existing tests in workflowStartSession.test.ts that asserted the buggy "no resend on reattach" behavior — they now assert the prompt is sent on both focus-existing-tab and resume-in-new-tab routes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28a8edfd-a066-49e0-90c4-774a2c8ee5b5:
+    id: 28a8edfd-a066-49e0-90c4-774a2c8ee5b5
+    content: All 6 new specs in workflowRestartSendsPrompt.test.ts pass; the 4 pre-existing test failures on master (workflowPreferenceIntegration + one decomposition-warning case) are unrelated and were failing before this change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6954115a-de6c-45e4-aa26-9dac746dffea:
+    id: 6954115a-de6c-45e4-aa26-9dac746dffea
+    content: Not implemented in this PR
+    children:
+      - 803c0b18-23a3-4b3d-b1ff-92a173751e3f
+      - e095408f-4dd7-4a09-96f3-898ab84e5858
+      - 244db785-25e6-44a4-95af-5b0b3f00feba
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  803c0b18-23a3-4b3d-b1ff-92a173751e3f:
+    id: 803c0b18-23a3-4b3d-b1ff-92a173751e3f
+    content: Indicator-gated-on-dispatch (green arrow only on actual send) — would require plumbing terminalWrite rejections back through clearSessionManager / claudeLaunchManager and rolling back workflowExecutionStates on failure; left as it.todo
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e095408f-4dd7-4a09-96f3-898ab84e5858:
+    id: e095408f-4dd7-4a09-96f3-898ab84e5858
+    content: Toast on dispatch failure — same plumbing dependency as the indicator change; failures are logged today but not surfaced
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  244db785-25e6-44a4-95af-5b0b3f00feba:
+    id: 244db785-25e6-44a4-95af-5b0b3f00feba
+    content: Did NOT clear workflowSessionMap on stopWorkflow — clearing would force the next start onto spawn-fresh and start a brand-new Claude session instead of continuing the existing one, which contradicts the desired "stop/restart keeps the session, re-sends the prompt" behavior
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ccbe645-ec3d-48a0-889e-3207004273d2:
+    id: 0ccbe645-ec3d-48a0-889e-3207004273d2
+    content: review feedback
+    children:
+      - 3b14e148-d08d-415d-a830-2af535f33e63
+      - e92e676a-49dc-4e2a-a138-183d9f1bf729
+      - 8b1fcf64-eb29-4b8b-8197-b9bc67647915
+      - b6d5d333-412b-4839-a396-0a4ad6557bac
+      - 6c8106d9-f554-4646-b74c-80f721b280ca
+      - 73fd4a53-b963-40dd-9a5e-f920bbdf33a6
+      - f007379b-2f4d-4db6-9b88-745843727ab2
+      - 4fdea171-0e17-4844-bea8-c4dd680b4878
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b14e148-d08d-415d-a830-2af535f33e63:
+    id: 3b14e148-d08d-415d-a830-2af535f33e63
+    content: Code reviewer confirmed the guard removal in startWorkflowOnTerminal is correct — all five call sites (lines 288, 298, 315, 590, 600) are upstream-gated by isEligibleForExecution or findNextDecomposedSibling, so no double-send risk
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e92e676a-49dc-4e2a-a138-183d9f1bf729:
+    id: e92e676a-49dc-4e2a-a138-183d9f1bf729
+    content: Test inversions in workflowStartSession.test.ts validated — assertions match the real autonomousCollaborateInTerminal signature (nodeId, terminalId, flags, undefined) and exercise the new contract rather than just flipping not-called to called
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b1fcf64-eb29-4b8b-8197-b9bc67647915:
+    id: 8b1fcf64-eb29-4b8b-8197-b9bc67647915
+    content: New test file workflowRestartSendsPrompt.test.ts is consistent with existing project pattern of inline harness per workflow test file (no fixtures/ dir exists yet) — harness duplication acceptable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6d5d333-412b-4839-a396-0a4ad6557bac:
+    id: b6d5d333-412b-4839-a396-0a4ad6557bac
+    content: Type-check clean, eslint clean on the three changed files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c8106d9-f554-4646-b74c-80f721b280ca:
+    id: 6c8106d9-f554-4646-b74c-80f721b280ca
+    content: Important issue 1 — clearSession=true on a step routed via resume-in-new-tab now wipes the freshly-resumed Claude context. The fix surfaces a previously-hidden bug — before, maybeClearThenSend was skipped on reattach so /clear never reached the resumed terminal; now it does. No test covers clearSession × resume-in-new-tab. Fix should either suppress /clear when the terminal was just resumed in the current dispatch, or document the semantics and add coverage. Reviewer suggested a "freshly resumed" marker for one dispatch
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  73fd4a53-b963-40dd-9a5e-f920bbdf33a6:
+    id: 73fd4a53-b963-40dd-9a5e-f920bbdf33a6
+    content: 'Important issue 2 — resume-in-new-tab path races Claude startup. After writing claude --resume <sid>\r, bindSessionTab pre-emptively maps the session to the new terminal. That makes terminalAlreadyHasSession === true in startWorkflowOnTerminal, so maybeClearThenSend → sendPrompt fires immediately, bypassing the SessionStart-gated launchIfNeededThenSend path used by spawn-fresh. The prompt may land in the terminal before Claude has finished resuming. Worse than the silent-skip behavior we replaced because it presents as broken integration instead of as a no-op. Reviewer''s preferred fix: defer bindSessionTab until the real SessionStart event for the resumed session, so launchIfNeededThenSend correctly waits for readiness'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f007379b-2f4d-4db6-9b88-745843727ab2:
+    id: f007379b-2f4d-4db6-9b88-745843727ab2
+    content: 'Minor note — the mode: "spawn" | "reattach" | "recurse" parameter on startWorkflowOnTerminal now only influences clearBrokenChainOnNode (line 353) and the log message. Consider a one-line comment near the dispatch block explaining that the send pipeline now runs uniformly across modes, since the parameter still exists and may confuse future readers. Do NOT remove the parameter — clearBrokenChainOnNode still needs it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fdea171-0e17-4844-bea8-c4dd680b4878:
+    id: 4fdea171-0e17-4844-bea8-c4dd680b4878
+    content: Minor note — the inverted assertions in workflowStartSession.test.ts use expect.any(Object) for the flags argument, which loses precision. Could be firmed up to assert resolved flags shape (object with execute/collaborate keys), but not a blocker
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   ed67a423-cede-4882-acbb-eb96ebb0e425:
     cwd: /Users/brianfox/dev/Arborescent
@@ -125329,4 +127261,10 @@ sessionRegistry:
   1957f53c-d0fe-48ad-98e7-d94edb949a03:
     cwd: /Users/brianfox/dev/Arborescent
   3020e5a5-dbcd-4a54-b84b-15a747f4da65:
+    cwd: /Users/brianfox/dev/Arborescent
+  de898a68-a5fc-4166-acd5-90e811fef0c9:
+    cwd: /Users/brianfox/dev/Arborescent
+  7f1d1a53-b2c5-498a-8399-4b2c1c272209:
+    cwd: /Users/brianfox/dev/Arborescent
+  e71187ad-5e66-41ff-94b3-082cf1589690:
     cwd: /Users/brianfox/dev/Arborescent
