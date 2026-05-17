@@ -40,6 +40,28 @@ export interface TreeReadResponse {
   state: SerializedTreeReadState | null;
 }
 
+export type MutationRequest =
+  | { kind: 'add-child'; parentId: string; content: string; position?: number }
+  | { kind: 'append'; content: string }
+  | { kind: 'mark-complete'; status: 'completed' | 'abandoned' }
+  | { kind: 'set-content'; content: string }
+  | { kind: 'delete' }
+  | { kind: 'move'; newParentId: string; position?: number }
+  | { kind: 'set-metadata'; key: string; value: unknown };
+
+export type MutationResult = { ok: true } | { ok: false; error: string };
+
+export interface TreeMutateRequest {
+  requestId: string;
+  nodeId: string;
+  request: MutationRequest;
+}
+
+export interface TreeMutateResponse {
+  requestId: string;
+  result: MutationResult;
+}
+
 export interface ContextMenuParams {
   x: number;
   y: number;
@@ -163,6 +185,8 @@ export interface ElectronAPI {
   // MCP tree-read bridge (main asks renderer for current tree state)
   onMcpTreeReadRequest: (callback: (request: TreeReadRequest) => void) => Unsubscribe;
   respondToMcpTreeRead: (response: TreeReadResponse) => Promise<void>;
+  onMcpTreeMutateRequest: (callback: (request: TreeMutateRequest) => void) => Unsubscribe;
+  respondToMcpTreeMutate: (response: TreeMutateResponse) => Promise<void>;
 
   // Persistent activity log
   appendLog: (entry: AppendLogPayload) => Promise<void>;

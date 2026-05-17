@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import type { ElectronAPI } from '../shared/types/electronApi';
+import type { ElectronAPI, TreeMutateRequest } from '../shared/types/electronApi';
 
 const api: ElectronAPI = {
   platform: process.platform,
@@ -147,6 +147,13 @@ const api: ElectronAPI = {
   },
   respondToMcpTreeRead: (response) =>
     ipcRenderer.invoke('mcp:tree-read-response', response),
+  onMcpTreeMutateRequest: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, data: TreeMutateRequest) => callback(data);
+    ipcRenderer.on('mcp:tree-mutate-request', listener);
+    return () => ipcRenderer.removeListener('mcp:tree-mutate-request', listener);
+  },
+  respondToMcpTreeMutate: (response) =>
+    ipcRenderer.invoke('mcp:tree-mutate-response', response),
   appendLog: (entry) => ipcRenderer.invoke('log:append', entry),
   openLogFile: () => ipcRenderer.invoke('log:open'),
   getLogFilePath: () => ipcRenderer.invoke('log:get-path'),

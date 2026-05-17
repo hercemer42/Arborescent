@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { logger } from './logger';
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { createReadTools, ReadTools, TreeReader } from './mcpReadTools';
+import { createWriteTools, WriteTools, TreeMutator } from './mcpWriteTools';
 
 const MCP_PATH = '/mcp';
 const SERVER_NAME = 'arborescent';
@@ -22,6 +23,7 @@ export class ArborescentMcpServer {
   private bindingRegistry = new SessionBindingRegistry();
   private connected = false;
   private readTools: ReadTools | null = null;
+  private writeTools: WriteTools | null = null;
 
   constructor() {
     this.mcp = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
@@ -79,6 +81,126 @@ export class ArborescentMcpServer {
         inputSchema: sessionIdSchema,
       },
       async (args) => tools.listContexts({ sessionId: args.session_id }),
+    );
+  }
+
+  attachWriteTools(treeReader: TreeReader, treeMutator: TreeMutator): void {
+    if (this.writeTools) {
+      logger.warn('attachWriteTools called twice — ignoring; existing write tools remain in effect', 'McpServer');
+      return;
+    }
+    this.writeTools = createWriteTools({
+      bindingRegistry: this.bindingRegistry,
+      treeReader,
+      treeMutator,
+    });
+    this.registerWriteTools(this.writeTools);
+  }
+
+  private registerWriteTools(tools: WriteTools): void {
+    const sessionIdSchema = { session_id: z.string().min(1).describe('Claude Code session ID') };
+
+    this.mcp.registerTool(
+      'add_child_node',
+      {
+        title: 'Add a child node',
+        description: 'Adds a new child node under the given parent. Only allowed on automatic steps in collaborate or collaborate+execute mode.',
+        inputSchema: {
+          ...sessionIdSchema,
+          parent_id: z.string().min(1).describe('UUID of the parent node'),
+          content: z.string().describe('Content of the new child node'),
+          position: z.number().int().min(0).optional().describe('Position among parent children (0-indexed; defaults to end)'),
+        },
+      },
+      async (args) =>
+        tools.addChildNode({
+          sessionId: args.session_id,
+          parent_id: args.parent_id,
+          content: args.content,
+          position: args.position as number | undefined,
+        }),
+    );
+
+    this.mcp.registerTool(
+      'append_to_node',
+      {
+        title: 'Append to bound node content',
+        description: 'Appends the given content to the bound node. Only allowed on automatic steps in collaborate or collaborate+execute mode.',
+        inputSchema: {
+          ...sessionIdSchema,
+          content: z.string().describe('Text to append to the bound node'),
+        },
+      },
+      async (args) => tools.appendToNode({ sessionId: args.session_id, content: args.content }),
+    );
+
+    this.mcp.registerTool(
+      'mark_step_complete',
+      {
+        title: 'Mark bound step status',
+        description: 'Marks the bound step as completed or abandoned. Only allowed on automatic steps in collaborate or collaborate+execute mode.',
+        inputSchema: {
+          ...sessionIdSchema,
+          status: z.enum(['completed', 'abandoned']).describe('New status for the bound step'),
+        },
+      },
+      async (args) => tools.markStepComplete({ sessionId: args.session_id, status: args.status }),
+    );
+
+    this.mcp.registerTool(
+      'set_node_content',
+      {
+        title: 'Replace bound node content',
+        description: 'Replaces the bound node content. Only allowed in collaborate-only mode on automatic steps.',
+        inputSchema: {
+          ...sessionIdSchema,
+          content: z.string().describe('New content for the bound node'),
+        },
+      },
+      async (args) => tools.setNodeContent({ sessionId: args.session_id, content: args.content }),
+    );
+
+    this.mcp.registerTool(
+      'delete_node',
+      {
+        title: 'Delete the bound node',
+        description: 'Deletes the bound node and its descendants. Only allowed in collaborate-only mode on automatic steps.',
+        inputSchema: sessionIdSchema,
+      },
+      async (args) => tools.deleteNode({ sessionId: args.session_id }),
+    );
+
+    this.mcp.registerTool(
+      'move_node',
+      {
+        title: 'Move the bound node',
+        description: 'Moves the bound node under a new parent. Only allowed in collaborate-only mode on automatic steps.',
+        inputSchema: {
+          ...sessionIdSchema,
+          new_parent_id: z.string().min(1).describe('UUID of the new parent node'),
+          position: z.number().int().min(0).optional().describe('Position among new parent children (0-indexed)'),
+        },
+      },
+      async (args) =>
+        tools.moveNode({
+          sessionId: args.session_id,
+          new_parent_id: args.new_parent_id,
+          position: args.position as number | undefined,
+        }),
+    );
+
+    this.mcp.registerTool(
+      'set_node_metadata',
+      {
+        title: 'Set a metadata key on the bound node',
+        description: 'Sets a metadata key/value on the bound node. Only allowed in collaborate-only mode on automatic steps.',
+        inputSchema: {
+          ...sessionIdSchema,
+          key: z.string().min(1).describe('Metadata key'),
+          value: z.unknown().describe('Metadata value'),
+        },
+      },
+      async (args) => tools.setNodeMetadata({ sessionId: args.session_id, key: args.key, value: args.value }),
     );
   }
 

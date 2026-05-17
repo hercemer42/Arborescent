@@ -23,6 +23,12 @@ import {
   TreeReadResponse,
   TREE_READ_REQUEST_CHANNEL,
 } from './services/mcpTreeReaderBridge';
+import {
+  createMcpTreeMutatorBridge,
+  McpTreeMutatorBridge,
+  TreeMutateResponse,
+  TREE_MUTATE_REQUEST_CHANNEL,
+} from './services/mcpTreeMutatorBridge';
 
 if (started) {
   app.quit();
@@ -44,6 +50,7 @@ let mcpServer: ArborescentMcpServer | null = null;
 let mcpServerPort = 0;
 let rebindBridge: RebindIpcBridge | null = null;
 let treeReaderBridge: McpTreeReaderBridge | null = null;
+let treeMutatorBridge: McpTreeMutatorBridge | null = null;
 
 const DEFAULT_HOOK_PORT = 17832;
 const DEFAULT_MCP_PORT = 17840;
@@ -51,6 +58,7 @@ const DEFAULT_MCP_PORT = 17840;
 // short enough that a never-handled prompt does not block the registry indefinitely.
 const REBIND_DECISION_TIMEOUT_MS = 5 * 60_000;
 const TREE_READ_TIMEOUT_MS = 5_000;
+const TREE_MUTATE_TIMEOUT_MS = 10_000;
 const hookAuthToken = crypto.randomUUID();
 const mcpAuthToken = crypto.randomUUID();
 
@@ -174,6 +182,26 @@ const createWindow = async () => {
       });
       mcpServer.attachReadTools(treeReaderBridge);
       logger.info(`MCP read tools attached on channel ${TREE_READ_REQUEST_CHANNEL}`, 'Main');
+
+      const treeMutateResponders = new Set<(response: TreeMutateResponse) => void>();
+      ipcMain.handle('mcp:tree-mutate-response', (_event, response: TreeMutateResponse) => {
+        for (const responder of treeMutateResponders) responder(response);
+      });
+
+      treeMutatorBridge = createMcpTreeMutatorBridge({
+        sendToRenderer: (channel, payload) => {
+          if (mainWindow && !mainWindow.isDestroyed()) {
+            mainWindow.webContents.send(channel, payload);
+          }
+        },
+        onRendererResponse: (handler) => {
+          treeMutateResponders.add(handler);
+          return () => treeMutateResponders.delete(handler);
+        },
+        timeoutMs: TREE_MUTATE_TIMEOUT_MS,
+      });
+      mcpServer.attachWriteTools(treeReaderBridge, treeMutatorBridge);
+      logger.info(`MCP write tools attached on channel ${TREE_MUTATE_REQUEST_CHANNEL}`, 'Main');
     } else {
       logger.warn('MCP server failed to start — MCP tools will not be reachable from Claude Code', 'Main');
     }
@@ -243,6 +271,7 @@ app.on('before-quit', () => {
   void cleanupTerminals();
   rebindBridge?.dispose();
   treeReaderBridge?.dispose();
+  treeMutatorBridge?.dispose();
   void hookServer?.stop();
   void mcpServer?.stop();
 });
