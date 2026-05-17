@@ -122,6 +122,7 @@ describe('ipcService', () => {
         'Failed to read file: /path/to/nonexistent.txt',
         expect.any(Error),
         'IPC',
+        undefined,
         true
       );
     });

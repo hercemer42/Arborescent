@@ -242,7 +242,7 @@ describe('workflow execution — preference integration', () => {
       vi.advanceTimersByTime(5 * 60 * 1000);
 
       expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('taking longer'),
+        expect.stringContaining('stuck'),
         expect.anything(),
         expect.objectContaining({ actions: expect.any(Array) })
       );
@@ -257,14 +257,14 @@ describe('workflow execution — preference integration', () => {
       vi.advanceTimersByTime(10 * 60 * 1000);
 
       const timeoutCalls = mockAddToast.mock.calls.filter(
-        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('taking longer')
+        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('stuck')
       );
       expect(timeoutCalls).toHaveLength(0);
 
       vi.advanceTimersByTime(5 * 60 * 1000);
 
       expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('taking longer'),
+        expect.stringContaining('stuck'),
         expect.anything(),
         expect.objectContaining({ actions: expect.any(Array) })
       );
@@ -281,7 +281,7 @@ describe('workflow execution — preference integration', () => {
       vi.advanceTimersByTime(1 * 60 * 1000);
 
       const timeoutCalls = mockAddToast.mock.calls.filter(
-        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('taking longer')
+        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('stuck')
       );
       expect(timeoutCalls).toHaveLength(0);
     });
@@ -295,7 +295,7 @@ describe('workflow execution — preference integration', () => {
       vi.advanceTimersByTime(60 * 60 * 1000);
 
       const timeoutCalls = mockAddToast.mock.calls.filter(
-        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('taking longer')
+        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('stuck')
       );
       expect(timeoutCalls).toHaveLength(0);
     });
@@ -317,7 +317,7 @@ describe('workflow execution — preference integration', () => {
       vi.advanceTimersByTime(15 * 60 * 1000);
 
       expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('taking longer'),
+        expect.stringContaining('stuck'),
         expect.anything(),
         expect.objectContaining({ actions: expect.any(Array) })
       );

@@ -1732,9 +1732,9 @@ describe('createWorkflowExecutionActions', () => {
       vi.useRealTimers();
     });
 
-    it('does not fire the warning when at least one step in the workflow has decomposition: true', () => {
+    it('does not fire the warning when the recurse step (or one upstream) has decomposition: true', () => {
       vi.useFakeTimers();
-      state.nodes['step-2'].metadata.decomposition = true;
+      state.nodes['step-1'].metadata.decomposition = true;
       state.nodes['step-1'].children = ['task-a'];
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
