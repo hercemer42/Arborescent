@@ -3,6 +3,7 @@ import { useTerminalStore } from '../../terminal/terminalStore';
 import { useToastStore } from '../../toast/toastStore';
 import { logger } from '../../../services/logger';
 import { getSessionLiveness } from '../../../utils/sessionLiveness';
+import { extractTaskTitle } from '../../../utils/terminalTabTitle';
 
 interface SessionResumeState {
   nodes: Record<string, TreeNode>;
@@ -74,6 +75,13 @@ export function captureSessionOnNode(
   return { ...nodes, [nodeId]: { ...node, metadata: nextMetadata } };
 }
 
+export function resumeTabTitle(node: TreeNode | undefined): string {
+  const taskTitle = node ? extractTaskTitle(node) : '';
+  if (taskTitle) return taskTitle;
+  const { terminals } = useTerminalStore.getState();
+  return `Terminal ${terminals.length + 1}`;
+}
+
 export function createSessionResumeManager(deps: SessionResumeDeps): SessionResumeManager {
   const { get, set } = deps;
 
@@ -104,7 +112,8 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
     }
 
     try {
-      const created = await useTerminalStore.getState().createNewTerminal('Resume', cwd, nodeId);
+      const title = resumeTabTitle(node);
+      const created = await useTerminalStore.getState().createNewTerminal(title, cwd, nodeId);
       if (!created) throw new Error('Resume terminal was not created');
       await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
       bindSessionTab(created.id, sessionId);

@@ -38,6 +38,7 @@ import {
   clearBrokenChainOnNode,
   inheritSessionOnNode,
   markBrokenChainOnNode,
+  resumeTabTitle,
 } from "./workflowSessionResume";
 import { decideWorkflowStartRoute } from "../../../utils/workflowStartRoute";
 import { useTerminalStore } from "../../terminal/terminalStore";
@@ -291,7 +292,8 @@ export const createWorkflowExecutionActions = (
 
     if (route.kind === "resume-in-new-tab" && route.cwd) {
       try {
-        const created = await useTerminalStore.getState().createNewTerminal("Resume", route.cwd, nodeId);
+        const title = resumeTabTitle(node);
+        const created = await useTerminalStore.getState().createNewTerminal(title, route.cwd, nodeId);
         if (!created) throw new Error("Terminal not created");
         await window.electron.terminalWrite(created.id, `claude --resume ${route.sessionId}\r`);
         sessionResumeManager.bindSessionTab(created.id, route.sessionId);
@@ -633,7 +635,9 @@ export const createWorkflowExecutionActions = (
   }
 
   async function openInheritedResumeTerminal(sessionId: string, cwd: string, originNodeId?: string): Promise<string> {
-    const created = await useTerminalStore.getState().createNewTerminal('Resume', cwd, originNodeId);
+    const originNode = originNodeId ? get().nodes[originNodeId] : undefined;
+    const title = resumeTabTitle(originNode);
+    const created = await useTerminalStore.getState().createNewTerminal(title, cwd, originNodeId);
     if (!created) throw new Error('Resume terminal was not created');
     await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
     return created.id;

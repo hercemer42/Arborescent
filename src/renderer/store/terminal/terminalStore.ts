@@ -299,9 +299,26 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     });
     set({ fileStates: clearedFileStates });
 
+    const usedNumbers = new Set<number>();
+    function recordTitle(title: string): void {
+      const match = title.match(/^Terminal (\d+)$/);
+      if (match) usedNumbers.add(parseInt(match[1], 10));
+    }
+    for (const t of get().terminals) recordTitle(t.title);
+    for (const entry of pending) if (entry.title !== 'Resume') recordTitle(entry.title);
+    function allocateTerminalNumber(): number {
+      let n = 1;
+      while (usedNumbers.has(n)) n++;
+      usedNumbers.add(n);
+      return n;
+    }
+
     for (const entry of pending) {
       try {
-        const terminalInfo = await createTerminalService(entry.title, undefined, undefined, entry.cwd);
+        const restoredTitle = entry.title === 'Resume'
+          ? `Terminal ${allocateTerminalNumber()}`
+          : entry.title;
+        const terminalInfo = await createTerminalService(restoredTitle, undefined, undefined, entry.cwd);
         const restored = entry.originNodeId
           ? { ...terminalInfo, originNodeId: entry.originNodeId }
           : terminalInfo;

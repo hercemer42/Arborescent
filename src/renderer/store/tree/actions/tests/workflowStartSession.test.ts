@@ -247,6 +247,23 @@ describe('startWorkflow — auto session routing (PR1)', () => {
 
       expect(state.workflowExecutionStates['task-a']?.terminalTabId).toBe('terminal-1');
     });
+
+    it('does NOT pass the literal "Resume" as the new tab title — uses task title or Terminal N fallback', async () => {
+      mockCreateNewTerminal.mockImplementation(async () => {
+        const created = { id: 'terminal-new' };
+        mockTerminals.push(created);
+        return created;
+      });
+      state.nodes['task-a'].content = 'Audit feedback regression';
+      state.nodes['task-a'].metadata.sessionId = 'sess-1';
+      state.sessionRegistry['sess-1'] = { cwd: '/Users/me/project' };
+
+      await actions.startWorkflow('task-a', 'terminal-1');
+
+      const titleArg = mockCreateNewTerminal.mock.calls[0][0];
+      expect(titleArg).not.toBe('Resume');
+      expect(titleArg).toBe('Audit feedback regression');
+    });
   });
 
   describe('stopped workflow + live session → reuses the tab and re-sends the prompt', () => {
