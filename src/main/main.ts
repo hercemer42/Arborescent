@@ -17,6 +17,12 @@ import {
   REBIND_REQUEST_CHANNEL,
   REBIND_CANCELLED_CHANNEL,
 } from './services/rebindIpcBridge';
+import {
+  createMcpTreeReaderBridge,
+  McpTreeReaderBridge,
+  TreeReadResponse,
+  TREE_READ_REQUEST_CHANNEL,
+} from './services/mcpTreeReaderBridge';
 
 if (started) {
   app.quit();
@@ -37,12 +43,14 @@ let hookServerPort = 0;
 let mcpServer: ArborescentMcpServer | null = null;
 let mcpServerPort = 0;
 let rebindBridge: RebindIpcBridge | null = null;
+let treeReaderBridge: McpTreeReaderBridge | null = null;
 
 const DEFAULT_HOOK_PORT = 17832;
 const DEFAULT_MCP_PORT = 17840;
 // 5 minutes — long enough that a user walking away briefly does not lose their decision,
 // short enough that a never-handled prompt does not block the registry indefinitely.
 const REBIND_DECISION_TIMEOUT_MS = 5 * 60_000;
+const TREE_READ_TIMEOUT_MS = 5_000;
 const hookAuthToken = crypto.randomUUID();
 const mcpAuthToken = crypto.randomUUID();
 
@@ -146,6 +154,26 @@ const createWindow = async () => {
         timeoutMs: REBIND_DECISION_TIMEOUT_MS,
       });
       logger.info(`Rebind IPC bridge active on channel ${REBIND_REQUEST_CHANNEL}`, 'Main');
+
+      const treeReadResponders = new Set<(response: TreeReadResponse) => void>();
+      ipcMain.handle('mcp:tree-read-response', (_event, response: TreeReadResponse) => {
+        for (const responder of treeReadResponders) responder(response);
+      });
+
+      treeReaderBridge = createMcpTreeReaderBridge({
+        sendToRenderer: (channel, payload) => {
+          if (mainWindow && !mainWindow.isDestroyed()) {
+            mainWindow.webContents.send(channel, payload);
+          }
+        },
+        onRendererResponse: (handler) => {
+          treeReadResponders.add(handler);
+          return () => treeReadResponders.delete(handler);
+        },
+        timeoutMs: TREE_READ_TIMEOUT_MS,
+      });
+      mcpServer.attachReadTools(treeReaderBridge);
+      logger.info(`MCP read tools attached on channel ${TREE_READ_REQUEST_CHANNEL}`, 'Main');
     } else {
       logger.warn('MCP server failed to start — MCP tools will not be reachable from Claude Code', 'Main');
     }
@@ -214,6 +242,7 @@ app.on('web-contents-created', (_event, contents) => {
 app.on('before-quit', () => {
   void cleanupTerminals();
   rebindBridge?.dispose();
+  treeReaderBridge?.dispose();
   void hookServer?.stop();
   void mcpServer?.stop();
 });

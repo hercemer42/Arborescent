@@ -24,6 +24,22 @@ export interface RebindRequestEvent {
   newNodeId: string;
 }
 
+export interface TreeReadRequest {
+  requestId: string;
+  nodeId: string;
+}
+
+export interface SerializedTreeReadState {
+  nodes: Record<string, unknown>;
+  rootNodeId: string;
+  ancestorRegistry: Record<string, string[]>;
+}
+
+export interface TreeReadResponse {
+  requestId: string;
+  state: SerializedTreeReadState | null;
+}
+
 export interface ContextMenuParams {
   x: number;
   y: number;
@@ -143,6 +159,10 @@ export interface ElectronAPI {
   onRebindRequest: (callback: (event: RebindRequestEvent) => void) => Unsubscribe;
   onRebindCancelled: (callback: (sessionId: string) => void) => Unsubscribe;
   respondToRebindRequest: (sessionId: string, confirmed: boolean) => Promise<void>;
+
+  // MCP tree-read bridge (main asks renderer for current tree state)
+  onMcpTreeReadRequest: (callback: (request: TreeReadRequest) => void) => Unsubscribe;
+  respondToMcpTreeRead: (response: TreeReadResponse) => Promise<void>;
 
   // Persistent activity log
   appendLog: (entry: AppendLogPayload) => Promise<void>;

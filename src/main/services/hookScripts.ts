@@ -61,12 +61,32 @@ process.stdin.on('end', () => {
   const token = process.env.ARBORESCENT_AUTH_TOKEN || '';
   const source = typeof payload.source === 'string' ? payload.source : 'unknown';
 
-  if (!sessionId || !nodeUuid || !port || !token) {
+  if (!sessionId) {
     process.exit(0);
   }
 
-  postRegisterBinding(port, token, sessionId, nodeUuid, source).finally(() => process.exit(0));
+  emitSessionContext(sessionId).then(() => {
+    if (nodeUuid && port && token) {
+      return postRegisterBinding(port, token, sessionId, nodeUuid, source);
+    }
+  }).finally(() => process.exit(0));
 });
+
+function emitSessionContext(sessionId) {
+  return new Promise((resolve) => {
+    const directive =
+      'You are connected to the Arborescent MCP server. Your Arborescent session_id is "' +
+      sessionId +
+      '". When calling any arborescent MCP tool (get_node, get_tree, list_contexts, and future tools), pass exactly this string as the session_id argument.';
+    const response = {
+      hookSpecificOutput: {
+        hookEventName: 'SessionStart',
+        additionalContext: directive,
+      },
+    };
+    process.stdout.write(JSON.stringify(response), () => resolve());
+  });
+}
 ${HOOK_REGISTER_BINDING_FN}`;
 
 export const USER_PROMPT_SUBMIT_HOOK_SCRIPT = `#!/usr/bin/env node

@@ -128,6 +128,8 @@ global.window.electron = {
   onRebindRequest: vi.fn().mockReturnValue(vi.fn()),
   onRebindCancelled: vi.fn().mockReturnValue(vi.fn()),
   respondToRebindRequest: vi.fn().mockResolvedValue(undefined),
+  onMcpTreeReadRequest: vi.fn().mockReturnValue(vi.fn()),
+  respondToMcpTreeRead: vi.fn().mockResolvedValue(undefined),
   startKeepAwake: vi.fn().mockResolvedValue(undefined),
   stopKeepAwake: vi.fn().mockResolvedValue(undefined),
   appendLog: vi.fn().mockResolvedValue(undefined),

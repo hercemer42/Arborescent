@@ -4,8 +4,10 @@ import { randomUUID, timingSafeEqual } from 'node:crypto';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 // eslint-disable-next-line import/no-unresolved
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import { z } from 'zod';
 import { logger } from './logger';
 import { SessionBindingRegistry } from './sessionBindingRegistry';
+import { createReadTools, ReadTools, TreeReader } from './mcpReadTools';
 
 const MCP_PATH = '/mcp';
 const SERVER_NAME = 'arborescent';
@@ -19,11 +21,65 @@ export class ArborescentMcpServer {
   private authToken = '';
   private bindingRegistry = new SessionBindingRegistry();
   private connected = false;
+  private readTools: ReadTools | null = null;
 
   constructor() {
     this.mcp = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
     this.transport = new StreamableHTTPServerTransport({ sessionIdGenerator: () => randomUUID() });
     this.registerSmokeTool();
+  }
+
+  attachReadTools(treeReader: TreeReader): void {
+    if (this.readTools) {
+      logger.warn('attachReadTools called twice — ignoring; existing read tools remain in effect', 'McpServer');
+      return;
+    }
+    this.readTools = createReadTools({
+      bindingRegistry: this.bindingRegistry,
+      treeReader,
+    });
+    this.registerReadTools(this.readTools);
+  }
+
+  private registerReadTools(tools: ReadTools): void {
+    const sessionIdSchema = { session_id: z.string().min(1).describe('Claude Code session ID') };
+
+    this.mcp.registerTool(
+      'get_node',
+      {
+        title: 'Get bound node',
+        description:
+          'Returns the content, metadata, and current effective mode for the node bound to this session.',
+        inputSchema: sessionIdSchema,
+      },
+      async (args) => tools.getNode({ sessionId: args.session_id }),
+    );
+
+    this.mcp.registerTool(
+      'get_tree',
+      {
+        title: 'Get subtree from bound node',
+        description:
+          'Returns the subtree rooted at the bound node, optionally limited to a depth. Use depth=0 to get just the bound node.',
+        inputSchema: {
+          ...sessionIdSchema,
+          depth: z.number().int().min(0).optional().describe('Maximum tree depth (0 = root only)'),
+        },
+      },
+      async (args) =>
+        tools.getTree({ sessionId: args.session_id, depth: args.depth as number | undefined }),
+    );
+
+    this.mcp.registerTool(
+      'list_contexts',
+      {
+        title: 'List contexts in scope',
+        description:
+          'Returns the contexts declared in the bound tree. The currently-applied context is listed first with applied=true.',
+        inputSchema: sessionIdSchema,
+      },
+      async (args) => tools.listContexts({ sessionId: args.session_id }),
+    );
   }
 
   async start(port: number, authToken: string): Promise<void> {

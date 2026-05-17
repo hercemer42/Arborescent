@@ -137,6 +137,16 @@ const api: ElectronAPI = {
   },
   respondToRebindRequest: (sessionId: string, confirmed: boolean) =>
     ipcRenderer.invoke('mcp:respond-rebind', sessionId, confirmed),
+  onMcpTreeReadRequest: (callback) => {
+    const listener = (
+      _event: Electron.IpcRendererEvent,
+      data: { requestId: string; nodeId: string },
+    ) => callback(data);
+    ipcRenderer.on('mcp:tree-read-request', listener);
+    return () => ipcRenderer.removeListener('mcp:tree-read-request', listener);
+  },
+  respondToMcpTreeRead: (response) =>
+    ipcRenderer.invoke('mcp:tree-read-response', response),
   appendLog: (entry) => ipcRenderer.invoke('log:append', entry),
   openLogFile: () => ipcRenderer.invoke('log:open'),
   getLogFilePath: () => ipcRenderer.invoke('log:get-path'),
