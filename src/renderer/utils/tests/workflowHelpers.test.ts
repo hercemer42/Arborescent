@@ -692,5 +692,40 @@ describe('workflowHelpers', () => {
 
       expect(findNextDecomposedSibling('step-plain', nodes, {})).toBeNull();
     });
+
+    it('filters by originSessionId — only returns siblings whose sessionId matches the originating session', () => {
+      const nodes: Record<string, TreeNode> = {
+        'step-decomp': { id: 'step-decomp', content: 'Decomp', children: ['s1', 's2', 's3'], metadata: { decomposition: true } },
+        's1': { id: 's1', content: 'Group A', children: [], metadata: { sessionId: 'session-A' } },
+        's2': { id: 's2', content: 'Group B', children: [], metadata: { sessionId: 'session-B' } },
+        's3': { id: 's3', content: 'Group A 2', children: [], metadata: { sessionId: 'session-A' } },
+      };
+
+      expect(findNextDecomposedSibling('step-decomp', nodes, {}, undefined, 'session-A')).toBe('s1');
+      expect(findNextDecomposedSibling('step-decomp', nodes, {}, undefined, 'session-B')).toBe('s2');
+    });
+
+    it('does not pick up a foreign-session sibling when its own group is exhausted', () => {
+      const nodes: Record<string, TreeNode> = {
+        'step-decomp': { id: 'step-decomp', content: 'Decomp', children: ['s1', 's2'], metadata: { decomposition: true } },
+        's1': { id: 's1', content: 'Group A', children: [], metadata: { sessionId: 'session-A' } },
+        's2': { id: 's2', content: 'Group B', children: [], metadata: { sessionId: 'session-B' } },
+      };
+      const execStates = {
+        's2': { state: 'running' as const, terminalTabId: 't2' },
+      };
+
+      expect(findNextDecomposedSibling('step-decomp', nodes, execStates, 's2', 'session-B')).toBeNull();
+    });
+
+    it('without an originSessionId, only matches siblings that also have no sessionId (preserves legacy/manual flows)', () => {
+      const nodes: Record<string, TreeNode> = {
+        'step-decomp': { id: 'step-decomp', content: 'Decomp', children: ['s1', 's2'], metadata: { decomposition: true } },
+        's1': { id: 's1', content: 'Stamped', children: [], metadata: { sessionId: 'session-A' } },
+        's2': { id: 's2', content: 'Unstamped', children: [], metadata: {} },
+      };
+
+      expect(findNextDecomposedSibling('step-decomp', nodes, {}, undefined, undefined)).toBe('s2');
+    });
   });
 });

@@ -290,6 +290,36 @@ describe('AcceptFeedbackCommand', () => {
       }
     });
 
+    it('stamps the collaborating node\'s sessionId onto every decomposed sibling so the group stays bound to the originating session', () => {
+      mockState.nodes['collab-node'] = {
+        ...mockState.nodes['collab-node'],
+        metadata: { ...mockState.nodes['collab-node'].metadata, sessionId: 'session-orchestrator' },
+      };
+
+      const newNodes = {
+        'story1': createNode('story1', 'Story 1', []),
+        'story2': createNode('story2', 'Story 2', []),
+        'story3': createNode('story3', 'Story 3', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        ['story1', 'story2', 'story3'],
+        newNodes,
+        getState, setState, triggerAutosave
+      );
+      command.execute();
+
+      const setCall = setState.mock.calls[0][0];
+      const parentChildren = setCall.nodes['parent'].children;
+      const newIds = parentChildren.filter((id: string) => id !== 'sibling');
+
+      expect(newIds).toHaveLength(3);
+      for (const id of newIds) {
+        expect(setCall.nodes[id].metadata.sessionId).toBe('session-orchestrator');
+      }
+    });
+
     it('should preserve sibling order matching the AI response', () => {
       const newNodes = {
         'first': createNode('first', 'First', []),

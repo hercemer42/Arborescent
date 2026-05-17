@@ -341,13 +341,16 @@ export function findNextDecomposedSibling(
   nodes: Record<string, TreeNode>,
   executionStates: Record<string, { state: string }>,
   excludeNodeId?: string,
+  originSessionId?: string,
 ): string | null {
   const step = nodes[stepId];
   if (!step || step.metadata.decomposition !== true) return null;
 
   for (const childId of step.children) {
     if (childId === excludeNodeId) continue;
-    if (!executionStates[childId]) return childId;
+    if (executionStates[childId]) continue;
+    if (nodes[childId]?.metadata.sessionId !== originSessionId) continue;
+    return childId;
   }
   return null;
 }

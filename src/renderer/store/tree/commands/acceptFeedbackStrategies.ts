@@ -104,6 +104,7 @@ export const PRESERVED_METADATA_KEYS = [
   'blueprintColor',
   'isBlueprint',
   'expanded',
+  'sessionId',
 ] as const;
 
 export function collectPreservedMetadata(collaboratingNode: TreeNode): Record<string, unknown> {
