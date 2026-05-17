@@ -63,15 +63,27 @@ function reverseLookupSessionId(
   return null;
 }
 
+const sessionIndexByNodes = new WeakMap<Record<string, TreeNode>, Map<string, string>>();
+
+function getSessionIndex(nodes: Record<string, TreeNode>): Map<string, string> {
+  const cached = sessionIndexByNodes.get(nodes);
+  if (cached) return cached;
+
+  const index = new Map<string, string>();
+  for (const [nodeId, node] of Object.entries(nodes)) {
+    const sessionId = node.metadata.sessionId;
+    if (typeof sessionId !== 'string' || sessionId.length === 0) continue;
+    if (node.metadata.brokenChain === true) continue;
+    if (!index.has(sessionId)) index.set(sessionId, nodeId);
+  }
+  sessionIndexByNodes.set(nodes, index);
+  return index;
+}
+
 function findLiveNodeWithSessionId(
   nodes: Record<string, TreeNode> | undefined,
   sessionId: string,
 ): string | null {
   if (!nodes) return null;
-  for (const [nodeId, node] of Object.entries(nodes)) {
-    if (node.metadata.sessionId !== sessionId) continue;
-    if (node.metadata.brokenChain === true) continue;
-    return nodeId;
-  }
-  return null;
+  return getSessionIndex(nodes).get(sessionId) ?? null;
 }

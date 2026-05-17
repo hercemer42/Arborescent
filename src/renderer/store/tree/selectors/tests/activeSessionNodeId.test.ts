@@ -313,5 +313,23 @@ describe('selectActiveSessionNodeId', () => {
     });
 
     it('tiebreak when multiple non-brokenChain nodes share the same sessionId (recurse-inherited)');
+
+    it('reflects updated ownership when the nodes record is replaced (cache invalidates on new reference)', () => {
+      const sharedMap = { 'sess-1': 'terminal-1' };
+
+      const initialState = withSession(
+        emptyState,
+        sharedMap,
+        { 'node-owner': makeNode('node-owner', { sessionId: 'sess-1' }) },
+      );
+      expect(selectActiveSessionNodeId(initialState, 'terminal-1')).toBe('node-owner');
+
+      const replacedState = withSession(
+        emptyState,
+        sharedMap,
+        { 'node-other': makeNode('node-other', { sessionId: 'sess-other' }) },
+      );
+      expect(selectActiveSessionNodeId(replacedState, 'terminal-1')).toBeNull();
+    });
   });
 });
