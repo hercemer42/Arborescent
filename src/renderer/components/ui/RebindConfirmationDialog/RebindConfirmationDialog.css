@@ -1,0 +1,62 @@
+.rebind-confirmation-body {
+  padding: 1rem 1.25rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rebind-confirmation-body p {
+  margin: 0;
+  color: var(--gray-600);
+}
+
+.rebind-confirmation-node {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  background: var(--gray-100);
+  color: var(--gray-600);
+  word-break: break-word;
+}
+
+.rebind-confirmation-node-previous {
+  border-left: 3px solid var(--amber-500);
+}
+
+.rebind-confirmation-node-new {
+  border-left: 3px solid var(--blue-500);
+}
+
+.rebind-confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.rebind-confirmation-cancel,
+.rebind-confirmation-confirm {
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-600);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.rebind-confirmation-confirm {
+  background: var(--blue-500);
+  color: var(--white);
+  border-color: var(--blue-500);
+}
+
+.rebind-confirmation-cancel:hover {
+  background: var(--gray-100);
+}
+
+.rebind-confirmation-confirm:hover {
+  background: var(--blue-900);
+  border-color: var(--blue-900);
+}

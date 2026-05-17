@@ -122,6 +122,21 @@ const api: ElectronAPI = {
     ipcRenderer.on('hook-event', listener);
     return () => ipcRenderer.removeListener('hook-event', listener);
   },
+  onRebindRequest: (callback) => {
+    const listener = (
+      _event: Electron.IpcRendererEvent,
+      data: { sessionId: string; previousNodeId: string; newNodeId: string },
+    ) => callback(data);
+    ipcRenderer.on('mcp:rebind-request', listener);
+    return () => ipcRenderer.removeListener('mcp:rebind-request', listener);
+  },
+  onRebindCancelled: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, sessionId: string) => callback(sessionId);
+    ipcRenderer.on('mcp:rebind-cancelled', listener);
+    return () => ipcRenderer.removeListener('mcp:rebind-cancelled', listener);
+  },
+  respondToRebindRequest: (sessionId: string, confirmed: boolean) =>
+    ipcRenderer.invoke('mcp:respond-rebind', sessionId, confirmed),
   appendLog: (entry) => ipcRenderer.invoke('log:append', entry),
   openLogFile: () => ipcRenderer.invoke('log:open'),
   getLogFilePath: () => ipcRenderer.invoke('log:get-path'),

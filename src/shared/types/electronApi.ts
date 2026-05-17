@@ -18,6 +18,12 @@ export interface HookEventPayload {
   source?: string;
 }
 
+export interface RebindRequestEvent {
+  sessionId: string;
+  previousNodeId: string;
+  newNodeId: string;
+}
+
 export interface ContextMenuParams {
   x: number;
   y: number;
@@ -132,6 +138,11 @@ export interface ElectronAPI {
 
   // Hook server bridge
   onHookEvent: (callback: (event: HookEventPayload) => void) => Unsubscribe;
+
+  // MCP rebind dialog bridge
+  onRebindRequest: (callback: (event: RebindRequestEvent) => void) => Unsubscribe;
+  onRebindCancelled: (callback: (sessionId: string) => void) => Unsubscribe;
+  respondToRebindRequest: (sessionId: string, confirmed: boolean) => Promise<void>;
 
   // Persistent activity log
   appendLog: (entry: AppendLogPayload) => Promise<void>;

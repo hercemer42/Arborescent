@@ -7,6 +7,7 @@ import { SearchBar } from "./components/SearchBar";
 import { AppMenuBar } from "./components/MenuBar";
 import { CustomizeDialogContainer } from "./components/ui/CustomizeDialog/CustomizeDialogContainer";
 import { KeyboardShortcutsDialog } from "./components/KeyboardShortcuts";
+import { RebindConfirmationContainer } from "./components/ui/RebindConfirmationDialog";
 import { useToastStore } from "./store/toast/toastStore";
 import { usePanelStore } from "./store/panel/panelStore";
 import { useSearchStore } from "./store/search/searchStore";
@@ -78,6 +79,7 @@ export function App() {
         isOpen={isKeyboardShortcutsOpen}
         onClose={closeKeyboardShortcuts}
       />
+      <RebindConfirmationContainer />
     </div>
   );
 }
