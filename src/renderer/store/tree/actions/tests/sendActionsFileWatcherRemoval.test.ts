@@ -88,8 +88,6 @@ function makeActions(state: TreeState) {
 beforeEach(() => {
   vi.clearAllMocks();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (window.electron as any).enqueuePrompt = vi.fn().mockResolvedValue(undefined);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window.electron as any).createTempFile = vi.fn().mockResolvedValue('/tmp/feedback-test.md');
 });
 

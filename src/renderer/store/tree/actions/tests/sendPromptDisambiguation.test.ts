@@ -49,7 +49,6 @@ describe('send prompt — write-back disambiguation', () => {
         stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
         createTempFile: vi.fn().mockResolvedValue('/tmp/arborescent/feedback.md'),
         readTempFile: vi.fn().mockResolvedValue(null),
-        enqueuePrompt: vi.fn().mockResolvedValue(undefined),
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
@@ -104,7 +103,7 @@ describe('send prompt — write-back disambiguation', () => {
       summaryDateTo: null,
       summaryVisibleNodeIds: null,
       workflowExecutionStates: {},
-      workflowSessionMap: { 'sess-1': 'terminal-1' },
+      workflowSessionMap: {},
       terminalNodeAssignments: {},
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
@@ -135,60 +134,66 @@ describe('send prompt — write-back disambiguation', () => {
 
   describe('collaborate-mode terminal prompt', () => {
     it('tells the AI to base its submission on CONTENT, not on INSTRUCTIONS', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'collab-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1');
 
-      const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/Base your submission on the list from the CONTENT section, not from the INSTRUCTIONS section/);
     });
   });
 
   describe('execute-mode terminal prompt', () => {
     it('tells the AI to preserve the CONTENT list and only change status markers', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
-      const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/only change status markers/);
     });
 
     it('tells the AI NOT to replace CONTENT with a "what was done" summary', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
-      const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/Do NOT replace the CONTENT list with a summary/);
     });
 
     it('explicitly forbids including the CONTEXT or INSTRUCTIONS sections in the submission', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
-      const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/Do NOT include the CONTEXT or INSTRUCTIONS sections/i);
     });
 
     it('tells the AI the submission root MUST be the CONTENT root (not a re-emitted CONTEXT root)', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
-      const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/submission's root heading MUST be the CONTENT section's root/i);
     });
   });
 
   describe('collaborate-mode write-back also forbids CONTEXT echo', () => {
     it('explicitly forbids including the CONTEXT or INSTRUCTIONS sections in the submission', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'collab-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1');
 
-      const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/Do NOT include the CONTEXT or INSTRUCTIONS sections/i);
     });
   });

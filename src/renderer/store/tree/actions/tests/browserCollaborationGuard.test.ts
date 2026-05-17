@@ -68,7 +68,6 @@ describe('browser collaboration guard across files', () => {
         stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
         createTempFile: vi.fn().mockResolvedValue('/tmp/feedback.md'),
         readTempFile: vi.fn().mockResolvedValue(null),
-        enqueuePrompt: vi.fn().mockResolvedValue(undefined),
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
@@ -107,7 +106,7 @@ describe('browser collaboration guard across files', () => {
       summaryDateTo: null,
       summaryVisibleNodeIds: null,
       workflowExecutionStates: {},
-      workflowSessionMap: { 'sess-1': 'terminal-1' },
+      workflowSessionMap: {},
       terminalNodeAssignments: {},
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,

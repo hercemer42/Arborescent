@@ -89,8 +89,6 @@ export interface ProposalResponse {
   result: { ok: true; proposalId: string } | { ok: false; error: string };
 }
 
-export type PromptQueueSource = 'workflow' | 'manual' | 'manual-action';
-
 export interface ContextMenuParams {
   x: number;
   y: number;
@@ -214,8 +212,6 @@ export interface ElectronAPI {
   respondToMcpStepOutputApply: (response: StepOutputApplyResponse) => Promise<void>;
   onMcpProposalRequest: (callback: (request: ProposalRequest) => void) => Unsubscribe;
   respondToMcpProposal: (response: ProposalResponse) => Promise<void>;
-  enqueuePrompt: (sessionId: string, content: string, source: PromptQueueSource) => Promise<void>;
-  onPromptEnqueued: (callback: (sessionId: string) => void) => Unsubscribe;
 
   // Persistent activity log
   appendLog: (entry: AppendLogPayload) => Promise<void>;
