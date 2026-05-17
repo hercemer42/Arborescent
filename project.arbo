@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-17T07:49:46.548Z'
+updated: '2026-05-17T07:54:17.862Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -27144,8 +27144,7 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children:
-      - 714331f1-827f-456b-b95c-7a3e03af2ac9
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -81498,6 +81497,7 @@ nodes:
     content: User story creation
     children:
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
+      - ca72e280-18cf-4459-ae98-3f60eefaad5e
     metadata:
       status: pending
       expanded: true
@@ -84559,6 +84559,7 @@ nodes:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
     children:
+      - 714331f1-827f-456b-b95c-7a3e03af2ac9
       - cb63e872-6439-414b-9253-5aaea698ec2f
       - e5920e99-f384-412f-b66e-f6702b444ec8
     metadata:
@@ -84572,23 +84573,23 @@ nodes:
     id: e9deb148-5fe4-4a5c-ab6e-9f4c1f232f72
     content: Technical decomposition
     children:
+      - 3eb12b15-7262-4c88-86ca-a5d574a58655
+      - 6732d422-b7e5-487f-a437-456a4dab8ba7
       - d1305b5d-3a57-436d-a311-cdc445948980
       - daf29b28-0f3a-4dc1-b201-1b57efce9260
       - bb7ce08d-f14f-4393-87b7-64f62f8e2dcf
       - cdb11a82-b006-45fd-a6ba-1baa2e8392bb
+      - 8fb0f767-a6a5-42c2-9fcb-677f6b64f8c8
       - d7b97d7f-46f8-444a-a2b6-088831cd6db2
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
       blueprintIcon: Scissors
       blueprintColor: '#ef4444'
       isBlueprint: true
-      collaborate: true
-      execute: false
-      feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-e9deb148-5fe4-4a5c-ab6e-9f4c1f232f72.arbo
   9773cf52-2f90-46a0-b8e0-d38673eb58ec:
     id: 9773cf52-2f90-46a0-b8e0-d38673eb58ec
     content: PR1 - Independent collaborate and execute flags on context — data, prompt composition, four-state behaviour
@@ -114058,190 +114059,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  d1305b5d-3a57-436d-a311-cdc445948980:
-    id: d1305b5d-3a57-436d-a311-cdc445948980
-    content: Split the following user story into technical sub tasks
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  daf29b28-0f3a-4dc1-b201-1b57efce9260:
-    id: daf29b28-0f3a-4dc1-b201-1b57efce9260
-    content: Each task will represent a PR
-    children:
-      - 5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7:
-    id: 5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7
-    content: Do not create the PR yet
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  bb7ce08d-f14f-4393-87b7-64f62f8e2dcf:
-    id: bb7ce08d-f14f-4393-87b7-64f62f8e2dcf
-    content: Default to a single PR — the bar for splitting is high
-    children:
-      - 75802fdf-b49a-445a-85d6-81af1e1e0c8a
-      - 340764d4-714b-424f-9287-9045a309d0b5
-      - 09b1cf72-7175-4cab-983a-4d0caa028088
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  4a2b65f2-054e-471a-9a42-dce6b1819c0f:
-    id: 4a2b65f2-054e-471a-9a42-dce6b1819c0f
-    content: Subtasks touch overlapping code paths and would have to be reviewed together to make sense
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  340764d4-714b-424f-9287-9045a309d0b5:
-    id: 340764d4-714b-424f-9287-9045a309d0b5
-    content: Do not treat each bullet in the user story as a separate PR — bullets are scope, not PR boundaries
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  cdb11a82-b006-45fd-a6ba-1baa2e8392bb:
-    id: cdb11a82-b006-45fd-a6ba-1baa2e8392bb
-    content: Only decompose if it makes sense to have each subtask as a separate PR
-    children:
-      - ff3e328e-6f50-4407-9b1c-c6981c306796
-      - 0fbda90f-e8c4-4ecd-8169-3a8072ef3011
-      - 5cde239f-44a0-438c-abf7-c033c6a58125
-      - 1d886d67-db61-4deb-81a4-aa5280d69c3d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  0fbda90f-e8c4-4ecd-8169-3a8072ef3011:
-    id: 0fbda90f-e8c4-4ecd-8169-3a8072ef3011
-    content: Each PR must be independently testable
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  5cde239f-44a0-438c-abf7-c033c6a58125:
-    id: 5cde239f-44a0-438c-abf7-c033c6a58125
-    content: If the user story can be implemented all together in one PR, output the spec exactly as received — no PR# wrapping, no "User story" duplication, no decomposition commentary, no extra nodes. "Do nothing" means pass-through, not "annotate the decision".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  1d886d67-db61-4deb-81a4-aa5280d69c3d:
-    id: 1d886d67-db61-4deb-81a4-aa5280d69c3d
-    content: Reason as a senior engineer decomposing a user story into implementable tasks
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  d7b97d7f-46f8-444a-a2b6-088831cd6db2:
-    id: d7b97d7f-46f8-444a-a2b6-088831cd6db2
-    content: If splitting — formatting rules below apply only when producing two or more PRs
-    children:
-      - 62223ad5-ba18-4707-b842-868e0c3acb27
-      - a6a73a47-c72a-481f-a2f2-0493f62f6b9c
-      - c26c2846-0413-417b-9917-c171fd732c71
-      - 681dc77a-abe6-4706-9caf-eb51be43025b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  62223ad5-ba18-4707-b842-868e0c3acb27:
-    id: 62223ad5-ba18-4707-b842-868e0c3acb27
-    content: Each task should be decomposed into a separate node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  a6a73a47-c72a-481f-a2f2-0493f62f6b9c:
-    id: a6a73a47-c72a-481f-a2f2-0493f62f6b9c
-    content: The parent node of each PR should start with PR#, then user story title.
-    children:
-      - b88c5f15-c641-4217-bfd6-69cc2ab960ad
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  b88c5f15-c641-4217-bfd6-69cc2ab960ad:
-    id: b88c5f15-c641-4217-bfd6-69cc2ab960ad
-    content: For example, 'PR2 - The ticket title'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  c26c2846-0413-417b-9917-c171fd732c71:
-    id: c26c2846-0413-417b-9917-c171fd732c71
-    content: Each task should duplicate the user story under a node 'User story'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  681dc77a-abe6-4706-9caf-eb51be43025b:
-    id: 681dc77a-abe6-4706-9caf-eb51be43025b
-    content: 'Add an instruction at the end :'
-    children:
-      - 6b6da166-a438-4d10-8c94-ddfafe2ea66d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  6b6da166-a438-4d10-8c94-ddfafe2ea66d:
-    id: 6b6da166-a438-4d10-8c94-ddfafe2ea66d
-    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
   3909ade1-ac5a-40c9-b63e-3e807afa970d:
     id: 3909ade1-ac5a-40c9-b63e-3e807afa970d
     content: worktree
@@ -116911,6 +116728,7 @@ nodes:
       - 5566fa98-3512-4a00-8b46-b39c6972c64b
       - 410e69ee-7dd3-4931-bb65-8b9fe5311d45
       - 802243ab-dfd9-498a-8385-9fc8b9bd2b69
+      - f433e0a9-2c76-4bdd-a262-9d84c198a61c
     metadata:
       status: pending
       isBlueprint: true
@@ -126023,8 +125841,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - f433e0a9-2c76-4bdd-a262-9d84c198a61c
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -126032,58 +125849,6 @@ nodes:
       stepType: autonomous
       recurse: false
       expanded: true
-  ff3e328e-6f50-4407-9b1c-c6981c306796:
-    id: ff3e328e-6f50-4407-9b1c-c6981c306796
-    content: Keep in mind we don't have to push to remote for each PR
-    children:
-      - a51c850f-864c-4c2c-9fc7-93cf1735d780
-    metadata:
-      status: pending
-      isBlueprint: true
-  a51c850f-864c-4c2c-9fc7-93cf1735d780:
-    id: a51c850f-864c-4c2c-9fc7-93cf1735d780
-    content: So it doesn't matter if the feature won't work until all PRs are done
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  75802fdf-b49a-445a-85d6-81af1e1e0c8a:
-    id: 75802fdf-b49a-445a-85d6-81af1e1e0c8a
-    content: The only reason to split is if the work is too much to do in one context window
-    children:
-      - 4e11c3e2-60fa-495a-be65-7497d9450297
-    metadata:
-      status: pending
-      isBlueprint: true
-  04ed9a68-f71a-4366-ab4e-c7f6207de80b:
-    id: 04ed9a68-f71a-4366-ab4e-c7f6207de80b
-    content: The feature stays broken until all subtasks land
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  09b1cf72-7175-4cab-983a-4d0caa028088:
-    id: 09b1cf72-7175-4cab-983a-4d0caa028088
-    content: When in doubt, do not split; ask the user
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  4e11c3e2-60fa-495a-be65-7497d9450297:
-    id: 4e11c3e2-60fa-495a-be65-7497d9450297
-    content: 'If that is not the case, don''t split if :'
-    children:
-      - 04ed9a68-f71a-4366-ab4e-c7f6207de80b
-      - 4a2b65f2-054e-471a-9a42-dce6b1819c0f
-    metadata:
-      status: pending
-      isBlueprint: true
   410e69ee-7dd3-4931-bb65-8b9fe5311d45:
     id: 410e69ee-7dd3-4931-bb65-8b9fe5311d45
     content: 'Bug: Decomposed nodes don''t auto-play and terminal stays bound to completed parent'
@@ -126747,6 +126512,7 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
+      brokenChain: true
   5b750841-472a-4a60-bf39-af46b8d6aea6:
     id: 5b750841-472a-4a60-bf39-af46b8d6aea6
     content: What this PR delivers
@@ -131798,6 +131564,370 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  3eb12b15-7262-4c88-86ca-a5d574a58655:
+    id: 3eb12b15-7262-4c88-86ca-a5d574a58655
+    content: Reason as a senior engineer decomposing a user story into implementable tasks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6732d422-b7e5-487f-a437-456a4dab8ba7:
+    id: 6732d422-b7e5-487f-a437-456a4dab8ba7
+    content: Before deciding to split, verify each acceptance criterion is not already satisfied by existing code
+    children:
+      - 36b121c2-796c-4c4e-a45a-c5cb2dacb451
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  36b121c2-796c-4c4e-a45a-c5cb2dacb451:
+    id: 36b121c2-796c-4c4e-a45a-c5cb2dacb451
+    content: A criterion that describes a property of the system may already hold — that property does not need its own PR
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d1305b5d-3a57-436d-a311-cdc445948980:
+    id: d1305b5d-3a57-436d-a311-cdc445948980
+    content: Split the following user story into technical sub tasks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  daf29b28-0f3a-4dc1-b201-1b57efce9260:
+    id: daf29b28-0f3a-4dc1-b201-1b57efce9260
+    content: Each task will represent a PR
+    children:
+      - 5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7:
+    id: 5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7
+    content: Do not create the PR yet
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  bb7ce08d-f14f-4393-87b7-64f62f8e2dcf:
+    id: bb7ce08d-f14f-4393-87b7-64f62f8e2dcf
+    content: Default to a single PR — the bar for splitting is high
+    children:
+      - 75802fdf-b49a-445a-85d6-81af1e1e0c8a
+      - 340764d4-714b-424f-9287-9045a309d0b5
+      - 09b1cf72-7175-4cab-983a-4d0caa028088
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  75802fdf-b49a-445a-85d6-81af1e1e0c8a:
+    id: 75802fdf-b49a-445a-85d6-81af1e1e0c8a
+    content: The only reason to split is if the work is too much to do in one context window
+    children:
+      - 4e11c3e2-60fa-495a-be65-7497d9450297
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4e11c3e2-60fa-495a-be65-7497d9450297:
+    id: 4e11c3e2-60fa-495a-be65-7497d9450297
+    content: Sizing heuristic — one PR should fit one focused session of disciplined work
+    children:
+      - 04ed9a68-f71a-4366-ab4e-c7f6207de80b
+      - 4a2b65f2-054e-471a-9a42-dce6b1819c0f
+      - cf608ea7-aec8-463e-8c0e-ae5a5464c844
+      - d9a4b7b0-0b85-4c76-aa1e-e6eb30a0bee8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  04ed9a68-f71a-4366-ab4e-c7f6207de80b:
+    id: 04ed9a68-f71a-4366-ab4e-c7f6207de80b
+    content: Roughly 500–1000 net lines of production code plus tests, or 5–10 touched files
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4a2b65f2-054e-471a-9a42-dce6b1819c0f:
+    id: 4a2b65f2-054e-471a-9a42-dce6b1819c0f
+    content: Introducing new infrastructure (new server, new IPC pattern, new external dependency, new transport choice) counts as one session even when the line count is small — the design surface is the cost
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cf608ea7-aec8-463e-8c0e-ae5a5464c844:
+    id: cf608ea7-aec8-463e-8c0e-ae5a5464c844
+    content: Retiring infrastructure (deleting a service, removing a watcher) counts the cleanup plus the migration of every caller as part of the size
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d9a4b7b0-0b85-4c76-aa1e-e6eb30a0bee8:
+    id: d9a4b7b0-0b85-4c76-aa1e-e6eb30a0bee8
+    content: When unsure, estimate generously — an extra PR is cheaper than an oversized one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  340764d4-714b-424f-9287-9045a309d0b5:
+    id: 340764d4-714b-424f-9287-9045a309d0b5
+    content: Do not treat each bullet in the user story as a separate PR — bullets are scope, not PR boundaries
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  09b1cf72-7175-4cab-983a-4d0caa028088:
+    id: 09b1cf72-7175-4cab-983a-4d0caa028088
+    content: When in doubt, do not split; ask the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cdb11a82-b006-45fd-a6ba-1baa2e8392bb:
+    id: cdb11a82-b006-45fd-a6ba-1baa2e8392bb
+    content: Only decompose if it makes sense to have each subtask as a separate PR
+    children:
+      - ff3e328e-6f50-4407-9b1c-c6981c306796
+      - 0fbda90f-e8c4-4ecd-8169-3a8072ef3011
+      - 5cde239f-44a0-438c-abf7-c033c6a58125
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ff3e328e-6f50-4407-9b1c-c6981c306796:
+    id: ff3e328e-6f50-4407-9b1c-c6981c306796
+    content: Keep in mind we don't have to push to remote for each PR
+    children:
+      - a51c850f-864c-4c2c-9fc7-93cf1735d780
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a51c850f-864c-4c2c-9fc7-93cf1735d780:
+    id: a51c850f-864c-4c2c-9fc7-93cf1735d780
+    content: So it doesn't matter if the feature won't work until all PRs are done
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0fbda90f-e8c4-4ecd-8169-3a8072ef3011:
+    id: 0fbda90f-e8c4-4ecd-8169-3a8072ef3011
+    content: Each PR must be independently testable
+    children:
+      - 11ff0b38-54d6-4705-a2f0-f811de908320
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  11ff0b38-54d6-4705-a2f0-f811de908320:
+    id: 11ff0b38-54d6-4705-a2f0-f811de908320
+    content: Independently testable means the PR's own acceptance criteria can be verified without merging the next PR — even if the overall feature is still incomplete
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5cde239f-44a0-438c-abf7-c033c6a58125:
+    id: 5cde239f-44a0-438c-abf7-c033c6a58125
+    content: If the user story can be implemented all together in one PR, output the spec exactly as received — no PR# wrapping, no "User story" duplication, no decomposition commentary, no extra nodes. "Do nothing" means pass-through, not "annotate the decision".
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8fb0f767-a6a5-42c2-9fcb-677f6b64f8c8:
+    id: 8fb0f767-a6a5-42c2-9fcb-677f6b64f8c8
+    content: After splitting, verify each resulting PR still fits one session
+    children:
+      - 2a88d5c1-d979-418d-9765-6a838eb32b4e
+      - 443ec667-7d12-4352-ac98-cf6911d95721
+      - 8fbeceaf-41a2-4846-8a23-bc67f57c4f1c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2a88d5c1-d979-418d-9765-6a838eb32b4e:
+    id: 2a88d5c1-d979-418d-9765-6a838eb32b4e
+    content: Re-estimate every PR against the sizing heuristic before finalizing the split
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  443ec667-7d12-4352-ac98-cf6911d95721:
+    id: 443ec667-7d12-4352-ac98-cf6911d95721
+    content: If any PR still exceeds one session, split it further
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8fbeceaf-41a2-4846-8a23-bc67f57c4f1c:
+    id: 8fbeceaf-41a2-4846-8a23-bc67f57c4f1c
+    content: Repeat until every PR fits one session — a coarse split that fails the heuristic is worse than a finer split
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d7b97d7f-46f8-444a-a2b6-088831cd6db2:
+    id: d7b97d7f-46f8-444a-a2b6-088831cd6db2
+    content: If splitting — formatting rules below apply only when producing two or more PRs
+    children:
+      - 62223ad5-ba18-4707-b842-868e0c3acb27
+      - a6a73a47-c72a-481f-a2f2-0493f62f6b9c
+      - c26c2846-0413-417b-9917-c171fd732c71
+      - 681dc77a-abe6-4706-9caf-eb51be43025b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  62223ad5-ba18-4707-b842-868e0c3acb27:
+    id: 62223ad5-ba18-4707-b842-868e0c3acb27
+    content: Each task should be decomposed into a separate node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a6a73a47-c72a-481f-a2f2-0493f62f6b9c:
+    id: a6a73a47-c72a-481f-a2f2-0493f62f6b9c
+    content: The parent node of each PR should start with PR#, then user story title.
+    children:
+      - b88c5f15-c641-4217-bfd6-69cc2ab960ad
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b88c5f15-c641-4217-bfd6-69cc2ab960ad:
+    id: b88c5f15-c641-4217-bfd6-69cc2ab960ad
+    content: For example, 'PR2 - The ticket title'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c26c2846-0413-417b-9917-c171fd732c71:
+    id: c26c2846-0413-417b-9917-c171fd732c71
+    content: Each task should duplicate the user story under a node 'User story'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  681dc77a-abe6-4706-9caf-eb51be43025b:
+    id: 681dc77a-abe6-4706-9caf-eb51be43025b
+    content: 'Add an instruction at the end :'
+    children:
+      - 6b6da166-a438-4d10-8c94-ddfafe2ea66d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6b6da166-a438-4d10-8c94-ddfafe2ea66d:
+    id: 6b6da166-a438-4d10-8c94-ddfafe2ea66d
+    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ca72e280-18cf-4459-ae98-3f60eefaad5e:
+    id: ca72e280-18cf-4459-ae98-3f60eefaad5e
+    content: Bug - decomposed node starts to play in a session other than the one the decomposition happened in
+    children:
+      - 73f40203-f4a8-4a13-a6e3-a1dc2a979623
+      - 4a3c9689-0873-4d62-a166-642aadac5333
+    metadata:
+      status: pending
+  73f40203-f4a8-4a13-a6e3-a1dc2a979623:
+    id: 73f40203-f4a8-4a13-a6e3-a1dc2a979623
+    content: Happens when that sessions task passes the 'recurse' node
+    children: []
+    metadata:
+      status: pending
+  4a3c9689-0873-4d62-a166-642aadac5333:
+    id: 4a3c9689-0873-4d62-a166-642aadac5333
+    content: Recurse should only happen for nodes that have siblings bound by groupid
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   800e1923-b4b9-4783-88ea-b9d6ad679859:
     cwd: /Users/brianfox/dev/Arborescent
