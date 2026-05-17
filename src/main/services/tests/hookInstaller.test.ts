@@ -233,3 +233,88 @@ describe('installHooks — boundary inputs', () => {
     expect(settings.hooks).toBeDefined();
   });
 });
+
+describe('installHooks — Stop hook (PR6)', () => {
+  it('returns a stop path under the user-data hooks directory alongside the other two', async () => {
+    const paths = await installHooks({ userDataPath, homePath }) as { sessionStart: string; userPromptSubmit: string; stop: string };
+    expect(paths.stop).toBeDefined();
+    expect(path.dirname(paths.stop)).toBe(path.join(userDataPath, 'hooks'));
+  });
+
+  it('writes a Stop entry pointing at the Arborescent-shipped Stop script', async () => {
+    const paths = await installHooks({ userDataPath, homePath }) as { stop: string };
+    const settings = (await readSettings())! as { hooks: Record<string, Array<{ hooks: Array<{ command: string }> }>> };
+    const stop = settings.hooks.Stop;
+    expect(stop).toBeDefined();
+    expect(stop[0].hooks[0].command).toBe(paths.stop);
+  });
+
+  it('the Stop hook script file is executable', async () => {
+    const paths = await installHooks({ userDataPath, homePath }) as { stop: string };
+    const stat = await fs.stat(paths.stop);
+    expect(stat.mode & 0o111).not.toBe(0);
+  });
+
+  it('preserves user-added Stop entries — Arborescent\'s entry is appended', async () => {
+    await writeSettings({
+      hooks: {
+        Stop: [
+          { matcher: '*', hooks: [{ type: 'command', command: '/u/my-stop-hook.sh' }] },
+        ],
+      },
+    });
+
+    await installHooks({ userDataPath, homePath });
+
+    const settings = (await readSettings())! as { hooks: { Stop: Array<{ hooks: Array<{ command: string }> }> } };
+    const commands = settings.hooks.Stop.flatMap((g) => g.hooks.map((h) => h.command));
+    expect(commands).toContain('/u/my-stop-hook.sh');
+    expect(commands.some((c) => c.includes('arborescent-stop'))).toBe(true);
+  });
+
+  it('two installations in a row keep a single Arborescent Stop entry (idempotent)', async () => {
+    await installHooks({ userDataPath, homePath });
+    await installHooks({ userDataPath, homePath });
+
+    const settings = (await readSettings())! as { hooks: { Stop: Array<{ hooks: Array<{ command: string }> }> } };
+    const arborescentCount = settings.hooks.Stop
+      .flatMap((g) => g.hooks.map((h) => h.command))
+      .filter((c) => c.includes('arborescent-stop'))
+      .length;
+    expect(arborescentCount).toBe(1);
+  });
+
+  it('preserves Arborescent\'s SessionStart and UserPromptSubmit entries when installing Stop', async () => {
+    const paths = await installHooks({ userDataPath, homePath }) as { sessionStart: string; userPromptSubmit: string; stop: string };
+    const settings = (await readSettings())! as { hooks: Record<string, Array<{ hooks: Array<{ command: string }> }>> };
+    const all = (event: string) => settings.hooks[event].flatMap((g) => g.hooks.map((h) => h.command));
+    expect(all('SessionStart')).toContain(paths.sessionStart);
+    expect(all('UserPromptSubmit')).toContain(paths.userPromptSubmit);
+    expect(all('Stop')).toContain(paths.stop);
+  });
+
+  it('refuses to merge when settings.hooks.Stop is present but not an array', async () => {
+    await writeSettings({ hooks: { Stop: { single: 'object' } } });
+    await expect(installHooks({ userDataPath, homePath })).rejects.toThrow(/not an array/);
+  });
+});
+
+describe('uninstallHooks — Stop hook (PR6)', () => {
+  it('removes only the Arborescent Stop entry, leaving user entries intact', async () => {
+    await writeSettings({
+      hooks: {
+        Stop: [
+          { matcher: '*', hooks: [{ type: 'command', command: '/u/my-stop-hook.sh' }] },
+        ],
+      },
+    });
+    await installHooks({ userDataPath, homePath });
+
+    await uninstallHooks({ userDataPath, homePath });
+
+    const settings = (await readSettings())! as { hooks: { Stop: Array<{ hooks: Array<{ command: string }> }> } };
+    const commands = settings.hooks.Stop.flatMap((g) => g.hooks.map((h) => h.command));
+    expect(commands).toContain('/u/my-stop-hook.sh');
+    expect(commands.some((c) => c.includes('arborescent-stop'))).toBe(false);
+  });
+});

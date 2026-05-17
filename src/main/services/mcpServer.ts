@@ -9,6 +9,12 @@ import { logger } from './logger';
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { createReadTools, ReadTools, TreeReader } from './mcpReadTools';
 import { createWriteTools, WriteTools, TreeMutator } from './mcpWriteTools';
+import {
+  createSubmitOutputTool,
+  SubmitOutputTool,
+  StepOutputApplier,
+} from './mcpSubmitOutputTool';
+import { SubmitMarker } from './submitMarker';
 
 const MCP_PATH = '/mcp';
 const SERVER_NAME = 'arborescent';
@@ -21,9 +27,11 @@ export class ArborescentMcpServer {
   private port = 0;
   private authToken = '';
   private bindingRegistry = new SessionBindingRegistry();
+  private submitMarker = new SubmitMarker();
   private connected = false;
   private readTools: ReadTools | null = null;
   private writeTools: WriteTools | null = null;
+  private submitOutputTool: SubmitOutputTool | null = null;
 
   constructor() {
     this.mcp = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
@@ -204,6 +212,39 @@ export class ArborescentMcpServer {
     );
   }
 
+  attachSubmitOutputTool(treeReader: TreeReader, applier: StepOutputApplier): void {
+    if (this.submitOutputTool) {
+      logger.warn(
+        'attachSubmitOutputTool called twice — ignoring; existing tool remains in effect',
+        'McpServer',
+      );
+      return;
+    }
+    this.submitOutputTool = createSubmitOutputTool({
+      bindingRegistry: this.bindingRegistry,
+      treeReader,
+      applier,
+      marker: this.submitMarker,
+    });
+    this.registerSubmitOutputTool(this.submitOutputTool);
+  }
+
+  private registerSubmitOutputTool(tool: SubmitOutputTool): void {
+    this.mcp.registerTool(
+      'submit_step_output',
+      {
+        title: 'Submit step output',
+        description:
+          'Submits the assistant response as the output of the bound workflow step. On automatic steps the content is applied directly to the bound node; manual and checkpoint steps are rejected in this release. Subsequent submits within the same turn are deduped (no-op). Applied regardless of context mode flags — this is the workflow output channel, not a tree-modifying tool.',
+        inputSchema: {
+          session_id: z.string().min(1).describe('Claude Code session ID'),
+          content: z.string().describe('Assistant response content to apply to the bound node'),
+        },
+      },
+      async (args) => tool.submitStepOutput({ sessionId: args.session_id, content: args.content }),
+    );
+  }
+
   async start(port: number, authToken: string): Promise<void> {
     if (this.httpServer) {
       throw new Error('MCP server already started');
@@ -249,6 +290,7 @@ export class ArborescentMcpServer {
       await this.mcp.close();
       this.connected = false;
     }
+    this.submitMarker.clear();
     logger.info('MCP server stopped', 'McpServer');
   }
 
@@ -258,6 +300,10 @@ export class ArborescentMcpServer {
 
   getBindingRegistry(): SessionBindingRegistry {
     return this.bindingRegistry;
+  }
+
+  getSubmitMarker(): SubmitMarker {
+    return this.submitMarker;
   }
 
   private registerSmokeTool(): void {

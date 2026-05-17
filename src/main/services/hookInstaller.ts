@@ -2,14 +2,36 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { logger } from './logger';
-import { SESSION_START_HOOK_SCRIPT, USER_PROMPT_SUBMIT_HOOK_SCRIPT } from './hookScripts';
+import {
+  SESSION_START_HOOK_SCRIPT,
+  USER_PROMPT_SUBMIT_HOOK_SCRIPT,
+  STOP_HOOK_SCRIPT,
+} from './hookScripts';
 
-const SESSION_START_FILENAME = 'arborescent-session-start.mjs';
-const USER_PROMPT_SUBMIT_FILENAME = 'arborescent-user-prompt-submit.mjs';
+type HookDescriptor = {
+  filename: string;
+  script: string;
+};
+
+const HOOKS: Record<string, HookDescriptor> = {
+  SessionStart: {
+    filename: 'arborescent-session-start.mjs',
+    script: SESSION_START_HOOK_SCRIPT,
+  },
+  UserPromptSubmit: {
+    filename: 'arborescent-user-prompt-submit.mjs',
+    script: USER_PROMPT_SUBMIT_HOOK_SCRIPT,
+  },
+  Stop: {
+    filename: 'arborescent-stop.mjs',
+    script: STOP_HOOK_SCRIPT,
+  },
+};
 
 export type HookInstallPaths = {
   sessionStart: string;
   userPromptSubmit: string;
+  stop: string;
 };
 
 export type HookInstallerDeps = {
@@ -17,55 +39,63 @@ export type HookInstallerDeps = {
   homePath?: string;
 };
 
+function resolveHookPaths(userDataPath: string): Record<string, string> {
+  const hooksDir = path.join(userDataPath, 'hooks');
+  const paths: Record<string, string> = {};
+  for (const [event, descriptor] of Object.entries(HOOKS)) {
+    paths[event] = path.join(hooksDir, descriptor.filename);
+  }
+  return paths;
+}
+
 export async function installHooks(deps: HookInstallerDeps): Promise<HookInstallPaths> {
   const hooksDir = path.join(deps.userDataPath, 'hooks');
   await fs.mkdir(hooksDir, { recursive: true });
 
-  const sessionStartPath = path.join(hooksDir, SESSION_START_FILENAME);
-  const userPromptSubmitPath = path.join(hooksDir, USER_PROMPT_SUBMIT_FILENAME);
-
-  await fs.writeFile(sessionStartPath, SESSION_START_HOOK_SCRIPT, { mode: 0o755 });
-  await fs.writeFile(userPromptSubmitPath, USER_PROMPT_SUBMIT_HOOK_SCRIPT, { mode: 0o755 });
-  // writeFile's `mode` only applies when the file is created. On reinstall the file
-  // already exists, so the mode is silently ignored — chmod explicitly guarantees +x.
-  await fs.chmod(sessionStartPath, 0o755);
-  await fs.chmod(userPromptSubmitPath, 0o755);
+  const hookPaths = resolveHookPaths(deps.userDataPath);
+  for (const [event, descriptor] of Object.entries(HOOKS)) {
+    const scriptPath = hookPaths[event];
+    await fs.writeFile(scriptPath, descriptor.script, { mode: 0o755 });
+    // writeFile's `mode` only applies when the file is created. On reinstall the file
+    // already exists, so the mode is silently ignored — chmod explicitly guarantees +x.
+    await fs.chmod(scriptPath, 0o755);
+  }
 
   const homePath = deps.homePath ?? os.homedir();
   const settingsPath = path.join(homePath, '.claude', 'settings.json');
-  await mergeSettings(settingsPath, sessionStartPath, userPromptSubmitPath);
+  await mergeSettings(settingsPath, hookPaths);
 
   logger.info('Arborescent hooks installed', 'HookInstaller');
-  return { sessionStart: sessionStartPath, userPromptSubmit: userPromptSubmitPath };
+  return {
+    sessionStart: hookPaths.SessionStart,
+    userPromptSubmit: hookPaths.UserPromptSubmit,
+    stop: hookPaths.Stop,
+  };
 }
 
 export async function uninstallHooks(deps: HookInstallerDeps): Promise<void> {
-  const hooksDir = path.join(deps.userDataPath, 'hooks');
-  const sessionStartPath = path.join(hooksDir, SESSION_START_FILENAME);
-  const userPromptSubmitPath = path.join(hooksDir, USER_PROMPT_SUBMIT_FILENAME);
-
+  const hookPaths = resolveHookPaths(deps.userDataPath);
   const homePath = deps.homePath ?? os.homedir();
   const settingsPath = path.join(homePath, '.claude', 'settings.json');
-  await removeFromSettings(settingsPath, sessionStartPath, userPromptSubmitPath);
+  await removeFromSettings(settingsPath, hookPaths);
 }
 
 async function mergeSettings(
   settingsPath: string,
-  sessionStartPath: string,
-  userPromptSubmitPath: string
+  hookPaths: Record<string, string>,
 ): Promise<void> {
   const settings = await readSettings(settingsPath);
   const hooks = ensureHooksObject(settings);
-  upsertHookEntry(hooks, 'SessionStart', sessionStartPath);
-  upsertHookEntry(hooks, 'UserPromptSubmit', userPromptSubmitPath);
+  for (const [event, commandPath] of Object.entries(hookPaths)) {
+    upsertHookEntry(hooks, event, commandPath);
+  }
   settings.hooks = hooks;
   await writeSettings(settingsPath, settings);
 }
 
 async function removeFromSettings(
   settingsPath: string,
-  sessionStartPath: string,
-  userPromptSubmitPath: string
+  hookPaths: Record<string, string>,
 ): Promise<void> {
   let settings: Record<string, unknown>;
   try {
@@ -74,8 +104,9 @@ async function removeFromSettings(
     return;
   }
   const hooks = ensureHooksObject(settings);
-  removeHookEntry(hooks, 'SessionStart', sessionStartPath);
-  removeHookEntry(hooks, 'UserPromptSubmit', userPromptSubmitPath);
+  for (const [event, commandPath] of Object.entries(hookPaths)) {
+    removeHookEntry(hooks, event, commandPath);
+  }
   settings.hooks = hooks;
   await writeSettings(settingsPath, settings);
 }

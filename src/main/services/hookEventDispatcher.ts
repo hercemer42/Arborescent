@@ -24,6 +24,13 @@ export function createHookEventDispatcher(deps: HookEventDispatcherDeps) {
         logger.warn('register-binding rejected: empty session_id or node_uuid', 'HookDispatch');
         return;
       }
+      // Reset the submit marker only when the binding is actually live for this turn.
+      // 'rebind-needed' leaves the existing binding in place pending a user dialog,
+      // so resetting would let the safety net land this turn's content on the OLD node.
+      // confirmRebind/cancelRebind handle the marker when the user decides.
+      if (result.kind === 'set' || result.kind === 'no-op') {
+        mcpServer.getSubmitMarker().reset(payload.session_id);
+      }
       logger.info(
         `register-binding ${result.kind} session=${payload.session_id} node=${payload.node_uuid}`,
         'HookDispatch'

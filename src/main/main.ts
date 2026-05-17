@@ -29,6 +29,12 @@ import {
   TreeMutateResponse,
   TREE_MUTATE_REQUEST_CHANNEL,
 } from './services/mcpTreeMutatorBridge';
+import {
+  createMcpStepOutputApplierBridge,
+  McpStepOutputApplierBridge,
+  StepOutputApplyResponse,
+  STEP_OUTPUT_APPLY_REQUEST_CHANNEL,
+} from './services/mcpStepOutputApplierBridge';
 
 if (started) {
   app.quit();
@@ -51,6 +57,7 @@ let mcpServerPort = 0;
 let rebindBridge: RebindIpcBridge | null = null;
 let treeReaderBridge: McpTreeReaderBridge | null = null;
 let treeMutatorBridge: McpTreeMutatorBridge | null = null;
+let stepOutputApplierBridge: McpStepOutputApplierBridge | null = null;
 
 const DEFAULT_HOOK_PORT = 17832;
 const DEFAULT_MCP_PORT = 17840;
@@ -59,6 +66,7 @@ const DEFAULT_MCP_PORT = 17840;
 const REBIND_DECISION_TIMEOUT_MS = 5 * 60_000;
 const TREE_READ_TIMEOUT_MS = 5_000;
 const TREE_MUTATE_TIMEOUT_MS = 10_000;
+const STEP_OUTPUT_APPLY_TIMEOUT_MS = 10_000;
 const hookAuthToken = crypto.randomUUID();
 const mcpAuthToken = crypto.randomUUID();
 
@@ -145,6 +153,7 @@ const createWindow = async () => {
 
       rebindBridge = createRebindIpcBridge({
         registry: mcpServer.getBindingRegistry(),
+        submitMarker: mcpServer.getSubmitMarker(),
         sendToRenderer: (channel, payload) => {
           if (mainWindow && !mainWindow.isDestroyed()) {
             mainWindow.webContents.send(channel, payload);
@@ -202,6 +211,29 @@ const createWindow = async () => {
       });
       mcpServer.attachWriteTools(treeReaderBridge, treeMutatorBridge);
       logger.info(`MCP write tools attached on channel ${TREE_MUTATE_REQUEST_CHANNEL}`, 'Main');
+
+      const stepOutputResponders = new Set<(response: StepOutputApplyResponse) => void>();
+      ipcMain.handle('mcp:step-output-apply-response', (_event, response: StepOutputApplyResponse) => {
+        for (const responder of stepOutputResponders) responder(response);
+      });
+
+      stepOutputApplierBridge = createMcpStepOutputApplierBridge({
+        sendToRenderer: (channel, payload) => {
+          if (mainWindow && !mainWindow.isDestroyed()) {
+            mainWindow.webContents.send(channel, payload);
+          }
+        },
+        onRendererResponse: (handler) => {
+          stepOutputResponders.add(handler);
+          return () => stepOutputResponders.delete(handler);
+        },
+        timeoutMs: STEP_OUTPUT_APPLY_TIMEOUT_MS,
+      });
+      mcpServer.attachSubmitOutputTool(treeReaderBridge, stepOutputApplierBridge);
+      logger.info(
+        `MCP submit_step_output tool attached on channel ${STEP_OUTPUT_APPLY_REQUEST_CHANNEL}`,
+        'Main',
+      );
     } else {
       logger.warn('MCP server failed to start — MCP tools will not be reachable from Claude Code', 'Main');
     }
@@ -272,6 +304,7 @@ app.on('before-quit', () => {
   rebindBridge?.dispose();
   treeReaderBridge?.dispose();
   treeMutatorBridge?.dispose();
+  stepOutputApplierBridge?.dispose();
   void hookServer?.stop();
   void mcpServer?.stop();
 });

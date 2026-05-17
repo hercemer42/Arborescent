@@ -62,6 +62,17 @@ export interface TreeMutateResponse {
   result: MutationResult;
 }
 
+export interface StepOutputApplyRequest {
+  requestId: string;
+  nodeId: string;
+  content: string;
+}
+
+export interface StepOutputApplyResponse {
+  requestId: string;
+  result: { ok: true } | { ok: false; error: string };
+}
+
 export interface ContextMenuParams {
   x: number;
   y: number;
@@ -187,6 +198,8 @@ export interface ElectronAPI {
   respondToMcpTreeRead: (response: TreeReadResponse) => Promise<void>;
   onMcpTreeMutateRequest: (callback: (request: TreeMutateRequest) => void) => Unsubscribe;
   respondToMcpTreeMutate: (response: TreeMutateResponse) => Promise<void>;
+  onMcpStepOutputApplyRequest: (callback: (request: StepOutputApplyRequest) => void) => Unsubscribe;
+  respondToMcpStepOutputApply: (response: StepOutputApplyResponse) => Promise<void>;
 
   // Persistent activity log
   appendLog: (entry: AppendLogPayload) => Promise<void>;
