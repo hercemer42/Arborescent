@@ -7,6 +7,7 @@ import { createApplicationMenu } from './services/menuService';
 import { registerTerminalHandlers, cleanupTerminals } from './handlers/terminalHandlers';
 import { logger } from './services/logger';
 import { startHookServerWithRetry, HookServer } from './services/hookServer';
+import { startMcpServerWithRetry, ArborescentMcpServer } from './services/mcpServer';
 
 if (started) {
   app.quit();
@@ -23,9 +24,12 @@ if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
 
 let mainWindow: BrowserWindow | null = null;
 let hookServer: HookServer | null = null;
+let mcpServer: ArborescentMcpServer | null = null;
 
 const DEFAULT_HOOK_PORT = 17832;
+const DEFAULT_MCP_PORT = 17840;
 const hookAuthToken = crypto.randomUUID();
+const mcpAuthToken = crypto.randomUUID();
 
 const createWindow = async () => {
   await registerIpcHandlers(() => mainWindow);
@@ -106,12 +110,27 @@ const createWindow = async () => {
     logger.warn('Hook server failed to start — workflow hooks will not work', 'Main');
   }
 
-  const hookEnv: Record<string, string> = hookServer ? {
-    ARBORESCENT_HOOK_PORT: String(hookResult.port),
-    ARBORESCENT_AUTH_TOKEN: hookAuthToken,
-  } : {};
+  const mcpResult = await startMcpServerWithRetry(DEFAULT_MCP_PORT, mcpAuthToken);
 
-  registerTerminalHandlers(mainWindow, hookEnv);
+  if (mcpResult.server) {
+    mcpServer = mcpResult.server;
+    logger.info(`MCP server started on port ${mcpResult.port}`, 'Main');
+  } else {
+    logger.warn('MCP server failed to start — MCP tools will not be reachable from Claude Code', 'Main');
+  }
+
+  const terminalEnv: Record<string, string> = {
+    ...(hookServer ? {
+      ARBORESCENT_HOOK_PORT: String(hookResult.port),
+      ARBORESCENT_AUTH_TOKEN: hookAuthToken,
+    } : {}),
+    ...(mcpServer ? {
+      ARBORESCENT_MCP_PORT: String(mcpResult.port),
+      ARBORESCENT_MCP_TOKEN: mcpAuthToken,
+    } : {}),
+  };
+
+  registerTerminalHandlers(mainWindow, terminalEnv);
 };
 
 app.on('ready', createWindow);
@@ -132,6 +151,7 @@ app.on('web-contents-created', (_event, contents) => {
 app.on('before-quit', () => {
   void cleanupTerminals();
   void hookServer?.stop();
+  void mcpServer?.stop();
 });
 
 // macOS convention: keep app running until explicit Cmd+Q

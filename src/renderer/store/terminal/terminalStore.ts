@@ -244,7 +244,7 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
 
   createNewTerminal: async (title = 'Terminal', cwd, originNodeId) => {
     try {
-      const terminalInfo = await createTerminalService(title, undefined, undefined, cwd);
+      const terminalInfo = await createTerminalService(title, undefined, undefined, cwd, originNodeId);
       const enriched = originNodeId ? { ...terminalInfo, originNodeId } : terminalInfo;
       get().addTerminal(enriched);
       logger.info(`Created new terminal: ${enriched.id}`, 'TerminalStore');
@@ -318,7 +318,10 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
         const restoredTitle = entry.title === 'Resume'
           ? `Terminal ${allocateTerminalNumber()}`
           : entry.title;
-        const terminalInfo = await createTerminalService(restoredTitle, undefined, undefined, entry.cwd);
+        // The saved originNodeId flows into ARBORESCENT_NODE_UUID in the restored shell so the
+        // SessionStart hook can bind whatever conversation lands in this tab back to its
+        // original node. If a different session ends up here, the rebind dialog will surface.
+        const terminalInfo = await createTerminalService(restoredTitle, undefined, undefined, entry.cwd, entry.originNodeId);
         const restored = entry.originNodeId
           ? { ...terminalInfo, originNodeId: entry.originNodeId }
           : terminalInfo;

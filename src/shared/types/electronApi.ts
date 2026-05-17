@@ -106,7 +106,8 @@ export interface ElectronAPI {
     title: string,
     shellCommand?: string,
     shellArgs?: string[],
-    cwd?: string
+    cwd?: string,
+    nodeUuid?: string
   ) => Promise<TerminalCreateResult>;
   terminalWrite: (id: string, data: string) => Promise<void>;
   terminalResize: (id: string, cols: number, rows: number) => Promise<void>;

@@ -56,8 +56,8 @@ const api: ElectronAPI = {
     ipcRenderer.on('feedback-file-content-detected', listener);
     return () => ipcRenderer.removeListener('feedback-file-content-detected', listener);
   },
-  terminalCreate: (id, title, shellCommand, shellArgs, cwd) =>
-    ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd),
+  terminalCreate: (id, title, shellCommand, shellArgs, cwd, nodeUuid) =>
+    ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd, nodeUuid),
   terminalWrite: (id, data) =>
     ipcRenderer.invoke('terminal:write', id, data),
   terminalResize: (id, cols, rows) =>

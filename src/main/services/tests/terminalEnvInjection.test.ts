@@ -34,7 +34,7 @@ describe('Terminal environment variable injection', () => {
     TerminalManager.destroyAll();
 
     // Isolate from host environment
-    for (const key of ['ARBORESCENT_HOOK_PORT', 'ARBORESCENT_AUTH_TOKEN', 'ARBORESCENT_TERMINAL_ID']) {
+    for (const key of ['ARBORESCENT_HOOK_PORT', 'ARBORESCENT_AUTH_TOKEN', 'ARBORESCENT_TERMINAL_ID', 'ARBORESCENT_NODE_UUID']) {
       savedEnv[key] = process.env[key];
       delete process.env[key];
     }
@@ -120,5 +120,51 @@ describe('Terminal environment variable injection', () => {
 
     // Should behave like no extraEnv
     expect(envArg.ARBORESCENT_HOOK_PORT).toBeUndefined();
+  });
+
+  describe('ARBORESCENT_NODE_UUID propagation (PR1)', () => {
+    it('propagates ARBORESCENT_NODE_UUID into the spawned environment when included in extraEnv', () => {
+      TerminalManager.create('term-node-1', 'Test Terminal', undefined, undefined, undefined, {
+        ARBORESCENT_HOOK_PORT: '17832',
+        ARBORESCENT_AUTH_TOKEN: 'token-abc',
+        ARBORESCENT_TERMINAL_ID: 'term-node-1',
+        ARBORESCENT_NODE_UUID: '11111111-2222-3333-4444-555555555555',
+      });
+
+      const envArg = mockSpawn.mock.calls[0][2].env;
+      expect(envArg.ARBORESCENT_NODE_UUID).toBe('11111111-2222-3333-4444-555555555555');
+    });
+
+    it('does not set ARBORESCENT_NODE_UUID when it is not in extraEnv', () => {
+      TerminalManager.create('term-node-2', 'Test Terminal', undefined, undefined, undefined, {
+        ARBORESCENT_HOOK_PORT: '17832',
+        ARBORESCENT_AUTH_TOKEN: 'token-abc',
+        ARBORESCENT_TERMINAL_ID: 'term-node-2',
+      });
+
+      const envArg = mockSpawn.mock.calls[0][2].env;
+      expect(envArg.ARBORESCENT_NODE_UUID).toBeUndefined();
+    });
+
+    it('preserves ARBORESCENT_NODE_UUID alongside the other ARBORESCENT_* env vars', () => {
+      TerminalManager.create('term-node-3', 'Test Terminal', undefined, undefined, undefined, {
+        ARBORESCENT_HOOK_PORT: '8080',
+        ARBORESCENT_AUTH_TOKEN: 'secret',
+        ARBORESCENT_TERMINAL_ID: 'term-node-3',
+        ARBORESCENT_NODE_UUID: 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee',
+      });
+
+      const envArg = mockSpawn.mock.calls[0][2].env;
+      expect(envArg.ARBORESCENT_HOOK_PORT).toBe('8080');
+      expect(envArg.ARBORESCENT_AUTH_TOKEN).toBe('secret');
+      expect(envArg.ARBORESCENT_TERMINAL_ID).toBe('term-node-3');
+      expect(envArg.ARBORESCENT_NODE_UUID).toBe('aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee');
+    });
+
+    // IPC handler construction of the env object is unit-tested directly
+    // in src/main/handlers/tests/buildTerminalEnv.test.ts; the tests
+    // above verify the end-to-end propagation into the spawned process.
+    it.todo('two concurrent terminal:create calls for different nodes inject distinct ARBORESCENT_NODE_UUID values into their respective children');
+    it.todo('terminal env injection does not leak ARBORESCENT_NODE_UUID into the parent Arborescent process environment');
   });
 });

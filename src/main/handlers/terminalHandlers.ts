@@ -2,6 +2,9 @@ import { ipcMain, IpcMainInvokeEvent } from 'electron';
 import { TerminalManager } from '../services/terminalManager';
 import { logger } from '../services/logger';
 import { IDisposable } from 'node-pty';
+import { buildTerminalEnv } from './buildTerminalEnv';
+
+export { buildTerminalEnv };
 
 export interface TerminalInfo {
   id: string;
@@ -25,12 +28,11 @@ export function registerTerminalHandlers(
       title: string,
       shellCommand?: string,
       shellArgs?: string[],
-      cwd?: string
+      cwd?: string,
+      nodeUuid?: string
     ): Promise<TerminalInfo> => {
       try {
-        const extraEnv = Object.keys(hookEnv).length > 0
-          ? { ...hookEnv, ARBORESCENT_TERMINAL_ID: id }
-          : undefined;
+        const extraEnv = buildTerminalEnv(id, hookEnv, nodeUuid);
         const terminal = TerminalManager.create(id, title, shellCommand, shellArgs, cwd, extraEnv);
 
         const disposables: IDisposable[] = [];

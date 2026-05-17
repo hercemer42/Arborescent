@@ -249,7 +249,7 @@ describe('terminal session per-file persistence', () => {
 
       await useTerminalStore.getState().materializeRestoredTerminals();
 
-      expect(createTerminal).toHaveBeenCalledWith('Terminal', undefined, undefined, '/custom/dir');
+      expect(createTerminal).toHaveBeenCalledWith('Terminal', undefined, undefined, '/custom/dir', undefined);
     });
 
     it('should clear pendingRestore after materialization', async () => {
