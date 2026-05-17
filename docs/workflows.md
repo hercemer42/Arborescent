@@ -137,7 +137,7 @@ When **recurse** advances the chain to the next sibling, the new step stays insi
 
 If the parent's tab was closed, recurse opens a fresh tab in the recorded working directory and resumes the same session there before sending the next prompt. The whole chain rebinds to the new tab in one step; older siblings no longer point at the closed one.
 
-If the parent session is gone (lost from Claude's session store), the next sibling starts in a fresh session and shows an amber dot — the **broken chain** indicator. The step itself runs normally; only the prior context is gone. The dot clears automatically once the chain is healed by a subsequent recurse advance into a live session.
+If the parent session is gone (lost from Claude's session store), the next sibling starts in a fresh session and a toast tells you the chain was broken. The step itself runs normally; only the prior context is gone.
 
 ## Running Multiple Items
 

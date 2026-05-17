@@ -57,21 +57,13 @@ function NodeContentComponent({
   return (
     <>
       <div
-        className={`node-content ${isSelected ? 'selected' : ''}${node.metadata.brokenChain === true ? ' broken-chain' : ''}`}
+        className={`node-content ${isSelected ? 'selected' : ''}`}
         onContextMenu={handleContextMenu}
         style={{
           paddingLeft: `${(depth * 20) + 15}px`,
           '--indent-width': `${depth * 20}px`,
         } as React.CSSProperties}
       >
-        {node.metadata.brokenChain === true && (
-          <span
-            role="img"
-            className="broken-chain-indicator"
-            aria-label="Broken session chain — parent session was lost, this step started a fresh one"
-            title="Broken session chain — parent session was lost, this step started a fresh one"
-          />
-        )}
         <div className={`status-checkbox-wrapper ${!isSelected ? 'not-selected' : ''}`}>
           <StatusArea
             node={node}
