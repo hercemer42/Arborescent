@@ -232,7 +232,7 @@ After the step timeout fires (15 minutes by default), the running node switches 
 - **Resume** — Advances the workflow to the next step. Use this when you've checked the terminal and confirmed Claude finished its work. Also available on the right-click menu of a stuck node, or by clicking the red alert icon.
 - **Stop** — Abandons the workflow. The execution state is cleared and the node is no longer tracked.
 
-If feedback arrives after a step is marked stuck (rare race between the timeout and a delayed feedback file), Arborescent treats the feedback as proof Claude finished, applies it, and advances automatically — no manual Resume needed.
+If feedback arrives after a step is marked stuck (rare race between the timeout and a delayed `submit_step_output` call), Arborescent treats the feedback as proof Claude finished, applies it, and advances automatically — no manual Resume needed.
 
 Open the activity log (see below) for the dropped-hook reason behind any stuck step.
 

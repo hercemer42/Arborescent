@@ -3,7 +3,6 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 import { storeManager } from '../../../store/storeManager';
 import { useToastStore } from '../../../store/toast/toastStore';
-import { logger } from '../../../services/logger';
 import { resolveToSourceFilePath } from '../../../utils/zoomPath';
 import type { ContentSource } from '../../../store/tree/actions/sendActions';
 
@@ -42,45 +41,6 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
     }
   }, [activeFilePath]);
 
-  const routeFeedbackFile = useCallback(async (filePath: string, content: string) => {
-    const storeEntries = storeManager.getAllStoreEntries();
-    logger.debug(
-      `Feedback file event received: path=${filePath} stores=${storeEntries.length}`,
-      'FeedbackFileEvent',
-    );
-
-    for (const { filePath: storePath, store } of storeEntries) {
-      const match = store.getState().actions.findCollaborationByFeedbackFilePath?.(filePath);
-      if (!match) continue;
-
-      logger.debug(
-        `Feedback match: node=${match.nodeId} kind=${match.kind} store=${storePath}`,
-        'FeedbackFileEvent',
-      );
-
-      const isOwnerActive = storePath === resolveToSourceFilePath(activeFilePath);
-
-      if (match.kind === 'autonomous') {
-        store.getState().actions.handleAutonomousFeedback?.(match.nodeId, content);
-      } else {
-        await store.getState().actions.processIncomingFeedbackContent(content, 'file', false);
-      }
-
-      if (!isOwnerActive) {
-        useToastStore.getState().addToast(
-          `Feedback ready in ${displayNameFor(storePath)}`,
-          'info',
-        );
-      }
-      return;
-    }
-
-    logger.warn(
-      `No collaboration matched for file ${filePath} — dropping event`,
-      'FeedbackFileEvent',
-    );
-  }, [activeFilePath]);
-
   useEffect(() => {
     const cleanup = window.electron.onClipboardContentDetected((content: string) => {
       void handleClipboardFeedback(content, 'clipboard');
@@ -88,14 +48,6 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
 
     return cleanup;
   }, [handleClipboardFeedback]);
-
-  useEffect(() => {
-    const cleanup = window.electron.onFeedbackFileContentDetected((filePath: string, content: string) => {
-      void routeFeedbackFile(filePath, content);
-    });
-
-    return cleanup;
-  }, [routeFeedbackFile]);
 
   useEffect(() => {
     if (collaboratingNodeId && !hasFeedbackContent) {

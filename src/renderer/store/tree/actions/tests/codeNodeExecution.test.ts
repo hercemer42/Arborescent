@@ -45,8 +45,6 @@ const baseElectronMock = () => ({
   stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
   createTempFile: vi.fn().mockResolvedValue('/tmp/arborescent/feedback-response.md'),
   readTempFile: vi.fn().mockResolvedValue(null),
-  startFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
-  stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
   enqueuePrompt: vi.fn().mockResolvedValue(undefined),
 });
 

@@ -421,15 +421,6 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       };
     });
 
-    it('should leave a manual collaboration registered for a different node intact', () => {
-      actions.registerManualCollaboration('step-2', '/manual-feedback.md');
-
-      actions.handleAutonomousFeedback('task-a', '# Task A');
-
-      expect(actions.findCollaborationByFeedbackFilePath('/manual-feedback.md'))
-        .toEqual({ nodeId: 'step-2', kind: 'manual' });
-    });
-
     it.todo('should not call AcceptFeedbackCommand with a payload that overwrites collaboratingNodeId when the active session is on a different node');
     it.todo('should not close the feedback panel for a file that owns an unrelated manual collaboration');
     it.todo('should not delete the manual session\'s temp feedback file when an autonomous step on another node finishes');
@@ -597,48 +588,6 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
 
       // Node should not have moved
       expect(state.nodes['step-1'].children).toContain('task-a');
-    });
-  });
-
-  describe('findCollaborationByFeedbackFilePath', () => {
-    const registeredPath = '/Users/test/Library/Application Support/Arborescent/temp-files/feedback-response-task-a.md';
-
-    beforeEach(async () => {
-      mockAutonomousCollaborate.mockImplementation(() => Promise.resolve(registeredPath));
-      actions.startWorkflow('task-a', 'terminal-1');
-      await Promise.resolve();
-      await Promise.resolve();
-    });
-
-    it('should match when incoming path is identical to registered path', () => {
-      expect(actions.findCollaborationByFeedbackFilePath(registeredPath)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
-    });
-
-    it('should match when incoming path has the same basename (filename encodes nodeId)', () => {
-      const differentPrefix = '/private' + registeredPath;
-      expect(actions.findCollaborationByFeedbackFilePath(differentPrefix)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
-    });
-
-    it('should match on basename when paths diverge (Library vs /private/var symlink realpath)', () => {
-      const realpathStyle = '/private/tmp/feedback-response-task-a.md';
-      expect(actions.findCollaborationByFeedbackFilePath(realpathStyle)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
-    });
-
-    it('should return null when no autonomous collaboration is registered', async () => {
-      actions.stopWorkflow('task-a');
-      await Promise.resolve();
-      expect(actions.findCollaborationByFeedbackFilePath(registeredPath)).toBeNull();
-    });
-
-    it('should return null when filename does not match any registered collaboration', () => {
-      expect(
-        actions.findCollaborationByFeedbackFilePath('/tmp/feedback-response-other-node.md'),
-      ).toBeNull();
-    });
-
-    it('should still support endsWith path matching for backward compatibility', () => {
-      const suffixed = 'some/nested/prefix' + registeredPath;
-      expect(actions.findCollaborationByFeedbackFilePath(suffixed)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
     });
   });
 

@@ -138,7 +138,6 @@ vi.mock('@/services/workflowNotification', () => ({ notifyWorkflowEvent: vi.fn()
 vi.stubGlobal('window', {
   electron: {
     stopKeepAwake: vi.fn().mockResolvedValue(undefined),
-    stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
     startKeepAwake: vi.fn().mockResolvedValue(undefined),
     terminalWrite: vi.fn().mockResolvedValue(undefined),
   },

@@ -76,7 +76,6 @@ vi.stubGlobal('window', {
     startKeepAwake: vi.fn().mockResolvedValue(undefined),
     stopKeepAwake: vi.fn().mockResolvedValue(undefined),
     terminalWrite: vi.fn().mockResolvedValue(undefined),
-    stopFeedbackFileWatcher: vi.fn(),
   },
 });
 

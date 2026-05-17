@@ -134,54 +134,32 @@ function buildWebExecutePrompt(executeContext: string, content: string): string 
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
-const WRITE_ONCE_INSTRUCTION = 'Only write to the file once - fully consider your response beforehand.';
+const SUBMIT_ONCE_INSTRUCTION = 'Only call submit_step_output once - fully consider your response beforehand.';
 
-function extractContentRootHeading(content: string): string | null {
-  const trimmed = content.trimStart();
-  const firstHeadingMatch = trimmed.match(/^#[^\n]*/);
-  return firstHeadingMatch ? firstHeadingMatch[0] : null;
-}
-
-function buildFileWriteCommand(outputFilePath: string, expectedRoot?: string | null): string {
-  const outputDir = outputFilePath.substring(0, outputFilePath.lastIndexOf('/'));
-  const placeholder = expectedRoot
-    ? `${expectedRoot}\n[remainder of the CONTENT list — copy verbatim, only flipping status markers]`
-    : '[Your content here]';
-  return `Use this command to write the file safely:
-mkdir -p ${outputDir} && cat <<'EOF' > ${outputFilePath}
-${placeholder}
-EOF`;
-}
-
-function buildCollaborateFileOutputTarget(outputFilePath: string): string {
-  return `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
-Base your output on the list from the CONTENT section, not from the INSTRUCTIONS section.
-Do NOT write any part of the CONTEXT or INSTRUCTIONS sections to the file — only the updated CONTENT list.
-${WRITE_ONCE_INSTRUCTION}
-
-${buildFileWriteCommand(outputFilePath)}`;
+function buildCollaborateSubmitOutputTarget(): string {
+  return `IMPORTANT: When you are done, submit your reviewed/updated list by calling the arborescent submit_step_output MCP tool with your session_id and the updated list as the content argument. Do not write to any file.
+Base your submission on the list from the CONTENT section, not from the INSTRUCTIONS section.
+Do NOT include the CONTEXT or INSTRUCTIONS sections in the submission — only the updated CONTENT list.
+${SUBMIT_ONCE_INSTRUCTION}`;
 }
 
 function buildExecuteOnlyOutputTarget(): string {
   return `IMPORTANT: Make the requested code changes in the codebase. Report what you did in your terminal output.`;
 }
 
-function buildBothOutputTarget(outputFilePath: string, content: string): string {
-  return `IMPORTANT: Make the requested code changes in the codebase. Then write the list from the CONTENT section back to this file with completed items marked [x] and failed items [-]:
-${outputFilePath}
+function buildBothOutputTarget(): string {
+  return `IMPORTANT: Make the requested code changes in the codebase. Then submit the updated CONTENT list with completed items marked [x] and failed items [-] by calling the arborescent submit_step_output MCP tool with your session_id and the updated list as the content argument. Do not write to any file.
 - Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
 - Do NOT replace the CONTENT list with a summary of what you did or a "what was done" checklist
-- Do NOT write any part of the CONTEXT or INSTRUCTIONS sections to the file — only the updated CONTENT list
-- The file's root heading MUST be the CONTENT section's root, byte-for-byte, with only status markers added — never a re-emitted CONTEXT root
+- Do NOT include the CONTEXT or INSTRUCTIONS sections in the submission — only the updated CONTENT list
+- The submission's root heading MUST be the CONTENT section's root, byte-for-byte, with only status markers added — never a re-emitted CONTEXT root
 - Skip items already marked [x]
 - If issues were encountered, append a single new child node at the end of the list describing them
-${WRITE_ONCE_INSTRUCTION}
-
-${buildFileWriteCommand(outputFilePath, extractContentRootHeading(content))}`;
+${SUBMIT_ONCE_INSTRUCTION}`;
 }
 
-function buildTerminalCollaboratePrompt(reviewContext: string, content: string, outputFilePath: string, decomposition: boolean = false, isAutonomous: boolean = false): string {
-  const outputTarget = buildCollaborateFileOutputTarget(outputFilePath);
+function buildTerminalCollaboratePrompt(reviewContext: string, content: string, decomposition: boolean = false, isAutonomous: boolean = false): string {
+  const outputTarget = buildCollaborateSubmitOutputTarget();
   const instructions = wrapInstructions(buildCollaborateInstructions(reviewContext, outputTarget, decomposition, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
@@ -218,8 +196,8 @@ ${SINGLE_ROOT_OUTPUT_FORMAT}
 ${outputTarget}${needsReview}`;
 }
 
-function buildTerminalBothPrompt(executeContext: string, content: string, outputFilePath: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false): string {
-  const outputTarget = buildBothOutputTarget(outputFilePath, content);
+function buildTerminalBothPrompt(executeContext: string, content: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false): string {
+  const outputTarget = buildBothOutputTarget();
   const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
@@ -244,8 +222,6 @@ interface SendPayloadArgs {
   flags: ContextFlags;
   target: SendTarget;
   decomposition: boolean;
-  /** Required for terminal targets when collaborate is on; ignored otherwise. */
-  feedbackResponseFile?: string;
   sessionId?: string;
   /** One-shot context override — supersedes the node's stored applied-context for this send only. */
   overrideContextId?: string;
@@ -257,7 +233,7 @@ function buildSendPayload(args: SendPayloadArgs): string {
 }
 
 function buildSendPayloadBody(args: SendPayloadArgs): string {
-  const { nodeId, state, flags, target, decomposition, feedbackResponseFile, sessionId = '', overrideContextId } = args;
+  const { nodeId, state, flags, target, decomposition, sessionId = '', overrideContextId } = args;
   const resolvedContextId = overrideContextId
     ?? getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
   const { contextPrefix, nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
@@ -293,9 +269,9 @@ function buildSendPayloadBody(args: SendPayloadArgs): string {
       return buildWebCollaboratePrompt(instructionContext, nodeContent, decomposition);
     case 'terminal':
     case 'autonomous-terminal':
-      if (bothOn) return buildTerminalBothPrompt(instructionContext, nodeContent, feedbackResponseFile!, includeNeedsReview, sessionId, isAutonomous);
+      if (bothOn) return buildTerminalBothPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous);
       if (executeOnly) return buildTerminalExecuteOnlyPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous);
-      return buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition, isAutonomous);
+      return buildTerminalCollaboratePrompt(instructionContext, nodeContent, decomposition, isAutonomous);
   }
 }
 
@@ -563,19 +539,12 @@ export function createSendActions(
         const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
         const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
 
-        let feedbackResponseFile: string | undefined;
-        if (resolvedFlags.collaborate) {
-          const feedbackFileName = `feedback-response-${nodeId}.md`;
-          feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
-        }
-
         const terminalInstruction = buildSendPayload({
           nodeId,
           state,
           flags: resolvedFlags,
           target: 'terminal',
           decomposition: effectiveDecomposition,
-          feedbackResponseFile,
           overrideContextId,
         });
 
@@ -583,14 +552,9 @@ export function createSendActions(
           !resolvedFlags.collaborate && !resolvedFlags.execute ? 'manual-action' : 'manual';
         await window.electron.enqueuePrompt(manualSendSessionId, terminalInstruction, manualSendSource);
 
-        if (resolvedFlags.collaborate && feedbackResponseFile) {
+        if (resolvedFlags.collaborate) {
           set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', collaboratingTerminalId: terminalId, decomposition: effectiveDecomposition });
-          await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
-
-          const stateWithRegistry = get() as TreeState & { actions?: { registerManualCollaboration?: (nodeId: string, filePath: string) => void } };
-          stateWithRegistry.actions?.registerManualCollaboration?.(nodeId, feedbackResponseFile);
-
-          logger.info(`Started terminal collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
+          logger.info(`Started terminal collaboration for node: ${nodeId} (response will arrive via submit_step_output)`, 'SendActions');
         } else {
           logger.info(`Sent execute-only prompt to terminal for node: ${nodeId}`, 'SendActions');
         }
@@ -628,32 +592,23 @@ export function createSendActions(
       const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
       const sessionId = findSessionIdForTerminal(state.workflowSessionMap, terminalId);
 
-      let feedbackResponseFile: string | undefined;
-      if (resolvedFlags.collaborate) {
-        const feedbackFileName = `feedback-response-${nodeId}.md`;
-        feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
-      }
-
       const terminalInstruction = buildSendPayload({
         nodeId,
         state,
         flags: resolvedFlags,
         target: 'autonomous-terminal',
         decomposition: effectiveDecomposition,
-        feedbackResponseFile,
         sessionId,
         overrideContextId,
       });
 
       await executeInTerminal(terminalId, terminalInstruction);
 
-      if (resolvedFlags.collaborate && feedbackResponseFile) {
-        await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
-        logger.info(`Started autonomous collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
-        return feedbackResponseFile;
+      if (resolvedFlags.collaborate) {
+        logger.info(`Started autonomous collaboration for node: ${nodeId} (response will arrive via submit_step_output)`, 'SendActions');
+      } else {
+        logger.info(`Sent autonomous execute-only prompt for node: ${nodeId}`, 'SendActions');
       }
-
-      logger.info(`Sent autonomous execute-only prompt for node: ${nodeId}`, 'SendActions');
       return '';
     },
 
@@ -786,9 +741,6 @@ export function createSendActions(
           set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
         }
 
-        const stateWithRegistry = get() as TreeState & { actions?: { unregisterCollaboration?: (nodeId: string) => void } };
-        stateWithRegistry.actions?.unregisterCollaboration?.(collaboratingNodeId);
-
         await cleanupFeedback(currentFilePath, tempFilePath);
         usePanelStore.getState().closeFeedback(currentFilePath);
         window.dispatchEvent(new Event('collaboration-canceled'));
@@ -849,9 +801,6 @@ export function createSendActions(
         stateWithActions.actions.executeCommand(
           new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig, precomputedIdMap)
         );
-
-        const stateWithRegistry = get() as TreeState & { actions?: { unregisterCollaboration?: (nodeId: string) => void } };
-        stateWithRegistry.actions?.unregisterCollaboration?.(collaboratingNodeId);
 
         const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;
         await cleanupFeedback(currentFilePath, tempFilePath);

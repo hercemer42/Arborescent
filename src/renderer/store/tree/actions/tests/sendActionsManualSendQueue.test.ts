@@ -96,7 +96,6 @@ beforeEach(() => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window.electron.createTempFile as any) = vi.fn().mockResolvedValue('/tmp/feedback-test.md');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (window.electron.startFeedbackFileWatcher as any) = vi.fn().mockResolvedValue(undefined);
 });
 
 describe('Manual send — terminal target routes through the MCP queue', () => {

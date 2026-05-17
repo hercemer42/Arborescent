@@ -75,11 +75,11 @@ describe('AcceptProposalCommand — dispatch', () => {
     expect(applyMutationMock).not.toHaveBeenCalled();
   });
 
-  it('routes submit-step-output through applyStepOutput with bypassFileWatcherGuard so user-accept is not silently swallowed', () => {
+  it('routes submit-step-output through applyStepOutput', () => {
     const { store } = makeFakeStore();
     const proposal = makeProposal({ kind: 'submit-step-output', content: 'response' });
     new AcceptProposalCommand(store, proposal).execute();
-    expect(applyStepOutputMock).toHaveBeenCalledWith(store, NODE, 'response', { bypassFileWatcherGuard: true });
+    expect(applyStepOutputMock).toHaveBeenCalledWith(store, NODE, 'response');
   });
 });
 

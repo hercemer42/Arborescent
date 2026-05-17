@@ -49,8 +49,6 @@ describe('send prompt — write-back disambiguation', () => {
         stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
         createTempFile: vi.fn().mockResolvedValue('/tmp/arborescent/feedback.md'),
         readTempFile: vi.fn().mockResolvedValue(null),
-        startFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
-        stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
         enqueuePrompt: vi.fn().mockResolvedValue(undefined),
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -136,13 +134,13 @@ describe('send prompt — write-back disambiguation', () => {
   });
 
   describe('collaborate-mode terminal prompt', () => {
-    it('tells the AI to base its output on CONTENT, not on INSTRUCTIONS', async () => {
+    it('tells the AI to base its submission on CONTENT, not on INSTRUCTIONS', async () => {
       mockState.nodes.task.metadata.appliedContextId = 'collab-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1');
 
       const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/Base your output on the list from the CONTENT section, not from the INSTRUCTIONS section/);
+      expect(prompt).toMatch(/Base your submission on the list from the CONTENT section, not from the INSTRUCTIONS section/);
     });
   });
 
@@ -165,33 +163,33 @@ describe('send prompt — write-back disambiguation', () => {
       expect(prompt).toMatch(/Do NOT replace the CONTENT list with a summary/);
     });
 
-    it('explicitly forbids writing the CONTEXT or INSTRUCTIONS sections to the file', async () => {
+    it('explicitly forbids including the CONTEXT or INSTRUCTIONS sections in the submission', async () => {
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/Do NOT write any part of the CONTEXT or INSTRUCTIONS sections/i);
+      expect(prompt).toMatch(/Do NOT include the CONTEXT or INSTRUCTIONS sections/i);
     });
 
-    it('tells the AI the file root MUST be the CONTENT root (not a re-emitted CONTEXT root)', async () => {
+    it('tells the AI the submission root MUST be the CONTENT root (not a re-emitted CONTEXT root)', async () => {
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/file's root heading MUST be the CONTENT section's root/i);
+      expect(prompt).toMatch(/submission's root heading MUST be the CONTENT section's root/i);
     });
   });
 
   describe('collaborate-mode write-back also forbids CONTEXT echo', () => {
-    it('explicitly forbids writing the CONTEXT or INSTRUCTIONS sections to the file', async () => {
+    it('explicitly forbids including the CONTEXT or INSTRUCTIONS sections in the submission', async () => {
       mockState.nodes.task.metadata.appliedContextId = 'collab-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1');
 
       const prompt = (window.electron.enqueuePrompt as ReturnType<typeof vi.fn>).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/Do NOT write any part of the CONTEXT or INSTRUCTIONS sections/i);
+      expect(prompt).toMatch(/Do NOT include the CONTEXT or INSTRUCTIONS sections/i);
     });
   });
 });

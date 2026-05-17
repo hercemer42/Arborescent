@@ -68,8 +68,6 @@ describe('browser collaboration guard across files', () => {
         stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
         createTempFile: vi.fn().mockResolvedValue('/tmp/feedback.md'),
         readTempFile: vi.fn().mockResolvedValue(null),
-        startFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
-        stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
         enqueuePrompt: vi.fn().mockResolvedValue(undefined),
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

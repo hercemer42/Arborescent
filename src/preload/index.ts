@@ -53,14 +53,6 @@ const api: ElectronAPI = {
     ipcRenderer.on('clipboard-content-detected', listener);
     return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
   },
-  startFeedbackFileWatcher: (filePath: string) => ipcRenderer.invoke('start-feedback-file-watcher', filePath),
-  stopFeedbackFileWatcher: (filePath?: string) => ipcRenderer.invoke('stop-feedback-file-watcher', filePath),
-  getFeedbackFilePath: () => ipcRenderer.invoke('get-feedback-file-path'),
-  onFeedbackFileContentDetected: (callback) => {
-    const listener = (_event: Electron.IpcRendererEvent, filePath: string, content: string) => callback(filePath, content);
-    ipcRenderer.on('feedback-file-content-detected', listener);
-    return () => ipcRenderer.removeListener('feedback-file-content-detected', listener);
-  },
   terminalCreate: (id, title, shellCommand, shellArgs, cwd, nodeUuid) =>
     ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd, nodeUuid),
   terminalWrite: (id, data) =>

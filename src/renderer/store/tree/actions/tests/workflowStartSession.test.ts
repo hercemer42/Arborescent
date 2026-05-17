@@ -94,7 +94,6 @@ describe('startWorkflow — auto session routing (PR1)', () => {
       stopKeepAwake: vi.fn(),
       terminalWrite: mockTerminalWrite,
       terminalGetCwd: vi.fn().mockResolvedValue(null),
-      stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
       stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
     } } as unknown as Window & typeof globalThis;
 

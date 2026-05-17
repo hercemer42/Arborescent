@@ -91,7 +91,6 @@ describe('workflow restart after stop — prompt must reach the terminal (bug: g
       stopKeepAwake: vi.fn(),
       terminalWrite: mockTerminalWrite,
       terminalGetCwd: vi.fn().mockResolvedValue(null),
-      stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
       stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
     } } as unknown as Window & typeof globalThis;
 
