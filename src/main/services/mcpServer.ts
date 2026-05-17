@@ -16,14 +16,8 @@ import {
   StepOutputApplier,
 } from './mcpSubmitOutputTool';
 import { SubmitMarker } from './submitMarker';
-import { PromptQueue } from './mcpPromptQueue';
-import {
-  createNextInstructionTool,
-  NextInstructionTool,
-} from './mcpNextInstructionTool';
 
 const MCP_PATH = '/mcp';
-const PEEK_QUEUE_PATH = '/peek-queue';
 const SERVER_NAME = 'arborescent';
 const SERVER_VERSION = '0.2.0';
 
@@ -35,18 +29,15 @@ export class ArborescentMcpServer {
   private authToken = '';
   private bindingRegistry = new SessionBindingRegistry();
   private submitMarker = new SubmitMarker();
-  private promptQueue = new PromptQueue();
   private connected = false;
   private readTools: ReadTools | null = null;
   private writeTools: WriteTools | null = null;
   private submitOutputTool: SubmitOutputTool | null = null;
-  private nextInstructionTool: NextInstructionTool | null = null;
 
   constructor() {
     this.mcp = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
     this.transport = new StreamableHTTPServerTransport({ sessionIdGenerator: () => randomUUID() });
     this.registerSmokeTool();
-    this.registerNextInstructionTool();
   }
 
   attachReadTools(treeReader: TreeReader): void {
@@ -312,7 +303,6 @@ export class ArborescentMcpServer {
       this.connected = false;
     }
     this.submitMarker.clear();
-    this.promptQueue.clear();
     logger.info('MCP server stopped', 'McpServer');
   }
 
@@ -326,30 +316,6 @@ export class ArborescentMcpServer {
 
   getSubmitMarker(): SubmitMarker {
     return this.submitMarker;
-  }
-
-  getPromptQueue(): PromptQueue {
-    return this.promptQueue;
-  }
-
-  private registerNextInstructionTool(): void {
-    if (this.nextInstructionTool) return;
-    this.nextInstructionTool = createNextInstructionTool({
-      bindingRegistry: this.bindingRegistry,
-      queue: this.promptQueue,
-    });
-    this.mcp.registerTool(
-      'next_instruction',
-      {
-        title: 'Fetch the next queued instruction for this session',
-        description:
-          'Returns the next queued instruction enqueued by Arborescent for the bound session, removing it from the queue. Returns hasInstruction=false when the queue is empty or the session is unbound. Claude is told to call this when a SessionStart directive, a Stop hook block decision, or an idle TTY trigger asks it to.',
-        inputSchema: {
-          session_id: z.string().min(1).describe('Claude Code session ID'),
-        },
-      },
-      async (args) => this.nextInstructionTool!.nextInstruction({ sessionId: args.session_id }),
-    );
   }
 
   private registerSmokeTool(): void {
@@ -366,7 +332,7 @@ export class ArborescentMcpServer {
   }
 
   private handle(req: http.IncomingMessage, res: http.ServerResponse): void {
-    if (!req.url) {
+    if (!req.url || !req.url.startsWith(MCP_PATH)) {
       res.writeHead(404);
       res.end();
       return;
@@ -379,17 +345,6 @@ export class ArborescentMcpServer {
       return;
     }
 
-    if (req.url.startsWith(PEEK_QUEUE_PATH)) {
-      this.handlePeekQueue(req, res);
-      return;
-    }
-
-    if (!req.url.startsWith(MCP_PATH)) {
-      res.writeHead(404);
-      res.end();
-      return;
-    }
-
     this.dispatchToTransport(req, res).catch((error) => {
       logger.error('MCP request handler threw', error as Error, 'McpServer');
       if (!res.headersSent) {
@@ -397,19 +352,6 @@ export class ArborescentMcpServer {
         res.end();
       }
     });
-  }
-
-  private handlePeekQueue(req: http.IncomingMessage, res: http.ServerResponse): void {
-    const url = new URL(req.url ?? '', 'http://127.0.0.1');
-    const sessionId = url.searchParams.get('session_id') ?? '';
-    if (!sessionId) {
-      res.writeHead(400, { 'content-type': 'application/json' });
-      res.end(JSON.stringify({ error: 'missing session_id' }));
-      return;
-    }
-    const size = this.promptQueue.size(sessionId);
-    res.writeHead(200, { 'content-type': 'application/json' });
-    res.end(JSON.stringify({ hasItems: size > 0, size }));
   }
 
   private async dispatchToTransport(req: http.IncomingMessage, res: http.ServerResponse): Promise<void> {

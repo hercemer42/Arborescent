@@ -41,12 +41,11 @@ function postRegisterBinding(port, token, sessionId, nodeUuid, source) {
 
 // Hooks defensively short-circuit on TTY stdin and arm a watchdog timer so a
 // misconfigured spawn (no piped JSON) cannot hang Claude Code's turn indefinitely.
-// Watchdog sits above the Stop hook's worst-case sequential budget (12s submit +
-// 3s peek = 15s) plus transcript I/O and stdout flush, so a slow-but-successful
-// submit followed by a slow peek isn't killed mid-flight.
+// Watchdog sits above the Stop hook's 12s HTTP timeout so a slow-but-successful
+// submit isn't killed mid-flight.
 const HOOK_BOOT_GUARDS = `
 if (process.stdin.isTTY) process.exit(0);
-setTimeout(() => process.exit(0), 20000);
+setTimeout(() => process.exit(0), 15000);
 `;
 
 export const SESSION_START_HOOK_SCRIPT = `#!/usr/bin/env node
@@ -230,102 +229,9 @@ function readLastAssistantMessage(transcriptPath) {
 }
 `;
 
-const HOOK_PEEK_QUEUE_FN = `
-function peekQueue(mcpPort, mcpToken, sessionId) {
-  return new Promise((resolve) => {
-    const req = http.request({
-      hostname: '127.0.0.1',
-      port: Number(mcpPort),
-      method: 'GET',
-      path: '/peek-queue?session_id=' + encodeURIComponent(sessionId),
-      headers: { 'Authorization': 'Bearer ' + mcpToken },
-      timeout: 3000,
-    }, (res) => {
-      const chunks = [];
-      res.on('data', (c) => chunks.push(c));
-      res.on('end', () => {
-        if (res.statusCode !== 200) {
-          resolve(null);
-          return;
-        }
-        try {
-          const parsed = JSON.parse(Buffer.concat(chunks).toString('utf8'));
-          resolve(parsed && typeof parsed.hasItems === 'boolean' ? parsed : null);
-        } catch {
-          resolve(null);
-        }
-      });
-    });
-    req.on('error', () => resolve(null));
-    req.on('timeout', () => { req.destroy(); resolve(null); });
-    req.end();
-  });
-}
-`;
-
-const HOOK_POST_CAP_REACHED_FN = `
-function postCapReached(hookPort, hookToken, sessionId, iterations, cap) {
-  if (!hookPort || !hookToken) return Promise.resolve();
-  return new Promise((resolve) => {
-    const body = JSON.stringify({
-      session_id: sessionId,
-      hook_event_name: 'stop-cap-reached',
-      message: JSON.stringify({ iterations, cap }),
-    });
-    const req = http.request({
-      hostname: '127.0.0.1',
-      port: Number(hookPort),
-      method: 'POST',
-      path: '/hook',
-      headers: {
-        'Authorization': 'Bearer ' + hookToken,
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(body),
-      },
-      timeout: 2000,
-    }, (res) => { res.resume(); res.on('end', resolve); });
-    req.on('error', () => resolve());
-    req.on('timeout', () => { req.destroy(); resolve(); });
-    req.write(body);
-    req.end();
-  });
-}
-`;
-
-const HOOK_ITERATION_COUNTER_FN = `
-function iterationCounterPath(sessionId) {
-  const os = require('node:os');
-  const path = require('node:path');
-  const safe = sessionId.replace(/[^a-zA-Z0-9-]/g, '_');
-  return path.join(os.tmpdir(), 'arborescent-stop-' + safe + '.json');
-}
-
-function readIterationCount(sessionId) {
-  const fs = require('node:fs');
-  try {
-    const raw = fs.readFileSync(iterationCounterPath(sessionId), 'utf8');
-    const parsed = JSON.parse(raw);
-    return Number.isFinite(parsed && parsed.count) ? parsed.count : 0;
-  } catch { return 0; }
-}
-
-function writeIterationCount(sessionId, count) {
-  const fs = require('node:fs');
-  try { fs.writeFileSync(iterationCounterPath(sessionId), JSON.stringify({ count: count })); }
-  catch (err) { process.stderr.write('[arborescent stop hook] could not persist counter: ' + err.message + '\\n'); }
-}
-
-function resetIterationCount(sessionId) {
-  const fs = require('node:fs');
-  try { fs.unlinkSync(iterationCounterPath(sessionId)); } catch { /* not present is fine */ }
-}
-`;
-
 export const STOP_HOOK_SCRIPT = `#!/usr/bin/env node
 const http = require('node:http');
 ${HOOK_BOOT_GUARDS}
-const STOP_HOOK_CAP_DEFAULT = 8;
-
 let stdinBuf = '';
 process.stdin.on('data', (chunk) => { stdinBuf += chunk.toString(); });
 process.stdin.on('end', () => {
@@ -336,53 +242,17 @@ process.stdin.on('end', () => {
   const transcriptPath = typeof payload.transcript_path === 'string' ? payload.transcript_path : '';
   const mcpPort = process.env.ARBORESCENT_MCP_PORT || '';
   const mcpToken = process.env.ARBORESCENT_MCP_TOKEN || '';
-  const hookPort = process.env.ARBORESCENT_HOOK_PORT || '';
-  const hookToken = process.env.ARBORESCENT_AUTH_TOKEN || '';
-  const cap = Number(process.env.ARBORESCENT_STOP_HOOK_CAP) > 0
-    ? Number(process.env.ARBORESCENT_STOP_HOOK_CAP)
-    : STOP_HOOK_CAP_DEFAULT;
 
-  if (!sessionId || !mcpPort || !mcpToken) {
+  if (!sessionId || !transcriptPath || !mcpPort || !mcpToken) {
     process.exit(0);
   }
 
-  runStopHook({ sessionId, transcriptPath, mcpPort, mcpToken, hookPort, hookToken, cap })
-    .finally(() => process.exit(0));
+  const assistantText = readLastAssistantMessage(transcriptPath);
+  if (assistantText === null) {
+    process.exit(0);
+  }
+
+  postSubmitStepOutput(mcpPort, mcpToken, sessionId, assistantText).finally(() => process.exit(0));
 });
-
-async function runStopHook(ctx) {
-  if (ctx.transcriptPath) {
-    const assistantText = readLastAssistantMessage(ctx.transcriptPath);
-    if (assistantText !== null) {
-      await postSubmitStepOutput(ctx.mcpPort, ctx.mcpToken, ctx.sessionId, assistantText);
-    }
-  }
-
-  const peek = await peekQueue(ctx.mcpPort, ctx.mcpToken, ctx.sessionId);
-  if (!peek) {
-    return;
-  }
-  if (!peek.hasItems) {
-    resetIterationCount(ctx.sessionId);
-    return;
-  }
-
-  const current = readIterationCount(ctx.sessionId);
-  if (current >= ctx.cap) {
-    resetIterationCount(ctx.sessionId);
-    await postCapReached(ctx.hookPort, ctx.hookToken, ctx.sessionId, current, ctx.cap);
-    return;
-  }
-
-  writeIterationCount(ctx.sessionId, current + 1);
-  const decision = {
-    decision: 'block',
-    reason: 'Arborescent has a queued instruction for this session. Call the next_instruction MCP tool with your session_id to retrieve it before stopping.',
-  };
-  await new Promise((resolve) => process.stdout.write(JSON.stringify(decision), () => resolve()));
-}
 ${HOOK_POST_SUBMIT_STEP_OUTPUT_FN}
-${HOOK_READ_LAST_ASSISTANT_MESSAGE_FN}
-${HOOK_PEEK_QUEUE_FN}
-${HOOK_POST_CAP_REACHED_FN}
-${HOOK_ITERATION_COUNTER_FN}`;
+${HOOK_READ_LAST_ASSISTANT_MESSAGE_FN}`;

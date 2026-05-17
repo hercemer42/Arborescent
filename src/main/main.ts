@@ -260,24 +260,6 @@ const createWindow = async () => {
         `MCP submit_step_output tool attached on channel ${STEP_OUTPUT_APPLY_REQUEST_CHANNEL}; proposal bridge on channel ${PROPOSAL_REQUEST_CHANNEL}`,
         'Main',
       );
-
-      const promptQueue = mcpServer.getPromptQueue();
-      promptQueue.onEnqueue((sessionId) => {
-        if (mainWindow && !mainWindow.isDestroyed()) {
-          mainWindow.webContents.send('mcp:prompt-enqueued', sessionId);
-        }
-      });
-      ipcMain.handle(
-        'mcp:enqueue-prompt',
-        (_event, sessionId: string, content: string, source: 'workflow' | 'manual' | 'manual-action') => {
-          if (typeof sessionId !== 'string' || typeof content !== 'string') {
-            logger.warn('mcp:enqueue-prompt rejected — invalid args', 'Main');
-            return;
-          }
-          const queueSource = source === 'manual-action' || source === 'manual' ? 'manual' : 'workflow';
-          promptQueue.enqueue(sessionId, { content, source: queueSource });
-        },
-      );
     } else {
       logger.warn('MCP server failed to start — MCP tools will not be reachable from Claude Code', 'Main');
     }
