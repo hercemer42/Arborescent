@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-17T20:25:53.336Z'
+updated: '2026-05-17T20:58:18.564Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -83746,6 +83746,7 @@ nodes:
     id: bc87a3a5-29fe-4b9e-a2a1-d773468a88d5
     content: Build & install
     children:
+      - e37630d6-29f5-431f-bb7e-499d6c78d030
       - 7ce29277-644d-4d30-8777-6a70cbe9ccd0
       - 64ff36d6-ef8d-4864-b871-c47d7f23b563
       - 4cb6fe9b-416b-43b2-be94-fdf737f477c8
@@ -83756,7 +83757,7 @@ nodes:
       blueprintIcon: BrickWall
       blueprintColor: '#c47f09'
       isContextDeclaration: false
-      expanded: false
+      expanded: true
   64ff36d6-ef8d-4864-b871-c47d7f23b563:
     id: 64ff36d6-ef8d-4864-b871-c47d7f23b563
     content: Build arborescent
@@ -90180,12 +90181,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7ce29277-644d-4d30-8777-6a70cbe9ccd0:
-    id: 7ce29277-644d-4d30-8777-6a70cbe9ccd0
-    content: Commit the project.arbo if it needs to be
-    children: []
-    metadata:
-      isBlueprint: true
   f9e30528-a7f4-4a92-9c44-196b536e7a85:
     id: f9e30528-a7f4-4a92-9c44-196b536e7a85
     content: Backlog
@@ -116028,6 +116023,7 @@ nodes:
       - a4135bb6-a1c1-4d58-9f9d-f79a9e632b16
       - e0a72b89-1c5d-4d56-a64b-7471372cf783
       - cc507863-3b0e-4ca5-8ff3-343cc8589a61
+      - b0c1b7c5-917d-42b7-87d3-a2806b121351
     metadata:
       status: pending
       isBlueprint: true
@@ -125140,8 +125136,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - b0c1b7c5-917d-42b7-87d3-a2806b121351
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -127179,7 +127174,7 @@ nodes:
       - d65d8796-90ef-494b-ad97-0972a2f0dd42
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   fadafbeb-e327-4271-aabd-2df6a18fca2f:
@@ -145665,3 +145660,15 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  7ce29277-644d-4d30-8777-6a70cbe9ccd0:
+    id: 7ce29277-644d-4d30-8777-6a70cbe9ccd0
+    content: Commit the project.arbo if it needs to be
+    children: []
+    metadata:
+      isBlueprint: true
+  e37630d6-29f5-431f-bb7e-499d6c78d030:
+    id: e37630d6-29f5-431f-bb7e-499d6c78d030
+    content: Commit any outstanding changes
+    children: []
+    metadata:
+      status: pending
