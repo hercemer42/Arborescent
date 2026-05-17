@@ -41,9 +41,7 @@ export class AcceptProposalCommand extends BaseCommand {
   private runApply() {
     const { request, nodeId } = this.proposal;
     if (request.kind === 'submit-step-output') {
-      // Explicit user accept — bypass the safety-net file-watcher guard so the
-      // click can't silently no-op while a feedback-file collab is in flight.
-      return applyStepOutput(this.store, nodeId, request.content, { bypassFileWatcherGuard: true });
+      return applyStepOutput(this.store, nodeId, request.content);
     }
     if (request.kind === 'delete') {
       // Route through the direct path so undo is owned solely by this Command's

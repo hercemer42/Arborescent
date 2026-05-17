@@ -156,12 +156,6 @@ export interface ElectronAPI {
   recordClipboardSelfWrite: (content: string) => Promise<void>;
   onClipboardContentDetected: (callback: (content: string) => void) => Unsubscribe;
 
-  // Feedback file watcher
-  startFeedbackFileWatcher: (filePath: string) => Promise<void>;
-  stopFeedbackFileWatcher: (filePath?: string) => Promise<void>;
-  getFeedbackFilePath: () => Promise<string | null>;
-  onFeedbackFileContentDetected: (callback: (filePath: string, content: string) => void) => Unsubscribe;
-
   // Menu bridge
   setMenuNewHandler: (callback: () => void) => void;
   setMenuOpenHandler: (callback: () => void) => void;

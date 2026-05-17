@@ -22,7 +22,6 @@ vi.stubGlobal('window', {
     terminalGetCwd: vi.fn().mockResolvedValue(null),
     startKeepAwake: vi.fn(),
     stopKeepAwake: vi.fn(),
-    stopFeedbackFileWatcher: vi.fn(),
     stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
   },
 });

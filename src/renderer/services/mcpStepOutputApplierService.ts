@@ -5,15 +5,7 @@ import { TreeStore } from '../store/tree/treeStore';
 import { storeManager } from '../store/storeManager';
 import { logger } from './logger';
 
-export type ApplyResult = { ok: true } | { ok: false; error: string } | { ok: true; skipped: true };
-
-export interface ApplyStepOutputOptions {
-  // Skip the file-watcher-collab guard. The guard exists so the Stop-hook
-  // safety net doesn't clobber content the file-watcher pipeline is about to
-  // apply. An explicit user-accept of a proposal is the user's intent — they
-  // should never see the guard silently swallow their click.
-  bypassFileWatcherGuard?: boolean;
-}
+export type ApplyResult = { ok: true } | { ok: false; error: string };
 
 function findStoreForNode(nodeId: string): TreeStore | null {
   for (const store of storeManager.getAllStores()) {
@@ -22,42 +14,41 @@ function findStoreForNode(nodeId: string): TreeStore | null {
   return null;
 }
 
-interface StoreActionsWithAutosave {
+interface StoreActionsForApply {
   autoSave?: () => void;
+  handleAutonomousFeedback?: (nodeId: string, content: string) => void;
+}
+
+function getActions(store: TreeStore): StoreActionsForApply | undefined {
+  return (store.getState() as { actions?: StoreActionsForApply }).actions;
 }
 
 function triggerAutoSave(store: TreeStore): void {
-  const actions = (store.getState() as { actions?: StoreActionsWithAutosave }).actions;
-  actions?.autoSave?.();
+  getActions(store)?.autoSave?.();
 }
 
 export function applyStepOutput(
   store: TreeStore,
   nodeId: string,
   content: string,
-  options: ApplyStepOutputOptions = {},
 ): ApplyResult {
   const state = store.getState();
   const node = state.nodes[nodeId];
   if (!node) return { ok: false, error: `Node ${nodeId} not found` };
 
-  // The feedback-file pipeline owns content for any node currently routed through
-  // file-watcher collab: autonomous workflow steps (workflowExecutionStates entry)
-  // and manual terminal collaborations awaiting feedback-panel review
-  // (collaboratingNodeId === nodeId). The Stop-hook safety net carries chat text,
-  // not parsed feedback markdown — applying it would clobber the file-watcher's
-  // result before the user gets to review it. Skip; main-side marker still sets so
-  // an explicit submit later in the turn is also deduped. PR8 retires this gate
-  // when prompts move to MCP-only.
-  if (
-    !options.bypassFileWatcherGuard &&
-    (state.workflowExecutionStates[nodeId] || state.collaboratingNodeId === nodeId)
-  ) {
-    logger.info(
-      `step-output-apply: skipping node ${nodeId} (file-watcher collab owns this turn)`,
-      'McpStepOutputApplier',
-    );
-    return { ok: true, skipped: true };
+  // Autonomous workflow steps must route through handleAutonomousFeedback so
+  // submitted markdown is parsed, decomposition children are created, the
+  // AcceptFeedbackCommand fires, and the workflow advances and recurses. A
+  // direct content write would dump a decomposed step's "# Item 1 / # Item 2"
+  // output verbatim into one node and skip child creation, advance, and
+  // recurse.
+  if (state.workflowExecutionStates[nodeId]) {
+    const handler = getActions(store)?.handleAutonomousFeedback;
+    if (!handler) {
+      return { ok: false, error: `Workflow handler unavailable for node ${nodeId}` };
+    }
+    handler(nodeId, content);
+    return { ok: true };
   }
 
   store.setState({

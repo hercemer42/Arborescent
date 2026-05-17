@@ -26,7 +26,6 @@ export interface DisruptionReactionDeps {
     workflowExecutionStates?: Record<string, WorkflowExecutionEntry>;
     workflowSessionMap?: Record<string, string>;
   }) => void;
-  cleanupAutonomousCollaboration: (nodeId: string) => void;
   clearStepTimeout: (nodeId: string) => void;
   clearPendingAck: (nodeId: string) => void;
   clearPendingClear: (nodeId: string) => void;
@@ -36,7 +35,7 @@ export interface DisruptionReactionDeps {
 }
 
 export function createDisruptionReactions(deps: DisruptionReactionDeps): WorkflowDisruptionReactions {
-  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, clearPendingAck, clearPendingClear, clearPendingLaunch, releaseTerminalAssignmentForNode } = deps;
+  const { get, set, clearStepTimeout, clearPendingAck, clearPendingClear, clearPendingLaunch, releaseTerminalAssignmentForNode } = deps;
 
   function handleTerminalClosed(terminalId: string): void {
     const { workflowExecutionStates, nodes, workflowSessionMap } = get();
@@ -49,7 +48,6 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
 
       delete updatedStates[nodeId];
       statesChanged = true;
-      cleanupAutonomousCollaboration(nodeId);
       clearPendingAck(nodeId);
       clearPendingClear(nodeId);
       clearPendingLaunch(nodeId);
@@ -92,7 +90,6 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     const { workflowExecutionStates } = get();
     if (!workflowExecutionStates[nodeId]) return;
 
-    cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
     clearPendingClear(nodeId);
     clearPendingLaunch(nodeId);
@@ -168,7 +165,6 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     if (!entry) return;
 
     clearStepTimeout(nodeId);
-    cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
     clearPendingClear(nodeId);
     clearPendingLaunch(nodeId);

@@ -49,8 +49,6 @@ describe('Workflow steps preserve the original node content', () => {
         stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
         createTempFile: vi.fn().mockResolvedValue('/tmp/arborescent/feedback-response.md'),
         readTempFile: vi.fn().mockResolvedValue(null),
-        startFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
-        stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
         enqueuePrompt: vi.fn().mockResolvedValue(undefined),
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -213,14 +211,14 @@ describe('Workflow steps preserve the original node content', () => {
   });
 
   describe('collaborate-mode workflow prompt preserves CONTENT structure', () => {
-    it('instructs the AI that the CONTENT list is the source material for its output', async () => {
+    it('instructs the AI that the CONTENT list is the source material for its submission', async () => {
       await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: false });
       const prompt = getTerminalPrompt();
 
-      const writeBackBlock = prompt
+      const submitBlock = prompt
         .split('===END INSTRUCTIONS===')[0]
-        .split('IMPORTANT: Write')[1] ?? '';
-      expect(writeBackBlock).toMatch(/CONTENT/);
+        .split('IMPORTANT: When you are done')[1] ?? '';
+      expect(submitBlock).toMatch(/CONTENT/);
     });
   });
 

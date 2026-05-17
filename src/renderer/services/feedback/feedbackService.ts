@@ -196,7 +196,6 @@ function stripRemovedPlaceholderNodes(
 
 export async function stopFeedbackMonitors(): Promise<void> {
   await window.electron.stopClipboardMonitor();
-  await window.electron.stopFeedbackFileWatcher();
 }
 
 export async function cleanupFeedback(filePath: string, tempFilePath?: string): Promise<void> {

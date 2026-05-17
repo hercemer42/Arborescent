@@ -69,9 +69,6 @@ export interface WorkflowExecutionActions {
   handleAllStepsRemoved: (workflowId: string) => void;
   handleNodeMovedManually: (nodeId: string) => void;
   handleAutonomousFeedback: (nodeId: string, content: string) => void;
-  findCollaborationByFeedbackFilePath: (filePath: string) => { nodeId: string; kind: 'manual' | 'autonomous' } | null;
-  registerManualCollaboration: (nodeId: string, filePath: string) => void;
-  unregisterCollaboration: (nodeId: string) => void;
 }
 
 type StoreState = {
@@ -100,7 +97,6 @@ export const createWorkflowExecutionActions = (
   const ACK_RETRY_CAP = 3;
   const recurseCounters = new Map<string, number>();
   const recurseWithoutDecompositionWarned = new Set<string>();
-  const feedbackCollaborations = new Map<string, { filePath: string; terminalId?: string; kind: 'manual' | 'autonomous' }>();
   const pendingAcks = new Map<string, { terminalId: string; attempts: number; timer: ReturnType<typeof setTimeout> }>();
   // ACKs that arrived before their pending entry was registered (the
   // autonomousCollaborate promise had not yet resolved). Prevents the
@@ -390,7 +386,6 @@ export const createWorkflowExecutionActions = (
     }
 
     stepTimeouts.clear(nodeId);
-    cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
     clearSessionManager.clearPending(nodeId);
     claudeLaunchManager.clearPending(nodeId);
@@ -898,11 +893,8 @@ export const createWorkflowExecutionActions = (
         setCollaboratingFlag(nodeId);
       }
 
-      autonomousCollaborateInTerminal(nodeId, terminalId, flags, stepContextOverride).then((feedbackFilePath) => {
-        if (feedbackFilePath) {
-          registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
-          registerPendingAck(nodeId, terminalId);
-        }
+      autonomousCollaborateInTerminal(nodeId, terminalId, flags, stepContextOverride).then(() => {
+        registerPendingAck(nodeId, terminalId);
       }).catch((error) => {
         logger.error(
           "Failed to send to terminal",
@@ -1023,11 +1015,6 @@ export const createWorkflowExecutionActions = (
       }
     }
 
-    // Clean up all autonomous collaborations on restart
-    for (const nodeId of Array.from(feedbackCollaborations.keys())) {
-      cleanupAutonomousCollaboration(nodeId);
-    }
-
     for (const nodeId of Array.from(pendingAcks.keys())) {
       clearPendingAck(nodeId);
     }
@@ -1057,7 +1044,6 @@ export const createWorkflowExecutionActions = (
   const disruptionReactions = createDisruptionReactions({
     get,
     set,
-    cleanupAutonomousCollaboration: (nodeId) => cleanupAutonomousCollaboration(nodeId),
     clearStepTimeout: stepTimeouts.clear,
     clearPendingAck,
     clearPendingClear: clearSessionManager.clearPending,
@@ -1079,38 +1065,6 @@ export const createWorkflowExecutionActions = (
     });
   }
 
-  function registerAutonomousCollaboration(nodeId: string, terminalId: string, feedbackFilePath: string): void {
-    feedbackCollaborations.set(nodeId, { filePath: feedbackFilePath, terminalId, kind: 'autonomous' });
-  }
-
-  function registerManualCollaboration(nodeId: string, feedbackFilePath: string): void {
-    feedbackCollaborations.set(nodeId, { filePath: feedbackFilePath, kind: 'manual' });
-  }
-
-  function unregisterCollaboration(nodeId: string): void {
-    feedbackCollaborations.delete(nodeId);
-  }
-
-  function cleanupAutonomousCollaboration(nodeId: string): void {
-    const collab = feedbackCollaborations.get(nodeId);
-    if (collab && collab.kind === 'autonomous') {
-      void window.electron.stopFeedbackFileWatcher(collab.filePath);
-      feedbackCollaborations.delete(nodeId);
-    }
-  }
-
-  function findCollaborationByFeedbackFilePath(filePath: string): { nodeId: string; kind: 'manual' | 'autonomous' } | null {
-    const incomingBasename = filePath.split(/[\\/]/).pop() ?? filePath;
-
-    for (const [nodeId, collab] of feedbackCollaborations.entries()) {
-      const basename = collab.filePath.split(/[\\/]/).pop() ?? collab.filePath;
-      if (filePath === collab.filePath || basename === incomingBasename || filePath.endsWith(collab.filePath)) {
-        return { nodeId, kind: collab.kind };
-      }
-    }
-    return null;
-  }
-
   function advanceOrClearCollaborating(nodeId: string): void {
     const currentEntry = get().workflowExecutionStates[nodeId];
     if (currentEntry?.stopReceived) {
@@ -1130,7 +1084,6 @@ export const createWorkflowExecutionActions = (
     const { workflowExecutionStates, nodes, ancestorRegistry } = get();
     const entry = workflowExecutionStates[nodeId];
     if (!entry || !nodes[nodeId]) {
-      cleanupAutonomousCollaboration(nodeId);
       return;
     }
 
@@ -1158,7 +1111,6 @@ export const createWorkflowExecutionActions = (
         "WorkflowExecution",
       );
       stopWorkflow(nodeId);
-      cleanupAutonomousCollaboration(nodeId);
       useToastStore
         .getState()
         .addToast("Feedback could not be parsed — workflow stopped", "error");
@@ -1207,7 +1159,6 @@ export const createWorkflowExecutionActions = (
       releaseOrchestratorAfterDecompositionHandoff(nodeId);
     }
 
-    cleanupAutonomousCollaboration(nodeId);
     useToastStore.getState().addToast("Feedback auto-accepted", "info");
     logger.info(`Auto-accepted feedback for node ${nodeId} (${parsed.nodeCount} nodes)`, "WorkflowExecution");
 
@@ -1242,8 +1193,5 @@ export const createWorkflowExecutionActions = (
     initializeExecutionState,
     ...disruptionReactions,
     handleAutonomousFeedback,
-    findCollaborationByFeedbackFilePath,
-    registerManualCollaboration,
-    unregisterCollaboration,
   };
 };
