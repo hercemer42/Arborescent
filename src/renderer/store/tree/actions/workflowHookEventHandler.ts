@@ -49,6 +49,29 @@ export interface HookEventHandlerDeps {
  * the most-referenced "action verbs" of the engine — passing them
  * through an explicit deps interface makes the coupling visible.
  */
+function surfaceCapReached(event: HookEventPayload): void {
+  let iterations: number | null = null;
+  let cap: number | null = null;
+  if (event.message) {
+    try {
+      const parsed = JSON.parse(event.message) as { iterations?: number; cap?: number };
+      if (typeof parsed.iterations === 'number') iterations = parsed.iterations;
+      if (typeof parsed.cap === 'number') cap = parsed.cap;
+    } catch {
+      // Malformed payload — fall through to a generic message.
+    }
+  }
+  const detail =
+    iterations !== null && cap !== null
+      ? `Stop hook chained ${iterations}/${cap} times — pausing further auto-chaining.`
+      : 'Stop hook chain limit reached — pausing further auto-chaining.';
+  useToastStore.getState().addToast(detail, 'warning', {
+    persistent: true,
+    actions: [{ label: 'OK', onClick: () => {} }],
+  });
+  void notifyWorkflowEvent('alert', 'Chain limit reached', detail);
+}
+
 export function createHookEventHandler(deps: HookEventHandlerDeps) {
   const {
     get,
@@ -62,6 +85,11 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
   } = deps;
 
   return function handleHookEvent(event: HookEventPayload): void {
+    if (event.hook_event_name === 'stop-cap-reached') {
+      surfaceCapReached(event);
+      return;
+    }
+
     const { workflowSessionMap } = get();
     const terminalId = workflowSessionMap[event.session_id] || event.terminal_id;
     if (!terminalId) {
