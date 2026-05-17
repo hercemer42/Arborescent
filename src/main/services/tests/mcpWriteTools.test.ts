@@ -52,7 +52,17 @@ function makeDeps(setup: SetupArgs) {
     mutate: vi.fn(async () => ({ ok: true as const })),
   };
   const treeReader = { readState: vi.fn(async () => makeState(setup)) };
-  return { registry, mutator, treeReader, deps: { bindingRegistry: registry, treeReader, treeMutator: mutator } };
+  let nextProposalId = 1;
+  const proposalSubmitter = {
+    submit: vi.fn(async () => ({ ok: true as const, proposalId: `prop-${nextProposalId++}` })),
+  };
+  return {
+    registry,
+    mutator,
+    treeReader,
+    proposalSubmitter,
+    deps: { bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter },
+  };
 }
 
 const ADDITIVE_TOOLS = ['addChildNode', 'appendToNode', 'markStepComplete'] as const;
@@ -114,6 +124,45 @@ describe('createWriteTools — mode authority: collaborate-only allows every tre
   });
 });
 
+describe('createWriteTools — intersection: destructive op + non-automatic step + collaborate+execute (PR7)', () => {
+  // The authority gate must run BEFORE the proposal route. A destructive op on
+  // a non-automatic step in collab+execute mode must error out — it must NOT
+  // be queued as a proposal (which would let Claude bypass the destructive-in-both
+  // restriction by claiming the step is manual).
+  let made: ReturnType<typeof makeDeps>;
+  let tools: WriteTools;
+
+  beforeEach(() => {
+    made = makeDeps({ collaborate: true, execute: true, stepType: 'manual' });
+    made.registry.register('sess-1', BOUND);
+    tools = createWriteTools(made.deps);
+  });
+
+  for (const stepType of ['manual', 'checkpoint', undefined] as const) {
+    for (const toolName of DESTRUCTIVE_TOOLS) {
+      it(`${toolName} on a ${stepType ?? 'no-stepType'} step in collab+execute mode errors and does NOT route to proposalSubmitter`, async () => {
+        const made = makeDeps({ collaborate: true, execute: true, stepType });
+        made.registry.register('sess-1', BOUND);
+        const tools = createWriteTools(made.deps);
+
+        const result = await callTool(tools, toolName);
+
+        expect(result.isError).toBe(true);
+        expect(result.content[0].text).toMatch(/execute-and-collaborate|only additions and check-offs/i);
+        expect(made.mutator.mutate).not.toHaveBeenCalled();
+        expect(made.proposalSubmitter.submit).not.toHaveBeenCalled();
+      });
+    }
+  }
+
+  it('additive ops on a non-automatic step in collab+execute mode still route to the proposal submitter', async () => {
+    const result = await callTool(tools, 'addChildNode');
+    expect(result.isError).toBeFalsy();
+    expect(made.proposalSubmitter.submit).toHaveBeenCalledTimes(1);
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
+  });
+});
+
 describe('createWriteTools — mode authority: collaborate+execute allows only additions and check-offs', () => {
   let mutator: TreeMutator;
   let tools: WriteTools;
@@ -139,40 +188,68 @@ describe('createWriteTools — mode authority: collaborate+execute allows only a
   });
 });
 
-describe('createWriteTools — step-type gate: non-automatic steps reject mutations in this PR', () => {
+describe('createWriteTools — step-type gate: non-automatic steps route to the proposal submitter (PR7)', () => {
   function withStepType(stepType: StepType | undefined) {
     const made = makeDeps({ collaborate: true, execute: false, stepType });
     made.registry.register('sess-1', BOUND);
-    return { tools: createWriteTools(made.deps), mutator: made.mutator };
+    return { tools: createWriteTools(made.deps), mutator: made.mutator, proposalSubmitter: made.proposalSubmitter };
   }
 
-  it('manual step rejects with a not-yet-supported error', async () => {
-    const { tools, mutator } = withStepType('manual');
+  it('manual step does NOT call the mutator and routes the request to the proposal submitter', async () => {
+    const { tools, mutator, proposalSubmitter } = withStepType('manual');
     const result = await callTool(tools, 'addChildNode');
-    expect(result.isError).toBe(true);
-    expect(result.content[0].text).toMatch(/non-automatic|not yet|requires user review|proposal/i);
+    expect(result.isError).toBeFalsy();
     expect(mutator.mutate).not.toHaveBeenCalled();
+    expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
+    const payload = JSON.parse(result.content[0].text);
+    expect(payload.applied).toBe(false);
+    expect(payload.proposed).toBe(true);
+    expect(payload.proposalId).toEqual(expect.any(String));
   });
 
-  it('checkpoint step rejects with a not-yet-supported error', async () => {
-    const { tools, mutator } = withStepType('checkpoint');
+  it('checkpoint step also routes to the proposal submitter', async () => {
+    const { tools, mutator, proposalSubmitter } = withStepType('checkpoint');
     const result = await callTool(tools, 'addChildNode');
-    expect(result.isError).toBe(true);
+    expect(result.isError).toBeFalsy();
     expect(mutator.mutate).not.toHaveBeenCalled();
+    expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
 
-  it('a node with no stepType set is treated as non-automatic and rejected', async () => {
-    const { tools, mutator } = withStepType(undefined);
+  it('a node with no stepType set is treated as non-automatic and routed to the proposal submitter', async () => {
+    const { tools, mutator, proposalSubmitter } = withStepType(undefined);
     const result = await callTool(tools, 'addChildNode');
-    expect(result.isError).toBe(true);
+    expect(result.isError).toBeFalsy();
     expect(mutator.mutate).not.toHaveBeenCalled();
+    expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
 
-  it('autonomous step proceeds to the mutator', async () => {
-    const { tools, mutator } = withStepType('autonomous');
+  it('autonomous step proceeds to the mutator (NOT the proposal submitter)', async () => {
+    const { tools, mutator, proposalSubmitter } = withStepType('autonomous');
     const result = await callTool(tools, 'addChildNode');
     expect(result.isError).toBeFalsy();
     expect(mutator.mutate).toHaveBeenCalledTimes(1);
+    expect(proposalSubmitter.submit).not.toHaveBeenCalled();
+  });
+
+  it('proposal submission carries the full MutationRequest so the renderer can render it for review', async () => {
+    const { tools, proposalSubmitter } = withStepType('manual');
+    await tools.addChildNode({ sessionId: 'sess-1', parent_id: BOUND, content: 'pending child' });
+    expect(proposalSubmitter.submit).toHaveBeenCalledWith({
+      sessionId: 'sess-1',
+      nodeId: BOUND,
+      request: { kind: 'add-child', parentId: BOUND, content: 'pending child' },
+    });
+  });
+
+  it('a proposal-submitter failure surfaces to Claude as an error', async () => {
+    const { tools, proposalSubmitter } = withStepType('manual');
+    (proposalSubmitter.submit as ReturnType<typeof vi.fn>).mockImplementation(async () => ({
+      ok: false,
+      error: 'no store for bound file',
+    }));
+    const result = await callTool(tools, 'addChildNode');
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toContain('no store for bound file');
   });
 });
 
@@ -283,10 +360,12 @@ describe('createWriteTools — error propagation', () => {
   it('a write when the tree state is unavailable returns a descriptive error', async () => {
     const registry = new SessionBindingRegistry();
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
+    const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
     const tools = createWriteTools({
       bindingRegistry: registry,
       treeReader: { readState: async () => null },
       treeMutator: mutator,
+      proposalSubmitter,
     });
     registry.register('sess-1', BOUND);
 
@@ -317,7 +396,8 @@ describe('createWriteTools — mode authority: no applied context blocks every t
       }),
     };
     registry.register('sess-1', BOUND);
-    tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator });
+    const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
+    tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter });
   });
 
   it.each(ALL_WRITE_TOOLS)('%s returns a no-context error when no context is applied', async (toolName) => {
@@ -353,7 +433,8 @@ describe('createWriteTools — server-side authority is live (no caching)', () =
         makeState({ collaborate, execute: false, stepType: 'autonomous' }),
     };
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
-    const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator });
+    const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
+    const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter });
     registry.register('sess-1', BOUND);
 
     const first = await tools.deleteNode({ sessionId: 'sess-1' });

@@ -60,6 +60,15 @@ vi.mock('../../../store/files/filesStore', () => ({
   }),
 }));
 
+vi.mock('../../../store/proposals/proposalsStore', () => ({
+  useProposalsStore: vi.fn((selector) => {
+    const mockState = {
+      proposalsByFile: {},
+    };
+    return selector(mockState);
+  }),
+}));
+
 vi.mock('../../Tree', () => ({
   Tree: () => <div data-testid="tree-component">Tree Component</div>,
 }));

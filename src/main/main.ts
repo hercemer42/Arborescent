@@ -35,6 +35,12 @@ import {
   StepOutputApplyResponse,
   STEP_OUTPUT_APPLY_REQUEST_CHANNEL,
 } from './services/mcpStepOutputApplierBridge';
+import {
+  createMcpProposalBridge,
+  McpProposalBridge,
+  ProposalResponse,
+  PROPOSAL_REQUEST_CHANNEL,
+} from './services/mcpProposalBridge';
 
 if (started) {
   app.quit();
@@ -58,6 +64,7 @@ let rebindBridge: RebindIpcBridge | null = null;
 let treeReaderBridge: McpTreeReaderBridge | null = null;
 let treeMutatorBridge: McpTreeMutatorBridge | null = null;
 let stepOutputApplierBridge: McpStepOutputApplierBridge | null = null;
+let proposalBridge: McpProposalBridge | null = null;
 
 const DEFAULT_HOOK_PORT = 17832;
 const DEFAULT_MCP_PORT = 17840;
@@ -67,6 +74,7 @@ const REBIND_DECISION_TIMEOUT_MS = 5 * 60_000;
 const TREE_READ_TIMEOUT_MS = 5_000;
 const TREE_MUTATE_TIMEOUT_MS = 10_000;
 const STEP_OUTPUT_APPLY_TIMEOUT_MS = 10_000;
+const PROPOSAL_SUBMIT_TIMEOUT_MS = 10_000;
 const hookAuthToken = crypto.randomUUID();
 const mcpAuthToken = crypto.randomUUID();
 
@@ -209,7 +217,25 @@ const createWindow = async () => {
         },
         timeoutMs: TREE_MUTATE_TIMEOUT_MS,
       });
-      mcpServer.attachWriteTools(treeReaderBridge, treeMutatorBridge);
+      const proposalResponders = new Set<(response: ProposalResponse) => void>();
+      ipcMain.handle('mcp:proposal-response', (_event, response: ProposalResponse) => {
+        for (const responder of proposalResponders) responder(response);
+      });
+
+      proposalBridge = createMcpProposalBridge({
+        sendToRenderer: (channel, payload) => {
+          if (mainWindow && !mainWindow.isDestroyed()) {
+            mainWindow.webContents.send(channel, payload);
+          }
+        },
+        onRendererResponse: (handler) => {
+          proposalResponders.add(handler);
+          return () => proposalResponders.delete(handler);
+        },
+        timeoutMs: PROPOSAL_SUBMIT_TIMEOUT_MS,
+      });
+
+      mcpServer.attachWriteTools(treeReaderBridge, treeMutatorBridge, proposalBridge);
       logger.info(`MCP write tools attached on channel ${TREE_MUTATE_REQUEST_CHANNEL}`, 'Main');
 
       const stepOutputResponders = new Set<(response: StepOutputApplyResponse) => void>();
@@ -229,9 +255,9 @@ const createWindow = async () => {
         },
         timeoutMs: STEP_OUTPUT_APPLY_TIMEOUT_MS,
       });
-      mcpServer.attachSubmitOutputTool(treeReaderBridge, stepOutputApplierBridge);
+      mcpServer.attachSubmitOutputTool(treeReaderBridge, stepOutputApplierBridge, proposalBridge);
       logger.info(
-        `MCP submit_step_output tool attached on channel ${STEP_OUTPUT_APPLY_REQUEST_CHANNEL}`,
+        `MCP submit_step_output tool attached on channel ${STEP_OUTPUT_APPLY_REQUEST_CHANNEL}; proposal bridge on channel ${PROPOSAL_REQUEST_CHANNEL}`,
         'Main',
       );
     } else {
@@ -305,6 +331,7 @@ app.on('before-quit', () => {
   treeReaderBridge?.dispose();
   treeMutatorBridge?.dispose();
   stepOutputApplierBridge?.dispose();
+  proposalBridge?.dispose();
   void hookServer?.stop();
   void mcpServer?.stop();
 });

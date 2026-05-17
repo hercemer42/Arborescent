@@ -73,6 +73,22 @@ export interface StepOutputApplyResponse {
   result: { ok: true } | { ok: false; error: string };
 }
 
+export type ProposalPayload =
+  | MutationRequest
+  | { kind: 'submit-step-output'; content: string };
+
+export interface ProposalRequest {
+  requestId: string;
+  sessionId: string;
+  nodeId: string;
+  request: ProposalPayload;
+}
+
+export interface ProposalResponse {
+  requestId: string;
+  result: { ok: true; proposalId: string } | { ok: false; error: string };
+}
+
 export interface ContextMenuParams {
   x: number;
   y: number;
@@ -200,6 +216,8 @@ export interface ElectronAPI {
   respondToMcpTreeMutate: (response: TreeMutateResponse) => Promise<void>;
   onMcpStepOutputApplyRequest: (callback: (request: StepOutputApplyRequest) => void) => Unsubscribe;
   respondToMcpStepOutputApply: (response: StepOutputApplyResponse) => Promise<void>;
+  onMcpProposalRequest: (callback: (request: ProposalRequest) => void) => Unsubscribe;
+  respondToMcpProposal: (response: ProposalResponse) => Promise<void>;
 
   // Persistent activity log
   appendLog: (entry: AppendLogPayload) => Promise<void>;

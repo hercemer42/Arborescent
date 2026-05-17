@@ -148,7 +148,7 @@ function postSubmitStepOutput(mcpPort, mcpToken, sessionId, content) {
       method: 'tools/call',
       params: {
         name: 'submit_step_output',
-        arguments: { session_id: sessionId, content: content },
+        arguments: { session_id: sessionId, content: content, origin: 'safety-net' },
       },
     });
     const req = http.request({

@@ -1,5 +1,6 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { TreeReader, TreeReadState, ToolResult } from './mcpReadTools';
+import { ProposalSubmitter } from './mcpProposalBridge';
 import {
   resolveContextFlags,
   getContextDeclarations,
@@ -25,6 +26,7 @@ export interface WriteToolsDeps {
   bindingRegistry: Pick<SessionBindingRegistry, 'lookup'>;
   treeReader: TreeReader;
   treeMutator: TreeMutator;
+  proposalSubmitter: ProposalSubmitter;
 }
 
 export interface WriteTools {
@@ -110,9 +112,13 @@ async function executeMutation(
   }
 
   if (!isAutomatic(boundNodeId, state)) {
-    return err(
-      'Mutations against non-automatic steps require user review as a proposal. This is not yet supported in this PR.',
-    );
+    const proposal = await deps.proposalSubmitter.submit({
+      sessionId,
+      nodeId: boundNodeId,
+      request,
+    });
+    if (!proposal.ok) return err(proposal.error);
+    return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
   }
 
   const result = await deps.treeMutator.mutate(boundNodeId, request);

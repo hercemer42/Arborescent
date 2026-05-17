@@ -133,7 +133,7 @@ function applyDelete(store: TreeStore, nodeId: string): MutationResult {
   return applyDirectDelete(store, nodeId);
 }
 
-function applyDirectDelete(store: TreeStore, nodeId: string): MutationResult {
+export function applyDirectDelete(store: TreeStore, nodeId: string): MutationResult {
   const state = store.getState();
   const parentId = getParentIdOrNull(nodeId, state.ancestorRegistry);
   if (!parentId) return { ok: false, error: `Could not locate parent of ${nodeId}` };

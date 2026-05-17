@@ -9,6 +9,7 @@ import { logger } from './logger';
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { createReadTools, ReadTools, TreeReader } from './mcpReadTools';
 import { createWriteTools, WriteTools, TreeMutator } from './mcpWriteTools';
+import { ProposalSubmitter } from './mcpProposalBridge';
 import {
   createSubmitOutputTool,
   SubmitOutputTool,
@@ -92,7 +93,7 @@ export class ArborescentMcpServer {
     );
   }
 
-  attachWriteTools(treeReader: TreeReader, treeMutator: TreeMutator): void {
+  attachWriteTools(treeReader: TreeReader, treeMutator: TreeMutator, proposalSubmitter: ProposalSubmitter): void {
     if (this.writeTools) {
       logger.warn('attachWriteTools called twice — ignoring; existing write tools remain in effect', 'McpServer');
       return;
@@ -101,6 +102,7 @@ export class ArborescentMcpServer {
       bindingRegistry: this.bindingRegistry,
       treeReader,
       treeMutator,
+      proposalSubmitter,
     });
     this.registerWriteTools(this.writeTools);
   }
@@ -212,7 +214,7 @@ export class ArborescentMcpServer {
     );
   }
 
-  attachSubmitOutputTool(treeReader: TreeReader, applier: StepOutputApplier): void {
+  attachSubmitOutputTool(treeReader: TreeReader, applier: StepOutputApplier, proposalSubmitter: ProposalSubmitter): void {
     if (this.submitOutputTool) {
       logger.warn(
         'attachSubmitOutputTool called twice — ignoring; existing tool remains in effect',
@@ -225,6 +227,7 @@ export class ArborescentMcpServer {
       treeReader,
       applier,
       marker: this.submitMarker,
+      proposalSubmitter,
     });
     this.registerSubmitOutputTool(this.submitOutputTool);
   }
@@ -235,13 +238,22 @@ export class ArborescentMcpServer {
       {
         title: 'Submit step output',
         description:
-          'Submits the assistant response as the output of the bound workflow step. On automatic steps the content is applied directly to the bound node; manual and checkpoint steps are rejected in this release. Subsequent submits within the same turn are deduped (no-op). Applied regardless of context mode flags — this is the workflow output channel, not a tree-modifying tool.',
+          'Submits the assistant response as the output of the bound workflow step. On automatic steps the content is applied directly to the bound node; on manual and checkpoint steps it appears as a pending proposal in the feedback panel for the user to accept or reject. Subsequent submits within the same turn are deduped (no-op). Applied regardless of context mode flags — this is the workflow output channel, not a tree-modifying tool.',
         inputSchema: {
           session_id: z.string().min(1).describe('Claude Code session ID'),
           content: z.string().describe('Assistant response content to apply to the bound node'),
+          origin: z
+            .enum(['explicit', 'safety-net'])
+            .optional()
+            .describe('Internal: omit. Set to "safety-net" by the Stop hook auto-submit script.'),
         },
       },
-      async (args) => tool.submitStepOutput({ sessionId: args.session_id, content: args.content }),
+      async (args) =>
+        tool.submitStepOutput({
+          sessionId: args.session_id,
+          content: args.content,
+          origin: args.origin as 'explicit' | 'safety-net' | undefined,
+        }),
     );
   }
 

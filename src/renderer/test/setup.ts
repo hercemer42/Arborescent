@@ -134,6 +134,8 @@ global.window.electron = {
   respondToMcpTreeMutate: vi.fn().mockResolvedValue(undefined),
   onMcpStepOutputApplyRequest: vi.fn().mockReturnValue(vi.fn()),
   respondToMcpStepOutputApply: vi.fn().mockResolvedValue(undefined),
+  onMcpProposalRequest: vi.fn().mockReturnValue(vi.fn()),
+  respondToMcpProposal: vi.fn().mockResolvedValue(undefined),
   startKeepAwake: vi.fn().mockResolvedValue(undefined),
   stopKeepAwake: vi.fn().mockResolvedValue(undefined),
   appendLog: vi.fn().mockResolvedValue(undefined),

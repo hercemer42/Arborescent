@@ -16,6 +16,7 @@ import { initializeKeyboardServices } from "./services/keyboard/keyboard";
 import { startMcpTreeReaderService } from "./services/mcpTreeReaderService";
 import { startMcpTreeMutatorService } from "./services/mcpTreeMutatorService";
 import { startMcpStepOutputApplierService } from "./services/mcpStepOutputApplierService";
+import { startMcpProposalReceiverService } from "./services/mcpProposalReceiverService";
 import {
   useAppErrorHandling,
   useAppInitialization,
@@ -65,6 +66,10 @@ export function App() {
 
   useEffect(() => {
     return startMcpStepOutputApplierService();
+  }, []);
+
+  useEffect(() => {
+    return startMcpProposalReceiverService();
   }, []);
 
   return (

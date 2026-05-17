@@ -339,3 +339,17 @@ describe('createReadTools — mode resolution is server-side and live', () => {
     expect(readState).toHaveBeenCalledTimes(3);
   });
 });
+
+describe('createReadTools — pending proposals are invisible to Claude (PR7)', () => {
+  // "No MCP tool exposes pending unresolved proposals to Claude." Proposals
+  // live in the renderer-side proposals store and never mutate the tree state
+  // that read tools serve. These tests pin the property that read-tool
+  // responses don't include any proposal-derived nodes, content, status, or
+  // metadata regardless of how many proposals are queued for the bound session.
+  it.todo('get_node returns the current node content even when a pending submit-step-output proposal carries different content for the same node');
+  it.todo('get_node returns the current metadata.status even when a pending mark-step-complete proposal would change it');
+  it.todo('get_tree does not include nodes from pending add-child proposals — the children list reflects only the applied tree');
+  it.todo('get_tree does not omit nodes from pending delete proposals — the deletion has not landed yet');
+  it.todo('list_contexts does not surface any proposal data — only contexts declared in the applied tree');
+  it.todo('no MCP tool name in the registered set begins with "proposal" or "proposals" (proposal listing is intentionally unreachable from Claude)');
+});

@@ -3,6 +3,7 @@ import type {
   ElectronAPI,
   TreeMutateRequest,
   StepOutputApplyRequest,
+  ProposalRequest,
 } from '../shared/types/electronApi';
 
 const api: ElectronAPI = {
@@ -165,6 +166,13 @@ const api: ElectronAPI = {
   },
   respondToMcpStepOutputApply: (response) =>
     ipcRenderer.invoke('mcp:step-output-apply-response', response),
+  onMcpProposalRequest: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, data: ProposalRequest) => callback(data);
+    ipcRenderer.on('mcp:proposal-request', listener);
+    return () => ipcRenderer.removeListener('mcp:proposal-request', listener);
+  },
+  respondToMcpProposal: (response) =>
+    ipcRenderer.invoke('mcp:proposal-response', response),
   appendLog: (entry) => ipcRenderer.invoke('log:append', entry),
   openLogFile: () => ipcRenderer.invoke('log:open'),
   getLogFilePath: () => ipcRenderer.invoke('log:get-path'),

@@ -5,7 +5,15 @@ import { TreeStore } from '../store/tree/treeStore';
 import { storeManager } from '../store/storeManager';
 import { logger } from './logger';
 
-type ApplyResult = { ok: true } | { ok: false; error: string };
+export type ApplyResult = { ok: true } | { ok: false; error: string } | { ok: true; skipped: true };
+
+export interface ApplyStepOutputOptions {
+  // Skip the file-watcher-collab guard. The guard exists so the Stop-hook
+  // safety net doesn't clobber content the file-watcher pipeline is about to
+  // apply. An explicit user-accept of a proposal is the user's intent — they
+  // should never see the guard silently swallow their click.
+  bypassFileWatcherGuard?: boolean;
+}
 
 function findStoreForNode(nodeId: string): TreeStore | null {
   for (const store of storeManager.getAllStores()) {
@@ -23,7 +31,12 @@ function triggerAutoSave(store: TreeStore): void {
   actions?.autoSave?.();
 }
 
-export function applyStepOutput(store: TreeStore, nodeId: string, content: string): ApplyResult {
+export function applyStepOutput(
+  store: TreeStore,
+  nodeId: string,
+  content: string,
+  options: ApplyStepOutputOptions = {},
+): ApplyResult {
   const state = store.getState();
   const node = state.nodes[nodeId];
   if (!node) return { ok: false, error: `Node ${nodeId} not found` };
@@ -36,12 +49,15 @@ export function applyStepOutput(store: TreeStore, nodeId: string, content: strin
   // result before the user gets to review it. Skip; main-side marker still sets so
   // an explicit submit later in the turn is also deduped. PR8 retires this gate
   // when prompts move to MCP-only.
-  if (state.workflowExecutionStates[nodeId] || state.collaboratingNodeId === nodeId) {
+  if (
+    !options.bypassFileWatcherGuard &&
+    (state.workflowExecutionStates[nodeId] || state.collaboratingNodeId === nodeId)
+  ) {
     logger.info(
       `step-output-apply: skipping node ${nodeId} (file-watcher collab owns this turn)`,
       'McpStepOutputApplier',
     );
-    return { ok: true };
+    return { ok: true, skipped: true };
   }
 
   store.setState({
