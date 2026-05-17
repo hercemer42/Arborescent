@@ -13,6 +13,7 @@ import {
 import { BASE_INSTRUCTION_RULES, STEP_CONTEXT_FRAMING, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
+import { buildArborescentMarker } from '../../../../shared/utils/arborescentMarker';
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
 import { VisualEffectsActions } from './visualEffectsActions';
@@ -250,6 +251,11 @@ interface SendPayloadArgs {
 }
 
 function buildSendPayload(args: SendPayloadArgs): string {
+  const body = buildSendPayloadBody(args);
+  return maybePrependNodeUuidMarker(body, args);
+}
+
+function buildSendPayloadBody(args: SendPayloadArgs): string {
   const { nodeId, state, flags, target, decomposition, feedbackResponseFile, sessionId = '', overrideContextId } = args;
   const resolvedContextId = overrideContextId
     ?? getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
@@ -290,6 +296,13 @@ function buildSendPayload(args: SendPayloadArgs): string {
       if (executeOnly) return buildTerminalExecuteOnlyPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous);
       return buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition, isAutonomous);
   }
+}
+
+function maybePrependNodeUuidMarker(body: string, args: SendPayloadArgs): string {
+  if (args.target === 'web') return body;
+  if (!args.flags.collaborate && !args.flags.execute) return body;
+  if (!args.nodeId) return body;
+  return buildArborescentMarker(args.nodeId) + body;
 }
 
 function defaultFlags(): ContextFlags {
@@ -519,6 +532,9 @@ export function createSendActions(
         const effectiveContextId = overrideContextId ?? storedContextId;
 
         if (!effectiveContextId) {
+          // No applied context means action-mode-equivalent: send bare content with no
+          // instruction wrapping and intentionally no UUID marker, so any existing
+          // session-to-node binding is preserved per the action-mode rule.
           const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
           await executeInTerminal(terminalId, nodeContent);
           logger.info(`Sent bare node content to terminal for node: ${nodeId}`, 'SendActions');
@@ -586,6 +602,7 @@ export function createSendActions(
         ?? getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
 
       if (!effectiveContextId) {
+        // See collaborateInTerminal: action-mode-equivalent path, no marker by design.
         const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
         await executeInTerminal(terminalId, nodeContent);
         logger.info(`Sent bare node content to terminal autonomously for node: ${nodeId}`, 'SendActions');

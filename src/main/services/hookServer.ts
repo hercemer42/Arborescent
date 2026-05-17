@@ -8,6 +8,10 @@ export type HookEventPayload = {
   terminal_id?: string;
   message?: string;
   source?: string;
+  // node_uuid is trusted input from a hook script bound to a known node UUID. The
+  // hook server is loopback-only and bearer-auth-gated; if that ever changes, this
+  // field becomes a session-takeover vector and the dispatcher must validate it.
+  node_uuid?: string;
 };
 
 type HookEventCallback = (payload: HookEventPayload) => void;
@@ -170,6 +174,10 @@ export class HookServer {
 
     if (typeof obj.source === 'string') {
       payload.source = obj.source;
+    }
+
+    if (typeof obj.node_uuid === 'string') {
+      payload.node_uuid = obj.node_uuid;
     }
 
     return payload;

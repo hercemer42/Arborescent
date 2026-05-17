@@ -8,6 +8,8 @@ import { registerTerminalHandlers, cleanupTerminals } from './handlers/terminalH
 import { logger } from './services/logger';
 import { startHookServerWithRetry, HookServer } from './services/hookServer';
 import { startMcpServerWithRetry, ArborescentMcpServer } from './services/mcpServer';
+import { installHooks } from './services/hookInstaller';
+import { createHookEventDispatcher } from './services/hookEventDispatcher';
 
 if (started) {
   app.quit();
@@ -93,14 +95,28 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  const hookResult = await startHookServerWithRetry(
-    DEFAULT_HOOK_PORT,
-    hookAuthToken,
-    (payload) => {
+  const mcpResult = await startMcpServerWithRetry(DEFAULT_MCP_PORT, mcpAuthToken);
+
+  if (mcpResult.server) {
+    mcpServer = mcpResult.server;
+    logger.info(`MCP server started on port ${mcpResult.port}`, 'Main');
+  } else {
+    logger.warn('MCP server failed to start — MCP tools will not be reachable from Claude Code', 'Main');
+  }
+
+  const dispatchHookEvent = createHookEventDispatcher({
+    getMcpServer: () => mcpServer,
+    forwardToRenderer: (payload) => {
       if (mainWindow && !mainWindow.isDestroyed()) {
         mainWindow.webContents.send('hook-event', payload);
       }
-    }
+    },
+  });
+
+  const hookResult = await startHookServerWithRetry(
+    DEFAULT_HOOK_PORT,
+    hookAuthToken,
+    dispatchHookEvent,
   );
 
   if (hookResult.server) {
@@ -110,13 +126,10 @@ const createWindow = async () => {
     logger.warn('Hook server failed to start — workflow hooks will not work', 'Main');
   }
 
-  const mcpResult = await startMcpServerWithRetry(DEFAULT_MCP_PORT, mcpAuthToken);
-
-  if (mcpResult.server) {
-    mcpServer = mcpResult.server;
-    logger.info(`MCP server started on port ${mcpResult.port}`, 'Main');
-  } else {
-    logger.warn('MCP server failed to start — MCP tools will not be reachable from Claude Code', 'Main');
+  try {
+    await installHooks({ userDataPath: app.getPath('userData') });
+  } catch (error) {
+    logger.error('Failed to install Claude Code hooks', error as Error, 'Main', undefined, false);
   }
 
   const terminalEnv: Record<string, string> = {
