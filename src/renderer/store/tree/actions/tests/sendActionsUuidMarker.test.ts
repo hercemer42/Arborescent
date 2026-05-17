@@ -64,7 +64,7 @@ function makeState(): TreeState {
     summaryDateTo: null,
     summaryVisibleNodeIds: null,
     workflowExecutionStates: {},
-    workflowSessionMap: {},
+    workflowSessionMap: { 'sess-default': 'terminal-1' },
     sessionRegistry: {},
     terminalNodeAssignments: {},
     treeType: 'workspace',
@@ -76,13 +76,16 @@ function makeState(): TreeState {
 describe('UUID marker — terminal sends', () => {
   let state: TreeState;
   let actions: ReturnType<typeof createSendActions>;
-  let executeInTerminalMock: ReturnType<typeof vi.fn>;
+  let enqueuePromptMock: ReturnType<typeof vi.fn>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     vi.clearAllMocks();
     state = makeState();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window.electron.createTempFile as any) = vi.fn().mockResolvedValue('/tmp/feedback-test.md');
+    enqueuePromptMock = vi.fn().mockResolvedValue(undefined);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window.electron as any).enqueuePrompt = enqueuePromptMock;
     const mockGet = vi.fn(() => state);
     const mockSet = vi.fn((partial: Partial<TreeState>) => { state = { ...state, ...partial }; });
     const mockVisualEffects = { flashNode: vi.fn(), scrollToNode: vi.fn() };
@@ -94,33 +97,31 @@ describe('UUID marker — terminal sends', () => {
       mockVisualEffects as any,
       vi.fn(),
     );
-    const mod = await import('../../../../services/terminalExecution');
-    executeInTerminalMock = mod.executeInTerminal as ReturnType<typeof vi.fn>;
   });
 
-  function lastTerminalContent(): string {
-    const calls = executeInTerminalMock.mock.calls;
+  function lastEnqueuedContent(): string {
+    const calls = enqueuePromptMock.mock.calls;
     if (calls.length === 0) return '';
     return calls[calls.length - 1][1] as string;
   }
 
   it('prepends the marker on a collaborate-only terminal send', async () => {
     await actions.collaborateInTerminal(NODE_CHILD, 'terminal-1');
-    const content = lastTerminalContent();
+    const content = lastEnqueuedContent();
     expect(content.startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(true);
     expect(content).toMatch(ARBORESCENT_MARKER_REGEX);
   });
 
   it('the marker carries the node UUID of the sent node', async () => {
     await actions.collaborateInTerminal(NODE_CHILD, 'terminal-1');
-    const content = lastTerminalContent();
+    const content = lastEnqueuedContent();
     const match = content.match(ARBORESCENT_MARKER_REGEX);
     expect(match?.[1]).toBe(NODE_CHILD);
   });
 
   it('the body below the marker still contains the existing prompt content', async () => {
     await actions.collaborateInTerminal(NODE_CHILD, 'terminal-1');
-    const content = lastTerminalContent();
+    const content = lastEnqueuedContent();
     expect(content).toContain('Child content');
   });
 });
@@ -128,15 +129,18 @@ describe('UUID marker — terminal sends', () => {
 describe('UUID marker — action mode', () => {
   let state: TreeState;
   let actions: ReturnType<typeof createSendActions>;
-  let executeInTerminalMock: ReturnType<typeof vi.fn>;
+  let enqueuePromptMock: ReturnType<typeof vi.fn>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     vi.clearAllMocks();
     state = makeState();
     state.nodes[CONTEXT_NODE_ID].metadata.collaborate = false;
     state.nodes[CONTEXT_NODE_ID].metadata.execute = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window.electron.createTempFile as any) = vi.fn().mockResolvedValue('/tmp/feedback-test.md');
+    enqueuePromptMock = vi.fn().mockResolvedValue(undefined);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window.electron as any).enqueuePrompt = enqueuePromptMock;
 
     const mockGet = vi.fn(() => state);
     const mockSet = vi.fn((partial: Partial<TreeState>) => { state = { ...state, ...partial }; });
@@ -149,13 +153,11 @@ describe('UUID marker — action mode', () => {
       mockVisualEffects as any,
       vi.fn(),
     );
-    const mod = await import('../../../../services/terminalExecution');
-    executeInTerminalMock = mod.executeInTerminal as ReturnType<typeof vi.fn>;
   });
 
   it('does NOT prepend the marker when neither execute nor collaborate is set (action mode)', async () => {
     await actions.collaborateInTerminal(NODE_CHILD, 'terminal-1', { collaborate: false, execute: false });
-    const content = (executeInTerminalMock.mock.calls.at(-1)?.[1] as string) ?? '';
+    const content = (enqueuePromptMock.mock.calls.at(-1)?.[1] as string) ?? '';
     expect(content.startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(false);
   });
 });

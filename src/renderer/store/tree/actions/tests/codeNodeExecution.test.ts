@@ -47,6 +47,7 @@ const baseElectronMock = () => ({
   readTempFile: vi.fn().mockResolvedValue(null),
   startFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
   stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
+  enqueuePrompt: vi.fn().mockResolvedValue(undefined),
 });
 
 const buildHarness = (
@@ -88,7 +89,7 @@ const buildHarness = (
     summaryDateTo: null,
     summaryVisibleNodeIds: null,
     workflowExecutionStates: {},
-    workflowSessionMap: {},
+    workflowSessionMap: { 'sess-1': 'term-1' },
     terminalNodeAssignments: {},
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     actions: { executeCommand: vi.fn() } as any,
@@ -160,8 +161,9 @@ describe('collaborateInTerminal — code-node execution', () => {
 
       await actions.collaborateInTerminal('n1', 'term-1');
 
-      expect(executeInTerminal).toHaveBeenCalledTimes(1);
-      const sent = executeInTerminal.mock.calls[0][1] as string;
+      const enqueueMock = window.electron.enqueuePrompt as Mock;
+      expect(enqueueMock).toHaveBeenCalledTimes(1);
+      const sent = enqueueMock.mock.calls[0][1] as string;
       expect(sent).toContain('Run `npm install` first');
     });
 
@@ -171,8 +173,9 @@ describe('collaborateInTerminal — code-node execution', () => {
 
       await actions.collaborateInTerminal('n1', 'term-1');
 
-      expect(executeInTerminal).toHaveBeenCalledTimes(1);
-      const sent = executeInTerminal.mock.calls[0][1] as string;
+      const enqueueMock = window.electron.enqueuePrompt as Mock;
+      expect(enqueueMock).toHaveBeenCalledTimes(1);
+      const sent = enqueueMock.mock.calls[0][1] as string;
       expect(sent).toContain('`first` and `second`');
     });
   });
@@ -189,7 +192,8 @@ describe('collaborateInTerminal — code-node execution', () => {
 
       await actions.collaborateInTerminal('p1', 'term-1');
 
-      const sent = executeInTerminal.mock.calls[0][1] as string;
+      const enqueueMock = window.electron.enqueuePrompt as Mock;
+      const sent = enqueueMock.mock.calls[0][1] as string;
       expect(sent).toContain('`npm install`');
       expect(sent).toContain('optional follow-up');
     });
@@ -211,8 +215,9 @@ describe('collaborateInTerminal — code-node execution', () => {
 
       await actions.collaborateInTerminal('n1', 'term-1');
 
-      expect(executeInTerminal).toHaveBeenCalledTimes(1);
-      const sent = executeInTerminal.mock.calls[0][1] as string;
+      const enqueueMock = window.electron.enqueuePrompt as Mock;
+      expect(enqueueMock).toHaveBeenCalledTimes(1);
+      const sent = enqueueMock.mock.calls[0][1] as string;
       expect(sent).toContain('`npm install`');
       expect(sent).toContain('Review carefully');
     });
@@ -234,7 +239,8 @@ describe('collaborateInTerminal — code-node execution', () => {
 
       await actions.collaborateInTerminal('n1', 'term-1');
 
-      const sent = executeInTerminal.mock.calls[0][1] as string;
+      const enqueueMock = window.electron.enqueuePrompt as Mock;
+      const sent = enqueueMock.mock.calls[0][1] as string;
       expect(sent).toContain('`npm install`');
       expect(sent).toContain('Review carefully');
     });
@@ -247,7 +253,8 @@ describe('collaborateInTerminal — code-node execution', () => {
 
       await actions.collaborateInTerminal('n1', 'term-1');
 
-      const sent = executeInTerminal.mock.calls[0][1] as string;
+      const enqueueMock = window.electron.enqueuePrompt as Mock;
+      const sent = enqueueMock.mock.calls[0][1] as string;
       expect(sent).toContain('Plain prose, no backticks');
     });
   });
@@ -339,8 +346,9 @@ describe('multi-node selection gate (rule 3)', () => {
 
     await actions.collaborateInTerminal('n1', 'term-1');
 
-    expect(executeInTerminal).toHaveBeenCalledTimes(1);
-    const sent = executeInTerminal.mock.calls[0][1] as string;
+    const enqueueMock = window.electron.enqueuePrompt as Mock;
+    expect(enqueueMock).toHaveBeenCalledTimes(1);
+    const sent = enqueueMock.mock.calls[0][1] as string;
     expect(sent).not.toBe('npm install');
     expect(sent).toContain('`npm install`');
   });

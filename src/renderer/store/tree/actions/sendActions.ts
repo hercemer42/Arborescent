@@ -1,5 +1,6 @@
 import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
+import type { PromptQueueSource } from '../../../../shared/types/electronApi';
 import {
   buildContentWithContext,
   getAppliedContextIdWithInheritance,
@@ -531,13 +532,24 @@ export function createSendActions(
         const storedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
         const effectiveContextId = overrideContextId ?? storedContextId;
 
+        const manualSendSessionId = findSessionIdForTerminal(state.workflowSessionMap, terminalId);
+
+        if (!manualSendSessionId) {
+          useToastStore.getState().addToast(
+            'No Claude session bound to this terminal yet — start Claude before sending.',
+            'warning',
+          );
+          logger.warn(
+            `Manual send cancelled: no session bound to terminal ${terminalId}`,
+            'SendActions',
+          );
+          return;
+        }
+
         if (!effectiveContextId) {
-          // No applied context means action-mode-equivalent: send bare content with no
-          // instruction wrapping and intentionally no UUID marker, so any existing
-          // session-to-node binding is preserved per the action-mode rule.
           const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
-          await executeInTerminal(terminalId, nodeContent);
-          logger.info(`Sent bare node content to terminal for node: ${nodeId}`, 'SendActions');
+          await window.electron.enqueuePrompt(manualSendSessionId, nodeContent, 'manual-action');
+          logger.info(`Enqueued bare node content for action-mode manual send: ${nodeId}`, 'SendActions');
           return;
         }
 
@@ -567,7 +579,9 @@ export function createSendActions(
           overrideContextId,
         });
 
-        await executeInTerminal(terminalId, terminalInstruction);
+        const manualSendSource: PromptQueueSource =
+          !resolvedFlags.collaborate && !resolvedFlags.execute ? 'manual-action' : 'manual';
+        await window.electron.enqueuePrompt(manualSendSessionId, terminalInstruction, manualSendSource);
 
         if (resolvedFlags.collaborate && feedbackResponseFile) {
           set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', collaboratingTerminalId: terminalId, decomposition: effectiveDecomposition });

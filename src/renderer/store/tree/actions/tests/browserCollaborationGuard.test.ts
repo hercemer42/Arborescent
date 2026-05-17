@@ -70,6 +70,7 @@ describe('browser collaboration guard across files', () => {
         readTempFile: vi.fn().mockResolvedValue(null),
         startFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
         stopFeedbackFileWatcher: vi.fn().mockResolvedValue(undefined),
+        enqueuePrompt: vi.fn().mockResolvedValue(undefined),
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
@@ -108,7 +109,7 @@ describe('browser collaboration guard across files', () => {
       summaryDateTo: null,
       summaryVisibleNodeIds: null,
       workflowExecutionStates: {},
-      workflowSessionMap: {},
+      workflowSessionMap: { 'sess-1': 'terminal-1' },
       terminalNodeAssignments: {},
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,

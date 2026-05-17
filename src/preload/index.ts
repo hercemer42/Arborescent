@@ -173,6 +173,13 @@ const api: ElectronAPI = {
   },
   respondToMcpProposal: (response) =>
     ipcRenderer.invoke('mcp:proposal-response', response),
+  enqueuePrompt: (sessionId, content, source) =>
+    ipcRenderer.invoke('mcp:enqueue-prompt', sessionId, content, source),
+  onPromptEnqueued: (callback) => {
+    const listener = (_event: Electron.IpcRendererEvent, sessionId: string) => callback(sessionId);
+    ipcRenderer.on('mcp:prompt-enqueued', listener);
+    return () => ipcRenderer.removeListener('mcp:prompt-enqueued', listener);
+  },
   appendLog: (entry) => ipcRenderer.invoke('log:append', entry),
   openLogFile: () => ipcRenderer.invoke('log:open'),
   getLogFilePath: () => ipcRenderer.invoke('log:get-path'),
