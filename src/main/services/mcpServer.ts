@@ -4,6 +4,8 @@ import { randomUUID, timingSafeEqual } from 'node:crypto';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 // eslint-disable-next-line import/no-unresolved
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+// eslint-disable-next-line import/no-unresolved
+import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { logger } from './logger';
 import { SessionBindingRegistry } from './sessionBindingRegistry';
@@ -21,24 +23,20 @@ const MCP_PATH = '/mcp';
 const SERVER_NAME = 'arborescent';
 const SERVER_VERSION = '0.2.0';
 
+type McpSession = { transport: StreamableHTTPServerTransport; mcp: McpServer };
+
 export class ArborescentMcpServer {
-  private mcp: McpServer;
-  private transport: StreamableHTTPServerTransport;
   private httpServer: http.Server | null = null;
   private port = 0;
   private authToken = '';
   private bindingRegistry = new SessionBindingRegistry();
   private submitMarker = new SubmitMarker();
-  private connected = false;
   private readTools: ReadTools | null = null;
   private writeTools: WriteTools | null = null;
   private submitOutputTool: SubmitOutputTool | null = null;
+  private sessions: Map<string, McpSession> = new Map();
 
-  constructor() {
-    this.mcp = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
-    this.transport = new StreamableHTTPServerTransport({ sessionIdGenerator: () => randomUUID() });
-    this.registerSmokeTool();
-  }
+  constructor() {}
 
   attachReadTools(treeReader: TreeReader): void {
     if (this.readTools) {
@@ -49,13 +47,12 @@ export class ArborescentMcpServer {
       bindingRegistry: this.bindingRegistry,
       treeReader,
     });
-    this.registerReadTools(this.readTools);
   }
 
-  private registerReadTools(tools: ReadTools): void {
+  private registerReadTools(mcp: McpServer, tools: ReadTools): void {
     const sessionIdSchema = { session_id: z.string().min(1).describe('Claude Code session ID') };
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'get_node',
       {
         title: 'Get bound node',
@@ -66,7 +63,7 @@ export class ArborescentMcpServer {
       async (args) => tools.getNode({ sessionId: args.session_id }),
     );
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'get_tree',
       {
         title: 'Get subtree from bound node',
@@ -81,7 +78,7 @@ export class ArborescentMcpServer {
         tools.getTree({ sessionId: args.session_id, depth: args.depth as number | undefined }),
     );
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'list_contexts',
       {
         title: 'List contexts in scope',
@@ -104,13 +101,12 @@ export class ArborescentMcpServer {
       treeMutator,
       proposalSubmitter,
     });
-    this.registerWriteTools(this.writeTools);
   }
 
-  private registerWriteTools(tools: WriteTools): void {
+  private registerWriteTools(mcp: McpServer, tools: WriteTools): void {
     const sessionIdSchema = { session_id: z.string().min(1).describe('Claude Code session ID') };
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'add_child_node',
       {
         title: 'Add a child node',
@@ -131,7 +127,7 @@ export class ArborescentMcpServer {
         }),
     );
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'append_to_node',
       {
         title: 'Append to bound node content',
@@ -144,7 +140,7 @@ export class ArborescentMcpServer {
       async (args) => tools.appendToNode({ sessionId: args.session_id, content: args.content }),
     );
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'mark_step_complete',
       {
         title: 'Mark bound step status',
@@ -157,7 +153,7 @@ export class ArborescentMcpServer {
       async (args) => tools.markStepComplete({ sessionId: args.session_id, status: args.status }),
     );
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'set_node_content',
       {
         title: 'Replace bound node content',
@@ -170,7 +166,7 @@ export class ArborescentMcpServer {
       async (args) => tools.setNodeContent({ sessionId: args.session_id, content: args.content }),
     );
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'delete_node',
       {
         title: 'Delete the bound node',
@@ -180,7 +176,7 @@ export class ArborescentMcpServer {
       async (args) => tools.deleteNode({ sessionId: args.session_id }),
     );
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'move_node',
       {
         title: 'Move the bound node',
@@ -199,7 +195,7 @@ export class ArborescentMcpServer {
         }),
     );
 
-    this.mcp.registerTool(
+    mcp.registerTool(
       'set_node_metadata',
       {
         title: 'Set a metadata key on the bound node',
@@ -229,11 +225,10 @@ export class ArborescentMcpServer {
       marker: this.submitMarker,
       proposalSubmitter,
     });
-    this.registerSubmitOutputTool(this.submitOutputTool);
   }
 
-  private registerSubmitOutputTool(tool: SubmitOutputTool): void {
-    this.mcp.registerTool(
+  private registerSubmitOutputTool(mcp: McpServer, tool: SubmitOutputTool): void {
+    mcp.registerTool(
       'submit_step_output',
       {
         title: 'Submit step output',
@@ -266,11 +261,6 @@ export class ArborescentMcpServer {
     }
     this.authToken = authToken;
 
-    if (!this.connected) {
-      await this.mcp.connect(this.transport);
-      this.connected = true;
-    }
-
     this.httpServer = http.createServer((req, res) => this.handle(req, res));
 
     return new Promise((resolve, reject) => {
@@ -297,11 +287,11 @@ export class ArborescentMcpServer {
     this.httpServer = null;
     this.port = 0;
     await new Promise<void>((resolve) => server.close(() => resolve()));
-    if (this.connected) {
-      await this.transport.close();
-      await this.mcp.close();
-      this.connected = false;
+    for (const { transport, mcp } of this.sessions.values()) {
+      await transport.close();
+      await mcp.close();
     }
+    this.sessions.clear();
     this.submitMarker.clear();
     logger.info('MCP server stopped', 'McpServer');
   }
@@ -318,8 +308,8 @@ export class ArborescentMcpServer {
     return this.submitMarker;
   }
 
-  private registerSmokeTool(): void {
-    this.mcp.registerTool(
+  private registerSmokeTool(mcp: McpServer): void {
+    mcp.registerTool(
       'arborescent.ping',
       {
         title: 'Arborescent ping',
@@ -329,6 +319,15 @@ export class ArborescentMcpServer {
         content: [{ type: 'text', text: 'pong' }],
       })
     );
+  }
+
+  private buildConfiguredMcpServer(): McpServer {
+    const mcp = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
+    this.registerSmokeTool(mcp);
+    if (this.readTools) this.registerReadTools(mcp, this.readTools);
+    if (this.writeTools) this.registerWriteTools(mcp, this.writeTools);
+    if (this.submitOutputTool) this.registerSubmitOutputTool(mcp, this.submitOutputTool);
+    return mcp;
   }
 
   private handle(req: http.IncomingMessage, res: http.ServerResponse): void {
@@ -356,6 +355,9 @@ export class ArborescentMcpServer {
 
   private async dispatchToTransport(req: http.IncomingMessage, res: http.ServerResponse): Promise<void> {
     const method = req.method?.toUpperCase() ?? 'GET';
+    const headerSessionId = req.headers['mcp-session-id'];
+    const sessionId = typeof headerSessionId === 'string' ? headerSessionId : undefined;
+
     if (method === 'POST') {
       let parsedBody: unknown;
       try {
@@ -366,10 +368,52 @@ export class ArborescentMcpServer {
         res.end(JSON.stringify({ error: { code: -32700, message: 'Parse error' } }));
         return;
       }
-      await this.transport.handleRequest(req, res, parsedBody);
+
+      let session: McpSession | undefined;
+      if (sessionId) session = this.sessions.get(sessionId);
+
+      if (!session && isInitializeRequest(parsedBody)) {
+        session = await this.openSession();
+      }
+
+      if (!session) {
+        res.writeHead(400, { 'content-type': 'application/json' });
+        res.end(
+          JSON.stringify({
+            jsonrpc: '2.0',
+            error: { code: -32000, message: 'Bad Request: No valid session ID for non-initialize request' },
+            id: null,
+          }),
+        );
+        return;
+      }
+
+      await session.transport.handleRequest(req, res, parsedBody);
       return;
     }
-    await this.transport.handleRequest(req, res);
+
+    const existing = sessionId ? this.sessions.get(sessionId) : undefined;
+    if (!existing) {
+      res.writeHead(400);
+      res.end();
+      return;
+    }
+    await existing.transport.handleRequest(req, res);
+  }
+
+  private async openSession(): Promise<McpSession> {
+    const mcp = this.buildConfiguredMcpServer();
+    const transport = new StreamableHTTPServerTransport({
+      sessionIdGenerator: () => randomUUID(),
+      onsessioninitialized: (id) => {
+        this.sessions.set(id, { transport, mcp });
+      },
+    });
+    transport.onclose = () => {
+      if (transport.sessionId) this.sessions.delete(transport.sessionId);
+    };
+    await mcp.connect(transport);
+    return { transport, mcp };
   }
 
   private validateAuth(req: http.IncomingMessage): boolean {
