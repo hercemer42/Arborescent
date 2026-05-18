@@ -4,21 +4,31 @@ vi.mock('../logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
 
-// PR7 — renderer-side IPC receiver for proposals. Listens for
-// mcp:proposal-request, finds the file store that owns the bound nodeId,
-// appends to the proposals store with that file's path, and replies on the
-// matching response channel with the assigned proposalId (or an error).
 import { handleProposalRequest } from '../mcpProposalReceiverService';
-import { useProposalsStore } from '../../store/proposals/proposalsStore';
 import type { ProposalRequest } from '../../../shared/types/electronApi';
 
 const FILE_A = '/test/a.arbo';
 const NODE = 'node-1';
 const SESSION = 'sess-1';
 
+let processedContent: { content: string; source: string; skipSave: boolean } | null;
+let processResult: { success: boolean; error?: string };
+
+const mockStore = {
+  getState: () => ({
+    actions: {
+      processIncomingFeedbackContent: vi.fn(async (content: string, source: string, skipSave: boolean) => {
+        processedContent = { content, source, skipSave };
+        return processResult;
+      }),
+    },
+  }),
+};
+
 beforeEach(() => {
-  useProposalsStore.setState({ proposalsByFile: {} });
   vi.clearAllMocks();
+  processedContent = null;
+  processResult = { success: true };
 });
 
 describe('handleProposalRequest', () => {
@@ -27,42 +37,84 @@ describe('handleProposalRequest', () => {
       requestId: 'req-1',
       sessionId: SESSION,
       nodeId: NODE,
-      request: { kind: 'add-child', parentId: NODE, content: 'pending' },
+      request: { kind: 'submit-step-output', content: 'AI response' },
       ...overrides,
     };
   }
 
-  function makeStoreLookup(filePath: string | null) {
-    return vi.fn(() => filePath);
+  function makeDeps(filePath: string | null) {
+    return {
+      findFileForNode: vi.fn(() => filePath),
+      getStoreForFile: vi.fn(() => (filePath ? (mockStore as never) : null)),
+    };
   }
 
-  it('appends the proposal to the file store that owns the bound nodeId and returns ok with the assigned proposalId', () => {
-    const findFileForNode = makeStoreLookup(FILE_A);
-    const result = handleProposalRequest(makeRequest(), { findFileForNode });
+  it('routes submit-step-output content through processIncomingFeedbackContent on the file store', async () => {
+    const deps = makeDeps(FILE_A);
+    const result = await handleProposalRequest(makeRequest(), deps);
+
     expect(result.ok).toBe(true);
-    if (result.ok) expect(result.proposalId).toEqual(expect.any(String));
-    const proposals = useProposalsStore.getState().getProposalsForFile(FILE_A);
-    expect(proposals).toHaveLength(1);
-    expect(proposals[0].nodeId).toBe(NODE);
-    expect(proposals[0].sessionId).toBe(SESSION);
+    expect(processedContent).toEqual({
+      content: 'AI response',
+      source: 'mcp-proposal',
+      skipSave: true,
+    });
   });
 
-  it('returns an error when no open file contains the bound nodeId', () => {
-    const findFileForNode = makeStoreLookup(null);
-    const result = handleProposalRequest(makeRequest(), { findFileForNode });
+  it('returns an error when no open file contains the bound nodeId', async () => {
+    const deps = makeDeps(null);
+    const result = await handleProposalRequest(makeRequest(), deps);
+
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error).toMatch(/not found|no open file/i);
-    expect(useProposalsStore.getState().getProposalsForFile(FILE_A)).toEqual([]);
+    expect(processedContent).toBeNull();
   });
 
-  it('a submit-step-output proposal is stored with its content', () => {
-    const findFileForNode = makeStoreLookup(FILE_A);
-    handleProposalRequest(
-      makeRequest({ request: { kind: 'submit-step-output', content: 'AI response' } }),
-      { findFileForNode },
+  it('returns an error when feedback content processing fails (e.g. no active collaboration on the file)', async () => {
+    processResult = { success: false };
+    const deps = makeDeps(FILE_A);
+    const result = await handleProposalRequest(makeRequest(), deps);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error).toMatch(/feedback/i);
+  });
+
+  it('rejects write-tool proposals with a clear error directing Claude to use submit_step_output', async () => {
+    const deps = makeDeps(FILE_A);
+    const result = await handleProposalRequest(
+      makeRequest({ request: { kind: 'add-child', parentId: NODE, content: 'new' } }),
+      deps,
     );
-    const proposal = useProposalsStore.getState().getProposalsForFile(FILE_A)[0];
-    expect(proposal.request).toEqual({ kind: 'submit-step-output', content: 'AI response' });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error).toMatch(/submit_step_output/i);
+    expect(processedContent).toBeNull();
+  });
+
+  it('rejects each non-submit-step-output proposal kind with the same submit_step_output guidance', async () => {
+    const deps = makeDeps(FILE_A);
+    const kinds: ProposalRequest['request'][] = [
+      { kind: 'add-child', parentId: NODE, content: 'x' },
+      { kind: 'append', content: 'x' },
+      { kind: 'mark-complete', status: 'completed' },
+      { kind: 'set-content', content: 'x' },
+      { kind: 'delete' },
+      { kind: 'move', newParentId: 'p' },
+      { kind: 'set-metadata', key: 'k', value: 'v' },
+    ];
+
+    for (const request of kinds) {
+      const result = await handleProposalRequest(makeRequest({ request }), deps);
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.error).toMatch(/submit_step_output/i);
+    }
+  });
+
+  it('returns ok with a synthetic proposalId for submit-step-output (the proposal does not persist in any store)', async () => {
+    const deps = makeDeps(FILE_A);
+    const result = await handleProposalRequest(makeRequest(), deps);
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.proposalId).toEqual(expect.any(String));
   });
 });
 

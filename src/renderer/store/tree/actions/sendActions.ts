@@ -55,7 +55,7 @@ const DEFAULT_REVISE_CONTEXT = `Revise the following specification based on our 
 
 const AUTONOMOUS_INLINE_CHECKS_CLAUSE = '- If you need to run checks (build, tests, lint, type-check) or other long-running commands, run them inline in this terminal session.\n- Do not background them with `&` or watch them via poll loops — Arborescent advances the workflow when this terminal returns to the prompt.';
 
-export type ContentSource = 'clipboard' | 'file' | 'restore';
+export type ContentSource = 'clipboard' | 'file' | 'restore' | 'mcp-proposal';
 
 const HEADING_PERSISTENCE_RULES = `- Only heading lines persist between steps; non-heading lines are discarded by the parser.
 - To preserve a value (text, URL, etc.) into later steps, capture it as its own heading line — as a child node, never as a paragraph beneath a heading.

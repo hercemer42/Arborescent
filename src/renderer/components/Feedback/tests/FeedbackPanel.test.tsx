@@ -60,15 +60,6 @@ vi.mock('../../../store/files/filesStore', () => ({
   }),
 }));
 
-vi.mock('../../../store/proposals/proposalsStore', () => ({
-  useProposalsStore: vi.fn((selector) => {
-    const mockState = {
-      proposalsByFile: {},
-    };
-    return selector(mockState);
-  }),
-}));
-
 vi.mock('../../Tree', () => ({
   Tree: () => <div data-testid="tree-component">Tree Component</div>,
 }));
@@ -119,7 +110,7 @@ describe('FeedbackPanel', () => {
 
       render(<FeedbackPanel />);
 
-      expect(screen.getByText('Waiting for feedback to appear in clipboard...')).toBeInTheDocument();
+      expect(screen.getByText('Waiting for AI response...')).toBeInTheDocument();
       expect(screen.queryByTestId('tree-component')).not.toBeInTheDocument();
     });
 
@@ -130,7 +121,7 @@ describe('FeedbackPanel', () => {
 
       expect(screen.getByTestId('tree-store-provider')).toBeInTheDocument();
       expect(screen.getByTestId('tree-component')).toBeInTheDocument();
-      expect(screen.queryByText('Waiting for feedback to appear in clipboard...')).not.toBeInTheDocument();
+      expect(screen.queryByText('Waiting for AI response...')).not.toBeInTheDocument();
     });
 
     it('should render Cancel button that calls handleCancel', () => {
