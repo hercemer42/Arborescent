@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-18T05:02:18.191Z'
+updated: '2026-05-18T05:30:20.524Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -80781,6 +80781,8 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - 250a030a-839a-4e23-9faa-26ebf526d707
+      - 1bc79578-42b4-457b-9f7e-de651dfa7525
       - 8d0160f3-b2b6-4aad-82c3-22fb6911d8cf
       - f64db720-58ee-4931-9e19-533ede9cc810
       - bb863ed8-a5b4-4fb0-8140-2939b997845d
@@ -147502,10 +147504,1230 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  1bc79578-42b4-457b-9f7e-de651dfa7525:
+    id: 1bc79578-42b4-457b-9f7e-de651dfa7525
+    content: Auto-register the Arborescent MCP server with Claude Code on app startup
+    children:
+      - a277c5e5-4558-485e-b4a5-3ffef15de401
+      - 942ed1c3-5042-4851-842a-392a07c7d177
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  a277c5e5-4558-485e-b4a5-3ffef15de401:
+    id: a277c5e5-4558-485e-b4a5-3ffef15de401
+    content: 📄 Product spec
+    children:
+      - 3a8ef429-2529-436e-89a2-d29499d7563e
+      - eb5b3101-2ccc-43ca-8c29-3c12fb1b6120
+      - 5cd991a1-4648-4a86-8497-9f90ba99c578
+      - 51b6d4a6-7beb-41d0-b5d0-d361b216f0f7
+      - ab953f05-000b-41d6-8ded-679e6cc8e210
+      - 0b7284b6-6f96-4c84-8db7-1f9c0fdf4bca
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a8ef429-2529-436e-89a2-d29499d7563e:
+    id: 3a8ef429-2529-436e-89a2-d29499d7563e
+    content: Context
+    children:
+      - 5600a21e-0c24-476a-8577-ce3556fc4974
+      - 8b62d540-255a-4bde-8872-e1c4033592fe
+      - 2d2c30f2-5740-4bc2-b128-8823a7d0e910
+      - fd2ea29e-731a-4aa4-bae5-2709857beefc
+      - 74181e99-0022-4c33-8515-0aea05dffbf5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5600a21e-0c24-476a-8577-ce3556fc4974:
+    id: 5600a21e-0c24-476a-8577-ce3556fc4974
+    content: Arborescent starts a local MCP HTTP server on a port (default 17840) with an auth token, and injects
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b62d540-255a-4bde-8872-e1c4033592fe:
+    id: 8b62d540-255a-4bde-8872-e1c4033592fe
+    content: Claude Code only knows about MCP servers listed in `~/.claude.json` under `mcpServers`. Arborescent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d2c30f2-5740-4bc2-b128-8823a7d0e910:
+    id: 2d2c30f2-5740-4bc2-b128-8823a7d0e910
+    content: The SessionStart hook emits a directive saying "you are connected to the Arborescent MCP server" but
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd2ea29e-731a-4aa4-bae5-2709857beefc:
+    id: fd2ea29e-731a-4aa4-bae5-2709857beefc
+    content: PRs 1–10 of the MCP migration stood up the server, hooks, read/write tools, proposal bridge, rebind
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74181e99-0022-4c33-8515-0aea05dffbf5:
+    id: 74181e99-0022-4c33-8515-0aea05dffbf5
+    content: The auth token is currently regenerated on every Arborescent boot, which would make any static config
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb5b3101-2ccc-43ca-8c29-3c12fb1b6120:
+    id: eb5b3101-2ccc-43ca-8c29-3c12fb1b6120
+    content: User
+    children:
+      - e02544a4-5b0b-4238-8a98-18ffbc940ade
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e02544a4-5b0b-4238-8a98-18ffbc940ade:
+    id: e02544a4-5b0b-4238-8a98-18ffbc940ade
+    content: Anyone using Arborescent for AI-collaborative workflows. Until this lands, Claude can read the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cd991a1-4648-4a86-8497-9f90ba99c578:
+    id: 5cd991a1-4648-4a86-8497-9f90ba99c578
+    content: Current experience and why it is insufficient
+    children:
+      - d0220dbf-7c32-4412-adc2-cc1989fe7aa6
+      - bb19a795-b987-4d63-ae71-d26216053b50
+      - 4aab3263-bd64-4f02-ba38-e77df1d4fecb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0220dbf-7c32-4412-adc2-cc1989fe7aa6:
+    id: d0220dbf-7c32-4412-adc2-cc1989fe7aa6
+    content: Send a node → Claude responds to the prompt content, but every workflow step that depends on Claude
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb19a795-b987-4d63-ae71-d26216053b50:
+    id: bb19a795-b987-4d63-ae71-d26216053b50
+    content: The Feedback panel never receives proposals.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aab3263-bd64-4f02-ba38-e77df1d4fecb:
+    id: 4aab3263-bd64-4f02-ba38-e77df1d4fecb
+    content: Manual workaround is to hand-edit `~/.claude.json` and refresh the token on every Arborescent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  51b6d4a6-7beb-41d0-b5d0-d361b216f0f7:
+    id: 51b6d4a6-7beb-41d0-b5d0-d361b216f0f7
+    content: Goal
+    children:
+      - 060286e7-513b-43f6-bf24-682b45376098
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  060286e7-513b-43f6-bf24-682b45376098:
+    id: 060286e7-513b-43f6-bf24-682b45376098
+    content: On Arborescent startup, the `arborescent` MCP server entry exists in `~/.claude.json` with the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab953f05-000b-41d6-8ded-679e6cc8e210:
+    id: ab953f05-000b-41d6-8ded-679e6cc8e210
+    content: Business rules
+    children:
+      - a03ff3cd-d2bf-4824-914f-2827eded1216
+      - c2385ea2-bc85-40a1-8eb9-cec92160e2ea
+      - e08a0905-7542-4b04-b573-445747a7bf5d
+      - f575859f-0970-406e-8343-dbd5b351389e
+      - 5f4bfb61-e7e1-4bfa-ad7d-c53b4c2d485d
+      - 133a7235-a04c-400d-827e-46c57be4de07
+      - 909a149a-fb86-48d3-a025-ab0eac6508ab
+      - 03091b50-c6d6-4ab2-8c5c-cf9f0ff2ce33
+      - bbcbbd18-7e49-413b-880c-0225b7f8d466
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a03ff3cd-d2bf-4824-914f-2827eded1216:
+    id: a03ff3cd-d2bf-4824-914f-2827eded1216
+    content: The MCP auth token is cached in `userData/mcp-auth-token` and reused across Arborescent restarts; it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2385ea2-bc85-40a1-8eb9-cec92160e2ea:
+    id: c2385ea2-bc85-40a1-8eb9-cec92160e2ea
+    content: On each Arborescent boot, after the MCP server binds, Arborescent upserts the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e08a0905-7542-4b04-b573-445747a7bf5d:
+    id: e08a0905-7542-4b04-b573-445747a7bf5d
+    content: 'The entry shape is `{ type: "http", url: "http://127.0.0.1:<port>/mcp", headers: { "Authorization":'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f575859f-0970-406e-8343-dbd5b351389e:
+    id: f575859f-0970-406e-8343-dbd5b351389e
+    content: If a previous `arborescent` entry already exists, it is replaced (not duplicated). Other user-added
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f4bfb61-e7e1-4bfa-ad7d-c53b4c2d485d:
+    id: 5f4bfb61-e7e1-4bfa-ad7d-c53b4c2d485d
+    content: If `~/.claude.json` does not exist, it is created with just the `arborescent` entry and any other
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  133a7235-a04c-400d-827e-46c57be4de07:
+    id: 133a7235-a04c-400d-827e-46c57be4de07
+    content: If `~/.claude.json` is malformed (invalid JSON or `mcpServers` is not an object), Arborescent logs a
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  909a149a-fb86-48d3-a025-ab0eac6508ab:
+    id: 909a149a-fb86-48d3-a025-ab0eac6508ab
+    content: If the MCP server binds to a non-default port after retry, the URL in the config reflects the actual
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03091b50-c6d6-4ab2-8c5c-cf9f0ff2ce33:
+    id: 03091b50-c6d6-4ab2-8c5c-cf9f0ff2ce33
+    content: Already-open Claude sessions do not see the new server until they reconnect (`/clear` or restart) —
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbcbbd18-7e49-413b-880c-0225b7f8d466:
+    id: bbcbbd18-7e49-413b-880c-0225b7f8d466
+    content: The SessionStart hook directive is unchanged — it continues to inform Claude of the session_id to
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b7284b6-6f96-4c84-8db7-1f9c0fdf4bca:
+    id: 0b7284b6-6f96-4c84-8db7-1f9c0fdf4bca
+    content: Acceptance criteria
+    children:
+      - 8292fb70-358c-4ee6-b233-e8961181367f
+      - c1739f88-7623-4751-bcbb-e96c12f78d20
+      - d70b6f87-e5a9-42f9-9e03-1be50605b8f5
+      - a6a077e4-71ef-41d0-84ee-fe77746afcdc
+      - 7b3c3324-f8d8-4597-b5a9-4df19a6f4cc2
+      - 80b244f1-86c8-4e23-9233-90a5ba548e9e
+      - 850d761e-6df1-465a-b81d-63b24e7c3daf
+      - c781dceb-a2cd-4a5f-ad94-c55fe4aefb90
+      - ea0fc2c7-2823-45de-8d41-d201539195ba
+      - ba744312-0b00-428c-a172-7953a5abd51b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8292fb70-358c-4ee6-b233-e8961181367f:
+    id: 8292fb70-358c-4ee6-b233-e8961181367f
+    content: After Arborescent boot, `~/.claude.json` contains an `arborescent` entry under `mcpServers` with
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1739f88-7623-4751-bcbb-e96c12f78d20:
+    id: c1739f88-7623-4751-bcbb-e96c12f78d20
+    content: The auth token in `~/.claude.json` is identical across Arborescent restarts (no fresh token per
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d70b6f87-e5a9-42f9-9e03-1be50605b8f5:
+    id: d70b6f87-e5a9-42f9-9e03-1be50605b8f5
+    content: The auth token file in `userData/mcp-auth-token` is created on first boot if missing and reused on
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6a077e4-71ef-41d0-84ee-fe77746afcdc:
+    id: a6a077e4-71ef-41d0-84ee-fe77746afcdc
+    content: A fresh Claude Code session spawned by (or after) Arborescent boot lists
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b3c3324-f8d8-4597-b5a9-4df19a6f4cc2:
+    id: 7b3c3324-f8d8-4597-b5a9-4df19a6f4cc2
+    content: Calling `get_node` from a fresh Claude session returns the bound node's content + metadata +
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  80b244f1-86c8-4e23-9233-90a5ba548e9e:
+    id: 80b244f1-86c8-4e23-9233-90a5ba548e9e
+    content: Pre-existing user-added entries in `mcpServers` (e.g. linear-server, playwright) survive the merge —
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  850d761e-6df1-465a-b81d-63b24e7c3daf:
+    id: 850d761e-6df1-465a-b81d-63b24e7c3daf
+    content: A malformed `~/.claude.json` produces a logged error and the file is not overwritten.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c781dceb-a2cd-4a5f-ad94-c55fe4aefb90:
+    id: c781dceb-a2cd-4a5f-ad94-c55fe4aefb90
+    content: If `startMcpServerWithRetry` lands on a non-default port (e.g. 17841), the URL written into
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea0fc2c7-2823-45de-8d41-d201539195ba:
+    id: ea0fc2c7-2823-45de-8d41-d201539195ba
+    content: No changes to the existing PR2 SessionStart hook directive — it still emits the session_id context.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba744312-0b00-428c-a172-7953a5abd51b:
+    id: ba744312-0b00-428c-a172-7953a5abd51b
+    content: Re-launching Arborescent without restarting Claude Code does not break the existing Claude session —
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  942ed1c3-5042-4851-842a-392a07c7d177:
+    id: 942ed1c3-5042-4851-842a-392a07c7d177
+    content: 🔧 Implementation proposal
+    children:
+      - f20f1b8e-0cbe-40e3-af0d-203d45694efe
+      - 3cf1b38b-bc8c-43a3-baaa-760fbb8cab85
+      - 4a5a2d08-1b99-4a31-b1bb-cadc5165515a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f20f1b8e-0cbe-40e3-af0d-203d45694efe:
+    id: f20f1b8e-0cbe-40e3-af0d-203d45694efe
+    content: Approach
+    children:
+      - ccd796f0-b413-45e5-a3b0-4ca33ea199a0
+      - 965ae9a2-1ccd-4038-8dac-a3a2c3099a9f
+      - c104719d-2fca-45fe-b7f8-0cc61c5a0ff7
+      - 93082325-3288-4a77-bab5-914d86101184
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccd796f0-b413-45e5-a3b0-4ca33ea199a0:
+    id: ccd796f0-b413-45e5-a3b0-4ca33ea199a0
+    content: Add a persistent auth-token module that reads from `userData/mcp-auth-token` or generates a new UUID
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  965ae9a2-1ccd-4038-8dac-a3a2c3099a9f:
+    id: 965ae9a2-1ccd-4038-8dac-a3a2c3099a9f
+    content: 'Add a `claudeMcpConfigInstaller` module that mirrors the shape of `hookInstaller.ts`: read'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c104719d-2fca-45fe-b7f8-0cc61c5a0ff7:
+    id: c104719d-2fca-45fe-b7f8-0cc61c5a0ff7
+    content: Call the registration in `main.ts` right after `startMcpServerWithRetry` returns successfully — pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93082325-3288-4a77-bab5-914d86101184:
+    id: 93082325-3288-4a77-bab5-914d86101184
+    content: Reuse the existing logger and error-handling patterns; surface boot-time registration failures as a
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cf1b38b-bc8c-43a3-baaa-760fbb8cab85:
+    id: 3cf1b38b-bc8c-43a3-baaa-760fbb8cab85
+    content: Touchpoints
+    children:
+      - c9eaceb2-7640-4a7e-b79d-dc02be1defd3
+      - 6566fb86-7ffd-4dfd-9db8-ba075078364b
+      - df815e9e-8094-4b02-a5da-4cfcb8f823f0
+      - d5743639-e600-44f8-bba4-d2fdfb9d996d
+      - 0197671b-396d-4c66-b37f-0adb8d01a631
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9eaceb2-7640-4a7e-b79d-dc02be1defd3:
+    id: c9eaceb2-7640-4a7e-b79d-dc02be1defd3
+    content: '`src/main/services/mcpAuthToken.ts` — new — `getOrCreateMcpAuthToken(userDataPath): Promise<string>`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6566fb86-7ffd-4dfd-9db8-ba075078364b:
+    id: 6566fb86-7ffd-4dfd-9db8-ba075078364b
+    content: '`src/main/services/claudeMcpConfigInstaller.ts` — new — `registerArborescentMcp({ homePath?, port,'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  df815e9e-8094-4b02-a5da-4cfcb8f823f0:
+    id: df815e9e-8094-4b02-a5da-4cfcb8f823f0
+    content: '`src/main/main.ts` — read persistent token before `startMcpServerWithRetry`; pass it through; call'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5743639-e600-44f8-bba4-d2fdfb9d996d:
+    id: d5743639-e600-44f8-bba4-d2fdfb9d996d
+    content: Tests — `tests/mcpAuthToken.test.ts` (generate-then-reuse, file mode, missing-file path),
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0197671b-396d-4c66-b37f-0adb8d01a631:
+    id: 0197671b-396d-4c66-b37f-0adb8d01a631
+    content: '`docs/workflow.md` — short note that Arborescent registers the MCP server on startup and that opening'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a5a2d08-1b99-4a31-b1bb-cadc5165515a:
+    id: 4a5a2d08-1b99-4a31-b1bb-cadc5165515a
+    content: Constraints
+    children:
+      - b5ddea31-5a1f-4ab6-8d83-65c8d9f099e5
+      - 77173290-3af1-42bf-9b61-7bf0fc264dd7
+      - 6dc883f8-a20e-4db8-8021-d7b4a93bf815
+      - cd52211d-fd11-428d-a54b-75ebec24e47b
+      - 92eed23a-ff8d-42ca-9165-e279b4a0886d
+      - 2ff4c559-5d70-4032-b30d-f6f2c2f44296
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5ddea31-5a1f-4ab6-8d83-65c8d9f099e5:
+    id: b5ddea31-5a1f-4ab6-8d83-65c8d9f099e5
+    content: Token must be read from disk BEFORE starting the MCP server so both the server and the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77173290-3af1-42bf-9b61-7bf0fc264dd7:
+    id: 77173290-3af1-42bf-9b61-7bf0fc264dd7
+    content: Auth header values in `~/.claude.json` are static strings (Claude Code does not expand env vars
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dc883f8-a20e-4db8-8021-d7b4a93bf815:
+    id: 6dc883f8-a20e-4db8-8021-d7b4a93bf815
+    content: '`~/.claude.json` is a shared user file managed by Claude Code itself — only touch the `arborescent`'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd52211d-fd11-428d-a54b-75ebec24e47b:
+    id: cd52211d-fd11-428d-a54b-75ebec24e47b
+    content: 'The token file (`userData/mcp-auth-token`) is secret-equivalent; create it with `mode: 0o600` and'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92eed23a-ff8d-42ca-9165-e279b4a0886d:
+    id: 92eed23a-ff8d-42ca-9165-e279b4a0886d
+    content: Claude Code reads `mcpServers` once per session start; an already-open Claude session will not pick
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ff4c559-5d70-4032-b30d-f6f2c2f44296:
+    id: 2ff4c559-5d70-4032-b30d-f6f2c2f44296
+    content: On a non-default MCP port (after retry), the URL must reflect the actual bound port — pass the port
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  250a030a-839a-4e23-9faa-26ebf526d707:
+    id: 250a030a-839a-4e23-9faa-26ebf526d707
+    content: Render MCP proposals as a tree diff in the existing Feedback panel and retire the separate Proposals UI
+    children:
+      - f6c84ea5-5b32-448b-be58-8fb49b4ddb8d
+      - 9434590f-3845-44e6-857e-ad9702eb12ed
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6c84ea5-5b32-448b-be58-8fb49b4ddb8d:
+    id: f6c84ea5-5b32-448b-be58-8fb49b4ddb8d
+    content: 📄 Product spec
+    children:
+      - 1ad57a30-94d0-45b6-bf91-a3c2c3165a40
+      - 08473ef8-ac91-4d54-ab25-0ff062931026
+      - c69cfb43-cb55-4e77-9a89-4f907bd7da56
+      - c937abb3-ebb0-41f8-b020-af49ff753276
+      - 1a4f0420-a6f0-461f-be8c-00a627270530
+      - bc599c39-f068-4f83-aa2c-4f9f4fbe870a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ad57a30-94d0-45b6-bf91-a3c2c3165a40:
+    id: 1ad57a30-94d0-45b6-bf91-a3c2c3165a40
+    content: Context
+    children:
+      - b49da686-706e-42c8-90d5-fdd9c46d1285
+      - 621db955-f6de-480a-ad6b-e4660d580d31
+      - 04894cbf-c911-423f-9d48-83d30df2b2c4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b49da686-706e-42c8-90d5-fdd9c46d1285:
+    id: b49da686-706e-42c8-90d5-fdd9c46d1285
+    content: PR7 added a separate Proposals UI section at the top of the Feedback panel — a compact list of rows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  621db955-f6de-480a-ad6b-e4660d580d31:
+    id: 621db955-f6de-480a-ad6b-e4660d580d31
+    content: The Feedback panel already has a tree-diff renderer with the conventional colour scheme (added =
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04894cbf-c911-423f-9d48-83d30df2b2c4:
+    id: 04894cbf-c911-423f-9d48-83d30df2b2c4
+    content: Two competing accept surfaces (per-row in the proposals list, panel-level in the tree below) creates
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08473ef8-ac91-4d54-ab25-0ff062931026:
+    id: 08473ef8-ac91-4d54-ab25-0ff062931026
+    content: User
+    children:
+      - 55d1d040-2966-4cea-a455-e91d102c39c5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55d1d040-2966-4cea-a455-e91d102c39c5:
+    id: 55d1d040-2966-4cea-a455-e91d102c39c5
+    content: Anyone reviewing AI-proposed structural changes on non-automatic workflow steps — i.e. anyone whose
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c69cfb43-cb55-4e77-9a89-4f907bd7da56:
+    id: c69cfb43-cb55-4e77-9a89-4f907bd7da56
+    content: Current experience and why it is insufficient
+    children:
+      - 5209fbb3-8227-44b3-ae72-4e89ec092bab
+      - 5c808dfe-2952-4386-8507-aaa5ec486f33
+      - f57cedfe-7e5e-4030-b10f-6dab01865924
+      - 64a8cb68-aaf2-48d6-86c4-1557ba81288a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5209fbb3-8227-44b3-ae72-4e89ec092bab:
+    id: 5209fbb3-8227-44b3-ae72-4e89ec092bab
+    content: The proposal list at the top of the panel is small and hard to scan; the truncated content previews
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c808dfe-2952-4386-8507-aaa5ec486f33:
+    id: 5c808dfe-2952-4386-8507-aaa5ec486f33
+    content: To understand a proposal, the user has to mentally apply the operation to the current tree — the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f57cedfe-7e5e-4030-b10f-6dab01865924:
+    id: f57cedfe-7e5e-4030-b10f-6dab01865924
+    content: Two Accept paths (per-row in the list, panel-level below) creates ambiguity about which one applies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64a8cb68-aaf2-48d6-86c4-1557ba81288a:
+    id: 64a8cb68-aaf2-48d6-86c4-1557ba81288a
+    content: The proposals UI was a parallel addition that ignored a working, proven UI pattern already in the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c937abb3-ebb0-41f8-b020-af49ff753276:
+    id: c937abb3-ebb0-41f8-b020-af49ff753276
+    content: Goal
+    children:
+      - 6207b64f-3fb0-44e0-93b2-322b2dd8a749
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6207b64f-3fb0-44e0-93b2-322b2dd8a749:
+    id: 6207b64f-3fb0-44e0-93b2-322b2dd8a749
+    content: Every MCP proposal — submit_step_output content and structural write-tool calls — renders as a
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a4f0420-a6f0-461f-be8c-00a627270530:
+    id: 1a4f0420-a6f0-461f-be8c-00a627270530
+    content: Business rules
+    children:
+      - 319aec44-5b6a-4578-b85b-332519b435d9
+      - 9000b47e-e13b-4c32-b673-213f8a26a643
+      - 679b1519-b091-41a4-870f-94250780dee7
+      - 4f1d5a41-e96a-43f0-939d-8906225f0689
+      - 65ee79ac-bedc-4741-a6e9-babf1deed664
+      - c0e6f24c-341c-4cfb-8e62-f36c2bb0828c
+      - 85e7116d-a01f-4cc4-8886-4ce432edf8c7
+      - 747bab22-ae0d-4bc3-ac50-f714b18cca04
+      - db0a7149-f261-4a8b-8eba-75cb2134c80f
+      - 026356c4-2153-4d5d-8304-ef4cdedf9095
+      - f9bc4669-71f9-4c1d-8c5f-7001330409eb
+      - 74bff533-caf1-424a-b639-f880f1180923
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  319aec44-5b6a-4578-b85b-332519b435d9:
+    id: 319aec44-5b6a-4578-b85b-332519b435d9
+    content: When Claude calls submit_step_output on a non-automatic step, the submitted markdown is parsed and
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9000b47e-e13b-4c32-b673-213f8a26a643:
+    id: 9000b47e-e13b-4c32-b673-213f8a26a643
+    content: When Claude calls a structural write tool on a non-automatic step (set_node_content, add_child_node,
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  679b1519-b091-41a4-870f-94250780dee7:
+    id: 679b1519-b091-41a4-870f-94250780dee7
+    content: Multiple write-tool calls from the same session before Accept queue into one virtual tree — applied
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f1d5a41-e96a-43f0-939d-8906225f0689:
+    id: 4f1d5a41-e96a-43f0-939d-8906225f0689
+    content: 'Diff colour scheme uses the existing conventions: added branches green, modified branches blue,'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65ee79ac-bedc-4741-a6e9-babf1deed664:
+    id: 65ee79ac-bedc-4741-a6e9-babf1deed664
+    content: The panel-level Accept button applies every queued proposal in order through the existing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0e6f24c-341c-4cfb-8e62-f36c2bb0828c:
+    id: c0e6f24c-341c-4cfb-8e62-f36c2bb0828c
+    content: The panel-level Cancel button discards every pending proposal without touching the live tree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85e7116d-a01f-4cc4-8886-4ce432edf8c7:
+    id: 85e7116d-a01f-4cc4-8886-4ce432edf8c7
+    content: The separate per-row Proposals list UI added in PR7 is removed, along with its per-row Accept/Reject
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  747bab22-ae0d-4bc3-ac50-f714b18cca04:
+    id: 747bab22-ae0d-4bc3-ac50-f714b18cca04
+    content: Partial accept (cherry-picking individual proposals) is dropped in this PR — the existing tree-diff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db0a7149-f261-4a8b-8eba-75cb2134c80f:
+    id: db0a7149-f261-4a8b-8eba-75cb2134c80f
+    content: Proposals remain scoped to the file that owns the bound node — switching tabs only shows proposals
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  026356c4-2153-4d5d-8304-ef4cdedf9095:
+    id: 026356c4-2153-4d5d-8304-ef4cdedf9095
+    content: MCP read tools (get_node, get_tree, list_contexts) continue to return the applied tree state, not the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9bc4669-71f9-4c1d-8c5f-7001330409eb:
+    id: f9bc4669-71f9-4c1d-8c5f-7001330409eb
+    content: Automatic-step direct-apply (autonomous workflows via handleAutonomousFeedback) is unchanged —
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74bff533-caf1-424a-b639-f880f1180923:
+    id: 74bff533-caf1-424a-b639-f880f1180923
+    content: The proposalsStore stays as the queue layer but no longer drives a separate UI — it feeds the unified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc599c39-f068-4f83-aa2c-4f9f4fbe870a:
+    id: bc599c39-f068-4f83-aa2c-4f9f4fbe870a
+    content: Acceptance criteria
+    children:
+      - 8a1fb0bc-67cd-4333-a366-0b16249b5e1e
+      - b19d6fe1-a718-473f-b173-914d63c14edf
+      - d21bb814-0cb0-49fe-b50f-56c725d3fbbb
+      - 0c1518f0-a437-4c89-9195-cbc181ad4e63
+      - fbc3bd88-532d-42bd-8516-464219b2334b
+      - 8ab48cae-ce55-46bc-aeb2-02b784c41217
+      - 424ab2fa-82b8-44e7-a141-6e19ff615eec
+      - 50bc140b-ac43-4462-8452-10627f4ec48a
+      - 904398e4-945d-4494-8d7e-c64b4dc70856
+      - 85bfe600-8069-4748-bb2d-377cde983a72
+      - d5eb433e-04ce-4599-b03d-06d9227bffaa
+      - 04464cf7-3ba6-4299-8be6-ad815c895ec4
+      - ba3e7b46-8122-4ece-b4ed-e17b9bbc1e16
+      - 4767e958-eb2c-4ad6-bbd9-1feee95093c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a1fb0bc-67cd-4333-a366-0b16249b5e1e:
+    id: 8a1fb0bc-67cd-4333-a366-0b16249b5e1e
+    content: A submit_step_output call on a non-automatic step renders the submitted content as a tree diff in the Feedback panel, identical in look to the legacy file-watcher feedback flow.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b19d6fe1-a718-473f-b173-914d63c14edf:
+    id: b19d6fe1-a718-473f-b173-914d63c14edf
+    content: A set_node_content write-tool call on a non-automatic step renders the target node as a blue
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d21bb814-0cb0-49fe-b50f-56c725d3fbbb:
+    id: d21bb814-0cb0-49fe-b50f-56c725d3fbbb
+    content: An add_child_node call renders the new child as a green (added) entry under its parent in the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c1518f0-a437-4c89-9195-cbc181ad4e63:
+    id: 0c1518f0-a437-4c89-9195-cbc181ad4e63
+    content: A delete_node call renders the target node as red + strikethrough at its current position in the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbc3bd88-532d-42bd-8516-464219b2334b:
+    id: fbc3bd88-532d-42bd-8516-464219b2334b
+    content: A move_node call renders the target node as added (green) in its new location and as red +
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ab48cae-ce55-46bc-aeb2-02b784c41217:
+    id: 8ab48cae-ce55-46bc-aeb2-02b784c41217
+    content: A set_node_metadata call (e.g. mark_step_complete) renders the metadata change inline on the affected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  424ab2fa-82b8-44e7-a141-6e19ff615eec:
+    id: 424ab2fa-82b8-44e7-a141-6e19ff615eec
+    content: Two write-tool calls from the same session before the user accepts queue into one combined diff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50bc140b-ac43-4462-8452-10627f4ec48a:
+    id: 50bc140b-ac43-4462-8452-10627f4ec48a
+    content: Clicking the panel-level Accept button applies every queued proposal in order through the existing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  904398e4-945d-4494-8d7e-c64b4dc70856:
+    id: 904398e4-945d-4494-8d7e-c64b4dc70856
+    content: Clicking the panel-level Cancel button discards every pending proposal without modifying the live
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85bfe600-8069-4748-bb2d-377cde983a72:
+    id: 85bfe600-8069-4748-bb2d-377cde983a72
+    content: The per-row ProposalList UI no longer renders anywhere in the application.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5eb433e-04ce-4599-b03d-06d9227bffaa:
+    id: d5eb433e-04ce-4599-b03d-06d9227bffaa
+    content: Tests that asserted on the ProposalList rendering or per-row Accept/Reject behaviour are deleted (not
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04464cf7-3ba6-4299-8be6-ad815c895ec4:
+    id: 04464cf7-3ba6-4299-8be6-ad815c895ec4
+    content: Pre-existing tests for the AcceptFeedbackCommand pipeline still pass — the legacy submit_step_output
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba3e7b46-8122-4ece-b4ed-e17b9bbc1e16:
+    id: ba3e7b46-8122-4ece-b4ed-e17b9bbc1e16
+    content: An autonomous workflow step's submit_step_output continues to apply directly to the tree without
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4767e958-eb2c-4ad6-bbd9-1feee95093c0:
+    id: 4767e958-eb2c-4ad6-bbd9-1feee95093c0
+    content: Read tools (get_node, get_tree, list_contexts) on a session with a pending proposal return the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9434590f-3845-44e6-857e-ad9702eb12ed:
+    id: 9434590f-3845-44e6-857e-ad9702eb12ed
+    content: 🔧 Implementation proposal
+    children:
+      - 5cba8df8-0e1e-4c56-88d6-58faed1b7cc7
+      - a42daa76-43bc-45fb-a823-41e63fc81e14
+      - e7189ca0-7875-494e-9974-2ba016ec812e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cba8df8-0e1e-4c56-88d6-58faed1b7cc7:
+    id: 5cba8df8-0e1e-4c56-88d6-58faed1b7cc7
+    content: Approach
+    children:
+      - e26d1854-8ee7-4233-ad95-eb5b2085d121
+      - 3ca5371f-39ce-4ff1-a1b7-c76cea4fc24f
+      - 9ec5ace9-d282-4119-9df1-cbf6ee354e23
+      - eb23a2a4-569b-489e-b5b6-07fb83a090da
+      - 6f307f19-60c8-4808-902b-567344c8e1ea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e26d1854-8ee7-4233-ad95-eb5b2085d121:
+    id: e26d1854-8ee7-4233-ad95-eb5b2085d121
+    content: Reuse the existing feedback-content store and tree-diff renderer that already powers the Feedback
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ca5371f-39ce-4ff1-a1b7-c76cea4fc24f:
+    id: 3ca5371f-39ce-4ff1-a1b7-c76cea4fc24f
+    content: 'For submit_step_output proposals: the submitted markdown is already in the format'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ec5ace9-d282-4119-9df1-cbf6ee354e23:
+    id: 9ec5ace9-d282-4119-9df1-cbf6ee354e23
+    content: 'For write-tool proposals: apply each operation to an in-memory virtual copy of the current tree using'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb23a2a4-569b-489e-b5b6-07fb83a090da:
+    id: eb23a2a4-569b-489e-b5b6-07fb83a090da
+    content: Delete the ProposalList component and the section of the Feedback panel that renders proposals as
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f307f19-60c8-4808-902b-567344c8e1ea:
+    id: 6f307f19-60c8-4808-902b-567344c8e1ea
+    content: Keep the proposalsStore queue + accept/reject API for tests and for the renderer-side merge logic;
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a42daa76-43bc-45fb-a823-41e63fc81e14:
+    id: a42daa76-43bc-45fb-a823-41e63fc81e14
+    content: Touchpoints
+    children:
+      - 6fb2b411-516d-4db5-ad51-e81d83c14eab
+      - 938a3cf3-5e2a-48ff-a6d3-7a2b7bd6fa0f
+      - 93bc43a7-19db-45f6-b858-faa4525498f6
+      - aa697d22-9648-4922-9496-2c5f99a01d2b
+      - c143eff9-1fae-4437-a7c3-a48c3a54a728
+      - bc6eb3af-0849-46ca-ac06-128e38da702a
+      - 56cc3e66-fd6b-4885-8c20-f390fcdceb5c
+      - dc566ba4-d14e-4f46-afe0-374b62129a89
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fb2b411-516d-4db5-ad51-e81d83c14eab:
+    id: 6fb2b411-516d-4db5-ad51-e81d83c14eab
+    content: '`src/renderer/components/Feedback/ProposalList.tsx` (and any sibling row component) — deleted along'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  938a3cf3-5e2a-48ff-a6d3-7a2b7bd6fa0f:
+    id: 938a3cf3-5e2a-48ff-a6d3-7a2b7bd6fa0f
+    content: '`src/renderer/components/Feedback/FeedbackPanel.tsx` — remove the proposal-list section; the existing'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93bc43a7-19db-45f6-b858-faa4525498f6:
+    id: 93bc43a7-19db-45f6-b858-faa4525498f6
+    content: '`src/renderer/store/proposals/proposalsStore.ts` — replace the per-row consumer hook with a selector'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa697d22-9648-4922-9496-2c5f99a01d2b:
+    id: aa697d22-9648-4922-9496-2c5f99a01d2b
+    content: '`src/renderer/services/feedback/feedbackService.ts` — extend (or wrap) to compose the merged tree'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c143eff9-1fae-4437-a7c3-a48c3a54a728:
+    id: c143eff9-1fae-4437-a7c3-a48c3a54a728
+    content: '`src/main/services/mcpProposalBridge.ts` — protocol unchanged; only the renderer-side consumer'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc6eb3af-0849-46ca-ac06-128e38da702a:
+    id: bc6eb3af-0849-46ca-ac06-128e38da702a
+    content: '`src/renderer/store/tree/commands/AcceptProposalCommand.ts` (if still separate from'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56cc3e66-fd6b-4885-8c20-f390fcdceb5c:
+    id: 56cc3e66-fd6b-4885-8c20-f390fcdceb5c
+    content: Tests — delete ProposalList tests; add unified-rendering tests covering each write-tool's diff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc566ba4-d14e-4f46-afe0-374b62129a89:
+    id: dc566ba4-d14e-4f46-afe0-374b62129a89
+    content: '`docs/workflow.md` — verify "How it works" still matches; mention partial-accept is not supported'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7189ca0-7875-494e-9974-2ba016ec812e:
+    id: e7189ca0-7875-494e-9974-2ba016ec812e
+    content: Constraints
+    children:
+      - ad80ee70-fc75-42a6-826f-3ba418c2623b
+      - a7a19b07-4a15-4760-907a-a63350cfcd78
+      - 8cfbb815-fc0e-4993-9960-3614194d3680
+      - 82c2d90e-baf7-4018-ad3e-c6caa92cc6c3
+      - 8a9af19d-b74b-4dda-8c72-e6c0dc979186
+      - a9d8957d-4f5b-4573-9e26-a6cfb1237da6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad80ee70-fc75-42a6-826f-3ba418c2623b:
+    id: ad80ee70-fc75-42a6-826f-3ba418c2623b
+    content: Granular per-proposal Accept/Reject is removed; partial-accept is explicitly out of scope. Users who
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7a19b07-4a15-4760-907a-a63350cfcd78:
+    id: a7a19b07-4a15-4760-907a-a63350cfcd78
+    content: The virtual-tree mutation logic for write-tool proposals must call the same mutation functions the
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cfbb815-fc0e-4993-9960-3614194d3680:
+    id: 8cfbb815-fc0e-4993-9960-3614194d3680
+    content: proposalsStore retains its accept/reject API so existing unit tests of the queue layer continue to
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82c2d90e-baf7-4018-ad3e-c6caa92cc6c3:
+    id: 82c2d90e-baf7-4018-ad3e-c6caa92cc6c3
+    content: The existing AcceptFeedbackCommand undo behaviour must keep producing one history entry per Accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a9af19d-b74b-4dda-8c72-e6c0dc979186:
+    id: 8a9af19d-b74b-4dda-8c72-e6c0dc979186
+    content: Pre-bind session handling (the PR2 UUID-marker flow) is untouched — proposals only fire for sessions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9d8957d-4f5b-4573-9e26-a6cfb1237da6:
+    id: a9d8957d-4f5b-4573-9e26-a6cfb1237da6
+    content: PR7's plumbing (mcpProposalBridge, proposalsStore queue) stays; only PR7's UI is retired. The
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
-  977d710e-6113-4a35-b87f-db101723a4b9:
-    cwd: /Users/brianfox/dev/Arborescent
-  42cd0eb4-1380-49c4-9f7d-4c2c4d5bd9ef:
+  1fc11731-ee3b-4a15-995d-044532055686:
     cwd: /Users/brianfox/dev/Arborescent
   140019b9-12ab-4da0-8298-ba7532113319:
+    cwd: /Users/brianfox/dev/Arborescent
+  23d3cbd0-41b6-4209-8930-34f076d51172:
+    cwd: /Users/brianfox/dev/Arborescent
+  977d710e-6113-4a35-b87f-db101723a4b9:
     cwd: /Users/brianfox/dev/Arborescent
