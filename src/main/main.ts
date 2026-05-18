@@ -9,6 +9,8 @@ import { logger } from './services/logger';
 import { startHookServerWithRetry, HookServer } from './services/hookServer';
 import { startMcpServerWithRetry, ArborescentMcpServer } from './services/mcpServer';
 import { installHooks } from './services/hookInstaller';
+import { getOrCreateMcpAuthToken } from './services/mcpAuthToken';
+import { registerArborescentMcp } from './services/claudeMcpConfigInstaller';
 import { createHookEventDispatcher } from './services/hookEventDispatcher';
 import {
   createRebindIpcBridge,
@@ -76,7 +78,7 @@ const TREE_MUTATE_TIMEOUT_MS = 10_000;
 const STEP_OUTPUT_APPLY_TIMEOUT_MS = 10_000;
 const PROPOSAL_SUBMIT_TIMEOUT_MS = 10_000;
 const hookAuthToken = crypto.randomUUID();
-const mcpAuthToken = crypto.randomUUID();
+let mcpAuthToken = '';
 
 const createWindow = async () => {
   await registerIpcHandlers(() => mainWindow);
@@ -145,12 +147,20 @@ const createWindow = async () => {
   // (app.on('activate')) — without this guard, ipcMain.handle would throw on the second
   // pass and a second MCP server would orphan the first.
   if (!mcpServer) {
+    mcpAuthToken = await getOrCreateMcpAuthToken(app.getPath('userData'));
     const mcpResult = await startMcpServerWithRetry(DEFAULT_MCP_PORT, mcpAuthToken);
 
     if (mcpResult.server) {
       mcpServer = mcpResult.server;
       mcpServerPort = mcpResult.port;
       logger.info(`MCP server started on port ${mcpResult.port}`, 'Main');
+
+      try {
+        await registerArborescentMcp({ port: mcpResult.port, token: mcpAuthToken });
+        logger.info('Arborescent MCP server registered in ~/.claude.json', 'Main');
+      } catch (error) {
+        logger.error('Failed to register Arborescent MCP server in ~/.claude.json', error as Error, 'Main');
+      }
 
       const decisionListeners = new Set<RebindDecisionListener>();
       ipcMain.handle('mcp:respond-rebind', (_event, sessionId: string, confirmed: boolean) => {
