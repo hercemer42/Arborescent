@@ -158,12 +158,20 @@ function ensureHooksObject(settings: Record<string, unknown>): HooksMap {
   return existing as HooksMap;
 }
 
+function shellQuote(commandPath: string): string {
+  // Claude Code passes the `command` value to /bin/sh -c; macOS userData lives
+  // under /Users/<user>/Library/Application Support/... so the path contains a
+  // space and must be quoted to survive shell tokenization.
+  const escaped = commandPath.replace(/'/g, `'\\''`);
+  return `'${escaped}'`;
+}
+
 function upsertHookEntry(hooks: HooksMap, eventName: string, commandPath: string): void {
   const groups = ensureEventArray(hooks, eventName);
   const cleaned = stripArborescentEntries(groups, commandPath);
   cleaned.push({
     matcher: '*',
-    hooks: [{ type: 'command', command: commandPath }],
+    hooks: [{ type: 'command', command: shellQuote(commandPath) }],
   });
   hooks[eventName] = cleaned;
 }
@@ -184,6 +192,9 @@ function ensureEventArray(hooks: HooksMap, eventName: string): HookGroup[] {
 }
 
 function stripArborescentEntries(groups: HookGroup[], commandPath: string): HookGroup[] {
+  // Match both the bare path (legacy installs that broke on paths with spaces)
+  // and the shell-quoted form (current).
+  const quoted = shellQuote(commandPath);
   const result: HookGroup[] = [];
   for (const group of groups) {
     if (!group || !Array.isArray(group.hooks)) {
@@ -191,7 +202,7 @@ function stripArborescentEntries(groups: HookGroup[], commandPath: string): Hook
       continue;
     }
     const remaining = group.hooks.filter(
-      (h) => !(h && h.type === 'command' && h.command === commandPath)
+      (h) => !(h && h.type === 'command' && (h.command === commandPath || h.command === quoted))
     );
     if (remaining.length === 0) continue;
     if (remaining.length !== group.hooks.length) {

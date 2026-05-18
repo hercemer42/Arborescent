@@ -54,8 +54,8 @@ describe('installHooks — fresh install', () => {
     const settings = (await readSettings())! as { hooks: Record<string, unknown> };
     const sessionStart = settings.hooks.SessionStart as Array<{ hooks: Array<{ command: string }> }>;
     const userPromptSubmit = settings.hooks.UserPromptSubmit as Array<{ hooks: Array<{ command: string }> }>;
-    expect(sessionStart[0].hooks[0].command).toBe(paths.sessionStart);
-    expect(userPromptSubmit[0].hooks[0].command).toBe(paths.userPromptSubmit);
+    expect(sessionStart[0].hooks[0].command).toBe(`'${paths.sessionStart}'`);
+    expect(userPromptSubmit[0].hooks[0].command).toBe(`'${paths.userPromptSubmit}'`);
   });
 
   it('hook script files live under the user data hooks directory', async () => {
@@ -246,7 +246,7 @@ describe('installHooks — Stop hook (PR6)', () => {
     const settings = (await readSettings())! as { hooks: Record<string, Array<{ hooks: Array<{ command: string }> }>> };
     const stop = settings.hooks.Stop;
     expect(stop).toBeDefined();
-    expect(stop[0].hooks[0].command).toBe(paths.stop);
+    expect(stop[0].hooks[0].command).toBe(`'${paths.stop}'`);
   });
 
   it('the Stop hook script file is executable', async () => {
@@ -288,9 +288,9 @@ describe('installHooks — Stop hook (PR6)', () => {
     const paths = await installHooks({ userDataPath, homePath }) as { sessionStart: string; userPromptSubmit: string; stop: string };
     const settings = (await readSettings())! as { hooks: Record<string, Array<{ hooks: Array<{ command: string }> }>> };
     const all = (event: string) => settings.hooks[event].flatMap((g) => g.hooks.map((h) => h.command));
-    expect(all('SessionStart')).toContain(paths.sessionStart);
-    expect(all('UserPromptSubmit')).toContain(paths.userPromptSubmit);
-    expect(all('Stop')).toContain(paths.stop);
+    expect(all('SessionStart')).toContain(`'${paths.sessionStart}'`);
+    expect(all('UserPromptSubmit')).toContain(`'${paths.userPromptSubmit}'`);
+    expect(all('Stop')).toContain(`'${paths.stop}'`);
   });
 
   it('refuses to merge when settings.hooks.Stop is present but not an array', async () => {
