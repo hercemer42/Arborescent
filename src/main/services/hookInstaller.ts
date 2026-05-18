@@ -15,15 +15,15 @@ type HookDescriptor = {
 
 const HOOKS: Record<string, HookDescriptor> = {
   SessionStart: {
-    filename: 'arborescent-session-start.mjs',
+    filename: 'arborescent-session-start.cjs',
     script: SESSION_START_HOOK_SCRIPT,
   },
   UserPromptSubmit: {
-    filename: 'arborescent-user-prompt-submit.mjs',
+    filename: 'arborescent-user-prompt-submit.cjs',
     script: USER_PROMPT_SUBMIT_HOOK_SCRIPT,
   },
   Stop: {
-    filename: 'arborescent-stop.mjs',
+    filename: 'arborescent-stop.cjs',
     script: STOP_HOOK_SCRIPT,
   },
 };
@@ -59,6 +59,10 @@ export async function installHooks(deps: HookInstallerDeps): Promise<HookInstall
     // writeFile's `mode` only applies when the file is created. On reinstall the file
     // already exists, so the mode is silently ignored — chmod explicitly guarantees +x.
     await fs.chmod(scriptPath, 0o755);
+    const legacyMjsPath = scriptPath.replace(/\.cjs$/, '.mjs');
+    if (legacyMjsPath !== scriptPath) {
+      await fs.rm(legacyMjsPath, { force: true });
+    }
   }
 
   const homePath = deps.homePath ?? os.homedir();
@@ -159,9 +163,6 @@ function ensureHooksObject(settings: Record<string, unknown>): HooksMap {
 }
 
 function shellQuote(commandPath: string): string {
-  // Claude Code passes the `command` value to /bin/sh -c; macOS userData lives
-  // under /Users/<user>/Library/Application Support/... so the path contains a
-  // space and must be quoted to survive shell tokenization.
   const escaped = commandPath.replace(/'/g, `'\\''`);
   return `'${escaped}'`;
 }
@@ -192,9 +193,13 @@ function ensureEventArray(hooks: HooksMap, eventName: string): HookGroup[] {
 }
 
 function stripArborescentEntries(groups: HookGroup[], commandPath: string): HookGroup[] {
-  // Match both the bare path (legacy installs that broke on paths with spaces)
-  // and the shell-quoted form (current).
-  const quoted = shellQuote(commandPath);
+  const legacyMjsPath = commandPath.replace(/\.cjs$/, '.mjs');
+  const matches = new Set([
+    commandPath,
+    shellQuote(commandPath),
+    legacyMjsPath,
+    shellQuote(legacyMjsPath),
+  ]);
   const result: HookGroup[] = [];
   for (const group of groups) {
     if (!group || !Array.isArray(group.hooks)) {
@@ -202,7 +207,7 @@ function stripArborescentEntries(groups: HookGroup[], commandPath: string): Hook
       continue;
     }
     const remaining = group.hooks.filter(
-      (h) => !(h && h.type === 'command' && (h.command === commandPath || h.command === quoted))
+      (h) => !(h && h.type === 'command' && matches.has(h.command))
     );
     if (remaining.length === 0) continue;
     if (remaining.length !== group.hooks.length) {

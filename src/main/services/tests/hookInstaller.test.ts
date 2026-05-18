@@ -95,7 +95,7 @@ describe('installHooks — merge with existing settings', () => {
     const settings = (await readSettings())! as { hooks: { SessionStart: Array<{ hooks: Array<{ command: string }> }> } };
     const commands = settings.hooks.SessionStart.flatMap((g) => g.hooks.map((h) => h.command));
     expect(commands).toContain('/usr/local/bin/user-script.sh');
-    expect(commands.some((c) => c.includes('arborescent-session-start.mjs'))).toBe(true);
+    expect(commands.some((c) => c.includes('arborescent-session-start.cjs'))).toBe(true);
   });
 
   it('preserves user-added UserPromptSubmit entries', async () => {
@@ -112,7 +112,7 @@ describe('installHooks — merge with existing settings', () => {
     const settings = (await readSettings())! as { hooks: { UserPromptSubmit: Array<{ hooks: Array<{ command: string }> }> } };
     const commands = settings.hooks.UserPromptSubmit.flatMap((g) => g.hooks.map((h) => h.command));
     expect(commands).toContain('/home/u/my-prompt-hook.sh');
-    expect(commands.some((c) => c.includes('arborescent-user-prompt-submit.mjs'))).toBe(true);
+    expect(commands.some((c) => c.includes('arborescent-user-prompt-submit.cjs'))).toBe(true);
   });
 
   it('preserves unrelated top-level keys', async () => {
@@ -161,7 +161,7 @@ describe('installHooks — upgrade path', () => {
     const settings = (await readSettings())! as { hooks: { SessionStart: Array<{ hooks: Array<{ command: string }> }> } };
     const arborescentCount = settings.hooks.SessionStart
       .flatMap((g) => g.hooks.map((h) => h.command))
-      .filter((c) => c.includes('arborescent-session-start.mjs'))
+      .filter((c) => c.includes('arborescent-session-start.cjs'))
       .length;
     expect(arborescentCount).toBe(1);
   });
@@ -203,7 +203,7 @@ describe('uninstallHooks', () => {
     const settings = (await readSettings())! as { hooks: { SessionStart: Array<{ hooks: Array<{ command: string }> }> } };
     const commands = settings.hooks.SessionStart.flatMap((g) => g.hooks.map((h) => h.command));
     expect(commands).toContain('/usr/local/bin/user-script.sh');
-    expect(commands.some((c) => c.includes('arborescent-session-start.mjs'))).toBe(false);
+    expect(commands.some((c) => c.includes('arborescent-session-start.cjs'))).toBe(false);
   });
 
   it('is safe to call when no Arborescent entries exist — no-op, no error', async () => {
