@@ -51,6 +51,10 @@ export async function handleProposalRequest(
   }
 
   try {
+    store.setState({
+      collaboratingNodeId: request.nodeId,
+      collaborationSource: 'terminal',
+    });
     const result = await store
       .getState()
       .actions.processIncomingFeedbackContent(request.request.content, 'mcp-proposal', true);

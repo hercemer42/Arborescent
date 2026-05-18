@@ -13,6 +13,8 @@ const SESSION = 'sess-1';
 
 let processedContent: { content: string; source: string; skipSave: boolean } | null;
 let processResult: { success: boolean; error?: string };
+let collaboratingNodeId: string | null;
+let collaborationSource: string | null;
 
 const mockStore = {
   getState: () => ({
@@ -23,12 +25,18 @@ const mockStore = {
       }),
     },
   }),
+  setState: (partial: { collaboratingNodeId?: string | null; collaborationSource?: string | null }) => {
+    if (partial.collaboratingNodeId !== undefined) collaboratingNodeId = partial.collaboratingNodeId;
+    if (partial.collaborationSource !== undefined) collaborationSource = partial.collaborationSource;
+  },
 };
 
 beforeEach(() => {
   vi.clearAllMocks();
   processedContent = null;
   processResult = { success: true };
+  collaboratingNodeId = null;
+  collaborationSource = null;
 });
 
 describe('handleProposalRequest', () => {
@@ -59,6 +67,13 @@ describe('handleProposalRequest', () => {
       source: 'mcp-proposal',
       skipSave: true,
     });
+  });
+
+  it('sets collaboratingNodeId on the file store to the proposal node so processIncomingFeedbackContent can land its content (workflow-step path where no manual collab was started)', async () => {
+    const deps = makeDeps(FILE_A);
+    await handleProposalRequest(makeRequest(), deps);
+    expect(collaboratingNodeId).toBe(NODE);
+    expect(collaborationSource).toBe('terminal');
   });
 
   it('returns an error when no open file contains the bound nodeId', async () => {
