@@ -17,6 +17,7 @@ import {
   SubmitOutputTool,
   StepOutputApplier,
 } from './mcpSubmitOutputTool';
+import { OneShotTargetStore } from './oneShotTargetStore';
 
 const MCP_PATH = '/mcp';
 const SERVER_NAME = 'arborescent';
@@ -29,6 +30,7 @@ export class ArborescentMcpServer {
   private port = 0;
   private authToken = '';
   private bindingRegistry = new SessionBindingRegistry();
+  private oneShotTargetStore = new OneShotTargetStore();
   private readTools: ReadTools | null = null;
   private writeTools: WriteTools | null = null;
   private submitOutputTool: SubmitOutputTool | null = null;
@@ -220,6 +222,7 @@ export class ArborescentMcpServer {
       bindingRegistry: this.bindingRegistry,
       treeReader,
       applier,
+      oneShotTargetStore: this.oneShotTargetStore,
       proposalSubmitter,
     });
   }
@@ -289,6 +292,7 @@ export class ArborescentMcpServer {
       await mcp.close();
     }
     this.sessions.clear();
+    this.oneShotTargetStore.clear();
     logger.info('MCP server stopped', 'McpServer');
   }
 
@@ -298,6 +302,10 @@ export class ArborescentMcpServer {
 
   getBindingRegistry(): SessionBindingRegistry {
     return this.bindingRegistry;
+  }
+
+  getOneShotTargetStore(): OneShotTargetStore {
+    return this.oneShotTargetStore;
   }
 
   private registerSmokeTool(mcp: McpServer): void {

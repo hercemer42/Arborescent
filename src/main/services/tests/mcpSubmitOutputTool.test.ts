@@ -10,6 +10,7 @@ import {
   SubmitOutputTool,
   StepOutputApplier,
 } from '../mcpSubmitOutputTool';
+import { OneShotTargetStore } from '../oneShotTargetStore';
 import { TreeReadState } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
 
@@ -43,6 +44,7 @@ function makeDeps(stepType: StepType | undefined) {
     apply: vi.fn(async () => ({ ok: true as const })),
   };
   const treeReader = { readState: vi.fn(async () => makeState(stepType)) };
+  const oneShotTargetStore = new OneShotTargetStore();
   let nextProposalId = 1;
   const proposalSubmitter = {
     submit: vi.fn(async () => ({ ok: true as const, proposalId: `prop-${nextProposalId++}` })),
@@ -51,8 +53,9 @@ function makeDeps(stepType: StepType | undefined) {
     registry,
     applier,
     treeReader,
+    oneShotTargetStore,
     proposalSubmitter,
-    deps: { bindingRegistry: registry, treeReader, applier, proposalSubmitter },
+    deps: { bindingRegistry: registry, treeReader, applier, oneShotTargetStore, proposalSubmitter },
   };
 }
 
@@ -115,6 +118,7 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
   function withStepType(stepType: StepType | undefined) {
     const made = makeDeps(stepType);
     made.registry.register('sess-1', BOUND);
+    made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
     return {
       tool: createSubmitOutputTool(made.deps),
       applier: made.applier,
@@ -243,6 +247,7 @@ describe('createSubmitOutputTool — error propagation', () => {
       bindingRegistry: registry,
       treeReader: { readState: async () => null },
       applier,
+      oneShotTargetStore: new OneShotTargetStore(),
       proposalSubmitter,
     });
     registry.register('sess-1', BOUND);
@@ -301,7 +306,7 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
     registry.register('sess-1', WORKING);
     return {
-      tool: createSubmitOutputTool({ bindingRegistry: registry, treeReader, applier, proposalSubmitter }),
+      tool: createSubmitOutputTool({ bindingRegistry: registry, treeReader, applier, oneShotTargetStore: new OneShotTargetStore(), proposalSubmitter }),
       applier,
       proposalSubmitter,
     };
@@ -357,7 +362,7 @@ describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
     return {
-      tool: createSubmitOutputTool({ bindingRegistry: registry, treeReader, applier, proposalSubmitter }),
+      tool: createSubmitOutputTool({ bindingRegistry: registry, treeReader, applier, oneShotTargetStore: new OneShotTargetStore(), proposalSubmitter }),
       applier,
     };
   }
@@ -383,3 +388,4 @@ describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
     expect(applier.apply).toHaveBeenCalled();
   });
 });
+

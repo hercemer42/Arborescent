@@ -8,16 +8,20 @@ import { createHookEventDispatcher } from '../hookEventDispatcher';
 import { SessionBindingRegistry } from '../sessionBindingRegistry';
 import { ArborescentMcpServer } from '../mcpServer';
 import { HookEventPayload } from '../hookServer';
+import { OneShotTargetStore } from '../oneShotTargetStore';
 
 function makeFakeMcpServer(): {
   server: ArborescentMcpServer;
   registry: SessionBindingRegistry;
+  oneShot: OneShotTargetStore;
 } {
   const registry = new SessionBindingRegistry();
+  const oneShot = new OneShotTargetStore();
   const server = {
     getBindingRegistry: () => registry,
+    getOneShotTargetStore: () => oneShot,
   } as unknown as ArborescentMcpServer;
-  return { server, registry };
+  return { server, registry, oneShot };
 }
 
 describe('createHookEventDispatcher — register-binding routing', () => {

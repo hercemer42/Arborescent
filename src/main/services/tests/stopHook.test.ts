@@ -47,3 +47,17 @@ describe('Stop hook — boundary inputs (PR6)', () => {
   it.todo('an extremely long assistant message is sent verbatim — no truncation client-side');
   it.todo('an assistant message containing only whitespace is sent as-is (server decides if it counts)');
 });
+
+// US-B — Stop hook safety net is gated server-side by markerSeenThisTurn.
+// The Stop hook itself doesn't need to read marker state; the submit_step_output
+// tool checks markerSeenThisTurn when origin='safety-net' and short-circuits
+// to a no-op when no marker was present this turn. This keeps the wire
+// protocol simple (no extra Stop-hook params) and centralizes the gate in
+// the tool — which is also where pendingTarget vs. binding routing happens.
+
+describe('Stop hook — markerSeenThisTurn gating via server-side submit_step_output (US-B)', () => {
+  it.todo('action-mode turn (neither marker on the prompt) — Stop fires, server-side gate short-circuits, no apply, no proposal');
+  it.todo('workflow autonomous turn (binding marker on the prompt) — Stop fires, server-side gate allows, safety net applies on the bound node');
+  it.todo('freeform turn (target marker only on the prompt) — Stop fires, server-side gate allows, safety net applies on the one-shot target node — NOT the binding');
+  it.todo('foreign prompt (no marker, no binding) — Stop fires, the server-side gate AND the unbound check both short-circuit; no apply');
+});

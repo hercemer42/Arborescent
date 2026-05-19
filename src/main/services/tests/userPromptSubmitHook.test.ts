@@ -55,3 +55,34 @@ describe('UserPromptSubmit hook — boundary inputs (PR2)', () => {
   it.todo('a marker whose UUID is empty is treated as malformed — no binding registration, marker is still stripped to avoid pollution');
   it.todo('a marker whose UUID is not a valid UUID format is treated as malformed — same handling');
 });
+
+// US-B — UserPromptSubmit hook recognises a second, distinct marker:
+//   ARBORESCENT_TARGET = one-shot per-turn routing target.
+// Workflow autonomous-terminal sends carry ARBORESCENT_NODE.
+// Manual collab sends carry ARBORESCENT_TARGET only.
+// Action-mode sends carry neither (existing PR8 behavior).
+// The hook strips whichever marker is present and POSTs separate dispatcher
+// events: register-binding (existing) for ARBORESCENT_NODE, register-target
+// (new) for ARBORESCENT_TARGET. A register-target is emitted on every prompt
+// — even unmarked ones — so the dispatcher can clear stale pendingTarget and
+// flip markerSeenThisTurn=false on action-mode turns.
+
+describe('UserPromptSubmit hook — ARBORESCENT_TARGET marker parsing (US-B)', () => {
+  it.todo('extracts the target UUID from a prompt whose first line is the ARBORESCENT_TARGET marker');
+  it.todo('strips the ARBORESCENT_TARGET marker line before Claude reads the prompt');
+  it.todo('treats a malformed ARBORESCENT_TARGET marker as foreign — prompt unchanged, no register-target POSTed');
+  it.todo('a prompt carrying BOTH ARBORESCENT_NODE and ARBORESCENT_TARGET strips both and POSTs both events (workflow sends only carry NODE, but the parser must not silently drop a co-occurring TARGET)');
+});
+
+describe('UserPromptSubmit hook — register-target dispatch (US-B)', () => {
+  it.todo('POSTs register-target with target_node_uuid set when ARBORESCENT_TARGET was present');
+  it.todo('POSTs register-target with target_node_uuid omitted when ARBORESCENT_TARGET was absent — required so the dispatcher can clear stale pendingTarget on the next turn');
+  it.todo('sets marker_seen_this_turn=true on the register-target payload when EITHER marker was present this turn');
+  it.todo('sets marker_seen_this_turn=false on the register-target payload when NEITHER marker was present (action-mode and foreign prompts)');
+  it.todo('POSTs register-target even when register-binding is also being POSTed for the same prompt — two distinct dispatcher concerns, separately addressable');
+});
+
+describe('UserPromptSubmit hook — action-mode + freeform interplay (US-B)', () => {
+  it.todo('an action-mode prompt (neither marker) POSTs register-target with marker_seen_this_turn=false and does NOT POST register-binding — the existing binding stays, but the safety net stays silent for this turn');
+  it.todo('a freeform prompt (target marker only) POSTs register-target with target_node_uuid set, does NOT POST register-binding, and the existing binding stays untouched');
+});

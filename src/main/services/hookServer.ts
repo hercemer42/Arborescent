@@ -12,6 +12,8 @@ export type HookEventPayload = {
   // hook server is loopback-only and bearer-auth-gated; if that ever changes, this
   // field becomes a session-takeover vector and the dispatcher must validate it.
   node_uuid?: string;
+  target_node_uuid?: string;
+  marker_seen_this_turn?: boolean;
 };
 
 type HookEventCallback = (payload: HookEventPayload) => void;
@@ -178,6 +180,14 @@ export class HookServer {
 
     if (typeof obj.node_uuid === 'string') {
       payload.node_uuid = obj.node_uuid;
+    }
+
+    if (typeof obj.target_node_uuid === 'string') {
+      payload.target_node_uuid = obj.target_node_uuid;
+    }
+
+    if (typeof obj.marker_seen_this_turn === 'boolean') {
+      payload.marker_seen_this_turn = obj.marker_seen_this_turn;
     }
 
     return payload;

@@ -1,5 +1,6 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { TreeReader, TreeReadState, ToolResult } from './mcpReadTools';
+import { OneShotTargetStore } from './oneShotTargetStore';
 import { ProposalSubmitter } from './mcpProposalBridge';
 
 export interface StepOutputApplier {
@@ -13,6 +14,7 @@ export interface SubmitOutputToolDeps {
   bindingRegistry: Pick<SessionBindingRegistry, 'lookup'>;
   treeReader: TreeReader;
   applier: StepOutputApplier;
+  oneShotTargetStore: OneShotTargetStore;
   proposalSubmitter: ProposalSubmitter;
 }
 
@@ -41,7 +43,12 @@ function isAutomatic(nodeId: string, state: TreeReadState): boolean {
 export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutputTool {
   return {
     submitStepOutput: async ({ sessionId, content, origin = 'explicit' }) => {
-      const boundNodeId = deps.bindingRegistry.lookup(sessionId);
+      if (origin === 'safety-net' && !deps.oneShotTargetStore.wasMarkerSeenThisTurn(sessionId)) {
+        return ok({ applied: false, reason: 'safety-net skipped — no marker this turn (action mode or foreign)' });
+      }
+
+      const pendingTarget = deps.oneShotTargetStore.pendingTarget(sessionId);
+      const boundNodeId = pendingTarget ?? deps.bindingRegistry.lookup(sessionId);
       if (!boundNodeId) {
         return ok({ applied: false, reason: 'unbound — session has no binding' });
       }
@@ -55,10 +62,6 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       }
 
       if (!isAutomatic(boundNodeId, state)) {
-        // Safety-net invocations are speculative captures of the last assistant
-        // message — for non-automatic steps the user is in the loop and will
-        // submit explicitly. Manufacturing a proposal per turn would pile up
-        // entries the user did not ask Claude to send.
         if (origin === 'safety-net') {
           return ok({ applied: false, reason: 'safety-net skipped non-automatic step' });
         }

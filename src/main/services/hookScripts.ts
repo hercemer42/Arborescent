@@ -1,14 +1,12 @@
-import { ARBORESCENT_MARKER_REGEX } from '../../shared/utils/arborescentMarker';
+import {
+  ARBORESCENT_MARKER_REGEX,
+  ARBORESCENT_TARGET_MARKER_REGEX,
+} from '../../shared/utils/arborescentMarker';
 
-const HOOK_REGISTER_BINDING_FN = `
-function postRegisterBinding(port, token, sessionId, nodeUuid, source) {
+const HOOK_POST_HOOK_EVENT_FN = `
+function postHookEvent(port, token, payload, label) {
   return new Promise((resolve) => {
-    const body = JSON.stringify({
-      session_id: sessionId,
-      hook_event_name: 'register-binding',
-      node_uuid: nodeUuid,
-      source: source,
-    });
+    const body = JSON.stringify(payload);
     const req = http.request({
       hostname: '127.0.0.1',
       port: Number(port),
@@ -25,17 +23,36 @@ function postRegisterBinding(port, token, sessionId, nodeUuid, source) {
       res.on('end', resolve);
     });
     req.on('error', (err) => {
-      process.stderr.write('[arborescent hook] register failed: ' + err.message + '\\n');
+      process.stderr.write('[arborescent hook] ' + label + ' failed: ' + err.message + '\\n');
       resolve();
     });
     req.on('timeout', () => {
-      process.stderr.write('[arborescent hook] register timed out\\n');
+      process.stderr.write('[arborescent hook] ' + label + ' timed out\\n');
       req.destroy();
       resolve();
     });
     req.write(body);
     req.end();
   });
+}
+
+function postRegisterBinding(port, token, sessionId, nodeUuid, source) {
+  return postHookEvent(port, token, {
+    session_id: sessionId,
+    hook_event_name: 'register-binding',
+    node_uuid: nodeUuid,
+    source: source,
+  }, 'register-binding');
+}
+
+function postRegisterTarget(port, token, sessionId, targetNodeUuid, markerSeenThisTurn) {
+  const payload = {
+    session_id: sessionId,
+    hook_event_name: 'register-target',
+    marker_seen_this_turn: markerSeenThisTurn,
+  };
+  if (targetNodeUuid) payload.target_node_uuid = targetNodeUuid;
+  return postHookEvent(port, token, payload, 'register-target');
 }
 `;
 
@@ -89,12 +106,13 @@ function emitSessionContext(sessionId) {
     process.stdout.write(JSON.stringify(response), () => resolve());
   });
 }
-${HOOK_REGISTER_BINDING_FN}`;
+${HOOK_POST_HOOK_EVENT_FN}`;
 
 export const USER_PROMPT_SUBMIT_HOOK_SCRIPT = `#!/usr/bin/env node
 const http = require('node:http');
 ${HOOK_BOOT_GUARDS}
-const HOOK_MARKER_REGEX = /${ARBORESCENT_MARKER_REGEX.source}/;
+const HOOK_BINDING_MARKER_REGEX = /${ARBORESCENT_MARKER_REGEX.source}/;
+const HOOK_TARGET_MARKER_REGEX = /${ARBORESCENT_TARGET_MARKER_REGEX.source}/;
 
 let stdinBuf = '';
 process.stdin.on('data', (chunk) => { stdinBuf += chunk.toString(); });
@@ -104,26 +122,62 @@ process.stdin.on('end', () => {
 
   const sessionId = typeof payload.session_id === 'string' ? payload.session_id : '';
   const prompt = typeof payload.prompt === 'string' ? payload.prompt : '';
+  const parsed = stripMarkers(prompt);
+  const stripped = parsed.stripped;
+  const bindingUuid = parsed.bindingUuid;
+  const targetUuid = parsed.targetUuid;
+  const markerSeenThisTurn = Boolean(bindingUuid || targetUuid);
 
-  const match = prompt.match(HOOK_MARKER_REGEX);
-  if (!match) {
-    process.exit(0);
-  }
-
-  const nodeUuid = match[1];
-  const stripped = prompt.slice(match[0].length);
   const port = process.env.ARBORESCENT_HOOK_PORT || '';
   const token = process.env.ARBORESCENT_AUTH_TOKEN || '';
+  const canDispatch = sessionId && port && token;
+
+  if (!bindingUuid && !targetUuid) {
+    if (canDispatch) {
+      postRegisterTarget(port, token, sessionId, '', false).finally(() => process.exit(0));
+    } else {
+      process.exit(0);
+    }
+    return;
+  }
 
   // process.stdout is non-blocking on a pipe; emitting the stripped prompt and then
   // calling process.exit(0) synchronously can drop the JSON before flush, which would
   // leak the marker into Claude's conversation. Always wait for the write callback.
-  emitOutput(stripped).then(() => {
-    if (sessionId && port && token) {
-      return postRegisterBinding(port, token, sessionId, nodeUuid, 'user-prompt-submit');
+  emitOutput(stripped).then(async () => {
+    if (!canDispatch) return;
+    if (bindingUuid) {
+      await postRegisterBinding(port, token, sessionId, bindingUuid, 'user-prompt-submit');
     }
+    await postRegisterTarget(port, token, sessionId, targetUuid || '', markerSeenThisTurn);
   }).finally(() => process.exit(0));
 });
+
+function stripMarkers(prompt) {
+  let remaining = prompt;
+  let bindingUuid = '';
+  let targetUuid = '';
+  for (let i = 0; i < 2; i++) {
+    if (!bindingUuid) {
+      const m = remaining.match(HOOK_BINDING_MARKER_REGEX);
+      if (m) {
+        bindingUuid = m[1];
+        remaining = remaining.slice(m[0].length);
+        continue;
+      }
+    }
+    if (!targetUuid) {
+      const m = remaining.match(HOOK_TARGET_MARKER_REGEX);
+      if (m) {
+        targetUuid = m[1];
+        remaining = remaining.slice(m[0].length);
+        continue;
+      }
+    }
+    break;
+  }
+  return { stripped: remaining, bindingUuid: bindingUuid, targetUuid: targetUuid };
+}
 
 function emitOutput(updatedPrompt) {
   return new Promise((resolve) => {
@@ -136,7 +190,7 @@ function emitOutput(updatedPrompt) {
     process.stdout.write(JSON.stringify(response), () => resolve());
   });
 }
-${HOOK_REGISTER_BINDING_FN}`;
+${HOOK_POST_HOOK_EVENT_FN}`;
 
 const HOOK_POST_SUBMIT_STEP_OUTPUT_FN = `
 function postSubmitStepOutput(mcpPort, mcpToken, sessionId, content) {
