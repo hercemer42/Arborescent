@@ -255,6 +255,11 @@ export const createWorkflowExecutionActions = (
     if (changed) set({ terminalNodeAssignments: updated });
   }
 
+  function stampSessionOnStartNode(nodeId: string, sessionId: string): void {
+    const inherited = inheritSessionOnNode(get().nodes, nodeId, sessionId);
+    if (inherited !== get().nodes) set({ nodes: inherited });
+  }
+
   async function startWorkflow(nodeId: string, terminalId: string | null): Promise<void> {
     const { nodes, ancestorRegistry, workflowExecutionStates, workflowSessionMap, sessionRegistry } = get();
 
@@ -281,6 +286,7 @@ export const createWorkflowExecutionActions = (
     });
 
     if (route.kind === "focus-existing-tab") {
+      if (node?.metadata.sessionId) stampSessionOnStartNode(nodeId, node.metadata.sessionId);
       useTerminalStore.getState().setActiveTerminal(route.terminalId);
       startWorkflowOnTerminal(nodeId, route.terminalId, "reattach");
       return;
@@ -293,6 +299,7 @@ export const createWorkflowExecutionActions = (
         if (!created) throw new Error("Terminal not created");
         await window.electron.terminalWrite(created.id, `claude --resume ${route.sessionId}\r`);
         sessionResumeManager.bindSessionTab(created.id, route.sessionId);
+        stampSessionOnStartNode(nodeId, route.sessionId);
         startWorkflowOnTerminal(nodeId, created.id, "reattach");
         return;
       } catch (error) {

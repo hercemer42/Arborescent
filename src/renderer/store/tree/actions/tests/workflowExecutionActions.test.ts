@@ -258,6 +258,29 @@ describe('createWorkflowExecutionActions', () => {
       expect(state.workflowExecutionStates['outside']).toBeUndefined();
     });
 
+    it('stamps metadata.sessionId on the originating node and clears brokenChain on initial start for focus-existing-tab route', async () => {
+      useTerminalStore.setState({
+        terminals: [],
+        activeTerminalId: null,
+        currentFilePath: '/test.arbo',
+        fileStates: { '/test.arbo': { terminals: [], activeTerminalId: null } },
+      });
+      useTerminalStore.getState().addTerminal({
+        id: 'terminal-1', title: 'Existing', cwd: '/tmp',
+        shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
+      });
+
+      state.nodes['task-a'] = {
+        ...state.nodes['task-a'],
+        metadata: { ...state.nodes['task-a'].metadata, sessionId: 'session-pre', brokenChain: true },
+      };
+
+      await actions.startWorkflow('task-a', 'terminal-1');
+
+      expect(state.nodes['task-a'].metadata.sessionId).toBe('session-pre');
+      expect(state.nodes['task-a'].metadata.brokenChain).toBeUndefined();
+    });
+
     it('should allow multiple nodes to be running simultaneously in different terminals', () => {
       actions.startWorkflow('task-a', 'terminal-1');
       actions.startWorkflow('task-c', 'terminal-2');

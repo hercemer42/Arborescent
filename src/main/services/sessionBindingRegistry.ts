@@ -79,6 +79,13 @@ export class SessionBindingRegistry {
     this.pendingRebinds.clear();
   }
 
+  unregister(sessionId: string): boolean {
+    if (!sessionId) return false;
+    const hadBinding = this.bindings.delete(sessionId);
+    const hadPending = this.pendingRebinds.delete(sessionId);
+    return hadBinding || hadPending;
+  }
+
   private emitRebindRequest(request: RebindRequest): void {
     for (const listener of this.rebindListeners) {
       listener(request);

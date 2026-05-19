@@ -213,6 +213,10 @@ export interface ElectronAPI {
   onMcpProposalRequest: (callback: (request: ProposalRequest) => void) => Unsubscribe;
   respondToMcpProposal: (response: ProposalResponse) => Promise<void>;
 
+  // Session-to-node binding rehydration from .arbo metadata
+  seedSessionBindings: (pairs: ReadonlyArray<{ sessionId: string; nodeId: string }>) => Promise<void>;
+  clearSessionBindings: (sessionIds: ReadonlyArray<string>) => Promise<void>;
+
   // Persistent activity log
   appendLog: (entry: AppendLogPayload) => Promise<void>;
   openLogFile: () => Promise<void>;

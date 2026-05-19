@@ -469,6 +469,85 @@ describe('fileActions', () => {
     });
   });
 
+  describe('session bindings rehydration', () => {
+    function mockStoreWithSessionNodes(nodes: Record<string, { metadata: { sessionId?: string } }>): void {
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          fileMeta: null,
+          collaboratingNodeId: null,
+          nodes,
+          workflowExecutionStates: {},
+          actions: {
+            saveToPath: vi.fn(() => Promise.resolve()),
+            loadFromPath: vi.fn(() => Promise.resolve({ created: '', author: '' })),
+            initialize: vi.fn(),
+            selectNode: vi.fn(),
+            setFilePath: vi.fn(),
+            stopWorkflow: vi.fn(),
+          },
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+    }
+
+    it('opening a second file does not disturb the first file\'s seeded bindings', async () => {
+      const seedSpy = vi.mocked(window.electron.seedSessionBindings);
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      mockStoreWithSessionNodes({
+        'node-a': { metadata: { sessionId: 'sess-a' } },
+      });
+      await actions.loadAndOpenFile('/files/first.arbo');
+
+      mockStoreWithSessionNodes({
+        'node-b': { metadata: { sessionId: 'sess-b' } },
+      });
+      await actions.loadAndOpenFile('/files/second.arbo');
+
+      expect(seedSpy).toHaveBeenCalledTimes(2);
+      expect(seedSpy).toHaveBeenNthCalledWith(1, [{ sessionId: 'sess-a', nodeId: 'node-a' }]);
+      expect(seedSpy).toHaveBeenNthCalledWith(2, [{ sessionId: 'sess-b', nodeId: 'node-b' }]);
+    });
+
+    it('closing a file clears bindings for every persisted sessionId in that file', async () => {
+      const clearSpy = vi.mocked(window.electron.clearSessionBindings);
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      mockStoreWithSessionNodes({
+        'node-a': { metadata: { sessionId: 'sess-a' } },
+        'node-b': { metadata: { sessionId: 'sess-b' } },
+        'node-c': { metadata: {} },
+      });
+
+      await actions.closeFile('/files/with-sessions.arbo');
+
+      expect(clearSpy).toHaveBeenCalledTimes(1);
+      const [sessionIds] = clearSpy.mock.calls[0];
+      expect([...sessionIds].sort()).toEqual(['sess-a', 'sess-b']);
+    });
+
+    it('does not crash when the renderer runs against an older build missing the IPC channel', async () => {
+      const original = window.electron.seedSessionBindings;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window.electron as any).seedSessionBindings = undefined;
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      mockStoreWithSessionNodes({
+        'node-a': { metadata: { sessionId: 'sess-a' } },
+      });
+
+      try {
+        await actions.loadAndOpenFile('/files/file.arbo');
+      } finally {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window.electron as any).seedSessionBindings = original;
+      }
+
+      expect(state.openFile).toHaveBeenCalledWith('/files/file.arbo', 'file.arbo', false);
+      expect((logger.error as ReturnType<typeof vi.fn>)).not.toHaveBeenCalled();
+    });
+  });
+
   describe('saveActiveFile', () => {
     it('should save non-temporary file to its current path', async () => {
       state.activeFilePath = '/test/file.arbo';

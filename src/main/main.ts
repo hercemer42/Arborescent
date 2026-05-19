@@ -43,6 +43,13 @@ import {
   ProposalResponse,
   PROPOSAL_REQUEST_CHANNEL,
 } from './services/mcpProposalBridge';
+import {
+  createSeedBindingsIpcBridge,
+  SeedBindingsIpcBridge,
+  SeedPair,
+  SEED_BINDINGS_CHANNEL,
+  CLEAR_BINDINGS_CHANNEL,
+} from './services/seedBindingsIpcBridge';
 
 if (started) {
   app.quit();
@@ -67,6 +74,7 @@ let treeReaderBridge: McpTreeReaderBridge | null = null;
 let treeMutatorBridge: McpTreeMutatorBridge | null = null;
 let stepOutputApplierBridge: McpStepOutputApplierBridge | null = null;
 let proposalBridge: McpProposalBridge | null = null;
+let seedBindingsBridge: SeedBindingsIpcBridge | null = null;
 
 const DEFAULT_HOOK_PORT = 17832;
 const DEFAULT_MCP_PORT = 17840;
@@ -270,6 +278,20 @@ const createWindow = async () => {
         `MCP submit_step_output tool attached on channel ${STEP_OUTPUT_APPLY_REQUEST_CHANNEL}; proposal bridge on channel ${PROPOSAL_REQUEST_CHANNEL}`,
         'Main',
       );
+
+      seedBindingsBridge = createSeedBindingsIpcBridge({
+        registry: mcpServer.getBindingRegistry(),
+      });
+      ipcMain.handle(SEED_BINDINGS_CHANNEL, (_event, pairs: SeedPair[]) => {
+        seedBindingsBridge?.seed(pairs);
+      });
+      ipcMain.handle(CLEAR_BINDINGS_CHANNEL, (_event, sessionIds: string[]) => {
+        seedBindingsBridge?.clear(sessionIds);
+      });
+      logger.info(
+        `Seed bindings IPC bridge active on channels ${SEED_BINDINGS_CHANNEL} / ${CLEAR_BINDINGS_CHANNEL}`,
+        'Main',
+      );
     } else {
       logger.warn('MCP server failed to start — MCP tools will not be reachable from Claude Code', 'Main');
     }
@@ -342,6 +364,7 @@ app.on('before-quit', () => {
   treeMutatorBridge?.dispose();
   stepOutputApplierBridge?.dispose();
   proposalBridge?.dispose();
+  seedBindingsBridge?.dispose();
   void hookServer?.stop();
   void mcpServer?.stop();
 });

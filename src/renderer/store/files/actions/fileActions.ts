@@ -4,6 +4,7 @@ import { logger } from '../../../services/logger';
 import { cleanupFeedback } from '../../../services/feedback/feedbackService';
 import { createArboFile, extractBlueprintNodes } from '../../../utils/document';
 import { createBlankDocument } from '../../../utils/defaultTemplate';
+import { extractSessionBindings } from '../../../utils/extractSessionBindings';
 import { File } from '../filesStore';
 import { getDisplayName } from '../../../../shared/utils/fileNaming';
 
@@ -69,11 +70,39 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     const { actions } = store.getState();
     await actions.loadFromPath(path);
 
+    await seedSessionBindingsForFile(path);
+
     const isTemporary = await storage.isTempFile(path);
     const displayName = getDisplayName(path, isTemporary);
 
     openFile(path, displayName, isTemporary);
     logger.success(`File loaded: ${path}`, logContext, showToast);
+  }
+
+  async function seedSessionBindingsForFile(path: string): Promise<void> {
+    const seed = window.electron?.seedSessionBindings;
+    if (typeof seed !== 'function') return;
+    try {
+      const { nodes } = storeManager.getStoreForFile(path).getState();
+      const pairs = extractSessionBindings(nodes);
+      if (pairs.length === 0) return;
+      await seed(pairs);
+    } catch (error) {
+      logger.error('Failed to seed session bindings from .arbo metadata', error as Error, 'FileLoad');
+    }
+  }
+
+  async function clearSessionBindingsForFile(path: string): Promise<void> {
+    const clear = window.electron?.clearSessionBindings;
+    if (typeof clear !== 'function') return;
+    try {
+      const { nodes } = storeManager.getStoreForFile(path).getState();
+      const sessionIds = extractSessionBindings(nodes).map((pair) => pair.sessionId);
+      if (sessionIds.length === 0) return;
+      await clear(sessionIds);
+    } catch (error) {
+      logger.error('Failed to clear session bindings on file close', error as Error, 'FileClose');
+    }
   }
 
   async function createBlankFile(logContext: string): Promise<string> {
@@ -320,6 +349,8 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         await storage.deleteTempFile(filePath);
       }
     }
+
+    await clearSessionBindingsForFile(filePath);
 
     await storeManager.closeFile(filePath);
     closeFileAction(filePath);

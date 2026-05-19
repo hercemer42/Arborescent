@@ -249,3 +249,102 @@ describe('SessionBindingRegistry — listener lifecycle', () => {
     expect(listener).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('SessionBindingRegistry — unregister (file-scoped clear support)', () => {
+  let registry: SessionBindingRegistry;
+
+  beforeEach(() => {
+    registry = new SessionBindingRegistry();
+  });
+
+  it('unregister removes a bound session and subsequent lookup returns null', () => {
+    registry.register('sess-1', 'node-a');
+    const removed = registry.unregister('sess-1');
+    expect(removed).toBe(true);
+    expect(registry.lookup('sess-1')).toBe(null);
+  });
+
+  it('unregister returns false when the session was never bound', () => {
+    expect(registry.unregister('sess-unknown')).toBe(false);
+  });
+
+  it('unregister on one session does not affect other sessions in the registry', () => {
+    registry.register('sess-a', 'node-1');
+    registry.register('sess-b', 'node-2');
+
+    registry.unregister('sess-a');
+
+    expect(registry.lookup('sess-a')).toBe(null);
+    expect(registry.lookup('sess-b')).toBe('node-2');
+  });
+
+  it('unregister drops any pending rebind for that session as well', () => {
+    registry.register('sess-1', 'node-a');
+    registry.register('sess-1', 'node-b');
+    expect(registry.pendingRebind('sess-1')).toBe('node-b');
+
+    registry.unregister('sess-1');
+
+    expect(registry.pendingRebind('sess-1')).toBe(null);
+    expect(registry.lookup('sess-1')).toBe(null);
+  });
+
+  it('unregister does NOT emit a rebind-request event', () => {
+    const listener = vi.fn();
+    registry.onRebindRequest(listener);
+    registry.register('sess-1', 'node-a');
+    listener.mockClear();
+
+    registry.unregister('sess-1');
+
+    expect(listener).not.toHaveBeenCalled();
+  });
+
+  it('unregister with empty-string sessionId is a no-op and returns false', () => {
+    registry.register('sess-1', 'node-a');
+    expect(registry.unregister('')).toBe(false);
+    expect(registry.lookup('sess-1')).toBe('node-a');
+  });
+
+  it('unregister followed by a fresh register of the same session classifies as set, not rebind', () => {
+    registry.register('sess-1', 'node-a');
+    registry.unregister('sess-1');
+
+    const result = registry.register('sess-1', 'node-b');
+
+    expect(result).toEqual({ kind: 'set', sessionId: 'sess-1', nodeId: 'node-b' });
+    expect(registry.lookup('sess-1')).toBe('node-b');
+  });
+});
+
+describe('SessionBindingRegistry — seed-style bulk register (file open rehydration)', () => {
+  let registry: SessionBindingRegistry;
+
+  beforeEach(() => {
+    registry = new SessionBindingRegistry();
+  });
+
+  it('registering N distinct pairs against an empty registry yields N set results and N lookups', () => {
+    const pairs = [
+      { sessionId: 'sess-1', nodeId: 'node-a' },
+      { sessionId: 'sess-2', nodeId: 'node-b' },
+      { sessionId: 'sess-3', nodeId: 'node-c' },
+    ];
+    const results = pairs.map((p) => registry.register(p.sessionId, p.nodeId));
+
+    expect(results.every((r) => r?.kind === 'set')).toBe(true);
+    expect(registry.lookup('sess-1')).toBe('node-a');
+    expect(registry.lookup('sess-2')).toBe('node-b');
+    expect(registry.lookup('sess-3')).toBe('node-c');
+  });
+
+  it('seeding does not emit rebind-request events when all pairs target unbound sessions', () => {
+    const listener = vi.fn();
+    registry.onRebindRequest(listener);
+
+    registry.register('sess-1', 'node-a');
+    registry.register('sess-2', 'node-b');
+
+    expect(listener).not.toHaveBeenCalled();
+  });
+});

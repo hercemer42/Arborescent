@@ -165,6 +165,8 @@ const api: ElectronAPI = {
   },
   respondToMcpProposal: (response) =>
     ipcRenderer.invoke('mcp:proposal-response', response),
+  seedSessionBindings: (pairs) => ipcRenderer.invoke('mcp:seed-bindings', pairs),
+  clearSessionBindings: (sessionIds) => ipcRenderer.invoke('mcp:clear-bindings', sessionIds),
   appendLog: (entry) => ipcRenderer.invoke('log:append', entry),
   openLogFile: () => ipcRenderer.invoke('log:open'),
   getLogFilePath: () => ipcRenderer.invoke('log:get-path'),
