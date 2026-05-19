@@ -1,20 +1,15 @@
 import { describe, it } from 'vitest';
 
-// PR6 — Stop hook script. Runs inside Claude Code at the end of every
-// assistant turn. Two responsibilities:
-//   1. Capture Claude's response from the transcript file Claude Code
-//      writes alongside each turn, and POST it to the MCP server's
-//      submit_step_output endpoint as a safety net for the case where
-//      Claude omitted the explicit submit_step_output call.
-//   2. The server-side submit_step_output tool dedupes via the SubmitMarker
-//      (see submitMarker.test.ts) so an auto-submit and an explicit submit
-//      from the same turn never both apply.
+// Stop hook script. Runs inside Claude Code at the end of every assistant
+// turn. Captures Claude's response from the transcript file Claude Code
+// writes alongside each turn, and POSTs it to the MCP server's
+// submit_step_output endpoint as a safety net for the case where Claude
+// omitted the explicit submit_step_output call.
 //
 // Body left blank intentionally: the script is a node-bash string template
 // (see hookScripts.ts) whose behaviour is exercised through integration once
-// the implementation lands. The unit-testable surfaces (SubmitMarker,
-// createSubmitOutputTool, dispatcher routing, hookInstaller Stop wiring) live
-// in their own test files.
+// the implementation lands. The unit-testable surfaces (createSubmitOutputTool,
+// dispatcher routing, hookInstaller Stop wiring) live in their own test files.
 
 describe('Stop hook — transcript reading (PR6)', () => {
   it.todo('reads transcript_path from the hook payload and loads the file contents');

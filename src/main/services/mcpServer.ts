@@ -17,7 +17,6 @@ import {
   SubmitOutputTool,
   StepOutputApplier,
 } from './mcpSubmitOutputTool';
-import { SubmitMarker } from './submitMarker';
 
 const MCP_PATH = '/mcp';
 const SERVER_NAME = 'arborescent';
@@ -30,7 +29,6 @@ export class ArborescentMcpServer {
   private port = 0;
   private authToken = '';
   private bindingRegistry = new SessionBindingRegistry();
-  private submitMarker = new SubmitMarker();
   private readTools: ReadTools | null = null;
   private writeTools: WriteTools | null = null;
   private submitOutputTool: SubmitOutputTool | null = null;
@@ -222,7 +220,6 @@ export class ArborescentMcpServer {
       bindingRegistry: this.bindingRegistry,
       treeReader,
       applier,
-      marker: this.submitMarker,
       proposalSubmitter,
     });
   }
@@ -233,7 +230,7 @@ export class ArborescentMcpServer {
       {
         title: 'Submit step output',
         description:
-          'Submits the assistant response as the output of the bound workflow step. On automatic steps the content is applied directly to the bound node; on manual and checkpoint steps it appears as a pending proposal in the feedback panel for the user to accept or reject. Subsequent submits within the same turn are deduped (no-op). Applied regardless of context mode flags — this is the workflow output channel, not a tree-modifying tool.',
+          'Submits the assistant response back to the bound Arborescent node. The binding comes from any Arborescent send (a one-off send-to-terminal, or a workflow step). If the bound node sits under an autonomous workflow step, the content is applied directly to the node. Otherwise — manual sends, and manual/checkpoint workflow steps — the content appears in the feedback panel for the user to review and accept or reject; call again with revised content to refresh the panel. Applied regardless of context mode flags.',
         inputSchema: {
           session_id: z.string().min(1).describe('Claude Code session ID'),
           content: z.string().describe('Assistant response content to apply to the bound node'),
@@ -292,7 +289,6 @@ export class ArborescentMcpServer {
       await mcp.close();
     }
     this.sessions.clear();
-    this.submitMarker.clear();
     logger.info('MCP server stopped', 'McpServer');
   }
 
@@ -302,10 +298,6 @@ export class ArborescentMcpServer {
 
   getBindingRegistry(): SessionBindingRegistry {
     return this.bindingRegistry;
-  }
-
-  getSubmitMarker(): SubmitMarker {
-    return this.submitMarker;
   }
 
   private registerSmokeTool(mcp: McpServer): void {

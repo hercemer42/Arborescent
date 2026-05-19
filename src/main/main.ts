@@ -179,7 +179,6 @@ const createWindow = async () => {
 
       rebindBridge = createRebindIpcBridge({
         registry: mcpServer.getBindingRegistry(),
-        submitMarker: mcpServer.getSubmitMarker(),
         sendToRenderer: (channel, payload) => {
           if (mainWindow && !mainWindow.isDestroyed()) {
             mainWindow.webContents.send(channel, payload);

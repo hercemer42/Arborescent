@@ -1,6 +1,5 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { TreeReader, TreeReadState, ToolResult } from './mcpReadTools';
-import { SubmitMarker } from './submitMarker';
 import { ProposalSubmitter } from './mcpProposalBridge';
 
 export interface StepOutputApplier {
@@ -14,7 +13,6 @@ export interface SubmitOutputToolDeps {
   bindingRegistry: Pick<SessionBindingRegistry, 'lookup'>;
   treeReader: TreeReader;
   applier: StepOutputApplier;
-  marker: SubmitMarker;
   proposalSubmitter: ProposalSubmitter;
 }
 
@@ -33,7 +31,11 @@ function err(message: string): ToolResult {
 }
 
 function isAutomatic(nodeId: string, state: TreeReadState): boolean {
-  return state.nodes[nodeId]?.metadata.stepType === 'autonomous';
+  // Workflow execution binds the working node, not the parent step that carries stepType.
+  if (state.nodes[nodeId]?.metadata.stepType === 'autonomous') return true;
+  const ancestors = state.ancestorRegistry[nodeId] ?? [];
+  const parentId = ancestors[ancestors.length - 1];
+  return !!parentId && state.nodes[parentId]?.metadata.stepType === 'autonomous';
 }
 
 export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutputTool {
@@ -52,10 +54,6 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return err(`Bound node ${boundNodeId} not found in the tree (orphan binding).`);
       }
 
-      if (deps.marker.hasSubmitted(sessionId)) {
-        return ok({ applied: false, reason: 'already submitted this turn (deduped)' });
-      }
-
       if (!isAutomatic(boundNodeId, state)) {
         // Safety-net invocations are speculative captures of the last assistant
         // message — for non-automatic steps the user is in the loop and will
@@ -70,7 +68,6 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
           request: { kind: 'submit-step-output', content },
         });
         if (!proposal.ok) return err(proposal.error);
-        deps.marker.markSubmitted(sessionId);
         return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
       }
 
@@ -79,7 +76,6 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return err(result.error);
       }
 
-      deps.marker.markSubmitted(sessionId);
       return ok({ applied: true });
     },
   };

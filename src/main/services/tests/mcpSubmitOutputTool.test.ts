@@ -10,7 +10,6 @@ import {
   SubmitOutputTool,
   StepOutputApplier,
 } from '../mcpSubmitOutputTool';
-import { SubmitMarker } from '../submitMarker';
 import { TreeReadState } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
 
@@ -44,7 +43,6 @@ function makeDeps(stepType: StepType | undefined) {
     apply: vi.fn(async () => ({ ok: true as const })),
   };
   const treeReader = { readState: vi.fn(async () => makeState(stepType)) };
-  const marker = new SubmitMarker();
   let nextProposalId = 1;
   const proposalSubmitter = {
     submit: vi.fn(async () => ({ ok: true as const, proposalId: `prop-${nextProposalId++}` })),
@@ -53,23 +51,20 @@ function makeDeps(stepType: StepType | undefined) {
     registry,
     applier,
     treeReader,
-    marker,
     proposalSubmitter,
-    deps: { bindingRegistry: registry, treeReader, applier, marker, proposalSubmitter },
+    deps: { bindingRegistry: registry, treeReader, applier, proposalSubmitter },
   };
 }
 
 describe('createSubmitOutputTool — automatic step writes directly to the node', () => {
   let tool: SubmitOutputTool;
   let applier: StepOutputApplier;
-  let marker: SubmitMarker;
 
   beforeEach(() => {
     const made = makeDeps('autonomous');
     made.registry.register('sess-1', BOUND);
     tool = createSubmitOutputTool(made.deps);
     applier = made.applier;
-    marker = made.marker;
   });
 
   it('applies the submitted content to the bound node and reports applied=true', async () => {
@@ -79,19 +74,6 @@ describe('createSubmitOutputTool — automatic step writes directly to the node'
     expect(applier.apply).toHaveBeenCalledWith(BOUND, 'AI response');
   });
 
-  it('sets the submit marker on success so the auto-submit safety net can dedupe', async () => {
-    expect(marker.hasSubmitted('sess-1')).toBe(false);
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'response' });
-    expect(marker.hasSubmitted('sess-1')).toBe(true);
-  });
-
-  it('does NOT set the submit marker when the applier returns an error', async () => {
-    (applier.apply as ReturnType<typeof vi.fn>).mockImplementation(async () => ({ ok: false, error: 'apply failed' }));
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'response' });
-    expect(result.isError).toBe(true);
-    expect(marker.hasSubmitted('sess-1')).toBe(false);
-  });
-
   it('an empty content string still triggers an apply — empty is a valid AI response', async () => {
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: '' });
     expect(result.isError).toBeFalsy();
@@ -99,42 +81,33 @@ describe('createSubmitOutputTool — automatic step writes directly to the node'
   });
 });
 
-describe('createSubmitOutputTool — second call within the same turn is a no-op (auto-submit dedupe)', () => {
-  let tool: SubmitOutputTool;
-  let applier: StepOutputApplier;
-
-  beforeEach(() => {
-    const made = makeDeps('autonomous');
-    made.registry.register('sess-1', BOUND);
-    tool = createSubmitOutputTool(made.deps);
-    applier = made.applier;
-  });
-
-  it('a second submit_step_output for the same session does not call the applier again', async () => {
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first' });
-    (applier.apply as ReturnType<typeof vi.fn>).mockClear();
-    const second = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'second' });
-    expect(applier.apply).not.toHaveBeenCalled();
-    expect(second.isError).toBeFalsy();
-    const payload = JSON.parse(second.content[0].text);
-    expect(payload.applied).toBe(false);
-    expect(payload.reason).toMatch(/already submitted|deduped/i);
-  });
-});
-
-describe('createSubmitOutputTool — after the marker is reset (new turn), the next submit applies', () => {
-  it('reset between calls allows the second submit to apply', async () => {
+describe('createSubmitOutputTool — repeated submits in one session each go through (no dedup)', () => {
+  // Iterating on feedback by challenging the AI in the terminal must allow
+  // multiple submit_step_output calls per session. Each call refreshes the
+  // panel (manual/checkpoint) or rewrites the node (autonomous).
+  it('a second autonomous submit calls the applier again with the new content', async () => {
     const made = makeDeps('autonomous');
     made.registry.register('sess-1', BOUND);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'turn-1' });
-    made.marker.reset('sess-1');
-    (made.applier.apply as ReturnType<typeof vi.fn>).mockClear();
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first' });
+    const second = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'second' });
 
-    const second = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'turn-2' });
     expect(second.isError).toBeFalsy();
-    expect(made.applier.apply).toHaveBeenCalledWith(BOUND, 'turn-2');
+    expect(JSON.parse(second.content[0].text)).toEqual({ applied: true });
+    expect(made.applier.apply).toHaveBeenNthCalledWith(1, BOUND, 'first');
+    expect(made.applier.apply).toHaveBeenNthCalledWith(2, BOUND, 'second');
+  });
+
+  it('a second manual-step submit queues another proposal so the feedback panel can refresh', async () => {
+    const made = makeDeps('manual');
+    made.registry.register('sess-1', BOUND);
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'draft' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'revised' });
+
+    expect(made.proposalSubmitter.submit).toHaveBeenCalledTimes(2);
   });
 });
 
@@ -145,7 +118,6 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
     return {
       tool: createSubmitOutputTool(made.deps),
       applier: made.applier,
-      marker: made.marker,
       proposalSubmitter: made.proposalSubmitter,
     };
   }
@@ -183,14 +155,8 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
 
-  it('a non-automatic proposal sets the submit marker so the Stop-hook safety net does not also propose this turn', async () => {
-    const { tool, marker } = withStepType('manual');
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
-    expect(marker.hasSubmitted('sess-1')).toBe(true);
-  });
-
-  it('a proposal-submitter failure surfaces as an error and does NOT set the marker', async () => {
-    const { tool, marker, proposalSubmitter } = withStepType('manual');
+  it('a proposal-submitter failure surfaces as an error', async () => {
+    const { tool, proposalSubmitter } = withStepType('manual');
     (proposalSubmitter.submit as ReturnType<typeof vi.fn>).mockImplementation(async () => ({
       ok: false,
       error: 'no store for bound file',
@@ -198,7 +164,6 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
     expect(result.isError).toBe(true);
     expect(result.content[0].text).toContain('no store for bound file');
-    expect(marker.hasSubmitted('sess-1')).toBe(false);
   });
 
   it('autonomous step still goes through the applier (NOT the proposal submitter)', async () => {
@@ -212,11 +177,10 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
     // Stop-hook auto-submits content speculatively. For non-automatic steps the
     // user is in the loop and will submit explicitly — manufacturing a proposal
     // per turn would pile up entries the user did not ask for.
-    const { tool, proposalSubmitter, marker } = withStepType('manual');
+    const { tool, proposalSubmitter } = withStepType('manual');
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x', origin: 'safety-net' });
     expect(result.isError).toBeFalsy();
     expect(proposalSubmitter.submit).not.toHaveBeenCalled();
-    expect(marker.hasSubmitted('sess-1')).toBe(false);
     const payload = JSON.parse(result.content[0].text);
     expect(payload.applied).toBe(false);
     expect(payload.reason).toMatch(/safety-net/i);
@@ -250,13 +214,6 @@ describe('createSubmitOutputTool — unbound session is a graceful no-op (not an
     expect(made.applier.apply).not.toHaveBeenCalled();
   });
 
-  it('an unbound graceful no-op does NOT touch the submit marker', async () => {
-    const made = makeDeps('autonomous');
-    const tool = createSubmitOutputTool(made.deps);
-    await tool.submitStepOutput({ sessionId: 'sess-unknown', content: 'x' });
-    expect(made.marker.hasSubmitted('sess-unknown')).toBe(false);
-  });
-
   it('does NOT call the tree reader for an unbound session (no wasted IPC round trip)', async () => {
     const made = makeDeps('autonomous');
     const tool = createSubmitOutputTool(made.deps);
@@ -281,13 +238,11 @@ describe('createSubmitOutputTool — error propagation', () => {
   it('tree state unavailable returns a descriptive error', async () => {
     const registry = new SessionBindingRegistry();
     const applier: StepOutputApplier = { apply: vi.fn(async () => ({ ok: true as const })) };
-    const marker = new SubmitMarker();
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
     const tool = createSubmitOutputTool({
       bindingRegistry: registry,
       treeReader: { readState: async () => null },
       applier,
-      marker,
       proposalSubmitter,
     });
     registry.register('sess-1', BOUND);
@@ -314,6 +269,74 @@ describe('createSubmitOutputTool — error propagation', () => {
   });
 });
 
+describe('createSubmitOutputTool — bound working-node under an autonomous step applies directly', () => {
+  const WORKFLOW = 'wwwwwwww-wwww-wwww-wwww-wwwwwwwwww09';
+  const STEP = 'ssssssss-ssss-ssss-ssss-ssssssssss08';
+  const WORKING = 'wwwwwwww-wwww-wwww-wwww-wwwwwwwwww10';
+
+  function makeWorkflowState(stepType: StepType | undefined): TreeReadState {
+    const stepMetadata: TreeNode['metadata'] = {};
+    if (stepType !== undefined) stepMetadata.stepType = stepType;
+    return {
+      nodes: {
+        [ROOT]: makeNode(ROOT, 'Root', [WORKFLOW]),
+        [WORKFLOW]: makeNode(WORKFLOW, 'Workflow', [STEP], { isWorkflow: true }),
+        [STEP]: makeNode(STEP, 'Step', [WORKING], stepMetadata),
+        [WORKING]: makeNode(WORKING, 'Working node content', []),
+      },
+      rootNodeId: ROOT,
+      ancestorRegistry: {
+        [ROOT]: [],
+        [WORKFLOW]: [ROOT],
+        [STEP]: [ROOT, WORKFLOW],
+        [WORKING]: [ROOT, WORKFLOW, STEP],
+      },
+    };
+  }
+
+  function setupTool(stepType: StepType | undefined) {
+    const registry = new SessionBindingRegistry();
+    const applier: StepOutputApplier = { apply: vi.fn(async () => ({ ok: true as const })) };
+    const treeReader = { readState: async () => makeWorkflowState(stepType) };
+    const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
+    registry.register('sess-1', WORKING);
+    return {
+      tool: createSubmitOutputTool({ bindingRegistry: registry, treeReader, applier, proposalSubmitter }),
+      applier,
+      proposalSubmitter,
+    };
+  }
+
+  it('working node under stepType=autonomous applies directly (no proposal panel)', async () => {
+    const { tool, applier, proposalSubmitter } = setupTool('autonomous');
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'autonomous result' });
+    expect(result.isError).toBeFalsy();
+    expect(applier.apply).toHaveBeenCalledWith(WORKING, 'autonomous result');
+    expect(proposalSubmitter.submit).not.toHaveBeenCalled();
+  });
+
+  it('working node under stepType=manual still routes to the proposal submitter', async () => {
+    const { tool, applier, proposalSubmitter } = setupTool('manual');
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'manual result' });
+    expect(applier.apply).not.toHaveBeenCalled();
+    expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
+  });
+
+  it('working node under stepType=checkpoint still routes to the proposal submitter', async () => {
+    const { tool, applier, proposalSubmitter } = setupTool('checkpoint');
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'checkpoint result' });
+    expect(applier.apply).not.toHaveBeenCalled();
+    expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
+  });
+
+  it('working node under a parent with no stepType still routes to the proposal submitter', async () => {
+    const { tool, applier, proposalSubmitter } = setupTool(undefined);
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    expect(applier.apply).not.toHaveBeenCalled();
+    expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
   function makeStateWithFlags(collaborate: boolean, execute: boolean): TreeReadState {
     return {
@@ -330,12 +353,11 @@ describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
   function makeToolFor(collaborate: boolean, execute: boolean) {
     const registry = new SessionBindingRegistry();
     const applier: StepOutputApplier = { apply: vi.fn(async () => ({ ok: true as const })) };
-    const marker = new SubmitMarker();
     const treeReader = { readState: async () => makeStateWithFlags(collaborate, execute) };
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
     return {
-      tool: createSubmitOutputTool({ bindingRegistry: registry, treeReader, applier, marker, proposalSubmitter }),
+      tool: createSubmitOutputTool({ bindingRegistry: registry, treeReader, applier, proposalSubmitter }),
       applier,
     };
   }

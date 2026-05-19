@@ -147,52 +147,6 @@ describe('createRebindIpcBridge — applies renderer decisions to the registry',
     expect(registry.lookup('sess-never-seen')).toBe(null);
   });
 
-  it('confirm decision resets the submit marker so the safety net can fire on the new binding (PR6)', async () => {
-    const { SubmitMarker } = await import('../submitMarker');
-    const submitMarker = new SubmitMarker();
-    bridge.dispose();
-    registry = new SessionBindingRegistry();
-    bridge = createRebindIpcBridge({
-      registry,
-      submitMarker,
-      sendToRenderer,
-      notifyRendererCancelled,
-      onRendererDecision: channel.onDecision,
-      timeoutMs: 30_000,
-    });
-
-    registry.register('sess-1', 'node-a');
-    registry.register('sess-1', 'node-b');
-    submitMarker.markSubmitted('sess-1');
-
-    channel.sendDecision({ sessionId: 'sess-1', confirmed: true });
-
-    expect(submitMarker.hasSubmitted('sess-1')).toBe(false);
-  });
-
-  it('cancel decision does NOT reset the submit marker (binding did not swap)', async () => {
-    const { SubmitMarker } = await import('../submitMarker');
-    const submitMarker = new SubmitMarker();
-    bridge.dispose();
-    registry = new SessionBindingRegistry();
-    bridge = createRebindIpcBridge({
-      registry,
-      submitMarker,
-      sendToRenderer,
-      notifyRendererCancelled,
-      onRendererDecision: channel.onDecision,
-      timeoutMs: 30_000,
-    });
-
-    registry.register('sess-1', 'node-a');
-    registry.register('sess-1', 'node-b');
-    submitMarker.markSubmitted('sess-1');
-
-    channel.sendDecision({ sessionId: 'sess-1', confirmed: false });
-
-    expect(submitMarker.hasSubmitted('sess-1')).toBe(true);
-  });
-
   it('a confirm or cancel from the renderer does NOT emit a cancellation notification (renderer already closed its own dialog)', () => {
     registry.register('sess-1', 'node-a');
     registry.register('sess-1', 'node-b');

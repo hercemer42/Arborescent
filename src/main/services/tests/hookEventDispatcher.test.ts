@@ -8,20 +8,16 @@ import { createHookEventDispatcher } from '../hookEventDispatcher';
 import { SessionBindingRegistry } from '../sessionBindingRegistry';
 import { ArborescentMcpServer } from '../mcpServer';
 import { HookEventPayload } from '../hookServer';
-import { SubmitMarker } from '../submitMarker';
 
 function makeFakeMcpServer(): {
   server: ArborescentMcpServer;
   registry: SessionBindingRegistry;
-  marker: SubmitMarker;
 } {
   const registry = new SessionBindingRegistry();
-  const marker = new SubmitMarker();
   const server = {
     getBindingRegistry: () => registry,
-    getSubmitMarker: () => marker,
   } as unknown as ArborescentMcpServer;
-  return { server, registry, marker };
+  return { server, registry };
 }
 
 describe('createHookEventDispatcher — register-binding routing', () => {
@@ -165,72 +161,3 @@ describe('createHookEventDispatcher — other events forward to renderer', () =>
   });
 });
 
-describe('createHookEventDispatcher — submit-marker reset on register-binding (PR6)', () => {
-  // Every register-binding marks a new turn boundary (UserPromptSubmit fires
-  // register-binding for every Arborescent-driven prompt). Resetting the
-  // marker here is what lets the auto-submit safety net fire again on the
-  // next turn instead of being permanently deduped.
-  let registry: SessionBindingRegistry;
-  let marker: SubmitMarker;
-  let server: ArborescentMcpServer;
-  let dispatch: ReturnType<typeof createHookEventDispatcher>;
-
-  beforeEach(() => {
-    registry = new SessionBindingRegistry();
-    marker = new SubmitMarker();
-    server = {
-      getBindingRegistry: () => registry,
-      getSubmitMarker: () => marker,
-    } as unknown as ArborescentMcpServer;
-    dispatch = createHookEventDispatcher({
-      getMcpServer: () => server,
-      forwardToRenderer: vi.fn(),
-    });
-  });
-
-  it('resets the marker for the session when register-binding fires (new turn boundary)', () => {
-    marker.markSubmitted('sess-1');
-    dispatch({
-      session_id: 'sess-1',
-      hook_event_name: 'register-binding',
-      node_uuid: 'node-a',
-    });
-    expect(marker.hasSubmitted('sess-1')).toBe(false);
-  });
-
-  it('does not reset markers for unrelated sessions', () => {
-    marker.markSubmitted('sess-1');
-    marker.markSubmitted('sess-2');
-    dispatch({
-      session_id: 'sess-1',
-      hook_event_name: 'register-binding',
-      node_uuid: 'node-a',
-    });
-    expect(marker.hasSubmitted('sess-2')).toBe(true);
-  });
-
-  it('reset still happens when the binding is a no-op classification (same node)', () => {
-    registry.register('sess-1', 'node-a');
-    marker.markSubmitted('sess-1');
-    dispatch({
-      session_id: 'sess-1',
-      hook_event_name: 'register-binding',
-      node_uuid: 'node-a',
-    });
-    expect(marker.hasSubmitted('sess-1')).toBe(false);
-  });
-
-  it('does NOT reset on rebind-needed — the old binding is still active until the user confirms', () => {
-    // Resetting here would let the safety net land this turn's content on the OLD node
-    // while the rebind dialog is still pending. RebindIpcBridge.confirmRebind handles
-    // the marker reset when the user actually accepts the swap.
-    registry.register('sess-1', 'node-a');
-    marker.markSubmitted('sess-1');
-    dispatch({
-      session_id: 'sess-1',
-      hook_event_name: 'register-binding',
-      node_uuid: 'node-b',
-    });
-    expect(marker.hasSubmitted('sess-1')).toBe(true);
-  });
-});

@@ -1,6 +1,5 @@
 import { logger } from './logger';
 import { SessionBindingRegistry, RebindRequest } from './sessionBindingRegistry';
-import { SubmitMarker } from './submitMarker';
 
 export const REBIND_REQUEST_CHANNEL = 'mcp:rebind-request';
 export const REBIND_CANCELLED_CHANNEL = 'mcp:rebind-cancelled';
@@ -14,7 +13,6 @@ export type RebindDecisionListener = (decision: RebindDecision) => void;
 
 export type RebindIpcBridgeDeps = {
   registry: SessionBindingRegistry;
-  submitMarker?: SubmitMarker;
   sendToRenderer: (channel: string, payload: RebindRequest) => void;
   notifyRendererCancelled: (sessionId: string) => void;
   onRendererDecision: (listener: RebindDecisionListener) => () => void;
@@ -57,12 +55,7 @@ export function createRebindIpcBridge(deps: RebindIpcBridgeDeps): RebindIpcBridg
   const unsubscribeDecisions = deps.onRendererDecision((decision) => {
     clearTimer(decision.sessionId);
     if (decision.confirmed) {
-      const swapped = deps.registry.confirmRebind(decision.sessionId);
-      // Binding just swapped to the new node — reset the submit dedupe marker
-      // so the safety net can fire on the next turn against the new binding.
-      // (HookEventDispatcher intentionally does NOT reset on 'rebind-needed'
-      // because the binding has not yet swapped at that point.)
-      if (swapped) deps.submitMarker?.reset(decision.sessionId);
+      deps.registry.confirmRebind(decision.sessionId);
     } else {
       deps.registry.cancelRebind(decision.sessionId);
     }

@@ -97,6 +97,7 @@ export const createWorkflowExecutionActions = (
   const ACK_RETRY_CAP = 3;
   const recurseCounters = new Map<string, number>();
   const recurseWithoutDecompositionWarned = new Set<string>();
+  const lastAcceptedContentByNode = new Map<string, string>();
   const pendingAcks = new Map<string, { terminalId: string; attempts: number; timer: ReturnType<typeof setTimeout> }>();
   // ACKs that arrived before their pending entry was registered (the
   // autonomousCollaborate promise had not yet resolved). Prevents the
@@ -396,6 +397,7 @@ export const createWorkflowExecutionActions = (
     clearPendingAck(nodeId);
     clearSessionManager.clearPending(nodeId);
     claudeLaunchManager.clearPending(nodeId);
+    lastAcceptedContentByNode.delete(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -742,6 +744,7 @@ export const createWorkflowExecutionActions = (
 
   function completeWorkflow(nodeId: string): void {
     stepTimeouts.clear(nodeId);
+    lastAcceptedContentByNode.delete(nodeId);
     const { workflowExecutionStates, nodes, ancestorRegistry } = get();
     const entry = workflowExecutionStates[nodeId];
     const terminalId = entry?.terminalTabId;
@@ -786,6 +789,8 @@ export const createWorkflowExecutionActions = (
       completeWorkflow(nodeId);
       return;
     }
+
+    lastAcceptedContentByNode.delete(nodeId);
 
     const actualParentIds = findAllParentsOf(nodes, nodeId);
     const previousParentId = actualParentIds[0];
@@ -1055,6 +1060,7 @@ export const createWorkflowExecutionActions = (
     clearPendingAck,
     clearPendingClear: clearSessionManager.clearPending,
     clearPendingLaunch: claudeLaunchManager.clearPending,
+    clearLastAcceptedContent: (nodeId) => lastAcceptedContentByNode.delete(nodeId),
     releaseTerminalAssignmentForNode,
     triggerAutosave,
   });
@@ -1091,6 +1097,14 @@ export const createWorkflowExecutionActions = (
     const { workflowExecutionStates, nodes, ancestorRegistry } = get();
     const entry = workflowExecutionStates[nodeId];
     if (!entry || !nodes[nodeId]) {
+      return;
+    }
+
+    // Idempotency: an MCP client refining its own submission resends the same
+    // payload — accept-and-advance must not stack. Distinct content still
+    // flows through normally so the latest payload replaces prior descendants
+    // via the underlying AcceptFeedbackCommand snapshot/rebuild.
+    if (lastAcceptedContentByNode.get(nodeId) === content) {
       return;
     }
 
@@ -1165,6 +1179,8 @@ export const createWorkflowExecutionActions = (
     if (decompositionStepId) {
       releaseOrchestratorAfterDecompositionHandoff(nodeId);
     }
+
+    lastAcceptedContentByNode.set(nodeId, content);
 
     useToastStore.getState().addToast("Feedback auto-accepted", "info");
     logger.info(`Auto-accepted feedback for node ${nodeId} (${parsed.nodeCount} nodes)`, "WorkflowExecution");
