@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-19T20:39:51.032Z'
+updated: '2026-05-19T21:18:14.647Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23708,7 +23708,6 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 85f75161-644d-4114-a0a0-87caba0049e0
       - 45c7e34f-d730-4762-8486-798eab1e5302
       - a44833d2-d70e-48e3-be5d-f4d5106bae41
     metadata:
@@ -115654,6 +115653,7 @@ nodes:
     id: b3dc5362-ca81-4cbe-8558-2800fa41354f
     content: Done
     children:
+      - 2b797f53-71dc-4043-b01b-cf1391c87321
       - 54e74d74-45ba-4a81-96b9-9ccafa3c2d74
       - b8e6e4d6-ed6a-4d44-ab41-0219aec3f04c
       - 0196d5bf-8124-4785-ad1b-8768819b6b00
@@ -124801,7 +124801,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 2b797f53-71dc-4043-b01b-cf1391c87321
+      - 85f75161-644d-4114-a0a0-87caba0049e0
     metadata:
       status: pending
       isBlueprint: true
@@ -147828,289 +147828,20 @@ nodes:
     id: 85f75161-644d-4114-a0a0-87caba0049e0
     content: 'US-E: Real-time terminal-to-session map via register-binding payload'
     children:
-      - dc366c2d-5a33-421e-b46f-fc09ce237fef
-      - d54ac29d-adae-470a-be27-0590ea32b8ad
+      - b21e7eca-565a-484f-a629-e5fad4d0b0bc
+      - c20621d1-d93e-4d29-94d2-f26f62252796
+      - 70f51f47-c426-4ca6-83e5-a8a52311af23
+      - f2ec3e0e-f318-4c16-8c20-8e6a52bc5b96
+      - 0af79f36-fe96-4bd5-9b20-6886b8807352
+      - 896a3945-93ac-4d72-baeb-16244878a6ce
+      - a326181c-2a14-4c39-977c-edc888da51a0
+      - 54559bc2-b262-4768-92b0-0d0155ddb11a
+      - 47c2e51f-5926-41bf-8c28-aadee3148414
+      - 371a06a2-3c2e-4b13-8117-6fcba2991dca
+      - e170b713-9e04-4e84-81bd-8d320a2f1ec4
     metadata:
-      status: pending
+      status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  dc366c2d-5a33-421e-b46f-fc09ce237fef:
-    id: dc366c2d-5a33-421e-b46f-fc09ce237fef
-    content: Product spec
-    children:
-      - e017c6cc-94fa-4b7b-b7fa-da6e5f35034a
-      - 7a18c6cc-b473-43bd-8e73-84855939b39b
-      - daf0e14c-7990-4a27-ae71-0961a61431fc
-      - 6f853c38-3834-4014-b142-ee0bb5aad161
-      - 3224b6cd-1cde-47e5-b3f2-abd2f4ded47f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e017c6cc-94fa-4b7b-b7fa-da6e5f35034a:
-    id: e017c6cc-94fa-4b7b-b7fa-da6e5f35034a
-    content: Context
-    children:
-      - 36f1292e-8034-4f2a-8f43-dc90ce51edce
-      - dcaead73-4251-4fb3-b332-910ad8fb0f7e
-      - b880fc9c-4c71-4af1-aaa1-0763cdd4f75b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  36f1292e-8034-4f2a-8f43-dc90ce51edce:
-    id: 36f1292e-8034-4f2a-8f43-dc90ce51edce
-    content: workflowSessionMap in the renderer is updated when Arborescent itself opens a terminal via Resume Session, but not when a user manually starts a fresh claude inside an existing terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dcaead73-4251-4fb3-b332-910ad8fb0f7e:
-    id: dcaead73-4251-4fb3-b332-910ad8fb0f7e
-    content: The renderer view of which session lives in which terminal can drift out of sync with reality
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b880fc9c-4c71-4af1-aaa1-0763cdd4f75b:
-    id: b880fc9c-4c71-4af1-aaa1-0763cdd4f75b
-    content: Hook scripts currently post register-binding without terminal_id, so the dispatcher cannot inform the renderer
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a18c6cc-b473-43bd-8e73-84855939b39b:
-    id: 7a18c6cc-b473-43bd-8e73-84855939b39b
-    content: User
-    children:
-      - 5997664b-5db2-4efe-be63-5261354daa4d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5997664b-5db2-4efe-be63-5261354daa4d:
-    id: 5997664b-5db2-4efe-be63-5261354daa4d
-    content: An Arborescent user who restarts claude in a terminal and expects the workflow controls to refer to the new session
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  daf0e14c-7990-4a27-ae71-0961a61431fc:
-    id: daf0e14c-7990-4a27-ae71-0961a61431fc
-    content: Goal
-    children:
-      - 9ea74389-dad5-4cf9-be56-1dec4cc7734f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ea74389-dad5-4cf9-be56-1dec4cc7734f:
-    id: 9ea74389-dad5-4cf9-be56-1dec4cc7734f
-    content: Every register-binding event keeps workflowSessionMap accurate in real time
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6f853c38-3834-4014-b142-ee0bb5aad161:
-    id: 6f853c38-3834-4014-b142-ee0bb5aad161
-    content: Business rules
-    children:
-      - c0251a84-5d52-4fa8-bc06-9bf1cd027973
-      - e97bec34-9a9c-4ae0-9f50-f1addcc02336
-      - e974f176-ad10-40f4-a2fc-91bb4ec0ba40
-      - 729d2b5c-caf5-4190-a664-19ae3e48ce20
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c0251a84-5d52-4fa8-bc06-9bf1cd027973:
-    id: c0251a84-5d52-4fa8-bc06-9bf1cd027973
-    content: register-binding HTTP payload includes ARBORESCENT_TERMINAL_ID
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e97bec34-9a9c-4ae0-9f50-f1addcc02336:
-    id: e97bec34-9a9c-4ae0-9f50-f1addcc02336
-    content: Dispatcher forwards a session-to-terminal update event to the renderer for every register-binding it processes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e974f176-ad10-40f4-a2fc-91bb4ec0ba40:
-    id: e974f176-ad10-40f4-a2fc-91bb4ec0ba40
-    content: node_uuid is not forwarded to the renderer on this channel; binding logic stays main-process-only
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  729d2b5c-caf5-4190-a664-19ae3e48ce20:
-    id: 729d2b5c-caf5-4190-a664-19ae3e48ce20
-    content: If a session changes terminal, workflowSessionMap drops the old entry for that session
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3224b6cd-1cde-47e5-b3f2-abd2f4ded47f:
-    id: 3224b6cd-1cde-47e5-b3f2-abd2f4ded47f
-    content: Acceptance criteria
-    children:
-      - dd728efe-0dfb-4cef-bfb6-0a92f6131dae
-      - ac7b4df9-2ec3-4521-a5ce-4b4b16bd8b59
-      - 6c193ef8-6513-4ea1-9ad4-392524e5e78c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd728efe-0dfb-4cef-bfb6-0a92f6131dae:
-    id: dd728efe-0dfb-4cef-bfb6-0a92f6131dae
-    content: Restarting claude in an existing terminal causes workflowSessionMap to point that new session at the same terminal id
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac7b4df9-2ec3-4521-a5ce-4b4b16bd8b59:
-    id: ac7b4df9-2ec3-4521-a5ce-4b4b16bd8b59
-    content: Opening a fresh terminal and starting claude there updates workflowSessionMap to point that session at the new terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c193ef8-6513-4ea1-9ad4-392524e5e78c:
-    id: 6c193ef8-6513-4ea1-9ad4-392524e5e78c
-    content: Forwarded events to the renderer do not include node_uuid
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d54ac29d-adae-470a-be27-0590ea32b8ad:
-    id: d54ac29d-adae-470a-be27-0590ea32b8ad
-    content: Implementation proposal
-    children:
-      - 4133b7cd-d809-42a2-a202-6127110d16ba
-      - 573dec00-9d12-458b-af91-826e00da4ca8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4133b7cd-d809-42a2-a202-6127110d16ba:
-    id: 4133b7cd-d809-42a2-a202-6127110d16ba
-    content: Approach
-    children:
-      - 1712b445-e702-41f4-95dc-293d911dad06
-      - 25edc203-b55f-4874-96b9-22e589da55b7
-      - 05ea6fd1-416e-465d-b851-b0cb84bf1c60
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1712b445-e702-41f4-95dc-293d911dad06:
-    id: 1712b445-e702-41f4-95dc-293d911dad06
-    content: Update SessionStart and UserPromptSubmit hook scripts to read ARBORESCENT_TERMINAL_ID from env and include it in the JSON body
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  25edc203-b55f-4874-96b9-22e589da55b7:
-    id: 25edc203-b55f-4874-96b9-22e589da55b7
-    content: Update hookEventDispatcher to forward a session-terminal update to the renderer
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  05ea6fd1-416e-465d-b851-b0cb84bf1c60:
-    id: 05ea6fd1-416e-465d-b851-b0cb84bf1c60
-    content: Add a renderer-side handler that updates workflowSessionMap on receipt
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  573dec00-9d12-458b-af91-826e00da4ca8:
-    id: 573dec00-9d12-458b-af91-826e00da4ca8
-    content: Touchpoints
-    children:
-      - 003cdba2-9764-4ddc-85be-aa9bc17c2bbc
-      - e3263d92-96a0-4224-924f-9c2f3257a7fd
-      - 61cfbcf7-48fc-42cd-98a9-579f0c0f02f1
-      - 41a1cbfc-349e-43bd-8c29-bbb05d4be577
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  003cdba2-9764-4ddc-85be-aa9bc17c2bbc:
-    id: 003cdba2-9764-4ddc-85be-aa9bc17c2bbc
-    content: src/main/services/hookScripts.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e3263d92-96a0-4224-924f-9c2f3257a7fd:
-    id: e3263d92-96a0-4224-924f-9c2f3257a7fd
-    content: src/main/services/hookEventDispatcher.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  61cfbcf7-48fc-42cd-98a9-579f0c0f02f1:
-    id: 61cfbcf7-48fc-42cd-98a9-579f0c0f02f1
-    content: src/preload/index.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41a1cbfc-349e-43bd-8c29-bbb05d4be577:
-    id: 41a1cbfc-349e-43bd-8c29-bbb05d4be577
-    content: src/renderer/hooks/useHookEventListener.ts or a sibling listener
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   45c7e34f-d730-4762-8486-798eab1e5302:
@@ -151532,6 +151263,825 @@ nodes:
   9991b4bf-720f-4782-b6d9-f6d89075ac87:
     id: 9991b4bf-720f-4782-b6d9-f6d89075ac87
     content: No implementation-detail leakage — the entry is phrased in terms of user gestures (Start Workflow, recurse hand-off, dialog interaction, send-while-dialog-open) without mentioning source tokens, dispatcher branches, or the pendingRebindDialogStore
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b21e7eca-565a-484f-a629-e5fad4d0b0bc:
+    id: b21e7eca-565a-484f-a629-e5fad4d0b0bc
+    content: worktree
+    children:
+      - 0809ac79-72e3-447d-94e9-4b5ec3ca4cc0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0809ac79-72e3-447d-94e9-4b5ec3ca4cc0:
+    id: 0809ac79-72e3-447d-94e9-4b5ec3ca4cc0
+    content: vscode://file/Users/brianfox/dev/Arborescent-us-e-realtime-session-terminal-map
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c20621d1-d93e-4d29-94d2-f26f62252796:
+    id: c20621d1-d93e-4d29-94d2-f26f62252796
+    content: Product spec
+    children:
+      - 757cdf1f-573c-4d9d-8533-92609339c68a
+      - af09d1a3-983a-4a65-aa7b-cf696fed35ac
+      - a3f77419-32fe-4608-90b1-cf6a13432cc7
+      - 292e3532-8151-4944-a97f-43edbdb0fe2a
+      - 72d64728-7237-4a9f-a07a-be15d1397744
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  757cdf1f-573c-4d9d-8533-92609339c68a:
+    id: 757cdf1f-573c-4d9d-8533-92609339c68a
+    content: Context
+    children:
+      - ff426f0a-11de-43af-b276-fc0275607418
+      - 1a52ffa4-0cc8-469e-a598-bcb6042172cf
+      - 6aa7b3d8-ada8-4aff-a4e8-7c8b7904d2be
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff426f0a-11de-43af-b276-fc0275607418:
+    id: ff426f0a-11de-43af-b276-fc0275607418
+    content: workflowSessionMap in the renderer is updated when Arborescent itself opens a terminal via Resume Session, but not when a user manually starts a fresh claude inside an existing terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a52ffa4-0cc8-469e-a598-bcb6042172cf:
+    id: 1a52ffa4-0cc8-469e-a598-bcb6042172cf
+    content: The renderer view of which session lives in which terminal can drift out of sync with reality
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6aa7b3d8-ada8-4aff-a4e8-7c8b7904d2be:
+    id: 6aa7b3d8-ada8-4aff-a4e8-7c8b7904d2be
+    content: Hook scripts currently post register-binding without terminal_id, so the dispatcher cannot inform the renderer
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af09d1a3-983a-4a65-aa7b-cf696fed35ac:
+    id: af09d1a3-983a-4a65-aa7b-cf696fed35ac
+    content: User
+    children:
+      - 8eb03c9d-1fc7-41d9-9c17-f0cf1ae2f963
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8eb03c9d-1fc7-41d9-9c17-f0cf1ae2f963:
+    id: 8eb03c9d-1fc7-41d9-9c17-f0cf1ae2f963
+    content: An Arborescent user who restarts claude in a terminal and expects the workflow controls to refer to the new session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3f77419-32fe-4608-90b1-cf6a13432cc7:
+    id: a3f77419-32fe-4608-90b1-cf6a13432cc7
+    content: Goal
+    children:
+      - fd5b3485-7779-4f00-bdbd-a1895a22adad
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd5b3485-7779-4f00-bdbd-a1895a22adad:
+    id: fd5b3485-7779-4f00-bdbd-a1895a22adad
+    content: Every register-binding event keeps workflowSessionMap accurate in real time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  292e3532-8151-4944-a97f-43edbdb0fe2a:
+    id: 292e3532-8151-4944-a97f-43edbdb0fe2a
+    content: Business rules
+    children:
+      - b66474ce-5692-4e58-bd8c-f7c0f361d5a4
+      - 2d74156b-7529-4062-a831-36b96dcde28e
+      - 0f68a166-8072-40bd-a3d4-544dbf7c1e6d
+      - b723127f-8311-4c3c-8096-eef2ef939b29
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b66474ce-5692-4e58-bd8c-f7c0f361d5a4:
+    id: b66474ce-5692-4e58-bd8c-f7c0f361d5a4
+    content: register-binding HTTP payload includes ARBORESCENT_TERMINAL_ID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d74156b-7529-4062-a831-36b96dcde28e:
+    id: 2d74156b-7529-4062-a831-36b96dcde28e
+    content: Dispatcher forwards a session-to-terminal update event to the renderer for every register-binding it processes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f68a166-8072-40bd-a3d4-544dbf7c1e6d:
+    id: 0f68a166-8072-40bd-a3d4-544dbf7c1e6d
+    content: node_uuid is not forwarded to the renderer on this channel; binding logic stays main-process-only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b723127f-8311-4c3c-8096-eef2ef939b29:
+    id: b723127f-8311-4c3c-8096-eef2ef939b29
+    content: If a session changes terminal, workflowSessionMap drops the old entry for that session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72d64728-7237-4a9f-a07a-be15d1397744:
+    id: 72d64728-7237-4a9f-a07a-be15d1397744
+    content: Acceptance criteria
+    children:
+      - 6d9c07f9-fc29-43c4-ab00-a326eb598fe3
+      - 9f551d2c-977d-4f24-b650-aa3302e9526d
+      - 3c86a7d5-7775-4245-8bfb-bf2b7ea511b3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d9c07f9-fc29-43c4-ab00-a326eb598fe3:
+    id: 6d9c07f9-fc29-43c4-ab00-a326eb598fe3
+    content: Restarting claude in an existing terminal causes workflowSessionMap to point that new session at the same terminal id
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f551d2c-977d-4f24-b650-aa3302e9526d:
+    id: 9f551d2c-977d-4f24-b650-aa3302e9526d
+    content: Opening a fresh terminal and starting claude there updates workflowSessionMap to point that session at the new terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c86a7d5-7775-4245-8bfb-bf2b7ea511b3:
+    id: 3c86a7d5-7775-4245-8bfb-bf2b7ea511b3
+    content: Forwarded events to the renderer do not include node_uuid
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70f51f47-c426-4ca6-83e5-a8a52311af23:
+    id: 70f51f47-c426-4ca6-83e5-a8a52311af23
+    content: Implementation proposal
+    children:
+      - c2c888d2-4135-4ee8-bdb9-09e6f9e65e55
+      - 630226ed-f4c6-4738-ae07-96d74073ca97
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2c888d2-4135-4ee8-bdb9-09e6f9e65e55:
+    id: c2c888d2-4135-4ee8-bdb9-09e6f9e65e55
+    content: Approach
+    children:
+      - b2ae77a7-d4ea-4104-a51f-510c215034fd
+      - fa57af7b-cde3-418e-83d4-b6269290a0c2
+      - ad59b54c-eca3-487c-9588-eaab4dd36baf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2ae77a7-d4ea-4104-a51f-510c215034fd:
+    id: b2ae77a7-d4ea-4104-a51f-510c215034fd
+    content: Update SessionStart and UserPromptSubmit hook scripts to read ARBORESCENT_TERMINAL_ID from env and include it in the JSON body
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa57af7b-cde3-418e-83d4-b6269290a0c2:
+    id: fa57af7b-cde3-418e-83d4-b6269290a0c2
+    content: Update hookEventDispatcher to forward a session-terminal update to the renderer
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad59b54c-eca3-487c-9588-eaab4dd36baf:
+    id: ad59b54c-eca3-487c-9588-eaab4dd36baf
+    content: Add a renderer-side handler that updates workflowSessionMap on receipt
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  630226ed-f4c6-4738-ae07-96d74073ca97:
+    id: 630226ed-f4c6-4738-ae07-96d74073ca97
+    content: Touchpoints
+    children:
+      - 19211858-f4f5-4278-9dfe-1c7cb743c851
+      - 3a6a996d-c838-499c-9165-f7ce9b60bedd
+      - 999def9f-388b-40cd-9d5a-25941fe2c44d
+      - 74e5373a-3e53-420f-a353-c380f51451b6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19211858-f4f5-4278-9dfe-1c7cb743c851:
+    id: 19211858-f4f5-4278-9dfe-1c7cb743c851
+    content: src/main/services/hookScripts.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a6a996d-c838-499c-9165-f7ce9b60bedd:
+    id: 3a6a996d-c838-499c-9165-f7ce9b60bedd
+    content: src/main/services/hookEventDispatcher.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  999def9f-388b-40cd-9d5a-25941fe2c44d:
+    id: 999def9f-388b-40cd-9d5a-25941fe2c44d
+    content: src/preload/index.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74e5373a-3e53-420f-a353-c380f51451b6:
+    id: 74e5373a-3e53-420f-a353-c380f51451b6
+    content: src/renderer/hooks/useHookEventListener.ts or a sibling listener
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2ec3e0e-f318-4c16-8c20-8e6a52bc5b96:
+    id: f2ec3e0e-f318-4c16-8c20-8e6a52bc5b96
+    content: Technical refinement
+    children:
+      - a67e06d4-5855-4c8a-8029-c4c1484c2238
+      - 8ea98372-2ce3-45c1-82c0-eb2115c5be27
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a67e06d4-5855-4c8a-8029-c4c1484c2238:
+    id: a67e06d4-5855-4c8a-8029-c4c1484c2238
+    content: Complications
+    children:
+      - 2613a37b-9554-400e-a09b-972d26165471
+      - 28674780-4a3a-4fdb-a984-2e85b308458c
+      - 41beb59e-33b3-4715-9aac-a1162c9b6973
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2613a37b-9554-400e-a09b-972d26165471:
+    id: 2613a37b-9554-400e-a09b-972d26165471
+    content: Edge cases / risks not in AC
+    children:
+      - f75efe03-ce0c-4e55-bf07-4104ee2d1fed
+      - 2cb8b59a-fcb5-4ac2-9291-44b7b0cdda76
+      - 38dad9d9-edfc-49f6-a973-38bc997ebb5f
+      - 07319fce-23da-4e70-b8a3-e18991512315
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f75efe03-ce0c-4e55-bf07-4104ee2d1fed:
+    id: f75efe03-ce0c-4e55-bf07-4104ee2d1fed
+    content: Symmetric case to "session changes terminal" — a terminal that already had a session mapped now gets a different session. The current rule covers the session-side cleanup; the terminal-side (drop the old session→T entry when a new session lands on T) should be stated as part of the atomic update or it'll race with the old SessionStart still being in flight
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cb8b59a-fcb5-4ac2-9291-44b7b0cdda76:
+    id: 2cb8b59a-fcb5-4ac2-9291-44b7b0cdda76
+    content: A claude started in a terminal without ARBORESCENT_TERMINAL_ID in env (foreign terminal, or env-var injection misconfigured) POSTs register-binding without terminal_id; the dispatcher cannot update workflowSessionMap and the renderer keeps the stale view. Aligns with "foreign sessions unsupported" but should be the explicit fallback so the dispatcher does not throw
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38dad9d9-edfc-49f6-a973-38bc997ebb5f:
+    id: 38dad9d9-edfc-49f6-a973-38bc997ebb5f
+    content: Orphan bindings — when workflowSessionMap drops the old session→terminal entry, the bindingRegistry still has the old session bound to its node. Out of scope to clean up here, but downstream callers that walk both maps will see ghost entries until the session is unregistered
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07319fce-23da-4e70-b8a3-e18991512315:
+    id: 07319fce-23da-4e70-b8a3-e18991512315
+    content: Session-end cleanup is not part of US-E — when claude exits in a terminal the renderer keeps the session→terminal entry until a new SessionStart overwrites it. Acceptable for the read patterns in scope, but worth tracking as a follow-up if any caller starts relying on "this session is still alive"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28674780-4a3a-4fdb-a984-2e85b308458c:
+    id: 28674780-4a3a-4fdb-a984-2e85b308458c
+    content: Out of scope
+    children:
+      - 69b4636f-f648-4726-8ad6-ef7fbb63ecb8
+      - 4cefe93b-b577-4be9-b978-75971d1cc012
+      - 7c5fee6b-785e-4f55-b22a-c1c939550a65
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69b4636f-f648-4726-8ad6-ef7fbb63ecb8:
+    id: 69b4636f-f648-4726-8ad6-ef7fbb63ecb8
+    content: Cleaning up the bindingRegistry when its session loses its terminal pointer
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cefe93b-b577-4be9-b978-75971d1cc012:
+    id: 4cefe93b-b577-4be9-b978-75971d1cc012
+    content: Detecting / responding to claude exit (Stop hook does not currently emit terminal-state changes)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c5fee6b-785e-4f55-b22a-c1c939550a65:
+    id: 7c5fee6b-785e-4f55-b22a-c1c939550a65
+    content: Foreign sessions with no ARBORESCENT_TERMINAL_ID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41beb59e-33b3-4715-9aac-a1162c9b6973:
+    id: 41beb59e-33b3-4715-9aac-a1162c9b6973
+    content: ROI / complexity
+    children:
+      - 5d543fdb-5cfc-44c4-a389-12aafbe95208
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d543fdb-5cfc-44c4-a389-12aafbe95208:
+    id: 5d543fdb-5cfc-44c4-a389-12aafbe95208
+    content: 'Small surface — three touchpoints, no new infrastructure, no transport change. ROI is high: the alternative is users seeing controls reference a session that no longer exists in the terminal they''re looking at'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ea98372-2ce3-45c1-82c0-eb2115c5be27:
+    id: 8ea98372-2ce3-45c1-82c0-eb2115c5be27
+    content: Approach summary
+    children:
+      - d645f6e2-a38f-4899-9c3a-b03151cb5a48
+      - 5817b24a-19d1-4e17-bb6b-06f81d64fd9d
+      - 7084bdc5-b233-4da1-b78c-d449c522c06d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d645f6e2-a38f-4899-9c3a-b03151cb5a48:
+    id: d645f6e2-a38f-4899-9c3a-b03151cb5a48
+    content: Hook scripts pass through the existing ARBORESCENT_TERMINAL_ID env var as an extra field on the register-binding POST; dispatcher emits a new lightweight session-terminal-mapping event over the existing renderer IPC bridge for each one
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5817b24a-19d1-4e17-bb6b-06f81d64fd9d:
+    id: 5817b24a-19d1-4e17-bb6b-06f81d64fd9d
+    content: Renderer handler applies the update atomically — set session→terminal, and drop any existing session→terminal entry that pointed to that terminal under a different session — keeping the map consistent against either re-spawn pattern
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7084bdc5-b233-4da1-b78c-d449c522c06d:
+    id: 7084bdc5-b233-4da1-b78c-d449c522c06d
+    content: 'Non-obvious: node_uuid stays off the renderer channel even though register-binding carries it; this enforces the "binding logic is main-process-only" invariant from US-B / US-C and keeps the new event payload to {session_id, terminal_id}'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0af79f36-fe96-4bd5-9b20-6886b8807352:
+    id: 0af79f36-fe96-4bd5-9b20-6886b8807352
+    content: TDD tests written — red, awaiting implementation
+    children:
+      - 1acd3f09-d029-40ff-a53c-a303d6bc66ca
+      - 3d95522a-b615-4dc0-8e09-53ad10018a6a
+      - b5a3c22e-36e3-4c5f-9d4f-b5e5969f0fd0
+      - c157e44a-5771-489f-927b-cb355bfd551f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1acd3f09-d029-40ff-a53c-a303d6bc66ca:
+    id: 1acd3f09-d029-40ff-a53c-a303d6bc66ca
+    content: Extended src/main/services/tests/hookEventDispatcher.test.ts with the "session-terminal-mapping forwarding from register-binding (US-E)" describe — covers forwarding when terminal_id is present, dropping node_uuid from the forwarded payload, no-forward when terminal_id absent, registry side effects preserved, no-forward when register-binding is rejected upstream (missing node_uuid), forwards on no-op re-bind. Refined the existing "does NOT forward register-binding to renderer" test to assert the verbatim register-binding payload (carrying node_uuid) is never forwarded, leaving room for the session-terminal-mapping mirror
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d95522a-b615-4dc0-8e09-53ad10018a6a:
+    id: 3d95522a-b615-4dc0-8e09-53ad10018a6a
+    content: Extended src/renderer/hooks/tests/useHookEventListener.test.ts with the "session-terminal-mapping events (US-E)" describe — covers the new event calling registerSession on the right store, dropping when terminal_id is missing, dropping when no open file owns that terminal, NOT routing through handleHookEvent (this is a sync-only path), and repeat events still calling the canonical setter
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5a3c22e-36e3-4c5f-9d4f-b5e5969f0fd0:
+    id: b5a3c22e-36e3-4c5f-9d4f-b5e5969f0fd0
+    content: Extended src/main/services/tests/userPromptSubmitHook.test.ts and src/main/services/tests/sessionStartHook.test.ts with it.todo entries for ARBORESCENT_TERMINAL_ID propagation on register-binding (script template — exercised via integration per the file-level PR2 convention)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c157e44a-5771-489f-927b-cb355bfd551f:
+    id: c157e44a-5771-489f-927b-cb355bfd551f
+    content: Verified red state — 6 new tests fail (dispatcher does not yet emit the session-terminal-mapping event, listener does not yet branch on it); all 23 previously-passing tests in the same files still pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  896a3945-93ac-4d72-baeb-16244878a6ce:
+    id: 896a3945-93ac-4d72-baeb-16244878a6ce
+    content: Implementation green
+    children:
+      - a85235be-0e60-418e-9288-0fd2604510dc
+      - 6e1adb22-58b2-431c-8b3a-891ff686dcfa
+      - 16862498-15e2-492f-a9d8-4425e2029f4b
+      - 08e4ae65-714d-4ba0-a56f-7539f3e2e736
+      - a2becd59-382d-4f85-92a4-70198c62d9d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a85235be-0e60-418e-9288-0fd2604510dc:
+    id: a85235be-0e60-418e-9288-0fd2604510dc
+    content: Updated src/main/services/hookScripts.ts — postRegisterBinding now accepts an optional terminalId param and emits terminal_id on the payload when present; both SESSION_START_HOOK_SCRIPT and USER_PROMPT_SUBMIT_HOOK_SCRIPT read process.env.ARBORESCENT_TERMINAL_ID and pass it through; absent / empty env defaults to omitting the field (foreign-terminal fallback)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e1adb22-58b2-431c-8b3a-891ff686dcfa:
+    id: 6e1adb22-58b2-431c-8b3a-891ff686dcfa
+    content: 'Updated src/main/services/hookEventDispatcher.ts handleRegisterBinding — after the existing registry side effects, when payload.terminal_id is present forwards a minimal {session_id, hook_event_name: ''session-terminal-mapping'', terminal_id} payload to the renderer; node_uuid stays main-process-only by construction'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16862498-15e2-492f-a9d8-4425e2029f4b:
+    id: 16862498-15e2-492f-a9d8-4425e2029f4b
+    content: Updated src/renderer/hooks/useHookEventListener.ts — the SessionStart branch now also matches hook_event_name === 'session-terminal-mapping' and routes through the same drop-on-missing-terminal-or-store guard plus registerSession path; no new fallback case needed since registerSession already drops the prior session→terminal entry atomically (workflowExecutionActions.ts:949-957)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08e4ae65-714d-4ba0-a56f-7539f3e2e736:
+    id: 08e4ae65-714d-4ba0-a56f-7539f3e2e736
+    content: No preload change needed — onHookEvent already passes the new event through unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2becd59-382d-4f85-92a4-70198c62d9d5:
+    id: a2becd59-382d-4f85-92a4-70198c62d9d5
+    content: All 29 US-E tests pass; broader 511 tests in main/renderer-hook test scope still pass; type-check clean; lint clean on all changed files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a326181c-2a14-4c39-977c-edc888da51a0:
+    id: a326181c-2a14-4c39-977c-edc888da51a0
+    content: AI refactor
+    children:
+      - 44fdf565-7139-4cd5-8440-cada963ca46d
+      - 1ded038e-7af0-4677-b873-13197ee48eb3
+      - 3490cc96-1d08-43a4-a2ee-347a301ca1b6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44fdf565-7139-4cd5-8440-cada963ca46d:
+    id: 44fdf565-7139-4cd5-8440-cada963ca46d
+    content: 'Reviewed all production changes since last commit: dispatcher''s new forwarding block is 7 lines and used once (extraction would add indirection without payoff); handleRegisterBinding stays at 35 lines, well under the 50-line threshold; useHookEventListener''s branch consolidation via the OR-of-event-names reads more naturally than a duplicated guard block. No refactor warranted'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ded038e-7af0-4677-b873-13197ee48eb3:
+    id: 1ded038e-7af0-4677-b873-13197ee48eb3
+    content: No PRD or US-E ticket references in production code, no abandoned files in the working tree, no mockReturnValueOnce in any new test
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3490cc96-1d08-43a4-a2ee-347a301ca1b6:
+    id: 3490cc96-1d08-43a4-a2ee-347a301ca1b6
+    content: All 29 US-E tests still pass; type-check clean; lint clean on all changed production files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54559bc2-b262-4768-92b0-0d0155ddb11a:
+    id: 54559bc2-b262-4768-92b0-0d0155ddb11a
+    content: review feedback
+    children:
+      - 6954038d-a01e-4f9c-93a7-81b242aa7a93
+      - 735c74dd-59a9-469d-8837-3fd447ef1ebd
+      - fd7c4620-0983-4f4f-91fe-f8bc7fe69481
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6954038d-a01e-4f9c-93a7-81b242aa7a93:
+    id: 6954038d-a01e-4f9c-93a7-81b242aa7a93
+    content: 'CLEAN — Reviewer found no high-confidence issues. Verified each item in the review brief: forwardToRenderer in main.ts:302-306 already guards on mainWindow.isDestroyed and webContents.send does not throw under normal conditions, so the outside-of-error-guard tail call is safe. No renderer call path reads node_uuid from any hook event — the omission is safe by inspection. registerSession (workflowExecutionActions.ts:951-957) does atomically drop any prior session mapped to the same terminal before assigning the new one, covering the symmetric edge case. The hook script''s `if (terminalId) payload.terminal_id = terminalId` correctly omits the field for empty-string env, so the dispatcher''s `if (payload.terminal_id)` short-circuits. Both judgment calls (inline 7-line forward block, OR-of-event-names branch) judged appropriate. Type-check clean, lint matches master baseline (no new errors), test:run matches master baseline (no new regressions; the same 3 pre-existing failing files predate US-E)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  735c74dd-59a9-469d-8837-3fd447ef1ebd:
+    id: 735c74dd-59a9-469d-8837-3fd447ef1ebd
+    content: 'LOW (observation, not flagged at >=80) — Reviewer notes the dispatcher forwards session-terminal-mapping even when register-binding results in rebind-needed without auto-confirmation (i.e., a non-workflow-advance source). The reviewer judges this correct: the session→terminal mapping is independent of the node binding state, and workflowSessionMap should reflect "this session is alive in this terminal" regardless of whether the user has yet confirmed the rebind dialog. Worth a one-line comment if you want future-proofing against someone "fixing" what looks like a leak, but not required'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd7c4620-0983-4f4f-91fe-f8bc7fe69481:
+    id: fd7c4620-0983-4f4f-91fe-f8bc7fe69481
+    content: CLEAN — Coverage gap on the hook-script-side terminal_id propagation is intentionally it.todo per the file-level PR2 convention (hook scripts are Node template strings, integration-exercised). Consistent with US-B / US-C handling of the same file; no new gap
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47c2e51f-5926-41bf-8c28-aadee3148414:
+    id: 47c2e51f-5926-41bf-8c28-aadee3148414
+    content: AI code review resolution
+    children:
+      - 2f578daf-80d0-4491-bc6a-e7921ba53cc6
+      - 6a650c00-659c-4ded-9586-d515dd13c28e
+      - 04676b6c-84a3-4299-89cc-65f6ec1b9342
+      - 91626d75-8217-4432-8972-ef81b29ae8f2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f578daf-80d0-4491-bc6a-e7921ba53cc6:
+    id: 2f578daf-80d0-4491-bc6a-e7921ba53cc6
+    content: No major issues to fix — reviewer found nothing at >=80 confidence
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a650c00-659c-4ded-9586-d515dd13c28e:
+    id: 6a650c00-659c-4ded-9586-d515dd13c28e
+    content: 'Minor fix — accepted the LOW observation''s suggestion: added a four-line "why" comment on the session-terminal-mapping forward in hookEventDispatcher.ts explaining that the forward fires on every register-binding (including rebind-needed without auto-confirmation) because session→terminal is independent of node binding state. Future-proofs against a "leak" misread that could lead someone to gate the forward on result.kind === ''set'' | ''no-op'' and break the renderer''s view of live sessions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04676b6c-84a3-4299-89cc-65f6ec1b9342:
+    id: 04676b6c-84a3-4299-89cc-65f6ec1b9342
+    content: No feedback skipped — the only LOW observation was explicitly optional and worth taking; nothing else was raised
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91626d75-8217-4432-8972-ef81b29ae8f2:
+    id: 91626d75-8217-4432-8972-ef81b29ae8f2
+    content: All 29 US-E tests still pass after the comment addition; type-check still clean; no functional change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  371a06a2-3c2e-4b13-8117-6fcba2991dca:
+    id: 371a06a2-3c2e-4b13-8117-6fcba2991dca
+    content: Run test pass & fix
+    children:
+      - 111a4473-c070-474e-9213-c5bac961ebe7
+      - d7ea253e-beb7-4880-baf5-ec84016423d1
+      - df19ce27-bd71-4b02-99d0-451e778d096a
+      - 134813b4-9658-4a64-a998-447935d1d670
+      - e15373a3-0cd9-494f-8613-ed49db4f54c6
+      - c750571a-938c-4352-ac81-d9ec49a2323d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  111a4473-c070-474e-9213-c5bac961ebe7:
+    id: 111a4473-c070-474e-9213-c5bac961ebe7
+    content: 'AC 1 (restarting claude in existing terminal maps the new session to the same terminal_id) — impl: hookScripts.ts SESSION_START_HOOK_SCRIPT/USER_PROMPT_SUBMIT_HOOK_SCRIPT pass process.env.ARBORESCENT_TERMINAL_ID; dispatcher handleRegisterBinding forwards session-terminal-mapping; listener routes to registerSession which atomically drops any prior session mapped to the same terminal (workflowExecutionActions.ts:951-957) and assigns the new one. Tested in hookEventDispatcher.test.ts "forwards a session-terminal-mapping event when register-binding carries terminal_id" + useHookEventListener.test.ts "calls registerSession with session_id and terminal_id on session-terminal-mapping"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7ea253e-beb7-4880-baf5-ec84016423d1:
+    id: d7ea253e-beb7-4880-baf5-ec84016423d1
+    content: AC 2 (open fresh terminal and start claude → map updates) — same code path, same tests cover it; registerSession's new-entry assignment is unconditional, no special-case needed for "new terminal" vs "restart in existing terminal"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df19ce27-bd71-4b02-99d0-451e778d096a:
+    id: df19ce27-bd71-4b02-99d0-451e778d096a
+    content: 'AC 3 (forwarded events do not include node_uuid) — impl: dispatcher constructs the forwarded payload literally as {session_id, hook_event_name: ''session-terminal-mapping'', terminal_id} — node_uuid is omitted by construction, not by stripping. Tested in hookEventDispatcher.test.ts "the forwarded event does NOT include node_uuid — binding logic stays main-process-only" which asserts Object.keys(forwarded).sort() equals exactly [''hook_event_name'', ''session_id'', ''terminal_id'']'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  134813b4-9658-4a64-a998-447935d1d670:
+    id: 134813b4-9658-4a64-a998-447935d1d670
+    content: No implementation present without a corresponding AC — the source-token, dispatcher forwarding, listener branch, and hook-script env reads each map back to an AC or business rule
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e15373a3-0cd9-494f-8613-ed49db4f54c6:
+    id: e15373a3-0cd9-494f-8613-ed49db4f54c6
+    content: Test plan risks covered — the symmetric "session changes terminal" risk is covered by registerSession's atomic-drop behaviour (workflowExecutionActions.ts:951-957), exercised end-to-end via the listener test "calls registerSession with session_id and terminal_id"; missing-terminal_id and unmapped-store edges covered explicitly; node_uuid-leakage risk covered by the dispatcher assertion on exact key set
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c750571a-938c-4352-ac81-d9ec49a2323d:
+    id: c750571a-938c-4352-ac81-d9ec49a2323d
+    content: All 29 US-E tests pass; type-check clean; lint unchanged from previous step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e170b713-9e04-4e84-81bd-8d320a2f1ec4:
+    id: e170b713-9e04-4e84-81bd-8d320a2f1ec4
+    content: Documentation
+    children:
+      - f596a10f-9bf6-4b44-b060-10d44958d885
+      - 535c2492-3d2b-476b-9aa9-f084916d480e
+      - 16122d13-365c-46de-9a80-d8733eace629
+      - cef4c5f1-b56f-4f17-aa47-ff067fb14a1f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f596a10f-9bf6-4b44-b060-10d44958d885:
+    id: f596a10f-9bf6-4b44-b060-10d44958d885
+    content: Added a CHANGELOG entry under Unreleased > Features titled "Workflow controls follow Claude restarts in real time" — phrased in terms of the user gestures (exit and re-launch claude, /clear, fresh session in a tab that already had one) and the user-visible effect on Resume session / Start Workflow / active-terminal stripe, without mentioning workflowSessionMap, register-binding, or the dispatcher. Placed adjacent to the existing rebind-dialog entry since they share the workflow-session lifecycle topic
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  535c2492-3d2b-476b-9aa9-f084916d480e:
+    id: 535c2492-3d2b-476b-9aa9-f084916d480e
+    content: No new docs/ file needed — US-E is a real-time-sync fix on an already-documented surface (workflow session management). docs/workflows.md "Resumable AI sessions per workflow step" wording stays accurate; US-E tightens the moment-to-moment freshness of that map without changing the resume semantics
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16122d13-365c-46de-9a80-d8733eace629:
+    id: 16122d13-365c-46de-9a80-d8733eace629
+    content: No reference to removed functionality — nothing was removed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cef4c5f1-b56f-4f17-aa47-ff067fb14a1f:
+    id: cef4c5f1-b56f-4f17-aa47-ff067fb14a1f
+    content: No implementation-detail leakage — the entry talks about claude restart scenarios and the controls users will interact with, not the hook script, dispatcher event, or store action
     children: []
     metadata:
       status: completed
