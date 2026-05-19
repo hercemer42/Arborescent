@@ -31,14 +31,22 @@ function handleRegisterBinding(payload: HookEventPayload, deps: HookEventDispatc
     logger.warn('register-binding rejected: missing node_uuid', 'HookDispatch');
     return;
   }
-  const result = mcpServer.getBindingRegistry().register(payload.session_id, payload.node_uuid);
+  const registry = mcpServer.getBindingRegistry();
+  const result = registry.register(payload.session_id, payload.node_uuid);
   if (!result) {
     logger.warn('register-binding rejected: empty session_id or node_uuid', 'HookDispatch');
     return;
   }
+  // Sibling iteration via decomposition+recurse: each hand-off lands a fresh
+  // working-node UUID on a session already bound to the prior sibling. The
+  // workflow is the user's authority for that hand-off, so we silently flip
+  // the binding instead of surfacing the rebind confirmation dialog.
+  if (result.kind === 'rebind-needed' && payload.source === 'workflow-advance') {
+    registry.confirmRebind(payload.session_id);
+  }
   mcpServer.getOneShotTargetStore().setMarkerSeenThisTurn(payload.session_id, true);
   logger.info(
-    `register-binding ${result.kind} session=${payload.session_id} node=${payload.node_uuid}`,
+    `register-binding ${result.kind} session=${payload.session_id} node=${payload.node_uuid} source=${payload.source ?? 'none'}`,
     'HookDispatch'
   );
 }

@@ -125,6 +125,7 @@ process.stdin.on('end', () => {
   const parsed = stripMarkers(prompt);
   const stripped = parsed.stripped;
   const bindingUuid = parsed.bindingUuid;
+  const bindingSource = parsed.bindingSource;
   const targetUuid = parsed.targetUuid;
   const markerSeenThisTurn = Boolean(bindingUuid || targetUuid);
 
@@ -147,7 +148,8 @@ process.stdin.on('end', () => {
   emitOutput(stripped).then(async () => {
     if (!canDispatch) return;
     if (bindingUuid) {
-      await postRegisterBinding(port, token, sessionId, bindingUuid, 'user-prompt-submit');
+      const source = bindingSource || 'user-prompt-submit';
+      await postRegisterBinding(port, token, sessionId, bindingUuid, source);
     }
     await postRegisterTarget(port, token, sessionId, targetUuid || '', markerSeenThisTurn);
   }).finally(() => process.exit(0));
@@ -156,12 +158,14 @@ process.stdin.on('end', () => {
 function stripMarkers(prompt) {
   let remaining = prompt;
   let bindingUuid = '';
+  let bindingSource = '';
   let targetUuid = '';
   for (let i = 0; i < 2; i++) {
     if (!bindingUuid) {
       const m = remaining.match(HOOK_BINDING_MARKER_REGEX);
       if (m) {
         bindingUuid = m[1];
+        bindingSource = m[2] || '';
         remaining = remaining.slice(m[0].length);
         continue;
       }
@@ -176,7 +180,7 @@ function stripMarkers(prompt) {
     }
     break;
   }
-  return { stripped: remaining, bindingUuid: bindingUuid, targetUuid: targetUuid };
+  return { stripped: remaining, bindingUuid: bindingUuid, bindingSource: bindingSource, targetUuid: targetUuid };
 }
 
 function emitOutput(updatedPrompt) {

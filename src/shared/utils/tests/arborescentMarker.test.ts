@@ -23,6 +23,28 @@ describe('buildArborescentMarker', () => {
     expect(marker.startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(true);
     expect(marker.includes(ARBORESCENT_MARKER_SUFFIX)).toBe(true);
   });
+
+  it('includes a source token between the UUID and the closing delimiter when one is provided', () => {
+    // The source token is the channel the dispatcher uses to distinguish a
+    // user-driven workflow-start (dialog) from a workflow-advance hand-off
+    // (silent). Sticking it inline in the marker keeps everything the hook
+    // script needs in one place: parse the marker, forward source through.
+    const marker = buildArborescentMarker(SAMPLE_UUID, 'workflow-advance');
+    expect(marker).toBe(`<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} workflow-advance -->\n`);
+  });
+
+  it('emits the no-source form when source is omitted — backward compatible with the US-B grammar', () => {
+    const marker = buildArborescentMarker(SAMPLE_UUID);
+    expect(marker).toBe(`<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} -->\n`);
+  });
+
+  it('emits the workflow-start source distinct from workflow-advance', () => {
+    const startMarker = buildArborescentMarker(SAMPLE_UUID, 'workflow-start');
+    const advanceMarker = buildArborescentMarker(SAMPLE_UUID, 'workflow-advance');
+    expect(startMarker).not.toBe(advanceMarker);
+    expect(startMarker).toContain('workflow-start');
+    expect(advanceMarker).toContain('workflow-advance');
+  });
 });
 
 describe('buildArborescentTargetMarker', () => {
@@ -54,6 +76,7 @@ describe('extractArborescentMarkers — both markers together', () => {
     const prompt = `<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} -->\nrest`;
     expect(extractArborescentMarkers(prompt)).toEqual({
       bindingNodeUuid: SAMPLE_UUID,
+      bindingSource: null,
       targetNodeUuid: null,
       stripped: 'rest',
     });
@@ -63,6 +86,7 @@ describe('extractArborescentMarkers — both markers together', () => {
     const prompt = `<!-- ARBORESCENT_TARGET: ${TARGET_UUID} -->\nrest`;
     expect(extractArborescentMarkers(prompt)).toEqual({
       bindingNodeUuid: null,
+      bindingSource: null,
       targetNodeUuid: TARGET_UUID,
       stripped: 'rest',
     });
@@ -71,6 +95,7 @@ describe('extractArborescentMarkers — both markers together', () => {
   it('returns both nulls and the prompt unchanged when neither marker is present', () => {
     expect(extractArborescentMarkers('plain prompt body')).toEqual({
       bindingNodeUuid: null,
+      bindingSource: null,
       targetNodeUuid: null,
       stripped: 'plain prompt body',
     });
@@ -79,6 +104,7 @@ describe('extractArborescentMarkers — both markers together', () => {
   it('handles an empty prompt without throwing', () => {
     expect(extractArborescentMarkers('')).toEqual({
       bindingNodeUuid: null,
+      bindingSource: null,
       targetNodeUuid: null,
       stripped: '',
     });
@@ -96,11 +122,13 @@ describe('extractArborescentMarkers — both markers together', () => {
 
     expect(extractArborescentMarkers(bindingFirst)).toEqual({
       bindingNodeUuid: SAMPLE_UUID,
+      bindingSource: null,
       targetNodeUuid: TARGET_UUID,
       stripped: 'rest',
     });
     expect(extractArborescentMarkers(targetFirst)).toEqual({
       bindingNodeUuid: SAMPLE_UUID,
+      bindingSource: null,
       targetNodeUuid: TARGET_UUID,
       stripped: 'rest',
     });
@@ -110,6 +138,7 @@ describe('extractArborescentMarkers — both markers together', () => {
     const prompt = `prelude\n<!-- ARBORESCENT_TARGET: ${TARGET_UUID} -->\nrest`;
     expect(extractArborescentMarkers(prompt)).toEqual({
       bindingNodeUuid: null,
+      bindingSource: null,
       targetNodeUuid: null,
       stripped: prompt,
     });
@@ -119,6 +148,7 @@ describe('extractArborescentMarkers — both markers together', () => {
     const prompt = '<!-- ARBORESCENT_TARGET: not-a-uuid -->\nrest';
     expect(extractArborescentMarkers(prompt)).toEqual({
       bindingNodeUuid: null,
+      bindingSource: null,
       targetNodeUuid: null,
       stripped: prompt,
     });
@@ -128,6 +158,7 @@ describe('extractArborescentMarkers — both markers together', () => {
     const prompt = `<!-- ARBORESCENT_TARGET: ${TARGET_UUID} -->\n`;
     expect(extractArborescentMarkers(prompt)).toEqual({
       bindingNodeUuid: null,
+      bindingSource: null,
       targetNodeUuid: TARGET_UUID,
       stripped: '',
     });
@@ -139,5 +170,71 @@ describe('extractArborescentMarkers — both markers together', () => {
     const result = extractArborescentMarkers(prompt);
     expect(result.targetNodeUuid).toBe(TARGET_UUID);
     expect(result.stripped).toBe(`<!-- ARBORESCENT_TARGET: ${TARGET_UUID} -->\nrest`);
+  });
+});
+
+describe('extractArborescentMarkers — binding marker source field (US-C)', () => {
+  // The source token rides on the binding marker so the dispatcher can tell
+  // a user-driven workflow-start (dialog on rebind-needed) apart from a
+  // workflow-advance hand-off (silent rebind). The hook script parses it and
+  // forwards through to register-binding.
+
+  it('extracts the source token when the binding marker carries one', () => {
+    const prompt = `<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} workflow-advance -->\nrest`;
+    expect(extractArborescentMarkers(prompt)).toEqual({
+      bindingNodeUuid: SAMPLE_UUID,
+      bindingSource: 'workflow-advance',
+      targetNodeUuid: null,
+      stripped: 'rest',
+    });
+  });
+
+  it('extracts workflow-start as a distinct source value', () => {
+    const prompt = `<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} workflow-start -->\nrest`;
+    expect(extractArborescentMarkers(prompt)).toEqual({
+      bindingNodeUuid: SAMPLE_UUID,
+      bindingSource: 'workflow-start',
+      targetNodeUuid: null,
+      stripped: 'rest',
+    });
+  });
+
+  it('returns bindingSource=null for a binding marker without a source — preserves US-B grammar reading', () => {
+    const prompt = `<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} -->\nrest`;
+    expect(extractArborescentMarkers(prompt)).toEqual({
+      bindingNodeUuid: SAMPLE_UUID,
+      bindingSource: null,
+      targetNodeUuid: null,
+      stripped: 'rest',
+    });
+  });
+
+  it('still strips the full marker line including the source token', () => {
+    const prompt = `<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} workflow-advance -->\nbody text`;
+    const result = extractArborescentMarkers(prompt);
+    expect(result.stripped).toBe('body text');
+  });
+
+  it('coexists with the target marker — both can carry their respective payloads', () => {
+    const prompt =
+      `<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} workflow-advance -->\n<!-- ARBORESCENT_TARGET: ${TARGET_UUID} -->\nrest`;
+    expect(extractArborescentMarkers(prompt)).toEqual({
+      bindingNodeUuid: SAMPLE_UUID,
+      bindingSource: 'workflow-advance',
+      targetNodeUuid: TARGET_UUID,
+      stripped: 'rest',
+    });
+  });
+
+  it('a malformed source token (uppercase, whitespace) leaves the binding marker unparsed', () => {
+    // Source values are lowercase kebab — the regex must not match exotic input
+    // so the dispatcher cannot be steered with a hand-crafted prompt.
+    const prompt = `<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} Workflow-Advance -->\nrest`;
+    expect(extractArborescentMarkers(prompt)).toEqual({
+      bindingNodeUuid: null,
+      bindingSource: null,
+      targetNodeUuid: null,
+      stripped: prompt,
+    });
   });
 });

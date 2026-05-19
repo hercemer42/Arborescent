@@ -206,6 +206,7 @@ describe('Auto-launch — Claude is started in fresh terminals before the prompt
         'terminal-fresh',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
 
@@ -245,6 +246,7 @@ describe('Auto-launch — Claude is started in fresh terminals before the prompt
         'terminal-1',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
 
@@ -295,6 +297,7 @@ describe('Auto-launch — Claude is started in fresh terminals before the prompt
         'terminal-fresh',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
   });
@@ -344,6 +347,7 @@ describe('Auto-launch — Claude is started in fresh terminals before the prompt
         'terminal-1',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
   });

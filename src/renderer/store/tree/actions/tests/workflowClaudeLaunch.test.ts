@@ -47,7 +47,7 @@ describe('createClaudeLaunchManager', () => {
     it('registers a pending entry that onSessionStartConfirmed can pick up', () => {
       manager.launchIfNeededThenSend('task-a', 'terminal-1');
       manager.onSessionStartConfirmed('terminal-1', 'task-a');
-      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1');
+      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1', undefined);
     });
 
     it('writes "claude\\r" only once even if the same call is repeated synchronously');
@@ -68,7 +68,7 @@ describe('createClaudeLaunchManager', () => {
 
     it('calls sendPrompt directly (no defer)', () => {
       manager.launchIfNeededThenSend('task-a', 'terminal-1');
-      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1');
+      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1', undefined);
     });
 
     it('does not register a pending entry — onSessionStartConfirmed for this terminal is a no-op', () => {
@@ -83,7 +83,7 @@ describe('createClaudeLaunchManager', () => {
     it('fires the deferred prompt when a pending entry exists for the terminal', () => {
       manager.launchIfNeededThenSend('task-a', 'terminal-1');
       manager.onSessionStartConfirmed('terminal-1', 'task-a');
-      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1');
+      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1', undefined);
     });
 
     it('removes the pending entry after firing — a second call is a no-op', () => {
@@ -101,7 +101,7 @@ describe('createClaudeLaunchManager', () => {
 
       manager.onSessionStartConfirmed('terminal-1', 'task-a');
       expect(mockSendPrompt).toHaveBeenCalledTimes(1);
-      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1');
+      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1', undefined);
     });
 
     it('is a no-op when no pending entry exists for the terminal', () => {
@@ -130,7 +130,7 @@ describe('createClaudeLaunchManager', () => {
       manager.clearPending('task-a');
 
       manager.onSessionStartConfirmed('terminal-2', 'task-b');
-      expect(mockSendPrompt).toHaveBeenCalledWith('task-b', 'terminal-2');
+      expect(mockSendPrompt).toHaveBeenCalledWith('task-b', 'terminal-2', undefined);
       expect(mockSendPrompt).toHaveBeenCalledTimes(1);
     });
   });

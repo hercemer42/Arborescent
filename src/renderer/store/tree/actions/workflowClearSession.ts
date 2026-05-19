@@ -5,6 +5,7 @@ import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
 import { useToastStore } from '../../toast/toastStore';
 import { logger } from '../../../services/logger';
 import { notifyWorkflowEvent } from '../../../services/workflowNotification';
+import type { AutonomousSendSource } from './workflowExecutionActions';
 
 interface ClearSessionState {
   nodes: Record<string, TreeNode>;
@@ -13,7 +14,7 @@ interface ClearSessionState {
 }
 
 export interface ClearSessionManager {
-  maybeClearThenSend(nodeId: string, terminalId: string): void;
+  maybeClearThenSend(nodeId: string, terminalId: string, bindingSource?: AutonomousSendSource): void;
   onClearConfirmed(nodeId: string): void;
   clearPending(nodeId: string): void;
   clearAllPending(): void;
@@ -22,7 +23,7 @@ export interface ClearSessionManager {
 export interface ClearSessionManagerDeps {
   get: () => ClearSessionState;
   set: (partial: { workflowExecutionStates?: Record<string, WorkflowExecutionEntry> }) => void;
-  sendPrompt: (nodeId: string, terminalId: string) => void;
+  sendPrompt: (nodeId: string, terminalId: string, bindingSource?: AutonomousSendSource) => void;
   stopWorkflow: (nodeId: string) => void;
 }
 
@@ -39,7 +40,7 @@ const POST_CLEAR_SEND_DELAY_MS = 300;
  */
 export function createClearSessionManager(deps: ClearSessionManagerDeps): ClearSessionManager {
   const { get, set, sendPrompt, stopWorkflow } = deps;
-  const pendingClears = new Map<string, { terminalId: string; attempts: number; timer: ReturnType<typeof setTimeout> }>();
+  const pendingClears = new Map<string, { terminalId: string; bindingSource?: AutonomousSendSource; attempts: number; timer: ReturnType<typeof setTimeout> }>();
 
   function clearPending(nodeId: string): void {
     const entry = pendingClears.get(nodeId);
@@ -58,7 +59,7 @@ export function createClearSessionManager(deps: ClearSessionManagerDeps): ClearS
     return window.electron.terminalWrite(terminalId, '/clear\r');
   }
 
-  function registerPendingClear(nodeId: string, terminalId: string): void {
+  function registerPendingClear(nodeId: string, terminalId: string, bindingSource?: AutonomousSendSource): void {
     const existing = pendingClears.get(nodeId);
     if (existing) clearTimeout(existing.timer);
     const attempts = existing ? existing.attempts + 1 : 1;
@@ -70,11 +71,11 @@ export function createClearSessionManager(deps: ClearSessionManagerDeps): ClearS
         writeClearToTerminal(terminalId).catch((error) => {
           logger.error('Failed to retry /clear write', error as Error, 'WorkflowExecution');
         });
-        registerPendingClear(nodeId, terminalId);
+        registerPendingClear(nodeId, terminalId, bindingSource);
       }
     }, CLEAR_TIMEOUT_MS);
 
-    pendingClears.set(nodeId, { terminalId, attempts, timer });
+    pendingClears.set(nodeId, { terminalId, bindingSource, attempts, timer });
   }
 
   function failClearRetryCap(nodeId: string): void {
@@ -103,9 +104,9 @@ export function createClearSessionManager(deps: ClearSessionManagerDeps): ClearS
     return true;
   }
 
-  function maybeClearThenSend(nodeId: string, terminalId: string): void {
+  function maybeClearThenSend(nodeId: string, terminalId: string, bindingSource?: AutonomousSendSource): void {
     if (!shouldClearBeforeSend(nodeId)) {
-      sendPrompt(nodeId, terminalId);
+      sendPrompt(nodeId, terminalId, bindingSource);
       return;
     }
 
@@ -126,7 +127,7 @@ export function createClearSessionManager(deps: ClearSessionManagerDeps): ClearS
       stopWorkflow(nodeId);
       useToastStore.getState().addToast('Failed to clear AI session — workflow stopped', 'error');
     });
-    registerPendingClear(nodeId, terminalId);
+    registerPendingClear(nodeId, terminalId, bindingSource);
   }
 
   function onClearConfirmed(nodeId: string): void {
@@ -149,7 +150,7 @@ export function createClearSessionManager(deps: ClearSessionManagerDeps): ClearS
 
     // Small cushion so Claude's input handler has finished re-initialising
     // before the bracketed-paste prompt arrives.
-    setTimeout(() => sendPrompt(nodeId, pending.terminalId), POST_CLEAR_SEND_DELAY_MS);
+    setTimeout(() => sendPrompt(nodeId, pending.terminalId, pending.bindingSource), POST_CLEAR_SEND_DELAY_MS);
   }
 
   return {

@@ -180,7 +180,7 @@ describe('Clear AI session — runtime clearing phase', () => {
       vi.advanceTimersByTime(500);
       await flushMicrotasks();
 
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined);
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined, expect.any(String));
     });
 
     it('does not send the prompt synchronously with the clear confirmation — there is a small cushion delay first', async () => {
@@ -224,7 +224,7 @@ describe('Clear AI session — runtime clearing phase', () => {
       actions.startWorkflow('task-a', 'terminal-1');
       await flushMicrotasks();
 
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined);
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined, expect.any(String));
     });
   });
 

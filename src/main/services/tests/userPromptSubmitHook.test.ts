@@ -86,3 +86,29 @@ describe('UserPromptSubmit hook — action-mode + freeform interplay (US-B)', ()
   it.todo('an action-mode prompt (neither marker) POSTs register-target with marker_seen_this_turn=false and does NOT POST register-binding — the existing binding stays, but the safety net stays silent for this turn');
   it.todo('a freeform prompt (target marker only) POSTs register-target with target_node_uuid set, does NOT POST register-binding, and the existing binding stays untouched');
 });
+
+// US-C — the binding marker can carry a source token (workflow-advance,
+// workflow-start). The hook script parses it off the marker and forwards it
+// in the register-binding POST so the dispatcher can route a workflow-advance
+// rebind silently (sibling iteration via recurse) while still surfacing the
+// dialog on workflow-start.
+//
+// Per the PR2 convention for this file: the entire UserPromptSubmit hook is
+// a Node template string evaluated in Claude Code's child process — its
+// behaviour is exercised through integration once the implementation lands,
+// and unit-testable surfaces (shared marker grammar, dispatcher routing,
+// sendActions emission) are tested in their own files. The pieces this
+// section depends on are pinned elsewhere:
+//   - shared marker grammar incl. source token: src/shared/utils/tests/arborescentMarker.test.ts
+//   - dispatcher silent rebind on source=workflow-advance:
+//     src/main/services/tests/hookEventDispatcherSilentRebind.test.ts
+//   - sendActions emission of marker with source:
+//     src/renderer/store/tree/actions/tests/sendActionsSourceMarker.test.ts
+// The hook script regex is interpolated from ARBORESCENT_MARKER_REGEX.source,
+// so it cannot drift from the shared grammar.
+describe('UserPromptSubmit hook — binding marker source forwarding (US-C)', () => {
+  it.todo('parses source=workflow-advance from the binding marker grammar and POSTs it as source on register-binding');
+  it.todo('parses source=workflow-start from the binding marker grammar and POSTs it as source on register-binding');
+  it.todo('a binding marker with no source token POSTs register-binding without a source field (backward compat with US-B markers)');
+  it.todo('a binding marker with an unknown source token POSTs it through verbatim — the dispatcher is the authority on which sources earn special handling');
+});

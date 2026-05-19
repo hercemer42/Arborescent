@@ -286,6 +286,7 @@ describe('startWorkflow — auto session routing (PR1)', () => {
         'terminal-1',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
   });
@@ -316,6 +317,7 @@ describe('startWorkflow — auto session routing (PR1)', () => {
         'terminal-1',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
 
@@ -339,6 +341,7 @@ describe('startWorkflow — auto session routing (PR1)', () => {
         'terminal-new',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
   });

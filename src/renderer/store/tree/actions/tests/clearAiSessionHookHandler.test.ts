@@ -176,7 +176,7 @@ describe('SessionStart source:"clear" handling via registerSession', () => {
       await vi.runAllTicks();
       await Promise.resolve();
 
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined);
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined, expect.any(String));
     });
   });
 

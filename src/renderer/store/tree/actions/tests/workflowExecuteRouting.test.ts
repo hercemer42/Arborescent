@@ -119,7 +119,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
 
     actions.startWorkflow('task', 'terminal-1');
 
-    expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', { collaborate: true, execute: true }, undefined);
+    expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', { collaborate: true, execute: true }, undefined, expect.any(String));
   });
 
   it('should call autonomousCollaborateInTerminal with collaborate mode for collaborate steps', () => {
@@ -128,7 +128,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
 
     actions.startWorkflow('task', 'terminal-1');
 
-    expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', { collaborate: true, execute: false }, undefined);
+    expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', { collaborate: true, execute: false }, undefined, expect.any(String));
   });
 
   it('should not call fire-and-forget executeInTerminal for execute mode', () => {

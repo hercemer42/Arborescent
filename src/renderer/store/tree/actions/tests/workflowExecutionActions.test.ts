@@ -291,7 +291,7 @@ describe('createWorkflowExecutionActions', () => {
 
     it('should send content to the terminal on start', () => {
       actions.startWorkflow('task-a', 'terminal-1');
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }), undefined);
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }), undefined, expect.any(String));
     });
 
     it('should trigger autosave after starting', () => {

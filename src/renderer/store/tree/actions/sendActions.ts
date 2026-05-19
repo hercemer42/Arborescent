@@ -19,6 +19,7 @@ import {
 } from '../../../../shared/utils/arborescentMarker';
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
+import { usePendingRebindDialogStore } from '../../pendingRebindDialogStore';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
 import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
@@ -218,6 +219,8 @@ function buildWebExecuteOnlyPrompt(executeContext: string, content: string): str
 
 type SendTarget = 'web' | 'terminal' | 'autonomous-terminal';
 
+export type AutonomousSendSource = 'workflow-start' | 'workflow-advance';
+
 interface SendPayloadArgs {
   nodeId: string;
   state: Pick<TreeState, 'nodes' | 'ancestorRegistry'>;
@@ -227,6 +230,8 @@ interface SendPayloadArgs {
   sessionId?: string;
   /** One-shot context override — supersedes the node's stored applied-context for this send only. */
   overrideContextId?: string;
+  /** Workflow-driven send source, recorded in the binding marker so the dispatcher can route silent rebinds. */
+  bindingSource?: AutonomousSendSource;
 }
 
 function buildSendPayload(args: SendPayloadArgs): string {
@@ -282,7 +287,7 @@ function maybePrependRoutingMarker(body: string, args: SendPayloadArgs): string 
   if (!args.flags.collaborate && !args.flags.execute) return body;
   if (!args.nodeId) return body;
   if (args.target === 'autonomous-terminal') {
-    return buildArborescentMarker(args.nodeId) + body;
+    return buildArborescentMarker(args.nodeId, args.bindingSource) + body;
   }
   return buildArborescentTargetMarker(args.nodeId) + body;
 }
@@ -299,6 +304,17 @@ function flagsForContext(
   return resolveContextFlags(contextId, state.nodes, getContextDeclarations(state.nodes));
 }
 
+function isRebindDialogPending(terminalId: string): boolean {
+  return usePendingRebindDialogStore.getState().isPending(terminalId);
+}
+
+function notifyRebindDialogBlocked(): void {
+  useToastStore.getState().addToast(
+    'A rebind confirmation dialog is open on this terminal — resolve it before sending again.',
+    'warning',
+  );
+}
+
 export interface ProcessFeedbackContentResult {
   success: boolean;
   nodeCount?: number;
@@ -310,7 +326,7 @@ export interface SendActions {
   acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
   collaborate: (nodeId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
   collaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
-  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<string>;
+  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string, bindingSource?: AutonomousSendSource) => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
   processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
@@ -493,6 +509,12 @@ export function createSendActions(
         throw error;
       }
 
+      if (isRebindDialogPending(terminalId)) {
+        notifyRebindDialogBlocked();
+        logger.warn(`Send blocked: rebind dialog pending on terminal ${terminalId}`, 'SendActions');
+        return;
+      }
+
       const node = state.nodes[nodeId];
       if (!node) {
         logger.error('Node not found', new Error(`Node ${nodeId} not found`), 'SendActions');
@@ -556,11 +578,17 @@ export function createSendActions(
       }
     },
 
-    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string): Promise<string> => {
+    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string, bindingSource?: AutonomousSendSource): Promise<string> => {
       const state = get();
 
       if (!terminalId) {
         throw new Error('No terminal selected');
+      }
+
+      if (isRebindDialogPending(terminalId)) {
+        notifyRebindDialogBlocked();
+        logger.warn(`Send blocked: rebind dialog pending on terminal ${terminalId}`, 'SendActions');
+        return '';
       }
 
       const node = state.nodes[nodeId];
@@ -592,6 +620,7 @@ export function createSendActions(
         decomposition: effectiveDecomposition,
         sessionId,
         overrideContextId,
+        bindingSource,
       });
 
       await executeInTerminal(terminalId, terminalInstruction);

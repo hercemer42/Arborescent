@@ -156,6 +156,7 @@ describe('workflow restart after stop — prompt must reach the terminal (bug: g
         'terminal-1',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
 
@@ -231,6 +232,7 @@ describe('workflow restart after stop — prompt must reach the terminal (bug: g
         'terminal-resumed',
         expect.any(Object),
         undefined,
+        expect.any(String),
       );
     });
 

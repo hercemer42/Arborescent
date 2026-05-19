@@ -83,12 +83,14 @@ type StoreState = {
 };
 
 
+export type AutonomousSendSource = 'workflow-start' | 'workflow-advance';
+
 export const createWorkflowExecutionActions = (
   get: () => StoreState,
   set: (partial: Partial<StoreState>) => void,
   triggerAutosave?: () => void,
   visualEffects?: VisualEffectsActions,
-  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string, flags?: import('../../../utils/nodeHelpers').ContextFlags, overrideContextId?: string) => Promise<string>,
+  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string, flags?: import('../../../utils/nodeHelpers').ContextFlags, overrideContextId?: string, bindingSource?: AutonomousSendSource) => Promise<string>,
   executeCommand?: (command: { execute: () => void; undo: () => void; description?: string }) => void,
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
@@ -162,13 +164,13 @@ export const createWorkflowExecutionActions = (
   const clearSessionManager = createClearSessionManager({
     get,
     set,
-    sendPrompt: (id, tid) => sendContentToTerminal(id, tid),
+    sendPrompt: (id, tid, source) => sendContentToTerminal(id, tid, source),
     stopWorkflow: (id) => stopWorkflow(id),
   });
 
   const claudeLaunchManager = createClaudeLaunchManager({
     get,
-    sendPrompt: (id, tid) => sendContentToTerminal(id, tid),
+    sendPrompt: (id, tid, source) => sendContentToTerminal(id, tid, source),
   });
 
   const sessionResumeManager = createSessionResumeManager({ get, set });
@@ -369,10 +371,11 @@ export const createWorkflowExecutionActions = (
     // first.
     const { workflowSessionMap } = get();
     const terminalAlreadyHasSession = Object.values(workflowSessionMap).includes(terminalId);
+    const bindingSource: AutonomousSendSource = mode === 'recurse' ? 'workflow-advance' : 'workflow-start';
     if (terminalAlreadyHasSession) {
-      clearSessionManager.maybeClearThenSend(nodeId, terminalId);
+      clearSessionManager.maybeClearThenSend(nodeId, terminalId, bindingSource);
     } else {
-      claudeLaunchManager.launchIfNeededThenSend(nodeId, terminalId);
+      claudeLaunchManager.launchIfNeededThenSend(nodeId, terminalId, bindingSource);
     }
     logger.info(
       `Started workflow execution for node ${nodeId} on terminal ${terminalId} (${mode})`,
@@ -883,7 +886,7 @@ export const createWorkflowExecutionActions = (
   // overrides the working node's own attached context. Manual steps halt the
   // workflow and rely on the user's explicit 'send' action, which does not
   // apply this override — that asymmetry is intentional.
-  function sendContentToTerminal(nodeId: string, terminalId: string): void {
+  function sendContentToTerminal(nodeId: string, terminalId: string, bindingSource: AutonomousSendSource = 'workflow-advance'): void {
     try {
       const { nodes, ancestorRegistry } = get();
       const node = nodes[nodeId];
@@ -905,7 +908,7 @@ export const createWorkflowExecutionActions = (
         setCollaboratingFlag(nodeId);
       }
 
-      autonomousCollaborateInTerminal(nodeId, terminalId, flags, stepContextOverride).then(() => {
+      autonomousCollaborateInTerminal(nodeId, terminalId, flags, stepContextOverride, bindingSource).then(() => {
         registerPendingAck(nodeId, terminalId);
       }).catch((error) => {
         logger.error(
