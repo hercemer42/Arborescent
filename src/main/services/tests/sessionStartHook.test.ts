@@ -36,3 +36,14 @@ describe('SessionStart hook — boundary inputs (PR2)', () => {
   it.todo('a malformed hook payload (no session_id) is logged and the hook exits 0');
   it.todo('an oversized payload is read up to a reasonable cap and the rest is ignored');
 });
+
+// US-E — SessionStart's register-binding POST has historically been
+// terminal-agnostic; the renderer learned about the session→terminal mapping
+// from the separate SessionStart forwarding path. US-E aligns the two by
+// including ARBORESCENT_TERMINAL_ID on the register-binding payload so the
+// dispatcher can mirror the mapping back to the renderer via the new
+// session-terminal-mapping event (covered in hookEventDispatcher.test.ts).
+describe('SessionStart hook — terminal_id propagation (US-E)', () => {
+  it.todo('reads ARBORESCENT_TERMINAL_ID from process.env and includes it as terminal_id on the register-binding POST body');
+  it.todo('omits terminal_id when ARBORESCENT_TERMINAL_ID is absent — register-binding still POSTs with session and node, just no terminal mirror');
+});

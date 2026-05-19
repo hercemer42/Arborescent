@@ -154,14 +154,135 @@ describe('createHookEventDispatcher — other events forward to renderer', () =>
     expect(forwardToRenderer).toHaveBeenCalledWith(payload);
   });
 
-  it('does NOT forward a register-binding event to renderer (main-process internal)', () => {
+  it('does NOT forward a register-binding event to renderer verbatim (main-process internal)', () => {
+    // Even when US-E adds session-terminal-mapping forwarding, the original
+    // register-binding payload — carrying node_uuid — must never reach the
+    // renderer. Binding logic stays main-process-only.
     const payload: HookEventPayload = {
       session_id: 'sess-1',
       hook_event_name: 'register-binding',
       node_uuid: 'node-a',
     };
     dispatch(payload);
+    expect(forwardToRenderer).not.toHaveBeenCalledWith(payload);
+    expect(forwardToRenderer).not.toHaveBeenCalledWith(
+      expect.objectContaining({ hook_event_name: 'register-binding' }),
+    );
+  });
+});
+
+describe('createHookEventDispatcher — session-terminal-mapping forwarding from register-binding (US-E)', () => {
+  // The hook scripts now include ARBORESCENT_TERMINAL_ID on register-binding
+  // POSTs. The dispatcher uses that to emit a lightweight, separately-named
+  // event to the renderer carrying just {session_id, terminal_id} so the
+  // workflowSessionMap stays accurate on every prompt — not only when
+  // Arborescent itself opens a terminal.
+  let registry: SessionBindingRegistry;
+  let server: ArborescentMcpServer;
+  let forwardToRenderer: ReturnType<typeof vi.fn>;
+  let dispatch: ReturnType<typeof createHookEventDispatcher>;
+
+  beforeEach(() => {
+    const made = makeFakeMcpServer();
+    server = made.server;
+    registry = made.registry;
+    forwardToRenderer = vi.fn();
+    dispatch = createHookEventDispatcher({
+      getMcpServer: () => server,
+      forwardToRenderer,
+    });
+  });
+
+  it('forwards a session-terminal-mapping event when register-binding carries terminal_id', () => {
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-a',
+      terminal_id: 'term-1',
+    });
+
+    expect(forwardToRenderer).toHaveBeenCalledTimes(1);
+    expect(forwardToRenderer).toHaveBeenCalledWith({
+      session_id: 'sess-1',
+      hook_event_name: 'session-terminal-mapping',
+      terminal_id: 'term-1',
+    });
+  });
+
+  it('the forwarded event does NOT include node_uuid — binding logic stays main-process-only', () => {
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-a',
+      terminal_id: 'term-1',
+    });
+
+    const forwarded = forwardToRenderer.mock.calls[0][0] as HookEventPayload;
+    expect(forwarded.node_uuid).toBeUndefined();
+    expect(Object.keys(forwarded).sort()).toEqual(
+      ['hook_event_name', 'session_id', 'terminal_id'].sort(),
+    );
+  });
+
+  it('does NOT forward when register-binding has no terminal_id (foreign / misconfigured terminal)', () => {
+    // Falling back to "no forward" matches the foreign-sessions-unsupported
+    // contract: without ARBORESCENT_TERMINAL_ID in the env, Arborescent has
+    // nothing to map to and the renderer keeps its prior view.
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-a',
+    });
+
     expect(forwardToRenderer).not.toHaveBeenCalled();
+  });
+
+  it('still performs the existing binding-registry side effects regardless of terminal_id presence', () => {
+    // The session-terminal-mapping forwarding is additive — it must not affect
+    // the registry.register flow that US-B / US-C tests already pin down.
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-a',
+      terminal_id: 'term-1',
+    });
+
+    expect(registry.lookup('sess-1')).toBe('node-a');
+  });
+
+  it('does NOT forward when payload has terminal_id but the dispatcher rejects the event upstream (empty node_uuid)', () => {
+    // If the register-binding handler short-circuits (missing node_uuid),
+    // there is no successful event to mirror to the renderer.
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      terminal_id: 'term-1',
+    });
+
+    expect(forwardToRenderer).not.toHaveBeenCalled();
+    expect(registry.lookup('sess-1')).toBe(null);
+  });
+
+  it('forwards even when the binding result is a no-op (same session re-binding the same node in the same terminal)', () => {
+    // A user typing successive prompts on a long-running session emits
+    // register-binding every time. Even a no-op binding still represents a
+    // live session→terminal pairing worth re-asserting.
+    registry.register('sess-1', 'node-a');
+
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-a',
+      terminal_id: 'term-1',
+    });
+
+    expect(forwardToRenderer).toHaveBeenCalledWith(
+      expect.objectContaining({
+        hook_event_name: 'session-terminal-mapping',
+        session_id: 'sess-1',
+        terminal_id: 'term-1',
+      }),
+    );
   });
 });
 

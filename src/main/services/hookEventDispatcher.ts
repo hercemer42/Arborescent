@@ -49,6 +49,17 @@ function handleRegisterBinding(payload: HookEventPayload, deps: HookEventDispatc
     `register-binding ${result.kind} session=${payload.session_id} node=${payload.node_uuid} source=${payload.source ?? 'none'}`,
     'HookDispatch'
   );
+  // session→terminal is independent of node binding state — forward on every
+  // register-binding (including rebind-needed without auto-confirmation) so
+  // the renderer's workflowSessionMap reflects "this session is alive in this
+  // terminal" regardless of whether the user has confirmed the rebind dialog.
+  if (payload.terminal_id) {
+    deps.forwardToRenderer({
+      session_id: payload.session_id,
+      hook_event_name: 'session-terminal-mapping',
+      terminal_id: payload.terminal_id,
+    });
+  }
 }
 
 function handleRegisterTarget(payload: HookEventPayload, deps: HookEventDispatcherDeps): void {

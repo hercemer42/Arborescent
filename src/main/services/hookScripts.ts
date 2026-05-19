@@ -36,13 +36,15 @@ function postHookEvent(port, token, payload, label) {
   });
 }
 
-function postRegisterBinding(port, token, sessionId, nodeUuid, source) {
-  return postHookEvent(port, token, {
+function postRegisterBinding(port, token, sessionId, nodeUuid, source, terminalId) {
+  const payload = {
     session_id: sessionId,
     hook_event_name: 'register-binding',
     node_uuid: nodeUuid,
     source: source,
-  }, 'register-binding');
+  };
+  if (terminalId) payload.terminal_id = terminalId;
+  return postHookEvent(port, token, payload, 'register-binding');
 }
 
 function postRegisterTarget(port, token, sessionId, targetNodeUuid, markerSeenThisTurn) {
@@ -78,6 +80,7 @@ process.stdin.on('end', () => {
   const nodeUuid = process.env.ARBORESCENT_NODE_UUID || '';
   const port = process.env.ARBORESCENT_HOOK_PORT || '';
   const token = process.env.ARBORESCENT_AUTH_TOKEN || '';
+  const terminalId = process.env.ARBORESCENT_TERMINAL_ID || '';
   const source = typeof payload.source === 'string' ? payload.source : 'unknown';
 
   if (!sessionId) {
@@ -86,7 +89,7 @@ process.stdin.on('end', () => {
 
   emitSessionContext(sessionId).then(() => {
     if (nodeUuid && port && token) {
-      return postRegisterBinding(port, token, sessionId, nodeUuid, source);
+      return postRegisterBinding(port, token, sessionId, nodeUuid, source, terminalId);
     }
   }).finally(() => process.exit(0));
 });
@@ -131,6 +134,7 @@ process.stdin.on('end', () => {
 
   const port = process.env.ARBORESCENT_HOOK_PORT || '';
   const token = process.env.ARBORESCENT_AUTH_TOKEN || '';
+  const terminalId = process.env.ARBORESCENT_TERMINAL_ID || '';
   const canDispatch = sessionId && port && token;
 
   if (!bindingUuid && !targetUuid) {
@@ -149,7 +153,7 @@ process.stdin.on('end', () => {
     if (!canDispatch) return;
     if (bindingUuid) {
       const source = bindingSource || 'user-prompt-submit';
-      await postRegisterBinding(port, token, sessionId, bindingUuid, source);
+      await postRegisterBinding(port, token, sessionId, bindingUuid, source, terminalId);
     }
     await postRegisterTarget(port, token, sessionId, targetUuid || '', markerSeenThisTurn);
   }).finally(() => process.exit(0));

@@ -112,3 +112,13 @@ describe('UserPromptSubmit hook — binding marker source forwarding (US-C)', ()
   it.todo('a binding marker with no source token POSTs register-binding without a source field (backward compat with US-B markers)');
   it.todo('a binding marker with an unknown source token POSTs it through verbatim — the dispatcher is the authority on which sources earn special handling');
 });
+
+// US-E — the hook script reads ARBORESCENT_TERMINAL_ID from the env Arborescent
+// injects on terminal spawn and includes it on the register-binding POST body
+// so the dispatcher can emit a session-terminal-mapping event back to the
+// renderer. Dispatcher-side forwarding is covered by hookEventDispatcher.test.ts.
+describe('UserPromptSubmit hook — terminal_id propagation (US-E)', () => {
+  it.todo('reads ARBORESCENT_TERMINAL_ID from process.env and includes it as terminal_id on the register-binding POST body');
+  it.todo('omits terminal_id from the payload when ARBORESCENT_TERMINAL_ID is absent — foreign terminal, hook proceeds without it');
+  it.todo('an empty-string ARBORESCENT_TERMINAL_ID is treated the same as absent');
+});

@@ -228,4 +228,86 @@ describe('useHookEventListener', () => {
       expect(mockRegisterSession).toHaveBeenCalledWith('sess-new', 'terminal-1', undefined);
     });
   });
+
+  describe('session-terminal-mapping events (US-E)', () => {
+    // Emitted by the dispatcher for every register-binding that carries a
+    // terminal_id. Keeps workflowSessionMap accurate in real time on prompts
+    // that come from a session Arborescent did not itself spawn.
+    it('calls registerSession with session_id and terminal_id on session-terminal-mapping', () => {
+      renderHook(() => useHookEventListener());
+
+      act(() => {
+        hookEventCallback({
+          session_id: 'sess-mapped',
+          hook_event_name: 'session-terminal-mapping',
+          terminal_id: 'terminal-42',
+        });
+      });
+
+      expect(mockRegisterSession).toHaveBeenCalledWith('sess-mapped', 'terminal-42', undefined);
+      expect(mockHandleHookEvent).not.toHaveBeenCalled();
+    });
+
+    it('drops the event when terminal_id is missing — nothing to map', () => {
+      renderHook(() => useHookEventListener());
+
+      act(() => {
+        hookEventCallback({
+          session_id: 'sess-orphan',
+          hook_event_name: 'session-terminal-mapping',
+        });
+      });
+
+      expect(mockRegisterSession).not.toHaveBeenCalled();
+      expect(mockHandleHookEvent).not.toHaveBeenCalled();
+    });
+
+    it('drops the event when no open file owns that terminal (cannot route)', () => {
+      fileStatesRef.current = { '/files/only.arbo': { terminals: [], activeTerminalId: null } };
+      renderHook(() => useHookEventListener());
+
+      act(() => {
+        hookEventCallback({
+          session_id: 'sess-mapped',
+          hook_event_name: 'session-terminal-mapping',
+          terminal_id: 'terminal-unknown',
+        });
+      });
+
+      expect(mockRegisterSession).not.toHaveBeenCalled();
+    });
+
+    it('does NOT call handleHookEvent for session-terminal-mapping — it is a sync-only event, not part of the workflow hook pipeline', () => {
+      renderHook(() => useHookEventListener());
+
+      act(() => {
+        hookEventCallback({
+          session_id: 'sess-mapped',
+          hook_event_name: 'session-terminal-mapping',
+          terminal_id: 'terminal-42',
+        });
+      });
+
+      expect(mockHandleHookEvent).not.toHaveBeenCalled();
+    });
+
+    it('re-asserts the same session→terminal mapping on a repeat event — registerSession is the canonical setter that handles the no-op case', () => {
+      renderHook(() => useHookEventListener());
+
+      act(() => {
+        hookEventCallback({
+          session_id: 'sess-1',
+          hook_event_name: 'session-terminal-mapping',
+          terminal_id: 'terminal-1',
+        });
+        hookEventCallback({
+          session_id: 'sess-1',
+          hook_event_name: 'session-terminal-mapping',
+          terminal_id: 'terminal-1',
+        });
+      });
+
+      expect(mockRegisterSession).toHaveBeenCalledTimes(2);
+    });
+  });
 });

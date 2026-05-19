@@ -32,10 +32,10 @@ export function useHookEventListener(): void {
         'HookEventListener',
       );
 
-      if (event.hook_event_name === 'SessionStart') {
+      if (event.hook_event_name === 'SessionStart' || event.hook_event_name === 'session-terminal-mapping') {
         if (!event.terminal_id) {
           logger.warn(
-            `SessionStart dropped — no terminal_id provided (session=${event.session_id})`,
+            `${event.hook_event_name} dropped — no terminal_id provided (session=${event.session_id})`,
             'HookEventListener',
           );
           return;
@@ -43,7 +43,7 @@ export function useHookEventListener(): void {
         const store = findStoreOwningTerminal(event.terminal_id);
         if (!store) {
           logger.warn(
-            `SessionStart dropped — no open file owns terminal ${event.terminal_id}`,
+            `${event.hook_event_name} dropped — no open file owns terminal ${event.terminal_id}`,
             'HookEventListener',
           );
           return;
