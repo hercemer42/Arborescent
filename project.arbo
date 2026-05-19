@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-19T19:38:49.738Z'
+updated: '2026-05-19T20:39:51.032Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23708,9 +23708,9 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 9bb5149d-210c-4314-bd42-263fbbf8b15a
       - 85f75161-644d-4114-a0a0-87caba0049e0
       - 45c7e34f-d730-4762-8486-798eab1e5302
+      - a44833d2-d70e-48e3-be5d-f4d5106bae41
     metadata:
       status: pending
       isBlueprint: true
@@ -80785,6 +80785,7 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - b1afed25-6fb4-4885-98a2-00ef159c4df0
       - 1de5d605-7933-482e-925c-c73558a15765
       - e5809ad7-88b1-47ae-be5b-0432229ef68e
       - 48d475c6-e2d8-4964-ba1c-7b45573fd65c
@@ -115686,6 +115687,7 @@ nodes:
       - aec95f51-3088-48e5-8bd6-cfda0bcb0fe2
       - 04a5c4d9-8173-4852-9673-00979383ae69
       - cd0d2d3e-e313-4769-a9a9-424628cb77f2
+      - 5809255f-e445-47b0-b676-74dee7db51cd
     metadata:
       status: pending
       isBlueprint: true
@@ -124799,7 +124801,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 5809255f-e445-47b0-b676-74dee7db51cd
+      - 2b797f53-71dc-4043-b01b-cf1391c87321
     metadata:
       status: pending
       isBlueprint: true
@@ -147822,345 +147824,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9bb5149d-210c-4314-bd42-263fbbf8b15a:
-    id: 9bb5149d-210c-4314-bd42-263fbbf8b15a
-    content: 'US-C: Silent rebind on workflow advance, block sends while rebind dialog is open'
-    children:
-      - dea610fe-9714-49dc-8530-84e825fa0bfa
-      - d270f03a-2a42-47f2-ab90-726163b5bd81
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  dea610fe-9714-49dc-8530-84e825fa0bfa:
-    id: dea610fe-9714-49dc-8530-84e825fa0bfa
-    content: Product spec
-    children:
-      - f27ea4a9-7b41-49ea-af6e-eae9f196edb5
-      - 81ac5227-9abd-4588-93bc-e8ec07c52470
-      - da7936e2-0bfe-4882-afa9-18975ff97215
-      - f32e0c03-b254-4a5a-b571-5293766fec29
-      - 44e23c08-27e0-4ec2-8e2e-4b4c84d6c60e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f27ea4a9-7b41-49ea-af6e-eae9f196edb5:
-    id: f27ea4a9-7b41-49ea-af6e-eae9f196edb5
-    content: Context
-    children:
-      - 5fe3a6d8-cf51-490e-b513-928aaac5db29
-      - e30771c1-13bf-4b4e-bb3b-2edb2b7f61f8
-      - 05e16dc8-8301-49f1-8875-63727625fa23
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5fe3a6d8-cf51-490e-b513-928aaac5db29:
-    id: 5fe3a6d8-cf51-490e-b513-928aaac5db29
-    content: Workflow advance currently triggers the rebind-needed dialog on every step transition, asking the user to confirm what the workflow itself just told them to do
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e30771c1-13bf-4b4e-bb3b-2edb2b7f61f8:
-    id: e30771c1-13bf-4b4e-bb3b-2edb2b7f61f8
-    content: The rebind dialog can be open while a new prompt is already in the terminal and being processed, leading to the agent submitting against the old binding
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  05e16dc8-8301-49f1-8875-63727625fa23:
-    id: 05e16dc8-8301-49f1-8875-63727625fa23
-    content: Cancelling the dialog can leave an optimistically-set collaboratingNodeId stranded on a node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  81ac5227-9abd-4588-93bc-e8ec07c52470:
-    id: 81ac5227-9abd-4588-93bc-e8ec07c52470
-    content: User
-    children:
-      - 72bd65cd-c323-4965-9885-92ce07d1062a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  72bd65cd-c323-4965-9885-92ce07d1062a:
-    id: 72bd65cd-c323-4965-9885-92ce07d1062a
-    content: An Arborescent user running a multi-step workflow who expects step transitions to feel seamless and prompts to land on the right node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  da7936e2-0bfe-4882-afa9-18975ff97215:
-    id: da7936e2-0bfe-4882-afa9-18975ff97215
-    content: Goal
-    children:
-      - fddd3ecf-a1f2-4ca8-9f60-6b845924cda4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fddd3ecf-a1f2-4ca8-9f60-6b845924cda4:
-    id: fddd3ecf-a1f2-4ca8-9f60-6b845924cda4
-    content: Workflow advance updates the binding without a dialog; the dialog reappears only when a new workflow start conflicts with an existing binding; sends to a terminal whose rebind dialog is open are blocked until resolved
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f32e0c03-b254-4a5a-b571-5293766fec29:
-    id: f32e0c03-b254-4a5a-b571-5293766fec29
-    content: Business rules
-    children:
-      - 2e031a70-ab6c-4743-b424-64a3167f631a
-      - 1789737b-7b23-492b-9999-eee71e8c2427
-      - 353b03cd-5847-4f15-a033-81204aa8626e
-      - 320a6fe5-9eaa-4f4b-9ab9-8774eb598e27
-      - f7a75d5d-844a-4575-a2fb-5feb63b54144
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e031a70-ab6c-4743-b424-64a3167f631a:
-    id: 2e031a70-ab6c-4743-b424-64a3167f631a
-    content: The register-binding source field distinguishes workflow-start from workflow-advance
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1789737b-7b23-492b-9999-eee71e8c2427:
-    id: 1789737b-7b23-492b-9999-eee71e8c2427
-    content: workflow-advance bypasses the rebind dialog and applies immediately
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  353b03cd-5847-4f15-a033-81204aa8626e:
-    id: 353b03cd-5847-4f15-a033-81204aa8626e
-    content: workflow-start on an already-bound session still shows the rebind confirmation dialog
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  320a6fe5-9eaa-4f4b-9ab9-8774eb598e27:
-    id: 320a6fe5-9eaa-4f4b-9ab9-8774eb598e27
-    content: While a rebind dialog is pending for a terminal, sends to that terminal are blocked
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f7a75d5d-844a-4575-a2fb-5feb63b54144:
-    id: f7a75d5d-844a-4575-a2fb-5feb63b54144
-    content: Cancelling the dialog leaves the binding intact and clears any optimistically-set collaboratingNodeId for the target
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  44e23c08-27e0-4ec2-8e2e-4b4c84d6c60e:
-    id: 44e23c08-27e0-4ec2-8e2e-4b4c84d6c60e
-    content: Acceptance criteria
-    children:
-      - 4b8d774d-1e3b-4bee-a859-78e192420afa
-      - 747abd40-0a91-4a3f-8ab9-6184ed4d2be5
-      - 6e89e6e6-88fe-4af6-a9c5-a8cdf4253e77
-      - 2b8b3b48-ecbe-44b7-97f8-26b8cbd1ef8e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4b8d774d-1e3b-4bee-a859-78e192420afa:
-    id: 4b8d774d-1e3b-4bee-a859-78e192420afa
-    content: Advancing from step N to step N+1 produces no dialog and the binding swaps before the agent calls submit_step_output
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  747abd40-0a91-4a3f-8ab9-6184ed4d2be5:
-    id: 747abd40-0a91-4a3f-8ab9-6184ed4d2be5
-    content: Starting a new workflow on a session already running another shows the dialog naming both nodes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e89e6e6-88fe-4af6-a9c5-a8cdf4253e77:
-    id: 6e89e6e6-88fe-4af6-a9c5-a8cdf4253e77
-    content: Attempting to send to a terminal whose rebind dialog is open surfaces a toast and does not paste into the terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b8b3b48-ecbe-44b7-97f8-26b8cbd1ef8e:
-    id: 2b8b3b48-ecbe-44b7-97f8-26b8cbd1ef8e
-    content: Cancelling the dialog leaves no node stuck in collaboratingNodeId state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d270f03a-2a42-47f2-ab90-726163b5bd81:
-    id: d270f03a-2a42-47f2-ab90-726163b5bd81
-    content: Implementation proposal
-    children:
-      - dfc3141a-075a-4d7a-90e7-0ebe3d010c23
-      - 6f05bdfa-708f-4180-ae2e-c229c18cba88
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dfc3141a-075a-4d7a-90e7-0ebe3d010c23:
-    id: dfc3141a-075a-4d7a-90e7-0ebe3d010c23
-    content: Approach
-    children:
-      - b538c957-8ff9-4cca-9b04-7a85599a59fe
-      - b07bd9eb-9afd-49b4-a4d9-80e1857fa59d
-      - e82145e2-17b5-4f7c-aa40-e74c043db11a
-      - f5bcc85f-f528-4960-9f9b-b596d88ccde9
-      - 09f7e6d3-f614-4d1e-9b5d-c56207078397
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b538c957-8ff9-4cca-9b04-7a85599a59fe:
-    id: b538c957-8ff9-4cca-9b04-7a85599a59fe
-    content: sendContentToTerminal sends source=workflow-advance in the marker context; startWorkflow sends source=workflow-start
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b07bd9eb-9afd-49b4-a4d9-80e1857fa59d:
-    id: b07bd9eb-9afd-49b4-a4d9-80e1857fa59d
-    content: Hook script forwards the source field into the register-binding POST
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e82145e2-17b5-4f7c-aa40-e74c043db11a:
-    id: e82145e2-17b5-4f7c-aa40-e74c043db11a
-    content: Dispatcher routes workflow-advance through confirmRebind immediately on rebind-needed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f5bcc85f-f528-4960-9f9b-b596d88ccde9:
-    id: f5bcc85f-f528-4960-9f9b-b596d88ccde9
-    content: Track per-terminal pendingRebindDialog state in renderer; gate executeInTerminal callers on it
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09f7e6d3-f614-4d1e-9b5d-c56207078397:
-    id: 09f7e6d3-f614-4d1e-9b5d-c56207078397
-    content: On cancel, clear collaboratingNodeId for the optimistically-marked target
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6f05bdfa-708f-4180-ae2e-c229c18cba88:
-    id: 6f05bdfa-708f-4180-ae2e-c229c18cba88
-    content: Touchpoints
-    children:
-      - 41f5d279-c83a-4054-a360-54da140969b1
-      - dd2b05d4-8ead-430e-993c-ec42231ee24d
-      - be50aa35-ab86-4f76-b61b-d6ad1b3e7253
-      - c2cd816a-8d7c-4cd0-88db-6ca6e0c61c9b
-      - 537c12d0-0b5e-43b1-ae59-0dcce5fbd7a6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41f5d279-c83a-4054-a360-54da140969b1:
-    id: 41f5d279-c83a-4054-a360-54da140969b1
-    content: src/main/services/hookScripts.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd2b05d4-8ead-430e-993c-ec42231ee24d:
-    id: dd2b05d4-8ead-430e-993c-ec42231ee24d
-    content: src/main/services/hookEventDispatcher.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  be50aa35-ab86-4f76-b61b-d6ad1b3e7253:
-    id: be50aa35-ab86-4f76-b61b-d6ad1b3e7253
-    content: src/main/services/sessionBindingRegistry.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c2cd816a-8d7c-4cd0-88db-6ca6e0c61c9b:
-    id: c2cd816a-8d7c-4cd0-88db-6ca6e0c61c9b
-    content: src/renderer/store/tree/actions/sendActions.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  537c12d0-0b5e-43b1-ae59-0dcce5fbd7a6:
-    id: 537c12d0-0b5e-43b1-ae59-0dcce5fbd7a6
-    content: src/renderer/components/ui/RebindConfirmationDialog
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   85f75161-644d-4114-a0a0-87caba0049e0:
     id: 85f75161-644d-4114-a0a0-87caba0049e0
     content: 'US-E: Real-time terminal-to-session map via register-binding payload'
@@ -150561,6 +150224,1314 @@ nodes:
   39b03419-b247-46f0-9ab9-c469afc899b8:
     id: 39b03419-b247-46f0-9ab9-c469afc899b8
     content: No implementation-detail leakage — changelog phrased in terms of user gestures (right-click Send, workflow advance, dialog) without mentioning markers, dispatchers, or one-shot targets
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b797f53-71dc-4043-b01b-cf1391c87321:
+    id: 2b797f53-71dc-4043-b01b-cf1391c87321
+    content: 'US-C: Silent rebind during sibling iteration, block sends while rebind dialog is open'
+    children:
+      - c6046934-c76b-4505-8b06-6c37aa7a07ca
+      - 59cdf380-78f9-4f20-aafd-0b78d6bdd6cc
+      - a965aef8-7f8b-4820-9f50-076c70b3461d
+      - bdec1f01-8006-4cbc-8899-0d2dd5d8d174
+      - 72e90256-0005-496d-ba3c-8b523d262b4d
+      - a22e02c0-cea3-4062-891f-9d0ea00b43b2
+      - 36e37614-59dd-4423-b1f8-6efd54f71637
+      - e5921ab3-b9b6-4245-a604-b881ca80389d
+      - 22ce8f1b-5ee4-4c26-9422-2145d449b770
+      - 60554247-3f4a-495b-a2c7-9e988c2dd0f3
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  b1afed25-6fb4-4885-98a2-00ef159c4df0:
+    id: b1afed25-6fb4-4885-98a2-00ef159c4df0
+    content: If a workflow step goes over 10 minutes, it gets the red dot and a toast appears
+    children:
+      - 50288920-2a51-489f-afee-ec51f796579a
+      - 1ef85439-dc3c-48c3-a5af-0460f434334e
+    metadata:
+      status: pending
+  50288920-2a51-489f-afee-ec51f796579a:
+    id: 50288920-2a51-489f-afee-ec51f796579a
+    content: This happens often, it's uselss
+    children: []
+    metadata:
+      status: pending
+  1ef85439-dc3c-48c3-a5af-0460f434334e:
+    id: 1ef85439-dc3c-48c3-a5af-0460f434334e
+    content: Just remove the feature
+    children: []
+    metadata:
+      status: pending
+  a44833d2-d70e-48e3-be5d-f4d5106bae41:
+    id: a44833d2-d70e-48e3-be5d-f4d5106bae41
+    content: 'US-H: Reject Arborescent-initiated sends to sessions that are mid-turn'
+    children:
+      - fddb037f-9375-434e-9f3f-9cab97f640a9
+      - 270680e5-2fb0-4faa-b25d-e82f0593582d
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  fddb037f-9375-434e-9f3f-9cab97f640a9:
+    id: fddb037f-9375-434e-9f3f-9cab97f640a9
+    content: Product spec
+    children:
+      - c65e9b87-deae-43ff-8c38-278a1e632bc2
+      - 347411a6-437c-4f2c-9e20-de9d859ab58f
+      - c77ad55e-e20e-4a5b-a0e3-3800dafae199
+      - 2d7d59d0-66bd-48a8-b07d-bcb51de4c7c0
+      - 95234334-b882-4e3e-b83b-637b688b9435
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c65e9b87-deae-43ff-8c38-278a1e632bc2:
+    id: c65e9b87-deae-43ff-8c38-278a1e632bc2
+    content: Context
+    children:
+      - 178335a0-e477-4694-a31f-7d9159cb0164
+      - 88ba967e-3a9d-487b-888d-6d8cdfb4be9f
+      - 7dc24ae0-7e94-479d-b347-c16aafb42f5b
+      - 47d8101c-fb9b-42c6-badc-c93f9fd68250
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  178335a0-e477-4694-a31f-7d9159cb0164:
+    id: 178335a0-e477-4694-a31f-7d9159cb0164
+    content: Sessions process prompts one at a time, so any action that changes which node owns a session or which node receives the response races the in-flight Stop submission when the session is still working
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88ba967e-3a9d-487b-888d-6d8cdfb4be9f:
+    id: 88ba967e-3a9d-487b-888d-6d8cdfb4be9f
+    content: Without an in-progress check, a workflow-start on a busy session triggers the rebind dialog while the previous turn's response is still pending; if the user confirms, the in-flight submit_step_output can land on the new node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dc24ae0-7e94-479d-b347-c16aafb42f5b:
+    id: 7dc24ae0-7e94-479d-b347-c16aafb42f5b
+    content: The same race affects manual collab sends, freeform Revise after discussion, and explicit Next Step / Continue Workflow clicks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47d8101c-fb9b-42c6-badc-c93f9fd68250:
+    id: 47d8101c-fb9b-42c6-badc-c93f9fd68250
+    content: Action-mode sends do not affect routing but typing into a busy terminal just queues blindly; refusing is simpler than discriminating per send type
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  347411a6-437c-4f2c-9e20-de9d859ab58f:
+    id: 347411a6-437c-4f2c-9e20-de9d859ab58f
+    content: User
+    children:
+      - d2260d2a-dbec-40dd-8f3b-7faa1fdb6cc0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2260d2a-dbec-40dd-8f3b-7faa1fdb6cc0:
+    id: d2260d2a-dbec-40dd-8f3b-7faa1fdb6cc0
+    content: An Arborescent user who tries to send into or switch workflows on a session while the current turn is still being processed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c77ad55e-e20e-4a5b-a0e3-3800dafae199:
+    id: c77ad55e-e20e-4a5b-a0e3-3800dafae199
+    content: Goal
+    children:
+      - bfa06d88-e688-4e94-b449-94da32c2dfa3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfa06d88-e688-4e94-b449-94da32c2dfa3:
+    id: bfa06d88-e688-4e94-b449-94da32c2dfa3
+    content: Reject any Arborescent-initiated send into a session that is mid-turn with an actionable toast ‚Äî one uniform rule, no per-send-type carve-outs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d7d59d0-66bd-48a8-b07d-bcb51de4c7c0:
+    id: 2d7d59d0-66bd-48a8-b07d-bcb51de4c7c0
+    content: Business rules
+    children:
+      - cb1b6c0c-7108-4e63-8bbe-0da21c94b64b
+      - 91393889-27f7-4ef1-bc5b-51d6dfdaa327
+      - 36e5bc6e-e1ae-4433-a9f8-ef88953b3823
+      - 1b5867b1-0bcf-4be2-948f-72bda64a56f8
+      - 5b876341-4ed4-4e60-8b06-975395455329
+      - a14ae6e3-6019-4277-98ea-67fb68c7afcd
+      - 483ed41c-f6f5-41a4-8aa8-c55cd53babcb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb1b6c0c-7108-4e63-8bbe-0da21c94b64b:
+    id: cb1b6c0c-7108-4e63-8bbe-0da21c94b64b
+    content: A per-session in-progress flag is set on UserPromptSubmit and cleared on Stop
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91393889-27f7-4ef1-bc5b-51d6dfdaa327:
+    id: 91393889-27f7-4ef1-bc5b-51d6dfdaa327
+    content: Workflow-start whose route would reuse an in-progress session is refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  36e5bc6e-e1ae-4433-a9f8-ef88953b3823:
+    id: 36e5bc6e-e1ae-4433-a9f8-ef88953b3823
+    content: Manual collab sends and Revise after discussion into a terminal whose session is in-progress are refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b5867b1-0bcf-4be2-948f-72bda64a56f8:
+    id: 1b5867b1-0bcf-4be2-948f-72bda64a56f8
+    content: Action-mode sends into a terminal whose session is in-progress are refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b876341-4ed4-4e60-8b06-975395455329:
+    id: 5b876341-4ed4-4e60-8b06-975395455329
+    content: Explicit Next Step and Continue Workflow actions on an in-progress workflow are refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a14ae6e3-6019-4277-98ea-67fb68c7afcd:
+    id: a14ae6e3-6019-4277-98ea-67fb68c7afcd
+    content: If the underlying terminal is closed the flag is cleared immediately so resume-style actions are not blocked by a ghost
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  483ed41c-f6f5-41a4-8aa8-c55cd53babcb:
+    id: 483ed41c-f6f5-41a4-8aa8-c55cd53babcb
+    content: No wall-clock timeout ‚Äî a session that legitimately runs long (tests, builds, long agent loops) is still considered busy until Stop fires or the terminal closes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95234334-b882-4e3e-b83b-637b688b9435:
+    id: 95234334-b882-4e3e-b83b-637b688b9435
+    content: Acceptance criteria
+    children:
+      - a063a52a-7345-44fa-85ec-b32e31c47669
+      - 9467760f-6793-4c1b-b2fe-17227f26c06b
+      - c74644a1-b5c3-4b85-9a3e-a706a9cb80ae
+      - 390d0e01-a84e-4b67-b7e3-35c78f101a00
+      - 401793b4-0cac-4aeb-98c7-59b199ba3c65
+      - 770864a6-1317-4fcf-a10e-ae54ea5e3287
+      - 3a487373-25c0-46d0-938f-9d3f85d39e74
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a063a52a-7345-44fa-85ec-b32e31c47669:
+    id: a063a52a-7345-44fa-85ec-b32e31c47669
+    content: Clicking Start Workflow on a node whose route would reuse an in-progress session surfaces a toast naming the active node and does not start the workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9467760f-6793-4c1b-b2fe-17227f26c06b:
+    id: 9467760f-6793-4c1b-b2fe-17227f26c06b
+    content: Right-click Send or Revise after discussion into a terminal whose session is in-progress surfaces a toast and pastes nothing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c74644a1-b5c3-4b85-9a3e-a706a9cb80ae:
+    id: c74644a1-b5c3-4b85-9a3e-a706a9cb80ae
+    content: An action-mode send into a terminal whose session is in-progress is refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  390d0e01-a84e-4b67-b7e3-35c78f101a00:
+    id: 390d0e01-a84e-4b67-b7e3-35c78f101a00
+    content: Clicking Next Step or Continue Workflow on a step that has not yet returned its Stop event is refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  401793b4-0cac-4aeb-98c7-59b199ba3c65:
+    id: 401793b4-0cac-4aeb-98c7-59b199ba3c65
+    content: After Stop arrives, all previously refused actions become available again
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  770864a6-1317-4fcf-a10e-ae54ea5e3287:
+    id: 770864a6-1317-4fcf-a10e-ae54ea5e3287
+    content: Closing the terminal clears the flag for its session and unblocks resume-style actions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a487373-25c0-46d0-938f-9d3f85d39e74:
+    id: 3a487373-25c0-46d0-938f-9d3f85d39e74
+    content: A workflow step that runs for over an hour is still treated as in-progress and continues to refuse new sends until Stop fires or the terminal is closed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  270680e5-2fb0-4faa-b25d-e82f0593582d:
+    id: 270680e5-2fb0-4faa-b25d-e82f0593582d
+    content: Implementation proposal
+    children:
+      - b61a3615-6898-4e4e-85fb-06a2f4cbbb17
+      - 714f5179-20a6-45ac-9d59-a8f08f96c11d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b61a3615-6898-4e4e-85fb-06a2f4cbbb17:
+    id: b61a3615-6898-4e4e-85fb-06a2f4cbbb17
+    content: Approach
+    children:
+      - 9261e769-9e91-49f2-be24-dda38c71598b
+      - f646bce7-8335-46e4-895a-1458675e777b
+      - feaa04bd-1511-4c4c-9e83-acf891c91056
+      - 7fb8722a-a4fd-4b6a-a2f2-cbed3761785d
+      - c260c8b1-cd70-49aa-991b-c04977a3a084
+      - 47f4e4f6-fab1-4ecc-b846-cb76759edb64
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9261e769-9e91-49f2-be24-dda38c71598b:
+    id: 9261e769-9e91-49f2-be24-dda38c71598b
+    content: Track in-progress state per session in main process; set on every UserPromptSubmit register-binding, cleared on Stop event POST
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f646bce7-8335-46e4-895a-1458675e777b:
+    id: f646bce7-8335-46e4-895a-1458675e777b
+    content: Stop hook script POSTs a stop event to the dispatcher in addition to its existing submit_step_output safety-net call
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  feaa04bd-1511-4c4c-9e83-acf891c91056:
+    id: feaa04bd-1511-4c4c-9e83-acf891c91056
+    content: Dispatcher forwards in-progress state changes to renderer over IPC, mirroring the pattern from US-E
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fb8722a-a4fd-4b6a-a2f2-cbed3761785d:
+    id: 7fb8722a-a4fd-4b6a-a2f2-cbed3761785d
+    content: Renderer maintains a per-session in-progress map; sendActions and workflow controls consult it before proceeding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c260c8b1-cd70-49aa-991b-c04977a3a084:
+    id: c260c8b1-cd70-49aa-991b-c04977a3a084
+    content: On refusal, show a toast naming the session's active node and the action that was blocked
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47f4e4f6-fab1-4ecc-b846-cb76759edb64:
+    id: 47f4e4f6-fab1-4ecc-b846-cb76759edb64
+    content: Terminal-close handler clears the flag for the session that lived in that terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  714f5179-20a6-45ac-9d59-a8f08f96c11d:
+    id: 714f5179-20a6-45ac-9d59-a8f08f96c11d
+    content: Touchpoints
+    children:
+      - a4e7d916-5460-4464-8f7d-2332b2a670a0
+      - 636f4091-1ed1-4e93-b10f-f15f37167a4d
+      - 983f4511-39cc-45e2-bf5d-3c73e7bc7855
+      - 87c8a5de-870d-45bf-a8f3-3867cfda166a
+      - 1299f773-240f-4049-bdd1-f49c3273c71e
+      - c4b7dd94-6dbd-41a9-b24d-ec254b8e9399
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4e7d916-5460-4464-8f7d-2332b2a670a0:
+    id: a4e7d916-5460-4464-8f7d-2332b2a670a0
+    content: src/main/services/hookScripts.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  636f4091-1ed1-4e93-b10f-f15f37167a4d:
+    id: 636f4091-1ed1-4e93-b10f-f15f37167a4d
+    content: src/main/services/hookEventDispatcher.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  983f4511-39cc-45e2-bf5d-3c73e7bc7855:
+    id: 983f4511-39cc-45e2-bf5d-3c73e7bc7855
+    content: src/preload/index.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87c8a5de-870d-45bf-a8f3-3867cfda166a:
+    id: 87c8a5de-870d-45bf-a8f3-3867cfda166a
+    content: src/renderer/store/tree/actions/sendActions.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1299f773-240f-4049-bdd1-f49c3273c71e:
+    id: 1299f773-240f-4049-bdd1-f49c3273c71e
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4b7dd94-6dbd-41a9-b24d-ec254b8e9399:
+    id: c4b7dd94-6dbd-41a9-b24d-ec254b8e9399
+    content: src/renderer/hooks/useHookEventListener.ts or sibling
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6046934-c76b-4505-8b06-6c37aa7a07ca:
+    id: c6046934-c76b-4505-8b06-6c37aa7a07ca
+    content: worktree
+    children:
+      - 10284434-071f-4fc9-962b-4eb8de6370d7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10284434-071f-4fc9-962b-4eb8de6370d7:
+    id: 10284434-071f-4fc9-962b-4eb8de6370d7
+    content: vscode://file/Users/brianfox/dev/Arborescent-us-c-silent-rebind-and-send-gate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59cdf380-78f9-4f20-aafd-0b78d6bdd6cc:
+    id: 59cdf380-78f9-4f20-aafd-0b78d6bdd6cc
+    content: Product spec
+    children:
+      - 530858c2-4242-49e6-bfe9-6f922a3ebbbe
+      - 12505c47-7197-4d7f-b0f6-fc259e011173
+      - 9be77345-efe1-4d68-8315-f073ce0b3513
+      - 05c0365b-b892-4fc1-aae7-27cf15f2beb1
+      - 79452835-0b6b-4cb8-bba4-f4123859f32c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  530858c2-4242-49e6-bfe9-6f922a3ebbbe:
+    id: 530858c2-4242-49e6-bfe9-6f922a3ebbbe
+    content: Context
+    children:
+      - 661cfdd1-f384-481d-9b20-35aa7f7b7d52
+      - 942ee37e-74d3-4a31-8e09-55b0e522161d
+      - 637a554c-c023-4ca8-9c0b-a15f43c6d00c
+      - ff7365c3-543c-4e43-b193-9b326ecc8557
+      - 48cb9b6b-108e-4d7a-9839-5608b67e6f24
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  661cfdd1-f384-481d-9b20-35aa7f7b7d52:
+    id: 661cfdd1-f384-481d-9b20-35aa7f7b7d52
+    content: A linear step advance does not change the binding because the working node's UUID is invariant — register-binding returns no-op and nothing needs to be silenced
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  942ee37e-74d3-4a31-8e09-55b0e522161d:
+    id: 942ee37e-74d3-4a31-8e09-55b0e522161d
+    content: A workflow that uses decomposition and recurse iterates the working node through sibling nodes; each sibling has its own UUID, so the binding legitimately moves to a different node at each recurse hand-off
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  637a554c-c023-4ca8-9c0b-a15f43c6d00c:
+    id: 637a554c-c023-4ca8-9c0b-a15f43c6d00c
+    content: Without source discrimination, those hand-offs look like user-driven rebinds and trigger the confirmation dialog mid-run
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff7365c3-543c-4e43-b193-9b326ecc8557:
+    id: ff7365c3-543c-4e43-b193-9b326ecc8557
+    content: The rebind dialog can be open while a new prompt is already in the terminal and being processed, leading to the agent submitting against the old binding
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48cb9b6b-108e-4d7a-9839-5608b67e6f24:
+    id: 48cb9b6b-108e-4d7a-9839-5608b67e6f24
+    content: Cancelling the dialog can leave an optimistically-set collaboratingNodeId stranded on a node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12505c47-7197-4d7f-b0f6-fc259e011173:
+    id: 12505c47-7197-4d7f-b0f6-fc259e011173
+    content: User
+    children:
+      - 94050fd7-2839-4393-ac7d-736df8dbb2df
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94050fd7-2839-4393-ac7d-736df8dbb2df:
+    id: 94050fd7-2839-4393-ac7d-736df8dbb2df
+    content: An Arborescent user running a workflow that iterates over decomposed siblings via recurse, who expects each hand-off to feel seamless and prompts to land on the right node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9be77345-efe1-4d68-8315-f073ce0b3513:
+    id: 9be77345-efe1-4d68-8315-f073ce0b3513
+    content: Goal
+    children:
+      - bea58770-441d-411d-a942-bf48b7439e6d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bea58770-441d-411d-a942-bf48b7439e6d:
+    id: bea58770-441d-411d-a942-bf48b7439e6d
+    content: Workflow-driven binding changes — including sibling hand-offs from decomposition + recurse — apply without a dialog; the dialog reappears only when a new workflow start conflicts with an existing binding; sends to a terminal whose rebind dialog is open are blocked until resolved
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05c0365b-b892-4fc1-aae7-27cf15f2beb1:
+    id: 05c0365b-b892-4fc1-aae7-27cf15f2beb1
+    content: Business rules
+    children:
+      - ccdc71bf-5114-4047-bd5f-64378eb4e513
+      - c5f46f96-3b60-4b78-950d-589e7e3e369f
+      - 956dfa82-53f9-47a7-8677-2c32581e23f9
+      - e7950eaa-5282-4c52-96f8-ffd8afadba77
+      - b9b5d68a-41b4-47e3-82d9-f194b9e9fb51
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccdc71bf-5114-4047-bd5f-64378eb4e513:
+    id: ccdc71bf-5114-4047-bd5f-64378eb4e513
+    content: The register-binding source field distinguishes workflow-start from workflow-advance
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5f46f96-3b60-4b78-950d-589e7e3e369f:
+    id: c5f46f96-3b60-4b78-950d-589e7e3e369f
+    content: A binding change driven by sibling iteration (decomposition + recurse hand-off) within a workflow run is silent — the workflow is the user's authority
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  956dfa82-53f9-47a7-8677-2c32581e23f9:
+    id: 956dfa82-53f9-47a7-8677-2c32581e23f9
+    content: workflow-start on an already-bound session still shows the rebind confirmation dialog naming both nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7950eaa-5282-4c52-96f8-ffd8afadba77:
+    id: e7950eaa-5282-4c52-96f8-ffd8afadba77
+    content: While a rebind dialog is pending for a terminal, sends to that terminal are blocked
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9b5d68a-41b4-47e3-82d9-f194b9e9fb51:
+    id: b9b5d68a-41b4-47e3-82d9-f194b9e9fb51
+    content: Cancelling the dialog leaves the binding intact and clears any optimistically-set collaboratingNodeId for the target
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79452835-0b6b-4cb8-bba4-f4123859f32c:
+    id: 79452835-0b6b-4cb8-bba4-f4123859f32c
+    content: Acceptance criteria
+    children:
+      - 0e3ffb7d-d26f-45b3-a07b-fcf2824f39a1
+      - 401e3921-d7b4-4384-b8b6-4db7211b5ed5
+      - b49687bd-45ae-4948-a1d2-068f58b54b5a
+      - 9f9cdf87-4ed4-45fc-9226-a2ccd2fd35b5
+      - f742d5fd-3dc1-41fd-ace2-95b92db37694
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e3ffb7d-d26f-45b3-a07b-fcf2824f39a1:
+    id: 0e3ffb7d-d26f-45b3-a07b-fcf2824f39a1
+    content: A workflow that decomposes into N siblings and recurses through them rebinds silently at each sibling hand-off, with no dialog shown at any of the N transitions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  401e3921-d7b4-4384-b8b6-4db7211b5ed5:
+    id: 401e3921-d7b4-4384-b8b6-4db7211b5ed5
+    content: Linear step advance produces no dialog and no binding change because register-binding is a no-op against the unchanged working-node UUID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b49687bd-45ae-4948-a1d2-068f58b54b5a:
+    id: b49687bd-45ae-4948-a1d2-068f58b54b5a
+    content: Starting a workflow whose route reuses a session already bound to another node shows the rebind confirmation dialog naming both nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f9cdf87-4ed4-45fc-9226-a2ccd2fd35b5:
+    id: 9f9cdf87-4ed4-45fc-9226-a2ccd2fd35b5
+    content: Attempting to send to a terminal whose rebind dialog is open surfaces a toast and does not paste into the terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f742d5fd-3dc1-41fd-ace2-95b92db37694:
+    id: f742d5fd-3dc1-41fd-ace2-95b92db37694
+    content: Cancelling the dialog leaves no node stuck in collaboratingNodeId state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a965aef8-7f8b-4820-9f50-076c70b3461d:
+    id: a965aef8-7f8b-4820-9f50-076c70b3461d
+    content: Implementation proposal
+    children:
+      - 593f9fd8-bfd3-479e-b91b-b4f1897e8a27
+      - 38ba5729-004e-4963-abca-8044db614a1f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  593f9fd8-bfd3-479e-b91b-b4f1897e8a27:
+    id: 593f9fd8-bfd3-479e-b91b-b4f1897e8a27
+    content: Approach
+    children:
+      - eae8d0ea-902e-49c3-b851-15108eee973e
+      - 7ad960e1-dc57-41ff-9110-66400f457c68
+      - 504dfab2-0a3e-42d7-8199-4d2b42368ea0
+      - a20d83bb-b905-476d-a650-967574593dc6
+      - 0e7aa813-d1b7-4ef1-a659-124e1f175bd6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eae8d0ea-902e-49c3-b851-15108eee973e:
+    id: eae8d0ea-902e-49c3-b851-15108eee973e
+    content: sendContentToTerminal sends source=workflow-advance in the marker context; startWorkflow sends source=workflow-start
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ad960e1-dc57-41ff-9110-66400f457c68:
+    id: 7ad960e1-dc57-41ff-9110-66400f457c68
+    content: Hook script forwards the source field into the register-binding POST
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  504dfab2-0a3e-42d7-8199-4d2b42368ea0:
+    id: 504dfab2-0a3e-42d7-8199-4d2b42368ea0
+    content: Dispatcher routes workflow-advance through confirmRebind immediately on rebind-needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a20d83bb-b905-476d-a650-967574593dc6:
+    id: a20d83bb-b905-476d-a650-967574593dc6
+    content: Track per-terminal pendingRebindDialog state in renderer; gate executeInTerminal callers on it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e7aa813-d1b7-4ef1-a659-124e1f175bd6:
+    id: 0e7aa813-d1b7-4ef1-a659-124e1f175bd6
+    content: On cancel, clear collaboratingNodeId for the optimistically-marked target
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38ba5729-004e-4963-abca-8044db614a1f:
+    id: 38ba5729-004e-4963-abca-8044db614a1f
+    content: Touchpoints
+    children:
+      - 76112731-742e-446e-b4e1-3d13eb3fea33
+      - 3b13abe4-d71d-4a98-b0cd-6fd460ca6ba8
+      - 66871e07-eeac-4492-a16a-2b845825293a
+      - 990f3a33-c3a2-4b0b-bc61-78b76d7c3a70
+      - 781b9cc3-5129-4d96-9b7a-3183a88a58e9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76112731-742e-446e-b4e1-3d13eb3fea33:
+    id: 76112731-742e-446e-b4e1-3d13eb3fea33
+    content: src/main/services/hookScripts.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b13abe4-d71d-4a98-b0cd-6fd460ca6ba8:
+    id: 3b13abe4-d71d-4a98-b0cd-6fd460ca6ba8
+    content: src/main/services/hookEventDispatcher.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66871e07-eeac-4492-a16a-2b845825293a:
+    id: 66871e07-eeac-4492-a16a-2b845825293a
+    content: src/main/services/sessionBindingRegistry.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  990f3a33-c3a2-4b0b-bc61-78b76d7c3a70:
+    id: 990f3a33-c3a2-4b0b-bc61-78b76d7c3a70
+    content: src/renderer/store/tree/actions/sendActions.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  781b9cc3-5129-4d96-9b7a-3183a88a58e9:
+    id: 781b9cc3-5129-4d96-9b7a-3183a88a58e9
+    content: src/renderer/components/ui/RebindConfirmationDialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdec1f01-8006-4cbc-8899-0d2dd5d8d174:
+    id: bdec1f01-8006-4cbc-8899-0d2dd5d8d174
+    content: TDD tests written — red, awaiting implementation
+    children:
+      - ac00802f-6033-43fc-94cf-95cb3b85fd0c
+      - adc32358-bfb2-484e-8955-b726b695b93f
+      - 43bc8133-abf3-4630-8f4a-975ab3d839b0
+      - 90cbed31-234d-45bf-81b1-dbe53ba41053
+      - a9015e21-6665-4091-a65f-f7ed84780cd5
+      - 9373beeb-d6c5-421a-8878-b0d3da03ecbe
+      - c846ac85-af06-4c8a-b052-7063bed7ffe8
+      - 48aa35dc-9f62-4f8f-8e36-6c75f242e49e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac00802f-6033-43fc-94cf-95cb3b85fd0c:
+    id: ac00802f-6033-43fc-94cf-95cb3b85fd0c
+    content: Extended src/shared/utils/tests/arborescentMarker.test.ts with binding-marker source token grammar — buildArborescentMarker(uuid, source), extractArborescentMarkers returning bindingSource, backward-compat for sourceless markers, distinct workflow-start vs workflow-advance, malformed source token rejection
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adc32358-bfb2-484e-8955-b726b695b93f:
+    id: adc32358-bfb2-484e-8955-b726b695b93f
+    content: New src/main/services/tests/hookEventDispatcherSilentRebind.test.ts covers register-binding with source=workflow-advance silently confirming a rebind-needed, source=workflow-start leaving it pending for the dialog, missing/unknown source falling back to legacy pending, and silent rebind still flipping markerSeenThisTurn
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43bc8133-abf3-4630-8f4a-975ab3d839b0:
+    id: 43bc8133-abf3-4630-8f4a-975ab3d839b0
+    content: New src/renderer/store/tree/actions/tests/sendActionsSourceMarker.test.ts covers autonomousCollaborateInTerminal emitting the marker with source=workflow-advance / workflow-start when passed, action-mode still emitting no marker regardless of source, and manual collab still emitting target marker only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90cbed31-234d-45bf-81b1-dbe53ba41053:
+    id: 90cbed31-234d-45bf-81b1-dbe53ba41053
+    content: New src/renderer/store/tests/pendingRebindDialogStore.test.ts covers a new pendingRebindDialog store — markPending / clearPending / isPending lifecycle, per-terminal isolation, idempotence, defensive empty-id handling, clear()
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9015e21-6665-4091-a65f-f7ed84780cd5:
+    id: a9015e21-6665-4091-a65f-f7ed84780cd5
+    content: New src/renderer/store/tree/actions/tests/sendActionsRebindGate.test.ts covers collaborateInTerminal and autonomousCollaborateInTerminal short-circuiting and surfacing a toast when the target terminal has a pending rebind dialog, leaving other terminals unaffected, and resuming after clearPending
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9373beeb-d6c5-421a-8878-b0d3da03ecbe:
+    id: 9373beeb-d6c5-421a-8878-b0d3da03ecbe
+    content: Extended src/main/services/tests/userPromptSubmitHook.test.ts with it.todo entries for source forwarding from binding marker to register-binding POST (script template — exercised via integration)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c846ac85-af06-4c8a-b052-7063bed7ffe8:
+    id: c846ac85-af06-4c8a-b052-7063bed7ffe8
+    content: New src/renderer/components/ui/RebindConfirmationDialog/tests/useRebindConfirmationLifecycle.test.tsx with it.todo entries covering per-terminal pending state on REBIND_REQUEST_CHANNEL receive, clearing on confirm/cancel/timeout, and optimistic collaboratingNodeId cleanup on cancel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48aa35dc-9f62-4f8f-8e36-6c75f242e49e:
+    id: 48aa35dc-9f62-4f8f-8e36-6c75f242e49e
+    content: 'Verified red state — 19 new tests fail (expected: missing source field, missing pendingRebindDialogStore module, missing source param on autonomousCollaborateInTerminal, missing rebind-gate in send actions); existing tests still pass'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72e90256-0005-496d-ba3c-8b523d262b4d:
+    id: 72e90256-0005-496d-ba3c-8b523d262b4d
+    content: Implementation green
+    children:
+      - 929523d4-8278-434a-a1c7-1cf457ac1a6e
+      - 05b711d7-cbf2-42b1-bf65-aa89379131cc
+      - a8ff7743-29db-4cce-ac4f-32e9cd958a30
+      - 51ea6513-4af4-424c-8087-43776dbf7256
+      - e6eddc6c-aa3c-4742-85ac-b52695088546
+      - dc51384d-96e3-4c43-9acf-a27593011616
+      - f3938ff3-481c-4b2c-b646-206e0854e1d6
+      - 15ab99ca-a325-4373-a149-595d25f99871
+      - 3658805c-1033-42bd-b761-fd3b0197043f
+      - 93e7abc5-1f2c-4920-9313-2028dd6ee917
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  929523d4-8278-434a-a1c7-1cf457ac1a6e:
+    id: 929523d4-8278-434a-a1c7-1cf457ac1a6e
+    content: Extended src/shared/utils/arborescentMarker.ts — buildArborescentMarker(uuid, source?) emits the source token inline when provided; ARBORESCENT_MARKER_REGEX captures an optional kebab-case source; extractArborescentMarkers returns bindingSource alongside bindingNodeUuid
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05b711d7-cbf2-42b1-bf65-aa89379131cc:
+    id: 05b711d7-cbf2-42b1-bf65-aa89379131cc
+    content: Extended src/main/services/hookEventDispatcher.ts handleRegisterBinding — on result.kind=rebind-needed and payload.source=workflow-advance, calls registry.confirmRebind silently; other sources keep the existing pending-dialog behaviour
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8ff7743-29db-4cce-ac4f-32e9cd958a30:
+    id: a8ff7743-29db-4cce-ac4f-32e9cd958a30
+    content: Updated src/main/services/hookScripts.ts UserPromptSubmit hook to capture the source token from the binding marker via the updated regex, default to 'user-prompt-submit' when absent, and forward it on register-binding
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51ea6513-4af4-424c-8087-43776dbf7256:
+    id: 51ea6513-4af4-424c-8087-43776dbf7256
+    content: New src/renderer/store/pendingRebindDialogStore.ts — Zustand store with markPending/clearPending/isPending/clear, per-terminal Set tracking, idempotent and defensive against empty terminal ids
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6eddc6c-aa3c-4742-85ac-b52695088546:
+    id: e6eddc6c-aa3c-4742-85ac-b52695088546
+    content: Extended src/renderer/store/tree/actions/sendActions.ts — AutonomousSendSource type, autonomousCollaborateInTerminal takes a bindingSource argument and threads it into buildSendPayload → maybePrependRoutingMarker → buildArborescentMarker; collaborateInTerminal and autonomousCollaborateInTerminal both consult usePendingRebindDialogStore and short-circuit with a toast when the target terminal has a pending dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc51384d-96e3-4c43-9acf-a27593011616:
+    id: dc51384d-96e3-4c43-9acf-a27593011616
+    content: Wired src/renderer/store/tree/actions/workflowExecutionActions.ts — sendContentToTerminal takes a default 'workflow-advance' bindingSource that startWorkflowOnTerminal overrides to 'workflow-start' for spawn/reattach modes (recurse stays 'workflow-advance' for silent hand-off); threads source through clearSessionManager and claudeLaunchManager closures
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3938ff3-481c-4b2c-b646-206e0854e1d6:
+    id: f3938ff3-481c-4b2c-b646-206e0854e1d6
+    content: Wired src/renderer/store/tree/actions/workflowClaudeLaunch.ts and workflowClearSession.ts — both manager APIs accept and forward an optional bindingSource; pendingLaunch/pendingClears maps carry it through the async ack flow so it survives /clear and auto-launch round trips
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15ab99ca-a325-4373-a149-595d25f99871:
+    id: 15ab99ca-a325-4373-a149-595d25f99871
+    content: Wired src/renderer/components/ui/RebindConfirmationDialog/hooks/useRebindConfirmation.ts — on rebind-request, resolves the terminal via workflowSessionMap (searched across all open stores) and markPending; on confirm/cancel/timeout clears it; on cancel additionally clears any optimistic collaboratingNodeId equal to the rebind's newNodeId across the file stores
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3658805c-1033-42bd-b761-fd3b0197043f:
+    id: 3658805c-1033-42bd-b761-fd3b0197043f
+    content: All 47 new US-C tests pass; type-check clean; lint shows only the pre-existing import-cycle warnings on sendActions.ts and workflowExecutionActions.ts (not introduced by this PR). Six pre-existing failures from before US-B remain in sendActionsDirectPaste.test.ts and sendActionsUuidMarker.test.ts (stale tests expecting the old "manual send carries binding marker" behaviour that US-B already removed)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93e7abc5-1f2c-4920-9313-2028dd6ee917:
+    id: 93e7abc5-1f2c-4920-9313-2028dd6ee917
+    content: Patched the existing workflow execution / launch / clear tests' toHaveBeenCalledWith assertions to include the new bindingSource argument (undefined for legacy paths, expect.any(String) for new ones) — workflowClaudeLaunch, workflowAutoAccept, workflowAutoLaunch, workflowAdvancement, workflowExecuteRouting, workflowRestartSendsPrompt, workflowStartSession, workflowExecutionActions, clearAiSessionExecution, clearAiSessionHookHandler
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a22e02c0-cea3-4062-891f-9d0ea00b43b2:
+    id: a22e02c0-cea3-4062-891f-9d0ea00b43b2
+    content: AI refactor
+    children:
+      - c6eb5457-6203-4f47-9bf9-a2af2f2b3006
+      - 5fcab9f0-f14a-40ae-bb19-29e8760bde0d
+      - 05e96778-60c6-48bd-8ca0-d7530322f327
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6eb5457-6203-4f47-9bf9-a2af2f2b3006:
+    id: c6eb5457-6203-4f47-9bf9-a2af2f2b3006
+    content: Extracted markDialogPendingForSession and clearDialogPendingForSession helpers in useRebindConfirmation.ts — the find-terminal-then-clear pattern was duplicated across three call sites (rebind-request, onConfirm, onCancel, rebind-cancelled); the helpers fold the four-line dance into a single declarative call per site, keeping each lifecycle method focused on its specific intent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fcab9f0-f14a-40ae-bb19-29e8760bde0d:
+    id: 5fcab9f0-f14a-40ae-bb19-29e8760bde0d
+    content: No PRD or ticket references in production code, no abandoned files in the working tree, no mockReturnValueOnce in any new test
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05e96778-60c6-48bd-8ca0-d7530322f327:
+    id: 05e96778-60c6-48bd-8ca0-d7530322f327
+    content: All 47 US-C tests still pass after the refactor; type-check clean; lint on the refactored file clean
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36e37614-59dd-4423-b1f8-6efd54f71637:
+    id: 36e37614-59dd-4423-b1f8-6efd54f71637
+    content: review feedback
+    children:
+      - 05a88ae9-fc29-43bd-a246-f722833babe9
+      - 11a2475f-0f65-4029-878b-5fa152547bad
+      - 268e0552-8a51-4687-9ab4-29cc1daeb00c
+      - f9e73fd6-c4df-4ec6-8d6f-5799d09ffc9c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05a88ae9-fc29-43bd-a246-f722833babe9:
+    id: 05a88ae9-fc29-43bd-a246-f722833babe9
+    content: IMPORTANT — src/renderer/components/ui/RebindConfirmationDialog/tests/useRebindConfirmationLifecycle.test.tsx is 100% it.todo. The hook now owns three non-trivial side effects — per-terminal markPending/clearPending wiring against pendingRebindDialogStore, optimistic-collab cleanup on cancel and on REBIND_CANCELLED_CHANNEL (timeout), and first-match-wins terminal resolution across storeManager.getAllStores() — and none are exercised. Either land the bodies (mock window.electron.onRebindRequest / onRebindCancelled and storeManager.getAllStores, drive each lifecycle path, assert the store mutations and collaboratingNodeId reset) or delete the empty shell so the file does not advertise coverage that does not exist.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11a2475f-0f65-4029-878b-5fa152547bad:
+    id: 11a2475f-0f65-4029-878b-5fa152547bad
+    content: IMPORTANT — src/main/services/tests/userPromptSubmitHook.test.ts US-C section is also all it.todo. The shared extractArborescentMarkers grammar is unit-covered, but the hook script's locally-inlined HOOK_BINDING_MARKER_REGEX → stripMarkers → postRegisterBinding(source) chain has no live test. Risk is contained because the script regex is derived from ARBORESCENT_MARKER_REGEX.source so they cannot diverge, but the JS-side parsing/forwarding still has no end-to-end assertion. Either add a script-evaluation harness (spawn the script with a piped JSON prompt, observe the HTTP body for source=workflow-advance) or accept the gap and document the integration-only coverage rationale on the describe block.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  268e0552-8a51-4687-9ab4-29cc1daeb00c:
+    id: 268e0552-8a51-4687-9ab4-29cc1daeb00c
+    content: 'CLEAN — Reviewer confirmed the items explicitly flagged in the review brief are all sound: hook-script regex cannot drift from the shared marker regex (it interpolates .source), source-token spoofing is bounded by the loopback bearer-auth on the hook server, bindingSource correctly survives the launch+clear+ack retry cycles via the pendingLaunch / pendingClears Map entries, the linear-step-advance AC is covered by hookEventDispatcherSilentRebind.test.ts:131 "workflow-advance on the same node is a no-op", and first-match-wins in markDialogPendingForSession is acceptable under the one-terminal-per-session invariant'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9e73fd6-c4df-4ec6-8d6f-5799d09ffc9c:
+    id: f9e73fd6-c4df-4ec6-8d6f-5799d09ffc9c
+    content: LOW (not flagged at >=80, recorded for awareness) — terminalStore.sendNodeToTerminal / executeNodeInTerminal (right-click manual paste paths) bypass isRebindDialogPending. They don't emit binding markers so they cannot trigger a fresh rebind, but they CAN paste into a terminal mid-dialog. Reviewer judged the impact as low because the dialog is modal in practice; revisit if the dialog ever becomes non-modal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5921ab3-b9b6-4245-a604-b881ca80389d:
+    id: e5921ab3-b9b6-4245-a604-b881ca80389d
+    content: AI code review resolution
+    children:
+      - e2ef5740-de45-4bb2-80c5-133156a91758
+      - e4adf94e-d9d5-43b2-826f-47e132e86b48
+      - 6fe0cc00-3f7b-4cd8-8436-dff5dc73c2ea
+      - 02b5054f-6835-40c7-b2c1-582725b68763
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2ef5740-de45-4bb2-80c5-133156a91758:
+    id: e2ef5740-de45-4bb2-80c5-133156a91758
+    content: 'Major fixed — IMPORTANT 1: landed 9 real test bodies in useRebindConfirmationLifecycle.test.tsx covering the three previously-untested side effects — per-terminal markPending on rebind-request, clearPending on confirm/cancel/timeout, no pending entry when workflowSessionMap has no terminal for the session, optimistic collaboratingNodeId cleared on cancel when it matches newNodeId, preserved on confirm, preserved when it points elsewhere, and the same cleanup runs on timeout. Mocks: window.electron.onRebindRequest / onRebindCancelled (captured-callback pattern), storeManager.getAllStores (returns array of stub stores with workflowSessionMap and collaboratingNodeId getState/setState pair). 9/9 pass.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4adf94e-d9d5-43b2-826f-47e132e86b48:
+    id: e4adf94e-d9d5-43b2-826f-47e132e86b48
+    content: 'Skipped with rationale — IMPORTANT 2: did NOT add a script-evaluation harness for the userPromptSubmitHook US-C section. The entire userPromptSubmitHook.test.ts file has been it.todo since PR2 by codebase convention — the hook script is a Node template-string evaluated as a child process. Instead, extended the describe-block comment to make the integration-only rationale explicit and pin which unit files DO cover the depended-on pieces (shared marker grammar, dispatcher silent rebind, sendActions emission), and note that the hook regex interpolates ARBORESCENT_MARKER_REGEX.source so it cannot drift. Coverage gap acknowledged, not patched.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fe0cc00-3f7b-4cd8-8436-dff5dc73c2ea:
+    id: 6fe0cc00-3f7b-4cd8-8436-dff5dc73c2ea
+    content: 'Skipped — LOW raw-paste bypass: terminalStore.sendNodeToTerminal / executeNodeInTerminal still bypass the rebind-dialog gate. Reviewer''s own judgment was that this is acceptable while the dialog is modal in practice. No fix needed in this PR.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02b5054f-6835-40c7-b2c1-582725b68763:
+    id: 02b5054f-6835-40c7-b2c1-582725b68763
+    content: All 56 US-C tests pass (47 + 9 new lifecycle); type-check clean; lint unchanged from previous step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22ce8f1b-5ee4-4c26-9422-2145d449b770:
+    id: 22ce8f1b-5ee4-4c26-9422-2145d449b770
+    content: Run test pass & fix
+    children:
+      - 50859784-88de-403b-a150-c279a183166d
+      - bd174f31-8eff-4273-a1aa-7ef3e90b1c08
+      - 4b50514b-2318-4b8c-9f43-6fc86fdfea70
+      - 54963ad5-141f-444e-8dd5-d554e1081a42
+      - c15989fd-9a6d-4859-b006-47666db5812d
+      - cedd19c6-8823-4931-b756-1a056bc9d3c2
+      - fc4d300b-d560-41b8-8977-ec796499ff01
+      - 81b592b8-5c6b-482e-9776-2f5e872ab3b9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50859784-88de-403b-a150-c279a183166d:
+    id: 50859784-88de-403b-a150-c279a183166d
+    content: 'AC 1 (decomposition + recurse N silent transitions) — impl: maybePrependRoutingMarker emits ARBORESCENT_NODE marker with bindingSource for autonomous-terminal sends; startWorkflowOnTerminal mode=''recurse'' sets source=workflow-advance; dispatcher handleRegisterBinding silently confirmRebinds on source=workflow-advance + rebind-needed. Tested in hookEventDispatcherSilentRebind.test.ts ("workflow-advance source flips the binding silently when rebind-needed") and sendActionsSourceMarker.test.ts ("autonomousCollaborateInTerminal emits the binding marker with source=workflow-advance")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd174f31-8eff-4273-a1aa-7ef3e90b1c08:
+    id: bd174f31-8eff-4273-a1aa-7ef3e90b1c08
+    content: 'AC 2 (linear step advance no-op) — impl: SessionBindingRegistry.register returns kind=''no-op'' when newNodeId equals existing binding (existing pre-US-C behaviour); dispatcher does NOT call confirmRebind on no-op. Tested in hookEventDispatcherSilentRebind.test.ts ("workflow-advance on the same node is a no-op — registry stays put, no rebind, no listener call") — pendingRebind=null, rebindListener not called'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b50514b-2318-4b8c-9f43-6fc86fdfea70:
+    id: 4b50514b-2318-4b8c-9f43-6fc86fdfea70
+    content: 'AC 3 (workflow-start on bound session → dialog) — impl: dispatcher''s source-routing branch only fires confirmRebind on source=workflow-advance; workflow-start leaves rebind-needed pending which propagates through onRebindRequest → RebindIpcBridge → renderer dialog. Tested in hookEventDispatcherSilentRebind.test.ts ("workflow-start source on an existing binding leaves the rebind pending so the dialog can fire") — registry.pendingRebind=NODE_B, lookup still=NODE_A'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54963ad5-141f-444e-8dd5-d554e1081a42:
+    id: 54963ad5-141f-444e-8dd5-d554e1081a42
+    content: 'AC 4 (send to pending-dialog terminal → toast, no paste) — impl: collaborateInTerminal and autonomousCollaborateInTerminal in sendActions.ts check isRebindDialogPending(terminalId) and short-circuit with notifyRebindDialogBlocked toast before any executeInTerminal call. Tested in sendActionsRebindGate.test.ts — verified for both action paths, verified toast surfaced, verified untouched on a different terminal, verified resume after clearPending'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c15989fd-9a6d-4859-b006-47666db5812d:
+    id: c15989fd-9a6d-4859-b006-47666db5812d
+    content: 'AC 5 (cancel clears optimistic collaboratingNodeId) — impl: useRebindConfirmation onCancel calls clearOptimisticCollaboratingNode(newNodeId); same cleanup runs on onRebindCancelled (timeout). Tested in useRebindConfirmationLifecycle.test.tsx ("on cancel, if collaboratingNodeId equals the newNodeId... clears it on the file store", "on confirm, collaboratingNodeId is preserved", "on cancel, if collaboratingNodeId is null or points elsewhere, leaves it alone", "on timeout cancel, the same cleanup runs")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cedd19c6-8823-4931-b756-1a056bc9d3c2:
+    id: cedd19c6-8823-4931-b756-1a056bc9d3c2
+    content: No implementation present without a corresponding AC — every piece of new code (source token in marker grammar, pendingRebindDialogStore, rebind gate in sendActions, source threading through workflow execution / launch / clear managers, useRebindConfirmation lifecycle wiring) maps directly back to an AC or business rule
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc4d300b-d560-41b8-8977-ec796499ff01:
+    id: fc4d300b-d560-41b8-8977-ec796499ff01
+    content: Test plan risks covered — silent rebind via source (hookEventDispatcherSilentRebind), markerSeenThisTurn preserved on silent rebind (same file), pendingRebindDialog lifecycle including per-terminal isolation (pendingRebindDialogStore), gate behaviour on both action paths plus toast and resume (sendActionsRebindGate), useRebindConfirmation lifecycle including no-terminal-mapped edge case (useRebindConfirmationLifecycle); the previously-incomplete it.todo coverage on the lifecycle hook is now filled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81b592b8-5c6b-482e-9776-2f5e872ab3b9:
+    id: 81b592b8-5c6b-482e-9776-2f5e872ab3b9
+    content: All 56 US-C tests pass; type-check clean; lint unchanged from previous step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60554247-3f4a-495b-a2c7-9e988c2dd0f3:
+    id: 60554247-3f4a-495b-a2c7-9e988c2dd0f3
+    content: Documentation
+    children:
+      - 78193d2e-27b5-43c1-be7a-5b0bb0a39464
+      - efd0b80d-7b32-460a-9055-c550180677d2
+      - f9012e88-4530-4192-915b-4579325974dd
+      - 9991b4bf-720f-4782-b6d9-f6d89075ac87
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78193d2e-27b5-43c1-be7a-5b0bb0a39464:
+    id: 78193d2e-27b5-43c1-be7a-5b0bb0a39464
+    content: Refined the existing "Rebind confirmation" entry under Unreleased > Features in CHANGELOG.md — renamed to "Rebind confirmation only on workflow-start, never mid-run" and the body now states explicitly that sibling hand-offs from decomposition + recurse, step advances, manual sends, and freeform iterations all route silently, plus that sends to a terminal with the dialog open are blocked with a toast so a stray send cannot race a still-pending binding. This consolidates the US-B "Manual sends keep the workflow's binding" line and US-C's silent-recurse + send-gate into a single coherent description of the dialog's scope from the user's perspective
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efd0b80d-7b32-460a-9055-c550180677d2:
+    id: efd0b80d-7b32-460a-9055-c550180677d2
+    content: No new docs/ file needed — US-C is a UX-tightening fix on an already-documented surface (the rebind dialog). docs/workflow.md and docs/workflows.md describe Send, Revise after discussion, recurse, and decomposition correctly without claiming anything that US-C invalidates
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9012e88-4530-4192-915b-4579325974dd:
+    id: f9012e88-4530-4192-915b-4579325974dd
+    content: No reference to removed functionality — nothing was removed in US-C; existing behaviours were scoped more tightly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9991b4bf-720f-4782-b6d9-f6d89075ac87:
+    id: 9991b4bf-720f-4782-b6d9-f6d89075ac87
+    content: No implementation-detail leakage — the entry is phrased in terms of user gestures (Start Workflow, recurse hand-off, dialog interaction, send-while-dialog-open) without mentioning source tokens, dispatcher branches, or the pendingRebindDialogStore
     children: []
     metadata:
       status: completed
