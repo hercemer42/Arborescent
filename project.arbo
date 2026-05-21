@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-21T15:30:05.890Z'
+updated: '2026-05-21T15:43:39.439Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -92494,8 +92494,7 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children:
-      - f6ad8536-8200-4280-92f6-657b79b76b64
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115692,6 +115691,7 @@ nodes:
       - 1de5d605-7933-482e-925c-c73558a15765
       - f0e92a59-8c4b-4fba-9cb2-1f755f058f77
       - e5809ad7-88b1-47ae-be5b-0432229ef68e
+      - 48d475c6-e2d8-4964-ba1c-7b45573fd65c
     metadata:
       status: pending
       isBlueprint: true
@@ -124805,7 +124805,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 48d475c6-e2d8-4964-ba1c-7b45573fd65c
+      - bc12f7cc-b175-450a-9ebf-9b579c29805c
     metadata:
       status: pending
       isBlueprint: true
@@ -152869,83 +152869,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  f6ad8536-8200-4280-92f6-657b79b76b64:
-    id: f6ad8536-8200-4280-92f6-657b79b76b64
-    content: |-
-      # [x] Remove the 10-minute step timeout indicator
-      ## [x] worktree
-      ### [x] vscode://file//Users/brianfox/dev/Arborescent-remove-step-timeout-indicator
-      ## [x] üìÑ Product spec
-      ### [x] Context
-      #### [x] Workflow steps currently get a red dot decoration and a toast notification when their elapsed runtime exceeds 10 minutes
-      #### [x] The threshold was meant to surface stuck steps, but in practice it fires for normal long-running AI and shell operations
-      ### [x] User
-      #### [x] Arborescent users running workflow steps that legitimately take longer than 10 minutes (AI generation, builds, long shell tasks)
-      ### [x] Current experience
-      #### [x] The 10-minute indicator triggers frequently during normal use, producing toast spam and red-dot noise on healthy steps
-      #### [x] Users have learned to ignore the signal, which is the worst possible state for a notification
-      ### [x] Goal
-      #### [x] Stop crying wolf on normal step duration by removing the timeout-based red dot and toast entirely
-      ### [x] Business rules
-      #### [x] Workflow steps must not display a red dot based on elapsed runtime
-      #### [x] No toast notification fires when a step crosses any time threshold
-      #### [x] Existing step-state indicators (running, complete, failed) remain unchanged
-      #### [x] Removal applies uniformly to all step types ‚Äî no opt-in or per-step override
-      ### [x] Acceptance criteria
-      #### [x] A step running longer than 10 minutes shows no red dot
-      #### [x] No toast appears when a step crosses 10 minutes
-      #### [x] Step status transitions (start, complete, fail) continue to render their existing indicators correctly
-      #### [x] No dead code, timer, store field, or IPC channel remains in the renderer or main process solely supporting the removed indicator
-      #### [x] Tests covering the 10-minute indicator are removed or updated, not skipped
-      ## [x] üîß Implementation proposal
-      ### [x] Approach
-      #### [x] Locate the elapsed-time tracker and threshold check in the workflow step component and its store/selector, delete the red-dot rendering branch and the toast dispatch, and remove any main-process timer or IPC plumbing that exists only for this signal
-      ### [x] Touchpoints
-      #### [x] Workflow step component ‚Äî red dot rendering branch
-      #### [x] Workflow step store or selector ‚Äî elapsed-time state and threshold check
-      #### [x] Toast / feedback service ‚Äî timeout toast trigger
-      #### [-] Main process timer or IPC channel if it exists solely for this feature
-      #### [x] Tests covering the 10-minute indicator behaviour
-      ### [x] Constraints to call out
-      #### [x] Confirm no other surface (e.g. a passive step-duration display) reuses the elapsed-time state before deleting it ‚Äî if shared, remove only the indicator and toast trigger, not the underlying tracking
-      ## [x] Chunking decision
-      ### [x] Ship as a single chunk ‚Äî pure removal, no value in splitting
-      ## [x] Challenges and pushback
-      ### [x] Removal is preferred over raising the threshold or making it configurable, because a setting for a signal users already ignore adds UI surface without restoring trust
-      ### [x] If a passive, non-decorated step-duration readout would help spot genuinely stuck steps, treat it as a separate follow-up ‚Äî out of scope here
-      ## [x] Technical refinement
-      ### [x] Complications
-      #### [x] The red dot may double as the indicator for genuinely failed/errored steps ‚Äî verify the failure-state styling does not share the same class or selector before deleting CSS, or failure visibility regresses silently
-      #### [x] The elapsed-time tracker may be a ticking interval in the main process or a setInterval in the renderer ‚Äî confirm which side owns it so the corresponding teardown (clearInterval, IPC channel unregistration) is complete
-      #### [x] Toast service may be wired to dispatch from a generic "step warning" channel ‚Äî only remove the timeout caller, not the channel itself, if other warnings use it
-      #### [x] Out of scope: any replacement passive duration display, configurable threshold, or telemetry on long-running steps
-      #### [x] ROI is favourable ‚Äî pure deletion, no migration, no rollout sequencing; the only risk is over-deleting shared state
-      ### [x] Approach summary
-      #### [x] Pure deletion in the renderer workflow-step path (component red-dot branch, store threshold selector, toast dispatch) plus any main-process timer that exists only for this signal ‚Äî nothing new lands
-      #### [x] Non-obvious: the red dot styling and the elapsed-time state are the two places most likely to be shared with the failure indicator or a future duration display ‚Äî audit before deleting either, keep them if shared
-      #### [x] No data, file-format, or IPC-protocol changes; ship as one chunk with the affected tests removed in the same commit
-      ## [x] Failing TDD tests added at src/renderer/store/tree/actions/tests/workflowStepTimeoutRemoval.test.ts ‚Äî 5/5 red, asserting no stuck state, no stuck toast, no stuck alert, and no resumeStuckNode action after removal
-      ## [x] Implementation complete ‚Äî feature removed: deleted workflowStepTimeouts.ts and its tests, stripped 'stuck' state from WorkflowExecutionEntry / ExecutionState / 25 inline test types, removed markNodeStuck/resumeStuckNode/stepTimeouts manager/DEFAULT_STEP_TIMEOUT_MINUTES from workflowExecutionActions, removed clearStepTimeout deps from workflowHookEventHandler and workflowDisruptionReactions, stripped onResumeStuckNode plumbing across StatusArea/useWorkflowExecutionOverlay/useWorkflowSubmenu/useNodeContextMenu/NodeContent, deleted .stuck CSS, removed stepTimeoutMinutes preference + schema + interface, replaced TDD test now green at 5/5 and all 9 touched suites pass 225/225; type-check clean, lint clean on production files (test no-floating-promises is pre-existing master debt); two unrelated pre-existing failures (sendActions* and workflowExecution.test.ts integration) reproduce identically on master
-      ## [x] Verification summary ‚Äî all items confirmed against the worktree at /Users/brianfox/dev/Arborescent-remove-step-timeout-indicator: workflowStepTimeouts.ts is gone, workflowStepTimeoutRemoval.test.ts present, and zero matches for stuck/resumeStuckNode/stepTimeoutMinutes/markNodeStuck across the five key production files (workflowExecutionActions.ts, workflowHelpers.ts, StatusArea.tsx, NodeContent.css, preferencesStore.ts); the only undone item is the "main process timer or IPC channel" touchpoint, correctly marked [-] because the timer lived entirely in the renderer (setTimeout inside workflowStepTimeouts.ts) ‚Äî there was no main-process timer or dedicated IPC channel to remove
-      ## [x] AI refactor pass complete ‚Äî diff is pure deletion (881 lines removed, 44 added across 48 files); no leftover clearStepTimeout/stuck/stepTimeoutMinutes references in any test mock; useWorkflowExecutionOverlay rewrite uses useCallback + getState() per project perf conventions and no inline styles or JSDoc; TDD test follows the established inline-harness pattern used by every sibling test in actions/tests (the project has no tests/fixtures/ directory); no abandoned attempts in git status; type-check clean, ESLint clean on all touched production files (lone pre-existing import/no-cycle warning unrelated to this change), 9 touched suites green at 225/225
-      ## [x] review feedback ‚Äî pr-review-toolkit:code-reviewer ran on the 48-file diff against master and returned a clean verdict with no must-fixes: (1) cleanup is complete ‚Äî no production references remain to stuck/resumeStuckNode/stepTimeoutMinutes/markNodeStuck/clearStepTimeout/StepTimeoutManager/DEFAULT_STEP_TIMEOUT_MINUTES/workflowStepTimeouts.ts; the lone match for the word "stuck" outside the new TDD test is a colloquial use in an it.todo string at recurseZombieState.test.ts:40 ("leave the orchestrator stuck"), unrelated to the removed state literal; (2) the narrowed WorkflowExecutionEntry.state union ('running' | 'awaiting-validation') type-checks against every consumer (useWorkflowSubmenu, StatusArea, useWorkflowExecutionOverlay, mcpStepOutputApplierService); (3) call-site coherence ‚Äî clearStepTimeout was only ever clearTimeout-on-a-Map-entry with no other side effect, so removing it from the NeedsReview→awaiting-validation transition, checkpoint Stop transition, manual-move disruption path, and autonomous-feedback recovery path is safe; (4) schema migration is safe ‚Äî Zod is non-strict by default, so UserPreferencesSchema.parse on an existing prefs file still carrying stepTimeoutMinutes will silently strip the unknown key, no breakage on upgrade; (5) new test file harness matches sibling workflow*.test.ts files (same vi.mock style, same makeBaseState/createWorkflowExecutionActions shape); four of the five tests are meaningful behavioral checks against an hour of fake-timer advancement and the fifth ('exposes no resumeStuckNode action') is borderline tautological since the type system already excludes it, but kept as a cheap regression guard against partial-revert reintroduction. Nice-to-haves are limited to the bulk-mechanical test type union narrowing already done. No follow-up edits required.
-    children:
-      - d1669fc6-6f7e-4e57-9114-5f31975223ab
-      - 9c17585e-c27f-4ef7-a27a-eca8424e8aeb
-      - 0e1d462d-650d-4dfa-9a88-34ba8eec2662
-      - 0c4943f9-d610-47ed-b589-79e6e829d809
-      - 9058f47f-d18f-449c-b701-2779f1414ec5
-      - d4c96c2f-37ec-4778-aeb2-3317b411842d
-      - 3d4ccef7-c20b-4b65-8bbc-8e0add27081b
-      - d4ff3eec-d7ad-464f-a821-8bc7e57cdc6b
-      - 077843c6-9501-4d28-b6c2-1c737039b0e0
-      - 772c1f01-039b-41b0-ab2f-2cf85cf6e998
-    metadata:
-      status: completed
-      expanded: false
-      deleted: false
-      plugins: {}
-      sessionId: 54e692fc-a226-4fcc-b48c-85fdc2e390a5
   5ac2a323-1547-487c-a21e-3619764f4504:
     id: 5ac2a323-1547-487c-a21e-3619764f4504
     content: worktree
@@ -153575,546 +153498,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  d1669fc6-6f7e-4e57-9114-5f31975223ab:
-    id: d1669fc6-6f7e-4e57-9114-5f31975223ab
-    content: worktree
-    children:
-      - 2b9db6ef-aed6-4145-80b7-b10d2aff579f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b9db6ef-aed6-4145-80b7-b10d2aff579f:
-    id: 2b9db6ef-aed6-4145-80b7-b10d2aff579f
-    content: vscode://file//Users/brianfox/dev/Arborescent-remove-step-timeout-indicator
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c17585e-c27f-4ef7-a27a-eca8424e8aeb:
-    id: 9c17585e-c27f-4ef7-a27a-eca8424e8aeb
-    content: üìÑ Product spec
-    children:
-      - ef2b3e1e-a2e8-4513-b6c4-19e706834317
-      - fcab2084-43eb-45da-ace8-40af3ab3d6e6
-      - d818ab40-23f4-4737-be8e-27dd7639d8a0
-      - 972daa51-915b-4eb6-ba62-21a0a3504ca6
-      - e72a78d5-db78-416e-a9c0-2336d8d3c8ed
-      - 11204822-1b0c-4a2f-af1a-c9704c306bec
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef2b3e1e-a2e8-4513-b6c4-19e706834317:
-    id: ef2b3e1e-a2e8-4513-b6c4-19e706834317
-    content: Context
-    children:
-      - 0c0297fd-ff2b-4394-94a6-89e7b75de4ec
-      - b4b3dfd0-b543-42d3-8029-8f60d499984a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c0297fd-ff2b-4394-94a6-89e7b75de4ec:
-    id: 0c0297fd-ff2b-4394-94a6-89e7b75de4ec
-    content: Workflow steps currently get a red dot decoration and a toast notification when their elapsed runtime exceeds 10 minutes
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4b3dfd0-b543-42d3-8029-8f60d499984a:
-    id: b4b3dfd0-b543-42d3-8029-8f60d499984a
-    content: The threshold was meant to surface stuck steps, but in practice it fires for normal long-running AI and shell operations
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fcab2084-43eb-45da-ace8-40af3ab3d6e6:
-    id: fcab2084-43eb-45da-ace8-40af3ab3d6e6
-    content: User
-    children:
-      - 47eaa302-5a49-4cb1-b78e-be768d24e1bf
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  47eaa302-5a49-4cb1-b78e-be768d24e1bf:
-    id: 47eaa302-5a49-4cb1-b78e-be768d24e1bf
-    content: Arborescent users running workflow steps that legitimately take longer than 10 minutes (AI generation, builds, long shell tasks)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d818ab40-23f4-4737-be8e-27dd7639d8a0:
-    id: d818ab40-23f4-4737-be8e-27dd7639d8a0
-    content: Current experience
-    children:
-      - bb6e119b-1e4c-49c7-b934-68a299a0afcd
-      - 9efc896b-0d98-495f-b298-41ae1b7df939
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bb6e119b-1e4c-49c7-b934-68a299a0afcd:
-    id: bb6e119b-1e4c-49c7-b934-68a299a0afcd
-    content: The 10-minute indicator triggers frequently during normal use, producing toast spam and red-dot noise on healthy steps
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9efc896b-0d98-495f-b298-41ae1b7df939:
-    id: 9efc896b-0d98-495f-b298-41ae1b7df939
-    content: Users have learned to ignore the signal, which is the worst possible state for a notification
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  972daa51-915b-4eb6-ba62-21a0a3504ca6:
-    id: 972daa51-915b-4eb6-ba62-21a0a3504ca6
-    content: Goal
-    children:
-      - 227aea95-b4a1-4174-a32a-623ae3f68732
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  227aea95-b4a1-4174-a32a-623ae3f68732:
-    id: 227aea95-b4a1-4174-a32a-623ae3f68732
-    content: Stop crying wolf on normal step duration by removing the timeout-based red dot and toast entirely
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e72a78d5-db78-416e-a9c0-2336d8d3c8ed:
-    id: e72a78d5-db78-416e-a9c0-2336d8d3c8ed
-    content: Business rules
-    children:
-      - 07b160e7-a239-477f-9e5c-3f0bd235da56
-      - 26ebb52d-beec-4a6f-bcbf-c7717f8e642b
-      - b4e9dde5-553a-4eb6-a803-dec1603615ba
-      - 14415b82-4bab-4805-a606-a67cbed27b6f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  07b160e7-a239-477f-9e5c-3f0bd235da56:
-    id: 07b160e7-a239-477f-9e5c-3f0bd235da56
-    content: Workflow steps must not display a red dot based on elapsed runtime
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  26ebb52d-beec-4a6f-bcbf-c7717f8e642b:
-    id: 26ebb52d-beec-4a6f-bcbf-c7717f8e642b
-    content: No toast notification fires when a step crosses any time threshold
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4e9dde5-553a-4eb6-a803-dec1603615ba:
-    id: b4e9dde5-553a-4eb6-a803-dec1603615ba
-    content: Existing step-state indicators (running, complete, failed) remain unchanged
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14415b82-4bab-4805-a606-a67cbed27b6f:
-    id: 14415b82-4bab-4805-a606-a67cbed27b6f
-    content: Removal applies uniformly to all step types ‚Äî no opt-in or per-step override
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  11204822-1b0c-4a2f-af1a-c9704c306bec:
-    id: 11204822-1b0c-4a2f-af1a-c9704c306bec
-    content: Acceptance criteria
-    children:
-      - d9029701-9980-42d4-874f-4beea3d15579
-      - a863bf3c-ab73-4353-b096-cabe7760f2b7
-      - df5ec652-bdbe-45c4-8c41-9dc83b80fbd8
-      - 12e048c8-1851-42f0-9262-3407d9b2fbbe
-      - b80854ed-79e3-4729-ad84-9d77b215fb92
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d9029701-9980-42d4-874f-4beea3d15579:
-    id: d9029701-9980-42d4-874f-4beea3d15579
-    content: A step running longer than 10 minutes shows no red dot
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a863bf3c-ab73-4353-b096-cabe7760f2b7:
-    id: a863bf3c-ab73-4353-b096-cabe7760f2b7
-    content: No toast appears when a step crosses 10 minutes
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  df5ec652-bdbe-45c4-8c41-9dc83b80fbd8:
-    id: df5ec652-bdbe-45c4-8c41-9dc83b80fbd8
-    content: Step status transitions (start, complete, fail) continue to render their existing indicators correctly
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  12e048c8-1851-42f0-9262-3407d9b2fbbe:
-    id: 12e048c8-1851-42f0-9262-3407d9b2fbbe
-    content: No dead code, timer, store field, or IPC channel remains in the renderer or main process solely supporting the removed indicator
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b80854ed-79e3-4729-ad84-9d77b215fb92:
-    id: b80854ed-79e3-4729-ad84-9d77b215fb92
-    content: Tests covering the 10-minute indicator are removed or updated, not skipped
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0e1d462d-650d-4dfa-9a88-34ba8eec2662:
-    id: 0e1d462d-650d-4dfa-9a88-34ba8eec2662
-    content: üîß Implementation proposal
-    children:
-      - 4eb28248-ed2d-4047-aa78-222b5de7951f
-      - 66ef6022-e0dc-45d0-bd85-2d9957b5d216
-      - 2db67395-30da-4caf-a5b2-cff7b2b22367
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4eb28248-ed2d-4047-aa78-222b5de7951f:
-    id: 4eb28248-ed2d-4047-aa78-222b5de7951f
-    content: Approach
-    children:
-      - 2f82f325-4d83-4414-bf91-c1e0322965c9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f82f325-4d83-4414-bf91-c1e0322965c9:
-    id: 2f82f325-4d83-4414-bf91-c1e0322965c9
-    content: Locate the elapsed-time tracker and threshold check in the workflow step component and its store/selector, delete the red-dot rendering branch and the toast dispatch, and remove any main-process timer or IPC plumbing that exists only for this signal
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  66ef6022-e0dc-45d0-bd85-2d9957b5d216:
-    id: 66ef6022-e0dc-45d0-bd85-2d9957b5d216
-    content: Touchpoints
-    children:
-      - 737ae8dc-ad93-457a-ae43-1b8e720bc506
-      - 2f8db3d7-9d31-4051-9fcf-50012abc1800
-      - b0fe3ea0-cabb-4302-9b0f-4fe63ef4b0ef
-      - b5a1270d-9967-49a3-9c4e-9b90ad8d8519
-      - 7b68d037-c507-4a35-9eef-8e8dc33d7240
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  737ae8dc-ad93-457a-ae43-1b8e720bc506:
-    id: 737ae8dc-ad93-457a-ae43-1b8e720bc506
-    content: Workflow step component ‚Äî red dot rendering branch
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f8db3d7-9d31-4051-9fcf-50012abc1800:
-    id: 2f8db3d7-9d31-4051-9fcf-50012abc1800
-    content: Workflow step store or selector ‚Äî elapsed-time state and threshold check
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b0fe3ea0-cabb-4302-9b0f-4fe63ef4b0ef:
-    id: b0fe3ea0-cabb-4302-9b0f-4fe63ef4b0ef
-    content: Toast / feedback service ‚Äî timeout toast trigger
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5a1270d-9967-49a3-9c4e-9b90ad8d8519:
-    id: b5a1270d-9967-49a3-9c4e-9b90ad8d8519
-    content: Main process timer or IPC channel if it exists solely for this feature
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b68d037-c507-4a35-9eef-8e8dc33d7240:
-    id: 7b68d037-c507-4a35-9eef-8e8dc33d7240
-    content: Tests covering the 10-minute indicator behaviour
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2db67395-30da-4caf-a5b2-cff7b2b22367:
-    id: 2db67395-30da-4caf-a5b2-cff7b2b22367
-    content: Constraints to call out
-    children:
-      - 4aa974f2-101d-4ad0-bfd1-57e8d7fb6cd2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4aa974f2-101d-4ad0-bfd1-57e8d7fb6cd2:
-    id: 4aa974f2-101d-4ad0-bfd1-57e8d7fb6cd2
-    content: Confirm no other surface (e.g. a passive step-duration display) reuses the elapsed-time state before deleting it ‚Äî if shared, remove only the indicator and toast trigger, not the underlying tracking
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c4943f9-d610-47ed-b589-79e6e829d809:
-    id: 0c4943f9-d610-47ed-b589-79e6e829d809
-    content: Chunking decision
-    children:
-      - 9b9a5a64-3064-4f7d-adc6-12795be8c6a3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b9a5a64-3064-4f7d-adc6-12795be8c6a3:
-    id: 9b9a5a64-3064-4f7d-adc6-12795be8c6a3
-    content: Ship as a single chunk ‚Äî pure removal, no value in splitting
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9058f47f-d18f-449c-b701-2779f1414ec5:
-    id: 9058f47f-d18f-449c-b701-2779f1414ec5
-    content: Challenges and pushback
-    children:
-      - 53e997d9-4611-4842-af2a-e02bc065a560
-      - af4352e6-9d2e-43ff-aeb9-ff73b10b9cb3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  53e997d9-4611-4842-af2a-e02bc065a560:
-    id: 53e997d9-4611-4842-af2a-e02bc065a560
-    content: Removal is preferred over raising the threshold or making it configurable, because a setting for a signal users already ignore adds UI surface without restoring trust
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  af4352e6-9d2e-43ff-aeb9-ff73b10b9cb3:
-    id: af4352e6-9d2e-43ff-aeb9-ff73b10b9cb3
-    content: If a passive, non-decorated step-duration readout would help spot genuinely stuck steps, treat it as a separate follow-up ‚Äî out of scope here
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d4c96c2f-37ec-4778-aeb2-3317b411842d:
-    id: d4c96c2f-37ec-4778-aeb2-3317b411842d
-    content: Technical refinement
-    children:
-      - 90e1b1ac-544d-474d-9e5c-d133e09bc104
-      - e27d7eab-c403-48a3-afd4-37258c6b7cc0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  90e1b1ac-544d-474d-9e5c-d133e09bc104:
-    id: 90e1b1ac-544d-474d-9e5c-d133e09bc104
-    content: Complications
-    children:
-      - 378f6a05-ea09-42ed-a3a5-a4892f682496
-      - 5137c6c0-5674-492b-bba5-6ab2529970da
-      - c22d13f3-3fa2-432a-a292-a0c92f1ff635
-      - fc5e142d-2680-43c0-8974-123b48c47add
-      - c09274bf-9b14-4176-8548-9ff36611a082
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  378f6a05-ea09-42ed-a3a5-a4892f682496:
-    id: 378f6a05-ea09-42ed-a3a5-a4892f682496
-    content: The red dot may double as the indicator for genuinely failed/errored steps ‚Äî verify the failure-state styling does not share the same class or selector before deleting CSS, or failure visibility regresses silently
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5137c6c0-5674-492b-bba5-6ab2529970da:
-    id: 5137c6c0-5674-492b-bba5-6ab2529970da
-    content: The elapsed-time tracker may be a ticking interval in the main process or a setInterval in the renderer ‚Äî confirm which side owns it so the corresponding teardown (clearInterval, IPC channel unregistration) is complete
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c22d13f3-3fa2-432a-a292-a0c92f1ff635:
-    id: c22d13f3-3fa2-432a-a292-a0c92f1ff635
-    content: Toast service may be wired to dispatch from a generic "step warning" channel ‚Äî only remove the timeout caller, not the channel itself, if other warnings use it
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc5e142d-2680-43c0-8974-123b48c47add:
-    id: fc5e142d-2680-43c0-8974-123b48c47add
-    content: 'Out of scope: any replacement passive duration display, configurable threshold, or telemetry on long-running steps'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c09274bf-9b14-4176-8548-9ff36611a082:
-    id: c09274bf-9b14-4176-8548-9ff36611a082
-    content: ROI is favourable ‚Äî pure deletion, no migration, no rollout sequencing; the only risk is over-deleting shared state
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e27d7eab-c403-48a3-afd4-37258c6b7cc0:
-    id: e27d7eab-c403-48a3-afd4-37258c6b7cc0
-    content: Approach summary
-    children:
-      - f7b15807-ddd5-4493-8c10-cfa0a67287e9
-      - 7131bd22-214f-4dfd-9830-2eda568c26b5
-      - 831107e2-2965-4858-b474-039af21661d9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f7b15807-ddd5-4493-8c10-cfa0a67287e9:
-    id: f7b15807-ddd5-4493-8c10-cfa0a67287e9
-    content: Pure deletion in the renderer workflow-step path (component red-dot branch, store threshold selector, toast dispatch) plus any main-process timer that exists only for this signal ‚Äî nothing new lands
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7131bd22-214f-4dfd-9830-2eda568c26b5:
-    id: 7131bd22-214f-4dfd-9830-2eda568c26b5
-    content: 'Non-obvious: the red dot styling and the elapsed-time state are the two places most likely to be shared with the failure indicator or a future duration display ‚Äî audit before deleting either, keep them if shared'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  831107e2-2965-4858-b474-039af21661d9:
-    id: 831107e2-2965-4858-b474-039af21661d9
-    content: No data, file-format, or IPC-protocol changes; ship as one chunk with the affected tests removed in the same commit
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d4ccef7-c20b-4b65-8bbc-8e0add27081b:
-    id: 3d4ccef7-c20b-4b65-8bbc-8e0add27081b
-    content: Failing TDD tests added at src/renderer/store/tree/actions/tests/workflowStepTimeoutRemoval.test.ts ‚Äî 5/5 red, asserting no stuck state, no stuck toast, no stuck alert, and no resumeStuckNode action after removal
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d4ff3eec-d7ad-464f-a821-8bc7e57cdc6b:
-    id: d4ff3eec-d7ad-464f-a821-8bc7e57cdc6b
-    content: 'Implementation complete ‚Äî feature removed: deleted workflowStepTimeouts.ts and its tests, stripped ''stuck'' state from WorkflowExecutionEntry / ExecutionState / 25 inline test types, removed markNodeStuck/resumeStuckNode/stepTimeouts manager/DEFAULT_STEP_TIMEOUT_MINUTES from workflowExecutionActions, removed clearStepTimeout deps from workflowHookEventHandler and workflowDisruptionReactions, stripped onResumeStuckNode plumbing across StatusArea/useWorkflowExecutionOverlay/useWorkflowSubmenu/useNodeContextMenu/NodeContent, deleted .stuck CSS, removed stepTimeoutMinutes preference + schema + interface, replaced TDD test now green at 5/5 and all 9 touched suites pass 225/225; type-check clean, lint clean on production files (test no-floating-promises is pre-existing master debt); two unrelated pre-existing failures (sendActions* and workflowExecution.test.ts integration) reproduce identically on master'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  077843c6-9501-4d28-b6c2-1c737039b0e0:
-    id: 077843c6-9501-4d28-b6c2-1c737039b0e0
-    content: 'Verification summary ‚Äî all items confirmed against the worktree at /Users/brianfox/dev/Arborescent-remove-step-timeout-indicator: workflowStepTimeouts.ts is gone, workflowStepTimeoutRemoval.test.ts present, and zero matches for stuck/resumeStuckNode/stepTimeoutMinutes/markNodeStuck across the five key production files (workflowExecutionActions.ts, workflowHelpers.ts, StatusArea.tsx, NodeContent.css, preferencesStore.ts); the only undone item is the "main process timer or IPC channel" touchpoint, correctly marked [-] because the timer lived entirely in the renderer (setTimeout inside workflowStepTimeouts.ts) ‚Äî there was no main-process timer or dedicated IPC channel to remove'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  772c1f01-039b-41b0-ab2f-2cf85cf6e998:
-    id: 772c1f01-039b-41b0-ab2f-2cf85cf6e998
-    content: AI refactor pass complete ‚Äî diff is pure deletion (881 lines removed, 44 added across 48 files); no leftover clearStepTimeout/stuck/stepTimeoutMinutes references in any test mock; useWorkflowExecutionOverlay rewrite uses useCallback + getState() per project perf conventions and no inline styles or JSDoc; TDD test follows the established inline-harness pattern used by every sibling test in actions/tests (the project has no tests/fixtures/ directory); no abandoned attempts in git status; type-check clean, ESLint clean on all touched production files (lone pre-existing import/no-cycle warning unrelated to this change), 9 touched suites green at 225/225
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   171974eb-2081-4809-9624-df1e13ff9c6b:
     id: 171974eb-2081-4809-9624-df1e13ff9c6b
     content: Bug - can't write feedback to an unbound node
@@ -154630,6 +154013,1456 @@ nodes:
   150c9367-8cc6-41d0-92c7-693935ddc8b2:
     id: 150c9367-8cc6-41d0-92c7-693935ddc8b2
     content: Nit deferred — feedbackService tests mock parseMarkdown, so the markdown-side normalisation and feedback-side guard are not exercised together; reviewer rated below the action bar (confidence 60)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc12f7cc-b175-450a-9ebf-9b579c29805c:
+    id: bc12f7cc-b175-450a-9ebf-9b579c29805c
+    content: Remove the 10-minute step timeout indicator
+    children:
+      - 289f5849-7f3e-4188-b574-14c4f7b06d52
+      - 82ab563c-4c31-4997-82dc-2140948ff36e
+      - 838bdb06-99bc-4755-93cc-43ff0146281e
+      - a382a259-c575-49f0-90ef-fa7f08606f6f
+      - a62f2ccc-722e-4324-876e-506832a5334e
+      - 8632ec63-093b-4df5-9f6a-fef5eec643b0
+      - 1ba136b1-4220-48dc-8329-de95c91ba026
+      - 2000a4f5-9cd0-42f2-8b16-bef61676fe89
+      - f1bf6f7a-0dc9-4f9c-9a37-e9f279c7816e
+      - 54cda92c-c30e-42d4-83b4-f73b77b5b92a
+      - 501981c7-4641-4f02-9749-441f0282c703
+      - 7c2fb3a3-7908-44ab-b636-86b9649f2d7d
+      - beb68cca-2529-4656-9a7d-368fe2af8676
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 54e692fc-a226-4fcc-b48c-85fdc2e390a5
+  289f5849-7f3e-4188-b574-14c4f7b06d52:
+    id: 289f5849-7f3e-4188-b574-14c4f7b06d52
+    content: worktree
+    children:
+      - f0ada8b9-53a2-40fa-ab69-3a36eb954809
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0ada8b9-53a2-40fa-ab69-3a36eb954809:
+    id: f0ada8b9-53a2-40fa-ab69-3a36eb954809
+    content: vscode://file//Users/brianfox/dev/Arborescent-remove-step-timeout-indicator
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82ab563c-4c31-4997-82dc-2140948ff36e:
+    id: 82ab563c-4c31-4997-82dc-2140948ff36e
+    content: Product spec
+    children:
+      - 3da0ae65-626e-46de-aad4-469700757ecc
+      - f84acaed-1ae2-4b9b-9e3d-b761ac7a5708
+      - db0d5199-b9e5-4d63-8290-ac5b65532451
+      - 51b4b041-520f-475a-9e5f-2b4929657969
+      - 879fff70-b551-4522-8c4e-fd808d4eb699
+      - 94ffb9ef-7a01-4864-8a99-91095bb8b5c0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3da0ae65-626e-46de-aad4-469700757ecc:
+    id: 3da0ae65-626e-46de-aad4-469700757ecc
+    content: Context
+    children:
+      - a837d3de-09a3-4469-ba2b-886d616928bc
+      - 8154c2d4-00c1-46c6-8649-cef6f54ceb33
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a837d3de-09a3-4469-ba2b-886d616928bc:
+    id: a837d3de-09a3-4469-ba2b-886d616928bc
+    content: Workflow steps currently get a red dot decoration and a toast notification when their elapsed runtime exceeds 10 minutes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8154c2d4-00c1-46c6-8649-cef6f54ceb33:
+    id: 8154c2d4-00c1-46c6-8649-cef6f54ceb33
+    content: The threshold was meant to surface stuck steps, but in practice it fires for normal long-running AI and shell operations
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f84acaed-1ae2-4b9b-9e3d-b761ac7a5708:
+    id: f84acaed-1ae2-4b9b-9e3d-b761ac7a5708
+    content: User
+    children:
+      - 919dae9c-2727-47b7-b60a-3fd5808d3d31
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  919dae9c-2727-47b7-b60a-3fd5808d3d31:
+    id: 919dae9c-2727-47b7-b60a-3fd5808d3d31
+    content: Arborescent users running workflow steps that legitimately take longer than 10 minutes (AI generation, builds, long shell tasks)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db0d5199-b9e5-4d63-8290-ac5b65532451:
+    id: db0d5199-b9e5-4d63-8290-ac5b65532451
+    content: Current experience
+    children:
+      - 3098cafa-caac-49b0-8c08-7741a304a54e
+      - 29989715-c157-485d-8cca-b91b1db1817a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3098cafa-caac-49b0-8c08-7741a304a54e:
+    id: 3098cafa-caac-49b0-8c08-7741a304a54e
+    content: The 10-minute indicator triggers frequently during normal use, producing toast spam and red-dot noise on healthy steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29989715-c157-485d-8cca-b91b1db1817a:
+    id: 29989715-c157-485d-8cca-b91b1db1817a
+    content: Users have learned to ignore the signal, which is the worst possible state for a notification
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51b4b041-520f-475a-9e5f-2b4929657969:
+    id: 51b4b041-520f-475a-9e5f-2b4929657969
+    content: Goal
+    children:
+      - 55cd0ca4-07e1-495e-929d-263b9a7c7a61
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55cd0ca4-07e1-495e-929d-263b9a7c7a61:
+    id: 55cd0ca4-07e1-495e-929d-263b9a7c7a61
+    content: Stop crying wolf on normal step duration by removing the timeout-based red dot and toast entirely
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  879fff70-b551-4522-8c4e-fd808d4eb699:
+    id: 879fff70-b551-4522-8c4e-fd808d4eb699
+    content: Business rules
+    children:
+      - 9432ea99-ebac-436c-bb48-fd9a72e7a679
+      - dcea6ba3-5722-4b67-91ec-6006cb84a387
+      - 3fe0af97-c035-4c1a-ac61-8e34c0af7a67
+      - 0c7173e0-fa24-4415-b2e7-cc56477558ae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9432ea99-ebac-436c-bb48-fd9a72e7a679:
+    id: 9432ea99-ebac-436c-bb48-fd9a72e7a679
+    content: Workflow steps must not display a red dot based on elapsed runtime
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcea6ba3-5722-4b67-91ec-6006cb84a387:
+    id: dcea6ba3-5722-4b67-91ec-6006cb84a387
+    content: No toast notification fires when a step crosses any time threshold
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fe0af97-c035-4c1a-ac61-8e34c0af7a67:
+    id: 3fe0af97-c035-4c1a-ac61-8e34c0af7a67
+    content: Existing step-state indicators (running, complete, failed) remain unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c7173e0-fa24-4415-b2e7-cc56477558ae:
+    id: 0c7173e0-fa24-4415-b2e7-cc56477558ae
+    content: Removal applies uniformly to all step types ‚Äî no opt-in or per-step override
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94ffb9ef-7a01-4864-8a99-91095bb8b5c0:
+    id: 94ffb9ef-7a01-4864-8a99-91095bb8b5c0
+    content: Acceptance criteria
+    children:
+      - c4bc8ad6-701b-4fd3-8132-63fbc06e58f7
+      - 73ee8702-2d13-4004-9509-0af8fb8ad5b6
+      - 57ebec3d-c24f-4af9-ae10-f945d059c2bc
+      - 7580e331-d967-4c46-8acb-142143166347
+      - 6f1e3b21-58df-417e-aad7-5db07a7ea68c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4bc8ad6-701b-4fd3-8132-63fbc06e58f7:
+    id: c4bc8ad6-701b-4fd3-8132-63fbc06e58f7
+    content: A step running longer than 10 minutes shows no red dot
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73ee8702-2d13-4004-9509-0af8fb8ad5b6:
+    id: 73ee8702-2d13-4004-9509-0af8fb8ad5b6
+    content: No toast appears when a step crosses 10 minutes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57ebec3d-c24f-4af9-ae10-f945d059c2bc:
+    id: 57ebec3d-c24f-4af9-ae10-f945d059c2bc
+    content: Step status transitions (start, complete, fail) continue to render their existing indicators correctly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7580e331-d967-4c46-8acb-142143166347:
+    id: 7580e331-d967-4c46-8acb-142143166347
+    content: No dead code, timer, store field, or IPC channel remains in the renderer or main process solely supporting the removed indicator
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f1e3b21-58df-417e-aad7-5db07a7ea68c:
+    id: 6f1e3b21-58df-417e-aad7-5db07a7ea68c
+    content: Tests covering the 10-minute indicator are removed or updated, not skipped
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  838bdb06-99bc-4755-93cc-43ff0146281e:
+    id: 838bdb06-99bc-4755-93cc-43ff0146281e
+    content: Implementation proposal
+    children:
+      - 77c46303-9175-42b8-80f4-271fe517cdb0
+      - 83fb76e0-f10f-4819-9b58-712d3bf7bde1
+      - ae0ffd65-615a-4584-b0fd-2c5439c33498
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77c46303-9175-42b8-80f4-271fe517cdb0:
+    id: 77c46303-9175-42b8-80f4-271fe517cdb0
+    content: Approach
+    children:
+      - 7a1e1444-62f9-4ce1-af8b-b9ce6baaff9c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a1e1444-62f9-4ce1-af8b-b9ce6baaff9c:
+    id: 7a1e1444-62f9-4ce1-af8b-b9ce6baaff9c
+    content: Locate the elapsed-time tracker and threshold check in the workflow step component and its store/selector, delete the red-dot rendering branch and the toast dispatch, and remove any main-process timer or IPC plumbing that exists only for this signal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83fb76e0-f10f-4819-9b58-712d3bf7bde1:
+    id: 83fb76e0-f10f-4819-9b58-712d3bf7bde1
+    content: Touchpoints
+    children:
+      - 08e53e9f-813a-4d0e-af6a-26c6049ba3b9
+      - 0c7bcf6c-54c7-47aa-9ffc-f1b2701028e9
+      - e93b13e8-abe2-40fd-9027-c58e87dcfbcc
+      - 7dc3c4cb-ac50-400b-93f7-7841d309ee0e
+      - c44aa3ee-362c-40a6-8774-7a6b0cfba09b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08e53e9f-813a-4d0e-af6a-26c6049ba3b9:
+    id: 08e53e9f-813a-4d0e-af6a-26c6049ba3b9
+    content: Workflow step component ‚Äî red dot rendering branch
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c7bcf6c-54c7-47aa-9ffc-f1b2701028e9:
+    id: 0c7bcf6c-54c7-47aa-9ffc-f1b2701028e9
+    content: Workflow step store or selector ‚Äî elapsed-time state and threshold check
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e93b13e8-abe2-40fd-9027-c58e87dcfbcc:
+    id: e93b13e8-abe2-40fd-9027-c58e87dcfbcc
+    content: Toast / feedback service ‚Äî timeout toast trigger
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dc3c4cb-ac50-400b-93f7-7841d309ee0e:
+    id: 7dc3c4cb-ac50-400b-93f7-7841d309ee0e
+    content: Main process timer or IPC channel if it exists solely for this feature
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c44aa3ee-362c-40a6-8774-7a6b0cfba09b:
+    id: c44aa3ee-362c-40a6-8774-7a6b0cfba09b
+    content: Tests covering the 10-minute indicator behaviour
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae0ffd65-615a-4584-b0fd-2c5439c33498:
+    id: ae0ffd65-615a-4584-b0fd-2c5439c33498
+    content: Constraints to call out
+    children:
+      - a7cb5874-8be2-427f-8c00-6e34fd662664
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7cb5874-8be2-427f-8c00-6e34fd662664:
+    id: a7cb5874-8be2-427f-8c00-6e34fd662664
+    content: Confirm no other surface (e.g. a passive step-duration display) reuses the elapsed-time state before deleting it ‚Äî if shared, remove only the indicator and toast trigger, not the underlying tracking
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a382a259-c575-49f0-90ef-fa7f08606f6f:
+    id: a382a259-c575-49f0-90ef-fa7f08606f6f
+    content: Chunking decision
+    children:
+      - 13903bfb-bc6b-45b4-9065-9f68d94bb001
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13903bfb-bc6b-45b4-9065-9f68d94bb001:
+    id: 13903bfb-bc6b-45b4-9065-9f68d94bb001
+    content: Ship as a single chunk ‚Äî pure removal, no value in splitting
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a62f2ccc-722e-4324-876e-506832a5334e:
+    id: a62f2ccc-722e-4324-876e-506832a5334e
+    content: Challenges and pushback
+    children:
+      - be97a74b-9b38-4d61-96c0-fc3ce8577530
+      - 1471217d-6ba3-4494-9ffa-75745207cedc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be97a74b-9b38-4d61-96c0-fc3ce8577530:
+    id: be97a74b-9b38-4d61-96c0-fc3ce8577530
+    content: Removal is preferred over raising the threshold or making it configurable, because a setting for a signal users already ignore adds UI surface without restoring trust
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1471217d-6ba3-4494-9ffa-75745207cedc:
+    id: 1471217d-6ba3-4494-9ffa-75745207cedc
+    content: If a passive, non-decorated step-duration readout would help spot genuinely stuck steps, treat it as a separate follow-up ‚Äî out of scope here
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8632ec63-093b-4df5-9f6a-fef5eec643b0:
+    id: 8632ec63-093b-4df5-9f6a-fef5eec643b0
+    content: Technical refinement
+    children:
+      - 25e4433e-71dc-4580-8fcb-ce5f334334b5
+      - c5279ee9-2fd3-4790-88c7-557e9bdeb265
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25e4433e-71dc-4580-8fcb-ce5f334334b5:
+    id: 25e4433e-71dc-4580-8fcb-ce5f334334b5
+    content: Complications
+    children:
+      - 2c9bfbcf-dae0-4d9b-8c42-af85412efb9c
+      - 5e1f8f72-5918-4333-80af-497915917781
+      - 81a93d8e-f58a-4bb8-b9b7-5c009fc54679
+      - 480491ea-070e-4e23-a3d2-fc9dce5545b5
+      - 0d99b2f6-ae57-48aa-a745-37c6efaf1d49
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c9bfbcf-dae0-4d9b-8c42-af85412efb9c:
+    id: 2c9bfbcf-dae0-4d9b-8c42-af85412efb9c
+    content: The red dot may double as the indicator for genuinely failed/errored steps ‚Äî verify the failure-state styling does not share the same class or selector before deleting CSS, or failure visibility regresses silently
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e1f8f72-5918-4333-80af-497915917781:
+    id: 5e1f8f72-5918-4333-80af-497915917781
+    content: The elapsed-time tracker may be a ticking interval in the main process or a setInterval in the renderer ‚Äî confirm which side owns it so the corresponding teardown (clearInterval, IPC channel unregistration) is complete
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81a93d8e-f58a-4bb8-b9b7-5c009fc54679:
+    id: 81a93d8e-f58a-4bb8-b9b7-5c009fc54679
+    content: Toast service may be wired to dispatch from a generic "step warning" channel ‚Äî only remove the timeout caller, not the channel itself, if other warnings use it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  480491ea-070e-4e23-a3d2-fc9dce5545b5:
+    id: 480491ea-070e-4e23-a3d2-fc9dce5545b5
+    content: 'Out of scope: any replacement passive duration display, configurable threshold, or telemetry on long-running steps'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d99b2f6-ae57-48aa-a745-37c6efaf1d49:
+    id: 0d99b2f6-ae57-48aa-a745-37c6efaf1d49
+    content: ROI is favourable ‚Äî pure deletion, no migration, no rollout sequencing; the only risk is over-deleting shared state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5279ee9-2fd3-4790-88c7-557e9bdeb265:
+    id: c5279ee9-2fd3-4790-88c7-557e9bdeb265
+    content: Approach summary
+    children:
+      - b1ef7d53-6277-4753-bb50-52e92886e2a7
+      - 7f0b4a69-d4fe-4e68-a8ce-2298f3a5a7f0
+      - 35dc66a8-43fe-4fbf-a3a1-eb280f834f03
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1ef7d53-6277-4753-bb50-52e92886e2a7:
+    id: b1ef7d53-6277-4753-bb50-52e92886e2a7
+    content: Pure deletion in the renderer workflow-step path (component red-dot branch, store threshold selector, toast dispatch) plus any main-process timer that exists only for this signal ‚Äî nothing new lands
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f0b4a69-d4fe-4e68-a8ce-2298f3a5a7f0:
+    id: 7f0b4a69-d4fe-4e68-a8ce-2298f3a5a7f0
+    content: 'Non-obvious: the red dot styling and the elapsed-time state are the two places most likely to be shared with the failure indicator or a future duration display ‚Äî audit before deleting either, keep them if shared'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35dc66a8-43fe-4fbf-a3a1-eb280f834f03:
+    id: 35dc66a8-43fe-4fbf-a3a1-eb280f834f03
+    content: No data, file-format, or IPC-protocol changes; ship as one chunk with the affected tests removed in the same commit
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ba136b1-4220-48dc-8329-de95c91ba026:
+    id: 1ba136b1-4220-48dc-8329-de95c91ba026
+    content: Failing TDD tests
+    children:
+      - 4769c91e-fa9a-462d-9b7f-f41bd392c44c
+      - a44611cc-f6fa-4d15-9953-700b3df221ff
+      - 94f84bc3-9d3a-4f00-82fc-196a1d6a68ce
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4769c91e-fa9a-462d-9b7f-f41bd392c44c:
+    id: 4769c91e-fa9a-462d-9b7f-f41bd392c44c
+    content: Added at src/renderer/store/tree/actions/tests/workflowStepTimeoutRemoval.test.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a44611cc-f6fa-4d15-9953-700b3df221ff:
+    id: a44611cc-f6fa-4d15-9953-700b3df221ff
+    content: 5/5 initially red against the live feature
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94f84bc3-9d3a-4f00-82fc-196a1d6a68ce:
+    id: 94f84bc3-9d3a-4f00-82fc-196a1d6a68ce
+    content: Assertions
+    children:
+      - 0ab22d6e-7c2e-496d-a6bf-ce4e67acbb35
+      - 1afd3384-e25e-4015-875c-5a950333e749
+      - ad8052f4-d4ba-4dd2-8b2d-dd7ca94c8720
+      - f270011d-5a64-4b42-b74c-da1035156338
+      - 01f8a5cd-79a0-4d3e-92a8-85803c9326e6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ab22d6e-7c2e-496d-a6bf-ce4e67acbb35:
+    id: 0ab22d6e-7c2e-496d-a6bf-ce4e67acbb35
+    content: Node stays in running state after the legacy timeout interval elapses
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1afd3384-e25e-4015-875c-5a950333e749:
+    id: 1afd3384-e25e-4015-875c-5a950333e749
+    content: No execution entry transitions to the removed stuck state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad8052f4-d4ba-4dd2-8b2d-dd7ca94c8720:
+    id: ad8052f4-d4ba-4dd2-8b2d-dd7ca94c8720
+    content: No stuck toast surfaced through the toast store
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f270011d-5a64-4b42-b74c-da1035156338:
+    id: f270011d-5a64-4b42-b74c-da1035156338
+    content: No stuck workflow alert raised through the notification service
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01f8a5cd-79a0-4d3e-92a8-85803c9326e6:
+    id: 01f8a5cd-79a0-4d3e-92a8-85803c9326e6
+    content: No resumeStuckNode action exposed on the public surface
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2000a4f5-9cd0-42f2-8b16-bef61676fe89:
+    id: 2000a4f5-9cd0-42f2-8b16-bef61676fe89
+    content: Implementation
+    children:
+      - fbca9d94-033e-4fae-87f3-c51f8781a052
+      - a10da952-36d7-480d-a5e5-fecbcbe79d42
+      - bab5399e-5cbf-4447-b584-0ea16ec2a1eb
+      - 53d173e3-f776-4ac1-b843-392dc1d0b8de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbca9d94-033e-4fae-87f3-c51f8781a052:
+    id: fbca9d94-033e-4fae-87f3-c51f8781a052
+    content: Production deletions
+    children:
+      - ae09e1c7-841f-42c3-9a78-f736d2a1e4b6
+      - 2f39e483-225d-49a2-9337-af6b1331d0e0
+      - 2a0dddd1-cee4-4298-a0d7-8ab997f0d39e
+      - 5167dfe3-4745-435e-b680-84f92f7af1f6
+      - d83ffa6d-c8b4-43f5-b51a-3d6a4dd69a40
+      - 79e3d644-a48f-46be-ad84-18b6d375d9f8
+      - 75a293c7-60e6-49fa-a374-9ca17c0c5cc7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae09e1c7-841f-42c3-9a78-f736d2a1e4b6:
+    id: ae09e1c7-841f-42c3-9a78-f736d2a1e4b6
+    content: workflowStepTimeouts.ts and its test file deleted
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f39e483-225d-49a2-9337-af6b1331d0e0:
+    id: 2f39e483-225d-49a2-9337-af6b1331d0e0
+    content: '''stuck'' state stripped from WorkflowExecutionEntry / ExecutionState / 25 inline test types'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a0dddd1-cee4-4298-a0d7-8ab997f0d39e:
+    id: 2a0dddd1-cee4-4298-a0d7-8ab997f0d39e
+    content: markNodeStuck / resumeStuckNode / stepTimeouts manager / DEFAULT_STEP_TIMEOUT_MINUTES removed from workflowExecutionActions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5167dfe3-4745-435e-b680-84f92f7af1f6:
+    id: 5167dfe3-4745-435e-b680-84f92f7af1f6
+    content: clearStepTimeout dep removed from workflowHookEventHandler and workflowDisruptionReactions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d83ffa6d-c8b4-43f5-b51a-3d6a4dd69a40:
+    id: d83ffa6d-c8b4-43f5-b51a-3d6a4dd69a40
+    content: onResumeStuckNode plumbing stripped across StatusArea / useWorkflowExecutionOverlay / useWorkflowSubmenu / useNodeContextMenu / NodeContent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79e3d644-a48f-46be-ad84-18b6d375d9f8:
+    id: 79e3d644-a48f-46be-ad84-18b6d375d9f8
+    content: .stuck CSS removed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75a293c7-60e6-49fa-a374-9ca17c0c5cc7:
+    id: 75a293c7-60e6-49fa-a374-9ca17c0c5cc7
+    content: stepTimeoutMinutes preference + schema + interface removed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a10da952-36d7-480d-a5e5-fecbcbe79d42:
+    id: a10da952-36d7-480d-a5e5-fecbcbe79d42
+    content: Test status
+    children:
+      - 3caf3132-6bb8-4726-a109-df9bd766ec52
+      - 9501c559-f15e-4827-a1d3-d5be5f3171e0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3caf3132-6bb8-4726-a109-df9bd766ec52:
+    id: 3caf3132-6bb8-4726-a109-df9bd766ec52
+    content: TDD test green at 5/5
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9501c559-f15e-4827-a1d3-d5be5f3171e0:
+    id: 9501c559-f15e-4827-a1d3-d5be5f3171e0
+    content: 9 touched suites pass 225/225
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bab5399e-5cbf-4447-b584-0ea16ec2a1eb:
+    id: bab5399e-5cbf-4447-b584-0ea16ec2a1eb
+    content: Standard checks
+    children:
+      - 1c944781-22ef-4074-b90c-c8cf5cd670ec
+      - 4b4726ec-31ce-4cd5-b63b-5760afe62132
+      - f8d6c8c2-0d00-45bc-a546-aa28af24d0d3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c944781-22ef-4074-b90c-c8cf5cd670ec:
+    id: 1c944781-22ef-4074-b90c-c8cf5cd670ec
+    content: Type-check clean
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b4726ec-31ce-4cd5-b63b-5760afe62132:
+    id: 4b4726ec-31ce-4cd5-b63b-5760afe62132
+    content: Lint clean on production files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8d6c8c2-0d00-45bc-a546-aa28af24d0d3:
+    id: f8d6c8c2-0d00-45bc-a546-aa28af24d0d3
+    content: test no-floating-promises is pre-existing master debt
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53d173e3-f776-4ac1-b843-392dc1d0b8de:
+    id: 53d173e3-f776-4ac1-b843-392dc1d0b8de
+    content: Pre-existing failures unrelated to this change
+    children:
+      - c054bc62-25af-4dad-8ccb-109333d07984
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c054bc62-25af-4dad-8ccb-109333d07984:
+    id: c054bc62-25af-4dad-8ccb-109333d07984
+    content: sendActions* and workflowExecution.test.ts integration reproduce identically on master
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1bf6f7a-0dc9-4f9c-9a37-e9f279c7816e:
+    id: f1bf6f7a-0dc9-4f9c-9a37-e9f279c7816e
+    content: Verification summary
+    children:
+      - 4ff6fba9-6c83-4376-ae87-5f4ec47cbde0
+      - e32c0e2f-e7f0-44b7-bf60-0e519b48cb28
+      - c2ccabd7-4603-4dc0-9595-f66c63f2ea39
+      - a332e4a5-7480-4dec-bcb4-1a6d1ef8c60f
+      - 1032c121-31ea-40a0-beb5-0f98dea98fb6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ff6fba9-6c83-4376-ae87-5f4ec47cbde0:
+    id: 4ff6fba9-6c83-4376-ae87-5f4ec47cbde0
+    content: Worktree at /Users/brianfox/dev/Arborescent-remove-step-timeout-indicator
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e32c0e2f-e7f0-44b7-bf60-0e519b48cb28:
+    id: e32c0e2f-e7f0-44b7-bf60-0e519b48cb28
+    content: workflowStepTimeouts.ts is gone
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2ccabd7-4603-4dc0-9595-f66c63f2ea39:
+    id: c2ccabd7-4603-4dc0-9595-f66c63f2ea39
+    content: workflowStepTimeoutRemoval.test.ts present
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a332e4a5-7480-4dec-bcb4-1a6d1ef8c60f:
+    id: a332e4a5-7480-4dec-bcb4-1a6d1ef8c60f
+    content: Zero matches for stuck / resumeStuckNode / stepTimeoutMinutes / markNodeStuck across the five key production files
+    children:
+      - 7d902ed6-4be3-4ac6-880d-6110292b2102
+      - a0fb7a85-60f3-4273-becd-165550379c60
+      - 7f80b3e7-b775-4916-9f34-cca95b31bfce
+      - 283ca9da-c214-46a2-a35d-9d428e17275a
+      - d59e6b02-e547-48a6-9566-6dc47a101c97
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d902ed6-4be3-4ac6-880d-6110292b2102:
+    id: 7d902ed6-4be3-4ac6-880d-6110292b2102
+    content: workflowExecutionActions.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0fb7a85-60f3-4273-becd-165550379c60:
+    id: a0fb7a85-60f3-4273-becd-165550379c60
+    content: workflowHelpers.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f80b3e7-b775-4916-9f34-cca95b31bfce:
+    id: 7f80b3e7-b775-4916-9f34-cca95b31bfce
+    content: StatusArea.tsx
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  283ca9da-c214-46a2-a35d-9d428e17275a:
+    id: 283ca9da-c214-46a2-a35d-9d428e17275a
+    content: NodeContent.css
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d59e6b02-e547-48a6-9566-6dc47a101c97:
+    id: d59e6b02-e547-48a6-9566-6dc47a101c97
+    content: preferencesStore.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1032c121-31ea-40a0-beb5-0f98dea98fb6:
+    id: 1032c121-31ea-40a0-beb5-0f98dea98fb6
+    content: Only undone item is the "main process timer or IPC channel" touchpoint, correctly marked [-]
+    children:
+      - 91429052-1463-4369-8f3b-7608c82a307f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91429052-1463-4369-8f3b-7608c82a307f:
+    id: 91429052-1463-4369-8f3b-7608c82a307f
+    content: Timer lived entirely in the renderer (setTimeout inside workflowStepTimeouts.ts) ‚Äî no main-process timer or dedicated IPC channel to remove
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54cda92c-c30e-42d4-83b4-f73b77b5b92a:
+    id: 54cda92c-c30e-42d4-83b4-f73b77b5b92a
+    content: AI refactor pass
+    children:
+      - 19fdf916-8a06-4a5d-b21f-9ff83f7b8603
+      - 18bf7667-b08e-4122-98e0-a26b79e65959
+      - c3837346-43b5-479b-a6c6-d72a4ee6b6d1
+      - 482bd7f0-ab3c-4a3c-955f-0b1aae412511
+      - 06157951-f676-402a-beec-7c5c49f12c74
+      - 6fac8471-38d4-42a2-9b6a-a21d221fe458
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19fdf916-8a06-4a5d-b21f-9ff83f7b8603:
+    id: 19fdf916-8a06-4a5d-b21f-9ff83f7b8603
+    content: Diff is pure deletion
+    children:
+      - 337c8683-992d-40cc-94fc-962af8ceda9f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  337c8683-992d-40cc-94fc-962af8ceda9f:
+    id: 337c8683-992d-40cc-94fc-962af8ceda9f
+    content: 881 lines removed, 44 added across 48 files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18bf7667-b08e-4122-98e0-a26b79e65959:
+    id: 18bf7667-b08e-4122-98e0-a26b79e65959
+    content: No leftover clearStepTimeout / stuck / stepTimeoutMinutes references in any test mock
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3837346-43b5-479b-a6c6-d72a4ee6b6d1:
+    id: c3837346-43b5-479b-a6c6-d72a4ee6b6d1
+    content: useWorkflowExecutionOverlay rewrite
+    children:
+      - 0f5f80d1-5037-4e11-9a62-811b85f999c1
+      - 93f3d7bb-6f4d-440c-9504-9ade47c57b29
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f5f80d1-5037-4e11-9a62-811b85f999c1:
+    id: 0f5f80d1-5037-4e11-9a62-811b85f999c1
+    content: Uses useCallback + getState() per project perf conventions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93f3d7bb-6f4d-440c-9504-9ade47c57b29:
+    id: 93f3d7bb-6f4d-440c-9504-9ade47c57b29
+    content: No inline styles or JSDoc
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  482bd7f0-ab3c-4a3c-955f-0b1aae412511:
+    id: 482bd7f0-ab3c-4a3c-955f-0b1aae412511
+    content: TDD test follows the established inline-harness pattern used by every sibling test in actions/tests
+    children:
+      - 035ebf63-76aa-4e8f-9259-f4853c1441e6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  035ebf63-76aa-4e8f-9259-f4853c1441e6:
+    id: 035ebf63-76aa-4e8f-9259-f4853c1441e6
+    content: The project has no tests/fixtures/ directory
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06157951-f676-402a-beec-7c5c49f12c74:
+    id: 06157951-f676-402a-beec-7c5c49f12c74
+    content: No abandoned attempts in git status
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fac8471-38d4-42a2-9b6a-a21d221fe458:
+    id: 6fac8471-38d4-42a2-9b6a-a21d221fe458
+    content: Standard checks pass
+    children:
+      - c44354f8-48a9-40af-9a25-399fa373240f
+      - b650bf1e-afbc-4ad9-aadb-065501d0aa43
+      - bbed52c4-d682-4c3d-a073-d4cecb6decce
+      - eb3b6c17-765c-4d71-b49a-3306cdc03f28
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c44354f8-48a9-40af-9a25-399fa373240f:
+    id: c44354f8-48a9-40af-9a25-399fa373240f
+    content: Type-check clean
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b650bf1e-afbc-4ad9-aadb-065501d0aa43:
+    id: b650bf1e-afbc-4ad9-aadb-065501d0aa43
+    content: ESLint clean on all touched production files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbed52c4-d682-4c3d-a073-d4cecb6decce:
+    id: bbed52c4-d682-4c3d-a073-d4cecb6decce
+    content: Lone pre-existing import/no-cycle warning unrelated to this change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb3b6c17-765c-4d71-b49a-3306cdc03f28:
+    id: eb3b6c17-765c-4d71-b49a-3306cdc03f28
+    content: 9 touched suites green at 225/225
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  501981c7-4641-4f02-9749-441f0282c703:
+    id: 501981c7-4641-4f02-9749-441f0282c703
+    content: Review feedback
+    children:
+      - f0bdcf6c-65af-4a2f-a00c-97df64bf9e28
+      - 5ffe71aa-b1fe-4c65-932d-817633fc73a6
+      - 9563afc9-892e-4d19-90b7-e9bc35020eef
+      - 4ca8e011-9ad4-4b0a-90a6-eaaecb302529
+      - ec63167d-c1f4-472e-88a5-38f75b2742e1
+      - d6fb902c-abdf-47e7-9c10-ed0b8d14b0af
+      - 3456818f-f023-4995-8a11-aa8a401495a7
+      - 0d8a3eb8-203d-462f-9d49-d48a2a23e411
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0bdcf6c-65af-4a2f-a00c-97df64bf9e28:
+    id: f0bdcf6c-65af-4a2f-a00c-97df64bf9e28
+    content: pr-review-toolkit:code-reviewer ran on the 48-file diff against master
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ffe71aa-b1fe-4c65-932d-817633fc73a6:
+    id: 5ffe71aa-b1fe-4c65-932d-817633fc73a6
+    content: 'Verdict: clean, no must-fixes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9563afc9-892e-4d19-90b7-e9bc35020eef:
+    id: 9563afc9-892e-4d19-90b7-e9bc35020eef
+    content: Cleanup completeness
+    children:
+      - 8f445df6-cb25-404a-a6b1-8c492913d5c9
+      - d4ac6062-7702-472a-b5d9-01936db0c516
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f445df6-cb25-404a-a6b1-8c492913d5c9:
+    id: 8f445df6-cb25-404a-a6b1-8c492913d5c9
+    content: No production references remain to stuck / resumeStuckNode / stepTimeoutMinutes / markNodeStuck / clearStepTimeout / StepTimeoutManager / DEFAULT_STEP_TIMEOUT_MINUTES / workflowStepTimeouts.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4ac6062-7702-472a-b5d9-01936db0c516:
+    id: d4ac6062-7702-472a-b5d9-01936db0c516
+    content: Lone match for "stuck" outside the new TDD test is colloquial English in an it.todo at recurseZombieState.test.ts:40 ("leave the orchestrator stuck"), unrelated to the removed state literal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ca8e011-9ad4-4b0a-90a6-eaaecb302529:
+    id: 4ca8e011-9ad4-4b0a-90a6-eaaecb302529
+    content: Type narrowing
+    children:
+      - 5d60545c-2e39-4fd1-8f28-a80a3a070b16
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d60545c-2e39-4fd1-8f28-a80a3a070b16:
+    id: 5d60545c-2e39-4fd1-8f28-a80a3a070b16
+    content: WorkflowExecutionEntry.state union ('running' | 'awaiting-validation') type-checks against every consumer (useWorkflowSubmenu, StatusArea, useWorkflowExecutionOverlay, mcpStepOutputApplierService)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec63167d-c1f4-472e-88a5-38f75b2742e1:
+    id: ec63167d-c1f4-472e-88a5-38f75b2742e1
+    content: Call-site coherence
+    children:
+      - 3c86d97e-5ccc-4bfd-8306-eea1ec72358a
+      - a7c72ad2-346d-4ad0-aa87-115611f06705
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c86d97e-5ccc-4bfd-8306-eea1ec72358a:
+    id: 3c86d97e-5ccc-4bfd-8306-eea1ec72358a
+    content: clearStepTimeout was only ever clearTimeout-on-a-Map-entry with no other side effect
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7c72ad2-346d-4ad0-aa87-115611f06705:
+    id: a7c72ad2-346d-4ad0-aa87-115611f06705
+    content: Safe removal at NeedsReview‚Üíawaiting-validation transition, checkpoint Stop transition, manual-move disruption path, and autonomous-feedback recovery path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6fb902c-abdf-47e7-9c10-ed0b8d14b0af:
+    id: d6fb902c-abdf-47e7-9c10-ed0b8d14b0af
+    content: Schema migration
+    children:
+      - 38afa67f-2961-4bc5-81d6-d9109d6a4e2b
+      - cb49b6f1-5daa-4ec7-9358-f73e31b739ec
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38afa67f-2961-4bc5-81d6-d9109d6a4e2b:
+    id: 38afa67f-2961-4bc5-81d6-d9109d6a4e2b
+    content: Zod is non-strict by default
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb49b6f1-5daa-4ec7-9358-f73e31b739ec:
+    id: cb49b6f1-5daa-4ec7-9358-f73e31b739ec
+    content: UserPreferencesSchema.parse on an existing prefs file still carrying stepTimeoutMinutes will silently strip the unknown key, no breakage on upgrade
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3456818f-f023-4995-8a11-aa8a401495a7:
+    id: 3456818f-f023-4995-8a11-aa8a401495a7
+    content: New test file
+    children:
+      - 2773d2db-7f7c-4483-8a60-2fc3c1719452
+      - 696a82ac-fc12-4e65-bd42-0d49c7c17a7b
+      - 12c1a196-7878-4750-80de-d19bff5036d9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2773d2db-7f7c-4483-8a60-2fc3c1719452:
+    id: 2773d2db-7f7c-4483-8a60-2fc3c1719452
+    content: Harness matches sibling workflow*.test.ts files (same vi.mock style, same makeBaseState / createWorkflowExecutionActions shape)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  696a82ac-fc12-4e65-bd42-0d49c7c17a7b:
+    id: 696a82ac-fc12-4e65-bd42-0d49c7c17a7b
+    content: Four of the five tests are meaningful behavioral checks against an hour of fake-timer advancement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12c1a196-7878-4750-80de-d19bff5036d9:
+    id: 12c1a196-7878-4750-80de-d19bff5036d9
+    content: Fifth ('exposes no resumeStuckNode action') is borderline tautological since the type system already excludes it, but kept as a cheap regression guard against partial-revert reintroduction
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d8a3eb8-203d-462f-9d49-d48a2a23e411:
+    id: 0d8a3eb8-203d-462f-9d49-d48a2a23e411
+    content: No follow-up edits required
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c2fb3a3-7908-44ab-b636-86b9649f2d7d:
+    id: 7c2fb3a3-7908-44ab-b636-86b9649f2d7d
+    content: Test pass & fix audit
+    children:
+      - 5f9f39f0-3ad5-4051-b7ec-eeef7b1aed9a
+      - 9cd377eb-a840-4cdb-9b59-a21ca1ab3ba4
+      - 2c82bd19-0e12-40c2-ad42-602c5a172500
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f9f39f0-3ad5-4051-b7ec-eeef7b1aed9a:
+    id: 5f9f39f0-3ad5-4051-b7ec-eeef7b1aed9a
+    content: Acceptance criterion ‚Üí implementation mapping
+    children:
+      - f9fe4b29-1ce1-472f-a28a-bb6976ebb998
+      - 6ccbb32f-b86a-4445-bb9a-4fd861bd4e45
+      - dee41772-1182-4d94-9396-28e15e10d51c
+      - 4f4337b6-02a1-45e8-9feb-e46011750462
+      - d78df0cd-8c15-46cd-ba50-45fb28539771
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9fe4b29-1ce1-472f-a28a-bb6976ebb998:
+    id: f9fe4b29-1ce1-472f-a28a-bb6976ebb998
+    content: '"no red dot" ‚Üí .stuck CSS deletion + stuck branch removed from WorkflowOverlay + setTimeout machinery deleted'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ccbb32f-b86a-4445-bb9a-4fd861bd4e45:
+    id: 6ccbb32f-b86a-4445-bb9a-4fd861bd4e45
+    content: '"no toast" ‚Üí markNodeStuck function removed (was the only addToast call with /stuck/ message)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dee41772-1182-4d94-9396-28e15e10d51c:
+    id: dee41772-1182-4d94-9396-28e15e10d51c
+    content: '"existing indicators still render" ‚Üí running and awaiting-validation branches in WorkflowOverlay untouched; useWorkflowSubmenu.test.ts retains 3 running + 3 awaiting-validation cases covering the surviving paths; complete/fail transitions go through the StatusCheckbox not WorkflowOverlay so they''re unaffected'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f4337b6-02a1-45e8-9feb-e46011750462:
+    id: 4f4337b6-02a1-45e8-9feb-e46011750462
+    content: '"no dead code remains" ‚Üí grep audit (0 matches across 5 key production files) plus removal of stepTimeoutMinutes preference / schema / interface'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d78df0cd-8c15-46cd-ba50-45fb28539771:
+    id: d78df0cd-8c15-46cd-ba50-45fb28539771
+    content: '"tests removed or updated, not skipped" ‚Üí dedicated stuck-state describe blocks deleted, no .skip / .todo introduced; no empty tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cd377eb-a840-4cdb-9b59-a21ca1ab3ba4:
+    id: 9cd377eb-a840-4cdb-9b59-a21ca1ab3ba4
+    content: 'Final test run on touched suites: 9 files, 225/225 pass, 1 todo (pre-existing)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c82bd19-0e12-40c2-ad42-602c5a172500:
+    id: 2c82bd19-0e12-40c2-ad42-602c5a172500
+    content: No discrepancies to fix
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  beb68cca-2529-4656-9a7d-368fe2af8676:
+    id: beb68cca-2529-4656-9a7d-368fe2af8676
+    content: Documentation pass
+    children:
+      - bd9cf1a6-8c3a-4e8e-89f5-2052a76d59ff
+      - 7ef134fa-3c08-4d9a-83c2-efab20d7e552
+      - 15f2fb1c-8c3a-47f7-b1be-ad4c4c8162bf
+      - 024fe22b-69db-4691-b4e1-4aca1a8de727
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd9cf1a6-8c3a-4e8e-89f5-2052a76d59ff:
+    id: bd9cf1a6-8c3a-4e8e-89f5-2052a76d59ff
+    content: Removed-feature references scrubbed
+    children:
+      - 8163f679-11a9-40f8-b369-f6fc3f87a1c9
+      - cbd413f6-5452-481a-8191-4b6d24b135d2
+      - 4b2b1021-510f-445c-9d3a-659a4389e411
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8163f679-11a9-40f8-b369-f6fc3f87a1c9:
+    id: 8163f679-11a9-40f8-b369-f6fc3f87a1c9
+    content: docs/workflows.md ‚Äî deleted the entire "## Stuck steps" section
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbd413f6-5452-481a-8191-4b6d24b135d2:
+    id: cbd413f6-5452-481a-8191-4b6d24b135d2
+    content: docs/workflows.md ‚Äî rewrote the "Running a Workflow" no-activity sentence to point at right-click Stop Workflow instead of the removed timeout/stuck path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b2b1021-510f-445c-9d3a-659a4389e411:
+    id: 4b2b1021-510f-445c-9d3a-659a4389e411
+    content: docs/workflows.md ‚Äî updated the "Auto-launch Claude on Start" PATH-missing note to drop the "step times out with the usual no-activity warning" reference and direct users to manual Stop
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ef134fa-3c08-4d9a-83c2-efab20d7e552:
+    id: 7ef134fa-3c08-4d9a-83c2-efab20d7e552
+    content: CHANGELOG.md
+    children:
+      - e7bcb74f-79b0-44e3-9ae7-4fc5ff9758d1
+      - e677e8a1-0a12-46f8-805a-419bdda0ca16
+      - f373665c-61c4-4bc9-a92c-8c032382136b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7bcb74f-79b0-44e3-9ae7-4fc5ff9758d1:
+    id: e7bcb74f-79b0-44e3-9ae7-4fc5ff9758d1
+    content: Removed the unreleased "Stuck workflow steps surface a red alert with Resume" entry entirely ‚Äî the feature was added since the last release and never shipped to users, so no removal-line is needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e677e8a1-0a12-46f8-805a-419bdda0ca16:
+    id: e677e8a1-0a12-46f8-805a-419bdda0ca16
+    content: Stripped "and configurable step timeouts" from the unreleased "Workflow execution" headline entry
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f373665c-61c4-4bc9-a92c-8c032382136b:
+    id: f373665c-61c4-4bc9-a92c-8c032382136b
+    content: Updated the unreleased "Auto-launch Claude on Start in a fresh terminal" entry to drop two timeout phrases ("the step timed out", "the step times out with the usual no-activity warning") and point at manual Stop
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15f2fb1c-8c3a-47f7-b1be-ad4c4c8162bf:
+    id: 15f2fb1c-8c3a-47f7-b1be-ad4c4c8162bf
+    content: No new docs added ‚Äî removal of a noise signal is implicit and discoverable; manual Stop is already documented in "Stopping and Continuing"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  024fe22b-69db-4691-b4e1-4aca1a8de727:
+    id: 024fe22b-69db-4691-b4e1-4aca1a8de727
+    content: Final grep confirms zero residual references to stepTimeout / step timeout / step-timeout / red alert / stuck-step / stuck node / Stuck step across docs/ + CHANGELOG.md + README.md (the lone remaining "stuck" hit at CHANGELOG.md:55 is colloquial English about anchored terminals appearing mid-buffer, unrelated)
     children: []
     metadata:
       status: completed
