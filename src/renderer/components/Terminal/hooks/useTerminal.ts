@@ -4,6 +4,10 @@ import { FitAddon } from '@xterm/addon-fit';
 import { LIGHT_THEME, DARK_THEME } from '../terminalThemes';
 import { useTerminalKeyboard } from './useTerminalKeyboard';
 import { usePreferencesStore } from '../../../store/preferences/preferencesStore';
+import {
+  registerTerminalFocus,
+  unregisterTerminalFocus,
+} from '../../../services/terminalFocusRegistry';
 
 interface UseTerminalOptions {
   id: string;
@@ -156,6 +160,9 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
       }
 
       wireRuntimeHandlers(xterm, fitAddon, terminalRef.current);
+
+      registerTerminalFocus(id, () => xterm.focus());
+      disposers.push(() => unregisterTerminalFocus(id));
 
       // Push xterm.dispose last so teardown always runs listeners/observers before dispose.
       disposers.push(() => xterm.dispose());

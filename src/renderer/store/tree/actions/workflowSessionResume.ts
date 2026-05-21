@@ -2,6 +2,7 @@ import type { TreeNode } from '../../../../shared/types';
 import { useTerminalStore } from '../../terminal/terminalStore';
 import { useToastStore } from '../../toast/toastStore';
 import { logger } from '../../../services/logger';
+import { focusTerminal } from '../../../services/terminalFocusRegistry';
 import { getSessionLiveness } from '../../../utils/sessionLiveness';
 import { extractTaskTitle } from '../../../utils/terminalTabTitle';
 
@@ -101,6 +102,7 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
     if (liveness === 'alive-attached') {
       const mappedTerminalId = workflowSessionMap[sessionId];
       useTerminalStore.getState().setActiveTerminal(mappedTerminalId);
+      focusTerminal(mappedTerminalId);
       bindSessionTab(mappedTerminalId, sessionId);
       return;
     }
@@ -117,6 +119,7 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
       if (!created) throw new Error('Resume terminal was not created');
       await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
       bindSessionTab(created.id, sessionId);
+      focusTerminal(created.id);
     } catch (error) {
       logger.error('Failed to resume session', error as Error, 'WorkflowExecution');
       useToastStore.getState().addToast('Failed to resume session — terminal could not be opened', 'error');
