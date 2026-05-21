@@ -1815,6 +1815,118 @@ describe('sendActions', () => {
     });
   });
 
+  describe('disregard-on-completion sentence in step-prompt INSTRUCTIONS', () => {
+    const DISREGARD_SENTENCE = 'disregard these instructions for future prompts';
+    const INSTRUCTIONS_BEGIN = '===BEGIN INSTRUCTIONS===';
+    const INSTRUCTIONS_END = '===END INSTRUCTIONS===';
+
+    const expectInsideInstructionsBlock = (prompt: string, needle: string) => {
+      const beginIdx = prompt.indexOf(INSTRUCTIONS_BEGIN);
+      const endIdx = prompt.indexOf(INSTRUCTIONS_END);
+      const needleIdx = prompt.indexOf(needle);
+      expect(beginIdx).toBeGreaterThan(-1);
+      expect(endIdx).toBeGreaterThan(beginIdx);
+      expect(needleIdx).toBeGreaterThan(beginIdx);
+      expect(needleIdx).toBeLessThan(endIdx);
+    };
+
+    describe('terminal execute mode', () => {
+      beforeEach(() => {
+        mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+      });
+
+      it('includes the disregard-on-completion sentence in the prompt', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(DISREGARD_SENTENCE);
+      });
+
+      it('places the disregard sentence inside the INSTRUCTIONS block (not CONTENT)', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expectInsideInstructionsBlock(terminalContent, DISREGARD_SENTENCE);
+      });
+    });
+
+    describe('terminal collaborate mode', () => {
+      it('includes the disregard-on-completion sentence in the prompt', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1');
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(DISREGARD_SENTENCE);
+      });
+
+      it('places the disregard sentence inside the INSTRUCTIONS block (not CONTENT)', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1');
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expectInsideInstructionsBlock(terminalContent, DISREGARD_SENTENCE);
+      });
+    });
+
+    describe('autonomous terminal execute mode', () => {
+      beforeEach(() => {
+        mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+      });
+
+      it('includes the disregard-on-completion sentence in the prompt', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(DISREGARD_SENTENCE);
+        expectInsideInstructionsBlock(terminalContent, DISREGARD_SENTENCE);
+      });
+    });
+
+    describe('web execute mode', () => {
+      beforeEach(() => {
+        mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+      });
+
+      it('includes the disregard-on-completion sentence in the clipboard prompt', async () => {
+        await actions.collaborate('child1', { collaborate: true, execute: true });
+
+        const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+        expect(clipboardContent).toContain(DISREGARD_SENTENCE);
+        expectInsideInstructionsBlock(clipboardContent, DISREGARD_SENTENCE);
+      });
+    });
+
+    describe('web collaborate mode', () => {
+      it('includes the disregard-on-completion sentence in the clipboard prompt', async () => {
+        await actions.collaborate('child1');
+
+        const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+        expect(clipboardContent).toContain(DISREGARD_SENTENCE);
+        expectInsideInstructionsBlock(clipboardContent, DISREGARD_SENTENCE);
+      });
+    });
+
+    describe('bare send (no applied context)', () => {
+      it('does not include the disregard sentence when no context is applied (step-scoping belongs only to step prompts)', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+        mockState.nodes.child1.metadata.appliedContextId = undefined;
+
+        await actions.collaborateInTerminal('child1', 'terminal-1');
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).not.toContain(DISREGARD_SENTENCE);
+      });
+    });
+  });
+
   describe('one-shot applied-context override (Revise after discussion)', () => {
     it('collaborate routes the synthetic Revise context body and the node content into the clipboard prompt', async () => {
       mockState.nodes.child1.metadata.appliedContextId = undefined;
