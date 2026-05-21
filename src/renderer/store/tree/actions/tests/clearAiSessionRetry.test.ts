@@ -40,7 +40,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -62,7 +61,7 @@ describe('Clear AI session — retry behaviour', () => {
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, {
-      state: 'running' | 'awaiting-validation' | 'stuck';
+      state: 'running' | 'awaiting-validation';
       terminalTabId: string;
       needsReview?: boolean;
       collaborating?: boolean;

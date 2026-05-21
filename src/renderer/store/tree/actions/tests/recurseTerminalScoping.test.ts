@@ -39,7 +39,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -49,7 +48,7 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
 const { mockNotifyWorkflowEvent } = vi.hoisted(() => ({ mockNotifyWorkflowEvent: vi.fn() }));
 vi.mock('@/services/workflowNotification', () => ({ notifyWorkflowEvent: mockNotifyWorkflowEvent }));
 
-type ExecState = { state: 'running' | 'awaiting-validation' | 'stuck'; terminalTabId: string; needsReview?: boolean };
+type ExecState = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean };
 
 interface TestState {
   nodes: Record<string, TreeNode>;

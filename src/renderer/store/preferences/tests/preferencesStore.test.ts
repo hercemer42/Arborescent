@@ -28,7 +28,6 @@ describe('preferencesStore — hook event tracking', () => {
     vi.clearAllMocks();
     usePreferencesStore.setState({
       hasReceivedHookEvent: false,
-      stepTimeoutMinutes: 10,
       isLoaded: false,
     });
   });
@@ -57,31 +56,6 @@ describe('preferencesStore — hook event tracking', () => {
     });
   });
 
-  describe('setStepTimeoutMinutes', () => {
-    it('should update the timeout value in state', () => {
-      usePreferencesStore.getState().setStepTimeoutMinutes(5);
-
-      expect(usePreferencesStore.getState().stepTimeoutMinutes).toBe(5);
-    });
-
-    it('should persist the updated value via StorageService', () => {
-      usePreferencesStore.getState().setStepTimeoutMinutes(15);
-
-      expect(mockSavePreferences).toHaveBeenCalledWith(
-        expect.objectContaining({ stepTimeoutMinutes: 15 })
-      );
-    });
-
-    it('should accept 0 as a valid value to disable timeouts', () => {
-      usePreferencesStore.getState().setStepTimeoutMinutes(0);
-
-      expect(usePreferencesStore.getState().stepTimeoutMinutes).toBe(0);
-      expect(mockSavePreferences).toHaveBeenCalledWith(
-        expect.objectContaining({ stepTimeoutMinutes: 0 })
-      );
-    });
-  });
-
   describe('loadPreferences — new field defaults', () => {
     it('should default hasReceivedHookEvent to false when missing from saved data', async () => {
       mockGetPreferences.mockResolvedValue({
@@ -91,16 +65,6 @@ describe('preferencesStore — hook event tracking', () => {
       await usePreferencesStore.getState().loadPreferences();
 
       expect(usePreferencesStore.getState().hasReceivedHookEvent).toBe(false);
-    });
-
-    it('should default stepTimeoutMinutes to 10 when missing from saved data', async () => {
-      mockGetPreferences.mockResolvedValue({
-        theme: 'dark',
-      });
-
-      await usePreferencesStore.getState().loadPreferences();
-
-      expect(usePreferencesStore.getState().stepTimeoutMinutes).toBe(10);
     });
 
     it('should preserve existing hasReceivedHookEvent value from saved data', async () => {
@@ -114,24 +78,12 @@ describe('preferencesStore — hook event tracking', () => {
       expect(usePreferencesStore.getState().hasReceivedHookEvent).toBe(true);
     });
 
-    it('should preserve existing stepTimeoutMinutes value from saved data', async () => {
-      mockGetPreferences.mockResolvedValue({
-        theme: 'light',
-        stepTimeoutMinutes: 5,
-      });
-
-      await usePreferencesStore.getState().loadPreferences();
-
-      expect(usePreferencesStore.getState().stepTimeoutMinutes).toBe(5);
-    });
-
-    it('should default both fields when no preferences exist at all', async () => {
+    it('should default hasReceivedHookEvent when no preferences exist at all', async () => {
       mockGetPreferences.mockResolvedValue(null);
 
       await usePreferencesStore.getState().loadPreferences();
 
       expect(usePreferencesStore.getState().hasReceivedHookEvent).toBe(false);
-      expect(usePreferencesStore.getState().stepTimeoutMinutes).toBe(10);
     });
   });
 
@@ -193,12 +145,5 @@ describe('preferencesStore — hook event tracking', () => {
       );
     });
 
-    it('should include stepTimeoutMinutes in persisted output', () => {
-      usePreferencesStore.getState().setStepTimeoutMinutes(20);
-
-      expect(mockSavePreferences).toHaveBeenCalledWith(
-        expect.objectContaining({ stepTimeoutMinutes: 20 })
-      );
-    });
   });
 });

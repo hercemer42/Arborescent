@@ -39,7 +39,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -54,7 +53,7 @@ describe('recurse hand-off', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation' | 'stuck'; terminalTabId: string; needsReview?: boolean }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean }>;
     workflowSessionMap: Record<string, string>;
     sessionRegistry: Record<string, { cwd: string }>;
     terminalNodeAssignments: Record<string, string>;

@@ -32,7 +32,7 @@ vi.mock('../../../preferences/preferencesStore', () => ({
 
 describe('createWorkflowActions', () => {
   type WorkflowExecutionStateValue = {
-    state: 'running' | 'awaiting-validation' | 'stuck';
+    state: 'running' | 'awaiting-validation';
     terminalTabId: string;
   };
   type TestState = {
@@ -475,18 +475,7 @@ describe('createWorkflowActions', () => {
       });
     });
 
-    describe('when the workflow is in stuck or running state', () => {
-      it('does not unpause when stuck — only awaiting-validation is treated as resumable by Next step', () => {
-        state.workflowExecutionStates = {
-          'item-a': { state: 'stuck', terminalTabId: 'term-1' },
-        };
-
-        actions.moveToNextStep('item-a');
-
-        expect(mockContinueWorkflow).not.toHaveBeenCalled();
-        expect(mockExecuteCommand).toHaveBeenCalled();
-      });
-
+    describe('when the workflow is already running', () => {
       it('does not delegate when the node is already running', () => {
         state.workflowExecutionStates = {
           'item-a': { state: 'running', terminalTabId: 'term-1' },

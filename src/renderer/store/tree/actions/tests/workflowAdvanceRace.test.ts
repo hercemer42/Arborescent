@@ -37,7 +37,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -60,7 +59,7 @@ vi.mock('../commands/AcceptFeedbackCommand', () => ({
 vi.mock('@/services/workflowNotification', () => ({ notifyWorkflowEvent: vi.fn() }));
 
 type ExecState = {
-  state: 'running' | 'awaiting-validation' | 'stuck';
+  state: 'running' | 'awaiting-validation';
   terminalTabId: string;
   needsReview?: boolean;
   collaborating?: boolean;

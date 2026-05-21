@@ -247,7 +247,6 @@ export function useNodeContextMenu(node: TreeNode) {
       onStartWorkflow: () => getTerminalId().then(tid => actions.startWorkflow(node.id, tid)),
       onStopWorkflow: () => actions.stopWorkflow(node.id),
       onResendStep: () => resolveResendTerminal().then(tid => actions.resendStep(node.id, tid)),
-      onResumeStuckNode: () => actions.resumeStuckNode(node.id),
     });
 
     const isHyperlink = freshNode.metadata.isHyperlink === true;

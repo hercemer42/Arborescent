@@ -50,7 +50,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -70,7 +69,7 @@ describe('createWorkflowExecutionActions', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation' | 'stuck'; terminalTabId: string; needsReview?: boolean }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean }>;
     workflowSessionMap: Record<string, string>;
   sessionRegistry: Record<string, { cwd: string }>;
     terminalNodeAssignments: Record<string, string>;
@@ -1054,64 +1053,6 @@ describe('createWorkflowExecutionActions', () => {
     });
   });
 
-  describe('step timeout', () => {
-    it('transitions the node to stuck state and surfaces a Resume toast when the timeout fires', () => {
-      vi.useFakeTimers();
-
-      actions.startWorkflow('task-a', 'terminal-1');
-
-      vi.advanceTimersByTime(10 * 60 * 1000); // 10 minutes
-
-      expect(state.workflowExecutionStates['task-a']?.state).toBe('stuck');
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('stuck'),
-        expect.anything(),
-        expect.objectContaining({ actions: expect.any(Array) })
-      );
-
-      vi.useRealTimers();
-    });
-
-    it('should reset timeout when node advances to next step', () => {
-      vi.useFakeTimers();
-
-      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
-      state.workflowSessionMap['session-abc'] = 'terminal-1';
-
-      vi.advanceTimersByTime(5 * 60 * 1000); // 5 minutes
-
-      // Stop hook fires, node advances
-      actions.handleHookEvent({ session_id: 'session-abc', hook_event_name: 'Stop' });
-
-      vi.advanceTimersByTime(5 * 60 * 1000); // Another 5 minutes
-
-      expect(mockAddToast).not.toHaveBeenCalledWith(
-        expect.stringContaining('taking longer'),
-        expect.anything(),
-        expect.anything()
-      );
-
-      vi.useRealTimers();
-    });
-
-    it('should clear timeout when workflow is stopped', () => {
-      vi.useFakeTimers();
-
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.stopWorkflow('task-a');
-
-      vi.advanceTimersByTime(10 * 60 * 1000);
-
-      expect(mockAddToast).not.toHaveBeenCalledWith(
-        expect.stringContaining('taking longer'),
-        expect.anything(),
-        expect.anything()
-      );
-
-      vi.useRealTimers();
-    });
-  });
-
   describe('NeedsReview hook event', () => {
     beforeEach(() => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
@@ -1651,17 +1592,6 @@ describe('createWorkflowExecutionActions', () => {
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Review requested', expect.any(String));
-    });
-
-    it('notifies an alert when a step transitions to stuck via the reaper', () => {
-      vi.useFakeTimers();
-
-      actions.startWorkflow('task-a', 'terminal-1');
-      vi.advanceTimersByTime(10 * 60 * 1000);
-
-      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Workflow step stuck', expect.any(String));
-
-      vi.useRealTimers();
     });
 
     it('should notify alert on recurse limit', () => {

@@ -62,7 +62,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -86,7 +85,7 @@ vi.mock('@/services/workflowNotification', () => ({
 
 describe('Resume reconciliation and ack-retry hardening', () => {
   type Entry = {
-    state: 'running' | 'awaiting-validation' | 'stuck';
+    state: 'running' | 'awaiting-validation';
     terminalTabId: string;
     needsReview?: boolean;
     collaborating?: boolean;

@@ -15,7 +15,6 @@ export interface UserPreferences {
   hasSeenWorkflowDeclarationToast?: boolean;
   hasReceivedHookEvent?: boolean;
   hasLaunchedWorkflow?: boolean;
-  stepTimeoutMinutes?: number;
   desktopNotifications?: boolean;
   notificationSounds?: boolean;
 }

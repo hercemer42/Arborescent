@@ -27,7 +27,6 @@ export const UserPreferencesSchema = z.object({
   hasSeenWorkflowDeclarationToast: z.boolean().optional(),
   hasReceivedHookEvent: z.boolean().optional(),
   hasLaunchedWorkflow: z.boolean().optional(),
-  stepTimeoutMinutes: z.number().optional(),
   desktopNotifications: z.boolean().optional(),
   notificationSounds: z.boolean().optional(),
 });

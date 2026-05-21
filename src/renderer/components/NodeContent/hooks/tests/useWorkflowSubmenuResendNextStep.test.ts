@@ -33,7 +33,6 @@ describe('buildWorkflowExecutionItems — Resend step replaces Continue Workflow
     onStartWorkflow: vi.fn(),
     onStopWorkflow: vi.fn(),
     onResendStep: vi.fn(),
-    onResumeStuckNode: vi.fn(),
   };
 
   it('shows Resend step (not Continue Workflow) alongside Stop Workflow for awaiting-validation nodes', () => {
@@ -218,7 +217,6 @@ describe('Combined visibility — Resend step and Next step appear together when
     onStartWorkflow: vi.fn(),
     onStopWorkflow: vi.fn(),
     onResendStep: vi.fn(),
-    onResumeStuckNode: vi.fn(),
   };
   const navCallbacks = {
     onMoveToNextStep: vi.fn(),

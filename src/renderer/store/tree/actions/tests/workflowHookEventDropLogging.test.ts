@@ -33,7 +33,6 @@ function makeDeps(overrides: Partial<DepArgs> = {}): DepArgs {
     }),
     set: vi.fn(),
     findRunningNodeOnTerminal: vi.fn(() => null),
-    clearStepTimeout: vi.fn(),
     consumePendingAck: vi.fn(),
     advanceNode: vi.fn(),
     completeWorkflow: vi.fn(),

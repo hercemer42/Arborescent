@@ -11,7 +11,6 @@ interface PreferencesState {
   hasSeenWorkflowDeclarationToast: boolean;
   hasReceivedHookEvent: boolean;
   hasLaunchedWorkflow: boolean;
-  stepTimeoutMinutes: number;
   desktopNotifications: boolean;
   notificationSounds: boolean;
 
@@ -22,7 +21,6 @@ interface PreferencesState {
   markWorkflowDeclarationToastSeen: () => void;
   markHookEventReceived: () => void;
   markWorkflowLaunched: () => void;
-  setStepTimeoutMinutes: (minutes: number) => void;
   setDesktopNotifications: (enabled: boolean) => void;
   setNotificationSounds: (enabled: boolean) => void;
 }
@@ -40,7 +38,6 @@ function buildPreferences(state: PreferencesState): UserPreferences {
     hasSeenWorkflowDeclarationToast: state.hasSeenWorkflowDeclarationToast,
     hasReceivedHookEvent: state.hasReceivedHookEvent,
     hasLaunchedWorkflow: state.hasLaunchedWorkflow,
-    stepTimeoutMinutes: state.stepTimeoutMinutes,
     desktopNotifications: state.desktopNotifications,
     notificationSounds: state.notificationSounds,
   };
@@ -53,7 +50,6 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
   hasSeenWorkflowDeclarationToast: false,
   hasReceivedHookEvent: false,
   hasLaunchedWorkflow: false,
-  stepTimeoutMinutes: 10,
   desktopNotifications: true,
   notificationSounds: true,
 
@@ -99,13 +95,12 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
       const hasSeenWorkflowDeclarationToast = preferences.hasSeenWorkflowDeclarationToast || false;
       const hasReceivedHookEvent = preferences.hasReceivedHookEvent || false;
       const hasLaunchedWorkflow = preferences.hasLaunchedWorkflow || false;
-      const stepTimeoutMinutes = preferences.stepTimeoutMinutes ?? 10;
       const desktopNotifications = preferences.desktopNotifications ?? true;
       const notificationSounds = preferences.notificationSounds ?? true;
 
       applyTheme(theme);
       setHotkeyConfig(hotkeys);
-      set({ theme, hotkeys, hasSeenWorkflowDeclarationToast, hasReceivedHookEvent, hasLaunchedWorkflow, stepTimeoutMinutes, desktopNotifications, notificationSounds, isLoaded: true });
+      set({ theme, hotkeys, hasSeenWorkflowDeclarationToast, hasReceivedHookEvent, hasLaunchedWorkflow, desktopNotifications, notificationSounds, isLoaded: true });
     } else {
       applyTheme('light');
       set({ isLoaded: true });
@@ -124,11 +119,6 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
 
   markWorkflowLaunched: () => {
     set({ hasLaunchedWorkflow: true });
-    void storageService.savePreferences(buildPreferences(get()));
-  },
-
-  setStepTimeoutMinutes: (minutes: number) => {
-    set({ stepTimeoutMinutes: minutes });
     void storageService.savePreferences(buildPreferences(get()));
   },
 

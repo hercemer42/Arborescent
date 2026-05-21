@@ -40,7 +40,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -74,7 +73,7 @@ describe('decomposition acceptance — terminal reassignment and first-sibling a
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, {
-      state: 'running' | 'awaiting-validation' | 'stuck';
+      state: 'running' | 'awaiting-validation';
       terminalTabId: string;
       needsReview?: boolean;
       collaborating?: boolean;

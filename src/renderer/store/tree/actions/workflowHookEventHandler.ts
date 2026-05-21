@@ -30,7 +30,6 @@ export interface HookEventHandlerDeps {
   get: () => HookEventState;
   set: (partial: { workflowExecutionStates?: Record<string, WorkflowExecutionEntry> }) => void;
   findRunningNodeOnTerminal: (terminalId: string) => string | null;
-  clearStepTimeout: (nodeId: string) => void;
   consumePendingAck: (nodeId: string) => void;
   advanceNode: (nodeId: string) => void;
   completeWorkflow: (nodeId: string) => void;
@@ -42,19 +41,12 @@ export interface HookEventHandlerDeps {
  * Notification) into workflow state transitions. The handler branches on
  * the event name and the current step's type (manual / checkpoint /
  * autonomous) to decide whether to pause, advance, complete, or stop.
- *
- * Extracted into its own factory because (a) it was the single largest
- * function in workflowExecutionActions at 160 lines, and (b) its deps
- * (advanceNode / completeWorkflow / stopWorkflow / clearStepTimeout) are
- * the most-referenced "action verbs" of the engine — passing them
- * through an explicit deps interface makes the coupling visible.
  */
 export function createHookEventHandler(deps: HookEventHandlerDeps) {
   const {
     get,
     set,
     findRunningNodeOnTerminal,
-    clearStepTimeout,
     consumePendingAck,
     advanceNode,
     completeWorkflow,
@@ -142,7 +134,6 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
         const execEntry = execStates[runningNodeId];
         if (execEntry?.needsReview) {
           const alreadyNotified = execEntry.needsReviewNotified === true;
-          clearStepTimeout(runningNodeId);
           set({
             workflowExecutionStates: {
               ...execStates,
@@ -192,7 +183,6 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
           { nodeId: runningNodeId },
         );
       } else if (stepType === 'checkpoint') {
-        clearStepTimeout(runningNodeId);
         const { nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
         const hasNextStep = !!findNextStepTarget(runningNodeId, currentNodes, currentRegistry);
 

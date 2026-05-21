@@ -104,14 +104,6 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
     expect(handleAutonomousFeedback).toHaveBeenCalledWith(BOUND, 'x');
   });
 
-  it('dispatches for a stuck entry — the stuck-recovery path lives inside handleAutonomousFeedback', () => {
-    const { store, handleAutonomousFeedback } = makeFakeStore({
-      [BOUND]: { state: 'stuck' },
-    });
-    applyStepOutput(store as never, BOUND, 'x');
-    expect(handleAutonomousFeedback).toHaveBeenCalledWith(BOUND, 'x');
-  });
-
   it('ignores collaboratingNodeId — manual collab is routed via the proposal submitter, not the applier', () => {
     // The mcpSubmitOutputTool routes non-automatic steps to the proposalSubmitter
     // before ever reaching this applier, so the old "collaboratingNodeId guards

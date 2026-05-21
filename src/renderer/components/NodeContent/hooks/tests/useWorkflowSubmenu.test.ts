@@ -113,7 +113,6 @@ describe('buildWorkflowExecutionItems', () => {
     onStartWorkflow: vi.fn(),
     onStopWorkflow: vi.fn(),
     onResendStep: vi.fn(),
-    onResumeStuckNode: vi.fn(),
   };
 
   it('should return empty array for nodes not inside a workflow step', () => {
@@ -291,33 +290,6 @@ describe('buildWorkflowExecutionItems', () => {
     expect(onResendStep).toHaveBeenCalledTimes(1);
   });
 
-  it('should show Resume and Stop Workflow for stuck nodes', () => {
-    const result = buildWorkflowExecutionItems({
-      node: workflowNodes['task'],
-      nodes: workflowNodes,
-      ancestorRegistry: ancestors,
-      workflowExecutionStates: { 'task': { state: 'stuck', terminalTabId: 'tab1' } },
-      ...defaultCallbacks,
-    });
-
-    expect(result.map(item => item.label)).toEqual(['Resume', 'Stop Workflow']);
-  });
-
-  it('should wire Resume click for stuck nodes to onResumeStuckNode', () => {
-    const onResumeStuckNode = vi.fn();
-
-    const result = buildWorkflowExecutionItems({
-      node: workflowNodes['task'],
-      nodes: workflowNodes,
-      ancestorRegistry: ancestors,
-      workflowExecutionStates: { 'task': { state: 'stuck', terminalTabId: 'tab1' } },
-      ...defaultCallbacks,
-      onResumeStuckNode,
-    });
-
-    result.find(item => item.label === 'Resume')?.onClick?.();
-    expect(onResumeStuckNode).toHaveBeenCalledTimes(1);
-  });
 });
 
 describe('buildWorkflowNavigationItems', () => {

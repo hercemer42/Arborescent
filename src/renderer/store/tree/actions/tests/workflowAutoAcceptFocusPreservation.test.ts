@@ -34,7 +34,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -60,7 +59,7 @@ describe('handleAutonomousFeedback — focus preservation', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation' | 'stuck'; terminalTabId: string; collaborating?: boolean; stopReceived?: boolean }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; collaborating?: boolean; stopReceived?: boolean }>;
     workflowSessionMap: Record<string, string>;
   sessionRegistry: Record<string, { cwd: string }>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];

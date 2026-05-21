@@ -35,7 +35,6 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
     getState: () => ({
       hasReceivedHookEvent: true,
       hasLaunchedWorkflow: true,
-      stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
       markWorkflowLaunched: vi.fn(),
     }),
@@ -61,7 +60,7 @@ describe('Node duplication invariant during workflow operations', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation' | 'stuck'; terminalTabId: string }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
   sessionRegistry: Record<string, { cwd: string }>;
   };

@@ -92,7 +92,7 @@ A green flash and toast notification confirm each advancement. If the item reach
 
 Automated advancement bypasses the undo stack — you cannot undo an automated move with `Ctrl+Z`.
 
-If the terminal fails to accept content, the workflow stops automatically and shows an error. If a step has no activity for the configured timeout (15 minutes by default), Arborescent marks it stuck — see [Stuck steps](#stuck-steps) below.
+If the terminal fails to accept content, the workflow stops automatically and shows an error. A step that hangs (the AI session died, the Stop hook never lands, the command runs forever) stays in the running state until you stop it — right-click the node and pick **Stop Workflow**.
 
 While at least one autonomous workflow is running, Arborescent prevents the system from suspending so background AI work isn't interrupted by sleep. The block is released as soon as the last workflow finishes, errors, or is stopped. The display can still sleep — only system suspension is blocked.
 
@@ -125,7 +125,7 @@ Each workflow step that talks to an AI tool captures its session id on the node.
 
 **Start Workflow** auto-resumes too. If the node already has a live session in an open tab, Start focuses that tab — no duplicate is created. If the tab was closed but the session is still on disk, Start opens a new tab and runs `claude --resume`. A fresh session only spawns when the node has no recorded session or its session has been lost. Stopping a workflow does not end its underlying CLI session, so the next Start picks up where you left off.
 
-If the target terminal has no Claude session running yet, Start launches `claude` for you before sending the first prompt — no need to start it manually. The prompt is held back until the session is ready, so it lands inside the conversation rather than at the shell. Requires `claude` on your PATH; if it isn't, the step times out with the usual no-activity warning. The **Clear AI session** step option is skipped on this path since the new session is already clean — it still fires when reattaching to an existing session.
+If the target terminal has no Claude session running yet, Start launches `claude` for you before sending the first prompt — no need to start it manually. The prompt is held back until the session is ready, so it lands inside the conversation rather than at the shell. Requires `claude` on your PATH; if it isn't, the prompt lands at the shell and the step won't advance — stop it manually from the right-click menu. The **Clear AI session** step option is skipped on this path since the new session is already clean — it still fires when reattaching to an existing session.
 
 Closing a terminal tab no longer terminates the underlying session — the workflow execution stops, but the conversation remains in Claude's session store. You can walk away from a running step, close the tab, and resume from a fresh tab later. This works across app restart, as long as the session is still on disk.
 
@@ -222,19 +222,6 @@ Each hook plays a distinct role:
 Stop fires when Claude returns to its prompt. If Claude backgrounds a long-running command (`yarn test &`, watch loops) and idles while polling it, Stop fires before the work is done and the workflow advances early. Autonomous-terminal prompts include a directive telling Claude to run checks inline rather than backgrounding them — but this is best-effort: if a step advances faster than expected, check whether its work was backgrounded.
 
 If any of these are missing, workflows may start but will not behave correctly. A setup guide appears the first time you run a workflow if no hook events have been received. Once hooks are working, the guide won't appear again.
-
-## Stuck steps
-
-Sometimes a step finishes in the terminal but the Stop hook is dropped — bad network, mis-typed hook config, an AI session that exited unexpectedly. Without the Stop signal, Arborescent has no way to advance the workflow automatically.
-
-After the step timeout fires (15 minutes by default), the running node switches from the green play icon to a red alert icon, and a persistent toast offers two actions:
-
-- **Resume** — Advances the workflow to the next step. Use this when you've checked the terminal and confirmed Claude finished its work. Also available on the right-click menu of a stuck node, or by clicking the red alert icon.
-- **Stop** — Abandons the workflow. The execution state is cleared and the node is no longer tracked.
-
-If feedback arrives after a step is marked stuck (rare race between the timeout and a delayed `submit_step_output` call), Arborescent treats the feedback as proof Claude finished, applies it, and advances automatically — no manual Resume needed.
-
-Open the activity log (see below) for the dropped-hook reason behind any stuck step.
 
 ## Activity log
 
