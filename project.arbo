@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-21T14:28:13.286Z'
+updated: '2026-05-21T14:37:22.816Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14413,7 +14413,6 @@ nodes:
     content: Feature implementation
     children:
       - b1afed25-6fb4-4885-98a2-00ef159c4df0
-      - e5809ad7-88b1-47ae-be5b-0432229ef68e
     metadata:
       status: completed
       expanded: true
@@ -25473,8 +25472,7 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children:
-      - f0e92a59-8c4b-4fba-9cb2-1f755f058f77
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -92503,7 +92501,8 @@ nodes:
   ef8172e7-9f00-4495-9f4e-69b862af7dde:
     id: ef8172e7-9f00-4495-9f4e-69b862af7dde
     content: AI code review resolution
-    children: []
+    children:
+      - e5809ad7-88b1-47ae-be5b-0432229ef68e
     metadata:
       status: pending
       isBlueprint: true
@@ -115688,6 +115687,7 @@ nodes:
       - cd0d2d3e-e313-4769-a9a9-424628cb77f2
       - 5809255f-e445-47b0-b676-74dee7db51cd
       - 85f75161-644d-4114-a0a0-87caba0049e0
+      - 1de5d605-7933-482e-925c-c73558a15765
     metadata:
       status: pending
       isBlueprint: true
@@ -124801,7 +124801,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 1de5d605-7933-482e-925c-c73558a15765
+      - f0e92a59-8c4b-4fba-9cb2-1f755f058f77
     metadata:
       status: pending
       isBlueprint: true
@@ -147261,11 +147261,12 @@ nodes:
     id: e5809ad7-88b1-47ae-be5b-0432229ef68e
     content: Remove ctrl+R restart shortcut
     children:
-      - 28c609f5-d96d-4cfe-a7f7-807e78da73d1
-      - 24aa620d-230c-421c-ad49-912233b1202b
-      - 3feae827-d1e2-45e3-b911-a7d650f08755
-      - 3a8fffe0-58b1-405e-ba81-ce9517ad52b9
-      - d0e3c62e-e305-4607-acf1-cb5d5914d509
+      - 56d5fb0a-7ab6-4502-ba79-e5e320793b92
+      - 09f0dcd8-0023-47e8-99bd-5dd9cc4350a0
+      - 1aab7484-703f-45fc-9060-53dc8c455090
+      - 56373186-51f9-4cfc-ad24-465fde0afc65
+      - aab2ed29-a765-4ca9-a1fa-ae6bea6873a0
+      - 4853aad0-2944-4bb2-a6fe-c27a33775c81
     metadata:
       status: pending
       expanded: false
@@ -149707,7 +149708,61 @@ nodes:
       plugins: {}
   b1afed25-6fb4-4885-98a2-00ef159c4df0:
     id: b1afed25-6fb4-4885-98a2-00ef159c4df0
-    content: Remove the 10-minute step timeout indicator
+    content: |-
+      # [x] Remove the 10-minute step timeout indicator
+      ## [x] worktree
+      ### [x] vscode://file//Users/brianfox/dev/Arborescent-remove-step-timeout-indicator
+      ## [x] 📄 Product spec
+      ### [x] Context
+      #### [x] Workflow steps currently get a red dot decoration and a toast notification when their elapsed runtime exceeds 10 minutes
+      #### [x] The threshold was meant to surface stuck steps, but in practice it fires for normal long-running AI and shell operations
+      ### [x] User
+      #### [x] Arborescent users running workflow steps that legitimately take longer than 10 minutes (AI generation, builds, long shell tasks)
+      ### [x] Current experience
+      #### [x] The 10-minute indicator triggers frequently during normal use, producing toast spam and red-dot noise on healthy steps
+      #### [x] Users have learned to ignore the signal, which is the worst possible state for a notification
+      ### [x] Goal
+      #### [x] Stop crying wolf on normal step duration by removing the timeout-based red dot and toast entirely
+      ### [x] Business rules
+      #### [x] Workflow steps must not display a red dot based on elapsed runtime
+      #### [x] No toast notification fires when a step crosses any time threshold
+      #### [x] Existing step-state indicators (running, complete, failed) remain unchanged
+      #### [x] Removal applies uniformly to all step types — no opt-in or per-step override
+      ### [x] Acceptance criteria
+      #### [x] A step running longer than 10 minutes shows no red dot
+      #### [x] No toast appears when a step crosses 10 minutes
+      #### [x] Step status transitions (start, complete, fail) continue to render their existing indicators correctly
+      #### [x] No dead code, timer, store field, or IPC channel remains in the renderer or main process solely supporting the removed indicator
+      #### [x] Tests covering the 10-minute indicator are removed or updated, not skipped
+      ## [x] 🔧 Implementation proposal
+      ### [x] Approach
+      #### [x] Locate the elapsed-time tracker and threshold check in the workflow step component and its store/selector, delete the red-dot rendering branch and the toast dispatch, and remove any main-process timer or IPC plumbing that exists only for this signal
+      ### [x] Touchpoints
+      #### [x] Workflow step component — red dot rendering branch
+      #### [x] Workflow step store or selector — elapsed-time state and threshold check
+      #### [x] Toast / feedback service — timeout toast trigger
+      #### [-] Main process timer or IPC channel if it exists solely for this feature
+      #### [x] Tests covering the 10-minute indicator behaviour
+      ### [x] Constraints to call out
+      #### [x] Confirm no other surface (e.g. a passive step-duration display) reuses the elapsed-time state before deleting it — if shared, remove only the indicator and toast trigger, not the underlying tracking
+      ## [x] Chunking decision
+      ### [x] Ship as a single chunk — pure removal, no value in splitting
+      ## [x] Challenges and pushback
+      ### [x] Removal is preferred over raising the threshold or making it configurable, because a setting for a signal users already ignore adds UI surface without restoring trust
+      ### [x] If a passive, non-decorated step-duration readout would help spot genuinely stuck steps, treat it as a separate follow-up — out of scope here
+      ## [x] Technical refinement
+      ### [x] Complications
+      #### [x] The red dot may double as the indicator for genuinely failed/errored steps — verify the failure-state styling does not share the same class or selector before deleting CSS, or failure visibility regresses silently
+      #### [x] The elapsed-time tracker may be a ticking interval in the main process or a setInterval in the renderer — confirm which side owns it so the corresponding teardown (clearInterval, IPC channel unregistration) is complete
+      #### [x] Toast service may be wired to dispatch from a generic "step warning" channel — only remove the timeout caller, not the channel itself, if other warnings use it
+      #### [x] Out of scope: any replacement passive duration display, configurable threshold, or telemetry on long-running steps
+      #### [x] ROI is favourable — pure deletion, no migration, no rollout sequencing; the only risk is over-deleting shared state
+      ### [x] Approach summary
+      #### [x] Pure deletion in the renderer workflow-step path (component red-dot branch, store threshold selector, toast dispatch) plus any main-process timer that exists only for this signal — nothing new lands
+      #### [x] Non-obvious: the red dot styling and the elapsed-time state are the two places most likely to be shared with the failure indicator or a future duration display — audit before deleting either, keep them if shared
+      #### [x] No data, file-format, or IPC-protocol changes; ship as one chunk with the affected tests removed in the same commit
+      ## [x] Failing TDD tests added at src/renderer/store/tree/actions/tests/workflowStepTimeoutRemoval.test.ts — 5/5 red, asserting no stuck state, no stuck toast, no stuck alert, and no resumeStuckNode action after removal
+      ## [x] Implementation complete — feature removed: deleted workflowStepTimeouts.ts and its tests, stripped 'stuck' state from WorkflowExecutionEntry / ExecutionState / 25 inline test types, removed markNodeStuck/resumeStuckNode/stepTimeouts manager/DEFAULT_STEP_TIMEOUT_MINUTES from workflowExecutionActions, removed clearStepTimeout deps from workflowHookEventHandler and workflowDisruptionReactions, stripped onResumeStuckNode plumbing across StatusArea/useWorkflowExecutionOverlay/useWorkflowSubmenu/useNodeContextMenu/NodeContent, deleted .stuck CSS, removed stepTimeoutMinutes preference + schema + interface, replaced TDD test now green at 5/5 and all 9 touched suites pass 225/225; type-check clean, lint clean on production files (test no-floating-promises is pre-existing master debt); two unrelated pre-existing failures (sendActions* and workflowExecution.test.ts integration) reproduce identically on master
     children:
       - 60b05a51-a022-487f-9403-e7c155942a21
       - 5091d17a-0948-450c-9ee5-065f46fbfeb7
@@ -151814,14 +151869,15 @@ nodes:
     id: f0e92a59-8c4b-4fba-9cb2-1f755f058f77
     content: 'Bug: Terminal doesn''t focus when resuming a workflow'
     children:
-      - b0ea7b93-8a36-4c39-8f03-915a97b01b67
-      - 38a98d94-0db5-493d-b5b5-59893542b447
-      - adfe4ec8-2df9-46b8-beed-6e870bf1e826
-      - 59c2ff26-4cab-4c2d-b0d8-d065a89cff69
-      - 6b64abc6-6690-43bc-9786-ca2e4cd80cda
-      - 34b6b798-e0c5-4283-92e4-dc36fc9ce47f
-      - 7e6491ad-85d0-4a1a-8458-1af06670b89c
-      - 182671ec-bb63-41e3-8d2c-1104ba219343
+      - 6a8d4dd2-96b2-4305-a971-eb6f8ba3361e
+      - 50b4e636-8dea-444f-9286-ddff90261cc2
+      - 3244ef24-7d6b-49c6-8765-57c8022c9400
+      - dd7c9e2e-fcd1-4b7b-ac76-2c0d012befae
+      - 2d05ef85-3358-40f1-b629-066eefb22898
+      - 76965e4b-ce29-442b-849d-bb24f9ba6f17
+      - de4ee129-213b-436e-b9f4-76e7f9af45d0
+      - a6a31105-ec96-48d6-9a03-f3868ad94299
+      - 40798e93-6b01-4e09-8867-a303009b95c4
     metadata:
       status: completed
       expanded: false
@@ -152975,320 +153031,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b0ea7b93-8a36-4c39-8f03-915a97b01b67:
-    id: b0ea7b93-8a36-4c39-8f03-915a97b01b67
+  56d5fb0a-7ab6-4502-ba79-e5e320793b92:
+    id: 56d5fb0a-7ab6-4502-ba79-e5e320793b92
     content: worktree
     children:
-      - a73762d6-7e7e-4963-9ce0-5511377325df
+      - 507358b2-6be5-4b97-b907-dc60d1c75abf
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a73762d6-7e7e-4963-9ce0-5511377325df:
-    id: a73762d6-7e7e-4963-9ce0-5511377325df
-    content: vscode://file/Users/brianfox/dev/Arborescent-terminal-focus-on-resume
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  38a98d94-0db5-493d-b5b5-59893542b447:
-    id: 38a98d94-0db5-493d-b5b5-59893542b447
-    content: Summary
-    children:
-      - de87e9ce-422e-4ed8-b826-647458669623
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de87e9ce-422e-4ed8-b826-647458669623:
-    id: de87e9ce-422e-4ed8-b826-647458669623
-    content: Resuming a workflow does not move focus to the terminal bound to that workflow
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  adfe4ec8-2df9-46b8-beed-6e870bf1e826:
-    id: adfe4ec8-2df9-46b8-beed-6e870bf1e826
-    content: Scope
-    children:
-      - df20db19-779f-4317-85fd-1b546f370b5e
-      - ab301eba-3e00-4ef0-ae85-7faf9414d191
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  df20db19-779f-4317-85fd-1b546f370b5e:
-    id: df20db19-779f-4317-85fd-1b546f370b5e
-    content: Only covers the case where the bound terminal's tab is already open/visible but not focused
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab301eba-3e00-4ef0-ae85-7faf9414d191:
-    id: ab301eba-3e00-4ef0-ae85-7faf9414d191
-    content: 'Out of scope: activating an inactive tab before focusing'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  59c2ff26-4cab-4c2d-b0d8-d065a89cff69:
-    id: 59c2ff26-4cab-4c2d-b0d8-d065a89cff69
-    content: Steps to reproduce
-    children:
-      - 23651c1d-0c48-4988-986a-22b30619729e
-      - 559f568b-4a4d-4ff0-8293-ec028c2c4229
-      - 35d017da-53f0-4e6c-a096-e4e3015459b9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  23651c1d-0c48-4988-986a-22b30619729e:
-    id: 23651c1d-0c48-4988-986a-22b30619729e
-    content: Have a workflow with a bound terminal session whose tab is open and visible
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  559f568b-4a4d-4ff0-8293-ec028c2c4229:
-    id: 559f568b-4a4d-4ff0-8293-ec028c2c4229
-    content: Move focus elsewhere (e.g. the tree view or another input) while keeping the terminal's tab visible
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  35d017da-53f0-4e6c-a096-e4e3015459b9:
-    id: 35d017da-53f0-4e6c-a096-e4e3015459b9
-    content: Resume the workflow
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6b64abc6-6690-43bc-9786-ca2e4cd80cda:
-    id: 6b64abc6-6690-43bc-9786-ca2e4cd80cda
-    content: Expected behavior
-    children:
-      - 70e592cf-3cbf-4af5-8ff0-d082bad299ab
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  70e592cf-3cbf-4af5-8ff0-d082bad299ab:
-    id: 70e592cf-3cbf-4af5-8ff0-d082bad299ab
-    content: The terminal bound to the resumed workflow should receive focus automatically
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  34b6b798-e0c5-4283-92e4-dc36fc9ce47f:
-    id: 34b6b798-e0c5-4283-92e4-dc36fc9ce47f
-    content: Actual behavior
-    children:
-      - 40784fc5-9cd6-430f-b455-59a54d146274
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  40784fc5-9cd6-430f-b455-59a54d146274:
-    id: 40784fc5-9cd6-430f-b455-59a54d146274
-    content: The workflow resumes but focus stays where it was; the user must click the terminal manually before typing
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7e6491ad-85d0-4a1a-8458-1af06670b89c:
-    id: 7e6491ad-85d0-4a1a-8458-1af06670b89c
-    content: Acceptance criteria
-    children:
-      - 2e2c40da-5e22-4fd5-bcd1-4bce45b1780b
-      - 6bf8df38-e3b1-4d67-8a35-bdcf049d7e72
-      - efe83590-5981-4f5a-b0a5-4d469076f08c
-      - 2ba54c14-a669-4a48-933a-3fe2b12a2aec
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e2c40da-5e22-4fd5-bcd1-4bce45b1780b:
-    id: 2e2c40da-5e22-4fd5-bcd1-4bce45b1780b
-    content: Resuming a workflow programmatically focuses the bound terminal when its tab is already the active tab
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6bf8df38-e3b1-4d67-8a35-bdcf049d7e72:
-    id: 6bf8df38-e3b1-4d67-8a35-bdcf049d7e72
-    content: If no terminal is bound to the workflow, resume completes without error and without changing focus
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  efe83590-5981-4f5a-b0a5-4d469076f08c:
-    id: efe83590-5981-4f5a-b0a5-4d469076f08c
-    content: Focus behaviour is identical whether the resume is triggered via keyboard shortcut or via mouse/UI action
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2ba54c14-a669-4a48-933a-3fe2b12a2aec:
-    id: 2ba54c14-a669-4a48-933a-3fe2b12a2aec
-    content: Focus is applied once per resume and does not steal focus on subsequent workflow advances within the same session
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  182671ec-bb63-41e3-8d2c-1104ba219343:
-    id: 182671ec-bb63-41e3-8d2c-1104ba219343
-    content: Technical refinement
-    children:
-      - 6e725d17-f18a-4aca-b8f8-bf4a3de3c093
-      - e96e4a6d-039c-4b77-ae5b-bbfb7e9b7392
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e725d17-f18a-4aca-b8f8-bf4a3de3c093:
-    id: 6e725d17-f18a-4aca-b8f8-bf4a3de3c093
-    content: Complications
-    children:
-      - 116038b5-5458-42f2-9cdb-23fa2b7b41fe
-      - daa43f7a-5df8-418b-87bf-f4f5f23673c5
-      - f20ec1e2-358b-49f8-912c-152ca92df316
-      - 45d720b1-c9cc-42bd-b7d1-386dd911c26d
-      - a399ff9b-7214-46cc-9c49-b82f5cfab5df
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  116038b5-5458-42f2-9cdb-23fa2b7b41fe:
-    id: 116038b5-5458-42f2-9cdb-23fa2b7b41fe
-    content: xterm instances are owned by the per-terminal useTerminal hook; the terminal store currently has no handle to call .focus() on them, so a small registry / ref-map needs to be exposed
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  daa43f7a-5df8-418b-87bf-f4f5f23673c5:
-    id: daa43f7a-5df8-418b-87bf-f4f5f23673c5
-    content: In the resume-in-new-tab path the xterm doesn't exist yet at the moment resume is triggered — focus has to wait until the new Terminal component mounts and its xterm is ready
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f20ec1e2-358b-49f8-912c-152ca92df316:
-    id: f20ec1e2-358b-49f8-912c-152ca92df316
-    content: xterm.focus() is a no-op on a display:none container; if the tab was just made active via setActiveTerminal, focus must run after the next render commit (microtask / rAF), not synchronously
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  45d720b1-c9cc-42bd-b7d1-386dd911c26d:
-    id: 45d720b1-c9cc-42bd-b7d1-386dd911c26d
-    content: A rebind confirmation dialog (or other modal) may be open at resume time — focusing the terminal would steal focus from the dialog; the modal case should be excluded
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  a399ff9b-7214-46cc-9c49-b82f5cfab5df:
-    id: a399ff9b-7214-46cc-9c49-b82f5cfab5df
-    content: AC scopes focus to resume only; workflow-advance (recurse) must remain untouched to avoid stealing focus mid-session
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e96e4a6d-039c-4b77-ae5b-bbfb7e9b7392:
-    id: e96e4a6d-039c-4b77-ae5b-bbfb7e9b7392
-    content: Approach
-    children:
-      - ae4a1f8b-dfa2-4190-8603-32226db62591
-      - 2da723a8-f33f-4b07-af1f-ca9d89ba8d2e
-      - 6481054c-3f77-49cc-840f-2d2944ab99f3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ae4a1f8b-dfa2-4190-8603-32226db62591:
-    id: ae4a1f8b-dfa2-4190-8603-32226db62591
-    content: Land the fix in the focus-existing-tab and resume-in-new-tab branches of workflowExecutionActions.ts, immediately after setActiveTerminal / terminal creation
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  2da723a8-f33f-4b07-af1f-ca9d89ba8d2e:
-    id: 2da723a8-f33f-4b07-af1f-ca9d89ba8d2e
-    content: Expose an imperative focus(terminalId) entry point — most naturally a ref-map populated by useTerminal — and call it from the resume routes, gated by a check that no blocking modal is open
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  6481054c-3f77-49cc-840f-2d2944ab99f3:
-    id: 6481054c-3f77-49cc-840f-2d2944ab99f3
-    content: Defer the focus call until after the active-terminal switch has rendered (queueMicrotask or rAF) so xterm focuses a visible element
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  28c609f5-d96d-4cfe-a7f7-807e78da73d1:
-    id: 28c609f5-d96d-4cfe-a7f7-807e78da73d1
-    content: worktree
-    children:
-      - ce4ba78a-f1d3-4310-95eb-46056306b5c8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ce4ba78a-f1d3-4310-95eb-46056306b5c8:
-    id: ce4ba78a-f1d3-4310-95eb-46056306b5c8
+  507358b2-6be5-4b97-b907-dc60d1c75abf:
+    id: 507358b2-6be5-4b97-b907-dc60d1c75abf
     content: vscode://file/Users/brianfox/dev/Arborescent-remove-ctrl-r-restart
     children: []
     metadata:
@@ -153296,33 +153050,33 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  24aa620d-230c-421c-ad49-912233b1202b:
-    id: 24aa620d-230c-421c-ad49-912233b1202b
+  09f0dcd8-0023-47e8-99bd-5dd9cc4350a0:
+    id: 09f0dcd8-0023-47e8-99bd-5dd9cc4350a0
     content: 📄 Product spec
     children:
-      - a1b327d2-66db-40d2-8339-113217b28f4f
-      - 3ff92a52-c56d-4ac5-8357-87918c392e06
-      - 74e1e21f-02ab-445a-9407-ad86e536d05f
-      - a3a4a204-06e3-4386-abc5-afd9e13c485b
-      - b6f7a4ee-b220-4d00-9cd8-303ca7a10c7a
-      - 60e52558-9701-4ab0-987f-c8087072a809
+      - 56a1e69c-63b6-4e94-b9f9-99e22cbee9e8
+      - 9f2d6ea2-3476-42b5-bd00-6c623205e5e5
+      - 82aa2715-40f5-4964-89e1-4144b93972ea
+      - ac7bb1d9-34ed-47ba-856e-0961e99cc366
+      - 4ef60d23-8268-415a-bec9-068deb30f114
+      - 20782f34-2cee-4ed3-9d52-e308971a99bc
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  a1b327d2-66db-40d2-8339-113217b28f4f:
-    id: a1b327d2-66db-40d2-8339-113217b28f4f
+  56a1e69c-63b6-4e94-b9f9-99e22cbee9e8:
+    id: 56a1e69c-63b6-4e94-b9f9-99e22cbee9e8
     content: Context
     children:
-      - b8a55b9b-10d2-48a4-9e09-10322a3bae54
+      - 8172a8d4-7492-48ad-bb10-15a3131f9464
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  b8a55b9b-10d2-48a4-9e09-10322a3bae54:
-    id: b8a55b9b-10d2-48a4-9e09-10322a3bae54
+  8172a8d4-7492-48ad-bb10-15a3131f9464:
+    id: 8172a8d4-7492-48ad-bb10-15a3131f9464
     content: Arborescent maps ctrl+R (and the platform equivalent) to restart the application. The shortcut is adjacent to common typing and navigation keys and fires immediately with no confirmation, so accidental presses interrupt active work.
     children: []
     metadata:
@@ -153330,18 +153084,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3ff92a52-c56d-4ac5-8357-87918c392e06:
-    id: 3ff92a52-c56d-4ac5-8357-87918c392e06
+  9f2d6ea2-3476-42b5-bd00-6c623205e5e5:
+    id: 9f2d6ea2-3476-42b5-bd00-6c623205e5e5
     content: User
     children:
-      - effa21ce-0f29-409b-9265-b93ba39df526
+      - f7099337-259c-4bae-b1fd-5ced7be264ed
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  effa21ce-0f29-409b-9265-b93ba39df526:
-    id: effa21ce-0f29-409b-9265-b93ba39df526
+  f7099337-259c-4bae-b1fd-5ced7be264ed:
+    id: f7099337-259c-4bae-b1fd-5ced7be264ed
     content: Arborescent desktop user actively working in a tree or terminal who occasionally fires ctrl+R unintentionally
     children: []
     metadata:
@@ -153349,18 +153103,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  74e1e21f-02ab-445a-9407-ad86e536d05f:
-    id: 74e1e21f-02ab-445a-9407-ad86e536d05f
+  82aa2715-40f5-4964-89e1-4144b93972ea:
+    id: 82aa2715-40f5-4964-89e1-4144b93972ea
     content: Current experience
     children:
-      - 58f22b98-6304-4697-bedf-9dbab740aa64
+      - ee174e6a-28d8-4742-b36e-e0f3c75f0c0e
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  58f22b98-6304-4697-bedf-9dbab740aa64:
-    id: 58f22b98-6304-4697-bedf-9dbab740aa64
+  ee174e6a-28d8-4742-b36e-e0f3c75f0c0e:
+    id: ee174e6a-28d8-4742-b36e-e0f3c75f0c0e
     content: Pressing ctrl+R restarts the app immediately, losing in-flight UI state and breaking flow. The user reports triggering it by mistake repeatedly.
     children: []
     metadata:
@@ -153368,18 +153122,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a3a4a204-06e3-4386-abc5-afd9e13c485b:
-    id: a3a4a204-06e3-4386-abc5-afd9e13c485b
+  ac7bb1d9-34ed-47ba-856e-0961e99cc366:
+    id: ac7bb1d9-34ed-47ba-856e-0961e99cc366
     content: Goal
     children:
-      - aaa2f065-39b6-416c-826b-15d0762e99e2
+      - 490b4b59-4ce6-4ced-ad8c-7587b7776290
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  aaa2f065-39b6-416c-826b-15d0762e99e2:
-    id: aaa2f065-39b6-416c-826b-15d0762e99e2
+  490b4b59-4ce6-4ced-ad8c-7587b7776290:
+    id: 490b4b59-4ce6-4ced-ad8c-7587b7776290
     content: Stop accidental restarts from a stray keypress while keeping the restart action discoverable through the application menu.
     children: []
     metadata:
@@ -153387,21 +153141,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b6f7a4ee-b220-4d00-9cd8-303ca7a10c7a:
-    id: b6f7a4ee-b220-4d00-9cd8-303ca7a10c7a
+  4ef60d23-8268-415a-bec9-068deb30f114:
+    id: 4ef60d23-8268-415a-bec9-068deb30f114
     content: Business rules
     children:
-      - c4d83aad-af51-4aa0-9ad9-7023687bf8cf
-      - cf132c85-c2c3-427e-a5e3-77559ba7b334
-      - f075eddc-db1d-4ac7-ba42-b94a0b2ecd6a
-      - 063b41d0-5b1e-4585-ba73-ac9c66353a81
+      - b02f9f83-cf0d-4eed-9fae-8073b4719b39
+      - d275bf6f-2959-4adc-9075-4ea10c12a996
+      - fa171f77-ff39-4b17-810b-d312c913d7dd
+      - 8793dfe6-5dbd-4aa7-9a0d-8d2714fe08d0
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c4d83aad-af51-4aa0-9ad9-7023687bf8cf:
-    id: c4d83aad-af51-4aa0-9ad9-7023687bf8cf
+  b02f9f83-cf0d-4eed-9fae-8073b4719b39:
+    id: b02f9f83-cf0d-4eed-9fae-8073b4719b39
     content: The ctrl+R accelerator (and cmd+R on macOS) must no longer trigger an application restart.
     children: []
     metadata:
@@ -153409,8 +153163,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cf132c85-c2c3-427e-a5e3-77559ba7b334:
-    id: cf132c85-c2c3-427e-a5e3-77559ba7b334
+  d275bf6f-2959-4adc-9075-4ea10c12a996:
+    id: d275bf6f-2959-4adc-9075-4ea10c12a996
     content: The Restart entry must remain visible and functional in the application menu.
     children: []
     metadata:
@@ -153418,8 +153172,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f075eddc-db1d-4ac7-ba42-b94a0b2ecd6a:
-    id: f075eddc-db1d-4ac7-ba42-b94a0b2ecd6a
+  fa171f77-ff39-4b17-810b-d312c913d7dd:
+    id: fa171f77-ff39-4b17-810b-d312c913d7dd
     content: No replacement keyboard shortcut is assigned to restart as part of this change.
     children: []
     metadata:
@@ -153427,8 +153181,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  063b41d0-5b1e-4585-ba73-ac9c66353a81:
-    id: 063b41d0-5b1e-4585-ba73-ac9c66353a81
+  8793dfe6-5dbd-4aa7-9a0d-8d2714fe08d0:
+    id: 8793dfe6-5dbd-4aa7-9a0d-8d2714fe08d0
     content: Removal must not regress unrelated ctrl+R behaviour inside the embedded terminal or text inputs that legitimately consume the key.
     children: []
     metadata:
@@ -153436,21 +153190,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  60e52558-9701-4ab0-987f-c8087072a809:
-    id: 60e52558-9701-4ab0-987f-c8087072a809
+  20782f34-2cee-4ed3-9d52-e308971a99bc:
+    id: 20782f34-2cee-4ed3-9d52-e308971a99bc
     content: Acceptance criteria
     children:
-      - 92f97685-6d51-4b68-b399-3fdd5d2e9854
-      - 73c5df19-493b-4ed8-8bd0-2167cac2e53a
-      - f57da205-40bb-48ed-be5b-061c39111f10
-      - 290fa157-fe7a-47bb-9ed6-e0c712454e6d
+      - 66e9fc3a-1d62-4fe5-9f10-bc691b337780
+      - 4206e7a8-79e7-4661-aa91-051482def169
+      - 5344a252-d59b-4ca3-942b-415b7707ff74
+      - 2ed70831-633d-419c-bf77-289dc0f6671a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  92f97685-6d51-4b68-b399-3fdd5d2e9854:
-    id: 92f97685-6d51-4b68-b399-3fdd5d2e9854
+  66e9fc3a-1d62-4fe5-9f10-bc691b337780:
+    id: 66e9fc3a-1d62-4fe5-9f10-bc691b337780
     content: Pressing ctrl+R (or cmd+R) anywhere in the app does not restart the application.
     children: []
     metadata:
@@ -153458,8 +153212,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  73c5df19-493b-4ed8-8bd0-2167cac2e53a:
-    id: 73c5df19-493b-4ed8-8bd0-2167cac2e53a
+  4206e7a8-79e7-4661-aa91-051482def169:
+    id: 4206e7a8-79e7-4661-aa91-051482def169
     content: Selecting Restart from the application menu still restarts the app.
     children: []
     metadata:
@@ -153467,8 +153221,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f57da205-40bb-48ed-be5b-061c39111f10:
-    id: f57da205-40bb-48ed-be5b-061c39111f10
+  5344a252-d59b-4ca3-942b-415b7707ff74:
+    id: 5344a252-d59b-4ca3-942b-415b7707ff74
     content: The Restart menu item displays no accelerator hint after the change.
     children: []
     metadata:
@@ -153476,8 +153230,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  290fa157-fe7a-47bb-9ed6-e0c712454e6d:
-    id: 290fa157-fe7a-47bb-9ed6-e0c712454e6d
+  2ed70831-633d-419c-bf77-289dc0f6671a:
+    id: 2ed70831-633d-419c-bf77-289dc0f6671a
     content: Pressing ctrl+R does not trigger any fallback behaviour such as a renderer reload that visually mimics a restart.
     children: []
     metadata:
@@ -153485,30 +153239,30 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3feae827-d1e2-45e3-b911-a7d650f08755:
-    id: 3feae827-d1e2-45e3-b911-a7d650f08755
+  1aab7484-703f-45fc-9060-53dc8c455090:
+    id: 1aab7484-703f-45fc-9060-53dc8c455090
     content: 🔧 Implementation proposal
     children:
-      - 1d4d9cd7-7f5e-4144-a6bb-1af217bee652
-      - 133e4066-c6a2-49c3-a32c-6eded0329c82
-      - d3a1250d-051d-411a-9796-cda9df5b3951
+      - 8d9a747f-d6ab-4272-b323-62aef934ae9c
+      - 00c2a891-ca88-47ae-86ee-bc5d9cc00fb8
+      - b3492d70-7f1f-48b8-8b7a-6281b8eb0cc7
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  1d4d9cd7-7f5e-4144-a6bb-1af217bee652:
-    id: 1d4d9cd7-7f5e-4144-a6bb-1af217bee652
+  8d9a747f-d6ab-4272-b323-62aef934ae9c:
+    id: 8d9a747f-d6ab-4272-b323-62aef934ae9c
     content: Approach
     children:
-      - f68d6bb0-2421-4b64-9c05-91916b0aa4cf
+      - 62a4b71d-55bd-43d6-b3ba-4227194b6bee
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f68d6bb0-2421-4b64-9c05-91916b0aa4cf:
-    id: f68d6bb0-2421-4b64-9c05-91916b0aa4cf
+  62a4b71d-55bd-43d6-b3ba-4227194b6bee:
+    id: 62a4b71d-55bd-43d6-b3ba-4227194b6bee
     content: Locate the Electron menu definition that registers the Restart item and drop its `accelerator` property while preserving the menu item, label, and click handler. If Electron's default reload accelerator on the renderer is what reaches the restart path, neutralise it with an empty accelerator or by overriding the role.
     children: []
     metadata:
@@ -153516,20 +153270,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  133e4066-c6a2-49c3-a32c-6eded0329c82:
-    id: 133e4066-c6a2-49c3-a32c-6eded0329c82
+  00c2a891-ca88-47ae-86ee-bc5d9cc00fb8:
+    id: 00c2a891-ca88-47ae-86ee-bc5d9cc00fb8
     content: Touchpoints
     children:
-      - 677873e1-5d60-45f4-b8b0-5f4d8746adfd
-      - 4ec153e4-b666-4b09-a0f3-468489afa49d
-      - 58a1f8b2-f49a-4962-98f9-f6210c0c5b5c
+      - bb623f7e-5107-4c32-92e0-3d3562879da2
+      - 8282d7ff-221d-42ef-af3c-71c8d42f42a4
+      - fe3f8e0b-663d-4ba1-81ee-4e78ef65ffd7
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  677873e1-5d60-45f4-b8b0-5f4d8746adfd:
-    id: 677873e1-5d60-45f4-b8b0-5f4d8746adfd
+  bb623f7e-5107-4c32-92e0-3d3562879da2:
+    id: bb623f7e-5107-4c32-92e0-3d3562879da2
     content: Electron main process menu wiring under src/main
     children: []
     metadata:
@@ -153537,8 +153291,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4ec153e4-b666-4b09-a0f3-468489afa49d:
-    id: 4ec153e4-b666-4b09-a0f3-468489afa49d
+  8282d7ff-221d-42ef-af3c-71c8d42f42a4:
+    id: 8282d7ff-221d-42ef-af3c-71c8d42f42a4
     content: Any test covering menu accelerator registration
     children: []
     metadata:
@@ -153546,8 +153300,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  58a1f8b2-f49a-4962-98f9-f6210c0c5b5c:
-    id: 58a1f8b2-f49a-4962-98f9-f6210c0c5b5c
+  fe3f8e0b-663d-4ba1-81ee-4e78ef65ffd7:
+    id: fe3f8e0b-663d-4ba1-81ee-4e78ef65ffd7
     content: project.arbo workflow state per end-of-task convention
     children: []
     metadata:
@@ -153555,19 +153309,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d3a1250d-051d-411a-9796-cda9df5b3951:
-    id: d3a1250d-051d-411a-9796-cda9df5b3951
+  b3492d70-7f1f-48b8-8b7a-6281b8eb0cc7:
+    id: b3492d70-7f1f-48b8-8b7a-6281b8eb0cc7
     content: Constraints to call out
     children:
-      - 537b3b46-13bf-4f54-9fbb-baf9776c6fc6
-      - 20e96122-5af4-4cb9-9099-ef48876794f5
+      - 193dfd5b-e3d1-4bcd-998d-fc0daea8b2b6
+      - a0544387-7b9b-4e1a-a620-28bc9ab6c133
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  537b3b46-13bf-4f54-9fbb-baf9776c6fc6:
-    id: 537b3b46-13bf-4f54-9fbb-baf9776c6fc6
+  193dfd5b-e3d1-4bcd-998d-fc0daea8b2b6:
+    id: 193dfd5b-e3d1-4bcd-998d-fc0daea8b2b6
     content: Electron menu accelerator strings often map to both ctrl+R and cmd+R via a single `CmdOrCtrl+R` token — both platforms must be covered in one change.
     children: []
     metadata:
@@ -153575,8 +153329,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  20e96122-5af4-4cb9-9099-ef48876794f5:
-    id: 20e96122-5af4-4cb9-9099-ef48876794f5
+  a0544387-7b9b-4e1a-a620-28bc9ab6c133:
+    id: a0544387-7b9b-4e1a-a620-28bc9ab6c133
     content: Confirm no default webContents reload binding silently keeps ctrl+R reloading the renderer after the menu accelerator is removed.
     children: []
     metadata:
@@ -153584,20 +153338,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3a8fffe0-58b1-405e-ba81-ce9517ad52b9:
-    id: 3a8fffe0-58b1-405e-ba81-ce9517ad52b9
+  56373186-51f9-4cfc-ad24-465fde0afc65:
+    id: 56373186-51f9-4cfc-ad24-465fde0afc65
     content: Challenges considered
     children:
-      - 0c8f0e74-cc40-4a8a-b3ae-cd6a8f884b55
-      - 948c1ec8-7575-4e90-983e-da07d50a42b1
-      - 3eeb0fc8-670c-4902-afeb-e25048a7aefd
+      - a8ab18ef-91cf-4e32-ad75-97bfca2e9f09
+      - 47dead53-6dd0-4e87-9a6d-5bbd6f017ac8
+      - 2ac03fe9-e620-4403-8154-9081ad6de50f
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  0c8f0e74-cc40-4a8a-b3ae-cd6a8f884b55:
-    id: 0c8f0e74-cc40-4a8a-b3ae-cd6a8f884b55
+  a8ab18ef-91cf-4e32-ad75-97bfca2e9f09:
+    id: a8ab18ef-91cf-4e32-ad75-97bfca2e9f09
     content: Single chunk is correct — splitting a menu accelerator removal would be churn with no review or rollout benefit.
     children: []
     metadata:
@@ -153605,8 +153359,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  948c1ec8-7575-4e90-983e-da07d50a42b1:
-    id: 948c1ec8-7575-4e90-983e-da07d50a42b1
+  47dead53-6dd0-4e87-9a6d-5bbd6f017ac8:
+    id: 47dead53-6dd0-4e87-9a6d-5bbd6f017ac8
     content: 'Out of scope: assigning a safer replacement shortcut or adding a restart confirmation dialog — user asked for removal, not rebinding.'
     children: []
     metadata:
@@ -153614,8 +153368,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3eeb0fc8-670c-4902-afeb-e25048a7aefd:
-    id: 3eeb0fc8-670c-4902-afeb-e25048a7aefd
+  2ac03fe9-e620-4403-8154-9081ad6de50f:
+    id: 2ac03fe9-e620-4403-8154-9081ad6de50f
     content: 'ROI is strong: a few-line change eliminates a recurring source of lost work.'
     children: []
     metadata:
@@ -153623,34 +153377,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d0e3c62e-e305-4607-acf1-cb5d5914d509:
-    id: d0e3c62e-e305-4607-acf1-cb5d5914d509
+  aab2ed29-a765-4ca9-a1fa-ae6bea6873a0:
+    id: aab2ed29-a765-4ca9-a1fa-ae6bea6873a0
     content: Technical refinement
     children:
-      - d4d9703c-4bfe-472f-bb0a-1260a6d4d70c
-      - 1c560aaf-5bdf-4488-8601-af9adfbe0825
+      - 4c4ea797-171a-4318-afd4-4ba8fdea94f4
+      - d63dbdca-9e81-4c58-820d-c2333df944db
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d4d9703c-4bfe-472f-bb0a-1260a6d4d70c:
-    id: d4d9703c-4bfe-472f-bb0a-1260a6d4d70c
+  4c4ea797-171a-4318-afd4-4ba8fdea94f4:
+    id: 4c4ea797-171a-4318-afd4-4ba8fdea94f4
     content: Complications
     children:
-      - ede80224-77c1-4d1a-afac-11cead8c5d07
-      - 814781cf-fea2-4393-a71c-1918fa5059ef
-      - 8ea694b8-c4c7-45c4-b38e-02634fc8d34b
-      - 6fab4940-5bb2-48a6-a60d-bb76f8f22e4c
-      - a31a1398-d192-4802-a6d9-57df74e26ebb
-      - 4e11df17-a02f-4d39-8ec6-3cb475cba7c3
+      - c45e577c-7e8b-446b-8dfc-887eba2be703
+      - cdf19b99-a799-4569-a6a1-f9cd92656cdd
+      - 6441d36c-8fcc-4f03-aa0d-39437e73a29a
+      - c1a0f04c-6048-4045-9318-b5a60de0834e
+      - afee9bac-94f1-4be1-bee0-a77adf39aae2
+      - cc86ed6f-fecd-4a27-a69d-0b861c631421
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ede80224-77c1-4d1a-afac-11cead8c5d07:
-    id: ede80224-77c1-4d1a-afac-11cead8c5d07
+  c45e577c-7e8b-446b-8dfc-887eba2be703:
+    id: c45e577c-7e8b-446b-8dfc-887eba2be703
     content: The action is not a main-process Electron menu accelerator — it is a renderer-side hotkey wired to `window.location.reload()` (renderer-only reload, not a true process restart). The proposal's main-process framing is wrong; the change lands in the renderer.
     children: []
     metadata:
@@ -153658,8 +153412,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  814781cf-fea2-4393-a71c-1918fa5059ef:
-    id: 814781cf-fea2-4393-a71c-1918fa5059ef
+  cdf19b99-a799-4569-a6a1-f9cd92656cdd:
+    id: cdf19b99-a799-4569-a6a1-f9cd92656cdd
     content: 'Concrete edit points: `src/renderer/utils/defaultHotkeys.json` (file.reload set to empty string), `src/renderer/components/MenuBar/FileMenu.tsx:107` (drop the hardcoded `|| ''CmdOrCtrl+R''` fallback so the menu stops advertising a binding that no longer exists), and a check that `matchesHotkey` returns false for empty bindings (it does — `uiService.ts:174` becomes a no-op without touching the handler).'
     children: []
     metadata:
@@ -153667,8 +153421,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8ea694b8-c4c7-45c4-b38e-02634fc8d34b:
-    id: 8ea694b8-c4c7-45c4-b38e-02634fc8d34b
+  6441d36c-8fcc-4f03-aa0d-39437e73a29a:
+    id: 6441d36c-8fcc-4f03-aa0d-39437e73a29a
     content: Users with a customised hotkey config persisted on disk may still have `CmdOrCtrl+R` bound to file.reload — defaults won't reach them. Decide explicitly whether to migrate existing configs or accept that customised users keep the binding until they reset.
     children: []
     metadata:
@@ -153676,8 +153430,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6fab4940-5bb2-48a6-a60d-bb76f8f22e4c:
-    id: 6fab4940-5bb2-48a6-a60d-bb76f8f22e4c
+  c1a0f04c-6048-4045-9318-b5a60de0834e:
+    id: c1a0f04c-6048-4045-9318-b5a60de0834e
     content: Electron `BrowserWindow` has its own default `CmdOrCtrl+R` reload on webContents; verify it is not currently firing (e.g. via a `before-input-event` or explicit menu) and intercept if it survives the hotkey removal.
     children: []
     metadata:
@@ -153685,8 +153439,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a31a1398-d192-4802-a6d9-57df74e26ebb:
-    id: a31a1398-d192-4802-a6d9-57df74e26ebb
+  afee9bac-94f1-4be1-bee0-a77adf39aae2:
+    id: afee9bac-94f1-4be1-bee0-a77adf39aae2
     content: Embedded browser (`BrowserPanel`) and any focused input still use ctrl+R intentionally — the existing `isFocusInTerminalOrBrowser()` guard already shields those paths, but the change must not weaken it.
     children: []
     metadata:
@@ -153694,8 +153448,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4e11df17-a02f-4d39-8ec6-3cb475cba7c3:
-    id: 4e11df17-a02f-4d39-8ec6-3cb475cba7c3
+  cc86ed6f-fecd-4a27-a69d-0b861c631421:
+    id: cc86ed6f-fecd-4a27-a69d-0b861c631421
     content: 'Out of scope confirmed: the embedded webview reload button, the `KeyboardShortcuts` settings UI label (kept so the action remains listed as unbound), and any future rebind UX.'
     children: []
     metadata:
@@ -153703,20 +153457,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1c560aaf-5bdf-4488-8601-af9adfbe0825:
-    id: 1c560aaf-5bdf-4488-8601-af9adfbe0825
+  d63dbdca-9e81-4c58-820d-c2333df944db:
+    id: d63dbdca-9e81-4c58-820d-c2333df944db
     content: Approach summary
     children:
-      - 76ebe327-974b-4661-82ea-fd4817b17655
-      - e0a31a1b-fc24-4ccd-8579-85ec4ccb64d1
-      - 6f06f5c6-24d1-42b9-9cb5-172a3fe6522e
+      - 643d5a18-3d16-45f6-8487-fb67ec1776a3
+      - fcb4461c-aea9-40d4-b782-7bd70f8051bd
+      - 57aca981-69e4-4e15-96f5-b52df6836a49
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  76ebe327-974b-4661-82ea-fd4817b17655:
-    id: 76ebe327-974b-4661-82ea-fd4817b17655
+  643d5a18-3d16-45f6-8487-fb67ec1776a3:
+    id: 643d5a18-3d16-45f6-8487-fb67ec1776a3
     content: 'Renderer-only change: empty the `file.reload` default binding and remove the hardcoded shortcut fallback in `FileMenu.tsx`; keyboard handler and File menu item stay intact, so menu access keeps working unchanged.'
     children: []
     metadata:
@@ -153724,8 +153478,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e0a31a1b-fc24-4ccd-8579-85ec4ccb64d1:
-    id: e0a31a1b-fc24-4ccd-8579-85ec4ccb64d1
+  fcb4461c-aea9-40d4-b782-7bd70f8051bd:
+    id: fcb4461c-aea9-40d4-b782-7bd70f8051bd
     content: Keep the `reload` field in the hotkey config type and labels — only its key binding is cleared. This avoids touching `HotkeyConfig` typing or `hotkeyLabels.ts` and keeps the action listable in any settings surface.
     children: []
     metadata:
@@ -153733,9 +153487,509 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6f06f5c6-24d1-42b9-9cb5-172a3fe6522e:
-    id: 6f06f5c6-24d1-42b9-9cb5-172a3fe6522e
+  57aca981-69e4-4e15-96f5-b52df6836a49:
+    id: 57aca981-69e4-4e15-96f5-b52df6836a49
     content: 'Non-obvious for reviewer: the original "Electron main-process menu" framing was wrong, and Electron''s built-in BrowserWindow reload may need an explicit suppression even after the in-app hotkey is removed — verify by smoke-testing ctrl+R with the binding cleared.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4853aad0-2944-4bb2-a6fe-c27a33775c81:
+    id: 4853aad0-2944-4bb2-a6fe-c27a33775c81
+    content: review feedback
+    children:
+      - 43f5d9f7-39d7-4344-ab59-7f9a2860645f
+      - f5f0ce25-87aa-4398-b992-917b7f66d1da
+      - f56c628e-25a5-427b-b923-3da825903959
+      - 3345cde5-e564-4ee7-b9b2-160a195de65c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43f5d9f7-39d7-4344-ab59-7f9a2860645f:
+    id: 43f5d9f7-39d7-4344-ab59-7f9a2860645f
+    content: Stale top-level mock in FileMenu.test.tsx
+    children:
+      - 9100c8a0-a870-4750-b656-6d0181e1f29a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9100c8a0-a870-4750-b656-6d0181e1f29a:
+    id: 9100c8a0-a870-4750-b656-6d0181e1f29a
+    content: 'The top-level beforeEach (around line 62) still maps reload: ''CmdOrCtrl+R'' in mockGetKeyForAction. The new ''reload shortcut removal'' describe overrides it, but as a default it now misrepresents reality and will mislead the next test author. Fix: change to '''' or drop the reload key from the default map.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5f0ce25-87aa-4398-b992-917b7f66d1da:
+    id: f5f0ce25-87aa-4398-b992-917b7f66d1da
+    content: Persisted user hotkey configs may shadow the new default
+    children:
+      - 91810f90-a50f-4f98-a0c3-c103ade1120b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91810f90-a50f-4f98-a0c3-c103ade1120b:
+    id: 91810f90-a50f-4f98-a0c3-c103ade1120b
+    content: 'preferencesStore.ts replaces defaults wholesale (preferences.hotkeys || defaultHotkeys) — users whose saved prefs predate this change keep file.reload bound to CmdOrCtrl+R. The very user reporting the bug likely has saved prefs, so the default change alone may not solve their problem. Options: one-shot migration on load that clears file.reload, or accept and surface in release notes. Worth deciding now.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f56c628e-25a5-427b-b923-3da825903959:
+    id: f56c628e-25a5-427b-b923-3da825903959
+    content: FileMenu.tsx fallback style inconsistency
+    children:
+      - 7d52817f-686f-4baf-9fdb-0a5f3d7f0169
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d52817f-686f-4baf-9fdb-0a5f3d7f0169:
+    id: 7d52817f-686f-4baf-9fdb-0a5f3d7f0169
+    content: '`|| ''''` is functionally correct but every other MenuItem in this file uses a real fallback accelerator. Could be rewritten as a conditional that omits the shortcut prop when getKeyForAction returns falsy: `shortcut={key ? formatHotkeyForDisplay(key) : undefined}`. Minor, current form works.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3345cde5-e564-4ee7-b9b2-160a195de65c:
+    id: 3345cde5-e564-4ee7-b9b2-160a195de65c
+    content: Positive findings (no action needed)
+    children:
+      - 4d4a69e7-353f-443c-80e3-3acba45906cc
+      - 2b6999cd-34c0-49cc-9c71-b146b9d59656
+      - 72aa08b0-d9a6-4a34-98f7-bda4d514d95f
+      - 9ccd4359-b51c-4863-9cc9-8cad39868e12
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d4a69e7-353f-443c-80e3-3acba45906cc:
+    id: 4d4a69e7-353f-443c-80e3-3acba45906cc
+    content: matchesHotkey short-circuits cleanly on falsy notation — no dead branch.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b6999cd-34c0-49cc-9c71-b146b9d59656:
+    id: 2b6999cd-34c0-49cc-9c71-b146b9d59656
+    content: formatHotkeyForDisplay early-returns '' on falsy input — MenuItem's `shortcut && ...` guard then skips rendering.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72aa08b0-d9a6-4a34-98f7-bda4d514d95f:
+    id: 72aa08b0-d9a6-4a34-98f7-bda4d514d95f
+    content: hotkeyLabels.ts:44 retains 'Reload' label so the Settings UI still lists the action as unbound — current behaviour confirmed, no regression.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ccd4359-b51c-4863-9cc9-8cad39868e12:
+    id: 9ccd4359-b51c-4863-9cc9-8cad39868e12
+    content: No main-process accelerator or before-input-event handler intercepts ctrl+R — renderer change alone is sufficient.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a8d4dd2-96b2-4305-a971-eb6f8ba3361e:
+    id: 6a8d4dd2-96b2-4305-a971-eb6f8ba3361e
+    content: worktree
+    children:
+      - d18bfffe-162b-414c-8f5d-5b7b835ea73d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d18bfffe-162b-414c-8f5d-5b7b835ea73d:
+    id: d18bfffe-162b-414c-8f5d-5b7b835ea73d
+    content: vscode://file/Users/brianfox/dev/Arborescent-terminal-focus-on-resume
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50b4e636-8dea-444f-9286-ddff90261cc2:
+    id: 50b4e636-8dea-444f-9286-ddff90261cc2
+    content: Summary
+    children:
+      - f060e43a-2585-4384-9eeb-77e49afc33ff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f060e43a-2585-4384-9eeb-77e49afc33ff:
+    id: f060e43a-2585-4384-9eeb-77e49afc33ff
+    content: Resuming a workflow does not move focus to the terminal bound to that workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3244ef24-7d6b-49c6-8765-57c8022c9400:
+    id: 3244ef24-7d6b-49c6-8765-57c8022c9400
+    content: Scope
+    children:
+      - f27b566f-c1c0-4ce9-88ae-27b146bed4f7
+      - 7aee2238-f561-45db-9cab-eb829edb3e1f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f27b566f-c1c0-4ce9-88ae-27b146bed4f7:
+    id: f27b566f-c1c0-4ce9-88ae-27b146bed4f7
+    content: Only covers the case where the bound terminal's tab is already open/visible but not focused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7aee2238-f561-45db-9cab-eb829edb3e1f:
+    id: 7aee2238-f561-45db-9cab-eb829edb3e1f
+    content: 'Out of scope: activating an inactive tab before focusing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd7c9e2e-fcd1-4b7b-ac76-2c0d012befae:
+    id: dd7c9e2e-fcd1-4b7b-ac76-2c0d012befae
+    content: Steps to reproduce
+    children:
+      - 8e326e54-e814-4a34-a271-58ab3c1ae54a
+      - 14e6f100-4683-4d2c-ba08-9b0f0afab3c2
+      - d3643bb1-e7c0-46db-9018-e02c7dfc0f47
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e326e54-e814-4a34-a271-58ab3c1ae54a:
+    id: 8e326e54-e814-4a34-a271-58ab3c1ae54a
+    content: Have a workflow with a bound terminal session whose tab is open and visible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14e6f100-4683-4d2c-ba08-9b0f0afab3c2:
+    id: 14e6f100-4683-4d2c-ba08-9b0f0afab3c2
+    content: Move focus elsewhere (e.g. the tree view or another input) while keeping the terminal's tab visible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3643bb1-e7c0-46db-9018-e02c7dfc0f47:
+    id: d3643bb1-e7c0-46db-9018-e02c7dfc0f47
+    content: Resume the workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d05ef85-3358-40f1-b629-066eefb22898:
+    id: 2d05ef85-3358-40f1-b629-066eefb22898
+    content: Expected behavior
+    children:
+      - 35e47716-3b35-471c-bae0-1d5653824e22
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35e47716-3b35-471c-bae0-1d5653824e22:
+    id: 35e47716-3b35-471c-bae0-1d5653824e22
+    content: The terminal bound to the resumed workflow should receive focus automatically
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76965e4b-ce29-442b-849d-bb24f9ba6f17:
+    id: 76965e4b-ce29-442b-849d-bb24f9ba6f17
+    content: Actual behavior
+    children:
+      - d8a0bacb-3cb4-45f2-b110-6b29c61cc002
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8a0bacb-3cb4-45f2-b110-6b29c61cc002:
+    id: d8a0bacb-3cb4-45f2-b110-6b29c61cc002
+    content: The workflow resumes but focus stays where it was; the user must click the terminal manually before typing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de4ee129-213b-436e-b9f4-76e7f9af45d0:
+    id: de4ee129-213b-436e-b9f4-76e7f9af45d0
+    content: Acceptance criteria
+    children:
+      - 59c31aa3-763a-4dc2-bba0-18c25ed25c74
+      - d2748822-5e79-45d4-a884-343368c50c47
+      - 795a9d2f-c2da-44c1-8bb7-a51cb588a151
+      - 6ab4d12b-b8fd-4abd-a270-864ca65a94c5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59c31aa3-763a-4dc2-bba0-18c25ed25c74:
+    id: 59c31aa3-763a-4dc2-bba0-18c25ed25c74
+    content: Resuming a workflow programmatically focuses the bound terminal when its tab is already the active tab
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2748822-5e79-45d4-a884-343368c50c47:
+    id: d2748822-5e79-45d4-a884-343368c50c47
+    content: If no terminal is bound to the workflow, resume completes without error and without changing focus
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  795a9d2f-c2da-44c1-8bb7-a51cb588a151:
+    id: 795a9d2f-c2da-44c1-8bb7-a51cb588a151
+    content: Focus behaviour is identical whether the resume is triggered via keyboard shortcut or via mouse/UI action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ab4d12b-b8fd-4abd-a270-864ca65a94c5:
+    id: 6ab4d12b-b8fd-4abd-a270-864ca65a94c5
+    content: Focus is applied once per resume and does not steal focus on subsequent workflow advances within the same session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6a31105-ec96-48d6-9a03-f3868ad94299:
+    id: a6a31105-ec96-48d6-9a03-f3868ad94299
+    content: Technical refinement
+    children:
+      - 02d18583-69fe-4414-9b76-3447c01d0f42
+      - 7f7b0e81-73d5-47cd-8410-3349c80b46a1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02d18583-69fe-4414-9b76-3447c01d0f42:
+    id: 02d18583-69fe-4414-9b76-3447c01d0f42
+    content: Complications
+    children:
+      - 8dbd8f8b-a25f-4b31-8fca-d6f73224e5f7
+      - 986be8f2-2a84-49aa-ad0b-2f1057e9e74a
+      - 38858898-cccd-46b5-a269-d5a7f274328c
+      - be859899-bae1-4912-beaa-818b52fe34af
+      - d6e3e022-e166-45e7-90e4-8623d7680f7c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8dbd8f8b-a25f-4b31-8fca-d6f73224e5f7:
+    id: 8dbd8f8b-a25f-4b31-8fca-d6f73224e5f7
+    content: xterm instances are owned by the per-terminal useTerminal hook; the terminal store currently has no handle to call .focus() on them, so a small registry / ref-map needs to be exposed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  986be8f2-2a84-49aa-ad0b-2f1057e9e74a:
+    id: 986be8f2-2a84-49aa-ad0b-2f1057e9e74a
+    content: In the resume-in-new-tab path the xterm doesn't exist yet at the moment resume is triggered — focus has to wait until the new Terminal component mounts and its xterm is ready
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38858898-cccd-46b5-a269-d5a7f274328c:
+    id: 38858898-cccd-46b5-a269-d5a7f274328c
+    content: xterm.focus() is a no-op on a display:none container; if the tab was just made active via setActiveTerminal, focus must run after the next render commit (microtask / rAF), not synchronously
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be859899-bae1-4912-beaa-818b52fe34af:
+    id: be859899-bae1-4912-beaa-818b52fe34af
+    content: A rebind confirmation dialog (or other modal) may be open at resume time — focusing the terminal would steal focus from the dialog; the modal case should be excluded
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6e3e022-e166-45e7-90e4-8623d7680f7c:
+    id: d6e3e022-e166-45e7-90e4-8623d7680f7c
+    content: AC scopes focus to resume only; workflow-advance (recurse) must remain untouched to avoid stealing focus mid-session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f7b0e81-73d5-47cd-8410-3349c80b46a1:
+    id: 7f7b0e81-73d5-47cd-8410-3349c80b46a1
+    content: Approach
+    children:
+      - 8e041a91-36bc-4ab0-b980-85d669695f10
+      - c3f331d8-fa62-46f1-b5a4-0dee31eeae5a
+      - cd75b2a8-a711-47f8-8bad-b34db596936e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e041a91-36bc-4ab0-b980-85d669695f10:
+    id: 8e041a91-36bc-4ab0-b980-85d669695f10
+    content: Land the fix in the focus-existing-tab and resume-in-new-tab branches of workflowExecutionActions.ts, immediately after setActiveTerminal / terminal creation
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3f331d8-fa62-46f1-b5a4-0dee31eeae5a:
+    id: c3f331d8-fa62-46f1-b5a4-0dee31eeae5a
+    content: Expose an imperative focus(terminalId) entry point — most naturally a ref-map populated by useTerminal — and call it from the resume routes, gated by a check that no blocking modal is open
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd75b2a8-a711-47f8-8bad-b34db596936e:
+    id: cd75b2a8-a711-47f8-8bad-b34db596936e
+    content: Defer the focus call until after the active-terminal switch has rendered (queueMicrotask or rAF) so xterm focuses a visible element
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40798e93-6b01-4e09-8867-a303009b95c4:
+    id: 40798e93-6b01-4e09-8867-a303009b95c4
+    content: review feedback
+    children:
+      - d726e610-b2a4-41e9-bc5b-3399028f2876
+      - 140b433f-17e0-4085-ae39-03c74de2fb2b
+      - e1118467-4cf3-48b6-a9ed-4e6ff011d533
+      - 954e90e1-3c1f-4d17-a0d6-fc755ca60188
+      - 292ed7ff-f140-413a-96eb-7f8c15d51388
+      - 061c7665-5ad8-4b74-8a90-58077e7b9156
+      - 044b87bb-5c5d-47ba-96d3-4dab9cefda49
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d726e610-b2a4-41e9-bc5b-3399028f2876:
+    id: d726e610-b2a4-41e9-bc5b-3399028f2876
+    content: No blocking issues found by pr-review-toolkit:code-reviewer agent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  140b433f-17e0-4085-ae39-03c74de2fb2b:
+    id: 140b433f-17e0-4085-ae39-03c74de2fb2b
+    content: 'Sub-threshold timing concern on the alive-detached new-tab path: focusTerminal fires immediately after createNewTerminal/terminalWrite while the new useTerminal hook is still waiting on ResizeObserver to call registerTerminalFocus, so a single rAF tick is not guaranteed to be enough — the focus call may silently no-op for brand-new tabs'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1118467-4cf3-48b6-a9ed-4e6ff011d533:
+    id: e1118467-4cf3-48b6-a9ed-4e6ff011d533
+    content: 'Possible mitigation if the timing is observed in practice: have focusTerminal retain a pending focus request for one or two rAFs so a late registerTerminalFocus can pick it up'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  954e90e1-3c1f-4d17-a0d6-fc755ca60188:
+    id: 954e90e1-3c1f-4d17-a0d6-fc755ca60188
+    content: Disposer ordering in useTerminal is correct (unregister runs before xterm.dispose)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  292ed7ff-f140-413a-96eb-7f8c15d51388:
+    id: 292ed7ff-f140-413a-96eb-7f8c15d51388
+    content: React Strict-Mode double-mount safe (Map.set overwrites; cleanup runs unregister before second mount's register)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  061c7665-5ad8-4b74-8a90-58077e7b9156:
+    id: 061c7665-5ad8-4b74-8a90-58077e7b9156
+    content: Convention compliance with focusPreservation.ts pattern confirmed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  044b87bb-5c5d-47ba-96d3-4dab9cefda49:
+    id: 044b87bb-5c5d-47ba-96d3-4dab9cefda49
+    content: Test coverage adequate for wired behavior; modal-guard and recurse-no-focus regression cases remain as it.todo and are intentional deferrals
     children: []
     metadata:
       status: completed
