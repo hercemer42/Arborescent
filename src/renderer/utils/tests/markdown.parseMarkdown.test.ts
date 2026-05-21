@@ -222,4 +222,47 @@ describe('parseMarkdown', () => {
       expect(Object.keys(allNodes)).toHaveLength(0);
     });
   });
+
+  describe('literal backslash-n normalisation (malformed-submission defence)', () => {
+    it('normalises literal \\n sequences to real newlines before parsing', () => {
+      const malformed = '# [ ] Root\\n## [ ] Child\\n### [ ] Grandchild';
+      const { rootNodes, allNodes } = parseMarkdown(malformed);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Root');
+
+      const childId = rootNodes[0].children[0];
+      const child = allNodes[childId];
+      expect(child.content).toBe('Child');
+
+      const grandchildId = child.children[0];
+      expect(allNodes[grandchildId].content).toBe('Grandchild');
+    });
+
+    it('normalises content where every newline is a literal backslash-n (the canonical bug shape)', () => {
+      const blobShaped = '# [ ] Bug\\n## [ ] Summary\\n### [ ] line one\\n## [ ] Impact\\n### [ ] line two';
+      const { rootNodes } = parseMarkdown(blobShaped);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Bug');
+      expect(rootNodes[0].children.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it('leaves well-formed input with real newlines unchanged', () => {
+      const wellFormed = '# [ ] Root\n## [ ] Child';
+      const { rootNodes, allNodes } = parseMarkdown(wellFormed);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Root');
+      expect(allNodes[rootNodes[0].children[0]].content).toBe('Child');
+    });
+
+    it('handles mixed real and literal newlines without losing structure', () => {
+      const mixed = '# [ ] Root\n## [ ] Child A\\n## [ ] Child B';
+      const { rootNodes } = parseMarkdown(mixed);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].children.length).toBeGreaterThanOrEqual(2);
+    });
+  });
 });

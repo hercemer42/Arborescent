@@ -222,6 +222,96 @@ describe('feedbackService', () => {
         expect(result!.nodeCount).toBe(4);
       });
     });
+
+    describe('blob-shaped submission rejection (data-loss defence)', () => {
+      it('rejects single-root output whose content embeds further heading markers — the canonical bug shape', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const blobContent = 'Root\n## [ ] Child\n### [ ] Grandchild';
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [{ id: 'blob', content: blobContent, children: [], metadata: {} }],
+          allNodes: { 'blob': { id: 'blob', content: blobContent, children: [], metadata: {} } },
+        });
+
+        const result = parseFeedbackContent('# [ ] Root\n## [ ] Child\n### [ ] Grandchild');
+        expect(result).toBeNull();
+      });
+
+      it('rejects single-root output whose content embeds three or more checkbox markers but no real heading break', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const blobContent = 'Top [ ] child one [x] child two [ ] child three [-] child four';
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [{ id: 'blob', content: blobContent, children: [], metadata: {} }],
+          allNodes: { 'blob': { id: 'blob', content: blobContent, children: [], metadata: {} } },
+        });
+
+        const result = parseFeedbackContent('# [ ] Top [ ] child one [x] child two [ ] child three [-] child four');
+        expect(result).toBeNull();
+      });
+
+      it('accepts a single-root title with two incidental checkbox markers in prose (false-positive guard)', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const benignContent = 'Pick [x] one or [ ] the other';
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [{ id: 'ok', content: benignContent, children: [], metadata: {} }],
+          allNodes: { 'ok': { id: 'ok', content: benignContent, children: [], metadata: {} } },
+        });
+
+        const result = parseFeedbackContent('# [ ] Pick [x] one or [ ] the other');
+        expect(result).not.toBeNull();
+        expect(result!.rootNodeId).toBe('ok');
+      });
+
+      it('rejects the captured-evidence shape where the root prefix is doubled and the subtree is duplicated', async () => {
+        const { parseMarkdown } = await vi.importActual<typeof import('../../../utils/markdown')>('../../../utils/markdown');
+        vi.mocked((await import('../../../utils/markdown')).parseMarkdown).mockImplementation(parseMarkdown);
+
+        const payload = [
+          '# [x] # [x] Remove the 10-minute step timeout indicator',
+          '## [x] worktree',
+          '### [x] vscode://file//worktree/path',
+          '## [x] Product spec',
+          '### [x] Context',
+          '## [x] worktree',
+          '### [x] vscode://file//worktree/path',
+          '## [x] Product spec',
+          '### [x] Context',
+        ].join('\n');
+
+        const result = parseFeedbackContent(payload, true);
+        expect(result).toBeNull();
+      });
+
+      it('rejects single-root output whose content embeds literal backslash-n sequences', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const blobContent = 'Root\\n## [ ] Child\\n### [ ] Grandchild';
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [{ id: 'blob', content: blobContent, children: [], metadata: {} }],
+          allNodes: { 'blob': { id: 'blob', content: blobContent, children: [], metadata: {} } },
+        });
+
+        const result = parseFeedbackContent('# [ ] Root\\n## [ ] Child\\n### [ ] Grandchild');
+        expect(result).toBeNull();
+      });
+
+      it('accepts a legitimate short single-root update with no embedded markers (regression guard)', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const benign = { id: 'ok', content: 'Rename this task', children: [], metadata: {} };
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [benign],
+          allNodes: { 'ok': benign },
+        });
+
+        const result = parseFeedbackContent('# [ ] Rename this task');
+        expect(result).not.toBeNull();
+        expect(result!.rootNodeId).toBe('ok');
+      });
+
+      it('also applies the blob guard under decomposition mode (multi-root path) when a root carries a blob payload');
+
+      it('emits a structured warning identifying the failure as a blob-shaped submission, distinct from the no-headings rejection');
+
+      it('rejects single-root content whose length exceeds the blob threshold even without embedded markers');
+    });
   });
 
   describe('initializeFeedbackStore', () => {

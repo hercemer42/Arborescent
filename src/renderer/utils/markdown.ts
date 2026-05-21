@@ -193,6 +193,10 @@ export function parseMarkdown(markdown: string): ParsedMarkdownResult {
     content = content.replace(/\n?```\s*$/, '');
   }
 
+  if (content.includes('\\n')) {
+    content = content.replace(/\\n/g, '\n');
+  }
+
   const lines = content.split('\n');
   const rootNodes: TreeNode[] = [];
   const allNodes: Record<string, TreeNode> = {};

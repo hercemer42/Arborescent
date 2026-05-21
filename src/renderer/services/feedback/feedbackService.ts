@@ -13,6 +13,14 @@ export interface ParsedFeedbackContent {
   nodeCount: number;
 }
 
+function looksLikePackedBlob(nodeContent: string): boolean {
+  if (nodeContent.includes('\\n')) return true;
+  if (/(^|\n)#{1,6}\s/.test(nodeContent)) return true;
+  const checkboxMatches = nodeContent.match(/\[[xX -]\]/g);
+  if (checkboxMatches && checkboxMatches.length >= 3) return true;
+  return false;
+}
+
 export function parseFeedbackContent(content: string, decomposition: boolean = false): ParsedFeedbackContent | null {
   let rootNodes, allNodes;
   try {
@@ -24,6 +32,14 @@ export function parseFeedbackContent(content: string, decomposition: boolean = f
 
   if (rootNodes.length === 0) {
     logger.info('Content has no valid nodes', 'FeedbackService');
+    return null;
+  }
+
+  if (rootNodes.some((node) => looksLikePackedBlob(node.content))) {
+    logger.warn(
+      'Rejecting blob-shaped submission — a parsed node carries the entire payload as raw text (likely escaped newlines or embedded heading/checkbox markers)',
+      'FeedbackService'
+    );
     return null;
   }
 
