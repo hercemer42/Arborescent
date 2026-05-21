@@ -104,7 +104,7 @@ export function FileMenu() {
       <MenuSeparator />
       <MenuItem
         label="Reload Application"
-        shortcut={formatHotkeyForDisplay(getKeyForAction('file', 'reload') || 'CmdOrCtrl+R')}
+        shortcut={formatHotkeyForDisplay(getKeyForAction('file', 'reload') || '')}
         onClick={handleReload}
       />
       {window.electron.platform !== 'darwin' && (

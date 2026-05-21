@@ -63,6 +63,10 @@ describe('hotkeyConfig', () => {
     it('should return undefined for non-existent action', () => {
       expect(getKeyForAction('navigation', 'nonExistent')).toBeUndefined();
     });
+
+    it('should return an empty binding for file.reload (Ctrl+R shortcut removed)', () => {
+      expect(getKeyForAction('file', 'reload')).toBe('');
+    });
   });
 
   describe('matchesHotkey', () => {
@@ -108,6 +112,22 @@ describe('hotkeyConfig', () => {
     it('should return false for non-existent action', () => {
       const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
       expect(matchesHotkey(event, 'navigation', 'nonExistent')).toBe(false);
+    });
+
+    it('should not match Ctrl+R against file.reload (default binding removed)', () => {
+      const event = new KeyboardEvent('keydown', {
+        key: 'r',
+        ctrlKey: true,
+      });
+      expect(matchesHotkey(event, 'file', 'reload')).toBe(false);
+    });
+
+    it('should not match Cmd+R against file.reload (default binding removed)', () => {
+      const event = new KeyboardEvent('keydown', {
+        key: 'r',
+        metaKey: true,
+      });
+      expect(matchesHotkey(event, 'file', 'reload')).toBe(false);
     });
   });
 

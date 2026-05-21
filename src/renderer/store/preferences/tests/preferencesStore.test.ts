@@ -135,6 +135,53 @@ describe('preferencesStore — hook event tracking', () => {
     });
   });
 
+  describe('loadPreferences — file.reload binding migration', () => {
+    it('should clear file.reload when persisted prefs still hold the legacy CmdOrCtrl+R default', async () => {
+      mockGetPreferences.mockResolvedValue({
+        theme: 'light',
+        hotkeys: {
+          file: { reload: 'CmdOrCtrl+R', new: 'CmdOrCtrl+N' },
+          navigation: {},
+          editing: {},
+        },
+      });
+
+      await usePreferencesStore.getState().loadPreferences();
+
+      expect(usePreferencesStore.getState().hotkeys.file.reload).toBe('');
+    });
+
+    it('should preserve a user-customised file.reload binding', async () => {
+      mockGetPreferences.mockResolvedValue({
+        theme: 'light',
+        hotkeys: {
+          file: { reload: 'CmdOrCtrl+Shift+R', new: 'CmdOrCtrl+N' },
+          navigation: {},
+          editing: {},
+        },
+      });
+
+      await usePreferencesStore.getState().loadPreferences();
+
+      expect(usePreferencesStore.getState().hotkeys.file.reload).toBe('CmdOrCtrl+Shift+R');
+    });
+
+    it('should leave file.reload untouched when already empty', async () => {
+      mockGetPreferences.mockResolvedValue({
+        theme: 'light',
+        hotkeys: {
+          file: { reload: '', new: 'CmdOrCtrl+N' },
+          navigation: {},
+          editing: {},
+        },
+      });
+
+      await usePreferencesStore.getState().loadPreferences();
+
+      expect(usePreferencesStore.getState().hotkeys.file.reload).toBe('');
+    });
+  });
+
   describe('buildPreferences — serialization', () => {
     it('should include hasReceivedHookEvent in persisted output', () => {
       usePreferencesStore.setState({ hasReceivedHookEvent: true });

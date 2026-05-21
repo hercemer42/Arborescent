@@ -66,7 +66,6 @@ describe('FileMenu', () => {
         save: 'CmdOrCtrl+S',
         saveAs: 'CmdOrCtrl+Shift+S',
         closeTab: 'CmdOrCtrl+W',
-        reload: 'CmdOrCtrl+R',
         quit: 'CmdOrCtrl+Q',
       };
       return keys[action];
@@ -105,7 +104,6 @@ describe('FileMenu', () => {
       expect(screen.getByText('CmdOrCtrl+S')).toBeDefined();
       expect(screen.getByText('CmdOrCtrl+Shift+S')).toBeDefined();
       expect(screen.getByText('CmdOrCtrl+W')).toBeDefined();
-      expect(screen.getByText('CmdOrCtrl+R')).toBeDefined();
       expect(screen.getByText('CmdOrCtrl+Q')).toBeDefined();
     });
 
@@ -337,8 +335,48 @@ describe('FileMenu', () => {
       expect(mockFormatHotkeyForDisplay).toHaveBeenCalledWith('CmdOrCtrl+S');
       expect(mockFormatHotkeyForDisplay).toHaveBeenCalledWith('CmdOrCtrl+Shift+S');
       expect(mockFormatHotkeyForDisplay).toHaveBeenCalledWith('CmdOrCtrl+W');
-      expect(mockFormatHotkeyForDisplay).toHaveBeenCalledWith('CmdOrCtrl+R');
       expect(mockFormatHotkeyForDisplay).toHaveBeenCalledWith('CmdOrCtrl+Q');
+    });
+
+    it('should not use a CmdOrCtrl+R fallback for Reload Application (binding removed)', () => {
+      mockGetKeyForAction.mockReturnValue(undefined);
+      renderFileMenu();
+
+      expect(mockFormatHotkeyForDisplay).not.toHaveBeenCalledWith('CmdOrCtrl+R');
+    });
+  });
+
+  describe('reload shortcut removal', () => {
+    beforeEach(() => {
+      mockGetKeyForAction.mockImplementation((context, action) => {
+        if (context === 'file' && action === 'reload') return '';
+        const keys: Record<string, string> = {
+          new: 'CmdOrCtrl+N',
+          open: 'CmdOrCtrl+O',
+          save: 'CmdOrCtrl+S',
+          saveAs: 'CmdOrCtrl+Shift+S',
+          closeTab: 'CmdOrCtrl+W',
+          quit: 'CmdOrCtrl+Q',
+        };
+        return keys[action];
+      });
+    });
+
+    it('should not render a shortcut hint for Reload Application when its binding is empty', () => {
+      renderFileMenu();
+
+      const reloadItem = screen.getByText('Reload Application').closest('button');
+      expect(reloadItem).not.toBeNull();
+      expect(reloadItem?.querySelector('.menu-item-shortcut')).toBeNull();
+    });
+
+    it('should still call handleReload when Reload Application is clicked after the shortcut is removed', () => {
+      renderFileMenu();
+
+      const reloadItem = screen.getByText('Reload Application');
+      fireEvent.click(reloadItem);
+
+      expect(defaultActions.handleReload).toHaveBeenCalledTimes(1);
     });
   });
 });

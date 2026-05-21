@@ -80,7 +80,7 @@ describe('uiService (sendInBrowser hotkey)', () => {
   });
 });
 
-describe('uiService (reload hotkey)', () => {
+describe('uiService (reload hotkey removed)', () => {
   beforeEach(() => {
     const hotkeyStore = useHotkeyContextStore.getState();
     hotkeyStore.setInitialized(true);
@@ -89,7 +89,7 @@ describe('uiService (reload hotkey)', () => {
     mockReload.mockReset();
   });
 
-  it('should reload when Ctrl+R is pressed outside terminal/browser', () => {
+  it('should not reload when Ctrl+R is pressed outside terminal/browser (binding removed)', () => {
     const cleanup = initializeUIService(window);
 
     window.dispatchEvent(new KeyboardEvent('keydown', {
@@ -97,7 +97,19 @@ describe('uiService (reload hotkey)', () => {
       ctrlKey: true,
     }));
 
-    expect(mockReload).toHaveBeenCalled();
+    expect(mockReload).not.toHaveBeenCalled();
+    cleanup();
+  });
+
+  it('should not reload when Cmd+R is pressed outside terminal/browser (binding removed)', () => {
+    const cleanup = initializeUIService(window);
+
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'r',
+      metaKey: true,
+    }));
+
+    expect(mockReload).not.toHaveBeenCalled();
     cleanup();
   });
 

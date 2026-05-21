@@ -91,7 +91,11 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
 
     if (preferences) {
       const theme = preferences.theme || 'light';
-      const hotkeys = (preferences.hotkeys as HotkeyConfig) || (defaultHotkeys as HotkeyConfig);
+      const loadedHotkeys = (preferences.hotkeys as HotkeyConfig) || (defaultHotkeys as HotkeyConfig);
+      const hotkeys: HotkeyConfig =
+        loadedHotkeys.file?.reload === 'CmdOrCtrl+R'
+          ? { ...loadedHotkeys, file: { ...loadedHotkeys.file, reload: '' } }
+          : loadedHotkeys;
       const hasSeenWorkflowDeclarationToast = preferences.hasSeenWorkflowDeclarationToast || false;
       const hasReceivedHookEvent = preferences.hasReceivedHookEvent || false;
       const hasLaunchedWorkflow = preferences.hasLaunchedWorkflow || false;
