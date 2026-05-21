@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-19T21:18:14.647Z'
+updated: '2026-05-21T13:13:44.630Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23708,7 +23708,6 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 45c7e34f-d730-4762-8486-798eab1e5302
       - a44833d2-d70e-48e3-be5d-f4d5106bae41
     metadata:
       status: pending
@@ -115688,6 +115687,7 @@ nodes:
       - 04a5c4d9-8173-4852-9673-00979383ae69
       - cd0d2d3e-e313-4769-a9a9-424628cb77f2
       - 5809255f-e445-47b0-b676-74dee7db51cd
+      - 85f75161-644d-4114-a0a0-87caba0049e0
     metadata:
       status: pending
       isBlueprint: true
@@ -124800,8 +124800,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 85f75161-644d-4114-a0a0-87caba0049e0
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -147842,285 +147841,6 @@ nodes:
     metadata:
       status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  45c7e34f-d730-4762-8486-798eab1e5302:
-    id: 45c7e34f-d730-4762-8486-798eab1e5302
-    content: 'US-F: (check if still issue after refactor) Diagnose and fix Resume Session'
-    children:
-      - c277191c-04a8-4b12-813c-fe0d3626628c
-      - f4162030-ecf1-44b9-97fd-13e7ebea2f47
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  c277191c-04a8-4b12-813c-fe0d3626628c:
-    id: c277191c-04a8-4b12-813c-fe0d3626628c
-    content: Product spec
-    children:
-      - f10365a2-d99f-448b-9d89-54dc345458d8
-      - becdac5a-47f7-47eb-88c9-bfa01d4ea5a5
-      - ef1df505-e124-4907-a5ff-3496cc6c5b95
-      - 4cfe97b6-fc7f-428e-b2fe-05b5b776b99c
-      - 391a2597-51d9-4ee3-bb37-4da79333f179
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f10365a2-d99f-448b-9d89-54dc345458d8:
-    id: f10365a2-d99f-448b-9d89-54dc345458d8
-    content: Context
-    children:
-      - ea788547-2791-4d3c-9313-c1c291780829
-      - 2dcd2486-c9b8-4d06-a32e-963a67aa72dd
-      - 07e9ecf0-5466-4947-b1bf-4234e1ebd230
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ea788547-2791-4d3c-9313-c1c291780829:
-    id: ea788547-2791-4d3c-9313-c1c291780829
-    content: The Resume Session context menu item was wired up to open a new terminal and run claude --resume
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2dcd2486-c9b8-4d06-a32e-963a67aa72dd:
-    id: 2dcd2486-c9b8-4d06-a32e-963a67aa72dd
-    content: Reports indicate it is not working end to end but no specific symptom has been captured
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  07e9ecf0-5466-4947-b1bf-4234e1ebd230:
-    id: 07e9ecf0-5466-4947-b1bf-4234e1ebd230
-    content: Several plausible causes have been hypothesised
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  becdac5a-47f7-47eb-88c9-bfa01d4ea5a5:
-    id: becdac5a-47f7-47eb-88c9-bfa01d4ea5a5
-    content: User
-    children:
-      - 50599437-8bae-493a-9e3b-0a96677e310b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  50599437-8bae-493a-9e3b-0a96677e310b:
-    id: 50599437-8bae-493a-9e3b-0a96677e310b
-    content: An Arborescent user whose app restarted and who wants to resume an earlier Claude session attached to a workflow node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef1df505-e124-4907-a5ff-3496cc6c5b95:
-    id: ef1df505-e124-4907-a5ff-3496cc6c5b95
-    content: Goal
-    children:
-      - 9ec98f7c-c997-41a5-bc10-076252ba69cb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ec98f7c-c997-41a5-bc10-076252ba69cb:
-    id: 9ec98f7c-c997-41a5-bc10-076252ba69cb
-    content: Resume Session reliably restores a usable session bound to its originating node, or surfaces a clear error
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4cfe97b6-fc7f-428e-b2fe-05b5b776b99c:
-    id: 4cfe97b6-fc7f-428e-b2fe-05b5b776b99c
-    content: Business rules
-    children:
-      - ba61da00-70b0-4893-b791-df5e266ae473
-      - 5f0d492f-3be6-4d7a-862b-fcf6bcdb2fcc
-      - 77fd5081-689c-4d6a-a01e-6ae1ba0d0148
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba61da00-70b0-4893-b791-df5e266ae473:
-    id: ba61da00-70b0-4893-b791-df5e266ae473
-    content: Resume Session is the only mechanism for re-attaching a previously-bound session
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f0d492f-3be6-4d7a-862b-fcf6bcdb2fcc:
-    id: 5f0d492f-3be6-4d7a-862b-fcf6bcdb2fcc
-    content: After a successful resume, bindingRegistry, workflowSessionMap, and node.metadata.sessionId agree
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  77fd5081-689c-4d6a-a01e-6ae1ba0d0148:
-    id: 77fd5081-689c-4d6a-a01e-6ae1ba0d0148
-    content: If the underlying Claude session is gone, Arborescent surfaces a clear error and does not silently strand the node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  391a2597-51d9-4ee3-bb37-4da79333f179:
-    id: 391a2597-51d9-4ee3-bb37-4da79333f179
-    content: Acceptance criteria
-    children:
-      - 38b4ab08-7781-45cb-b0ca-6548bdfbd83e
-      - 94514a1a-3470-4b49-bcb7-7e946160459c
-      - 0f7fa48e-e612-4e40-baa5-aa7c4749cfcc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  38b4ab08-7781-45cb-b0ca-6548bdfbd83e:
-    id: 38b4ab08-7781-45cb-b0ca-6548bdfbd83e
-    content: Pressing Resume Session on a node with a persisted sessionId opens a new terminal in the right cwd and runs claude --resume
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  94514a1a-3470-4b49-bcb7-7e946160459c:
-    id: 94514a1a-3470-4b49-bcb7-7e946160459c
-    content: After Claude reports the session is alive, submit_step_output for that session lands on the originating node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f7fa48e-e612-4e40-baa5-aa7c4749cfcc:
-    id: 0f7fa48e-e612-4e40-baa5-aa7c4749cfcc
-    content: If claude --resume reports the session is gone, the user sees an actionable error
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4162030-ecf1-44b9-97fd-13e7ebea2f47:
-    id: f4162030-ecf1-44b9-97fd-13e7ebea2f47
-    content: Implementation proposal
-    children:
-      - a946129e-5a5b-49c5-8af3-ef74989b4158
-      - aa8d0ef5-45b3-41ea-9afb-a5652ebce229
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a946129e-5a5b-49c5-8af3-ef74989b4158:
-    id: a946129e-5a5b-49c5-8af3-ef74989b4158
-    content: Approach
-    children:
-      - baab0e7a-7a8c-4677-acc3-11719a844f96
-      - 4ce9575b-1801-4b90-8a22-9c585dbb7de6
-      - 6f6e6f5d-df88-4c67-a3a4-30e56872675f
-      - 0526901d-d0e5-4290-ba6d-31da616b98f8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  baab0e7a-7a8c-4677-acc3-11719a844f96:
-    id: baab0e7a-7a8c-4677-acc3-11719a844f96
-    content: Capture the actual failure symptom first in a controlled test
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ce9575b-1801-4b90-8a22-9c585dbb7de6:
-    id: 4ce9575b-1801-4b90-8a22-9c585dbb7de6
-    content: Confirm inheritSessionOnNode fires on the originating node at startWorkflow time
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6f6e6f5d-df88-4c67-a3a4-30e56872675f:
-    id: 6f6e6f5d-df88-4c67-a3a4-30e56872675f
-    content: Confirm getSessionLiveness behaves correctly with an empty workflowSessionMap post-restart
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0526901d-d0e5-4290-ba6d-31da616b98f8:
-    id: 0526901d-d0e5-4290-ba6d-31da616b98f8
-    content: Confirm claude --resume itself succeeds for the test session id
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa8d0ef5-45b3-41ea-9afb-a5652ebce229:
-    id: aa8d0ef5-45b3-41ea-9afb-a5652ebce229
-    content: Touchpoints
-    children:
-      - 1eb98264-81cd-4413-aa61-b6687c6283c8
-      - 5bb8137d-6b9b-4563-9fac-687fc2a34757
-      - 361c7ab2-4b70-4d2c-9204-bff4ad3b6afb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1eb98264-81cd-4413-aa61-b6687c6283c8:
-    id: 1eb98264-81cd-4413-aa61-b6687c6283c8
-    content: src/renderer/store/tree/actions/workflowSessionResume.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5bb8137d-6b9b-4563-9fac-687fc2a34757:
-    id: 5bb8137d-6b9b-4563-9fac-687fc2a34757
-    content: src/renderer/utils/sessionLiveness.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  361c7ab2-4b70-4d2c-9204-bff4ad3b6afb:
-    id: 361c7ab2-4b70-4d2c-9204-bff4ad3b6afb
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   cd0d2d3e-e313-4769-a9a9-424628cb77f2:
