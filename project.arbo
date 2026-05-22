@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-22T20:18:24.792Z'
+updated: '2026-05-22T20:40:35.357Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -27146,6 +27146,7 @@ nodes:
     content: Automated tests implementation (TDD)
     children:
       - a2b9d2fb-9079-431a-be24-481850514e3b
+      - a44833d2-d70e-48e3-be5d-f4d5106bae41
     metadata:
       status: pending
       isBlueprint: true
@@ -33757,8 +33758,7 @@ nodes:
   6d973cbb-3c7c-4ac4-925d-ffd5d659332c:
     id: 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
     content: Feature verification
-    children:
-      - f778b6c0-f107-4fff-9173-17877a8b1125
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -83693,8 +83693,7 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children:
-      - a44833d2-d70e-48e3-be5d-f4d5106bae41
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115539,6 +115538,7 @@ nodes:
       - 2139536e-7002-4b61-980f-3521c74b1b57
       - bfed7bdc-b9ca-4891-bf57-bcb742368925
       - 9c1b4bee-ae92-4e6c-8505-bd2f79f77239
+      - e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
     metadata:
       status: pending
       isBlueprint: true
@@ -124645,7 +124645,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
+      - f778b6c0-f107-4fff-9173-17877a8b1125
     metadata:
       status: pending
       isBlueprint: true
@@ -149460,422 +149460,15 @@ nodes:
     id: a44833d2-d70e-48e3-be5d-f4d5106bae41
     content: 'US-H: Reject Arborescent-initiated sends to sessions that are mid-turn'
     children:
-      - fddb037f-9375-434e-9f3f-9cab97f640a9
-      - 270680e5-2fb0-4faa-b25d-e82f0593582d
+      - 8adf5fe7-079b-4e15-beee-ff73d61eb62e
+      - d5376449-a115-4fec-8e28-26508121f09c
+      - d9a57df0-49d2-48e3-b70e-a2771f735433
     metadata:
       status: pending
       expanded: false
       deleted: false
       plugins: {}
       sessionId: 1ba89622-4b5a-451b-90ec-e06269fed151
-  fddb037f-9375-434e-9f3f-9cab97f640a9:
-    id: fddb037f-9375-434e-9f3f-9cab97f640a9
-    content: Product spec
-    children:
-      - c65e9b87-deae-43ff-8c38-278a1e632bc2
-      - 347411a6-437c-4f2c-9e20-de9d859ab58f
-      - c77ad55e-e20e-4a5b-a0e3-3800dafae199
-      - 2d7d59d0-66bd-48a8-b07d-bcb51de4c7c0
-      - 95234334-b882-4e3e-b83b-637b688b9435
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c65e9b87-deae-43ff-8c38-278a1e632bc2:
-    id: c65e9b87-deae-43ff-8c38-278a1e632bc2
-    content: Context
-    children:
-      - 178335a0-e477-4694-a31f-7d9159cb0164
-      - 88ba967e-3a9d-487b-888d-6d8cdfb4be9f
-      - 7dc24ae0-7e94-479d-b347-c16aafb42f5b
-      - 47d8101c-fb9b-42c6-badc-c93f9fd68250
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  178335a0-e477-4694-a31f-7d9159cb0164:
-    id: 178335a0-e477-4694-a31f-7d9159cb0164
-    content: Sessions process prompts one at a time, so any action that changes which node owns a session or which node receives the response races the in-flight Stop submission when the session is still working
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  88ba967e-3a9d-487b-888d-6d8cdfb4be9f:
-    id: 88ba967e-3a9d-487b-888d-6d8cdfb4be9f
-    content: Without an in-progress check, a workflow-start on a busy session triggers the rebind dialog while the previous turn's response is still pending; if the user confirms, the in-flight submit_step_output can land on the new node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7dc24ae0-7e94-479d-b347-c16aafb42f5b:
-    id: 7dc24ae0-7e94-479d-b347-c16aafb42f5b
-    content: The same race affects manual collab sends, freeform Revise after discussion, and explicit Next Step / Continue Workflow clicks
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  47d8101c-fb9b-42c6-badc-c93f9fd68250:
-    id: 47d8101c-fb9b-42c6-badc-c93f9fd68250
-    content: Action-mode sends do not affect routing but typing into a busy terminal just queues blindly; refusing is simpler than discriminating per send type
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  347411a6-437c-4f2c-9e20-de9d859ab58f:
-    id: 347411a6-437c-4f2c-9e20-de9d859ab58f
-    content: User
-    children:
-      - d2260d2a-dbec-40dd-8f3b-7faa1fdb6cc0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2260d2a-dbec-40dd-8f3b-7faa1fdb6cc0:
-    id: d2260d2a-dbec-40dd-8f3b-7faa1fdb6cc0
-    content: An Arborescent user who tries to send into or switch workflows on a session while the current turn is still being processed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c77ad55e-e20e-4a5b-a0e3-3800dafae199:
-    id: c77ad55e-e20e-4a5b-a0e3-3800dafae199
-    content: Goal
-    children:
-      - bfa06d88-e688-4e94-b449-94da32c2dfa3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bfa06d88-e688-4e94-b449-94da32c2dfa3:
-    id: bfa06d88-e688-4e94-b449-94da32c2dfa3
-    content: Reject any Arborescent-initiated send into a session that is mid-turn with an actionable toast ‚Äî one uniform rule, no per-send-type carve-outs
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2d7d59d0-66bd-48a8-b07d-bcb51de4c7c0:
-    id: 2d7d59d0-66bd-48a8-b07d-bcb51de4c7c0
-    content: Business rules
-    children:
-      - cb1b6c0c-7108-4e63-8bbe-0da21c94b64b
-      - 91393889-27f7-4ef1-bc5b-51d6dfdaa327
-      - 36e5bc6e-e1ae-4433-a9f8-ef88953b3823
-      - 1b5867b1-0bcf-4be2-948f-72bda64a56f8
-      - 5b876341-4ed4-4e60-8b06-975395455329
-      - a14ae6e3-6019-4277-98ea-67fb68c7afcd
-      - 483ed41c-f6f5-41a4-8aa8-c55cd53babcb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb1b6c0c-7108-4e63-8bbe-0da21c94b64b:
-    id: cb1b6c0c-7108-4e63-8bbe-0da21c94b64b
-    content: A per-session in-progress flag is set on UserPromptSubmit and cleared on Stop
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  91393889-27f7-4ef1-bc5b-51d6dfdaa327:
-    id: 91393889-27f7-4ef1-bc5b-51d6dfdaa327
-    content: Workflow-start whose route would reuse an in-progress session is refused with a toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  36e5bc6e-e1ae-4433-a9f8-ef88953b3823:
-    id: 36e5bc6e-e1ae-4433-a9f8-ef88953b3823
-    content: Manual collab sends and Revise after discussion into a terminal whose session is in-progress are refused with a toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b5867b1-0bcf-4be2-948f-72bda64a56f8:
-    id: 1b5867b1-0bcf-4be2-948f-72bda64a56f8
-    content: Action-mode sends into a terminal whose session is in-progress are refused with a toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b876341-4ed4-4e60-8b06-975395455329:
-    id: 5b876341-4ed4-4e60-8b06-975395455329
-    content: Explicit Next Step and Continue Workflow actions on an in-progress workflow are refused with a toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a14ae6e3-6019-4277-98ea-67fb68c7afcd:
-    id: a14ae6e3-6019-4277-98ea-67fb68c7afcd
-    content: If the underlying terminal is closed the flag is cleared immediately so resume-style actions are not blocked by a ghost
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  483ed41c-f6f5-41a4-8aa8-c55cd53babcb:
-    id: 483ed41c-f6f5-41a4-8aa8-c55cd53babcb
-    content: No wall-clock timeout ‚Äî a session that legitimately runs long (tests, builds, long agent loops) is still considered busy until Stop fires or the terminal closes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  95234334-b882-4e3e-b83b-637b688b9435:
-    id: 95234334-b882-4e3e-b83b-637b688b9435
-    content: Acceptance criteria
-    children:
-      - a063a52a-7345-44fa-85ec-b32e31c47669
-      - 9467760f-6793-4c1b-b2fe-17227f26c06b
-      - c74644a1-b5c3-4b85-9a3e-a706a9cb80ae
-      - 390d0e01-a84e-4b67-b7e3-35c78f101a00
-      - 401793b4-0cac-4aeb-98c7-59b199ba3c65
-      - 770864a6-1317-4fcf-a10e-ae54ea5e3287
-      - 3a487373-25c0-46d0-938f-9d3f85d39e74
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a063a52a-7345-44fa-85ec-b32e31c47669:
-    id: a063a52a-7345-44fa-85ec-b32e31c47669
-    content: Clicking Start Workflow on a node whose route would reuse an in-progress session surfaces a toast naming the active node and does not start the workflow
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9467760f-6793-4c1b-b2fe-17227f26c06b:
-    id: 9467760f-6793-4c1b-b2fe-17227f26c06b
-    content: Right-click Send or Revise after discussion into a terminal whose session is in-progress surfaces a toast and pastes nothing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c74644a1-b5c3-4b85-9a3e-a706a9cb80ae:
-    id: c74644a1-b5c3-4b85-9a3e-a706a9cb80ae
-    content: An action-mode send into a terminal whose session is in-progress is refused with a toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  390d0e01-a84e-4b67-b7e3-35c78f101a00:
-    id: 390d0e01-a84e-4b67-b7e3-35c78f101a00
-    content: Clicking Next Step or Continue Workflow on a step that has not yet returned its Stop event is refused with a toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  401793b4-0cac-4aeb-98c7-59b199ba3c65:
-    id: 401793b4-0cac-4aeb-98c7-59b199ba3c65
-    content: After Stop arrives, all previously refused actions become available again
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  770864a6-1317-4fcf-a10e-ae54ea5e3287:
-    id: 770864a6-1317-4fcf-a10e-ae54ea5e3287
-    content: Closing the terminal clears the flag for its session and unblocks resume-style actions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a487373-25c0-46d0-938f-9d3f85d39e74:
-    id: 3a487373-25c0-46d0-938f-9d3f85d39e74
-    content: A workflow step that runs for over an hour is still treated as in-progress and continues to refuse new sends until Stop fires or the terminal is closed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  270680e5-2fb0-4faa-b25d-e82f0593582d:
-    id: 270680e5-2fb0-4faa-b25d-e82f0593582d
-    content: Implementation proposal
-    children:
-      - b61a3615-6898-4e4e-85fb-06a2f4cbbb17
-      - 714f5179-20a6-45ac-9d59-a8f08f96c11d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b61a3615-6898-4e4e-85fb-06a2f4cbbb17:
-    id: b61a3615-6898-4e4e-85fb-06a2f4cbbb17
-    content: Approach
-    children:
-      - 9261e769-9e91-49f2-be24-dda38c71598b
-      - f646bce7-8335-46e4-895a-1458675e777b
-      - feaa04bd-1511-4c4c-9e83-acf891c91056
-      - 7fb8722a-a4fd-4b6a-a2f2-cbed3761785d
-      - c260c8b1-cd70-49aa-991b-c04977a3a084
-      - 47f4e4f6-fab1-4ecc-b846-cb76759edb64
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9261e769-9e91-49f2-be24-dda38c71598b:
-    id: 9261e769-9e91-49f2-be24-dda38c71598b
-    content: Track in-progress state per session in main process; set on every UserPromptSubmit register-binding, cleared on Stop event POST
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f646bce7-8335-46e4-895a-1458675e777b:
-    id: f646bce7-8335-46e4-895a-1458675e777b
-    content: Stop hook script POSTs a stop event to the dispatcher in addition to its existing submit_step_output safety-net call
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  feaa04bd-1511-4c4c-9e83-acf891c91056:
-    id: feaa04bd-1511-4c4c-9e83-acf891c91056
-    content: Dispatcher forwards in-progress state changes to renderer over IPC, mirroring the pattern from US-E
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7fb8722a-a4fd-4b6a-a2f2-cbed3761785d:
-    id: 7fb8722a-a4fd-4b6a-a2f2-cbed3761785d
-    content: Renderer maintains a per-session in-progress map; sendActions and workflow controls consult it before proceeding
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c260c8b1-cd70-49aa-991b-c04977a3a084:
-    id: c260c8b1-cd70-49aa-991b-c04977a3a084
-    content: On refusal, show a toast naming the session's active node and the action that was blocked
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  47f4e4f6-fab1-4ecc-b846-cb76759edb64:
-    id: 47f4e4f6-fab1-4ecc-b846-cb76759edb64
-    content: Terminal-close handler clears the flag for the session that lived in that terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  714f5179-20a6-45ac-9d59-a8f08f96c11d:
-    id: 714f5179-20a6-45ac-9d59-a8f08f96c11d
-    content: Touchpoints
-    children:
-      - a4e7d916-5460-4464-8f7d-2332b2a670a0
-      - 636f4091-1ed1-4e93-b10f-f15f37167a4d
-      - 983f4511-39cc-45e2-bf5d-3c73e7bc7855
-      - 87c8a5de-870d-45bf-a8f3-3867cfda166a
-      - 1299f773-240f-4049-bdd1-f49c3273c71e
-      - c4b7dd94-6dbd-41a9-b24d-ec254b8e9399
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a4e7d916-5460-4464-8f7d-2332b2a670a0:
-    id: a4e7d916-5460-4464-8f7d-2332b2a670a0
-    content: src/main/services/hookScripts.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  636f4091-1ed1-4e93-b10f-f15f37167a4d:
-    id: 636f4091-1ed1-4e93-b10f-f15f37167a4d
-    content: src/main/services/hookEventDispatcher.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  983f4511-39cc-45e2-bf5d-3c73e7bc7855:
-    id: 983f4511-39cc-45e2-bf5d-3c73e7bc7855
-    content: src/preload/index.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  87c8a5de-870d-45bf-a8f3-3867cfda166a:
-    id: 87c8a5de-870d-45bf-a8f3-3867cfda166a
-    content: src/renderer/store/tree/actions/sendActions.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1299f773-240f-4049-bdd1-f49c3273c71e:
-    id: 1299f773-240f-4049-bdd1-f49c3273c71e
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4b7dd94-6dbd-41a9-b24d-ec254b8e9399:
-    id: c4b7dd94-6dbd-41a9-b24d-ec254b8e9399
-    content: src/renderer/hooks/useHookEventListener.ts or sibling
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   c6046934-c76b-4505-8b06-6c37aa7a07ca:
     id: c6046934-c76b-4505-8b06-6c37aa7a07ca
     content: worktree
@@ -159581,16 +159174,18 @@ nodes:
     id: f778b6c0-f107-4fff-9173-17877a8b1125
     content: Bug - sending a node to a terminal with a node already bound pastes the prompt before confirmation
     children:
-      - 6502dc02-82bd-4a0e-9577-9233000918f5
-      - 964c4b21-4ebd-41d4-9c73-93677a14e009
-      - c06bf639-fb66-40ea-92c5-a800519a7f9e
-      - ab71dc96-9f0e-45db-baaf-aaa46aa7792a
-      - b4de4c2d-bd76-48a0-8271-5886774f21bd
-      - 08f1129c-49c3-41d0-8250-f75eec17057b
-      - e52f8373-85a7-468f-bf1f-8c0942fc437b
-      - a85cb255-d7fd-48fc-a2fa-1a9075b1e9af
-      - bf4d6ed3-5ad9-4b23-82d3-ffd66172bcef
-      - 82422a03-6039-471e-8754-8854fe63446c
+      - aa57cec9-ac67-4ba8-a99e-218ebd363e19
+      - b2a1c318-1c15-4172-a02e-49eec51ba44e
+      - 0f667269-b332-48a0-97ea-07d7d7c224ac
+      - 5ca31386-e0ae-4da3-9222-265a12c897db
+      - 51efd41d-ecc8-4a7a-b2a7-961d2cf01d26
+      - 148518ea-cdbb-4f1c-a2ee-8e8a92eae876
+      - 4355e858-4637-420f-be23-ebae430344a9
+      - 26ff0953-3ad5-465c-8c85-c0fe29290d49
+      - 6f4503b0-fae0-4875-ba47-9eaef12949fe
+      - 5df4d870-a5ba-4ed4-a414-59844970c529
+      - 97d24dae-0d9b-42cb-ab3e-b993b8ecd171
+      - daa4f35e-a1f1-4117-bc96-c11d68f5629a
     metadata:
       status: completed
       expanded: false
@@ -161775,18 +161370,445 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6502dc02-82bd-4a0e-9577-9233000918f5:
-    id: 6502dc02-82bd-4a0e-9577-9233000918f5
+  8adf5fe7-079b-4e15-beee-ff73d61eb62e:
+    id: 8adf5fe7-079b-4e15-beee-ff73d61eb62e
     content: worktree
     children:
-      - ed3238da-9c8a-4b35-8a4e-a80649e018bf
+      - ea6dd6f0-8e51-4ac4-8cec-ff4ef054c382
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ed3238da-9c8a-4b35-8a4e-a80649e018bf:
-    id: ed3238da-9c8a-4b35-8a4e-a80649e018bf
+  ea6dd6f0-8e51-4ac4-8cec-ff4ef054c382:
+    id: ea6dd6f0-8e51-4ac4-8cec-ff4ef054c382
+    content: vscode://file/Users/brianfox/dev/Arborescent-mid-turn-gate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5376449-a115-4fec-8e28-26508121f09c:
+    id: d5376449-a115-4fec-8e28-26508121f09c
+    content: Product spec
+    children:
+      - a5c50576-67db-4fa4-a715-3e7908da9b6a
+      - 07f15d08-7863-4d06-97d4-1bb00eab8788
+      - fdeb033e-1bdf-49a2-9f71-9a04db8e394e
+      - 995ef1e2-fa61-42fe-bbe7-f5c53544c134
+      - 1f362122-b984-4ec9-bc4a-7bb391a28698
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5c50576-67db-4fa4-a715-3e7908da9b6a:
+    id: a5c50576-67db-4fa4-a715-3e7908da9b6a
+    content: Context
+    children:
+      - 91193595-82e1-444c-a995-50f135840ebf
+      - 7d16eca7-7f3d-4773-9e3c-05365a677c51
+      - cd40d7be-0fb6-4e8f-b265-c292c50be617
+      - 662add27-0124-4bbf-9c04-6814705e6a81
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91193595-82e1-444c-a995-50f135840ebf:
+    id: 91193595-82e1-444c-a995-50f135840ebf
+    content: Sessions process prompts one at a time, so any action that changes which node owns a session or which node receives the response races the in-flight Stop submission when the session is still working
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d16eca7-7f3d-4773-9e3c-05365a677c51:
+    id: 7d16eca7-7f3d-4773-9e3c-05365a677c51
+    content: Without an in-progress check, a workflow-start on a busy session triggers the rebind dialog while the previous turn's response is still pending; if the user confirms, the in-flight submit_step_output can land on the new node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd40d7be-0fb6-4e8f-b265-c292c50be617:
+    id: cd40d7be-0fb6-4e8f-b265-c292c50be617
+    content: The same race affects manual collab sends, freeform Revise after discussion, and explicit Next Step / Continue Workflow clicks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  662add27-0124-4bbf-9c04-6814705e6a81:
+    id: 662add27-0124-4bbf-9c04-6814705e6a81
+    content: Action-mode sends do not affect routing but typing into a busy terminal just queues blindly; refusing is simpler than discriminating per send type
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07f15d08-7863-4d06-97d4-1bb00eab8788:
+    id: 07f15d08-7863-4d06-97d4-1bb00eab8788
+    content: User
+    children:
+      - 8fe6ea1e-84d8-4925-b529-1a28d9ca7ecb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fe6ea1e-84d8-4925-b529-1a28d9ca7ecb:
+    id: 8fe6ea1e-84d8-4925-b529-1a28d9ca7ecb
+    content: An Arborescent user who tries to send into or switch workflows on a session while the current turn is still being processed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdeb033e-1bdf-49a2-9f71-9a04db8e394e:
+    id: fdeb033e-1bdf-49a2-9f71-9a04db8e394e
+    content: Goal
+    children:
+      - ffe8ad4a-13ab-4401-9f58-8d868f9e7316
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffe8ad4a-13ab-4401-9f58-8d868f9e7316:
+    id: ffe8ad4a-13ab-4401-9f58-8d868f9e7316
+    content: Reject any Arborescent-initiated send into a session that is mid-turn with an actionable toast ‚Äî one uniform rule, no per-send-type carve-outs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  995ef1e2-fa61-42fe-bbe7-f5c53544c134:
+    id: 995ef1e2-fa61-42fe-bbe7-f5c53544c134
+    content: Business rules
+    children:
+      - b769dfd9-97ce-4bda-8fd9-e71352a15454
+      - efd6cba9-8297-43c0-95f6-41fa650eb577
+      - e3e3edc5-5946-4c58-8c8a-04d92d8b1226
+      - 1c044ab9-3f96-41b8-8324-a2a1ba35c6c5
+      - 2d47e600-cc3e-4990-911e-f401fef44c74
+      - c9df8379-8d26-4e59-91e1-c93c7c5225f4
+      - 883a1ecc-bc9f-4605-bf26-f9bc50b884c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b769dfd9-97ce-4bda-8fd9-e71352a15454:
+    id: b769dfd9-97ce-4bda-8fd9-e71352a15454
+    content: A per-session in-progress flag is set on UserPromptSubmit and cleared on Stop
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efd6cba9-8297-43c0-95f6-41fa650eb577:
+    id: efd6cba9-8297-43c0-95f6-41fa650eb577
+    content: Workflow-start whose route would reuse an in-progress session is refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3e3edc5-5946-4c58-8c8a-04d92d8b1226:
+    id: e3e3edc5-5946-4c58-8c8a-04d92d8b1226
+    content: Manual collab sends and Revise after discussion into a terminal whose session is in-progress are refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c044ab9-3f96-41b8-8324-a2a1ba35c6c5:
+    id: 1c044ab9-3f96-41b8-8324-a2a1ba35c6c5
+    content: Action-mode sends into a terminal whose session is in-progress are refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d47e600-cc3e-4990-911e-f401fef44c74:
+    id: 2d47e600-cc3e-4990-911e-f401fef44c74
+    content: Explicit Next Step and Continue Workflow actions on an in-progress workflow are refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9df8379-8d26-4e59-91e1-c93c7c5225f4:
+    id: c9df8379-8d26-4e59-91e1-c93c7c5225f4
+    content: If the underlying terminal is closed the flag is cleared immediately so resume-style actions are not blocked by a ghost
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  883a1ecc-bc9f-4605-bf26-f9bc50b884c0:
+    id: 883a1ecc-bc9f-4605-bf26-f9bc50b884c0
+    content: No wall-clock timeout ‚Äî a session that legitimately runs long (tests, builds, long agent loops) is still considered busy until Stop fires or the terminal closes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f362122-b984-4ec9-bc4a-7bb391a28698:
+    id: 1f362122-b984-4ec9-bc4a-7bb391a28698
+    content: Acceptance criteria
+    children:
+      - 035e4b4d-f6b3-4eaa-ac1a-acc6670f9436
+      - 9f0e4d5d-bcad-4756-a774-ad356c09b20d
+      - d873853d-f90f-4e3c-92a3-1d2a286169b9
+      - 2af1d9f8-2a45-449c-b0b7-a648f2ebda8b
+      - dfbf4203-43fb-428a-a6e1-17674d885548
+      - d40b2bde-fb04-4289-8333-adaeb0769805
+      - 3d709bda-165b-4290-ace0-2ea943f7cc0c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  035e4b4d-f6b3-4eaa-ac1a-acc6670f9436:
+    id: 035e4b4d-f6b3-4eaa-ac1a-acc6670f9436
+    content: Clicking Start Workflow on a node whose route would reuse an in-progress session surfaces a toast naming the active node and does not start the workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f0e4d5d-bcad-4756-a774-ad356c09b20d:
+    id: 9f0e4d5d-bcad-4756-a774-ad356c09b20d
+    content: Right-click Send or Revise after discussion into a terminal whose session is in-progress surfaces a toast and pastes nothing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d873853d-f90f-4e3c-92a3-1d2a286169b9:
+    id: d873853d-f90f-4e3c-92a3-1d2a286169b9
+    content: An action-mode send into a terminal whose session is in-progress is refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2af1d9f8-2a45-449c-b0b7-a648f2ebda8b:
+    id: 2af1d9f8-2a45-449c-b0b7-a648f2ebda8b
+    content: Clicking Next Step or Continue Workflow on a step that has not yet returned its Stop event is refused with a toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfbf4203-43fb-428a-a6e1-17674d885548:
+    id: dfbf4203-43fb-428a-a6e1-17674d885548
+    content: After Stop arrives, all previously refused actions become available again
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d40b2bde-fb04-4289-8333-adaeb0769805:
+    id: d40b2bde-fb04-4289-8333-adaeb0769805
+    content: Closing the terminal clears the flag for its session and unblocks resume-style actions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d709bda-165b-4290-ace0-2ea943f7cc0c:
+    id: 3d709bda-165b-4290-ace0-2ea943f7cc0c
+    content: A workflow step that runs for over an hour is still treated as in-progress and continues to refuse new sends until Stop fires or the terminal is closed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9a57df0-49d2-48e3-b70e-a2771f735433:
+    id: d9a57df0-49d2-48e3-b70e-a2771f735433
+    content: Implementation proposal
+    children:
+      - c14d74ac-6401-485e-835d-e5b4d7317506
+      - 340b2484-dec9-4951-bcf6-2a651c73b550
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c14d74ac-6401-485e-835d-e5b4d7317506:
+    id: c14d74ac-6401-485e-835d-e5b4d7317506
+    content: Approach
+    children:
+      - 61ca1fa9-a53d-4ade-bbb1-33eca161cc98
+      - 954d75f6-9852-4346-8f03-01a76ebeed7e
+      - 9c5f7453-a382-4d83-a836-929268a44ac9
+      - 0f9a9462-8401-4208-b88c-8bd3ca77901d
+      - 50489725-8708-4e09-97b0-2a55f2a8b499
+      - e10b829e-5fb3-4f5f-90dd-ba1922c64b51
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61ca1fa9-a53d-4ade-bbb1-33eca161cc98:
+    id: 61ca1fa9-a53d-4ade-bbb1-33eca161cc98
+    content: Track in-progress state per session in main process; set on every UserPromptSubmit register-binding, cleared on Stop event POST
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  954d75f6-9852-4346-8f03-01a76ebeed7e:
+    id: 954d75f6-9852-4346-8f03-01a76ebeed7e
+    content: Stop hook script POSTs a stop event to the dispatcher in addition to its existing submit_step_output safety-net call
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c5f7453-a382-4d83-a836-929268a44ac9:
+    id: 9c5f7453-a382-4d83-a836-929268a44ac9
+    content: Dispatcher forwards in-progress state changes to renderer over IPC, mirroring the pattern from US-E
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f9a9462-8401-4208-b88c-8bd3ca77901d:
+    id: 0f9a9462-8401-4208-b88c-8bd3ca77901d
+    content: Renderer maintains a per-session in-progress map; sendActions and workflow controls consult it before proceeding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50489725-8708-4e09-97b0-2a55f2a8b499:
+    id: 50489725-8708-4e09-97b0-2a55f2a8b499
+    content: On refusal, show a toast naming the session's active node and the action that was blocked
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e10b829e-5fb3-4f5f-90dd-ba1922c64b51:
+    id: e10b829e-5fb3-4f5f-90dd-ba1922c64b51
+    content: Terminal-close handler clears the flag for the session that lived in that terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  340b2484-dec9-4951-bcf6-2a651c73b550:
+    id: 340b2484-dec9-4951-bcf6-2a651c73b550
+    content: Touchpoints
+    children:
+      - 19951c0b-2ed2-44fd-abba-968ac6d39457
+      - c7886780-e40e-4631-87c6-a3860a9be4ad
+      - e4fe9d0a-abaa-45ef-ac80-a6e137157f8b
+      - 029d1e10-b767-4730-9b06-c05d91d34057
+      - 84e34ef0-7708-45f8-802f-2c5978e57a6e
+      - 07c9162e-643c-4e37-8e01-6bf00aae7bbc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19951c0b-2ed2-44fd-abba-968ac6d39457:
+    id: 19951c0b-2ed2-44fd-abba-968ac6d39457
+    content: src/main/services/hookScripts.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7886780-e40e-4631-87c6-a3860a9be4ad:
+    id: c7886780-e40e-4631-87c6-a3860a9be4ad
+    content: src/main/services/hookEventDispatcher.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4fe9d0a-abaa-45ef-ac80-a6e137157f8b:
+    id: e4fe9d0a-abaa-45ef-ac80-a6e137157f8b
+    content: src/preload/index.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  029d1e10-b767-4730-9b06-c05d91d34057:
+    id: 029d1e10-b767-4730-9b06-c05d91d34057
+    content: src/renderer/store/tree/actions/sendActions.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84e34ef0-7708-45f8-802f-2c5978e57a6e:
+    id: 84e34ef0-7708-45f8-802f-2c5978e57a6e
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07c9162e-643c-4e37-8e01-6bf00aae7bbc:
+    id: 07c9162e-643c-4e37-8e01-6bf00aae7bbc
+    content: src/renderer/hooks/useHookEventListener.ts or sibling
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa57cec9-ac67-4ba8-a99e-218ebd363e19:
+    id: aa57cec9-ac67-4ba8-a99e-218ebd363e19
+    content: worktree
+    children:
+      - fd763e80-369e-428d-8ba2-00c447a15973
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd763e80-369e-428d-8ba2-00c447a15973:
+    id: fd763e80-369e-428d-8ba2-00c447a15973
     content: vscode://file/Users/brianfox/dev/Arborescent-rebind-gate
     children: []
     metadata:
@@ -161794,18 +161816,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  964c4b21-4ebd-41d4-9c73-93677a14e009:
-    id: 964c4b21-4ebd-41d4-9c73-93677a14e009
+  b2a1c318-1c15-4172-a02e-49eec51ba44e:
+    id: b2a1c318-1c15-4172-a02e-49eec51ba44e
     content: Summary
     children:
-      - ef1b87b6-ed61-4702-848a-28d19e9ba74b
+      - 693932f2-c824-46d1-91f1-f05fd4c0fce1
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ef1b87b6-ed61-4702-848a-28d19e9ba74b:
-    id: ef1b87b6-ed61-4702-848a-28d19e9ba74b
+  693932f2-c824-46d1-91f1-f05fd4c0fce1:
+    id: 693932f2-c824-46d1-91f1-f05fd4c0fce1
     content: Sending a node to a terminal that already has a different node bound pastes the prompt before the user confirms the rebinding
     children: []
     metadata:
@@ -161813,20 +161835,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c06bf639-fb66-40ea-92c5-a800519a7f9e:
-    id: c06bf639-fb66-40ea-92c5-a800519a7f9e
+  0f667269-b332-48a0-97ea-07d7d7c224ac:
+    id: 0f667269-b332-48a0-97ea-07d7d7c224ac
     content: Steps to reproduce
     children:
-      - 7c3cdb7e-2153-44d2-88b4-b7b60b219d6f
-      - 4cd2eee5-f119-46b1-8db2-d3f84f4062c9
-      - d177a1fc-dd32-48bf-808d-90b59c17cd46
+      - 82a8ee4a-22d4-44fb-81dd-68cb73cfa96f
+      - 2329dac5-a2c3-48e2-89d7-cddff9e46f39
+      - ba3d5200-a22e-4b5d-bf09-ccdf853529ad
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7c3cdb7e-2153-44d2-88b4-b7b60b219d6f:
-    id: 7c3cdb7e-2153-44d2-88b4-b7b60b219d6f
+  82a8ee4a-22d4-44fb-81dd-68cb73cfa96f:
+    id: 82a8ee4a-22d4-44fb-81dd-68cb73cfa96f
     content: Open a terminal tab and bind it to node A (e.g. via a previous send or SessionStart capture)
     children: []
     metadata:
@@ -161834,8 +161856,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4cd2eee5-f119-46b1-8db2-d3f84f4062c9:
-    id: 4cd2eee5-f119-46b1-8db2-d3f84f4062c9
+  2329dac5-a2c3-48e2-89d7-cddff9e46f39:
+    id: 2329dac5-a2c3-48e2-89d7-cddff9e46f39
     content: From the tree, send node B to the same terminal tab
     children: []
     metadata:
@@ -161843,8 +161865,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d177a1fc-dd32-48bf-808d-90b59c17cd46:
-    id: d177a1fc-dd32-48bf-808d-90b59c17cd46
+  ba3d5200-a22e-4b5d-bf09-ccdf853529ad:
+    id: ba3d5200-a22e-4b5d-bf09-ccdf853529ad
     content: Observe that the rebinding confirmation dialog appears, but node B's prompt has already been pasted into the terminal
     children: []
     metadata:
@@ -161852,19 +161874,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ab71dc96-9f0e-45db-baaf-aaa46aa7792a:
-    id: ab71dc96-9f0e-45db-baaf-aaa46aa7792a
+  5ca31386-e0ae-4da3-9222-265a12c897db:
+    id: 5ca31386-e0ae-4da3-9222-265a12c897db
     content: Expected behavior
     children:
-      - c37079da-66b9-491d-9957-ebf897f2ea9c
-      - 571b94eb-5cf0-4bba-8134-7d0725e9e60e
+      - c1ff0de7-f809-460a-9b95-36361ffa4d5e
+      - 706719bb-e3d1-487f-93bf-7950c37af6e5
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c37079da-66b9-491d-9957-ebf897f2ea9c:
-    id: c37079da-66b9-491d-9957-ebf897f2ea9c
+  c1ff0de7-f809-460a-9b95-36361ffa4d5e:
+    id: c1ff0de7-f809-460a-9b95-36361ffa4d5e
     content: On the happy path, the prompt is held until the user confirms the new binding, then sent exactly once and the binding switches to node B
     children: []
     metadata:
@@ -161872,8 +161894,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  571b94eb-5cf0-4bba-8134-7d0725e9e60e:
-    id: 571b94eb-5cf0-4bba-8134-7d0725e9e60e
+  706719bb-e3d1-487f-93bf-7950c37af6e5:
+    id: 706719bb-e3d1-487f-93bf-7950c37af6e5
     content: If the user cancels the binding change, the prompt must not be sent and the existing binding plus terminal state remain untouched
     children: []
     metadata:
@@ -161881,19 +161903,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b4de4c2d-bd76-48a0-8271-5886774f21bd:
-    id: b4de4c2d-bd76-48a0-8271-5886774f21bd
+  51efd41d-ecc8-4a7a-b2a7-961d2cf01d26:
+    id: 51efd41d-ecc8-4a7a-b2a7-961d2cf01d26
     content: Actual behavior
     children:
-      - 05ce64ed-65a9-4f28-baa2-64199b685f21
-      - 7a0e0dbc-eb31-4fd4-9214-a298dc9f744e
+      - 2fe1e546-feae-4e53-a17f-615f0a29d9b3
+      - b9cfe221-2940-4b35-b988-b35692ad939c
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  05ce64ed-65a9-4f28-baa2-64199b685f21:
-    id: 05ce64ed-65a9-4f28-baa2-64199b685f21
+  2fe1e546-feae-4e53-a17f-615f0a29d9b3:
+    id: 2fe1e546-feae-4e53-a17f-615f0a29d9b3
     content: The prompt is pasted into the terminal as soon as the send is triggered, regardless of the confirmation dialog's outcome
     children: []
     metadata:
@@ -161901,8 +161923,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7a0e0dbc-eb31-4fd4-9214-a298dc9f744e:
-    id: 7a0e0dbc-eb31-4fd4-9214-a298dc9f744e
+  b9cfe221-2940-4b35-b988-b35692ad939c:
+    id: b9cfe221-2940-4b35-b988-b35692ad939c
     content: 'User-visible symptom: prompt text lands in the terminal before (and independent of) the confirm/cancel action, leading to accidental execution against the wrong bound node'
     children: []
     metadata:
@@ -161910,19 +161932,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  08f1129c-49c3-41d0-8250-f75eec17057b:
-    id: 08f1129c-49c3-41d0-8250-f75eec17057b
+  148518ea-cdbb-4f1c-a2ee-8e8a92eae876:
+    id: 148518ea-cdbb-4f1c-a2ee-8e8a92eae876
     content: Suspected cause
     children:
-      - 61d6431e-b48e-46e9-bcbf-c03320b7636b
-      - ceb46487-970b-4fdf-972e-2bcffd837f1d
+      - 34a4deba-6d07-4da6-8e5b-d6a750969bda
+      - 91b8320c-cc92-41b7-89c6-7620001561dc
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  61d6431e-b48e-46e9-bcbf-c03320b7636b:
-    id: 61d6431e-b48e-46e9-bcbf-c03320b7636b
+  34a4deba-6d07-4da6-8e5b-d6a750969bda:
+    id: 34a4deba-6d07-4da6-8e5b-d6a750969bda
     content: Send-to-terminal flow dispatches the paste/keystroke side effect before awaiting the rebinding confirmation result
     children: []
     metadata:
@@ -161930,8 +161952,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ceb46487-970b-4fdf-972e-2bcffd837f1d:
-    id: ceb46487-970b-4fdf-972e-2bcffd837f1d
+  91b8320c-cc92-41b7-89c6-7620001561dc:
+    id: 91b8320c-cc92-41b7-89c6-7620001561dc
     content: The existing guard only switches the binding on confirm; it does not gate the prompt delivery on that same confirmation
     children: []
     metadata:
@@ -161939,19 +161961,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e52f8373-85a7-468f-bf1f-8c0942fc437b:
-    id: e52f8373-85a7-468f-bf1f-8c0942fc437b
+  4355e858-4637-420f-be23-ebae430344a9:
+    id: 4355e858-4637-420f-be23-ebae430344a9
     content: Affected files
     children:
-      - 60e44c23-c419-4953-8b8c-d9cf3000ec52
-      - a8a73113-1471-4756-9989-9f69b6f55e92
+      - 1ddbf7a4-9b1b-438a-9a02-85f104195cf7
+      - e2d86239-7292-4713-b59b-856e8b411cc6
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  60e44c23-c419-4953-8b8c-d9cf3000ec52:
-    id: 60e44c23-c419-4953-8b8c-d9cf3000ec52
+  1ddbf7a4-9b1b-438a-9a02-85f104195cf7:
+    id: 1ddbf7a4-9b1b-438a-9a02-85f104195cf7
     content: 'Primary suspect: renderer send-to-terminal action in `src/renderer/store/actions/` (terminal/send action)'
     children: []
     metadata:
@@ -161959,8 +161981,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a8a73113-1471-4756-9989-9f69b6f55e92:
-    id: a8a73113-1471-4756-9989-9f69b6f55e92
+  e2d86239-7292-4713-b59b-856e8b411cc6:
+    id: e2d86239-7292-4713-b59b-856e8b411cc6
     content: 'Related surface: terminal binding/confirmation dialog component and main-process terminal IPC handler in `src/main/services/`'
     children: []
     metadata:
@@ -161968,19 +161990,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a85cb255-d7fd-48fc-a2fa-1a9075b1e9af:
-    id: a85cb255-d7fd-48fc-a2fa-1a9075b1e9af
+  26ff0953-3ad5-465c-8c85-c0fe29290d49:
+    id: 26ff0953-3ad5-465c-8c85-c0fe29290d49
     content: Regression window
     children:
-      - 442e1624-a5bb-4c9a-90b8-27c85819b5c8
-      - 439eb5be-2305-46a6-9689-1f2ef8de9133
+      - 6d53d1b9-a483-436d-aee3-f235fe9683eb
+      - 755ea011-ff0c-43ca-8865-33263fc120af
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  442e1624-a5bb-4c9a-90b8-27c85819b5c8:
-    id: 442e1624-a5bb-4c9a-90b8-27c85819b5c8
+  6d53d1b9-a483-436d-aee3-f235fe9683eb:
+    id: 6d53d1b9-a483-436d-aee3-f235fe9683eb
     content: 'Last known good commit or release: unknown — needs bisect against recent terminal-binding changes'
     children: []
     metadata:
@@ -161988,8 +162010,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  439eb5be-2305-46a6-9689-1f2ef8de9133:
-    id: 439eb5be-2305-46a6-9689-1f2ef8de9133
+  755ea011-ff0c-43ca-8865-33263fc120af:
+    id: 755ea011-ff0c-43ca-8865-33263fc120af
     content: 'First observed broken: current master (2026-05-22), after recent SessionStart/origin-node reattach work (commit 641cb97)'
     children: []
     metadata:
@@ -161997,18 +162019,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bf4d6ed3-5ad9-4b23-82d3-ffd66172bcef:
-    id: bf4d6ed3-5ad9-4b23-82d3-ffd66172bcef
+  6f4503b0-fae0-4875-ba47-9eaef12949fe:
+    id: 6f4503b0-fae0-4875-ba47-9eaef12949fe
     content: Severity
     children:
-      - 28dce956-925c-495c-83ae-ad53521ef25f
+      - 89ce8ec6-5a7d-4a91-951f-63d6d7446b6b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  28dce956-925c-495c-83ae-ad53521ef25f:
-    id: 28dce956-925c-495c-83ae-ad53521ef25f
+  89ce8ec6-5a7d-4a91-951f-63d6d7446b6b:
+    id: 89ce8ec6-5a7d-4a91-951f-63d6d7446b6b
     content: Medium-high — silently executes prompts against the wrong bound node, undermining the binding model and risking incorrect AI collaboration state
     children: []
     metadata:
@@ -162016,19 +162038,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  82422a03-6039-471e-8754-8854fe63446c:
-    id: 82422a03-6039-471e-8754-8854fe63446c
+  5df4d870-a5ba-4ed4-a414-59844970c529:
+    id: 5df4d870-a5ba-4ed4-a414-59844970c529
     content: Notes
     children:
-      - 37ab6071-3a28-4349-adc8-53442075d54e
-      - 1f080f94-1a82-40a7-af88-6830a82414c4
+      - db432ded-a2c3-46ad-b26f-d1956dcb9090
+      - a8d164a2-50da-4920-8432-e1291d00dbcd
     metadata:
       status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  37ab6071-3a28-4349-adc8-53442075d54e:
-    id: 37ab6071-3a28-4349-adc8-53442075d54e
+  db432ded-a2c3-46ad-b26f-d1956dcb9090:
+    id: db432ded-a2c3-46ad-b26f-d1956dcb9090
     content: 'Disambiguate from: send-to-terminal when no binding exists (should send immediately) and rebinding via SessionStart capture (different code path)'
     children: []
     metadata:
@@ -162036,12 +162058,110 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1f080f94-1a82-40a7-af88-6830a82414c4:
-    id: 1f080f94-1a82-40a7-af88-6830a82414c4
+  a8d164a2-50da-4920-8432-e1291d00dbcd:
+    id: a8d164a2-50da-4920-8432-e1291d00dbcd
     content: 'Telemetry/UX gap: no visible indication when a send is cancelled mid-flow — consider a toast or log when a prompt is suppressed due to declined rebinding'
     children: []
     metadata:
       status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  97d24dae-0d9b-42cb-ab3e-b993b8ecd171:
+    id: 97d24dae-0d9b-42cb-ab3e-b993b8ecd171
+    content: review feedback
+    children:
+      - f36559ba-04c3-43ed-9eae-e33e43dee4c2
+      - ae83b9f8-c34e-4b98-b9d4-2e3575704712
+      - e8b45211-dc04-4a54-b42f-3d4464fad54e
+      - 529f0928-ba8b-470e-88d1-639686c88a35
+      - 9f1a8366-e8f8-438e-bc3d-b1b220f4015a
+      - 9f80c2cb-f237-4bea-a3bd-b6f4a36aa0cb
+      - 23d3ef98-9f36-4594-8e7d-ff9b130d1d40
+      - 8f3d3076-df63-48b7-8376-4b9f7380323e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f36559ba-04c3-43ed-9eae-e33e43dee4c2:
+    id: f36559ba-04c3-43ed-9eae-e33e43dee4c2
+    content: 'Reviewer confirmed core logic correct: double-confirm idempotent (finalizePreflight clears before scheduling replay), modal ESC routes to onCancel and clears without firing replay, replay reads fresh terminalNodeAssignments via get() so no staleness, session-IPC takes precedence over preflight at hook render'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae83b9f8-c34e-4b98-b9d4-2e3575704712:
+    id: ae83b9f8-c34e-4b98-b9d4-2e3575704712
+    content: 'Addressed: tightened PreflightRebindRequest.replay type from `() => Promise<void> | void` to `() => Promise<void>` (rebindPreflightStore.ts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8b45211-dc04-4a54-b42f-3d4464fad54e:
+    id: e8b45211-dc04-4a54-b42f-3d4464fad54e
+    content: 'Addressed: re-added action-mode-bare-content "why" comment in runCollaborateInTerminal (was lost during extraction from the original action body)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  529f0928-ba8b-470e-88d1-639686c88a35:
+    id: 529f0928-ba8b-470e-88d1-639686c88a35
+    content: 'Addressed: added test asserting "after IPC session request resolves, a still-queued preflight becomes visible" (useRebindConfirmationPreflight.test.tsx) — covers ordering case not previously tested'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f1a8366-e8f8-438e-bc3d-b1b220f4015a:
+    id: 9f1a8366-e8f8-438e-bc3d-b1b220f4015a
+    content: 'Skipped (out of scope): pendingRequest discriminant `''session'' | ''preflight''` is unused at consumer — kept for future divergence in dialog copy'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f80c2cb-f237-4bea-a3bd-b6f4a36aa0cb:
+    id: 9f80c2cb-f237-4bea-a3bd-b6f4a36aa0cb
+    content: 'Addressed in resolution step: integration test where replay runs without manually clearing terminalNodeAssignments — current unit tests document the gate behavior; real-world clearing happens via assignTerminalToNode on the new session/binding'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23d3ef98-9f36-4594-8e7d-ff9b130d1d40:
+    id: 23d3ef98-9f36-4594-8e7d-ff9b130d1d40
+    content: 'Skipped (nits, negligible impact): lookupNodeLabel unmemoized; findBoundNodeForTerminal accepts optional assignments record despite TreeState typing it as required'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f3d3076-df63-48b7-8376-4b9f7380323e:
+    id: 8f3d3076-df63-48b7-8376-4b9f7380323e
+    content: 'Race verified safe: a duplicate request() call replaces the prior preflight (most-recent-wins, dropping the older replay) — acceptable since only one dialog can be on screen'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  daa4f35e-a1f1-4117-bc96-c11d68f5629a:
+    id: daa4f35e-a1f1-4117-bc96-c11d68f5629a
+    content: 'Documentation review — no new docs/CHANGELOG entries needed: bug fix to unreleased feature (existing "Rebind confirmation only on workflow-start" entry already describes the now-correct behavior); invisible polish to user. Scope-corrected gate to only fire on autonomousCollaborateInTerminal (workflow-start, ARBORESCENT_NODE marker triggers rebind) — removed from collaborateInTerminal (manual send, ARBORESCENT_TARGET one-shot routing, never rebinds) to preserve the "Manual sends keep the workflow''s binding" feature'
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
