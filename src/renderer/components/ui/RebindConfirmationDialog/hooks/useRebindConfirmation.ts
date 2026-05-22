@@ -2,7 +2,12 @@ import { useCallback, useEffect, useState } from 'react';
 import type { RebindRequestEvent } from '../../../../../shared/types/electronApi';
 import { storeManager } from '../../../../store/storeManager';
 import { usePendingRebindDialogStore } from '../../../../store/pendingRebindDialogStore';
+import {
+  useRebindPreflightStore,
+  type PreflightRebindRequest,
+} from '../../../../store/rebindPreflightStore';
 import { extractTaskTitle } from '../../../../utils/terminalTabTitle';
+import { logger } from '../../../../services/logger';
 
 function shortenUuid(uuid: string): string {
   return uuid.length > 8 ? `${uuid.slice(0, 8)}…` : uuid;
@@ -11,7 +16,7 @@ function shortenUuid(uuid: string): string {
 export type RebindConfirmationState =
   | { pendingRequest: null }
   | {
-      pendingRequest: RebindRequestEvent;
+      pendingRequest: 'session' | 'preflight';
       previousLabel: string;
       newLabel: string;
       onConfirm: () => void;
@@ -62,11 +67,12 @@ function clearOptimisticCollaboratingNode(nodeId: string): void {
 }
 
 export function useRebindConfirmation(): RebindConfirmationState {
-  const [pendingRequest, setPendingRequest] = useState<RebindRequestEvent | null>(null);
+  const [sessionRequest, setSessionRequest] = useState<RebindRequestEvent | null>(null);
+  const preflightRequest = useRebindPreflightStore((s) => s.current);
 
   useEffect(() => {
     return window.electron.onRebindRequest((event) => {
-      setPendingRequest(event);
+      setSessionRequest(event);
       markDialogPendingForSession(event.sessionId);
     });
   }, []);
@@ -74,7 +80,7 @@ export function useRebindConfirmation(): RebindConfirmationState {
   useEffect(() => {
     return window.electron.onRebindCancelled((sessionId) => {
       clearDialogPendingForSession(sessionId);
-      setPendingRequest((current) => {
+      setSessionRequest((current) => {
         if (!current || current.sessionId !== sessionId) return current;
         clearOptimisticCollaboratingNode(current.newNodeId);
         return null;
@@ -82,30 +88,60 @@ export function useRebindConfirmation(): RebindConfirmationState {
     });
   }, []);
 
-  const onConfirm = useCallback(() => {
-    if (!pendingRequest) return;
-    void window.electron.respondToRebindRequest(pendingRequest.sessionId, true);
-    clearDialogPendingForSession(pendingRequest.sessionId);
-    setPendingRequest(null);
-  }, [pendingRequest]);
+  const onSessionConfirm = useCallback(() => {
+    if (!sessionRequest) return;
+    void window.electron.respondToRebindRequest(sessionRequest.sessionId, true);
+    clearDialogPendingForSession(sessionRequest.sessionId);
+    setSessionRequest(null);
+  }, [sessionRequest]);
 
-  const onCancel = useCallback(() => {
-    if (!pendingRequest) return;
-    void window.electron.respondToRebindRequest(pendingRequest.sessionId, false);
-    clearDialogPendingForSession(pendingRequest.sessionId);
-    clearOptimisticCollaboratingNode(pendingRequest.newNodeId);
-    setPendingRequest(null);
-  }, [pendingRequest]);
+  const onSessionCancel = useCallback(() => {
+    if (!sessionRequest) return;
+    void window.electron.respondToRebindRequest(sessionRequest.sessionId, false);
+    clearDialogPendingForSession(sessionRequest.sessionId);
+    clearOptimisticCollaboratingNode(sessionRequest.newNodeId);
+    setSessionRequest(null);
+  }, [sessionRequest]);
 
-  if (!pendingRequest) {
-    return { pendingRequest: null };
+  const onPreflightConfirm = useCallback(() => {
+    const current = useRebindPreflightStore.getState().current;
+    if (!current) return;
+    finalizePreflight(current);
+    void Promise.resolve(current.replay()).catch((error) => {
+      logger.error('Failed to replay deferred send after rebind confirmation', error as Error, 'RebindPreflight');
+    });
+  }, []);
+
+  const onPreflightCancel = useCallback(() => {
+    const current = useRebindPreflightStore.getState().current;
+    if (!current) return;
+    finalizePreflight(current);
+  }, []);
+
+  if (sessionRequest) {
+    return {
+      pendingRequest: 'session',
+      previousLabel: lookupNodeLabel(sessionRequest.previousNodeId),
+      newLabel: lookupNodeLabel(sessionRequest.newNodeId),
+      onConfirm: onSessionConfirm,
+      onCancel: onSessionCancel,
+    };
   }
 
-  return {
-    pendingRequest,
-    previousLabel: lookupNodeLabel(pendingRequest.previousNodeId),
-    newLabel: lookupNodeLabel(pendingRequest.newNodeId),
-    onConfirm,
-    onCancel,
-  };
+  if (preflightRequest) {
+    return {
+      pendingRequest: 'preflight',
+      previousLabel: lookupNodeLabel(preflightRequest.previousNodeId),
+      newLabel: lookupNodeLabel(preflightRequest.newNodeId),
+      onConfirm: onPreflightConfirm,
+      onCancel: onPreflightCancel,
+    };
+  }
+
+  return { pendingRequest: null };
+}
+
+function finalizePreflight(request: PreflightRebindRequest): void {
+  usePendingRebindDialogStore.getState().clearPending(request.terminalId);
+  useRebindPreflightStore.getState().clear();
 }

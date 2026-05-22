@@ -20,6 +20,7 @@ import {
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
 import { usePendingRebindDialogStore } from '../../pendingRebindDialogStore';
+import { useRebindPreflightStore } from '../../rebindPreflightStore';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
 import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
@@ -315,6 +316,29 @@ function notifyRebindDialogBlocked(): void {
   );
 }
 
+function findBoundNodeForTerminal(
+  terminalId: string,
+  assignments: Record<string, string> | undefined,
+): string | null {
+  if (!assignments) return null;
+  return assignments[terminalId] ?? null;
+}
+
+function queuePreflightRebind(
+  terminalId: string,
+  previousNodeId: string,
+  newNodeId: string,
+  replay: () => Promise<void>,
+): void {
+  usePendingRebindDialogStore.getState().markPending(terminalId);
+  useRebindPreflightStore.getState().request({
+    terminalId,
+    previousNodeId,
+    newNodeId,
+    replay,
+  });
+}
+
 export interface ProcessFeedbackContentResult {
   success: boolean;
   nodeCount?: number;
@@ -388,6 +412,125 @@ export function createSendActions(
       'Collaboration already in progress - Please finish or cancel the current collaboration first',
       'error'
     );
+  }
+
+  async function runCollaborateInTerminal(
+    nodeId: string,
+    terminalId: string,
+    flags?: ContextFlags,
+    overrideContextId?: string,
+  ): Promise<void> {
+    const state = get();
+    const node = state.nodes[nodeId];
+    if (!node) {
+      logger.error('Node not found', new Error(`Node ${nodeId} not found`), 'SendActions');
+      return;
+    }
+
+    try {
+      const route = classifyTerminalSend(nodeId, state.nodes, state.ancestorRegistry, {
+        isMultiSelect: state.multiSelectedNodeIds.size > 1,
+      });
+      if (route.kind === 'skip') return;
+      if (route.kind === 'execute') {
+        await executeInTerminal(terminalId, route.command);
+        logger.info(`Executed code-node as raw command for node: ${nodeId}`, 'SendActions');
+        return;
+      }
+
+      const storedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+      const effectiveContextId = overrideContextId ?? storedContextId;
+
+      if (!effectiveContextId) {
+        // Action-mode-equivalent: send bare content with no instruction wrapping
+        // and intentionally no UUID marker, so any existing session-to-node
+        // binding is preserved per the action-mode rule.
+        const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
+        await executeInTerminal(terminalId, nodeContent);
+        logger.info(`Sent bare node content to terminal for node: ${nodeId}`, 'SendActions');
+        return;
+      }
+
+      if (state.collaboratingNodeId) {
+        showCollaborationInProgressError();
+        logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
+        return;
+      }
+
+      const resolvedFlags = flags ?? flagsForContext(effectiveContextId, state);
+      const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+      const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
+
+      const terminalInstruction = buildSendPayload({
+        nodeId,
+        state,
+        flags: resolvedFlags,
+        target: 'terminal',
+        decomposition: effectiveDecomposition,
+        overrideContextId,
+      });
+
+      await executeInTerminal(terminalId, terminalInstruction);
+
+      if (resolvedFlags.collaborate) {
+        set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', collaboratingTerminalId: terminalId, decomposition: effectiveDecomposition });
+        logger.info(`Started terminal collaboration for node: ${nodeId} (response will arrive via submit_step_output)`, 'SendActions');
+      } else {
+        logger.info(`Sent execute-only prompt to terminal for node: ${nodeId}`, 'SendActions');
+      }
+    } catch (error) {
+      logger.error('Failed to collaborate in terminal', error as Error, 'SendActions');
+      throw error;
+    }
+  }
+
+  async function runAutonomousCollaborateInTerminal(
+    nodeId: string,
+    terminalId: string,
+    flags?: ContextFlags,
+    overrideContextId?: string,
+    bindingSource?: AutonomousSendSource,
+  ): Promise<string> {
+    const state = get();
+    const node = state.nodes[nodeId];
+    if (!node) {
+      throw new Error(`Node ${nodeId} not found`);
+    }
+
+    const effectiveContextId = overrideContextId
+      ?? getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+
+    if (!effectiveContextId) {
+      const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
+      await executeInTerminal(terminalId, nodeContent);
+      logger.info(`Sent bare node content to terminal autonomously for node: ${nodeId}`, 'SendActions');
+      return '';
+    }
+
+    const resolvedFlags = flags ?? flagsForContext(effectiveContextId, state);
+    const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+    const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
+    const sessionId = findSessionIdForTerminal(state.workflowSessionMap, terminalId);
+
+    const terminalInstruction = buildSendPayload({
+      nodeId,
+      state,
+      flags: resolvedFlags,
+      target: 'autonomous-terminal',
+      decomposition: effectiveDecomposition,
+      sessionId,
+      overrideContextId,
+      bindingSource,
+    });
+
+    await executeInTerminal(terminalId, terminalInstruction);
+
+    if (resolvedFlags.collaborate) {
+      logger.info(`Started autonomous collaboration for node: ${nodeId} (response will arrive via submit_step_output)`, 'SendActions');
+    } else {
+      logger.info(`Sent autonomous execute-only prompt for node: ${nodeId}`, 'SendActions');
+    }
+    return '';
   }
 
   return {
@@ -502,8 +645,6 @@ export function createSendActions(
     },
 
     collaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => {
-      const state = get();
-
       if (!terminalId) {
         const error = new Error('No terminal selected');
         logger.error('Cannot collaborate in terminal', error, 'SendActions');
@@ -516,72 +657,10 @@ export function createSendActions(
         return;
       }
 
-      const node = state.nodes[nodeId];
-      if (!node) {
-        logger.error('Node not found', new Error(`Node ${nodeId} not found`), 'SendActions');
-        return;
-      }
-
-      try {
-        const route = classifyTerminalSend(nodeId, state.nodes, state.ancestorRegistry, {
-          isMultiSelect: state.multiSelectedNodeIds.size > 1,
-        });
-        if (route.kind === 'skip') return;
-        if (route.kind === 'execute') {
-          await executeInTerminal(terminalId, route.command);
-          logger.info(`Executed code-node as raw command for node: ${nodeId}`, 'SendActions');
-          return;
-        }
-
-        const storedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
-        const effectiveContextId = overrideContextId ?? storedContextId;
-
-        if (!effectiveContextId) {
-          // No applied context means action-mode-equivalent: send bare content with no
-          // instruction wrapping and intentionally no UUID marker, so any existing
-          // session-to-node binding is preserved per the action-mode rule.
-          const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
-          await executeInTerminal(terminalId, nodeContent);
-          logger.info(`Sent bare node content to terminal for node: ${nodeId}`, 'SendActions');
-          return;
-        }
-
-        if (state.collaboratingNodeId) {
-          showCollaborationInProgressError();
-          logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
-          return;
-        }
-
-        const resolvedFlags = flags ?? flagsForContext(effectiveContextId, state);
-        const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
-        const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
-
-        const terminalInstruction = buildSendPayload({
-          nodeId,
-          state,
-          flags: resolvedFlags,
-          target: 'terminal',
-          decomposition: effectiveDecomposition,
-          overrideContextId,
-        });
-
-        await executeInTerminal(terminalId, terminalInstruction);
-
-        if (resolvedFlags.collaborate) {
-          set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', collaboratingTerminalId: terminalId, decomposition: effectiveDecomposition });
-          logger.info(`Started terminal collaboration for node: ${nodeId} (response will arrive via submit_step_output)`, 'SendActions');
-        } else {
-          logger.info(`Sent execute-only prompt to terminal for node: ${nodeId}`, 'SendActions');
-        }
-      } catch (error) {
-        logger.error('Failed to collaborate in terminal', error as Error, 'SendActions');
-        throw error;
-      }
+      await runCollaborateInTerminal(nodeId, terminalId, flags, overrideContextId);
     },
 
     autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string, bindingSource?: AutonomousSendSource): Promise<string> => {
-      const state = get();
-
       if (!terminalId) {
         throw new Error('No terminal selected');
       }
@@ -592,46 +671,20 @@ export function createSendActions(
         return '';
       }
 
-      const node = state.nodes[nodeId];
-      if (!node) {
-        throw new Error(`Node ${nodeId} not found`);
-      }
-
-      const effectiveContextId = overrideContextId
-        ?? getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
-
-      if (!effectiveContextId) {
-        // See collaborateInTerminal: action-mode-equivalent path, no marker by design.
-        const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
-        await executeInTerminal(terminalId, nodeContent);
-        logger.info(`Sent bare node content to terminal autonomously for node: ${nodeId}`, 'SendActions');
+      const preState = get();
+      const previouslyBoundNodeId = findBoundNodeForTerminal(terminalId, preState.terminalNodeAssignments);
+      if (previouslyBoundNodeId && previouslyBoundNodeId !== nodeId) {
+        queuePreflightRebind(terminalId, previouslyBoundNodeId, nodeId, async () => {
+          await runAutonomousCollaborateInTerminal(nodeId, terminalId, flags, overrideContextId, bindingSource);
+        });
+        logger.info(
+          `Preflight rebind queued (autonomous): terminal ${terminalId} bound to ${previouslyBoundNodeId}, awaiting confirmation to send ${nodeId}`,
+          'SendActions',
+        );
         return '';
       }
 
-      const resolvedFlags = flags ?? flagsForContext(effectiveContextId, state);
-      const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
-      const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
-      const sessionId = findSessionIdForTerminal(state.workflowSessionMap, terminalId);
-
-      const terminalInstruction = buildSendPayload({
-        nodeId,
-        state,
-        flags: resolvedFlags,
-        target: 'autonomous-terminal',
-        decomposition: effectiveDecomposition,
-        sessionId,
-        overrideContextId,
-        bindingSource,
-      });
-
-      await executeInTerminal(terminalId, terminalInstruction);
-
-      if (resolvedFlags.collaborate) {
-        logger.info(`Started autonomous collaboration for node: ${nodeId} (response will arrive via submit_step_output)`, 'SendActions');
-      } else {
-        logger.info(`Sent autonomous execute-only prompt for node: ${nodeId}`, 'SendActions');
-      }
-      return '';
+      return runAutonomousCollaborateInTerminal(nodeId, terminalId, flags, overrideContextId, bindingSource);
     },
 
     restoreCollaborationState: async () => {
