@@ -33,7 +33,7 @@ export function TerminalPanel() {
   const { handleNewTerminal, handleCloseTerminal } = useTerminalPanel();
 
   const activeTerminal = terminals.find((t) => t.id === activeTerminalId);
-  const isPinned = activeTerminal?.pinnedToBottom ?? true;
+  const isPinned = activeTerminal?.pinnedToBottom ?? false;
 
   const terminalOrigins: Record<string, string> = {};
   for (const term of terminals) {

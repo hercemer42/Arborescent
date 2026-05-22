@@ -96,4 +96,6 @@ Sending or executing a branch into a terminal renames the tab to that branch's t
 
 ### Terminal scroll lock
 
-Some terminal AI tools (like Claude Code) redraw the screen while processing, which can scroll you away from the output. Click the anchor icon in the terminal tab bar to fix the view to the bottom of the terminal. Click it again to turn it off.
+Some terminal AI tools (like Claude Code) redraw the screen while processing, which can scroll you away from the output. Click the anchor icon in the terminal tab bar to pin the view to the bottom. Click it again to release.
+
+Terminals start unanchored, so you can scroll back through output without unpinning first. Turn anchoring on when you want the view to follow streaming output through a redraw.

@@ -25,7 +25,7 @@ describe('Terminal', () => {
 
     expect(useTerminal).toHaveBeenCalledWith({
       id: 'test-terminal-123',
-      pinnedToBottom: true,
+      pinnedToBottom: false,
       onResize: undefined,
     });
   });
@@ -38,8 +38,20 @@ describe('Terminal', () => {
 
     expect(useTerminal).toHaveBeenCalledWith({
       id: 'test-terminal',
-      pinnedToBottom: true,
+      pinnedToBottom: false,
       onResize: mockOnResize,
+    });
+  });
+
+  it('forwards an explicit pinnedToBottom=true so per-terminal anchored state still flows through', async () => {
+    const { useTerminal } = await import('../hooks/useTerminal');
+
+    render(<Terminal id="test-terminal" pinnedToBottom={true} />);
+
+    expect(useTerminal).toHaveBeenCalledWith({
+      id: 'test-terminal',
+      pinnedToBottom: true,
+      onResize: undefined,
     });
   });
 });

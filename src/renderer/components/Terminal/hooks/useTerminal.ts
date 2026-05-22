@@ -29,11 +29,12 @@ interface UseTerminalOptions {
  * That made the teardown order hard to reason about. Consolidated here
  * into a single mount effect + a theme-reactive effect.
  */
-export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminalOptions) {
+export function useTerminal({ id, pinnedToBottom = false, onResize }: UseTerminalOptions) {
   const terminalRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
   const pinnedToBottomRef = useRef(pinnedToBottom);
+  const prevPinnedToBottomRef = useRef(pinnedToBottom);
   const wasHiddenRef = useRef(false);
   const onResizeRef = useRef(onResize);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -42,6 +43,28 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
   // Keep refs in sync with props without re-triggering the mount effect.
   useEffect(() => {
     pinnedToBottomRef.current = pinnedToBottom;
+  }, [pinnedToBottom]);
+
+  // On a false → true transition, reconcile the viewport so the toggle
+  // behaves as "anchor now" — without it the view stays parked on stale rows
+  // until the next byte arrives. Grid sizing stays with the runtime observer,
+  // so no fit() here.
+  useEffect(() => {
+    const wasPinned = prevPinnedToBottomRef.current;
+    prevPinnedToBottomRef.current = pinnedToBottom;
+    if (wasPinned || !pinnedToBottom) return;
+
+    const xterm = xtermRef.current;
+    const container = terminalRef.current;
+    if (!xterm || !container) return;
+
+    const rect = container.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    if (xterm.rows > 0) {
+      xterm.refresh(0, xterm.rows - 1);
+    }
+    xterm.scrollToBottom();
   }, [pinnedToBottom]);
 
   useEffect(() => {
@@ -166,6 +189,14 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
 
       // Push xterm.dispose last so teardown always runs listeners/observers before dispose.
       disposers.push(() => xterm.dispose());
+
+      // If the anchor was toggled on before init completed, the transition effect
+      // bailed and never rescheduled — catch it here so the view doesn't wait
+      // for the next byte to land at the bottom.
+      if (pinnedToBottomRef.current && xterm.rows > 0) {
+        xterm.refresh(0, xterm.rows - 1);
+        xterm.scrollToBottom();
+      }
 
       setIsInitialized(true);
     };

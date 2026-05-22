@@ -282,6 +282,9 @@ describe('terminal session per-file persistence', () => {
       await useTerminalStore.getState().materializeRestoredTerminals();
       // No error thrown
     });
+
+    it.todo('restored terminals adopt the current createTerminal pinnedToBottom default rather than any session-side value, because pinnedToBottom is not part of the saved session shape');
+    it.todo('restoring a session created before the default flip leaves restored terminals unanchored (the new default) — no migration shim');
   });
 
   describe('terminal mutations trigger saveTerminalSession', () => {

@@ -14,6 +14,8 @@ vi.mock('@xterm/xterm', () => ({
     write: vi.fn(),
     dispose: vi.fn(),
     scrollToBottom: vi.fn(),
+    refresh: vi.fn(),
+    rows: 24,
     buffer: {
       active: {
         get viewportY() { return mockViewportY; },
@@ -181,5 +183,106 @@ describe('useTerminal', () => {
       // Auto-scroll should now be re-enabled
       expect(onScrollCallback).toBeDefined();
     });
+  });
+
+  describe('toggle-on viewport reconcile', () => {
+    function makeMockXterm() {
+      return {
+        refresh: vi.fn(),
+        scrollToBottom: vi.fn(),
+        rows: 24,
+      };
+    }
+
+    function makeSizedContainer(width = 800, height = 600) {
+      const container = document.createElement('div');
+      Object.defineProperty(container, 'getBoundingClientRect', {
+        value: () => ({ width, height }),
+      });
+      return container;
+    }
+
+    function installRefs(
+      result: { current: ReturnType<typeof useTerminal> },
+      xterm: ReturnType<typeof makeMockXterm>,
+      container: HTMLDivElement,
+    ) {
+      act(() => {
+        (result.current.xtermRef as { current: unknown }).current = xterm;
+        (result.current.terminalRef as { current: HTMLDivElement | null }).current = container;
+      });
+    }
+
+    it('runs xterm.refresh then xterm.scrollToBottom on a false → true transition', () => {
+      const { result, rerender } = renderHook(
+        ({ pinned }) => useTerminal({ id: 'test', pinnedToBottom: pinned, onResize: undefined }),
+        { initialProps: { pinned: false } },
+      );
+      const xterm = makeMockXterm();
+      installRefs(result, xterm, makeSizedContainer());
+
+      rerender({ pinned: true });
+
+      expect(xterm.refresh).toHaveBeenCalledWith(0, 23);
+      expect(xterm.scrollToBottom).toHaveBeenCalledTimes(1);
+      expect(xterm.refresh.mock.invocationCallOrder[0]).toBeLessThan(
+        xterm.scrollToBottom.mock.invocationCallOrder[0],
+      );
+    });
+
+    it('does not fire the reconcile on the initial mount even when pinnedToBottom starts as true', () => {
+      const { result } = renderHook(() =>
+        useTerminal({ id: 'test', pinnedToBottom: true, onResize: undefined }),
+      );
+      const xterm = makeMockXterm();
+      installRefs(result, xterm, makeSizedContainer());
+
+      expect(xterm.refresh).not.toHaveBeenCalled();
+      expect(xterm.scrollToBottom).not.toHaveBeenCalled();
+    });
+
+    it('does not fire the reconcile on a true → false transition', () => {
+      const { result, rerender } = renderHook(
+        ({ pinned }) => useTerminal({ id: 'test', pinnedToBottom: pinned, onResize: undefined }),
+        { initialProps: { pinned: true } },
+      );
+      const xterm = makeMockXterm();
+      installRefs(result, xterm, makeSizedContainer());
+
+      rerender({ pinned: false });
+
+      expect(xterm.refresh).not.toHaveBeenCalled();
+      expect(xterm.scrollToBottom).not.toHaveBeenCalled();
+    });
+
+    it('bails out of the reconcile when the terminal container has zero size', () => {
+      const { result, rerender } = renderHook(
+        ({ pinned }) => useTerminal({ id: 'test', pinnedToBottom: pinned, onResize: undefined }),
+        { initialProps: { pinned: false } },
+      );
+      const xterm = makeMockXterm();
+      installRefs(result, xterm, makeSizedContainer(0, 0));
+
+      rerender({ pinned: true });
+
+      expect(xterm.refresh).not.toHaveBeenCalled();
+      expect(xterm.scrollToBottom).not.toHaveBeenCalled();
+    });
+
+    it('bails out of the reconcile when xterm has not yet initialised', () => {
+      const { result, rerender } = renderHook(
+        ({ pinned }) => useTerminal({ id: 'test', pinnedToBottom: pinned, onResize: undefined }),
+        { initialProps: { pinned: false } },
+      );
+      const container = makeSizedContainer();
+      act(() => {
+        (result.current.terminalRef as { current: HTMLDivElement | null }).current = container;
+      });
+
+      rerender({ pinned: true });
+      // no xtermRef installed — effect must early-return without throwing
+    });
+
+    it.todo('runs the late init reconcile from tryInit when the anchor was toggled on before xterm was live');
   });
 });

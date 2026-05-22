@@ -296,4 +296,78 @@ describe('TerminalPanel', () => {
       expect(screen.getByTestId('tab-Terminal 2')).toHaveAttribute('data-associated', 'false');
     });
   });
+
+  describe('anchor toggle visual state', () => {
+    function setupSingleTerminal(pinnedToBottom: boolean | undefined) {
+      const terminal = {
+        id: 'term-1',
+        title: 'Terminal 1',
+        cwd: '/home',
+        shellCommand: 'bash',
+        shellArgs: [],
+        ...(pinnedToBottom === undefined ? {} : { pinnedToBottom }),
+      };
+      (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
+        terminals: [terminal],
+        activeTerminalId: 'term-1',
+        setActiveTerminal: vi.fn(),
+        togglePinnedToBottom: vi.fn(),
+        fileStates: { '/current.arbo': { terminals: [terminal], activeTerminalId: 'term-1' } },
+      });
+    }
+
+    it('renders the anchor button in unanchored state when the active terminal has pinnedToBottom = false', () => {
+      setupSingleTerminal(false);
+
+      render(<TerminalPanel />);
+
+      const button = screen.getByTitle('Anchor to bottom');
+      expect(button).toBeInTheDocument();
+      expect(button.className).not.toContain('anchored');
+    });
+
+    it('renders the anchor button in anchored state when the active terminal has pinnedToBottom = true', () => {
+      setupSingleTerminal(true);
+
+      render(<TerminalPanel />);
+
+      const button = screen.getByTitle('Unanchor from bottom');
+      expect(button).toBeInTheDocument();
+      expect(button.className).toContain('anchored');
+    });
+
+    it('treats missing pinnedToBottom as unanchored so the fallback matches the new default', () => {
+      setupSingleTerminal(undefined);
+
+      render(<TerminalPanel />);
+
+      const button = screen.getByTitle('Anchor to bottom');
+      expect(button).toBeInTheDocument();
+      expect(button.className).not.toContain('anchored');
+    });
+
+    it('calls togglePinnedToBottom with the active terminal id when the anchor button is clicked', () => {
+      const mockToggle = vi.fn();
+      const terminal = {
+        id: 'term-1',
+        title: 'Terminal 1',
+        cwd: '/home',
+        shellCommand: 'bash',
+        shellArgs: [],
+        pinnedToBottom: false,
+      };
+      (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
+        terminals: [terminal],
+        activeTerminalId: 'term-1',
+        setActiveTerminal: vi.fn(),
+        togglePinnedToBottom: mockToggle,
+        fileStates: { '/current.arbo': { terminals: [terminal], activeTerminalId: 'term-1' } },
+      });
+
+      render(<TerminalPanel />);
+
+      fireEvent.click(screen.getByTitle('Anchor to bottom'));
+      expect(mockToggle).toHaveBeenCalledWith('term-1');
+    });
+  });
 });

@@ -8,7 +8,7 @@ interface TerminalProps {
   onResize?: (cols: number, rows: number) => void;
 }
 
-export function Terminal({ id, pinnedToBottom = true, onResize }: TerminalProps) {
+export function Terminal({ id, pinnedToBottom = false, onResize }: TerminalProps) {
   const { terminalRef } = useTerminal({ id, pinnedToBottom, onResize });
 
   return <div ref={terminalRef} className="terminal-container" />;

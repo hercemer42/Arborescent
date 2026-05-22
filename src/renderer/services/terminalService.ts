@@ -21,7 +21,7 @@ export async function createTerminal(
     );
     return {
       ...terminalInfo,
-      pinnedToBottom: true,
+      pinnedToBottom: false,
     };
   } catch (error) {
     logger.error('Failed to create terminal', error as Error, 'TerminalService');
