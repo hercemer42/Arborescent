@@ -51,12 +51,14 @@ const {
   mockTerminalWrite,
   mockTerminals,
   mockAutonomousCollaborate,
+  mockUpdateTerminal,
 } = vi.hoisted(() => ({
   mockSetActiveTerminal: vi.fn(),
   mockCreateNewTerminal: vi.fn(),
   mockTerminalWrite: vi.fn().mockResolvedValue(undefined),
   mockTerminals: [] as Array<{ id: string }>,
   mockAutonomousCollaborate: vi.fn().mockResolvedValue('/tmp/feedback.md'),
+  mockUpdateTerminal: vi.fn(),
 }));
 
 vi.mock('../../../terminal/terminalStore', () => ({
@@ -65,6 +67,7 @@ vi.mock('../../../terminal/terminalStore', () => ({
       setActiveTerminal: mockSetActiveTerminal,
       createNewTerminal: mockCreateNewTerminal,
       terminals: mockTerminals,
+      updateTerminal: mockUpdateTerminal,
     }),
   },
 }));

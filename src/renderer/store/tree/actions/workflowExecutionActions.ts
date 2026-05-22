@@ -41,6 +41,7 @@ import {
 } from "./workflowSessionResume";
 import { decideWorkflowStartRoute } from "../../../utils/workflowStartRoute";
 import { useTerminalStore } from "../../terminal/terminalStore";
+import { extractTaskTitle } from "../../../utils/terminalTabTitle";
 
 export type { WorkflowExecutionEntry };
 
@@ -226,11 +227,19 @@ export const createWorkflowExecutionActions = (
     const terminal = terminalStore.terminals.find((t) => t.id === terminalId);
     if (terminal && !terminal.originNodeId) {
       terminalStore.updateTerminal(terminalId, { originNodeId: reattachNodeId });
+      syncTerminalTitleFromNode(terminalId, get().nodes[reattachNodeId]);
       logger.info(
         `Reattached terminal ${terminalId} to node ${reattachNodeId} via sessionId ${sessionId}`,
         'WorkflowExecution',
       );
     }
+  }
+
+  function syncTerminalTitleFromNode(terminalId: string, node: TreeNode | undefined): void {
+    if (!node) return;
+    const taskTitle = extractTaskTitle(node);
+    if (!taskTitle) return;
+    useTerminalStore.getState().updateTerminal(terminalId, { title: taskTitle });
   }
 
   function assignTerminalToNode(terminalId: string, nodeId: string): void {
@@ -899,9 +908,8 @@ export const createWorkflowExecutionActions = (
 
     if (captureNodeId && nodesWithCapture !== nodes) {
       triggerAutosave?.();
-    }
-
-    if (!captureNodeId) {
+      syncTerminalTitleFromNode(terminalId, nodesWithCapture[captureNodeId]);
+    } else if (!captureNodeId) {
       reattachOriginNodeForResumedSession(terminalId, trimmed);
     }
 
