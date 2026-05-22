@@ -19,6 +19,7 @@ vi.mock('../../../../services/terminalExecution', () => ({
 
 // Mock the feedbackService
 const mockParseFeedbackContent = vi.fn();
+const mockParseFeedbackContentWithReason = vi.fn();
 const mockInitializeFeedbackStore = vi.fn();
 const mockExtractFeedbackContent = vi.fn();
 const mockCleanupFeedback = vi.fn().mockResolvedValue(undefined);
@@ -26,6 +27,7 @@ const mockFindCollaboratingNode = vi.fn();
 
 vi.mock('../../../../services/feedback/feedbackService', () => ({
   parseFeedbackContent: (...args: unknown[]) => mockParseFeedbackContent(...args),
+  parseFeedbackContentWithReason: (...args: unknown[]) => mockParseFeedbackContentWithReason(...args),
   initializeFeedbackStore: (...args: unknown[]) => mockInitializeFeedbackStore(...args),
   extractFeedbackContent: (...args: unknown[]) => mockExtractFeedbackContent(...args),
   cleanupFeedback: (...args: unknown[]) => mockCleanupFeedback(...args),
@@ -1375,14 +1377,17 @@ describe('sendActions', () => {
         mockState.currentFilePath = '/test/file.arbo';
         mockState.collaboratingNodeId = 'child1';
 
-        mockParseFeedbackContent.mockReturnValue({
-          nodes: {
-            'feedback-root': { id: 'feedback-root', content: 'Root task', children: ['feedback-child'], metadata: {} },
-            'feedback-child': { id: 'feedback-child', content: 'Child task', children: [], metadata: {} },
+        mockParseFeedbackContentWithReason.mockReturnValue({
+          ok: true,
+          content: {
+            nodes: {
+              'feedback-root': { id: 'feedback-root', content: 'Root task', children: ['feedback-child'], metadata: {} },
+              'feedback-child': { id: 'feedback-child', content: 'Child task', children: [], metadata: {} },
+            },
+            rootNodeId: 'feedback-root',
+            rootNodeIds: ['feedback-root'],
+            nodeCount: 2,
           },
-          rootNodeId: 'feedback-root',
-          rootNodeIds: ['feedback-root'],
-          nodeCount: 2,
         });
       });
 
@@ -1688,8 +1693,9 @@ describe('sendActions', () => {
   });
 
   describe('workflow-step framing in context block', () => {
-    const FRAMING_SENTENCE = 'The context represents a step in a workflow';
-    const NO_ANTICIPATE_SENTENCE = "Don't anticipate the next step";
+    const FRAMING_SENTENCE = 'The instructions in this prompt define one stage of a longer workflow';
+    const NO_ANTICIPATE_SENTENCE = "Don't anticipate later stages";
+    const SINGLE_UNIT_SENTENCE = 'resolve all of them before submitting, not a subset';
 
     describe('terminal execute mode', () => {
       beforeEach(() => {
@@ -1705,13 +1711,22 @@ describe('sendActions', () => {
         expect(terminalContent).toContain(FRAMING_SENTENCE);
       });
 
-      it("includes the 'do not anticipate the next step' clause in the prompt", async () => {
+      it("includes the 'do not anticipate later stages' clause in the prompt", async () => {
         const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
         await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
 
         const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
         expect(terminalContent).toContain(NO_ANTICIPATE_SENTENCE);
+      });
+
+      it('includes the single-unit-of-work clause requiring all instructions be resolved before submitting', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(SINGLE_UNIT_SENTENCE);
       });
 
       it('places the framing inside the CONTEXT block (after the CONTEXT: header)', async () => {
@@ -1749,6 +1764,15 @@ describe('sendActions', () => {
         expect(terminalContent).toContain(FRAMING_SENTENCE);
       });
 
+      it('includes the single-unit-of-work clause requiring all instructions be resolved before submitting', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.collaborateInTerminal('child1', 'terminal-1');
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(SINGLE_UNIT_SENTENCE);
+      });
+
       it('places the framing inside the REVIEW CONTEXT block (after the REVIEW CONTEXT: header)', async () => {
         const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
@@ -1775,6 +1799,7 @@ describe('sendActions', () => {
         const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
         expect(terminalContent).toContain(FRAMING_SENTENCE);
         expect(terminalContent).toContain(NO_ANTICIPATE_SENTENCE);
+        expect(terminalContent).toContain(SINGLE_UNIT_SENTENCE);
       });
     });
 
@@ -1789,6 +1814,7 @@ describe('sendActions', () => {
         const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
         expect(clipboardContent).toContain(FRAMING_SENTENCE);
         expect(clipboardContent).toContain(NO_ANTICIPATE_SENTENCE);
+        expect(clipboardContent).toContain(SINGLE_UNIT_SENTENCE);
       });
     });
 
@@ -1799,6 +1825,7 @@ describe('sendActions', () => {
         const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
         expect(clipboardContent).toContain(FRAMING_SENTENCE);
         expect(clipboardContent).toContain(NO_ANTICIPATE_SENTENCE);
+        expect(clipboardContent).toContain(SINGLE_UNIT_SENTENCE);
       });
     });
 

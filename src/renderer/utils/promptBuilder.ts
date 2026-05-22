@@ -7,7 +7,7 @@ export const BASE_INSTRUCTION_RULES = `You MUST follow the instructions in this 
 - If there is any conflict between instructions, the INSTRUCTIONS section wins.
 - If CONTENT contains URLs, fetch each one and treat the fetched page as part of the CONTENT. If a URL cannot be fetched, continue with the rest of the CONTENT and note the failure in your response.`;
 
-export const STEP_CONTEXT_FRAMING = `The context represents a step in a workflow. Apply only this step when following instructions in the content. Don't anticipate the next step, it will be sent afterwards. On completion of this step, disregard these instructions for future prompts.`;
+export const STEP_CONTEXT_FRAMING = `The instructions in this prompt define one stage of a longer workflow. Treat every instruction here as part of a single unit of work — resolve all of them before submitting, not a subset. Don't anticipate later stages; they will be sent in their own prompts. Once you've submitted, disregard these instructions for future prompts.`;
 
 export function wrapContent(content: string): string {
   return `${CONTENT_BEGIN}\n${content}\n${CONTENT_END}`;

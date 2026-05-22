@@ -143,7 +143,7 @@ describe('SessionStart source:"clear" handling via registerSession', () => {
     });
 
     it('makes subsequent Stop with the new session_id resolve to the same running node', async () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await vi.runAllTicks();
       await Promise.resolve();
 
@@ -165,7 +165,7 @@ describe('SessionStart source:"clear" handling via registerSession', () => {
 
   describe('Clear-confirm success path', () => {
     it('after registerSession with source:"clear", the gated prompt is sent for the running node whose step had clearSession=true', async () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await vi.runAllTicks();
       await Promise.resolve();
       expect(mockAutonomousCollaborate).not.toHaveBeenCalled();

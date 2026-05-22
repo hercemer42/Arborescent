@@ -154,7 +154,7 @@ describe('Resume reconciliation and ack-retry hardening', () => {
   });
 
   async function primeRunningStep(): Promise<void> {
-    actions.startWorkflow('task-a', 'terminal-1');
+    void actions.startWorkflow('task-a', 'terminal-1');
     await vi.runAllTicks();
     await Promise.resolve();
     await Promise.resolve();
@@ -310,7 +310,7 @@ describe('Resume reconciliation and ack-retry hardening', () => {
       state.nodes['task-b'] = { id: 'task-b', content: 'Task B', children: [], metadata: { isBlueprint: true } };
       state.nodes['step-2'].children = ['task-b'];
       state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-2'];
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-b', 'terminal-2');
       await vi.runAllTicks();
       await Promise.resolve();
       await Promise.resolve();

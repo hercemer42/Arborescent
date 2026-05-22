@@ -263,7 +263,9 @@ describe('startWorkflow — auto session routing (PR1)', () => {
 
       const titleArg = mockCreateNewTerminal.mock.calls[0][0];
       expect(titleArg).not.toBe('Resume');
-      expect(titleArg).toBe('Audit feedback regression');
+      // resumeTabTitle appends a short session id suffix (e.g. " · sess-1") so
+      // resumed tabs can be told apart at a glance — task title is the prefix.
+      expect(titleArg).toMatch(/^Audit feedback regression/);
     });
   });
 

@@ -1,14 +1,19 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createSendActions } from '../sendActions';
-import { ARBORESCENT_MARKER_PREFIX, ARBORESCENT_MARKER_REGEX } from '../../../../../shared/utils/arborescentMarker';
+import {
+  ARBORESCENT_MARKER_PREFIX,
+  ARBORESCENT_MARKER_REGEX,
+  ARBORESCENT_TARGET_MARKER_PREFIX,
+  ARBORESCENT_TARGET_MARKER_REGEX,
+} from '../../../../../shared/utils/arborescentMarker';
 import { TreeState } from '../../treeStore';
 
-// These tests pin the POST-REVERT outbound delivery behaviour: every non-action-mode
-// manual or autonomous send pastes the marker-prefixed prompt straight into the
-// terminal via executeInTerminal. The PR2 UUID marker is the binding mechanism;
-// UserPromptSubmit (out of scope for this unit test) registers the session-to-node
-// binding on the paste itself, so the renderer never needs to gate sends on an
-// in-memory binding check. Action mode keeps its non-binding, no-marker contract.
+// These tests pin the outbound delivery behaviour after the marker-grammar split:
+// manual sends carry the one-shot ARBORESCENT_TARGET marker (no binding swap),
+// autonomous workflow sends carry the ARBORESCENT_NODE binding marker, and
+// action-mode sends carry neither. UserPromptSubmit (out of scope for this unit
+// test) consumes the marker on the paste itself, so the renderer never needs to
+// gate sends on an in-memory binding check.
 
 const { mockAddToast } = vi.hoisted(() => ({ mockAddToast: vi.fn() }));
 
@@ -114,7 +119,7 @@ describe('Manual send — direct paste (post-revert outbound delivery)', () => {
     expect('enqueuePrompt' in window.electron).toBe(false);
   });
 
-  it('the pasted content begins with the UUID marker so UserPromptSubmit can bind the session', async () => {
+  it('the pasted content begins with the one-shot TARGET marker so the next submit lands on this node without changing the workflow binding', async () => {
     const state = makeState({ collaborate: true, execute: false });
     const actions = makeActions(state);
     const { executeInTerminal } = await import('../../../../services/terminalExecution');
@@ -122,12 +127,12 @@ describe('Manual send — direct paste (post-revert outbound delivery)', () => {
     await actions.collaborateInTerminal(NODE_CHILD, TERMINAL_ID);
 
     const [, content] = (executeInTerminal as ReturnType<typeof vi.fn>).mock.calls[0];
-    expect(String(content).startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(true);
-    const match = String(content).match(ARBORESCENT_MARKER_REGEX);
+    expect(String(content).startsWith(ARBORESCENT_TARGET_MARKER_PREFIX)).toBe(true);
+    const match = String(content).match(ARBORESCENT_TARGET_MARKER_REGEX);
     expect(match?.[1]).toBe(NODE_CHILD);
   });
 
-  it('execute-only manual sends still paste with the UUID marker (binding is desired)', async () => {
+  it('execute-only manual sends paste with the one-shot TARGET marker', async () => {
     const state = makeState({ collaborate: false, execute: true });
     const actions = makeActions(state);
     const { executeInTerminal } = await import('../../../../services/terminalExecution');
@@ -135,10 +140,10 @@ describe('Manual send — direct paste (post-revert outbound delivery)', () => {
     await actions.collaborateInTerminal(NODE_CHILD, TERMINAL_ID, { collaborate: false, execute: true });
 
     const [, content] = (executeInTerminal as ReturnType<typeof vi.fn>).mock.calls[0];
-    expect(String(content).startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(true);
+    expect(String(content).startsWith(ARBORESCENT_TARGET_MARKER_PREFIX)).toBe(true);
   });
 
-  it('collaborate + execute manual sends paste with the UUID marker', async () => {
+  it('collaborate + execute manual sends paste with the one-shot TARGET marker', async () => {
     const state = makeState({ collaborate: true, execute: true });
     const actions = makeActions(state);
     const { executeInTerminal } = await import('../../../../services/terminalExecution');
@@ -146,7 +151,7 @@ describe('Manual send — direct paste (post-revert outbound delivery)', () => {
     await actions.collaborateInTerminal(NODE_CHILD, TERMINAL_ID, { collaborate: true, execute: true });
 
     const [, content] = (executeInTerminal as ReturnType<typeof vi.fn>).mock.calls[0];
-    expect(String(content).startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(true);
+    expect(String(content).startsWith(ARBORESCENT_TARGET_MARKER_PREFIX)).toBe(true);
   });
 });
 
@@ -160,7 +165,7 @@ describe('Manual send — unbound terminal (Arborescent restart, user-spawned Cl
 
     expect(executeInTerminal).toHaveBeenCalledTimes(1);
     const [, content] = (executeInTerminal as ReturnType<typeof vi.fn>).mock.calls[0];
-    expect(String(content).startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(true);
+    expect(String(content).startsWith(ARBORESCENT_TARGET_MARKER_PREFIX)).toBe(true);
   });
 
   it('does NOT surface a "No Claude session bound to this terminal yet" toast when the session map is empty', async () => {
@@ -176,7 +181,7 @@ describe('Manual send — unbound terminal (Arborescent restart, user-spawned Cl
 });
 
 describe('Manual send — action mode (post-revert)', () => {
-  it('pastes the bare content directly with no UUID marker', async () => {
+  it('pastes the bare content directly with no marker', async () => {
     const state = makeState({ collaborate: false, execute: false });
     const actions = makeActions(state);
     const { executeInTerminal } = await import('../../../../services/terminalExecution');
@@ -186,6 +191,7 @@ describe('Manual send — action mode (post-revert)', () => {
     expect(executeInTerminal).toHaveBeenCalledTimes(1);
     const [, content] = (executeInTerminal as ReturnType<typeof vi.fn>).mock.calls[0];
     expect(String(content).startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(false);
+    expect(String(content).startsWith(ARBORESCENT_TARGET_MARKER_PREFIX)).toBe(false);
     expect(String(content)).not.toMatch(/===BEGIN INSTRUCTIONS===/);
   });
 });
@@ -226,5 +232,6 @@ describe('Autonomous workflow send — direct paste (post-revert outbound delive
     expect(executeInTerminal).toHaveBeenCalledTimes(1);
     const [, content] = (executeInTerminal as ReturnType<typeof vi.fn>).mock.calls[0];
     expect(String(content).startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(false);
+    expect(String(content).startsWith(ARBORESCENT_TARGET_MARKER_PREFIX)).toBe(false);
   });
 });

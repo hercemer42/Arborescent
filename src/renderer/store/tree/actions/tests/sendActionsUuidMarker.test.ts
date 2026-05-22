@@ -1,6 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { createSendActions } from '../sendActions';
-import { ARBORESCENT_MARKER_PREFIX, ARBORESCENT_MARKER_REGEX } from '../../../../../shared/utils/arborescentMarker';
+import {
+  ARBORESCENT_MARKER_PREFIX,
+  ARBORESCENT_TARGET_MARKER_PREFIX,
+  ARBORESCENT_TARGET_MARKER_REGEX,
+} from '../../../../../shared/utils/arborescentMarker';
 import { TreeState } from '../../treeStore';
 
 vi.mock('../../../../services/terminalExecution', () => ({
@@ -73,7 +77,7 @@ function makeState(): TreeState {
   };
 }
 
-describe('UUID marker — terminal sends', () => {
+describe('UUID marker — manual terminal sends (one-shot TARGET marker)', () => {
   let state: TreeState;
   let actions: ReturnType<typeof createSendActions>;
   let executeInTerminalMock: ReturnType<typeof vi.fn>;
@@ -104,17 +108,20 @@ describe('UUID marker — terminal sends', () => {
     return calls[calls.length - 1][1] as string;
   }
 
-  it('prepends the marker on a collaborate-only terminal send', async () => {
+  it('prepends the target marker on a collaborate-only terminal send', async () => {
     await actions.collaborateInTerminal(NODE_CHILD, 'terminal-1');
     const content = lastTerminalContent();
-    expect(content.startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(true);
-    expect(content).toMatch(ARBORESCENT_MARKER_REGEX);
+    expect(content.startsWith(ARBORESCENT_TARGET_MARKER_PREFIX)).toBe(true);
+    expect(content).toMatch(ARBORESCENT_TARGET_MARKER_REGEX);
+    // Manual sends never carry the binding marker — that would silently rebind
+    // the workflow session to this node.
+    expect(content).not.toContain(ARBORESCENT_MARKER_PREFIX);
   });
 
-  it('the marker carries the node UUID of the sent node', async () => {
+  it('the target marker carries the node UUID of the sent node', async () => {
     await actions.collaborateInTerminal(NODE_CHILD, 'terminal-1');
     const content = lastTerminalContent();
-    const match = content.match(ARBORESCENT_MARKER_REGEX);
+    const match = content.match(ARBORESCENT_TARGET_MARKER_REGEX);
     expect(match?.[1]).toBe(NODE_CHILD);
   });
 
@@ -153,9 +160,10 @@ describe('UUID marker — action mode', () => {
     executeInTerminalMock = mod.executeInTerminal as ReturnType<typeof vi.fn>;
   });
 
-  it('does NOT prepend the marker when neither execute nor collaborate is set (action mode)', async () => {
+  it('does NOT prepend any marker when neither execute nor collaborate is set (action mode)', async () => {
     await actions.collaborateInTerminal(NODE_CHILD, 'terminal-1', { collaborate: false, execute: false });
     const content = (executeInTerminalMock.mock.calls.at(-1)?.[1] as string) ?? '';
     expect(content.startsWith(ARBORESCENT_MARKER_PREFIX)).toBe(false);
+    expect(content.startsWith(ARBORESCENT_TARGET_MARKER_PREFIX)).toBe(false);
   });
 });

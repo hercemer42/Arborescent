@@ -21,41 +21,54 @@ function looksLikePackedBlob(nodeContent: string): boolean {
   return false;
 }
 
-export function parseFeedbackContent(content: string, decomposition: boolean = false): ParsedFeedbackContent | null {
+export type ParseFeedbackResult =
+  | { ok: true; content: ParsedFeedbackContent }
+  | { ok: false; reason: string };
+
+export function parseFeedbackContentWithReason(content: string, decomposition: boolean = false): ParseFeedbackResult {
   let rootNodes, allNodes;
   try {
     ({ rootNodes, allNodes } = parseMarkdown(content));
   } catch {
-    logger.info('Content is not valid markdown', 'FeedbackService');
-    return null;
+    const reason = 'Content is not valid markdown — could not parse';
+    logger.info(reason, 'FeedbackService');
+    return { ok: false, reason };
   }
 
   if (rootNodes.length === 0) {
-    logger.info('Content has no valid nodes', 'FeedbackService');
-    return null;
+    const reason = 'Content has no `#` heading — at least one root heading is required';
+    logger.info(reason, 'FeedbackService');
+    return { ok: false, reason };
   }
 
   if (rootNodes.some((node) => looksLikePackedBlob(node.content))) {
-    logger.warn(
-      'Rejecting blob-shaped submission — a parsed node carries the entire payload as raw text (likely escaped newlines or embedded heading/checkbox markers)',
-      'FeedbackService'
-    );
-    return null;
+    const reason = 'Content looks like a packed blob — a root node carries the whole payload as raw text (likely escaped `\\n` sequences or embedded heading/checkbox markers); emit one heading per line instead';
+    logger.warn(`Rejecting blob-shaped submission — ${reason}`, 'FeedbackService');
+    return { ok: false, reason };
   }
 
   if (!decomposition && rootNodes.length !== 1) {
-    logger.info(`Content has ${rootNodes.length} root nodes, expected 1`, 'FeedbackService');
-    return null;
+    const reason = `Content has ${rootNodes.length} root nodes, expected exactly 1 — this step does not allow decomposition; output a single \`#\` root with everything else nested under it`;
+    logger.info(reason, 'FeedbackService');
+    return { ok: false, reason };
   }
 
   const rootNodeIds = rootNodes.map(node => node.id);
 
   return {
-    nodes: allNodes,
-    rootNodeId: rootNodeIds[0],
-    rootNodeIds,
-    nodeCount: Object.keys(allNodes).length,
+    ok: true,
+    content: {
+      nodes: allNodes,
+      rootNodeId: rootNodeIds[0],
+      rootNodeIds,
+      nodeCount: Object.keys(allNodes).length,
+    },
   };
+}
+
+export function parseFeedbackContent(content: string, decomposition: boolean = false): ParsedFeedbackContent | null {
+  const result = parseFeedbackContentWithReason(content, decomposition);
+  return result.ok ? result.content : null;
 }
 
 export interface FeedbackReconcilePriorSubtree {

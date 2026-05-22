@@ -116,7 +116,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
     mockResolveContextMode.mockReturnValue('execute');
     const actions = createActions();
 
-    actions.startWorkflow('task', 'terminal-1');
+    void actions.startWorkflow('task', 'terminal-1');
 
     expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', { collaborate: true, execute: true }, undefined, expect.any(String));
   });
@@ -125,7 +125,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
     mockResolveContextMode.mockReturnValue('collaborate');
     const actions = createActions();
 
-    actions.startWorkflow('task', 'terminal-1');
+    void actions.startWorkflow('task', 'terminal-1');
 
     expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', { collaborate: true, execute: false }, undefined, expect.any(String));
   });
@@ -134,7 +134,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
     mockResolveContextMode.mockReturnValue('execute');
     const actions = createActions();
 
-    actions.startWorkflow('task', 'terminal-1');
+    void actions.startWorkflow('task', 'terminal-1');
 
     expect(mockExecuteInTerminal).not.toHaveBeenCalled();
   });

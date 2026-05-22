@@ -154,7 +154,7 @@ describe('Clear AI session — runtime clearing phase', () => {
 
   describe('Dispatch with clearSession=true', () => {
     it('writes /clear to the step\'s bound terminal before the prompt is sent', async () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await flushMicrotasks();
 
       const terminalWrites = mockTerminalWrite.mock.calls.map((call) => call as [string, string]);
@@ -165,14 +165,14 @@ describe('Clear AI session — runtime clearing phase', () => {
     });
 
     it('does not send the prompt before the clear has been confirmed', async () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await flushMicrotasks();
 
       expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
     });
 
     it('sends the prompt after SessionStart source:"clear" confirmation arrives', async () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await flushMicrotasks();
 
       actions.registerSession('session-new', 'terminal-1', 'clear');
@@ -183,7 +183,7 @@ describe('Clear AI session — runtime clearing phase', () => {
     });
 
     it('does not send the prompt synchronously with the clear confirmation — there is a small cushion delay first', async () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await flushMicrotasks();
 
       actions.registerSession('session-new', 'terminal-1', 'clear');
@@ -209,7 +209,7 @@ describe('Clear AI session — runtime clearing phase', () => {
     });
 
     it('does NOT write /clear to the terminal when the flag is not set', async () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await flushMicrotasks();
 
       const clearWrite = mockTerminalWrite.mock.calls.find(([, payload]) =>
@@ -220,7 +220,7 @@ describe('Clear AI session — runtime clearing phase', () => {
     });
 
     it('sends the prompt immediately as today (no new wait, no clearing state)', async () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await flushMicrotasks();
 
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined, expect.any(String));
@@ -231,7 +231,7 @@ describe('Clear AI session — runtime clearing phase', () => {
     it('writes /clear only to the terminal bound to the running step, not to sibling terminals', async () => {
       state.workflowSessionMap = { 'session-1': 'terminal-1', 'session-2': 'terminal-2' };
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await flushMicrotasks();
 
       const terminalsWrittenTo = new Set(

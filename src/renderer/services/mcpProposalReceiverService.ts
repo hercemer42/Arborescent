@@ -50,6 +50,21 @@ export async function handleProposalRequest(
     return { ok: false, error: `Tree store unavailable for ${filePath}` };
   }
 
+  // Snapshot prior collaboration state so we can revert if the submission
+  // can't be applied — otherwise a parse failure leaves the node stuck
+  // highlighted as "collaborating" with no feedback panel ever appearing.
+  const targetStore = store;
+  const priorState = targetStore.getState();
+  const priorCollaboratingNodeId = priorState.collaboratingNodeId ?? null;
+  const priorCollaborationSource = priorState.collaborationSource ?? null;
+
+  const restorePriorState = (): void => {
+    targetStore.setState({
+      collaboratingNodeId: priorCollaboratingNodeId,
+      collaborationSource: priorCollaborationSource,
+    });
+  };
+
   try {
     store.setState({
       collaboratingNodeId: request.nodeId,
@@ -59,15 +74,16 @@ export async function handleProposalRequest(
       .getState()
       .actions.processIncomingFeedbackContent(request.request.content, 'mcp-proposal', true);
     if (!result.success) {
+      restorePriorState();
+      const reasonSuffix = result.reason ? ` — ${result.reason}` : '';
       return {
         ok: false,
-        error:
-          'Feedback panel could not display the submitted content. ' +
-          'Make sure the workflow step is the active collaboration.',
+        error: `Submitted content could not be applied${reasonSuffix}`,
       };
     }
     return { ok: true, proposalId: uuidv4() };
   } catch (error) {
+    restorePriorState();
     logger.error('proposal-request handler threw', error as Error, 'McpProposalReceiver');
     return { ok: false, error: (error as Error).message };
   }

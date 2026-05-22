@@ -135,7 +135,7 @@ describe('Clear AI session — retry behaviour', () => {
 
   describe('Retry on confirmation timeout', () => {
     it('re-writes /clear to the terminal when the SessionStart source:"clear" confirmation does not arrive within the timeout window', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       const writesBefore = mockTerminalWrite.mock.calls.filter(
         ([, p]) => typeof p === 'string' && p.includes('/clear'),
       ).length;

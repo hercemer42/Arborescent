@@ -12,12 +12,14 @@ const NODE = 'node-1';
 const SESSION = 'sess-1';
 
 let processedContent: { content: string; source: string; skipSave: boolean } | null;
-let processResult: { success: boolean; error?: string };
+let processResult: { success: boolean; reason?: string };
 let collaboratingNodeId: string | null;
 let collaborationSource: string | null;
 
 const mockStore = {
   getState: () => ({
+    collaboratingNodeId,
+    collaborationSource,
     actions: {
       processIncomingFeedbackContent: vi.fn(async (content: string, source: string, skipSave: boolean) => {
         processedContent = { content, source, skipSave };
@@ -91,7 +93,76 @@ describe('handleProposalRequest', () => {
     const result = await handleProposalRequest(makeRequest(), deps);
 
     expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.error).toMatch(/feedback/i);
+    if (!result.ok) expect(result.error).toMatch(/feedback|parse|content/i);
+  });
+
+  it('surfaces the parse failure reason from processIncomingFeedbackContent in the AI-facing error so the assistant can self-correct on retry', async () => {
+    processResult = { success: false, reason: 'Content has 2 root nodes, expected 1' };
+    const deps = makeDeps(FILE_A);
+    const result = await handleProposalRequest(makeRequest(), deps);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.error).toMatch(/2 root nodes/);
+      expect(result.error).toMatch(/expected 1/);
+    }
+  });
+
+  it('restores the prior collaboratingNodeId/collaborationSource on parse failure so the node is not stuck highlighted (regression: was leaving collaboratingNodeId set after failed parse)', async () => {
+    collaboratingNodeId = null;
+    collaborationSource = null;
+    processResult = { success: false, reason: 'Content has 2 root nodes, expected 1' };
+
+    const deps = makeDeps(FILE_A);
+    const result = await handleProposalRequest(makeRequest(), deps);
+
+    expect(result.ok).toBe(false);
+    expect(collaboratingNodeId).toBeNull();
+    expect(collaborationSource).toBeNull();
+  });
+
+  it('restores a pre-existing collaboratingNodeId on parse failure rather than overwriting it with null (do not clobber an unrelated active collaboration)', async () => {
+    collaboratingNodeId = 'unrelated-node';
+    collaborationSource = 'browser';
+    processResult = { success: false, reason: 'no headings' };
+
+    const deps = makeDeps(FILE_A);
+    await handleProposalRequest(makeRequest(), deps);
+
+    expect(collaboratingNodeId).toBe('unrelated-node');
+    expect(collaborationSource).toBe('browser');
+  });
+
+  it('restores prior collaboration state when the handler throws (defensive: try/catch must not leak state)', async () => {
+    collaboratingNodeId = null;
+    collaborationSource = null;
+
+    const throwingStore = {
+      getState: () => ({
+        collaboratingNodeId,
+        collaborationSource,
+        actions: {
+          processIncomingFeedbackContent: vi.fn(async () => {
+            throw new Error('boom');
+          }),
+        },
+      }),
+      setState: (partial: { collaboratingNodeId?: string | null; collaborationSource?: string | null }) => {
+        if (partial.collaboratingNodeId !== undefined) collaboratingNodeId = partial.collaboratingNodeId;
+        if (partial.collaborationSource !== undefined) collaborationSource = partial.collaborationSource;
+      },
+    };
+
+    const deps = {
+      findFileForNode: vi.fn(() => FILE_A),
+      getStoreForFile: vi.fn(() => throwingStore as never),
+    };
+
+    const result = await handleProposalRequest(makeRequest(), deps);
+
+    expect(result.ok).toBe(false);
+    expect(collaboratingNodeId).toBeNull();
+    expect(collaborationSource).toBeNull();
   });
 
   it('rejects write-tool proposals with a clear error directing Claude to use submit_step_output', async () => {

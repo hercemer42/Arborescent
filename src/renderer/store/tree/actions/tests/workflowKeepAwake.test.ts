@@ -99,23 +99,23 @@ describe('workflow runner keep-awake integration', () => {
   });
 
   it('startWorkflow acquires keep-awake when the node enters the running state', () => {
-    actions.startWorkflow('task-a', 'terminal-1');
+    void actions.startWorkflow('task-a', 'terminal-1');
     expect(window.electron.startKeepAwake).toHaveBeenCalledTimes(1);
   });
 
   it('startWorkflow does not acquire keep-awake when no terminal is available (early return)', () => {
-    actions.startWorkflow('task-a', null);
+    void actions.startWorkflow('task-a', null);
     expect(window.electron.startKeepAwake).not.toHaveBeenCalled();
   });
 
   it('startWorkflow does not acquire keep-awake when the node is ineligible (e.g. not inside an autonomous step)', () => {
-    actions.startWorkflow('workflow', 'terminal-1');
+    void actions.startWorkflow('workflow', 'terminal-1');
     expect(window.electron.startKeepAwake).not.toHaveBeenCalled();
   });
 
   it('startWorkflow does not acquire keep-awake when the terminal is already running another node', () => {
     state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
-    actions.startWorkflow('task-b', 'terminal-1');
+    void actions.startWorkflow('task-b', 'terminal-1');
     expect(window.electron.startKeepAwake).not.toHaveBeenCalled();
   });
 
@@ -142,7 +142,7 @@ describe('workflow runner keep-awake integration', () => {
   });
 
   it('start/stop pair emits exactly one start and one stop end-to-end', () => {
-    actions.startWorkflow('task-a', 'terminal-1');
+    void actions.startWorkflow('task-a', 'terminal-1');
     actions.stopWorkflow('task-a');
     expect(window.electron.startKeepAwake).toHaveBeenCalledTimes(1);
     expect(window.electron.stopKeepAwake).toHaveBeenCalledTimes(1);
@@ -153,8 +153,8 @@ describe('workflow runner keep-awake integration', () => {
     state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-1'];
     state.nodes['step-1'].children.push('task-b');
 
-    actions.startWorkflow('task-a', 'terminal-1');
-    actions.startWorkflow('task-b', 'terminal-2');
+    void actions.startWorkflow('task-a', 'terminal-1');
+    void actions.startWorkflow('task-b', 'terminal-2');
 
     expect(window.electron.startKeepAwake).toHaveBeenCalledTimes(2);
   });

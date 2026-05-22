@@ -515,7 +515,7 @@ describe('useTerminal — tab switching and blank terminal prevention', () => {
   describe('scroll viewport reconcile when terminal becomes visible', () => {
     it('tab switch (pinned): scrolls to bottom on reveal so the latest output is visible', async () => {
       const { Terminal: XTermCtor } = await import('@xterm/xterm');
-      const { boundingRectSpy } = renderWithDimensions('term-pinned');
+      const { boundingRectSpy } = renderWithDimensions('term-pinned', 800, 600, { pinnedToBottom: true });
       await triggerFirstResizeObserver();
 
       const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;
@@ -529,7 +529,7 @@ describe('useTerminal — tab switching and blank terminal prevention', () => {
 
     it('tab switch (pinned): does not scroll to bottom on plain resize where container was never hidden', async () => {
       const { Terminal: XTermCtor } = await import('@xterm/xterm');
-      const { boundingRectSpy } = renderWithDimensions('term-pinned-resize');
+      const { boundingRectSpy } = renderWithDimensions('term-pinned-resize', 800, 600, { pinnedToBottom: true });
       await triggerFirstResizeObserver();
 
       const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;
@@ -561,7 +561,7 @@ describe('useTerminal — tab switching and blank terminal prevention', () => {
 
     it('tab switch (pinned): scroll-to-bottom only fires on the hidden->visible transition, not on subsequent stable resizes', async () => {
       const { Terminal: XTermCtor } = await import('@xterm/xterm');
-      const { boundingRectSpy } = renderWithDimensions('term-pinned-stable');
+      const { boundingRectSpy } = renderWithDimensions('term-pinned-stable', 800, 600, { pinnedToBottom: true });
       await triggerFirstResizeObserver();
 
       const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;
@@ -578,7 +578,7 @@ describe('useTerminal — tab switching and blank terminal prevention', () => {
 
     it('rapid tab switching (pinned): each reveal scrolls to bottom', async () => {
       const { Terminal: XTermCtor } = await import('@xterm/xterm');
-      const { boundingRectSpy } = renderWithDimensions('term-pinned-rapid');
+      const { boundingRectSpy } = renderWithDimensions('term-pinned-rapid', 800, 600, { pinnedToBottom: true });
       await triggerFirstResizeObserver();
 
       const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;

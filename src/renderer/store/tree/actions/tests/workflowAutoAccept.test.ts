@@ -512,7 +512,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     it('should set collaborating flag when routing to collaborate mode', () => {
       mockResolveContextMode.mockReturnValue('collaborate');
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-a'].collaborating).toBe(true);
     });
@@ -520,7 +520,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     it('should not set collaborating flag for execute mode', () => {
       mockResolveContextMode.mockReturnValue('execute');
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-a'].collaborating).toBeUndefined();
     });
@@ -528,7 +528,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     it('should call collaborateInTerminal with collaborate flags', () => {
       mockResolveContextMode.mockReturnValue('collaborate');
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false }, undefined, expect.any(String));
     });

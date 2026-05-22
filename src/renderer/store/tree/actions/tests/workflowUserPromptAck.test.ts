@@ -160,7 +160,7 @@ describe('UserPromptSubmit ACK handling with retry', () => {
   });
 
   async function primeRunningStep(): Promise<void> {
-    actions.startWorkflow('task-a', 'terminal-1');
+    void actions.startWorkflow('task-a', 'terminal-1');
     // Flush the autonomousCollaborate promise so the ACK registration runs.
     await vi.runAllTicks();
     await Promise.resolve();
@@ -385,7 +385,7 @@ describe('UserPromptSubmit ACK handling with retry', () => {
         }),
       );
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       await Promise.resolve();
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'UserPromptSubmit' });

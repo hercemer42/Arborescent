@@ -24,7 +24,7 @@ import { VisualEffectsActions } from './visualEffectsActions';
 import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
 import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
 import {
-  parseFeedbackContent,
+  parseFeedbackContentWithReason,
   initializeFeedbackStore,
   extractFeedbackContent,
   cleanupFeedback,
@@ -318,6 +318,7 @@ function notifyRebindDialogBlocked(): void {
 export interface ProcessFeedbackContentResult {
   success: boolean;
   nodeCount?: number;
+  reason?: string;
 }
 
 export interface SendActions {
@@ -699,10 +700,11 @@ export function createSendActions(
       logger.info(`Processing ${source} content`, 'SendActions');
 
       const { decomposition } = get();
-      let parsedContent = parseFeedbackContent(content, decomposition);
-      if (!parsedContent) {
-        return { success: false };
+      const parseResult = parseFeedbackContentWithReason(content, decomposition);
+      if (!parseResult.ok) {
+        return { success: false, reason: parseResult.reason };
       }
+      let parsedContent = parseResult.content;
 
       // Apply blueprint metadata if in blueprint mode
       if (blueprintModeEnabled) {

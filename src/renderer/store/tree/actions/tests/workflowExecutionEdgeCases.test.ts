@@ -328,7 +328,7 @@ describe('workflow execution edge cases', () => {
       state.nodes['task-b'] = { id: 'task-b', content: 'Task B', children: [], metadata: { isBlueprint: true } };
       state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-2'];
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-b']).toBeUndefined();
     });
@@ -340,7 +340,7 @@ describe('workflow execution edge cases', () => {
       state.nodes['task-b'] = { id: 'task-b', content: 'Task B', children: [], metadata: { isBlueprint: true } };
       state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-2'];
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-b'].state).toBe('running');
     });
@@ -353,7 +353,7 @@ describe('workflow execution edge cases', () => {
       state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-2'];
 
       // Stopped nodes release the terminal
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-b'].state).toBe('running');
     });
@@ -364,7 +364,7 @@ describe('workflow execution edge cases', () => {
       mockHasReceivedHookEvent.value = false;
       state.workflowExecutionStates = {};
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       const hookCalls = mockAddToast.mock.calls.filter(
         (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('hooks')
@@ -375,14 +375,14 @@ describe('workflow execution edge cases', () => {
 
   describe('execution state is transient (not persisted)', () => {
     it('should not store execution state in node metadata', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       expect(state.nodes['task-a'].metadata.executionState).toBeUndefined();
       expect(state.nodes['task-a'].metadata.workflowRunning).toBeUndefined();
     });
 
     it('should store execution state only in workflowExecutionStates record', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-a']).toBeDefined();
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');

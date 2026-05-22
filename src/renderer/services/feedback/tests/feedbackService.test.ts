@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   parseFeedbackContent,
+  parseFeedbackContentWithReason,
   initializeFeedbackStore,
   findCollaboratingNode,
   extractFeedbackContent,
@@ -311,6 +312,74 @@ describe('feedbackService', () => {
       it('emits a structured warning identifying the failure as a blob-shaped submission, distinct from the no-headings rejection');
 
       it('rejects single-root content whose length exceeds the blob threshold even without embedded markers');
+    });
+  });
+
+  describe('parseFeedbackContentWithReason', () => {
+    it('returns ok:true with the parsed content when input is valid', async () => {
+      const { parseMarkdown } = await import('../../../utils/markdown');
+      const mockNodes = { 'node1': { id: 'node1', content: 'Test', children: [], metadata: {} } };
+      vi.mocked(parseMarkdown).mockReturnValue({
+        rootNodes: [{ id: 'node1', content: 'Test', children: [], metadata: {} }],
+        allNodes: mockNodes,
+      });
+
+      const result = parseFeedbackContentWithReason('# Test');
+      expect(result.ok).toBe(true);
+      if (result.ok) {
+        expect(result.content.rootNodeId).toBe('node1');
+      }
+    });
+
+    it('returns ok:false with a markdown-parse reason when parseMarkdown throws', async () => {
+      const { parseMarkdown } = await import('../../../utils/markdown');
+      vi.mocked(parseMarkdown).mockImplementation(() => {
+        throw new Error('Invalid markdown');
+      });
+
+      const result = parseFeedbackContentWithReason('invalid');
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.reason).toMatch(/markdown|parse/i);
+    });
+
+    it('returns ok:false with a no-heading reason when there are no root nodes', async () => {
+      const { parseMarkdown } = await import('../../../utils/markdown');
+      vi.mocked(parseMarkdown).mockReturnValue({ rootNodes: [], allNodes: {} });
+
+      const result = parseFeedbackContentWithReason('no headings');
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.reason).toMatch(/#|heading|root/i);
+    });
+
+    it('returns ok:false with a blob-shape reason when output looks like a packed blob', async () => {
+      const { parseMarkdown } = await import('../../../utils/markdown');
+      const blobContent = 'Root\n## [ ] Child';
+      vi.mocked(parseMarkdown).mockReturnValue({
+        rootNodes: [{ id: 'blob', content: blobContent, children: [], metadata: {} }],
+        allNodes: { 'blob': { id: 'blob', content: blobContent, children: [], metadata: {} } },
+      });
+
+      const result = parseFeedbackContentWithReason('# [ ] Root\n## [ ] Child');
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.reason).toMatch(/blob/i);
+    });
+
+    it('returns ok:false with a root-count reason naming the actual and expected counts (so the assistant can self-correct on retry — the original bug)', async () => {
+      const { parseMarkdown } = await import('../../../utils/markdown');
+      vi.mocked(parseMarkdown).mockReturnValue({
+        rootNodes: [
+          { id: 'n1', content: 'A', children: [], metadata: {} },
+          { id: 'n2', content: 'B', children: [], metadata: {} },
+        ],
+        allNodes: {},
+      });
+
+      const result = parseFeedbackContentWithReason('# A\n# B', false);
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.reason).toMatch(/2/);
+        expect(result.reason).toMatch(/1|exactly one|single/i);
+      }
     });
   });
 

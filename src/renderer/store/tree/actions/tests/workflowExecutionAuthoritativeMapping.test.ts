@@ -151,19 +151,19 @@ describe('Authoritative terminal↔node mapping', () => {
 
   describe('the binding holds while the node is awaiting-validation', () => {
     it('blocks startWorkflow on the same terminal once the original node is awaiting-validation', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       // Simulate NeedsReview transition: A moves from running → awaiting-validation.
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(true);
       expect(state.workflowExecutionStates['task-b']).toBeUndefined();
     });
 
     it('keeps the binding through running → awaiting-validation → running transitions (no false positive on re-continue)', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       mockAddToast.mockClear();
 
@@ -175,44 +175,44 @@ describe('Authoritative terminal↔node mapping', () => {
 
   describe('the binding is released when the node exits running/awaiting-validation', () => {
     it('frees the terminal after stopWorkflow', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       actions.stopWorkflow('task-a');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-b']).toEqual({ state: 'running', terminalTabId: 'terminal-1' });
     });
 
     it('frees the terminal after completeWorkflow', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       actions.completeWorkflow('task-a');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-b']).toEqual({ state: 'running', terminalTabId: 'terminal-1' });
     });
 
     it('frees the terminal when completeWorkflow is called from awaiting-validation', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       actions.completeWorkflow('task-a');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
     });
 
     it('after stopWorkflow + restart, the terminal is correctly re-bound to the new node and not the old one', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       actions.stopWorkflow('task-a');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-b']?.state).toBe('running');
@@ -236,7 +236,7 @@ describe('Authoritative terminal↔node mapping', () => {
     });
 
     it('does not raise "already assigned" when continuing onto the same terminal the node already owned', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       mockAddToast.mockClear();
 
@@ -247,7 +247,7 @@ describe('Authoritative terminal↔node mapping', () => {
     });
 
     it('atomic swap: continueWorkflow(A, T2) when A was awaiting on T1 and T2 is free — A now owns T2, T1 is freed', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       mockAddToast.mockClear();
 
@@ -255,13 +255,13 @@ describe('Authoritative terminal↔node mapping', () => {
 
       expect(alreadyAssignedToastFired()).toBe(false);
       // T1 is free for a different node to start on it.
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
       expect(alreadyAssignedToastFired()).toBe(false);
     });
 
     it('rejection: continueWorkflow(A, T2) when T2 is held by another running node — fires toast, no binding mutated', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       mockAddToast.mockClear();
 
@@ -276,8 +276,8 @@ describe('Authoritative terminal↔node mapping', () => {
 
   describe('two nodes legitimately on two terminals do not interfere', () => {
     it('start A on terminal-1 and start B on terminal-2 — neither sees a false positive', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-a']).toEqual({ state: 'running', terminalTabId: 'terminal-1' });
@@ -285,8 +285,8 @@ describe('Authoritative terminal↔node mapping', () => {
     });
 
     it('continue A on terminal-1 while B is still running on terminal-2 — no false positive', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       mockAddToast.mockClear();
 
@@ -298,8 +298,8 @@ describe('Authoritative terminal↔node mapping', () => {
     });
 
     it('both awaiting-validation on different terminals — continuing each does not collide', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       state.workflowExecutionStates['task-b'] = { state: 'awaiting-validation', terminalTabId: 'terminal-2' };
       mockAddToast.mockClear();
@@ -315,7 +315,7 @@ describe('Authoritative terminal↔node mapping', () => {
 
   describe('boundary inputs', () => {
     it('startWorkflow with a null terminalId raises the existing toast and does not record a binding', () => {
-      actions.startWorkflow('task-a', null);
+      void actions.startWorkflow('task-a', null);
 
       const toastFired = mockAddToast.mock.calls.some(
         (args) => typeof args[0] === 'string' && args[0].includes('No terminal tab available'),
@@ -338,10 +338,10 @@ describe('Authoritative terminal↔node mapping', () => {
     });
 
     it('repeated startWorkflow on the same node + terminal is idempotent (no warning)', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-a']?.state).toBe('running');
@@ -358,7 +358,7 @@ describe('Authoritative terminal↔node mapping', () => {
     });
 
     it('startWorkflow on a non-existent node is a silent no-op', () => {
-      actions.startWorkflow('does-not-exist', 'terminal-1');
+      void actions.startWorkflow('does-not-exist', 'terminal-1');
 
       expect(state.workflowExecutionStates['does-not-exist']).toBeUndefined();
     });
@@ -366,23 +366,23 @@ describe('Authoritative terminal↔node mapping', () => {
 
   describe('repeated and rapid transitions', () => {
     it('start → stop → start cycle on the same terminal does not leave a stale binding', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       actions.stopWorkflow('task-a');
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
       actions.stopWorkflow('task-b');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-c', 'terminal-1');
+      void actions.startWorkflow('task-c', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-c']?.state).toBe('running');
     });
 
     it('rapid start of a second node on a busy terminal is rejected, not silently overwritten', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(true);
       expect(state.workflowExecutionStates['task-b']).toBeUndefined();
@@ -404,7 +404,7 @@ describe('Authoritative terminal↔node mapping', () => {
       actions.initializeExecutionState();
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(true);
       expect(state.workflowExecutionStates['task-b']).toBeUndefined();
@@ -419,7 +419,7 @@ describe('Authoritative terminal↔node mapping', () => {
       // task-a's running entry was cleared by initializeExecutionState
       // (existing contract — running on restart is treated as
       // dropped). Therefore terminal-1 is free for a fresh start.
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-b']?.state).toBe('running');
@@ -428,62 +428,62 @@ describe('Authoritative terminal↔node mapping', () => {
 
   describe('disruption reactions release the binding', () => {
     it('handleTerminalClosed releases the binding so a new workflow can use the (re-created) terminal', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       actions.handleTerminalClosed('terminal-1');
       mockAddToast.mockClear();
 
       // Pretend a new terminal happens to reuse the same id (defensive
       // coverage even if today's IDs are timestamp-unique).
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-b']?.state).toBe('running');
     });
 
     it('handleNodeDeleted releases the binding so a sibling can immediately start on the freed terminal', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       actions.handleNodeDeleted('task-a');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-b']?.state).toBe('running');
     });
 
     it('handleStepDeleted releases bindings for all running children of the removed step', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
 
       actions.handleStepDeleted('step-1');
       mockAddToast.mockClear();
 
       // Both terminals should now be free.
-      actions.startWorkflow('task-c', 'terminal-1');
+      void actions.startWorkflow('task-c', 'terminal-1');
       expect(alreadyAssignedToastFired()).toBe(false);
     });
 
     it('handleAllStepsRemoved releases bindings for every node under the workflow', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
 
       actions.handleAllStepsRemoved('workflow');
       mockAddToast.mockClear();
 
       // Repurpose terminal-1 — must not see "already assigned".
-      actions.startWorkflow('task-c', 'terminal-1');
+      void actions.startWorkflow('task-c', 'terminal-1');
       expect(alreadyAssignedToastFired()).toBe(false);
     });
 
     it('handleNodeMovedManually releases the binding when a workflow node is dragged out', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
 
       actions.handleNodeMovedManually('task-a');
       mockAddToast.mockClear();
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(alreadyAssignedToastFired()).toBe(false);
       expect(state.workflowExecutionStates['task-b']?.state).toBe('running');
@@ -496,14 +496,14 @@ describe('Authoritative terminal↔node mapping', () => {
     // worth keeping as named tests so a regression on any of them
     // is reported with the right vocabulary.
     it('does not raise the "already assigned to another node" warning when each running node has its own terminal', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
       mockAddToast.mockClear();
 
       // Re-trigger the same starts to mimic UI re-issuing them under
       // some refresh path — must remain silent.
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
 
       expect(alreadyAssignedToastFired()).toBe(false);
     });

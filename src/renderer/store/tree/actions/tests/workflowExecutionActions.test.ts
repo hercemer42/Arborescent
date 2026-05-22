@@ -193,7 +193,7 @@ describe('createWorkflowExecutionActions', () => {
 
   describe('startWorkflow', () => {
     it('should set node execution state to running with terminal assignment', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       expect(state.workflowExecutionStates['task-a']).toEqual({
         state: 'running',
         terminalTabId: 'terminal-1',
@@ -203,7 +203,7 @@ describe('createWorkflowExecutionActions', () => {
     it('should reject if terminal tab is already assigned to another running node', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
-      actions.startWorkflow('task-b', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-b']).toBeUndefined();
       expect(mockAddToast).toHaveBeenCalled();
@@ -230,7 +230,7 @@ describe('createWorkflowExecutionActions', () => {
     });
 
     it('should show toast if no terminal tab is available', () => {
-      actions.startWorkflow('task-a', null);
+      void actions.startWorkflow('task-a', null);
 
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
       expect(mockAddToast).toHaveBeenCalledWith(
@@ -240,12 +240,12 @@ describe('createWorkflowExecutionActions', () => {
     });
 
     it('should not allow starting a workflow step itself', () => {
-      actions.startWorkflow('step-1', 'terminal-1');
+      void actions.startWorkflow('step-1', 'terminal-1');
       expect(state.workflowExecutionStates['step-1']).toBeUndefined();
     });
 
     it('should not allow starting the workflow node itself', () => {
-      actions.startWorkflow('workflow', 'terminal-1');
+      void actions.startWorkflow('workflow', 'terminal-1');
       expect(state.workflowExecutionStates['workflow']).toBeUndefined();
     });
 
@@ -253,7 +253,7 @@ describe('createWorkflowExecutionActions', () => {
       state.nodes['outside'] = { id: 'outside', content: 'Outside', children: [], metadata: {} };
       state.ancestorRegistry['outside'] = ['root'];
 
-      actions.startWorkflow('outside', 'terminal-1');
+      void actions.startWorkflow('outside', 'terminal-1');
       expect(state.workflowExecutionStates['outside']).toBeUndefined();
     });
 
@@ -281,20 +281,20 @@ describe('createWorkflowExecutionActions', () => {
     });
 
     it('should allow multiple nodes to be running simultaneously in different terminals', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-c', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-c', 'terminal-2');
 
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
       expect(state.workflowExecutionStates['task-c'].state).toBe('running');
     });
 
     it('should send content to the terminal on start', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }), undefined, expect.any(String));
     });
 
     it('should trigger autosave after starting', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
   });
@@ -336,7 +336,7 @@ describe('createWorkflowExecutionActions', () => {
       actions.stopWorkflow('task-a');
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
     });
 
@@ -356,7 +356,7 @@ describe('createWorkflowExecutionActions', () => {
       actions.stopWorkflow('task-a');
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
 
-      actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-a', 'terminal-1');
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
     });
   });
@@ -964,8 +964,8 @@ describe('createWorkflowExecutionActions', () => {
 
   describe('parallel execution', () => {
     it('should allow two nodes running in separate terminals', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      actions.startWorkflow('task-c', 'terminal-2');
+      void actions.startWorkflow('task-a', 'terminal-1');
+      void actions.startWorkflow('task-c', 'terminal-2');
 
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
       expect(state.workflowExecutionStates['task-c'].state).toBe('running');
@@ -1000,8 +1000,8 @@ describe('createWorkflowExecutionActions', () => {
       state.nodes['step-1'].children = ['task-a'];
       state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-2'];
 
-      actions.startWorkflow('task-c', 'terminal-1');
-      actions.startWorkflow('task-b', 'terminal-2');
+      void actions.startWorkflow('task-c', 'terminal-1');
+      void actions.startWorkflow('task-b', 'terminal-2');
 
       expect(state.workflowExecutionStates['task-c'].state).toBe('running');
       expect(state.workflowExecutionStates['task-b'].state).toBe('running');
