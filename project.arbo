@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-21T17:14:55.267Z'
+updated: '2026-05-22T08:05:56.746Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -75986,6 +75986,7 @@ nodes:
     id: acac68ee-f8fd-4f89-9504-ee47ac883e57
     content: Functional
     children:
+      - 506f42bb-73a3-44b9-8bc4-75d5b6be9ad3
       - 0d19da53-f3a7-4ee4-b495-b59f127671fa
       - e8824b29-eb18-4031-9e35-b321a864d418
       - 0b325532-61be-48ea-b9c0-6223bfca0846
@@ -80783,8 +80784,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 171974eb-2081-4809-9624-df1e13ff9c6b
-      - 5bbad57a-a772-4107-ae88-fcd1ebaa482a
       - e353e6df-5cc7-40af-9e7b-a9da29963cd2
       - e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
       - 19f9af82-3ca4-4e39-846a-6184f1b241f8
@@ -92503,7 +92502,8 @@ nodes:
   ef8172e7-9f00-4495-9f4e-69b862af7dde:
     id: ef8172e7-9f00-4495-9f4e-69b862af7dde
     content: AI code review resolution
-    children: []
+    children:
+      - 171974eb-2081-4809-9624-df1e13ff9c6b
     metadata:
       status: pending
       isBlueprint: true
@@ -115701,8 +115701,9 @@ nodes:
       recurse: true
   5cb7bf1b-8461-4206-9d38-e624b970a2ce:
     id: 5cb7bf1b-8461-4206-9d38-e624b970a2ce
-    content: If the subject is a bug, ignore these instructions, and instead write it up as a bug ticket
-    children: []
+    content: If the subject is a bug, ignore these instructions, and instead use the following
+    children:
+      - 51492b9b-89d8-4f8d-a1c8-2e2adcc1e9f5
     metadata:
       status: pending
       isBlueprint: true
@@ -124805,7 +124806,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 5bbad57a-a772-4107-ae88-fcd1ebaa482a
     metadata:
       status: pending
       isBlueprint: true
@@ -152851,6 +152853,7 @@ nodes:
     metadata:
       status: pending
       expanded: false
+      sessionId: 1ba89622-4b5a-451b-90ec-e06269fed151
   d6c63b3b-5dab-4986-82ec-40f03aaf163e:
     id: d6c63b3b-5dab-4986-82ec-40f03aaf163e
     content: Should be able to copy the whole node when focused but no partial text highlighted
@@ -153495,24 +153498,50 @@ nodes:
   5bbad57a-a772-4107-ae88-fcd1ebaa482a:
     id: 5bbad57a-a772-4107-ae88-fcd1ebaa482a
     content: Bug - 'Resume session' appears even when a session in an active terminal is already mapped to the node
-    children: []
+    children:
+      - dcb35766-d7e4-4514-80cd-be4cc963860e
+      - 293ba0c6-397d-41a0-9328-5c15dcfe1570
+      - f35bb23c-0885-467e-bbac-7a324db39d36
+      - 9c710fde-4327-4e39-952e-ac5c5ab35261
+      - 7cb1ce2a-cd0f-444b-a452-3f6485df74f2
+      - e146d08e-62aa-4e47-8df7-c4bd762e585c
+      - cdc6f1e7-44cd-4713-b714-269cd6d417a3
+      - 918878c6-5e22-4f31-a9eb-6f38a2158255
+      - dedcae94-f1d4-414d-88c2-2ad8bee771de
+      - 5887883d-6ace-4e8a-a061-f46cda0535ef
+      - ed1e2433-06bf-4502-99d2-ea6e18cee793
+      - f0046541-106b-469b-aaf8-d0c1d354cebb
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 4d1d9c46-bb7a-42c2-a89f-b3b81001e1f1
   171974eb-2081-4809-9624-df1e13ff9c6b:
     id: 171974eb-2081-4809-9624-df1e13ff9c6b
-    content: Bug - can't write feedback to an unbound node
+    content: Bug — Manual Send and Revise after discussion don't one-shot route feedback; it drops or lands on the workflow-bound node
     children:
-      - 2f60abea-aaeb-4de4-8f6f-2cf86640e540
-      - 159dee4e-b0d8-4663-9ed1-fcba916681c0
+      - 4798fbd0-00da-4b7b-96b4-cd2c40d0a9b3
+      - 34706da4-6889-49c9-9839-9cef237d62cf
+      - d211f260-c37d-4923-baca-dd9523c7b647
+      - bd4322dd-a7b3-4225-a436-bf8682da2253
+      - be30219e-c9b8-405f-9fb8-3adfcff441fe
+      - 21cbc00c-7dc7-4810-b219-6f75a959bb8e
+      - 502e8e98-bf5e-4cde-9a01-d6d1544d19da
+      - 9707a899-afec-462b-987a-b75af52da311
+      - 5310d56a-8533-447e-8747-f73832cfda72
+      - 676a5e74-1841-48f1-aa8f-bfcb22c74545
+      - d6df90f8-d007-4978-92b6-3bc20ffa13e7
+      - b71d284c-ef61-4a99-9eb7-4db86efc9b7b
+      - 44c0a4ad-0a13-4192-81a8-ed3eb1b5089c
+      - 014482f6-0482-481a-bfdf-6ccc2820dc06
+      - 77d833f7-17fb-4db6-aaab-7f42923bfed2
     metadata:
       status: pending
-      expanded: true
-  2f60abea-aaeb-4de4-8f6f-2cf86640e540:
-    id: 2f60abea-aaeb-4de4-8f6f-2cf86640e540
-    content: Should be able to do it in send and revise after discussion features
-    children: []
-    metadata:
-      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 9b5ff98d-e196-4590-a16f-0f5c49f7ea8f
   754030f4-f1e3-4339-a7e2-7282d2e23a66:
     id: 754030f4-f1e3-4339-a7e2-7282d2e23a66
     content: worktree
@@ -155470,12 +155499,1427 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  159dee4e-b0d8-4663-9ed1-fcba916681c0:
-    id: 159dee4e-b0d8-4663-9ed1-fcba916681c0
-    content: Should have been covered in a recent commit, not sure what went wrong
+  506f42bb-73a3-44b9-8bc4-75d5b6be9ad3:
+    id: 506f42bb-73a3-44b9-8bc4-75d5b6be9ad3
+    content: Bug creation
+    children:
+      - 2b13143c-9fc7-47e9-969c-b2464cbc29ac
+      - a2c1a056-b16b-4a80-9e4b-9f9eee7fd43e
+      - d369cd71-525b-42dd-992a-4195fac9304a
+      - 343ef80c-f6d6-4d67-9b7c-35b7c3a3fc52
+      - 053871c5-75ec-4cde-a4d8-e03577343d4c
+      - d9b57134-93d1-4c3c-916b-48edb75ce35e
+      - 5ed26671-0aae-4057-ad99-35e9123a24da
+      - e882a556-8e25-4b76-9f74-1c258850500c
+      - a70bf0ad-08c4-4ef0-8a47-14ab2a972a0d
+    metadata:
+      expanded: false
+      deleted: false
+      plugins: {}
+      isContextDeclaration: true
+      blueprintIcon: Bug
+      blueprintColor: '#a855f7'
+      isBlueprint: true
+      collaborate: true
+      execute: false
+  2b13143c-9fc7-47e9-969c-b2464cbc29ac:
+    id: 2b13143c-9fc7-47e9-969c-b2464cbc29ac
+    content: Summary
+    children:
+      - d8c3bf6a-7eb3-4aaa-82b3-f0f5c1dac951
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d8c3bf6a-7eb3-4aaa-82b3-f0f5c1dac951:
+    id: d8c3bf6a-7eb3-4aaa-82b3-f0f5c1dac951
+    content: one-sentence statement of the failure
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a2c1a056-b16b-4a80-9e4b-9f9eee7fd43e:
+    id: a2c1a056-b16b-4a80-9e4b-9f9eee7fd43e
+    content: Steps to reproduce
+    children:
+      - 828defe4-d6b0-4759-8185-8b936f1f91c8
+      - cb3eb576-5062-4a2b-9749-7b15542b6885
+      - 0783deec-3da4-44fd-abff-024f00d11ac1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  828defe4-d6b0-4759-8185-8b936f1f91c8:
+    id: 828defe4-d6b0-4759-8185-8b936f1f91c8
+    content: precondition / setup step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cb3eb576-5062-4a2b-9749-7b15542b6885:
+    id: cb3eb576-5062-4a2b-9749-7b15542b6885
+    content: user action
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0783deec-3da4-44fd-abff-024f00d11ac1:
+    id: 0783deec-3da4-44fd-abff-024f00d11ac1
+    content: observation that exposes the bug
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d369cd71-525b-42dd-992a-4195fac9304a:
+    id: d369cd71-525b-42dd-992a-4195fac9304a
+    content: Expected behavior
+    children:
+      - 9fa2226d-4723-4a10-be8f-f301c21a75a7
+      - cb020608-5238-407c-acd1-5af1f9f3193a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9fa2226d-4723-4a10-be8f-f301c21a75a7:
+    id: 9fa2226d-4723-4a10-be8f-f301c21a75a7
+    content: expected outcome on the happy path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cb020608-5238-407c-acd1-5af1f9f3193a:
+    id: cb020608-5238-407c-acd1-5af1f9f3193a
+    content: expected handling of edge cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  343ef80c-f6d6-4d67-9b7c-35b7c3a3fc52:
+    id: 343ef80c-f6d6-4d67-9b7c-35b7c3a3fc52
+    content: Actual behavior
+    children:
+      - 250c7b1f-dfb2-4cee-a83c-f656cb49c69d
+      - 0b3876bc-f976-4eb7-b5ad-d0a296e9a0bf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  250c7b1f-dfb2-4cee-a83c-f656cb49c69d:
+    id: 250c7b1f-dfb2-4cee-a83c-f656cb49c69d
+    content: what actually happens
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0b3876bc-f976-4eb7-b5ad-d0a296e9a0bf:
+    id: 0b3876bc-f976-4eb7-b5ad-d0a296e9a0bf
+    content: user-visible symptoms
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  053871c5-75ec-4cde-a4d8-e03577343d4c:
+    id: 053871c5-75ec-4cde-a4d8-e03577343d4c
+    content: Suspected cause
+    children:
+      - 338548ac-f63d-43db-a0f2-b0a5ddfedd58
+      - 3dce55f9-409d-44f4-8a72-7c38ee813f2a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  338548ac-f63d-43db-a0f2-b0a5ddfedd58:
+    id: 338548ac-f63d-43db-a0f2-b0a5ddfedd58
+    content: code path or commit implicated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3dce55f9-409d-44f4-8a72-7c38ee813f2a:
+    id: 3dce55f9-409d-44f4-8a72-7c38ee813f2a
+    content: why the existing guard or fix does not cover this case
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d9b57134-93d1-4c3c-916b-48edb75ce35e:
+    id: d9b57134-93d1-4c3c-916b-48edb75ce35e
+    content: Affected files
+    children:
+      - 58f2ff12-ead3-496c-bb14-104735c3d0b3
+      - 1f6d0162-a991-488d-9f14-d0ec85378b77
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  58f2ff12-ead3-496c-bb14-104735c3d0b3:
+    id: 58f2ff12-ead3-496c-bb14-104735c3d0b3
+    content: file path of primary suspect
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1f6d0162-a991-488d-9f14-d0ec85378b77:
+    id: 1f6d0162-a991-488d-9f14-d0ec85378b77
+    content: file path of related surface
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5ed26671-0aae-4057-ad99-35e9123a24da:
+    id: 5ed26671-0aae-4057-ad99-35e9123a24da
+    content: Regression window
+    children:
+      - ec897329-e1be-4b38-b019-12eac8a4d54a
+      - 5e4c969c-d65a-45bc-bdb7-50a27a926347
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ec897329-e1be-4b38-b019-12eac8a4d54a:
+    id: ec897329-e1be-4b38-b019-12eac8a4d54a
+    content: last known good commit or release
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5e4c969c-d65a-45bc-bdb7-50a27a926347:
+    id: 5e4c969c-d65a-45bc-bdb7-50a27a926347
+    content: first observed broken commit or date
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e882a556-8e25-4b76-9f74-1c258850500c:
+    id: e882a556-8e25-4b76-9f74-1c258850500c
+    content: Severity
+    children:
+      - c124b786-4dd8-4dd2-a90e-3ad97093a80a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c124b786-4dd8-4dd2-a90e-3ad97093a80a:
+    id: c124b786-4dd8-4dd2-a90e-3ad97093a80a
+    content: severity level and user impact
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a70bf0ad-08c4-4ef0-8a47-14ab2a972a0d:
+    id: a70bf0ad-08c4-4ef0-8a47-14ab2a972a0d
+    content: Notes
+    children:
+      - f5034474-9d0c-423e-9987-6ce46b4a5dae
+      - 5fc8b7c3-3f38-4310-890d-243423bdb5fa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f5034474-9d0c-423e-9987-6ce46b4a5dae:
+    id: f5034474-9d0c-423e-9987-6ce46b4a5dae
+    content: adjacent issues or look-alikes to disambiguate
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5fc8b7c3-3f38-4310-890d-243423bdb5fa:
+    id: 5fc8b7c3-3f38-4310-890d-243423bdb5fa
+    content: UX or telemetry gap worth fixing alongside
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  51492b9b-89d8-4f8d-a1c8-2e2adcc1e9f5:
+    id: 51492b9b-89d8-4f8d-a1c8-2e2adcc1e9f5
+    content: Bug creation
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: 506f42bb-73a3-44b9-8bc4-75d5b6be9ad3
+  4798fbd0-00da-4b7b-96b4-cd2c40d0a9b3:
+    id: 4798fbd0-00da-4b7b-96b4-cd2c40d0a9b3
+    content: worktree
+    children:
+      - 46b4cdd4-f980-431c-b250-c9c746c4a6d3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46b4cdd4-f980-431c-b250-c9c746c4a6d3:
+    id: 46b4cdd4-f980-431c-b250-c9c746c4a6d3
+    content: vscode://file//Users/brianfox/dev/Arborescent-one-shot-routing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  34706da4-6889-49c9-9839-9cef237d62cf:
+    id: 34706da4-6889-49c9-9839-9cef237d62cf
+    content: Summary
+    children:
+      - 3b1ab9b2-305b-43b3-b375-3f5940fb4354
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b1ab9b2-305b-43b3-b375-3f5940fb4354:
+    id: 3b1ab9b2-305b-43b3-b375-3f5940fb4354
+    content: Manual Send and Revise after discussion are exception flows that must not change the workflow session-to-node binding; they are supposed to one-shot route the next submit_step_output to the targeted node. The one-shot routing is not taking effect, so feedback either drops (terminal has no workflow binding) or lands on the workflow-bound node (terminal has a binding to a different node)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d211f260-c37d-4923-baca-dd9523c7b647:
+    id: d211f260-c37d-4923-baca-dd9523c7b647
+    content: Steps to reproduce
+    children:
+      - cf610ec7-4b6c-4509-9c8e-12ac28128330
+      - 272268f8-289c-48ca-8360-bedc4f410605
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf610ec7-4b6c-4509-9c8e-12ac28128330:
+    id: cf610ec7-4b6c-4509-9c8e-12ac28128330
+    content: Scenario A — destination terminal has no workflow binding
+    children:
+      - 3fe0cc5a-af9f-4de1-82fe-cc8cdcb66613
+      - bb3c38c8-c4de-430f-8f3a-4c0d3c18a40a
+      - be0efe9e-9f9e-4c2f-ade5-cfeadb5bf9c4
+      - 3045f917-2837-4c77-a6a9-2b8f4bcfea49
+      - 87587bb9-52f5-4d38-b2d6-608e1a7b72d3
+      - b6cc977c-9170-4dd8-9e3b-b52c13c6fdde
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fe0cc5a-af9f-4de1-82fe-cc8cdcb66613:
+    id: 3fe0cc5a-af9f-4de1-82fe-cc8cdcb66613
+    content: Open an .arbo file in Arborescent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb3c38c8-c4de-430f-8f3a-4c0d3c18a40a:
+    id: bb3c38c8-c4de-430f-8f3a-4c0d3c18a40a
+    content: Ensure the target terminal has no active workflow collaboration (no session-to-node binding in the registry)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be0efe9e-9f9e-4c2f-ade5-cfeadb5bf9c4:
+    id: be0efe9e-9f9e-4c2f-ade5-cfeadb5bf9c4
+    content: Right-click an unbound node and choose Send to that terminal with collaborate enabled
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3045f917-2837-4c77-a6a9-2b8f4bcfea49:
+    id: 3045f917-2837-4c77-a6a9-2b8f4bcfea49
+    content: Let the connected Claude Code session call submit_step_output with a response
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87587bb9-52f5-4d38-b2d6-608e1a7b72d3:
+    id: 87587bb9-52f5-4d38-b2d6-608e1a7b72d3
+    content: Observe that the feedback panel never opens and the content is dropped
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6cc977c-9170-4dd8-9e3b-b52c13c6fdde:
+    id: b6cc977c-9170-4dd8-9e3b-b52c13c6fdde
+    content: Repeat with Revise after discussion and observe the same outcome
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  272268f8-289c-48ca-8360-bedc4f410605:
+    id: 272268f8-289c-48ca-8360-bedc4f410605
+    content: Scenario B — destination terminal is workflow-bound to a different node
+    children:
+      - 5b607696-74e8-423f-a5bd-27d49f8974a2
+      - 6ac07a7d-335e-4440-9987-ae217cc6513c
+      - 393aab97-5ba4-4069-b5be-70a710bd5ddd
+      - 2cb23829-d151-42ad-8e25-c0868a7c2e0b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b607696-74e8-423f-a5bd-27d49f8974a2:
+    id: 5b607696-74e8-423f-a5bd-27d49f8974a2
+    content: Run a workflow step that binds the session in terminal T to node A
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ac07a7d-335e-4440-9987-ae217cc6513c:
+    id: 6ac07a7d-335e-4440-9987-ae217cc6513c
+    content: Without ending the workflow, right-click node B (unbound) and choose Revise after discussion targeting terminal T
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  393aab97-5ba4-4069-b5be-70a710bd5ddd:
+    id: 393aab97-5ba4-4069-b5be-70a710bd5ddd
+    content: Let the connected Claude Code session call submit_step_output with a response
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cb23829-d151-42ad-8e25-c0868a7c2e0b:
+    id: 2cb23829-d151-42ad-8e25-c0868a7c2e0b
+    content: Observe that the response is written to node A, not the freshly-targeted node B
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd4322dd-a7b3-4225-a436-bf8682da2253:
+    id: bd4322dd-a7b3-4225-a436-bf8682da2253
+    content: Expected behavior
+    children:
+      - 78ee995d-7d0b-4cf3-8265-fdeae1cc4bcf
+      - b437ff78-b157-4f72-ae6b-325bb6043a11
+      - abcae23b-7c96-4dce-b198-51ec35ae6875
+      - 4208cc4c-0a53-4cce-ad37-e0571ca340aa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  78ee995d-7d0b-4cf3-8265-fdeae1cc4bcf:
+    id: 78ee995d-7d0b-4cf3-8265-fdeae1cc4bcf
+    content: Manual Send and Revise after discussion never modify the workflow session-to-node binding
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b437ff78-b157-4f72-ae6b-325bb6043a11:
+    id: b437ff78-b157-4f72-ae6b-325bb6043a11
+    content: When the destination terminal has no workflow binding, the next submit_step_output is delivered to the manually-targeted node via one-shot routing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abcae23b-7c96-4dce-b198-51ec35ae6875:
+    id: abcae23b-7c96-4dce-b198-51ec35ae6875
+    content: When the destination terminal has a workflow binding to a different node, the one-shot target takes precedence for the next submit_step_output only; afterwards the binding still points at the workflow node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4208cc4c-0a53-4cce-ad37-e0571ca340aa:
+    id: 4208cc4c-0a53-4cce-ad37-e0571ca340aa
+    content: If routing cannot be resolved the user receives a visible error rather than a silent no-op
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be30219e-c9b8-405f-9fb8-3adfcff441fe:
+    id: be30219e-c9b8-405f-9fb8-3adfcff441fe
+    content: Actual behavior
+    children:
+      - b4f38838-1b9e-4af8-a151-91be559fd361
+      - 56efde30-76d0-4505-93f2-564f0ef2260b
+      - 8055c12b-bf22-42fb-9417-8a3d6d23c2a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4f38838-1b9e-4af8-a151-91be559fd361:
+    id: b4f38838-1b9e-4af8-a151-91be559fd361
+    content: Scenario A — mcpSubmitOutputTool.ts returns "unbound — session has no binding" and the renderer's processIncomingFeedbackContent short-circuits at sendActions.ts:694; nothing is shown to the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56efde30-76d0-4505-93f2-564f0ef2260b:
+    id: 56efde30-76d0-4505-93f2-564f0ef2260b
+    content: Scenario B — mcpSubmitOutputTool.ts resolves the session against the binding registry and writes the feedback to the workflow-bound node, ignoring the one-shot target set by the manual send
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8055c12b-bf22-42fb-9417-8a3d6d23c2a7:
+    id: 8055c12b-bf22-42fb-9417-8a3d6d23c2a7
+    content: In both scenarios the user has no visible signal that the response landed on the wrong node or was dropped
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21cbc00c-7dc7-4810-b219-6f75a959bb8e:
+    id: 21cbc00c-7dc7-4810-b219-6f75a959bb8e
+    content: Suspected cause
+    children:
+      - c6ac07b2-bf6b-48c1-a8dd-067731e1f7c8
+      - c31051d0-e52c-49dd-bcf1-82565a04e2ea
+      - 13a12eb8-00b7-4074-8dd5-efb2b8bb1782
+      - d5f39c3d-5b8a-449d-8bc9-29dea00ce8ca
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6ac07b2-bf6b-48c1-a8dd-067731e1f7c8:
+    id: c6ac07b2-bf6b-48c1-a8dd-067731e1f7c8
+    content: Commit f4d540d introduced one-shot target routing for manual collab sends with binding markers restricted to workflow advances; the one-shot target is either not being recorded by the Send and Revise paths or not being consulted by submitStepOutput before it falls back to the registry
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c31051d0-e52c-49dd-bcf1-82565a04e2ea:
+    id: c31051d0-e52c-49dd-bcf1-82565a04e2ea
+    content: In Scenario A submitStepOutput errors out on the unbound short-circuit before any one-shot target is considered; the one-shot lookup needs to happen ahead of the unbound check
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13a12eb8-00b7-4074-8dd5-efb2b8bb1782:
+    id: 13a12eb8-00b7-4074-8dd5-efb2b8bb1782
+    content: In Scenario B the registry lookup wins over the one-shot target; the resolution order needs to prefer a freshly-set one-shot target over the persisted binding for exactly one submission
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5f39c3d-5b8a-449d-8bc9-29dea00ce8ca:
+    id: d5f39c3d-5b8a-449d-8bc9-29dea00ce8ca
+    content: Commit d1a4eef set collaboratingNodeId inside handleProposalRequest, but only after a proposal reaches the renderer; it cannot rescue a submission that was misrouted or rejected at the main-process resolution step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  502e8e98-bf5e-4cde-9a01-d6d1544d19da:
+    id: 502e8e98-bf5e-4cde-9a01-d6d1544d19da
+    content: Affected files
+    children:
+      - b6d9cacb-56eb-40f2-b5e3-d5ed395dc86b
+      - ca6bd506-ff96-49eb-adb8-d96d46ab1c75
+      - f5c9191d-fe07-4da4-8eac-9ae461cc3445
+      - bf7bfe49-b956-415d-bd42-efcb11a352fe
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6d9cacb-56eb-40f2-b5e3-d5ed395dc86b:
+    id: b6d9cacb-56eb-40f2-b5e3-d5ed395dc86b
+    content: src/main/services/mcpSubmitOutputTool.ts — submitStepOutput target resolution, unbound short-circuit, registry lookup ordering
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca6bd506-ff96-49eb-adb8-d96d46ab1c75:
+    id: ca6bd506-ff96-49eb-adb8-d96d46ab1c75
+    content: src/main/services/sessionBindingRegistry.ts and any sibling that stores one-shot manual-send targets
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5c9191d-fe07-4da4-8eac-9ae461cc3445:
+    id: f5c9191d-fe07-4da4-8eac-9ae461cc3445
+    content: src/renderer/store/tree/actions/sendActions.ts — collaborateInTerminal, where the one-shot target is recorded for manual Send and Revise
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf7bfe49-b956-415d-bd42-efcb11a352fe:
+    id: bf7bfe49-b956-415d-bd42-efcb11a352fe
+    content: src/renderer/services/mcpProposalReceiverService.ts — handleProposalRequest, downstream of the resolution
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9707a899-afec-462b-987a-b75af52da311:
+    id: 9707a899-afec-462b-987a-b75af52da311
+    content: Regression window
+    children:
+      - cf2f560e-b65a-4ce8-8572-3324a7637a89
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf2f560e-b65a-4ce8-8572-3324a7637a89:
+    id: cf2f560e-b65a-4ce8-8572-3324a7637a89
+    content: Reported as expected to be covered by commit f4d540d (one-shot target routing) and commit d1a4eef on 2026-05-18 (proposal-side collaboratingNodeId); both scenarios still reproduce on master at 200f053
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5310d56a-8533-447e-8747-f73832cfda72:
+    id: 5310d56a-8533-447e-8747-f73832cfda72
+    content: Severity
+    children:
+      - 2cff12e9-bfde-40be-8377-e55d18b84dec
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cff12e9-bfde-40be-8377-e55d18b84dec:
+    id: 2cff12e9-bfde-40be-8377-e55d18b84dec
+    content: High — Send and Revise after discussion are primary collaboration flows; silently dropping responses (Scenario A) or misrouting them to the workflow-bound node (Scenario B) both cause data loss with no user-visible signal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  676a5e74-1841-48f1-aa8f-bfcb22c74545:
+    id: 676a5e74-1841-48f1-aa8f-bfcb22c74545
+    content: Notes
+    children:
+      - 3618bdb8-f0f4-49f7-9101-55764f7a2edf
+      - c4ee9462-35a2-4c59-825b-b43b93fce949
+      - 4d6d3cd6-4173-4e57-9f22-1634893d1974
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3618bdb8-f0f4-49f7-9101-55764f7a2edf:
+    id: 3618bdb8-f0f4-49f7-9101-55764f7a2edf
+    content: Binding belongs to workflows; manual Send and Revise are non-binding exceptions and must not rebind on success or failure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4ee9462-35a2-4c59-825b-b43b93fce949:
+    id: c4ee9462-35a2-4c59-825b-b43b93fce949
+    content: The fix shape is to make one-shot target routing take precedence over both the unbound short-circuit and the registry lookup for the next single submission, then expire so the workflow binding resumes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d6d3cd6-4173-4e57-9f22-1634893d1974:
+    id: 4d6d3cd6-4173-4e57-9f22-1634893d1974
+    content: Distinct from commit 0dbab80 which only guards against blob-shaped payloads — this bug reproduces with well-formed content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6df90f8-d007-4978-92b6-3bc20ffa13e7:
+    id: d6df90f8-d007-4978-92b6-3bc20ffa13e7
+    content: Technical refinement
+    children:
+      - 6d847ff9-2c36-4752-a80d-0b18ccbf27f3
+      - 405a4596-fd67-46fd-85cb-dbe89d2c1133
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d847ff9-2c36-4752-a80d-0b18ccbf27f3:
+    id: 6d847ff9-2c36-4752-a80d-0b18ccbf27f3
+    content: Approach
+    children:
+      - 53fb26b6-3a47-4870-9a7b-0614e3bc3bca
+      - a4396313-70ed-4133-b269-72c320286d2e
+      - 833b52f6-4a52-4b4c-97bd-286eae284ae3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53fb26b6-3a47-4870-9a7b-0614e3bc3bca:
+    id: 53fb26b6-3a47-4870-9a7b-0614e3bc3bca
+    content: The end-to-end plumbing already exists — ARBORESCENT_TARGET marker on manual sends, OneShotTargetStore.pendingTarget consulted ahead of bindingRegistry.lookup at mcpSubmitOutputTool.ts:50-51 — so the fix is to repair the marker-to-store path that f4d540d intended rather than introduce new routing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4396313-70ed-4133-b269-72c320286d2e:
+    id: a4396313-70ed-4133-b269-72c320286d2e
+    content: Investigation centers on whether sendActions.collaborateInTerminal emits the ARBORESCENT_TARGET marker for both Send and Revise after discussion, and whether the UserPromptSubmit hook in hookScripts.ts and hookEventDispatcher.ts parses it and writes to OneShotTargetStore under the session id Claude reports
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  833b52f6-4a52-4b4c-97bd-286eae284ae3:
+    id: 833b52f6-4a52-4b4c-97bd-286eae284ae3
+    content: 'Replace the silent {applied: false} responses with a visible error so future routing failures surface in the UI instead of dropping content'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  405a4596-fd67-46fd-85cb-dbe89d2c1133:
+    id: 405a4596-fd67-46fd-85cb-dbe89d2c1133
+    content: Complications
+    children:
+      - fe95f83b-2a73-46e9-aacc-4c49e62570d2
+      - 2bd96b53-d259-4d00-85cb-e63988511f94
+      - a498de88-955c-4c98-8dc7-d968ba61065a
+      - c34829c4-4e58-440f-afad-f67f0676a95b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe95f83b-2a73-46e9-aacc-4c49e62570d2:
+    id: fe95f83b-2a73-46e9-aacc-4c49e62570d2
+    content: One-shot target must expire after exactly one submission so a subsequent workflow advance is not stolen by a stale manual target — confirm the consume-on-read semantics in OneShotTargetStore are reached on both the proposal and direct-apply branches
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bd96b53-d259-4d00-85cb-e63988511f94:
+    id: 2bd96b53-d259-4d00-85cb-e63988511f94
+    content: Session-id keying — the marker must reach the hook with the same session id that submit_step_output reports; a mismatch here would silently lose the target
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a498de88-955c-4c98-8dc7-d968ba61065a:
+    id: a498de88-955c-4c98-8dc7-d968ba61065a
+    content: The safety-net auto-submit is gated on markerSeenThisTurn — verify that a manual send's ARBORESCENT_TARGET marker correctly sets that flag, otherwise Stop-hook recoveries on manual sends will skip
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c34829c4-4e58-440f-afad-f67f0676a95b:
+    id: c34829c4-4e58-440f-afad-f67f0676a95b
+    content: Out of scope — manual Send and Revise must not register, update, or clear the workflow binding; the fix stays on the one-shot target lane only
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  b71d284c-ef61-4a99-9eb7-4db86efc9b7b:
+    id: b71d284c-ef61-4a99-9eb7-4db86efc9b7b
+    content: TDD tests added
+    children:
+      - a4695d6c-aa65-46b8-885c-72216ed0d7c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4695d6c-aa65-46b8-885c-72216ed0d7c8:
+    id: a4695d6c-aa65-46b8-885c-72216ed0d7c8
+    content: Failing tests for consume-on-read at src/main/services/tests/mcpSubmitOutputToolConsumeTarget.test.ts — 4 failing as the gap, 2 passing for "do not clear on error" retry path, 3 .todo placeholders for the uncertain visible-error UX
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44c0a4ad-0a13-4192-81a8-ed3eb1b5089c:
+    id: 44c0a4ad-0a13-4192-81a8-ed3eb1b5089c
+    content: Implementation
+    children:
+      - f5968141-256e-4925-9f03-e997ddc6d890
+      - 99ef3cf2-5477-4b8b-838c-ee5a42e4e445
+      - 8f639ff3-6663-431b-a158-4c31850d2ff5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5968141-256e-4925-9f03-e997ddc6d890:
+    id: f5968141-256e-4925-9f03-e997ddc6d890
+    content: submitStepOutput in src/main/services/mcpSubmitOutputTool.ts now calls oneShotTargetStore.clearPendingTarget(sessionId) after a successful apply or proposal; failure paths preserve the target so retries route correctly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99ef3cf2-5477-4b8b-838c-ee5a42e4e445:
+    id: 99ef3cf2-5477-4b8b-838c-ee5a42e4e445
+    content: All 31 consume + routing + store tests pass; 33 hook dispatcher + marker emission tests pass with no regression; lint and TypeScript clean on the touched files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f639ff3-6663-431b-a158-4c31850d2ff5:
+    id: 8f639ff3-6663-431b-a158-4c31850d2ff5
+    content: Visible-error UX deferred — left as .todo placeholders because the post-fix surface (toast vs IPC event vs error return) is still uncertain; the consume-on-read fix is independent of that decision
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  014482f6-0482-481a-bfdf-6ccc2820dc06:
+    id: 014482f6-0482-481a-bfdf-6ccc2820dc06
+    content: AI refactor pass
+    children:
+      - 053d2742-62d0-4bdd-a398-cd7f8d5c1f7b
+      - 62970933-736a-460f-9b13-93d3a1185ee3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  053d2742-62d0-4bdd-a398-cd7f8d5c1f7b:
+    id: 053d2742-62d0-4bdd-a398-cd7f8d5c1f7b
+    content: Stripped ticket and user-story references from test comments per the "no PRD references" convention; kept the technical "why" in independent voice
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62970933-736a-460f-9b13-93d3a1185ee3:
+    id: 62970933-736a-460f-9b13-93d3a1185ee3
+    content: Re-ran focused checks on touched files — 41 submit-output-tool tests pass, ESLint clean, no new TypeScript errors
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77d833f7-17fb-4db6-aaab-7f42923bfed2:
+    id: 77d833f7-17fb-4db6-aaab-7f42923bfed2
+    content: review feedback
+    children:
+      - 5d5e4586-a822-4af4-b0f0-702e809b8766
+      - 86004cf8-87c6-4f0d-80f6-b9508019de59
+      - 9c3f07ca-eb16-4e87-9cb4-287ac8ff1793
+      - ffba95c2-4e17-41c9-9523-a8b3db4046b1
+      - 7790e7f2-27ca-415b-ad31-d03fbfd3ed42
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d5e4586-a822-4af4-b0f0-702e809b8766:
+    id: 5d5e4586-a822-4af4-b0f0-702e809b8766
+    content: Verdict — ship it. Reviewer signed off with no high-priority issues. Fix is correct, minimal, and placed where it should be — clear after success on both branches (proposal at line 74, direct apply at line 83), preserved on both failure exits, retries route to the same target as intended
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86004cf8-87c6-4f0d-80f6-b9508019de59:
+    id: 86004cf8-87c6-4f0d-80f6-b9508019de59
+    content: Verified there is no double-clear hazard with the hook-side writer in hookEventDispatcher.handleRegisterTarget — Map.delete on a missing key is a no-op, and a between-turns set after the tool already cleared is intended behavior. mcpServer.clear() on shutdown still nukes everything as before
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c3f07ca-eb16-4e87-9cb4-287ac8ff1793:
+    id: 9c3f07ca-eb16-4e87-9cb4-287ac8ff1793
+    content: 'Nice-to-have — add a safety-net-origin consume-on-read test (origin: ''safety-net'' + markerSeen: true + pendingTarget: TARGET routes to TARGET and clears it). Uses the same harness already in the test file; reviewer called it out as cheap to lock down. Not required for this PR — same code path is already exercised via the explicit-origin tests'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffba95c2-4e17-41c9-9523-a8b3db4046b1:
+    id: ffba95c2-4e17-41c9-9523-a8b3db4046b1
+    content: Nice-to-have — JSON.parse(result.content[0].text) is brittle if ToolResult ever gains non-text content variants; matches sibling test style today, so leave unless ToolResult's shape evolves
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7790e7f2-27ca-415b-ad31-d03fbfd3ed42:
+    id: 7790e7f2-27ca-415b-ad31-d03fbfd3ed42
+    content: Nice-to-have — the two clearPendingTarget call sites could be consolidated post-restructure, but the current placement makes the "clear on success, not on failure" boundary obvious. Reviewer explicitly recommended NOT refactoring this
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcb35766-d7e4-4514-80cd-be4cc963860e:
+    id: dcb35766-d7e4-4514-80cd-be4cc963860e
+    content: worktree
+    children:
+      - 59ea5d9d-25e1-4f6c-94c1-beee003484ce
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59ea5d9d-25e1-4f6c-94c1-beee003484ce:
+    id: 59ea5d9d-25e1-4f6c-94c1-beee003484ce
+    content: vscode://file/Users/brianfox/dev/Arborescent-resume-session-gating
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  293ba0c6-397d-41a0-9328-5c15dcfe1570:
+    id: 293ba0c6-397d-41a0-9328-5c15dcfe1570
+    content: Summary
+    children:
+      - c022ba46-1f08-4274-8db5-050c06b8c992
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c022ba46-1f08-4274-8db5-050c06b8c992:
+    id: c022ba46-1f08-4274-8db5-050c06b8c992
+    content: The 'Resume session' context-menu entry is offered on workflow steps whose session is still mapped to an open terminal, where it is redundant and confusing.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f35bb23c-0885-467e-bbac-7a324db39d36:
+    id: f35bb23c-0885-467e-bbac-7a324db39d36
+    content: Steps to reproduce
+    children:
+      - bb2cba70-ba1b-44ce-a0d4-ec23b623090c
+      - df645cd8-fe46-498d-9480-e65daea00a92
+      - 403dd5e1-43d1-4a5d-9f2c-5ab53fb4fa28
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb2cba70-ba1b-44ce-a0d4-ec23b623090c:
+    id: bb2cba70-ba1b-44ce-a0d4-ec23b623090c
+    content: Precondition — open a workflow step, start it so a Claude session launches in a terminal tab, and keep that tab open so the node's sessionId is recorded in workflowSessionMap.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  df645cd8-fe46-498d-9480-e65daea00a92:
+    id: df645cd8-fe46-498d-9480-e65daea00a92
+    content: Action — right-click the same workflow node while its terminal tab is still open and the session is bound to it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  403dd5e1-43d1-4a5d-9f2c-5ab53fb4fa28:
+    id: 403dd5e1-43d1-4a5d-9f2c-5ab53fb4fa28
+    content: Observation — 'Resume session' is listed in the context menu even though the session is already attached to an active terminal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c710fde-4327-4e39-952e-ac5c5ab35261:
+    id: 9c710fde-4327-4e39-952e-ac5c5ab35261
+    content: Expected behavior
+    children:
+      - eab7c252-7c40-4d34-8ad1-cdb58e720ff5
+      - d23da95c-ae23-4981-bbb6-49c0f271a1bf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eab7c252-7c40-4d34-8ad1-cdb58e720ff5:
+    id: eab7c252-7c40-4d34-8ad1-cdb58e720ff5
+    content: When the node's sessionId is present in workflowSessionMap and mapped to an open terminal (alive-attached), 'Resume session' is hidden from the context menu.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d23da95c-ae23-4981-bbb6-49c0f271a1bf:
+    id: d23da95c-ae23-4981-bbb6-49c0f271a1bf
+    content: '''Resume session'' is shown only when the mapping is lost — the node retains a sessionId metadata but the session is no longer present in workflowSessionMap — so the user can re-attach.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7cb1ce2a-cd0f-444b-a452-3f6485df74f2:
+    id: 7cb1ce2a-cd0f-444b-a452-3f6485df74f2
+    content: Actual behavior
+    children:
+      - da0fd371-2301-43e2-afed-56daee5339d3
+      - ce0d114e-ee63-4d65-8fba-fe4c319a26f2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da0fd371-2301-43e2-afed-56daee5339d3:
+    id: da0fd371-2301-43e2-afed-56daee5339d3
+    content: useNodeContextMenu treats both 'alive-attached' and 'alive-detached' liveness as eligible, so the entry surfaces for every workflow node that has a sessionId, regardless of whether the mapping is intact.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce0d114e-ee63-4d65-8fba-fe4c319a26f2:
+    id: ce0d114e-ee63-4d65-8fba-fe4c319a26f2
+    content: Users see a duplicated affordance that either is a no-op or simply refocuses the already-active terminal, which is hard to distinguish from a real resume.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e146d08e-62aa-4e47-8df7-c4bd762e585c:
+    id: e146d08e-62aa-4e47-8df7-c4bd762e585c
+    content: Suspected cause
+    children:
+      - 353e5b3b-5e19-4de0-b359-a94990c12f61
+      - fade88a3-7a87-4cf8-9300-62ffae46b856
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  353e5b3b-5e19-4de0-b359-a94990c12f61:
+    id: 353e5b3b-5e19-4de0-b359-a94990c12f61
+    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts lines 259-263 — `showResumeSession` includes both `sessionLiveness === 'alive-attached'` and `'alive-detached'`.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fade88a3-7a87-4cf8-9300-62ffae46b856:
+    id: fade88a3-7a87-4cf8-9300-62ffae46b856
+    content: The current gate filters only on whether the session is alive, not on whether the mapping is currently lost; 'alive-attached' means the mapping is intact, so by definition there is nothing to resume.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdc6f1e7-44cd-4713-b714-269cd6d417a3:
+    id: cdc6f1e7-44cd-4713-b714-269cd6d417a3
+    content: Affected files
+    children:
+      - 3ac8bbe7-9b0b-4475-a220-f1eb0d589bbb
+      - 18cb69fa-1b97-439d-9875-960d31073638
+      - 09fd02fa-dcd9-4bfb-9d21-00cb2a5950ab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ac8bbe7-9b0b-4475-a220-f1eb0d589bbb:
+    id: 3ac8bbe7-9b0b-4475-a220-f1eb0d589bbb
+    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18cb69fa-1b97-439d-9875-960d31073638:
+    id: 18cb69fa-1b97-439d-9875-960d31073638
+    content: src/renderer/utils/sessionLiveness.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09fd02fa-dcd9-4bfb-9d21-00cb2a5950ab:
+    id: 09fd02fa-dcd9-4bfb-9d21-00cb2a5950ab
+    content: src/renderer/components/NodeContent/hooks/tests/useNodeContextMenuResumeSession.test.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  918878c6-5e22-4f31-a9eb-6f38a2158255:
+    id: 918878c6-5e22-4f31-a9eb-6f38a2158255
+    content: Regression window
+    children:
+      - 3bb9af59-05f9-46f0-9c75-df897711ed9e
+      - a4ead4e2-5186-4756-8416-4d6c615ae284
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bb9af59-05f9-46f0-9c75-df897711ed9e:
+    id: 3bb9af59-05f9-46f0-9c75-df897711ed9e
+    content: Last known good — prior to e84dd49 (no manual-resume entry existed).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4ead4e2-5186-4756-8416-4d6c615ae284:
+    id: a4ead4e2-5186-4756-8416-4d6c615ae284
+    content: 'First observed broken — e84dd49 ''feat: resumable AI sessions per workflow step (manual resume)'', which introduced the alive-attached branch of `showResumeSession`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dedcae94-f1d4-414d-88c2-2ad8bee771de:
+    id: dedcae94-f1d4-414d-88c2-2ad8bee771de
+    content: Severity
+    children:
+      - bc7ee7b7-48d5-4008-99cb-b16ff2c3191b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc7ee7b7-48d5-4008-99cb-b16ff2c3191b:
+    id: bc7ee7b7-48d5-4008-99cb-b16ff2c3191b
+    content: Low — cosmetic / UX confusion. No data loss and the workflow is not blocked, but the noise undermines trust in the menu and obscures the genuine recovery affordance.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5887883d-6ace-4e8a-a061-f46cda0535ef:
+    id: 5887883d-6ace-4e8a-a061-f46cda0535ef
+    content: Notes
+    children:
+      - 540a9496-8469-40b9-98c5-6d0de7a641fc
+      - 3add8383-4c71-4455-902e-f9324acc7821
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  540a9496-8469-40b9-98c5-6d0de7a641fc:
+    id: 540a9496-8469-40b9-98c5-6d0de7a641fc
+    content: The pending tests in useNodeContextMenuResumeSession.test.ts currently encode 'shows Resume session when liveness is alive-attached' as expected behavior — those todos must be inverted to assert hiding before the fix is implemented.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3add8383-4c71-4455-902e-f9324acc7821:
+    id: 3add8383-4c71-4455-902e-f9324acc7821
+    content: If focusing the bound terminal for an attached session is still a real user need, introduce a separate 'Focus terminal' entry rather than overloading 'Resume session', so the recovery semantics stay unambiguous.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed1e2433-06bf-4502-99d2-ea6e18cee793:
+    id: ed1e2433-06bf-4502-99d2-ea6e18cee793
+    content: Technical refinement
+    children:
+      - 7869cb8c-f948-4a2b-b795-f6140f92d5d9
+      - 16ae322d-b9b7-4491-b9dc-a6ea35370d70
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7869cb8c-f948-4a2b-b795-f6140f92d5d9:
+    id: 7869cb8c-f948-4a2b-b795-f6140f92d5d9
+    content: Complications
+    children:
+      - e0825651-ee99-45d1-9f33-88c3bc616232
+      - 53435db8-23ac-405e-a44a-396da40b9870
+      - 78854c25-0d93-4617-8132-39d51bee725c
+      - 11523d74-5be2-4576-b3ea-242567a5e488
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0825651-ee99-45d1-9f33-88c3bc616232:
+    id: e0825651-ee99-45d1-9f33-88c3bc616232
+    content: The existing `useNodeContextMenuResumeSession.test.ts` todos encode the broken behaviour ('shows when alive-attached') — they must be inverted in the same change, otherwise the new gate fails the spec that was written first.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53435db8-23ac-405e-a44a-396da40b9870:
+    id: 53435db8-23ac-405e-a44a-396da40b9870
+    content: '''alive-detached'' currently means ''has sessionId metadata but no entry in workflowSessionMap'', which already coincides with the user''s notion of ''lost the mapping''; no liveness probe redesign is required, so resist any temptation to introduce a third state.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78854c25-0d93-4617-8132-39d51bee725c:
+    id: 78854c25-0d93-4617-8132-39d51bee725c
+    content: Out of scope — adding a separate 'Focus terminal' affordance for alive-attached nodes; flagged in Notes for follow-up but not part of this fix.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11523d74-5be2-4576-b3ea-242567a5e488:
+    id: 11523d74-5be2-4576-b3ea-242567a5e488
+    content: ROI is unambiguous — one-line gate tightening plus test inversion, no architectural impact, removes a recurring UX papercut.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16ae322d-b9b7-4491-b9dc-a6ea35370d70:
+    id: 16ae322d-b9b7-4491-b9dc-a6ea35370d70
+    content: Approach
+    children:
+      - c171f84f-b419-4778-9766-bf3eaeda7786
+      - 57e6fb22-8bf7-4995-af9d-794e634b8ddf
+      - fffb1f3e-e99b-40d9-910f-c61e5e0d95e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c171f84f-b419-4778-9766-bf3eaeda7786:
+    id: c171f84f-b419-4778-9766-bf3eaeda7786
+    content: Narrow `showResumeSession` in `useNodeContextMenu.ts` so the entry is gated on `sessionLiveness === 'alive-detached'` only, dropping the 'alive-attached' branch.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57e6fb22-8bf7-4995-af9d-794e634b8ddf:
+    id: 57e6fb22-8bf7-4995-af9d-794e634b8ddf
+    content: Flip the pending test todos in `useNodeContextMenuResumeSession.test.ts` so 'alive-attached' asserts the entry is hidden and 'alive-detached' remains the sole shown case; add an explicit 'hidden when alive-attached' coverage item.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fffb1f3e-e99b-40d9-910f-c61e5e0d95e3:
+    id: fffb1f3e-e99b-40d9-910f-c61e5e0d95e3
+    content: No change to `sessionLiveness.ts` — its existing tri-state already encodes the distinction; the fix lives entirely in menu gating.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0046541-106b-469b-aaf8-d0c1d354cebb:
+    id: f0046541-106b-469b-aaf8-d0c1d354cebb
+    content: review feedback
+    children:
+      - 3a66f65c-126b-4467-88f8-1e731244e7b7
+      - 054bbd03-86e2-4eef-a436-7e7c0d278d3c
+      - 1b321f97-48f8-46ee-8022-df61920567a7
+      - bd02c680-6a57-4e04-976d-467dff7ac122
+      - 6232c869-5d52-48d8-9519-a97090449ba7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a66f65c-126b-4467-88f8-1e731244e7b7:
+    id: 3a66f65c-126b-4467-88f8-1e731244e7b7
+    content: Gate change correctness — confirmed correct. getSessionLiveness returns exactly no-session/alive-attached/alive-detached, and alive-detached precisely means 'sessionId on node but no entry in workflowSessionMap' which is the user's 'lost the mapping' notion.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  054bbd03-86e2-4eef-a436-7e7c0d278d3c:
+    id: 054bbd03-86e2-4eef-a436-7e7c0d278d3c
+    content: New test file conventions — passes. Uses shared fixtures, no mockReturnValueOnce, vi.clearAllMocks in beforeEach, `as unknown as` for synthetic event, fake timers torn down, actions cast `as any` matches existing pattern in useNodeContextMenuResendStep.test.tsx.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b321f97-48f8-46ee-8022-df61920567a7:
+    id: 1b321f97-48f8-46ee-8022-df61920567a7
+    content: Stale contradictory todos in useNodeContextMenuSessionEntries.test.ts — FIXED. The describe block titled 'Resume session entry visibility (workflow gate dropped)' contained 5 todos asserting the opposite of the new gate (e.g. 'shows on manual non-workflow node', 'shows on alive-attached'). Entire describe block deleted as it documents an abandoned direction.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd02c680-6a57-4e04-976d-467dff7ac122:
+    id: bd02c680-6a57-4e04-976d-467dff7ac122
+    content: Dead alive-attached branch in workflowSessionResume.ts:102-108 — KEPT INTENTIONALLY (push-back accepted by reviewer; finding downgraded to non-blocking). Only one external caller exists (useNodeContextMenu.ts:268); branch remains reachable from existing tests (workflowResumeFocusesTerminal.test.ts, workflowStartSession.test.ts:389, workflowSessionResumeTitle.test.ts) that pin alive-attached focus and bindSessionTab rebinding. Gated-but-tested isn't dead — removing would delete documented behavior. Scope-limited cleanup deferred.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6232c869-5d52-48d8-9519-a97090449ba7:
+    id: 6232c869-5d52-48d8-9519-a97090449ba7
+    content: No PR/ticket refs in code, no JSDoc, no new file-level comments — confirmed clean.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -155487,7 +156931,9 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   a480d0e4-17f6-49d8-acc4-a40bfe76f7c3:
     cwd: /Users/brianfox/dev/Arborescent
-  53575f83-7886-4541-831f-dc4c08ed939d:
+  9b5ff98d-e196-4590-a16f-0f5c49f7ea8f:
     cwd: /Users/brianfox/dev/Arborescent
-  fca74490-d27e-4bbb-9b7a-1b2531e2b262:
+  4d1d9c46-bb7a-42c2-a89f-b3b81001e1f1:
+    cwd: /Users/brianfox/dev/Arborescent
+  1ba89622-4b5a-451b-90ec-e06269fed151:
     cwd: /Users/brianfox/dev/Arborescent
