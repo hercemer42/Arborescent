@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-22T08:05:56.746Z'
+updated: '2026-05-22T08:12:26.116Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23709,6 +23709,7 @@ nodes:
     content: Technical refinement
     children:
       - a44833d2-d70e-48e3-be5d-f4d5106bae41
+      - e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
     metadata:
       status: pending
       isBlueprint: true
@@ -80784,8 +80785,8 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - 76b91502-96ac-48e8-94b3-a7408649c7bb
       - e353e6df-5cc7-40af-9e7b-a9da29963cd2
-      - e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
       - 19f9af82-3ca4-4e39-846a-6184f1b241f8
       - 51f101b9-8a03-4edc-aa8f-87eaa1c68080
       - ca966658-fecb-4293-9553-e19fc0551292
@@ -92502,8 +92503,7 @@ nodes:
   ef8172e7-9f00-4495-9f4e-69b862af7dde:
     id: ef8172e7-9f00-4495-9f4e-69b862af7dde
     content: AI code review resolution
-    children:
-      - 171974eb-2081-4809-9624-df1e13ff9c6b
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115693,6 +115693,7 @@ nodes:
       - e5809ad7-88b1-47ae-be5b-0432229ef68e
       - 48d475c6-e2d8-4964-ba1c-7b45573fd65c
       - bc12f7cc-b175-450a-9ebf-9b579c29805c
+      - 5bbad57a-a772-4107-ae88-fcd1ebaa482a
     metadata:
       status: pending
       isBlueprint: true
@@ -124807,7 +124808,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 5bbad57a-a772-4107-ae88-fcd1ebaa482a
+      - 171974eb-2081-4809-9624-df1e13ff9c6b
     metadata:
       status: pending
       isBlueprint: true
@@ -152845,33 +152846,24 @@ nodes:
       status: pending
   e6467de4-4de2-4d0d-82cd-88d9bf6f06b2:
     id: e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
-    content: Problem - Can't copy and paste a highlighted segment from a node
+    content: Bug — Highlighted text inside a node cannot be copied or cut
     children:
       - d6c63b3b-5dab-4986-82ec-40f03aaf163e
       - f57e934c-c833-4dd7-9fca-160dd8284185
       - d3139564-28f6-4bc7-9de3-bef0f4aeeb70
+      - 9ac95012-b8dd-4669-ab22-d7cb6bbe137a
+      - 00d80ebc-8249-48a2-b999-c607eeec67d0
+      - a43b35b9-388a-4268-873e-6380348e12a5
+      - f037693c-f3e8-4b2a-8496-191e4ab74630
+      - f9ea5c44-be66-4e81-a7f9-f200218d0996
+      - fedaaa53-2c02-4d04-b8b3-221fde646c1d
+      - b0abdac8-c5a9-407e-a613-af0490671d27
     metadata:
       status: pending
       expanded: false
+      deleted: false
+      plugins: {}
       sessionId: 1ba89622-4b5a-451b-90ec-e06269fed151
-  d6c63b3b-5dab-4986-82ec-40f03aaf163e:
-    id: d6c63b3b-5dab-4986-82ec-40f03aaf163e
-    content: Should be able to copy the whole node when focused but no partial text highlighted
-    children: []
-    metadata:
-      status: pending
-  f57e934c-c833-4dd7-9fca-160dd8284185:
-    id: f57e934c-c833-4dd7-9fca-160dd8284185
-    content: Should be able to select partial text and ctrl+c to copy just that
-    children: []
-    metadata:
-      status: pending
-  d3139564-28f6-4bc7-9de3-bef0f4aeeb70:
-    id: d3139564-28f6-4bc7-9de3-bef0f4aeeb70
-    content: Same for ctrl+x
-    children: []
-    metadata:
-      status: pending
   5ac2a323-1547-487c-a21e-3619764f4504:
     id: 5ac2a323-1547-487c-a21e-3619764f4504
     content: worktree
@@ -153521,21 +153513,24 @@ nodes:
     id: 171974eb-2081-4809-9624-df1e13ff9c6b
     content: Bug — Manual Send and Revise after discussion don't one-shot route feedback; it drops or lands on the workflow-bound node
     children:
-      - 4798fbd0-00da-4b7b-96b4-cd2c40d0a9b3
-      - 34706da4-6889-49c9-9839-9cef237d62cf
-      - d211f260-c37d-4923-baca-dd9523c7b647
-      - bd4322dd-a7b3-4225-a436-bf8682da2253
-      - be30219e-c9b8-405f-9fb8-3adfcff441fe
-      - 21cbc00c-7dc7-4810-b219-6f75a959bb8e
-      - 502e8e98-bf5e-4cde-9a01-d6d1544d19da
-      - 9707a899-afec-462b-987a-b75af52da311
-      - 5310d56a-8533-447e-8747-f73832cfda72
-      - 676a5e74-1841-48f1-aa8f-bfcb22c74545
-      - d6df90f8-d007-4978-92b6-3bc20ffa13e7
-      - b71d284c-ef61-4a99-9eb7-4db86efc9b7b
-      - 44c0a4ad-0a13-4192-81a8-ed3eb1b5089c
-      - 014482f6-0482-481a-bfdf-6ccc2820dc06
-      - 77d833f7-17fb-4db6-aaab-7f42923bfed2
+      - a9b8750e-fcc4-4646-b894-44ba2b538033
+      - 3d2ffb86-3641-43a5-bc78-aaf21152897a
+      - d3a316f6-51eb-4b0a-a351-f2b7201efced
+      - e0fd1efa-0194-4091-a9fe-6d480ae004f9
+      - a576dd0a-94ab-4803-93a9-22c6c74f8938
+      - 8b91f027-00db-4e9b-8acd-f4e6897472e0
+      - a42327e9-aa1b-4428-a3c4-8f312f570b87
+      - 69321f70-4300-407a-85d9-5a0126a07217
+      - 97c59175-c0d5-491d-8924-728d1e953ded
+      - 4279d744-5ffa-40fe-8428-2c2c25dbfe2e
+      - 76b64459-7fcb-40b6-8d30-49152c93819a
+      - 9143b877-f54c-4f71-96d1-e6205f4d37f9
+      - 2a55d84d-c459-4e55-9272-1908341ae937
+      - eb7a1027-8a53-4f29-930a-551992f53dbe
+      - b4887c9e-6de5-434b-b6ff-5087e29b1795
+      - bbd87e71-5272-48d5-8e2e-25b5e99dd417
+      - 80156b94-7960-43fc-ac38-f9297a226065
+      - 637ef1ff-faee-46ee-8479-4fa3e930fbd6
     metadata:
       status: pending
       expanded: false
@@ -155807,681 +155802,6 @@ nodes:
       status: pending
       isHyperlink: true
       linkedNodeId: 506f42bb-73a3-44b9-8bc4-75d5b6be9ad3
-  4798fbd0-00da-4b7b-96b4-cd2c40d0a9b3:
-    id: 4798fbd0-00da-4b7b-96b4-cd2c40d0a9b3
-    content: worktree
-    children:
-      - 46b4cdd4-f980-431c-b250-c9c746c4a6d3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  46b4cdd4-f980-431c-b250-c9c746c4a6d3:
-    id: 46b4cdd4-f980-431c-b250-c9c746c4a6d3
-    content: vscode://file//Users/brianfox/dev/Arborescent-one-shot-routing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  34706da4-6889-49c9-9839-9cef237d62cf:
-    id: 34706da4-6889-49c9-9839-9cef237d62cf
-    content: Summary
-    children:
-      - 3b1ab9b2-305b-43b3-b375-3f5940fb4354
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b1ab9b2-305b-43b3-b375-3f5940fb4354:
-    id: 3b1ab9b2-305b-43b3-b375-3f5940fb4354
-    content: Manual Send and Revise after discussion are exception flows that must not change the workflow session-to-node binding; they are supposed to one-shot route the next submit_step_output to the targeted node. The one-shot routing is not taking effect, so feedback either drops (terminal has no workflow binding) or lands on the workflow-bound node (terminal has a binding to a different node)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d211f260-c37d-4923-baca-dd9523c7b647:
-    id: d211f260-c37d-4923-baca-dd9523c7b647
-    content: Steps to reproduce
-    children:
-      - cf610ec7-4b6c-4509-9c8e-12ac28128330
-      - 272268f8-289c-48ca-8360-bedc4f410605
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf610ec7-4b6c-4509-9c8e-12ac28128330:
-    id: cf610ec7-4b6c-4509-9c8e-12ac28128330
-    content: Scenario A — destination terminal has no workflow binding
-    children:
-      - 3fe0cc5a-af9f-4de1-82fe-cc8cdcb66613
-      - bb3c38c8-c4de-430f-8f3a-4c0d3c18a40a
-      - be0efe9e-9f9e-4c2f-ade5-cfeadb5bf9c4
-      - 3045f917-2837-4c77-a6a9-2b8f4bcfea49
-      - 87587bb9-52f5-4d38-b2d6-608e1a7b72d3
-      - b6cc977c-9170-4dd8-9e3b-b52c13c6fdde
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3fe0cc5a-af9f-4de1-82fe-cc8cdcb66613:
-    id: 3fe0cc5a-af9f-4de1-82fe-cc8cdcb66613
-    content: Open an .arbo file in Arborescent
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bb3c38c8-c4de-430f-8f3a-4c0d3c18a40a:
-    id: bb3c38c8-c4de-430f-8f3a-4c0d3c18a40a
-    content: Ensure the target terminal has no active workflow collaboration (no session-to-node binding in the registry)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  be0efe9e-9f9e-4c2f-ade5-cfeadb5bf9c4:
-    id: be0efe9e-9f9e-4c2f-ade5-cfeadb5bf9c4
-    content: Right-click an unbound node and choose Send to that terminal with collaborate enabled
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3045f917-2837-4c77-a6a9-2b8f4bcfea49:
-    id: 3045f917-2837-4c77-a6a9-2b8f4bcfea49
-    content: Let the connected Claude Code session call submit_step_output with a response
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  87587bb9-52f5-4d38-b2d6-608e1a7b72d3:
-    id: 87587bb9-52f5-4d38-b2d6-608e1a7b72d3
-    content: Observe that the feedback panel never opens and the content is dropped
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6cc977c-9170-4dd8-9e3b-b52c13c6fdde:
-    id: b6cc977c-9170-4dd8-9e3b-b52c13c6fdde
-    content: Repeat with Revise after discussion and observe the same outcome
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  272268f8-289c-48ca-8360-bedc4f410605:
-    id: 272268f8-289c-48ca-8360-bedc4f410605
-    content: Scenario B — destination terminal is workflow-bound to a different node
-    children:
-      - 5b607696-74e8-423f-a5bd-27d49f8974a2
-      - 6ac07a7d-335e-4440-9987-ae217cc6513c
-      - 393aab97-5ba4-4069-b5be-70a710bd5ddd
-      - 2cb23829-d151-42ad-8e25-c0868a7c2e0b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b607696-74e8-423f-a5bd-27d49f8974a2:
-    id: 5b607696-74e8-423f-a5bd-27d49f8974a2
-    content: Run a workflow step that binds the session in terminal T to node A
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ac07a7d-335e-4440-9987-ae217cc6513c:
-    id: 6ac07a7d-335e-4440-9987-ae217cc6513c
-    content: Without ending the workflow, right-click node B (unbound) and choose Revise after discussion targeting terminal T
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  393aab97-5ba4-4069-b5be-70a710bd5ddd:
-    id: 393aab97-5ba4-4069-b5be-70a710bd5ddd
-    content: Let the connected Claude Code session call submit_step_output with a response
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2cb23829-d151-42ad-8e25-c0868a7c2e0b:
-    id: 2cb23829-d151-42ad-8e25-c0868a7c2e0b
-    content: Observe that the response is written to node A, not the freshly-targeted node B
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bd4322dd-a7b3-4225-a436-bf8682da2253:
-    id: bd4322dd-a7b3-4225-a436-bf8682da2253
-    content: Expected behavior
-    children:
-      - 78ee995d-7d0b-4cf3-8265-fdeae1cc4bcf
-      - b437ff78-b157-4f72-ae6b-325bb6043a11
-      - abcae23b-7c96-4dce-b198-51ec35ae6875
-      - 4208cc4c-0a53-4cce-ad37-e0571ca340aa
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  78ee995d-7d0b-4cf3-8265-fdeae1cc4bcf:
-    id: 78ee995d-7d0b-4cf3-8265-fdeae1cc4bcf
-    content: Manual Send and Revise after discussion never modify the workflow session-to-node binding
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b437ff78-b157-4f72-ae6b-325bb6043a11:
-    id: b437ff78-b157-4f72-ae6b-325bb6043a11
-    content: When the destination terminal has no workflow binding, the next submit_step_output is delivered to the manually-targeted node via one-shot routing
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  abcae23b-7c96-4dce-b198-51ec35ae6875:
-    id: abcae23b-7c96-4dce-b198-51ec35ae6875
-    content: When the destination terminal has a workflow binding to a different node, the one-shot target takes precedence for the next submit_step_output only; afterwards the binding still points at the workflow node
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4208cc4c-0a53-4cce-ad37-e0571ca340aa:
-    id: 4208cc4c-0a53-4cce-ad37-e0571ca340aa
-    content: If routing cannot be resolved the user receives a visible error rather than a silent no-op
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  be30219e-c9b8-405f-9fb8-3adfcff441fe:
-    id: be30219e-c9b8-405f-9fb8-3adfcff441fe
-    content: Actual behavior
-    children:
-      - b4f38838-1b9e-4af8-a151-91be559fd361
-      - 56efde30-76d0-4505-93f2-564f0ef2260b
-      - 8055c12b-bf22-42fb-9417-8a3d6d23c2a7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4f38838-1b9e-4af8-a151-91be559fd361:
-    id: b4f38838-1b9e-4af8-a151-91be559fd361
-    content: Scenario A — mcpSubmitOutputTool.ts returns "unbound — session has no binding" and the renderer's processIncomingFeedbackContent short-circuits at sendActions.ts:694; nothing is shown to the user
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  56efde30-76d0-4505-93f2-564f0ef2260b:
-    id: 56efde30-76d0-4505-93f2-564f0ef2260b
-    content: Scenario B — mcpSubmitOutputTool.ts resolves the session against the binding registry and writes the feedback to the workflow-bound node, ignoring the one-shot target set by the manual send
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8055c12b-bf22-42fb-9417-8a3d6d23c2a7:
-    id: 8055c12b-bf22-42fb-9417-8a3d6d23c2a7
-    content: In both scenarios the user has no visible signal that the response landed on the wrong node or was dropped
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  21cbc00c-7dc7-4810-b219-6f75a959bb8e:
-    id: 21cbc00c-7dc7-4810-b219-6f75a959bb8e
-    content: Suspected cause
-    children:
-      - c6ac07b2-bf6b-48c1-a8dd-067731e1f7c8
-      - c31051d0-e52c-49dd-bcf1-82565a04e2ea
-      - 13a12eb8-00b7-4074-8dd5-efb2b8bb1782
-      - d5f39c3d-5b8a-449d-8bc9-29dea00ce8ca
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c6ac07b2-bf6b-48c1-a8dd-067731e1f7c8:
-    id: c6ac07b2-bf6b-48c1-a8dd-067731e1f7c8
-    content: Commit f4d540d introduced one-shot target routing for manual collab sends with binding markers restricted to workflow advances; the one-shot target is either not being recorded by the Send and Revise paths or not being consulted by submitStepOutput before it falls back to the registry
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c31051d0-e52c-49dd-bcf1-82565a04e2ea:
-    id: c31051d0-e52c-49dd-bcf1-82565a04e2ea
-    content: In Scenario A submitStepOutput errors out on the unbound short-circuit before any one-shot target is considered; the one-shot lookup needs to happen ahead of the unbound check
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  13a12eb8-00b7-4074-8dd5-efb2b8bb1782:
-    id: 13a12eb8-00b7-4074-8dd5-efb2b8bb1782
-    content: In Scenario B the registry lookup wins over the one-shot target; the resolution order needs to prefer a freshly-set one-shot target over the persisted binding for exactly one submission
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d5f39c3d-5b8a-449d-8bc9-29dea00ce8ca:
-    id: d5f39c3d-5b8a-449d-8bc9-29dea00ce8ca
-    content: Commit d1a4eef set collaboratingNodeId inside handleProposalRequest, but only after a proposal reaches the renderer; it cannot rescue a submission that was misrouted or rejected at the main-process resolution step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  502e8e98-bf5e-4cde-9a01-d6d1544d19da:
-    id: 502e8e98-bf5e-4cde-9a01-d6d1544d19da
-    content: Affected files
-    children:
-      - b6d9cacb-56eb-40f2-b5e3-d5ed395dc86b
-      - ca6bd506-ff96-49eb-adb8-d96d46ab1c75
-      - f5c9191d-fe07-4da4-8eac-9ae461cc3445
-      - bf7bfe49-b956-415d-bd42-efcb11a352fe
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6d9cacb-56eb-40f2-b5e3-d5ed395dc86b:
-    id: b6d9cacb-56eb-40f2-b5e3-d5ed395dc86b
-    content: src/main/services/mcpSubmitOutputTool.ts — submitStepOutput target resolution, unbound short-circuit, registry lookup ordering
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ca6bd506-ff96-49eb-adb8-d96d46ab1c75:
-    id: ca6bd506-ff96-49eb-adb8-d96d46ab1c75
-    content: src/main/services/sessionBindingRegistry.ts and any sibling that stores one-shot manual-send targets
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f5c9191d-fe07-4da4-8eac-9ae461cc3445:
-    id: f5c9191d-fe07-4da4-8eac-9ae461cc3445
-    content: src/renderer/store/tree/actions/sendActions.ts — collaborateInTerminal, where the one-shot target is recorded for manual Send and Revise
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf7bfe49-b956-415d-bd42-efcb11a352fe:
-    id: bf7bfe49-b956-415d-bd42-efcb11a352fe
-    content: src/renderer/services/mcpProposalReceiverService.ts — handleProposalRequest, downstream of the resolution
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9707a899-afec-462b-987a-b75af52da311:
-    id: 9707a899-afec-462b-987a-b75af52da311
-    content: Regression window
-    children:
-      - cf2f560e-b65a-4ce8-8572-3324a7637a89
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf2f560e-b65a-4ce8-8572-3324a7637a89:
-    id: cf2f560e-b65a-4ce8-8572-3324a7637a89
-    content: Reported as expected to be covered by commit f4d540d (one-shot target routing) and commit d1a4eef on 2026-05-18 (proposal-side collaboratingNodeId); both scenarios still reproduce on master at 200f053
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5310d56a-8533-447e-8747-f73832cfda72:
-    id: 5310d56a-8533-447e-8747-f73832cfda72
-    content: Severity
-    children:
-      - 2cff12e9-bfde-40be-8377-e55d18b84dec
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2cff12e9-bfde-40be-8377-e55d18b84dec:
-    id: 2cff12e9-bfde-40be-8377-e55d18b84dec
-    content: High — Send and Revise after discussion are primary collaboration flows; silently dropping responses (Scenario A) or misrouting them to the workflow-bound node (Scenario B) both cause data loss with no user-visible signal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  676a5e74-1841-48f1-aa8f-bfcb22c74545:
-    id: 676a5e74-1841-48f1-aa8f-bfcb22c74545
-    content: Notes
-    children:
-      - 3618bdb8-f0f4-49f7-9101-55764f7a2edf
-      - c4ee9462-35a2-4c59-825b-b43b93fce949
-      - 4d6d3cd6-4173-4e57-9f22-1634893d1974
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3618bdb8-f0f4-49f7-9101-55764f7a2edf:
-    id: 3618bdb8-f0f4-49f7-9101-55764f7a2edf
-    content: Binding belongs to workflows; manual Send and Revise are non-binding exceptions and must not rebind on success or failure
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4ee9462-35a2-4c59-825b-b43b93fce949:
-    id: c4ee9462-35a2-4c59-825b-b43b93fce949
-    content: The fix shape is to make one-shot target routing take precedence over both the unbound short-circuit and the registry lookup for the next single submission, then expire so the workflow binding resumes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4d6d3cd6-4173-4e57-9f22-1634893d1974:
-    id: 4d6d3cd6-4173-4e57-9f22-1634893d1974
-    content: Distinct from commit 0dbab80 which only guards against blob-shaped payloads — this bug reproduces with well-formed content
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6df90f8-d007-4978-92b6-3bc20ffa13e7:
-    id: d6df90f8-d007-4978-92b6-3bc20ffa13e7
-    content: Technical refinement
-    children:
-      - 6d847ff9-2c36-4752-a80d-0b18ccbf27f3
-      - 405a4596-fd67-46fd-85cb-dbe89d2c1133
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d847ff9-2c36-4752-a80d-0b18ccbf27f3:
-    id: 6d847ff9-2c36-4752-a80d-0b18ccbf27f3
-    content: Approach
-    children:
-      - 53fb26b6-3a47-4870-9a7b-0614e3bc3bca
-      - a4396313-70ed-4133-b269-72c320286d2e
-      - 833b52f6-4a52-4b4c-97bd-286eae284ae3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  53fb26b6-3a47-4870-9a7b-0614e3bc3bca:
-    id: 53fb26b6-3a47-4870-9a7b-0614e3bc3bca
-    content: The end-to-end plumbing already exists — ARBORESCENT_TARGET marker on manual sends, OneShotTargetStore.pendingTarget consulted ahead of bindingRegistry.lookup at mcpSubmitOutputTool.ts:50-51 — so the fix is to repair the marker-to-store path that f4d540d intended rather than introduce new routing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a4396313-70ed-4133-b269-72c320286d2e:
-    id: a4396313-70ed-4133-b269-72c320286d2e
-    content: Investigation centers on whether sendActions.collaborateInTerminal emits the ARBORESCENT_TARGET marker for both Send and Revise after discussion, and whether the UserPromptSubmit hook in hookScripts.ts and hookEventDispatcher.ts parses it and writes to OneShotTargetStore under the session id Claude reports
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  833b52f6-4a52-4b4c-97bd-286eae284ae3:
-    id: 833b52f6-4a52-4b4c-97bd-286eae284ae3
-    content: 'Replace the silent {applied: false} responses with a visible error so future routing failures surface in the UI instead of dropping content'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  405a4596-fd67-46fd-85cb-dbe89d2c1133:
-    id: 405a4596-fd67-46fd-85cb-dbe89d2c1133
-    content: Complications
-    children:
-      - fe95f83b-2a73-46e9-aacc-4c49e62570d2
-      - 2bd96b53-d259-4d00-85cb-e63988511f94
-      - a498de88-955c-4c98-8dc7-d968ba61065a
-      - c34829c4-4e58-440f-afad-f67f0676a95b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fe95f83b-2a73-46e9-aacc-4c49e62570d2:
-    id: fe95f83b-2a73-46e9-aacc-4c49e62570d2
-    content: One-shot target must expire after exactly one submission so a subsequent workflow advance is not stolen by a stale manual target — confirm the consume-on-read semantics in OneShotTargetStore are reached on both the proposal and direct-apply branches
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2bd96b53-d259-4d00-85cb-e63988511f94:
-    id: 2bd96b53-d259-4d00-85cb-e63988511f94
-    content: Session-id keying — the marker must reach the hook with the same session id that submit_step_output reports; a mismatch here would silently lose the target
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a498de88-955c-4c98-8dc7-d968ba61065a:
-    id: a498de88-955c-4c98-8dc7-d968ba61065a
-    content: The safety-net auto-submit is gated on markerSeenThisTurn — verify that a manual send's ARBORESCENT_TARGET marker correctly sets that flag, otherwise Stop-hook recoveries on manual sends will skip
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c34829c4-4e58-440f-afad-f67f0676a95b:
-    id: c34829c4-4e58-440f-afad-f67f0676a95b
-    content: Out of scope — manual Send and Revise must not register, update, or clear the workflow binding; the fix stays on the one-shot target lane only
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  b71d284c-ef61-4a99-9eb7-4db86efc9b7b:
-    id: b71d284c-ef61-4a99-9eb7-4db86efc9b7b
-    content: TDD tests added
-    children:
-      - a4695d6c-aa65-46b8-885c-72216ed0d7c8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a4695d6c-aa65-46b8-885c-72216ed0d7c8:
-    id: a4695d6c-aa65-46b8-885c-72216ed0d7c8
-    content: Failing tests for consume-on-read at src/main/services/tests/mcpSubmitOutputToolConsumeTarget.test.ts — 4 failing as the gap, 2 passing for "do not clear on error" retry path, 3 .todo placeholders for the uncertain visible-error UX
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  44c0a4ad-0a13-4192-81a8-ed3eb1b5089c:
-    id: 44c0a4ad-0a13-4192-81a8-ed3eb1b5089c
-    content: Implementation
-    children:
-      - f5968141-256e-4925-9f03-e997ddc6d890
-      - 99ef3cf2-5477-4b8b-838c-ee5a42e4e445
-      - 8f639ff3-6663-431b-a158-4c31850d2ff5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f5968141-256e-4925-9f03-e997ddc6d890:
-    id: f5968141-256e-4925-9f03-e997ddc6d890
-    content: submitStepOutput in src/main/services/mcpSubmitOutputTool.ts now calls oneShotTargetStore.clearPendingTarget(sessionId) after a successful apply or proposal; failure paths preserve the target so retries route correctly
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  99ef3cf2-5477-4b8b-838c-ee5a42e4e445:
-    id: 99ef3cf2-5477-4b8b-838c-ee5a42e4e445
-    content: All 31 consume + routing + store tests pass; 33 hook dispatcher + marker emission tests pass with no regression; lint and TypeScript clean on the touched files
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f639ff3-6663-431b-a158-4c31850d2ff5:
-    id: 8f639ff3-6663-431b-a158-4c31850d2ff5
-    content: Visible-error UX deferred — left as .todo placeholders because the post-fix surface (toast vs IPC event vs error return) is still uncertain; the consume-on-read fix is independent of that decision
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  014482f6-0482-481a-bfdf-6ccc2820dc06:
-    id: 014482f6-0482-481a-bfdf-6ccc2820dc06
-    content: AI refactor pass
-    children:
-      - 053d2742-62d0-4bdd-a398-cd7f8d5c1f7b
-      - 62970933-736a-460f-9b13-93d3a1185ee3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  053d2742-62d0-4bdd-a398-cd7f8d5c1f7b:
-    id: 053d2742-62d0-4bdd-a398-cd7f8d5c1f7b
-    content: Stripped ticket and user-story references from test comments per the "no PRD references" convention; kept the technical "why" in independent voice
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  62970933-736a-460f-9b13-93d3a1185ee3:
-    id: 62970933-736a-460f-9b13-93d3a1185ee3
-    content: Re-ran focused checks on touched files — 41 submit-output-tool tests pass, ESLint clean, no new TypeScript errors
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  77d833f7-17fb-4db6-aaab-7f42923bfed2:
-    id: 77d833f7-17fb-4db6-aaab-7f42923bfed2
-    content: review feedback
-    children:
-      - 5d5e4586-a822-4af4-b0f0-702e809b8766
-      - 86004cf8-87c6-4f0d-80f6-b9508019de59
-      - 9c3f07ca-eb16-4e87-9cb4-287ac8ff1793
-      - ffba95c2-4e17-41c9-9523-a8b3db4046b1
-      - 7790e7f2-27ca-415b-ad31-d03fbfd3ed42
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5d5e4586-a822-4af4-b0f0-702e809b8766:
-    id: 5d5e4586-a822-4af4-b0f0-702e809b8766
-    content: Verdict — ship it. Reviewer signed off with no high-priority issues. Fix is correct, minimal, and placed where it should be — clear after success on both branches (proposal at line 74, direct apply at line 83), preserved on both failure exits, retries route to the same target as intended
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  86004cf8-87c6-4f0d-80f6-b9508019de59:
-    id: 86004cf8-87c6-4f0d-80f6-b9508019de59
-    content: Verified there is no double-clear hazard with the hook-side writer in hookEventDispatcher.handleRegisterTarget — Map.delete on a missing key is a no-op, and a between-turns set after the tool already cleared is intended behavior. mcpServer.clear() on shutdown still nukes everything as before
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c3f07ca-eb16-4e87-9cb4-287ac8ff1793:
-    id: 9c3f07ca-eb16-4e87-9cb4-287ac8ff1793
-    content: 'Nice-to-have — add a safety-net-origin consume-on-read test (origin: ''safety-net'' + markerSeen: true + pendingTarget: TARGET routes to TARGET and clears it). Uses the same harness already in the test file; reviewer called it out as cheap to lock down. Not required for this PR — same code path is already exercised via the explicit-origin tests'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ffba95c2-4e17-41c9-9523-a8b3db4046b1:
-    id: ffba95c2-4e17-41c9-9523-a8b3db4046b1
-    content: Nice-to-have — JSON.parse(result.content[0].text) is brittle if ToolResult ever gains non-text content variants; matches sibling test style today, so leave unless ToolResult's shape evolves
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7790e7f2-27ca-415b-ad31-d03fbfd3ed42:
-    id: 7790e7f2-27ca-415b-ad31-d03fbfd3ed42
-    content: Nice-to-have — the two clearPendingTarget call sites could be consolidated post-restructure, but the current placement makes the "clear on success, not on failure" boundary obvious. Reviewer explicitly recommended NOT refactoring this
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   dcb35766-d7e4-4514-80cd-be4cc963860e:
     id: dcb35766-d7e4-4514-80cd-be4cc963860e
     content: worktree
@@ -156920,6 +156240,1794 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  d6c63b3b-5dab-4986-82ec-40f03aaf163e:
+    id: d6c63b3b-5dab-4986-82ec-40f03aaf163e
+    content: Summary
+    children:
+      - f0504ac6-b270-4f9e-a2fc-915afb37eaea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0504ac6-b270-4f9e-a2fc-915afb37eaea:
+    id: f0504ac6-b270-4f9e-a2fc-915afb37eaea
+    content: Selecting a partial range of text inside a node and pressing Ctrl/Cmd+C or Ctrl/Cmd+X copies/cuts the entire node instead of the highlighted substring.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f57e934c-c833-4dd7-9fca-160dd8284185:
+    id: f57e934c-c833-4dd7-9fca-160dd8284185
+    content: Steps to reproduce
+    children:
+      - 2aabdd8e-6670-49ff-bcdf-c701ba634149
+      - 9f3ae5f2-e40e-4d5f-8145-6c88b16e9502
+      - 8e4bd6dc-17e1-4789-adc3-14370ed6131d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2aabdd8e-6670-49ff-bcdf-c701ba634149:
+    id: 2aabdd8e-6670-49ff-bcdf-c701ba634149
+    content: Precondition / setup
+    children:
+      - 0bea8b27-6baa-4ca0-8e87-a9d9102f7649
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bea8b27-6baa-4ca0-8e87-a9d9102f7649:
+    id: 0bea8b27-6baa-4ca0-8e87-a9d9102f7649
+    content: Open Arborescent with any workflow tree that has a node containing more than one word of text.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f3ae5f2-e40e-4d5f-8145-6c88b16e9502:
+    id: 9f3ae5f2-e40e-4d5f-8145-6c88b16e9502
+    content: User action
+    children:
+      - 357b5a54-5453-48bf-9942-bff6999b7a87
+      - 0403d924-12d1-4f5c-bfee-3f52fb9045dc
+      - 897b2fa7-5aa4-498b-b2db-b9eabc60733e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  357b5a54-5453-48bf-9942-bff6999b7a87:
+    id: 357b5a54-5453-48bf-9942-bff6999b7a87
+    content: Click into the node to focus it but do not enter edit mode (i.e. the contenteditable is not the active element), then click-drag to highlight a substring of its text.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0403d924-12d1-4f5c-bfee-3f52fb9045dc:
+    id: 0403d924-12d1-4f5c-bfee-3f52fb9045dc
+    content: Press Ctrl/Cmd+C (or Ctrl/Cmd+X) while the substring is highlighted.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  897b2fa7-5aa4-498b-b2db-b9eabc60733e:
+    id: 897b2fa7-5aa4-498b-b2db-b9eabc60733e
+    content: Paste into any external text field (or another node) with Ctrl/Cmd+V.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e4bd6dc-17e1-4789-adc3-14370ed6131d:
+    id: 8e4bd6dc-17e1-4789-adc3-14370ed6131d
+    content: Observation that exposes the bug
+    children:
+      - 5961accb-0846-4d22-936a-39cd76a4cbe4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5961accb-0846-4d22-936a-39cd76a4cbe4:
+    id: 5961accb-0846-4d22-936a-39cd76a4cbe4
+    content: The pasted payload is the full node serialized as markdown, not the highlighted substring; with Ctrl+X the whole node is also removed from the tree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3139564-28f6-4bc7-9de3-bef0f4aeeb70:
+    id: d3139564-28f6-4bc7-9de3-bef0f4aeeb70
+    content: Expected behavior
+    children:
+      - 0aab7698-7611-4cb2-bf51-8180384fdc33
+      - 55580975-4c52-481b-8602-ab2f77dd48dd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0aab7698-7611-4cb2-bf51-8180384fdc33:
+    id: 0aab7698-7611-4cb2-bf51-8180384fdc33
+    content: Happy path
+    children:
+      - 20e9c6bb-3fef-41ce-89e1-75acd4452756
+      - 27c2ec16-a1f3-4cf7-ae45-1a4884726dd5
+      - 703d4cca-8294-404f-a289-7e295b516292
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20e9c6bb-3fef-41ce-89e1-75acd4452756:
+    id: 20e9c6bb-3fef-41ce-89e1-75acd4452756
+    content: When a non-empty text range is highlighted inside a node, Ctrl/Cmd+C copies exactly that substring as plain text to the system clipboard and leaves the tree unchanged.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27c2ec16-a1f3-4cf7-ae45-1a4884726dd5:
+    id: 27c2ec16-a1f3-4cf7-ae45-1a4884726dd5
+    content: Under the same condition Ctrl/Cmd+X copies the substring and removes it from the node's content, without deleting the node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  703d4cca-8294-404f-a289-7e295b516292:
+    id: 703d4cca-8294-404f-a289-7e295b516292
+    content: When no text range is highlighted, Ctrl/Cmd+C and Ctrl/Cmd+X continue to operate on the focused node(s) as today.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55580975-4c52-481b-8602-ab2f77dd48dd:
+    id: 55580975-4c52-481b-8602-ab2f77dd48dd
+    content: Edge cases
+    children:
+      - 98d8afb3-19f3-4a76-97fe-32f0ff6e0325
+      - c7af0c5b-1aa7-49de-a38c-a16cedc4bc91
+      - 84438550-3d46-465a-9f7a-81442cd08fc5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98d8afb3-19f3-4a76-97fe-32f0ff6e0325:
+    id: 98d8afb3-19f3-4a76-97fe-32f0ff6e0325
+    content: Selections that span multiple nodes still fall back to whole-node copy/cut because a partial multi-node cut is ambiguous.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7af0c5b-1aa7-49de-a38c-a16cedc4bc91:
+    id: c7af0c5b-1aa7-49de-a38c-a16cedc4bc91
+    content: Selections inside the title input, terminal, browser panel, and other input/textarea surfaces remain owned by those hosts.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84438550-3d46-465a-9f7a-81442cd08fc5:
+    id: 84438550-3d46-465a-9f7a-81442cd08fc5
+    content: An empty / collapsed selection is treated as "no selection" and falls through to whole-node copy/cut.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ac95012-b8dd-4669-ab22-d7cb6bbe137a:
+    id: 9ac95012-b8dd-4669-ab22-d7cb6bbe137a
+    content: Actual behavior
+    children:
+      - 9e324a01-c91b-422c-8234-90d4dbcf06b4
+      - 2ab91bf5-3748-40cf-9e72-e73ef783e080
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e324a01-c91b-422c-8234-90d4dbcf06b4:
+    id: 9e324a01-c91b-422c-8234-90d4dbcf06b4
+    content: What actually happens
+    children:
+      - dde38ac0-27ca-4fbe-9dd2-f5e148aa3655
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dde38ac0-27ca-4fbe-9dd2-f5e148aa3655:
+    id: dde38ac0-27ca-4fbe-9dd2-f5e148aa3655
+    content: The hotkey handler treats the highlight as if no text were selected, calls actions.copyNodes / actions.cutNodes, and the browser's native copy/cut is preempted by event.preventDefault.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ab91bf5-3748-40cf-9e72-e73ef783e080:
+    id: 2ab91bf5-3748-40cf-9e72-e73ef783e080
+    content: User-visible symptoms
+    children:
+      - 8f8b4c5c-ab41-4d4f-bf79-83dff81f80fa
+      - 42f3bec8-edf3-4145-b1c5-07cff0e145ae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f8b4c5c-ab41-4d4f-bf79-83dff81f80fa:
+    id: 8f8b4c5c-ab41-4d4f-bf79-83dff81f80fa
+    content: Clipboard contains serialized markdown for the whole node instead of the highlighted text.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42f3bec8-edf3-4145-b1c5-07cff0e145ae:
+    id: 42f3bec8-edf3-4145-b1c5-07cff0e145ae
+    content: Ctrl+X removes the entire node from the tree, which is data-destructive relative to user intent.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00d80ebc-8249-48a2-b999-c607eeec67d0:
+    id: 00d80ebc-8249-48a2-b999-c607eeec67d0
+    content: Suspected cause
+    children:
+      - cb6033ea-9f0c-4228-8d0d-63f608d38670
+      - 74f2982c-2761-47f8-835c-4cdf42718bfd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb6033ea-9f0c-4228-8d0d-63f608d38670:
+    id: cb6033ea-9f0c-4228-8d0d-63f608d38670
+    content: Code path implicated
+    children:
+      - b12517db-d904-473a-bfb9-755336af5c83
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b12517db-d904-473a-bfb9-755336af5c83:
+    id: b12517db-d904-473a-bfb9-755336af5c83
+    content: 'src/renderer/services/keyboard/uiService.ts lines 195-213: the cut and copy branches gate on hasTextSelection(), defined in src/renderer/utils/selectionUtils.ts, which only returns true when the selection''s anchor node sits inside a [contenteditable].'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74f2982c-2761-47f8-835c-4cdf42718bfd:
+    id: 74f2982c-2761-47f8-835c-4cdf42718bfd
+    content: Why the existing guard does not cover this case
+    children:
+      - be185a20-8c3e-4938-85e7-2711f04e1a99
+      - 560e0257-9bec-40d8-be3d-00b941294021
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be185a20-8c3e-4938-85e7-2711f04e1a99:
+    id: be185a20-8c3e-4938-85e7-2711f04e1a99
+    content: When a node is displayed (not actively being edited) its text lives outside any [contenteditable], so hasTextSelection() returns false even though window.getSelection() reports a non-collapsed range — the keyboard handler then runs the whole-node copy/cut path and preventDefaults the browser's native copy.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  560e0257-9bec-40d8-be3d-00b941294021:
+    id: 560e0257-9bec-40d8-be3d-00b941294021
+    content: useEditMenuActions.handleCopy / handleCut have the same contenteditable-only check, so the Edit menu has the same bug surface.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a43b35b9-388a-4268-873e-6380348e12a5:
+    id: a43b35b9-388a-4268-873e-6380348e12a5
+    content: Affected files
+    children:
+      - 49b6294f-fa29-4741-9a0d-b5b94cadc822
+      - e0349cf5-678f-4267-9345-aa8580ef1490
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  49b6294f-fa29-4741-9a0d-b5b94cadc822:
+    id: 49b6294f-fa29-4741-9a0d-b5b94cadc822
+    content: Primary suspect
+    children:
+      - 67b3423e-19cf-4fcd-afa3-a7b7c24ef010
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67b3423e-19cf-4fcd-afa3-a7b7c24ef010:
+    id: 67b3423e-19cf-4fcd-afa3-a7b7c24ef010
+    content: src/renderer/utils/selectionUtils.ts (hasTextSelection)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0349cf5-678f-4267-9345-aa8580ef1490:
+    id: e0349cf5-678f-4267-9345-aa8580ef1490
+    content: Related surfaces
+    children:
+      - 094275d9-c77e-467a-b70d-bb7db5b2806f
+      - 02e78364-ece4-43a4-9c8b-9460365c0539
+      - 5ef96a4d-eccb-484c-9abf-91b594c0c6c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  094275d9-c77e-467a-b70d-bb7db5b2806f:
+    id: 094275d9-c77e-467a-b70d-bb7db5b2806f
+    content: src/renderer/services/keyboard/uiService.ts (copy/cut hotkey branches)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  02e78364-ece4-43a4-9c8b-9460365c0539:
+    id: 02e78364-ece4-43a4-9c8b-9460365c0539
+    content: src/renderer/components/MenuBar/hooks/useEditMenuActions.ts (handleCopy, handleCut)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ef96a4d-eccb-484c-9abf-91b594c0c6c0:
+    id: 5ef96a4d-eccb-484c-9abf-91b594c0c6c0
+    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts (right-click Copy entries should mirror the same branching)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f037693c-f3e8-4b2a-8496-191e4ab74630:
+    id: f037693c-f3e8-4b2a-8496-191e4ab74630
+    content: Regression window
+    children:
+      - 6a80d87b-b42e-45e9-a859-87b67ccb2602
+      - 960b78d8-771e-452f-95ab-3e58b1be8b26
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a80d87b-b42e-45e9-a859-87b67ccb2602:
+    id: 6a80d87b-b42e-45e9-a859-87b67ccb2602
+    content: Last known good
+    children:
+      - daecb090-c663-43ed-b9c0-0313960be4be
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  daecb090-c663-43ed-b9c0-0313960be4be:
+    id: daecb090-c663-43ed-b9c0-0313960be4be
+    content: Unknown — needs bisect; hasTextSelection was authored with the contenteditable-only check and has not been broadened since.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  960b78d8-771e-452f-95ab-3e58b1be8b26:
+    id: 960b78d8-771e-452f-95ab-3e58b1be8b26
+    content: First observed broken
+    children:
+      - e130d13c-ef83-4bbf-9237-5afae1608a47
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e130d13c-ef83-4bbf-9237-5afae1608a47:
+    id: e130d13c-ef83-4bbf-9237-5afae1608a47
+    content: Present on master at 200f053 (2026-05-22 working tree).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9ea5c44-be66-4e81-a7f9-f200218d0996:
+    id: f9ea5c44-be66-4e81-a7f9-f200218d0996
+    content: Severity
+    children:
+      - 5177bdb2-a8b2-4df4-9ebf-e462d0bf136b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5177bdb2-a8b2-4df4-9ebf-e462d0bf136b:
+    id: 5177bdb2-a8b2-4df4-9ebf-e462d0bf136b
+    content: Medium — non-crashing but user-visible and data-destructive on Cut. Hit every time a user wants to quote part of a node; the workaround (enter edit mode first) is non-obvious.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fedaaa53-2c02-4d04-b8b3-221fde646c1d:
+    id: fedaaa53-2c02-4d04-b8b3-221fde646c1d
+    content: Notes
+    children:
+      - 5ab0f4c4-e0dd-4c9a-b16f-eb89d5bc97f5
+      - fc1b8dce-023d-4bb2-b593-e6758ca39d7f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ab0f4c4-e0dd-4c9a-b16f-eb89d5bc97f5:
+    id: 5ab0f4c4-e0dd-4c9a-b16f-eb89d5bc97f5
+    content: Adjacent issues to disambiguate
+    children:
+      - 3dc47e55-e20d-4b88-b1ec-c8ec2b75b856
+      - c4850259-3ce2-41c5-9894-586a4964aed0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dc47e55-e20d-4b88-b1ec-c8ec2b75b856:
+    id: 3dc47e55-e20d-4b88-b1ec-c8ec2b75b856
+    content: Distinct from the "paste plain text inside contenteditable" path at uiService.ts:223-233 — that path is unaffected.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4850259-3ce2-41c5-9894-586a4964aed0:
+    id: c4850259-3ce2-41c5-9894-586a4964aed0
+    content: Distinct from terminal/browser panel selection, already short-circuited via isFocusInTerminalOrBrowser.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc1b8dce-023d-4bb2-b593-e6758ca39d7f:
+    id: fc1b8dce-023d-4bb2-b593-e6758ca39d7f
+    content: UX / telemetry gap worth fixing alongside
+    children:
+      - 0b89cac4-cff2-41aa-bc50-271be2980308
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b89cac4-cff2-41aa-bc50-271be2980308:
+    id: 0b89cac4-cff2-41aa-bc50-271be2980308
+    content: Right-click context menu's Copy entry should also respect a live text selection and offer "Copy selection" instead of "Copy node" when a range is highlighted.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0abdac8-c5a9-407e-a613-af0490671d27:
+    id: b0abdac8-c5a9-407e-a613-af0490671d27
+    content: User story — Copy and cut highlighted text inside a node
+    children:
+      - bb4b087b-688c-4fba-89ba-defe0e14e79e
+      - 237667f2-3abd-44ba-a0fb-87421bbb1de9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb4b087b-688c-4fba-89ba-defe0e14e79e:
+    id: bb4b087b-688c-4fba-89ba-defe0e14e79e
+    content: Product spec
+    children:
+      - 46e64d94-bbb0-4e6d-9501-c6f61c6e739f
+      - 3e4f548b-e1db-4f15-8d39-7dff74392769
+      - f2e512c9-780f-4665-ab7f-b9d7493e2acf
+      - 020e2ede-f187-4edf-ad8e-f42e3e4d8355
+      - e357f81e-9e7e-469b-bb39-ac32d496bd41
+      - a2d8b15e-22c3-452e-afbd-1810c25dce68
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  46e64d94-bbb0-4e6d-9501-c6f61c6e739f:
+    id: 46e64d94-bbb0-4e6d-9501-c6f61c6e739f
+    content: Context
+    children:
+      - 1aff1dca-f36e-4c27-ab01-63cd73067a8e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1aff1dca-f36e-4c27-ab01-63cd73067a8e:
+    id: 1aff1dca-f36e-4c27-ab01-63cd73067a8e
+    content: Users routinely want to quote a sentence or phrase from a node into another node, an AI prompt, a terminal, or an external doc. Today Ctrl/Cmd+C and Ctrl/Cmd+X always operate on the whole node, even when the user has visibly highlighted a substring. The workaround (enter edit mode first) is undiscoverable and breaks flow.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e4f548b-e1db-4f15-8d39-7dff74392769:
+    id: 3e4f548b-e1db-4f15-8d39-7dff74392769
+    content: User
+    children:
+      - d4588f2f-cde8-42f9-a1d4-ed005530335d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4588f2f-cde8-42f9-a1d4-ed005530335d:
+    id: d4588f2f-cde8-42f9-a1d4-ed005530335d
+    content: An Arborescent user navigating and curating a workflow tree, who treats node text as readable prose they want to selectively quote.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2e512c9-780f-4665-ab7f-b9d7493e2acf:
+    id: f2e512c9-780f-4665-ab7f-b9d7493e2acf
+    content: Current experience
+    children:
+      - 98d6ba3d-962f-436e-bcbf-b6d74f5ac55b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98d6ba3d-962f-436e-bcbf-b6d74f5ac55b:
+    id: 98d6ba3d-962f-436e-bcbf-b6d74f5ac55b
+    content: Highlight a span of text in a node → Ctrl/Cmd+C → paste yields the whole node serialized as markdown. Ctrl/Cmd+X additionally deletes the node, which is destructive and unexpected.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  020e2ede-f187-4edf-ad8e-f42e3e4d8355:
+    id: 020e2ede-f187-4edf-ad8e-f42e3e4d8355
+    content: Goal
+    children:
+      - 6f03b90e-e6a7-45ff-ac98-2d21ee9f631c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f03b90e-e6a7-45ff-ac98-2d21ee9f631c:
+    id: 6f03b90e-e6a7-45ff-ac98-2d21ee9f631c
+    content: When a non-empty text range is highlighted inside a node, copy/cut shortcuts and the Edit menu act on that range only; with no selection they keep operating on the focused node(s).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e357f81e-9e7e-469b-bb39-ac32d496bd41:
+    id: e357f81e-9e7e-469b-bb39-ac32d496bd41
+    content: Business rules
+    children:
+      - 4f062ccf-086c-4236-995b-c51debdb2484
+      - fed3b337-8d81-4367-b94a-a4e7a72610ce
+      - d6f65a1c-6a89-44d3-b73a-a526f7f6e384
+      - 5b635a7b-006a-4a27-8529-7da45ecb361d
+      - 3bc10773-74da-4f33-b851-c1553d3bf4af
+      - bda06586-4403-433e-943b-fbff263c8936
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f062ccf-086c-4236-995b-c51debdb2484:
+    id: 4f062ccf-086c-4236-995b-c51debdb2484
+    content: A non-collapsed window.getSelection() range whose anchor is inside the tree view is treated as "text selection" regardless of whether the host element is contenteditable.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fed3b337-8d81-4367-b94a-a4e7a72610ce:
+    id: fed3b337-8d81-4367-b94a-a4e7a72610ce
+    content: On text-selection copy, the substring is written to the system clipboard as plain text and the tree state is not modified.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6f65a1c-6a89-44d3-b73a-a526f7f6e384:
+    id: d6f65a1c-6a89-44d3-b73a-a526f7f6e384
+    content: On text-selection cut, the substring is written to the clipboard and removed from the node's stored content via the existing node-content update path, so it participates in undo/redo; the node itself is not deleted.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b635a7b-006a-4a27-8529-7da45ecb361d:
+    id: 5b635a7b-006a-4a27-8529-7da45ecb361d
+    content: Cut applies only when the selection sits inside a single node; multi-node selections fall back to whole-node cut.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bc10773-74da-4f33-b851-c1553d3bf4af:
+    id: 3bc10773-74da-4f33-b851-c1553d3bf4af
+    content: Selections inside terminal, browser panel, title input, and other input/textarea hosts remain owned by those hosts and must not be intercepted.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bda06586-4403-433e-943b-fbff263c8936:
+    id: bda06586-4403-433e-943b-fbff263c8936
+    content: Right-click and Edit menu Copy/Cut entries follow the same rule and re-label to "Copy selection" / "Cut selection" when a text range is live.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2d8b15e-22c3-452e-afbd-1810c25dce68:
+    id: a2d8b15e-22c3-452e-afbd-1810c25dce68
+    content: Acceptance criteria
+    children:
+      - 2ebf4bb8-96b1-44c4-a2b3-15de3275cb4d
+      - 1c7cc9ee-25be-46d6-9c89-b37b26307b55
+      - 3bef3aac-2780-46b3-bafb-759b6a9dd75b
+      - f7ba8759-bd36-4de6-8fc7-11636c67c80e
+      - f14e4b44-5a8d-4ea7-9ad7-b252289aba25
+      - 69dcc64b-6097-4a0e-8d8a-8cd21b7d4216
+      - f0f973f0-1ba2-4148-8db2-6ce89bcfad7f
+      - 84dda0d5-83a0-49ae-9a02-10584f828e85
+      - ab182a3c-1fca-44b2-a7f7-ffb5e71f9553
+      - 54a8ca53-c7f0-418d-873d-cf2049fb3dae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ebf4bb8-96b1-44c4-a2b3-15de3275cb4d:
+    id: 2ebf4bb8-96b1-44c4-a2b3-15de3275cb4d
+    content: Highlighting a substring in a non-edit-mode node and pressing Ctrl/Cmd+C places exactly that substring on the clipboard; the tree is unchanged.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c7cc9ee-25be-46d6-9c89-b37b26307b55:
+    id: 1c7cc9ee-25be-46d6-9c89-b37b26307b55
+    content: Highlighting a substring and pressing Ctrl/Cmd+X places that substring on the clipboard and removes it from the node content; the node still exists.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bef3aac-2780-46b3-bafb-759b6a9dd75b:
+    id: 3bef3aac-2780-46b3-bafb-759b6a9dd75b
+    content: Cut is reflected in undo/redo (Ctrl/Cmd+Z restores the original text).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7ba8759-bd36-4de6-8fc7-11636c67c80e:
+    id: f7ba8759-bd36-4de6-8fc7-11636c67c80e
+    content: With no text selection, Ctrl/Cmd+C / Ctrl/Cmd+X behave exactly as today (whole-node copy/cut, multi-select aware).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f14e4b44-5a8d-4ea7-9ad7-b252289aba25:
+    id: f14e4b44-5a8d-4ea7-9ad7-b252289aba25
+    content: Multi-node selections fall through to whole-node copy/cut (no partial-cut data loss).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69dcc64b-6097-4a0e-8d8a-8cd21b7d4216:
+    id: 69dcc64b-6097-4a0e-8d8a-8cd21b7d4216
+    content: Edit menu's Copy and Cut items copy/cut the current selection when one exists, otherwise the focused node(s).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0f973f0-1ba2-4148-8db2-6ce89bcfad7f:
+    id: f0f973f0-1ba2-4148-8db2-6ce89bcfad7f
+    content: Node right-click menu's Copy item copies the live text selection when one exists inside that node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84dda0d5-83a0-49ae-9a02-10584f828e85:
+    id: 84dda0d5-83a0-49ae-9a02-10584f828e85
+    content: Copy/cut still works inside terminal and browser panels (no regression from the broadened selection check).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab182a3c-1fca-44b2-a7f7-ffb5e71f9553:
+    id: ab182a3c-1fca-44b2-a7f7-ffb5e71f9553
+    content: Focus inside the node title input continues to use native input copy/cut.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54a8ca53-c7f0-418d-873d-cf2049fb3dae:
+    id: 54a8ca53-c7f0-418d-873d-cf2049fb3dae
+    content: Keyboard-only users can highlight via Shift+Arrow inside a node and copy with Ctrl/Cmd+C.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  237667f2-3abd-44ba-a0fb-87421bbb1de9:
+    id: 237667f2-3abd-44ba-a0fb-87421bbb1de9
+    content: Implementation proposal
+    children:
+      - c0866ec6-213c-491b-88d6-f800ada1c9ad
+      - 184c2d47-ffd3-439e-a647-fa6a0f915dee
+      - fa63ad77-eb23-4d61-8171-a2064f64fcba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0866ec6-213c-491b-88d6-f800ada1c9ad:
+    id: c0866ec6-213c-491b-88d6-f800ada1c9ad
+    content: Approach
+    children:
+      - 68a918b9-83bb-4376-9081-a8fc6cbea478
+      - 9c540986-b4eb-4625-b176-e4a85d3b5718
+      - 20ba1352-4620-4774-ae7b-2f2d1a08f1b2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68a918b9-83bb-4376-9081-a8fc6cbea478:
+    id: 68a918b9-83bb-4376-9081-a8fc6cbea478
+    content: Broaden hasTextSelection() in src/renderer/utils/selectionUtils.ts so it considers any non-collapsed selection whose anchor sits inside the tree view (e.g. .tree-panel / node-content container), not only inside a [contenteditable]. Keep terminal/browser/input hosts excluded.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c540986-b4eb-4625-b176-e4a85d3b5718:
+    id: 9c540986-b4eb-4625-b176-e4a85d3b5718
+    content: 'In src/renderer/services/keyboard/uiService.ts, when the broadened check is true: for copy, do not preventDefault — let the browser write the substring to the clipboard. For cut, write the substring to the clipboard via the existing clipboard service and call a store action that mutates node content through the existing content-edit path so the deletion participates in undo/redo.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20ba1352-4620-4774-ae7b-2f2d1a08f1b2:
+    id: 20ba1352-4620-4774-ae7b-2f2d1a08f1b2
+    content: Mirror the same selection-aware branching in useEditMenuActions.handleCopy / handleCut and in useNodeContextMenu Copy entry.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  184c2d47-ffd3-439e-a647-fa6a0f915dee:
+    id: 184c2d47-ffd3-439e-a647-fa6a0f915dee
+    content: Touchpoints
+    children:
+      - 345ee8d0-a33d-49f6-b4e3-9aa50a4c7f38
+      - 6fa55ac3-b26a-443a-b2c4-198a499a3b1b
+      - 0bc8e671-a654-4893-85e8-a1a438d76698
+      - a1fb9c93-024c-4d19-82dd-067198e62f39
+      - 8946f1cb-e0b4-404c-a9ad-801731627d6e
+      - 001de1e0-e418-4417-ae8e-aa4bcbf31523
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  345ee8d0-a33d-49f6-b4e3-9aa50a4c7f38:
+    id: 345ee8d0-a33d-49f6-b4e3-9aa50a4c7f38
+    content: src/renderer/utils/selectionUtils.ts — widen hasTextSelection scope.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fa55ac3-b26a-443a-b2c4-198a499a3b1b:
+    id: 6fa55ac3-b26a-443a-b2c4-198a499a3b1b
+    content: src/renderer/services/keyboard/uiService.ts — copy/cut branches.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bc8e671-a654-4893-85e8-a1a438d76698:
+    id: 0bc8e671-a654-4893-85e8-a1a438d76698
+    content: src/renderer/components/MenuBar/hooks/useEditMenuActions.ts — copy/cut handlers.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1fb9c93-024c-4d19-82dd-067198e62f39:
+    id: a1fb9c93-024c-4d19-82dd-067198e62f39
+    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts — Copy entry label and dispatch.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8946f1cb-e0b4-404c-a9ad-801731627d6e:
+    id: 8946f1cb-e0b4-404c-a9ad-801731627d6e
+    content: src/renderer/store/tree/actions/clipboardActions.ts — possibly a new cutTextRange action, or reuse existing node-content mutation for the cut path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  001de1e0-e418-4417-ae8e-aa4bcbf31523:
+    id: 001de1e0-e418-4417-ae8e-aa4bcbf31523
+    content: Co-located tests for each touched module — partial-selection copy/cut unit tests, plus an integration test for the keyboard path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa63ad77-eb23-4d61-8171-a2064f64fcba:
+    id: fa63ad77-eb23-4d61-8171-a2064f64fcba
+    content: Constraints to call out
+    children:
+      - 036cd3e3-9831-4feb-aa00-085c1f23881f
+      - a316ef8e-ce82-4151-9edb-89f98f96d273
+      - 1124114c-ef87-4bc2-a2f5-7d23917b0ffb
+      - 36d5c96a-5abb-4c75-ba04-3e28fa7aa2fc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  036cd3e3-9831-4feb-aa00-085c1f23881f:
+    id: 036cd3e3-9831-4feb-aa00-085c1f23881f
+    content: Do not call event.preventDefault() on copy when delegating to the browser; otherwise the native clipboard write never happens.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a316ef8e-ce82-4151-9edb-89f98f96d273:
+    id: a316ef8e-ce82-4151-9edb-89f98f96d273
+    content: Cut must go through the store action that records undo history — never mutate node content out-of-band, or undo will desync.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1124114c-ef87-4bc2-a2f5-7d23917b0ffb:
+    id: 1124114c-ef87-4bc2-a2f5-7d23917b0ffb
+    content: The broadened selection check must continue to exclude terminal (xterm.js) and browser-panel webview; rely on the existing isFocusInTerminalOrBrowser short-circuit ordering rather than re-checking inside hasTextSelection.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  36d5c96a-5abb-4c75-ba04-3e28fa7aa2fc:
+    id: 36d5c96a-5abb-4c75-ba04-3e28fa7aa2fc
+    content: Right-click menu Copy currently always calls actions.copyNodes (useNodeContextMenu.ts:317, 355) — switching it to selection-aware dispatch is a behaviour change worth a release-note line.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9b8750e-fcc4-4646-b894-44ba2b538033:
+    id: a9b8750e-fcc4-4646-b894-44ba2b538033
+    content: worktree
+    children:
+      - 276950ac-720c-4133-94b9-b6ce4fb076e8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  276950ac-720c-4133-94b9-b6ce4fb076e8:
+    id: 276950ac-720c-4133-94b9-b6ce4fb076e8
+    content: vscode://file//Users/brianfox/dev/Arborescent-one-shot-routing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d2ffb86-3641-43a5-bc78-aaf21152897a:
+    id: 3d2ffb86-3641-43a5-bc78-aaf21152897a
+    content: Summary
+    children:
+      - f6642daf-bf02-47f7-bc5f-f004a26eca35
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6642daf-bf02-47f7-bc5f-f004a26eca35:
+    id: f6642daf-bf02-47f7-bc5f-f004a26eca35
+    content: Manual Send and Revise after discussion are exception flows that must not change the workflow session-to-node binding; they are supposed to one-shot route the next submit_step_output to the targeted node. The one-shot routing is not taking effect, so feedback either drops (terminal has no workflow binding) or lands on the workflow-bound node (terminal has a binding to a different node)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3a316f6-51eb-4b0a-a351-f2b7201efced:
+    id: d3a316f6-51eb-4b0a-a351-f2b7201efced
+    content: Steps to reproduce
+    children:
+      - 753440af-da9a-427c-8950-30554bcf4700
+      - 06bbf7e9-f0e2-48ca-ac67-dd9fb691c17f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  753440af-da9a-427c-8950-30554bcf4700:
+    id: 753440af-da9a-427c-8950-30554bcf4700
+    content: Scenario A — destination terminal has no workflow binding
+    children:
+      - 173d38d5-48ae-4ed0-89f8-8b4e5678fa97
+      - fabc6e7a-7c6f-4afb-b1e6-6472fe38e8fd
+      - 48002071-54d5-45e5-9853-10ccf8e89998
+      - 8439030a-d9b8-43b5-9e2e-57fb30814430
+      - 9b2c641a-d3c0-4f4d-9990-c8701116d82a
+      - e39a9abf-7b10-420c-85ea-533ee7de34ff
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  173d38d5-48ae-4ed0-89f8-8b4e5678fa97:
+    id: 173d38d5-48ae-4ed0-89f8-8b4e5678fa97
+    content: Open an .arbo file in Arborescent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fabc6e7a-7c6f-4afb-b1e6-6472fe38e8fd:
+    id: fabc6e7a-7c6f-4afb-b1e6-6472fe38e8fd
+    content: Ensure the target terminal has no active workflow collaboration (no session-to-node binding in the registry)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48002071-54d5-45e5-9853-10ccf8e89998:
+    id: 48002071-54d5-45e5-9853-10ccf8e89998
+    content: Right-click an unbound node and choose Send to that terminal with collaborate enabled
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8439030a-d9b8-43b5-9e2e-57fb30814430:
+    id: 8439030a-d9b8-43b5-9e2e-57fb30814430
+    content: Let the connected Claude Code session call submit_step_output with a response
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b2c641a-d3c0-4f4d-9990-c8701116d82a:
+    id: 9b2c641a-d3c0-4f4d-9990-c8701116d82a
+    content: Observe that the feedback panel never opens and the content is dropped
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e39a9abf-7b10-420c-85ea-533ee7de34ff:
+    id: e39a9abf-7b10-420c-85ea-533ee7de34ff
+    content: Repeat with Revise after discussion and observe the same outcome
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  06bbf7e9-f0e2-48ca-ac67-dd9fb691c17f:
+    id: 06bbf7e9-f0e2-48ca-ac67-dd9fb691c17f
+    content: Scenario B — destination terminal is workflow-bound to a different node
+    children:
+      - 6f511e24-7e2c-43b0-9581-199fd26f8a05
+      - 63bd5605-0760-4c37-8c9a-34544600ce70
+      - aa14935d-0462-47c8-ac6a-03a812bca698
+      - b8c5a5ff-22d4-4248-a96c-4dff355601de
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f511e24-7e2c-43b0-9581-199fd26f8a05:
+    id: 6f511e24-7e2c-43b0-9581-199fd26f8a05
+    content: Run a workflow step that binds the session in terminal T to node A
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  63bd5605-0760-4c37-8c9a-34544600ce70:
+    id: 63bd5605-0760-4c37-8c9a-34544600ce70
+    content: Without ending the workflow, right-click node B (unbound) and choose Revise after discussion targeting terminal T
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa14935d-0462-47c8-ac6a-03a812bca698:
+    id: aa14935d-0462-47c8-ac6a-03a812bca698
+    content: Let the connected Claude Code session call submit_step_output with a response
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8c5a5ff-22d4-4248-a96c-4dff355601de:
+    id: b8c5a5ff-22d4-4248-a96c-4dff355601de
+    content: Observe that the response is written to node A, not the freshly-targeted node B
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0fd1efa-0194-4091-a9fe-6d480ae004f9:
+    id: e0fd1efa-0194-4091-a9fe-6d480ae004f9
+    content: Expected behavior
+    children:
+      - 60776fb3-8731-4f3b-811f-f6ec17c8269e
+      - 62645e71-2f6b-4a1e-9e11-5973da2980bc
+      - f1a2c015-2134-4c1d-a1dc-b9f3883a287f
+      - c69ea349-b6d7-471f-8a56-7399311ad9f6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60776fb3-8731-4f3b-811f-f6ec17c8269e:
+    id: 60776fb3-8731-4f3b-811f-f6ec17c8269e
+    content: Manual Send and Revise after discussion never modify the workflow session-to-node binding
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62645e71-2f6b-4a1e-9e11-5973da2980bc:
+    id: 62645e71-2f6b-4a1e-9e11-5973da2980bc
+    content: When the destination terminal has no workflow binding, the next submit_step_output is delivered to the manually-targeted node via one-shot routing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1a2c015-2134-4c1d-a1dc-b9f3883a287f:
+    id: f1a2c015-2134-4c1d-a1dc-b9f3883a287f
+    content: When the destination terminal has a workflow binding to a different node, the one-shot target takes precedence for the next submit_step_output only; afterwards the binding still points at the workflow node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c69ea349-b6d7-471f-8a56-7399311ad9f6:
+    id: c69ea349-b6d7-471f-8a56-7399311ad9f6
+    content: If routing cannot be resolved the user receives a visible error rather than a silent no-op
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a576dd0a-94ab-4803-93a9-22c6c74f8938:
+    id: a576dd0a-94ab-4803-93a9-22c6c74f8938
+    content: Actual behavior
+    children:
+      - 29c2e4ec-bc27-4a63-8e03-9ab08ad58854
+      - 7c10ae84-bf0a-4ff5-b5a9-945c35b01386
+      - 35733e08-241f-4a45-8443-196eed946deb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29c2e4ec-bc27-4a63-8e03-9ab08ad58854:
+    id: 29c2e4ec-bc27-4a63-8e03-9ab08ad58854
+    content: Scenario A — mcpSubmitOutputTool.ts returns "unbound — session has no binding" and the renderer's processIncomingFeedbackContent short-circuits at sendActions.ts:694; nothing is shown to the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c10ae84-bf0a-4ff5-b5a9-945c35b01386:
+    id: 7c10ae84-bf0a-4ff5-b5a9-945c35b01386
+    content: Scenario B — mcpSubmitOutputTool.ts resolves the session against the binding registry and writes the feedback to the workflow-bound node, ignoring the one-shot target set by the manual send
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  35733e08-241f-4a45-8443-196eed946deb:
+    id: 35733e08-241f-4a45-8443-196eed946deb
+    content: In both scenarios the user has no visible signal that the response landed on the wrong node or was dropped
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b91f027-00db-4e9b-8acd-f4e6897472e0:
+    id: 8b91f027-00db-4e9b-8acd-f4e6897472e0
+    content: Suspected cause
+    children:
+      - f6d1dd5f-4523-40a3-9919-eb55bd55a17c
+      - 290433f8-5f65-4884-9995-b6a9dee83111
+      - fb4d6c4c-6147-4bd8-a8a8-38aa894a4fba
+      - 3a6c4ad8-4d60-4eef-a0be-02f14da86632
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6d1dd5f-4523-40a3-9919-eb55bd55a17c:
+    id: f6d1dd5f-4523-40a3-9919-eb55bd55a17c
+    content: Commit f4d540d introduced one-shot target routing for manual collab sends with binding markers restricted to workflow advances; the one-shot target is either not being recorded by the Send and Revise paths or not being consulted by submitStepOutput before it falls back to the registry
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  290433f8-5f65-4884-9995-b6a9dee83111:
+    id: 290433f8-5f65-4884-9995-b6a9dee83111
+    content: In Scenario A submitStepOutput errors out on the unbound short-circuit before any one-shot target is considered; the one-shot lookup needs to happen ahead of the unbound check
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb4d6c4c-6147-4bd8-a8a8-38aa894a4fba:
+    id: fb4d6c4c-6147-4bd8-a8a8-38aa894a4fba
+    content: In Scenario B the registry lookup wins over the one-shot target; the resolution order needs to prefer a freshly-set one-shot target over the persisted binding for exactly one submission
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a6c4ad8-4d60-4eef-a0be-02f14da86632:
+    id: 3a6c4ad8-4d60-4eef-a0be-02f14da86632
+    content: Commit d1a4eef set collaboratingNodeId inside handleProposalRequest, but only after a proposal reaches the renderer; it cannot rescue a submission that was misrouted or rejected at the main-process resolution step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a42327e9-aa1b-4428-a3c4-8f312f570b87:
+    id: a42327e9-aa1b-4428-a3c4-8f312f570b87
+    content: Affected files
+    children:
+      - cc3c4fd7-67e5-4a25-bc87-28822f07db14
+      - 29926c51-a4c7-4a07-a7ce-0d5cb633e22e
+      - cf837d07-b502-45ca-a6eb-dfda804a7f84
+      - c24a6bed-777b-4fc4-91d3-3aa3d8af792c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc3c4fd7-67e5-4a25-bc87-28822f07db14:
+    id: cc3c4fd7-67e5-4a25-bc87-28822f07db14
+    content: src/main/services/mcpSubmitOutputTool.ts — submitStepOutput target resolution, unbound short-circuit, registry lookup ordering
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29926c51-a4c7-4a07-a7ce-0d5cb633e22e:
+    id: 29926c51-a4c7-4a07-a7ce-0d5cb633e22e
+    content: src/main/services/sessionBindingRegistry.ts and any sibling that stores one-shot manual-send targets
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf837d07-b502-45ca-a6eb-dfda804a7f84:
+    id: cf837d07-b502-45ca-a6eb-dfda804a7f84
+    content: src/renderer/store/tree/actions/sendActions.ts — collaborateInTerminal, where the one-shot target is recorded for manual Send and Revise
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c24a6bed-777b-4fc4-91d3-3aa3d8af792c:
+    id: c24a6bed-777b-4fc4-91d3-3aa3d8af792c
+    content: src/renderer/services/mcpProposalReceiverService.ts — handleProposalRequest, downstream of the resolution
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69321f70-4300-407a-85d9-5a0126a07217:
+    id: 69321f70-4300-407a-85d9-5a0126a07217
+    content: Regression window
+    children:
+      - 74d1d257-5704-4850-b02e-2925fdebfa77
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74d1d257-5704-4850-b02e-2925fdebfa77:
+    id: 74d1d257-5704-4850-b02e-2925fdebfa77
+    content: Reported as expected to be covered by commit f4d540d (one-shot target routing) and commit d1a4eef on 2026-05-18 (proposal-side collaboratingNodeId); both scenarios still reproduce on master at 200f053
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97c59175-c0d5-491d-8924-728d1e953ded:
+    id: 97c59175-c0d5-491d-8924-728d1e953ded
+    content: Severity
+    children:
+      - fa700ceb-6bee-43da-8899-b0638bf645f4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa700ceb-6bee-43da-8899-b0638bf645f4:
+    id: fa700ceb-6bee-43da-8899-b0638bf645f4
+    content: High — Send and Revise after discussion are primary collaboration flows; silently dropping responses (Scenario A) or misrouting them to the workflow-bound node (Scenario B) both cause data loss with no user-visible signal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4279d744-5ffa-40fe-8428-2c2c25dbfe2e:
+    id: 4279d744-5ffa-40fe-8428-2c2c25dbfe2e
+    content: Notes
+    children:
+      - 015f878d-3eff-47d8-9e30-b4860d49e4fb
+      - d3605480-c531-45fd-a421-32386637afd4
+      - ec5ed3e9-372c-424f-ae70-497fe4c4c85c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  015f878d-3eff-47d8-9e30-b4860d49e4fb:
+    id: 015f878d-3eff-47d8-9e30-b4860d49e4fb
+    content: Binding belongs to workflows; manual Send and Revise are non-binding exceptions and must not rebind on success or failure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3605480-c531-45fd-a421-32386637afd4:
+    id: d3605480-c531-45fd-a421-32386637afd4
+    content: The fix shape is to make one-shot target routing take precedence over both the unbound short-circuit and the registry lookup for the next single submission, then expire so the workflow binding resumes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec5ed3e9-372c-424f-ae70-497fe4c4c85c:
+    id: ec5ed3e9-372c-424f-ae70-497fe4c4c85c
+    content: Distinct from commit 0dbab80 which only guards against blob-shaped payloads — this bug reproduces with well-formed content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76b64459-7fcb-40b6-8d30-49152c93819a:
+    id: 76b64459-7fcb-40b6-8d30-49152c93819a
+    content: Technical refinement
+    children:
+      - 2ed750b1-3d2a-4df2-8edc-44f29e51ad1d
+      - 34750143-b62a-4b01-8ab5-a1f212aba58f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ed750b1-3d2a-4df2-8edc-44f29e51ad1d:
+    id: 2ed750b1-3d2a-4df2-8edc-44f29e51ad1d
+    content: Approach
+    children:
+      - 351638bb-fce6-4a8b-bc43-3d84ee4ae4ed
+      - fee2f106-c1d5-43b6-9349-fa2acbf7411f
+      - bb24fe14-10f5-455a-b94e-ae12c8eb037c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  351638bb-fce6-4a8b-bc43-3d84ee4ae4ed:
+    id: 351638bb-fce6-4a8b-bc43-3d84ee4ae4ed
+    content: The end-to-end plumbing already exists — ARBORESCENT_TARGET marker on manual sends, OneShotTargetStore.pendingTarget consulted ahead of bindingRegistry.lookup at mcpSubmitOutputTool.ts:50-51 — so the fix is to repair the marker-to-store path that f4d540d intended rather than introduce new routing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fee2f106-c1d5-43b6-9349-fa2acbf7411f:
+    id: fee2f106-c1d5-43b6-9349-fa2acbf7411f
+    content: Investigation centers on whether sendActions.collaborateInTerminal emits the ARBORESCENT_TARGET marker for both Send and Revise after discussion, and whether the UserPromptSubmit hook in hookScripts.ts and hookEventDispatcher.ts parses it and writes to OneShotTargetStore under the session id Claude reports
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb24fe14-10f5-455a-b94e-ae12c8eb037c:
+    id: bb24fe14-10f5-455a-b94e-ae12c8eb037c
+    content: 'Replace the silent {applied: false} responses with a visible error so future routing failures surface in the UI instead of dropping content'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  34750143-b62a-4b01-8ab5-a1f212aba58f:
+    id: 34750143-b62a-4b01-8ab5-a1f212aba58f
+    content: Complications
+    children:
+      - c1a2093d-3774-479b-a287-e165618e49ba
+      - bd72db5a-356b-47cb-8c6e-bf9a72b71b0f
+      - a573485d-2495-45dd-a6d3-24a00fb5ae72
+      - 66e914f3-3ed3-48f1-ae5a-e1888f02b9bd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1a2093d-3774-479b-a287-e165618e49ba:
+    id: c1a2093d-3774-479b-a287-e165618e49ba
+    content: One-shot target must expire after exactly one submission so a subsequent workflow advance is not stolen by a stale manual target — confirm the consume-on-read semantics in OneShotTargetStore are reached on both the proposal and direct-apply branches
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd72db5a-356b-47cb-8c6e-bf9a72b71b0f:
+    id: bd72db5a-356b-47cb-8c6e-bf9a72b71b0f
+    content: Session-id keying — the marker must reach the hook with the same session id that submit_step_output reports; a mismatch here would silently lose the target
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a573485d-2495-45dd-a6d3-24a00fb5ae72:
+    id: a573485d-2495-45dd-a6d3-24a00fb5ae72
+    content: The safety-net auto-submit is gated on markerSeenThisTurn — verify that a manual send's ARBORESCENT_TARGET marker correctly sets that flag, otherwise Stop-hook recoveries on manual sends will skip
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66e914f3-3ed3-48f1-ae5a-e1888f02b9bd:
+    id: 66e914f3-3ed3-48f1-ae5a-e1888f02b9bd
+    content: Out of scope — manual Send and Revise must not register, update, or clear the workflow binding; the fix stays on the one-shot target lane only
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9143b877-f54c-4f71-96d1-e6205f4d37f9:
+    id: 9143b877-f54c-4f71-96d1-e6205f4d37f9
+    content: TDD tests added
+    children:
+      - af8ef63f-eb08-4033-b533-41726dddc0b8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af8ef63f-eb08-4033-b533-41726dddc0b8:
+    id: af8ef63f-eb08-4033-b533-41726dddc0b8
+    content: Failing tests for consume-on-read at src/main/services/tests/mcpSubmitOutputToolConsumeTarget.test.ts — 4 failing as the gap, 2 passing for "do not clear on error" retry path, 3 .todo placeholders for the uncertain visible-error UX
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a55d84d-c459-4e55-9272-1908341ae937:
+    id: 2a55d84d-c459-4e55-9272-1908341ae937
+    content: Implementation
+    children:
+      - 0153cad0-e6ff-4884-923b-72fcb213ebca
+      - 12e0f6df-45e1-482d-908b-1abdd17f6463
+      - 3d24f8ef-dd44-4b26-bb9b-f4dac118e767
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0153cad0-e6ff-4884-923b-72fcb213ebca:
+    id: 0153cad0-e6ff-4884-923b-72fcb213ebca
+    content: submitStepOutput in src/main/services/mcpSubmitOutputTool.ts now calls oneShotTargetStore.clearPendingTarget(sessionId) after a successful apply or proposal; failure paths preserve the target so retries route correctly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12e0f6df-45e1-482d-908b-1abdd17f6463:
+    id: 12e0f6df-45e1-482d-908b-1abdd17f6463
+    content: All 31 consume + routing + store tests pass; 33 hook dispatcher + marker emission tests pass with no regression; lint and TypeScript clean on the touched files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d24f8ef-dd44-4b26-bb9b-f4dac118e767:
+    id: 3d24f8ef-dd44-4b26-bb9b-f4dac118e767
+    content: Visible-error UX deferred — left as .todo placeholders because the post-fix surface (toast vs IPC event vs error return) is still uncertain; the consume-on-read fix is independent of that decision
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb7a1027-8a53-4f29-930a-551992f53dbe:
+    id: eb7a1027-8a53-4f29-930a-551992f53dbe
+    content: AI refactor pass
+    children:
+      - 14682185-ac9e-4400-830c-f6509b5e88af
+      - 008ee6bb-6f2f-4c35-88fe-8f69b22dee71
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14682185-ac9e-4400-830c-f6509b5e88af:
+    id: 14682185-ac9e-4400-830c-f6509b5e88af
+    content: Stripped ticket and user-story references from test comments per the "no PRD references" convention; kept the technical "why" in independent voice
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  008ee6bb-6f2f-4c35-88fe-8f69b22dee71:
+    id: 008ee6bb-6f2f-4c35-88fe-8f69b22dee71
+    content: Re-ran focused checks on touched files — 41 submit-output-tool tests pass, ESLint clean, no new TypeScript errors
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4887c9e-6de5-434b-b6ff-5087e29b1795:
+    id: b4887c9e-6de5-434b-b6ff-5087e29b1795
+    content: review feedback
+    children:
+      - e3cbdbff-2fdb-4503-9927-2c8e622e2609
+      - 177e7f03-16b4-4ada-b275-4ca1656c9f5d
+      - a5a52a05-f8b7-4abb-a4da-26a2a4778268
+      - 257b298a-8d80-4ca7-8d5b-26610e885639
+      - 1c34c357-92ab-45ca-9fac-ebeec2b5d9cc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3cbdbff-2fdb-4503-9927-2c8e622e2609:
+    id: e3cbdbff-2fdb-4503-9927-2c8e622e2609
+    content: Verdict — ship it. Reviewer signed off with no high-priority issues. Fix is correct, minimal, and placed where it should be — clear after success on both branches (proposal at line 74, direct apply at line 83), preserved on both failure exits, retries route to the same target as intended
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  177e7f03-16b4-4ada-b275-4ca1656c9f5d:
+    id: 177e7f03-16b4-4ada-b275-4ca1656c9f5d
+    content: Verified there is no double-clear hazard with the hook-side writer in hookEventDispatcher.handleRegisterTarget — Map.delete on a missing key is a no-op, and a between-turns set after the tool already cleared is intended behavior. mcpServer.clear() on shutdown still nukes everything as before
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5a52a05-f8b7-4abb-a4da-26a2a4778268:
+    id: a5a52a05-f8b7-4abb-a4da-26a2a4778268
+    content: 'Nice-to-have — add a safety-net-origin consume-on-read test (origin: ''safety-net'' + markerSeen: true + pendingTarget: TARGET routes to TARGET and clears it). Uses the same harness already in the test file; reviewer called it out as cheap to lock down. Not required for this PR — same code path is already exercised via the explicit-origin tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  257b298a-8d80-4ca7-8d5b-26610e885639:
+    id: 257b298a-8d80-4ca7-8d5b-26610e885639
+    content: Nice-to-have — JSON.parse(result.content[0].text) is brittle if ToolResult ever gains non-text content variants; matches sibling test style today, so leave unless ToolResult's shape evolves
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c34c357-92ab-45ca-9fac-ebeec2b5d9cc:
+    id: 1c34c357-92ab-45ca-9fac-ebeec2b5d9cc
+    content: Nice-to-have — the two clearPendingTarget call sites could be consolidated post-restructure, but the current placement makes the "clear on success, not on failure" boundary obvious. Reviewer explicitly recommended NOT refactoring this
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbd87e71-5272-48d5-8e2e-25b5e99dd417:
+    id: bbd87e71-5272-48d5-8e2e-25b5e99dd417
+    content: review resolution
+    children:
+      - 98199513-04ae-4e6e-86ba-f18c3b3a0b3b
+      - c3989949-00ce-487c-8b63-02c5fca57330
+      - 12e3a740-4320-4ce5-ad0b-657c054da658
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98199513-04ae-4e6e-86ba-f18c3b3a0b3b:
+    id: 98199513-04ae-4e6e-86ba-f18c3b3a0b3b
+    content: Major issues fixed — none flagged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3989949-00ce-487c-8b63-02c5fca57330:
+    id: c3989949-00ce-487c-8b63-02c5fca57330
+    content: Minor issues fixed — safety-net consume test added at src/main/services/tests/mcpSubmitOutputToolConsumeTarget.test.ts; pushed back on the autonomous case as redundant, reviewer clarified they meant the NON-autonomous safety-net branch (returns at line 66 before clearPendingTarget). That path was a true coverage gap. Test now pins down the invariant that safety-net firing against a non-autonomous pendingTarget exits as a no-op AND preserves the target so the next explicit submission still lands on the user's chosen node. 7 tests in the consume file all pass, lint clean
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12e3a740-4320-4ce5-ad0b-657c054da658:
+    id: 12e3a740-4320-4ce5-ad0b-657c054da658
+    content: Skipped — JSON.parse(content[0].text) brittleness (reviewer's own recommendation to skip; matches sibling style and ToolResult shape is stable); consolidating the two clearPendingTarget calls (reviewer explicitly recommended NOT refactoring — current placement makes the success-vs-failure boundary obvious); visible-error UX placeholders (independently deferred — uncertain post-fix surface)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  80156b94-7960-43fc-ac38-f9297a226065:
+    id: 80156b94-7960-43fc-ac38-f9297a226065
+    content: Test pass verification
+    children:
+      - 03e0d842-38de-4c2a-86e0-405fec24de39
+      - 3b2bdcb0-53e7-49e9-abb2-6755340b83e9
+      - 95b0c6af-02b3-4e6b-ac3a-a81653c093a3
+      - 476427c2-e9c0-43f6-8f1e-24354d2165c5
+      - 40ca9127-4a10-4204-9e9e-0d0e5d8858a5
+      - 9b39fcda-b114-4454-9ce0-1e4fcfd31f1d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03e0d842-38de-4c2a-86e0-405fec24de39:
+    id: 03e0d842-38de-4c2a-86e0-405fec24de39
+    content: Diff scope confirmed — 2-line consume-on-read change in src/main/services/mcpSubmitOutputTool.ts and the new src/main/services/tests/mcpSubmitOutputToolConsumeTarget.test.ts; no other files mutated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b2bdcb0-53e7-49e9-abb2-6755340b83e9:
+    id: 3b2bdcb0-53e7-49e9-abb2-6755340b83e9
+    content: AC "never modify the workflow binding" mapped to f4d540d's split-marker grammar (ARBORESCENT_TARGET emitted by manual sends, register-target dispatcher path leaves the binding registry alone) and reverified by hookEventDispatcherTargetRouting "register-target event does NOT mutate the binding registry" and sendActionsMarkerEmission "manual terminal collab prepends the TARGET marker"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95b0c6af-02b3-4e6b-ac3a-a81653c093a3:
+    id: 95b0c6af-02b3-4e6b-ac3a-a81653c093a3
+    content: AC "no workflow binding → routes to manual target" mapped to the pendingTarget ?? lookup resolution at mcpSubmitOutputTool.ts:50-51; locked in by routing test "a one-shot target routes the response even when the session has NO binding" plus the new unbound-fallback consume test
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  476427c2-e9c0-43f6-8f1e-24354d2165c5:
+    id: 476427c2-e9c0-43f6-8f1e-24354d2165c5
+    content: AC "target takes precedence then the binding survives" — precedence covered by routing test "routes submit content to pendingTarget when one is set, NOT to the binding"; the binding-survives half is now load-bearing on the new consume-on-read fix and is verified by "clears pendingTarget after a successful direct apply so the next submit falls back to the binding"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40ca9127-4a10-4204-9e9e-0d0e5d8858a5:
+    id: 40ca9127-4a10-4204-9e9e-0d0e5d8858a5
+    content: AC "visible error rather than silent no-op" still uncovered — three .todo placeholders pin the surface and the consume fix is independent of the eventual UX decision. Confirming deferral matches the user-approved state from the Verification step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b39fcda-b114-4454-9ce0-1e4fcfd31f1d:
+    id: 9b39fcda-b114-4454-9ce0-1e4fcfd31f1d
+    content: Full test pass on touched + adjacent suites — 74 tests pass across consume, target routing, base submit-output-tool, oneShotTargetStore, hookEventDispatcher target routing, and sendActions marker emission. ESLint clean on the two touched files; TypeScript has no errors for the touched files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  637ef1ff-faee-46ee-8479-4fa3e930fbd6:
+    id: 637ef1ff-faee-46ee-8479-4fa3e930fbd6
+    content: Documentation
+    children:
+      - 5f336b31-b2d7-4651-bd9f-18d0963cf13d
+      - 694f4856-c9dd-41e8-bf31-60e3cd59f6b8
+      - d88bc964-2d47-4242-8f65-005a3e520325
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f336b31-b2d7-4651-bd9f-18d0963cf13d:
+    id: 5f336b31-b2d7-4651-bd9f-18d0963cf13d
+    content: No new docs needed — the user-facing promise ("right-click Send and Revise after discussion route the AI's response back to that node without disturbing the workflow binding") is already documented in the Unreleased changelog entry "Manual sends keep the workflow's binding" and in docs/workflow.md's Revise-after-discussion paragraph; this fix makes that existing promise actually true rather than introducing a new user-facing concept
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  694f4856-c9dd-41e8-bf31-60e3cd59f6b8:
+    id: 694f4856-c9dd-41e8-bf31-60e3cd59f6b8
+    content: No changelog entry — bug fix to commit f4d540d which landed after v0.2.0 and is still in the Unreleased section; per the "no changelog for post-release-feature fixes" convention this is silently absorbed under the existing f4d540d entry
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d88bc964-2d47-4242-8f65-005a3e520325:
+    id: d88bc964-2d47-4242-8f65-005a3e520325
+    content: No multi-submit-in-one-turn caveat added — adding "the FIRST response routes to the manual node, subsequent ones fall back to the workflow binding" would over-specify a behavior most users will never hit; implicit and discoverable per the docs convention
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  76b91502-96ac-48e8-94b3-a7408649c7bb:
+    id: 76b91502-96ac-48e8-94b3-a7408649c7bb
+    content: "Bug - opening a prior session attempts to rebind it to a\_"
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
