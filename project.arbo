@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-22T19:09:54.793Z'
+updated: '2026-05-22T20:18:24.792Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -27144,7 +27144,8 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children: []
+    children:
+      - a2b9d2fb-9079-431a-be24-481850514e3b
     metadata:
       status: pending
       isBlueprint: true
@@ -33756,7 +33757,8 @@ nodes:
   6d973cbb-3c7c-4ac4-925d-ffd5d659332c:
     id: 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
     content: Feature verification
-    children: []
+    children:
+      - f778b6c0-f107-4fff-9173-17877a8b1125
     metadata:
       status: pending
       isBlueprint: true
@@ -80784,6 +80786,8 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - 4cf6d878-04b6-4103-8167-0869060a56cd
+      - 924b187c-f2db-4ceb-968b-440700b738e3
       - e353e6df-5cc7-40af-9e7b-a9da29963cd2
       - 50c1cecf-2ee0-4850-9148-3d1935ee5f8c
       - ef36fe10-7bef-4727-8c05-331350e92b66
@@ -80819,8 +80823,7 @@ nodes:
   2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4:
     id: 2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4
     content: Worktree creation
-    children:
-      - e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -124641,7 +124644,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
     metadata:
       status: pending
       isBlueprint: true
@@ -159567,8 +159571,7 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children:
-      - f778b6c0-f107-4fff-9173-17877a8b1125
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -159576,1151 +159579,48 @@ nodes:
       appliedContextId: 506f42bb-73a3-44b9-8bc4-75d5b6be9ad3
   f778b6c0-f107-4fff-9173-17877a8b1125:
     id: f778b6c0-f107-4fff-9173-17877a8b1125
-    content: Bug - sending a node to a terminal with a node bound pastes the prompt
+    content: Bug - sending a node to a terminal with a node already bound pastes the prompt before confirmation
     children:
-      - 9fbbd0db-32a2-4f9a-87ff-2938d6b6552f
-      - 7d8747c1-0cd8-4d3a-92d5-eac4ffdfd6ee
-      - e7bfdd48-d43f-48e7-bb31-0dd924772d46
+      - 6502dc02-82bd-4a0e-9577-9233000918f5
+      - 964c4b21-4ebd-41d4-9c73-93677a14e009
+      - c06bf639-fb66-40ea-92c5-a800519a7f9e
+      - ab71dc96-9f0e-45db-baaf-aaa46aa7792a
+      - b4de4c2d-bd76-48a0-8271-5886774f21bd
+      - 08f1129c-49c3-41d0-8250-f75eec17057b
+      - e52f8373-85a7-468f-bf1f-8c0942fc437b
+      - a85cb255-d7fd-48fc-a2fa-1a9075b1e9af
+      - bf4d6ed3-5ad9-4b23-82d3-ffd66172bcef
+      - 82422a03-6039-471e-8754-8854fe63446c
     metadata:
-      status: pending
-  9fbbd0db-32a2-4f9a-87ff-2938d6b6552f:
-    id: 9fbbd0db-32a2-4f9a-87ff-2938d6b6552f
-    content: The confirmation dialog appears but the prompt is still sent
-    children: []
-    metadata:
-      status: pending
-  7d8747c1-0cd8-4d3a-92d5-eac4ffdfd6ee:
-    id: 7d8747c1-0cd8-4d3a-92d5-eac4ffdfd6ee
-    content: The prompt should only be sent once the user confirms the new binding
-    children: []
-    metadata:
-      status: pending
-  e7bfdd48-d43f-48e7-bb31-0dd924772d46:
-    id: e7bfdd48-d43f-48e7-bb31-0dd924772d46
-    content: "Otherwise it should not be sent and any collaboration\_"
-    children: []
-    metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: f8a6f891-a194-49a3-a803-56e9bef658cb
   e6467de4-4de2-4d0d-82cd-88d9bf6f06b2:
     id: e6467de4-4de2-4d0d-82cd-88d9bf6f06b2
     content: Bug — Highlighted text inside a node cannot be copied or cut
     children:
-      - 32c2cb7b-1ff1-4620-8c4d-a34222d52375
-      - ad429355-1bb0-48dd-a789-352a82dffd30
-      - 135971e9-90b9-4d38-a028-d6095376bc22
-      - 1a531e40-d69b-49f9-8b51-c7a3612853d6
-      - cacfce4d-7855-4c97-9fcd-3f1af650679d
-      - c541cb95-ceb9-42d0-9daa-930ed39e0d90
-      - 7d8aef47-0263-49cc-8a02-59bb2337127a
-      - 2b77e52b-4aac-49a9-a7af-d16b5f5e9268
-      - a0364c49-ea5d-4910-abb0-f76de13ff721
-      - 0d3e3f4e-e849-47c4-979f-cc6cad98be20
-      - fad839ca-b795-4386-bc98-9c1418c99c80
-      - 91fad94a-19e8-45f8-9c3a-a8b3fc42f9d6
+      - 09cae063-dc0c-4bcd-955c-c34a5c0b23ef
+      - e0e6358b-b351-4082-9a40-d040eb8bee0e
+      - d13ba97b-9137-4475-a1c7-c51aadfbf91e
+      - d6ba4ef2-b9f8-4ccb-9cc4-59d2785b6554
+      - c2ba0172-4aaa-4f36-8e4e-d09349d41b92
+      - 8a138620-c85b-4322-8594-140ce39dfc40
+      - 54267678-3152-4a23-98c5-72b760347192
+      - 55f1a199-b83e-4c5e-a07c-193f1fc88bd3
+      - 19ee8780-39f8-47a5-b350-67accb55bcf4
+      - e8c73347-bb03-4275-bb8e-81c00ec7679b
+      - a14f7bff-f274-4cfb-a985-6e141a6e0e76
+      - 3b134abe-c55b-4f19-8814-d35bb41dd034
+      - 3631c229-af2c-4599-b14a-2dfe3468f87e
+      - d0b4f39b-30d4-4b20-acd4-f07de19a194d
     metadata:
       status: pending
       expanded: false
       deleted: false
       plugins: {}
       sessionId: 1ba89622-4b5a-451b-90ec-e06269fed151
-  32c2cb7b-1ff1-4620-8c4d-a34222d52375:
-    id: 32c2cb7b-1ff1-4620-8c4d-a34222d52375
-    content: worktree
-    children:
-      - 7b742d1b-b548-4966-bffc-9d41852f0a86
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b742d1b-b548-4966-bffc-9d41852f0a86:
-    id: 7b742d1b-b548-4966-bffc-9d41852f0a86
-    content: vscode://file/Users/brianfox/dev/Arborescent-partial-copy-cut
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad429355-1bb0-48dd-a789-352a82dffd30:
-    id: ad429355-1bb0-48dd-a789-352a82dffd30
-    content: Summary
-    children:
-      - e4cad037-0733-4377-9b0e-a5e263d52d2e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e4cad037-0733-4377-9b0e-a5e263d52d2e:
-    id: e4cad037-0733-4377-9b0e-a5e263d52d2e
-    content: Selecting a partial range of text inside a node and pressing Ctrl/Cmd+C or Ctrl/Cmd+X copies/cuts the entire node instead of the highlighted substring.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  135971e9-90b9-4d38-a028-d6095376bc22:
-    id: 135971e9-90b9-4d38-a028-d6095376bc22
-    content: Steps to reproduce
-    children:
-      - 2e1118c8-8439-4c85-9a53-090302576a41
-      - 54509817-58ae-41de-93d8-6bab4b51c3d0
-      - 09320adf-5ecc-43bd-b052-97d067bbfded
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e1118c8-8439-4c85-9a53-090302576a41:
-    id: 2e1118c8-8439-4c85-9a53-090302576a41
-    content: Precondition / setup
-    children:
-      - eba87bf3-0ac6-4ea5-9df5-9eaec5b0481c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eba87bf3-0ac6-4ea5-9df5-9eaec5b0481c:
-    id: eba87bf3-0ac6-4ea5-9df5-9eaec5b0481c
-    content: Open Arborescent with any workflow tree that has a node containing more than one word of text.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  54509817-58ae-41de-93d8-6bab4b51c3d0:
-    id: 54509817-58ae-41de-93d8-6bab4b51c3d0
-    content: User action
-    children:
-      - 3d914d02-ef47-4737-908d-b912eeed6bd8
-      - 4fa4aaa0-a165-4b33-b819-1e97f1a817c1
-      - bf856500-ddf0-4cf2-9968-09096fab1775
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d914d02-ef47-4737-908d-b912eeed6bd8:
-    id: 3d914d02-ef47-4737-908d-b912eeed6bd8
-    content: Click into the node to focus it but do not enter edit mode (i.e. the contenteditable is not the active element), then click-drag to highlight a substring of its text.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fa4aaa0-a165-4b33-b819-1e97f1a817c1:
-    id: 4fa4aaa0-a165-4b33-b819-1e97f1a817c1
-    content: Press Ctrl/Cmd+C (or Ctrl/Cmd+X) while the substring is highlighted.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf856500-ddf0-4cf2-9968-09096fab1775:
-    id: bf856500-ddf0-4cf2-9968-09096fab1775
-    content: Paste into any external text field (or another node) with Ctrl/Cmd+V.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09320adf-5ecc-43bd-b052-97d067bbfded:
-    id: 09320adf-5ecc-43bd-b052-97d067bbfded
-    content: Observation that exposes the bug
-    children:
-      - 2bb7061b-2ee3-4bfc-bae2-1a247c58fa2b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2bb7061b-2ee3-4bfc-bae2-1a247c58fa2b:
-    id: 2bb7061b-2ee3-4bfc-bae2-1a247c58fa2b
-    content: The pasted payload is the full node serialized as markdown, not the highlighted substring; with Ctrl+X the whole node is also removed from the tree.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1a531e40-d69b-49f9-8b51-c7a3612853d6:
-    id: 1a531e40-d69b-49f9-8b51-c7a3612853d6
-    content: Expected behavior
-    children:
-      - 7dac39f8-064f-43b8-97ee-b82711092267
-      - 5e1473f6-2faf-4174-863e-e447d9ff221b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7dac39f8-064f-43b8-97ee-b82711092267:
-    id: 7dac39f8-064f-43b8-97ee-b82711092267
-    content: Happy path
-    children:
-      - 4e5e783c-819c-4457-ab7c-47071a23a58d
-      - 890474d1-67cb-455f-9e17-cbc9434c7ecc
-      - fae9ec31-0a4e-48d2-9fc3-045383598bee
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e5e783c-819c-4457-ab7c-47071a23a58d:
-    id: 4e5e783c-819c-4457-ab7c-47071a23a58d
-    content: When a non-empty text range is highlighted inside a node, Ctrl/Cmd+C copies exactly that substring as plain text to the system clipboard and leaves the tree unchanged.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  890474d1-67cb-455f-9e17-cbc9434c7ecc:
-    id: 890474d1-67cb-455f-9e17-cbc9434c7ecc
-    content: Under the same condition Ctrl/Cmd+X copies the substring and removes it from the node's content, without deleting the node.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fae9ec31-0a4e-48d2-9fc3-045383598bee:
-    id: fae9ec31-0a4e-48d2-9fc3-045383598bee
-    content: When no text range is highlighted, Ctrl/Cmd+C and Ctrl/Cmd+X continue to operate on the focused node(s) as today.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5e1473f6-2faf-4174-863e-e447d9ff221b:
-    id: 5e1473f6-2faf-4174-863e-e447d9ff221b
-    content: Edge cases
-    children:
-      - 894b3285-a1c1-46e8-a091-99a794daada4
-      - 8f5140ec-c67b-4f38-a009-e3cbe05dc7fe
-      - e673f8f8-ae44-4b51-94ff-3ea781c46b64
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  894b3285-a1c1-46e8-a091-99a794daada4:
-    id: 894b3285-a1c1-46e8-a091-99a794daada4
-    content: Selections that span multiple nodes still fall back to whole-node copy/cut because a partial multi-node cut is ambiguous.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f5140ec-c67b-4f38-a009-e3cbe05dc7fe:
-    id: 8f5140ec-c67b-4f38-a009-e3cbe05dc7fe
-    content: Selections inside the title input, terminal, browser panel, and other input/textarea surfaces remain owned by those hosts.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e673f8f8-ae44-4b51-94ff-3ea781c46b64:
-    id: e673f8f8-ae44-4b51-94ff-3ea781c46b64
-    content: An empty / collapsed selection is treated as "no selection" and falls through to whole-node copy/cut.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cacfce4d-7855-4c97-9fcd-3f1af650679d:
-    id: cacfce4d-7855-4c97-9fcd-3f1af650679d
-    content: Actual behavior
-    children:
-      - f26a71f8-0fa1-4db5-a6d7-d28a470f79ff
-      - ed659079-1afd-4a36-8cc1-ebc046394236
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f26a71f8-0fa1-4db5-a6d7-d28a470f79ff:
-    id: f26a71f8-0fa1-4db5-a6d7-d28a470f79ff
-    content: What actually happens
-    children:
-      - 259dbe70-7fbe-49e5-a99c-656e55531f03
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  259dbe70-7fbe-49e5-a99c-656e55531f03:
-    id: 259dbe70-7fbe-49e5-a99c-656e55531f03
-    content: The hotkey handler treats the highlight as if no text were selected, calls actions.copyNodes / actions.cutNodes, and the browser's native copy/cut is preempted by event.preventDefault.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed659079-1afd-4a36-8cc1-ebc046394236:
-    id: ed659079-1afd-4a36-8cc1-ebc046394236
-    content: User-visible symptoms
-    children:
-      - e5785f2f-7ef7-444c-94ef-2e61b49ab967
-      - b20ef91d-3209-426d-906d-2d483cb9bf57
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5785f2f-7ef7-444c-94ef-2e61b49ab967:
-    id: e5785f2f-7ef7-444c-94ef-2e61b49ab967
-    content: Clipboard contains serialized markdown for the whole node instead of the highlighted text.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b20ef91d-3209-426d-906d-2d483cb9bf57:
-    id: b20ef91d-3209-426d-906d-2d483cb9bf57
-    content: Ctrl+X removes the entire node from the tree, which is data-destructive relative to user intent.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c541cb95-ceb9-42d0-9daa-930ed39e0d90:
-    id: c541cb95-ceb9-42d0-9daa-930ed39e0d90
-    content: Suspected cause
-    children:
-      - 5adac7d1-f9e2-4a54-a5dd-fc0571d89f79
-      - 52fac549-e7d1-493e-a86e-759d4028eb3a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5adac7d1-f9e2-4a54-a5dd-fc0571d89f79:
-    id: 5adac7d1-f9e2-4a54-a5dd-fc0571d89f79
-    content: Code path implicated
-    children:
-      - 1c14f008-9052-400f-b75a-43a64181e446
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c14f008-9052-400f-b75a-43a64181e446:
-    id: 1c14f008-9052-400f-b75a-43a64181e446
-    content: 'src/renderer/services/keyboard/uiService.ts lines 195-213: the cut and copy branches gate on hasTextSelection(), defined in src/renderer/utils/selectionUtils.ts, which only returns true when the selection''s anchor node sits inside a [contenteditable].'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  52fac549-e7d1-493e-a86e-759d4028eb3a:
-    id: 52fac549-e7d1-493e-a86e-759d4028eb3a
-    content: Why the existing guard does not cover this case
-    children:
-      - 4155c5c7-b021-428b-ba22-aa0313154af2
-      - af935abb-19cd-4aa5-9b7d-d3aedb88de29
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4155c5c7-b021-428b-ba22-aa0313154af2:
-    id: 4155c5c7-b021-428b-ba22-aa0313154af2
-    content: When a node is displayed (not actively being edited) its text lives outside any [contenteditable], so hasTextSelection() returns false even though window.getSelection() reports a non-collapsed range — the keyboard handler then runs the whole-node copy/cut path and preventDefaults the browser's native copy.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  af935abb-19cd-4aa5-9b7d-d3aedb88de29:
-    id: af935abb-19cd-4aa5-9b7d-d3aedb88de29
-    content: useEditMenuActions.handleCopy / handleCut have the same contenteditable-only check, so the Edit menu has the same bug surface.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7d8aef47-0263-49cc-8a02-59bb2337127a:
-    id: 7d8aef47-0263-49cc-8a02-59bb2337127a
-    content: Affected files
-    children:
-      - c45d583e-f47a-4e6a-8ebd-6d0b6de8c0d3
-      - 4bcee5b1-afc6-4373-ab45-b1435204bb70
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c45d583e-f47a-4e6a-8ebd-6d0b6de8c0d3:
-    id: c45d583e-f47a-4e6a-8ebd-6d0b6de8c0d3
-    content: Primary suspect
-    children:
-      - 4037e2e9-bd43-4462-b813-04554f5eae0e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4037e2e9-bd43-4462-b813-04554f5eae0e:
-    id: 4037e2e9-bd43-4462-b813-04554f5eae0e
-    content: src/renderer/utils/selectionUtils.ts (hasTextSelection)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4bcee5b1-afc6-4373-ab45-b1435204bb70:
-    id: 4bcee5b1-afc6-4373-ab45-b1435204bb70
-    content: Related surfaces
-    children:
-      - a4881981-7423-411f-9496-bef078f3b4a2
-      - 1df44dc8-6666-4ce4-818d-7a4128b3e4c2
-      - 9b1778e9-9dec-40e9-84ad-46bab3b302eb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a4881981-7423-411f-9496-bef078f3b4a2:
-    id: a4881981-7423-411f-9496-bef078f3b4a2
-    content: src/renderer/services/keyboard/uiService.ts (copy/cut hotkey branches)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1df44dc8-6666-4ce4-818d-7a4128b3e4c2:
-    id: 1df44dc8-6666-4ce4-818d-7a4128b3e4c2
-    content: src/renderer/components/MenuBar/hooks/useEditMenuActions.ts (handleCopy, handleCut)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b1778e9-9dec-40e9-84ad-46bab3b302eb:
-    id: 9b1778e9-9dec-40e9-84ad-46bab3b302eb
-    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts (right-click Copy entries should mirror the same branching)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b77e52b-4aac-49a9-a7af-d16b5f5e9268:
-    id: 2b77e52b-4aac-49a9-a7af-d16b5f5e9268
-    content: Regression window
-    children:
-      - 4b895fb9-2b1f-4557-9821-b566e4201afa
-      - 0dedbe03-584b-41e5-9333-1f18fb0053f6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4b895fb9-2b1f-4557-9821-b566e4201afa:
-    id: 4b895fb9-2b1f-4557-9821-b566e4201afa
-    content: Last known good
-    children:
-      - c3ec0434-1ac3-49c9-a1c2-25cfd5fe0d9e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c3ec0434-1ac3-49c9-a1c2-25cfd5fe0d9e:
-    id: c3ec0434-1ac3-49c9-a1c2-25cfd5fe0d9e
-    content: Unknown — needs bisect; hasTextSelection was authored with the contenteditable-only check and has not been broadened since.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0dedbe03-584b-41e5-9333-1f18fb0053f6:
-    id: 0dedbe03-584b-41e5-9333-1f18fb0053f6
-    content: First observed broken
-    children:
-      - 88fae9a9-8a09-435a-8fce-e0a5fb00b3f6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  88fae9a9-8a09-435a-8fce-e0a5fb00b3f6:
-    id: 88fae9a9-8a09-435a-8fce-e0a5fb00b3f6
-    content: Present on master at 200f053 (2026-05-22 working tree).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a0364c49-ea5d-4910-abb0-f76de13ff721:
-    id: a0364c49-ea5d-4910-abb0-f76de13ff721
-    content: Severity
-    children:
-      - 33b26b41-a5c2-4337-99f0-ee79462751fb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  33b26b41-a5c2-4337-99f0-ee79462751fb:
-    id: 33b26b41-a5c2-4337-99f0-ee79462751fb
-    content: Medium — non-crashing but user-visible and data-destructive on Cut. Hit every time a user wants to quote part of a node; the workaround (enter edit mode first) is non-obvious.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d3e3f4e-e849-47c4-979f-cc6cad98be20:
-    id: 0d3e3f4e-e849-47c4-979f-cc6cad98be20
-    content: Notes
-    children:
-      - 7b1532a0-dca1-4b93-b2ba-55363eab79cf
-      - 7b5b8773-66ff-4335-86c5-3ebbb52275bf
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b1532a0-dca1-4b93-b2ba-55363eab79cf:
-    id: 7b1532a0-dca1-4b93-b2ba-55363eab79cf
-    content: Adjacent issues to disambiguate
-    children:
-      - 69386a43-9619-40d4-96e3-989b353801d8
-      - 2d118493-6db4-4c13-a7ea-6c58bd95e300
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  69386a43-9619-40d4-96e3-989b353801d8:
-    id: 69386a43-9619-40d4-96e3-989b353801d8
-    content: Distinct from the "paste plain text inside contenteditable" path at uiService.ts:223-233 — that path is unaffected.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2d118493-6db4-4c13-a7ea-6c58bd95e300:
-    id: 2d118493-6db4-4c13-a7ea-6c58bd95e300
-    content: Distinct from terminal/browser panel selection, already short-circuited via isFocusInTerminalOrBrowser.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b5b8773-66ff-4335-86c5-3ebbb52275bf:
-    id: 7b5b8773-66ff-4335-86c5-3ebbb52275bf
-    content: UX / telemetry gap worth fixing alongside
-    children:
-      - 25ddf328-413f-40fe-b5d9-bc0ab329222c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  25ddf328-413f-40fe-b5d9-bc0ab329222c:
-    id: 25ddf328-413f-40fe-b5d9-bc0ab329222c
-    content: Right-click context menu's Copy entry should also respect a live text selection and offer "Copy selection" instead of "Copy node" when a range is highlighted.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fad839ca-b795-4386-bc98-9c1418c99c80:
-    id: fad839ca-b795-4386-bc98-9c1418c99c80
-    content: User story — Copy and cut highlighted text inside a node
-    children:
-      - f093a824-062b-48c0-96b1-75c1b6753a57
-      - 4f06b889-12ed-426e-9555-8161af92ad16
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f093a824-062b-48c0-96b1-75c1b6753a57:
-    id: f093a824-062b-48c0-96b1-75c1b6753a57
-    content: Product spec
-    children:
-      - ad02944f-3549-450b-862f-030ca5abe01b
-      - b1ae9a5d-cf50-43f6-bf84-eb15f4af1db6
-      - 343285f4-5f6d-42b3-85c8-e8857c46e943
-      - da4c4534-5f6c-49e1-ac79-db6bc00f1ff0
-      - e2649240-c1f2-4fb1-851a-092ae296e230
-      - e129f439-4d92-4ca0-b6fe-7cf8f17a1263
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad02944f-3549-450b-862f-030ca5abe01b:
-    id: ad02944f-3549-450b-862f-030ca5abe01b
-    content: Context
-    children:
-      - 7c944f68-c839-41d9-aee4-6b0ec070e221
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7c944f68-c839-41d9-aee4-6b0ec070e221:
-    id: 7c944f68-c839-41d9-aee4-6b0ec070e221
-    content: Users routinely want to quote a sentence or phrase from a node into another node, an AI prompt, a terminal, or an external doc. Today Ctrl/Cmd+C and Ctrl/Cmd+X always operate on the whole node, even when the user has visibly highlighted a substring. The workaround (enter edit mode first) is undiscoverable and breaks flow.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1ae9a5d-cf50-43f6-bf84-eb15f4af1db6:
-    id: b1ae9a5d-cf50-43f6-bf84-eb15f4af1db6
-    content: User
-    children:
-      - c5af20db-061b-4a9e-ae44-6840bd786b4a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c5af20db-061b-4a9e-ae44-6840bd786b4a:
-    id: c5af20db-061b-4a9e-ae44-6840bd786b4a
-    content: An Arborescent user navigating and curating a workflow tree, who treats node text as readable prose they want to selectively quote.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  343285f4-5f6d-42b3-85c8-e8857c46e943:
-    id: 343285f4-5f6d-42b3-85c8-e8857c46e943
-    content: Current experience
-    children:
-      - 4c70faae-b00a-400c-a3f3-c9a1288709c0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c70faae-b00a-400c-a3f3-c9a1288709c0:
-    id: 4c70faae-b00a-400c-a3f3-c9a1288709c0
-    content: Highlight a span of text in a node → Ctrl/Cmd+C → paste yields the whole node serialized as markdown. Ctrl/Cmd+X additionally deletes the node, which is destructive and unexpected.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  da4c4534-5f6c-49e1-ac79-db6bc00f1ff0:
-    id: da4c4534-5f6c-49e1-ac79-db6bc00f1ff0
-    content: Goal
-    children:
-      - efc6fd42-f8f7-4b0c-9e34-0695852a5f19
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  efc6fd42-f8f7-4b0c-9e34-0695852a5f19:
-    id: efc6fd42-f8f7-4b0c-9e34-0695852a5f19
-    content: When a non-empty text range is highlighted inside a node, copy/cut shortcuts and the Edit menu act on that range only; with no selection they keep operating on the focused node(s).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2649240-c1f2-4fb1-851a-092ae296e230:
-    id: e2649240-c1f2-4fb1-851a-092ae296e230
-    content: Business rules
-    children:
-      - 5d629449-c28f-46c8-9bde-f5de0dedd23d
-      - 06b65641-ee7b-40b6-9d7d-341a56b7f8fa
-      - 9217af95-2932-4ade-ae44-63f9be774f27
-      - 21964c6c-91dd-4d39-8001-bc7e377045c3
-      - e76ca285-ccc0-4427-a269-013f214afdea
-      - 4ea0921e-37d9-4803-af38-73472c1d0fd3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5d629449-c28f-46c8-9bde-f5de0dedd23d:
-    id: 5d629449-c28f-46c8-9bde-f5de0dedd23d
-    content: A non-collapsed window.getSelection() range whose anchor is inside the tree view is treated as "text selection" regardless of whether the host element is contenteditable.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  06b65641-ee7b-40b6-9d7d-341a56b7f8fa:
-    id: 06b65641-ee7b-40b6-9d7d-341a56b7f8fa
-    content: On text-selection copy, the substring is written to the system clipboard as plain text and the tree state is not modified.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9217af95-2932-4ade-ae44-63f9be774f27:
-    id: 9217af95-2932-4ade-ae44-63f9be774f27
-    content: On text-selection cut, the substring is written to the clipboard and removed from the node's stored content via the existing node-content update path, so it participates in undo/redo; the node itself is not deleted.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  21964c6c-91dd-4d39-8001-bc7e377045c3:
-    id: 21964c6c-91dd-4d39-8001-bc7e377045c3
-    content: Cut applies only when the selection sits inside a single node; multi-node selections fall back to whole-node cut.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e76ca285-ccc0-4427-a269-013f214afdea:
-    id: e76ca285-ccc0-4427-a269-013f214afdea
-    content: Selections inside terminal, browser panel, title input, and other input/textarea hosts remain owned by those hosts and must not be intercepted.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ea0921e-37d9-4803-af38-73472c1d0fd3:
-    id: 4ea0921e-37d9-4803-af38-73472c1d0fd3
-    content: Right-click and Edit menu Copy/Cut entries follow the same rule and re-label to "Copy selection" / "Cut selection" when a text range is live.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e129f439-4d92-4ca0-b6fe-7cf8f17a1263:
-    id: e129f439-4d92-4ca0-b6fe-7cf8f17a1263
-    content: Acceptance criteria
-    children:
-      - a9a7183f-a923-4ef4-81c6-c5ce1f156950
-      - d4a08c18-c725-4090-b4d9-13b7428bd485
-      - 00396159-6fee-49a9-84ef-fc7cadd0ee1d
-      - 1443d3cc-bff6-4585-a38d-a48b0b6cb24c
-      - 608b17c1-d3aa-4250-af6e-0dd564f93423
-      - 56d3503e-8615-4d7c-a916-564a77511015
-      - 785d47ee-e4a2-45b3-9dbe-ce97dffe1e35
-      - 9e4a5c3f-de8d-4fbf-b8c3-afecbcae528b
-      - d89a5a9c-a921-44a6-8928-47a75e4998e8
-      - 3f96ff3e-6921-48b4-a8a9-31c51163ad99
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9a7183f-a923-4ef4-81c6-c5ce1f156950:
-    id: a9a7183f-a923-4ef4-81c6-c5ce1f156950
-    content: Highlighting a substring in a non-edit-mode node and pressing Ctrl/Cmd+C places exactly that substring on the clipboard; the tree is unchanged.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d4a08c18-c725-4090-b4d9-13b7428bd485:
-    id: d4a08c18-c725-4090-b4d9-13b7428bd485
-    content: Highlighting a substring and pressing Ctrl/Cmd+X places that substring on the clipboard and removes it from the node content; the node still exists.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  00396159-6fee-49a9-84ef-fc7cadd0ee1d:
-    id: 00396159-6fee-49a9-84ef-fc7cadd0ee1d
-    content: Cut is reflected in undo/redo (Ctrl/Cmd+Z restores the original text).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1443d3cc-bff6-4585-a38d-a48b0b6cb24c:
-    id: 1443d3cc-bff6-4585-a38d-a48b0b6cb24c
-    content: With no text selection, Ctrl/Cmd+C / Ctrl/Cmd+X behave exactly as today (whole-node copy/cut, multi-select aware).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  608b17c1-d3aa-4250-af6e-0dd564f93423:
-    id: 608b17c1-d3aa-4250-af6e-0dd564f93423
-    content: Multi-node selections fall through to whole-node copy/cut (no partial-cut data loss).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  56d3503e-8615-4d7c-a916-564a77511015:
-    id: 56d3503e-8615-4d7c-a916-564a77511015
-    content: Edit menu's Copy and Cut items copy/cut the current selection when one exists, otherwise the focused node(s).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  785d47ee-e4a2-45b3-9dbe-ce97dffe1e35:
-    id: 785d47ee-e4a2-45b3-9dbe-ce97dffe1e35
-    content: Node right-click menu's Copy item copies the live text selection when one exists inside that node.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e4a5c3f-de8d-4fbf-b8c3-afecbcae528b:
-    id: 9e4a5c3f-de8d-4fbf-b8c3-afecbcae528b
-    content: Copy/cut still works inside terminal and browser panels (no regression from the broadened selection check).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d89a5a9c-a921-44a6-8928-47a75e4998e8:
-    id: d89a5a9c-a921-44a6-8928-47a75e4998e8
-    content: Focus inside the node title input continues to use native input copy/cut.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3f96ff3e-6921-48b4-a8a9-31c51163ad99:
-    id: 3f96ff3e-6921-48b4-a8a9-31c51163ad99
-    content: Keyboard-only users can highlight via Shift+Arrow inside a node and copy with Ctrl/Cmd+C.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f06b889-12ed-426e-9555-8161af92ad16:
-    id: 4f06b889-12ed-426e-9555-8161af92ad16
-    content: Implementation proposal
-    children:
-      - 2a918f14-3294-493c-b4f4-29acdad0a12d
-      - 049c3776-ba77-4e8b-bd4c-c970b26b6b70
-      - ccb41872-7a24-4681-8c2e-f74c8e103fc5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a918f14-3294-493c-b4f4-29acdad0a12d:
-    id: 2a918f14-3294-493c-b4f4-29acdad0a12d
-    content: Approach
-    children:
-      - 5d84f786-d2e0-48fa-aea0-ce71c98757d2
-      - 0b1120ff-90c2-4c9b-b98b-8a68157f6269
-      - 40ed4ca2-1902-4b85-9537-0d6a38a2a77e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5d84f786-d2e0-48fa-aea0-ce71c98757d2:
-    id: 5d84f786-d2e0-48fa-aea0-ce71c98757d2
-    content: Broaden hasTextSelection() in src/renderer/utils/selectionUtils.ts so it considers any non-collapsed selection whose anchor sits inside the tree view (e.g. .tree-panel / node-content container), not only inside a [contenteditable]. Keep terminal/browser/input hosts excluded.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b1120ff-90c2-4c9b-b98b-8a68157f6269:
-    id: 0b1120ff-90c2-4c9b-b98b-8a68157f6269
-    content: 'In src/renderer/services/keyboard/uiService.ts, when the broadened check is true: for copy, do not preventDefault — let the browser write the substring to the clipboard. For cut, write the substring to the clipboard via the existing clipboard service and call a store action that mutates node content through the existing content-edit path so the deletion participates in undo/redo.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  40ed4ca2-1902-4b85-9537-0d6a38a2a77e:
-    id: 40ed4ca2-1902-4b85-9537-0d6a38a2a77e
-    content: Mirror the same selection-aware branching in useEditMenuActions.handleCopy / handleCut and in useNodeContextMenu Copy entry.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  049c3776-ba77-4e8b-bd4c-c970b26b6b70:
-    id: 049c3776-ba77-4e8b-bd4c-c970b26b6b70
-    content: Touchpoints
-    children:
-      - ce023f48-cd7b-473b-998a-1c3f36c6db82
-      - 2f5a9561-d801-43c9-8011-7dc2f80f7a50
-      - 55af70af-efb8-4b62-8918-e63afe8a9d93
-      - 82a96c38-2bb1-4bf9-8611-b2ba3eed0b37
-      - 08dc2023-6ced-457f-824c-471b17e096d7
-      - 31e60b1a-5219-42ea-b9a6-01fa8733266b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ce023f48-cd7b-473b-998a-1c3f36c6db82:
-    id: ce023f48-cd7b-473b-998a-1c3f36c6db82
-    content: src/renderer/utils/selectionUtils.ts — widen hasTextSelection scope.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f5a9561-d801-43c9-8011-7dc2f80f7a50:
-    id: 2f5a9561-d801-43c9-8011-7dc2f80f7a50
-    content: src/renderer/services/keyboard/uiService.ts — copy/cut branches.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55af70af-efb8-4b62-8918-e63afe8a9d93:
-    id: 55af70af-efb8-4b62-8918-e63afe8a9d93
-    content: src/renderer/components/MenuBar/hooks/useEditMenuActions.ts — copy/cut handlers.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  82a96c38-2bb1-4bf9-8611-b2ba3eed0b37:
-    id: 82a96c38-2bb1-4bf9-8611-b2ba3eed0b37
-    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts — Copy entry label and dispatch.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  08dc2023-6ced-457f-824c-471b17e096d7:
-    id: 08dc2023-6ced-457f-824c-471b17e096d7
-    content: src/renderer/store/tree/actions/clipboardActions.ts — possibly a new cutTextRange action, or reuse existing node-content mutation for the cut path.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  31e60b1a-5219-42ea-b9a6-01fa8733266b:
-    id: 31e60b1a-5219-42ea-b9a6-01fa8733266b
-    content: Co-located tests for each touched module — partial-selection copy/cut unit tests, plus an integration test for the keyboard path.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ccb41872-7a24-4681-8c2e-f74c8e103fc5:
-    id: ccb41872-7a24-4681-8c2e-f74c8e103fc5
-    content: Constraints to call out
-    children:
-      - 7ecfde34-58cc-4d16-8004-0c05ace409d8
-      - 2e410c88-4281-444e-9026-5d29991af8f8
-      - cb4d9f12-8041-4431-ad5e-5ee618ed3c3c
-      - b1b15b4f-0219-4c37-858b-a2d7d53670a4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ecfde34-58cc-4d16-8004-0c05ace409d8:
-    id: 7ecfde34-58cc-4d16-8004-0c05ace409d8
-    content: Do not call event.preventDefault() on copy when delegating to the browser; otherwise the native clipboard write never happens.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e410c88-4281-444e-9026-5d29991af8f8:
-    id: 2e410c88-4281-444e-9026-5d29991af8f8
-    content: Cut must go through the store action that records undo history — never mutate node content out-of-band, or undo will desync.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb4d9f12-8041-4431-ad5e-5ee618ed3c3c:
-    id: cb4d9f12-8041-4431-ad5e-5ee618ed3c3c
-    content: The broadened selection check must continue to exclude terminal (xterm.js) and browser-panel webview; rely on the existing isFocusInTerminalOrBrowser short-circuit ordering rather than re-checking inside hasTextSelection.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1b15b4f-0219-4c37-858b-a2d7d53670a4:
-    id: b1b15b4f-0219-4c37-858b-a2d7d53670a4
-    content: Right-click menu Copy currently always calls actions.copyNodes (useNodeContextMenu.ts:317, 355) — switching it to selection-aware dispatch is a behaviour change worth a release-note line.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  91fad94a-19e8-45f8-9c3a-a8b3fc42f9d6:
-    id: 91fad94a-19e8-45f8-9c3a-a8b3fc42f9d6
-    content: Technical refinement
-    children:
-      - e06f2908-803b-4cb5-9699-344a7dc5ade3
-      - 51ad512d-6c69-4491-9b14-ada7b2c09482
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e06f2908-803b-4cb5-9699-344a7dc5ade3:
-    id: e06f2908-803b-4cb5-9699-344a7dc5ade3
-    content: Complications
-    children:
-      - 960c41f1-a563-4fd1-bef0-130b445c1505
-      - addf75e2-c5ef-4a25-b6f0-501889c98f3e
-      - 7f9799f5-4382-4cf5-9abe-4deed9b39e38
-      - f11504d1-3663-4d85-be19-add73b97be3b
-      - 55654df9-909c-47ba-a23f-08c61ac4e471
-      - 8a0a9dc9-e539-4b7c-bcf2-09576048a092
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  960c41f1-a563-4fd1-bef0-130b445c1505:
-    id: 960c41f1-a563-4fd1-bef0-130b445c1505
-    content: 'Rendered-vs-source offset mapping for Cut: selection.toString() reflects the rendered DOM, while node content is stored as markdown source. Cutting a substring requires mapping the selection''s start/end DOM offsets back into source-string indices, which is non-trivial when the rendered tree contains inline markdown (bold, italic, links, code spans). Copy is exempt — it can just hand the rendered substring to the clipboard.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  addf75e2-c5ef-4a25-b6f0-501889c98f3e:
-    id: addf75e2-c5ef-4a25-b6f0-501889c98f3e
-    content: 'Native copy delegation in Electron: dropping event.preventDefault() to let the browser handle copy assumes the renderer permits document.execCommand(''copy'') / native copy on a plain (non-contenteditable) selection. Needs an early empirical check — if the host blocks it, fall back to navigator.clipboard.writeText(selection.toString()) explicitly.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f9799f5-4382-4cf5-9abe-4deed9b39e38:
-    id: 7f9799f5-4382-4cf5-9abe-4deed9b39e38
-    content: 'Cut undo/redo coupling: the new cut path must go through the same store action that powers normal text edits so undo restores the substring exactly. A separate "cutTextRange" action risks producing undo entries the user can''t read.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f11504d1-3663-4d85-be19-add73b97be3b:
-    id: f11504d1-3663-4d85-be19-add73b97be3b
-    content: 'Out of scope (defer or explicitly decline): partial cut spanning multiple nodes; preserving inline formatting on copy (we ship plain text); copying as serialized markdown vs as rendered HTML — current bug is plain-text only.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55654df9-909c-47ba-a23f-08c61ac4e471:
-    id: 55654df9-909c-47ba-a23f-08c61ac4e471
-    content: 'ROI note: copy-only is a small, high-value fix (one selection-check widening + drop preventDefault). Cut adds the offset-mapping cost above and a new store action; consider shipping copy first and tracking cut separately if the mapping work balloons.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a0a9dc9-e539-4b7c-bcf2-09576048a092:
-    id: 8a0a9dc9-e539-4b7c-bcf2-09576048a092
-    content: 'Risk: widening hasTextSelection to "anchor inside tree view" must not catch selections inside floating UI that lives in the tree DOM (e.g. inline edit popovers, drag previews) — scope the predicate to the node-content container, not the panel root.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  51ad512d-6c69-4491-9b14-ada7b2c09482:
-    id: 51ad512d-6c69-4491-9b14-ada7b2c09482
-    content: Approach summary
-    children:
-      - 269488d3-d3a5-4730-aeee-8fd49a183d55
-      - 460c7194-2871-45e8-af4a-06e3ef2a60f1
-      - 142aa82b-e125-4723-a49a-df9f968e401c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  269488d3-d3a5-4730-aeee-8fd49a183d55:
-    id: 269488d3-d3a5-4730-aeee-8fd49a183d55
-    content: 'Single-point widening: hasTextSelection() in selectionUtils.ts grows from "anchor inside [contenteditable]" to "anchor inside the node-content container", which unlocks every existing call site (keyboard hotkey, Edit menu, right-click menu) without per-site logic.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  460c7194-2871-45e8-af4a-06e3ef2a60f1:
-    id: 460c7194-2871-45e8-af4a-06e3ef2a60f1
-    content: Copy path delegates to the browser by simply returning without preventDefault; cut path writes selection.toString() to the clipboard and applies a content mutation through the existing edit/undo action — no new clipboard plumbing, no new store store.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  142aa82b-e125-4723-a49a-df9f968e401c:
-    id: 142aa82b-e125-4723-a49a-df9f968e401c
-    content: 'Non-obvious for reviewers: copy ships as a behaviour change with no new code paths (just a predicate widening + an early-return), whereas cut introduces rendered→source offset mapping that is the real complexity; if reviewers see only the selectionUtils diff and assume the whole bug is closed, cut will still be broken.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   e8b229ce-9e6d-409a-8add-7789de605bfe:
     id: e8b229ce-9e6d-409a-8add-7789de605bfe
     content: Restart terminal in right directory and start claude in the right session
@@ -160735,6 +159635,2416 @@ nodes:
     children: []
     metadata:
       status: pending
+  a2b9d2fb-9079-431a-be24-481850514e3b:
+    id: a2b9d2fb-9079-431a-be24-481850514e3b
+    content: Bug - after restart binding incorrect
+    children:
+      - 12baee9a-7353-47b1-9e48-e7377713ccb3
+      - fe86d77f-9af9-4543-8883-85d9eba6c8b8
+      - 1577206e-872b-4295-912e-b945cb04f134
+      - 0d1fe70f-6e53-4130-80fd-94233c41c48d
+      - 0f66b5ae-3612-4b70-b230-d8d51b9ea2fa
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 81427f88-82d5-43be-8a32-61712ef7a3c0
+  924b187c-f2db-4ceb-968b-440700b738e3:
+    id: 924b187c-f2db-4ceb-968b-440700b738e3
+    content: Split sessionId (identity) from groupId (decomposition lineage)
+    children:
+      - c7416a8d-424e-4e9f-b359-628c923abafa
+      - 5272e6e4-1b09-4793-a156-b2d2c438cdcd
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: d450cc81-562a-4e16-985e-cf8c234a61d2
+  c7416a8d-424e-4e9f-b359-628c923abafa:
+    id: c7416a8d-424e-4e9f-b359-628c923abafa
+    content: Product spec
+    children:
+      - 5bc3f526-fcc9-40e6-b5aa-123dc5aaa70c
+      - f56a0704-9323-4acd-b113-598774fbec98
+      - 7564b850-0786-46c0-a11c-e6a00f61b533
+      - e230b960-0644-4392-bdbc-d1fe332ebdb4
+      - dcbdec66-e8c5-4333-b831-d1ac8033189b
+      - c17c5e53-15ee-4756-b8b3-31f871cab55a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bc3f526-fcc9-40e6-b5aa-123dc5aaa70c:
+    id: 5bc3f526-fcc9-40e6-b5aa-123dc5aaa70c
+    content: Context
+    children:
+      - 57d22410-8843-4099-83da-60f0f512a1a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57d22410-8843-4099-83da-60f0f512a1a9:
+    id: 57d22410-8843-4099-83da-60f0f512a1a9
+    content: '`sessionId` in node metadata is overloaded. Job (a): identify the Claude session that owns a node (the binding). Job (b): mark a decomposition lineage so the recurse hand-off can find the next sibling. Job (b) accreted over `2219213` (recurse stays in same AI session), `fb7c196` (split inherits sessionId), and `653e8c6` (decomposed siblings bound to originating session). Because job (b) requires the same `sessionId` to appear on many nodes, job (a) cannot enforce uniqueness — and stale stamps from past binds accumulate on nodes the user never consciously bound. Splitting the two jobs into separate metadata fields lets each enforce its own invariant cleanly.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f56a0704-9323-4acd-b113-598774fbec98:
+    id: f56a0704-9323-4acd-b113-598774fbec98
+    content: User
+    children:
+      - 393305d6-5cff-4953-bcb4-bb0680b7e309
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  393305d6-5cff-4953-bcb4-bb0680b7e309:
+    id: 393305d6-5cff-4953-bcb4-bb0680b7e309
+    content: Workflow operator running decomposed workflows; the user-visible behavior is unchanged but the data model becomes coherent — fewer surprises in binding, capture, and recurse routing over time.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7564b850-0786-46c0-a11c-e6a00f61b533:
+    id: 7564b850-0786-46c0-a11c-e6a00f61b533
+    content: Current experience
+    children:
+      - 65efbd88-6834-4333-abd3-1361a5f73109
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65efbd88-6834-4333-abd3-1361a5f73109:
+    id: 65efbd88-6834-4333-abd3-1361a5f73109
+    content: Decomposed children, split halves, and prior binds all share a `sessionId`. Binding correctness depends on incidental rules (resolution order, `brokenChain` flag) layered on top of this overload. New code that touches `sessionId` has to learn the unwritten lineage rule to avoid breaking recurse.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e230b960-0644-4392-bdbc-d1fe332ebdb4:
+    id: e230b960-0644-4392-bdbc-d1fe332ebdb4
+    content: Goal
+    children:
+      - 93c42b23-5619-4dc2-ba8a-6dbaa6bcbebc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93c42b23-5619-4dc2-ba8a-6dbaa6bcbebc:
+    id: 93c42b23-5619-4dc2-ba8a-6dbaa6bcbebc
+    content: '`sessionId` identifies a Claude session and appears on at most one node at a time. `groupId` identifies a decomposition lineage and is stamped at decomposition on every child produced by that decomposition operation.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcbdec66-e8c5-4333-b831-d1ac8033189b:
+    id: dcbdec66-e8c5-4333-b831-d1ac8033189b
+    content: Business rules
+    children:
+      - 35f24987-6fd7-4e10-838a-06c2eaa3a438
+      - 9702dd55-3c46-493d-8252-2b84a8bc81da
+      - c900d18f-9ad1-4dc2-bda4-1b2d23f76f16
+      - 62b3a1ab-cb0c-4873-b21c-47a939c0888a
+      - 4c9ce4ca-03e6-40b7-94f2-c574767b64d0
+      - 995abddd-c800-4cb1-8533-c11a178434d3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  35f24987-6fd7-4e10-838a-06c2eaa3a438:
+    id: 35f24987-6fd7-4e10-838a-06c2eaa3a438
+    content: 1. `sessionId` in node metadata identifies the Claude session that owns the node; it appears on at most one node at any time.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9702dd55-3c46-493d-8252-2b84a8bc81da:
+    id: 9702dd55-3c46-493d-8252-2b84a8bc81da
+    content: 2. `groupId` in node metadata identifies a decomposition operation; it is stamped on every child produced by that operation. A single decomposition step can host multiple groupIds — one per source node decomposed in it. groupId scope is the children of that one decomposition operation, not their downstream decompositions.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c900d18f-9ad1-4dc2-bda4-1b2d23f76f16:
+    id: c900d18f-9ad1-4dc2-bda4-1b2d23f76f16
+    content: 3. groupId is immutable for the life of the node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62b3a1ab-cb0c-4873-b21c-47a939c0888a:
+    id: 62b3a1ab-cb0c-4873-b21c-47a939c0888a
+    content: '4. The recurse hand-off picks the next decomposed sibling by matching `groupId`, not `sessionId`. Behavior is otherwise unchanged: the next sibling advances to step N+1 before being started (`4ecbcc1`).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c9ce4ca-03e6-40b7-94f2-c574767b64d0:
+    id: 4c9ce4ca-03e6-40b7-94f2-c574767b64d0
+    content: 5. When a terminal is bound to a new node (initial bind, send-to-terminal rebind, SessionStart capture, reattach), `sessionId` is stamped on the new node and atomically cleared from any other node that previously carried it. `groupId` on those nodes is left untouched.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  995abddd-c800-4cb1-8533-c11a178434d3:
+    id: 995abddd-c800-4cb1-8533-c11a178434d3
+    content: 6. `SplitNodeCommand` copies `groupId` to both halves (they remain in the same lineage); `sessionId` stays only on the half that is the terminal's current `originNodeId`.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c17c5e53-15ee-4756-b8b3-31f871cab55a:
+    id: c17c5e53-15ee-4756-b8b3-31f871cab55a
+    content: Acceptance criteria
+    children:
+      - 026f9910-331e-41f9-b740-28b313abe25c
+      - c246d21c-9b70-4cfb-8681-2c8d4e05e45c
+      - cb1aebba-cec2-46cd-9869-e000ef05c0c6
+      - bca8f16c-b2a7-4065-a2b4-3d89ffe00222
+      - c4dbb252-68dd-48c2-8950-3cc703d58512
+      - c04f3362-66ed-49c6-ad9b-05994b24f1ab
+      - 32544127-e6df-49a0-ab9e-6427b76bc91f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  026f9910-331e-41f9-b740-28b313abe25c:
+    id: 026f9910-331e-41f9-b740-28b313abe25c
+    content: '- [ ] Bind a terminal to node A, then rebind it to unrelated node B — node B carries `sessionId`, node A no longer does; any `groupId` on either node is unchanged.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c246d21c-9b70-4cfb-8681-2c8d4e05e45c:
+    id: c246d21c-9b70-4cfb-8681-2c8d4e05e45c
+    content: '- [ ] Decompose node P: every child created by that decomposition carries the same fresh `groupId`; no unrelated node carries it.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb1aebba-cec2-46cd-9869-e000ef05c0c6:
+    id: cb1aebba-cec2-46cd-9869-e000ef05c0c6
+    content: '- [ ] In a step that decomposes both P and Q, P''s children share one groupId and Q''s children share a different one.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bca8f16c-b2a7-4065-a2b4-3d89ffe00222:
+    id: bca8f16c-b2a7-4065-a2b4-3d89ffe00222
+    content: '- [ ] Recurse hand-off: when a child of P completes the recurse step, the next pending child of P (same groupId) advances to step N+1 and runs; children of Q are not picked up.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4dbb252-68dd-48c2-8950-3cc703d58512:
+    id: c4dbb252-68dd-48c2-8950-3cc703d58512
+    content: '- [ ] Split a node carrying `groupId=G`: both halves carry `groupId=G`; `sessionId` ends up only on the half that is the terminal''s `originNodeId`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c04f3362-66ed-49c6-ad9b-05994b24f1ab:
+    id: c04f3362-66ed-49c6-ad9b-05994b24f1ab
+    content: '- [ ] After this story ships, no two nodes in a freshly-created `.arbo` share a `sessionId` — verifiable by a test that exercises decomposition, recurse, and split paths.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32544127-e6df-49a0-ab9e-6427b76bc91f:
+    id: 32544127-e6df-49a0-ab9e-6427b76bc91f
+    content: '- [ ] Cross-session isolation from `653e8c6` (decomposed children of one orchestrator don''t leak into another''s recurse) still holds, now enforced via `groupId`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5272e6e4-1b09-4793-a156-b2d2c438cdcd:
+    id: 5272e6e4-1b09-4793-a156-b2d2c438cdcd
+    content: Implementation proposal
+    children:
+      - d9397844-0af8-475a-a66d-48f0b504e7a2
+      - 75ac614e-d40c-42da-b4b2-c257fcb0b29c
+      - cede2be3-0cde-43cc-961a-8a65322fe5f4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9397844-0af8-475a-a66d-48f0b504e7a2:
+    id: d9397844-0af8-475a-a66d-48f0b504e7a2
+    content: Approach
+    children:
+      - ce618d80-fe42-498f-80df-28a2d67c0002
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce618d80-fe42-498f-80df-28a2d67c0002:
+    id: ce618d80-fe42-498f-80df-28a2d67c0002
+    content: 'Add `metadata.groupId: string | undefined` on TreeNode. Stamp a fresh `groupId` in `acceptFeedbackStrategies` (decomposition path) on every child of one decomposition operation. Replace the `originSessionId` filter in `checkRecurse` / `findNextDecomposedSibling` with `originGroupId` read from `metadata.groupId`. Stop propagating `sessionId` across decomposition and split — `PRESERVED_METADATA_KEYS` drops `sessionId` and adds `groupId`. Centralise sessionId writes through one `bindSessionToNode(sessionId, nodeId)` helper that clears any prior holder of the same `sessionId`. Removes the lineage-via-sessionId scan path in `activeSessionNodeId.ts` since uniqueness now holds.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  75ac614e-d40c-42da-b4b2-c257fcb0b29c:
+    id: 75ac614e-d40c-42da-b4b2-c257fcb0b29c
+    content: Touchpoints
+    children:
+      - 196a4905-d7d5-4dec-af12-0e0961946690
+      - d4a8efde-bf4f-4b03-84e9-2bf5b73686d9
+      - 268222ba-f3c0-400d-8451-606e5acd4b6f
+      - e2c7510c-ce22-46c9-b543-5864c87e58f4
+      - 147cc3f1-ede4-4fe1-afc5-7b2ba1faddc2
+      - 0733a1b5-7248-49b0-9995-6801a13246e5
+      - 5d88aa74-556a-4404-8d14-6abc2fc9380a
+      - c33793d4-7fd8-4c16-b378-782fd333607d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  196a4905-d7d5-4dec-af12-0e0961946690:
+    id: 196a4905-d7d5-4dec-af12-0e0961946690
+    content: '`src/shared/types/treeNode.ts` — add `groupId` to node metadata type.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4a8efde-bf4f-4b03-84e9-2bf5b73686d9:
+    id: d4a8efde-bf4f-4b03-84e9-2bf5b73686d9
+    content: '`src/renderer/store/tree/commands/acceptFeedbackStrategies.ts`, `AcceptFeedbackCommand.ts` — stamp fresh `groupId` on decomposed children; drop `sessionId` from `PRESERVED_METADATA_KEYS`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  268222ba-f3c0-400d-8451-606e5acd4b6f:
+    id: 268222ba-f3c0-400d-8451-606e5acd4b6f
+    content: '`src/renderer/store/tree/commands/SplitNodeCommand.ts` — copy `groupId` across split; do not copy `sessionId`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2c7510c-ce22-46c9-b543-5864c87e58f4:
+    id: e2c7510c-ce22-46c9-b543-5864c87e58f4
+    content: '`src/renderer/store/tree/actions/workflowExecutionActions.ts` — `checkRecurse` reads `groupId`; rename `originSessionId` → `originGroupId`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  147cc3f1-ede4-4fe1-afc5-7b2ba1faddc2:
+    id: 147cc3f1-ede4-4fe1-afc5-7b2ba1faddc2
+    content: '`src/renderer/utils/workflowHelpers.ts` — `findNextDecomposedSibling` filter parameter becomes `originGroupId`, matches on `metadata.groupId`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0733a1b5-7248-49b0-9995-6801a13246e5:
+    id: 0733a1b5-7248-49b0-9995-6801a13246e5
+    content: '`src/renderer/store/tree/selectors/activeSessionNodeId.ts` — simplify `findNodeOwningTerminalSession` now that `sessionId` is unique; the WeakMap index can resolve directly without first-match arbitration.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d88aa74-556a-4404-8d14-6abc2fc9380a:
+    id: 5d88aa74-556a-4404-8d14-6abc2fc9380a
+    content: New `bindSessionToNode` helper routed through by initial bind, send-to-terminal rebind, SessionStart capture, and reattach so sessionId uniqueness is enforced at every write site.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c33793d4-7fd8-4c16-b378-782fd333607d:
+    id: c33793d4-7fd8-4c16-b378-782fd333607d
+    content: 'Tests: update `recurseSessionInheritance.test.ts`, `recurseTerminalScoping.test.ts`, `SplitNodeCommandSessionInheritance.test.ts`, `recurseHandoff.test.ts` to assert `groupId`-based isolation. Add: rebind clears prior `sessionId` stamp; multi-source decomposition step produces distinct groupIds per source; sessionId uniqueness end-to-end.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cede2be3-0cde-43cc-961a-8a65322fe5f4:
+    id: cede2be3-0cde-43cc-961a-8a65322fe5f4
+    content: Constraints to call out
+    children:
+      - be978b62-c275-493f-a0b3-7fb87af4bc51
+      - 2448d731-3da3-4778-ad73-06b0b3530b90
+      - 1cf7b124-6b9f-475e-99ab-b1426df9c870
+      - 9a91a747-e51a-4d4c-90f9-884b4af590ad
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be978b62-c275-493f-a0b3-7fb87af4bc51:
+    id: be978b62-c275-493f-a0b3-7fb87af4bc51
+    content: Every code path that writes `sessionId` to node metadata must go through `bindSessionToNode`; a one-off audit (grep for `sessionId` writes) is part of the implementation, not a follow-up.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2448d731-3da3-4778-ad73-06b0b3530b90:
+    id: 2448d731-3da3-4778-ad73-06b0b3530b90
+    content: Existing `.arbo` files have multi-node `sessionId` and no `groupId`. No migration is needed — the recurse-across-sessions feature is unused today; legacy decomposed children will simply not participate in the new groupId-based hand-off until a fresh decomposition stamps them.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cf7b124-6b9f-475e-99ab-b1426df9c870:
+    id: 1cf7b124-6b9f-475e-99ab-b1426df9c870
+    content: Main-process `sessionBindingRegistry` is unchanged; unifying the dual binding store of record is out of scope.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a91a747-e51a-4d4c-90f9-884b4af590ad:
+    id: 9a91a747-e51a-4d4c-90f9-884b4af590ad
+    content: 'Open question for review: whether split halves inherit the same `groupId` (spec''d above) or whether a split spawns a fresh `groupId`. Spec''d as "inherit" because the split halves are one logical decomposed node; flag for reviewer confirmation.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cf6d878-04b6-4103-8167-0869060a56cd:
+    id: 4cf6d878-04b6-4103-8167-0869060a56cd
+    content: Clicking close on a terminal shows a confirmation message if there is an active session
+    children:
+      - c81056d2-3cfe-43c7-aeba-3de8865bddf5
+    metadata:
+      status: pending
+      expanded: false
+  c81056d2-3cfe-43c7-aeba-3de8865bddf5:
+    id: c81056d2-3cfe-43c7-aeba-3de8865bddf5
+    content: Active means a prompt is processing, not that a node is bound
+    children: []
+    metadata:
+      status: pending
+  12baee9a-7353-47b1-9e48-e7377713ccb3:
+    id: 12baee9a-7353-47b1-9e48-e7377713ccb3
+    content: worktree
+    children:
+      - 99c374f1-71dc-48bf-bc28-9142f4bc2fc7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99c374f1-71dc-48bf-bc28-9142f4bc2fc7:
+    id: 99c374f1-71dc-48bf-bc28-9142f4bc2fc7
+    content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-restart-binding/)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe86d77f-9af9-4543-8883-85d9eba6c8b8:
+    id: fe86d77f-9af9-4543-8883-85d9eba6c8b8
+    content: Implementation proposal
+    children:
+      - 7ffc125e-28f4-427f-bb4e-2269c860e00c
+      - 09b35a6a-0564-4b4e-b894-47aa74df8b84
+      - 00f6944f-bac6-47c5-833f-cc1e185283ed
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ffc125e-28f4-427f-bb4e-2269c860e00c:
+    id: 7ffc125e-28f4-427f-bb4e-2269c860e00c
+    content: Approach
+    children:
+      - f322aaa6-b46c-4e39-96b3-c18f6738443a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f322aaa6-b46c-4e39-96b3-c18f6738443a:
+    id: f322aaa6-b46c-4e39-96b3-c18f6738443a
+    content: In `src/renderer/store/tree/actions/workflowExecutionActions.ts`, change `reattachOriginNodeForResumedSession` to prefer the terminal's persisted `originNodeId` (already restored by `materializeRestoredTerminals`) and validate it against the current tree before consulting `findNodeIdBySessionId`. Make `findNodeIdBySessionId` iterate in stable order so the fallback is deterministic. Add a "previously-bound node no longer exists" branch when `originNodeId` is set but missing. Surface persisted id, resolved id, candidates, and resolution path in the existing logger.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09b35a6a-0564-4b4e-b894-47aa74df8b84:
+    id: 09b35a6a-0564-4b4e-b894-47aa74df8b84
+    content: Touchpoints
+    children:
+      - 572d7b4e-428b-4700-9b26-0a6e43fbe676
+      - 251d00ab-88fe-4f13-b3d6-6916c3c598ce
+      - d12430ad-a5f1-4175-ab64-94df7a9fa8a6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  572d7b4e-428b-4700-9b26-0a6e43fbe676:
+    id: 572d7b4e-428b-4700-9b26-0a6e43fbe676
+    content: '`src/renderer/store/tree/actions/workflowExecutionActions.ts` — `reattachOriginNodeForResumedSession`, `findNodeIdBySessionId`, `registerSession`; add the missing-node branch and resolution logging.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  251d00ab-88fe-4f13-b3d6-6916c3c598ce:
+    id: 251d00ab-88fe-4f13-b3d6-6916c3c598ce
+    content: '`src/renderer/store/terminal/terminalStore.ts` — expose / reuse a selector to read `originNodeId` for a given terminal during reattach.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d12430ad-a5f1-4175-ab64-94df7a9fa8a6:
+    id: d12430ad-a5f1-4175-ab64-94df7a9fa8a6
+    content: 'Tests under `src/renderer/store/tree/actions/tests/` covering: persisted-id wins over a colliding `sessionId` scan; deleted `originNodeId` surfaces the explicit state; legacy terminal without `originNodeId` uses deterministic fallback; tab-title regression guard.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00f6944f-bac6-47c5-833f-cc1e185283ed:
+    id: 00f6944f-bac6-47c5-833f-cc1e185283ed
+    content: Constraints to call out
+    children:
+      - 8ef5986c-93f3-4488-8ed6-258ea96f4285
+      - 4e85922a-3e27-4657-ad8a-b8ee17aadde6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ef5986c-93f3-4488-8ed6-258ea96f4285:
+    id: 8ef5986c-93f3-4488-8ed6-258ea96f4285
+    content: Does not touch decomposition or recurse semantics — the multi-node `sessionId` situation is preserved for the recurse hand-off to continue working. US-2 is what actually resolves the overloading.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e85922a-3e27-4657-ad8a-b8ee17aadde6:
+    id: 4e85922a-3e27-4657-ad8a-b8ee17aadde6
+    content: 'Backward compatibility: legacy terminals lacking `originNodeId` keep working via the deterministic fallback; no migration required.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1577206e-872b-4295-912e-b945cb04f134:
+    id: 1577206e-872b-4295-912e-b945cb04f134
+    content: Product spec
+    children:
+      - 384f8c2a-954b-4c0a-a32c-68c8fda85e43
+      - 6d390fc3-bd92-452a-afaf-405696c39f58
+      - a44875fd-ef94-424b-95f8-4452a13bc711
+      - 6a10ec0c-e57d-4165-9502-ad6629d851fd
+      - be963f70-867f-4728-9933-a3b691ecef0f
+      - 0a2a9d9f-baf1-48b1-bb0c-8f58dfc323d1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  384f8c2a-954b-4c0a-a32c-68c8fda85e43:
+    id: 384f8c2a-954b-4c0a-a32c-68c8fda85e43
+    content: Context
+    children:
+      - e4a0d420-2053-400a-b74c-f0700fdd4837
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4a0d420-2053-400a-b74c-f0700fdd4837:
+    id: e4a0d420-2053-400a-b74c-f0700fdd4837
+    content: 'On app restart, the binding dialog for a resumed terminal can name the wrong node. The terminal persists an `originNodeId` (the node it was bound to), but on restart the renderer resolves the bound node by scanning all nodes for one whose metadata `sessionId` matches and returning the first hit. Because decomposed siblings, split halves, and prior binds all leave the same `sessionId` on multiple nodes (by current design — see US-2), the first-match scan is non-deterministic and often picks a node the user did not consciously bind. Observed in `project.arbo`: session `1ba89622-...` is stamped on both a ''US-H'' node and a ''Bug — Highlighted'' node, and the dialog can name either.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d390fc3-bd92-452a-afaf-405696c39f58:
+    id: 6d390fc3-bd92-452a-afaf-405696c39f58
+    content: User
+    children:
+      - a6646ed1-916c-454f-b343-ce68a8b3d943
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6646ed1-916c-454f-b343-ce68a8b3d943:
+    id: a6646ed1-916c-454f-b343-ce68a8b3d943
+    content: Workflow operator running long-lived terminal sessions across restarts, relying on the binding dialog to confirm the terminal's current node before sending.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a44875fd-ef94-424b-95f8-4452a13bc711:
+    id: a44875fd-ef94-424b-95f8-4452a13bc711
+    content: Current experience
+    children:
+      - 491d2265-cd02-4427-b7e0-72dc0a7061ae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  491d2265-cd02-4427-b7e0-72dc0a7061ae:
+    id: 491d2265-cd02-4427-b7e0-72dc0a7061ae
+    content: After restart, the resolver may name any node carrying the session's `sessionId` in metadata, not necessarily the node the terminal was actually bound to before restart. Subsequent send-to-terminal and capture target the wrong subtree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a10ec0c-e57d-4165-9502-ad6629d851fd:
+    id: 6a10ec0c-e57d-4165-9502-ad6629d851fd
+    content: Goal
+    children:
+      - d83a72cf-94fc-4238-97c4-0b7c919cf3a5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d83a72cf-94fc-4238-97c4-0b7c919cf3a5:
+    id: d83a72cf-94fc-4238-97c4-0b7c919cf3a5
+    content: A resumed terminal's binding dialog always names the node identified by the terminal's persisted `originNodeId`, deterministically.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be963f70-867f-4728-9933-a3b691ecef0f:
+    id: be963f70-867f-4728-9933-a3b691ecef0f
+    content: Business rules
+    children:
+      - c926a8c1-dfbc-4a5f-aecf-17b5ca8319ac
+      - 2619eab7-6a01-49a7-aeb6-bfb4933d4c8c
+      - df72bd8c-9872-4028-892a-983925216599
+      - 064a7e89-0ddf-4716-b7c9-5bc5397dd4ff
+      - 27486e4e-74f4-4db5-873d-796c9b84d86a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c926a8c1-dfbc-4a5f-aecf-17b5ca8319ac:
+    id: c926a8c1-dfbc-4a5f-aecf-17b5ca8319ac
+    content: 1. The terminal's persisted `originNodeId` is the authoritative source for the bound node on restart.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2619eab7-6a01-49a7-aeb6-bfb4933d4c8c:
+    id: 2619eab7-6a01-49a7-aeb6-bfb4933d4c8c
+    content: 2. If `originNodeId` is present and still exists in the tree, the resolver returns that node regardless of what a metadata scan would find.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  df72bd8c-9872-4028-892a-983925216599:
+    id: df72bd8c-9872-4028-892a-983925216599
+    content: 3. If `originNodeId` is present but points to a deleted node, the resolver returns "previously-bound node no longer exists" and leaves the terminal unbound — it does not silently substitute another node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  064a7e89-0ddf-4716-b7c9-5bc5397dd4ff:
+    id: 064a7e89-0ddf-4716-b7c9-5bc5397dd4ff
+    content: 4. If `originNodeId` is absent (legacy terminal saved before this field), the resolver falls back to the existing `sessionId` metadata scan, made deterministic via stable iteration order; the chosen node, the candidates considered, and the path taken (`originNodeId` vs. fallback) are logged.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27486e4e-74f4-4db5-873d-796c9b84d86a:
+    id: 27486e4e-74f4-4db5-873d-796c9b84d86a
+    content: 5. In-session binding (no restart) is unchanged.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a2a9d9f-baf1-48b1-bb0c-8f58dfc323d1:
+    id: 0a2a9d9f-baf1-48b1-bb0c-8f58dfc323d1
+    content: Acceptance criteria
+    children:
+      - 1457b6e9-5726-4f2a-b285-8c5cb91ebb52
+      - 5d5cbd1d-a6a9-4534-b8e4-377cd2a79d8b
+      - a12368f0-0265-450e-aff9-e019c3abf1d2
+      - 5f4ecdd4-f0cf-46fb-8580-da9e1a756647
+      - 2c25b367-1052-4656-8f6d-b4a8d3ba66dd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1457b6e9-5726-4f2a-b285-8c5cb91ebb52:
+    id: 1457b6e9-5726-4f2a-b285-8c5cb91ebb52
+    content: '- [ ] Bind a terminal to node A, restart, resume the terminal — the binding dialog names node A even if other nodes carry the same `sessionId` in metadata.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d5cbd1d-a6a9-4534-b8e4-377cd2a79d8b:
+    id: 5d5cbd1d-a6a9-4534-b8e4-377cd2a79d8b
+    content: '- [ ] Multiple terminals bound to different nodes all resolve to their respective `originNodeId` after restart.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a12368f0-0265-450e-aff9-e019c3abf1d2:
+    id: a12368f0-0265-450e-aff9-e019c3abf1d2
+    content: '- [ ] If `originNodeId` points to a deleted node, the dialog shows "previously-bound node no longer exists"; the terminal is left unbound.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f4ecdd4-f0cf-46fb-8580-da9e1a756647:
+    id: 5f4ecdd4-f0cf-46fb-8580-da9e1a756647
+    content: '- [ ] A legacy terminal with no `originNodeId` resolves via the fallback `sessionId` scan in deterministic order; the resolution path is logged.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c25b367-1052-4656-8f6d-b4a8d3ba66dd:
+    id: 2c25b367-1052-4656-8f6d-b4a8d3ba66dd
+    content: '- [ ] Tab-title sync from commit `641cb97` continues to reflect the correctly-resolved node.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d1fe70f-6e53-4130-80fd-94233c41c48d:
+    id: 0d1fe70f-6e53-4130-80fd-94233c41c48d
+    content: Technical refinement
+    children:
+      - 45739860-e279-41da-8ae4-97809a3d272d
+      - 7ab89646-0f11-42d3-aa89-9ac0213295b6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45739860-e279-41da-8ae4-97809a3d272d:
+    id: 45739860-e279-41da-8ae4-97809a3d272d
+    content: Complications
+    children:
+      - 4b85441d-d913-40eb-b8d4-94c034ff1a7b
+      - ddef839c-e961-4fbf-b354-fed420e866d4
+      - 8c9c49db-414f-48f4-964a-1cf83e3cce47
+      - e5232371-e3f8-4773-b806-7a9406391085
+      - c9e2fa13-05c9-44ec-bc1b-93109e30e370
+      - daa14dc4-4882-4dcc-8643-10d008e44008
+      - 375510f2-b2eb-44d3-bfbe-49677e700efd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b85441d-d913-40eb-b8d4-94c034ff1a7b:
+    id: 4b85441d-d913-40eb-b8d4-94c034ff1a7b
+    content: Capture path needs the same fix — `findCapturableNodeForTerminal` (the SessionStart capture entry, not just reattach) also resolves the bound node; if only `reattachOriginNodeForResumedSession` is changed, a freshly-captured session can still land on the wrong node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddef839c-e961-4fbf-b354-fed420e866d4:
+    id: ddef839c-e961-4fbf-b354-fed420e866d4
+    content: Restore ordering — the resolver must run after `materializeRestoredTerminals` has populated `originNodeId` in the terminal store; if SessionStart fires before the terminal restore completes, the resolver sees no `originNodeId` and falls back unnecessarily.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c9c49db-414f-48f4-964a-1cf83e3cce47:
+    id: 8c9c49db-414f-48f4-964a-1cf83e3cce47
+    content: '"Previously-bound node no longer exists" needs UI — there is no existing unbound-with-explanation state on the binding dialog today; the smallest viable shape is a one-line variant of the current dialog, not a new component.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5232371-e3f8-4773-b806-7a9406391085:
+    id: e5232371-e3f8-4773-b806-7a9406391085
+    content: Stale `sessionId` stamps remain on other nodes — out of scope, but they will keep accumulating until US-2 lands; the deterministic fallback path partially absorbs the risk for legacy terminals.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9e2fa13-05c9-44ec-bc1b-93109e30e370:
+    id: c9e2fa13-05c9-44ec-bc1b-93109e30e370
+    content: Logging cardinality — every restart logs candidates per terminal; cap at one log line per terminal per resolve to avoid spam on workspaces with many terminals.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  daa14dc4-4882-4dcc-8643-10d008e44008:
+    id: daa14dc4-4882-4dcc-8643-10d008e44008
+    content: 'Out of scope: clearing stale `sessionId` stamps (US-2), unifying main-process `sessionBindingRegistry` with renderer node metadata, migrating legacy `.arbo` files.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  375510f2-b2eb-44d3-bfbe-49677e700efd:
+    id: 375510f2-b2eb-44d3-bfbe-49677e700efd
+    content: ROI is solid — small surgical change against a silent-corruption-class bug; the only persistent cost is the legacy fallback path which is small and gated by absence of `originNodeId`.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ab89646-0f11-42d3-aa89-9ac0213295b6:
+    id: 7ab89646-0f11-42d3-aa89-9ac0213295b6
+    content: Approach summary
+    children:
+      - a4fe22da-1faf-4cfd-ac53-bcf3347f4f85
+      - 01766924-b378-4228-8fd0-6902d091ae76
+      - f54ce1d7-f592-4ea7-a900-4a368b8d610d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4fe22da-1faf-4cfd-ac53-bcf3347f4f85:
+    id: a4fe22da-1faf-4cfd-ac53-bcf3347f4f85
+    content: 'Flip resolution order: `originNodeId` first (authoritative), `sessionId` scan only as a legacy fallback — applied at both the reattach path and the SessionStart capture path.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01766924-b378-4228-8fd0-6902d091ae76:
+    id: 01766924-b378-4228-8fd0-6902d091ae76
+    content: Add an explicit "previously-bound node no longer exists" branch when `originNodeId` is set but the node is gone — never silently substitute another node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f54ce1d7-f592-4ea7-a900-4a368b8d610d:
+    id: f54ce1d7-f592-4ea7-a900-4a368b8d610d
+    content: 'Non-obvious for the reviewer: the bug isn''t in persistence (`originNodeId` is saved correctly today) — it''s that the renderer''s rebind path ignored it; the fix is small but touches two call sites, not one.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f66b5ae-3612-4b70-b230-d8d51b9ea2fa:
+    id: 0f66b5ae-3612-4b70-b230-d8d51b9ea2fa
+    content: Spec/root-cause gap flagged via NeedsReview hook
+    children:
+      - 96f70b32-fa6c-4b5e-8e63-7bc6e2eb4c23
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  96f70b32-fa6c-4b5e-8e63-7bc6e2eb4c23:
+    id: 96f70b32-fa6c-4b5e-8e63-7bc6e2eb4c23
+    content: 'The user-reported "dialog names wrong previousNodeId after restart" symptom is driven by the file-open seed path (`src/renderer/store/files/actions/fileActions.ts` → `extractSessionBindings` → IPC → `src/main/services/seedBindingsIpcBridge.ts` → `SessionBindingRegistry.register`), not by `reattachOriginNodeForResumedSession`. The spec''s named touchpoints address the SessionStart resolver (a related path), but the renderer SessionStart flow already resolves the right node via `findCapturableNodeForTerminal` when `originNodeId` is set. Tests added: bodied regression guards for the spec''s named behaviors plus `it.todo` placeholders for the seed-path dedup and the "node gone" UX state that the spec leaves unspecified.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09cae063-dc0c-4bcd-955c-c34a5c0b23ef:
+    id: 09cae063-dc0c-4bcd-955c-c34a5c0b23ef
+    content: worktree
+    children:
+      - 53bdf1a9-ccd4-4beb-9f80-59e1d8018298
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53bdf1a9-ccd4-4beb-9f80-59e1d8018298:
+    id: 53bdf1a9-ccd4-4beb-9f80-59e1d8018298
+    content: vscode://file/Users/brianfox/dev/Arborescent-partial-copy-cut
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0e6358b-b351-4082-9a40-d040eb8bee0e:
+    id: e0e6358b-b351-4082-9a40-d040eb8bee0e
+    content: Summary
+    children:
+      - 8ada0f54-4fa7-43bd-b11a-fdc472149be0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ada0f54-4fa7-43bd-b11a-fdc472149be0:
+    id: 8ada0f54-4fa7-43bd-b11a-fdc472149be0
+    content: Selecting a partial range of text inside a node and pressing Ctrl/Cmd+C or Ctrl/Cmd+X copies/cuts the entire node instead of the highlighted substring.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d13ba97b-9137-4475-a1c7-c51aadfbf91e:
+    id: d13ba97b-9137-4475-a1c7-c51aadfbf91e
+    content: Steps to reproduce
+    children:
+      - c90004b8-8ef0-44e8-82f9-c58d96d8fa72
+      - fb0aeef8-4010-4683-b747-cf6cf5d93402
+      - bcc09ed5-2d88-449d-8eb7-080f17bb6fab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c90004b8-8ef0-44e8-82f9-c58d96d8fa72:
+    id: c90004b8-8ef0-44e8-82f9-c58d96d8fa72
+    content: Precondition / setup
+    children:
+      - dea68f37-c596-40d7-8595-ae2192f2b8d2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dea68f37-c596-40d7-8595-ae2192f2b8d2:
+    id: dea68f37-c596-40d7-8595-ae2192f2b8d2
+    content: Open Arborescent with any workflow tree that has a node containing more than one word of text.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb0aeef8-4010-4683-b747-cf6cf5d93402:
+    id: fb0aeef8-4010-4683-b747-cf6cf5d93402
+    content: User action
+    children:
+      - 2feb6b6e-314f-47e7-9a93-fd5ab545816f
+      - 8d2daf61-972b-4987-90ef-877b00110933
+      - 98aa651e-131c-4c9d-9a82-ac852880a4ba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2feb6b6e-314f-47e7-9a93-fd5ab545816f:
+    id: 2feb6b6e-314f-47e7-9a93-fd5ab545816f
+    content: Click into the node to focus it but do not enter edit mode (i.e. the contenteditable is not the active element), then click-drag to highlight a substring of its text.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d2daf61-972b-4987-90ef-877b00110933:
+    id: 8d2daf61-972b-4987-90ef-877b00110933
+    content: Press Ctrl/Cmd+C (or Ctrl/Cmd+X) while the substring is highlighted.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98aa651e-131c-4c9d-9a82-ac852880a4ba:
+    id: 98aa651e-131c-4c9d-9a82-ac852880a4ba
+    content: Paste into any external text field (or another node) with Ctrl/Cmd+V.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcc09ed5-2d88-449d-8eb7-080f17bb6fab:
+    id: bcc09ed5-2d88-449d-8eb7-080f17bb6fab
+    content: Observation that exposes the bug
+    children:
+      - 107fadfb-d997-4df9-bb1f-144efcf420cd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  107fadfb-d997-4df9-bb1f-144efcf420cd:
+    id: 107fadfb-d997-4df9-bb1f-144efcf420cd
+    content: The pasted payload is the full node serialized as markdown, not the highlighted substring; with Ctrl+X the whole node is also removed from the tree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6ba4ef2-b9f8-4ccb-9cc4-59d2785b6554:
+    id: d6ba4ef2-b9f8-4ccb-9cc4-59d2785b6554
+    content: Expected behavior
+    children:
+      - 54d6b383-793a-4e1f-9f79-efc6bcbbf31e
+      - 53180663-2589-44be-994a-6ad562883d1b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54d6b383-793a-4e1f-9f79-efc6bcbbf31e:
+    id: 54d6b383-793a-4e1f-9f79-efc6bcbbf31e
+    content: Happy path
+    children:
+      - 2d1efab4-13f5-4022-bbbd-29b58bb8fd4d
+      - f8a61942-6169-4257-88b1-6ca04a6bc9af
+      - 223b7681-8622-4165-9153-2400c27afcf2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d1efab4-13f5-4022-bbbd-29b58bb8fd4d:
+    id: 2d1efab4-13f5-4022-bbbd-29b58bb8fd4d
+    content: When a non-empty text range is highlighted inside a node, Ctrl/Cmd+C copies exactly that substring as plain text to the system clipboard and leaves the tree unchanged.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8a61942-6169-4257-88b1-6ca04a6bc9af:
+    id: f8a61942-6169-4257-88b1-6ca04a6bc9af
+    content: Under the same condition Ctrl/Cmd+X copies the substring and removes it from the node's content, without deleting the node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  223b7681-8622-4165-9153-2400c27afcf2:
+    id: 223b7681-8622-4165-9153-2400c27afcf2
+    content: When no text range is highlighted, Ctrl/Cmd+C and Ctrl/Cmd+X continue to operate on the focused node(s) as today.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53180663-2589-44be-994a-6ad562883d1b:
+    id: 53180663-2589-44be-994a-6ad562883d1b
+    content: Edge cases
+    children:
+      - c0e28096-8a77-42bf-b43b-e77b5bdd9e18
+      - 47286f27-f751-4caf-984b-b8d70e061901
+      - 4deee77b-e5b0-471b-a621-c202950a55e5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0e28096-8a77-42bf-b43b-e77b5bdd9e18:
+    id: c0e28096-8a77-42bf-b43b-e77b5bdd9e18
+    content: Selections that span multiple nodes still fall back to whole-node copy/cut because a partial multi-node cut is ambiguous.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47286f27-f751-4caf-984b-b8d70e061901:
+    id: 47286f27-f751-4caf-984b-b8d70e061901
+    content: Selections inside the title input, terminal, browser panel, and other input/textarea surfaces remain owned by those hosts.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4deee77b-e5b0-471b-a621-c202950a55e5:
+    id: 4deee77b-e5b0-471b-a621-c202950a55e5
+    content: An empty / collapsed selection is treated as "no selection" and falls through to whole-node copy/cut.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2ba0172-4aaa-4f36-8e4e-d09349d41b92:
+    id: c2ba0172-4aaa-4f36-8e4e-d09349d41b92
+    content: Actual behavior
+    children:
+      - 749ec53b-8110-4a6d-90d7-155d8b310bfa
+      - ab661fa3-5483-41d5-91e2-ac1da17438da
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  749ec53b-8110-4a6d-90d7-155d8b310bfa:
+    id: 749ec53b-8110-4a6d-90d7-155d8b310bfa
+    content: What actually happens
+    children:
+      - 39bac8a9-6f4a-49fd-8f12-b9c2c9d9e203
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39bac8a9-6f4a-49fd-8f12-b9c2c9d9e203:
+    id: 39bac8a9-6f4a-49fd-8f12-b9c2c9d9e203
+    content: The hotkey handler treats the highlight as if no text were selected, calls actions.copyNodes / actions.cutNodes, and the browser's native copy/cut is preempted by event.preventDefault.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab661fa3-5483-41d5-91e2-ac1da17438da:
+    id: ab661fa3-5483-41d5-91e2-ac1da17438da
+    content: User-visible symptoms
+    children:
+      - f0848275-9903-4eb2-974c-0a0fb5c4d850
+      - 62e84893-a2af-45a5-afa0-18bc2343e896
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0848275-9903-4eb2-974c-0a0fb5c4d850:
+    id: f0848275-9903-4eb2-974c-0a0fb5c4d850
+    content: Clipboard contains serialized markdown for the whole node instead of the highlighted text.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62e84893-a2af-45a5-afa0-18bc2343e896:
+    id: 62e84893-a2af-45a5-afa0-18bc2343e896
+    content: Ctrl+X removes the entire node from the tree, which is data-destructive relative to user intent.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a138620-c85b-4322-8594-140ce39dfc40:
+    id: 8a138620-c85b-4322-8594-140ce39dfc40
+    content: Suspected cause
+    children:
+      - 8efc4af7-d73f-4666-9e10-f839c5f99755
+      - da40fb63-106e-4b7e-9024-75dd8d9d1544
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8efc4af7-d73f-4666-9e10-f839c5f99755:
+    id: 8efc4af7-d73f-4666-9e10-f839c5f99755
+    content: Code path implicated
+    children:
+      - 7531c5b2-aa77-44cc-ba88-a471117a7a27
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7531c5b2-aa77-44cc-ba88-a471117a7a27:
+    id: 7531c5b2-aa77-44cc-ba88-a471117a7a27
+    content: 'src/renderer/services/keyboard/uiService.ts lines 195-213: the cut and copy branches gate on hasTextSelection(), defined in src/renderer/utils/selectionUtils.ts, which only returns true when the selection''s anchor node sits inside a [contenteditable].'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da40fb63-106e-4b7e-9024-75dd8d9d1544:
+    id: da40fb63-106e-4b7e-9024-75dd8d9d1544
+    content: Why the existing guard does not cover this case
+    children:
+      - 7a79f824-3308-4f84-8e7b-eaed1cdd0343
+      - 72f01e2d-a751-45af-9000-8a64f1c89c53
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a79f824-3308-4f84-8e7b-eaed1cdd0343:
+    id: 7a79f824-3308-4f84-8e7b-eaed1cdd0343
+    content: When a node is displayed (not actively being edited) its text lives outside any [contenteditable], so hasTextSelection() returns false even though window.getSelection() reports a non-collapsed range — the keyboard handler then runs the whole-node copy/cut path and preventDefaults the browser's native copy.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72f01e2d-a751-45af-9000-8a64f1c89c53:
+    id: 72f01e2d-a751-45af-9000-8a64f1c89c53
+    content: useEditMenuActions.handleCopy / handleCut have the same contenteditable-only check, so the Edit menu has the same bug surface.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54267678-3152-4a23-98c5-72b760347192:
+    id: 54267678-3152-4a23-98c5-72b760347192
+    content: Affected files
+    children:
+      - 94476aa3-a694-49cd-8036-83f79eae5364
+      - 69eb01de-2e28-4cd5-b0b0-eb74fc87b7d9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94476aa3-a694-49cd-8036-83f79eae5364:
+    id: 94476aa3-a694-49cd-8036-83f79eae5364
+    content: Primary suspect
+    children:
+      - d95a8de7-c1e4-498f-8a80-5c41a4c9aae3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d95a8de7-c1e4-498f-8a80-5c41a4c9aae3:
+    id: d95a8de7-c1e4-498f-8a80-5c41a4c9aae3
+    content: src/renderer/utils/selectionUtils.ts (hasTextSelection)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69eb01de-2e28-4cd5-b0b0-eb74fc87b7d9:
+    id: 69eb01de-2e28-4cd5-b0b0-eb74fc87b7d9
+    content: Related surfaces
+    children:
+      - fd727499-fcf1-47aa-bf6c-9977729f4888
+      - a791afb4-f5e9-4489-8d6e-c2dae3f33d2a
+      - df56a354-7909-4e3f-aede-4009bac988a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd727499-fcf1-47aa-bf6c-9977729f4888:
+    id: fd727499-fcf1-47aa-bf6c-9977729f4888
+    content: src/renderer/services/keyboard/uiService.ts (copy/cut hotkey branches)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a791afb4-f5e9-4489-8d6e-c2dae3f33d2a:
+    id: a791afb4-f5e9-4489-8d6e-c2dae3f33d2a
+    content: src/renderer/components/MenuBar/hooks/useEditMenuActions.ts (handleCopy, handleCut)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df56a354-7909-4e3f-aede-4009bac988a7:
+    id: df56a354-7909-4e3f-aede-4009bac988a7
+    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts (right-click Copy entries should mirror the same branching)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55f1a199-b83e-4c5e-a07c-193f1fc88bd3:
+    id: 55f1a199-b83e-4c5e-a07c-193f1fc88bd3
+    content: Regression window
+    children:
+      - 26b5f61a-48ea-4a0c-b895-09e91756a385
+      - f56cc2b8-39d9-4697-a473-d6c8edb339d4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26b5f61a-48ea-4a0c-b895-09e91756a385:
+    id: 26b5f61a-48ea-4a0c-b895-09e91756a385
+    content: Last known good
+    children:
+      - 93c519b2-cf51-4869-a0ea-4fe211f198a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93c519b2-cf51-4869-a0ea-4fe211f198a9:
+    id: 93c519b2-cf51-4869-a0ea-4fe211f198a9
+    content: Unknown — needs bisect; hasTextSelection was authored with the contenteditable-only check and has not been broadened since.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f56cc2b8-39d9-4697-a473-d6c8edb339d4:
+    id: f56cc2b8-39d9-4697-a473-d6c8edb339d4
+    content: First observed broken
+    children:
+      - 897428f9-8326-4735-9991-25f4e8906350
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  897428f9-8326-4735-9991-25f4e8906350:
+    id: 897428f9-8326-4735-9991-25f4e8906350
+    content: Present on master at 200f053 (2026-05-22 working tree).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19ee8780-39f8-47a5-b350-67accb55bcf4:
+    id: 19ee8780-39f8-47a5-b350-67accb55bcf4
+    content: Severity
+    children:
+      - d4200d37-af50-4535-aa96-b8f5fa797a93
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4200d37-af50-4535-aa96-b8f5fa797a93:
+    id: d4200d37-af50-4535-aa96-b8f5fa797a93
+    content: Medium — non-crashing but user-visible and data-destructive on Cut. Hit every time a user wants to quote part of a node; the workaround (enter edit mode first) is non-obvious.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8c73347-bb03-4275-bb8e-81c00ec7679b:
+    id: e8c73347-bb03-4275-bb8e-81c00ec7679b
+    content: Notes
+    children:
+      - 91b330ee-d735-4506-bc23-4d6ebf80ab16
+      - 19ff96f2-a430-4de6-9306-7fefc0135c84
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91b330ee-d735-4506-bc23-4d6ebf80ab16:
+    id: 91b330ee-d735-4506-bc23-4d6ebf80ab16
+    content: Adjacent issues to disambiguate
+    children:
+      - 42e3f398-6bc1-41d8-985f-97c8d1389ce7
+      - ea9598f9-3b24-408f-98ab-d84fe2826397
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42e3f398-6bc1-41d8-985f-97c8d1389ce7:
+    id: 42e3f398-6bc1-41d8-985f-97c8d1389ce7
+    content: Distinct from the "paste plain text inside contenteditable" path at uiService.ts:223-233 — that path is unaffected.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea9598f9-3b24-408f-98ab-d84fe2826397:
+    id: ea9598f9-3b24-408f-98ab-d84fe2826397
+    content: Distinct from terminal/browser panel selection, already short-circuited via isFocusInTerminalOrBrowser.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19ff96f2-a430-4de6-9306-7fefc0135c84:
+    id: 19ff96f2-a430-4de6-9306-7fefc0135c84
+    content: UX / telemetry gap worth fixing alongside
+    children:
+      - 87b2d28f-8312-4972-bf6b-50596060bf07
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87b2d28f-8312-4972-bf6b-50596060bf07:
+    id: 87b2d28f-8312-4972-bf6b-50596060bf07
+    content: Right-click context menu's Copy entry should also respect a live text selection and offer "Copy selection" instead of "Copy node" when a range is highlighted.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a14f7bff-f274-4cfb-a985-6e141a6e0e76:
+    id: a14f7bff-f274-4cfb-a985-6e141a6e0e76
+    content: User story — Copy and cut highlighted text inside a node
+    children:
+      - 4f9ff467-abad-46d8-99f9-e875de473c0c
+      - 004629e3-ed8f-4413-acc7-b870f174275d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f9ff467-abad-46d8-99f9-e875de473c0c:
+    id: 4f9ff467-abad-46d8-99f9-e875de473c0c
+    content: Product spec
+    children:
+      - ba36fc7f-176f-4ad7-aaf7-d928cebe3ce4
+      - 4d2b51ca-fb53-41d0-92f4-a662d69066a0
+      - d575a016-9249-4c0a-b1e3-3a3b503f7e25
+      - 670f2dce-8831-4b23-ba54-03a996c3d12d
+      - df28341f-1a26-4db6-a168-435f47f50bea
+      - 98068223-8ac6-4d6f-8b72-ae5b90232a8f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba36fc7f-176f-4ad7-aaf7-d928cebe3ce4:
+    id: ba36fc7f-176f-4ad7-aaf7-d928cebe3ce4
+    content: Context
+    children:
+      - c7219519-0621-4698-8cbc-f54a42fdd9f0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7219519-0621-4698-8cbc-f54a42fdd9f0:
+    id: c7219519-0621-4698-8cbc-f54a42fdd9f0
+    content: Users routinely want to quote a sentence or phrase from a node into another node, an AI prompt, a terminal, or an external doc. Today Ctrl/Cmd+C and Ctrl/Cmd+X always operate on the whole node, even when the user has visibly highlighted a substring. The workaround (enter edit mode first) is undiscoverable and breaks flow.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d2b51ca-fb53-41d0-92f4-a662d69066a0:
+    id: 4d2b51ca-fb53-41d0-92f4-a662d69066a0
+    content: User
+    children:
+      - 2c15ede0-b465-4e40-89a9-ebb8460b8977
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c15ede0-b465-4e40-89a9-ebb8460b8977:
+    id: 2c15ede0-b465-4e40-89a9-ebb8460b8977
+    content: An Arborescent user navigating and curating a workflow tree, who treats node text as readable prose they want to selectively quote.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d575a016-9249-4c0a-b1e3-3a3b503f7e25:
+    id: d575a016-9249-4c0a-b1e3-3a3b503f7e25
+    content: Current experience
+    children:
+      - 0f70d9bb-595c-4c50-9b4c-29b7f43c4ca5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f70d9bb-595c-4c50-9b4c-29b7f43c4ca5:
+    id: 0f70d9bb-595c-4c50-9b4c-29b7f43c4ca5
+    content: Highlight a span of text in a node → Ctrl/Cmd+C → paste yields the whole node serialized as markdown. Ctrl/Cmd+X additionally deletes the node, which is destructive and unexpected.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  670f2dce-8831-4b23-ba54-03a996c3d12d:
+    id: 670f2dce-8831-4b23-ba54-03a996c3d12d
+    content: Goal
+    children:
+      - 571b2911-7b28-4f3c-8fc6-7caefa7c15c1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  571b2911-7b28-4f3c-8fc6-7caefa7c15c1:
+    id: 571b2911-7b28-4f3c-8fc6-7caefa7c15c1
+    content: When a non-empty text range is highlighted inside a node, copy/cut shortcuts and the Edit menu act on that range only; with no selection they keep operating on the focused node(s).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df28341f-1a26-4db6-a168-435f47f50bea:
+    id: df28341f-1a26-4db6-a168-435f47f50bea
+    content: Business rules
+    children:
+      - e422283c-8bf9-45a1-847d-9a3701a1622b
+      - 7b98179f-d931-423c-84c2-ccd2b59c5128
+      - de0be202-208e-403d-a750-12f22aaf1b7a
+      - 20658322-81eb-4c9a-ba28-8eae4bd94683
+      - c64c925e-bcb7-4a34-8050-7fb2418225b9
+      - feb87b97-81c3-4b46-976c-6459abe31d26
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e422283c-8bf9-45a1-847d-9a3701a1622b:
+    id: e422283c-8bf9-45a1-847d-9a3701a1622b
+    content: A non-collapsed window.getSelection() range whose anchor is inside the tree view is treated as "text selection" regardless of whether the host element is contenteditable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b98179f-d931-423c-84c2-ccd2b59c5128:
+    id: 7b98179f-d931-423c-84c2-ccd2b59c5128
+    content: On text-selection copy, the substring is written to the system clipboard as plain text and the tree state is not modified.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de0be202-208e-403d-a750-12f22aaf1b7a:
+    id: de0be202-208e-403d-a750-12f22aaf1b7a
+    content: On text-selection cut, the substring is written to the clipboard and removed from the node's stored content via the existing node-content update path, so it participates in undo/redo; the node itself is not deleted.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20658322-81eb-4c9a-ba28-8eae4bd94683:
+    id: 20658322-81eb-4c9a-ba28-8eae4bd94683
+    content: Cut applies only when the selection sits inside a single node; multi-node selections fall back to whole-node cut.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c64c925e-bcb7-4a34-8050-7fb2418225b9:
+    id: c64c925e-bcb7-4a34-8050-7fb2418225b9
+    content: Selections inside terminal, browser panel, title input, and other input/textarea hosts remain owned by those hosts and must not be intercepted.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  feb87b97-81c3-4b46-976c-6459abe31d26:
+    id: feb87b97-81c3-4b46-976c-6459abe31d26
+    content: Right-click and Edit menu Copy/Cut entries follow the same rule and re-label to "Copy selection" / "Cut selection" when a text range is live.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  98068223-8ac6-4d6f-8b72-ae5b90232a8f:
+    id: 98068223-8ac6-4d6f-8b72-ae5b90232a8f
+    content: Acceptance criteria
+    children:
+      - f1d83e6e-6dc4-4435-97b7-dba973f15eea
+      - e87cecf0-a187-43ad-b35a-9bd2c564fe88
+      - 4db3f5f5-fcd6-4cd3-aa7d-15bcaa4ada8c
+      - 84034085-2b1d-4eaa-8585-981ec0edd83b
+      - aae440a4-f739-4cee-90bc-51ccdb886982
+      - 4f402747-c1d4-4427-b4dd-36b52e5d8f86
+      - 617fc504-d93b-47c5-af32-575fab2d3360
+      - 8f2b77f6-a169-402e-b9ce-66f30d53efe2
+      - b378d9ee-cbf3-441e-827f-d8a39ccea6ec
+      - da4a18b9-2b50-4d07-b368-79a08b34942b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1d83e6e-6dc4-4435-97b7-dba973f15eea:
+    id: f1d83e6e-6dc4-4435-97b7-dba973f15eea
+    content: Highlighting a substring in a non-edit-mode node and pressing Ctrl/Cmd+C places exactly that substring on the clipboard; the tree is unchanged.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e87cecf0-a187-43ad-b35a-9bd2c564fe88:
+    id: e87cecf0-a187-43ad-b35a-9bd2c564fe88
+    content: Highlighting a substring and pressing Ctrl/Cmd+X places that substring on the clipboard and removes it from the node content; the node still exists.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4db3f5f5-fcd6-4cd3-aa7d-15bcaa4ada8c:
+    id: 4db3f5f5-fcd6-4cd3-aa7d-15bcaa4ada8c
+    content: Cut is reflected in undo/redo (Ctrl/Cmd+Z restores the original text).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84034085-2b1d-4eaa-8585-981ec0edd83b:
+    id: 84034085-2b1d-4eaa-8585-981ec0edd83b
+    content: With no text selection, Ctrl/Cmd+C / Ctrl/Cmd+X behave exactly as today (whole-node copy/cut, multi-select aware).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aae440a4-f739-4cee-90bc-51ccdb886982:
+    id: aae440a4-f739-4cee-90bc-51ccdb886982
+    content: Multi-node selections fall through to whole-node copy/cut (no partial-cut data loss).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f402747-c1d4-4427-b4dd-36b52e5d8f86:
+    id: 4f402747-c1d4-4427-b4dd-36b52e5d8f86
+    content: Edit menu's Copy and Cut items copy/cut the current selection when one exists, otherwise the focused node(s).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  617fc504-d93b-47c5-af32-575fab2d3360:
+    id: 617fc504-d93b-47c5-af32-575fab2d3360
+    content: Node right-click menu's Copy item copies the live text selection when one exists inside that node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f2b77f6-a169-402e-b9ce-66f30d53efe2:
+    id: 8f2b77f6-a169-402e-b9ce-66f30d53efe2
+    content: Copy/cut still works inside terminal and browser panels (no regression from the broadened selection check).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b378d9ee-cbf3-441e-827f-d8a39ccea6ec:
+    id: b378d9ee-cbf3-441e-827f-d8a39ccea6ec
+    content: Focus inside the node title input continues to use native input copy/cut.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da4a18b9-2b50-4d07-b368-79a08b34942b:
+    id: da4a18b9-2b50-4d07-b368-79a08b34942b
+    content: Keyboard-only users can highlight via Shift+Arrow inside a node and copy with Ctrl/Cmd+C.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  004629e3-ed8f-4413-acc7-b870f174275d:
+    id: 004629e3-ed8f-4413-acc7-b870f174275d
+    content: Implementation proposal
+    children:
+      - b2e5d37b-3604-42ab-9a69-1c01c63aba8b
+      - d60f7e32-19eb-4562-a352-647a5bad2ba9
+      - accd62fa-0a22-46b0-ac96-f15be2522a08
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2e5d37b-3604-42ab-9a69-1c01c63aba8b:
+    id: b2e5d37b-3604-42ab-9a69-1c01c63aba8b
+    content: Approach
+    children:
+      - 7da59ef0-6218-4379-9b90-dda9a409d3b0
+      - eadf07f0-e58f-46be-9d77-b2fbddd61793
+      - 7314d0ee-1b47-4a5f-8b02-13339c0d929d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7da59ef0-6218-4379-9b90-dda9a409d3b0:
+    id: 7da59ef0-6218-4379-9b90-dda9a409d3b0
+    content: Broaden hasTextSelection() in src/renderer/utils/selectionUtils.ts so it considers any non-collapsed selection whose anchor sits inside the tree view (e.g. .tree-panel / node-content container), not only inside a [contenteditable]. Keep terminal/browser/input hosts excluded.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eadf07f0-e58f-46be-9d77-b2fbddd61793:
+    id: eadf07f0-e58f-46be-9d77-b2fbddd61793
+    content: 'In src/renderer/services/keyboard/uiService.ts, when the broadened check is true: for copy, do not preventDefault — let the browser write the substring to the clipboard. For cut, write the substring to the clipboard via the existing clipboard service and call a store action that mutates node content through the existing content-edit path so the deletion participates in undo/redo.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7314d0ee-1b47-4a5f-8b02-13339c0d929d:
+    id: 7314d0ee-1b47-4a5f-8b02-13339c0d929d
+    content: Mirror the same selection-aware branching in useEditMenuActions.handleCopy / handleCut and in useNodeContextMenu Copy entry.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d60f7e32-19eb-4562-a352-647a5bad2ba9:
+    id: d60f7e32-19eb-4562-a352-647a5bad2ba9
+    content: Touchpoints
+    children:
+      - 01b23e2c-0f4a-49cf-bdac-eb5241c4d742
+      - f75e5bbb-8f1e-46f5-b40d-76a0b3fa6788
+      - 8ed30b57-d292-40dd-b4cb-f064efe5e998
+      - f39e54ed-de2d-4531-9f80-3ea96801dbfb
+      - bd45b8eb-8770-4dc4-b3a7-8d4150dbfcb1
+      - a2a532f5-bea7-4023-83a5-3eeabad1f722
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01b23e2c-0f4a-49cf-bdac-eb5241c4d742:
+    id: 01b23e2c-0f4a-49cf-bdac-eb5241c4d742
+    content: src/renderer/utils/selectionUtils.ts — widen hasTextSelection scope.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f75e5bbb-8f1e-46f5-b40d-76a0b3fa6788:
+    id: f75e5bbb-8f1e-46f5-b40d-76a0b3fa6788
+    content: src/renderer/services/keyboard/uiService.ts — copy/cut branches.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ed30b57-d292-40dd-b4cb-f064efe5e998:
+    id: 8ed30b57-d292-40dd-b4cb-f064efe5e998
+    content: src/renderer/components/MenuBar/hooks/useEditMenuActions.ts — copy/cut handlers.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f39e54ed-de2d-4531-9f80-3ea96801dbfb:
+    id: f39e54ed-de2d-4531-9f80-3ea96801dbfb
+    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts — Copy entry label and dispatch.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd45b8eb-8770-4dc4-b3a7-8d4150dbfcb1:
+    id: bd45b8eb-8770-4dc4-b3a7-8d4150dbfcb1
+    content: src/renderer/store/tree/actions/clipboardActions.ts — possibly a new cutTextRange action, or reuse existing node-content mutation for the cut path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2a532f5-bea7-4023-83a5-3eeabad1f722:
+    id: a2a532f5-bea7-4023-83a5-3eeabad1f722
+    content: Co-located tests for each touched module — partial-selection copy/cut unit tests, plus an integration test for the keyboard path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  accd62fa-0a22-46b0-ac96-f15be2522a08:
+    id: accd62fa-0a22-46b0-ac96-f15be2522a08
+    content: Constraints to call out
+    children:
+      - 3df76770-e8e0-4f8f-9b73-c3d2196ad182
+      - b76d45fb-e4cf-408f-9d7b-bf1c79101683
+      - d1529e8e-ce77-426d-a8b3-37d0814983e8
+      - ecf3298c-e727-4629-826a-be984b2824a4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3df76770-e8e0-4f8f-9b73-c3d2196ad182:
+    id: 3df76770-e8e0-4f8f-9b73-c3d2196ad182
+    content: Do not call event.preventDefault() on copy when delegating to the browser; otherwise the native clipboard write never happens.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b76d45fb-e4cf-408f-9d7b-bf1c79101683:
+    id: b76d45fb-e4cf-408f-9d7b-bf1c79101683
+    content: Cut must go through the store action that records undo history — never mutate node content out-of-band, or undo will desync.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1529e8e-ce77-426d-a8b3-37d0814983e8:
+    id: d1529e8e-ce77-426d-a8b3-37d0814983e8
+    content: The broadened selection check must continue to exclude terminal (xterm.js) and browser-panel webview; rely on the existing isFocusInTerminalOrBrowser short-circuit ordering rather than re-checking inside hasTextSelection.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecf3298c-e727-4629-826a-be984b2824a4:
+    id: ecf3298c-e727-4629-826a-be984b2824a4
+    content: Right-click menu Copy currently always calls actions.copyNodes (useNodeContextMenu.ts:317, 355) — switching it to selection-aware dispatch is a behaviour change worth a release-note line.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b134abe-c55b-4f19-8814-d35bb41dd034:
+    id: 3b134abe-c55b-4f19-8814-d35bb41dd034
+    content: Technical refinement
+    children:
+      - ed1b9dff-edf7-469e-a4b8-386bfcdfa33e
+      - 2fce2b6c-116c-41d1-b49f-8dc039d4a6cd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed1b9dff-edf7-469e-a4b8-386bfcdfa33e:
+    id: ed1b9dff-edf7-469e-a4b8-386bfcdfa33e
+    content: Complications
+    children:
+      - df5c799a-228b-4691-b2f9-38a4ea7b5651
+      - 9195a438-8021-4010-b047-186bd6fe1f41
+      - 1ce9db50-745c-44b1-8a5b-ce4a4b7638f9
+      - 3bb4d2a5-895f-4f53-b7cb-80cc5fb5b251
+      - 9519e769-ad47-4cec-97b4-2400039a92b5
+      - 97f74f52-aff4-44d0-bb88-d533f64aaac7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df5c799a-228b-4691-b2f9-38a4ea7b5651:
+    id: df5c799a-228b-4691-b2f9-38a4ea7b5651
+    content: 'Rendered-vs-source offset mapping for Cut: selection.toString() reflects the rendered DOM, while node content is stored as markdown source. Cutting a substring requires mapping the selection''s start/end DOM offsets back into source-string indices, which is non-trivial when the rendered tree contains inline markdown (bold, italic, links, code spans). Copy is exempt — it can just hand the rendered substring to the clipboard.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9195a438-8021-4010-b047-186bd6fe1f41:
+    id: 9195a438-8021-4010-b047-186bd6fe1f41
+    content: 'Native copy delegation in Electron: dropping event.preventDefault() to let the browser handle copy assumes the renderer permits document.execCommand(''copy'') / native copy on a plain (non-contenteditable) selection. Needs an early empirical check — if the host blocks it, fall back to navigator.clipboard.writeText(selection.toString()) explicitly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ce9db50-745c-44b1-8a5b-ce4a4b7638f9:
+    id: 1ce9db50-745c-44b1-8a5b-ce4a4b7638f9
+    content: 'Cut undo/redo coupling: the new cut path must go through the same store action that powers normal text edits so undo restores the substring exactly. A separate "cutTextRange" action risks producing undo entries the user can''t read.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bb4d2a5-895f-4f53-b7cb-80cc5fb5b251:
+    id: 3bb4d2a5-895f-4f53-b7cb-80cc5fb5b251
+    content: 'Out of scope (defer or explicitly decline): partial cut spanning multiple nodes; preserving inline formatting on copy (we ship plain text); copying as serialized markdown vs as rendered HTML — current bug is plain-text only.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9519e769-ad47-4cec-97b4-2400039a92b5:
+    id: 9519e769-ad47-4cec-97b4-2400039a92b5
+    content: 'ROI note: copy-only is a small, high-value fix (one selection-check widening + drop preventDefault). Cut adds the offset-mapping cost above and a new store action; consider shipping copy first and tracking cut separately if the mapping work balloons.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97f74f52-aff4-44d0-bb88-d533f64aaac7:
+    id: 97f74f52-aff4-44d0-bb88-d533f64aaac7
+    content: 'Risk: widening hasTextSelection to "anchor inside tree view" must not catch selections inside floating UI that lives in the tree DOM (e.g. inline edit popovers, drag previews) — scope the predicate to the node-content container, not the panel root.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fce2b6c-116c-41d1-b49f-8dc039d4a6cd:
+    id: 2fce2b6c-116c-41d1-b49f-8dc039d4a6cd
+    content: Approach summary
+    children:
+      - 0e7c1851-b665-4b54-b127-ae7585d13a8d
+      - 973538ea-d6d5-41c2-bcaf-42fab510c17f
+      - bc466f3b-be54-4d8c-a589-adf201345995
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e7c1851-b665-4b54-b127-ae7585d13a8d:
+    id: 0e7c1851-b665-4b54-b127-ae7585d13a8d
+    content: 'Single-point widening: hasTextSelection() in selectionUtils.ts grows from "anchor inside [contenteditable]" to "anchor inside the node-content container", which unlocks every existing call site (keyboard hotkey, Edit menu, right-click menu) without per-site logic.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  973538ea-d6d5-41c2-bcaf-42fab510c17f:
+    id: 973538ea-d6d5-41c2-bcaf-42fab510c17f
+    content: Copy path delegates to the browser by simply returning without preventDefault; cut path writes selection.toString() to the clipboard and applies a content mutation through the existing edit/undo action — no new clipboard plumbing, no new store store.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc466f3b-be54-4d8c-a589-adf201345995:
+    id: bc466f3b-be54-4d8c-a589-adf201345995
+    content: 'Non-obvious for reviewers: copy ships as a behaviour change with no new code paths (just a predicate widening + an early-return), whereas cut introduces rendered→source offset mapping that is the real complexity; if reviewers see only the selectionUtils diff and assume the whole bug is closed, cut will still be broken.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3631c229-af2c-4599-b14a-2dfe3468f87e:
+    id: 3631c229-af2c-4599-b14a-2dfe3468f87e
+    content: Items deferred or limitations
+    children:
+      - 0c2c8128-f700-4202-9121-ff3647e5ddaf
+      - 6fa53efd-91da-4741-9ddd-f97f909e6456
+      - 377392e6-f22e-4ed6-a1a4-e2fdbc2833a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c2c8128-f700-4202-9121-ff3647e5ddaf:
+    id: 0c2c8128-f700-4202-9121-ff3647e5ddaf
+    content: Menu re-labeling ("Copy selection" / "Cut selection") deferred — the menu items still read "Copy" / "Cut" while honouring the live text selection underneath. Functional AC satisfied; cosmetic AC not.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fa53efd-91da-4741-9ddd-f97f909e6456:
+    id: 6fa53efd-91da-4741-9ddd-f97f909e6456
+    content: Cut mapping uses simple indexOf substring removal — works for plain text and for inline markdown when the rendered substring appears uniquely in the source. If selection.toString() doesn't match any substring of the markdown source (rare with complex inline formatting), the cut degrades gracefully to copy-only (clipboard written, content untouched) with a logger.warn.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  377392e6-f22e-4ed6-a1a4-e2fdbc2833a9:
+    id: 377392e6-f22e-4ed6-a1a4-e2fdbc2833a9
+    content: No DOM-Range → source-offset mapper introduced — that work was flagged in the technical refinement as the real complexity for Cut; defer until a multi-occurrence or inline-markdown corruption case is reported.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0b4f39b-30d4-4b20-acd4-f07de19a194d:
+    id: d0b4f39b-30d4-4b20-acd4-f07de19a194d
+    content: review feedback
+    children:
+      - 02520a72-5c45-4406-937c-5d947cea2972
+      - af4af591-110f-4f35-942b-1878a35f556e
+      - f8dc576d-790b-47d0-9737-c8a0234c80da
+      - 64d2c677-2aaf-467a-b651-3e783536d19d
+      - cfaea54a-3b92-4096-8af5-9f860ab74ef5
+      - 6a2bf82c-910d-490a-aa01-8de88abe5d4e
+      - bf7ceff4-6696-4c6b-9ab2-06cbb7e0f9a9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02520a72-5c45-4406-937c-5d947cea2972:
+    id: 02520a72-5c45-4406-937c-5d947cea2972
+    content: 'CRITICAL — Cut on rich-rendered nodes silently corrupts the source markdown. When a node uses useRichNodeContent (the .node-text branch that renders dangerouslySetInnerHTML with rich HTML), rendered DOM text strips markdown markers like backticks. Example: source "use `foo` for X" renders as "use foo for X". User selects "foo" → selection.toString() is "foo" → cutSelectionFromNodeContent does indexOf("foo") on the source, finds the substring INSIDE the backticks, and rewrites source to "use `` for X" — orphan empty inline-code span. Same hazard for triple-fenced code blocks (language hint stripped from render but lives in source). The logger.warn fallback only fires when the selection isn''t found anywhere in source, which is the rare case; the corruption cases ARE found in source and proceed silently. Recent feat commit "render backtick-wrapped content as code in node text" makes this hit immediately for anyone using inline code.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af4af591-110f-4f35-942b-1878a35f556e:
+    id: af4af591-110f-4f35-942b-1878a35f556e
+    content: 'CRITICAL — Fix proposal for the above: pass a "rich content" signal on the .node-text DOM (e.g. data-rich="true" set whenever useRichNodeContent returns non-null richHtml), and have partialTextClipboard refuse partial cut on rich-rendered nodes — either toast "use whole-node cut" or fall back to actions.cutNodes(). Alternative: build the DOM-Range → markdown-source offset mapper that the technical refinement deferred.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8dc576d-790b-47d0-9737-c8a0234c80da:
+    id: f8dc576d-790b-47d0-9737-c8a0234c80da
+    content: IMPORTANT — partialTextClipboard.test.ts only tests cases where selectionText is a literal substring of nodeContent that the user intended. No test exercises the rendered-vs-source mismatch case from finding 1. Add a regression test demonstrating expected behaviour for input like cutSelectionFromNodeContent('foo', 'use `foo` for X', apply) — whichever guard you adopt.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64d2c677-2aaf-467a-b651-3e783536d19d:
+    id: 64d2c677-2aaf-467a-b651-3e783536d19d
+    content: 'IMPORTANT — Contract bug in isSelectionInContentEditable: it shares getSelectionAnchorElement which requires non-empty selection.toString(). When isCollapsed is false but toString() is '''' (selection across an image or zero-width content), isSelectionInContentEditable returns false even if the selection IS inside a [contenteditable]. Currently latent because both call sites consult hasTextSelection first, but future callers will trip on it. Fix: split into a strict text-selection predicate and a separate "anchor is inside selector X" helper that doesn''t require non-empty toString, OR rename to hasSelectionTextInContentEditable to make the contract honest.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfaea54a-3b92-4096-8af5-9f860ab74ef5:
+    id: cfaea54a-3b92-4096-8af5-9f860ab74ef5
+    content: NICE-TO-HAVE — Edit-menu handleCopy and keyboard-copy diverge for cross-node selections. Hotkey copy returns (browser handles native copy with tree-structure-aware behaviour). Menu copy with a multi-node selection now copySelectionText's the plain-text join, losing structure. Mirror the cut path's selectionSpansSingleNode guard in handleCopy and fall through to actions.copyNodes() for multi-node selections.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a2bf82c-910d-490a-aa01-8de88abe5d4e:
+    id: 6a2bf82c-910d-490a-aa01-8de88abe5d4e
+    content: NICE-TO-HAVE — useEditMenuActions.handleCut lacks the isFocusInTerminalOrBrowser guard that uiService has. Pre-existing minor gap; broader predicate slightly increases surface area. Add a one-liner for parity.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf7ceff4-6696-4c6b-9ab2-06cbb7e0f9a9:
+    id: bf7ceff4-6696-4c6b-9ab2-06cbb7e0f9a9
+    content: NON-ISSUES verified — .node-text used only inside NodeContent.tsx (no floating UI / drag preview / popover risk). selectionSpansSingleNode works correctly because TreeNodes are siblings not nested. No collateral damage at other hasTextSelection call sites. Project conventions respected (named functions, no JSDoc, side-effect code in services/, hooks hold logic).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6502dc02-82bd-4a0e-9577-9233000918f5:
+    id: 6502dc02-82bd-4a0e-9577-9233000918f5
+    content: worktree
+    children:
+      - ed3238da-9c8a-4b35-8a4e-a80649e018bf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed3238da-9c8a-4b35-8a4e-a80649e018bf:
+    id: ed3238da-9c8a-4b35-8a4e-a80649e018bf
+    content: vscode://file/Users/brianfox/dev/Arborescent-rebind-gate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  964c4b21-4ebd-41d4-9c73-93677a14e009:
+    id: 964c4b21-4ebd-41d4-9c73-93677a14e009
+    content: Summary
+    children:
+      - ef1b87b6-ed61-4702-848a-28d19e9ba74b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef1b87b6-ed61-4702-848a-28d19e9ba74b:
+    id: ef1b87b6-ed61-4702-848a-28d19e9ba74b
+    content: Sending a node to a terminal that already has a different node bound pastes the prompt before the user confirms the rebinding
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c06bf639-fb66-40ea-92c5-a800519a7f9e:
+    id: c06bf639-fb66-40ea-92c5-a800519a7f9e
+    content: Steps to reproduce
+    children:
+      - 7c3cdb7e-2153-44d2-88b4-b7b60b219d6f
+      - 4cd2eee5-f119-46b1-8db2-d3f84f4062c9
+      - d177a1fc-dd32-48bf-808d-90b59c17cd46
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c3cdb7e-2153-44d2-88b4-b7b60b219d6f:
+    id: 7c3cdb7e-2153-44d2-88b4-b7b60b219d6f
+    content: Open a terminal tab and bind it to node A (e.g. via a previous send or SessionStart capture)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cd2eee5-f119-46b1-8db2-d3f84f4062c9:
+    id: 4cd2eee5-f119-46b1-8db2-d3f84f4062c9
+    content: From the tree, send node B to the same terminal tab
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d177a1fc-dd32-48bf-808d-90b59c17cd46:
+    id: d177a1fc-dd32-48bf-808d-90b59c17cd46
+    content: Observe that the rebinding confirmation dialog appears, but node B's prompt has already been pasted into the terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab71dc96-9f0e-45db-baaf-aaa46aa7792a:
+    id: ab71dc96-9f0e-45db-baaf-aaa46aa7792a
+    content: Expected behavior
+    children:
+      - c37079da-66b9-491d-9957-ebf897f2ea9c
+      - 571b94eb-5cf0-4bba-8134-7d0725e9e60e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c37079da-66b9-491d-9957-ebf897f2ea9c:
+    id: c37079da-66b9-491d-9957-ebf897f2ea9c
+    content: On the happy path, the prompt is held until the user confirms the new binding, then sent exactly once and the binding switches to node B
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  571b94eb-5cf0-4bba-8134-7d0725e9e60e:
+    id: 571b94eb-5cf0-4bba-8134-7d0725e9e60e
+    content: If the user cancels the binding change, the prompt must not be sent and the existing binding plus terminal state remain untouched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4de4c2d-bd76-48a0-8271-5886774f21bd:
+    id: b4de4c2d-bd76-48a0-8271-5886774f21bd
+    content: Actual behavior
+    children:
+      - 05ce64ed-65a9-4f28-baa2-64199b685f21
+      - 7a0e0dbc-eb31-4fd4-9214-a298dc9f744e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05ce64ed-65a9-4f28-baa2-64199b685f21:
+    id: 05ce64ed-65a9-4f28-baa2-64199b685f21
+    content: The prompt is pasted into the terminal as soon as the send is triggered, regardless of the confirmation dialog's outcome
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a0e0dbc-eb31-4fd4-9214-a298dc9f744e:
+    id: 7a0e0dbc-eb31-4fd4-9214-a298dc9f744e
+    content: 'User-visible symptom: prompt text lands in the terminal before (and independent of) the confirm/cancel action, leading to accidental execution against the wrong bound node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08f1129c-49c3-41d0-8250-f75eec17057b:
+    id: 08f1129c-49c3-41d0-8250-f75eec17057b
+    content: Suspected cause
+    children:
+      - 61d6431e-b48e-46e9-bcbf-c03320b7636b
+      - ceb46487-970b-4fdf-972e-2bcffd837f1d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61d6431e-b48e-46e9-bcbf-c03320b7636b:
+    id: 61d6431e-b48e-46e9-bcbf-c03320b7636b
+    content: Send-to-terminal flow dispatches the paste/keystroke side effect before awaiting the rebinding confirmation result
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceb46487-970b-4fdf-972e-2bcffd837f1d:
+    id: ceb46487-970b-4fdf-972e-2bcffd837f1d
+    content: The existing guard only switches the binding on confirm; it does not gate the prompt delivery on that same confirmation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e52f8373-85a7-468f-bf1f-8c0942fc437b:
+    id: e52f8373-85a7-468f-bf1f-8c0942fc437b
+    content: Affected files
+    children:
+      - 60e44c23-c419-4953-8b8c-d9cf3000ec52
+      - a8a73113-1471-4756-9989-9f69b6f55e92
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60e44c23-c419-4953-8b8c-d9cf3000ec52:
+    id: 60e44c23-c419-4953-8b8c-d9cf3000ec52
+    content: 'Primary suspect: renderer send-to-terminal action in `src/renderer/store/actions/` (terminal/send action)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8a73113-1471-4756-9989-9f69b6f55e92:
+    id: a8a73113-1471-4756-9989-9f69b6f55e92
+    content: 'Related surface: terminal binding/confirmation dialog component and main-process terminal IPC handler in `src/main/services/`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a85cb255-d7fd-48fc-a2fa-1a9075b1e9af:
+    id: a85cb255-d7fd-48fc-a2fa-1a9075b1e9af
+    content: Regression window
+    children:
+      - 442e1624-a5bb-4c9a-90b8-27c85819b5c8
+      - 439eb5be-2305-46a6-9689-1f2ef8de9133
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  442e1624-a5bb-4c9a-90b8-27c85819b5c8:
+    id: 442e1624-a5bb-4c9a-90b8-27c85819b5c8
+    content: 'Last known good commit or release: unknown — needs bisect against recent terminal-binding changes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  439eb5be-2305-46a6-9689-1f2ef8de9133:
+    id: 439eb5be-2305-46a6-9689-1f2ef8de9133
+    content: 'First observed broken: current master (2026-05-22), after recent SessionStart/origin-node reattach work (commit 641cb97)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf4d6ed3-5ad9-4b23-82d3-ffd66172bcef:
+    id: bf4d6ed3-5ad9-4b23-82d3-ffd66172bcef
+    content: Severity
+    children:
+      - 28dce956-925c-495c-83ae-ad53521ef25f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28dce956-925c-495c-83ae-ad53521ef25f:
+    id: 28dce956-925c-495c-83ae-ad53521ef25f
+    content: Medium-high — silently executes prompts against the wrong bound node, undermining the binding model and risking incorrect AI collaboration state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82422a03-6039-471e-8754-8854fe63446c:
+    id: 82422a03-6039-471e-8754-8854fe63446c
+    content: Notes
+    children:
+      - 37ab6071-3a28-4349-adc8-53442075d54e
+      - 1f080f94-1a82-40a7-af88-6830a82414c4
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  37ab6071-3a28-4349-adc8-53442075d54e:
+    id: 37ab6071-3a28-4349-adc8-53442075d54e
+    content: 'Disambiguate from: send-to-terminal when no binding exists (should send immediately) and rebinding via SessionStart capture (different code path)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f080f94-1a82-40a7-af88-6830a82414c4:
+    id: 1f080f94-1a82-40a7-af88-6830a82414c4
+    content: 'Telemetry/UX gap: no visible indication when a send is cancelled mid-flow — consider a toast or log when a prompt is suppressed due to declined rebinding'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -160756,17 +162066,15 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   a12449d6-8541-4e25-a982-0c6dcec6a754:
     cwd: /Users/brianfox/dev/Arborescent
-  f74c25e3-1f11-4234-972f-3cbc0717cd39:
-    cwd: /Users/brianfox/dev/Arborescent
   567d102c-6ccc-4772-a32e-754d1fbbe8d3:
-    cwd: /Users/brianfox/dev/Arborescent
-  1e99bb2a-96c5-4d8c-afa5-44b702769e9a:
     cwd: /Users/brianfox/dev/Arborescent
   ea51a201-67b5-4a69-b921-b47b2f591f1d:
     cwd: /Users/brianfox/dev/Arborescent
   bca3a16b-1cd9-4da4-a1d4-410f87ea63d4:
     cwd: /Users/brianfox/dev/Arborescent
-  70694d40-1e26-4393-a0d0-c4a50d697cbb:
+  81427f88-82d5-43be-8a32-61712ef7a3c0:
     cwd: /Users/brianfox/dev/Arborescent
-  cee74ec1-66a6-49f5-ae22-36418c3bd66c:
+  f8a6f891-a194-49a3-a803-56e9bef658cb:
+    cwd: /Users/brianfox/dev/Arborescent
+  d450cc81-562a-4e16-985e-cf8c234a61d2:
     cwd: /Users/brianfox/dev/Arborescent
