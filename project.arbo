@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-22T18:11:41.585Z'
+updated: '2026-05-22T18:26:41.119Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25471,8 +25471,7 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children:
-      - 9c1b4bee-ae92-4e6c-8505-bd2f79f77239
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -75987,6 +75986,7 @@ nodes:
     id: acac68ee-f8fd-4f89-9504-ee47ac883e57
     content: Functional
     children:
+      - cda7caa8-07fb-4d6d-96c3-fd23aafbffd9
       - 506f42bb-73a3-44b9-8bc4-75d5b6be9ad3
       - 0d19da53-f3a7-4ee4-b495-b59f127671fa
       - e8824b29-eb18-4031-9e35-b321a864d418
@@ -83519,7 +83519,7 @@ nodes:
       isContextDeclaration: true
       blueprintIcon: Book
       blueprintColor: '#c47f09'
-      expanded: false
+      expanded: true
       collaborate: true
       execute: false
   d4ab7a90-ca35-403d-960c-312380f1d8ee:
@@ -115694,6 +115694,7 @@ nodes:
       - 171974eb-2081-4809-9624-df1e13ff9c6b
       - 8b1f23f6-060c-4ec6-aebc-d3ecd811cf04
       - 2139536e-7002-4b61-980f-3521c74b1b57
+      - bfed7bdc-b9ca-4891-bf57-bcb742368925
     metadata:
       status: pending
       isBlueprint: true
@@ -124808,7 +124809,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - bfed7bdc-b9ca-4891-bf57-bcb742368925
+      - 9c1b4bee-ae92-4e6c-8505-bd2f79f77239
     metadata:
       status: pending
       isBlueprint: true
@@ -158082,11 +158083,12 @@ nodes:
     id: 9c1b4bee-ae92-4e6c-8505-bd2f79f77239
     content: Render backtick-wrapped content as code in node text
     children:
-      - 238d7754-ff89-4292-a2fd-3d1a094624e3
-      - 0b1ac0e0-ecd0-487f-9c0b-3a1fccb61be4
-      - a66bc0d9-8a10-4b81-852d-261a4b87854c
-      - a15c61a8-25d6-499a-9e2b-26892034c0ca
-      - 84229c8a-731e-4574-8723-88ffa2b80c3d
+      - 2fad4196-a985-4852-82da-622aa48bc1a9
+      - 63928b1d-42bd-44fa-9760-c5c8ee982c9f
+      - a1736643-68e9-4714-b494-a7e24efffbfb
+      - b0cc3c68-f3c6-455f-bddd-714dad6e1efc
+      - 092c6b80-3550-4b11-bbfa-345d18e3cd83
+      - c75dd54f-b8f5-4e02-9170-23ad89e6a2c1
     metadata:
       status: pending
       expanded: false
@@ -159675,531 +159677,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  238d7754-ff89-4292-a2fd-3d1a094624e3:
-    id: 238d7754-ff89-4292-a2fd-3d1a094624e3
-    content: worktree
-    children:
-      - bbbe551a-d6cc-417b-b17d-9552aa032c61
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bbbe551a-d6cc-417b-b17d-9552aa032c61:
-    id: bbbe551a-d6cc-417b-b17d-9552aa032c61
-    content: vscode://file/Users/brianfox/dev/Arborescent-render-backtick-code
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b1ac0e0-ecd0-487f-9c0b-3a1fccb61be4:
-    id: 0b1ac0e0-ecd0-487f-9c0b-3a1fccb61be4
-    content: 📄 Product spec
-    children:
-      - d10ddc49-7fde-4129-a1ce-d63f44aa02d8
-      - 60f2edb7-bd13-4945-aeb3-5b85c12a1f9b
-      - bc19fb54-e62c-4d89-b3ff-5c1a5b023f29
-      - b2892d62-b4c6-4fe5-b91e-b0468fb6b7d2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d10ddc49-7fde-4129-a1ce-d63f44aa02d8:
-    id: d10ddc49-7fde-4129-a1ce-d63f44aa02d8
-    content: Context
-    children:
-      - cd8a5fbb-4d6a-4b50-9f16-4c03a3e5278a
-      - e3acb8ba-4dd6-47e7-b2c8-cfff581a874a
-      - 440e2a03-13c7-40dd-8fde-d870a2bb6341
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd8a5fbb-4d6a-4b50-9f16-4c03a3e5278a:
-    id: cd8a5fbb-4d6a-4b50-9f16-4c03a3e5278a
-    content: Users paste and write technical fragments — paths, commands, identifiers, snippets, AI responses — into node content and reach for the universal backtick convention to mark them as code
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e3acb8ba-4dd6-47e7-b2c8-cfff581a874a:
-    id: e3acb8ba-4dd6-47e7-b2c8-cfff581a874a
-    content: Today backticks render as literal characters with no styling, so technical content is hard to scan and inconsistent with every adjacent tool (Slack, Notion, Linear, GitHub)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  440e2a03-13c7-40dd-8fde-d870a2bb6341:
-    id: 440e2a03-13c7-40dd-8fde-d870a2bb6341
-    content: User persona — any Arborescent author writing or pasting technical content into node bodies, including users round-tripping AI output back into nodes
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  60f2edb7-bd13-4945-aeb3-5b85c12a1f9b:
-    id: 60f2edb7-bd13-4945-aeb3-5b85c12a1f9b
-    content: Goal
-    children:
-      - b6d08f28-70e1-41e2-bf04-7449269f7ef5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6d08f28-70e1-41e2-bf04-7449269f7ef5:
-    id: b6d08f28-70e1-41e2-bf04-7449269f7ef5
-    content: Render single-backtick and triple-backtick spans with code-style highlighting in node content so technical fragments are immediately distinguishable from prose
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc19fb54-e62c-4d89-b3ff-5c1a5b023f29:
-    id: bc19fb54-e62c-4d89-b3ff-5c1a5b023f29
-    content: Business rules
-    children:
-      - 98db5e30-c053-47c8-a706-439f62bbdbb4
-      - 19ec8046-8efb-4059-8163-934692667971
-      - 40af1ed2-0bd4-4d9d-82c0-6c0535afb8cc
-      - db16825f-8296-41c4-b45b-017eab214277
-      - 698cf91d-2370-4a9a-9cc8-fa466bb7159e
-      - e06b233e-466a-4859-9f36-c9a5dad851c8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  98db5e30-c053-47c8-a706-439f62bbdbb4:
-    id: 98db5e30-c053-47c8-a706-439f62bbdbb4
-    content: Single backticks delimit inline code — rendered monospace, with a subtle background fill and small horizontal padding, flowing inline with surrounding text
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  19ec8046-8efb-4059-8163-934692667971:
-    id: 19ec8046-8efb-4059-8163-934692667971
-    content: Triple backticks open a fenced code block — rendered as a distinct multi-line block, monospace, with background fill, preserving whitespace and line breaks
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  40af1ed2-0bd4-4d9d-82c0-6c0535afb8cc:
-    id: 40af1ed2-0bd4-4d9d-82c0-6c0535afb8cc
-    content: An optional language tag after the opening fence (e.g. ts, bash) is accepted and ignored for styling in v1 — no syntax highlighting required yet
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  db16825f-8296-41c4-b45b-017eab214277:
-    id: db16825f-8296-41c4-b45b-017eab214277
-    content: Unmatched backticks render as literal characters — the parser must not consume runaway markup or eat the rest of the content
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  698cf91d-2370-4a9a-9cc8-fa466bb7159e:
-    id: 698cf91d-2370-4a9a-9cc8-fa466bb7159e
-    content: Code styling applies to the displayed/rendered view of node content; in edit mode the raw text including backticks remains the source of truth
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e06b233e-466a-4859-9f36-c9a5dad851c8:
-    id: e06b233e-466a-4859-9f36-c9a5dad851c8
-    content: Styling derives from existing theme tokens so light and dark themes stay consistent
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b2892d62-b4c6-4fe5-b91e-b0468fb6b7d2:
-    id: b2892d62-b4c6-4fe5-b91e-b0468fb6b7d2
-    content: Acceptance criteria
-    children:
-      - cd7061a9-fe35-4592-a562-42f1e5c4960a
-      - 45840ee8-0cfc-4ec8-949e-06b2ac0fc51f
-      - d56308d3-c73f-4da7-8a09-86f8307bc274
-      - dea40679-d41b-4322-8ac0-a576a33ff9bd
-      - a3d1913b-b6ea-47c2-8686-815c46b482e8
-      - f45f1f9a-d61b-446f-9b14-65130a78b8e0
-      - 812bf295-875c-47d4-b7bd-d7f0e292ce61
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd7061a9-fe35-4592-a562-42f1e5c4960a:
-    id: cd7061a9-fe35-4592-a562-42f1e5c4960a
-    content: Text typed as backtick-foo-backtick in a node renders foo inline with monospace font and code background
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  45840ee8-0cfc-4ec8-949e-06b2ac0fc51f:
-    id: 45840ee8-0cfc-4ec8-949e-06b2ac0fc51f
-    content: A fenced triple-backtick block renders as a multi-line code block preserving indentation, line breaks, and trailing whitespace
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d56308d3-c73f-4da7-8a09-86f8307bc274:
-    id: d56308d3-c73f-4da7-8a09-86f8307bc274
-    content: A fence with a language tag on the opening line renders identically to an untagged fence — the tag itself is not displayed
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dea40679-d41b-4322-8ac0-a576a33ff9bd:
-    id: dea40679-d41b-4322-8ac0-a576a33ff9bd
-    content: A line containing a single unmatched backtick renders as plain text with the backtick visible
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a3d1913b-b6ea-47c2-8686-815c46b482e8:
-    id: a3d1913b-b6ea-47c2-8686-815c46b482e8
-    content: Switching the node from rendered view to edit mode shows the original backticks intact in the editable text
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f45f1f9a-d61b-446f-9b14-65130a78b8e0:
-    id: f45f1f9a-d61b-446f-9b14-65130a78b8e0
-    content: Code rendering uses the project's theme custom properties and remains legible in both light and dark themes
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  812bf295-875c-47d4-b7bd-d7f0e292ce61:
-    id: 812bf295-875c-47d4-b7bd-d7f0e292ce61
-    content: Rendering a node with typical content under 10KB shows no perceptible input or scroll lag
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a66bc0d9-8a10-4b81-852d-261a4b87854c:
-    id: a66bc0d9-8a10-4b81-852d-261a4b87854c
-    content: 🔧 Implementation proposal
-    children:
-      - a4ffbcae-6500-42b1-bbb4-c555251ff97d
-      - 29e8a533-34b6-40b0-8637-ceb2a9d1f605
-      - d3b685ba-e537-4081-bb53-903198811dff
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a4ffbcae-6500-42b1-bbb4-c555251ff97d:
-    id: a4ffbcae-6500-42b1-bbb4-c555251ff97d
-    content: Approach
-    children:
-      - 70733bf9-a12e-4d46-aa41-362c1e7763f4
-      - 00d186ae-9b4e-4c61-88ec-c0ea29a6ab4f
-      - 77eed3f6-9f88-4c16-bcaf-925b8f77ce1c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  70733bf9-a12e-4d46-aa41-362c1e7763f4:
-    id: 70733bf9-a12e-4d46-aa41-362c1e7763f4
-    content: Add a narrow backtick-only inline-and-fence parser on the node content display path, leaving edit mode untouched
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  00d186ae-9b4e-4c61-88ec-c0ea29a6ab4f:
-    id: 00d186ae-9b4e-4c61-88ec-c0ea29a6ab4f
-    content: Emit React spans for inline code and a block element for fenced code; no full markdown library in v1 to keep blast radius small
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  77eed3f6-9f88-4c16-bcaf-925b8f77ce1c:
-    id: 77eed3f6-9f88-4c16-bcaf-925b8f77ce1c
-    content: Style via co-located CSS using existing theme variables; add a code background variable in globals.css if none exists
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  29e8a533-34b6-40b0-8637-ceb2a9d1f605:
-    id: 29e8a533-34b6-40b0-8637-ceb2a9d1f605
-    content: Touchpoints
-    children:
-      - 673e4c53-d2df-4968-bde4-49acb8b7a19f
-      - 09c55b71-8c7e-4dc2-a8e4-e59e2f0685ae
-      - 2f5a4b91-335b-44eb-8ea5-19d38592bf88
-      - 0beca46e-72a4-4036-8b12-0116f24bc74d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  673e4c53-d2df-4968-bde4-49acb8b7a19f:
-    id: 673e4c53-d2df-4968-bde4-49acb8b7a19f
-    content: Renderer for node body text in src/renderer/components — swap the plain text render for a tokenized one
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  09c55b71-8c7e-4dc2-a8e4-e59e2f0685ae:
-    id: 09c55b71-8c7e-4dc2-a8e4-e59e2f0685ae
-    content: Pure parser utility in src/renderer/utils returning a token list (text, inlineCode, codeBlock)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f5a4b91-335b-44eb-8ea5-19d38592bf88:
-    id: 2f5a4b91-335b-44eb-8ea5-19d38592bf88
-    content: CSS — inline code and fenced block styles, theme tokens in globals.css
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0beca46e-72a4-4036-8b12-0116f24bc74d:
-    id: 0beca46e-72a4-4036-8b12-0116f24bc74d
-    content: Tests in the utils tests directory covering balanced, unbalanced, nested, multi-line, and language-tagged fence cases
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d3b685ba-e537-4081-bb53-903198811dff:
-    id: d3b685ba-e537-4081-bb53-903198811dff
-    content: Constraints to call out
-    children:
-      - 9bada521-5556-4a24-8763-ea8ebbcabc41
-      - 7e6f961b-8676-432f-b721-c6d470f60b35
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9bada521-5556-4a24-8763-ea8ebbcabc41:
-    id: 9bada521-5556-4a24-8763-ea8ebbcabc41
-    content: Keep the parser API narrow so it can be swapped for a full markdown renderer later without touching consumers
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7e6f961b-8676-432f-b721-c6d470f60b35:
-    id: 7e6f961b-8676-432f-b721-c6d470f60b35
-    content: Compose cleanly with any existing inline transforms (links, mentions) on the same render path — backtick spans must not eat or be eaten by them
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a15c61a8-25d6-499a-9e2b-26892034c0ca:
-    id: a15c61a8-25d6-499a-9e2b-26892034c0ca
-    content: Scope and challenges
-    children:
-      - adaeee4a-c26a-48b3-97f0-3113b8f2f86b
-      - 64c06cc2-bae3-4bb3-a524-6faab10fda04
-      - 3a527718-071a-4544-a0f3-d14c74cc48b7
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  adaeee4a-c26a-48b3-97f0-3113b8f2f86b:
-    id: adaeee4a-c26a-48b3-97f0-3113b8f2f86b
-    content: Treat as a single shippable chunk — splitting inline-only from fenced delivers no independent user value and would just be churn
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  64c06cc2-bae3-4bb3-a524-6faab10fda04:
-    id: 64c06cc2-bae3-4bb3-a524-6faab10fda04
-    content: Out of scope — syntax highlighting per language, code copy button, terminal output styling, tree-node title rendering (titles are one-liners and out of scope here)
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a527718-071a-4544-a0f3-d14c74cc48b7:
-    id: 3a527718-071a-4544-a0f3-d14c74cc48b7
-    content: ROI is high relative to cost — small parser, standard CSS, and a convention every user already expects from adjacent tools
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  84229c8a-731e-4574-8723-88ffa2b80c3d:
-    id: 84229c8a-731e-4574-8723-88ffa2b80c3d
-    content: Technical refinement
-    children:
-      - b67b9cd6-f452-4860-80d7-decc61a28b68
-      - 2d8e9be5-5b3e-43c1-9a06-5ccbcc677edf
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b67b9cd6-f452-4860-80d7-decc61a28b68:
-    id: b67b9cd6-f452-4860-80d7-decc61a28b68
-    content: Complications
-    children:
-      - a59dc303-2b7c-4c97-9b20-4614718f4696
-      - 0ea50c8e-965a-4e3d-ba89-f0bbcb3369a7
-      - dbcb68e2-e302-42e3-a27c-91a5d50814f5
-      - 58fc8f7b-c8a3-4016-b309-746adee4dc11
-      - c2c002fb-3830-4aea-a147-639c00148a12
-      - dc048186-57b7-4284-9173-4af3d2d8d7a0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a59dc303-2b7c-4c97-9b20-4614718f4696:
-    id: a59dc303-2b7c-4c97-9b20-4614718f4696
-    content: NodeContent is rendered directly into a contentEditable div — there is no separate read-only view; the "edit mode shows raw backticks" rule must be implemented by suppressing rich rendering when the node is selected, matching the existing useInlineUrl pattern (rich HTML is gated on !isSelected && !hasHighlightedContent)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0ea50c8e-965a-4e3d-ba89-f0bbcb3369a7:
-    id: 0ea50c8e-965a-4e3d-ba89-f0bbcb3369a7
-    content: Rich rendering already coexists in this div via dangerouslySetInnerHTML — search highlight emits mark tags and inline URLs emit anchors; backtick rendering must slot into the same pipeline and pick a precedence (current inline URL suppresses itself when search highlight is active, so backticks should follow the same yield-to-search rule)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbcb68e2-e302-42e3-a27c-91a5d50814f5:
-    id: dbcb68e2-e302-42e3-a27c-91a5d50814f5
-    content: Fenced blocks turn a previously inline-flow div into mixed inline+block content — cursor placement on click-to-edit and selection across a fenced block need verification, otherwise the edit handoff can drop the caret in the wrong place
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  58fc8f7b-c8a3-4016-b309-746adee4dc11:
-    id: 58fc8f7b-c8a3-4016-b309-746adee4dc11
-    content: Copy from rendered content inside contentEditable will copy the styled text without backticks — acceptable for inline, but worth confirming that copying a fenced block does not lose line breaks
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c2c002fb-3830-4aea-a147-639c00148a12:
-    id: c2c002fb-3830-4aea-a147-639c00148a12
-    content: Sending node content to AI must keep the raw backticks (the source string already does — just confirm no rendering pass leaks into the prompt builder path)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc048186-57b7-4284-9173-4af3d2d8d7a0:
-    id: dc048186-57b7-4284-9173-4af3d2d8d7a0
-    content: Out of scope confirmed — syntax highlighting, copy button, terminal pane, tree titles, and any markdown beyond backticks
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2d8e9be5-5b3e-43c1-9a06-5ccbcc677edf:
-    id: 2d8e9be5-5b3e-43c1-9a06-5ccbcc677edf
-    content: Approach summary
-    children:
-      - 6cc24639-2092-4b7c-8416-a1e82f8ae6ac
-      - ac1112b0-c1f2-4cde-8d76-45d3ebfe5153
-      - bda72222-dfd2-4a9a-af19-0e66b2fc6fd5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6cc24639-2092-4b7c-8416-a1e82f8ae6ac:
-    id: 6cc24639-2092-4b7c-8416-a1e82f8ae6ac
-    content: Add a pure parser util alongside inlineUrlRender that tokenizes backticks into text/inlineCode/codeBlock and emits HTML; gate it on the same !isSelected condition useInlineUrl already uses
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac1112b0-c1f2-4cde-8d76-45d3ebfe5153:
-    id: ac1112b0-c1f2-4cde-8d76-45d3ebfe5153
-    content: Compose the new HTML with search highlight and inline URLs in NodeContent — single source of dangerouslySetInnerHTML, one ordering of passes, documented in the hook
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bda72222-dfd2-4a9a-af19-0e66b2fc6fd5:
-    id: bda72222-dfd2-4a9a-af19-0e66b2fc6fd5
-    content: Non-obvious surprise for reviewer — this is not a new render mode; it is one more pass in the existing rich-rendering pipeline inside a contentEditable, so the real risk is interaction with caret/selection, not parser correctness
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   96d7c80d-b832-4feb-b28d-a1b8edd37a9e:
     id: 96d7c80d-b832-4feb-b28d-a1b8edd37a9e
     content: worktree
@@ -160625,6 +160102,1309 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fad4196-a985-4852-82da-622aa48bc1a9:
+    id: 2fad4196-a985-4852-82da-622aa48bc1a9
+    content: worktree
+    children:
+      - 46c15f86-5771-47eb-804c-8f08ea7e8096
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46c15f86-5771-47eb-804c-8f08ea7e8096:
+    id: 46c15f86-5771-47eb-804c-8f08ea7e8096
+    content: vscode://file/Users/brianfox/dev/Arborescent-render-backtick-code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63928b1d-42bd-44fa-9760-c5c8ee982c9f:
+    id: 63928b1d-42bd-44fa-9760-c5c8ee982c9f
+    content: 📄 Product spec
+    children:
+      - d5d1535f-433f-4430-9be0-30f314059488
+      - 2d04a156-4f9e-4aa5-a99e-eb56b5b4baee
+      - 81c0ccd7-7b2a-4b4d-af72-0f7407a8e8e9
+      - 1faf53f3-1ba2-43aa-933c-99fc72d8be1f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5d1535f-433f-4430-9be0-30f314059488:
+    id: d5d1535f-433f-4430-9be0-30f314059488
+    content: Context
+    children:
+      - 40fa51e1-25e1-4b63-a57a-b6b638278208
+      - c21567d3-e0e5-4feb-b6f4-8f9ab9a35480
+      - e1054993-7c74-4b30-9778-75146c7f0457
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40fa51e1-25e1-4b63-a57a-b6b638278208:
+    id: 40fa51e1-25e1-4b63-a57a-b6b638278208
+    content: Users paste and write technical fragments — paths, commands, identifiers, snippets, AI responses — into node content and reach for the universal backtick convention to mark them as code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c21567d3-e0e5-4feb-b6f4-8f9ab9a35480:
+    id: c21567d3-e0e5-4feb-b6f4-8f9ab9a35480
+    content: Today backticks render as literal characters with no styling, so technical content is hard to scan and inconsistent with every adjacent tool (Slack, Notion, Linear, GitHub)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1054993-7c74-4b30-9778-75146c7f0457:
+    id: e1054993-7c74-4b30-9778-75146c7f0457
+    content: User persona — any Arborescent author writing or pasting technical content into node bodies, including users round-tripping AI output back into nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d04a156-4f9e-4aa5-a99e-eb56b5b4baee:
+    id: 2d04a156-4f9e-4aa5-a99e-eb56b5b4baee
+    content: Goal
+    children:
+      - a600e816-6aa2-43f6-a2bd-3add129cd9bb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a600e816-6aa2-43f6-a2bd-3add129cd9bb:
+    id: a600e816-6aa2-43f6-a2bd-3add129cd9bb
+    content: Render single-backtick and triple-backtick spans with code-style highlighting in node content so technical fragments are immediately distinguishable from prose
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81c0ccd7-7b2a-4b4d-af72-0f7407a8e8e9:
+    id: 81c0ccd7-7b2a-4b4d-af72-0f7407a8e8e9
+    content: Business rules
+    children:
+      - 5db9873c-c97e-4858-a3af-789efb773115
+      - b969c6da-dc05-4cde-8279-1ff28087055a
+      - 7474b96e-a944-4636-8e8d-e80c03549111
+      - cff90bde-9043-443d-9fd7-39e2b39b5cb5
+      - 385f45c7-4133-4abd-88cf-c9ea8adb3c20
+      - c686c300-d7b9-4e10-a7be-16155eae953c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5db9873c-c97e-4858-a3af-789efb773115:
+    id: 5db9873c-c97e-4858-a3af-789efb773115
+    content: Single backticks delimit inline code — rendered monospace, with a subtle background fill and small horizontal padding, flowing inline with surrounding text
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b969c6da-dc05-4cde-8279-1ff28087055a:
+    id: b969c6da-dc05-4cde-8279-1ff28087055a
+    content: Triple backticks open a fenced code block — rendered as a distinct multi-line block, monospace, with background fill, preserving whitespace and line breaks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7474b96e-a944-4636-8e8d-e80c03549111:
+    id: 7474b96e-a944-4636-8e8d-e80c03549111
+    content: An optional language tag after the opening fence (e.g. ts, bash) is accepted and ignored for styling in v1 — no syntax highlighting required yet
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cff90bde-9043-443d-9fd7-39e2b39b5cb5:
+    id: cff90bde-9043-443d-9fd7-39e2b39b5cb5
+    content: Unmatched backticks render as literal characters — the parser must not consume runaway markup or eat the rest of the content
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  385f45c7-4133-4abd-88cf-c9ea8adb3c20:
+    id: 385f45c7-4133-4abd-88cf-c9ea8adb3c20
+    content: Code styling applies to the displayed/rendered view of node content; in edit mode the raw text including backticks remains the source of truth
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c686c300-d7b9-4e10-a7be-16155eae953c:
+    id: c686c300-d7b9-4e10-a7be-16155eae953c
+    content: Styling derives from existing theme tokens so light and dark themes stay consistent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1faf53f3-1ba2-43aa-933c-99fc72d8be1f:
+    id: 1faf53f3-1ba2-43aa-933c-99fc72d8be1f
+    content: Acceptance criteria
+    children:
+      - 7890d04e-e804-48c0-b590-7ee4ea569c6b
+      - ca2f8a38-c071-4154-a64a-06f985c03b06
+      - e5d66d70-701c-460a-b950-4b3049e9a011
+      - 2ebbe728-20e4-482e-ae24-3e7dbc431e14
+      - b89ed4fa-0bfc-4da7-9b31-1f8e2457c38b
+      - c651c4a4-3d66-41f1-bf3e-ba3e01769b57
+      - 226b837a-3877-4259-b77a-bebae1b4c401
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7890d04e-e804-48c0-b590-7ee4ea569c6b:
+    id: 7890d04e-e804-48c0-b590-7ee4ea569c6b
+    content: Text typed as backtick-foo-backtick in a node renders foo inline with monospace font and code background
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca2f8a38-c071-4154-a64a-06f985c03b06:
+    id: ca2f8a38-c071-4154-a64a-06f985c03b06
+    content: A fenced triple-backtick block renders as a multi-line code block preserving indentation, line breaks, and trailing whitespace
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5d66d70-701c-460a-b950-4b3049e9a011:
+    id: e5d66d70-701c-460a-b950-4b3049e9a011
+    content: A fence with a language tag on the opening line renders identically to an untagged fence — the tag itself is not displayed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ebbe728-20e4-482e-ae24-3e7dbc431e14:
+    id: 2ebbe728-20e4-482e-ae24-3e7dbc431e14
+    content: A line containing a single unmatched backtick renders as plain text with the backtick visible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b89ed4fa-0bfc-4da7-9b31-1f8e2457c38b:
+    id: b89ed4fa-0bfc-4da7-9b31-1f8e2457c38b
+    content: Switching the node from rendered view to edit mode shows the original backticks intact in the editable text
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c651c4a4-3d66-41f1-bf3e-ba3e01769b57:
+    id: c651c4a4-3d66-41f1-bf3e-ba3e01769b57
+    content: Code rendering uses the project's theme custom properties and remains legible in both light and dark themes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  226b837a-3877-4259-b77a-bebae1b4c401:
+    id: 226b837a-3877-4259-b77a-bebae1b4c401
+    content: Rendering a node with typical content under 10KB shows no perceptible input or scroll lag
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1736643-68e9-4714-b494-a7e24efffbfb:
+    id: a1736643-68e9-4714-b494-a7e24efffbfb
+    content: 🔧 Implementation proposal
+    children:
+      - 4010306f-622b-466a-b612-ea52d9a0174c
+      - 82a44525-b0d7-4a49-a28d-7d73f9095f9d
+      - a4ec0264-36bf-4bf1-abf9-1367d92b93cb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4010306f-622b-466a-b612-ea52d9a0174c:
+    id: 4010306f-622b-466a-b612-ea52d9a0174c
+    content: Approach
+    children:
+      - b1dfe80b-f28a-4f70-9a12-5db2bd7b1c24
+      - a4200f1f-c5bc-443e-a3ca-77acd0cfea6c
+      - 3de4cddd-9023-400a-9f8f-f31f8c53d27d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1dfe80b-f28a-4f70-9a12-5db2bd7b1c24:
+    id: b1dfe80b-f28a-4f70-9a12-5db2bd7b1c24
+    content: Add a narrow backtick-only inline-and-fence parser on the node content display path, leaving edit mode untouched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4200f1f-c5bc-443e-a3ca-77acd0cfea6c:
+    id: a4200f1f-c5bc-443e-a3ca-77acd0cfea6c
+    content: Emit React spans for inline code and a block element for fenced code; no full markdown library in v1 to keep blast radius small
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3de4cddd-9023-400a-9f8f-f31f8c53d27d:
+    id: 3de4cddd-9023-400a-9f8f-f31f8c53d27d
+    content: Style via co-located CSS using existing theme variables; add a code background variable in globals.css if none exists
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82a44525-b0d7-4a49-a28d-7d73f9095f9d:
+    id: 82a44525-b0d7-4a49-a28d-7d73f9095f9d
+    content: Touchpoints
+    children:
+      - 567fe498-1f23-4615-be46-0f9102d356a0
+      - 54afd890-2878-40b1-a9a3-f4fa487ee715
+      - 25006435-4ea6-4334-ae41-92dfbcadd966
+      - 6bcceb80-931a-44e1-bc16-3e0e75fecc50
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  567fe498-1f23-4615-be46-0f9102d356a0:
+    id: 567fe498-1f23-4615-be46-0f9102d356a0
+    content: Renderer for node body text in src/renderer/components — swap the plain text render for a tokenized one
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54afd890-2878-40b1-a9a3-f4fa487ee715:
+    id: 54afd890-2878-40b1-a9a3-f4fa487ee715
+    content: Pure parser utility in src/renderer/utils returning a token list (text, inlineCode, codeBlock)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25006435-4ea6-4334-ae41-92dfbcadd966:
+    id: 25006435-4ea6-4334-ae41-92dfbcadd966
+    content: CSS — inline code and fenced block styles, theme tokens in globals.css
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bcceb80-931a-44e1-bc16-3e0e75fecc50:
+    id: 6bcceb80-931a-44e1-bc16-3e0e75fecc50
+    content: Tests in the utils tests directory covering balanced, unbalanced, nested, multi-line, and language-tagged fence cases
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4ec0264-36bf-4bf1-abf9-1367d92b93cb:
+    id: a4ec0264-36bf-4bf1-abf9-1367d92b93cb
+    content: Constraints to call out
+    children:
+      - a0e8bfaf-bc73-4128-a4df-2e654376112c
+      - 6f3eb6a3-2f1f-42a4-a73b-8f1d9d280f35
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0e8bfaf-bc73-4128-a4df-2e654376112c:
+    id: a0e8bfaf-bc73-4128-a4df-2e654376112c
+    content: Keep the parser API narrow so it can be swapped for a full markdown renderer later without touching consumers
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f3eb6a3-2f1f-42a4-a73b-8f1d9d280f35:
+    id: 6f3eb6a3-2f1f-42a4-a73b-8f1d9d280f35
+    content: Compose cleanly with any existing inline transforms (links, mentions) on the same render path — backtick spans must not eat or be eaten by them
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0cc3c68-f3c6-455f-bddd-714dad6e1efc:
+    id: b0cc3c68-f3c6-455f-bddd-714dad6e1efc
+    content: Scope and challenges
+    children:
+      - 9d8b30dc-aa18-49d6-a9d1-a66e7454de84
+      - 223dfbd5-d821-42d7-becb-6fc2b4a6dd05
+      - 28cf72ab-9116-48ec-b010-6e6eae59b218
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d8b30dc-aa18-49d6-a9d1-a66e7454de84:
+    id: 9d8b30dc-aa18-49d6-a9d1-a66e7454de84
+    content: Treat as a single shippable chunk — splitting inline-only from fenced delivers no independent user value and would just be churn
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  223dfbd5-d821-42d7-becb-6fc2b4a6dd05:
+    id: 223dfbd5-d821-42d7-becb-6fc2b4a6dd05
+    content: Out of scope — syntax highlighting per language, code copy button, terminal output styling, tree-node title rendering (titles are one-liners and out of scope here)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  28cf72ab-9116-48ec-b010-6e6eae59b218:
+    id: 28cf72ab-9116-48ec-b010-6e6eae59b218
+    content: ROI is high relative to cost — small parser, standard CSS, and a convention every user already expects from adjacent tools
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  092c6b80-3550-4b11-bbfa-345d18e3cd83:
+    id: 092c6b80-3550-4b11-bbfa-345d18e3cd83
+    content: Technical refinement
+    children:
+      - 636d5bdb-ff70-4e56-8536-951e96a667f9
+      - 7162c32d-2849-4624-a2af-7845caffb5a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  636d5bdb-ff70-4e56-8536-951e96a667f9:
+    id: 636d5bdb-ff70-4e56-8536-951e96a667f9
+    content: Complications
+    children:
+      - c8b31db1-20c7-495b-8848-5dfcbafad455
+      - 98c49e0c-f761-4e0b-b855-cb07a02cdad1
+      - e709a3f9-a0f2-42b4-8959-3c8376286df0
+      - 384dc9d1-f87f-4121-9440-7016b404599b
+      - 067da709-fbb6-4b9a-9fbb-46de8472fa94
+      - fd203919-f267-487b-9dd3-1ec714ea8572
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8b31db1-20c7-495b-8848-5dfcbafad455:
+    id: c8b31db1-20c7-495b-8848-5dfcbafad455
+    content: NodeContent is rendered directly into a contentEditable div — there is no separate read-only view; the "edit mode shows raw backticks" rule must be implemented by suppressing rich rendering when the node is selected, matching the existing useInlineUrl pattern (rich HTML is gated on !isSelected && !hasHighlightedContent)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98c49e0c-f761-4e0b-b855-cb07a02cdad1:
+    id: 98c49e0c-f761-4e0b-b855-cb07a02cdad1
+    content: Rich rendering already coexists in this div via dangerouslySetInnerHTML — search highlight emits mark tags and inline URLs emit anchors; backtick rendering must slot into the same pipeline and pick a precedence (current inline URL suppresses itself when search highlight is active, so backticks should follow the same yield-to-search rule)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e709a3f9-a0f2-42b4-8959-3c8376286df0:
+    id: e709a3f9-a0f2-42b4-8959-3c8376286df0
+    content: Fenced blocks turn a previously inline-flow div into mixed inline+block content — cursor placement on click-to-edit and selection across a fenced block need verification, otherwise the edit handoff can drop the caret in the wrong place
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  384dc9d1-f87f-4121-9440-7016b404599b:
+    id: 384dc9d1-f87f-4121-9440-7016b404599b
+    content: Copy from rendered content inside contentEditable will copy the styled text without backticks — acceptable for inline, but worth confirming that copying a fenced block does not lose line breaks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  067da709-fbb6-4b9a-9fbb-46de8472fa94:
+    id: 067da709-fbb6-4b9a-9fbb-46de8472fa94
+    content: Sending node content to AI must keep the raw backticks (the source string already does — just confirm no rendering pass leaks into the prompt builder path)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd203919-f267-487b-9dd3-1ec714ea8572:
+    id: fd203919-f267-487b-9dd3-1ec714ea8572
+    content: Out of scope confirmed — syntax highlighting, copy button, terminal pane, tree titles, and any markdown beyond backticks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7162c32d-2849-4624-a2af-7845caffb5a7:
+    id: 7162c32d-2849-4624-a2af-7845caffb5a7
+    content: Approach summary
+    children:
+      - a507dec6-ce29-432a-95cc-a6f959c638b2
+      - f8f19f6a-4e69-4ae5-9149-8bc485b5bedb
+      - ecea4221-186c-4464-9712-a894d8310b6c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a507dec6-ce29-432a-95cc-a6f959c638b2:
+    id: a507dec6-ce29-432a-95cc-a6f959c638b2
+    content: Add a pure parser util alongside inlineUrlRender that tokenizes backticks into text/inlineCode/codeBlock and emits HTML; gate it on the same !isSelected condition useInlineUrl already uses
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8f19f6a-4e69-4ae5-9149-8bc485b5bedb:
+    id: f8f19f6a-4e69-4ae5-9149-8bc485b5bedb
+    content: Compose the new HTML with search highlight and inline URLs in NodeContent — single source of dangerouslySetInnerHTML, one ordering of passes, documented in the hook
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecea4221-186c-4464-9712-a894d8310b6c:
+    id: ecea4221-186c-4464-9712-a894d8310b6c
+    content: Non-obvious surprise for reviewer — this is not a new render mode; it is one more pass in the existing rich-rendering pipeline inside a contentEditable, so the real risk is interaction with caret/selection, not parser correctness
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c75dd54f-b8f5-4e02-9170-23ad89e6a2c1:
+    id: c75dd54f-b8f5-4e02-9170-23ad89e6a2c1
+    content: review feedback
+    children:
+      - fed47688-85b3-40f2-8f2d-bda036e1be59
+      - b0eb84ca-6fbd-48ee-ac40-262384a7088a
+      - 5fe767d8-5fb1-4fa3-8b89-95ecc158289a
+      - ffb7a43b-0850-452e-977c-103472bea18d
+      - 91938de4-2955-42b2-9993-880bee63ad85
+      - 9e84be98-40e5-448c-9b90-f4c8f3fd857e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fed47688-85b3-40f2-8f2d-bda036e1be59:
+    id: fed47688-85b3-40f2-8f2d-bda036e1be59
+    content: Reviewer (pr-review-toolkit:code-reviewer) approved no blockers; type-check, lint, and all targeted tests passed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0eb84ca-6fbd-48ee-ac40-262384a7088a:
+    id: b0eb84ca-6fbd-48ee-ac40-262384a7088a
+    content: 'Verified: hook deps correct, composition order tokenizes backticks first then applies URL render to text tokens only (URLs inside code regions are not linkified), all user text passes through escapeHtml, unmatched fences/backticks do not consume past EOF, theme tokens --gray-100 / --gray-200 exist in both themes, rename clean with no stale useInlineUrl references in src/'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fe767d8-5fb1-4fa3-8b89-95ecc158289a:
+    id: 5fe767d8-5fb1-4fa3-8b89-95ecc158289a
+    content: 'Mild finding addressed: dropped the dead node-text-rich class from the wrapper div in NodeContent.tsx (no CSS rule referenced it; mirrored a pre-existing dead-class pattern not worth carrying forward)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffb7a43b-0850-452e-977c-103472bea18d:
+    id: ffb7a43b-0850-452e-977c-103472bea18d
+    content: 'Nice-to-have addressed: added a parser test pinning the back-to-back backtick re-opener behavior (input ``foo` now has explicit coverage that the parser advances by one and re-opens an inline span on the third tick)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91938de4-2955-42b2-9993-880bee63ad85:
+    id: 91938de4-2955-42b2-9993-880bee63ad85
+    content: 'Stylistic nit pushed back: hasRichContent / hasCode flag-tracking is the same pattern in both functions — agent conceded after re-read, no change needed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e84be98-40e5-448c-9b90-f4c8f3fd857e:
+    id: 9e84be98-40e5-448c-9b90-f4c8f3fd857e
+    content: Final state — 33 of 33 targeted tests pass (21 parser + 12 hook), tsc clean, eslint clean, no stale references, reviewer confirmed ship-ready
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cda7caa8-07fb-4d6d-96c3-fd23aafbffd9:
+    id: cda7caa8-07fb-4d6d-96c3-fd23aafbffd9
+    content: User story creation
+    children:
+      - 7a406def-ce46-4119-a1c9-f9dd502cf5e5
+      - e1c2e120-ad1d-4b65-a746-c96c9b248f3b
+      - 8b4b4432-8f13-4f6e-a47d-bed50019f972
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a406def-ce46-4119-a1c9-f9dd502cf5e5:
+    id: 7a406def-ce46-4119-a1c9-f9dd502cf5e5
+    content: Decide path — pick exactly one of Path A or Path B
+    children:
+      - fc33c054-e175-4903-b1ee-dea96d68f2bb
+      - b9125c8d-01e0-4cb0-98c3-2e35e4b160fc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc33c054-e175-4903-b1ee-dea96d68f2bb:
+    id: fc33c054-e175-4903-b1ee-dea96d68f2bb
+    content: 'Path A — Subject is a bug: use Bug template only, skip Path B'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9125c8d-01e0-4cb0-98c3-2e35e4b160fc:
+    id: b9125c8d-01e0-4cb0-98c3-2e35e4b160fc
+    content: 'Path B — Subject is a feature or user story: use User story section only, skip Path A'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1c2e120-ad1d-4b65-a746-c96c9b248f3b:
+    id: e1c2e120-ad1d-4b65-a746-c96c9b248f3b
+    content: Bug template — Path A only
+    children:
+      - 7f9bd6ad-4ea4-44d4-a5e7-9142db2b71e2
+      - 8fb231a9-909b-4f36-8c63-8a3836e0a462
+      - f6ccca75-f29b-4b9e-9a64-3c108f7013f0
+      - 8579bbf9-1ee1-4c86-9e78-c3c671e5f7f8
+      - 4925b099-6c37-4371-a6a4-18a4497131c1
+      - f8de3974-767c-4c01-84be-1f38553985a1
+      - c08c73e9-3fde-4c72-a2a7-87c506450ce5
+      - 975aff4c-4adf-4352-a22e-eaf45c8868b9
+      - d0fe6b9a-87d5-4f9a-85cd-6b81d86ed4a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f9bd6ad-4ea4-44d4-a5e7-9142db2b71e2:
+    id: 7f9bd6ad-4ea4-44d4-a5e7-9142db2b71e2
+    content: Summary
+    children:
+      - f3e59a03-4433-42f0-956a-7cebbdd9dda6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3e59a03-4433-42f0-956a-7cebbdd9dda6:
+    id: f3e59a03-4433-42f0-956a-7cebbdd9dda6
+    content: one-sentence statement of the failure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fb231a9-909b-4f36-8c63-8a3836e0a462:
+    id: 8fb231a9-909b-4f36-8c63-8a3836e0a462
+    content: Steps to reproduce
+    children:
+      - f3dc88e9-fbae-4e0e-8234-4a9e2d8ca148
+      - 76c65309-950a-44dc-8e42-f22ba9681c56
+      - 4e676eef-a3ec-40a0-9e53-c26be6031534
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3dc88e9-fbae-4e0e-8234-4a9e2d8ca148:
+    id: f3dc88e9-fbae-4e0e-8234-4a9e2d8ca148
+    content: precondition / setup step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76c65309-950a-44dc-8e42-f22ba9681c56:
+    id: 76c65309-950a-44dc-8e42-f22ba9681c56
+    content: user action
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e676eef-a3ec-40a0-9e53-c26be6031534:
+    id: 4e676eef-a3ec-40a0-9e53-c26be6031534
+    content: observation that exposes the bug
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6ccca75-f29b-4b9e-9a64-3c108f7013f0:
+    id: f6ccca75-f29b-4b9e-9a64-3c108f7013f0
+    content: Expected behavior
+    children:
+      - 0ec20e60-e6c2-4a45-b29d-24ff80a09a0d
+      - 0d210e8a-3303-4ae5-89c3-602bffd8f3c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ec20e60-e6c2-4a45-b29d-24ff80a09a0d:
+    id: 0ec20e60-e6c2-4a45-b29d-24ff80a09a0d
+    content: expected outcome on the happy path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d210e8a-3303-4ae5-89c3-602bffd8f3c0:
+    id: 0d210e8a-3303-4ae5-89c3-602bffd8f3c0
+    content: expected handling of edge cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8579bbf9-1ee1-4c86-9e78-c3c671e5f7f8:
+    id: 8579bbf9-1ee1-4c86-9e78-c3c671e5f7f8
+    content: Actual behavior
+    children:
+      - 5af91a8e-9912-4c68-a139-10ef6ce6acfb
+      - ef5cb351-fb5c-4e58-b69b-21cf817decd5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5af91a8e-9912-4c68-a139-10ef6ce6acfb:
+    id: 5af91a8e-9912-4c68-a139-10ef6ce6acfb
+    content: what actually happens
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef5cb351-fb5c-4e58-b69b-21cf817decd5:
+    id: ef5cb351-fb5c-4e58-b69b-21cf817decd5
+    content: user-visible symptoms
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4925b099-6c37-4371-a6a4-18a4497131c1:
+    id: 4925b099-6c37-4371-a6a4-18a4497131c1
+    content: Suspected cause
+    children:
+      - 4aeab171-7db0-4f03-b188-7387b4827e34
+      - 94694158-d917-4f02-a431-a97f6e6981f3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aeab171-7db0-4f03-b188-7387b4827e34:
+    id: 4aeab171-7db0-4f03-b188-7387b4827e34
+    content: code path or commit implicated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94694158-d917-4f02-a431-a97f6e6981f3:
+    id: 94694158-d917-4f02-a431-a97f6e6981f3
+    content: why the existing guard or fix does not cover this case
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8de3974-767c-4c01-84be-1f38553985a1:
+    id: f8de3974-767c-4c01-84be-1f38553985a1
+    content: Affected files
+    children:
+      - ffad7061-ac80-4898-9987-99c91a7c9c74
+      - 799d8a1d-b34c-4679-8eae-abe83e28ac10
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffad7061-ac80-4898-9987-99c91a7c9c74:
+    id: ffad7061-ac80-4898-9987-99c91a7c9c74
+    content: file path of primary suspect
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  799d8a1d-b34c-4679-8eae-abe83e28ac10:
+    id: 799d8a1d-b34c-4679-8eae-abe83e28ac10
+    content: file path of related surface
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c08c73e9-3fde-4c72-a2a7-87c506450ce5:
+    id: c08c73e9-3fde-4c72-a2a7-87c506450ce5
+    content: Regression window
+    children:
+      - 9a17e327-2f60-4f7a-b8ef-201107333520
+      - a1cf82f8-f020-43d0-9732-db6b4d8df2eb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a17e327-2f60-4f7a-b8ef-201107333520:
+    id: 9a17e327-2f60-4f7a-b8ef-201107333520
+    content: last known good commit or release
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1cf82f8-f020-43d0-9732-db6b4d8df2eb:
+    id: a1cf82f8-f020-43d0-9732-db6b4d8df2eb
+    content: first observed broken commit or date
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  975aff4c-4adf-4352-a22e-eaf45c8868b9:
+    id: 975aff4c-4adf-4352-a22e-eaf45c8868b9
+    content: Severity
+    children:
+      - ac85635b-22f3-48f7-91ae-e192db89cad6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac85635b-22f3-48f7-91ae-e192db89cad6:
+    id: ac85635b-22f3-48f7-91ae-e192db89cad6
+    content: severity level and user impact
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0fe6b9a-87d5-4f9a-85cd-6b81d86ed4a9:
+    id: d0fe6b9a-87d5-4f9a-85cd-6b81d86ed4a9
+    content: Notes
+    children:
+      - 57e92a0f-a3d1-4681-8b67-aba0bdb03263
+      - 66f1e6b1-c037-46d3-a544-0ec981998c9c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57e92a0f-a3d1-4681-8b67-aba0bdb03263:
+    id: 57e92a0f-a3d1-4681-8b67-aba0bdb03263
+    content: adjacent issues or look-alikes to disambiguate
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66f1e6b1-c037-46d3-a544-0ec981998c9c:
+    id: 66f1e6b1-c037-46d3-a544-0ec981998c9c
+    content: UX or telemetry gap worth fixing alongside
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b4b4432-8f13-4f6e-a47d-bed50019f972:
+    id: 8b4b4432-8f13-4f6e-a47d-bed50019f972
+    content: User story — Path B only
+    children:
+      - 93e647c4-3848-403d-93e6-e509718e7d0a
+      - ff07225f-a51f-419a-8e49-02a66266dbbc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93e647c4-3848-403d-93e6-e509718e7d0a:
+    id: 93e647c4-3848-403d-93e6-e509718e7d0a
+    content: Template
+    children:
+      - 9ca64432-c8bd-41af-9b9e-2ea07d38eb64
+      - 0fe52267-e33d-4b85-8822-971cc9894042
+      - afa44c42-c483-4e81-9a34-2dcaa1e3607d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ca64432-c8bd-41af-9b9e-2ea07d38eb64:
+    id: 9ca64432-c8bd-41af-9b9e-2ea07d38eb64
+    content: Decompose into one or more user stories using this template
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fe52267-e33d-4b85-8822-971cc9894042:
+    id: 0fe52267-e33d-4b85-8822-971cc9894042
+    content: Title — short
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  afa44c42-c483-4e81-9a34-2dcaa1e3607d:
+    id: afa44c42-c483-4e81-9a34-2dcaa1e3607d
+    content: Body — markdown, two sections separated by `---`
+    children:
+      - 20092ba2-8f3a-416d-ba0c-92465e888889
+      - 8f595b13-0cf0-4f2f-8d35-a16302911a6f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20092ba2-8f3a-416d-ba0c-92465e888889:
+    id: 20092ba2-8f3a-416d-ba0c-92465e888889
+    content: 📄 Product spec
+    children:
+      - 45b947bd-c0dd-4dbc-b063-41fef6fd34d6
+      - 043844d3-aa32-41e9-ae66-731aeaf34bc3
+      - ac54d88d-886e-4f3c-93fd-97d503c90695
+      - e7d1d155-2cb7-4335-ae9b-84bbdb9a01d3
+      - 135a5f1d-d382-4f0d-8b9c-ece29f96cc63
+      - 16dbae1c-d9d9-456c-9c4a-4a1337872608
+      - e1eabd8c-867f-4e1a-9dba-e6320fe501cd
+      - a385ecbf-f3a8-4ef3-8a33-7e96ec48d8a8
+      - d69c1f75-6c3b-46f9-bf8e-bfd215aaef20
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45b947bd-c0dd-4dbc-b063-41fef6fd34d6:
+    id: 45b947bd-c0dd-4dbc-b063-41fef6fd34d6
+    content: Context — short paragraph(s) framing the problem and any background
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  043844d3-aa32-41e9-ae66-731aeaf34bc3:
+    id: 043844d3-aa32-41e9-ae66-731aeaf34bc3
+    content: State who the user is (role/persona)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac54d88d-886e-4f3c-93fd-97d503c90695:
+    id: ac54d88d-886e-4f3c-93fd-97d503c90695
+    content: Describe the current experience and why it is insufficient
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7d1d155-2cb7-4335-ae9b-84bbdb9a01d3:
+    id: e7d1d155-2cb7-4335-ae9b-84bbdb9a01d3
+    content: Goal — one sentence describing the team- or user-facing outcome
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  135a5f1d-d382-4f0d-8b9c-ece29f96cc63:
+    id: 135a5f1d-d382-4f0d-8b9c-ece29f96cc63
+    content: Business rules — numbered list, each rule a complete sentence covering allowed/blocked behaviour and error semantics
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16dbae1c-d9d9-456c-9c4a-4a1337872608:
+    id: 16dbae1c-d9d9-456c-9c4a-4a1337872608
+    content: Acceptance criteria — `- [ ]` checkbox list, each item independently testable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1eabd8c-867f-4e1a-9dba-e6320fe501cd:
+    id: e1eabd8c-867f-4e1a-9dba-e6320fe501cd
+    content: Cover the happy path (functional requirements)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a385ecbf-f3a8-4ef3-8a33-7e96ec48d8a8:
+    id: a385ecbf-f3a8-4ef3-8a33-7e96ec48d8a8
+    content: Cover reasonable edge cases — skip minor ones unless they carry technical complexity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d69c1f75-6c3b-46f9-bf8e-bfd215aaef20:
+    id: d69c1f75-6c3b-46f9-bf8e-bfd215aaef20
+    content: Cover non-functional requirements (performance, accessibility, etc.) when they apply
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f595b13-0cf0-4f2f-8d35-a16302911a6f:
+    id: 8f595b13-0cf0-4f2f-8d35-a16302911a6f
+    content: 🔧 Implementation proposal — high-level plan only; the diff and code review cover the detail
+    children:
+      - 1fb36cfe-143d-4707-9da1-3265771792a5
+      - 58ca0644-8c12-41dd-8d5a-112dec23401e
+      - d0835425-75b7-4106-94bd-b16463a8c1a3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fb36cfe-143d-4707-9da1-3265771792a5:
+    id: 1fb36cfe-143d-4707-9da1-3265771792a5
+    content: Approach — a few sentences on the shape of the change and where it lands (package / domain / surface)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58ca0644-8c12-41dd-8d5a-112dec23401e:
+    id: 58ca0644-8c12-41dd-8d5a-112dec23401e
+    content: Touchpoints — list the areas affected (DB, models, services, middleware, API surfaces, docs, tests). Skip anything that does not apply rather than marking it N/A
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0835425-75b7-4106-94bd-b16463a8c1a3:
+    id: d0835425-75b7-4106-94bd-b16463a8c1a3
+    content: Constraints to call out — anything non-obvious that would surprise a reviewer (rollout ordering, backward-compat, lock interactions, hard technical blockers). Omit if there are none
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff07225f-a51f-419a-8e49-02a66266dbbc:
+    id: ff07225f-a51f-419a-8e49-02a66266dbbc
+    content: Instructions
+    children:
+      - 63920f71-aa6c-438b-ba49-7b46975ffadf
+      - a60a0166-f563-4de1-b86a-1a567b3793e9
+      - cd304493-2e3e-4c11-aa60-1c5345ec5055
+      - fa1619a8-33cc-497b-b81b-bb6ebf323af1
+      - c5f16238-2696-4e96-8f14-8b98a6121e23
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  63920f71-aa6c-438b-ba49-7b46975ffadf:
+    id: 63920f71-aa6c-438b-ba49-7b46975ffadf
+    content: Do not add the thought process of your user story creation if it's not useful for the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a60a0166-f563-4de1-b86a-1a567b3793e9:
+    id: a60a0166-f563-4de1-b86a-1a567b3793e9
+    content: Stick to the given structure without elaborating on it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd304493-2e3e-4c11-aa60-1c5345ec5055:
+    id: cd304493-2e3e-4c11-aa60-1c5345ec5055
+    content: Treat the node as a single shippable element released to users
+    children:
+      - 3ef4f800-c8d2-4f4e-a2dd-4b3514a218ce
+      - f5f94998-b326-4d43-b5a6-87ebbbfac2b1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ef4f800-c8d2-4f4e-a2dd-4b3514a218ce:
+    id: 3ef4f800-c8d2-4f4e-a2dd-4b3514a218ce
+    content: Write acceptance criteria for the whole released element
+    children:
+      - adaa2612-078d-4092-813a-33dcf6c52974
+      - ef6b2649-b91b-4369-9647-73c33a1871c6
+      - b3cdd100-dd5e-4c4d-8938-9d093d4e9cef
+      - b4500af4-687b-455c-8c24-088d632912e5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  adaa2612-078d-4092-813a-33dcf6c52974:
+    id: adaa2612-078d-4092-813a-33dcf6c52974
+    content: Each criterion is a testable functional statement
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef6b2649-b91b-4369-9647-73c33a1871c6:
+    id: ef6b2649-b91b-4369-9647-73c33a1871c6
+    content: Cover the happy path, reasonable edge cases, and error handling
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3cdd100-dd5e-4c4d-8938-9d093d4e9cef:
+    id: b3cdd100-dd5e-4c4d-8938-9d093d4e9cef
+    content: Cover non-functional requirements (performance, accessibility) where they matter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4500af4-687b-455c-8c24-088d632912e5:
+    id: b4500af4-687b-455c-8c24-088d632912e5
+    content: Push back if no use case is identified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5f94998-b326-4d43-b5a6-87ebbbfac2b1:
+    id: f5f94998-b326-4d43-b5a6-87ebbbfac2b1
+    content: Decide whether to split into functional chunks
+    children:
+      - ebee7d43-5640-4512-8c9d-fe903d473ff9
+      - 868dae44-72f9-4524-86e1-08b0c00ca127
+      - 9769b443-f7ec-410a-9b4f-e498a9a2c0e5
+      - 17975060-eeec-4a75-8057-8b6f604c7f5c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebee7d43-5640-4512-8c9d-fe903d473ff9:
+    id: ebee7d43-5640-4512-8c9d-fe903d473ff9
+    content: Default to one chunk — do not split unless splitting delivers tangible benefit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  868dae44-72f9-4524-86e1-08b0c00ca127:
+    id: 868dae44-72f9-4524-86e1-08b0c00ca127
+    content: Split only when a chunk can be merged behind a feature flag for independent design or PM review, or to break up genuine complexity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9769b443-f7ec-410a-9b4f-e498a9a2c0e5:
+    id: 9769b443-f7ec-410a-9b4f-e498a9a2c0e5
+    content: Each chunk must be a coherent piece of the feature — its value must be realised by the final released element, not left as speculative plumbing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17975060-eeec-4a75-8057-8b6f604c7f5c:
+    id: 17975060-eeec-4a75-8057-8b6f604c7f5c
+    content: Do not split on arbitrary size thresholds — chunks serve review and complexity management, not sizing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa1619a8-33cc-497b-b81b-bb6ebf323af1:
+    id: fa1619a8-33cc-497b-b81b-bb6ebf323af1
+    content: Think like a product manager and an engineer
+    children:
+      - 811e8079-0c7a-45d6-94c1-0b6681167d75
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  811e8079-0c7a-45d6-94c1-0b6681167d75:
+    id: 811e8079-0c7a-45d6-94c1-0b6681167d75
+    content: Use 2 agents for this and make them talk until they agree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5f16238-2696-4e96-8f14-8b98a6121e23:
+    id: c5f16238-2696-4e96-8f14-8b98a6121e23
+    content: Challenge the work
+    children:
+      - d701c1bc-5e9c-4490-93e6-193c0966ac59
+      - 61abf892-7332-465c-ade8-0fe2849010bb
+      - 460a7eee-3184-4962-9a98-e6969d44a653
+      - ab399a50-a6db-4e64-a75e-f347a2137687
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d701c1bc-5e9c-4490-93e6-193c0966ac59:
+    id: d701c1bc-5e9c-4490-93e6-193c0966ac59
+    content: Flag poor UX choices
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61abf892-7332-465c-ade8-0fe2849010bb:
+    id: 61abf892-7332-465c-ade8-0fe2849010bb
+    content: Call out over-engineering and suggest simpler paths using existing code
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  460a7eee-3184-4962-9a98-e6969d44a653:
+    id: 460a7eee-3184-4962-9a98-e6969d44a653
+    content: State explicitly if ROI is poor relative to added complexity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab399a50-a6db-4e64-a75e-f347a2137687:
+    id: ab399a50-a6db-4e64-a75e-f347a2137687
+    content: Do not add ideas that are out of scope
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}
