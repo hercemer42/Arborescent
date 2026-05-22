@@ -1,16 +1,5 @@
 import { findInlineUrls, InlineUrlMatch } from './urlInlineDetection';
-
-const HTML_ESCAPES: Record<string, string> = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;',
-  "'": '&#039;',
-};
-
-function escapeHtml(text: string): string {
-  return text.replace(/[&<>"']/g, (char) => HTML_ESCAPES[char]);
-}
+import { escapeHtml } from './htmlEscape';
 
 export const INLINE_URL_DATA_ATTR = 'data-inline-url';
 export const INLINE_URL_CLASS = 'inline-url';
