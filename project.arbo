@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-22T14:51:15.196Z'
+updated: '2026-05-22T18:11:41.585Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25471,7 +25471,8 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children: []
+    children:
+      - 9c1b4bee-ae92-4e6c-8505-bd2f79f77239
     metadata:
       status: pending
       isBlueprint: true
@@ -80784,13 +80785,8 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 6ceb1676-57a4-4f53-b7b0-7041c8319300
-      - bfed7bdc-b9ca-4891-bf57-bcb742368925
+      - e3843f89-bc56-4fe4-92c6-39cb32fa5774
       - e353e6df-5cc7-40af-9e7b-a9da29963cd2
-      - 19f9af82-3ca4-4e39-846a-6184f1b241f8
-      - 51f101b9-8a03-4edc-aa8f-87eaa1c68080
-      - ca966658-fecb-4293-9553-e19fc0551292
-      - 9c1b4bee-ae92-4e6c-8505-bd2f79f77239
       - 50c1cecf-2ee0-4850-9148-3d1935ee5f8c
       - ef36fe10-7bef-4727-8c05-331350e92b66
       - 16ce2eb9-9b01-40d7-96fa-94ddb4b3c060
@@ -115697,6 +115693,7 @@ nodes:
       - 5bbad57a-a772-4107-ae88-fcd1ebaa482a
       - 171974eb-2081-4809-9624-df1e13ff9c6b
       - 8b1f23f6-060c-4ec6-aebc-d3ecd811cf04
+      - 2139536e-7002-4b61-980f-3521c74b1b57
     metadata:
       status: pending
       isBlueprint: true
@@ -124811,7 +124808,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 2139536e-7002-4b61-980f-3521c74b1b57
+      - bfed7bdc-b9ca-4891-bf57-bcb742368925
     metadata:
       status: pending
       isBlueprint: true
@@ -147144,6 +147141,7 @@ nodes:
     metadata:
       status: pending
       expanded: false
+      sessionId: bca3a16b-1cd9-4da4-a1d4-410f87ea63d4
   ad2ab949-36a5-47e3-918b-4693b96ebc5b:
     id: ad2ab949-36a5-47e3-918b-4693b96ebc5b
     content: We should only get the step completion message when the queued task is finished
@@ -147199,68 +147197,6 @@ nodes:
   6ee171bd-55a3-44c1-b366-f91a339e1e3f:
     id: 6ee171bd-55a3-44c1-b366-f91a339e1e3f
     content: Consider in this ticket
-    children: []
-    metadata:
-      status: pending
-  ca966658-fecb-4293-9553-e19fc0551292:
-    id: ca966658-fecb-4293-9553-e19fc0551292
-    content: Problem - workflows registered as stuck (toaster and red dot in workflow status icon)
-    children:
-      - b0c32252-aa7a-4cb1-b2b7-22ddafa3197e
-      - 8c953bfb-7498-4136-b81a-eb82a9eab96a
-      - d4dec3b1-5230-4969-8ab3-3306eface55e
-      - 024a1637-bf3c-4c18-998f-25d4bd068137
-    metadata:
-      status: pending
-      expanded: false
-  b0c32252-aa7a-4cb1-b2b7-22ddafa3197e:
-    id: b0c32252-aa7a-4cb1-b2b7-22ddafa3197e
-    content: Even when they are still running in the terminal session
-    children: []
-    metadata:
-      status: pending
-  8c953bfb-7498-4136-b81a-eb82a9eab96a:
-    id: 8c953bfb-7498-4136-b81a-eb82a9eab96a
-    content: It's possible that they are getting dissasociated from the session id
-    children: []
-    metadata:
-      status: pending
-  d4dec3b1-5230-4969-8ab3-3306eface55e:
-    id: d4dec3b1-5230-4969-8ab3-3306eface55e
-    content: On at least one of them, when I open the attached session, I don't see the blue bar on the node
-    children: []
-    metadata:
-      status: pending
-  51f101b9-8a03-4edc-aa8f-87eaa1c68080:
-    id: 51f101b9-8a03-4edc-aa8f-87eaa1c68080
-    content: Review how sessions, nodes and terminals are attached
-    children: []
-    metadata:
-      status: pending
-  024a1637-bf3c-4c18-998f-25d4bd068137:
-    id: 024a1637-bf3c-4c18-998f-25d4bd068137
-    content: Don't know if its related, but happened when automated tests were running
-    children:
-      - 2d80e0fc-e658-472e-bca0-59e2e597980f
-    metadata:
-      status: pending
-  2d80e0fc-e658-472e-bca0-59e2e597980f:
-    id: 2d80e0fc-e658-472e-bca0-59e2e597980f
-    content: Already a lengthy/resource intensive procedure
-    children: []
-    metadata:
-      status: pending
-  19f9af82-3ca4-4e39-846a-6184f1b241f8:
-    id: 19f9af82-3ca4-4e39-846a-6184f1b241f8
-    content: Bug - nodes going through a recurse step stop even when they weren't decomposed
-    children:
-      - 348973b6-4b7a-463f-99a4-6f31a1a3ee43
-    metadata:
-      status: pending
-      expanded: false
-  348973b6-4b7a-463f-99a4-6f31a1a3ee43:
-    id: 348973b6-4b7a-463f-99a4-6f31a1a3ee43
-    content: If the step is automated, they should plow right through
     children: []
     metadata:
       status: pending
@@ -158144,18 +158080,19 @@ nodes:
       plugins: {}
   9c1b4bee-ae92-4e6c-8505-bd2f79f77239:
     id: 9c1b4bee-ae92-4e6c-8505-bd2f79f77239
-    content: Show content encapsulated in backticks as code
+    content: Render backtick-wrapped content as code in node text
     children:
-      - 1b9d1c55-09d6-48a3-ac8e-e1a1b076b01f
+      - 238d7754-ff89-4292-a2fd-3d1a094624e3
+      - 0b1ac0e0-ecd0-487f-9c0b-3a1fccb61be4
+      - a66bc0d9-8a10-4b81-852d-261a4b87854c
+      - a15c61a8-25d6-499a-9e2b-26892034c0ca
+      - 84229c8a-731e-4574-8723-88ffa2b80c3d
     metadata:
       status: pending
       expanded: false
-  1b9d1c55-09d6-48a3-ac8e-e1a1b076b01f:
-    id: 1b9d1c55-09d6-48a3-ac8e-e1a1b076b01f
-    content: Use a highlight so its obvious its code
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
+      sessionId: ea51a201-67b5-4a69-b921-b47b2f591f1d
   8b1f23f6-060c-4ec6-aebc-d3ecd811cf04:
     id: 8b1f23f6-060c-4ec6-aebc-d3ecd811cf04
     content: 'Bug: Resume session always opens the latest session instead of the selected one'
@@ -158918,68 +158855,26 @@ nodes:
       plugins: {}
   bfed7bdc-b9ca-4891-bf57-bcb742368925:
     id: bfed7bdc-b9ca-4891-bf57-bcb742368925
-    content: Terminal title doesn't update when node mapped
+    content: Terminal title doesn't update when node mappedw
     children:
-      - ad04a312-8a5d-4a7a-b635-7e2d1cbfbffb
+      - 96d7c80d-b832-4feb-b28d-a1b8edd37a9e
+      - 3cb59879-1307-40d9-8661-266eff54a7db
+      - d9f434c6-60c4-4a21-b166-35123e93f76b
+      - 360e2028-5b42-4d40-bb07-4fa91330b34f
+      - 92356587-df90-4f8e-94b1-90014f1f5577
+      - 23456d48-ad52-481c-9090-21b416727e82
+      - e3381577-eb70-4214-b628-4e1965b9058d
+      - 29e48cd6-638c-43f4-8e57-cb485aa9e4a4
+      - 5d10220b-d8c0-4fed-bc98-a1d8d7b8cbfb
+      - a15213d2-a405-444f-917b-94d87032201e
+      - 7e541c64-7964-423e-9beb-065e5c551a84
+      - 27795d35-02bd-4a07-b3f0-3693cda941c5
     metadata:
       status: pending
       expanded: false
-  ad04a312-8a5d-4a7a-b635-7e2d1cbfbffb:
-    id: ad04a312-8a5d-4a7a-b635-7e2d1cbfbffb
-    content: The terminal title (Terminal 1, Terminal 2 etc) should be changed to the parent node contents when a node is bound to it
-    children:
-      - df732220-1a99-4162-894f-0af05f0e1b62
-      - c5136e76-ef58-47a5-85fc-986fd8b7ae92
-    metadata:
-      status: pending
-  df732220-1a99-4162-894f-0af05f0e1b62:
-    id: df732220-1a99-4162-894f-0af05f0e1b62
-    content: Currently this only happens for resumed nodes
-    children: []
-    metadata:
-      status: pending
-  c5136e76-ef58-47a5-85fc-986fd8b7ae92:
-    id: c5136e76-ef58-47a5-85fc-986fd8b7ae92
-    content: It doesn't happen when the node is first bound
-    children: []
-    metadata:
-      status: pending
-  6ceb1676-57a4-4f53-b7b0-7041c8319300:
-    id: 6ceb1676-57a4-4f53-b7b0-7041c8319300
-    content: Sometimes not all steps in a sent instruction are completed
-    children:
-      - 5f23cf91-cf7a-4bf1-a142-6fcac823f7c1
-      - 3308aad0-580a-426a-b6b3-990201412a4a
-      - e181bffc-12b3-4821-b456-d6c01c455de3
-    metadata:
-      status: pending
-      expanded: false
-      sessionId: f74c25e3-1f11-4234-972f-3cbc0717cd39
-  5f23cf91-cf7a-4bf1-a142-6fcac823f7c1:
-    id: 5f23cf91-cf7a-4bf1-a142-6fcac823f7c1
-    content: There is confusion between the overall instructions and what steps within them to complete autonomously
-    children: []
-    metadata:
-      status: pending
-  3308aad0-580a-426a-b6b3-990201412a4a:
-    id: 3308aad0-580a-426a-b6b3-990201412a4a
-    content: All instructions should be completed autonomously
-    children: []
-    metadata:
-      status: pending
-  e181bffc-12b3-4821-b456-d6c01c455de3:
-    id: e181bffc-12b3-4821-b456-d6c01c455de3
-    content: Analyze the following session
-    children:
-      - b6eff078-9e20-4cdd-bb4b-b7f10b2d7f06
-    metadata:
-      status: pending
-  b6eff078-9e20-4cdd-bb4b-b7f10b2d7f06:
-    id: b6eff078-9e20-4cdd-bb4b-b7f10b2d7f06
-    content: f64eeb29-e6cf-42aa-876d-2529673912f0
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
+      sessionId: 567d102c-6ccc-4772-a32e-754d1fbbe8d3
   09367db9-fcdf-4c36-82f5-4de7e4364653:
     id: 09367db9-fcdf-4c36-82f5-4de7e4364653
     content: worktree
@@ -159732,6 +159627,1007 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  e3843f89-bc56-4fe4-92c6-39cb32fa5774:
+    id: e3843f89-bc56-4fe4-92c6-39cb32fa5774
+    content: Issue with node not updating
+    children:
+      - 869ff44e-4407-4224-ac49-b4d4ca731ef6
+      - fe8acb64-cbc1-4bbe-bae4-a375198ceba1
+      - d6646414-7b02-4067-9460-3fdf2c109940
+      - b5ee4ba0-6f1e-43ec-9ec8-e66544173aba
+      - 842a31ac-e396-48c4-b757-65468a387a01
+      - 54f301b2-60d7-4db4-b086-29777ed631f3
+    metadata:
+      status: pending
+  869ff44e-4407-4224-ac49-b4d4ca731ef6:
+    id: 869ff44e-4407-4224-ac49-b4d4ca731ef6
+    content: Checkpoint mode, start workflow run in new session
+    children: []
+    metadata:
+      status: pending
+  fe8acb64-cbc1-4bbe-bae4-a375198ceba1:
+    id: fe8acb64-cbc1-4bbe-bae4-a375198ceba1
+    content: Attempt to contact submit_step_output fails
+    children: []
+    metadata:
+      status: pending
+  d6646414-7b02-4067-9460-3fdf2c109940:
+    id: d6646414-7b02-4067-9460-3fdf2c109940
+    content: Session ID bca3a16b-1cd9-4da4-a1d4-410f87ea63d4 (still active)
+    children: []
+    metadata:
+      status: pending
+  b5ee4ba0-6f1e-43ec-9ec8-e66544173aba:
+    id: b5ee4ba0-6f1e-43ec-9ec8-e66544173aba
+    content: Node still highlighted in collaborate mode
+    children: []
+    metadata:
+      status: pending
+  842a31ac-e396-48c4-b757-65468a387a01:
+    id: 842a31ac-e396-48c4-b757-65468a387a01
+    content: can check state in project.arbo
+    children: []
+    metadata:
+      status: pending
+  54f301b2-60d7-4db4-b086-29777ed631f3:
+    id: 54f301b2-60d7-4db4-b086-29777ed631f3
+    content: Node name starts with - 'Problem - if we stop the AI'
+    children: []
+    metadata:
+      status: pending
+  238d7754-ff89-4292-a2fd-3d1a094624e3:
+    id: 238d7754-ff89-4292-a2fd-3d1a094624e3
+    content: worktree
+    children:
+      - bbbe551a-d6cc-417b-b17d-9552aa032c61
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbbe551a-d6cc-417b-b17d-9552aa032c61:
+    id: bbbe551a-d6cc-417b-b17d-9552aa032c61
+    content: vscode://file/Users/brianfox/dev/Arborescent-render-backtick-code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b1ac0e0-ecd0-487f-9c0b-3a1fccb61be4:
+    id: 0b1ac0e0-ecd0-487f-9c0b-3a1fccb61be4
+    content: 📄 Product spec
+    children:
+      - d10ddc49-7fde-4129-a1ce-d63f44aa02d8
+      - 60f2edb7-bd13-4945-aeb3-5b85c12a1f9b
+      - bc19fb54-e62c-4d89-b3ff-5c1a5b023f29
+      - b2892d62-b4c6-4fe5-b91e-b0468fb6b7d2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d10ddc49-7fde-4129-a1ce-d63f44aa02d8:
+    id: d10ddc49-7fde-4129-a1ce-d63f44aa02d8
+    content: Context
+    children:
+      - cd8a5fbb-4d6a-4b50-9f16-4c03a3e5278a
+      - e3acb8ba-4dd6-47e7-b2c8-cfff581a874a
+      - 440e2a03-13c7-40dd-8fde-d870a2bb6341
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd8a5fbb-4d6a-4b50-9f16-4c03a3e5278a:
+    id: cd8a5fbb-4d6a-4b50-9f16-4c03a3e5278a
+    content: Users paste and write technical fragments — paths, commands, identifiers, snippets, AI responses — into node content and reach for the universal backtick convention to mark them as code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3acb8ba-4dd6-47e7-b2c8-cfff581a874a:
+    id: e3acb8ba-4dd6-47e7-b2c8-cfff581a874a
+    content: Today backticks render as literal characters with no styling, so technical content is hard to scan and inconsistent with every adjacent tool (Slack, Notion, Linear, GitHub)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  440e2a03-13c7-40dd-8fde-d870a2bb6341:
+    id: 440e2a03-13c7-40dd-8fde-d870a2bb6341
+    content: User persona — any Arborescent author writing or pasting technical content into node bodies, including users round-tripping AI output back into nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60f2edb7-bd13-4945-aeb3-5b85c12a1f9b:
+    id: 60f2edb7-bd13-4945-aeb3-5b85c12a1f9b
+    content: Goal
+    children:
+      - b6d08f28-70e1-41e2-bf04-7449269f7ef5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6d08f28-70e1-41e2-bf04-7449269f7ef5:
+    id: b6d08f28-70e1-41e2-bf04-7449269f7ef5
+    content: Render single-backtick and triple-backtick spans with code-style highlighting in node content so technical fragments are immediately distinguishable from prose
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc19fb54-e62c-4d89-b3ff-5c1a5b023f29:
+    id: bc19fb54-e62c-4d89-b3ff-5c1a5b023f29
+    content: Business rules
+    children:
+      - 98db5e30-c053-47c8-a706-439f62bbdbb4
+      - 19ec8046-8efb-4059-8163-934692667971
+      - 40af1ed2-0bd4-4d9d-82c0-6c0535afb8cc
+      - db16825f-8296-41c4-b45b-017eab214277
+      - 698cf91d-2370-4a9a-9cc8-fa466bb7159e
+      - e06b233e-466a-4859-9f36-c9a5dad851c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98db5e30-c053-47c8-a706-439f62bbdbb4:
+    id: 98db5e30-c053-47c8-a706-439f62bbdbb4
+    content: Single backticks delimit inline code — rendered monospace, with a subtle background fill and small horizontal padding, flowing inline with surrounding text
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19ec8046-8efb-4059-8163-934692667971:
+    id: 19ec8046-8efb-4059-8163-934692667971
+    content: Triple backticks open a fenced code block — rendered as a distinct multi-line block, monospace, with background fill, preserving whitespace and line breaks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40af1ed2-0bd4-4d9d-82c0-6c0535afb8cc:
+    id: 40af1ed2-0bd4-4d9d-82c0-6c0535afb8cc
+    content: An optional language tag after the opening fence (e.g. ts, bash) is accepted and ignored for styling in v1 — no syntax highlighting required yet
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db16825f-8296-41c4-b45b-017eab214277:
+    id: db16825f-8296-41c4-b45b-017eab214277
+    content: Unmatched backticks render as literal characters — the parser must not consume runaway markup or eat the rest of the content
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  698cf91d-2370-4a9a-9cc8-fa466bb7159e:
+    id: 698cf91d-2370-4a9a-9cc8-fa466bb7159e
+    content: Code styling applies to the displayed/rendered view of node content; in edit mode the raw text including backticks remains the source of truth
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e06b233e-466a-4859-9f36-c9a5dad851c8:
+    id: e06b233e-466a-4859-9f36-c9a5dad851c8
+    content: Styling derives from existing theme tokens so light and dark themes stay consistent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2892d62-b4c6-4fe5-b91e-b0468fb6b7d2:
+    id: b2892d62-b4c6-4fe5-b91e-b0468fb6b7d2
+    content: Acceptance criteria
+    children:
+      - cd7061a9-fe35-4592-a562-42f1e5c4960a
+      - 45840ee8-0cfc-4ec8-949e-06b2ac0fc51f
+      - d56308d3-c73f-4da7-8a09-86f8307bc274
+      - dea40679-d41b-4322-8ac0-a576a33ff9bd
+      - a3d1913b-b6ea-47c2-8686-815c46b482e8
+      - f45f1f9a-d61b-446f-9b14-65130a78b8e0
+      - 812bf295-875c-47d4-b7bd-d7f0e292ce61
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd7061a9-fe35-4592-a562-42f1e5c4960a:
+    id: cd7061a9-fe35-4592-a562-42f1e5c4960a
+    content: Text typed as backtick-foo-backtick in a node renders foo inline with monospace font and code background
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45840ee8-0cfc-4ec8-949e-06b2ac0fc51f:
+    id: 45840ee8-0cfc-4ec8-949e-06b2ac0fc51f
+    content: A fenced triple-backtick block renders as a multi-line code block preserving indentation, line breaks, and trailing whitespace
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d56308d3-c73f-4da7-8a09-86f8307bc274:
+    id: d56308d3-c73f-4da7-8a09-86f8307bc274
+    content: A fence with a language tag on the opening line renders identically to an untagged fence — the tag itself is not displayed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dea40679-d41b-4322-8ac0-a576a33ff9bd:
+    id: dea40679-d41b-4322-8ac0-a576a33ff9bd
+    content: A line containing a single unmatched backtick renders as plain text with the backtick visible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3d1913b-b6ea-47c2-8686-815c46b482e8:
+    id: a3d1913b-b6ea-47c2-8686-815c46b482e8
+    content: Switching the node from rendered view to edit mode shows the original backticks intact in the editable text
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f45f1f9a-d61b-446f-9b14-65130a78b8e0:
+    id: f45f1f9a-d61b-446f-9b14-65130a78b8e0
+    content: Code rendering uses the project's theme custom properties and remains legible in both light and dark themes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  812bf295-875c-47d4-b7bd-d7f0e292ce61:
+    id: 812bf295-875c-47d4-b7bd-d7f0e292ce61
+    content: Rendering a node with typical content under 10KB shows no perceptible input or scroll lag
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a66bc0d9-8a10-4b81-852d-261a4b87854c:
+    id: a66bc0d9-8a10-4b81-852d-261a4b87854c
+    content: 🔧 Implementation proposal
+    children:
+      - a4ffbcae-6500-42b1-bbb4-c555251ff97d
+      - 29e8a533-34b6-40b0-8637-ceb2a9d1f605
+      - d3b685ba-e537-4081-bb53-903198811dff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4ffbcae-6500-42b1-bbb4-c555251ff97d:
+    id: a4ffbcae-6500-42b1-bbb4-c555251ff97d
+    content: Approach
+    children:
+      - 70733bf9-a12e-4d46-aa41-362c1e7763f4
+      - 00d186ae-9b4e-4c61-88ec-c0ea29a6ab4f
+      - 77eed3f6-9f88-4c16-bcaf-925b8f77ce1c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70733bf9-a12e-4d46-aa41-362c1e7763f4:
+    id: 70733bf9-a12e-4d46-aa41-362c1e7763f4
+    content: Add a narrow backtick-only inline-and-fence parser on the node content display path, leaving edit mode untouched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00d186ae-9b4e-4c61-88ec-c0ea29a6ab4f:
+    id: 00d186ae-9b4e-4c61-88ec-c0ea29a6ab4f
+    content: Emit React spans for inline code and a block element for fenced code; no full markdown library in v1 to keep blast radius small
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77eed3f6-9f88-4c16-bcaf-925b8f77ce1c:
+    id: 77eed3f6-9f88-4c16-bcaf-925b8f77ce1c
+    content: Style via co-located CSS using existing theme variables; add a code background variable in globals.css if none exists
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29e8a533-34b6-40b0-8637-ceb2a9d1f605:
+    id: 29e8a533-34b6-40b0-8637-ceb2a9d1f605
+    content: Touchpoints
+    children:
+      - 673e4c53-d2df-4968-bde4-49acb8b7a19f
+      - 09c55b71-8c7e-4dc2-a8e4-e59e2f0685ae
+      - 2f5a4b91-335b-44eb-8ea5-19d38592bf88
+      - 0beca46e-72a4-4036-8b12-0116f24bc74d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  673e4c53-d2df-4968-bde4-49acb8b7a19f:
+    id: 673e4c53-d2df-4968-bde4-49acb8b7a19f
+    content: Renderer for node body text in src/renderer/components — swap the plain text render for a tokenized one
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09c55b71-8c7e-4dc2-a8e4-e59e2f0685ae:
+    id: 09c55b71-8c7e-4dc2-a8e4-e59e2f0685ae
+    content: Pure parser utility in src/renderer/utils returning a token list (text, inlineCode, codeBlock)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f5a4b91-335b-44eb-8ea5-19d38592bf88:
+    id: 2f5a4b91-335b-44eb-8ea5-19d38592bf88
+    content: CSS — inline code and fenced block styles, theme tokens in globals.css
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0beca46e-72a4-4036-8b12-0116f24bc74d:
+    id: 0beca46e-72a4-4036-8b12-0116f24bc74d
+    content: Tests in the utils tests directory covering balanced, unbalanced, nested, multi-line, and language-tagged fence cases
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3b685ba-e537-4081-bb53-903198811dff:
+    id: d3b685ba-e537-4081-bb53-903198811dff
+    content: Constraints to call out
+    children:
+      - 9bada521-5556-4a24-8763-ea8ebbcabc41
+      - 7e6f961b-8676-432f-b721-c6d470f60b35
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bada521-5556-4a24-8763-ea8ebbcabc41:
+    id: 9bada521-5556-4a24-8763-ea8ebbcabc41
+    content: Keep the parser API narrow so it can be swapped for a full markdown renderer later without touching consumers
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e6f961b-8676-432f-b721-c6d470f60b35:
+    id: 7e6f961b-8676-432f-b721-c6d470f60b35
+    content: Compose cleanly with any existing inline transforms (links, mentions) on the same render path — backtick spans must not eat or be eaten by them
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a15c61a8-25d6-499a-9e2b-26892034c0ca:
+    id: a15c61a8-25d6-499a-9e2b-26892034c0ca
+    content: Scope and challenges
+    children:
+      - adaeee4a-c26a-48b3-97f0-3113b8f2f86b
+      - 64c06cc2-bae3-4bb3-a524-6faab10fda04
+      - 3a527718-071a-4544-a0f3-d14c74cc48b7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adaeee4a-c26a-48b3-97f0-3113b8f2f86b:
+    id: adaeee4a-c26a-48b3-97f0-3113b8f2f86b
+    content: Treat as a single shippable chunk — splitting inline-only from fenced delivers no independent user value and would just be churn
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64c06cc2-bae3-4bb3-a524-6faab10fda04:
+    id: 64c06cc2-bae3-4bb3-a524-6faab10fda04
+    content: Out of scope — syntax highlighting per language, code copy button, terminal output styling, tree-node title rendering (titles are one-liners and out of scope here)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a527718-071a-4544-a0f3-d14c74cc48b7:
+    id: 3a527718-071a-4544-a0f3-d14c74cc48b7
+    content: ROI is high relative to cost — small parser, standard CSS, and a convention every user already expects from adjacent tools
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84229c8a-731e-4574-8723-88ffa2b80c3d:
+    id: 84229c8a-731e-4574-8723-88ffa2b80c3d
+    content: Technical refinement
+    children:
+      - b67b9cd6-f452-4860-80d7-decc61a28b68
+      - 2d8e9be5-5b3e-43c1-9a06-5ccbcc677edf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b67b9cd6-f452-4860-80d7-decc61a28b68:
+    id: b67b9cd6-f452-4860-80d7-decc61a28b68
+    content: Complications
+    children:
+      - a59dc303-2b7c-4c97-9b20-4614718f4696
+      - 0ea50c8e-965a-4e3d-ba89-f0bbcb3369a7
+      - dbcb68e2-e302-42e3-a27c-91a5d50814f5
+      - 58fc8f7b-c8a3-4016-b309-746adee4dc11
+      - c2c002fb-3830-4aea-a147-639c00148a12
+      - dc048186-57b7-4284-9173-4af3d2d8d7a0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a59dc303-2b7c-4c97-9b20-4614718f4696:
+    id: a59dc303-2b7c-4c97-9b20-4614718f4696
+    content: NodeContent is rendered directly into a contentEditable div — there is no separate read-only view; the "edit mode shows raw backticks" rule must be implemented by suppressing rich rendering when the node is selected, matching the existing useInlineUrl pattern (rich HTML is gated on !isSelected && !hasHighlightedContent)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ea50c8e-965a-4e3d-ba89-f0bbcb3369a7:
+    id: 0ea50c8e-965a-4e3d-ba89-f0bbcb3369a7
+    content: Rich rendering already coexists in this div via dangerouslySetInnerHTML — search highlight emits mark tags and inline URLs emit anchors; backtick rendering must slot into the same pipeline and pick a precedence (current inline URL suppresses itself when search highlight is active, so backticks should follow the same yield-to-search rule)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbcb68e2-e302-42e3-a27c-91a5d50814f5:
+    id: dbcb68e2-e302-42e3-a27c-91a5d50814f5
+    content: Fenced blocks turn a previously inline-flow div into mixed inline+block content — cursor placement on click-to-edit and selection across a fenced block need verification, otherwise the edit handoff can drop the caret in the wrong place
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58fc8f7b-c8a3-4016-b309-746adee4dc11:
+    id: 58fc8f7b-c8a3-4016-b309-746adee4dc11
+    content: Copy from rendered content inside contentEditable will copy the styled text without backticks — acceptable for inline, but worth confirming that copying a fenced block does not lose line breaks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2c002fb-3830-4aea-a147-639c00148a12:
+    id: c2c002fb-3830-4aea-a147-639c00148a12
+    content: Sending node content to AI must keep the raw backticks (the source string already does — just confirm no rendering pass leaks into the prompt builder path)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc048186-57b7-4284-9173-4af3d2d8d7a0:
+    id: dc048186-57b7-4284-9173-4af3d2d8d7a0
+    content: Out of scope confirmed — syntax highlighting, copy button, terminal pane, tree titles, and any markdown beyond backticks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d8e9be5-5b3e-43c1-9a06-5ccbcc677edf:
+    id: 2d8e9be5-5b3e-43c1-9a06-5ccbcc677edf
+    content: Approach summary
+    children:
+      - 6cc24639-2092-4b7c-8416-a1e82f8ae6ac
+      - ac1112b0-c1f2-4cde-8d76-45d3ebfe5153
+      - bda72222-dfd2-4a9a-af19-0e66b2fc6fd5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cc24639-2092-4b7c-8416-a1e82f8ae6ac:
+    id: 6cc24639-2092-4b7c-8416-a1e82f8ae6ac
+    content: Add a pure parser util alongside inlineUrlRender that tokenizes backticks into text/inlineCode/codeBlock and emits HTML; gate it on the same !isSelected condition useInlineUrl already uses
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac1112b0-c1f2-4cde-8d76-45d3ebfe5153:
+    id: ac1112b0-c1f2-4cde-8d76-45d3ebfe5153
+    content: Compose the new HTML with search highlight and inline URLs in NodeContent — single source of dangerouslySetInnerHTML, one ordering of passes, documented in the hook
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bda72222-dfd2-4a9a-af19-0e66b2fc6fd5:
+    id: bda72222-dfd2-4a9a-af19-0e66b2fc6fd5
+    content: Non-obvious surprise for reviewer — this is not a new render mode; it is one more pass in the existing rich-rendering pipeline inside a contentEditable, so the real risk is interaction with caret/selection, not parser correctness
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96d7c80d-b832-4feb-b28d-a1b8edd37a9e:
+    id: 96d7c80d-b832-4feb-b28d-a1b8edd37a9e
+    content: worktree
+    children:
+      - f7f535ac-b62a-4301-860e-df070362aa64
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7f535ac-b62a-4301-860e-df070362aa64:
+    id: f7f535ac-b62a-4301-860e-df070362aa64
+    content: vscode://file/Users/brianfox/dev/Arborescent-fix-terminal-title-on-bind
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cb59879-1307-40d9-8661-266eff54a7db:
+    id: 3cb59879-1307-40d9-8661-266eff54a7db
+    content: Summary
+    children:
+      - 99b5d424-6dbc-482f-970e-29f4ef070b9e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99b5d424-6dbc-482f-970e-29f4ef070b9e:
+    id: 99b5d424-6dbc-482f-970e-29f4ef070b9e
+    content: When a Claude session first binds a node to a terminal via the SessionStart hook, the terminal tab title stays as "Terminal N" instead of switching to the bound node's content.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9f434c6-60c4-4a21-b166-35123e93f76b:
+    id: d9f434c6-60c4-4a21-b166-35123e93f76b
+    content: Steps to reproduce
+    children:
+      - 5a7a9a25-5cfa-4095-8029-27d8becb8321
+      - f65784e2-f98b-4fb6-aa47-c2999c9d4fb1
+      - 0a88b803-cea0-41ae-8e63-f0cdea20d6f4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a7a9a25-5cfa-4095-8029-27d8becb8321:
+    id: 5a7a9a25-5cfa-4095-8029-27d8becb8321
+    content: 'Precondition: open Arborescent on a file with at least one workflow node that has no recorded sessionId yet, and have a terminal tab open showing the default "Terminal N" title.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f65784e2-f98b-4fb6-aa47-c2999c9d4fb1:
+    id: f65784e2-f98b-4fb6-aa47-c2999c9d4fb1
+    content: 'User action: start a workflow on that node (or otherwise let the SessionStart hook fire) so the running session id is captured onto the node and the terminal becomes bound.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a88b803-cea0-41ae-8e63-f0cdea20d6f4:
+    id: 0a88b803-cea0-41ae-8e63-f0cdea20d6f4
+    content: 'Observation: the terminal tab keeps its generic "Terminal N" title even though the node is now bound; the title only changes if the same node is later re-entered via the Resume path.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  360e2028-5b42-4d40-bb07-4fa91330b34f:
+    id: 360e2028-5b42-4d40-bb07-4fa91330b34f
+    content: Expected behavior
+    children:
+      - 1f7546fd-fc3e-49a6-a758-2264d34d1582
+      - 937e06c4-2fd4-47ac-8532-a7c2788ed15e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f7546fd-fc3e-49a6-a758-2264d34d1582:
+    id: 1f7546fd-fc3e-49a6-a758-2264d34d1582
+    content: 'Happy path: when a node first becomes bound to a terminal (capture via SessionStart, or origin-node reattach), the terminal tab title updates to the node''s task title via extractTaskTitle, matching the resume-path behavior.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  937e06c4-2fd4-47ac-8532-a7c2788ed15e:
+    id: 937e06c4-2fd4-47ac-8532-a7c2788ed15e
+    content: 'Edge cases: nodes with empty or whitespace-only content fall back to the existing "Terminal N" / numbered title; rebinding a terminal to a different node updates the title to the new node; subsequent title customisations from later sends still apply.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92356587-df90-4f8e-94b1-90014f1f5577:
+    id: 92356587-df90-4f8e-94b1-90014f1f5577
+    content: Actual behavior
+    children:
+      - e6e96fe8-628b-4d65-900c-a82bc09efba4
+      - 8ebb0949-a6d6-4db1-b41e-2dcea12f7797
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6e96fe8-628b-4d65-900c-a82bc09efba4:
+    id: e6e96fe8-628b-4d65-900c-a82bc09efba4
+    content: On first bind via SessionStart capture or origin-node reattach, no title update is dispatched — the tab keeps the numeric default.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ebb0949-a6d6-4db1-b41e-2dcea12f7797:
+    id: 8ebb0949-a6d6-4db1-b41e-2dcea12f7797
+    content: 'User-visible symptom: tabs bound to distinct workflow nodes are indistinguishable until the user resumes them, making multi-tab orientation harder.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23456d48-ad52-481c-9090-21b416727e82:
+    id: 23456d48-ad52-481c-9090-21b416727e82
+    content: Suspected cause
+    children:
+      - 60f9afd2-6bdd-4efc-b177-921d120d5d45
+      - 59c8b7c2-eb51-4fbb-b7a6-ba1df0826d12
+      - 2563a95d-ff44-4410-88e1-d28e1ffddba0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60f9afd2-6bdd-4efc-b177-921d120d5d45:
+    id: 60f9afd2-6bdd-4efc-b177-921d120d5d45
+    content: registerSession in src/renderer/store/tree/actions/workflowExecutionActions.ts:869 captures the sessionId onto a node and reattaches an origin node, but never calls updateTerminal({ title }) — title is only set at createNewTerminal time via resumeTabTitle in the resume / resume-in-new-tab routes (workflowSessionResume.ts:140, workflowExecutionActions.ts:300).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59c8b7c2-eb51-4fbb-b7a6-ba1df0826d12:
+    id: 59c8b7c2-eb51-4fbb-b7a6-ba1df0826d12
+    content: reattachOriginNodeForResumedSession (workflowExecutionActions.ts:222) sets terminal.originNodeId but does not propagate the bound node's task title to the tab.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2563a95d-ff44-4410-88e1-d28e1ffddba0:
+    id: 2563a95d-ff44-4410-88e1-d28e1ffddba0
+    content: sendNodeToTerminal / executeNodeInTerminal (terminalStore.ts:210, 231) do update the title, but only fire for explicit send/execute actions — not for the implicit bind triggered by SessionStart on a workflow start.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3381577-eb70-4214-b628-4e1965b9058d:
+    id: e3381577-eb70-4214-b628-4e1965b9058d
+    content: Affected files
+    children:
+      - c3445d3a-d261-43c4-b37e-7eadbbc46ef9
+      - c2d821ff-1eec-4faa-a853-1cc1f68e61b3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3445d3a-d261-43c4-b37e-7eadbbc46ef9:
+    id: c3445d3a-d261-43c4-b37e-7eadbbc46ef9
+    content: 'Primary suspect: src/renderer/store/tree/actions/workflowExecutionActions.ts (registerSession, reattachOriginNodeForResumedSession)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2d821ff-1eec-4faa-a853-1cc1f68e61b3:
+    id: c2d821ff-1eec-4faa-a853-1cc1f68e61b3
+    content: 'Related surface: src/renderer/store/terminal/terminalStore.ts (updateTerminal title path) and src/renderer/utils/terminalTabTitle.ts (extractTaskTitle)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29e48cd6-638c-43f4-8e57-cb485aa9e4a4:
+    id: 29e48cd6-638c-43f4-8e57-cb485aa9e4a4
+    content: Regression window
+    children:
+      - 4c41d8b1-1414-48c8-be20-68dc87ab7c79
+      - 7ba8c11e-37ca-41b4-aebb-5af833d635fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c41d8b1-1414-48c8-be20-68dc87ab7c79:
+    id: 4c41d8b1-1414-48c8-be20-68dc87ab7c79
+    content: 'Last known good: never — first-bind title propagation appears to have never been wired; only the resume path has ever set titles from node content.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ba8c11e-37ca-41b4-aebb-5af833d635fe:
+    id: 7ba8c11e-37ca-41b4-aebb-5af833d635fe
+    content: 'First observed broken: behaviour gap present since the resume-tab-title helper was introduced; no specific regressing commit.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d10220b-d8c0-4fed-bc98-a1d8d7b8cbfb:
+    id: 5d10220b-d8c0-4fed-bc98-a1d8d7b8cbfb
+    content: Severity
+    children:
+      - 6b5c0608-db8d-49ea-b0a2-17d0083eafde
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b5c0608-db8d-49ea-b0a2-17d0083eafde:
+    id: 6b5c0608-db8d-49ea-b0a2-17d0083eafde
+    content: Low — cosmetic / orientation only; no data loss or workflow blockage, but degrades multi-tab usability when several workflow nodes are running concurrently.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a15213d2-a405-444f-917b-94d87032201e:
+    id: a15213d2-a405-444f-917b-94d87032201e
+    content: Notes
+    children:
+      - 2e699561-2f78-44ca-98cf-b133e39e13c7
+      - 5c5fb850-40b0-4439-9bbd-701cd10b5f98
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e699561-2f78-44ca-98cf-b133e39e13c7:
+    id: 2e699561-2f78-44ca-98cf-b133e39e13c7
+    content: 'Adjacent: rebind dialog (RebindConfirmationDialog) already uses extractTaskTitle for naming; aligning the bind path keeps tab title and rebind label consistent.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c5fb850-40b0-4439-9bbd-701cd10b5f98:
+    id: 5c5fb850-40b0-4439-9bbd-701cd10b5f98
+    content: 'UX gap to fix alongside: when a node''s content is edited after the bind, the tab title currently does not follow — worth confirming whether that should also be addressed or scoped separately.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e541c64-7964-423e-9beb-065e5c551a84:
+    id: 7e541c64-7964-423e-9beb-065e5c551a84
+    content: Technical refinement
+    children:
+      - 8479b546-92a2-41d7-b4db-491667014d5b
+      - dae2d294-b684-4b5d-a24a-d8d296d1ac57
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8479b546-92a2-41d7-b4db-491667014d5b:
+    id: 8479b546-92a2-41d7-b4db-491667014d5b
+    content: Approach
+    children:
+      - 317cbb72-983f-4a2a-b51d-504b78f5fef1
+      - f2cb8384-a2f8-4342-9c5d-6f9cd6ac16d3
+      - e0fe7d49-3174-469c-8a12-5924f3bd3af1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  317cbb72-983f-4a2a-b51d-504b78f5fef1:
+    id: 317cbb72-983f-4a2a-b51d-504b78f5fef1
+    content: 'Add a single bind-time title sync at the two places where a node first becomes bound to a terminal: the capture branch in registerSession and reattachOriginNodeForResumedSession in workflowExecutionActions.ts — both call updateTerminal({ title: extractTaskTitle(node) }) when the extracted title is non-empty.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2cb8384-a2f8-4342-9c5d-6f9cd6ac16d3:
+    id: f2cb8384-a2f8-4342-9c5d-6f9cd6ac16d3
+    content: Reuse the existing extractTaskTitle helper and the terminal store's updateTerminal action — no new abstractions; the change is co-located with the binding mutation so the title is set in the same tick as the originNodeId / captured sessionId.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0fe7d49-3174-469c-8a12-5924f3bd3af1:
+    id: e0fe7d49-3174-469c-8a12-5924f3bd3af1
+    content: 'Non-obvious: the resume path sets the title at createNewTerminal time and never updates afterwards, so this fix is additive — first-bind gets the same title resume already gets, without changing resume-path code.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dae2d294-b684-4b5d-a24a-d8d296d1ac57:
+    id: dae2d294-b684-4b5d-a24a-d8d296d1ac57
+    content: Complications
+    children:
+      - ef6e8dba-48bd-4c36-bcd9-0f780b3b5a33
+      - cd2f84f7-e51d-4ce4-94b2-d0bf67c4d70c
+      - f64b48a5-c195-4d09-9419-0aee1e14ee85
+      - eeebdf52-a03c-40ba-af59-5dab98271d84
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef6e8dba-48bd-4c36-bcd9-0f780b3b5a33:
+    id: ef6e8dba-48bd-4c36-bcd9-0f780b3b5a33
+    content: 'Edge case: terminal already carries a meaningful title (e.g. a prior resume tab being rebound to a new node) — the sync should still overwrite, since the title is meant to track the currently-bound node; otherwise rebinding silently leaves a stale label.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd2f84f7-e51d-4ce4-94b2-d0bf67c4d70c:
+    id: cd2f84f7-e51d-4ce4-94b2-d0bf67c4d70c
+    content: 'Edge case: extractTaskTitle returns empty for blank nodes — keep the existing "Terminal N" rather than clearing to an empty string.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f64b48a5-c195-4d09-9419-0aee1e14ee85:
+    id: f64b48a5-c195-4d09-9419-0aee1e14ee85
+    content: 'Out of scope: live-following node content edits after the bind is established; that is a separate behaviour and is called out in the Notes section rather than bundled in.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  eeebdf52-a03c-40ba-af59-5dab98271d84:
+    id: eeebdf52-a03c-40ba-af59-5dab98271d84
+    content: 'ROI: low effort (small diff at two known sites, one existing helper) for a visible multi-tab orientation win — comfortably positive even at low severity.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27795d35-02bd-4a07-b3f0-3693cda941c5:
+    id: 27795d35-02bd-4a07-b3f0-3693cda941c5
+    content: review feedback
+    children:
+      - 70a8e5a0-cd87-4d0e-88b1-ee2beecc3ad1
+      - 9cd7f080-53a5-4ebc-9be1-374c889d9378
+      - e15e82b7-bcaf-44d9-ac71-2c99d7943a4d
+      - 7647274e-b414-4e36-b54b-249412eb7503
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70a8e5a0-cd87-4d0e-88b1-ee2beecc3ad1:
+    id: 70a8e5a0-cd87-4d0e-88b1-ee2beecc3ad1
+    content: 'Verdict: no issues at confidence >= 80; type-check clean, all 10 new tests pass, lint warnings unrelated/pre-existing. Fix is minimal and well-isolated.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cd7f080-53a5-4ebc-9be1-374c889d9378:
+    id: 9cd7f080-53a5-4ebc-9be1-374c889d9378
+    content: 'Low-confidence observation 1 (capture-path semantics): when an incoming sessionId equals the existing bookmark, findCapturableNodeForTerminal returns the originNodeId, captureSessionOnNode is a no-op (nodesWithCapture === nodes), but syncTerminalTitleFromNode still fires and re-writes the title. Benign today (same title is written), but it widens "first bind" semantics. To tighten, gate the title sync on `nodesWithCapture !== nodes` — the same condition used for the autosave gate at line 909. Effectively makes title sync match the autosave''s "actual change" gate.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e15e82b7-bcaf-44d9-ac71-2c99d7943a4d:
+    id: e15e82b7-bcaf-44d9-ac71-2c99d7943a4d
+    content: 'Low-confidence observation 2 (suggested extra test): pin the semantics by adding a test asserting the title sync does NOT fire (or DOES fire idempotently with same value) when SessionStart arrives with the already-bookmarked sessionId. Either decision is fine, but a test should lock in the chosen behaviour to prevent silent drift.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7647274e-b414-4e36-b54b-249412eb7503:
+    id: 7647274e-b414-4e36-b54b-249412eb7503
+    content: 'Out-of-scope items explicitly ignored as instructed: pre-existing import/no-cycle warning on line 18, pre-existing master test failure for the "Resume" literal in workflowStartSession.test.ts, live-following of node content edits, implicit rebind of originNodeId on SessionStart to a different node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -159754,4 +160650,14 @@ sessionRegistry:
   a12449d6-8541-4e25-a982-0c6dcec6a754:
     cwd: /Users/brianfox/dev/Arborescent
   f74c25e3-1f11-4234-972f-3cbc0717cd39:
+    cwd: /Users/brianfox/dev/Arborescent
+  567d102c-6ccc-4772-a32e-754d1fbbe8d3:
+    cwd: /Users/brianfox/dev/Arborescent
+  1e99bb2a-96c5-4d8c-afa5-44b702769e9a:
+    cwd: /Users/brianfox/dev/Arborescent
+  ea51a201-67b5-4a69-b921-b47b2f591f1d:
+    cwd: /Users/brianfox/dev/Arborescent
+  bca3a16b-1cd9-4da4-a1d4-410f87ea63d4:
+    cwd: /Users/brianfox/dev/Arborescent
+  70694d40-1e26-4393-a0d0-c4a50d697cbb:
     cwd: /Users/brianfox/dev/Arborescent
