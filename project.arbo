@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-22T13:46:48.727Z'
+updated: '2026-05-22T14:51:15.196Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -80784,7 +80784,8 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 2139536e-7002-4b61-980f-3521c74b1b57
+      - 6ceb1676-57a4-4f53-b7b0-7041c8319300
+      - bfed7bdc-b9ca-4891-bf57-bcb742368925
       - e353e6df-5cc7-40af-9e7b-a9da29963cd2
       - 19f9af82-3ca4-4e39-846a-6184f1b241f8
       - 51f101b9-8a03-4edc-aa8f-87eaa1c68080
@@ -115695,6 +115696,7 @@ nodes:
       - bc12f7cc-b175-450a-9ebf-9b579c29805c
       - 5bbad57a-a772-4107-ae88-fcd1ebaa482a
       - 171974eb-2081-4809-9624-df1e13ff9c6b
+      - 8b1f23f6-060c-4ec6-aebc-d3ecd811cf04
     metadata:
       status: pending
       isBlueprint: true
@@ -124809,7 +124811,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 8b1f23f6-060c-4ec6-aebc-d3ecd811cf04
+      - 2139536e-7002-4b61-980f-3521c74b1b57
     metadata:
       status: pending
       isBlueprint: true
@@ -147156,14 +147158,19 @@ nodes:
       status: pending
   2139536e-7002-4b61-980f-3521c74b1b57:
     id: 2139536e-7002-4b61-980f-3521c74b1b57
-    content: Disable terminal anchor (pin-to-bottom) by default
+    content: Disable terminal anchor (pin-to-bottom) by default and reconcile viewport on toggle-on
     children:
-      - 471e62cb-35a9-455b-9118-b334ae3e924e
-      - 3bb58955-14fd-4272-a213-8c186061814d
-      - 4fc3a1eb-63a9-418e-9438-4f28f70caa6e
+      - 09367db9-fcdf-4c36-82f5-4de7e4364653
+      - b9176800-1805-433c-8729-76d7fc41ea4c
+      - 272e4d1e-312d-4833-9205-03ccb854d167
+      - 82e65725-0e50-438b-bec5-4b7e04d9443b
+      - c83fc5cb-044f-4c80-a9b5-06b77abf95fe
+      - 65dc3ad6-c9cd-497b-b9a1-96451eee3f59
+      - 4ed6021c-f4b0-4900-b271-7678be6d7271
+      - 2f81cc99-5225-4789-a52d-ef26eee440c5
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
       sessionId: a12449d6-8541-4e25-a982-0c6dcec6a754
@@ -158171,393 +158178,6 @@ nodes:
       deleted: false
       plugins: {}
       sessionId: f1850030-dd54-4b73-b9c7-1ce7018bda5c
-  471e62cb-35a9-455b-9118-b334ae3e924e:
-    id: 471e62cb-35a9-455b-9118-b334ae3e924e
-    content: 📄 Product spec
-    children:
-      - 8b29a485-5032-4534-97f6-2e7ae92c87ff
-      - f4e43158-839f-4325-9413-560eb5494642
-      - 86342748-71f4-4663-99fb-b6f0abf3da80
-      - 26c6322f-d784-4bd5-9707-e92a59bf1d47
-      - dd7054c9-da6b-49e1-b4ae-e8f3f4da948d
-      - 44f74c37-7622-4f48-a40a-dafc59cb9ebb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b29a485-5032-4534-97f6-2e7ae92c87ff:
-    id: 8b29a485-5032-4534-97f6-2e7ae92c87ff
-    content: Context
-    children:
-      - f311daad-7212-43df-b49d-1eefe2690073
-      - 3ec346b2-e8fa-4d04-be0b-6295c9dedf55
-      - 9e4fb9fb-ab06-4138-a91a-b5682c392477
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f311daad-7212-43df-b49d-1eefe2690073:
-    id: f311daad-7212-43df-b49d-1eefe2690073
-    content: The terminal panel "anchor" auto-scrolls the view to the bottom on every new output and defaults to on for every new terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ec346b2-e8fa-4d04-be0b-6295c9dedf55:
-    id: 3ec346b2-e8fa-4d04-be0b-6295c9dedf55
-    content: It was useful when AI responses streamed long verbose output; with tighter Claude output the payoff has shrunk while the friction (lost scroll position) has not
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e4fb9fb-ab06-4138-a91a-b5682c392477:
-    id: 9e4fb9fb-ab06-4138-a91a-b5682c392477
-    content: Users routinely toggle it off to read mid-session — a recurring papercut rather than a single bug
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4e43158-839f-4325-9413-560eb5494642:
-    id: f4e43158-839f-4325-9413-560eb5494642
-    content: User
-    children:
-      - 44fd3eea-fe3d-4d06-ac49-4cd4d3e14370
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  44fd3eea-fe3d-4d06-ac49-4cd4d3e14370:
-    id: 44fd3eea-fe3d-4d06-ac49-4cd4d3e14370
-    content: Power user running AI sessions in Arborescent's built-in terminal who reads/scrolls back through output while output is still arriving
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  86342748-71f4-4663-99fb-b6f0abf3da80:
-    id: 86342748-71f4-4663-99fb-b6f0abf3da80
-    content: Current experience
-    children:
-      - 0367ad40-4219-4f91-b365-c03c593cf0d8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0367ad40-4219-4f91-b365-c03c593cf0d8:
-    id: 0367ad40-4219-4f91-b365-c03c593cf0d8
-    content: New terminals open anchored; scrolling up during streaming output snaps the view back to the bottom and forces a manual toggle every time
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  26c6322f-d784-4bd5-9707-e92a59bf1d47:
-    id: 26c6322f-d784-4bd5-9707-e92a59bf1d47
-    content: Goal
-    children:
-      - b5f8ddda-a034-48cb-a262-0dfdc44efba0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5f8ddda-a034-48cb-a262-0dfdc44efba0:
-    id: b5f8ddda-a034-48cb-a262-0dfdc44efba0
-    content: Ship with the terminal anchor off by default so scroll-back works without an extra click, while keeping the per-terminal toggle for users who want pin-to-bottom
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd7054c9-da6b-49e1-b4ae-e8f3f4da948d:
-    id: dd7054c9-da6b-49e1-b4ae-e8f3f4da948d
-    content: Business rules
-    children:
-      - 0cc11fd3-cbdc-4563-be5e-755bbfd48514
-      - ccb90ef0-b19c-41b5-ae3f-8b3a28dd4e83
-      - b9541864-d859-48ba-b6cf-c89eec9df06d
-      - 7a21e381-ce9d-4a3c-9611-6220c9539156
-      - df500820-7e4a-4dbe-90db-a3dcf6453ff4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0cc11fd3-cbdc-4563-be5e-755bbfd48514:
-    id: 0cc11fd3-cbdc-4563-be5e-755bbfd48514
-    content: Newly created terminals start with pinnedToBottom = false
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ccb90ef0-b19c-41b5-ae3f-8b3a28dd4e83:
-    id: ccb90ef0-b19c-41b5-ae3f-8b3a28dd4e83
-    content: Terminals restored from saved sessions keep whatever pinnedToBottom value was persisted — no migration, no override
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9541864-d859-48ba-b6cf-c89eec9df06d:
-    id: b9541864-d859-48ba-b6cf-c89eec9df06d
-    content: The anchor button in the terminal toolbar continues to toggle per-terminal state with no change to its surface
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a21e381-ce9d-4a3c-9611-6220c9539156:
-    id: 7a21e381-ce9d-4a3c-9611-6220c9539156
-    content: When the anchor is off, new output does not change the user's scroll position
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  df500820-7e4a-4dbe-90db-a3dcf6453ff4:
-    id: df500820-7e4a-4dbe-90db-a3dcf6453ff4
-    content: When the anchor is on (toggled manually), behaviour is unchanged — new output keeps the view pinned to the bottom
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  44f74c37-7622-4f48-a40a-dafc59cb9ebb:
-    id: 44f74c37-7622-4f48-a40a-dafc59cb9ebb
-    content: Acceptance criteria
-    children:
-      - abf9cd15-4dff-4d28-876c-0eafbe549b7c
-      - 82e00ac6-3afe-4a00-9245-68e71516866e
-      - 171e3262-528e-43cd-a97a-fd4df564117d
-      - 87d366bd-e835-4564-9c16-ed594757190a
-      - eda8857a-60f9-4566-8dce-b279e8c75913
-      - 154aaee9-055b-4f75-9659-f586f66f14ff
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  abf9cd15-4dff-4d28-876c-0eafbe549b7c:
-    id: abf9cd15-4dff-4d28-876c-0eafbe549b7c
-    content: A freshly created terminal opens with the anchor toggle off and the icon in the unanchored visual state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  82e00ac6-3afe-4a00-9245-68e71516866e:
-    id: 82e00ac6-3afe-4a00-9245-68e71516866e
-    content: New output arriving in an unanchored terminal does not move the user's scroll position
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  171e3262-528e-43cd-a97a-fd4df564117d:
-    id: 171e3262-528e-43cd-a97a-fd4df564117d
-    content: Clicking the anchor button on an unanchored terminal pins it to the bottom and snaps to bottom immediately
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  87d366bd-e835-4564-9c16-ed594757190a:
-    id: 87d366bd-e835-4564-9c16-ed594757190a
-    content: Restoring a session whose terminal was saved with pinnedToBottom = true reopens that terminal anchored
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eda8857a-60f9-4566-8dce-b279e8c75913:
-    id: eda8857a-60f9-4566-8dce-b279e8c75913
-    content: Restoring a session whose terminal was saved with pinnedToBottom = false reopens that terminal unanchored
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  154aaee9-055b-4f75-9659-f586f66f14ff:
-    id: 154aaee9-055b-4f75-9659-f586f66f14ff
-    content: No regression in keyboard input, tab switching, or terminal resize behaviour
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3bb58955-14fd-4272-a213-8c186061814d:
-    id: 3bb58955-14fd-4272-a213-8c186061814d
-    content: 🔧 Implementation proposal
-    children:
-      - 3c588e32-54ff-4a11-acea-2d3dedfd6826
-      - 156f67d7-8ffe-4a87-b989-ab8bb0c91ee0
-      - aea6b12a-ae44-4dce-bb4e-e8086447aaea
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c588e32-54ff-4a11-acea-2d3dedfd6826:
-    id: 3c588e32-54ff-4a11-acea-2d3dedfd6826
-    content: Approach
-    children:
-      - a1d90fa0-f826-4c4b-bdb1-3fd94d8e7b78
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1d90fa0-f826-4c4b-bdb1-3fd94d8e7b78:
-    id: a1d90fa0-f826-4c4b-bdb1-3fd94d8e7b78
-    content: Flip the default at the three sites where pinnedToBottom is initialised to true, leaving the toggle action and persistence path untouched so saved values keep working
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  156f67d7-8ffe-4a87-b989-ab8bb0c91ee0:
-    id: 156f67d7-8ffe-4a87-b989-ab8bb0c91ee0
-    content: Touchpoints
-    children:
-      - b7b82005-7d64-4fc4-956d-ecbf43f6080e
-      - fe46aea5-72fd-4818-b603-5e3716fefa28
-      - 9063970d-2dc2-4533-87cc-4fd3c5f89b99
-      - e56cd32b-edc2-4b32-9c79-5e24633e84f7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b7b82005-7d64-4fc4-956d-ecbf43f6080e:
-    id: b7b82005-7d64-4fc4-956d-ecbf43f6080e
-    content: src/renderer/services/terminalService.ts — pinnedToBottom default on terminal creation
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fe46aea5-72fd-4818-b603-5e3716fefa28:
-    id: fe46aea5-72fd-4818-b603-5e3716fefa28
-    content: src/renderer/components/Terminal/Terminal.tsx — component prop default
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9063970d-2dc2-4533-87cc-4fd3c5f89b99:
-    id: 9063970d-2dc2-4533-87cc-4fd3c5f89b99
-    content: src/renderer/components/Terminal/TerminalPanel.tsx — isPinned fallback for missing value
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e56cd32b-edc2-4b32-9c79-5e24633e84f7:
-    id: e56cd32b-edc2-4b32-9c79-5e24633e84f7
-    content: Tests covering new-terminal default state and the unanchored-output-does-not-scroll case
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aea6b12a-ae44-4dce-bb4e-e8086447aaea:
-    id: aea6b12a-ae44-4dce-bb4e-e8086447aaea
-    content: Constraints to call out
-    children:
-      - ca1c3c86-b9d6-4b78-a923-38a98ab0a68d
-      - b60342dc-d3b4-413a-a13d-33162a006af9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ca1c3c86-b9d6-4b78-a923-38a98ab0a68d:
-    id: ca1c3c86-b9d6-4b78-a923-38a98ab0a68d
-    content: Saved terminal sessions must continue to honour their persisted pinnedToBottom value — no data migration
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b60342dc-d3b4-413a-a13d-33162a006af9:
-    id: b60342dc-d3b4-413a-a13d-33162a006af9
-    content: 'Audit test fixtures that hard-code pinnedToBottom: true — keep the ones exercising the anchored branch, update the ones that only encoded the old default'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fc3a1eb-63a9-418e-9438-4f28f70caa6e:
-    id: 4fc3a1eb-63a9-418e-9438-4f28f70caa6e
-    content: Challenges
-    children:
-      - 88739d2f-60ce-4a96-9aa9-eb3c510615fd
-      - b6a8625f-ec47-44fe-90a3-86c853aec0d9
-      - 4c4d6fb4-21c5-4eca-9462-9436a0d1ed1d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  88739d2f-60ce-4a96-9aa9-eb3c510615fd:
-    id: 88739d2f-60ce-4a96-9aa9-eb3c510615fd
-    content: Scope is intentionally a single chunk — resist bundling other terminal UX changes into this flip
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6a8625f-ec47-44fe-90a3-86c853aec0d9:
-    id: b6a8625f-ec47-44fe-90a3-86c853aec0d9
-    content: Behaviour-change risk — users who relied on the implicit anchor will notice on next launch; mention in release notes instead of building a one-time prompt
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c4d6fb4-21c5-4eca-9462-9436a0d1ed1d:
-    id: 4c4d6fb4-21c5-4eca-9462-9436a0d1ed1d
-    content: Out of scope — persisting a user-level "default anchor preference" across new terminals; revisit only if the disabled default proves wrong
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   f0b6a6d6-d64d-4fdd-a33f-69af133acebe:
     id: f0b6a6d6-d64d-4fdd-a33f-69af133acebe
     content: worktree
@@ -159296,6 +158916,822 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  bfed7bdc-b9ca-4891-bf57-bcb742368925:
+    id: bfed7bdc-b9ca-4891-bf57-bcb742368925
+    content: Terminal title doesn't update when node mapped
+    children:
+      - ad04a312-8a5d-4a7a-b635-7e2d1cbfbffb
+    metadata:
+      status: pending
+      expanded: false
+  ad04a312-8a5d-4a7a-b635-7e2d1cbfbffb:
+    id: ad04a312-8a5d-4a7a-b635-7e2d1cbfbffb
+    content: The terminal title (Terminal 1, Terminal 2 etc) should be changed to the parent node contents when a node is bound to it
+    children:
+      - df732220-1a99-4162-894f-0af05f0e1b62
+      - c5136e76-ef58-47a5-85fc-986fd8b7ae92
+    metadata:
+      status: pending
+  df732220-1a99-4162-894f-0af05f0e1b62:
+    id: df732220-1a99-4162-894f-0af05f0e1b62
+    content: Currently this only happens for resumed nodes
+    children: []
+    metadata:
+      status: pending
+  c5136e76-ef58-47a5-85fc-986fd8b7ae92:
+    id: c5136e76-ef58-47a5-85fc-986fd8b7ae92
+    content: It doesn't happen when the node is first bound
+    children: []
+    metadata:
+      status: pending
+  6ceb1676-57a4-4f53-b7b0-7041c8319300:
+    id: 6ceb1676-57a4-4f53-b7b0-7041c8319300
+    content: Sometimes not all steps in a sent instruction are completed
+    children:
+      - 5f23cf91-cf7a-4bf1-a142-6fcac823f7c1
+      - 3308aad0-580a-426a-b6b3-990201412a4a
+      - e181bffc-12b3-4821-b456-d6c01c455de3
+    metadata:
+      status: pending
+      expanded: false
+      sessionId: f74c25e3-1f11-4234-972f-3cbc0717cd39
+  5f23cf91-cf7a-4bf1-a142-6fcac823f7c1:
+    id: 5f23cf91-cf7a-4bf1-a142-6fcac823f7c1
+    content: There is confusion between the overall instructions and what steps within them to complete autonomously
+    children: []
+    metadata:
+      status: pending
+  3308aad0-580a-426a-b6b3-990201412a4a:
+    id: 3308aad0-580a-426a-b6b3-990201412a4a
+    content: All instructions should be completed autonomously
+    children: []
+    metadata:
+      status: pending
+  e181bffc-12b3-4821-b456-d6c01c455de3:
+    id: e181bffc-12b3-4821-b456-d6c01c455de3
+    content: Analyze the following session
+    children:
+      - b6eff078-9e20-4cdd-bb4b-b7f10b2d7f06
+    metadata:
+      status: pending
+  b6eff078-9e20-4cdd-bb4b-b7f10b2d7f06:
+    id: b6eff078-9e20-4cdd-bb4b-b7f10b2d7f06
+    content: f64eeb29-e6cf-42aa-876d-2529673912f0
+    children: []
+    metadata:
+      status: pending
+  09367db9-fcdf-4c36-82f5-4de7e4364653:
+    id: 09367db9-fcdf-4c36-82f5-4de7e4364653
+    content: worktree
+    children:
+      - 85274802-5380-4118-896f-85505660b20c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85274802-5380-4118-896f-85505660b20c:
+    id: 85274802-5380-4118-896f-85505660b20c
+    content: vscode://file//Users/brianfox/dev/Arborescent-anchor-off
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9176800-1805-433c-8729-76d7fc41ea4c:
+    id: b9176800-1805-433c-8729-76d7fc41ea4c
+    content: 📄 Product spec
+    children:
+      - 4c04a6aa-c1b6-443b-82f1-f96943d7838d
+      - dec97bd8-a9aa-4fae-9b22-4de7e1e082ed
+      - 8a302251-f9ab-441c-a54f-f90fd2622b60
+      - d0a6aecc-5eee-4ab7-bf68-50fe74350854
+      - b8878df1-8b69-4e2b-8575-20f2bb58647a
+      - af1e00e0-f638-4f06-9b2d-9206c3e960f9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c04a6aa-c1b6-443b-82f1-f96943d7838d:
+    id: 4c04a6aa-c1b6-443b-82f1-f96943d7838d
+    content: Context
+    children:
+      - 76dd4426-8d0f-40d0-9725-4c00f0f0b632
+      - a0488193-ee5b-4384-a39e-612d04bf9501
+      - 70b5a3b1-f0b1-42fd-8d87-ef20d14a8950
+      - caf6df4c-ee93-4db0-804c-532008a40be5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76dd4426-8d0f-40d0-9725-4c00f0f0b632:
+    id: 76dd4426-8d0f-40d0-9725-4c00f0f0b632
+    content: The terminal panel "anchor" auto-scrolls the view to the bottom on every new output and defaults to on for every new terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0488193-ee5b-4384-a39e-612d04bf9501:
+    id: a0488193-ee5b-4384-a39e-612d04bf9501
+    content: It was useful when AI responses streamed long verbose output; with tighter Claude output the payoff has shrunk while the friction (lost scroll position) has not
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70b5a3b1-f0b1-42fd-8d87-ef20d14a8950:
+    id: 70b5a3b1-f0b1-42fd-8d87-ef20d14a8950
+    content: Users routinely toggle it off to read mid-session — a recurring papercut rather than a single bug
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  caf6df4c-ee93-4db0-804c-532008a40be5:
+    id: caf6df4c-ee93-4db0-804c-532008a40be5
+    content: 'Related defect surfacing on the toggle: re-anchoring does not actually scroll/redraw until the next byte arrives, so the view stays stuck on stale rows until the user types something — once the default is off, this defect will be hit far more often'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dec97bd8-a9aa-4fae-9b22-4de7e1e082ed:
+    id: dec97bd8-a9aa-4fae-9b22-4de7e1e082ed
+    content: User
+    children:
+      - ff775ebc-ff80-4e3a-b282-7fcbbc14860c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff775ebc-ff80-4e3a-b282-7fcbbc14860c:
+    id: ff775ebc-ff80-4e3a-b282-7fcbbc14860c
+    content: Power user running AI sessions in Arborescent's built-in terminal who reads/scrolls back through output while output is still arriving
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a302251-f9ab-441c-a54f-f90fd2622b60:
+    id: 8a302251-f9ab-441c-a54f-f90fd2622b60
+    content: Current experience
+    children:
+      - 6f77892c-09ae-4181-901a-b89e9ed39952
+      - 6196553e-9b94-48e4-a2e3-db6e408f0017
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f77892c-09ae-4181-901a-b89e9ed39952:
+    id: 6f77892c-09ae-4181-901a-b89e9ed39952
+    content: New terminals open anchored; scrolling up during streaming output snaps the view back to the bottom and forces a manual toggle every time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6196553e-9b94-48e4-a2e3-db6e408f0017:
+    id: 6196553e-9b94-48e4-a2e3-db6e408f0017
+    content: After toggling the anchor back on, the viewport often stays on stale content (bottom rows missing) until a keystroke triggers the data handler's scrollToBottom
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0a6aecc-5eee-4ab7-bf68-50fe74350854:
+    id: d0a6aecc-5eee-4ab7-bf68-50fe74350854
+    content: Goal
+    children:
+      - fd1b5114-6ca9-4472-9a3a-4613b8a8771b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd1b5114-6ca9-4472-9a3a-4613b8a8771b:
+    id: fd1b5114-6ca9-4472-9a3a-4613b8a8771b
+    content: Ship with the terminal anchor off by default so scroll-back works without an extra click, and make the toggle-on action reconcile the viewport immediately so it behaves like "anchor now", not "anchor on the next byte"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8878df1-8b69-4e2b-8575-20f2bb58647a:
+    id: b8878df1-8b69-4e2b-8575-20f2bb58647a
+    content: Business rules
+    children:
+      - 17cc4265-8453-447e-953f-45d3b153e9cc
+      - 96bdfa27-82ed-44dd-89b9-2713e3f7fd52
+      - 1c2f530a-a9a6-4116-ae13-db1eb9eeb126
+      - 51881e1b-d1be-412e-bfa2-7afa6fad22f1
+      - f9543532-f98d-4ee2-911e-1e926e9d602a
+      - 2c71ff82-b9d7-4801-9f30-5430a6c784c7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17cc4265-8453-447e-953f-45d3b153e9cc:
+    id: 17cc4265-8453-447e-953f-45d3b153e9cc
+    content: Newly created terminals start with pinnedToBottom = false
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96bdfa27-82ed-44dd-89b9-2713e3f7fd52:
+    id: 96bdfa27-82ed-44dd-89b9-2713e3f7fd52
+    content: Terminals restored from saved sessions keep whatever pinnedToBottom value was persisted — no migration, no override
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c2f530a-a9a6-4116-ae13-db1eb9eeb126:
+    id: 1c2f530a-a9a6-4116-ae13-db1eb9eeb126
+    content: The anchor button in the terminal toolbar continues to toggle per-terminal state with no change to its surface
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51881e1b-d1be-412e-bfa2-7afa6fad22f1:
+    id: 51881e1b-d1be-412e-bfa2-7afa6fad22f1
+    content: When the anchor is off, new output does not change the user's scroll position
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9543532-f98d-4ee2-911e-1e926e9d602a:
+    id: f9543532-f98d-4ee2-911e-1e926e9d602a
+    content: When the anchor flips from off to on, the terminal must fit + refresh + scroll to the bottom immediately, without waiting for new input
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c71ff82-b9d7-4801-9f30-5430a6c784c7:
+    id: 2c71ff82-b9d7-4801-9f30-5430a6c784c7
+    content: When the anchor is already on, new output keeps the view pinned to the bottom (existing behaviour, unchanged)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af1e00e0-f638-4f06-9b2d-9206c3e960f9:
+    id: af1e00e0-f638-4f06-9b2d-9206c3e960f9
+    content: Acceptance criteria
+    children:
+      - e23e49b5-3173-40ec-8dfb-57c3ef9f9293
+      - 36750cec-3eec-4d05-ac98-2072add00a6f
+      - d1177589-0a42-45d6-ba72-ca858c552862
+      - 4828b120-3acf-4ee3-b89f-842011ef83bb
+      - f695dd83-595c-4667-b8ee-ad90145872dc
+      - 89dabaa3-a78f-4dc7-891e-c1eafa6f88a7
+      - e88ffd83-3f48-47bd-8927-22aa452a6802
+      - f013495d-cd01-4185-b4a7-97a46e31d23e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e23e49b5-3173-40ec-8dfb-57c3ef9f9293:
+    id: e23e49b5-3173-40ec-8dfb-57c3ef9f9293
+    content: A freshly created terminal opens with the anchor toggle off and the icon in the unanchored visual state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36750cec-3eec-4d05-ac98-2072add00a6f:
+    id: 36750cec-3eec-4d05-ac98-2072add00a6f
+    content: New output arriving in an unanchored terminal does not move the user's scroll position
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1177589-0a42-45d6-ba72-ca858c552862:
+    id: d1177589-0a42-45d6-ba72-ca858c552862
+    content: Clicking the anchor button on an unanchored terminal pins it to the bottom and snaps to bottom immediately, with no keystroke required to make the latest rows visible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4828b120-3acf-4ee3-b89f-842011ef83bb:
+    id: 4828b120-3acf-4ee3-b89f-842011ef83bb
+    content: Clicking the anchor button when there is no new incoming data still updates the visible region — the last rows of buffered output become visible at the moment of toggle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f695dd83-595c-4667-b8ee-ad90145872dc:
+    id: f695dd83-595c-4667-b8ee-ad90145872dc
+    content: Clicking the anchor button on an already-anchored terminal unpins it without scroll jumps or visual glitches
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89dabaa3-a78f-4dc7-891e-c1eafa6f88a7:
+    id: 89dabaa3-a78f-4dc7-891e-c1eafa6f88a7
+    content: Restoring a session whose terminal was saved with pinnedToBottom = true reopens that terminal anchored
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e88ffd83-3f48-47bd-8927-22aa452a6802:
+    id: e88ffd83-3f48-47bd-8927-22aa452a6802
+    content: Restoring a session whose terminal was saved with pinnedToBottom = false reopens that terminal unanchored
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f013495d-cd01-4185-b4a7-97a46e31d23e:
+    id: f013495d-cd01-4185-b4a7-97a46e31d23e
+    content: No regression in keyboard input, tab switching, or terminal resize behaviour
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  272e4d1e-312d-4833-9205-03ccb854d167:
+    id: 272e4d1e-312d-4833-9205-03ccb854d167
+    content: 🔧 Implementation proposal
+    children:
+      - b88cb51d-ee72-4242-b0e4-6c23b4ee682e
+      - e9f2ffb9-c986-4738-b164-bfc3533b1aa4
+      - a70c78b1-8815-4df1-b6b3-92c5a5a69c0a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b88cb51d-ee72-4242-b0e4-6c23b4ee682e:
+    id: b88cb51d-ee72-4242-b0e4-6c23b4ee682e
+    content: Approach
+    children:
+      - da678edd-1be2-4ade-b969-2a7375ded7bb
+      - f9557150-9772-4052-baf2-f84b8ede9bb4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da678edd-1be2-4ade-b969-2a7375ded7bb:
+    id: da678edd-1be2-4ade-b969-2a7375ded7bb
+    content: Flip the default at the three sites where pinnedToBottom is initialised to true, leaving the toggle action and persistence path untouched so saved values keep working
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9557150-9772-4052-baf2-f84b8ede9bb4:
+    id: f9557150-9772-4052-baf2-f84b8ede9bb4
+    content: In useTerminal, add an effect that watches pinnedToBottom and, on a false → true transition, runs fitAddon.fit() + xterm.refresh(0, rows-1) + xterm.scrollToBottom() — mirroring the hidden→visible reconcile already at useTerminal.ts:97-106
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9f2ffb9-c986-4738-b164-bfc3533b1aa4:
+    id: e9f2ffb9-c986-4738-b164-bfc3533b1aa4
+    content: Touchpoints
+    children:
+      - cef81d11-3e98-4e9e-8817-00f45f8255d0
+      - 61971a60-7b00-4dc6-bcab-39ba973c5d39
+      - a704f932-ac9f-4395-acaa-f8adad518dfe
+      - 0cf8439e-81e5-4f64-b801-15206ccd7f1a
+      - dceaec74-838b-4e37-9ea2-6b523927e43e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cef81d11-3e98-4e9e-8817-00f45f8255d0:
+    id: cef81d11-3e98-4e9e-8817-00f45f8255d0
+    content: src/renderer/services/terminalService.ts — pinnedToBottom default on terminal creation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61971a60-7b00-4dc6-bcab-39ba973c5d39:
+    id: 61971a60-7b00-4dc6-bcab-39ba973c5d39
+    content: src/renderer/components/Terminal/Terminal.tsx — component prop default
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a704f932-ac9f-4395-acaa-f8adad518dfe:
+    id: a704f932-ac9f-4395-acaa-f8adad518dfe
+    content: src/renderer/components/Terminal/TerminalPanel.tsx — isPinned fallback for missing value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cf8439e-81e5-4f64-b801-15206ccd7f1a:
+    id: 0cf8439e-81e5-4f64-b801-15206ccd7f1a
+    content: src/renderer/components/Terminal/hooks/useTerminal.ts — new transition effect that reconciles the viewport on anchor-on
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dceaec74-838b-4e37-9ea2-6b523927e43e:
+    id: dceaec74-838b-4e37-9ea2-6b523927e43e
+    content: 'Tests covering: new-terminal default state, unanchored-output-does-not-scroll, and toggle-on-reveals-stale-bottom-rows'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a70c78b1-8815-4df1-b6b3-92c5a5a69c0a:
+    id: a70c78b1-8815-4df1-b6b3-92c5a5a69c0a
+    content: Constraints to call out
+    children:
+      - 3565bd5a-b887-40ea-b9fb-56b174189a20
+      - 61988303-f4ee-408a-9c82-7c428e18e6a8
+      - ed5953e6-0406-4dd2-b4c0-c1579b4bfcb4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3565bd5a-b887-40ea-b9fb-56b174189a20:
+    id: 3565bd5a-b887-40ea-b9fb-56b174189a20
+    content: Saved terminal sessions must continue to honour their persisted pinnedToBottom value — no data migration
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  61988303-f4ee-408a-9c82-7c428e18e6a8:
+    id: 61988303-f4ee-408a-9c82-7c428e18e6a8
+    content: 'Audit test fixtures that hard-code pinnedToBottom: true — keep the ones exercising the anchored branch, update the ones that only encoded the old default'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed5953e6-0406-4dd2-b4c0-c1579b4bfcb4:
+    id: ed5953e6-0406-4dd2-b4c0-c1579b4bfcb4
+    content: The transition effect must fire only on a genuine false → true edge, not on every render or on the initial mount — guard with a previous-value ref so unrelated re-renders don't repeatedly snap users to the bottom
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82e65725-0e50-438b-bec5-4b7e04d9443b:
+    id: 82e65725-0e50-438b-bec5-4b7e04d9443b
+    content: Challenges
+    children:
+      - 5b620e37-8006-4a6f-bb22-0043b60412e8
+      - f4bf2302-9e87-4aa6-9bb2-32fcf822a0c7
+      - 8016712f-5db2-4404-943a-a37e3c209335
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b620e37-8006-4a6f-bb22-0043b60412e8:
+    id: 5b620e37-8006-4a6f-bb22-0043b60412e8
+    content: Scope is two coupled changes — default flip and toggle-on reconcile — bundled because the second becomes a much more visible bug once the first ships; resist adding further terminal UX changes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4bf2302-9e87-4aa6-9bb2-32fcf822a0c7:
+    id: f4bf2302-9e87-4aa6-9bb2-32fcf822a0c7
+    content: Behaviour-change risk — users who relied on the implicit anchor will notice on next launch; mention in release notes instead of building a one-time prompt
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8016712f-5db2-4404-943a-a37e3c209335:
+    id: 8016712f-5db2-4404-943a-a37e3c209335
+    content: Out of scope — persisting a user-level "default anchor preference" across new terminals; revisit only if the disabled default proves wrong
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c83fc5cb-044f-4c80-a9b5-06b77abf95fe:
+    id: c83fc5cb-044f-4c80-a9b5-06b77abf95fe
+    content: Technical refinement
+    children:
+      - bba5b3a2-114b-485a-9323-8b24458789e7
+      - 726968bc-b954-439f-916a-d9fdb3e6a287
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bba5b3a2-114b-485a-9323-8b24458789e7:
+    id: bba5b3a2-114b-485a-9323-8b24458789e7
+    content: Flag complications
+    children:
+      - 95a9500d-dca7-47ff-8050-2c8cc9865471
+      - 91814fee-9c20-4669-a89b-54c2991b136a
+      - fefd8097-0926-48b8-a343-c386147c8c3d
+      - 941bdf9f-c5a8-44b0-baac-82bd189de9d8
+      - f30597bb-30db-4bba-9504-1e166c0ea8ed
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95a9500d-dca7-47ff-8050-2c8cc9865471:
+    id: 95a9500d-dca7-47ff-8050-2c8cc9865471
+    content: Hidden-tab toggle — if the user re-anchors a terminal whose container is currently display:none (or otherwise zero-sized), calling fit() will compute bad rows/cols; the transition effect needs the same zero-size bailout already used by handleResize (useTerminal.ts:92-96)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91814fee-9c20-4669-a89b-54c2991b136a:
+    id: 91814fee-9c20-4669-a89b-54c2991b136a
+    content: Order sensitivity — refresh must run before scrollToBottom so the renderer reflects the latest buffer before the viewport math; running them in the wrong order can leave a one-frame stale region
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fefd8097-0926-48b8-a343-c386147c8c3d:
+    id: fefd8097-0926-48b8-a343-c386147c8c3d
+    content: Legacy persisted shape — confirm the session-restore path coerces a missing/undefined pinnedToBottom on older saved terminals to true (their original implicit value), not to the new false default; otherwise users upgrading silently lose their anchored terminals
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  941bdf9f-c5a8-44b0-baac-82bd189de9d8:
+    id: 941bdf9f-c5a8-44b0-baac-82bd189de9d8
+    content: The component-prop default (Terminal.tsx) and panel fallback (TerminalPanel.tsx) are defensive — verify no live callsite depends on them before flipping, otherwise this is just a consistency change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f30597bb-30db-4bba-9504-1e166c0ea8ed:
+    id: f30597bb-30db-4bba-9504-1e166c0ea8ed
+    content: Risk if descoped — shipping the default flip without the toggle-on reconcile turns a known-but-rare bug into a daily papercut; the two must ship together
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  726968bc-b954-439f-916a-d9fdb3e6a287:
+    id: 726968bc-b954-439f-916a-d9fdb3e6a287
+    content: Approach summary
+    children:
+      - 2cbd08a9-241d-418c-b55e-3157b4a68eb7
+      - 9f010739-16a4-4bd8-b13e-2b5043bfe86a
+      - e855d16b-f784-42dd-b36e-749af8fd7ce7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cbd08a9-241d-418c-b55e-3157b4a68eb7:
+    id: 2cbd08a9-241d-418c-b55e-3157b4a68eb7
+    content: Default flip lives entirely in three init sites; restore path and toggle action are untouched, so user-saved anchor states still win and there is no migration step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f010739-16a4-4bd8-b13e-2b5043bfe86a:
+    id: 9f010739-16a4-4bd8-b13e-2b5043bfe86a
+    content: Toggle-on reconcile is a small useEffect in useTerminal keyed off a previous-value ref, reusing the existing fit + refresh + scrollToBottom recipe from the hidden→visible branch — no new rendering pathway, no new state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e855d16b-f784-42dd-b36e-749af8fd7ce7:
+    id: e855d16b-f784-42dd-b36e-749af8fd7ce7
+    content: Reviewer surprise to flag — the AC about "buffered output becomes visible without a keystroke" is actually fixing a pre-existing latent bug, not a regression introduced by the default flip; framing it that way avoids the bundle looking like scope creep
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65dc3ad6-c9cd-497b-b9a1-96451eee3f59:
+    id: 65dc3ad6-c9cd-497b-b9a1-96451eee3f59
+    content: Issues raised during TDD
+    children:
+      - 2ac49352-2dbc-42a8-881d-8023a77952a8
+      - 7fdc6a86-c08d-4f80-b546-ceae8774785b
+      - b3454fa5-1c17-4fa3-8ae6-fbb147c12b86
+      - b7ecfe62-0498-4836-9eb5-2bd9ea540d5a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ac49352-2dbc-42a8-881d-8023a77952a8:
+    id: 2ac49352-2dbc-42a8-881d-8023a77952a8
+    content: Spec/code mismatch on session restore — pinnedToBottom is explicitly NOT persisted today (terminalSessionPersistence.test.ts asserts savedTerminal has no pinnedToBottom field), so the two "Restoring a session whose terminal was saved with pinnedToBottom = X reopens that terminal as X" ACs are unsatisfiable as written
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fdc6a86-c08d-4f80-b546-ceae8774785b:
+    id: 7fdc6a86-c08d-4f80-b546-ceae8774785b
+    content: Default behavior under restore — because pinnedToBottom is not in the saved shape, restored terminals will inherit whatever createTerminal returns; after the default flip, every restored terminal will open unanchored regardless of whether it was anchored before close
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3454fa5-1c17-4fa3-8ae6-fbb147c12b86:
+    id: b3454fa5-1c17-4fa3-8ae6-fbb147c12b86
+    content: Decision needed at implementation step — either (a) accept this upgrade-time behavior change and rewrite the two restore ACs, or (b) special-case the restore path to coerce missing pinnedToBottom to true so existing anchored terminals survive the upgrade
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7ecfe62-0498-4836-9eb5-2bd9ea540d5a:
+    id: b7ecfe62-0498-4836-9eb5-2bd9ea540d5a
+    content: Tests written reflecting option (a) as it.todo placeholders in terminalSessionPersistence.test.ts — flip to option (b) if user prefers preservation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ed6021c-f4b0-4900-b271-7678be6d7271:
+    id: 4ed6021c-f4b0-4900-b271-7678be6d7271
+    content: Implementation notes
+    children:
+      - a00cfe24-7a2a-449b-b545-edba35cfe024
+      - d1cadc85-a20d-4192-b7f2-75c7e63b5b2a
+      - b32f07e7-0480-4b7b-9480-9dc22d613f9c
+      - d654b679-9c0d-4795-b056-5870d69b9ade
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a00cfe24-7a2a-449b-b545-edba35cfe024:
+    id: a00cfe24-7a2a-449b-b545-edba35cfe024
+    content: Took option (a) — restored terminals now adopt the new false default, since pinnedToBottom was never in the persisted shape; the two restore ACs are marked [-] failed rather than rewritten in-spec
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1cadc85-a20d-4192-b7f2-75c7e63b5b2a:
+    id: d1cadc85-a20d-4192-b7f2-75c7e63b5b2a
+    content: Default flip is three single-line edits — terminalService.ts:24, Terminal.tsx:11, TerminalPanel.tsx:36 — plus matching tests; no migration logic, no callsite audit needed (existing callers either set the value explicitly or fall through to the prop/store fallback)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b32f07e7-0480-4b7b-9480-9dc22d613f9c:
+    id: b32f07e7-0480-4b7b-9480-9dc22d613f9c
+    content: Toggle-on reconcile lives in the existing pinnedToBottomRef sync effect in useTerminal.ts — added a prevPinnedToBottomRef edge detector, then on false → true runs fit() → refresh() → scrollToBottom() with a zero-size container bailout so toggling on a hidden tab is a no-op
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d654b679-9c0d-4795-b056-5870d69b9ade:
+    id: d654b679-9c0d-4795-b056-5870d69b9ade
+    content: 54 tests pass (5 newly-passing assertions + 9 it.todo placeholders for DOM-integration cases that remain title-only); 0 lint errors; clean TypeScript on changed files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f81cc99-5225-4789-a52d-ef26eee440c5:
+    id: 2f81cc99-5225-4789-a52d-ef26eee440c5
+    content: Review feedback
+    children:
+      - f882bd39-07ec-4100-94e6-ba3ed55d3856
+      - 07f4b0c9-6172-4647-a778-be44ce900a8a
+      - 9c510e20-97a3-4363-8e75-ba1dfdd17739
+      - 3d428e42-2c86-4abc-9160-4b3d6b2a38eb
+      - 1046fce9-0358-4c76-844d-1b59161e3826
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f882bd39-07ec-4100-94e6-ba3ed55d3856:
+    id: f882bd39-07ec-4100-94e6-ba3ed55d3856
+    content: 'Important — PTY size desync after toggle-on fit() — useTerminal.ts ~line 62 — transition effect calls fitAddon.fit() but never propagates the resulting cols/rows to the PTY via window.electron.terminalResize() or onResizeRef.current. Runtime ResizeObserver normally keeps things in sync, but if font metrics finalize late (panel was hidden during init, toggle-on is the first interaction), fit() can change rows/cols and the xterm grid drifts from the PTY''s winsize until the next genuine layout event — wrapping artifacts. Fix options: (a) drop fit() from the transition effect (let the runtime observer own grid sizing) and only call refresh + scrollToBottom; or (b) factor handleResize into a shared helper and call it here so terminalResize + onResize fire too'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07f4b0c9-6172-4647-a778-be44ce900a8a:
+    id: 07f4b0c9-6172-4647-a778-be44ce900a8a
+    content: 'Important — toggle-on before xterm is live silently no-ops — useTerminal.ts ~lines 54-60 — when xtermRef/fitAddonRef/container is null or zero-sized, the effect returns and nothing reschedules the reconcile for when init completes. The mount effect''s tryInit does not consult pinnedToBottomRef, so the bug the change is meant to fix can still manifest if the user toggles on a not-yet-initialised terminal. Fix options: (a) at the end of tryInit, if pinnedToBottomRef.current is true, run the same fit/refresh/scrollToBottom recipe; or (b) note in a comment that very-early toggle is out of scope and rely on the runtime observer''s hidden→visible reconcile to catch it on next layout'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c510e20-97a3-4363-8e75-ba1dfdd17739:
+    id: 9c510e20-97a3-4363-8e75-ba1dfdd17739
+    content: Nit — refresh() not wrapped in requestAnimationFrame — useTerminal.ts ~line 64 — the nearby first-data handler (~line 93 in the original) wraps refresh in rAF deliberately; if visual flicker shows up after the toggle, mirror that pattern
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d428e42-2c86-4abc-9160-4b3d6b2a38eb:
+    id: 3d428e42-2c86-4abc-9160-4b3d6b2a38eb
+    content: Nit — comment block now covers two unrelated jobs — useTerminal.ts ~lines 43-45 — the "Keep refs in sync" + "On a false → true transition" comment describes two responsibilities packed into one effect; CLAUDE.md prefers descriptive code over multi-purpose comment blocks. Could split into two useEffects keyed on pinnedToBottom — one for ref sync, one for the transition reconcile — so each comment explains a single why
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1046fce9-0358-4c76-844d-1b59161e3826:
+    id: 1046fce9-0358-4c76-844d-1b59161e3826
+    content: Verified clean — initial-mount no-op (prev seeded equal to current), no external callsite still depending on old true defaults, ref ordering of wasPinned vs writes, test file placement under services/tests/ matches convention, vi.mock('../logger') resolution is correct, it.todo placeholders are acknowledged-intentional
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -159316,4 +159752,6 @@ sessionRegistry:
   f1850030-dd54-4b73-b9c7-1ce7018bda5c:
     cwd: /Users/brianfox/dev/Arborescent
   a12449d6-8541-4e25-a982-0c6dcec6a754:
+    cwd: /Users/brianfox/dev/Arborescent
+  f74c25e3-1f11-4234-972f-3cbc0717cd39:
     cwd: /Users/brianfox/dev/Arborescent
