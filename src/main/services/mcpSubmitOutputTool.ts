@@ -71,6 +71,7 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
           request: { kind: 'submit-step-output', content },
         });
         if (!proposal.ok) return err(proposal.error);
+        deps.oneShotTargetStore.clearPendingTarget(sessionId);
         return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
       }
 
@@ -79,6 +80,7 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return err(result.error);
       }
 
+      deps.oneShotTargetStore.clearPendingTarget(sessionId);
       return ok({ applied: true });
     },
   };
