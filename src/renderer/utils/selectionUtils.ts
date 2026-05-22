@@ -1,17 +1,61 @@
+const PARTIAL_TEXT_SELECTION_SELECTORS = '[contenteditable], .node-text';
+
+function getSelectionAnchorElement(): Element | null {
+  const selection = window.getSelection();
+  if (!selection || selection.isCollapsed) return null;
+
+  const anchorNode = selection.anchorNode;
+  if (!anchorNode) return null;
+
+  return anchorNode.nodeType === Node.TEXT_NODE
+    ? anchorNode.parentElement
+    : (anchorNode as Element);
+}
+
 export function hasTextSelection(): boolean {
+  const element = getSelectionAnchorElement();
+  if (!element) return false;
+  if (!window.getSelection()?.toString()) return false;
+  return element.closest(PARTIAL_TEXT_SELECTION_SELECTORS) !== null;
+}
+
+export function isSelectionInContentEditable(): boolean {
+  const element = getSelectionAnchorElement();
+  if (!element) return false;
+  return element.closest('[contenteditable]') !== null;
+}
+
+export function isSelectionInRichContent(): boolean {
+  const element = getSelectionAnchorElement();
+  if (!element) return false;
+  const nodeText = element.closest('.node-text');
+  return nodeText?.getAttribute('data-rich') === 'true';
+}
+
+export function getSelectionNodeId(): string | null {
+  const element = getSelectionAnchorElement();
+  if (!element) return null;
+  const nodeElement = element.closest('[data-node-id]');
+  return nodeElement?.getAttribute('data-node-id') ?? null;
+}
+
+export function selectionSpansSingleNode(): boolean {
   const selection = window.getSelection();
   if (!selection || selection.isCollapsed) return false;
 
-  const selectedText = selection.toString();
-  if (!selectedText) return false;
+  const anchorElement =
+    selection.anchorNode?.nodeType === Node.TEXT_NODE
+      ? selection.anchorNode.parentElement
+      : (selection.anchorNode as Element | null);
+  const focusElement =
+    selection.focusNode?.nodeType === Node.TEXT_NODE
+      ? selection.focusNode.parentElement
+      : (selection.focusNode as Element | null);
 
-  const anchorNode = selection.anchorNode;
-  if (!anchorNode) return false;
+  const anchorNodeId = anchorElement?.closest('[data-node-id]')?.getAttribute('data-node-id') ?? null;
+  const focusNodeId = focusElement?.closest('[data-node-id]')?.getAttribute('data-node-id') ?? null;
 
-  const element =
-    anchorNode.nodeType === Node.TEXT_NODE ? anchorNode.parentElement : (anchorNode as Element);
-
-  return element?.closest('[contenteditable]') !== null;
+  return anchorNodeId === focusNodeId;
 }
 
 export function isContentEditableFocused(): boolean {

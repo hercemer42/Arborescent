@@ -24,6 +24,27 @@ import { getPositionFromPoint } from '../../../utils/position';
 import { useCustomizeDialogStore } from '../../../store/customizeDialog/customizeDialogStore';
 import { useSpellcheck } from './useSpellcheck';
 import { waitForSpellcheckUpdate, useSpellcheckStore } from '../../../store/spellcheck/spellcheckStore';
+import {
+  getSelectionNodeId,
+  hasTextSelection,
+  isSelectionInContentEditable,
+} from '../../../utils/selectionUtils';
+import { copySelectionText } from '../../../services/partialTextClipboard';
+
+function copyNodeOrSelection(nodeId: string, fallback: () => unknown): void {
+  if (
+    hasTextSelection() &&
+    !isSelectionInContentEditable() &&
+    getSelectionNodeId() === nodeId
+  ) {
+    const selectionText = window.getSelection()?.toString() ?? '';
+    if (selectionText) {
+      void copySelectionText(selectionText);
+      return;
+    }
+  }
+  void fallback();
+}
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
@@ -314,7 +335,7 @@ export function useNodeContextMenu(node: TreeNode) {
       ...(!isHyperlink && !isExternalLink && workflowMenuItem ? [workflowMenuItem] : []),
       buildEditSubmenu({
         onSelect: () => actions.toggleNodeSelection(node.id),
-        onCopy: () => actions.copyNodes(),
+        onCopy: () => copyNodeOrSelection(node.id, () => actions.copyNodes()),
         onCopyAsHyperlink: isHyperlink ? undefined : () => actions.copyAsHyperlink(),
         onCut: () => actions.cutNodes(),
         onPaste: isHyperlink ? undefined : () => actions.pasteNodes(),
@@ -352,7 +373,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
     const editSubmenu = buildEditSubmenu({
       onSelect: () => actions.toggleNodeSelection(node.id),
-      onCopy: () => actions.copyNodes(),
+      onCopy: () => copyNodeOrSelection(node.id, () => actions.copyNodes()),
       onCut: () => actions.cutNodes(),
       onPaste: () => actions.pasteNodes(),
       onDelete: handleDelete,

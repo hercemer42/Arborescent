@@ -2,10 +2,55 @@ import { useFilesStore } from '../../store/files/filesStore';
 import { useSearchStore } from '../../store/search/searchStore';
 import { useToastStore } from '../../store/toast/toastStore';
 import { matchesHotkey } from '../../utils/hotkeyConfig';
-import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser, isInputOrTextareaFocused } from '../../utils/selectionUtils';
+import {
+  getSelectionNodeId,
+  hasTextSelection,
+  isContentEditableFocused,
+  isFocusInPanel,
+  isFocusInTerminalOrBrowser,
+  isInputOrTextareaFocused,
+  isSelectionInContentEditable,
+  isSelectionInRichContent,
+  selectionSpansSingleNode,
+} from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
 import { getAppliedContextIdWithInheritance, resolveContextFlags, ContextFlags } from '../../utils/nodeHelpers';
 import { useHotkeyContextStore } from '../../store/hotkey/hotkeyContextStore';
+import { copySelectionText, cutSelectionFromNodeContent } from '../partialTextClipboard';
+
+async function handlePartialTextCut(): Promise<void> {
+  const selectionText = window.getSelection()?.toString() ?? '';
+  if (!selectionText) return;
+
+  if (isSelectionInRichContent()) {
+    await copySelectionText(selectionText);
+    return;
+  }
+
+  const nodeId = getSelectionNodeId();
+  const store = getActiveStore();
+
+  if (!nodeId || !store) {
+    await copySelectionText(selectionText);
+    return;
+  }
+
+  if (!selectionSpansSingleNode()) {
+    void store.getState().actions.cutNodes();
+    return;
+  }
+
+  const state = store.getState();
+  const node = state.nodes[nodeId];
+  if (!node) {
+    await copySelectionText(selectionText);
+    return;
+  }
+
+  await cutSelectionFromNodeContent(selectionText, node.content, (newContent) => {
+    state.actions.updateContent(nodeId, newContent);
+  });
+}
 
 async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   const { isInitialized, isHotkeyActiveInContext } = useHotkeyContextStore.getState();
@@ -194,7 +239,19 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
   if (matchesHotkey(event, 'actions', 'cut')) {
     if (isFocusInTerminalOrBrowser()) return;
-    if (hasTextSelection()) return;
+    if (isInputOrTextareaFocused()) return;
+    if (hasTextSelection()) {
+      if (!selectionSpansSingleNode()) {
+        event.preventDefault();
+        const store = getActiveStore();
+        void store?.getState().actions.cutNodes();
+        return;
+      }
+      if (isSelectionInContentEditable()) return;
+      event.preventDefault();
+      void handlePartialTextCut();
+      return;
+    }
 
     event.preventDefault();
     const store = getActiveStore();
@@ -204,7 +261,16 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
   if (matchesHotkey(event, 'actions', 'copy')) {
     if (isFocusInTerminalOrBrowser()) return;
-    if (hasTextSelection()) return;
+    if (isInputOrTextareaFocused()) return;
+    if (hasTextSelection()) {
+      if (!selectionSpansSingleNode()) {
+        event.preventDefault();
+        const store = getActiveStore();
+        void store?.getState().actions.copyNodes();
+        return;
+      }
+      return;
+    }
 
     event.preventDefault();
     const store = getActiveStore();

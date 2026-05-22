@@ -92,12 +92,14 @@ function NodeContentComponent({
         {highlightedContent ? (
           <div
             className={`node-text ${isLink ? 'hyperlink-text' : ''}`}
+            data-rich="true"
             onClick={isLink ? navigateToLinkedNode : undefined}
             dangerouslySetInnerHTML={{ __html: highlightedContent }}
           />
         ) : richHtml ? (
           <div
             className="node-text"
+            data-rich="true"
             onClick={handleRichClick}
             dangerouslySetInnerHTML={{ __html: richHtml }}
           />

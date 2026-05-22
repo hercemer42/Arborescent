@@ -1,7 +1,15 @@
 import { useCallback } from 'react';
 import { useActiveTreeActions, useActiveTreeStore } from './useActiveTreeStore';
 import { logger } from '../../../services/logger';
-import { hasTextSelection, isContentEditableFocused } from '../../../utils/selectionUtils';
+import {
+  getSelectionNodeId,
+  hasTextSelection,
+  isContentEditableFocused,
+  isSelectionInContentEditable,
+  isSelectionInRichContent,
+  selectionSpansSingleNode,
+} from '../../../utils/selectionUtils';
+import { copySelectionText, cutSelectionFromNodeContent } from '../../../services/partialTextClipboard';
 
 interface EditMenuActions {
   handleUndo: () => void;
@@ -37,18 +45,61 @@ export function useEditMenuActions(): EditMenuActions {
     if (!actions) return;
 
     if (hasTextSelection()) {
-      document.execCommand('cut');
+      if (!selectionSpansSingleNode()) {
+        await actions.cutNodes();
+        return;
+      }
+      if (isSelectionInContentEditable()) {
+        document.execCommand('cut');
+        return;
+      }
+
+      const selectionText = window.getSelection()?.toString() ?? '';
+      if (!selectionText) return;
+
+      if (isSelectionInRichContent()) {
+        await copySelectionText(selectionText);
+        return;
+      }
+
+      const nodeId = getSelectionNodeId();
+      if (!nodeId) {
+        await copySelectionText(selectionText);
+        return;
+      }
+
+      const node = treeState?.nodes[nodeId];
+      if (!node) {
+        await copySelectionText(selectionText);
+        return;
+      }
+
+      await cutSelectionFromNodeContent(selectionText, node.content, (newContent) => {
+        actions.updateContent(nodeId, newContent);
+      });
       return;
     }
 
     await actions.cutNodes();
-  }, [actions]);
+  }, [actions, treeState]);
 
   const handleCopy = useCallback(async () => {
     if (!actions) return;
 
     if (hasTextSelection()) {
-      document.execCommand('copy');
+      if (!selectionSpansSingleNode()) {
+        await actions.copyNodes();
+        return;
+      }
+      if (isSelectionInContentEditable()) {
+        document.execCommand('copy');
+        return;
+      }
+
+      const selectionText = window.getSelection()?.toString() ?? '';
+      if (selectionText) {
+        await copySelectionText(selectionText);
+      }
       return;
     }
 

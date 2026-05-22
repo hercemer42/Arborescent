@@ -4,6 +4,18 @@ import { useEditMenuActions } from '../useEditMenuActions';
 import * as useActiveTreeStoreModule from '../useActiveTreeStore';
 import { logger } from '../../../../services/logger';
 
+const mockCopySelectionText = vi.fn();
+const mockCutSelectionFromNodeContent = vi.fn();
+
+vi.mock('../../../../services/partialTextClipboard', () => ({
+  copySelectionText: (text: string) => mockCopySelectionText(text),
+  cutSelectionFromNodeContent: (
+    selectionText: string,
+    nodeContent: string,
+    applyContent: (newContent: string) => void
+  ) => mockCutSelectionFromNodeContent(selectionText, nodeContent, applyContent),
+}));
+
 // Mock dependencies
 vi.mock('../useActiveTreeStore', () => ({
   useActiveTreeActions: vi.fn(),
@@ -23,6 +35,8 @@ describe('useEditMenuActions', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockCopySelectionText.mockReset();
+    mockCutSelectionFromNodeContent.mockReset();
 
     // Default mock for useActiveTreeStore
     mockUseActiveTreeStore.mockReturnValue({
@@ -174,6 +188,189 @@ describe('useEditMenuActions', () => {
 
       expect(document.execCommand).not.toHaveBeenCalled();
     });
+
+    it('should NOT call cutNodes when text is selected inside a non-contenteditable .node-text', async () => {
+      const mockCutNodes = vi.fn().mockResolvedValue('cut');
+      mockUseActiveTreeActions.mockReturnValue({
+        cutNodes: mockCutNodes,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      const nodeText = document.createElement('div');
+      nodeText.className = 'node-text';
+      const textNode = document.createTextNode('partial select');
+      nodeText.appendChild(textNode);
+      document.body.appendChild(nodeText);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        toString: () => 'partial',
+        anchorNode: textNode,
+      } as unknown as Selection);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handleCut();
+      });
+
+      expect(mockCutNodes).not.toHaveBeenCalled();
+
+      document.body.removeChild(nodeText);
+    });
+
+    it('routes through cutSelectionFromNodeContent (clipboard + undo-aware updateContent) for partial cut on a non-contenteditable .node-text', async () => {
+      const mockCutNodes = vi.fn().mockResolvedValue('cut');
+      const mockUpdateContent = vi.fn();
+      mockUseActiveTreeActions.mockReturnValue({
+        cutNodes: mockCutNodes,
+        updateContent: mockUpdateContent,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      mockUseActiveTreeStore.mockReturnValue({
+        activeNodeId: 'node-1',
+        nodes: { 'node-1': { id: 'node-1', content: 'hello world', children: [], metadata: {} } },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      const wrapper = document.createElement('div');
+      wrapper.setAttribute('data-node-id', 'node-1');
+      const nodeText = document.createElement('div');
+      nodeText.className = 'node-text';
+      const textNode = document.createTextNode('hello world');
+      nodeText.appendChild(textNode);
+      wrapper.appendChild(nodeText);
+      document.body.appendChild(wrapper);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        toString: () => 'world',
+        anchorNode: textNode,
+        focusNode: textNode,
+      } as unknown as Selection);
+
+      mockCutSelectionFromNodeContent.mockImplementation(
+        async (_t: string, _c: string, apply: (next: string) => void) => apply('hello ')
+      );
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handleCut();
+      });
+
+      expect(mockCutSelectionFromNodeContent).toHaveBeenCalledTimes(1);
+      expect(mockCutSelectionFromNodeContent.mock.calls[0][0]).toBe('world');
+      expect(mockCutSelectionFromNodeContent.mock.calls[0][1]).toBe('hello world');
+      expect(mockUpdateContent).toHaveBeenCalledWith('node-1', 'hello ');
+      expect(mockCutNodes).not.toHaveBeenCalled();
+
+      document.body.removeChild(wrapper);
+    });
+
+    it('degrades to copy-only (no content mutation) when the selection is inside rich-rendered .node-text (data-rich="true")', async () => {
+      const mockCutNodes = vi.fn().mockResolvedValue('cut');
+      const mockUpdateContent = vi.fn();
+      mockUseActiveTreeActions.mockReturnValue({
+        cutNodes: mockCutNodes,
+        updateContent: mockUpdateContent,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      mockUseActiveTreeStore.mockReturnValue({
+        activeNodeId: 'node-1',
+        nodes: { 'node-1': { id: 'node-1', content: 'use `foo` for X', children: [], metadata: {} } },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      const wrapper = document.createElement('div');
+      wrapper.setAttribute('data-node-id', 'node-1');
+      const nodeText = document.createElement('div');
+      nodeText.className = 'node-text';
+      nodeText.setAttribute('data-rich', 'true');
+      const textNode = document.createTextNode('use foo for X');
+      nodeText.appendChild(textNode);
+      wrapper.appendChild(nodeText);
+      document.body.appendChild(wrapper);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        toString: () => 'foo',
+        anchorNode: textNode,
+        focusNode: textNode,
+      } as unknown as Selection);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handleCut();
+      });
+
+      expect(mockCopySelectionText).toHaveBeenCalledWith('foo');
+      expect(mockCutSelectionFromNodeContent).not.toHaveBeenCalled();
+      expect(mockUpdateContent).not.toHaveBeenCalled();
+      expect(mockCutNodes).not.toHaveBeenCalled();
+
+      document.body.removeChild(wrapper);
+    });
+
+    it('falls back to whole-node cutNodes when the selection spans multiple nodes', async () => {
+      const mockCutNodes = vi.fn().mockResolvedValue('cut');
+      const mockUpdateContent = vi.fn();
+      mockUseActiveTreeActions.mockReturnValue({
+        cutNodes: mockCutNodes,
+        updateContent: mockUpdateContent,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      mockUseActiveTreeStore.mockReturnValue({
+        activeNodeId: 'node-1',
+        nodes: {
+          'node-1': { id: 'node-1', content: 'first', children: [], metadata: {} },
+          'node-2': { id: 'node-2', content: 'second', children: [], metadata: {} },
+        },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      const wrapper1 = document.createElement('div');
+      wrapper1.setAttribute('data-node-id', 'node-1');
+      const nodeText1 = document.createElement('div');
+      nodeText1.className = 'node-text';
+      const textNode1 = document.createTextNode('first');
+      nodeText1.appendChild(textNode1);
+      wrapper1.appendChild(nodeText1);
+      document.body.appendChild(wrapper1);
+
+      const wrapper2 = document.createElement('div');
+      wrapper2.setAttribute('data-node-id', 'node-2');
+      const nodeText2 = document.createElement('div');
+      nodeText2.className = 'node-text';
+      const textNode2 = document.createTextNode('second');
+      nodeText2.appendChild(textNode2);
+      wrapper2.appendChild(nodeText2);
+      document.body.appendChild(wrapper2);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        toString: () => 'first\nsecond',
+        anchorNode: textNode1,
+        focusNode: textNode2,
+      } as unknown as Selection);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handleCut();
+      });
+
+      expect(mockCutNodes).toHaveBeenCalledTimes(1);
+      expect(mockCutSelectionFromNodeContent).not.toHaveBeenCalled();
+      expect(mockUpdateContent).not.toHaveBeenCalled();
+
+      document.body.removeChild(wrapper1);
+      document.body.removeChild(wrapper2);
+    });
   });
 
   describe('handleCopy', () => {
@@ -235,6 +432,114 @@ describe('useEditMenuActions', () => {
       });
 
       expect(document.execCommand).not.toHaveBeenCalled();
+    });
+
+    it('should NOT call copyNodes when text is selected inside a non-contenteditable .node-text', async () => {
+      const mockCopyNodes = vi.fn().mockResolvedValue('copied');
+      mockUseActiveTreeActions.mockReturnValue({
+        copyNodes: mockCopyNodes,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      const nodeText = document.createElement('div');
+      nodeText.className = 'node-text';
+      const textNode = document.createTextNode('partial select');
+      nodeText.appendChild(textNode);
+      document.body.appendChild(nodeText);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        toString: () => 'partial',
+        anchorNode: textNode,
+      } as unknown as Selection);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handleCopy();
+      });
+
+      expect(mockCopyNodes).not.toHaveBeenCalled();
+
+      document.body.removeChild(nodeText);
+    });
+
+    it('should fall back to whole-node copyNodes when the text selection spans multiple nodes', async () => {
+      const mockCopyNodes = vi.fn().mockResolvedValue('copied');
+      mockUseActiveTreeActions.mockReturnValue({
+        copyNodes: mockCopyNodes,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      const wrapper1 = document.createElement('div');
+      wrapper1.setAttribute('data-node-id', 'node-1');
+      const nodeText1 = document.createElement('div');
+      nodeText1.className = 'node-text';
+      const textNode1 = document.createTextNode('first');
+      nodeText1.appendChild(textNode1);
+      wrapper1.appendChild(nodeText1);
+      document.body.appendChild(wrapper1);
+
+      const wrapper2 = document.createElement('div');
+      wrapper2.setAttribute('data-node-id', 'node-2');
+      const nodeText2 = document.createElement('div');
+      nodeText2.className = 'node-text';
+      const textNode2 = document.createTextNode('second');
+      nodeText2.appendChild(textNode2);
+      wrapper2.appendChild(nodeText2);
+      document.body.appendChild(wrapper2);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        toString: () => 'first\nsecond',
+        anchorNode: textNode1,
+        focusNode: textNode2,
+      } as unknown as Selection);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handleCopy();
+      });
+
+      expect(mockCopyNodes).toHaveBeenCalledTimes(1);
+      expect(mockCopySelectionText).not.toHaveBeenCalled();
+
+      document.body.removeChild(wrapper1);
+      document.body.removeChild(wrapper2);
+    });
+
+    it('should leave the tree unchanged when copying highlighted text from a non-contenteditable .node-text', async () => {
+      const mockCopyNodes = vi.fn().mockResolvedValue('copied');
+      const mockUpdateContent = vi.fn();
+      mockUseActiveTreeActions.mockReturnValue({
+        copyNodes: mockCopyNodes,
+        updateContent: mockUpdateContent,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      const nodeText = document.createElement('div');
+      nodeText.className = 'node-text';
+      const textNode = document.createTextNode('hello world');
+      nodeText.appendChild(textNode);
+      document.body.appendChild(nodeText);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        toString: () => 'hello',
+        anchorNode: textNode,
+      } as unknown as Selection);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handleCopy();
+      });
+
+      expect(mockCopyNodes).not.toHaveBeenCalled();
+      expect(mockUpdateContent).not.toHaveBeenCalled();
+
+      document.body.removeChild(nodeText);
     });
   });
 
