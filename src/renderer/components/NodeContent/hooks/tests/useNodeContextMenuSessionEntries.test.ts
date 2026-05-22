@@ -1,13 +1,5 @@
 import { describe, it } from 'vitest';
 
-describe('useNodeContextMenu — Resume session entry visibility (workflow gate dropped)', () => {
-  it.todo('shows "Resume session" on a manual (non-workflow) node that has captured a sessionId via Send');
-  it.todo('shows "Resume session" on any node whose sessionId resolves to alive-attached');
-  it.todo('shows "Resume session" on any node whose sessionId resolves to alive-detached');
-  it.todo('hides "Resume session" only when the node has no sessionId at all (no-session)');
-  it.todo('Resume session no longer requires the node to be a workflow step or have isWorkflow=true ancestor');
-});
-
 describe('useNodeContextMenu — Start workflow modal-warn entry', () => {
   it.todo('clicking Start on a node that resolves to "remap-warn" surfaces a confirm modal naming the existing sessionId');
   it.todo('on confirm, replaces sessionId, runs spawn-fresh + auto-launch, /clear is skipped');

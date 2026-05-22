@@ -260,7 +260,7 @@ export function useNodeContextMenu(node: TreeNode) {
       isWorkflowStep
       && typeof sessionId === 'string'
       && sessionId.length > 0
-      && (sessionLiveness === 'alive-attached' || sessionLiveness === 'alive-detached');
+      && sessionLiveness === 'alive-detached';
 
     const handleResumeSession = async () => {
       try {
