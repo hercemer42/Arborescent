@@ -10,6 +10,7 @@ import { registerPreferencesHandlers } from './preferencesHandlers';
 import { registerNotificationHandlers } from './notificationHandlers';
 import { registerKeepAwakeHandlers } from './keepAwakeHandlers';
 import { registerLogHandlers } from './logHandlers';
+import { registerClaudeSessionHandlers } from './claudeSessionHandlers';
 
 // Note: terminal handlers (registerTerminalHandlers) are registered
 // separately in main.ts after window creation because they require the
@@ -27,4 +28,5 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
   registerNotificationHandlers(getMainWindow);
   registerKeepAwakeHandlers();
   registerLogHandlers();
+  registerClaudeSessionHandlers();
 }

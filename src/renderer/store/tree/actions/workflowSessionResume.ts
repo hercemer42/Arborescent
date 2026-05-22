@@ -76,11 +76,25 @@ export function captureSessionOnNode(
   return { ...nodes, [nodeId]: { ...node, metadata: nextMetadata } };
 }
 
-export function resumeTabTitle(node: TreeNode | undefined): string {
+export function shortSessionId(sessionId: string): string {
+  return sessionId.slice(0, 8);
+}
+
+export function resumeTabTitle(node: TreeNode | undefined, sessionId?: string): string {
   const taskTitle = node ? extractTaskTitle(node) : '';
-  if (taskTitle) return taskTitle;
-  const { terminals } = useTerminalStore.getState();
-  return `Terminal ${terminals.length + 1}`;
+  const base = taskTitle || `Terminal ${useTerminalStore.getState().terminals.length + 1}`;
+  return sessionId ? `${base} · ${shortSessionId(sessionId)}` : base;
+}
+
+async function checkClaudeSessionExists(cwd: string, sessionId: string): Promise<boolean | null> {
+  const probe = window.electron.claudeSessionExists;
+  if (typeof probe !== 'function') return null;
+  try {
+    return await probe(cwd, sessionId);
+  } catch (error) {
+    logger.warn(`claudeSessionExists failed: ${(error as Error).message}`, 'WorkflowExecution');
+    return null;
+  }
 }
 
 export function createSessionResumeManager(deps: SessionResumeDeps): SessionResumeManager {
@@ -113,8 +127,17 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
       return;
     }
 
+    const sessionExists = await checkClaudeSessionExists(cwd, sessionId);
+    if (sessionExists === false) {
+      useToastStore.getState().addToast(
+        `Session ${shortSessionId(sessionId)} no longer exists on disk`,
+        'error',
+      );
+      return;
+    }
+
     try {
-      const title = resumeTabTitle(node);
+      const title = resumeTabTitle(node, sessionId);
       const created = await useTerminalStore.getState().createNewTerminal(title, cwd, nodeId);
       if (!created) throw new Error('Resume terminal was not created');
       await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);

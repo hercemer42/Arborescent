@@ -84,13 +84,13 @@ describe('resumeSession — terminal tab title is meaningful, never literal "Res
     expect(titleArg).not.toBe('Resume');
   });
 
-  it('derives the tab title from the originating node\'s first non-empty line of content', async () => {
+  it('derives the tab title from the originating node\'s first non-empty line of content with the short sessionId appended', async () => {
     state.nodes = { 'node-A': makeNode('node-A', 'Investigate session regression\nsecond line') };
 
     await build().resumeSession('node-A');
 
     expect(mockCreateNewTerminal).toHaveBeenCalledWith(
-      'Investigate session regression',
+      'Investigate session regression · sess-1',
       '/recorded/cwd',
       'node-A',
     );

@@ -178,6 +178,7 @@ export interface ElectronAPI {
   terminalResize: (id: string, cols: number, rows: number) => Promise<void>;
   terminalDestroy: (id: string) => Promise<void>;
   terminalGetCwd: (id: string) => Promise<string | null>;
+  claudeSessionExists: (cwd: string, sessionId: string) => Promise<boolean>;
   onTerminalData: (id: string, callback: (data: string) => void) => Unsubscribe;
   onTerminalExit: (id: string, callback: (exitInfo: TerminalExitInfo) => void) => Unsubscribe;
 

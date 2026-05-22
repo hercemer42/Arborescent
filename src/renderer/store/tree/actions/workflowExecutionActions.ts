@@ -187,14 +187,28 @@ export const createWorkflowExecutionActions = (
     return null;
   }
 
-  function findCapturableNodeForTerminal(terminalId: string): string | null {
+  function findCapturableNodeForTerminal(
+    terminalId: string,
+    incomingSessionId: string,
+  ): string | null {
     const running = findRunningNodeOnTerminal(terminalId);
     if (running) return running;
     const originNodeId = useTerminalStore
       .getState()
       .terminals.find((t) => t.id === terminalId)?.originNodeId;
-    if (originNodeId && get().nodes[originNodeId]) return originNodeId;
-    return null;
+    if (!originNodeId) return null;
+    const originNode = get().nodes[originNodeId];
+    if (!originNode) return null;
+    const bookmarked = originNode.metadata.sessionId;
+    if (
+      typeof bookmarked === 'string' &&
+      bookmarked.length > 0 &&
+      bookmarked !== incomingSessionId &&
+      originNode.metadata.brokenChain !== true
+    ) {
+      return null;
+    }
+    return originNodeId;
   }
 
   function findNodeIdBySessionId(sessionId: string): string | null {
@@ -283,7 +297,7 @@ export const createWorkflowExecutionActions = (
 
     if (route.kind === "resume-in-new-tab" && route.cwd) {
       try {
-        const title = resumeTabTitle(node);
+        const title = resumeTabTitle(node, route.sessionId);
         const created = await useTerminalStore.getState().createNewTerminal(title, route.cwd, nodeId);
         if (!created) throw new Error("Terminal not created");
         await window.electron.terminalWrite(created.id, `claude --resume ${route.sessionId}\r`);
@@ -561,7 +575,7 @@ export const createWorkflowExecutionActions = (
 
   async function openInheritedResumeTerminal(sessionId: string, cwd: string, originNodeId?: string): Promise<string> {
     const originNode = originNodeId ? get().nodes[originNodeId] : undefined;
-    const title = resumeTabTitle(originNode);
+    const title = resumeTabTitle(originNode, sessionId);
     const created = await useTerminalStore.getState().createNewTerminal(title, cwd, originNodeId);
     if (!created) throw new Error('Resume terminal was not created');
     await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
@@ -873,7 +887,7 @@ export const createWorkflowExecutionActions = (
     updatedMap[trimmed] = terminalId;
 
     const runningNodeId = findRunningNodeOnTerminal(terminalId);
-    const captureNodeId = findCapturableNodeForTerminal(terminalId);
+    const captureNodeId = findCapturableNodeForTerminal(terminalId, trimmed);
     const nodesWithCapture = captureNodeId
       ? captureSessionOnNode(nodes, captureNodeId, trimmed)
       : nodes;

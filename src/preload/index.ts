@@ -63,6 +63,8 @@ const api: ElectronAPI = {
     ipcRenderer.invoke('terminal:destroy', id),
   terminalGetCwd: (id) =>
     ipcRenderer.invoke('terminal:get-cwd', id),
+  claudeSessionExists: (cwd, sessionId) =>
+    ipcRenderer.invoke('claude:session-exists', cwd, sessionId),
   onTerminalData: (id, callback) => {
     const channel = `terminal:data:${id}`;
     const listener = (_event: Electron.IpcRendererEvent, data: string) => callback(data);
