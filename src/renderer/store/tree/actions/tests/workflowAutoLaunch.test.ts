@@ -68,6 +68,7 @@ vi.mock('../../../terminal/terminalStore', () => ({
     getState: () => ({
       setActiveTerminal: vi.fn(),
       createNewTerminal: vi.fn(),
+      updateTerminal: vi.fn(),
       terminals: mockTerminals,
     }),
   },
