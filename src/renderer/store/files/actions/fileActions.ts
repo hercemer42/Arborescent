@@ -5,6 +5,7 @@ import { cleanupFeedback } from '../../../services/feedback/feedbackService';
 import { createArboFile, extractBlueprintNodes } from '../../../utils/document';
 import { createBlankDocument } from '../../../utils/defaultTemplate';
 import { extractSessionBindings } from '../../../utils/extractSessionBindings';
+import { useTerminalStore } from '../../terminal/terminalStore';
 import { File } from '../filesStore';
 import { getDisplayName } from '../../../../shared/utils/fileNaming';
 
@@ -84,12 +85,21 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     if (typeof seed !== 'function') return;
     try {
       const { nodes } = storeManager.getStoreForFile(path).getState();
-      const pairs = extractSessionBindings(nodes);
+      const pairs = extractSessionBindings(nodes, collectTerminalOriginNodeIds(path));
       if (pairs.length === 0) return;
       await seed(pairs);
     } catch (error) {
       logger.error('Failed to seed session bindings from .arbo metadata', error as Error, 'FileLoad');
     }
+  }
+
+  function collectTerminalOriginNodeIds(path: string): Set<string> {
+    const fileTerminals = useTerminalStore.getState().fileStates[path]?.terminals ?? [];
+    const ids = new Set<string>();
+    for (const terminal of fileTerminals) {
+      if (terminal.originNodeId) ids.add(terminal.originNodeId);
+    }
+    return ids;
   }
 
   async function clearSessionBindingsForFile(path: string): Promise<void> {

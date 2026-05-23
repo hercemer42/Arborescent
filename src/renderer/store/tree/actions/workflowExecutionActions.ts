@@ -214,25 +214,46 @@ export const createWorkflowExecutionActions = (
 
   function findNodeIdBySessionId(sessionId: string): string | null {
     const { nodes } = get();
-    for (const [nodeId, node] of Object.entries(nodes)) {
-      if (node.metadata.sessionId === sessionId) return nodeId;
+    const sortedIds = Object.keys(nodes).sort();
+    for (const nodeId of sortedIds) {
+      if (nodes[nodeId]?.metadata.sessionId === sessionId) return nodeId;
     }
     return null;
   }
 
   function reattachOriginNodeForResumedSession(terminalId: string, sessionId: string): void {
-    const reattachNodeId = findNodeIdBySessionId(sessionId);
-    if (!reattachNodeId) return;
     const terminalStore = useTerminalStore.getState();
     const terminal = terminalStore.terminals.find((t) => t.id === terminalId);
-    if (terminal && !terminal.originNodeId) {
-      terminalStore.updateTerminal(terminalId, { originNodeId: reattachNodeId });
-      syncTerminalTitleFromNode(terminalId, get().nodes[reattachNodeId]);
-      logger.info(
-        `Reattached terminal ${terminalId} to node ${reattachNodeId} via sessionId ${sessionId}`,
+    if (!terminal) return;
+
+    if (terminal.originNodeId) {
+      const originNode = get().nodes[terminal.originNodeId];
+      if (originNode) {
+        logger.info(
+          `Resumed terminal ${terminalId} retained originNodeId ${terminal.originNodeId} (sessionId ${sessionId})`,
+          'WorkflowExecution',
+        );
+        return;
+      }
+      terminalStore.updateTerminal(terminalId, { originNodeId: undefined });
+      useToastStore
+        .getState()
+        .addToast('Previously-bound node no longer exists — terminal unbound', 'info');
+      logger.warn(
+        `Terminal ${terminalId} originNodeId ${terminal.originNodeId} no longer exists; cleared (sessionId ${sessionId})`,
         'WorkflowExecution',
       );
+      return;
     }
+
+    const reattachNodeId = findNodeIdBySessionId(sessionId);
+    if (!reattachNodeId) return;
+    terminalStore.updateTerminal(terminalId, { originNodeId: reattachNodeId });
+    syncTerminalTitleFromNode(terminalId, get().nodes[reattachNodeId]);
+    logger.info(
+      `Reattached terminal ${terminalId} to node ${reattachNodeId} via sessionId ${sessionId} (legacy fallback)`,
+      'WorkflowExecution',
+    );
   }
 
   function syncTerminalTitleFromNode(terminalId: string, node: TreeNode | undefined): void {
