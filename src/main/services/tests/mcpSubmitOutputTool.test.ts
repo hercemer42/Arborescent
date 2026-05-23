@@ -190,10 +190,18 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
     expect(payload.reason).toMatch(/safety-net/i);
   });
 
-  it('safety-net origin on an autonomous step still applies (the original safety net use case)', async () => {
+  it('safety-net origin on an autonomous step is also a no-op — completion requires an explicit submit', async () => {
+    // Completion is gated on an explicit submit_step_output call. The Stop-hook
+    // safety net no longer auto-applies content on autonomous steps either;
+    // otherwise a turn that ended without the AI calling submit_step_output
+    // would still corrupt the bound node with the transcript's last message.
     const { tool, applier } = withStepType('autonomous');
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'auto', origin: 'safety-net' });
-    expect(applier.apply).toHaveBeenCalledTimes(1);
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'auto', origin: 'safety-net' });
+    expect(result.isError).toBeFalsy();
+    expect(applier.apply).not.toHaveBeenCalled();
+    const payload = JSON.parse(result.content[0].text);
+    expect(payload.applied).toBe(false);
+    expect(payload.reason).toMatch(/safety-net/i);
   });
 
   it('explicit origin (default) on a non-automatic step continues to queue a proposal', async () => {
@@ -386,6 +394,158 @@ describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).toHaveBeenCalled();
+  });
+});
+
+describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook completion gate)', () => {
+  // The explicit-submit flag is the positive completion signal for the
+  // Stop-hook gate: when set, the Stop hook is allowed to advance the
+  // bound autonomous step; when clear, Stop is a no-op even on autonomous
+  // steps. The flag is per-session, scoped to the current turn, and is
+  // set ONLY by explicit submissions — safety-net submissions must not
+  // raise it, since they fire on every assistant turn boundary regardless
+  // of whether the AI actually intended completion.
+
+  it('explicit-origin submit on an autonomous step sets explicitSubmitSeenThisTurn for the session', async () => {
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    const tool = createSubmitOutputTool(made.deps);
+
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'auto' });
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+  });
+
+  it('explicit-origin submit on a non-automatic step (proposal route) sets explicitSubmitSeenThisTurn', async () => {
+    // The AI's explicit submit is meaningful even on manual/checkpoint
+    // steps: it signals "the AI has produced its turn output for the user
+    // to review." The Stop-hook gate uses this to decide whether the
+    // awaiting-validation transition should fire.
+    const made = makeDeps('manual');
+    made.registry.register('sess-1', BOUND);
+    made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'manual response' });
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+  });
+
+  it('safety-net-origin submit does NOT set explicitSubmitSeenThisTurn (autonomous)', async () => {
+    // Safety-net submissions are the Stop hook auto-submit; they fire on
+    // every turn regardless of intent. Letting them raise the flag would
+    // make the gate self-defeating — the very Stop event we want to gate
+    // would always find the flag set.
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'auto', origin: 'safety-net' });
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+  });
+
+  it('safety-net-origin submit does NOT set explicitSubmitSeenThisTurn on a non-automatic step (no-op path)', async () => {
+    const made = makeDeps('manual');
+    made.registry.register('sess-1', BOUND);
+    made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x', origin: 'safety-net' });
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+  });
+
+  it('unbound session does NOT set explicitSubmitSeenThisTurn — no completion can be claimed without a binding', async () => {
+    const made = makeDeps('autonomous');
+    // do NOT register sess-1
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'orphan' });
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+  });
+
+  it('safety-net early no-op (no markerSeenThisTurn) does NOT set explicitSubmitSeenThisTurn', async () => {
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    // markerSeenThisTurn intentionally NOT set
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x', origin: 'safety-net' });
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+  });
+
+  it('flag is set per-session — sess-1 explicit submit does not leak to sess-2', async () => {
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    made.registry.register('sess-2', BOUND);
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-2')).toBe(false);
+  });
+
+  it('a failed applier.apply leaves explicitSubmitSeenThisTurn unset so the next Stop is correctly gated', async () => {
+    // Completion requires both AI intent AND content successfully landing.
+    // A failed apply means the content never reached the bound node, so the
+    // turn must NOT raise the gate — otherwise the Stop would advance the
+    // step on stale content, reintroducing the original bug class.
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    (made.applier.apply as ReturnType<typeof vi.fn>).mockImplementation(async () => ({
+      ok: false,
+      error: 'renderer rejected: collaborating node mismatch',
+    }));
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+  });
+
+  it('a failed proposal also leaves explicitSubmitSeenThisTurn unset', async () => {
+    const made = makeDeps('manual');
+    made.registry.register('sess-1', BOUND);
+    made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
+    (made.proposalSubmitter.submit as ReturnType<typeof vi.fn>).mockImplementation(async () => ({
+      ok: false,
+      error: 'no store for bound file',
+    }));
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+
+    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+  });
+});
+
+describe('createSubmitOutputTool — submission logging records origin and applied state', () => {
+  it('logs origin=explicit and applied=true on a successful autonomous apply', async () => {
+    const { logger } = await import('../logger');
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+
+    const logCalls = (logger.info as ReturnType<typeof vi.fn>).mock.calls.map(
+      (call) => call[0] as string,
+    );
+    expect(logCalls.some((msg) => /origin=explicit/.test(msg) && /applied=true/.test(msg))).toBe(true);
+  });
+
+  it('logs origin=safety-net and applied=false when the safety-net path no-ops', async () => {
+    const { logger } = await import('../logger');
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x', origin: 'safety-net' });
+
+    const logCalls = (logger.info as ReturnType<typeof vi.fn>).mock.calls.map(
+      (call) => call[0] as string,
+    );
+    expect(logCalls.some((msg) => /origin=safety-net/.test(msg) && /applied=false/.test(msg))).toBe(true);
   });
 });
 

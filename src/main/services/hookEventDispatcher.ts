@@ -17,8 +17,30 @@ export function createHookEventDispatcher(deps: HookEventDispatcherDeps) {
       handleRegisterTarget(payload, deps);
       return;
     }
+    if (payload.hook_event_name === 'Stop') {
+      deps.forwardToRenderer(attachExplicitSubmitSeen(payload, deps));
+      return;
+    }
     deps.forwardToRenderer(payload);
   };
+}
+
+function attachExplicitSubmitSeen(
+  payload: HookEventPayload,
+  deps: HookEventDispatcherDeps,
+): HookEventPayload {
+  const mcpServer = deps.getMcpServer();
+  if (!mcpServer) return payload;
+  const oneShot = mcpServer.getOneShotTargetStore();
+  const seen = oneShot.wasExplicitSubmitSeenThisTurn(payload.session_id);
+  // Clear before forwarding so a downstream throw cannot leave the flag armed
+  // for a phantom second Stop in the same turn.
+  oneShot.setExplicitSubmitSeenThisTurn(payload.session_id, false);
+  logger.info(
+    `Stop forwarded session=${payload.session_id} explicit_submit_seen=${seen}`,
+    'HookDispatch',
+  );
+  return { ...payload, explicit_submit_seen: seen };
 }
 
 function handleRegisterBinding(payload: HookEventPayload, deps: HookEventDispatcherDeps): void {
@@ -80,6 +102,9 @@ function handleRegisterTarget(payload: HookEventPayload, deps: HookEventDispatch
   }
   const markerSeen = Boolean(payload.marker_seen_this_turn);
   oneShot.setMarkerSeenThisTurn(payload.session_id, markerSeen);
+  // Turn boundary: the explicit-submit flag is per-turn and must reset so
+  // the previous turn's completion does not leak into the new turn's Stop.
+  oneShot.setExplicitSubmitSeenThisTurn(payload.session_id, false);
   logger.info(
     `register-target session=${payload.session_id} target=${payload.target_node_uuid ?? 'none'} markerSeen=${markerSeen}`,
     'HookDispatch'

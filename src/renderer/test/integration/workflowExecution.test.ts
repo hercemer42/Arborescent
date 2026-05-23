@@ -190,6 +190,60 @@ describe('Integration: Workflow Execution', () => {
     });
   });
 
+  describe('Stop completion gate — interrupt mid-task then unrelated turn', () => {
+    it('autonomous step stays in flight when Stop arrives with explicit_submit_seen=false and advances on a subsequent explicit submit', () => {
+      const state = () => stateRef.current;
+
+      void actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: false,
+      });
+
+      expect(state().nodes['s1'].children).toContain('task');
+      expect(state().nodes['s2'].children).not.toContain('task');
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: true,
+      });
+
+      expect(state().nodes['s2'].children).toContain('task');
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+    });
+
+    it('checkpoint step does not raise step-complete toast when Stop arrives with explicit_submit_seen=false', () => {
+      const state = () => stateRef.current;
+
+      state().nodes['s2'].metadata.stepType = 'checkpoint';
+
+      void actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: true,
+      });
+      expect(state().nodes['s2'].children).toContain('task');
+      mockAddToast.mockClear();
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: false,
+      });
+
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+      expect(mockAddToast).not.toHaveBeenCalled();
+    });
+  });
+
   describe('nested workflow traversal', () => {
     beforeEach(() => {
       const state = stateRef.current;

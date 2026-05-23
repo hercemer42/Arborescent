@@ -207,7 +207,7 @@ describe('createSubmitOutputTool — pendingTarget consume-on-use', () => {
 
     const payload = JSON.parse(result.content[0].text);
     expect(payload.applied).toBe(false);
-    expect(payload.reason).toMatch(/safety-net skipped non-automatic/i);
+    expect(payload.reason).toMatch(/safety-net/i);
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).not.toHaveBeenCalled();
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);

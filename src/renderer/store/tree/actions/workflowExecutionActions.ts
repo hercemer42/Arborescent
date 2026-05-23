@@ -28,7 +28,7 @@ import { usePreferencesStore } from "../../preferences/preferencesStore";
 import { notifyWorkflowEvent } from "../../../services/workflowNotification";
 import { findAllParentsOf, removeNodeFromAllParents } from "../../../utils/treeInvariants";
 import { createDisruptionReactions } from "./workflowDisruptionReactions";
-import { createHookEventHandler } from "./workflowHookEventHandler";
+import { createHookEventHandler, HookEventPayload } from "./workflowHookEventHandler";
 import { createClearSessionManager } from "./workflowClearSession";
 import { createClaudeLaunchManager } from "./workflowClaudeLaunch";
 import {
@@ -54,13 +54,7 @@ export interface WorkflowExecutionActions {
   advanceNode: (nodeId: string) => void;
   registerSession: (sessionId: string, terminalId: string, source?: string) => void;
   resumeSession: (nodeId: string) => Promise<void>;
-  handleHookEvent: (event: {
-    session_id: string;
-    hook_event_name: string;
-    message?: string;
-    terminal_id?: string;
-    source?: string;
-  }) => void;
+  handleHookEvent: (event: HookEventPayload) => void;
   initializeExecutionState: () => void;
   handleTerminalClosed: (terminalId: string) => void;
   handleNodeDeleted: (nodeId: string) => void;

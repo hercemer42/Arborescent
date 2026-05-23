@@ -1,6 +1,7 @@
 export class OneShotTargetStore {
   private pendingTargets = new Map<string, string>();
   private markerSeen = new Set<string>();
+  private explicitSubmitSeen = new Set<string>();
 
   setPendingTarget(sessionId: string, nodeId: string): void {
     if (!sessionId || !nodeId) return;
@@ -31,14 +32,30 @@ export class OneShotTargetStore {
     return this.markerSeen.has(sessionId);
   }
 
+  setExplicitSubmitSeenThisTurn(sessionId: string, value: boolean): void {
+    if (!sessionId) return;
+    if (value) {
+      this.explicitSubmitSeen.add(sessionId);
+    } else {
+      this.explicitSubmitSeen.delete(sessionId);
+    }
+  }
+
+  wasExplicitSubmitSeenThisTurn(sessionId: string): boolean {
+    if (!sessionId) return false;
+    return this.explicitSubmitSeen.has(sessionId);
+  }
+
   resetSession(sessionId: string): void {
     if (!sessionId) return;
     this.pendingTargets.delete(sessionId);
     this.markerSeen.delete(sessionId);
+    this.explicitSubmitSeen.delete(sessionId);
   }
 
   clear(): void {
     this.pendingTargets.clear();
     this.markerSeen.clear();
+    this.explicitSubmitSeen.clear();
   }
 }

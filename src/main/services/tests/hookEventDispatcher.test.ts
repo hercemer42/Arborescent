@@ -286,3 +286,87 @@ describe('createHookEventDispatcher — session-terminal-mapping forwarding from
   });
 });
 
+describe('createHookEventDispatcher — Stop forwarding attaches the explicit-submit gate', () => {
+  let oneShot: OneShotTargetStore;
+  let server: ArborescentMcpServer;
+  let forwardToRenderer: ReturnType<typeof vi.fn>;
+  let dispatch: ReturnType<typeof createHookEventDispatcher>;
+
+  beforeEach(() => {
+    const made = makeFakeMcpServer();
+    server = made.server;
+    oneShot = made.oneShot;
+    forwardToRenderer = vi.fn();
+    dispatch = createHookEventDispatcher({
+      getMcpServer: () => server,
+      forwardToRenderer,
+    });
+  });
+
+  it('Stop forwards explicit_submit_seen=true when an explicit submit happened this turn', () => {
+    oneShot.setExplicitSubmitSeenThisTurn('sess-1', true);
+
+    dispatch({ session_id: 'sess-1', hook_event_name: 'Stop' });
+
+    expect(forwardToRenderer).toHaveBeenCalledWith(
+      expect.objectContaining({ hook_event_name: 'Stop', explicit_submit_seen: true }),
+    );
+  });
+
+  it('Stop forwards explicit_submit_seen=false when no explicit submit happened this turn', () => {
+    dispatch({ session_id: 'sess-1', hook_event_name: 'Stop' });
+
+    expect(forwardToRenderer).toHaveBeenCalledWith(
+      expect.objectContaining({ hook_event_name: 'Stop', explicit_submit_seen: false }),
+    );
+  });
+
+  it('non-Stop events do NOT receive an explicit_submit_seen attachment', () => {
+    oneShot.setExplicitSubmitSeenThisTurn('sess-1', true);
+
+    dispatch({ session_id: 'sess-1', hook_event_name: 'UserPromptSubmit' });
+
+    const forwarded = forwardToRenderer.mock.calls[0][0] as HookEventPayload;
+    expect(forwarded.hook_event_name).toBe('UserPromptSubmit');
+    expect(forwarded.explicit_submit_seen).toBeUndefined();
+  });
+
+  it('Stop forwarding without an MCP server falls back to the payload unchanged', () => {
+    const fallback = createHookEventDispatcher({
+      getMcpServer: () => null,
+      forwardToRenderer,
+    });
+
+    fallback({ session_id: 'sess-1', hook_event_name: 'Stop' });
+
+    const forwarded = forwardToRenderer.mock.calls[0][0] as HookEventPayload;
+    expect(forwarded.hook_event_name).toBe('Stop');
+    expect(forwarded.explicit_submit_seen).toBeUndefined();
+  });
+
+  it('register-target resets explicit_submit_seen so the previous turn does not leak into the next Stop', () => {
+    oneShot.setExplicitSubmitSeenThisTurn('sess-1', true);
+
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-target',
+      target_node_uuid: 'node-a',
+      marker_seen_this_turn: true,
+    });
+
+    expect(oneShot.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+  });
+
+  it('two Stops in one turn do not double-advance — the flag is cleared after the first Stop forwarding', () => {
+    oneShot.setExplicitSubmitSeenThisTurn('sess-1', true);
+
+    dispatch({ session_id: 'sess-1', hook_event_name: 'Stop' });
+    dispatch({ session_id: 'sess-1', hook_event_name: 'Stop' });
+
+    const firstForward = forwardToRenderer.mock.calls[0][0] as HookEventPayload;
+    const secondForward = forwardToRenderer.mock.calls[1][0] as HookEventPayload;
+    expect(firstForward.explicit_submit_seen).toBe(true);
+    expect(secondForward.explicit_submit_seen).toBe(false);
+  });
+});
+

@@ -24,6 +24,9 @@ export interface HookEventPayload {
   message?: string;
   terminal_id?: string;
   source?: string;
+  // Completion gate: false means no explicit submit_step_output happened
+  // this turn and the bound step must not advance. Absent is permissive.
+  explicit_submit_seen?: boolean;
 }
 
 export interface HookEventHandlerDeps {
@@ -123,11 +126,26 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
 
       const stepNode = nodes[position.currentStepId];
       const stepType: StepType = (stepNode?.metadata.stepType as StepType) || 'manual';
+      // Production routes every Stop through hookEventDispatcher, which sets
+      // explicit_submit_seen from the store. Absent means a non-dispatcher
+      // caller (tests, fallback when no MCP server) and is treated as
+      // permissive — any new Stop path must keep that invariant or set the
+      // flag explicitly.
+      const explicitSubmitSeen = event.explicit_submit_seen !== false;
       logger.info(
-        `Hook Stop at step ${position.currentStepId} (type=${stepType}) for node ${runningNodeId}`,
+        `Hook Stop at step ${position.currentStepId} (type=${stepType}) explicit_submit_seen=${explicitSubmitSeen} for node ${runningNodeId}`,
         'WorkflowExecution',
         { nodeId: runningNodeId },
       );
+
+      if (!explicitSubmitSeen && stepType !== 'manual') {
+        logger.info(
+          `Hook Stop gated: no explicit submit this turn — bound step ${position.currentStepId} remains in flight`,
+          'WorkflowExecution',
+          { nodeId: runningNodeId },
+        );
+        return;
+      }
 
       if (stepType === 'autonomous') {
         const { workflowExecutionStates: execStates } = get();

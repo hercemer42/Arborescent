@@ -2,6 +2,7 @@ import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { TreeReader, TreeReadState, ToolResult } from './mcpReadTools';
 import { OneShotTargetStore } from './oneShotTargetStore';
 import { ProposalSubmitter } from './mcpProposalBridge';
+import { logger } from './logger';
 
 export interface StepOutputApplier {
   apply(
@@ -43,13 +44,18 @@ function isAutomatic(nodeId: string, state: TreeReadState): boolean {
 export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutputTool {
   return {
     submitStepOutput: async ({ sessionId, content, origin = 'explicit' }) => {
-      if (origin === 'safety-net' && !deps.oneShotTargetStore.wasMarkerSeenThisTurn(sessionId)) {
-        return ok({ applied: false, reason: 'safety-net skipped — no marker this turn (action mode or foreign)' });
+      if (origin === 'safety-net') {
+        // Completion requires an explicit submit_step_output call from the AI;
+        // the Stop-hook safety net no longer auto-applies content. A turn that
+        // ended without an explicit submit must not advance the bound step.
+        logger.info(`submit_step_output session=${sessionId} origin=safety-net applied=false reason=no-op`, 'McpSubmit');
+        return ok({ applied: false, reason: 'safety-net no-op — explicit submit_step_output required for completion' });
       }
 
       const pendingTarget = deps.oneShotTargetStore.pendingTarget(sessionId);
       const boundNodeId = pendingTarget ?? deps.bindingRegistry.lookup(sessionId);
       if (!boundNodeId) {
+        logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false reason=unbound`, 'McpSubmit');
         return ok({ applied: false, reason: 'unbound — session has no binding' });
       }
 
@@ -62,16 +68,15 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       }
 
       if (!isAutomatic(boundNodeId, state)) {
-        if (origin === 'safety-net') {
-          return ok({ applied: false, reason: 'safety-net skipped non-automatic step' });
-        }
         const proposal = await deps.proposalSubmitter.submit({
           sessionId,
           nodeId: boundNodeId,
           request: { kind: 'submit-step-output', content },
         });
         if (!proposal.ok) return err(proposal.error);
+        deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);
         deps.oneShotTargetStore.clearPendingTarget(sessionId);
+        logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false proposed=true node=${boundNodeId}`, 'McpSubmit');
         return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
       }
 
@@ -80,7 +85,9 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return err(result.error);
       }
 
+      deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);
       deps.oneShotTargetStore.clearPendingTarget(sessionId);
+      logger.info(`submit_step_output session=${sessionId} origin=explicit applied=true node=${boundNodeId}`, 'McpSubmit');
       return ok({ applied: true });
     },
   };

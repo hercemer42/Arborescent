@@ -14,6 +14,10 @@ export type HookEventPayload = {
   node_uuid?: string;
   target_node_uuid?: string;
   marker_seen_this_turn?: boolean;
+  // Completion gate on outgoing Stop events: only true permits the renderer
+  // to advance the bound step. Absent means the dispatcher did not compute
+  // the gate and the renderer treats it as permissive.
+  explicit_submit_seen?: boolean;
 };
 
 type HookEventCallback = (payload: HookEventPayload) => void;

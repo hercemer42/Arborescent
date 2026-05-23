@@ -176,11 +176,11 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
   });
 });
 
-describe('createSubmitOutputTool — Stop-hook safety net is gated by markerSeenThisTurn (US-B)', () => {
-  // Business rule: the Stop-hook safety net only fires submit_step_output
-  // when markerSeenThisTurn is true. A safety-net invocation must be a
-  // no-op when no marker was present this turn — that's how action-mode
-  // sends are protected from being auto-routed to a stale binding.
+describe('createSubmitOutputTool — Stop-hook safety net is universally no-op (completion requires explicit submit)', () => {
+  // Business rule: completion is gated on an explicit submit_step_output
+  // call. The Stop-hook safety net is no longer a content-application
+  // fallback — it returns a no-op regardless of markerSeenThisTurn,
+  // pendingTarget, or step type.
 
   function gateScenario(opts: { markerSeen: boolean; pendingTargetNodeId?: string | null }) {
     return makeToolFor({
@@ -202,24 +202,23 @@ describe('createSubmitOutputTool — Stop-hook safety net is gated by markerSeen
     expect(applier.apply).not.toHaveBeenCalled();
     const payload = JSON.parse(result.content[0].text);
     expect(payload.applied).toBe(false);
-    expect(payload.reason).toMatch(/no marker|markerSeenThisTurn|unmarked|action mode/i);
+    expect(payload.reason).toMatch(/safety-net no-op|explicit submit_step_output required/i);
   });
 
-  it('safety-net origin DOES apply when markerSeenThisTurn is true (autonomous workflow turn)', async () => {
+  it('safety-net origin remains a no-op even when markerSeenThisTurn is true — completion is now gated on explicit submit', async () => {
     const { tool, applier } = gateScenario({ markerSeen: true });
     await tool.submitStepOutput({
       sessionId: 'sess-1',
       content: 'last assistant text',
       origin: 'safety-net',
     });
-    expect(applier.apply).toHaveBeenCalledWith(BOUND, 'last assistant text');
+    expect(applier.apply).not.toHaveBeenCalled();
   });
 
-  it('safety-net is gated even when an explicit pendingTarget is set but markerSeenThisTurn is false', async () => {
-    // pendingTarget alone is not enough — if neither marker was seen this
-    // turn, the safety net stays silent. Defends against stale pendingTarget
-    // surviving an app restart and tripping the next unmarked turn.
-    const { tool, applier, proposalSubmitter } = gateScenario({
+  it('safety-net is a no-op when an explicit pendingTarget is set — pendingTarget survives so a subsequent explicit submit still lands', async () => {
+    // pendingTarget must survive the safety-net turn so the next explicit
+    // submit_step_output still routes to the user's chosen node.
+    const { tool, applier, proposalSubmitter, oneShotTargetStore } = gateScenario({
       markerSeen: false,
       pendingTargetNodeId: TARGET,
     });
@@ -231,11 +230,10 @@ describe('createSubmitOutputTool — Stop-hook safety net is gated by markerSeen
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).not.toHaveBeenCalled();
     expect(result.isError).toBeFalsy();
+    expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
   });
 
-  it('explicit origin is NOT gated by markerSeenThisTurn — only the safety-net path is gated', async () => {
-    // When Claude calls submit_step_output explicitly the workflow asked
-    // for it; gating that path would silently drop the workflow response.
+  it('explicit origin is NOT gated — when Claude calls submit_step_output explicitly the workflow asked for it', async () => {
     const { tool, applier } = gateScenario({ markerSeen: false });
     await tool.submitStepOutput({ sessionId: 'sess-1', content: 'explicit response' });
     expect(applier.apply).toHaveBeenCalledWith(BOUND, 'explicit response');

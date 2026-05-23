@@ -260,6 +260,106 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
   });
 
+  describe('Stop hook completion gate (explicit-submit required)', () => {
+    beforeEach(() => {
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('does NOT advance an autonomous step when Stop arrives with explicit_submit_seen=false', () => {
+      state.workflowExecutionStates['task-a'] = {
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      };
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: false,
+      });
+
+      expect(state.nodes['step-1'].children).toContain('task-a');
+      expect(state.nodes['step-2'].children).not.toContain('task-a');
+    });
+
+    it('does NOT set stopReceived on a collaborating autonomous step when Stop arrives with explicit_submit_seen=false', () => {
+      state.workflowExecutionStates['task-a'] = {
+        state: 'running',
+        terminalTabId: 'terminal-1',
+        collaborating: true,
+      };
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: false,
+      });
+
+      expect(state.workflowExecutionStates['task-a'].stopReceived).toBeFalsy();
+      expect(state.nodes['step-1'].children).toContain('task-a');
+    });
+
+    it('does NOT transition a checkpoint step to awaiting-validation or raise the step-complete toast when Stop arrives with explicit_submit_seen=false', () => {
+      state.nodes['step-1'].metadata.stepType = 'checkpoint';
+      state.workflowExecutionStates['task-a'] = {
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      };
+      mockAddToast.mockClear();
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: false,
+      });
+
+      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
+      expect(mockAddToast).not.toHaveBeenCalled();
+    });
+
+    it('advances an autonomous step when Stop arrives with explicit_submit_seen=true (happy path)', () => {
+      state.workflowExecutionStates['task-a'] = {
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      };
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: true,
+      });
+
+      expect(state.nodes['step-2'].children).toContain('task-a');
+    });
+
+    it('manual steps stay no-op regardless of explicit_submit_seen — user drives advancement', () => {
+      state.nodes['step-1'].metadata.stepType = 'manual';
+      state.workflowExecutionStates['task-a'] = {
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      };
+
+      actions.handleHookEvent({
+        session_id: 'session-1',
+        hook_event_name: 'Stop',
+        explicit_submit_seen: false,
+      });
+
+      expect(state.nodes['step-1'].children).toContain('task-a');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
+    });
+
+    it('absent explicit_submit_seen is treated as permissive (backward-compat for callers that do not set the gate)', () => {
+      state.workflowExecutionStates['task-a'] = {
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      expect(state.nodes['step-2'].children).toContain('task-a');
+    });
+  });
+
   describe('timing: both orderings', () => {
     beforeEach(() => {
       state.workflowSessionMap = { 'session-1': 'terminal-1' };
