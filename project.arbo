@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-23T18:20:30.565Z'
+updated: '2026-05-23T18:22:50.933Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25648,8 +25648,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - 924b187c-f2db-4ceb-968b-440700b738e3
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115540,6 +115539,7 @@ nodes:
       - f778b6c0-f107-4fff-9173-17877a8b1125
       - 4cf6d878-04b6-4103-8167-0869060a56cd
       - 50c1cecf-2ee0-4850-9148-3d1935ee5f8c
+      - f3a53bde-65f1-4479-9381-2b69119fbd46
     metadata:
       status: pending
       isBlueprint: true
@@ -124646,7 +124646,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - f3a53bde-65f1-4479-9381-2b69119fbd46
+      - 924b187c-f2db-4ceb-968b-440700b738e3
     metadata:
       status: pending
       isBlueprint: true
@@ -159221,13 +159221,13 @@ nodes:
     id: 924b187c-f2db-4ceb-968b-440700b738e3
     content: Split sessionId (identity) from groupId (decomposition lineage)
     children:
-      - 168d9982-80a3-42c2-8b1e-c822e16fa4f8
-      - 33ec54f7-d1e7-4e1f-87d5-77c8f06bbeff
-      - 89c82deb-c53f-4f81-b35e-f9f7104b2336
-      - 87d20f29-1c7f-4700-87da-7c19b89e04af
-      - 14bf8cff-4672-4cd0-afed-37a59f128956
-      - 9ab002ee-c47e-47ff-87cb-5269b4a6c5ff
-      - e49c3914-1b1d-4049-95de-38a939dabd42
+      - f1fa77e0-cbdf-447f-941c-2678548dbf86
+      - 5aa212ab-8d00-4682-b6e2-2be1697fe938
+      - cf761586-9b9c-413d-825a-5f19d554db72
+      - 7d8b2903-2542-4fe4-82bd-ee3f8e7ee627
+      - c9fe6023-f1a9-446e-a54e-d0e07ee97b18
+      - 937c0a31-212a-4584-a9d8-d2dfb6e22e97
+      - a6d24a20-e7e1-4ef6-b155-a1703414963f
     metadata:
       status: completed
       expanded: false
@@ -163379,849 +163379,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  168d9982-80a3-42c2-8b1e-c822e16fa4f8:
-    id: 168d9982-80a3-42c2-8b1e-c822e16fa4f8
-    content: Worktree
-    children:
-      - 1acb6676-1ef6-4b37-b48c-460feac618a0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1acb6676-1ef6-4b37-b48c-460feac618a0:
-    id: 1acb6676-1ef6-4b37-b48c-460feac618a0
-    content: vscode://file//Users/brianfox/dev/Arborescent-split-sessionid-groupid
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  33ec54f7-d1e7-4e1f-87d5-77c8f06bbeff:
-    id: 33ec54f7-d1e7-4e1f-87d5-77c8f06bbeff
-    content: Product spec
-    children:
-      - d4ca3246-b598-4033-bc29-cd6f9f15c0ec
-      - 0ddd2f73-5834-4dd4-91d7-5d46152052e6
-      - 6740b853-8d25-4f6c-80cd-6518b16d7803
-      - d2bafda8-ae6b-4715-b4c6-d4d0c04c80e4
-      - 8890e4fd-ac5b-484a-8b98-7635c704cddc
-      - 284ae1e3-893c-463b-a014-3460933754ac
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d4ca3246-b598-4033-bc29-cd6f9f15c0ec:
-    id: d4ca3246-b598-4033-bc29-cd6f9f15c0ec
-    content: Context
-    children:
-      - 82635f95-fc72-4c6f-9c2f-ff273a1559f0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  82635f95-fc72-4c6f-9c2f-ff273a1559f0:
-    id: 82635f95-fc72-4c6f-9c2f-ff273a1559f0
-    content: '`sessionId` in node metadata is overloaded. Job (a): identify the Claude session that owns a node (the binding). Job (b): mark a decomposition lineage so the recurse hand-off can find the next sibling. Job (b) accreted over `2219213` (recurse stays in same AI session), `fb7c196` (split inherits sessionId), and `653e8c6` (decomposed siblings bound to originating session). Because job (b) requires the same `sessionId` to appear on many nodes, job (a) cannot enforce uniqueness — and stale stamps from past binds accumulate on nodes the user never consciously bound. Splitting the two jobs into separate metadata fields lets each enforce its own invariant cleanly.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0ddd2f73-5834-4dd4-91d7-5d46152052e6:
-    id: 0ddd2f73-5834-4dd4-91d7-5d46152052e6
-    content: User
-    children:
-      - 324f6338-0aac-4127-a903-8b5cde1366e6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  324f6338-0aac-4127-a903-8b5cde1366e6:
-    id: 324f6338-0aac-4127-a903-8b5cde1366e6
-    content: Workflow operator running decomposed workflows; the user-visible behavior is unchanged but the data model becomes coherent — fewer surprises in binding, capture, and recurse routing over time.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6740b853-8d25-4f6c-80cd-6518b16d7803:
-    id: 6740b853-8d25-4f6c-80cd-6518b16d7803
-    content: Current experience
-    children:
-      - e31c98ef-abde-4aa3-9e3c-64946baa81be
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e31c98ef-abde-4aa3-9e3c-64946baa81be:
-    id: e31c98ef-abde-4aa3-9e3c-64946baa81be
-    content: Decomposition outputs (including the two-tree case sometimes called "split") and prior binds all share a `sessionId`. Binding correctness depends on incidental rules (resolution order, `brokenChain` flag) layered on top of this overload. New code that touches `sessionId` has to learn the unwritten lineage rule to avoid breaking recurse.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2bafda8-ae6b-4715-b4c6-d4d0c04c80e4:
-    id: d2bafda8-ae6b-4715-b4c6-d4d0c04c80e4
-    content: Goal
-    children:
-      - f04e4f21-682f-40d7-939b-8c6cce15c9e6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f04e4f21-682f-40d7-939b-8c6cce15c9e6:
-    id: f04e4f21-682f-40d7-939b-8c6cce15c9e6
-    content: '`sessionId` identifies a Claude session and appears on at most one node at a time. `groupId` identifies a decomposition lineage and is stamped on the root of every output tree produced by a decomposition operation.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8890e4fd-ac5b-484a-8b98-7635c704cddc:
-    id: 8890e4fd-ac5b-484a-8b98-7635c704cddc
-    content: Business rules
-    children:
-      - b447f034-a6d8-426c-b0d3-50b4505069b7
-      - a2e8376f-f2cd-4d00-9f46-7c15e74f9ff7
-      - 14f778b3-87fc-406d-8fb5-2bf70d918234
-      - fafdbac6-615a-4060-b56f-5f4afcf6e0d1
-      - 253f66c6-b0a1-41d0-89f8-07a8325a285c
-      - 23566859-3689-4da2-b4c5-73f9000ed5d0
-      - cb278026-8b4e-445c-8749-af2a656569c5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b447f034-a6d8-426c-b0d3-50b4505069b7:
-    id: b447f034-a6d8-426c-b0d3-50b4505069b7
-    content: 1. `sessionId` in node metadata identifies the Claude session that owns the node; it appears on at most one node at any time.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a2e8376f-f2cd-4d00-9f46-7c15e74f9ff7:
-    id: a2e8376f-f2cd-4d00-9f46-7c15e74f9ff7
-    content: 2. `groupId` in node metadata identifies a decomposition operation; it is stamped on the root of every output tree produced by that operation. Descendants within an output tree do not carry it. A single decomposition step can host multiple groupIds — one per source node decomposed in it. groupId scope is the output tree roots of that one decomposition operation, not the output trees of any later decomposition of one of them.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14f778b3-87fc-406d-8fb5-2bf70d918234:
-    id: 14f778b3-87fc-406d-8fb5-2bf70d918234
-    content: 3. groupId on a node is immutable for the life of the node.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fafdbac6-615a-4060-b56f-5f4afcf6e0d1:
-    id: fafdbac6-615a-4060-b56f-5f4afcf6e0d1
-    content: '4. The recurse hand-off picks the next decomposition output by matching `groupId`, not `sessionId`. Behavior is otherwise unchanged: the next sibling advances to step N+1 before being started (`4ecbcc1`).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  253f66c6-b0a1-41d0-89f8-07a8325a285c:
-    id: 253f66c6-b0a1-41d0-89f8-07a8325a285c
-    content: 5. When a terminal is bound to a new node (initial bind, send-to-terminal rebind, SessionStart capture, reattach), `sessionId` is stamped on the new node and atomically cleared from any other node that previously carried it. `groupId` on those nodes is left untouched.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  23566859-3689-4da2-b4c5-73f9000ed5d0:
-    id: 23566859-3689-4da2-b4c5-73f9000ed5d0
-    content: 6. Decomposition is the only mechanism that produces a group; there is no separate split operation with different metadata semantics. The two-tree decomposition case ("split") follows rule 2 like any other decomposition.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb278026-8b4e-445c-8749-af2a656569c5:
-    id: cb278026-8b4e-445c-8749-af2a656569c5
-    content: 7. Legacy `.arbo` files with pre-existing multi-node `sessionId` and no `groupId` load without error; legacy decomposition outputs do not participate in recurse hand-off until a fresh decomposition stamps `groupId`.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  284ae1e3-893c-463b-a014-3460933754ac:
-    id: 284ae1e3-893c-463b-a014-3460933754ac
-    content: Acceptance criteria
-    children:
-      - eb2fcb85-9ac1-4b84-9db1-a27302340991
-      - 664dd257-f8d2-453e-9c18-a7b138efc565
-      - cc3c225a-b299-4c56-9cba-da08986c8696
-      - 66469e34-cfdd-40b5-8a6b-ff72498d6aa0
-      - 9a988301-b649-42c6-b8c1-f892cbda0588
-      - bf02e1b6-bce1-46ad-9777-e9b862e2e4bb
-      - a9c9d4be-4306-4669-a39d-ca2e13876936
-      - c47a2b18-e752-45e9-acc8-b233e77fbe99
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eb2fcb85-9ac1-4b84-9db1-a27302340991:
-    id: eb2fcb85-9ac1-4b84-9db1-a27302340991
-    content: '- [x] Bind a terminal to node A, then rebind it to unrelated node B — node B carries `sessionId`, node A no longer does; any `groupId` on either node is unchanged.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  664dd257-f8d2-453e-9c18-a7b138efc565:
-    id: 664dd257-f8d2-453e-9c18-a7b138efc565
-    content: '- [x] Decompose node P: every output tree root carries the same fresh `groupId`; descendants within those trees do not; no unrelated node carries it.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cc3c225a-b299-4c56-9cba-da08986c8696:
-    id: cc3c225a-b299-4c56-9cba-da08986c8696
-    content: '- [x] In a step that decomposes both P and Q, P''s output tree roots share one groupId and Q''s output tree roots share a different one.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  66469e34-cfdd-40b5-8a6b-ff72498d6aa0:
-    id: 66469e34-cfdd-40b5-8a6b-ff72498d6aa0
-    content: '- [x] Recurse hand-off: when one of P''s output trees completes the recurse step, the next pending output tree of P (same groupId) advances to step N+1 and runs; Q''s outputs are not picked up.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9a988301-b649-42c6-b8c1-f892cbda0588:
-    id: 9a988301-b649-42c6-b8c1-f892cbda0588
-    content: '- [x] Re-decompose a node carrying `groupId=G` (including the two-tree case): each output tree root carries a fresh `groupId=H` (≠ G); `sessionId` is cleared from the source and stamped on whichever output the terminal''s `originNodeId` lands on.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf02e1b6-bce1-46ad-9777-e9b862e2e4bb:
-    id: bf02e1b6-bce1-46ad-9777-e9b862e2e4bb
-    content: '- [x] After this story ships, no two nodes in a freshly-created `.arbo` share a `sessionId` — verifiable by a test that exercises decomposition, recurse, and re-decomposition paths.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9c9d4be-4306-4669-a39d-ca2e13876936:
-    id: a9c9d4be-4306-4669-a39d-ca2e13876936
-    content: '- [x] Cross-session isolation from `653e8c6` (decomposition outputs of one orchestrator don''t leak into another''s recurse) still holds, now enforced via `groupId`.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c47a2b18-e752-45e9-acc8-b233e77fbe99:
-    id: c47a2b18-e752-45e9-acc8-b233e77fbe99
-    content: '- [x] Opening a legacy `.arbo` file (pre-`groupId`) loads without error and remains editable; binding a terminal to a legacy node enforces sessionId uniqueness from that point forward.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  89c82deb-c53f-4f81-b35e-f9f7104b2336:
-    id: 89c82deb-c53f-4f81-b35e-f9f7104b2336
-    content: Implementation proposal
-    children:
-      - d8c1ecf3-8b5c-4535-a88f-e6fef9484aa7
-      - 54728331-acef-4f1f-866b-b526d4ef4157
-      - de2429aa-54ba-49e5-964b-daecd6002a74
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d8c1ecf3-8b5c-4535-a88f-e6fef9484aa7:
-    id: d8c1ecf3-8b5c-4535-a88f-e6fef9484aa7
-    content: Approach
-    children:
-      - 59cc1e18-3886-4476-aa1b-3147d9e1dd60
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  59cc1e18-3886-4476-aa1b-3147d9e1dd60:
-    id: 59cc1e18-3886-4476-aa1b-3147d9e1dd60
-    content: 'Add `metadata.groupId: string | undefined` on TreeNode. Stamp a fresh `groupId` on the root of every output tree in `acceptFeedbackStrategies` (decomposition path). Stop propagating `sessionId` across decomposition — `PRESERVED_METADATA_KEYS` drops `sessionId`. Centralise sessionId writes through one `bindSessionToNode(sessionId, nodeId)` helper that clears any prior holder of the same `sessionId`. Removes the lineage-via-sessionId scan path in `activeSessionNodeId.ts` since uniqueness now holds.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  54728331-acef-4f1f-866b-b526d4ef4157:
-    id: 54728331-acef-4f1f-866b-b526d4ef4157
-    content: Touchpoints
-    children:
-      - 208c17dc-ce16-4235-aecc-4954ddf4ca05
-      - 512f2d08-261e-401f-a502-93e699b3b9bb
-      - 60b33d2a-3178-4a76-95bb-6889aa3fdcb4
-      - f9c723df-c0e7-4c2e-a842-9f69069c36e3
-      - 4af4896b-8422-4626-9ebd-9af921d7582f
-      - ac425ab7-f049-494c-988e-8d52fc441e53
-      - de61d7c4-7852-4b92-b5ea-bc324793134b
-      - 9def1423-cad5-4bbd-9a10-acd6c6d3ffb8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  208c17dc-ce16-4235-aecc-4954ddf4ca05:
-    id: 208c17dc-ce16-4235-aecc-4954ddf4ca05
-    content: '`src/shared/types/treeNode.ts` — add `groupId` to node metadata type.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  512f2d08-261e-401f-a502-93e699b3b9bb:
-    id: 512f2d08-261e-401f-a502-93e699b3b9bb
-    content: '`src/renderer/store/tree/commands/acceptFeedbackStrategies.ts`, `AcceptFeedbackCommand.ts` — stamp fresh `groupId` on the root of each decomposition output tree; drop `sessionId` from `PRESERVED_METADATA_KEYS`.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  60b33d2a-3178-4a76-95bb-6889aa3fdcb4:
-    id: 60b33d2a-3178-4a76-95bb-6889aa3fdcb4
-    content: '`src/renderer/store/tree/commands/SplitNodeCommand.ts` — route through the shared groupId-stamping helper (no bespoke metadata logic); do not carry `sessionId` across. Consider collapsing into the decomposition pathway if it is a thin wrapper.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f9c723df-c0e7-4c2e-a842-9f69069c36e3:
-    id: f9c723df-c0e7-4c2e-a842-9f69069c36e3
-    content: '`src/renderer/store/tree/actions/workflowExecutionActions.ts` — `checkRecurse` reads `groupId`; rename `originSessionId` → `originGroupId`.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4af4896b-8422-4626-9ebd-9af921d7582f:
-    id: 4af4896b-8422-4626-9ebd-9af921d7582f
-    content: '`src/renderer/utils/workflowHelpers.ts` — `findNextDecomposedSibling` filter parameter becomes `originGroupId`, matches on `metadata.groupId`.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac425ab7-f049-494c-988e-8d52fc441e53:
-    id: ac425ab7-f049-494c-988e-8d52fc441e53
-    content: '`src/renderer/store/tree/selectors/activeSessionNodeId.ts` — simplify `findNodeOwningTerminalSession` now that `sessionId` is unique; the WeakMap index can resolve directly without first-match arbitration.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  de61d7c4-7852-4b92-b5ea-bc324793134b:
-    id: de61d7c4-7852-4b92-b5ea-bc324793134b
-    content: New `bindSessionToNode` helper routed through by initial bind, send-to-terminal rebind, SessionStart capture, and reattach so sessionId uniqueness is enforced at every write site.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9def1423-cad5-4bbd-9a10-acd6c6d3ffb8:
-    id: 9def1423-cad5-4bbd-9a10-acd6c6d3ffb8
-    content: 'Tests: update `recurseSessionInheritance.test.ts`, `recurseTerminalScoping.test.ts`, `SplitNodeCommandSessionInheritance.test.ts`, `recurseHandoff.test.ts` to assert `groupId`-based isolation. Add: rebind clears prior `sessionId` stamp; multi-source decomposition step produces distinct groupIds per source; re-decomposition (including two-tree case) stamps a fresh groupId on each output root; descendants of output trees do not carry groupId; sessionId uniqueness end-to-end; legacy `.arbo` load smoke test.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de2429aa-54ba-49e5-964b-daecd6002a74:
-    id: de2429aa-54ba-49e5-964b-daecd6002a74
-    content: Constraints to call out
-    children:
-      - 48a20e02-5875-45ca-a21b-a2ca87ea46ed
-      - b5bf1e37-e8af-4011-96c6-4fbd87a344a0
-      - ebd3c2cd-b128-4230-a39f-bca205c56bc2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  48a20e02-5875-45ca-a21b-a2ca87ea46ed:
-    id: 48a20e02-5875-45ca-a21b-a2ca87ea46ed
-    content: Every code path that writes `sessionId` to node metadata must go through `bindSessionToNode`; a one-off audit (grep for `sessionId` writes) is part of the implementation, not a follow-up.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5bf1e37-e8af-4011-96c6-4fbd87a344a0:
-    id: b5bf1e37-e8af-4011-96c6-4fbd87a344a0
-    content: Existing `.arbo` files have multi-node `sessionId` and no `groupId`. No migration is needed — the recurse-across-sessions feature is unused today; legacy decomposition outputs simply will not participate in the new groupId-based hand-off until a fresh decomposition stamps them.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ebd3c2cd-b128-4230-a39f-bca205c56bc2:
-    id: ebd3c2cd-b128-4230-a39f-bca205c56bc2
-    content: Main-process `sessionBindingRegistry` is unchanged; unifying the dual binding store of record is out of scope.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  87d20f29-1c7f-4700-87da-7c19b89e04af:
-    id: 87d20f29-1c7f-4700-87da-7c19b89e04af
-    content: Scope decision
-    children:
-      - 5a65d50f-0b13-4c96-b855-19918392c3e7
-      - 343443f6-b064-49af-b990-aa440895a7f4
-      - b9a655f2-24b5-495f-9a50-22d1daa5c980
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a65d50f-0b13-4c96-b855-19918392c3e7:
-    id: 5a65d50f-0b13-4c96-b855-19918392c3e7
-    content: Single chunk — data model split is internally cohesive; removing `sessionId`'s lineage role and introducing `groupId` must ship together or recurse breaks.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  343443f6-b064-49af-b990-aa440895a7f4:
-    id: 343443f6-b064-49af-b990-aa440895a7f4
-    content: No feature flag — change is invisible to end users; gating provides no review, rollout, or PM-visibility value.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9a655f2-24b5-495f-9a50-22d1daa5c980:
-    id: b9a655f2-24b5-495f-9a50-22d1daa5c980
-    content: No further user-story split — touchpoints all serve the same invariant (sessionId uniqueness + groupId-based lineage); splitting would leave one half as speculative plumbing.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14bf8cff-4672-4cd0-afed-37a59f128956:
-    id: 14bf8cff-4672-4cd0-afed-37a59f128956
-    content: Reviewer feedback
-    children:
-      - a760f718-8d67-4592-bcf0-e27bb5d83066
-      - fc808e5a-f2e6-4e89-8e70-5ef862de9fac
-      - af5c581c-e465-439e-8a57-4924a07f5a4a
-      - a775ab38-ea1d-4e5c-b7f4-5ccb51890081
-      - a1bd1f3e-cd80-49c3-8328-b578707844a8
-      - d56103b5-a354-4982-8afe-48a71aa6fe35
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a760f718-8d67-4592-bcf0-e27bb5d83066:
-    id: a760f718-8d67-4592-bcf0-e27bb5d83066
-    content: ROI is justified, not borderline — three prior commits (`2219213`, `fb7c196`, `653e8c6`) each layered lineage semantics onto `sessionId`; without this split a fourth such accretion is likely and the unwritten rule keeps compounding cost on every new contributor.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc808e5a-f2e6-4e89-8e70-5ef862de9fac:
-    id: fc808e5a-f2e6-4e89-8e70-5ef862de9fac
-    content: Decomposition is the only grouping mechanism — folding `SplitNodeCommand` into the same pathway removes a class of inconsistency (today split copies `sessionId` per `fb7c196` while decomposition propagates it via `PRESERVED_METADATA_KEYS`; both bugs are fixed by the same unified rule).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  af5c581c-e465-439e-8a57-4924a07f5a4a:
-    id: af5c581c-e465-439e-8a57-4924a07f5a4a
-    content: '`bindSessionToNode` centralization is load-bearing, not over-engineering — without one write site the uniqueness invariant has no enforcement point and the bug class returns.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a775ab38-ea1d-4e5c-b7f4-5ccb51890081:
-    id: a775ab38-ea1d-4e5c-b7f4-5ccb51890081
-    content: Audit step (grep for `sessionId` metadata writes) should be a checklist item in the PR description, not just a constraint note — easy to forget and the invariant breaks silently if one site is missed.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1bd1f3e-cd80-49c3-8328-b578707844a8:
-    id: a1bd1f3e-cd80-49c3-8328-b578707844a8
-    content: No UX concerns — change is invisible to end users by design; behavioral parity is asserted by ACs.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d56103b5-a354-4982-8afe-48a71aa6fe35:
-    id: d56103b5-a354-4982-8afe-48a71aa6fe35
-    content: 'Out of scope and correctly excluded: unifying renderer node metadata with main-process `sessionBindingRegistry` as the single binding store of record. Worth a follow-up story but would balloon this one.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ab002ee-c47e-47ff-87cb-5269b4a6c5ff:
-    id: 9ab002ee-c47e-47ff-87cb-5269b4a6c5ff
-    content: Technical refinement
-    children:
-      - f3176aae-f7c5-4c73-bffc-92860fc4a1ec
-      - d545ef4d-b529-476a-9f8c-985965638758
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f3176aae-f7c5-4c73-bffc-92860fc4a1ec:
-    id: f3176aae-f7c5-4c73-bffc-92860fc4a1ec
-    content: Complications
-    children:
-      - 2f87fc8e-749f-4ff6-a158-c97718445cbb
-      - 1b8f68d3-ca9e-44c5-a2a5-3f4bb3caaacd
-      - 45996d48-fbbb-4b83-ac5f-fee16fa7e12b
-      - 6fbd0481-c890-4700-8fe9-6085fc38888e
-      - 8075c89f-d0c7-4521-921a-a50365bfc798
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f87fc8e-749f-4ff6-a158-c97718445cbb:
-    id: 2f87fc8e-749f-4ff6-a158-c97718445cbb
-    content: Rule 5's "atomically cleared" must be one store update, not two `getState()` reads — easy to get wrong in Zustand action code and the resulting bug is silent (two nodes carry `sessionId`, uniqueness invariant broken without error).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b8f68d3-ca9e-44c5-a2a5-3f4bb3caaacd:
-    id: 1b8f68d3-ca9e-44c5-a2a5-3f4bb3caaacd
-    content: '`bindSessionToNode` audit may surface more write sites than expected — undo/redo state restores, file-load paths, IPC SessionStart capture, reattach, blueprint import. If the list balloons, the scope estimate slips; worth a 10-minute grep before sizing.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  45996d48-fbbb-4b83-ac5f-fee16fa7e12b:
-    id: 45996d48-fbbb-4b83-ac5f-fee16fa7e12b
-    content: 'Legacy uniqueness gap: between loading a legacy `.arbo` and the next bind, multiple nodes may carry the same `sessionId`. The simplified `activeSessionNodeId.ts` resolution assumes uniqueness — either tolerate any first-match (legacy lineage is dead anyway) or sweep duplicates on load. Pick one explicitly.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6fbd0481-c890-4700-8fe9-6085fc38888e:
-    id: 6fbd0481-c890-4700-8fe9-6085fc38888e
-    content: AI-returned decomposition payloads with their own `metadata.groupId` (e.g., blueprint sub-tree imports) must be overwritten by the stamping helper, not merged — otherwise re-imported trees keep their old groupIds and recurse picks the wrong group.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8075c89f-d0c7-4521-921a-a50365bfc798:
-    id: 8075c89f-d0c7-4521-921a-a50365bfc798
-    content: '`SplitNodeCommand` consolidation expands the diff beyond a pure metadata change — reviewers expecting "just add a field" will see command-level refactoring; call this out in the PR description.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d545ef4d-b529-476a-9f8c-985965638758:
-    id: d545ef4d-b529-476a-9f8c-985965638758
-    content: Approach summary
-    children:
-      - b6160a3c-f10c-4bbe-9612-a740ab859812
-      - 260dd2af-65f6-4c9e-9c02-3b5f18fc5088
-      - 2a3013d7-356b-4d7e-afd7-6e3897aaa04a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6160a3c-f10c-4bbe-9612-a740ab859812:
-    id: b6160a3c-f10c-4bbe-9612-a740ab859812
-    content: New `metadata.groupId` field separates decomposition lineage from `sessionId`; one shared helper stamps a fresh `groupId` on each decomposition output tree root, with split folded into the same pathway.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  260dd2af-65f6-4c9e-9c02-3b5f18fc5088:
-    id: 260dd2af-65f6-4c9e-9c02-3b5f18fc5088
-    content: All `sessionId` writes funnel through one `bindSessionToNode` helper that atomically clears prior holders — uniqueness becomes enforceable at exactly one site instead of being an invariant nobody owns.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a3013d7-356b-4d7e-afd7-6e3897aaa04a:
-    id: 2a3013d7-356b-4d7e-afd7-6e3897aaa04a
-    content: 'No migration: legacy `.arbo` files load fine but their pre-existing decomposition outputs sit out of recurse hand-off until a fresh decomposition restamps them — acceptable because recurse-across-sessions is currently unused.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e49c3914-1b1d-4049-95de-38a939dabd42:
-    id: e49c3914-1b1d-4049-95de-38a939dabd42
-    content: Review feedback
-    children:
-      - d13ac026-b7a3-40ed-b8f7-b2733babfb3d
-      - ad80ab31-6a02-4fab-9df9-6dae81b1aceb
-      - e61e4cb0-5565-4eee-8370-fa37fb0156fe
-      - 9bc94d0a-f7eb-4ea0-a300-0cddb5ec02af
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d13ac026-b7a3-40ed-b8f7-b2733babfb3d:
-    id: d13ac026-b7a3-40ed-b8f7-b2733babfb3d
-    content: Major findings
-    children:
-      - 35aadbb4-02c1-4ae2-85ee-14d1b393c51a
-      - 0e24246f-ccca-4a58-ac15-0418c8db2469
-      - 71829926-ed2d-462e-89d6-f6bf99721be2
-      - c14ed251-b11e-4cdd-b237-47439e91848c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  35aadbb4-02c1-4ae2-85ee-14d1b393c51a:
-    id: 35aadbb4-02c1-4ae2-85ee-14d1b393c51a
-    content: 'M1. MCP set-metadata bypass — `src/renderer/services/mcpTreeMutatorService.ts:198-208`. `applySetMetadata` writes arbitrary keys via `{ ...node.metadata, [key]: value }`. An MCP `set_node_metadata(key=''sessionId'', value=''X'')` call writes a sessionId without going through `bindSessionInNodes`, defeating uniqueness from an external write path. Either reject `key === ''sessionId''` (and likely `''groupId''`, `''brokenChain''`) at this boundary, or route to `bindSessionInNodes` when the key matches.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0e24246f-ccca-4a58-ac15-0418c8db2469:
-    id: 0e24246f-ccca-4a58-ac15-0418c8db2469
-    content: M2. AI/MCP-supplied multi-root payloads can smuggle `sessionId` onto output nodes — `src/renderer/store/tree/commands/acceptFeedbackStrategies.ts:243-253`. `stripFeedbackReconcileMetadata` only strips feedback reconcile keys. If `newNodesMap` carries `sessionId` on any node (root or descendant), it flows through `sanitizedMetadata` and into the final state via `setState`. Strip `sessionId` from sanitized metadata for every node in both strategies (and consider stripping inbound `groupId` on roots too, since the fresh one is stamped over it).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  71829926-ed2d-462e-89d6-f6bf99721be2:
-    id: 71829926-ed2d-462e-89d6-f6bf99721be2
-    content: M3. `executeSingleRootStrategy` silently loses the source's `sessionId` even though the node id is preserved — `src/renderer/store/tree/commands/acceptFeedbackStrategies.ts:147-153`. Dropping `sessionId` from `PRESERVED_METADATA_KEYS` is right for multi-root, but in single-root (same id, in-place refinement) the session binding disappears. Either restore the source's `sessionId` via `bindSessionInNodes` after the single-root strategy returns, or explicitly document this as the single-root analog of the AC 5 gap and accept that the next SessionStart will re-capture.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c14ed251-b11e-4cdd-b237-47439e91848c:
-    id: c14ed251-b11e-4cdd-b237-47439e91848c
-    content: M4. Legacy multi-holder `.arbo` files trigger spurious rebind dialogs at load — `src/renderer/store/files/actions/fileActions.ts:82-93` + `src/renderer/utils/extractSessionBindings.ts:5-16`. `extractSessionBindings` returns one pair per node with no dedup; `sessionBindingRegistry.register` flags the second-and-onward holders as `rebind-needed`, emitting confusing rebind events on every legacy file open. Either dedup first-seen-wins in `extractSessionBindings` (with a warn log) or migrate-on-load by stripping duplicate `sessionId` stamps (consistent with `stripDroppedSessionFields` in `sessionRegistryMigrations.ts`).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad80ab31-6a02-4fab-9df9-6dae81b1aceb:
-    id: ad80ab31-6a02-4fab-9df9-6dae81b1aceb
-    content: Minor findings
-    children:
-      - c4807e19-e100-4c73-a2c7-528afb87fd18
-      - 3660b3c1-2b72-4ee3-b901-9fd3dc8c3759
-      - b348a268-3cd0-46e8-8ee5-68707a050e23
-      - bc22cf37-c6ca-420b-adb1-3ceff183b50f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4807e19-e100-4c73-a2c7-528afb87fd18:
-    id: c4807e19-e100-4c73-a2c7-528afb87fd18
-    content: m5. `wasRootNode` fallback inside `executeMultiRootStrategy` calls `executeSingleRootStrategy` and silently loses the multi-root "fresh shared groupId" intent — `acceptFeedbackStrategies.ts:225-228`. Also drops non-first roots without splicing them into a parent's children (potential orphans). Unreachable on the normal `AcceptFeedbackCommand.execute` path (gated by `!wasRootNode`) but the strategy is exported. Delete the fallback or stamp groupId in it; add a `logger.warn` for orphan roots either way.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  3660b3c1-2b72-4ee3-b901-9fd3dc8c3759:
-    id: 3660b3c1-2b72-4ee3-b901-9fd3dc8c3759
-    content: m6. Stale-after-await read of `parent?.sessionId` in `workflowExecutionActions.ts:531-553` (`dispatchRecurseStart`) and similar shape at `:314` (resume-in-new-tab). No bug today, but re-reading `parent.sessionId` from state after the `await openInheritedResumeTerminal` would be safer if a SessionStart fires during the open.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  b348a268-3cd0-46e8-8ee5-68707a050e23:
-    id: b348a268-3cd0-46e8-8ee5-68707a050e23
-    content: m7. `bindSessionInNodes` doesn't reject whitespace-only sessionIds (e.g., `'   '`). `registerSession:879` trims before passing but `inheritSessionOnNode`/`captureSessionOnNode` don't. Add a `.trim()` defensive check inside `bindSessionInNodes`.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc22cf37-c6ca-420b-adb1-3ceff183b50f:
-    id: bc22cf37-c6ca-420b-adb1-3ceff183b50f
-    content: m8. SplitNodeCommand undo test gap — no test for "session was captured on source between execute and undo — undo preserves the captured sessionId". Logic looks correct (undo only overrides groupId), but coverage missing.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  e61e4cb0-5565-4eee-8370-fa37fb0156fe:
-    id: e61e4cb0-5565-4eee-8370-fa37fb0156fe
-    content: Nits
-    children:
-      - 16769ae8-3cbb-46a9-954a-c6fecc69fcdf
-      - 8b0d2a72-5be4-4e91-bff4-52e57c192cbc
-      - 2b91da76-86bb-400b-bf6f-9055f1b3af5a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  16769ae8-3cbb-46a9-954a-c6fecc69fcdf:
-    id: 16769ae8-3cbb-46a9-954a-c6fecc69fcdf
-    content: n9. Inconsistent unused-destructure style in `acceptFeedbackStrategies.ts:99-103` — `stripGroupIdFromMetadata` uses `void _omit;`, neighbor `stripFeedbackReconcileMetadata` uses `// eslint-disable-next-line`. Pick one.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b0d2a72-5be4-4e91-bff4-52e57c192cbc:
-    id: 8b0d2a72-5be4-4e91-bff4-52e57c192cbc
-    content: 'n10. Comment on `acceptFeedbackStrategies.ts:230-232` reads as "what" not "why" per CLAUDE.md conventions. Optional: add rationale ("so findNextDecomposedSibling only matches intended siblings, not foreign descendants").'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b91da76-86bb-400b-bf6f-9055f1b3af5a:
-    id: 2b91da76-86bb-400b-bf6f-9055f1b3af5a
-    content: n11. `bindSessionToNode` action wrapper has no production caller — only tested by its own test. Either wire it into `stampSessionOnStartNode:270-273` (which duplicates the read-merge-write pattern) or remove as dead code.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  9bc94d0a-f7eb-4ea0-a300-0cddb5ec02af:
-    id: 9bc94d0a-f7eb-4ea0-a300-0cddb5ec02af
-    content: Related observations
-    children:
-      - da3133e2-ae0f-41bc-a097-72edd69d4fdb
-      - ad8705f5-2f22-423f-91a9-012e2e4c0249
-      - dc02b87d-820f-4be7-af29-b753064eab4a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  da3133e2-ae0f-41bc-a097-72edd69d4fdb:
-    id: da3133e2-ae0f-41bc-a097-72edd69d4fdb
-    content: o12. `findNodeIdBySessionId` in `workflowExecutionActions.ts:215-221` does first-match and includes brokenChain nodes; `getSessionIndex` in `activeSessionNodeId.ts` excludes them. Pre-existing semantic mismatch, more visible now that uniqueness is enforced.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad8705f5-2f22-423f-91a9-012e2e4c0249:
-    id: ad8705f5-2f22-423f-91a9-012e2e4c0249
-    content: o13. Clipboard paste path (`clipboardPasteHandlers.ts`) doesn't strip `sessionId`/`groupId` from pasted node metadata — pasting a copied node tree could create duplicate sessionId holders or stale groupIds. Pre-existing but related to the new invariants.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc02b87d-820f-4be7-af29-b753064eab4a:
-    id: dc02b87d-820f-4be7-af29-b753064eab4a
-    content: o14. No integration test for the file-load → seed → rebind-dialog flow on a legacy multi-holder file (related to M4).
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
   197631ae-8a24-44cb-b447-8a19d0f15f84:
     id: 197631ae-8a24-44cb-b447-8a19d0f15f84
     content: worktree
@@ -164733,6 +163890,849 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1fa77e0-cbdf-447f-941c-2678548dbf86:
+    id: f1fa77e0-cbdf-447f-941c-2678548dbf86
+    content: Worktree
+    children:
+      - 5355e415-c0f5-4833-bd8d-0b5b899da6a7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5355e415-c0f5-4833-bd8d-0b5b899da6a7:
+    id: 5355e415-c0f5-4833-bd8d-0b5b899da6a7
+    content: vscode://file//Users/brianfox/dev/Arborescent-split-sessionid-groupid
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5aa212ab-8d00-4682-b6e2-2be1697fe938:
+    id: 5aa212ab-8d00-4682-b6e2-2be1697fe938
+    content: Product spec
+    children:
+      - 29929971-e18f-49d2-a7f6-3bdcf7e01294
+      - efa20e2e-3481-4887-a61b-6ca6f48382cc
+      - 3bc35b50-d0cb-4875-b26c-ed000c7015de
+      - c1ad32b4-7890-4087-af21-107a7c7d6a69
+      - a53de74c-6983-47b4-b64b-c5a9008e5079
+      - a6895705-5c67-4a96-a274-19f2ba7834fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29929971-e18f-49d2-a7f6-3bdcf7e01294:
+    id: 29929971-e18f-49d2-a7f6-3bdcf7e01294
+    content: Context
+    children:
+      - 99fc34bf-3ea5-41a7-8d1a-158e0f9e7bc2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99fc34bf-3ea5-41a7-8d1a-158e0f9e7bc2:
+    id: 99fc34bf-3ea5-41a7-8d1a-158e0f9e7bc2
+    content: '`sessionId` in node metadata is overloaded. Job (a): identify the Claude session that owns a node (the binding). Job (b): mark a decomposition lineage so the recurse hand-off can find the next sibling. Job (b) accreted over `2219213` (recurse stays in same AI session), `fb7c196` (split inherits sessionId), and `653e8c6` (decomposed siblings bound to originating session). Because job (b) requires the same `sessionId` to appear on many nodes, job (a) cannot enforce uniqueness — and stale stamps from past binds accumulate on nodes the user never consciously bound. Splitting the two jobs into separate metadata fields lets each enforce its own invariant cleanly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efa20e2e-3481-4887-a61b-6ca6f48382cc:
+    id: efa20e2e-3481-4887-a61b-6ca6f48382cc
+    content: User
+    children:
+      - 010c3ecf-a519-4eb7-ae64-c739c56c1b18
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  010c3ecf-a519-4eb7-ae64-c739c56c1b18:
+    id: 010c3ecf-a519-4eb7-ae64-c739c56c1b18
+    content: Workflow operator running decomposed workflows; the user-visible behavior is unchanged but the data model becomes coherent — fewer surprises in binding, capture, and recurse routing over time.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bc35b50-d0cb-4875-b26c-ed000c7015de:
+    id: 3bc35b50-d0cb-4875-b26c-ed000c7015de
+    content: Current experience
+    children:
+      - dcb3f72e-b4cc-459a-ba3d-44a8ebcb0b05
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcb3f72e-b4cc-459a-ba3d-44a8ebcb0b05:
+    id: dcb3f72e-b4cc-459a-ba3d-44a8ebcb0b05
+    content: Decomposition outputs (including the two-tree case sometimes called "split") and prior binds all share a `sessionId`. Binding correctness depends on incidental rules (resolution order, `brokenChain` flag) layered on top of this overload. New code that touches `sessionId` has to learn the unwritten lineage rule to avoid breaking recurse.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1ad32b4-7890-4087-af21-107a7c7d6a69:
+    id: c1ad32b4-7890-4087-af21-107a7c7d6a69
+    content: Goal
+    children:
+      - 52c2faa8-853b-4a40-8c61-58b90d41eb1d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52c2faa8-853b-4a40-8c61-58b90d41eb1d:
+    id: 52c2faa8-853b-4a40-8c61-58b90d41eb1d
+    content: '`sessionId` identifies a Claude session and appears on at most one node at a time. `groupId` identifies a decomposition lineage and is stamped on the root of every output tree produced by a decomposition operation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a53de74c-6983-47b4-b64b-c5a9008e5079:
+    id: a53de74c-6983-47b4-b64b-c5a9008e5079
+    content: Business rules
+    children:
+      - b145d94d-17a9-4101-a1a0-baae9bb8fb6e
+      - a24a89cd-e8a2-48ee-a4b4-8c013023ecf6
+      - 56a9881f-4869-40a8-ab6b-cf84276edf0d
+      - afffe216-8520-4cae-80a5-a81b83416e62
+      - 350c749d-8544-489e-bdc7-b146d3df392a
+      - 8e556d23-01a3-4e96-814d-909d6ba3a00b
+      - dc9f3db8-629b-4153-83e4-22d5a4fd427e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b145d94d-17a9-4101-a1a0-baae9bb8fb6e:
+    id: b145d94d-17a9-4101-a1a0-baae9bb8fb6e
+    content: 1. `sessionId` in node metadata identifies the Claude session that owns the node; it appears on at most one node at any time.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a24a89cd-e8a2-48ee-a4b4-8c013023ecf6:
+    id: a24a89cd-e8a2-48ee-a4b4-8c013023ecf6
+    content: 2. `groupId` in node metadata identifies a decomposition operation; it is stamped on the root of every output tree produced by that operation. Descendants within an output tree do not carry it. A single decomposition step can host multiple groupIds — one per source node decomposed in it. groupId scope is the output tree roots of that one decomposition operation, not the output trees of any later decomposition of one of them.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56a9881f-4869-40a8-ab6b-cf84276edf0d:
+    id: 56a9881f-4869-40a8-ab6b-cf84276edf0d
+    content: 3. groupId on a node is immutable for the life of the node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  afffe216-8520-4cae-80a5-a81b83416e62:
+    id: afffe216-8520-4cae-80a5-a81b83416e62
+    content: '4. The recurse hand-off picks the next decomposition output by matching `groupId`, not `sessionId`. Behavior is otherwise unchanged: the next sibling advances to step N+1 before being started (`4ecbcc1`).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  350c749d-8544-489e-bdc7-b146d3df392a:
+    id: 350c749d-8544-489e-bdc7-b146d3df392a
+    content: 5. When a terminal is bound to a new node (initial bind, send-to-terminal rebind, SessionStart capture, reattach), `sessionId` is stamped on the new node and atomically cleared from any other node that previously carried it. `groupId` on those nodes is left untouched.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e556d23-01a3-4e96-814d-909d6ba3a00b:
+    id: 8e556d23-01a3-4e96-814d-909d6ba3a00b
+    content: 6. Decomposition is the only mechanism that produces a group; there is no separate split operation with different metadata semantics. The two-tree decomposition case ("split") follows rule 2 like any other decomposition.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc9f3db8-629b-4153-83e4-22d5a4fd427e:
+    id: dc9f3db8-629b-4153-83e4-22d5a4fd427e
+    content: 7. Legacy `.arbo` files with pre-existing multi-node `sessionId` and no `groupId` load without error; legacy decomposition outputs do not participate in recurse hand-off until a fresh decomposition stamps `groupId`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6895705-5c67-4a96-a274-19f2ba7834fe:
+    id: a6895705-5c67-4a96-a274-19f2ba7834fe
+    content: Acceptance criteria
+    children:
+      - c9650816-3785-42b5-9b36-39be24fc54ed
+      - e4062544-9721-435d-9be5-714b53c368f5
+      - d339d256-bb65-4b9e-bebe-488d1d073a1f
+      - 5739324c-7859-4eb1-b46e-c509ef65d1f8
+      - 15555c23-5b18-471d-aac0-77e579e136f7
+      - 5773ea56-7a42-4cea-b292-c69e8c179729
+      - bcd8d48c-ac35-4d56-9c5c-6541746a4f8e
+      - 1165dd0d-325a-4984-9e9c-5ceb9fadd911
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9650816-3785-42b5-9b36-39be24fc54ed:
+    id: c9650816-3785-42b5-9b36-39be24fc54ed
+    content: '- [x] Bind a terminal to node A, then rebind it to unrelated node B — node B carries `sessionId`, node A no longer does; any `groupId` on either node is unchanged.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4062544-9721-435d-9be5-714b53c368f5:
+    id: e4062544-9721-435d-9be5-714b53c368f5
+    content: '- [x] Decompose node P: every output tree root carries the same fresh `groupId`; descendants within those trees do not; no unrelated node carries it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d339d256-bb65-4b9e-bebe-488d1d073a1f:
+    id: d339d256-bb65-4b9e-bebe-488d1d073a1f
+    content: '- [x] In a step that decomposes both P and Q, P''s output tree roots share one groupId and Q''s output tree roots share a different one.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5739324c-7859-4eb1-b46e-c509ef65d1f8:
+    id: 5739324c-7859-4eb1-b46e-c509ef65d1f8
+    content: '- [x] Recurse hand-off: when one of P''s output trees completes the recurse step, the next pending output tree of P (same groupId) advances to step N+1 and runs; Q''s outputs are not picked up.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15555c23-5b18-471d-aac0-77e579e136f7:
+    id: 15555c23-5b18-471d-aac0-77e579e136f7
+    content: '- [x] Re-decompose a node carrying `groupId=G` (including the two-tree case): each output tree root carries a fresh `groupId=H` (≠ G); `sessionId` is cleared from the source and stamped on whichever output the terminal''s `originNodeId` lands on.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5773ea56-7a42-4cea-b292-c69e8c179729:
+    id: 5773ea56-7a42-4cea-b292-c69e8c179729
+    content: '- [x] After this story ships, no two nodes in a freshly-created `.arbo` share a `sessionId` — verifiable by a test that exercises decomposition, recurse, and re-decomposition paths.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcd8d48c-ac35-4d56-9c5c-6541746a4f8e:
+    id: bcd8d48c-ac35-4d56-9c5c-6541746a4f8e
+    content: '- [x] Cross-session isolation from `653e8c6` (decomposition outputs of one orchestrator don''t leak into another''s recurse) still holds, now enforced via `groupId`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1165dd0d-325a-4984-9e9c-5ceb9fadd911:
+    id: 1165dd0d-325a-4984-9e9c-5ceb9fadd911
+    content: '- [x] Opening a legacy `.arbo` file (pre-`groupId`) loads without error and remains editable; binding a terminal to a legacy node enforces sessionId uniqueness from that point forward.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf761586-9b9c-413d-825a-5f19d554db72:
+    id: cf761586-9b9c-413d-825a-5f19d554db72
+    content: Implementation proposal
+    children:
+      - ec931fae-3b71-4a50-9668-c9a1a8da73fe
+      - 60421645-e921-479c-9008-051ac9f14d6b
+      - 184f29c1-235c-483b-b210-796c3e24e9d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec931fae-3b71-4a50-9668-c9a1a8da73fe:
+    id: ec931fae-3b71-4a50-9668-c9a1a8da73fe
+    content: Approach
+    children:
+      - 2868c4af-efe6-47be-8eca-9a3e0b6215b9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2868c4af-efe6-47be-8eca-9a3e0b6215b9:
+    id: 2868c4af-efe6-47be-8eca-9a3e0b6215b9
+    content: 'Add `metadata.groupId: string | undefined` on TreeNode. Stamp a fresh `groupId` on the root of every output tree in `acceptFeedbackStrategies` (decomposition path). Stop propagating `sessionId` across decomposition — `PRESERVED_METADATA_KEYS` drops `sessionId`. Centralise sessionId writes through one `bindSessionToNode(sessionId, nodeId)` helper that clears any prior holder of the same `sessionId`. Removes the lineage-via-sessionId scan path in `activeSessionNodeId.ts` since uniqueness now holds.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60421645-e921-479c-9008-051ac9f14d6b:
+    id: 60421645-e921-479c-9008-051ac9f14d6b
+    content: Touchpoints
+    children:
+      - b6b648ed-3937-40e8-881d-46bcdaeb983a
+      - 893175ff-34a3-430d-85c5-9168afe72cb0
+      - c6c350ee-65ff-4e95-a3cc-b0967847bae5
+      - 4950bd57-fd42-45a2-8776-c7288955745a
+      - 99baf09a-992e-43dd-bf36-82ce502e20f1
+      - 246857aa-8fc1-44a1-88b3-8d8d3cd87bbd
+      - 09d653f3-c042-4c63-8d5a-51f48d617921
+      - 92930462-ea13-4b69-8baf-89e39b23c39e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6b648ed-3937-40e8-881d-46bcdaeb983a:
+    id: b6b648ed-3937-40e8-881d-46bcdaeb983a
+    content: '`src/shared/types/treeNode.ts` — add `groupId` to node metadata type.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  893175ff-34a3-430d-85c5-9168afe72cb0:
+    id: 893175ff-34a3-430d-85c5-9168afe72cb0
+    content: '`src/renderer/store/tree/commands/acceptFeedbackStrategies.ts`, `AcceptFeedbackCommand.ts` — stamp fresh `groupId` on the root of each decomposition output tree; drop `sessionId` from `PRESERVED_METADATA_KEYS`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6c350ee-65ff-4e95-a3cc-b0967847bae5:
+    id: c6c350ee-65ff-4e95-a3cc-b0967847bae5
+    content: '`src/renderer/store/tree/commands/SplitNodeCommand.ts` — route through the shared groupId-stamping helper (no bespoke metadata logic); do not carry `sessionId` across. Consider collapsing into the decomposition pathway if it is a thin wrapper.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4950bd57-fd42-45a2-8776-c7288955745a:
+    id: 4950bd57-fd42-45a2-8776-c7288955745a
+    content: '`src/renderer/store/tree/actions/workflowExecutionActions.ts` — `checkRecurse` reads `groupId`; rename `originSessionId` → `originGroupId`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99baf09a-992e-43dd-bf36-82ce502e20f1:
+    id: 99baf09a-992e-43dd-bf36-82ce502e20f1
+    content: '`src/renderer/utils/workflowHelpers.ts` — `findNextDecomposedSibling` filter parameter becomes `originGroupId`, matches on `metadata.groupId`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  246857aa-8fc1-44a1-88b3-8d8d3cd87bbd:
+    id: 246857aa-8fc1-44a1-88b3-8d8d3cd87bbd
+    content: '`src/renderer/store/tree/selectors/activeSessionNodeId.ts` — simplify `findNodeOwningTerminalSession` now that `sessionId` is unique; the WeakMap index can resolve directly without first-match arbitration.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  09d653f3-c042-4c63-8d5a-51f48d617921:
+    id: 09d653f3-c042-4c63-8d5a-51f48d617921
+    content: New `bindSessionToNode` helper routed through by initial bind, send-to-terminal rebind, SessionStart capture, and reattach so sessionId uniqueness is enforced at every write site.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92930462-ea13-4b69-8baf-89e39b23c39e:
+    id: 92930462-ea13-4b69-8baf-89e39b23c39e
+    content: 'Tests: update `recurseSessionInheritance.test.ts`, `recurseTerminalScoping.test.ts`, `SplitNodeCommandSessionInheritance.test.ts`, `recurseHandoff.test.ts` to assert `groupId`-based isolation. Add: rebind clears prior `sessionId` stamp; multi-source decomposition step produces distinct groupIds per source; re-decomposition (including two-tree case) stamps a fresh groupId on each output root; descendants of output trees do not carry groupId; sessionId uniqueness end-to-end; legacy `.arbo` load smoke test.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  184f29c1-235c-483b-b210-796c3e24e9d5:
+    id: 184f29c1-235c-483b-b210-796c3e24e9d5
+    content: Constraints to call out
+    children:
+      - 35d75a44-afa5-4c02-8e1e-cdb9d87decd8
+      - 1cfa61fe-6fc3-40c3-879a-2786e312b9cc
+      - 23a9142c-df19-407f-8f48-638e9181fd51
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35d75a44-afa5-4c02-8e1e-cdb9d87decd8:
+    id: 35d75a44-afa5-4c02-8e1e-cdb9d87decd8
+    content: Every code path that writes `sessionId` to node metadata must go through `bindSessionToNode`; a one-off audit (grep for `sessionId` writes) is part of the implementation, not a follow-up.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cfa61fe-6fc3-40c3-879a-2786e312b9cc:
+    id: 1cfa61fe-6fc3-40c3-879a-2786e312b9cc
+    content: Existing `.arbo` files have multi-node `sessionId` and no `groupId`. No migration is needed — the recurse-across-sessions feature is unused today; legacy decomposition outputs simply will not participate in the new groupId-based hand-off until a fresh decomposition stamps them.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23a9142c-df19-407f-8f48-638e9181fd51:
+    id: 23a9142c-df19-407f-8f48-638e9181fd51
+    content: Main-process `sessionBindingRegistry` is unchanged; unifying the dual binding store of record is out of scope.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d8b2903-2542-4fe4-82bd-ee3f8e7ee627:
+    id: 7d8b2903-2542-4fe4-82bd-ee3f8e7ee627
+    content: Scope decision
+    children:
+      - b7553625-1190-4892-b146-a5f41a63dfa0
+      - 1c097a62-4810-4343-9061-685081039570
+      - 8486da1d-2fb6-4952-ae76-b965499fb22b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7553625-1190-4892-b146-a5f41a63dfa0:
+    id: b7553625-1190-4892-b146-a5f41a63dfa0
+    content: Single chunk — data model split is internally cohesive; removing `sessionId`'s lineage role and introducing `groupId` must ship together or recurse breaks.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c097a62-4810-4343-9061-685081039570:
+    id: 1c097a62-4810-4343-9061-685081039570
+    content: No feature flag — change is invisible to end users; gating provides no review, rollout, or PM-visibility value.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8486da1d-2fb6-4952-ae76-b965499fb22b:
+    id: 8486da1d-2fb6-4952-ae76-b965499fb22b
+    content: No further user-story split — touchpoints all serve the same invariant (sessionId uniqueness + groupId-based lineage); splitting would leave one half as speculative plumbing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9fe6023-f1a9-446e-a54e-d0e07ee97b18:
+    id: c9fe6023-f1a9-446e-a54e-d0e07ee97b18
+    content: Reviewer feedback
+    children:
+      - de10996e-052f-434e-b562-a0c7c30dce4a
+      - 9263821e-09d2-4dfc-8356-192f8184c1d3
+      - 660a4d21-7368-4d70-a7ec-44de23de93b2
+      - 07c05e61-a3e6-4da8-ae0b-a708440598ff
+      - 4482095e-8494-4500-8be0-ab2fc0542d55
+      - b7c03718-3b70-4796-a0c0-749f57c9db30
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de10996e-052f-434e-b562-a0c7c30dce4a:
+    id: de10996e-052f-434e-b562-a0c7c30dce4a
+    content: ROI is justified, not borderline — three prior commits (`2219213`, `fb7c196`, `653e8c6`) each layered lineage semantics onto `sessionId`; without this split a fourth such accretion is likely and the unwritten rule keeps compounding cost on every new contributor.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9263821e-09d2-4dfc-8356-192f8184c1d3:
+    id: 9263821e-09d2-4dfc-8356-192f8184c1d3
+    content: Decomposition is the only grouping mechanism — folding `SplitNodeCommand` into the same pathway removes a class of inconsistency (today split copies `sessionId` per `fb7c196` while decomposition propagates it via `PRESERVED_METADATA_KEYS`; both bugs are fixed by the same unified rule).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  660a4d21-7368-4d70-a7ec-44de23de93b2:
+    id: 660a4d21-7368-4d70-a7ec-44de23de93b2
+    content: '`bindSessionToNode` centralization is load-bearing, not over-engineering — without one write site the uniqueness invariant has no enforcement point and the bug class returns.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07c05e61-a3e6-4da8-ae0b-a708440598ff:
+    id: 07c05e61-a3e6-4da8-ae0b-a708440598ff
+    content: Audit step (grep for `sessionId` metadata writes) should be a checklist item in the PR description, not just a constraint note — easy to forget and the invariant breaks silently if one site is missed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4482095e-8494-4500-8be0-ab2fc0542d55:
+    id: 4482095e-8494-4500-8be0-ab2fc0542d55
+    content: No UX concerns — change is invisible to end users by design; behavioral parity is asserted by ACs.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7c03718-3b70-4796-a0c0-749f57c9db30:
+    id: b7c03718-3b70-4796-a0c0-749f57c9db30
+    content: 'Out of scope and correctly excluded: unifying renderer node metadata with main-process `sessionBindingRegistry` as the single binding store of record. Worth a follow-up story but would balloon this one.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  937c0a31-212a-4584-a9d8-d2dfb6e22e97:
+    id: 937c0a31-212a-4584-a9d8-d2dfb6e22e97
+    content: Technical refinement
+    children:
+      - 21dd8784-1885-4592-bc55-3831bc2944be
+      - 21878229-cd20-4a88-b37d-5c773dbdff49
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21dd8784-1885-4592-bc55-3831bc2944be:
+    id: 21dd8784-1885-4592-bc55-3831bc2944be
+    content: Complications
+    children:
+      - 18d592e1-4622-45c2-ae14-c9867259310b
+      - 31294887-05a5-48d2-98a8-aa456b6163c6
+      - e21df8b8-2ff8-46ac-a3d5-bd33e4b4836d
+      - e8f3c64e-1358-4a08-a187-1f7519bef5f3
+      - 3ea1ef5d-3f25-4bdf-a926-da687c577da4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18d592e1-4622-45c2-ae14-c9867259310b:
+    id: 18d592e1-4622-45c2-ae14-c9867259310b
+    content: Rule 5's "atomically cleared" must be one store update, not two `getState()` reads — easy to get wrong in Zustand action code and the resulting bug is silent (two nodes carry `sessionId`, uniqueness invariant broken without error).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31294887-05a5-48d2-98a8-aa456b6163c6:
+    id: 31294887-05a5-48d2-98a8-aa456b6163c6
+    content: '`bindSessionToNode` audit may surface more write sites than expected — undo/redo state restores, file-load paths, IPC SessionStart capture, reattach, blueprint import. If the list balloons, the scope estimate slips; worth a 10-minute grep before sizing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e21df8b8-2ff8-46ac-a3d5-bd33e4b4836d:
+    id: e21df8b8-2ff8-46ac-a3d5-bd33e4b4836d
+    content: 'Legacy uniqueness gap: between loading a legacy `.arbo` and the next bind, multiple nodes may carry the same `sessionId`. The simplified `activeSessionNodeId.ts` resolution assumes uniqueness — either tolerate any first-match (legacy lineage is dead anyway) or sweep duplicates on load. Pick one explicitly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8f3c64e-1358-4a08-a187-1f7519bef5f3:
+    id: e8f3c64e-1358-4a08-a187-1f7519bef5f3
+    content: AI-returned decomposition payloads with their own `metadata.groupId` (e.g., blueprint sub-tree imports) must be overwritten by the stamping helper, not merged — otherwise re-imported trees keep their old groupIds and recurse picks the wrong group.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ea1ef5d-3f25-4bdf-a926-da687c577da4:
+    id: 3ea1ef5d-3f25-4bdf-a926-da687c577da4
+    content: '`SplitNodeCommand` consolidation expands the diff beyond a pure metadata change — reviewers expecting "just add a field" will see command-level refactoring; call this out in the PR description.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21878229-cd20-4a88-b37d-5c773dbdff49:
+    id: 21878229-cd20-4a88-b37d-5c773dbdff49
+    content: Approach summary
+    children:
+      - 762beff2-e1d9-4ba4-a51e-e5a339655a21
+      - 141093c5-4f60-4318-8946-7c5364436e2a
+      - dadf4a80-2793-46eb-86bb-5f6df66c5126
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  762beff2-e1d9-4ba4-a51e-e5a339655a21:
+    id: 762beff2-e1d9-4ba4-a51e-e5a339655a21
+    content: New `metadata.groupId` field separates decomposition lineage from `sessionId`; one shared helper stamps a fresh `groupId` on each decomposition output tree root, with split folded into the same pathway.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  141093c5-4f60-4318-8946-7c5364436e2a:
+    id: 141093c5-4f60-4318-8946-7c5364436e2a
+    content: All `sessionId` writes funnel through one `bindSessionToNode` helper that atomically clears prior holders — uniqueness becomes enforceable at exactly one site instead of being an invariant nobody owns.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dadf4a80-2793-46eb-86bb-5f6df66c5126:
+    id: dadf4a80-2793-46eb-86bb-5f6df66c5126
+    content: 'No migration: legacy `.arbo` files load fine but their pre-existing decomposition outputs sit out of recurse hand-off until a fresh decomposition restamps them — acceptable because recurse-across-sessions is currently unused.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6d24a20-e7e1-4ef6-b155-a1703414963f:
+    id: a6d24a20-e7e1-4ef6-b155-a1703414963f
+    content: Review feedback
+    children:
+      - 3007519e-0b25-477b-9dec-b0185c23a8fa
+      - ee0e619e-4e61-4922-b230-5a4ecc232073
+      - d83ff58d-1d8e-414f-a073-6b4c48ad1543
+      - f3948556-3844-41f2-8ea3-a05f088fffbb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3007519e-0b25-477b-9dec-b0185c23a8fa:
+    id: 3007519e-0b25-477b-9dec-b0185c23a8fa
+    content: Major findings
+    children:
+      - 8fc99625-7dfc-44f4-91b1-68e30c270bcf
+      - f29adcd8-99a8-4814-87ff-f33bea4641be
+      - 9a6d320a-dcfb-4024-b476-69baf2cc94a1
+      - bedcfad9-f4c9-4f21-9ef6-cfdbafb84cab
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fc99625-7dfc-44f4-91b1-68e30c270bcf:
+    id: 8fc99625-7dfc-44f4-91b1-68e30c270bcf
+    content: 'M1. MCP set-metadata bypass — `src/renderer/services/mcpTreeMutatorService.ts:198-208`. `applySetMetadata` writes arbitrary keys via `{ ...node.metadata, [key]: value }`. An MCP `set_node_metadata(key=''sessionId'', value=''X'')` call writes a sessionId without going through `bindSessionInNodes`, defeating uniqueness from an external write path. Either reject `key === ''sessionId''` (and likely `''groupId''`, `''brokenChain''`) at this boundary, or route to `bindSessionInNodes` when the key matches.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f29adcd8-99a8-4814-87ff-f33bea4641be:
+    id: f29adcd8-99a8-4814-87ff-f33bea4641be
+    content: M2. AI/MCP-supplied multi-root payloads can smuggle `sessionId` onto output nodes — `src/renderer/store/tree/commands/acceptFeedbackStrategies.ts:243-253`. `stripFeedbackReconcileMetadata` only strips feedback reconcile keys. If `newNodesMap` carries `sessionId` on any node (root or descendant), it flows through `sanitizedMetadata` and into the final state via `setState`. Strip `sessionId` from sanitized metadata for every node in both strategies (and consider stripping inbound `groupId` on roots too, since the fresh one is stamped over it).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a6d320a-dcfb-4024-b476-69baf2cc94a1:
+    id: 9a6d320a-dcfb-4024-b476-69baf2cc94a1
+    content: M3. `executeSingleRootStrategy` silently loses the source's `sessionId` even though the node id is preserved — `src/renderer/store/tree/commands/acceptFeedbackStrategies.ts:147-153`. Dropping `sessionId` from `PRESERVED_METADATA_KEYS` is right for multi-root, but in single-root (same id, in-place refinement) the session binding disappears. Either restore the source's `sessionId` via `bindSessionInNodes` after the single-root strategy returns, or explicitly document this as the single-root analog of the AC 5 gap and accept that the next SessionStart will re-capture.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bedcfad9-f4c9-4f21-9ef6-cfdbafb84cab:
+    id: bedcfad9-f4c9-4f21-9ef6-cfdbafb84cab
+    content: M4. Legacy multi-holder `.arbo` files trigger spurious rebind dialogs at load — `src/renderer/store/files/actions/fileActions.ts:82-93` + `src/renderer/utils/extractSessionBindings.ts:5-16`. `extractSessionBindings` returns one pair per node with no dedup; `sessionBindingRegistry.register` flags the second-and-onward holders as `rebind-needed`, emitting confusing rebind events on every legacy file open. Either dedup first-seen-wins in `extractSessionBindings` (with a warn log) or migrate-on-load by stripping duplicate `sessionId` stamps (consistent with `stripDroppedSessionFields` in `sessionRegistryMigrations.ts`).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee0e619e-4e61-4922-b230-5a4ecc232073:
+    id: ee0e619e-4e61-4922-b230-5a4ecc232073
+    content: Minor findings
+    children:
+      - 5971d9e0-0c02-437a-ae94-4871dc3c5cfb
+      - 75d07150-c38b-4b17-bc49-713cd1cbddfa
+      - 05b9a5e4-c85e-4f1e-af96-caafa833fe2e
+      - d9a73ed1-815a-40cb-b20a-aee7443f353b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5971d9e0-0c02-437a-ae94-4871dc3c5cfb:
+    id: 5971d9e0-0c02-437a-ae94-4871dc3c5cfb
+    content: m5. `wasRootNode` fallback inside `executeMultiRootStrategy` calls `executeSingleRootStrategy` and silently loses the multi-root "fresh shared groupId" intent — `acceptFeedbackStrategies.ts:225-228`. Also drops non-first roots without splicing them into a parent's children (potential orphans). Unreachable on the normal `AcceptFeedbackCommand.execute` path (gated by `!wasRootNode`) but the strategy is exported. Delete the fallback or stamp groupId in it; add a `logger.warn` for orphan roots either way.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  75d07150-c38b-4b17-bc49-713cd1cbddfa:
+    id: 75d07150-c38b-4b17-bc49-713cd1cbddfa
+    content: m6. Stale-after-await read of `parent?.sessionId` in `workflowExecutionActions.ts:531-553` (`dispatchRecurseStart`) and similar shape at `:314` (resume-in-new-tab). No bug today, but re-reading `parent.sessionId` from state after the `await openInheritedResumeTerminal` would be safer if a SessionStart fires during the open.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  05b9a5e4-c85e-4f1e-af96-caafa833fe2e:
+    id: 05b9a5e4-c85e-4f1e-af96-caafa833fe2e
+    content: m7. `bindSessionInNodes` doesn't reject whitespace-only sessionIds (e.g., `'   '`). `registerSession:879` trims before passing but `inheritSessionOnNode`/`captureSessionOnNode` don't. Add a `.trim()` defensive check inside `bindSessionInNodes`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9a73ed1-815a-40cb-b20a-aee7443f353b:
+    id: d9a73ed1-815a-40cb-b20a-aee7443f353b
+    content: m8. SplitNodeCommand undo test gap — no test for "session was captured on source between execute and undo — undo preserves the captured sessionId". Logic looks correct (undo only overrides groupId), but coverage missing.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d83ff58d-1d8e-414f-a073-6b4c48ad1543:
+    id: d83ff58d-1d8e-414f-a073-6b4c48ad1543
+    content: Nits
+    children:
+      - d9efd0f7-e7e4-4aad-aabf-d61c45ffc022
+      - d7b1c1d8-5cdc-46e6-91a1-28642dd628bf
+      - 5f5212c1-66fc-4608-a3be-504cdb3eaf41
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9efd0f7-e7e4-4aad-aabf-d61c45ffc022:
+    id: d9efd0f7-e7e4-4aad-aabf-d61c45ffc022
+    content: n9. Inconsistent unused-destructure style in `acceptFeedbackStrategies.ts:99-103` — `stripGroupIdFromMetadata` uses `void _omit;`, neighbor `stripFeedbackReconcileMetadata` uses `// eslint-disable-next-line`. Pick one.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7b1c1d8-5cdc-46e6-91a1-28642dd628bf:
+    id: d7b1c1d8-5cdc-46e6-91a1-28642dd628bf
+    content: 'n10. Comment on `acceptFeedbackStrategies.ts:230-232` reads as "what" not "why" per CLAUDE.md conventions. Optional: add rationale ("so findNextDecomposedSibling only matches intended siblings, not foreign descendants").'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f5212c1-66fc-4608-a3be-504cdb3eaf41:
+    id: 5f5212c1-66fc-4608-a3be-504cdb3eaf41
+    content: n11. `bindSessionToNode` action wrapper has no production caller — only tested by its own test. Either wire it into `stampSessionOnStartNode:270-273` (which duplicates the read-merge-write pattern) or remove as dead code.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3948556-3844-41f2-8ea3-a05f088fffbb:
+    id: f3948556-3844-41f2-8ea3-a05f088fffbb
+    content: Related observations
+    children:
+      - 1efe4973-8e11-4793-84a9-2666ebbc76b8
+      - 3ec1c199-89c8-4403-895f-5452b886a7ef
+      - c1a03bd3-ea54-40a7-ad51-6fa7b65f6d46
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1efe4973-8e11-4793-84a9-2666ebbc76b8:
+    id: 1efe4973-8e11-4793-84a9-2666ebbc76b8
+    content: o12. `findNodeIdBySessionId` in `workflowExecutionActions.ts:215-221` does first-match and includes brokenChain nodes; `getSessionIndex` in `activeSessionNodeId.ts` excludes them. Pre-existing semantic mismatch, more visible now that uniqueness is enforced.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ec1c199-89c8-4403-895f-5452b886a7ef:
+    id: 3ec1c199-89c8-4403-895f-5452b886a7ef
+    content: o13. Clipboard paste path (`clipboardPasteHandlers.ts`) doesn't strip `sessionId`/`groupId` from pasted node metadata — pasting a copied node tree could create duplicate sessionId holders or stale groupIds. Pre-existing but related to the new invariants.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1a03bd3-ea54-40a7-ad51-6fa7b65f6d46:
+    id: c1a03bd3-ea54-40a7-ad51-6fa7b65f6d46
+    content: o14. No integration test for the file-load → seed → rebind-dialog flow on a legacy multi-holder file (related to M4).
+    children: []
+    metadata:
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
