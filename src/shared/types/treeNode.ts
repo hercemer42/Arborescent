@@ -51,6 +51,9 @@ export interface NodeMetadata {
   sessionId?: string;
   brokenChain?: boolean;
 
+  // Decomposition lineage — identifies a decomposition group; stamped on output tree roots only.
+  groupId?: string;
+
   // Archive / step settings
   archiveDestinationId?: string;
   archiveSideLinkName?: string;

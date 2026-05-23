@@ -648,12 +648,12 @@ export const createWorkflowExecutionActions = (
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
 
     const decompositionStepId = findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry);
-    const originSessionId = nodes[completedNodeId]?.metadata.sessionId;
+    const originGroupId = nodes[completedNodeId]?.metadata.groupId;
 
     const sibling =
-      findNextDecomposedSibling(stepId, nodes, workflowExecutionStates, completedNodeId, originSessionId)
+      findNextDecomposedSibling(stepId, nodes, workflowExecutionStates, completedNodeId, originGroupId)
       ?? (decompositionStepId
-        ? findNextDecomposedSibling(decompositionStepId, nodes, workflowExecutionStates, completedNodeId, originSessionId)
+        ? findNextDecomposedSibling(decompositionStepId, nodes, workflowExecutionStates, completedNodeId, originGroupId)
         : null);
 
     if (sibling) {

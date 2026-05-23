@@ -195,12 +195,17 @@ function applyMove(
   return { ok: true };
 }
 
+const FRAMEWORK_MANAGED_METADATA_KEYS = new Set(['sessionId', 'groupId', 'brokenChain']);
+
 function applySetMetadata(
   store: TreeStore,
   nodeId: string,
   key: string,
   value: unknown,
 ): MutationResult {
+  if (FRAMEWORK_MANAGED_METADATA_KEYS.has(key)) {
+    return { ok: false, error: `Metadata key '${key}' is framework-managed and cannot be set via MCP` };
+  }
   return updateNode(store, nodeId, (node) => ({
     ...node,
     metadata: { ...node.metadata, [key]: value },

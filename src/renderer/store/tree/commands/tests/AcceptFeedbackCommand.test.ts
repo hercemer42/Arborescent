@@ -290,7 +290,7 @@ describe('AcceptFeedbackCommand', () => {
       }
     });
 
-    it('stamps the collaborating node\'s sessionId onto every decomposed sibling so the group stays bound to the originating session', () => {
+    it('does not propagate the collaborating node\'s sessionId onto decomposed siblings — lineage is tracked by groupId instead', () => {
       mockState.nodes['collab-node'] = {
         ...mockState.nodes['collab-node'],
         metadata: { ...mockState.nodes['collab-node'].metadata, sessionId: 'session-orchestrator' },
@@ -315,9 +315,14 @@ describe('AcceptFeedbackCommand', () => {
       const newIds = parentChildren.filter((id: string) => id !== 'sibling');
 
       expect(newIds).toHaveLength(3);
+      const groupIds = new Set<string>();
       for (const id of newIds) {
-        expect(setCall.nodes[id].metadata.sessionId).toBe('session-orchestrator');
+        expect(setCall.nodes[id].metadata.sessionId).toBeUndefined();
+        const groupId = setCall.nodes[id].metadata.groupId as string | undefined;
+        expect(typeof groupId).toBe('string');
+        groupIds.add(groupId as string);
       }
+      expect(groupIds.size).toBe(1);
     });
 
     it('should preserve sibling order matching the AI response', () => {

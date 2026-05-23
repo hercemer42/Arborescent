@@ -2,6 +2,10 @@ import type { TreeNode } from '../../shared/types';
 
 export type SessionBindingPair = { sessionId: string; nodeId: string };
 
+// Dedup per sessionId — legacy .arbo files (pre-sessionId-uniqueness) may stamp
+// the same sessionId on multiple nodes. Callers can pass a preferred-node set to
+// influence which holder wins the seed; otherwise the lexicographically-first
+// candidate is picked deterministically.
 export function extractSessionBindings(
   nodes: Record<string, TreeNode>,
   preferredNodeIds?: ReadonlySet<string>,

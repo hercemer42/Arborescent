@@ -61,11 +61,11 @@ interface TestState {
   contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
 }
 
-// Two concurrent groups on the same shared workflow tree:
+// Two concurrent decomposition groups on the same shared workflow tree:
 //   workflow
 //     step-1 (decomposition: true) — both groups parented here
-//       task-A1, task-A2 — group A, sessionId=session-A
-//       task-B1, task-B2 — group B, sessionId=session-B
+//       task-A1, task-A2 — output roots of one decomposition, groupId=group-A
+//       task-B1, task-B2 — output roots of another decomposition, groupId=group-B
 //     step-2 — decompose+1, the handoff destination
 //     step-3 (recurse: true) — where the recurse fires
 //     step-4 — recurse+1
@@ -78,10 +78,10 @@ function makeState(): TestState {
       'step-2': { id: 'step-2', content: 'Step 2', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
       'step-3': { id: 'step-3', content: 'Step 3', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', recurse: true } },
       'step-4': { id: 'step-4', content: 'Step 4', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-      'task-A1': { id: 'task-A1', content: 'A1', children: [], metadata: { isBlueprint: true, sessionId: 'session-A' } },
-      'task-A2': { id: 'task-A2', content: 'A2', children: [], metadata: { isBlueprint: true, sessionId: 'session-A' } },
-      'task-B1': { id: 'task-B1', content: 'B1', children: [], metadata: { isBlueprint: true, sessionId: 'session-B' } },
-      'task-B2': { id: 'task-B2', content: 'B2', children: [], metadata: { isBlueprint: true, sessionId: 'session-B' } },
+      'task-A1': { id: 'task-A1', content: 'A1', children: [], metadata: { isBlueprint: true, groupId: 'group-A', sessionId: 'session-A' } },
+      'task-A2': { id: 'task-A2', content: 'A2', children: [], metadata: { isBlueprint: true, groupId: 'group-A' } },
+      'task-B1': { id: 'task-B1', content: 'B1', children: [], metadata: { isBlueprint: true, groupId: 'group-B', sessionId: 'session-B' } },
+      'task-B2': { id: 'task-B2', content: 'B2', children: [], metadata: { isBlueprint: true, groupId: 'group-B' } },
     },
     rootNodeId: 'root',
     ancestorRegistry: {

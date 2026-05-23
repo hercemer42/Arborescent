@@ -14,6 +14,8 @@ import {
   executeSingleRootStrategy,
   executeMultiRootStrategy,
 } from './acceptFeedbackStrategies';
+import { bindSessionInNodes } from '../actions/bindSessionToNode';
+import { useTerminalStore } from '../../terminal/terminalStore';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface ArchiveConfig {
@@ -196,8 +198,28 @@ export class AcceptFeedbackCommand extends BaseCommand {
 
     this.createdNodeIds = output.createdNodeIds;
 
+    // Multi-root replaces the source node with new outputs; any terminal whose
+    // originNodeId pointed at the source needs to migrate to one of the outputs
+    // (we pick output.activeNodeId — the first new root), and the source's
+    // sessionId follows the terminal there.
+    let nodesForState = output.nodes;
+    if (useMultiRootStrategy && !this.snapshot.wasRootNode) {
+      const sourceSessionId = collaboratingNode.metadata.sessionId;
+      if (typeof sourceSessionId === 'string' && sourceSessionId.length > 0) {
+        const terminals = useTerminalStore.getState().terminals;
+        const matchingTerminals = terminals.filter((t) => t.originNodeId === this.collaboratingNodeId);
+        if (matchingTerminals.length > 0) {
+          nodesForState = bindSessionInNodes(nodesForState, sourceSessionId, output.activeNodeId);
+          const update = useTerminalStore.getState().updateTerminal;
+          for (const term of matchingTerminals) {
+            update(term.id, { originNodeId: output.activeNodeId });
+          }
+        }
+      }
+    }
+
     this.setState({
-      nodes: output.nodes,
+      nodes: nodesForState,
       ancestorRegistry: output.ancestorRegistry,
       rootNodeId: state.rootNodeId,
       ...this.collaborationClearIfOwned(state),

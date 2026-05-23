@@ -5,6 +5,7 @@ import { logger } from '../../../services/logger';
 import { focusTerminal } from '../../../services/terminalFocusRegistry';
 import { getSessionLiveness } from '../../../utils/sessionLiveness';
 import { extractTaskTitle } from '../../../utils/terminalTabTitle';
+import { bindSessionInNodes } from './bindSessionToNode';
 
 interface SessionResumeState {
   nodes: Record<string, TreeNode>;
@@ -44,9 +45,13 @@ export function inheritSessionOnNode(
 ): Record<string, TreeNode> {
   const node = nodes[nodeId];
   if (!node) return nodes;
-  const nextMetadata = { ...node.metadata, sessionId };
+  const cleared = bindSessionInNodes(nodes, sessionId, nodeId);
+  const target = cleared[nodeId];
+  if (!target) return nodes;
+  if (target.metadata.brokenChain !== true) return cleared;
+  const nextMetadata = { ...target.metadata };
   delete nextMetadata.brokenChain;
-  return { ...nodes, [nodeId]: { ...node, metadata: nextMetadata } };
+  return { ...cleared, [nodeId]: { ...target, metadata: nextMetadata } };
 }
 
 export function markBrokenChainOnNode(
@@ -71,9 +76,13 @@ export function captureSessionOnNode(
   if (!node) return nodes;
   if (node.metadata.sessionId === sessionId && node.metadata.brokenChain !== true) return nodes;
 
-  const nextMetadata = { ...node.metadata, sessionId };
+  const cleared = bindSessionInNodes(nodes, sessionId, nodeId);
+  const target = cleared[nodeId];
+  if (!target) return nodes;
+  if (target.metadata.brokenChain !== true) return cleared;
+  const nextMetadata = { ...target.metadata };
   delete nextMetadata.brokenChain;
-  return { ...nodes, [nodeId]: { ...node, metadata: nextMetadata } };
+  return { ...cleared, [nodeId]: { ...target, metadata: nextMetadata } };
 }
 
 export function shortSessionId(sessionId: string): string {

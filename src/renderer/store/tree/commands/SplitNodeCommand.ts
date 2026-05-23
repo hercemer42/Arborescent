@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../utils/ancestry';
@@ -17,6 +18,8 @@ type SetState = (partial: {
 }) => void;
 
 export class SplitNodeCommand extends BaseCommand {
+  private sourcePreviousGroupId: string | undefined;
+
   constructor(
     private sourceNodeId: string,
     private newNodeId: string,
@@ -58,17 +61,22 @@ export class SplitNodeCommand extends BaseCommand {
     if (!targetParent) return;
 
     const newPosition = this.getInsertPosition(nodes, targetParentId);
-    const metadata: Record<string, unknown> = { status: 'pending' };
+    // Split is a decomposition: both halves become output tree roots of one fresh group.
+    this.sourcePreviousGroupId = typeof sourceNode.metadata.groupId === 'string'
+      ? sourceNode.metadata.groupId
+      : undefined;
+    const freshGroupId = uuidv4();
+
+    const metadata: Record<string, unknown> = { status: 'pending', groupId: freshGroupId };
     if (shouldInheritBlueprint(targetParentId, nodes, ancestorRegistry)) {
       metadata.isBlueprint = true;
-    }
-    if (typeof sourceNode.metadata.sessionId === 'string' && sourceNode.metadata.sessionId.length > 0) {
-      metadata.sessionId = sourceNode.metadata.sessionId;
     }
     const newNode = createTreeNode(this.newNodeId, { content: this.contentAfter, metadata });
 
     const updatedChildren = [...targetParent.children];
     updatedChildren.splice(newPosition, 0, this.newNodeId);
+
+    const updatedSourceMetadata = { ...sourceNode.metadata, groupId: freshGroupId };
 
     const updatedNodes: Record<string, TreeNode> = {
       ...nodes,
@@ -76,6 +84,7 @@ export class SplitNodeCommand extends BaseCommand {
       [this.sourceNodeId]: {
         ...sourceNode,
         content: this.contentBefore,
+        metadata: updatedSourceMetadata,
         ...(this.createAsChild && { children: updatedChildren }),
       },
     };
@@ -106,9 +115,17 @@ export class SplitNodeCommand extends BaseCommand {
     const updatedNodes: Record<string, TreeNode> = { ...nodes };
     delete updatedNodes[this.newNodeId];
 
+    const restoredMetadata = { ...sourceNode.metadata };
+    if (this.sourcePreviousGroupId !== undefined) {
+      restoredMetadata.groupId = this.sourcePreviousGroupId;
+    } else {
+      delete restoredMetadata.groupId;
+    }
+
     updatedNodes[this.sourceNodeId] = {
       ...sourceNode,
       content: this.originalContent,
+      metadata: restoredMetadata,
       ...(this.createAsChild && { children: updatedChildren }),
     };
 

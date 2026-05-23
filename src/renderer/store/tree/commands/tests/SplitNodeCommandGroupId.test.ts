@@ -3,7 +3,11 @@ import { SplitNodeCommand } from '../SplitNodeCommand';
 import { TreeNode } from '../../../../../shared/types';
 import { AncestorRegistry } from '../../../../utils/ancestry';
 
-describe('SplitNodeCommand — session inheritance after split', () => {
+function readGroupId(node: TreeNode | undefined): string | undefined {
+  return node?.metadata.groupId as string | undefined;
+}
+
+describe('SplitNodeCommand — groupId stamping (split is decomposition)', () => {
   let nodes: Record<string, TreeNode>;
   let rootNodeId: string;
   let ancestorRegistry: AncestorRegistry;
@@ -24,7 +28,7 @@ describe('SplitNodeCommand — session inheritance after split', () => {
         id: 'source',
         content: 'User story',
         children: [],
-        metadata: { status: 'pending', sessionId: 'sess-original' },
+        metadata: { status: 'pending', sessionId: 'sess-source' },
       },
     };
 
@@ -41,8 +45,8 @@ describe('SplitNodeCommand — session inheritance after split', () => {
     triggerAutosave = vi.fn();
   });
 
-  describe('sibling split (createAsChild = false)', () => {
-    it('new sibling inherits sessionId from the source node', () => {
+  describe('groupId stamping on the split-produced node', () => {
+    it('the new split node carries a fresh groupId (split is a decomposition)', () => {
       const cmd = new SplitNodeCommand(
         'source',
         'pr2',
@@ -54,14 +58,14 @@ describe('SplitNodeCommand — session inheritance after split', () => {
         setState,
         triggerAutosave,
       );
-
       cmd.execute();
 
       const stateUpdate = setState.mock.calls[0][0];
-      expect(stateUpdate.nodes['pr2'].metadata.sessionId).toBe('sess-original');
+      expect(readGroupId(stateUpdate.nodes['pr2'])).toBeDefined();
+      expect(typeof readGroupId(stateUpdate.nodes['pr2'])).toBe('string');
     });
 
-    it('source node retains its sessionId after the split', () => {
+    it('the source node carries the same fresh groupId so the two halves are siblings in the lineage', () => {
       const cmd = new SplitNodeCommand(
         'source',
         'pr2',
@@ -73,14 +77,18 @@ describe('SplitNodeCommand — session inheritance after split', () => {
         setState,
         triggerAutosave,
       );
-
       cmd.execute();
 
       const stateUpdate = setState.mock.calls[0][0];
-      expect(stateUpdate.nodes['source'].metadata.sessionId).toBe('sess-original');
+      const sourceGroup = readGroupId(stateUpdate.nodes['source']);
+      const newGroup = readGroupId(stateUpdate.nodes['pr2']);
+      expect(sourceGroup).toBeDefined();
+      expect(sourceGroup).toBe(newGroup);
     });
 
-    it('both split descendants share the same sessionId so either can resolve to the same terminal', () => {
+    it('re-splitting a node already in a group stamps a fresh different groupId on both halves', () => {
+      nodes['source'].metadata = { status: 'pending', groupId: 'group-prior' };
+
       const cmd = new SplitNodeCommand(
         'source',
         'pr2',
@@ -92,18 +100,58 @@ describe('SplitNodeCommand — session inheritance after split', () => {
         setState,
         triggerAutosave,
       );
-
       cmd.execute();
 
       const stateUpdate = setState.mock.calls[0][0];
-      expect(stateUpdate.nodes['pr2'].metadata.sessionId).toBe(
-        stateUpdate.nodes['source'].metadata.sessionId,
-      );
+      const sourceGroup = readGroupId(stateUpdate.nodes['source']);
+      const newGroup = readGroupId(stateUpdate.nodes['pr2']);
+      expect(sourceGroup).toBe(newGroup);
+      expect(sourceGroup).not.toBe('group-prior');
     });
   });
 
-  describe('child split (createAsChild = true)', () => {
-    it('new child inherits sessionId from the parent source', () => {
+  describe('sessionId is no longer blindly copied across a split', () => {
+    it('does not copy sessionId from source onto the new split node by default', () => {
+      const cmd = new SplitNodeCommand(
+        'source',
+        'pr2',
+        'User story',
+        'User ',
+        'story',
+        5,
+        getState,
+        setState,
+        triggerAutosave,
+      );
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['pr2'].metadata.sessionId).toBeUndefined();
+    });
+
+    it('at most one of the two halves carries a sessionId — never both', () => {
+      const cmd = new SplitNodeCommand(
+        'source',
+        'pr2',
+        'User story',
+        'User ',
+        'story',
+        5,
+        getState,
+        setState,
+        triggerAutosave,
+      );
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      const sourceHasSession = typeof stateUpdate.nodes['source'].metadata.sessionId === 'string';
+      const newHasSession = typeof stateUpdate.nodes['pr2'].metadata.sessionId === 'string';
+      expect(sourceHasSession && newHasSession).toBe(false);
+    });
+  });
+
+  describe('child-split variant (createAsChild = true)', () => {
+    it('child split also stamps a fresh groupId on both source and new child', () => {
       const cmd = new SplitNodeCommand(
         'source',
         'pr2',
@@ -116,16 +164,37 @@ describe('SplitNodeCommand — session inheritance after split', () => {
         triggerAutosave,
         true,
       );
-
       cmd.execute();
 
       const stateUpdate = setState.mock.calls[0][0];
-      expect(stateUpdate.nodes['pr2'].metadata.sessionId).toBe('sess-original');
+      const sourceGroup = readGroupId(stateUpdate.nodes['source']);
+      const childGroup = readGroupId(stateUpdate.nodes['pr2']);
+      expect(sourceGroup).toBeDefined();
+      expect(sourceGroup).toBe(childGroup);
+    });
+
+    it('child split does not copy sessionId from parent source onto the new child', () => {
+      const cmd = new SplitNodeCommand(
+        'source',
+        'pr2',
+        'User story',
+        'User ',
+        'story',
+        5,
+        getState,
+        setState,
+        triggerAutosave,
+        true,
+      );
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['pr2'].metadata.sessionId).toBeUndefined();
     });
   });
 
-  describe('no-regression: source without a session', () => {
-    it('new node has no sessionId when source has none', () => {
+  describe('undo restores the pre-split groupId state', () => {
+    it('removing the split node on undo also removes the groupId stamp from the source if it was created fresh', () => {
       nodes['source'].metadata = { status: 'pending' };
 
       const cmd = new SplitNodeCommand(
@@ -139,98 +208,18 @@ describe('SplitNodeCommand — session inheritance after split', () => {
         setState,
         triggerAutosave,
       );
-
-      cmd.execute();
-
-      const stateUpdate = setState.mock.calls[0][0];
-      expect(stateUpdate.nodes['pr2'].metadata.sessionId).toBeUndefined();
-    });
-  });
-
-  describe('recursive splits (split of an already-split PR)', () => {
-    it('second split propagates the inherited sessionId to the third descendant', () => {
-      const first = new SplitNodeCommand(
-        'source',
-        'pr2',
-        'User story',
-        'User ',
-        'story',
-        5,
-        getState,
-        setState,
-        triggerAutosave,
-      );
-      first.execute();
-
-      const second = new SplitNodeCommand(
-        'pr2',
-        'pr3',
-        'story',
-        'sto',
-        'ry',
-        3,
-        getState,
-        setState,
-        triggerAutosave,
-      );
-      second.execute();
-
-      const lastCall = setState.mock.calls[setState.mock.calls.length - 1][0];
-      expect(lastCall.nodes['pr3'].metadata.sessionId).toBe('sess-original');
-    });
-  });
-
-  describe('brokenChain handling on the new descendant', () => {
-    it('inherits sessionId without inheriting brokenChain when source has both', () => {
-      nodes['source'].metadata = {
-        status: 'pending',
-        sessionId: 'sess-original',
-        brokenChain: true,
-      };
-
-      const cmd = new SplitNodeCommand(
-        'source',
-        'pr2',
-        'User story',
-        'User ',
-        'story',
-        5,
-        getState,
-        setState,
-        triggerAutosave,
-      );
-
-      cmd.execute();
-
-      const stateUpdate = setState.mock.calls[0][0];
-      expect(stateUpdate.nodes['pr2'].metadata.sessionId).toBe('sess-original');
-      expect(stateUpdate.nodes['pr2'].metadata.brokenChain).toBeUndefined();
-    });
-  });
-
-  describe('undo restores the pre-split ownership state', () => {
-    it('removes the new node entirely on undo', () => {
-      const cmd = new SplitNodeCommand(
-        'source',
-        'pr2',
-        'User story',
-        'User ',
-        'story',
-        5,
-        getState,
-        setState,
-        triggerAutosave,
-      );
       cmd.execute();
       setState.mockClear();
-
       cmd.undo();
 
       const stateUpdate = setState.mock.calls[0][0];
       expect(stateUpdate.nodes['pr2']).toBeUndefined();
+      expect(readGroupId(stateUpdate.nodes['source'])).toBeUndefined();
     });
 
-    it('leaves the source node sessionId unchanged after undo', () => {
+    it('undo preserves a pre-existing groupId on the source if one was already there', () => {
+      nodes['source'].metadata = { status: 'pending', groupId: 'pre-existing-group' };
+
       const cmd = new SplitNodeCommand(
         'source',
         'pr2',
@@ -244,11 +233,10 @@ describe('SplitNodeCommand — session inheritance after split', () => {
       );
       cmd.execute();
       setState.mockClear();
-
       cmd.undo();
 
       const stateUpdate = setState.mock.calls[0][0];
-      expect(stateUpdate.nodes['source'].metadata.sessionId).toBe('sess-original');
+      expect(readGroupId(stateUpdate.nodes['source'])).toBe('pre-existing-group');
     });
   });
 });

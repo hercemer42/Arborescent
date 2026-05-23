@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import type { TreeNode } from '../../../../shared/types';
 import {
   addNodesToRegistry,
@@ -6,6 +7,7 @@ import {
 } from '../../../utils/ancestry';
 import { getAllDescendants } from '../../../utils/nodeHelpers';
 import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
+import { bindSessionInNodes } from '../actions/bindSessionToNode';
 
 /**
  * Pure execution strategies for AcceptFeedbackCommand.
@@ -91,7 +93,13 @@ export function applyBlueprintMetadata(
 
 function stripFeedbackReconcileMetadata(metadata: TreeNode['metadata']): TreeNode['metadata'] {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { feedbackBaselineKind, feedbackPriorContent, ...rest } = metadata;
+  const { feedbackBaselineKind, feedbackPriorContent, sessionId, ...rest } = metadata;
+  return rest;
+}
+
+function stripGroupIdFromMetadata(metadata: TreeNode['metadata']): TreeNode['metadata'] {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { groupId, ...rest } = metadata;
   return rest;
 }
 
@@ -104,7 +112,7 @@ export const PRESERVED_METADATA_KEYS = [
   'blueprintColor',
   'isBlueprint',
   'expanded',
-  'sessionId',
+  'groupId',
 ] as const;
 
 export function collectPreservedMetadata(collaboratingNode: TreeNode): Record<string, unknown> {
@@ -167,11 +175,20 @@ export function executeSingleRootStrategy(input: StrategyInput): StrategyOutput 
     );
   }
 
-  const mergedNodesMap = { ...state.nodes };
+  let mergedNodesMap: Record<string, TreeNode> = { ...state.nodes };
   for (const id of snapshot.descendants.keys()) {
     delete mergedNodesMap[id];
   }
   Object.assign(mergedNodesMap, updatedNewNodesMap);
+
+  // Single-root replaces the source's content in-place under its original id;
+  // re-stamp the source's sessionId via bindSessionInNodes so the terminal binding
+  // survives refinement (sessionId is otherwise dropped because it's no longer in
+  // PRESERVED_METADATA_KEYS — the bind-only write site keeps the uniqueness invariant).
+  const sourceSessionId = collaboratingNode.metadata.sessionId;
+  if (typeof sourceSessionId === 'string' && sourceSessionId.length > 0) {
+    mergedNodesMap = bindSessionInNodes(mergedNodesMap, sourceSessionId, collaboratingNodeId);
+  }
 
   const createdNodeIds = [
     collaboratingNodeId,
@@ -220,6 +237,12 @@ export function executeMultiRootStrategy(input: StrategyInput): StrategyOutput {
     return executeSingleRootStrategy(input);
   }
 
+  // Every output tree root from this decomposition shares one fresh groupId,
+  // overriding any inbound or preserved-from-source groupId. Descendants within
+  // an output tree never carry groupId.
+  const freshGroupId = uuidv4();
+  const rootPreservedMetadata = { ...preservedMetadata, groupId: freshGroupId };
+
   let updatedNewNodesMap: Record<string, TreeNode> = {};
   const newRootIdSet = new Set(newRootNodeIds);
 
@@ -228,13 +251,15 @@ export function executeMultiRootStrategy(input: StrategyInput): StrategyOutput {
     const remappedChildren = node.children.map((childId) => idMap[childId] || childId);
     const isRoot = newRootIdSet.has(id);
     const sanitizedMetadata = stripFeedbackReconcileMetadata(node.metadata);
+    const finalMetadata = isRoot
+      ? { ...sanitizedMetadata, ...rootPreservedMetadata }
+      : stripGroupIdFromMetadata(sanitizedMetadata);
 
     updatedNewNodesMap[newId] = {
       ...node,
       id: newId,
       children: remappedChildren,
-      ...(isRoot && { metadata: { ...sanitizedMetadata, ...preservedMetadata } }),
-      ...(!isRoot && { metadata: sanitizedMetadata }),
+      metadata: finalMetadata,
     };
   }
 
