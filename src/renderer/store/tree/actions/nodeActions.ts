@@ -9,6 +9,7 @@ import { CreateNodeCommand } from '../commands/CreateNodeCommand';
 import { SplitNodeCommand } from '../commands/SplitNodeCommand';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
+import { syncBoundTerminalTitles } from '../../terminal/syncBoundTerminalTitles';
 
 export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
@@ -93,6 +94,7 @@ export const createNodeActions = (
       state.actions.refreshContextDeclarations
     );
     state.actions.executeCommand(command);
+    syncBoundTerminalTitles(nodeId, (get() as StoreState).nodes[nodeId]);
   }
 
   function updateStatus(nodeId: string, status: NodeStatus): void {
