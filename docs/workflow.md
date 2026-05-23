@@ -90,7 +90,7 @@ Drag the panel edge to resize. Toggle between side and bottom position with the 
 
 ### Terminal tabs
 
-Open a new terminal with `+` in the terminal tab bar. Switch between terminals by clicking their tabs — running processes and content are preserved when switching. Close a terminal with `×` on its tab.
+Open a new terminal with `+` in the terminal tab bar. Switch between terminals by clicking their tabs — running processes and content are preserved when switching. Close a terminal with `×` on its tab. Closing a terminal whose AI prompt is still processing asks for confirmation first so an accidental click doesn't discard the in-flight response; idle terminals close immediately.
 
 Sending or executing a branch into a terminal renames the tab to that branch's title (full title on hover). The tab keeps the title until the next branch is sent.
 

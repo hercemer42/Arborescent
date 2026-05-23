@@ -1,0 +1,54 @@
+.terminal-close-confirmation-body {
+  padding: 1rem 1.25rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.terminal-close-confirmation-body p {
+  margin: 0;
+  color: var(--gray-600);
+}
+
+.terminal-close-confirmation-terminal {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  background: var(--gray-100);
+  color: var(--gray-600);
+  border-left: 3px solid var(--amber-500);
+  word-break: break-word;
+}
+
+.terminal-close-confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.terminal-close-confirmation-cancel,
+.terminal-close-confirmation-confirm {
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-600);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.terminal-close-confirmation-confirm {
+  background: var(--red-500, var(--amber-500));
+  color: var(--white);
+  border-color: var(--red-500, var(--amber-500));
+}
+
+.terminal-close-confirmation-cancel:hover {
+  background: var(--gray-100);
+}
+
+.terminal-close-confirmation-confirm:hover {
+  filter: brightness(0.9);
+}

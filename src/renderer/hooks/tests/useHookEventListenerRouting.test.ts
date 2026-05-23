@@ -99,6 +99,7 @@ vi.mock('../../store/terminal/terminalStore', () => ({
           },
         ]),
       ),
+      markTerminalProcessing: () => {},
     }),
   },
 }));

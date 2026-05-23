@@ -8,6 +8,7 @@ import { AppMenuBar } from "./components/MenuBar";
 import { CustomizeDialogContainer } from "./components/ui/CustomizeDialog/CustomizeDialogContainer";
 import { KeyboardShortcutsDialog } from "./components/KeyboardShortcuts";
 import { RebindConfirmationContainer } from "./components/ui/RebindConfirmationDialog";
+import { TerminalCloseConfirmationContainer } from "./components/ui/TerminalCloseConfirmationDialog";
 import { useToastStore } from "./store/toast/toastStore";
 import { usePanelStore } from "./store/panel/panelStore";
 import { useSearchStore } from "./store/search/searchStore";
@@ -100,6 +101,7 @@ export function App() {
         onClose={closeKeyboardShortcuts}
       />
       <RebindConfirmationContainer />
+      <TerminalCloseConfirmationContainer />
     </div>
   );
 }

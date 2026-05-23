@@ -31,16 +31,17 @@ describe('useTerminalPanel', () => {
   });
 
   const setupMock = (terminals: { id: string }[] = []) => {
+    const state = {
+      terminals,
+      fileStates: {},
+      createNewTerminal: mockCreateNewTerminal,
+      closeTerminal: mockCloseTerminal,
+      isTerminalProcessing: () => false,
+    };
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockImplementation(
-      (selector: (state: Record<string, unknown>) => unknown) => {
-        const state = {
-          terminals,
-          createNewTerminal: mockCreateNewTerminal,
-          closeTerminal: mockCloseTerminal,
-        };
-        return selector(state);
-      }
+      (selector: (state: Record<string, unknown>) => unknown) => selector(state),
     );
+    (useTerminalStore as unknown as { getState: () => unknown }).getState = () => state;
   };
 
   describe('handleNewTerminal', () => {

@@ -56,6 +56,16 @@ function postRegisterTarget(port, token, sessionId, targetNodeUuid, markerSeenTh
   if (targetNodeUuid) payload.target_node_uuid = targetNodeUuid;
   return postHookEvent(port, token, payload, 'register-target');
 }
+
+function postProcessingSignal(port, token, sessionId, terminalId, eventName) {
+  if (!terminalId) return Promise.resolve();
+  const payload = {
+    session_id: sessionId,
+    hook_event_name: eventName,
+    terminal_id: terminalId,
+  };
+  return postHookEvent(port, token, payload, eventName);
+}
 `;
 
 // Hooks defensively short-circuit on TTY stdin and arm a watchdog timer so a
@@ -139,7 +149,10 @@ process.stdin.on('end', () => {
 
   if (!bindingUuid && !targetUuid) {
     if (canDispatch) {
-      postRegisterTarget(port, token, sessionId, '', false).finally(() => process.exit(0));
+      Promise.all([
+        postRegisterTarget(port, token, sessionId, '', false),
+        postProcessingSignal(port, token, sessionId, terminalId, 'UserPromptSubmit'),
+      ]).finally(() => process.exit(0));
     } else {
       process.exit(0);
     }
@@ -156,6 +169,7 @@ process.stdin.on('end', () => {
       await postRegisterBinding(port, token, sessionId, bindingUuid, source, terminalId);
     }
     await postRegisterTarget(port, token, sessionId, targetUuid || '', markerSeenThisTurn);
+    await postProcessingSignal(port, token, sessionId, terminalId, 'UserPromptSubmit');
   }).finally(() => process.exit(0));
 });
 
@@ -304,17 +318,34 @@ process.stdin.on('end', () => {
   const transcriptPath = typeof payload.transcript_path === 'string' ? payload.transcript_path : '';
   const mcpPort = process.env.ARBORESCENT_MCP_PORT || '';
   const mcpToken = process.env.ARBORESCENT_MCP_TOKEN || '';
+  const hookPort = process.env.ARBORESCENT_HOOK_PORT || '';
+  const hookToken = process.env.ARBORESCENT_AUTH_TOKEN || '';
+  const terminalId = process.env.ARBORESCENT_TERMINAL_ID || '';
+
+  const processingDone = sessionId && terminalId && hookPort && hookToken
+    ? postHookEvent(hookPort, hookToken, {
+        session_id: sessionId,
+        hook_event_name: 'Stop',
+        terminal_id: terminalId,
+      }, 'Stop')
+    : Promise.resolve();
 
   if (!sessionId || !transcriptPath || !mcpPort || !mcpToken) {
-    process.exit(0);
+    processingDone.finally(() => process.exit(0));
+    return;
   }
 
   const assistantText = readLastAssistantMessage(transcriptPath);
   if (assistantText === null) {
-    process.exit(0);
+    processingDone.finally(() => process.exit(0));
+    return;
   }
 
-  postSubmitStepOutput(mcpPort, mcpToken, sessionId, assistantText).finally(() => process.exit(0));
+  Promise.all([
+    processingDone,
+    postSubmitStepOutput(mcpPort, mcpToken, sessionId, assistantText),
+  ]).finally(() => process.exit(0));
 });
 ${HOOK_POST_SUBMIT_STEP_OUTPUT_FN}
-${HOOK_READ_LAST_ASSISTANT_MESSAGE_FN}`;
+${HOOK_READ_LAST_ASSISTANT_MESSAGE_FN}
+${HOOK_POST_HOOK_EVENT_FN}`;

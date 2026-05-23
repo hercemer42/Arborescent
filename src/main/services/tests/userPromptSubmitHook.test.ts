@@ -122,3 +122,14 @@ describe('UserPromptSubmit hook — terminal_id propagation (US-E)', () => {
   it.todo('omits terminal_id from the payload when ARBORESCENT_TERMINAL_ID is absent — foreign terminal, hook proceeds without it');
   it.todo('an empty-string ARBORESCENT_TERMINAL_ID is treated the same as absent');
 });
+
+// Terminal close-guard (US-CloseConfirm) — the hook must publish a
+// "UserPromptSubmit" hook event back to the hook server so the renderer can
+// flip the per-terminal isProcessing flag. The Stop hook already publishes a
+// matching event that the renderer routes to flip the flag back to false.
+// Without these two signals the close-guard has nothing to read.
+describe('UserPromptSubmit hook — close-guard processing signal', () => {
+  it.todo('posts a hook event with hook_event_name=UserPromptSubmit and terminal_id to the hook server on every prompt — used by renderer to mark the terminal as processing');
+  it.todo('the close-guard processing post is fire-and-forget — a failed hook-server POST must not block the prompt from reaching Claude');
+  it.todo('omits the close-guard processing post when ARBORESCENT_TERMINAL_ID is absent — no terminal to mark, no event');
+});

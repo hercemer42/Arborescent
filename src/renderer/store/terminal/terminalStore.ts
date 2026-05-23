@@ -30,6 +30,7 @@ interface TerminalState {
   activeTerminalId: string | null;
   currentFilePath: string | null;
   fileStates: Record<string, FileTerminalState>;
+  terminalProcessing: Record<string, boolean>;
 
   setActiveFile: (filePath: string | null) => void;
   addTerminal: (terminal: TerminalInfo) => void;
@@ -45,6 +46,8 @@ interface TerminalState {
   closeFileTerminals: (filePath: string) => Promise<void>;
   restoreTerminalSession: () => Promise<void>;
   materializeRestoredTerminals: () => Promise<void>;
+  markTerminalProcessing: (id: string, isProcessing: boolean) => void;
+  isTerminalProcessing: (id: string) => boolean;
 }
 
 function getFileState(fileStates: Record<string, FileTerminalState>, filePath: string | null): FileTerminalState {
@@ -116,6 +119,7 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
   activeTerminalId: null,
   currentFilePath: null,
   fileStates: {},
+  terminalProcessing: {},
 
   setActiveFile: (filePath: string | null) => {
     const resolved = resolveToSourceFilePath(filePath);
@@ -259,10 +263,35 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     try {
       await window.electron.terminalDestroy(id);
       get().removeTerminal(id);
+      const processing = get().terminalProcessing;
+      if (Object.prototype.hasOwnProperty.call(processing, id)) {
+        const next = { ...processing };
+        delete next[id];
+        set({ terminalProcessing: next });
+      }
       logger.info(`Closed terminal: ${id}`, 'TerminalStore');
     } catch (error) {
       logger.error('Failed to close terminal', error as Error, 'TerminalStore');
     }
+  },
+
+  markTerminalProcessing: (id: string, isProcessing: boolean) => {
+    if (!id || !id.trim()) return;
+    const current = get().terminalProcessing;
+    const existing = Boolean(current[id]);
+    if (existing === isProcessing) return;
+    const next = { ...current };
+    if (isProcessing) {
+      next[id] = true;
+    } else {
+      delete next[id];
+    }
+    set({ terminalProcessing: next });
+  },
+
+  isTerminalProcessing: (id: string) => {
+    if (!id) return false;
+    return Boolean(get().terminalProcessing[id]);
   },
 
   restoreTerminalSession: async () => {
@@ -348,11 +377,15 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
 
     const updated = { ...fileStates };
     delete updated[filePath];
-    const { currentFilePath } = get();
+    const { currentFilePath, terminalProcessing } = get();
     const currentState = currentFilePath === filePath
       ? { terminals: [], activeTerminalId: null }
       : {};
-    set({ fileStates: updated, ...currentState });
+    const nextProcessing = { ...terminalProcessing };
+    for (const terminal of fileState.terminals) {
+      delete nextProcessing[terminal.id];
+    }
+    set({ fileStates: updated, terminalProcessing: nextProcessing, ...currentState });
     void saveTerminalSession(updated);
   },
 }));

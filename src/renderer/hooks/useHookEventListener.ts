@@ -32,6 +32,14 @@ export function useHookEventListener(): void {
         'HookEventListener',
       );
 
+      if (event.terminal_id) {
+        if (event.hook_event_name === 'UserPromptSubmit') {
+          useTerminalStore.getState().markTerminalProcessing(event.terminal_id, true);
+        } else if (event.hook_event_name === 'Stop') {
+          useTerminalStore.getState().markTerminalProcessing(event.terminal_id, false);
+        }
+      }
+
       if (event.hook_event_name === 'SessionStart' || event.hook_event_name === 'session-terminal-mapping') {
         if (!event.terminal_id) {
           logger.warn(
