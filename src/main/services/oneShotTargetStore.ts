@@ -13,6 +13,10 @@ export class OneShotTargetStore {
     this.pendingTargets.delete(sessionId);
   }
 
+  markManualCollabResolved(sessionId: string): void {
+    this.clearPendingTarget(sessionId);
+  }
+
   pendingTarget(sessionId: string): string | null {
     if (!sessionId) return null;
     return this.pendingTargets.get(sessionId) ?? null;

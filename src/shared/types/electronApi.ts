@@ -218,6 +218,8 @@ export interface ElectronAPI {
   seedSessionBindings: (pairs: ReadonlyArray<{ sessionId: string; nodeId: string }>) => Promise<void>;
   clearSessionBindings: (sessionIds: ReadonlyArray<string>) => Promise<void>;
 
+  notifyManualCollabResolved: (sessionId: string) => Promise<void>;
+
   // Persistent activity log
   appendLog: (entry: AppendLogPayload) => Promise<void>;
   openLogFile: () => Promise<void>;

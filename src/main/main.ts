@@ -287,6 +287,10 @@ const createWindow = async () => {
       ipcMain.handle(CLEAR_BINDINGS_CHANNEL, (_event, sessionIds: string[]) => {
         seedBindingsBridge?.clear(sessionIds);
       });
+      ipcMain.handle('mcp:manual-collab-resolved', (_event, sessionId: string) => {
+        if (!sessionId) return;
+        mcpServer?.getOneShotTargetStore().markManualCollabResolved(sessionId);
+      });
       logger.info(
         `Seed bindings IPC bridge active on channels ${SEED_BINDINGS_CHANNEL} / ${CLEAR_BINDINGS_CHANNEL}`,
         'Main',

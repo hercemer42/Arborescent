@@ -175,6 +175,16 @@ function findSessionIdForTerminal(workflowSessionMap: Record<string, string>, te
   return '';
 }
 
+function notifyManualCollabResolvedForTerminal(
+  terminalId: string | null,
+  workflowSessionMap: Record<string, string>,
+): void {
+  if (!terminalId) return;
+  const sessionId = findSessionIdForTerminal(workflowSessionMap, terminalId);
+  if (!sessionId) return;
+  void window.electron?.notifyManualCollabResolved?.(sessionId);
+}
+
 function buildNeedsReviewInstruction(sessionId: string): string {
   return `
 IMPORTANT: If you encounter issues that require user input (ambiguities, spec problems, technical constraints, or anything that could compromise the quality of your output), run this command:
@@ -543,12 +553,14 @@ export function createSendActions(
     },
 
     cancelCollaboration: () => {
+      const { collaboratingTerminalId, workflowSessionMap } = get();
+      notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
       set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
     },
 
     acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
       const state = get() as TreeState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-      const { collaboratingNodeId, nodes } = state;
+      const { collaboratingNodeId, nodes, collaboratingTerminalId, workflowSessionMap } = state;
 
       if (!collaboratingNodeId || !nodes[collaboratingNodeId]) return;
 
@@ -556,6 +568,8 @@ export function createSendActions(
         logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'SendActions');
         return;
       }
+
+      notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
 
       const reconciled = reconcileFeedback({
         priorRootId: collaboratingNodeId,
@@ -801,11 +815,13 @@ export function createSendActions(
 
     finishCancel: async () => {
       try {
-        const { collaboratingNodeId, currentFilePath, nodes } = get();
+        const { collaboratingNodeId, currentFilePath, nodes, collaboratingTerminalId, workflowSessionMap } = get();
         if (!collaboratingNodeId || !currentFilePath) {
           logger.warn('No collaboration in progress to cancel', 'SendActions');
           return;
         }
+
+        notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
 
         const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;
 
@@ -828,7 +844,7 @@ export function createSendActions(
 
     finishAccept: async () => {
       try {
-        const { collaboratingNodeId, currentFilePath, nodes } = get();
+        const { collaboratingNodeId, currentFilePath, nodes, collaboratingTerminalId, workflowSessionMap } = get();
         if (!collaboratingNodeId || !currentFilePath) {
           logger.error('No collaboration in progress to accept', new Error('No active collaboration'), 'SendActions');
           return;
@@ -844,6 +860,8 @@ export function createSendActions(
           logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'SendActions');
           return;
         }
+
+        notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
 
         const { decomposition, nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
         const rootNodeIdOrIds = decomposition && feedbackContent.rootNodeIds.length > 1

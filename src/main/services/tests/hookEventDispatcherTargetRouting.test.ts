@@ -60,19 +60,24 @@ describe('createHookEventDispatcher — register-target routing (US-B)', () => {
     expect(forwardToRenderer).not.toHaveBeenCalled();
   });
 
-  it('clears pendingTarget when target_node_uuid is omitted (neither marker present this turn)', () => {
-    oneShot.setPendingTarget('sess-1', 'stale-node');
+  it('preserves pendingTarget when target_node_uuid is omitted — manual collabs persist across follow-up prompts', () => {
+    // Under the manual-collab lifetime model, register-target with no marker
+    // (the steady-state UserPromptSubmit case) MUST NOT clear an in-flight
+    // manual route. The route lives until the renderer explicitly signals
+    // resolution via `markManualCollabResolved`. This guarantees the
+    // discuss-then-refresh loop survives across follow-up prompts.
+    oneShot.setPendingTarget('sess-1', 'route-node');
     dispatch({
       session_id: 'sess-1',
       hook_event_name: 'register-target',
       marker_seen_this_turn: false,
     });
 
-    expect(oneShot.pendingTarget('sess-1')).toBe(null);
+    expect(oneShot.pendingTarget('sess-1')).toBe('route-node');
   });
 
-  it('clears pendingTarget when target_node_uuid is explicitly empty string (defensive parity)', () => {
-    oneShot.setPendingTarget('sess-1', 'stale-node');
+  it('preserves pendingTarget when target_node_uuid is explicitly empty string — same persistence rule', () => {
+    oneShot.setPendingTarget('sess-1', 'route-node');
     dispatch({
       session_id: 'sess-1',
       hook_event_name: 'register-target',
@@ -80,7 +85,22 @@ describe('createHookEventDispatcher — register-target routing (US-B)', () => {
       marker_seen_this_turn: false,
     });
 
-    expect(oneShot.pendingTarget('sess-1')).toBe(null);
+    expect(oneShot.pendingTarget('sess-1')).toBe('route-node');
+  });
+
+  it('replaces pendingTarget when a fresh register-target arrives with a different target_node_uuid — last write wins', () => {
+    // A new manual send on the same session must override any stale route.
+    // set-is-overwrite makes this work; this test pins the contract alongside
+    // the persistence rules.
+    oneShot.setPendingTarget('sess-1', 'old-route');
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-target',
+      target_node_uuid: 'new-route',
+      marker_seen_this_turn: true,
+    });
+
+    expect(oneShot.pendingTarget('sess-1')).toBe('new-route');
   });
 
   it('records markerSeenThisTurn=true when the payload says so', () => {

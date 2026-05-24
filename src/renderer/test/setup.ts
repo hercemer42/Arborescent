@@ -135,6 +135,7 @@ global.window.electron = {
   respondToMcpProposal: vi.fn().mockResolvedValue(undefined),
   seedSessionBindings: vi.fn().mockResolvedValue(undefined),
   clearSessionBindings: vi.fn().mockResolvedValue(undefined),
+  notifyManualCollabResolved: vi.fn().mockResolvedValue(undefined),
   startKeepAwake: vi.fn().mockResolvedValue(undefined),
   stopKeepAwake: vi.fn().mockResolvedValue(undefined),
   appendLog: vi.fn().mockResolvedValue(undefined),

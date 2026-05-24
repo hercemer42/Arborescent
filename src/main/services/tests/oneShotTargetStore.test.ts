@@ -51,6 +51,66 @@ describe('OneShotTargetStore — pending target lifecycle', () => {
   });
 });
 
+describe('OneShotTargetStore — markManualCollabResolved API', () => {
+  // pendingTarget persists for the lifetime of an open manual feedback panel.
+  // markManualCollabResolved is the sanctioned clearing entry point — the
+  // renderer fires it on accept / reject / cancel.
+  let store: OneShotTargetStore;
+
+  beforeEach(() => {
+    store = new OneShotTargetStore();
+  });
+
+  it('markManualCollabResolved clears pendingTarget for the session', () => {
+    store.setPendingTarget('sess-1', 'node-a');
+    store.markManualCollabResolved('sess-1');
+    expect(store.pendingTarget('sess-1')).toBe(null);
+  });
+
+  it('markManualCollabResolved is per-session — resolving sess-1 does not affect sess-2', () => {
+    store.setPendingTarget('sess-1', 'node-a');
+    store.setPendingTarget('sess-2', 'node-b');
+    store.markManualCollabResolved('sess-1');
+    expect(store.pendingTarget('sess-1')).toBe(null);
+    expect(store.pendingTarget('sess-2')).toBe('node-b');
+  });
+
+  it('markManualCollabResolved on a session with no pendingTarget is a silent no-op', () => {
+    expect(() => store.markManualCollabResolved('sess-unknown')).not.toThrow();
+    expect(store.pendingTarget('sess-unknown')).toBe(null);
+  });
+
+  it('markManualCollabResolved with an empty sessionId is a defensive no-op', () => {
+    store.setPendingTarget('sess-1', 'node-a');
+    expect(() => store.markManualCollabResolved('')).not.toThrow();
+    expect(store.pendingTarget('sess-1')).toBe('node-a');
+  });
+
+  it('markManualCollabResolved does not touch markerSeenThisTurn or explicitSubmitSeenThisTurn — only the routing pin', () => {
+    // Resolution is about the route, not about per-turn gating signals.
+    // The Stop-hook gates remain independent so a turn ending after a
+    // resolved collab still surfaces its true explicit_submit_seen value.
+    store.setPendingTarget('sess-1', 'node-a');
+    store.setMarkerSeenThisTurn('sess-1', true);
+    store.setExplicitSubmitSeenThisTurn('sess-1', true);
+
+    store.markManualCollabResolved('sess-1');
+
+    expect(store.pendingTarget('sess-1')).toBe(null);
+    expect(store.wasMarkerSeenThisTurn('sess-1')).toBe(true);
+    expect(store.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+  });
+
+  it('a subsequent setPendingTarget after markManualCollabResolved re-arms the route normally', () => {
+    // After resolution, a fresh manual send (which fires register-target →
+    // setPendingTarget) must succeed and establish a brand-new route.
+    store.setPendingTarget('sess-1', 'node-a');
+    store.markManualCollabResolved('sess-1');
+    store.setPendingTarget('sess-1', 'node-b');
+    expect(store.pendingTarget('sess-1')).toBe('node-b');
+  });
+});
+
 describe('OneShotTargetStore — markerSeenThisTurn lifecycle', () => {
   let store: OneShotTargetStore;
 

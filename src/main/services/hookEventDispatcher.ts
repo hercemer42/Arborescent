@@ -97,8 +97,6 @@ function handleRegisterTarget(payload: HookEventPayload, deps: HookEventDispatch
   const oneShot = mcpServer.getOneShotTargetStore();
   if (payload.target_node_uuid) {
     oneShot.setPendingTarget(payload.session_id, payload.target_node_uuid);
-  } else {
-    oneShot.clearPendingTarget(payload.session_id);
   }
   const markerSeen = Boolean(payload.marker_seen_this_turn);
   oneShot.setMarkerSeenThisTurn(payload.session_id, markerSeen);

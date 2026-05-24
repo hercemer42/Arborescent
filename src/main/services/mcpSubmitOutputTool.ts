@@ -75,7 +75,6 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         });
         if (!proposal.ok) return err(proposal.error);
         deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);
-        deps.oneShotTargetStore.clearPendingTarget(sessionId);
         logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false proposed=true node=${boundNodeId}`, 'McpSubmit');
         return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
       }
@@ -86,7 +85,6 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       }
 
       deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);
-      deps.oneShotTargetStore.clearPendingTarget(sessionId);
       logger.info(`submit_step_output session=${sessionId} origin=explicit applied=true node=${boundNodeId}`, 'McpSubmit');
       return ok({ applied: true });
     },
