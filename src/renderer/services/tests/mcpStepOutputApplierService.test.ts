@@ -134,3 +134,15 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
     expect(result).toEqual({ ok: false, error: expect.stringContaining('Workflow handler unavailable') });
   });
 });
+
+// Gate 1+2 alignment: when the node is structurally autonomous but the renderer
+// has no workflowExecutionStates entry at apply time, applyStepOutput must
+// fail-fast rather than silently blob-writing raw markdown into the node.
+describe('applyStepOutput — gate 1+2 alignment (fail-fast on routing divergence)', () => {
+  it.todo('refuses (does not blob-write) when bound node is structurally autonomous via metadata.stepType but workflowExecutionStates entry is missing');
+  it.todo('refuses (does not blob-write) when bound node has no stepType but its parent has stepType="autonomous" and exec state is missing — same predicate as server isAutomatic');
+  it.todo('returns a structured error result identifying the gate disagreement (so the MCP caller sees the rejection rather than a silent apply)');
+  it.todo('logs a structured warning when the gate-1+2 disagreement is detected so the gap stays observable in real sessions');
+  it.todo('still falls through to the legitimate direct-write path when the node is genuinely non-autonomous (no stepType, no autonomous parent) — preserves the free-claude / non-workflow direct send case');
+  it.todo('does not regress when both gates agree — autonomous + exec state present still dispatches to handleAutonomousFeedback');
+});

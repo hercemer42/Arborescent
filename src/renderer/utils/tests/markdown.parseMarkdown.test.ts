@@ -265,4 +265,67 @@ describe('parseMarkdown', () => {
       expect(rootNodes[0].children.length).toBeGreaterThanOrEqual(2);
     });
   });
+
+  describe('duplicated heading-status prefix stutter (defense-in-depth for routing-gate blob-writes)', () => {
+    it('normalises a single stutter so `# [ ] # [ ] Title` parses as one root with content "Title"', () => {
+      const stuttered = '# [ ] # [ ] Title';
+      const { rootNodes } = parseMarkdown(stuttered);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Title');
+    });
+
+    it('is idempotent — `# [ ] # [ ] # [ ] Title` also normalises to a single root with content "Title"', () => {
+      const tripled = '# [ ] # [ ] # [ ] Title';
+      const { rootNodes } = parseMarkdown(tripled);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Title');
+    });
+
+    it('preserves a stuttered root with a real subtree — child headings still parse correctly', () => {
+      const stutteredWithChildren = '# [ ] # [ ] Root\n## [ ] Child A\n## [ ] Child B';
+      const { rootNodes, allNodes } = parseMarkdown(stutteredWithChildren);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Root');
+      expect(rootNodes[0].children).toHaveLength(2);
+      expect(allNodes[rootNodes[0].children[0]].content).toBe('Child A');
+      expect(allNodes[rootNodes[0].children[1]].content).toBe('Child B');
+    });
+
+    it('does not mangle legitimate `#` characters that appear later in heading text', () => {
+      const legit = '# [ ] Header with a # sign in the middle';
+      const { rootNodes } = parseMarkdown(legit);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Header with a # sign in the middle');
+    });
+
+    it('handles a stutter using a completed status marker — `# [x] # [x] Done` collapses to one root "Done"', () => {
+      const stutteredCompleted = '# [x] # [x] Done';
+      const { rootNodes } = parseMarkdown(stutteredCompleted);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Done');
+      expect(rootNodes[0].metadata.status).toBe('completed');
+    });
+
+    it('mixed-status stutter — inner status wins: `# [ ] # [x] Title` collapses to completed root "Title"', () => {
+      const mixed = '# [ ] # [x] Title';
+      const { rootNodes } = parseMarkdown(mixed);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Title');
+      expect(rootNodes[0].metadata.status).toBe('completed');
+    });
+
+    it('mismatched-depth does not collapse — `# [ ] ## [ ] Title` keeps the inner heading marker as content text rather than rewriting to "Title"', () => {
+      const mismatched = '# [ ] ## [ ] Title';
+      const { rootNodes } = parseMarkdown(mismatched);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('## [ ] Title');
+    });
+  });
 });

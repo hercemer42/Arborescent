@@ -172,6 +172,14 @@ function parseLine(line: string): ParsedLine | null {
     return null;
   }
 
+  // Defense against a re-serialised stutter where the model emits a repeated
+  // heading-plus-status prefix on one line (e.g. `# [ ] # [ ] Title`); the
+  // inner heading must win so the visible content is the real title.
+  const stutterParsed = parseLine(content);
+  if (stutterParsed !== null && stutterParsed.depth === depth) {
+    return { depth, status: stutterParsed.status, content: stutterParsed.content };
+  }
+
   return { depth, status, content };
 }
 
