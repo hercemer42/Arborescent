@@ -350,6 +350,15 @@ describe('createWorkflowExecutionActions', () => {
       expect(state.workflowExecutionStates['task-c'].state).toBe('running');
     });
 
+    it('clears terminalProcessing for the bound terminal so a subsequent close skips the spurious in-flight-prompt dialog', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+      useTerminalStore.getState().markTerminalProcessing('terminal-1', true);
+
+      actions.stopWorkflow('task-a');
+
+      expect(useTerminalStore.getState().isTerminalProcessing('terminal-1')).toBe(false);
+    });
+
     it('should allow restarting after stop', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
@@ -557,6 +566,24 @@ describe('createWorkflowExecutionActions', () => {
       actions.completeWorkflow('task-a');
 
       expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('clears terminalProcessing for the bound terminal so a subsequent close skips the spurious in-flight-prompt dialog', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+      useTerminalStore.getState().markTerminalProcessing('terminal-1', true);
+
+      actions.completeWorkflow('task-a');
+
+      expect(useTerminalStore.getState().isTerminalProcessing('terminal-1')).toBe(false);
+    });
+
+    it('does not touch terminalProcessing for unrelated terminals', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+      useTerminalStore.getState().markTerminalProcessing('terminal-2', true);
+
+      actions.completeWorkflow('task-a');
+
+      expect(useTerminalStore.getState().isTerminalProcessing('terminal-2')).toBe(true);
     });
   });
 

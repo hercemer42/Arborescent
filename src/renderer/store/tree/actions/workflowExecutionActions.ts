@@ -450,6 +450,10 @@ export const createWorkflowExecutionActions = (
     set({ workflowExecutionStates: updatedStates });
     releaseTerminalAssignmentForNode(nodeId);
 
+    if (entry.terminalTabId) {
+      useTerminalStore.getState().markTerminalProcessing(entry.terminalTabId, false);
+    }
+
     void window.electron.stopKeepAwake();
 
     logger.info(
@@ -736,6 +740,10 @@ export const createWorkflowExecutionActions = (
 
     set({ workflowExecutionStates: updatedStates });
     releaseTerminalAssignmentForNode(nodeId);
+
+    if (terminalId) {
+      useTerminalStore.getState().markTerminalProcessing(terminalId, false);
+    }
 
     if (entry) {
       void window.electron.stopKeepAwake();
