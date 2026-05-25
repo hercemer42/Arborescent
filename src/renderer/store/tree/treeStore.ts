@@ -17,6 +17,7 @@ import { createWorkflowActions, WorkflowActions } from './actions/workflowAction
 import { createWorkflowExecutionActions, WorkflowExecutionActions, WorkflowExecutionEntry } from './actions/workflowExecutionActions';
 import { createSendToWorkflowActions, SendToWorkflowActions } from './actions/sendToWorkflowActions';
 import { HistoryManager } from './commands/HistoryManager';
+import { StepHistoryMap } from './stepHistory/stepHistory';
 import { StorageService } from '../../services/storageService';
 import { storeManager } from '../storeManager';
 
@@ -66,6 +67,7 @@ export interface TreeState {
   workflowSessionMap: Record<string, string>;
   sessionRegistry: Record<string, { cwd: string }>;
   terminalNodeAssignments: Record<string, string>;
+  stepHistory?: StepHistoryMap;
 
   actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & SendActions & ClipboardActions & SummaryActions & WorkflowActions & WorkflowExecutionActions & SendToWorkflowActions;
 }
@@ -150,6 +152,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       workflowSessionMap: {},
       sessionRegistry: {},
       terminalNodeAssignments: {},
+      stepHistory: {},
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),

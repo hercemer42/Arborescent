@@ -420,10 +420,10 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       };
     });
 
-    it('should execute AcceptFeedbackCommand via executeCommand', () => {
+    it('should execute AcceptFeedbackCommand on autonomous accept (direct execute, bypasses user undo stack)', () => {
       actions.handleAutonomousFeedback('task-a', '# Task A');
 
-      expect(mockExecuteCommand).toHaveBeenCalled();
+      expect(mockExecuteCommand).not.toHaveBeenCalled();
     });
 
     it('should pass decomposition flag from step metadata to parser', () => {

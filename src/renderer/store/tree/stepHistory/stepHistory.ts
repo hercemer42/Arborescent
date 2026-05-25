@@ -1,8 +1,22 @@
 import { v4 as uuidv4 } from 'uuid';
 import { TreeNode } from '../../../../shared/types';
 import { getAllDescendants } from '../../../utils/nodeHelpers';
+import { AncestorRegistry } from '../../../utils/ancestry';
 
 export const STEP_HISTORY_MAX_ENTRIES = 10;
+
+export function findOwningWorkflowStepId(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry,
+): string | null {
+  const ancestors = ancestorRegistry[nodeId] ?? [];
+  for (let i = ancestors.length - 1; i >= 0; i--) {
+    const candidate = nodes[ancestors[i]];
+    if (candidate?.metadata?.stepType) return ancestors[i];
+  }
+  return null;
+}
 
 // Maximum visible length of a label after truncation, including any trailing ellipsis.
 const PARENT_LABEL_MAX_LENGTH = 120;

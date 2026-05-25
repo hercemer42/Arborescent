@@ -42,6 +42,12 @@ import {
 import { decideWorkflowStartRoute } from "../../../utils/workflowStartRoute";
 import { useTerminalStore } from "../../terminal/terminalStore";
 import { extractTaskTitle } from "../../../utils/terminalTabTitle";
+import {
+  StepHistoryMap,
+  captureStepHistoryEntry,
+  appendToStepHistoryMap,
+  findOwningWorkflowStepId,
+} from "../stepHistory/stepHistory";
 
 export type { WorkflowExecutionEntry };
 
@@ -73,8 +79,8 @@ type StoreState = {
   sessionRegistry: Record<string, { cwd: string }>;
   terminalNodeAssignments?: Record<string, string>;
   activeNodeId?: string | null;
+  stepHistory?: StepHistoryMap;
 };
-
 
 export type AutonomousSendSource = 'workflow-start' | 'workflow-advance';
 
@@ -287,6 +293,19 @@ export const createWorkflowExecutionActions = (
     if (inherited !== get().nodes) set({ nodes: inherited });
   }
 
+  function writeStartWorkflowSnapshot(nodeId: string): void {
+    const { nodes, ancestorRegistry, stepHistory } = get();
+    const owningStepId = findOwningWorkflowStepId(nodeId, nodes, ancestorRegistry);
+    if (!owningStepId) return;
+    const ancestors = ancestorRegistry[nodeId] ?? [];
+    const parentId = ancestors[ancestors.length - 1] ?? '';
+    const parent = nodes[parentId];
+    const position = parent?.children.indexOf(nodeId) ?? 0;
+    const entry = captureStepHistoryEntry(nodeId, nodes, parentId, position);
+    const updated = appendToStepHistoryMap(stepHistory ?? {}, owningStepId, entry);
+    set({ stepHistory: updated });
+  }
+
   async function startWorkflow(nodeId: string, terminalId: string | null): Promise<void> {
     const { nodes, ancestorRegistry, workflowExecutionStates, workflowSessionMap, sessionRegistry } = get();
 
@@ -300,6 +319,8 @@ export const createWorkflowExecutionActions = (
     ) {
       return;
     }
+
+    writeStartWorkflowSnapshot(nodeId);
 
     const node = nodes[nodeId];
     const openTerminalIds = new Set(
@@ -1099,17 +1120,33 @@ export const createWorkflowExecutionActions = (
         ...get(),
         blueprintModeEnabled: false,
       });
-      executeCommand(
-        new AcceptFeedbackCommand(
-          nodeId,
-          rootNodeIdOrIds,
-          parsed.nodes,
-          getStateForCommand,
-          set,
-          triggerAutosave,
-          archiveConfig,
-        ),
+      const owningStepId = findOwningWorkflowStepId(nodeId, nodes, ancestorRegistry);
+      const owningStepType = owningStepId ? nodes[owningStepId]?.metadata?.stepType : undefined;
+      const acceptMode = owningStepType === 'checkpoint'
+        ? 'checkpoint-accept' as const
+        : owningStepType
+          ? 'autonomous' as const
+          : 'manual-send-accept' as const;
+      const command = new AcceptFeedbackCommand(
+        nodeId,
+        rootNodeIdOrIds,
+        parsed.nodes,
+        getStateForCommand,
+        set,
+        triggerAutosave,
+        archiveConfig,
+        undefined,
+        { acceptMode },
       );
+
+      // Autonomous mutations bypass the user undo stack — Cmd+Z must never revert
+      // a workflow-driven change. Checkpoint-accept and manual-send go through the
+      // history manager because the user authored the accept click.
+      if (acceptMode === 'autonomous') {
+        command.execute();
+      } else {
+        executeCommand(command);
+      }
 
       if (priorActiveNodeId !== nodeId) {
         set({ activeNodeId: priorActiveNodeId });

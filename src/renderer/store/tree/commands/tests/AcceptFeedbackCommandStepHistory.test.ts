@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { AcceptFeedbackCommand } from '../AcceptFeedbackCommand';
 import { TreeNode } from '../../../../../shared/types';
-import type { StepHistoryEntry } from '../../stepHistory/stepHistory';
+import type { StepHistoryEntry, StepHistoryMap } from '../../stepHistory/stepHistory';
 
 function createNode(
   id: string,
@@ -13,10 +13,6 @@ function createNode(
 }
 
 type AcceptMode = 'autonomous' | 'checkpoint-accept' | 'manual-send-accept';
-
-interface StepHistoryMap {
-  [stepId: string]: StepHistoryEntry[];
-}
 
 function createState(
   nodes: Record<string, TreeNode>,
@@ -278,6 +274,186 @@ describe('AcceptFeedbackCommand — three-way step-history routing', () => {
         { acceptMode: 'manual-send-accept' },
       );
       expect(command.touchedNodeIds?.has('collab-node')).toBe(true);
+    });
+  });
+
+  describe('multi-root decomposition seeding', () => {
+    beforeEach(() => {
+      mockState.nodes['step-auto'].metadata.stepType = 'autonomous';
+      mockState.nodes['step-auto'].metadata.decomposition = true;
+    });
+
+    it('writes a pre-decomposition snapshot of the parent on the decomposition step on multi-root accept', () => {
+      const newNodes = {
+        'sib-1': createNode('sib-1', 'Sibling 1', []),
+        'sib-2': createNode('sib-2', 'Sibling 2', []),
+      };
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        ['sib-1', 'sib-2'],
+        newNodes,
+        getState,
+        setState,
+        triggerAutosave,
+        undefined,
+        undefined,
+        { acceptMode: 'autonomous' },
+      );
+      command.execute();
+
+      const setCalls = setState.mock.calls.map((c) => c[0]);
+      const lastWithHistory = setCalls.find((p) => p.stepHistory);
+      expect(lastWithHistory?.stepHistory?.['step-auto']).toBeDefined();
+      const entries: StepHistoryEntry[] = lastWithHistory!.stepHistory!['step-auto'];
+      const preDecomposition = entries.find(
+        (e: StepHistoryEntry) => e.nodes[e.rootNodeId]?.content === 'original',
+      );
+      expect(preDecomposition).toBeDefined();
+    });
+
+    it('seeds an initial-state history entry on the owning step for each generated sibling', () => {
+      const newNodes = {
+        'sib-1': createNode('sib-1', 'Sibling 1', []),
+        'sib-2': createNode('sib-2', 'Sibling 2', []),
+      };
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        ['sib-1', 'sib-2'],
+        newNodes,
+        getState,
+        setState,
+        triggerAutosave,
+        undefined,
+        undefined,
+        { acceptMode: 'autonomous' },
+      );
+      command.execute();
+
+      const setCalls = setState.mock.calls.map((c) => c[0]);
+      const lastWithHistory = setCalls.find((p) => p.stepHistory);
+      const entries: StepHistoryEntry[] = lastWithHistory!.stepHistory!['step-auto'] ?? [];
+      const siblingSnapshots = entries.filter((e: StepHistoryEntry) => {
+        const root = e.nodes[e.rootNodeId];
+        return root && (root.content === 'Sibling 1' || root.content === 'Sibling 2');
+      });
+      expect(siblingSnapshots).toHaveLength(2);
+    });
+
+    it('total entries written equals 1 (pre-decomposition) + N (one per sibling)', () => {
+      const newNodes = {
+        'sib-1': createNode('sib-1', 'Sibling 1', []),
+        'sib-2': createNode('sib-2', 'Sibling 2', []),
+        'sib-3': createNode('sib-3', 'Sibling 3', []),
+      };
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        ['sib-1', 'sib-2', 'sib-3'],
+        newNodes,
+        getState,
+        setState,
+        triggerAutosave,
+        undefined,
+        undefined,
+        { acceptMode: 'autonomous' },
+      );
+      command.execute();
+
+      const setCalls = setState.mock.calls.map((c) => c[0]);
+      const lastWithHistory = setCalls.findLast((p) => p.stepHistory);
+      const entries = lastWithHistory!.stepHistory!['step-auto'] ?? [];
+      expect(entries).toHaveLength(4);
+    });
+
+    it('siblings with descendants still produce exactly one entry per top-level sibling, not one per node', () => {
+      // 2 siblings, each with 3 descendants. Buggy implementation that iterates
+      // createdNodeIds (roots + all descendants) would write 1 + 8 = 9 entries
+      // and overflow the ring buffer with multi-level decomposition. Correct
+      // behaviour: 1 pre-decomposition + 2 sibling roots = 3 entries.
+      const newNodes = {
+        'sib-1': createNode('sib-1', 'Sibling 1', ['s1-c1', 's1-c2', 's1-c3']),
+        's1-c1': createNode('s1-c1', 'S1 child 1', []),
+        's1-c2': createNode('s1-c2', 'S1 child 2', []),
+        's1-c3': createNode('s1-c3', 'S1 child 3', []),
+        'sib-2': createNode('sib-2', 'Sibling 2', ['s2-c1', 's2-c2', 's2-c3']),
+        's2-c1': createNode('s2-c1', 'S2 child 1', []),
+        's2-c2': createNode('s2-c2', 'S2 child 2', []),
+        's2-c3': createNode('s2-c3', 'S2 child 3', []),
+      };
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        ['sib-1', 'sib-2'],
+        newNodes,
+        getState,
+        setState,
+        triggerAutosave,
+        undefined,
+        undefined,
+        { acceptMode: 'autonomous' },
+      );
+      command.execute();
+
+      const setCalls = setState.mock.calls.map((c) => c[0]);
+      const lastWithHistory = setCalls.findLast((p) => p.stepHistory);
+      const entries = lastWithHistory!.stepHistory!['step-auto'] ?? [];
+      expect(entries).toHaveLength(3);
+    });
+
+    it('each sibling entry records its own splice position (snapshot.position + i)', () => {
+      const newNodes = {
+        'sib-1': createNode('sib-1', 'Sibling 1', []),
+        'sib-2': createNode('sib-2', 'Sibling 2', []),
+        'sib-3': createNode('sib-3', 'Sibling 3', []),
+      };
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        ['sib-1', 'sib-2', 'sib-3'],
+        newNodes,
+        getState,
+        setState,
+        triggerAutosave,
+        undefined,
+        undefined,
+        { acceptMode: 'autonomous' },
+      );
+      command.execute();
+
+      const setCalls = setState.mock.calls.map((c) => c[0]);
+      const lastWithHistory = setCalls.findLast((p) => p.stepHistory);
+      const entries: StepHistoryEntry[] = lastWithHistory!.stepHistory!['step-auto'] ?? [];
+      const siblingEntries = entries.filter((e: StepHistoryEntry) => {
+        const root = e.nodes[e.rootNodeId];
+        return root && root.content.startsWith('Sibling ');
+      });
+      const positions = siblingEntries.map((e) => e.position).sort((a, b) => a - b);
+      // collab-node sits at index 0 of step-auto.children, so siblings splice in at 0, 1, 2.
+      expect(positions).toEqual([0, 1, 2]);
+    });
+
+    it('does not duplicate sibling seeds when execute → undo → redo', () => {
+      const newNodes = {
+        'sib-1': createNode('sib-1', 'Sibling 1', []),
+        'sib-2': createNode('sib-2', 'Sibling 2', []),
+      };
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        ['sib-1', 'sib-2'],
+        newNodes,
+        getState,
+        setState,
+        triggerAutosave,
+        undefined,
+        undefined,
+        { acceptMode: 'autonomous' },
+      );
+      command.execute();
+      command.undo();
+      command.redo();
+
+      const setCalls = setState.mock.calls.map((c) => c[0]);
+      const lastWithHistory = setCalls.findLast((p) => p.stepHistory);
+      const entries = lastWithHistory!.stepHistory!['step-auto'] ?? [];
+      // 1 pre-decomposition + 2 siblings = 3, even after redo
+      expect(entries).toHaveLength(3);
     });
   });
 });

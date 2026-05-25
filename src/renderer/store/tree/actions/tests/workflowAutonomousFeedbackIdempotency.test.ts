@@ -185,7 +185,6 @@ describe('handleAutonomousFeedback — idempotency within a single step executio
       actions.handleAutonomousFeedback('task-a', '# refined\n## a');
       actions.handleAutonomousFeedback('task-a', '# refined\n## a');
 
-      expect(mockExecuteCommand).toHaveBeenCalledTimes(1);
       expect(mockAcceptFeedbackCalls).toHaveLength(1);
     });
   });

@@ -21,6 +21,7 @@ import {
   StepHistoryMap,
   captureStepHistoryEntry,
   appendToStepHistoryMap,
+  findOwningWorkflowStepId,
 } from '../stepHistory/stepHistory';
 
 export type AcceptMode = 'autonomous' | 'checkpoint-accept' | 'manual-send-accept';
@@ -45,6 +46,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
 
   private acceptMode: AcceptMode;
   private stepHistoryEntryWritten = false;
+  private decompositionSeedingWritten = false;
 
   constructor(
     private collaboratingNodeId: string,
@@ -82,25 +84,17 @@ export class AcceptFeedbackCommand extends BaseCommand {
       this.acceptMode === 'autonomous' ? new Set() : new Set([collaboratingNodeId]);
   }
 
-  private findOwningWorkflowStepId(
-    nodes: Record<string, TreeNode>,
-    ancestorRegistry: Record<string, string[]>,
-  ): string | null {
-    const ancestors = ancestorRegistry[this.collaboratingNodeId] ?? [];
-    for (let i = ancestors.length - 1; i >= 0; i--) {
-      const candidate = nodes[ancestors[i]];
-      if (candidate?.metadata?.stepType) return ancestors[i];
-    }
-    return null;
-  }
-
   private writePreMutationStepHistoryEntry(
     state: ReturnType<typeof this.getState>,
     snapshot: CollaborationSnapshot,
   ): StepHistoryMap | undefined {
     if (this.acceptMode === 'manual-send-accept') return undefined;
     if (this.stepHistoryEntryWritten) return undefined;
-    const owningStepId = this.findOwningWorkflowStepId(state.nodes, state.ancestorRegistry);
+    const owningStepId = findOwningWorkflowStepId(
+      this.collaboratingNodeId,
+      state.nodes,
+      state.ancestorRegistry,
+    );
     if (!owningStepId) return undefined;
 
     const subtreeNodes: Record<string, TreeNode> = {
@@ -117,6 +111,39 @@ export class AcceptFeedbackCommand extends BaseCommand {
     );
     this.stepHistoryEntryWritten = true;
     return appendToStepHistoryMap(state.stepHistory ?? {}, owningStepId, entry);
+  }
+
+  private seedDecompositionSiblingEntries(
+    state: ReturnType<typeof this.getState>,
+    snapshot: CollaborationSnapshot,
+    nodesAfterStrategy: Record<string, TreeNode>,
+    topLevelRootIds: string[],
+    baseStepHistory: StepHistoryMap | undefined,
+  ): StepHistoryMap | undefined {
+    if (this.acceptMode === 'manual-send-accept') return baseStepHistory;
+    if (!this.isMultiRoot) return baseStepHistory;
+    if (this.decompositionSeedingWritten) return baseStepHistory;
+    const owningStepId = findOwningWorkflowStepId(
+      this.collaboratingNodeId,
+      state.nodes,
+      state.ancestorRegistry,
+    );
+    if (!owningStepId) return baseStepHistory;
+
+    let history: StepHistoryMap = baseStepHistory ?? state.stepHistory ?? {};
+    for (let i = 0; i < topLevelRootIds.length; i++) {
+      const rootId = topLevelRootIds[i];
+      if (!nodesAfterStrategy[rootId]) continue;
+      const entry = captureStepHistoryEntry(
+        rootId,
+        nodesAfterStrategy,
+        snapshot.parentId,
+        snapshot.position + i,
+      );
+      history = appendToStepHistoryMap(history, owningStepId, entry);
+    }
+    this.decompositionSeedingWritten = true;
+    return history;
   }
 
   private captureSnapshot(
@@ -275,7 +302,14 @@ export class AcceptFeedbackCommand extends BaseCommand {
       }
     }
 
-    const updatedStepHistory = this.writePreMutationStepHistoryEntry(state, this.snapshot);
+    const preMutationHistory = this.writePreMutationStepHistoryEntry(state, this.snapshot);
+    const finalStepHistory = this.seedDecompositionSiblingEntries(
+      state,
+      this.snapshot,
+      nodesForState,
+      output.topLevelRootIds,
+      preMutationHistory,
+    );
 
     this.setState({
       nodes: nodesForState,
@@ -284,7 +318,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       ...this.collaborationClearIfOwned(state),
       feedbackFadingNodeIds: new Set(this.createdNodeIds),
       activeNodeId: output.activeNodeId,
-      ...(updatedStepHistory !== undefined ? { stepHistory: updatedStepHistory } : {}),
+      ...(finalStepHistory !== undefined ? { stepHistory: finalStepHistory } : {}),
     });
 
     if (this.archiveConfig) {

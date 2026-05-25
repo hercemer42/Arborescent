@@ -64,6 +64,7 @@ export interface StrategyOutput {
   nodes: Record<string, TreeNode>;
   ancestorRegistry: AncestorRegistry;
   createdNodeIds: string[];
+  topLevelRootIds: string[];
   activeNodeId: string;
 }
 
@@ -216,6 +217,7 @@ export function executeSingleRootStrategy(input: StrategyInput): StrategyOutput 
     nodes: mergedNodesMap,
     ancestorRegistry: newAncestorRegistry,
     createdNodeIds,
+    topLevelRootIds: [collaboratingNodeId],
     activeNodeId: collaboratingNodeId,
   };
 }
@@ -320,6 +322,7 @@ export function executeMultiRootStrategy(input: StrategyInput): StrategyOutput {
     nodes: mergedNodesMap,
     ancestorRegistry: newAncestorRegistry,
     createdNodeIds,
+    topLevelRootIds: mappedRootIds,
     activeNodeId: mappedRootIds[0],
   };
 }
