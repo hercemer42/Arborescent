@@ -23,6 +23,7 @@ import {
   getInheritedContextId,
   resolveContextFlags,
   getContextDeclarations,
+  getAllDescendants,
 } from "../../../utils/nodeHelpers";
 import { usePreferencesStore } from "../../preferences/preferencesStore";
 import { notifyWorkflowEvent } from "../../../services/workflowNotification";
@@ -91,6 +92,7 @@ export const createWorkflowExecutionActions = (
   visualEffects?: VisualEffectsActions,
   autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string, flags?: import('../../../utils/nodeHelpers').ContextFlags, overrideContextId?: string, bindingSource?: AutonomousSendSource) => Promise<string>,
   executeCommand?: (command: { execute: () => void; undo: () => void; description?: string }) => void,
+  invalidateUndoEntriesTouching?: (nodeIds: Set<string>) => void,
 ): WorkflowExecutionActions => {
   const MAX_RECURSE_ITERATIONS = 50;
   const ACK_TIMEOUT_MS = 5000;
@@ -1143,7 +1145,9 @@ export const createWorkflowExecutionActions = (
       // a workflow-driven change. Checkpoint-accept and manual-send go through the
       // history manager because the user authored the accept click.
       if (acceptMode === 'autonomous') {
+        const mutatedNodeIds = new Set<string>([nodeId, ...getAllDescendants(nodeId, nodes)]);
         command.execute();
+        invalidateUndoEntriesTouching?.(mutatedNodeIds);
       } else {
         executeCommand(command);
       }

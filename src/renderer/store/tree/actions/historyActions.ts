@@ -8,6 +8,7 @@ export interface HistoryActions {
   canUndo: () => boolean;
   canRedo: () => boolean;
   clearHistory: () => void;
+  invalidateUndoEntriesTouching: (nodeIds: Set<string>) => void;
 }
 
 export function createHistoryActions(historyManager: HistoryManager): HistoryActions {
@@ -34,6 +35,10 @@ export function createHistoryActions(historyManager: HistoryManager): HistoryAct
 
     clearHistory: () => {
       historyManager.clear();
+    },
+
+    invalidateUndoEntriesTouching: (nodeIds: Set<string>) => {
+      historyManager.invalidateEntriesTouching(nodeIds);
     },
   };
 }

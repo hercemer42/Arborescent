@@ -116,6 +116,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       visualEffectsActions,
       sendActions.autonomousCollaborateInTerminal,
       historyActions.executeCommand,
+      historyActions.invalidateUndoEntriesTouching,
     );
     workflowExecutionRef.continueWorkflow = workflowExecutionActions.continueWorkflow;
 

@@ -108,6 +108,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
   let mockTriggerAutosave: ReturnType<typeof vi.fn>;
   let mockAutonomousCollaborate: ReturnType<typeof vi.fn>;
   let mockExecuteCommand: ReturnType<typeof vi.fn>;
+  let mockInvalidateUndoEntriesTouching: ReturnType<typeof vi.fn>;
   let mockVisualEffects: {
     flashNode: ReturnType<typeof vi.fn>;
     scrollToNode: ReturnType<typeof vi.fn>;
@@ -173,6 +174,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       Promise.resolve(`/tmp/feedback-response-${nodeId}.md`)
     );
     mockExecuteCommand = vi.fn().mockImplementation((cmd: { execute: () => void }) => cmd.execute());
+    mockInvalidateUndoEntriesTouching = vi.fn();
     mockVisualEffects = {
       flashNode: vi.fn(),
       scrollToNode: vi.fn(),
@@ -197,7 +199,8 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       mockTriggerAutosave,
       mockVisualEffects,
       mockAutonomousCollaborate,
-      mockExecuteCommand
+      mockExecuteCommand,
+      mockInvalidateUndoEntriesTouching,
     );
   });
 
@@ -453,6 +456,41 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       actions.handleAutonomousFeedback('task-a', '# Task A');
 
       expect(state.nodes['step-2'].children).toContain('task-a');
+    });
+
+    it('invalidates user-undo entries that touched the mutated node and its descendants', () => {
+      state.nodes['task-a'].children = ['task-a-child'];
+      state.nodes['task-a-child'] = {
+        id: 'task-a-child',
+        content: 'Task A child',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      state.ancestorRegistry['task-a-child'] = ['root', 'workflow', 'step-1', 'task-a'];
+
+      actions.handleAutonomousFeedback('task-a', '# Task A');
+
+      expect(mockInvalidateUndoEntriesTouching).toHaveBeenCalledTimes(1);
+      const passed = mockInvalidateUndoEntriesTouching.mock.calls[0][0] as Set<string>;
+      expect(passed.has('task-a')).toBe(true);
+      expect(passed.has('task-a-child')).toBe(true);
+    });
+
+    it('does NOT invalidate user-undo entries on a checkpoint accept (user authored the action)', () => {
+      state.nodes['step-1'].metadata.stepType = 'checkpoint';
+
+      actions.handleAutonomousFeedback('task-a', '# Task A');
+
+      expect(mockInvalidateUndoEntriesTouching).not.toHaveBeenCalled();
+    });
+
+    it('does NOT invalidate user-undo entries on a manual-send accept (no owning step)', () => {
+      state.ancestorRegistry['task-a'] = ['root'];
+      state.nodes['root'].children = ['task-a'];
+
+      actions.handleAutonomousFeedback('task-a', '# Task A');
+
+      expect(mockInvalidateUndoEntriesTouching).not.toHaveBeenCalled();
     });
   });
 
