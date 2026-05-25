@@ -17,6 +17,17 @@ import {
 import { bindSessionInNodes } from '../actions/bindSessionToNode';
 import { useTerminalStore } from '../../terminal/terminalStore';
 import { v4 as uuidv4 } from 'uuid';
+import {
+  StepHistoryMap,
+  captureStepHistoryEntry,
+  appendToStepHistoryMap,
+} from '../stepHistory/stepHistory';
+
+export type AcceptMode = 'autonomous' | 'checkpoint-accept' | 'manual-send-accept';
+
+export interface AcceptFeedbackOptions {
+  acceptMode?: AcceptMode;
+}
 
 export interface ArchiveConfig {
   archiveDestinationId: string;
@@ -32,6 +43,9 @@ export class AcceptFeedbackCommand extends BaseCommand {
   private isMultiRoot: boolean;
   private newRootNodeIds: string[];
 
+  private acceptMode: AcceptMode;
+  private stepHistoryEntryWritten = false;
+
   constructor(
     private collaboratingNodeId: string,
     newRootNodeIdOrIds: string | string[],
@@ -42,6 +56,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       ancestorRegistry: Record<string, string[]>;
       blueprintModeEnabled: boolean;
       collaboratingNodeId?: string | null;
+      stepHistory?: StepHistoryMap;
     },
     private setState: (partial: {
       nodes?: Record<string, TreeNode>;
@@ -51,15 +66,57 @@ export class AcceptFeedbackCommand extends BaseCommand {
       collaborationSource?: 'browser' | 'terminal' | null;
       feedbackFadingNodeIds?: Set<string>;
       activeNodeId?: string | null;
+      stepHistory?: StepHistoryMap;
     }) => void,
     private triggerAutosave?: () => void,
     private archiveConfig?: ArchiveConfig,
-    private precomputedIdMap?: Record<string, string>
+    private precomputedIdMap?: Record<string, string>,
+    options?: AcceptFeedbackOptions,
   ) {
     super();
     this.newRootNodeIds = Array.isArray(newRootNodeIdOrIds) ? newRootNodeIdOrIds : [newRootNodeIdOrIds];
     this.isMultiRoot = this.newRootNodeIds.length > 1;
     this.description = `Accept feedback for node ${collaboratingNodeId}`;
+    this.acceptMode = options?.acceptMode ?? 'manual-send-accept';
+    this.touchedNodeIds =
+      this.acceptMode === 'autonomous' ? new Set() : new Set([collaboratingNodeId]);
+  }
+
+  private findOwningWorkflowStepId(
+    nodes: Record<string, TreeNode>,
+    ancestorRegistry: Record<string, string[]>,
+  ): string | null {
+    const ancestors = ancestorRegistry[this.collaboratingNodeId] ?? [];
+    for (let i = ancestors.length - 1; i >= 0; i--) {
+      const candidate = nodes[ancestors[i]];
+      if (candidate?.metadata?.stepType) return ancestors[i];
+    }
+    return null;
+  }
+
+  private writePreMutationStepHistoryEntry(
+    state: ReturnType<typeof this.getState>,
+    snapshot: CollaborationSnapshot,
+  ): StepHistoryMap | undefined {
+    if (this.acceptMode === 'manual-send-accept') return undefined;
+    if (this.stepHistoryEntryWritten) return undefined;
+    const owningStepId = this.findOwningWorkflowStepId(state.nodes, state.ancestorRegistry);
+    if (!owningStepId) return undefined;
+
+    const subtreeNodes: Record<string, TreeNode> = {
+      [snapshot.collaboratingNodeId]: snapshot.collaboratingNode,
+    };
+    snapshot.descendants.forEach((node, nodeId) => {
+      subtreeNodes[nodeId] = node;
+    });
+    const entry = captureStepHistoryEntry(
+      snapshot.collaboratingNodeId,
+      subtreeNodes,
+      snapshot.parentId,
+      snapshot.position,
+    );
+    this.stepHistoryEntryWritten = true;
+    return appendToStepHistoryMap(state.stepHistory ?? {}, owningStepId, entry);
   }
 
   private captureSnapshot(
@@ -218,6 +275,8 @@ export class AcceptFeedbackCommand extends BaseCommand {
       }
     }
 
+    const updatedStepHistory = this.writePreMutationStepHistoryEntry(state, this.snapshot);
+
     this.setState({
       nodes: nodesForState,
       ancestorRegistry: output.ancestorRegistry,
@@ -225,6 +284,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       ...this.collaborationClearIfOwned(state),
       feedbackFadingNodeIds: new Set(this.createdNodeIds),
       activeNodeId: output.activeNodeId,
+      ...(updatedStepHistory !== undefined ? { stepHistory: updatedStepHistory } : {}),
     });
 
     if (this.archiveConfig) {

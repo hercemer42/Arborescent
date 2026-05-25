@@ -5,6 +5,7 @@ export interface Command {
   canMergeWith?(other: Command): boolean;
   mergeWith?(other: Command): void;
   description?: string;
+  touchedNodeIds?: Set<string>;
 }
 
 export abstract class BaseCommand implements Command {
@@ -16,4 +17,5 @@ export abstract class BaseCommand implements Command {
   }
 
   description?: string;
+  touchedNodeIds?: Set<string>;
 }

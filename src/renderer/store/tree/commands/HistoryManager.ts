@@ -3,6 +3,14 @@ import { Command } from './Command';
 const MAX_HISTORY_SIZE = 100;
 const MERGE_TIMEOUT_MS = 1000;
 
+function hasIntersection(a: Set<string>, b: Set<string>): boolean {
+  const [small, large] = a.size <= b.size ? [a, b] : [b, a];
+  for (const id of small) {
+    if (large.has(id)) return true;
+  }
+  return false;
+}
+
 export class HistoryManager {
   private history: Command[] = [];
   private currentIndex = -1;
@@ -81,6 +89,26 @@ export class HistoryManager {
 
   canRedo(): boolean {
     return this.currentIndex < this.history.length - 1;
+  }
+
+  invalidateEntriesTouching(nodeIds: Set<string>): void {
+    if (nodeIds.size === 0 || this.history.length === 0) return;
+
+    const survivors: Command[] = [];
+    let newCurrentIndex = this.currentIndex;
+    for (let i = 0; i < this.history.length; i++) {
+      const command = this.history[i];
+      const touched = command.touchedNodeIds;
+      const intersects = touched !== undefined && hasIntersection(touched, nodeIds);
+      if (intersects) {
+        if (i <= this.currentIndex) newCurrentIndex--;
+        continue;
+      }
+      survivors.push(command);
+    }
+
+    this.history = survivors;
+    this.currentIndex = Math.min(newCurrentIndex, this.history.length - 1);
   }
 
   clear(): void {
