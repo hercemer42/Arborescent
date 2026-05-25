@@ -90,7 +90,7 @@ The **step's applied context** takes precedence over the working item's own cont
 
 A green flash and toast notification confirm each advancement. If the item reaches the final step and completes, the workflow ends and a completion toast appears.
 
-Automated advancement bypasses the undo stack — you cannot undo an automated move with `Ctrl+Z`.
+Automated advancement bypasses the undo stack — `Ctrl+Z` only reverts your own actions, never workflow output. Prior workflow output stays recoverable through each step's history (see [Step History](#step-history)).
 
 If the terminal fails to accept content, the workflow stops automatically and shows an error. A step that hangs (the AI session died, the Stop hook never lands, the command runs forever) stays in the running state until you stop it — right-click the node and pick **Stop Workflow**.
 
@@ -118,6 +118,18 @@ A paused checkpoint step (awaiting validation) offers two distinct actions. **Re
 On app restart, all previously running items are stopped. Checkpoint items awaiting validation are preserved. Reopen a terminal and resend or advance them as needed.
 
 Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — you need to start the workflow again.
+
+## Step History
+
+Each workflow step keeps the last 10 changes it made as a browsable history attached to the step itself. `Ctrl+Z` reverts only your own actions; workflow output stays in step history instead of the undo stack, so a workflow run can never erase a manual edit you wanted to undo.
+
+To browse: right-click a workflow step → **Workflow** → **Step History**. Each entry shows the original parent's content as its label; hover an entry to see when it was captured. The item is disabled with "No history yet" until the step has run at least once.
+
+To restore: click an entry. A deep copy of the captured subtree appears as a child of the step alongside the current node. The current node and its terminal session are unchanged — restoration is non-destructive. Press `Ctrl+Z` to remove the restored copy cleanly. Restoring the same entry twice produces two independent copies; the history list itself is never modified by restoration.
+
+The history covers what passed through that step: the workflow's starting step captures the input node's pre-workflow state; each step that mutates an owned node captures the pre-mutation state; checkpoint accepts capture the pre-accept state; decomposition captures both the pre-decomposition parent and the initial state of each new sibling. Automated moves between steps aren't recorded — they aren't changes to recover.
+
+Each step holds up to 10 entries; the 11th change evicts the oldest. Deleting a step keeps its history attached, so undoing the deletion brings the history back intact. Existing `.arbo` files without history open normally and start collecting entries on their next workflow run.
 
 ## Resuming AI Sessions
 

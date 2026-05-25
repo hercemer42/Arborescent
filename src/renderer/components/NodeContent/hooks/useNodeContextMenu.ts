@@ -16,6 +16,7 @@ import { buildEditSubmenu, prependSpellItems } from './menuBuilders/editSubmenu'
 import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
 import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
+import { RestoreStepHistoryCommand } from '../../../store/tree/commands/RestoreStepHistoryCommand';
 import { getSessionLiveness } from '../../../utils/sessionLiveness';
 import { useToastStore } from '../../../store/toast/toastStore';
 import { getAppliedContextIdWithInheritance, resolveContextFlags, resolveSendContextName, ContextFlags, REVISE_AFTER_DISCUSSION_CONTEXT_ID } from '../../../utils/nodeHelpers';
@@ -213,12 +214,31 @@ export function useNodeContextMenu(node: TreeNode) {
     });
 
     const getTerminalId = () => useTerminalStore.getState().openTerminal();
+    const handleRestoreStepHistory = (stepId: string, entryId: string) => {
+      const command = new RestoreStepHistoryCommand(
+        stepId,
+        entryId,
+        () => {
+          const fresh = store.getState();
+          return {
+            nodes: fresh.nodes,
+            ancestorRegistry: fresh.ancestorRegistry,
+            stepHistory: fresh.stepHistory,
+          };
+        },
+        (partial) => store.setState(partial),
+        () => actions.autoSave(),
+      );
+      actions.executeCommand(command);
+    };
     const workflowMenuItem = buildWorkflowSubmenu({
       node: freshNode,
       nodes,
       ancestorRegistry,
       onRemoveFromWorkflow: () => actions.removeFromWorkflow(node.id),
       onConfigureStep: () => useStepConfigDialogStore.getState().open(node.id),
+      stepHistory: state.stepHistory,
+      onRestoreStepHistory: handleRestoreStepHistory,
     });
 
     const autoStartAfterMove = (nodeId: string) => {

@@ -10,6 +10,7 @@ import {
   isEligibleForExecution,
   WorkflowExecutionEntry,
 } from '../../../utils/workflowHelpers';
+import type { StepHistoryEntry, StepHistoryMap } from '../../../store/tree/stepHistory/stepHistory';
 
 interface BuildWorkflowSubmenuParams {
   node: TreeNode;
@@ -17,6 +18,36 @@ interface BuildWorkflowSubmenuParams {
   ancestorRegistry: AncestorRegistry;
   onRemoveFromWorkflow: () => void;
   onConfigureStep: () => void;
+  stepHistory?: StepHistoryMap;
+  onRestoreStepHistory?: (stepId: string, entryId: string) => void;
+}
+
+function formatCapturedAt(capturedAt: string): string {
+  const date = new Date(capturedAt);
+  if (Number.isNaN(date.getTime())) return capturedAt;
+  return date.toLocaleString();
+}
+
+function buildStepHistoryItem(
+  stepId: string,
+  entries: StepHistoryEntry[] | undefined,
+  onRestoreStepHistory: ((stepId: string, entryId: string) => void) | undefined,
+): ContextMenuItem {
+  if (!entries || entries.length === 0) {
+    return {
+      label: 'Step History',
+      disabled: true,
+      disabledTooltip: 'No history yet',
+    };
+  }
+  return {
+    label: 'Step History',
+    submenu: entries.map((entry) => ({
+      label: entry.parentLabel,
+      tooltip: formatCapturedAt(entry.capturedAt),
+      onClick: () => onRestoreStepHistory?.(stepId, entry.id),
+    })),
+  };
 }
 
 export function buildWorkflowSubmenu({
@@ -25,6 +56,8 @@ export function buildWorkflowSubmenu({
   ancestorRegistry,
   onRemoveFromWorkflow,
   onConfigureStep,
+  stepHistory,
+  onRestoreStepHistory,
 }: BuildWorkflowSubmenuParams): ContextMenuItem | null {
   const parentId = getParentIdOrNull(node.id, ancestorRegistry);
   const parent = parentId ? nodes[parentId] : null;
@@ -45,8 +78,8 @@ export function buildWorkflowSubmenu({
       label: 'Configure Step',
       onClick: onConfigureStep,
     });
+    submenuItems.push(buildStepHistoryItem(node.id, stepHistory?.[node.id], onRestoreStepHistory));
   }
-
 
   if (submenuItems.length === 0) return null;
 
