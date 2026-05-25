@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-25T14:43:21.391Z'
+updated: '2026-05-25T14:45:35.239Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25648,8 +25648,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - 85099a84-b1d8-452e-a801-ebba6c9867a0
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -124657,6 +124656,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
+      - 85099a84-b1d8-452e-a801-ebba6c9867a0
       - 87917b51-6c7c-49ea-83a8-d64a4512583e
     metadata:
       status: pending
@@ -165547,106 +165547,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  85099a84-b1d8-452e-a801-ebba6c9867a0:
-    id: 85099a84-b1d8-452e-a801-ebba6c9867a0
-    content: |
-      # [ ] Bug - closing a terminal bound to a node shows a confirmation dialog
-      ## [x] worktree
-      ### [x] [Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-terminal-close-flag)
-      ### [x] Branch: fix/terminal-close-stale-prompt-flag (forked from master @ 395ceba)
-      ### [x] Path: ~/dev/Arborescent-terminal-close-flag
-      ## [x] Summary
-      ### [x] Closing a terminal bound to a node shows an "in-progress prompt" confirmation dialog even when no prompt is actually running
-      ## [x] Steps to reproduce
-      ### [x] Open Arborescent and bind a terminal to a node via a workflow or send-to-terminal action
-      ### [x] Run the workflow to completion (or otherwise let any in-flight prompt finish) so no prompt is active
-      ### [x] Attempt to close the terminal tab/pane bound to that node
-      ### [x] Observe the confirmation dialog claiming a prompt is still processing
-      ## [x] Expected behavior
-      ### [x] Confirmation dialog should only appear when the workflow is actively in progress (running or paused with pending work)
-      ### [x] When the workflow has finished and no prompt is in flight, closing the terminal should not prompt for confirmation
-      ### [x] Edge case: if a prompt is genuinely in progress, the dialog should still appear with accurate wording
-      ## [x] Actual behavior
-      ### [x] Closing the terminal always surfaces the "prompt is processing" confirmation
-      ### [x] User-visible symptom: spurious modal blocks terminal close, requiring an extra confirm click, eroding trust in the warning
-      ## [x] Suspected cause
-      ### [x] Terminal close handler checks a stale "prompt in progress" flag instead of the live workflow state
-      ### [x] Likely the in-progress flag is not being cleared when the workflow reaches a terminal/completed state, only when explicitly aborted
-      ### [x] Existing guard checks "is bound to a node" rather than "is the bound workflow currently active"
-      ## [x] Affected files
-      ### [x] Primary suspect: terminal close confirmation handler in src/renderer/components (terminal tab close flow)
-      ### [x] Related surface: workflow state machine and the in-progress/active flag in src/renderer/store/actions
-      ### [-] Related surface: IPC handler for terminal close in src/main/services
-      ## [-] Regression window
-      ### [-] Last known good commit/release: unknown — needs bisection
-      ### [-] First observed: 2026-05-25 on current master (HEAD around 395ceba)
-      ## [x] Severity
-      ### [x] Severity: low — UX papercut, no data loss, but trains users to dismiss confirmation dialogs reflexively
-      ## [-] Notes
-      ### [x] Disambiguate from the legitimate "workflow paused/running" close confirmation — same dialog component, different trigger conditions
-      ### [-] Telemetry gap: no signal distinguishing confirmation shown during real in-flight prompt vs stale state — worth adding so we can detect regressions
-      ### [-] UX adjacent: dialog copy should name the bound node/workflow so the user knows what would be interrupted
-      ## [x] Technical refinement
-      ### [x] Flag complications
-      #### [x] Existing gate is `isTerminalProcessing(id)` driven by UserPromptSubmit → Stop hook events; a missed/misrouted Stop event leaves the flag stuck true — root-cause that before layering on more state
-      #### [x] Risk: gating on workflow state alone would skip the warning for manual (non-workflow) sends still mid-prompt — keep an OR with the prompt-processing flag
-      #### [x] Edge case: autonomous workflow that auto-sends a follow-up prompt may briefly clear then re-set the flag; close attempts mid-handoff need to resolve to "active"
-      #### [x] Edge case: terminal bound to a node whose workflow has been deleted — should treat as inactive, not throw
-      #### [x] Out of scope: rewording the dialog copy and adding telemetry (tracked under Notes, separate change)
-      #### [x] Out of scope: changes to UserPromptSubmit/Stop hook plumbing beyond what's needed to fix the stuck-flag case
-      ### [x] Summarise the approach
-      #### [x] Fix terminalCloseService guard to consider both `isTerminalProcessing(id)` AND the workflow execution state of the terminal's bound node (running or awaiting-validation), so a completed workflow no longer trips the dialog
-      #### [x] Investigate why `terminalProcessing[id]` is not cleared on workflow completion — likely a Stop hook event not being delivered/matched after autonomous advancement; fixing this is the real bug, the workflow-state check is a belt-and-suspenders guard
-      #### [x] Non-obvious: workflow completion currently deletes the entry from `workflowExecutionStates` entirely (no "done" state) — absence-of-entry is the correct "finished" signal to check against
-      ## [x] Tests written (failing as expected pre-fix)
-      ### [x] New file: src/renderer/services/tests/terminalCloseService.test.ts — 9 active tests + 3 it.todo placeholders
-      ### [x] Failing tests (drive the fix): dialog suppressed when prompt-processing flag is set but no workflowExecutionStates entry references the terminal; same for entries that reference a different terminal
-      ### [x] Passing regression guards: empty id, no-processing happy path, prompt-processing with active workflow (running and awaiting-validation), pending-close drop on second request, title lookup from top-level terminals, title lookup from fileStates, "Terminal" fallback title
-      ### [x] Title-only (uncertain post-fix specifics): manual send-to-terminal with no originNodeId, terminal bound to deleted node, Stop-hook clearing of terminalProcessing on autonomous completion
-      ## [x] Out-of-scope items deferred for separate work
-      ### [x] Stop-hook root-cause investigation deferred — workflow-state gate makes the stuck-flag harmless in practice; if the flag still goes stale it now only affects the close-confirmation surface, which is now suppressed
-      ### [x] IPC handler for terminal close (src/main/services) not changed — guard lives in renderer; main process never owned this decision
-      ### [x] Store actions in src/renderer/store/actions not changed — fix lives in services layer, reading workflowExecutionStates read-only
-      ## [x] Review feedback
-      ### [x] CRITICAL regression: the new `||` short-circuit at terminalCloseService.ts:38 disposes the pty without confirmation for any terminal whose prompt-processing flag is true but where no `workflowExecutionStates` entry exists. This is precisely the manual send-to-terminal case (mcpServer.ts:248, useTerminalActions.ts:9) and bare user typing into embedded Claude Code — both legitimately set `terminalProcessing[id]` via UserPromptSubmit hook (useHookEventListener.ts:35-40) without ever creating a workflowExecutionStates entry. The fix solves the stuck-flag symptom by amputating a legitimate guard path; the dialog was built to prevent killing those in-flight prompts.
-      ### [x] CRITICAL: the new tests at terminalCloseService.test.ts:170 and :183 pin this regression in place — they assert no dialog when `terminalProcessing=true` and no workflow entry, which is the exact manual-send case. These tests codify the bug.
-      ### [x] Root cause is elsewhere: `terminalProcessing[id]` is not cleared when an autonomous workflow completes. workflowExecutionActions.ts removes the workflowExecutionStates entry but leaves the per-terminal processing flag set. Fix this at the source — clear `terminalProcessing[id]` on the same path that deletes the workflowExecutionStates entry (or fix Stop-hook routing so the natural lifecycle clear fires). That makes `isTerminalProcessing` authoritative again and lets the close gate stay a single check.
-      ### [x] Action: revert the `isTerminalBoundToActiveWorkflow` gate change in terminalCloseService.ts. Move the fix into the workflow-completion path. Rewrite tests so the "no workflow entry + processing flag stuck after workflow completed" scenario is tested against the workflow-completion action (asserting the flag is cleared), not against terminalCloseService.
-      ### [x] Drop the 3 `it.todo` placeholders or implement them — bare titles rot. The third (`Stop-hook clears terminalProcessing on autonomous completion`) is the actual regression test that should be implemented.
-      ### [x] Non-blocking: the iteration over storeManager.getAllStores() in the (to-be-reverted) helper is fine perf-wise — close is a rare event. Convention adherence (services layer, getState(), no JSDoc) is fine. The one borderline what-comment is the test narration at terminalCloseService.test.ts:166-169 — acceptable.
-      ## [x] Resolution summary
-      ### [x] Major issues fixed: reverted the over-broad terminalCloseService gate (now back to single `isTerminalProcessing` check) and moved the real fix to workflowExecutionActions.ts — both `completeWorkflow` and `stopWorkflow` now call `useTerminalStore.markTerminalProcessing(terminalId, false)` after deleting their workflowExecutionStates entry, so the close-confirmation gate sees authoritative state without losing manual-send protection
-      ### [x] Major issues fixed: removed the two false-positive tests at terminalCloseService.test.ts:170/:183 that codified the silent-dispose regression for manual-prompt-in-flight terminals
-      ### [x] Minor issues fixed: dropped all 3 `it.todo` placeholders to avoid rot; the actual regression scenario is now covered by named tests against completeWorkflow and stopWorkflow
-      ### [x] Minor issues fixed: dropped the borderline what-comment block in the test file (no longer needed once the misguided test was removed)
-      ### [x] Verified independently: read useHookEventListener.ts:35-40 (sets/clears flag for ANY UserPromptSubmit/Stop in the embedded terminal, not workflow-specific), workflowExecutionActions.ts:727-760 completeWorkflow (deletes entry, no flag clear), and stopWorkflow at :433-460 (same gap) — reviewer's diagnosis matched the code
-      ### [x] Skipped: nothing — every reviewer point was justified and addressed
-      ## [x] Documentation pass
-      ### [x] No doc edits needed: docs/workflow.md:93 already describes correct behavior ("idle terminals close immediately") — fix restores reality to match docs
-      ### [x] No CHANGELOG entry added: existing entry at CHANGELOG.md:14 documents the close-dialog feature in ## Unreleased; per convention, a bug fix to an unreleased feature does not warrant its own line
-      ### [x] No new affordance, command, shortcut, or removed functionality to document
-    children:
-      - 3724ac14-2d3e-49ba-b891-2f36491ccd29
-      - 5a344b8e-8de9-4217-80d6-9dd1fe4cdde2
-      - 4835b74b-62f1-4288-8555-685b505b512b
-      - 884214de-3359-4bca-9f8e-ab2c26f7bd2c
-      - 07b03738-6599-478c-9e4a-79e32faffea5
-      - bca6ad43-96cf-44a0-8338-95e8c6fd0ee7
-      - bc26ddd3-fcb4-4e52-9b3f-545700a1facf
-      - 3a9348d7-21ae-414e-825e-06177dab3813
-      - 4e54da39-bfe7-452c-a035-737be6a86f6b
-      - 66e9a206-6107-496d-9a04-f58caa2cc65a
-      - 4c080697-f6d7-4fef-a3ff-3ca426dd5da8
-      - c6996bbd-5683-446c-bf97-c6abfd493c3c
-      - 35f7a9e0-e41e-433d-9b66-0f66e2ff8a58
-      - b13f46d4-2100-43c3-9624-b57f1d096043
-      - 09dd2035-7af9-450f-b48a-a287af5a76fe
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      sessionId: 972f98ab-fdf8-42c9-93cd-222f29ba6527
   2b85779e-8716-4a0c-b3bd-40cc7f38fb8f:
     id: 2b85779e-8716-4a0c-b3bd-40cc7f38fb8f
     content: PR1 - Workflow output stays out of Cmd+Z, and prior workflow states are restorable from the step that produced them
@@ -171211,25 +171111,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  87917b51-6c7c-49ea-83a8-d64a4512583e:
-    id: 87917b51-6c7c-49ea-83a8-d64a4512583e
-    content: PR1 - Bug - Submission routing gates disagree, corrupting or misrouting workflow nodes
-    children:
-      - 7dfc5380-b839-4dcf-a90c-1040ab33dbfc
-      - d329d613-a8a0-40f0-94c4-67ab00bab44f
-      - 948fa894-7fc1-49b5-b8a6-dedddedb26e6
-      - 301cdca8-063f-4d5d-9e9f-54d8ccef4ac6
-      - c3ed0e4b-4f6d-477c-8659-1021da65c406
-      - 185a61ca-3558-4005-8ddd-7ebfab33cff2
-      - 2a4dec33-2d7a-4cd5-b684-1123e428f6dc
-      - a9eb114e-f092-411d-9bc2-af875ca6615c
-    metadata:
-      status: completed
-      expanded: false
-      deleted: false
-      plugins: {}
-      groupId: 99a5d848-4008-4c0e-a0a0-093ca34431c7
-      sessionId: ec7c00b3-cf3d-4011-9979-819df9e6941e
   fe57b52d-8ce0-4d9e-a2fc-f71e1df94e6c:
     id: fe57b52d-8ce0-4d9e-a2fc-f71e1df94e6c
     content: PR2 - Bug - Submission routing gates disagree, corrupting or misrouting workflow nodes
@@ -172910,6 +172791,50 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  87917b51-6c7c-49ea-83a8-d64a4512583e:
+    id: 87917b51-6c7c-49ea-83a8-d64a4512583e
+    content: PR1 - Bug - Submission routing gates disagree, corrupting or misrouting workflow nodes
+    children:
+      - 7dfc5380-b839-4dcf-a90c-1040ab33dbfc
+      - d329d613-a8a0-40f0-94c4-67ab00bab44f
+      - 948fa894-7fc1-49b5-b8a6-dedddedb26e6
+      - 301cdca8-063f-4d5d-9e9f-54d8ccef4ac6
+      - c3ed0e4b-4f6d-477c-8659-1021da65c406
+      - 185a61ca-3558-4005-8ddd-7ebfab33cff2
+      - 2a4dec33-2d7a-4cd5-b684-1123e428f6dc
+      - a9eb114e-f092-411d-9bc2-af875ca6615c
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      groupId: 99a5d848-4008-4c0e-a0a0-093ca34431c7
+      sessionId: ec7c00b3-cf3d-4011-9979-819df9e6941e
+  85099a84-b1d8-452e-a801-ebba6c9867a0:
+    id: 85099a84-b1d8-452e-a801-ebba6c9867a0
+    content: Bug - closing a terminal bound to a node shows a confirmation dialog
+    children:
+      - 3724ac14-2d3e-49ba-b891-2f36491ccd29
+      - 5a344b8e-8de9-4217-80d6-9dd1fe4cdde2
+      - 4835b74b-62f1-4288-8555-685b505b512b
+      - 884214de-3359-4bca-9f8e-ab2c26f7bd2c
+      - 07b03738-6599-478c-9e4a-79e32faffea5
+      - bca6ad43-96cf-44a0-8338-95e8c6fd0ee7
+      - bc26ddd3-fcb4-4e52-9b3f-545700a1facf
+      - 3a9348d7-21ae-414e-825e-06177dab3813
+      - 4e54da39-bfe7-452c-a035-737be6a86f6b
+      - 66e9a206-6107-496d-9a04-f58caa2cc65a
+      - 4c080697-f6d7-4fef-a3ff-3ca426dd5da8
+      - c6996bbd-5683-446c-bf97-c6abfd493c3c
+      - 35f7a9e0-e41e-433d-9b66-0f66e2ff8a58
+      - b13f46d4-2100-43c3-9624-b57f1d096043
+      - 09dd2035-7af9-450f-b48a-a287af5a76fe
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 972f98ab-fdf8-42c9-93cd-222f29ba6527
   3724ac14-2d3e-49ba-b891-2f36491ccd29:
     id: 3724ac14-2d3e-49ba-b891-2f36491ccd29
     content: worktree
