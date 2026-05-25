@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-25T07:46:14.002Z'
+updated: '2026-05-25T08:53:04.486Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -83688,7 +83688,6 @@ nodes:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
     children:
-      - edb31bfa-305c-410d-85eb-7422dcaa141d
       - 6f640fcc-5fb6-42f2-ac0e-c8aec4ad209b
     metadata:
       status: pending
@@ -115489,6 +115488,7 @@ nodes:
     id: b3dc5362-ca81-4cbe-8558-2800fa41354f
     content: Done
     children:
+      - ec64f965-a70a-42ea-a8c0-4ef7d9dd2e52
       - 2b85779e-8716-4a0c-b3bd-40cc7f38fb8f
       - 24e962a4-95b1-4f55-af30-921af58f125b
       - a2b9d2fb-9079-431a-be24-481850514e3b
@@ -124651,7 +124651,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - ec64f965-a70a-42ea-a8c0-4ef7d9dd2e52
+      - edb31bfa-305c-410d-85eb-7422dcaa141d
     metadata:
       status: pending
       isBlueprint: true
@@ -159139,6 +159139,8 @@ nodes:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
     children:
+      - 61c2ca0b-e773-4f6b-85d7-fa77b6f40f8c
+      - 32a94f94-b821-4b94-8f63-11e3997159af
       - a9acb075-b0d3-4432-b0a7-86534708067f
       - 85099a84-b1d8-452e-a801-ebba6c9867a0
     metadata:
@@ -165616,677 +165618,6 @@ nodes:
       deleted: false
       plugins: {}
       groupId: dab1afb0-6cec-4031-b33e-ee67493de6f0
-      sessionId: dd16dfb9-55d4-4b93-a3c1-ef69398f5e22
-  edb31bfa-305c-410d-85eb-7422dcaa141d:
-    id: edb31bfa-305c-410d-85eb-7422dcaa141d
-    content: PR3 - Workflow output stays out of Cmd+Z, and prior workflow states are restorable from the step that produced them
-    children:
-      - c473a39a-c294-468a-b9fc-3b5c454cd119
-      - bf6cbe89-d75f-4803-b65f-40e0c73ebda0
-      - 27243b0e-2572-49d4-97fd-ec8c1a77ffe7
-      - 949a6ad7-336e-40dc-aa68-490af20a5b84
-      - c565080b-03ce-4a3f-9f91-6575d40c8bc7
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      groupId: dab1afb0-6cec-4031-b33e-ee67493de6f0
-  c473a39a-c294-468a-b9fc-3b5c454cd119:
-    id: c473a39a-c294-468a-b9fc-3b5c454cd119
-    content: PR focus
-    children:
-      - c98597b9-c0d9-4333-9439-999fb0dc5d25
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c98597b9-c0d9-4333-9439-999fb0dc5d25:
-    id: c98597b9-c0d9-4333-9439-999fb0dc5d25
-    content: Wire the capture and invalidation mechanism into the workflow execution layer. This is the PR that makes step history actually populate at runtime and Cmd+Z behave correctly after a workflow runs.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf6cbe89-d75f-4803-b65f-40e0c73ebda0:
-    id: bf6cbe89-d75f-4803-b65f-40e0c73ebda0
-    content: PR scope
-    children:
-      - 8044e47c-32eb-4b9e-b76e-252ce483aa9e
-      - 9381ab20-a529-471b-92b6-82ea57f23201
-      - 3a193559-6366-404c-8b4a-55336271362e
-      - dde50588-5b0d-4bf5-953e-00f829533182
-      - 5589e7f5-acea-47d0-8f0c-bb12df5acfda
-      - 2ef74efb-ff1d-45e9-a55b-94b217ed3980
-      - 5d4a842d-cce2-4555-8d05-7f6121eb4730
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8044e47c-32eb-4b9e-b76e-252ce483aa9e:
-    id: 8044e47c-32eb-4b9e-b76e-252ce483aa9e
-    content: workflowExecutionActions.startWorkflow writes the input node's pre-workflow state as the first history entry on the starting step (the step the user clicked Start on).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9381ab20-a529-471b-92b6-82ea57f23201:
-    id: 9381ab20-a529-471b-92b6-82ea57f23201
-    content: workflowExecutionActions.handleAutonomousFeedback resolves the owning step's stepType and passes acceptMode='autonomous' or 'checkpoint-accept' to AcceptFeedbackCommand. Outside any workflow step the call site keeps the default ('manual-send-accept').
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a193559-6366-404c-8b4a-55336271362e:
-    id: 3a193559-6366-404c-8b4a-55336271362e
-    content: After any autonomous AcceptFeedbackCommand execution, the workflow layer calls HistoryManager.invalidateEntriesTouching with the mutated UUIDs (the collaborating node id plus its replaced descendants).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dde50588-5b0d-4bf5-953e-00f829533182:
-    id: dde50588-5b0d-4bf5-953e-00f829533182
-    content: workflowExecutionActions.advanceNode captures the owning-step id BEFORE the move, then performs the move, ensuring mutate-then-move attribution is correct.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5589e7f5-acea-47d0-8f0c-bb12df5acfda:
-    id: 5589e7f5-acea-47d0-8f0c-bb12df5acfda
-    content: 'AcceptFeedbackCommand multi-root strategy is extended to emit: (a) a pre-decomposition snapshot of the original parent on the decomposition step''s history, and (b) an initial-state snapshot for each generated sibling on the owning step of each sibling.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2ef74efb-ff1d-45e9-a55b-94b217ed3980:
-    id: 2ef74efb-ff1d-45e9-a55b-94b217ed3980
-    content: The workflowExecutionStepHistory.test.ts placeholder bodies are filled in with real assertions covering all the routing rules.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5d4a842d-cce2-4555-8d05-7f6121eb4730:
-    id: 5d4a842d-cce2-4555-8d05-7f6121eb4730
-    content: storeManager / tree store state slice gains an optional stepHistory map; existing slices are updated to thread it through where needed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  27243b0e-2572-49d4-97fd-ec8c1a77ffe7:
-    id: 27243b0e-2572-49d4-97fd-ec8c1a77ffe7
-    content: PR acceptance criteria
-    children:
-      - 79817c80-9967-4956-a264-1425b88acda7
-      - dd268714-2761-4b56-904a-b0a5e6a5555e
-      - 090cb792-1e37-4a13-aa37-621cbfa32211
-      - ac78d89b-8c21-4c0b-a9e6-284d60655554
-      - 4fea3bfb-6b67-4a83-9142-5bff1858fe90
-      - 43988d9d-9d39-4f32-8e1e-0c4f4fd9430f
-      - ffaa7d7d-bfd8-4127-8ea5-9b6f5627a89e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  79817c80-9967-4956-a264-1425b88acda7:
-    id: 79817c80-9967-4956-a264-1425b88acda7
-    content: After startWorkflow, the starting step's stepHistory contains one entry whose rootNodeId matches the input node's id (post any historization remapping).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd268714-2761-4b56-904a-b0a5e6a5555e:
-    id: dd268714-2761-4b56-904a-b0a5e6a5555e
-    content: After an autonomous AcceptFeedbackCommand applies, the owning step's stepHistory has gained one new entry AND the user undo stack has no new command added.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  090cb792-1e37-4a13-aa37-621cbfa32211:
-    id: 090cb792-1e37-4a13-aa37-621cbfa32211
-    content: After a checkpoint-accept AcceptFeedbackCommand applies, the owning step's stepHistory has gained one entry AND the user undo stack has one new command added.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac78d89b-8c21-4c0b-a9e6-284d60655554:
-    id: ac78d89b-8c21-4c0b-a9e6-284d60655554
-    content: After any autonomous mutation, user-undo commands whose touched UUIDs intersect with the mutated UUIDs are silently removed from the stack.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fea3bfb-6b67-4a83-9142-5bff1858fe90:
-    id: 4fea3bfb-6b67-4a83-9142-5bff1858fe90
-    content: A mutate-then-move sequence within a single advanceNode call records the change on the source step's history, not the destination's.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  43988d9d-9d39-4f32-8e1e-0c4f4fd9430f:
-    id: 43988d9d-9d39-4f32-8e1e-0c4f4fd9430f
-    content: When a node is decomposed via AcceptFeedbackCommand multi-root mode, the decomposition step's history gains a pre-decomposition entry of the parent AND each new sibling's owning step gains an initial-state entry for that sibling.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ffaa7d7d-bfd8-4127-8ea5-9b6f5627a89e:
-    id: ffaa7d7d-bfd8-4127-8ea5-9b6f5627a89e
-    content: Downstream steps do NOT capture an arrival snapshot for nodes that simply pass through without mutation.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  949a6ad7-336e-40dc-aa68-490af20a5b84:
-    id: 949a6ad7-336e-40dc-aa68-490af20a5b84
-    content: User story
-    children:
-      - b30828d3-7afc-47cb-a63a-087d6ecc00a6
-      - 4f6bbf45-d246-4419-bbc7-aed7c8815c61
-      - 99f4a48d-9590-4677-afd3-8c7462525f92
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b30828d3-7afc-47cb-a63a-087d6ecc00a6:
-    id: b30828d3-7afc-47cb-a63a-087d6ecc00a6
-    content: Treated as one shippable chunk
-    children:
-      - 51966d61-1655-405c-b723-bdf1ccb7d4a4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  51966d61-1655-405c-b723-bdf1ccb7d4a4:
-    id: 51966d61-1655-405c-b723-bdf1ccb7d4a4
-    content: No split — every part (capture, view, restore, decomposition, lifecycle, stale-undo invalidation) is required for user-visible value; partial release leaves dead plumbing.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f6bbf45-d246-4419-bbc7-aed7c8815c61:
-    id: 4f6bbf45-d246-4419-bbc7-aed7c8815c61
-    content: Product spec
-    children:
-      - 45348cdc-b16f-4436-8fb9-c98a6c060538
-      - c75d4bda-9746-4e56-8815-6bf442b6b1f8
-      - 6a2051f5-bb25-4b30-b722-1a5463a91faf
-      - 8dc632d2-4acd-4c37-b757-ad17b276ca59
-      - 07f1baf6-fbe6-40c0-8417-b3801446985a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  45348cdc-b16f-4436-8fb9-c98a6c060538:
-    id: 45348cdc-b16f-4436-8fb9-c98a6c060538
-    content: Context
-    children:
-      - 27c66ac2-1f0d-4591-9006-616f6f927b40
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  27c66ac2-1f0d-4591-9006-616f6f927b40:
-    id: 27c66ac2-1f0d-4591-9006-616f6f927b40
-    content: Arborescent users run AI workflows that automatically mutate node content and structure; today those changes share the global undo stack with manual edits, so Cmd+Z reaches back through workflow output to find the user's last action and prior workflow states are otherwise unrecoverable.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c75d4bda-9746-4e56-8815-6bf442b6b1f8:
-    id: c75d4bda-9746-4e56-8815-6bf442b6b1f8
-    content: User
-    children:
-      - ea2bb627-1804-446d-8dc1-a953d24a5427
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ea2bb627-1804-446d-8dc1-a953d24a5427:
-    id: ea2bb627-1804-446d-8dc1-a953d24a5427
-    content: A user running AI workflows on nodes within a decomposition tree while also making manual edits elsewhere in the tree.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a2051f5-bb25-4b30-b722-1a5463a91faf:
-    id: 6a2051f5-bb25-4b30-b722-1a5463a91faf
-    content: Goal
-    children:
-      - 6ccd77e7-0967-48da-aef5-ac1550c0ca8f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ccd77e7-0967-48da-aef5-ac1550c0ca8f:
-    id: 6ccd77e7-0967-48da-aef5-ac1550c0ca8f
-    content: Cmd+Z reverts only the user's own actions, while every workflow step preserves its automated output as a browsable, restorable history attached to the step that produced it.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8dc632d2-4acd-4c37-b757-ad17b276ca59:
-    id: 8dc632d2-4acd-4c37-b757-ad17b276ca59
-    content: Business rules
-    children:
-      - 6701b058-edc8-4c2a-a5b5-20608bc466ab
-      - d291f40c-bb4d-498a-8393-7ae4356ec164
-      - e186e369-b1a9-4867-b651-174d1a872dbb
-      - d8da47da-e149-4de3-8394-92d6da18ee02
-      - f392dc77-9fed-4fd5-bfbc-87c3f5c33624
-      - 7069fd22-c7d8-4b9a-8547-3a938710d5df
-      - 5906abef-3b12-4eab-a278-2a21cecc0313
-      - d0db553a-b251-47b0-aa31-b3edc9a25c71
-      - 8fa8d8df-2092-489f-8de2-e991ec15f5c9
-      - 6e26a981-c4d1-47d4-bd9b-51d6e7a845e5
-      - 5d13813a-1ee9-468b-b9bf-7beb150535d4
-      - 991110a1-54a5-416e-9f40-f44101ae1e8b
-      - 5f932bec-d17b-4dc1-b968-7d8fb6c62dc0
-      - c494c527-90e1-4679-8714-cd25bf531fe7
-      - 063f1233-9f20-4ee9-af7c-ad875184bc1f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6701b058-edc8-4c2a-a5b5-20608bc466ab:
-    id: 6701b058-edc8-4c2a-a5b5-20608bc466ab
-    content: Cmd+Z must never revert a workflow-driven change; only direct user actions are eligible for the user undo stack.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d291f40c-bb4d-498a-8393-7ae4356ec164:
-    id: d291f40c-bb4d-498a-8393-7ae4356ec164
-    content: Each workflow step maintains an independent history of up to 10 entries, with the oldest dropped on overflow.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e186e369-b1a9-4867-b651-174d1a872dbb:
-    id: e186e369-b1a9-4867-b651-174d1a872dbb
-    content: Each history entry is a pre-mutation snapshot of the affected node, captured before the change is applied.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d8da47da-e149-4de3-8394-92d6da18ee02:
-    id: d8da47da-e149-4de3-8394-92d6da18ee02
-    content: User-typed edits on a node currently owned by a step do not enter step history; they live on the user undo stack only.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f392dc77-9fed-4fd5-bfbc-87c3f5c33624:
-    id: f392dc77-9fed-4fd5-bfbc-87c3f5c33624
-    content: Feedback panel acceptance on a checkpoint workflow step goes on the user undo stack AND writes a pre-accept snapshot to the checkpoint step's history.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7069fd22-c7d8-4b9a-8547-3a938710d5df:
-    id: 7069fd22-c7d8-4b9a-8547-3a938710d5df
-    content: Manual-send acceptance (outside any workflow step) goes on the user undo stack only.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5906abef-3b12-4eab-a278-2a21cecc0313:
-    id: 5906abef-3b12-4eab-a278-2a21cecc0313
-    content: Any autonomous workflow mutation removes from the user undo stack every command whose touched UUIDs intersect with the mutated UUIDs; removal is silent.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d0db553a-b251-47b0-aa31-b3edc9a25c71:
-    id: d0db553a-b251-47b0-aa31-b3edc9a25c71
-    content: The automated transfer of a node from one step to the next is not itself recorded as a history entry.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8fa8d8df-2092-489f-8de2-e991ec15f5c9:
-    id: 8fa8d8df-2092-489f-8de2-e991ec15f5c9
-    content: When a mutation is followed by a move within the same workflow advance, the change is attributed to the source step.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e26a981-c4d1-47d4-bd9b-51d6e7a845e5:
-    id: 6e26a981-c4d1-47d4-bd9b-51d6e7a845e5
-    content: The step in which a workflow is initiated records the input node's pre-workflow state as its first history entry; no other step takes a snapshot on arrival.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5d13813a-1ee9-468b-b9bf-7beb150535d4:
-    id: 5d13813a-1ee9-468b-b9bf-7beb150535d4
-    content: Restoring an entry inserts a deep copy of the snapshot as a child of the step with fresh UUIDs assigned to every node in the restored subtree; restoration is non-mutating to the history.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  991110a1-54a5-416e-9f40-f44101ae1e8b:
-    id: 991110a1-54a5-416e-9f40-f44101ae1e8b
-    content: Historized nodes carry UUIDs distinct from the live tree and from any other historized entry; no two nodes anywhere share a UUID at any time.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f932bec-d17b-4dc1-b968-7d8fb6c62dc0:
-    id: 5f932bec-d17b-4dc1-b968-7d8fb6c62dc0
-    content: When a node is decomposed, the pre-decomposition state is preserved in the parent's history and each resulting sibling captures its own initial state.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c494c527-90e1-4679-8714-cd25bf531fe7:
-    id: c494c527-90e1-4679-8714-cd25bf531fe7
-    content: Deleting a step is undoable and must preserve the step's history.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  063f1233-9f20-4ee9-af7c-ad875184bc1f:
-    id: 063f1233-9f20-4ee9-af7c-ad875184bc1f
-    content: Loading a pre-existing .arbo file that has no per-step history must continue to open and operate normally.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  07f1baf6-fbe6-40c0-8417-b3801446985a:
-    id: 07f1baf6-fbe6-40c0-8417-b3801446985a
-    content: Acceptance criteria
-    children:
-      - 3b52f7d2-0d93-4ab0-91b9-c49467f7772d
-      - 905445bf-9a14-429d-ab00-fdb1826ec627
-      - 5a038284-a0ab-40d2-9917-1bf6cd0c68ed
-      - 51a0f454-b181-484e-80d2-17702b152b97
-      - 35c963b4-81c2-45db-b509-fbb5a933a102
-      - 21237404-10ec-44d8-b268-ed0554b59404
-      - 8eb3d650-73ff-4dd8-bf24-cc5d1b42fa8a
-      - 66ec6e99-0d85-4caf-91ef-6b48f409d0d8
-      - 3ddb7085-e56f-4ebf-ac7f-f61a046962be
-      - 054437e2-a83b-4095-9380-6c9f4506fefd
-      - 9259039c-9c11-4ffa-a316-fa24d3ff69cc
-      - 8bc351ed-9efc-49e6-96de-30b5c7c1f234
-      - 29091adc-acac-4c54-b852-00222a7491da
-      - 070fc06e-4826-433b-9f2d-fcac2a3e1774
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b52f7d2-0d93-4ab0-91b9-c49467f7772d:
-    id: 3b52f7d2-0d93-4ab0-91b9-c49467f7772d
-    content: After a workflow run, Cmd+Z reverts the user's last manual edit provided that edit did not touch a node subsequently mutated by the workflow, and never touches workflow output.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  905445bf-9a14-429d-ab00-fdb1826ec627:
-    id: 905445bf-9a14-429d-ab00-fdb1826ec627
-    content: After accepting checkpoint output via the feedback panel, Cmd+Z reverts the application; the owning checkpoint step also retains a pre-accept snapshot in its history.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a038284-a0ab-40d2-9917-1bf6cd0c68ed:
-    id: 5a038284-a0ab-40d2-9917-1bf6cd0c68ed
-    content: After accepting manual-send output, Cmd+Z reverts the application; no step history is written.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  51a0f454-b181-484e-80d2-17702b152b97:
-    id: 51a0f454-b181-484e-80d2-17702b152b97
-    content: If a workflow autonomously mutates a node that an earlier user-undo command also touched, that command is removed from the undo stack silently.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  35c963b4-81c2-45db-b509-fbb5a933a102:
-    id: 35c963b4-81c2-45db-b509-fbb5a933a102
-    content: Each step exposes its history via an affordance on the step node itself; entries are listed time-ordered with truncated parent-label and hover-time tooltip.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  21237404-10ec-44d8-b268-ed0554b59404:
-    id: 21237404-10ec-44d8-b268-ed0554b59404
-    content: A step's history never exceeds 10 entries; the 11th automated change evicts the oldest.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8eb3d650-73ff-4dd8-bf24-cc5d1b42fa8a:
-    id: 8eb3d650-73ff-4dd8-bf24-cc5d1b42fa8a
-    content: Restoring an entry produces a deep copy of the snapshot with all-new UUIDs; restoring twice produces independent copies; the history is unchanged.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66ec6e99-0d85-4caf-91ef-6b48f409d0d8:
-    id: 66ec6e99-0d85-4caf-91ef-6b48f409d0d8
-    content: The originating step holds the workflow's input snapshot; downstream steps hold no arrival snapshots for nodes that simply pass through.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ddb7085-e56f-4ebf-ac7f-f61a046962be:
-    id: 3ddb7085-e56f-4ebf-ac7f-f61a046962be
-    content: A mutate-then-move sequence is recorded on the source step.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  054437e2-a83b-4095-9380-6c9f4506fefd:
-    id: 054437e2-a83b-4095-9380-6c9f4506fefd
-    content: Decomposing a node records the pre-decomposition state in the parent's history and seeds each child's history with its initial state.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9259039c-9c11-4ffa-a316-fa24d3ff69cc:
-    id: 9259039c-9c11-4ffa-a316-fa24d3ff69cc
-    content: Deleting a step then undoing the deletion restores the step with its full history intact.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8bc351ed-9efc-49e6-96de-30b5c7c1f234:
-    id: 8bc351ed-9efc-49e6-96de-30b5c7c1f234
-    content: Terminal sessions and other bindings on the current node remain attached to that node after restoration.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  29091adc-acac-4c54-b852-00222a7491da:
-    id: 29091adc-acac-4c54-b852-00222a7491da
-    content: No two nodes anywhere share a UUID at any time.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  070fc06e-4826-433b-9f2d-fcac2a3e1774:
-    id: 070fc06e-4826-433b-9f2d-fcac2a3e1774
-    content: A pre-existing .arbo file with no per-step history opens, edits, and saves correctly.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  99f4a48d-9590-4677-afd3-8c7462525f92:
-    id: 99f4a48d-9590-4677-afd3-8c7462525f92
-    content: Implementation proposal
-    children:
-      - 561fcf26-150b-4745-a7db-6686630fd68d
-      - 352915a8-4d38-44ba-8e7d-fcda3f81fd84
-      - 5b181964-82e8-49a9-b13b-a0e959015c82
-      - 8acbd077-2a80-4682-9231-fa134b97e7ef
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  561fcf26-150b-4745-a7db-6686630fd68d:
-    id: 561fcf26-150b-4745-a7db-6686630fd68d
-    content: Per-step ring buffer of pre-mutation subtree snapshots stored on the .arbo document keyed by step id; populated whenever an autonomous or checkpoint-accept path mutates a node owned by that step.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  352915a8-4d38-44ba-8e7d-fcda3f81fd84:
-    id: 352915a8-4d38-44ba-8e7d-fcda3f81fd84
-    content: Command interface gains touchedNodeIds; HistoryManager.invalidateEntriesTouching(nodeIds) is called from every autonomous mutation path.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b181964-82e8-49a9-b13b-a0e959015c82:
-    id: 5b181964-82e8-49a9-b13b-a0e959015c82
-    content: RestoreStepHistoryCommand on the user undo stack creates a deep copy of a history entry with freshly minted UUIDs.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8acbd077-2a80-4682-9231-fa134b97e7ef:
-    id: 8acbd077-2a80-4682-9231-fa134b97e7ef
-    content: AcceptFeedbackCommand has three explicit acceptMode branches.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c565080b-03ce-4a3f-9f91-6575d40c8bc7:
-    id: c565080b-03ce-4a3f-9f91-6575d40c8bc7
-    content: Instruction
-    children:
-      - 534e27d6-431b-4ebb-9599-ba7f61828bf7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  534e27d6-431b-4ebb-9599-ba7f61828bf7:
-    id: 534e27d6-431b-4ebb-9599-ba7f61828bf7
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   6f640fcc-5fb6-42f2-ac0e-c8aec4ad209b:
     id: 6f640fcc-5fb6-42f2-ac0e-c8aec4ad209b
     content: PR4 - Workflow output stays out of Cmd+Z, and prior workflow states are restorable from the step that produced them
@@ -170114,6 +169445,714 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32a94f94-b821-4b94-8f63-11e3997159af:
+    id: 32a94f94-b821-4b94-8f63-11e3997159af
+    content: Bug - Claude not calling Arborescent after Merge to Master which doesn't move the workflow into done
+    children:
+      - 877de0d9-0dd8-4e7c-b97f-e5c670d630ef
+    metadata:
+      status: pending
+      expanded: false
+  877de0d9-0dd8-4e7c-b97f-e5c670d630ef:
+    id: 877de0d9-0dd8-4e7c-b97f-e5c670d630ef
+    content: Need to check if it's an issue in the sent context before asking Claude to fix it
+    children: []
+    metadata:
+      status: pending
+  61c2ca0b-e773-4f6b-85d7-fa77b6f40f8c:
+    id: 61c2ca0b-e773-4f6b-85d7-fa77b6f40f8c
+    content: Bug - Claude still overwriting nodes with context instructions
+    children:
+      - 4ea89ff7-015c-41f8-9e1e-ec9c459b84c6
+    metadata:
+      status: pending
+  4ea89ff7-015c-41f8-9e1e-ec9c459b84c6:
+    id: 4ea89ff7-015c-41f8-9e1e-ec9c459b84c6
+    content: See evidence in session dd16dfb9-55d4-4b93-a3c1-ef69398f5e22
+    children: []
+    metadata:
+      status: pending
+  edb31bfa-305c-410d-85eb-7422dcaa141d:
+    id: edb31bfa-305c-410d-85eb-7422dcaa141d
+    content: PR3 - Workflow output stays out of Cmd+Z, and prior workflow states are restorable from the step that produced them
+    children:
+      - d0179fea-c035-46ab-a1f1-3ae045ff01d5
+      - 25fe84a0-a24a-4ce7-b444-7ff509ff9ca6
+      - 5b505b2d-c323-49c6-b322-19bc523d2cfc
+      - 0b8617a0-3f11-428f-b99a-b8b590c54f24
+      - 5840abc8-d0c6-4ea9-9b8d-dd3922f3a9d5
+      - adedeeae-9441-4a35-820d-726bcf8a9411
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      groupId: dab1afb0-6cec-4031-b33e-ee67493de6f0
+      sessionId: dd16dfb9-55d4-4b93-a3c1-ef69398f5e22
+  d0179fea-c035-46ab-a1f1-3ae045ff01d5:
+    id: d0179fea-c035-46ab-a1f1-3ae045ff01d5
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-workflow-wiring) — branch `feat/workflow-step-history-wiring` at `/Users/brianfox/dev/Arborescent-workflow-wiring`'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  25fe84a0-a24a-4ce7-b444-7ff509ff9ca6:
+    id: 25fe84a0-a24a-4ce7-b444-7ff509ff9ca6
+    content: PR focus
+    children:
+      - 5d6d7b62-1458-4a53-8159-ad9bfef8b9d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d6d7b62-1458-4a53-8159-ad9bfef8b9d5:
+    id: 5d6d7b62-1458-4a53-8159-ad9bfef8b9d5
+    content: Wire the capture and invalidation mechanism into the workflow execution layer. This is the PR that makes step history actually populate at runtime and Cmd+Z behave correctly after a workflow runs.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b505b2d-c323-49c6-b322-19bc523d2cfc:
+    id: 5b505b2d-c323-49c6-b322-19bc523d2cfc
+    content: PR scope
+    children:
+      - b578aaf7-c8d7-4a63-9d2c-3653925f03ea
+      - 0e974501-2633-4d87-a203-59f060340c03
+      - 3942fda3-361f-4843-a41f-9d2e5f7ab2e8
+      - 0decde81-fa48-4d0e-8803-89f6d2548ce9
+      - a69f09e9-4b90-4af0-8959-d7f80dd9d344
+      - 13aea809-3160-41f3-8d82-0eb5aa463f1a
+      - 046bd428-55be-4cc9-baf9-89f567e1fa2e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b578aaf7-c8d7-4a63-9d2c-3653925f03ea:
+    id: b578aaf7-c8d7-4a63-9d2c-3653925f03ea
+    content: workflowExecutionActions.startWorkflow writes the input node's pre-workflow state as the first history entry on the starting step (the step the user clicked Start on).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e974501-2633-4d87-a203-59f060340c03:
+    id: 0e974501-2633-4d87-a203-59f060340c03
+    content: workflowExecutionActions.handleAutonomousFeedback resolves the owning step's stepType and passes acceptMode='autonomous' or 'checkpoint-accept' to AcceptFeedbackCommand. Outside any workflow step the call site keeps the default ('manual-send-accept').
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3942fda3-361f-4843-a41f-9d2e5f7ab2e8:
+    id: 3942fda3-361f-4843-a41f-9d2e5f7ab2e8
+    content: After any autonomous AcceptFeedbackCommand execution, the workflow layer calls HistoryManager.invalidateEntriesTouching with the mutated UUIDs (the collaborating node id plus its replaced descendants).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0decde81-fa48-4d0e-8803-89f6d2548ce9:
+    id: 0decde81-fa48-4d0e-8803-89f6d2548ce9
+    content: workflowExecutionActions.advanceNode captures the owning-step id BEFORE the move, then performs the move, ensuring mutate-then-move attribution is correct.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a69f09e9-4b90-4af0-8959-d7f80dd9d344:
+    id: a69f09e9-4b90-4af0-8959-d7f80dd9d344
+    content: 'AcceptFeedbackCommand multi-root strategy is extended to emit: (a) a pre-decomposition snapshot of the original parent on the decomposition step''s history, and (b) an initial-state snapshot for each generated sibling on the owning step of each sibling.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13aea809-3160-41f3-8d82-0eb5aa463f1a:
+    id: 13aea809-3160-41f3-8d82-0eb5aa463f1a
+    content: The workflowExecutionStepHistory.test.ts placeholder bodies are filled in with real assertions covering all the routing rules.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  046bd428-55be-4cc9-baf9-89f567e1fa2e:
+    id: 046bd428-55be-4cc9-baf9-89f567e1fa2e
+    content: storeManager / tree store state slice gains an optional stepHistory map; existing slices are updated to thread it through where needed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b8617a0-3f11-428f-b99a-b8b590c54f24:
+    id: 0b8617a0-3f11-428f-b99a-b8b590c54f24
+    content: PR acceptance criteria
+    children:
+      - 048e3614-0b91-4343-a41b-ad604c8bfe6b
+      - 766e6738-df85-4b47-bab5-394e9d672e48
+      - 49c5edaa-eeb5-46e8-ba52-f2d3b39707ff
+      - f8fc8831-b3e1-44fe-a432-dc9bb1fb3f3c
+      - d58cf3f5-9e85-4d98-83a6-d03784fdc5a8
+      - 158629a7-894b-42c3-8a53-e76c8bd86e79
+      - e81ac73c-7bc4-4b11-8479-214a5269580a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  048e3614-0b91-4343-a41b-ad604c8bfe6b:
+    id: 048e3614-0b91-4343-a41b-ad604c8bfe6b
+    content: After startWorkflow, the starting step's stepHistory contains one entry whose rootNodeId matches the input node's id (post any historization remapping).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  766e6738-df85-4b47-bab5-394e9d672e48:
+    id: 766e6738-df85-4b47-bab5-394e9d672e48
+    content: After an autonomous AcceptFeedbackCommand applies, the owning step's stepHistory has gained one new entry AND the user undo stack has no new command added.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49c5edaa-eeb5-46e8-ba52-f2d3b39707ff:
+    id: 49c5edaa-eeb5-46e8-ba52-f2d3b39707ff
+    content: After a checkpoint-accept AcceptFeedbackCommand applies, the owning step's stepHistory has gained one entry AND the user undo stack has one new command added.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8fc8831-b3e1-44fe-a432-dc9bb1fb3f3c:
+    id: f8fc8831-b3e1-44fe-a432-dc9bb1fb3f3c
+    content: After any autonomous mutation, user-undo commands whose touched UUIDs intersect with the mutated UUIDs are silently removed from the stack.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d58cf3f5-9e85-4d98-83a6-d03784fdc5a8:
+    id: d58cf3f5-9e85-4d98-83a6-d03784fdc5a8
+    content: A mutate-then-move sequence within a single advanceNode call records the change on the source step's history, not the destination's.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  158629a7-894b-42c3-8a53-e76c8bd86e79:
+    id: 158629a7-894b-42c3-8a53-e76c8bd86e79
+    content: When a node is decomposed via AcceptFeedbackCommand multi-root mode, the decomposition step's history gains a pre-decomposition entry of the parent AND each new sibling's owning step gains an initial-state entry for that sibling.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e81ac73c-7bc4-4b11-8479-214a5269580a:
+    id: e81ac73c-7bc4-4b11-8479-214a5269580a
+    content: Downstream steps do NOT capture an arrival snapshot for nodes that simply pass through without mutation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5840abc8-d0c6-4ea9-9b8d-dd3922f3a9d5:
+    id: 5840abc8-d0c6-4ea9-9b8d-dd3922f3a9d5
+    content: User story
+    children:
+      - e500d98b-b1c1-4213-adeb-3e91d69dfa82
+      - 9d97f935-a5f3-421a-8a80-4b5640811bca
+      - aaaa540d-965d-4cd4-8092-e742768b0a23
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e500d98b-b1c1-4213-adeb-3e91d69dfa82:
+    id: e500d98b-b1c1-4213-adeb-3e91d69dfa82
+    content: Treated as one shippable chunk
+    children:
+      - da2e5cc9-e660-4efd-bb9d-dfc4b146b791
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da2e5cc9-e660-4efd-bb9d-dfc4b146b791:
+    id: da2e5cc9-e660-4efd-bb9d-dfc4b146b791
+    content: No split — every part (capture, view, restore, decomposition, lifecycle, stale-undo invalidation) is required for user-visible value; partial release leaves dead plumbing.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d97f935-a5f3-421a-8a80-4b5640811bca:
+    id: 9d97f935-a5f3-421a-8a80-4b5640811bca
+    content: Product spec
+    children:
+      - c89d3f87-c5b0-4387-88e5-f48f6e558526
+      - 07ad1f27-b1a1-4da7-b9c0-0eea20476b22
+      - 3010620a-17c1-40a1-8748-fb76607169aa
+      - 918192db-e56a-4484-8aa1-dd778a66824b
+      - 45ca8755-fde3-4e2b-b5d1-4d84886be14b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c89d3f87-c5b0-4387-88e5-f48f6e558526:
+    id: c89d3f87-c5b0-4387-88e5-f48f6e558526
+    content: Context
+    children:
+      - 2e8834e1-f93a-4dc9-bcdb-450cd331171e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e8834e1-f93a-4dc9-bcdb-450cd331171e:
+    id: 2e8834e1-f93a-4dc9-bcdb-450cd331171e
+    content: Arborescent users run AI workflows that automatically mutate node content and structure; today those changes share the global undo stack with manual edits, so Cmd+Z reaches back through workflow output to find the user's last action and prior workflow states are otherwise unrecoverable.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07ad1f27-b1a1-4da7-b9c0-0eea20476b22:
+    id: 07ad1f27-b1a1-4da7-b9c0-0eea20476b22
+    content: User
+    children:
+      - 0cc0d58f-2864-417f-87c0-29b8ea7d7081
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cc0d58f-2864-417f-87c0-29b8ea7d7081:
+    id: 0cc0d58f-2864-417f-87c0-29b8ea7d7081
+    content: A user running AI workflows on nodes within a decomposition tree while also making manual edits elsewhere in the tree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3010620a-17c1-40a1-8748-fb76607169aa:
+    id: 3010620a-17c1-40a1-8748-fb76607169aa
+    content: Goal
+    children:
+      - b61284bf-6982-4a55-935b-f059a83d85f1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b61284bf-6982-4a55-935b-f059a83d85f1:
+    id: b61284bf-6982-4a55-935b-f059a83d85f1
+    content: Cmd+Z reverts only the user's own actions, while every workflow step preserves its automated output as a browsable, restorable history attached to the step that produced it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  918192db-e56a-4484-8aa1-dd778a66824b:
+    id: 918192db-e56a-4484-8aa1-dd778a66824b
+    content: Business rules
+    children:
+      - 82ece010-d1dc-4b5c-9c20-50276eed4a5f
+      - 9418aa82-415e-49b6-bee6-670029173ee0
+      - e9337e26-b353-4bf5-bf5d-93c2c83308f9
+      - a246d9fa-00f8-4b61-8fff-df75af380a1f
+      - 776b982b-f6c4-4b6b-9712-c030e477520f
+      - 80d08d70-5612-4a61-a5ea-f3848427f562
+      - a8638a91-a072-4d51-bd27-c1f06efff96a
+      - 3982dd20-6903-456d-86d5-4d4caf1a2de2
+      - 2bd37fc6-d608-4004-88d9-958227302c2a
+      - cf9b735f-486c-4125-b5a9-6df017db2699
+      - 3302e91b-60a3-44aa-b1e8-500e86968a93
+      - 7c707cc7-f558-4471-b882-b5835fd0f820
+      - deb5009b-ee37-441b-bb26-18321363e465
+      - 7d478537-0894-46e9-b567-40bd8527b14f
+      - 55913260-95c3-48e4-83c0-21a5ebc061ea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82ece010-d1dc-4b5c-9c20-50276eed4a5f:
+    id: 82ece010-d1dc-4b5c-9c20-50276eed4a5f
+    content: Cmd+Z must never revert a workflow-driven change; only direct user actions are eligible for the user undo stack.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9418aa82-415e-49b6-bee6-670029173ee0:
+    id: 9418aa82-415e-49b6-bee6-670029173ee0
+    content: Each workflow step maintains an independent history of up to 10 entries, with the oldest dropped on overflow.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9337e26-b353-4bf5-bf5d-93c2c83308f9:
+    id: e9337e26-b353-4bf5-bf5d-93c2c83308f9
+    content: Each history entry is a pre-mutation snapshot of the affected node, captured before the change is applied.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a246d9fa-00f8-4b61-8fff-df75af380a1f:
+    id: a246d9fa-00f8-4b61-8fff-df75af380a1f
+    content: User-typed edits on a node currently owned by a step do not enter step history; they live on the user undo stack only.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  776b982b-f6c4-4b6b-9712-c030e477520f:
+    id: 776b982b-f6c4-4b6b-9712-c030e477520f
+    content: Feedback panel acceptance on a checkpoint workflow step goes on the user undo stack AND writes a pre-accept snapshot to the checkpoint step's history.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80d08d70-5612-4a61-a5ea-f3848427f562:
+    id: 80d08d70-5612-4a61-a5ea-f3848427f562
+    content: Manual-send acceptance (outside any workflow step) goes on the user undo stack only.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8638a91-a072-4d51-bd27-c1f06efff96a:
+    id: a8638a91-a072-4d51-bd27-c1f06efff96a
+    content: Any autonomous workflow mutation removes from the user undo stack every command whose touched UUIDs intersect with the mutated UUIDs; removal is silent.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3982dd20-6903-456d-86d5-4d4caf1a2de2:
+    id: 3982dd20-6903-456d-86d5-4d4caf1a2de2
+    content: The automated transfer of a node from one step to the next is not itself recorded as a history entry.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bd37fc6-d608-4004-88d9-958227302c2a:
+    id: 2bd37fc6-d608-4004-88d9-958227302c2a
+    content: When a mutation is followed by a move within the same workflow advance, the change is attributed to the source step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf9b735f-486c-4125-b5a9-6df017db2699:
+    id: cf9b735f-486c-4125-b5a9-6df017db2699
+    content: The step in which a workflow is initiated records the input node's pre-workflow state as its first history entry; no other step takes a snapshot on arrival.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3302e91b-60a3-44aa-b1e8-500e86968a93:
+    id: 3302e91b-60a3-44aa-b1e8-500e86968a93
+    content: Restoring an entry inserts a deep copy of the snapshot as a child of the step with fresh UUIDs assigned to every node in the restored subtree; restoration is non-mutating to the history.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c707cc7-f558-4471-b882-b5835fd0f820:
+    id: 7c707cc7-f558-4471-b882-b5835fd0f820
+    content: Historized nodes carry UUIDs distinct from the live tree and from any other historized entry; no two nodes anywhere share a UUID at any time.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  deb5009b-ee37-441b-bb26-18321363e465:
+    id: deb5009b-ee37-441b-bb26-18321363e465
+    content: When a node is decomposed, the pre-decomposition state is preserved in the parent's history and each resulting sibling captures its own initial state.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d478537-0894-46e9-b567-40bd8527b14f:
+    id: 7d478537-0894-46e9-b567-40bd8527b14f
+    content: Deleting a step is undoable and must preserve the step's history.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55913260-95c3-48e4-83c0-21a5ebc061ea:
+    id: 55913260-95c3-48e4-83c0-21a5ebc061ea
+    content: Loading a pre-existing .arbo file that has no per-step history must continue to open and operate normally.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45ca8755-fde3-4e2b-b5d1-4d84886be14b:
+    id: 45ca8755-fde3-4e2b-b5d1-4d84886be14b
+    content: Acceptance criteria
+    children:
+      - a7d58a08-463f-4011-8d75-1d5b30c82ee6
+      - 6c4cdce7-aa59-4103-bdcc-8b4d10be298d
+      - defe9e24-cb89-4b74-a35f-965197a5f9c2
+      - bd5d4b7a-8ce5-44c0-85a4-05c9c4eb1fd1
+      - 1b2d219e-1c68-4a92-875d-15debdee4a03
+      - afcd6c8e-fbff-414b-8d8b-94328848879e
+      - 92ed4e98-a201-475d-8648-8eac78d6c6e1
+      - 84a1ad7c-c103-4db7-a343-9fe38f5574bf
+      - c5e8e175-f50e-4e1d-b4e7-89351189e1ad
+      - 30027df3-5360-4e82-9f43-24af8821bf90
+      - 60652d2a-4fb5-41a8-963b-32a001e98a75
+      - acd94bce-42ee-4eb0-88dd-6dd4f0d03c50
+      - 524e9660-208f-4f91-b89c-9fb62ad3c046
+      - ed687de1-24bf-4d38-b2b5-51d2f8b94254
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7d58a08-463f-4011-8d75-1d5b30c82ee6:
+    id: a7d58a08-463f-4011-8d75-1d5b30c82ee6
+    content: After a workflow run, Cmd+Z reverts the user's last manual edit provided that edit did not touch a node subsequently mutated by the workflow, and never touches workflow output.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c4cdce7-aa59-4103-bdcc-8b4d10be298d:
+    id: 6c4cdce7-aa59-4103-bdcc-8b4d10be298d
+    content: After accepting checkpoint output via the feedback panel, Cmd+Z reverts the application; the owning checkpoint step also retains a pre-accept snapshot in its history.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  defe9e24-cb89-4b74-a35f-965197a5f9c2:
+    id: defe9e24-cb89-4b74-a35f-965197a5f9c2
+    content: After accepting manual-send output, Cmd+Z reverts the application; no step history is written.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd5d4b7a-8ce5-44c0-85a4-05c9c4eb1fd1:
+    id: bd5d4b7a-8ce5-44c0-85a4-05c9c4eb1fd1
+    content: If a workflow autonomously mutates a node that an earlier user-undo command also touched, that command is removed from the undo stack silently.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b2d219e-1c68-4a92-875d-15debdee4a03:
+    id: 1b2d219e-1c68-4a92-875d-15debdee4a03
+    content: Each step exposes its history via an affordance on the step node itself; entries are listed time-ordered with truncated parent-label and hover-time tooltip.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  afcd6c8e-fbff-414b-8d8b-94328848879e:
+    id: afcd6c8e-fbff-414b-8d8b-94328848879e
+    content: A step's history never exceeds 10 entries; the 11th automated change evicts the oldest.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92ed4e98-a201-475d-8648-8eac78d6c6e1:
+    id: 92ed4e98-a201-475d-8648-8eac78d6c6e1
+    content: Restoring an entry produces a deep copy of the snapshot with all-new UUIDs; restoring twice produces independent copies; the history is unchanged.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84a1ad7c-c103-4db7-a343-9fe38f5574bf:
+    id: 84a1ad7c-c103-4db7-a343-9fe38f5574bf
+    content: The originating step holds the workflow's input snapshot; downstream steps hold no arrival snapshots for nodes that simply pass through.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5e8e175-f50e-4e1d-b4e7-89351189e1ad:
+    id: c5e8e175-f50e-4e1d-b4e7-89351189e1ad
+    content: A mutate-then-move sequence is recorded on the source step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30027df3-5360-4e82-9f43-24af8821bf90:
+    id: 30027df3-5360-4e82-9f43-24af8821bf90
+    content: Decomposing a node records the pre-decomposition state in the parent's history and seeds each child's history with its initial state.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60652d2a-4fb5-41a8-963b-32a001e98a75:
+    id: 60652d2a-4fb5-41a8-963b-32a001e98a75
+    content: Deleting a step then undoing the deletion restores the step with its full history intact.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acd94bce-42ee-4eb0-88dd-6dd4f0d03c50:
+    id: acd94bce-42ee-4eb0-88dd-6dd4f0d03c50
+    content: Terminal sessions and other bindings on the current node remain attached to that node after restoration.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  524e9660-208f-4f91-b89c-9fb62ad3c046:
+    id: 524e9660-208f-4f91-b89c-9fb62ad3c046
+    content: No two nodes anywhere share a UUID at any time.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed687de1-24bf-4d38-b2b5-51d2f8b94254:
+    id: ed687de1-24bf-4d38-b2b5-51d2f8b94254
+    content: A pre-existing .arbo file with no per-step history opens, edits, and saves correctly.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaaa540d-965d-4cd4-8092-e742768b0a23:
+    id: aaaa540d-965d-4cd4-8092-e742768b0a23
+    content: Implementation proposal
+    children:
+      - 7eec9e67-4276-4ded-92cc-fe6c741742ae
+      - 58e7768f-157f-4e72-9129-987d9683b64a
+      - ec783bbf-3e4f-4da4-8c1c-59dc16b9d624
+      - bee99767-5490-4ef3-8b6a-2f131e13926d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7eec9e67-4276-4ded-92cc-fe6c741742ae:
+    id: 7eec9e67-4276-4ded-92cc-fe6c741742ae
+    content: Per-step ring buffer of pre-mutation subtree snapshots stored on the .arbo document keyed by step id; populated whenever an autonomous or checkpoint-accept path mutates a node owned by that step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  58e7768f-157f-4e72-9129-987d9683b64a:
+    id: 58e7768f-157f-4e72-9129-987d9683b64a
+    content: Command interface gains touchedNodeIds; HistoryManager.invalidateEntriesTouching(nodeIds) is called from every autonomous mutation path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec783bbf-3e4f-4da4-8c1c-59dc16b9d624:
+    id: ec783bbf-3e4f-4da4-8c1c-59dc16b9d624
+    content: RestoreStepHistoryCommand on the user undo stack creates a deep copy of a history entry with freshly minted UUIDs.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bee99767-5490-4ef3-8b6a-2f131e13926d:
+    id: bee99767-5490-4ef3-8b6a-2f131e13926d
+    content: AcceptFeedbackCommand has three explicit acceptMode branches.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adedeeae-9441-4a35-820d-726bcf8a9411:
+    id: adedeeae-9441-4a35-820d-726bcf8a9411
+    content: Instruction
+    children:
+      - 4dce65ef-c9e5-4a90-8502-c2e568623689
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4dce65ef-c9e5-4a90-8502-c2e568623689:
+    id: 4dce65ef-c9e5-4a90-8502-c2e568623689
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}
