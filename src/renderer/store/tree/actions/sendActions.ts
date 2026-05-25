@@ -147,8 +147,11 @@ Do NOT include the CONTEXT or INSTRUCTIONS sections in the submission — only t
 ${SUBMIT_ONCE_INSTRUCTION}`;
 }
 
-function buildExecuteOnlyOutputTarget(): string {
-  return `IMPORTANT: Make the requested code changes in the codebase. Report what you did in your terminal output.`;
+const ANNOUNCE_STEP_DONE_INSTRUCTION = 'IMPORTANT: When the action is complete, call the arborescent announce_step_done MCP tool with your session_id to mark the step done.';
+
+function buildExecuteOnlyOutputTarget(isAutonomous: boolean): string {
+  const announceLine = isAutonomous ? `\n${ANNOUNCE_STEP_DONE_INSTRUCTION}` : '';
+  return `IMPORTANT: Make the requested code changes in the codebase. Report what you did in your terminal output.${announceLine}`;
 }
 
 function buildBothOutputTarget(): string {
@@ -217,7 +220,7 @@ function buildTerminalBothPrompt(executeContext: string, content: string, includ
 }
 
 function buildTerminalExecuteOnlyPrompt(executeContext: string, content: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false): string {
-  const outputTarget = buildExecuteOnlyOutputTarget();
+  const outputTarget = buildExecuteOnlyOutputTarget(isAutonomous);
   const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
@@ -272,6 +275,9 @@ function buildSendPayloadBody(args: SendPayloadArgs): string {
   }
 
   if (!flags.collaborate && !flags.execute) {
+    if (target === 'autonomous-terminal') {
+      return `${instructionContext.trimEnd()}\n\n${ANNOUNCE_STEP_DONE_INSTRUCTION}`;
+    }
     return instructionContext.trimEnd();
   }
 
@@ -295,11 +301,11 @@ function buildSendPayloadBody(args: SendPayloadArgs): string {
 
 function maybePrependRoutingMarker(body: string, args: SendPayloadArgs): string {
   if (args.target === 'web') return body;
-  if (!args.flags.collaborate && !args.flags.execute) return body;
   if (!args.nodeId) return body;
   if (args.target === 'autonomous-terminal') {
     return buildArborescentMarker(args.nodeId, args.bindingSource) + body;
   }
+  if (!args.flags.collaborate && !args.flags.execute) return body;
   return buildArborescentTargetMarker(args.nodeId) + body;
 }
 

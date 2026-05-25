@@ -56,12 +56,16 @@ function makeDeps(setup: SetupArgs) {
   const proposalSubmitter = {
     submit: vi.fn(async () => ({ ok: true as const, proposalId: `prop-${nextProposalId++}` })),
   };
+  const oneShotTargetStore = {
+    setExplicitSubmitSeenThisTurn: vi.fn(),
+  };
   return {
     registry,
     mutator,
     treeReader,
     proposalSubmitter,
-    deps: { bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter },
+    oneShotTargetStore,
+    deps: { bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore },
   };
 }
 
@@ -361,11 +365,13 @@ describe('createWriteTools — error propagation', () => {
     const registry = new SessionBindingRegistry();
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
+    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
     const tools = createWriteTools({
       bindingRegistry: registry,
       treeReader: { readState: async () => null },
       treeMutator: mutator,
       proposalSubmitter,
+      oneShotTargetStore,
     });
     registry.register('sess-1', BOUND);
 
@@ -397,7 +403,8 @@ describe('createWriteTools — mode authority: no applied context blocks every t
     };
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter });
+    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
   });
 
   it.each(ALL_WRITE_TOOLS)('%s returns a no-context error when no context is applied', async (toolName) => {
@@ -434,7 +441,8 @@ describe('createWriteTools — server-side authority is live (no caching)', () =
     };
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter });
+    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
     registry.register('sess-1', BOUND);
 
     const first = await tools.deleteNode({ sessionId: 'sess-1' });
@@ -444,5 +452,189 @@ describe('createWriteTools — server-side authority is live (no caching)', () =
     const second = await tools.deleteNode({ sessionId: 'sess-1' });
     expect(second.isError).toBe(true);
     expect(mutator.mutate).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('createWriteTools — announceStepDone (inverse authority gate for action / execute-only modes)', () => {
+  it('announceStepDone on an execute-only autonomous step issues a mark-complete mutation', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBeFalsy();
+    expect(made.mutator.mutate).toHaveBeenCalledWith(BOUND, {
+      kind: 'mark-complete',
+      status: 'completed',
+    } satisfies MutationRequest);
+  });
+
+  it('announceStepDone on a pure action-mode autonomous step issues a mark-complete mutation', async () => {
+    const made = makeDeps({ collaborate: false, execute: false, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBeFalsy();
+    expect(made.mutator.mutate).toHaveBeenCalledWith(BOUND, {
+      kind: 'mark-complete',
+      status: 'completed',
+    } satisfies MutationRequest);
+  });
+
+  it('announceStepDone is REJECTED on a collaborate-only step and the error names submit_step_output as the alternative', async () => {
+    const made = makeDeps({ collaborate: true, execute: false, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toContain('submit_step_output');
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
+  });
+
+  it('announceStepDone is REJECTED on a both-mode (collaborate+execute) step and the error names submit_step_output as the alternative', async () => {
+    const made = makeDeps({ collaborate: true, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toContain('submit_step_output');
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
+  });
+
+  it('announceStepDone returns a descriptive error when no binding exists for the session', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-unbound' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/no binding|not bound/i);
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
+  });
+
+  it('announceStepDone returns a no-context error when no context is applied (no permissive fallback)', async () => {
+    const registry = new SessionBindingRegistry();
+    const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
+    const treeReader = {
+      readState: async () => ({
+        nodes: {
+          [ROOT]: makeNode(ROOT, 'Root', [BOUND]),
+          [BOUND]: makeNode(BOUND, 'Bound', [], { stepType: 'autonomous' }),
+        },
+        rootNodeId: ROOT,
+        ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT] },
+      }),
+    };
+    registry.register('sess-1', BOUND);
+    const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
+    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/no context is applied|require.*applied context|announce_step_done requires/i);
+    expect(mutator.mutate).not.toHaveBeenCalled();
+  });
+
+  it('announceStepDone does NOT route through the proposal submitter — it applies directly when the step is autonomous', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(made.proposalSubmitter.submit).not.toHaveBeenCalled();
+    expect(made.mutator.mutate).toHaveBeenCalledTimes(1);
+  });
+
+  it('announceStepDone returns a descriptive error when the bound node is missing from the tree (orphan binding)', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', 'unknown-node');
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/not found|orphan/i);
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
+  });
+
+  it('announceStepDone surfaces a mutator failure as an error', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    made.mutator.mutate = vi.fn(async () => ({ ok: false as const, error: 'step already completed' }));
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toContain('step already completed');
+  });
+
+  it('announceStepDone sets explicit_submit_seen on the OneShotTargetStore after a successful mutation so the Stop-hook gate lets the workflow advance', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBeFalsy();
+    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).toHaveBeenCalledWith('sess-1', true);
+  });
+
+  it('announceStepDone does NOT set explicit_submit_seen when the mutator fails (the workflow should stay in-flight on failure)', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    made.mutator.mutate = vi.fn(async () => ({ ok: false as const, error: 'mutator boom' }));
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+  });
+
+  it('announceStepDone does NOT set explicit_submit_seen when the authority check rejects (collaborate-mode)', async () => {
+    const made = makeDeps({ collaborate: true, execute: false, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+  });
+
+  it('announceStepDone is REJECTED on a manual step in execute-only mode and does NOT mutate or set explicit_submit_seen', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'manual' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/autonomous/i);
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
+    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+  });
+
+  it('announceStepDone is REJECTED on a checkpoint step in action-mode and does NOT mutate or set explicit_submit_seen', async () => {
+    const made = makeDeps({ collaborate: false, execute: false, stepType: 'checkpoint' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/autonomous/i);
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
+    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
   });
 });
