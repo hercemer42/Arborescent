@@ -23,19 +23,30 @@ function truncateLabel(label: string): string {
   return `${label.slice(0, PARENT_LABEL_MAX_LENGTH - 1).trimEnd()}…`;
 }
 
-function collectSubtree(
+function captureRemappedSubtree(
   rootNodeId: string,
   nodes: Record<string, TreeNode>,
-): Record<string, TreeNode> {
-  const captured: Record<string, TreeNode> = {};
+): { rootNodeId: string; nodes: Record<string, TreeNode> } {
   const root = nodes[rootNodeId];
-  if (!root) return captured;
-  captured[rootNodeId] = structuredClone(root);
-  for (const id of getAllDescendants(rootNodeId, nodes)) {
-    const node = nodes[id];
-    if (node) captured[id] = structuredClone(node);
+  if (!root) return { rootNodeId, nodes: {} };
+
+  const sourceIds = [rootNodeId, ...getAllDescendants(rootNodeId, nodes)];
+  const idMap: Record<string, string> = {};
+  for (const id of sourceIds) idMap[id] = uuidv4();
+
+  const captured: Record<string, TreeNode> = {};
+  for (const oldId of sourceIds) {
+    const node = nodes[oldId];
+    if (!node) continue;
+    const newId = idMap[oldId];
+    captured[newId] = {
+      ...structuredClone(node),
+      id: newId,
+      children: node.children.map((childId) => idMap[childId] ?? childId),
+    };
   }
-  return captured;
+
+  return { rootNodeId: idMap[rootNodeId], nodes: captured };
 }
 
 export function captureStepHistoryEntry(
@@ -46,12 +57,13 @@ export function captureStepHistoryEntry(
 ): StepHistoryEntry {
   const parentNode = nodes[parentId];
   const parentLabel = parentNode ? truncateLabel(parentNode.content) : '';
+  const remapped = captureRemappedSubtree(rootNodeId, nodes);
   return {
     id: uuidv4(),
     capturedAt: new Date().toISOString(),
     parentLabel,
-    rootNodeId,
-    nodes: collectSubtree(rootNodeId, nodes),
+    rootNodeId: remapped.rootNodeId,
+    nodes: remapped.nodes,
     position,
   };
 }

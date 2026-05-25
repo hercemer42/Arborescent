@@ -142,9 +142,56 @@ describe('AcceptFeedbackCommand — three-way step-history routing', () => {
       const lastWithHistory = setCalls.find((p) => p.stepHistory);
       expect(lastWithHistory?.stepHistory?.['step-auto']).toBeDefined();
       expect(lastWithHistory!.stepHistory!['step-auto']).toHaveLength(1);
-      expect(
-        lastWithHistory!.stepHistory!['step-auto'][0].nodes['collab-node'].content,
-      ).toBe('original');
+      const entry = lastWithHistory!.stepHistory!['step-auto'][0];
+      expect(entry.nodes[entry.rootNodeId].content).toBe('original');
+    });
+
+    it('historized snapshot uses remapped UUIDs distinct from the live tree', () => {
+      const newNodes = { 'new-root': createNode('new-root', 'accepted', []) };
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        'new-root',
+        newNodes,
+        getState,
+        setState,
+        triggerAutosave,
+        undefined,
+        undefined,
+        { acceptMode: 'checkpoint-accept' },
+      );
+      command.execute();
+
+      const setCalls = setState.mock.calls.map((c) => c[0]);
+      const lastWithHistory = setCalls.find((p) => p.stepHistory);
+      const entry = lastWithHistory!.stepHistory!['step-auto'][0];
+      // The collaborating node's id is preserved in the live tree by AcceptFeedbackCommand's
+      // single-root strategy. The captured snapshot must NOT reuse that id.
+      expect(Object.keys(entry.nodes)).not.toContain('collab-node');
+      expect(entry.rootNodeId).not.toBe('collab-node');
+    });
+
+    it('no UUID collision between live tree and historized snapshot after execute', () => {
+      const newNodes = { 'new-root': createNode('new-root', 'accepted', []) };
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        'new-root',
+        newNodes,
+        getState,
+        setState,
+        triggerAutosave,
+        undefined,
+        undefined,
+        { acceptMode: 'checkpoint-accept' },
+      );
+      command.execute();
+
+      const setCalls = setState.mock.calls.map((c) => c[0]);
+      const lastWithHistory = setCalls.find((p) => p.stepHistory);
+      const entry = lastWithHistory!.stepHistory!['step-auto'][0];
+      const liveIds = new Set(Object.keys(mockState.nodes));
+      for (const id of Object.keys(entry.nodes)) {
+        expect(liveIds.has(id)).toBe(false);
+      }
     });
 
     it('exposes the working node UUID in touchedNodeIds so user-undo invalidation works', () => {

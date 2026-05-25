@@ -82,8 +82,8 @@ describe('stepHistory ring buffer', () => {
         c: makeNode('c', 'C', []),
       };
       const entry = captureStepHistoryEntry('a', nodes, 'root', 0);
-      expect(entry.rootNodeId).toBe('a');
-      expect(Object.keys(entry.nodes).sort()).toEqual(['a', 'b', 'c']);
+      expect(Object.keys(entry.nodes)).toHaveLength(3);
+      expect(entry.nodes[entry.rootNodeId]).toBeDefined();
     });
 
     it('records the parent label at capture time', () => {
@@ -135,6 +135,71 @@ describe('stepHistory ring buffer', () => {
       // Mutate live node afterward — captured entry should not change
       nodes.a.content = 'mutated';
       expect(entry.nodes[entry.rootNodeId].content).toBe('original');
+    });
+
+    it('mints fresh UUIDs for every node in the captured subtree (no overlap with source)', () => {
+      const nodes: Record<string, TreeNode> = {
+        root: makeNode('root', 'root', ['a']),
+        a: makeNode('a', 'A', ['b']),
+        b: makeNode('b', 'B', []),
+      };
+      const entry = captureStepHistoryEntry('a', nodes, 'root', 0);
+      const sourceIds = new Set(Object.keys(nodes));
+      for (const id of Object.keys(entry.nodes)) {
+        expect(sourceIds.has(id)).toBe(false);
+      }
+    });
+
+    it('rootNodeId references a key that exists in entry.nodes', () => {
+      const nodes: Record<string, TreeNode> = {
+        parent: makeNode('parent', 'p', ['a']),
+        a: makeNode('a', 'A', ['b']),
+        b: makeNode('b', 'B', []),
+      };
+      const entry = captureStepHistoryEntry('a', nodes, 'parent', 0);
+      expect(entry.nodes[entry.rootNodeId]).toBeDefined();
+    });
+
+    it('child references inside captured entry.nodes use the remapped IDs not the originals', () => {
+      const nodes: Record<string, TreeNode> = {
+        parent: makeNode('parent', 'p', ['a']),
+        a: makeNode('a', 'A', ['b', 'c']),
+        b: makeNode('b', 'B', []),
+        c: makeNode('c', 'C', []),
+      };
+      const entry = captureStepHistoryEntry('a', nodes, 'parent', 0);
+      const root = entry.nodes[entry.rootNodeId];
+      for (const childId of root.children) {
+        expect(childId).not.toBe('b');
+        expect(childId).not.toBe('c');
+        expect(entry.nodes[childId]).toBeDefined();
+      }
+    });
+
+    it('every node id in entry.nodes also matches the id field on its TreeNode', () => {
+      const nodes: Record<string, TreeNode> = {
+        parent: makeNode('parent', 'p', ['a']),
+        a: makeNode('a', 'A', ['b']),
+        b: makeNode('b', 'B', []),
+      };
+      const entry = captureStepHistoryEntry('a', nodes, 'parent', 0);
+      for (const [id, node] of Object.entries(entry.nodes)) {
+        expect(node.id).toBe(id);
+      }
+    });
+
+    it('produces distinct UUIDs across two captures of the same source subtree (no entry-to-entry collision)', () => {
+      const nodes: Record<string, TreeNode> = {
+        parent: makeNode('parent', 'p', ['a']),
+        a: makeNode('a', 'A', ['b']),
+        b: makeNode('b', 'B', []),
+      };
+      const e1 = captureStepHistoryEntry('a', nodes, 'parent', 0);
+      const e2 = captureStepHistoryEntry('a', nodes, 'parent', 0);
+      const e1Ids = new Set(Object.keys(e1.nodes));
+      for (const id of Object.keys(e2.nodes)) {
+        expect(e1Ids.has(id)).toBe(false);
+      }
     });
   });
 });
