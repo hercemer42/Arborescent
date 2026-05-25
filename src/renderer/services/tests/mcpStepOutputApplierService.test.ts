@@ -29,13 +29,15 @@ function makeNode(id: string, content: string, metadata: TreeNode['metadata'] = 
 function makeFakeStore(
   workflowExecutionStates: Record<string, unknown> = {},
   collaboratingNodeId: string | null = null,
+  boundMetadata: TreeNode['metadata'] = { stepType: 'autonomous' },
+  rootMetadata: TreeNode['metadata'] = {},
 ) {
   const autoSave = vi.fn();
   const handleAutonomousFeedback = vi.fn();
   let state: TestState = {
     nodes: {
-      [ROOT]: makeNode(ROOT, 'Root'),
-      [BOUND]: makeNode(BOUND, 'Bound', { stepType: 'autonomous' }),
+      [ROOT]: makeNode(ROOT, 'Root', rootMetadata),
+      [BOUND]: makeNode(BOUND, 'Bound', boundMetadata),
     },
     rootNodeId: ROOT,
     ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT] },
@@ -58,7 +60,7 @@ function makeFakeStore(
 
 describe('applyStepOutput — happy path', () => {
   it('replaces the bound node content and triggers autoSave when the node is not in an active workflow run', () => {
-    const { store, getCurrent, autoSave } = makeFakeStore();
+    const { store, getCurrent, autoSave } = makeFakeStore({}, null, {}, {});
     const result = applyStepOutput(store as never, BOUND, 'new content');
     expect(result).toEqual({ ok: true });
     expect(getCurrent().nodes[BOUND].content).toBe('new content');
@@ -89,8 +91,8 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
     expect(autoSave).not.toHaveBeenCalled();
   });
 
-  it('writes content directly when the bound node has no workflow execution entry (free terminal use)', () => {
-    const { store, getCurrent, handleAutonomousFeedback } = makeFakeStore({});
+  it('writes content directly when the bound node has no workflow execution entry AND is not structurally autonomous (free terminal use)', () => {
+    const { store, getCurrent, handleAutonomousFeedback } = makeFakeStore({}, null, {}, {});
     applyStepOutput(store as never, BOUND, 'free claude response');
     expect(getCurrent().nodes[BOUND].content).toBe('free claude response');
     expect(handleAutonomousFeedback).not.toHaveBeenCalled();
@@ -108,7 +110,7 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
     // The mcpSubmitOutputTool routes non-automatic steps to the proposalSubmitter
     // before ever reaching this applier, so the old "collaboratingNodeId guards
     // the applier" rule no longer applies.
-    const { store, getCurrent, autoSave } = makeFakeStore({}, BOUND);
+    const { store, getCurrent, autoSave } = makeFakeStore({}, BOUND, {}, {});
     applyStepOutput(store as never, BOUND, 'response');
     expect(getCurrent().nodes[BOUND].content).toBe('response');
     expect(autoSave).toHaveBeenCalledTimes(1);
@@ -116,10 +118,14 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
 
   it('returns an error if the workflow handler is unavailable for a workflow-active node', () => {
     const autoSave = vi.fn();
+    const STEP = 'cccccccc-cccc-cccc-cccc-cccccccccc03';
     let state = {
-      nodes: { [BOUND]: makeNode(BOUND, 'Bound') },
-      rootNodeId: BOUND,
-      ancestorRegistry: { [BOUND]: [] },
+      nodes: {
+        [STEP]: makeNode(STEP, 'Step', { stepType: 'autonomous' }),
+        [BOUND]: makeNode(BOUND, 'Bound'),
+      },
+      rootNodeId: STEP,
+      ancestorRegistry: { [STEP]: [], [BOUND]: [STEP] },
       workflowExecutionStates: { [BOUND]: { state: 'running' } },
       collaboratingNodeId: null,
       actions: { autoSave },
@@ -139,10 +145,56 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
 // has no workflowExecutionStates entry at apply time, applyStepOutput must
 // fail-fast rather than silently blob-writing raw markdown into the node.
 describe('applyStepOutput — gate 1+2 alignment (fail-fast on routing divergence)', () => {
-  it.todo('refuses (does not blob-write) when bound node is structurally autonomous via metadata.stepType but workflowExecutionStates entry is missing');
-  it.todo('refuses (does not blob-write) when bound node has no stepType but its parent has stepType="autonomous" and exec state is missing — same predicate as server isAutomatic');
-  it.todo('returns a structured error result identifying the gate disagreement (so the MCP caller sees the rejection rather than a silent apply)');
-  it.todo('logs a structured warning when the gate-1+2 disagreement is detected so the gap stays observable in real sessions');
-  it.todo('still falls through to the legitimate direct-write path when the node is genuinely non-autonomous (no stepType, no autonomous parent) — preserves the free-claude / non-workflow direct send case');
-  it.todo('does not regress when both gates agree — autonomous + exec state present still dispatches to handleAutonomousFeedback');
+  it('refuses (does not blob-write) when bound node is structurally autonomous via metadata.stepType but workflowExecutionStates entry is missing', () => {
+    const { store, getCurrent, autoSave } = makeFakeStore({}); // bound has stepType=autonomous by default, no exec state
+    const result = applyStepOutput(store as never, BOUND, 'late content');
+    expect(result.ok).toBe(false);
+    expect(getCurrent().nodes[BOUND].content).toBe('Bound');
+    expect(autoSave).not.toHaveBeenCalled();
+  });
+
+  it('refuses when bound node has no stepType but its parent has stepType="autonomous" and exec state is missing — same predicate as server isAutomatic', () => {
+    // bound is plain, parent (ROOT) carries stepType=autonomous
+    const { store, getCurrent, autoSave } = makeFakeStore({}, null, {}, { stepType: 'autonomous' });
+    const result = applyStepOutput(store as never, BOUND, 'late content');
+    expect(result.ok).toBe(false);
+    expect(getCurrent().nodes[BOUND].content).toBe('Bound');
+    expect(autoSave).not.toHaveBeenCalled();
+  });
+
+  it('returns a structured error result identifying the gate disagreement (so the MCP caller sees the rejection rather than a silent apply)', () => {
+    const { store } = makeFakeStore({});
+    const result = applyStepOutput(store as never, BOUND, 'late content');
+    expect(result.ok).toBe(false);
+    if (result.ok === false) {
+      expect(result.error.toLowerCase()).toMatch(/gate|routing|autonomous/);
+    }
+  });
+
+  it('logs a structured warning when the gate-1+2 disagreement is detected so the gap stays observable in real sessions', async () => {
+    const { logger } = await import('../logger');
+    const warnMock = vi.mocked(logger.warn);
+    warnMock.mockClear();
+    const { store } = makeFakeStore({});
+    applyStepOutput(store as never, BOUND, 'late content');
+    expect(warnMock).toHaveBeenCalled();
+  });
+
+  it('still falls through to the legitimate direct-write path when the node is genuinely non-autonomous (no stepType, no autonomous parent) — preserves the free-claude / non-workflow direct send case', () => {
+    const { store, getCurrent, autoSave } = makeFakeStore({}, null, {}, {});
+    const result = applyStepOutput(store as never, BOUND, 'free content');
+    expect(result).toEqual({ ok: true });
+    expect(getCurrent().nodes[BOUND].content).toBe('free content');
+    expect(autoSave).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not regress when both gates agree — autonomous + exec state present still dispatches to handleAutonomousFeedback', () => {
+    const { store, handleAutonomousFeedback, autoSave } = makeFakeStore({
+      [BOUND]: { state: 'running', terminalTabId: 'term-1' },
+    });
+    const result = applyStepOutput(store as never, BOUND, 'autonomous output');
+    expect(result).toEqual({ ok: true });
+    expect(handleAutonomousFeedback).toHaveBeenCalledWith(BOUND, 'autonomous output');
+    expect(autoSave).not.toHaveBeenCalled();
+  });
 });

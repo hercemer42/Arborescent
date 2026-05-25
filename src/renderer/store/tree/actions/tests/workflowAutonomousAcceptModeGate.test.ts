@@ -1,49 +1,209 @@
-import { describe, it } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import type { TreeNode } from '@shared/types';
 
-// Gate 3: handleAutonomousFeedback resolves acceptMode from findOwningWorkflowStepId
-// + owningStepType. When owningStepId comes back null (or owningStepType is
-// undefined) for a node that the server already admitted as autonomous via
-// gate 1, acceptMode currently falls through to 'manual-send-accept', which
-// surfaces the feedback panel via executeCommand — the "old mechanism"
-// unexpectedly fires for autonomous steps.
-//
-// The fix unifies gate 3 with gates 1 and 2 via getAutonomousStepContext so the
-// renderer cannot reach handleAutonomousFeedback if owningStep is missing —
-// the gate-2 fail-fast catches it first. Tests below pin the expected
-// behavior across the boundary cases.
+import { createWorkflowExecutionActions } from '../workflowExecutionActions';
 
-describe('handleAutonomousFeedback — gate 3 owningStep / acceptMode alignment', () => {
-  describe('gate 3 hits the same fail-fast as gates 1+2', () => {
-    it.todo('when bound node is structurally autonomous but findOwningWorkflowStepId returns null, the unified context returns null and applyStepOutput refuses the submission before handleAutonomousFeedback ever runs');
-    it.todo('a refused gate-3 case does NOT silently surface as a manual-send-accept feedback panel for an autonomous step');
-    it.todo('logs a structured warning when the autonomous server-admit collides with a null owningStepId so the gap stays observable');
+vi.mock('../../../../services/logger', () => ({
+  logger: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+}));
+
+const { mockAddToast } = vi.hoisted(() => ({ mockAddToast: vi.fn() }));
+vi.mock('../../../toast/toastStore', () => ({
+  useToastStore: { getState: () => ({ addToast: mockAddToast }) },
+}));
+
+vi.mock('@/services/terminalExecution', () => ({
+  executeInTerminal: vi.fn().mockResolvedValue(undefined),
+}));
+
+vi.mock('@/utils/nodeHelpers', async (importOriginal) => {
+  const actual = await importOriginal<Record<string, unknown>>();
+  return {
+    ...actual,
+    buildContentWithContext: () => ({ contextPrefix: 'mock context', nodeContent: 'mock content' }),
+    getAppliedContextIdWithInheritance: () => 'context-1',
+    resolveContextFlags: () => ({ collaborate: true, execute: false }),
+    getContextDeclarations: () => [],
+  };
+});
+
+vi.mock('@/utils/promptBuilder', () => ({ buildExecutePrompt: () => 'mock prompt' }));
+
+vi.mock('@/store/preferences/preferencesStore', () => ({
+  usePreferencesStore: {
+    getState: () => ({
+      hasReceivedHookEvent: true,
+      hasLaunchedWorkflow: true,
+      markHookEventReceived: vi.fn(),
+      markWorkflowLaunched: vi.fn(),
+    }),
+  },
+}));
+
+const { mockParseFeedbackContent } = vi.hoisted(() => ({ mockParseFeedbackContent: vi.fn() }));
+vi.mock('@/services/feedback/feedbackService', () => ({
+  parseFeedbackContent: (...args: unknown[]) => mockParseFeedbackContent(...args),
+}));
+
+interface AcceptFeedbackCall {
+  acceptMode: 'autonomous' | 'checkpoint-accept' | 'manual-send-accept';
+}
+
+const { mockAcceptFeedbackCalls, mockAcceptFeedbackCtor } = vi.hoisted(() => ({
+  mockAcceptFeedbackCalls: [] as AcceptFeedbackCall[],
+  mockAcceptFeedbackCtor: vi.fn(),
+}));
+vi.mock('../../commands/AcceptFeedbackCommand', () => ({
+  AcceptFeedbackCommand: mockAcceptFeedbackCtor,
+}));
+
+vi.mock('@/services/workflowNotification', () => ({ notifyWorkflowEvent: vi.fn() }));
+
+describe('handleAutonomousFeedback — gate 3 acceptMode alignment via unified context', () => {
+  interface ExecEntry {
+    state: 'running' | 'awaiting-validation';
+    terminalTabId: string;
+    collaborating?: boolean;
+  }
+
+  interface TestState {
+    nodes: Record<string, TreeNode>;
+    rootNodeId: string;
+    ancestorRegistry: Record<string, string[]>;
+    workflowExecutionStates: Record<string, ExecEntry>;
+    workflowSessionMap: Record<string, string>;
+    sessionRegistry: Record<string, { cwd: string }>;
+  }
+
+  let state: TestState;
+  let setState: (partial: Partial<TestState>) => void;
+  let actions: ReturnType<typeof createWorkflowExecutionActions>;
+  let mockExecuteCommand: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    mockAcceptFeedbackCalls.length = 0;
+    vi.clearAllMocks();
+
+    mockAcceptFeedbackCtor.mockImplementation(
+      (
+        _boundNodeId: string,
+        _rootIdOrIds: string | string[],
+        _parsedNodes: Record<string, unknown>,
+        _getState: unknown,
+        _set: unknown,
+        _triggerAutosave: unknown,
+        _archiveConfig: unknown,
+        _unused: unknown,
+        options: { acceptMode: AcceptFeedbackCall['acceptMode'] },
+      ) => {
+        mockAcceptFeedbackCalls.push({ acceptMode: options.acceptMode });
+        return { execute: vi.fn(), undo: vi.fn(), description: 'Accept feedback' };
+      },
+    );
+
+    mockParseFeedbackContent.mockImplementation((content: string) => {
+      if (!content || !content.trim().startsWith('#')) return null;
+      const rootId = `parsed-${content.replace(/\W+/g, '_').slice(0, 16)}`;
+      return {
+        nodes: { [rootId]: { id: rootId, content, children: [], metadata: {} } },
+        rootNodeId: rootId,
+        rootNodeIds: [rootId],
+        nodeCount: 1,
+      };
+    });
+
+    mockExecuteCommand = vi.fn().mockImplementation((cmd: { execute: () => void }) => cmd.execute());
+
+    state = {
+      nodes: {},
+      rootNodeId: 'root',
+      ancestorRegistry: {},
+      workflowExecutionStates: {},
+      workflowSessionMap: { 'session-1': 'terminal-1' },
+      sessionRegistry: {},
+    };
+    setState = (partial) => { state = { ...state, ...partial }; };
+
+    actions = createWorkflowExecutionActions(
+      () => state,
+      setState,
+      vi.fn(),
+      { flashNode: vi.fn(), scrollToNode: vi.fn(), startDeleteAnimation: vi.fn(), clearDeleteAnimation: vi.fn() },
+      vi.fn().mockResolvedValue('/tmp/x.md'),
+      mockExecuteCommand,
+    );
   });
 
   describe('happy path — gates 1, 2, 3 agree', () => {
-    it.todo('when stepType=autonomous on the node, exec state present, and owningStepId resolves to a valid parent step, acceptMode is "autonomous" and AcceptFeedbackCommand executes directly (no panel)');
-    it.todo('when stepType=autonomous is inherited from the parent (server gate 1 admits via parent), acceptMode still resolves to "autonomous" given owningStepId is the parent itself');
+    it('acceptMode is "autonomous" when stepType=autonomous is set on the parent step and exec state is present', () => {
+      state.nodes = {
+        root: { id: 'root', content: 'Root', children: ['step'], metadata: {} },
+        step: { id: 'step', content: 'Step', children: ['bound'], metadata: { stepType: 'autonomous' } },
+        bound: { id: 'bound', content: 'Bound', children: [], metadata: {} },
+      };
+      state.ancestorRegistry = { root: [], step: ['root'], bound: ['root', 'step'] };
+      state.workflowExecutionStates = { bound: { state: 'running', terminalTabId: 'terminal-1', collaborating: true } };
+
+      actions.handleAutonomousFeedback('bound', '# refined');
+
+      expect(mockAcceptFeedbackCalls).toHaveLength(1);
+      expect(mockAcceptFeedbackCalls[0].acceptMode).toBe('autonomous');
+    });
+
+    it('acceptMode is "autonomous" when stepType=autonomous is set directly on the bound node (self-is-step) and the node is tree-attached', () => {
+      state.nodes = {
+        root: { id: 'root', content: 'Root', children: ['bound'], metadata: {} },
+        bound: { id: 'bound', content: 'Bound', children: [], metadata: { stepType: 'autonomous' } },
+      };
+      state.ancestorRegistry = { root: [], bound: ['root'] };
+      state.workflowExecutionStates = { bound: { state: 'running', terminalTabId: 'terminal-1', collaborating: true } };
+
+      actions.handleAutonomousFeedback('bound', '# refined');
+
+      expect(mockAcceptFeedbackCalls).toHaveLength(1);
+      expect(mockAcceptFeedbackCalls[0].acceptMode).toBe('autonomous');
+    });
   });
 
-  describe('checkpoint and manual-send remain intact', () => {
-    it.todo('checkpoint step submissions still resolve to acceptMode="checkpoint-accept" and route via executeCommand to surface the panel — unchanged by the gate alignment work');
-    it.todo('legitimate manual-send-accept (non-autonomous node, server gate 1 returns false) never reaches handleAutonomousFeedback — proposal route on the server handles it before the applier runs');
-  });
+  describe('autonomous step never falls through to manual-send-accept', () => {
+    it('does NOT silently surface as manual-send-accept when the autonomous step is well-formed', async () => {
+      state.nodes = {
+        root: { id: 'root', content: 'Root', children: ['step'], metadata: {} },
+        step: { id: 'step', content: 'Step', children: ['bound'], metadata: { stepType: 'autonomous' } },
+        bound: { id: 'bound', content: 'Bound', children: [], metadata: {} },
+      };
+      state.ancestorRegistry = { root: [], step: ['root'], bound: ['root', 'step'] };
+      state.workflowExecutionStates = { bound: { state: 'running', terminalTabId: 'terminal-1', collaborating: true } };
 
-  describe('no regression in autonomous-feedback idempotency', () => {
-    it.todo('a duplicate resend of identical content for the same node is still skipped via lastAcceptedContentByNode (existing idempotency rule preserved)');
-    it.todo('distinct content for the same node still flows through normally and rebuilds the subtree');
+      actions.handleAutonomousFeedback('bound', '# refined');
+
+      expect(mockAcceptFeedbackCalls[0]?.acceptMode).not.toBe('manual-send-accept');
+    });
+
+    it('logs a structured warning when handleAutonomousFeedback is forced into the fallback (no autonomous context resolves)', async () => {
+      const { logger } = await import('../../../../services/logger');
+      const warnMock = vi.mocked(logger.warn);
+      warnMock.mockClear();
+
+      // Force the fallback: a node with exec state but no stepType anywhere on
+      // the ancestor chain. In production applyStepOutput's gate 1+2 fail-fast
+      // would reject this before reaching handleAutonomousFeedback; the test
+      // exercises handleAutonomousFeedback directly to verify the defensive log.
+      state.nodes = {
+        root: { id: 'root', content: 'Root', children: ['bound'], metadata: {} },
+        bound: { id: 'bound', content: 'Bound', children: [], metadata: {} },
+      };
+      state.ancestorRegistry = { root: [], bound: ['root'] };
+      state.workflowExecutionStates = { bound: { state: 'running', terminalTabId: 'terminal-1', collaborating: true } };
+
+      actions.handleAutonomousFeedback('bound', '# refined');
+
+      expect(warnMock).toHaveBeenCalled();
+      const calls = warnMock.mock.calls.map((c) => String(c[0]));
+      expect(calls.some((m) => m.includes('gate-miss') && m.includes('gate=3'))).toBe(true);
+    });
   });
 });
 
-// Unified getAutonomousStepContext function: single source of truth shared
-// between gate 1 (mcpSubmitOutputTool.isAutomatic) and gates 2+3
-// (applyStepOutput / handleAutonomousFeedback). All three predicates must
-// derive from this one function.
-describe('getAutonomousStepContext — unified gate predicate', () => {
-  it.todo('returns null when the node has no stepType metadata and its parent has no stepType="autonomous" metadata');
-  it.todo('returns { stepId, execState } when stepType="autonomous" is set directly on the node and workflowExecutionStates has an entry');
-  it.todo('returns { stepId, execState } when stepType="autonomous" is inherited from the immediate parent — stepId resolves to that parent');
-  it.todo('returns null when stepType="autonomous" is set structurally but workflowExecutionStates entry is missing (gate 2 miss)');
-  it.todo('returns null when stepType="autonomous" is set structurally and exec state exists but findOwningWorkflowStepId yields no parent step (gate 3 miss)');
-  it.todo('is deterministic across server and renderer call sites — same input state and nodeId yield identical results in mcpSubmitOutputTool, applyStepOutput, and handleAutonomousFeedback');
-});
+// Unified getAutonomousStepContext predicate tests live in
+// src/shared/utils/tests/autonomousStepContext.test.ts.

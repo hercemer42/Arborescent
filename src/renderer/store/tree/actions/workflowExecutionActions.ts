@@ -49,6 +49,7 @@ import {
   appendToStepHistoryMap,
   findOwningWorkflowStepId,
 } from "../stepHistory/stepHistory";
+import { getAutonomousStepContext } from "../../../../shared/utils/autonomousStepContext";
 
 export type { WorkflowExecutionEntry };
 
@@ -1130,13 +1131,29 @@ export const createWorkflowExecutionActions = (
         ...get(),
         blueprintModeEnabled: false,
       });
-      const owningStepId = findOwningWorkflowStepId(nodeId, nodes, ancestorRegistry);
-      const owningStepType = owningStepId ? nodes[owningStepId]?.metadata?.stepType : undefined;
-      const acceptMode = owningStepType === 'checkpoint'
-        ? 'checkpoint-accept' as const
-        : owningStepType
-          ? 'autonomous' as const
-          : 'manual-send-accept' as const;
+      const autonomousContext = getAutonomousStepContext(nodeId, {
+        nodes,
+        ancestorRegistry,
+        workflowExecutionStates,
+      });
+      let acceptMode: 'autonomous' | 'checkpoint-accept' | 'manual-send-accept';
+      if (autonomousContext !== null) {
+        acceptMode = 'autonomous';
+      } else {
+        // Defensive fallback: applyStepOutput's gate 2 uses the same unified
+        // context, so reaching here means an unexpected configuration — log for
+        // visibility. Still reachable for callers that invoke
+        // handleAutonomousFeedback without going through applyStepOutput
+        // (test harnesses, future internal callers), so keep the warn-log
+        // rather than removing the branch as dead code.
+        const owningStepId = findOwningWorkflowStepId(nodeId, nodes, ancestorRegistry);
+        const owningStepType = owningStepId ? nodes[owningStepId]?.metadata?.stepType : undefined;
+        acceptMode = owningStepType === 'checkpoint' ? 'checkpoint-accept' : 'manual-send-accept';
+        logger.warn(
+          `gate-miss gate=3 node=${nodeId} reason=no-autonomous-context fallback=${acceptMode}`,
+          'WorkflowExecution',
+        );
+      }
       const command = new AcceptFeedbackCommand(
         nodeId,
         rootNodeIdOrIds,

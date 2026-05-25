@@ -1,8 +1,9 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
-import { TreeReader, TreeReadState, ToolResult } from './mcpReadTools';
+import { TreeReader, ToolResult } from './mcpReadTools';
 import { OneShotTargetStore } from './oneShotTargetStore';
 import { ProposalSubmitter } from './mcpProposalBridge';
 import { logger } from './logger';
+import { isStructurallyAutonomous } from '../../shared/utils/autonomousStepContext';
 
 export interface StepOutputApplier {
   apply(
@@ -33,14 +34,6 @@ function err(message: string): ToolResult {
   return { content: [{ type: 'text', text: message }], isError: true };
 }
 
-function isAutomatic(nodeId: string, state: TreeReadState): boolean {
-  // Workflow execution binds the working node, not the parent step that carries stepType.
-  if (state.nodes[nodeId]?.metadata.stepType === 'autonomous') return true;
-  const ancestors = state.ancestorRegistry[nodeId] ?? [];
-  const parentId = ancestors[ancestors.length - 1];
-  return !!parentId && state.nodes[parentId]?.metadata.stepType === 'autonomous';
-}
-
 export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutputTool {
   return {
     submitStepOutput: async ({ sessionId, content, origin = 'explicit' }) => {
@@ -67,7 +60,7 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return err(`Bound node ${boundNodeId} not found in the tree (orphan binding).`);
       }
 
-      if (!isAutomatic(boundNodeId, state)) {
+      if (!isStructurallyAutonomous(boundNodeId, state)) {
         const proposal = await deps.proposalSubmitter.submit({
           sessionId,
           nodeId: boundNodeId,

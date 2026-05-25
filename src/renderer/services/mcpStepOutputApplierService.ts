@@ -4,6 +4,10 @@ import type {
 import { TreeStore } from '../store/tree/treeStore';
 import { storeManager } from '../store/storeManager';
 import { logger } from './logger';
+import {
+  getAutonomousStepContext,
+  isStructurallyAutonomous,
+} from '../../shared/utils/autonomousStepContext';
 
 export type ApplyResult = { ok: true } | { ok: false; error: string };
 
@@ -42,13 +46,27 @@ export function applyStepOutput(
   // direct content write would dump a decomposed step's "# Item 1 / # Item 2"
   // output verbatim into one node and skip child creation, advance, and
   // recurse.
-  if (state.workflowExecutionStates[nodeId]) {
+  const context = getAutonomousStepContext(nodeId, state);
+  if (context !== null) {
     const handler = getActions(store)?.handleAutonomousFeedback;
     if (!handler) {
       return { ok: false, error: `Workflow handler unavailable for node ${nodeId}` };
     }
     handler(nodeId, content);
     return { ok: true };
+  }
+
+  // Server gate 1 admitted this as autonomous but the unified context is
+  // missing — refuse rather than blob-write raw markdown into the node.
+  if (isStructurallyAutonomous(nodeId, state)) {
+    logger.warn(
+      `gate-miss gate=1+2 node=${nodeId} reason=missing-context`,
+      'McpStepOutputApplier',
+    );
+    return {
+      ok: false,
+      error: `Routing gate disagreement for node ${nodeId} — autonomous step has no execution context`,
+    };
   }
 
   store.setState({
