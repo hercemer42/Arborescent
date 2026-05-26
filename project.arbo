@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-26T08:52:03.754Z'
+updated: '2026-05-26T09:29:37.693Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -89327,6 +89327,7 @@ nodes:
     id: aefa6362-0e1b-4e7f-81db-1ccc856bb2f0
     content: Backlog
     children:
+      - 378e0f06-bdaa-4566-9ca0-76089a4a316b
       - 06e952c7-0d3a-45f1-8e57-7a989a1131b0
       - 09fb2207-83b1-4c61-b79a-b3db67692351
       - 1cfc188d-85a2-4343-86e9-08387b5b1906
@@ -115488,6 +115489,7 @@ nodes:
     id: b3dc5362-ca81-4cbe-8558-2800fa41354f
     content: Done
     children:
+      - 0344bb2e-2b99-4bfb-8019-85d233fd50b7
       - fe57b52d-8ce0-4d9e-a2fc-f71e1df94e6c
       - 87917b51-6c7c-49ea-83a8-d64a4512583e
       - 85099a84-b1d8-452e-a801-ebba6c9867a0
@@ -124656,8 +124658,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 0344bb2e-2b99-4bfb-8019-85d233fd50b7
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -175002,6 +175003,40 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  378e0f06-bdaa-4566-9ca0-76089a4a316b:
+    id: 378e0f06-bdaa-4566-9ca0-76089a4a316b
+    content: Expand MCP
+    children:
+      - 045c2623-c1ee-4172-a90f-2c2ca1d1743c
+    metadata:
+      status: pending
+  045c2623-c1ee-4172-a90f-2c2ca1d1743c:
+    id: 045c2623-c1ee-4172-a90f-2c2ca1d1743c
+    content: We could imagine having a setting in claude.md to always use MCP
+    children:
+      - 69dbf554-796d-4b8b-adba-f22b436c1a15
+      - 4b3a6d5f-72f5-42a0-892e-0a2da83d7a34
+      - 2890b95e-4aa0-480e-91f9-f8ae19d9b25b
+    metadata:
+      status: pending
+  69dbf554-796d-4b8b-adba-f22b436c1a15:
+    id: 69dbf554-796d-4b8b-adba-f22b436c1a15
+    content: Then for instance, if we tell it to create a bug ticket, open a linear ticket, start the dev etc
+    children: []
+    metadata:
+      status: pending
+  4b3a6d5f-72f5-42a0-892e-0a2da83d7a34:
+    id: 4b3a6d5f-72f5-42a0-892e-0a2da83d7a34
+    content: It can contact Arborsecent, and get the correct workflow by itself
+    children: []
+    metadata:
+      status: pending
+  2890b95e-4aa0-480e-91f9-f8ae19d9b25b:
+    id: 2890b95e-4aa0-480e-91f9-f8ae19d9b25b
+    content: Arborescent provides a list of tools, Claude picks
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -175048,4 +175083,6 @@ sessionRegistry:
   6921f571-731e-4b08-b3d8-adab652e30e7:
     cwd: /Users/brianfox/dev/Arborescent
   972f98ab-fdf8-42c9-93cd-222f29ba6527:
+    cwd: /Users/brianfox/dev/Arborescent
+  2a29b137-4685-4d5c-b7df-4006bd1ca31f:
     cwd: /Users/brianfox/dev/Arborescent
