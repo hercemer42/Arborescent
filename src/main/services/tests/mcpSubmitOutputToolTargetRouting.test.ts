@@ -84,7 +84,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       targetStepType: 'autonomous',
       pendingTargetNodeId: TARGET,
     });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'freeform response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'freeform response' });
     expect(applier.apply).toHaveBeenCalledWith(TARGET, 'freeform response');
     expect(applier.apply).not.toHaveBeenCalledWith(BOUND, 'freeform response');
   });
@@ -95,7 +95,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       targetStepType: 'autonomous',
       pendingTargetNodeId: null,
     });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'workflow response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'workflow response' });
     expect(applier.apply).toHaveBeenCalledWith(BOUND, 'workflow response');
   });
 
@@ -109,7 +109,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       bindSession: false,
       pendingTargetNodeId: TARGET,
     });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'freeform response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'freeform response' });
     expect(applier.apply).toHaveBeenCalledWith(TARGET, 'freeform response');
   });
 
@@ -122,7 +122,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       targetStepType: 'manual',
       pendingTargetNodeId: TARGET,
     });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
     expect(proposalSubmitter.submit).toHaveBeenCalledWith(
@@ -136,7 +136,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       targetStepType: 'manual',
       pendingTargetNodeId: TARGET,
     });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
     expect(proposalSubmitter.submit).toHaveBeenCalledWith(
       expect.objectContaining({ sessionId: 'sess-1', nodeId: TARGET }),
     );
@@ -151,7 +151,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       targetStepType: 'autonomous',
       pendingTargetNodeId: TARGET,
     });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
     expect(applier.apply).toHaveBeenCalledWith(TARGET, 'x');
   });
 
@@ -169,7 +169,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       proposalSubmitter: { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) },
     });
 
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
     expect(result.isError).toBe(true);
     expect(result.content[0].text).toMatch(/not found|orphan/i);
     expect(applier.apply).not.toHaveBeenCalled();
@@ -235,7 +235,7 @@ describe('createSubmitOutputTool — Stop-hook safety net is universally no-op (
 
   it('explicit origin is NOT gated — when Claude calls submit_step_output explicitly the workflow asked for it', async () => {
     const { tool, applier } = gateScenario({ markerSeen: false });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'explicit response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'explicit response' });
     expect(applier.apply).toHaveBeenCalledWith(BOUND, 'explicit response');
   });
 });

@@ -71,14 +71,14 @@ describe('createSubmitOutputTool — automatic step writes directly to the node'
   });
 
   it('applies the submitted content to the bound node and reports applied=true', async () => {
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'AI response' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'AI response' });
     expect(result.isError).toBeFalsy();
     expect(JSON.parse(result.content[0].text)).toEqual({ applied: true });
     expect(applier.apply).toHaveBeenCalledWith(BOUND, 'AI response');
   });
 
   it('an empty content string still triggers an apply — empty is a valid AI response', async () => {
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: '' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: '' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).toHaveBeenCalledWith(BOUND, '');
   });
@@ -93,8 +93,8 @@ describe('createSubmitOutputTool — repeated submits in one session each go thr
     made.registry.register('sess-1', BOUND);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first' });
-    const second = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'second' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'first' });
+    const second = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'second' });
 
     expect(second.isError).toBeFalsy();
     expect(JSON.parse(second.content[0].text)).toEqual({ applied: true });
@@ -107,8 +107,8 @@ describe('createSubmitOutputTool — repeated submits in one session each go thr
     made.registry.register('sess-1', BOUND);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'draft' });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'revised' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'draft' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'revised' });
 
     expect(made.proposalSubmitter.submit).toHaveBeenCalledTimes(2);
   });
@@ -128,7 +128,7 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
 
   it('manual step does NOT apply directly and routes the content to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = withStepType('manual');
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'manual response' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'manual response' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
@@ -145,7 +145,7 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
 
   it('checkpoint step also routes to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = withStepType('checkpoint');
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'checkpoint response' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'checkpoint response' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
@@ -153,7 +153,7 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
 
   it('a node with no stepType set is treated as non-automatic and routed to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = withStepType(undefined);
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
@@ -165,14 +165,14 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
       ok: false,
       error: 'no store for bound file',
     }));
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
     expect(result.isError).toBe(true);
     expect(result.content[0].text).toContain('no store for bound file');
   });
 
   it('autonomous step still goes through the applier (NOT the proposal submitter)', async () => {
     const { tool, applier, proposalSubmitter } = withStepType('autonomous');
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'auto' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'auto' });
     expect(applier.apply).toHaveBeenCalledTimes(1);
     expect(proposalSubmitter.submit).not.toHaveBeenCalled();
   });
@@ -182,7 +182,7 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
     // user is in the loop and will submit explicitly — manufacturing a proposal
     // per turn would pile up entries the user did not ask for.
     const { tool, proposalSubmitter } = withStepType('manual');
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x', origin: 'safety-net' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x', origin: 'safety-net' });
     expect(result.isError).toBeFalsy();
     expect(proposalSubmitter.submit).not.toHaveBeenCalled();
     const payload = JSON.parse(result.content[0].text);
@@ -196,7 +196,7 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
     // otherwise a turn that ended without the AI calling submit_step_output
     // would still corrupt the bound node with the transcript's last message.
     const { tool, applier } = withStepType('autonomous');
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'auto', origin: 'safety-net' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'auto', origin: 'safety-net' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).not.toHaveBeenCalled();
     const payload = JSON.parse(result.content[0].text);
@@ -206,7 +206,7 @@ describe('createSubmitOutputTool — step-type gate routes non-automatic to the 
 
   it('explicit origin (default) on a non-automatic step continues to queue a proposal', async () => {
     const { tool, proposalSubmitter } = withStepType('manual');
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
 });
@@ -217,7 +217,7 @@ describe('createSubmitOutputTool — unbound session is a graceful no-op (not an
     // do NOT register sess-1
     const tool = createSubmitOutputTool(made.deps);
 
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'orphan response' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'orphan response' });
 
     expect(result.isError).toBeFalsy();
     const payload = JSON.parse(result.content[0].text);
@@ -229,7 +229,7 @@ describe('createSubmitOutputTool — unbound session is a graceful no-op (not an
   it('does NOT call the tree reader for an unbound session (no wasted IPC round trip)', async () => {
     const made = makeDeps('autonomous');
     const tool = createSubmitOutputTool(made.deps);
-    await tool.submitStepOutput({ sessionId: 'sess-unknown', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-unknown', targetNodeId: BOUND, content: 'x' });
     expect(made.treeReader.readState).not.toHaveBeenCalled();
   });
 });
@@ -240,7 +240,7 @@ describe('createSubmitOutputTool — error propagation', () => {
     made.registry.register('sess-1', 'unknown-node');
     const tool = createSubmitOutputTool(made.deps);
 
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
     expect(result.isError).toBe(true);
     expect(result.content[0].text).toMatch(/not found|orphan/i);
@@ -260,7 +260,7 @@ describe('createSubmitOutputTool — error propagation', () => {
     });
     registry.register('sess-1', BOUND);
 
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
     expect(result.isError).toBe(true);
     expect(applier.apply).not.toHaveBeenCalled();
@@ -275,7 +275,7 @@ describe('createSubmitOutputTool — error propagation', () => {
     }));
     const tool = createSubmitOutputTool(made.deps);
 
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
     expect(result.isError).toBe(true);
     expect(result.content[0].text).toContain('collaborating node mismatch');
@@ -322,7 +322,7 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
 
   it('working node under stepType=autonomous applies directly (no proposal panel)', async () => {
     const { tool, applier, proposalSubmitter } = setupTool('autonomous');
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'autonomous result' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: WORKING, content: 'autonomous result' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).toHaveBeenCalledWith(WORKING, 'autonomous result');
     expect(proposalSubmitter.submit).not.toHaveBeenCalled();
@@ -330,21 +330,21 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
 
   it('working node under stepType=manual still routes to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = setupTool('manual');
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'manual result' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'manual result' });
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
 
   it('working node under stepType=checkpoint still routes to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = setupTool('checkpoint');
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'checkpoint result' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'checkpoint result' });
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
 
   it('working node under a parent with no stepType still routes to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = setupTool(undefined);
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
@@ -377,21 +377,21 @@ describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
 
   it('collaborate-only mode allows submit_step_output on an automatic step', async () => {
     const { tool, applier } = makeToolFor(true, false);
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).toHaveBeenCalled();
   });
 
   it('execute-only mode allows submit_step_output on an automatic step (this is the output channel, not a tree-mutation)', async () => {
     const { tool, applier } = makeToolFor(false, true);
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).toHaveBeenCalled();
   });
 
   it('collaborate+execute mode allows submit_step_output on an automatic step', async () => {
     const { tool, applier } = makeToolFor(true, true);
-    const result = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
     expect(result.isError).toBeFalsy();
     expect(applier.apply).toHaveBeenCalled();
   });
@@ -412,7 +412,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     const tool = createSubmitOutputTool(made.deps);
 
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'auto' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'auto' });
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
   });
 
@@ -426,7 +426,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'manual response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'manual response' });
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
   });
 
@@ -440,7 +440,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'auto', origin: 'safety-net' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'auto', origin: 'safety-net' });
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
   });
 
@@ -450,7 +450,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x', origin: 'safety-net' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x', origin: 'safety-net' });
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
   });
 
@@ -459,7 +459,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     // do NOT register sess-1
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'orphan' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'orphan' });
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
   });
 
@@ -469,7 +469,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     // markerSeenThisTurn intentionally NOT set
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x', origin: 'safety-net' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x', origin: 'safety-net' });
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
   });
 
@@ -479,7 +479,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     made.registry.register('sess-2', BOUND);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-2')).toBe(false);
   });
@@ -497,7 +497,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     }));
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
   });
@@ -512,7 +512,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     }));
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
     expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
   });
@@ -525,7 +525,7 @@ describe('createSubmitOutputTool — submission logging records origin and appli
     made.registry.register('sess-1', BOUND);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
     const logCalls = (logger.info as ReturnType<typeof vi.fn>).mock.calls.map(
       (call) => call[0] as string,
@@ -540,7 +540,7 @@ describe('createSubmitOutputTool — submission logging records origin and appli
     made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
     const tool = createSubmitOutputTool(made.deps);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x', origin: 'safety-net' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x', origin: 'safety-net' });
 
     const logCalls = (logger.info as ReturnType<typeof vi.fn>).mock.calls.map(
       (call) => call[0] as string,

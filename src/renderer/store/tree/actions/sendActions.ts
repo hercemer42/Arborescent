@@ -140,8 +140,11 @@ function buildWebExecutePrompt(executeContext: string, content: string): string 
 
 const SUBMIT_ONCE_INSTRUCTION = 'Only call submit_step_output once - fully consider your response beforehand.';
 
-function buildCollaborateSubmitOutputTarget(): string {
-  return `IMPORTANT: When you are done, submit your reviewed/updated list by calling the arborescent submit_step_output MCP tool with your session_id and the updated list as the content argument. Do not write to any file.
+function buildCollaborateSubmitOutputTarget(targetNodeId: string = ''): string {
+  const targetClause = targetNodeId
+    ? `\nPass target_node_id="${targetNodeId}" on the submit_step_output call so the server can verify the binding has not drifted; the call is rejected without it.`
+    : '';
+  return `IMPORTANT: When you are done, submit your reviewed/updated list by calling the arborescent submit_step_output MCP tool with your session_id and the updated list as the content argument. Do not write to any file.${targetClause}
 Base your submission on the list from the CONTENT section, not from the INSTRUCTIONS section.
 Do NOT include the CONTEXT or INSTRUCTIONS sections in the submission — only the updated CONTENT list.
 ${SUBMIT_ONCE_INSTRUCTION}`;
@@ -154,8 +157,11 @@ function buildExecuteOnlyOutputTarget(isAutonomous: boolean): string {
   return `IMPORTANT: Make the requested code changes in the codebase. Report what you did in your terminal output.${announceLine}`;
 }
 
-function buildBothOutputTarget(): string {
-  return `IMPORTANT: Make the requested code changes in the codebase. Then submit the updated CONTENT list with completed items marked [x] and failed items [-] by calling the arborescent submit_step_output MCP tool with your session_id and the updated list as the content argument. Do not write to any file.
+function buildBothOutputTarget(targetNodeId: string = ''): string {
+  const targetClause = targetNodeId
+    ? `\n- Pass target_node_id="${targetNodeId}" on the submit_step_output call so the server can verify the binding has not drifted; the call is rejected without it`
+    : '';
+  return `IMPORTANT: Make the requested code changes in the codebase. Then submit the updated CONTENT list with completed items marked [x] and failed items [-] by calling the arborescent submit_step_output MCP tool with your session_id and the updated list as the content argument. Do not write to any file.${targetClause}
 - Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
 - Do NOT replace the CONTENT list with a summary of what you did or a "what was done" checklist
 - Do NOT include the CONTEXT or INSTRUCTIONS sections in the submission — only the updated CONTENT list
@@ -165,8 +171,8 @@ function buildBothOutputTarget(): string {
 ${SUBMIT_ONCE_INSTRUCTION}`;
 }
 
-function buildTerminalCollaboratePrompt(reviewContext: string, content: string, decomposition: boolean = false, isAutonomous: boolean = false): string {
-  const outputTarget = buildCollaborateSubmitOutputTarget();
+function buildTerminalCollaboratePrompt(reviewContext: string, content: string, decomposition: boolean = false, isAutonomous: boolean = false, targetNodeId: string = ''): string {
+  const outputTarget = buildCollaborateSubmitOutputTarget(isAutonomous ? targetNodeId : '');
   const instructions = wrapInstructions(buildCollaborateInstructions(reviewContext, outputTarget, decomposition, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
@@ -213,8 +219,8 @@ ${SINGLE_ROOT_OUTPUT_FORMAT}
 ${outputTarget}${needsReview}`;
 }
 
-function buildTerminalBothPrompt(executeContext: string, content: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false): string {
-  const outputTarget = buildBothOutputTarget();
+function buildTerminalBothPrompt(executeContext: string, content: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false, targetNodeId: string = ''): string {
+  const outputTarget = buildBothOutputTarget(isAutonomous ? targetNodeId : '');
   const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
@@ -293,9 +299,9 @@ function buildSendPayloadBody(args: SendPayloadArgs): string {
       return buildWebCollaboratePrompt(instructionContext, nodeContent, decomposition);
     case 'terminal':
     case 'autonomous-terminal':
-      if (bothOn) return buildTerminalBothPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous);
+      if (bothOn) return buildTerminalBothPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous, nodeId);
       if (executeOnly) return buildTerminalExecuteOnlyPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous);
-      return buildTerminalCollaboratePrompt(instructionContext, nodeContent, decomposition, isAutonomous);
+      return buildTerminalCollaboratePrompt(instructionContext, nodeContent, decomposition, isAutonomous, nodeId);
   }
 }
 

@@ -96,12 +96,12 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       pendingTargetNodeId: TARGET,
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
     expect(applier.apply).toHaveBeenNthCalledWith(1, TARGET, 'first response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'second response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'second response' });
 
     expect(applier.apply).toHaveBeenNthCalledWith(2, TARGET, 'second response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
@@ -114,7 +114,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       pendingTargetNodeId: TARGET,
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first proposal' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first proposal' });
 
     expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
       1,
@@ -125,7 +125,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     );
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'second proposal' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'second proposal' });
 
     expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
       2,
@@ -144,9 +144,9 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       pendingTargetNodeId: TARGET,
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'v1' });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'v2' });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'v3' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'v1' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'v2' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'v3' });
 
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(3);
     expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(1, expect.objectContaining({ nodeId: TARGET }));
@@ -163,7 +163,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       applierResult: { ok: false, error: 'apply failed' },
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
     expect(applier.apply).toHaveBeenCalledWith(TARGET, 'first response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
@@ -177,7 +177,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       proposalResult: { ok: false, error: 'proposal rejected' },
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
     expect(proposalSubmitter.submit).toHaveBeenCalledWith(
       expect.objectContaining({ nodeId: TARGET }),
@@ -197,12 +197,12 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       pendingTargetNodeId: TARGET,
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
     expect(applier.apply).toHaveBeenCalledWith(TARGET, 'first response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
 
-    const second = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'second response' });
+    const second = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'second response' });
     const payload = JSON.parse(second.content[0].text);
     expect(payload.applied).toBe(true);
     expect(applier.apply).toHaveBeenNthCalledWith(2, TARGET, 'second response');
@@ -217,7 +217,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     });
     oneShotTargetStore.setPendingTarget('sess-2', TARGET_2);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
 
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
     expect(oneShotTargetStore.pendingTarget('sess-2')).toBe(TARGET_2);
@@ -260,13 +260,13 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       pendingTargetNodeId: TARGET,
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
     expect(applier.apply).toHaveBeenNthCalledWith(1, TARGET, 'first response');
 
     oneShotTargetStore.markManualCollabResolved('sess-1');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(null);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'after resolve' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'after resolve' });
     expect(applier.apply).toHaveBeenNthCalledWith(2, BOUND, 'after resolve');
   });
 
@@ -281,8 +281,8 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       pendingTargetNodeId: BOUND,
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first' });
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'refresh' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'first' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'refresh' });
 
     expect(applier.apply).toHaveBeenNthCalledWith(1, BOUND, 'first');
     expect(applier.apply).toHaveBeenNthCalledWith(2, BOUND, 'refresh');
@@ -291,7 +291,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     oneShotTargetStore.markManualCollabResolved('sess-1');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(null);
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'after resolve' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'after resolve' });
     expect(applier.apply).toHaveBeenNthCalledWith(3, BOUND, 'after resolve');
   });
 
@@ -303,10 +303,10 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       pendingTargetNodeId: TARGET,
     });
 
-    await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first response' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
     oneShotTargetStore.markManualCollabResolved('sess-1');
 
-    const second = await tool.submitStepOutput({ sessionId: 'sess-1', content: 'after resolve' });
+    const second = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'after resolve' });
     const payload = JSON.parse(second.content[0].text);
     expect(payload.applied).toBe(false);
     expect(payload.reason).toMatch(/unbound/i);
@@ -323,6 +323,9 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
       pendingTargetNodeId: TARGET,
     });
 
+    // Manual-route submissions: gate 4 is bypassed (server isAutomatic=false
+    // routes via proposalSubmitter before the token check would run), so no
+    // targetNodeId is needed or sent.
     await tool.submitStepOutput({ sessionId: 'sess-1', content: 'first to TARGET' });
     expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
       1,

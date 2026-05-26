@@ -249,6 +249,14 @@ export class ArborescentMcpServer {
         inputSchema: {
           session_id: z.string().min(1).describe('Claude Code session ID'),
           content: z.string().describe('Assistant response content to apply to the bound node'),
+          // Schema is .optional() so manual-collab and free-terminal submissions
+          // still validate. The autonomous-route gate-4 check in
+          // mcpSubmitOutputTool enforces presence + equality at runtime —
+          // don't tighten the schema to .required() without re-routing manual.
+          target_node_id: z
+            .string()
+            .optional()
+            .describe('Echo of the bound node UUID that the prompt was rendered for. Required on autonomous-route submissions; the server rejects the call if it does not match the resolved bound node at submit time (guards against in-flight rebind drift). Omit for manual-collab and free-terminal submissions.'),
           origin: z
             .enum(['explicit', 'safety-net'])
             .optional()
@@ -259,6 +267,7 @@ export class ArborescentMcpServer {
         tool.submitStepOutput({
           sessionId: args.session_id,
           content: args.content,
+          targetNodeId: args.target_node_id,
           origin: args.origin as 'explicit' | 'safety-net' | undefined,
         }),
     );
