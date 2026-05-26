@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-25T15:23:46.875Z'
+updated: '2026-05-26T08:52:03.754Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -83688,8 +83688,7 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children:
-      - 0344bb2e-2b99-4bfb-8019-85d233fd50b7
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115489,6 +115488,7 @@ nodes:
     id: b3dc5362-ca81-4cbe-8558-2800fa41354f
     content: Done
     children:
+      - fe57b52d-8ce0-4d9e-a2fc-f71e1df94e6c
       - 87917b51-6c7c-49ea-83a8-d64a4512583e
       - 85099a84-b1d8-452e-a801-ebba6c9867a0
       - 32a94f94-b821-4b94-8f63-11e3997159af
@@ -124657,7 +124657,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - fe57b52d-8ce0-4d9e-a2fc-f71e1df94e6c
+      - 0344bb2e-2b99-4bfb-8019-85d233fd50b7
     metadata:
       status: pending
       isBlueprint: true
@@ -171130,847 +171130,6 @@ nodes:
       deleted: false
       plugins: {}
       groupId: 99a5d848-4008-4c0e-a0a0-093ca34431c7
-      sessionId: ec7c00b3-cf3d-4011-9979-819df9e6941e
-  0344bb2e-2b99-4bfb-8019-85d233fd50b7:
-    id: 0344bb2e-2b99-4bfb-8019-85d233fd50b7
-    content: PR3 - Bug - Submission routing gates disagree, corrupting or misrouting workflow nodes
-    children:
-      - 4c461a41-0cbb-4f96-977a-1c3fb90fc9a6
-      - 460f5a4d-3e97-413c-9bc2-fdc1b00954a9
-      - 510159ee-7a87-4242-b5cc-eecaeaded27e
-      - a709ff10-e18f-4f6d-9366-d2f7b7d291ba
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      groupId: 99a5d848-4008-4c0e-a0a0-093ca34431c7
-  4c461a41-0cbb-4f96-977a-1c3fb90fc9a6:
-    id: 4c461a41-0cbb-4f96-977a-1c3fb90fc9a6
-    content: Subtask - gate 4 target-keyed binding token
-    children:
-      - 82e4111a-83d3-4374-bc94-4f6a605a8991
-      - f45447ac-28fc-4b9c-a082-8719b67aa129
-      - 78167ed1-2769-4222-81d9-64b6980018e6
-      - a47e0dbc-72cd-421f-ae46-deaff6a6ed73
-      - 29d9476d-8e1d-44e9-a955-4a5bd0b1939c
-      - 7b078bad-5ee3-468a-9585-2ce1e9a80a64
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  82e4111a-83d3-4374-bc94-4f6a605a8991:
-    id: 82e4111a-83d3-4374-bc94-4f6a605a8991
-    content: Required targetNodeId param added to submit_step_output MCP tool schema
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f45447ac-28fc-4b9c-a082-8719b67aa129:
-    id: f45447ac-28fc-4b9c-a082-8719b67aa129
-    content: sendActions injects targetNodeId into the autonomous-route prompt INSTRUCTIONS header at prompt-render time
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  78167ed1-2769-4222-81d9-64b6980018e6:
-    id: 78167ed1-2769-4222-81d9-64b6980018e6
-    content: mcpSubmitOutputTool validates targetNodeId equals resolved boundNodeId when isAutomatic returns true; mismatch returns an MCP error tool result
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a47e0dbc-72cd-421f-ae46-deaff6a6ed73:
-    id: a47e0dbc-72cd-421f-ae46-deaff6a6ed73
-    content: Manual-collab bypass - the gate 4 check is skipped when isAutomatic is false (proposalSubmitter handles the submission as today)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  29d9476d-8e1d-44e9-a955-4a5bd0b1939c:
-    id: 29d9476d-8e1d-44e9-a955-4a5bd0b1939c
-    content: Structured log on token mismatch with both tokenTarget and resolvedTarget
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b078bad-5ee3-468a-9585-2ce1e9a80a64:
-    id: 7b078bad-5ee3-468a-9585-2ce1e9a80a64
-    content: Convert gate 4 it.todo placeholders to real tests in mcpSubmitOutputToolBindingToken.test.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  460f5a4d-3e97-413c-9bc2-fdc1b00954a9:
-    id: 460f5a4d-3e97-413c-9bc2-fdc1b00954a9
-    content: Acceptance criteria
-    children:
-      - fc4f568e-c8c2-4378-be44-49ad360f0fb5
-      - c9834a49-c5de-4a75-a35e-21728f863de3
-      - 23c42d97-b88e-4778-b8d4-3a4d0af69993
-      - 0f26733b-81c3-424b-8692-cae9ec94d614
-      - 9a574b2a-8e79-4097-a5a7-7f40e310f4f5
-      - 92e8b0bb-a518-452d-846e-e56f2f38743b
-      - 78cf12a6-37f3-4350-97e8-bff39e800846
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc4f568e-c8c2-4378-be44-49ad360f0fb5:
-    id: fc4f568e-c8c2-4378-be44-49ad360f0fb5
-    content: submit_step_output rejects with an MCP error when targetNodeId is missing on an autonomous-route call
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9834a49-c5de-4a75-a35e-21728f863de3:
-    id: c9834a49-c5de-4a75-a35e-21728f863de3
-    content: submit_step_output rejects when the provided targetNodeId differs from the resolved boundNodeId at submit time
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  23c42d97-b88e-4778-b8d4-3a4d0af69993:
-    id: 23c42d97-b88e-4778-b8d4-3a4d0af69993
-    content: Same-target resubmissions succeed - UUID equality holds across N consecutive submits to the same node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f26733b-81c3-424b-8692-cae9ec94d614:
-    id: 0f26733b-81c3-424b-8692-cae9ec94d614
-    content: Manual-collab (non-autonomous) submissions do not require targetNodeId - existing manual-collab behavior unchanged
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9a574b2a-8e79-4097-a5a7-7f40e310f4f5:
-    id: 9a574b2a-8e79-4097-a5a7-7f40e310f4f5
-    content: Decomposition+recurse drift surfaces as a clean MCP error rather than a wrong-node write
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  92e8b0bb-a518-452d-846e-e56f2f38743b:
-    id: 92e8b0bb-a518-452d-846e-e56f2f38743b
-    content: Token mismatch produces a structured log carrying tokenTarget and resolvedTarget
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  78cf12a6-37f3-4350-97e8-bff39e800846:
-    id: 78cf12a6-37f3-4350-97e8-bff39e800846
-    content: All previously-it.todo tests in mcpSubmitOutputToolBindingToken are real tests and passing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  510159ee-7a87-4242-b5cc-eecaeaded27e:
-    id: 510159ee-7a87-4242-b5cc-eecaeaded27e
-    content: User story
-    children:
-      - 97c47915-50ab-4f9c-8d07-a1c70213f349
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  97c47915-50ab-4f9c-8d07-a1c70213f349:
-    id: 97c47915-50ab-4f9c-8d07-a1c70213f349
-    content: Bug - Submission routing gates disagree, corrupting or misrouting workflow nodes
-    children:
-      - 9e29dc9a-2cda-4b9c-9f40-17bfc10141cc
-      - d6f151c1-b50f-49ee-ba03-975af3311afe
-      - ac60494e-f90f-4cbb-b30b-dbdfd8b051b4
-      - b8b510d3-1786-4b08-aeba-9487f718f6a1
-      - 889dc9b7-65e2-4a49-9858-74883ef06970
-      - 0898a726-2354-41dc-a710-33828b71bfca
-      - e5871db7-05a5-4844-b72d-d73c1d96ff21
-      - f413c605-724d-46c8-a5a2-42972ed87aaf
-      - 6a669b64-df37-42c9-a111-23ecc04f6ce3
-      - ac46d78d-2ea9-4420-ae22-f9201f2473df
-      - 0fd4630e-4bed-41ae-b9ee-6b361052f966
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e29dc9a-2cda-4b9c-9f40-17bfc10141cc:
-    id: 9e29dc9a-2cda-4b9c-9f40-17bfc10141cc
-    content: worktree
-    children:
-      - 128bc8a0-dfc4-44b8-b0ef-722c786a41c6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  128bc8a0-dfc4-44b8-b0ef-722c786a41c6:
-    id: 128bc8a0-dfc4-44b8-b0ef-722c786a41c6
-    content: vscode://file/Users/brianfox/dev/Arborescent-routing-gates
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6f151c1-b50f-49ee-ba03-975af3311afe:
-    id: d6f151c1-b50f-49ee-ba03-975af3311afe
-    content: Summary
-    children:
-      - e9c3b207-7c8b-4e83-830a-b0239cc058e7
-      - 534ece81-7054-434a-b264-db01dcf5854d
-      - 7e04900a-ba42-4f54-a667-139e27276df9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e9c3b207-7c8b-4e83-830a-b0239cc058e7:
-    id: e9c3b207-7c8b-4e83-830a-b0239cc058e7
-    content: Four independent gates decide where a submit_step_output payload lands - server-side autonomous check, renderer workflowExecutionStates check, renderer owningStepType / acceptMode check, and the session binding target itself
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  534ece81-7054-434a-b264-db01dcf5854d:
-    id: 534ece81-7054-434a-b264-db01dcf5854d
-    content: Any disagreement between them silently corrupts the bound node (blob-write), surfaces an unexpected feedback panel, or writes to a different node than the one Claude was responding to
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7e04900a-ba42-4f54-a667-139e27276df9:
-    id: 7e04900a-ba42-4f54-a667-139e27276df9
-    content: All these writes happen synchronously inside the MCP submit call, before the collaborate step completes, so the autonomous parse + AcceptFeedbackCommand rebuild path never gets a chance once any gate misses
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac60494e-f90f-4cbb-b30b-dbdfd8b051b4:
-    id: ac60494e-f90f-4cbb-b30b-dbdfd8b051b4
-    content: Steps to reproduce
-    children:
-      - 9de21c85-05be-4027-85d3-ac4f8a21e991
-      - 6255d9ef-e3c6-4967-b6e0-ab1ee6bc0b16
-      - 110a825f-6f12-4d0b-9dc1-ca564447c122
-      - af5daf2f-613e-44bc-aea3-d9b94a75ab98
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9de21c85-05be-4027-85d3-ac4f8a21e991:
-    id: 9de21c85-05be-4027-85d3-ac4f8a21e991
-    content: Gate 2 miss - autonomous step bound, server isAutomatic=true, but workflowExecutionStates[nodeId] absent, applyStepOutput falls through to setState({...node, content}), dumping raw markdown into node.content with children left stale
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6255d9ef-e3c6-4967-b6e0-ab1ee6bc0b16:
-    id: 6255d9ef-e3c6-4967-b6e0-ab1ee6bc0b16
-    content: Gate 3 miss - gates 1 and 2 true, but findOwningWorkflowStepId returns null in handleAutonomousFeedback, acceptMode becomes 'manual-send-accept', submission surfaces via the feedback panel (executeCommand path) instead of executing directly
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  110a825f-6f12-4d0b-9dc1-ca564447c122:
-    id: 110a825f-6f12-4d0b-9dc1-ca564447c122
-    content: Gate 4 miss - user-initiated in-flight rebind (or decomposition-recurse race) drifts the bound target between prompt-render and submit; submission lands on a node Claude was not addressing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  af5daf2f-613e-44bc-aea3-d9b94a75ab98:
-    id: af5daf2f-613e-44bc-aea3-d9b94a75ab98
-    content: 'Downstream symptom - a blob-written node whose content begins with ''# [ ]'' gets another heading prefix on the next serialization, producing the visible ''# [ ] # [ ]'' stutter at the top of the next prompt'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b8b510d3-1786-4b08-aeba-9487f718f6a1:
-    id: b8b510d3-1786-4b08-aeba-9487f718f6a1
-    content: Expected behavior
-    children:
-      - 28c34f4b-8177-47e8-9fa5-0464470296e8
-      - b5fe4020-b556-4cb3-8d2b-29d91110c296
-      - 5f37847c-31c7-4c96-8515-b5ab432d4cb1
-      - e8085afd-69f1-4936-b5be-af7601ebf779
-      - c721cfe7-8cb8-492e-b4a3-93881b63dff3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  28c34f4b-8177-47e8-9fa5-0464470296e8:
-    id: 28c34f4b-8177-47e8-9fa5-0464470296e8
-    content: Happy path - all four gates agree, submission parses, AcceptFeedbackCommand rebuilds the bound node's children, no panel
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5fe4020-b556-4cb3-8d2b-29d91110c296:
-    id: b5fe4020-b556-4cb3-8d2b-29d91110c296
-    content: Root rewording / rewrite must continue to work - a single well-formed '# [ ] New title' applies as the new bound root
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f37847c-31c7-4c96-8515-b5ab432d4cb1:
-    id: 5f37847c-31c7-4c96-8515-b5ab432d4cb1
-    content: Drift case - a submission whose target binding drifted since prompt-render is rejected with an MCP error; Claude's content for the original target is lost (user beware - they intentionally rebound)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8085afd-69f1-4936-b5be-af7601ebf779:
-    id: e8085afd-69f1-4936-b5be-af7601ebf779
-    content: Edge case - a submission arriving before the collaborate step has finished must still route through parse + rebuild, not direct content-write
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c721cfe7-8cb8-492e-b4a3-93881b63dff3:
-    id: c721cfe7-8cb8-492e-b4a3-93881b63dff3
-    content: Manual-collab on an unbound node must keep working - send to unbound node, Claude submits, feedback panel surfaces, user discusses and resends, pendingTarget persists across submits until accept/cancel (existing behavior, per commit f7e8b59); gate 4 does not apply to this path
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  889dc9b7-65e2-4a49-9858-74883ef06970:
-    id: 889dc9b7-65e2-4a49-9858-74883ef06970
-    content: Actual behavior
-    children:
-      - 0c4f512c-616d-4feb-b638-a2626d0f34a2
-      - fd458c68-7316-40db-9b30-608be550ced3
-      - e9bf7266-e7b8-4d7e-ab16-68e56812629e
-      - 2df49985-84f1-4446-adfc-994cd1d29bfb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c4f512c-616d-4feb-b638-a2626d0f34a2:
-    id: 0c4f512c-616d-4feb-b638-a2626d0f34a2
-    content: Gate 2 miss - node.content becomes a multi-line markdown blob; children stale; recoverable only via undo
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd458c68-7316-40db-9b30-608be550ced3:
-    id: fd458c68-7316-40db-9b30-608be550ced3
-    content: Gate 3 miss - feedback panel appears for an autonomous step ('old mechanism' still active as the fallback in executeCommand)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e9bf7266-e7b8-4d7e-ab16-68e56812629e:
-    id: e9bf7266-e7b8-4d7e-ab16-68e56812629e
-    content: Gate 4 miss - the wrong node receives the write, then often hits one of the other failure paths inside that node's gate state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2df49985-84f1-4446-adfc-994cd1d29bfb:
-    id: 2df49985-84f1-4446-adfc-994cd1d29bfb
-    content: '''# [ ] # [ ]'' stutter visible on next prompt as downstream artifact of the corrupted content'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0898a726-2354-41dc-a710-33828b71bfca:
-    id: 0898a726-2354-41dc-a710-33828b71bfca
-    content: Suspected cause
-    children:
-      - 38fd4ccc-fce6-4d8d-b80f-fd71f4cca624
-      - 7ecc6c29-d455-4234-9170-2d864e0a02d7
-      - 98260b13-19e2-49a3-8e3e-93e8372afd46
-      - ce983b76-4002-47ee-b767-49e24332c28e
-      - 14bfa28b-1370-474d-80cb-253a8452300d
-      - 13f5c741-8ebf-4d7c-842a-05cf6aa9309c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  38fd4ccc-fce6-4d8d-b80f-fd71f4cca624:
-    id: 38fd4ccc-fce6-4d8d-b80f-fd71f4cca624
-    content: Four independent routing decisions that should be derived from a single source of truth but are not
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ecc6c29-d455-4234-9170-2d864e0a02d7:
-    id: 7ecc6c29-d455-4234-9170-2d864e0a02d7
-    content: Gate 1 - src/main/services/mcpSubmitOutputTool.ts isAutomatic checks metadata.stepType on the node or its immediate parent
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  98260b13-19e2-49a3-8e3e-93e8372afd46:
-    id: 98260b13-19e2-49a3-8e3e-93e8372afd46
-    content: Gate 2 - src/renderer/services/mcpStepOutputApplierService.ts applyStepOutput checks state.workflowExecutionStates[nodeId]; on miss, falls through to setState({...node, content})
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ce983b76-4002-47ee-b767-49e24332c28e:
-    id: ce983b76-4002-47ee-b767-49e24332c28e
-    content: Gate 3 - src/renderer/store/tree/actions/workflowExecutionActions.ts handleAutonomousFeedback computes acceptMode from findOwningWorkflowStepId + owningStepType; when null, mode is 'manual-send-accept'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  14bfa28b-1370-474d-80cb-253a8452300d:
-    id: 14bfa28b-1370-474d-80cb-253a8452300d
-    content: Gate 4 - src/main/services/mcpSubmitOutputTool.ts resolves boundNodeId from oneShotTargetStore or bindingRegistry.lookup(sessionId) at submit time; verified drift only occurs in user-confirmed in-flight rebinds and decomposition+recurse hand-off
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  13f5c741-8ebf-4d7c-842a-05cf6aa9309c:
-    id: 13f5c741-8ebf-4d7c-842a-05cf6aa9309c
-    content: Synchronous write inside the MCP submit call - happens before the collaborate step completes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5871db7-05a5-4844-b72d-d73c1d96ff21:
-    id: e5871db7-05a5-4844-b72d-d73c1d96ff21
-    content: Affected files
-    children:
-      - 3099cfdb-405d-4e57-a5da-4b35fda7e87b
-      - 73bfda92-bf5f-469e-94b9-c51a6541495b
-      - 5710a65e-0061-454d-993f-90e242883c80
-      - 11143af2-2698-4f10-a62d-7343376ce1ee
-      - eb4682cb-3624-4803-8639-4ba8122ae2f1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3099cfdb-405d-4e57-a5da-4b35fda7e87b:
-    id: 3099cfdb-405d-4e57-a5da-4b35fda7e87b
-    content: src/main/services/mcpSubmitOutputTool.ts - isAutomatic gate (gate 1) and boundNodeId resolution (gate 4)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  73bfda92-bf5f-469e-94b9-c51a6541495b:
-    id: 73bfda92-bf5f-469e-94b9-c51a6541495b
-    content: src/renderer/services/mcpStepOutputApplierService.ts - applyStepOutput direct content-write fallback (gate 2)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5710a65e-0061-454d-993f-90e242883c80:
-    id: 5710a65e-0061-454d-993f-90e242883c80
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts - handleAutonomousFeedback acceptMode selection (gate 3)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  11143af2-2698-4f10-a62d-7343376ce1ee:
-    id: 11143af2-2698-4f10-a62d-7343376ce1ee
-    content: src/renderer/store/tree/actions/sendActions.ts - prompt assembly site for the gate 4 targetNodeId token
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eb4682cb-3624-4803-8639-4ba8122ae2f1:
-    id: eb4682cb-3624-4803-8639-4ba8122ae2f1
-    content: src/renderer/utils/markdown.ts - parseLine stutter normalisation (defense in depth, landed in PR1)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f413c605-724d-46c8-a5a2-42972ed87aaf:
-    id: f413c605-724d-46c8-a5a2-42972ed87aaf
-    content: Regression window
-    children:
-      - 62abba63-d983-4476-b86c-7c74dd222d17
-      - 98564027-2160-481e-87ef-eb6fc0e22584
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  62abba63-d983-4476-b86c-7c74dd222d17:
-    id: 62abba63-d983-4476-b86c-7c74dd222d17
-    content: Last known good - unknown
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  98564027-2160-481e-87ef-eb6fc0e22584:
-    id: 98564027-2160-481e-87ef-eb6fc0e22584
-    content: First observed broken - reproduced live in session ec7c00b3-cf3d-4011-9979-819df9e6941e and earlier in session dd16dfb9-55d4-4b93-a3c1-ef69398f5e22
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a669b64-df37-42c9-a111-23ecc04f6ce3:
-    id: 6a669b64-df37-42c9-a111-23ecc04f6ce3
-    content: Severity
-    children:
-      - f97e9f03-36fe-4174-8e0e-870afaece253
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f97e9f03-36fe-4174-8e0e-870afaece253:
-    id: f97e9f03-36fe-4174-8e0e-870afaece253
-    content: High - silently corrupts user-authored workflow nodes during routine submissions; can also misdirect submissions to unrelated nodes; only recoverable via undo
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac46d78d-2ea9-4420-ae22-f9201f2473df:
-    id: ac46d78d-2ea9-4420-ae22-f9201f2473df
-    content: Notes
-    children:
-      - 117e930a-5f3c-4392-a293-addd142e90c3
-      - 94ed7e4d-a3ba-42b7-9df9-a4b49109a4a9
-      - 9c179dcc-a2d7-4423-a8d6-84f08b2c42a5
-      - 8aff4ba2-ef8a-4927-80f9-53ecce989fce
-      - e4e55ebf-6339-4919-92e7-446ec0b5f6b9
-      - e1adeb3e-5b40-4e5b-842e-85f7818c11a2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  117e930a-5f3c-4392-a293-addd142e90c3:
-    id: 117e930a-5f3c-4392-a293-addd142e90c3
-    content: Root rewording / rewrite must remain fully supported - any fix that rejects non-matching roots is out
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  94ed7e4d-a3ba-42b7-9df9-a4b49109a4a9:
-    id: 94ed7e4d-a3ba-42b7-9df9-a4b49109a4a9
-    content: Direct-write fallback in applyStepOutput is correct for non-workflow direct sends - must not be removed wholesale, only gated more carefully
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c179dcc-a2d7-4423-a8d6-84f08b2c42a5:
-    id: 9c179dcc-a2d7-4423-a8d6-84f08b2c42a5
-    content: Feedback panel route (gate 3 executeCommand) is still wired as the fallback; gate 3 alignment removes the accidental routing into it
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8aff4ba2-ef8a-4927-80f9-53ecce989fce:
-    id: 8aff4ba2-ef8a-4927-80f9-53ecce989fce
-    content: Manual-collab discuss-then-refresh loop on unbound nodes must remain intact (per commit f7e8b59); gate 4 does NOT run on manual-collab submissions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e4e55ebf-6339-4919-92e7-446ec0b5f6b9:
-    id: e4e55ebf-6339-4919-92e7-446ec0b5f6b9
-    content: Verified - regular step advance does not rebind the session (only mode === 'recurse' produces 'workflow-advance' source per workflowExecutionActions.ts:420); only decomposition+recurse silently auto-confirms a rebind
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e1adeb3e-5b40-4e5b-842e-85f7818c11a2:
-    id: e1adeb3e-5b40-4e5b-842e-85f7818c11a2
-    content: Telemetry gap - no log fires when gates disagree
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0fd4630e-4bed-41ae-b9ee-6b361052f966:
-    id: 0fd4630e-4bed-41ae-b9ee-6b361052f966
-    content: Technical refinement
-    children:
-      - 65579809-980d-4689-80d9-7f7b58bad347
-      - e940bc3d-3774-48e4-b0d3-28e940e0e601
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  65579809-980d-4689-80d9-7f7b58bad347:
-    id: 65579809-980d-4689-80d9-7f7b58bad347
-    content: Complications
-    children:
-      - 71d0586e-b196-48d8-9b34-48b6e25c1b18
-      - 66cb7cda-56ac-449c-a3b3-e23d7d789142
-      - 141d0473-9206-4f6f-bd40-b2259843586b
-      - 4bb6b0e4-ac09-49d1-ba61-c66576b8abdd
-      - c0eb5b59-d9c5-4ef0-8bc7-a5c11a78f9e1
-      - 51cddfaf-5513-4859-aa5a-3b0b6e898213
-      - e9b2ecd0-7614-474a-a524-6148885271f6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  71d0586e-b196-48d8-9b34-48b6e25c1b18:
-    id: 71d0586e-b196-48d8-9b34-48b6e25c1b18
-    content: Four gates must agree at apply time - derive 1+2+3 from a single source of truth and add a target-identity check at the submit boundary (gate 4)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66cb7cda-56ac-449c-a3b3-e23d7d789142:
-    id: 66cb7cda-56ac-449c-a3b3-e23d7d789142
-    content: Timing - the write happens synchronously inside the MCP submit call
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  141d0473-9206-4f6f-bd40-b2259843586b:
-    id: 141d0473-9206-4f6f-bd40-b2259843586b
-    content: Direct-write fallback must keep working for legitimate non-workflow direct sends
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4bb6b0e4-ac09-49d1-ba61-c66576b8abdd:
-    id: 4bb6b0e4-ac09-49d1-ba61-c66576b8abdd
-    content: Binding drift (gate 4) - rejected hard with an MCP error; Claude's content for the original target is lost
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c0eb5b59-d9c5-4ef0-8bc7-a5c11a78f9e1:
-    id: c0eb5b59-d9c5-4ef0-8bc7-a5c11a78f9e1
-    content: Out of scope - any root-identity match; root rewording must remain supported
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  51cddfaf-5513-4859-aa5a-3b0b6e898213:
-    id: 51cddfaf-5513-4859-aa5a-3b0b6e898213
-    content: Out of scope - manual-collab path
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e9b2ecd0-7614-474a-a524-6148885271f6:
-    id: e9b2ecd0-7614-474a-a524-6148885271f6
-    content: ROI - aligning the four gates eliminates the dominant failure modes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e940bc3d-3774-48e4-b0d3-28e940e0e601:
-    id: e940bc3d-3774-48e4-b0d3-28e940e0e601
-    content: Approach
-    children:
-      - 93f3e039-e52d-4738-972c-79baffcc901e
-      - 9dfd6511-65c6-485a-b9e6-79016f67225d
-      - ab7eff10-c4d7-4c71-b91c-166c66dc9c64
-      - 09d43f3b-5d95-4107-8ff1-4df46313c72d
-      - 04ee4d22-f9a4-4ddb-8597-ad90fd9dda53
-      - 0bb46c8b-ea5c-418d-8637-f6253812d3a9
-      - e47864f4-9325-48f6-8e81-3de6ceccfcc7
-      - d732f9a8-bc8d-4485-a1bd-dacecb2a74c5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  93f3e039-e52d-4738-972c-79baffcc901e:
-    id: 93f3e039-e52d-4738-972c-79baffcc901e
-    content: Introduce a single function getAutonomousStepContext(nodeId, state) returning { stepId, execState } or null, used by gate 1, gate 2, and gate 3
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9dfd6511-65c6-485a-b9e6-79016f67225d:
-    id: 9dfd6511-65c6-485a-b9e6-79016f67225d
-    content: In applyStepOutput, when the unified function returns null but the node is structurally autonomous, refuse with a structured error rather than falling through to setState({ content })
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab7eff10-c4d7-4c71-b91c-166c66dc9c64:
-    id: ab7eff10-c4d7-4c71-b91c-166c66dc9c64
-    content: Gate 4 - add required targetNodeId param to submit_step_output MCP tool; sendActions injects it at prompt-render time; mcpSubmitOutputTool validates it equals the resolved boundNodeId when isAutomatic is true; mismatch returns an MCP error tool result
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09d43f3b-5d95-4107-8ff1-4df46313c72d:
-    id: 09d43f3b-5d95-4107-8ff1-4df46313c72d
-    content: Gate 4 token is the plain target nodeId (UUID); same-target resubmissions remain valid by UUID equality
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  04ee4d22-f9a4-4ddb-8597-ad90fd9dda53:
-    id: 04ee4d22-f9a4-4ddb-8597-ad90fd9dda53
-    content: Add structured logs at every gate miss with a consistent shape
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0bb46c8b-ea5c-418d-8637-f6253812d3a9:
-    id: 0bb46c8b-ea5c-418d-8637-f6253812d3a9
-    content: 'Harden parseLine against the ''# [ ] # [ ]'' stutter as defense in depth (landed in PR1)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e47864f4-9325-48f6-8e81-3de6ceccfcc7:
-    id: e47864f4-9325-48f6-8e81-3de6ceccfcc7
-    content: 'Non-obvious - the user-visible ''# [ ] # [ ]'' is downstream of blob-writes; fixing only the parser leaves three of the four root causes intact'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d732f9a8-bc8d-4485-a1bd-dacecb2a74c5:
-    id: d732f9a8-bc8d-4485-a1bd-dacecb2a74c5
-    content: Non-obvious - gate 4 lives entirely on the server side and only the autonomous route is checked
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a709ff10-e18f-4f6d-9366-d2f7b7d291ba:
-    id: a709ff10-e18f-4f6d-9366-d2f7b7d291ba
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   87917b51-6c7c-49ea-83a8-d64a4512583e:
     id: 87917b51-6c7c-49ea-83a8-d64a4512583e
     content: PR1 - Bug - Submission routing gates disagree, corrupting or misrouting workflow nodes
@@ -174776,6 +173935,1067 @@ nodes:
   00fc5d06-52c1-4293-938f-5fbd4b161bcd:
     id: 00fc5d06-52c1-4293-938f-5fbd4b161bcd
     content: No ambiguities or inconsistencies discovered in existing docs while reviewing PR2 scope
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0344bb2e-2b99-4bfb-8019-85d233fd50b7:
+    id: 0344bb2e-2b99-4bfb-8019-85d233fd50b7
+    content: PR3 - Bug - Submission routing gates disagree, corrupting or misrouting workflow nodes
+    children:
+      - 56aa5124-7869-4782-b6e6-c32e44428b89
+      - c2fc9b41-d5ca-4b30-a29d-865eba253bf9
+      - 639536bf-b453-47dc-9abf-53fb8e73e863
+      - ba09dd05-bd83-4ec8-9b47-808c18c0c1d6
+      - 70747e99-d51c-4fdb-94a3-da40361dda85
+      - 303df7b4-93ee-4c21-948c-2a1171c0723f
+      - a07734a7-8dc8-42c8-8e43-ef07b36b1ce0
+      - c6534e98-a57a-46a5-ab37-89600727a151
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      groupId: 99a5d848-4008-4c0e-a0a0-093ca34431c7
+      sessionId: ec7c00b3-cf3d-4011-9979-819df9e6941e
+  56aa5124-7869-4782-b6e6-c32e44428b89:
+    id: 56aa5124-7869-4782-b6e6-c32e44428b89
+    content: worktree
+    children:
+      - c4ebcdc7-d2fc-499c-ab14-d72c42e493d8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4ebcdc7-d2fc-499c-ab14-d72c42e493d8:
+    id: c4ebcdc7-d2fc-499c-ab14-d72c42e493d8
+    content: vscode://file/Users/brianfox/dev/Arborescent-gate4-token
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2fc9b41-d5ca-4b30-a29d-865eba253bf9:
+    id: c2fc9b41-d5ca-4b30-a29d-865eba253bf9
+    content: Subtask - gate 4 target-keyed binding token
+    children:
+      - 396ddf90-3bab-4f17-8732-2b76968e41a6
+      - 577b9d77-24f7-4608-b6e8-967e8f12317e
+      - bd9c9e4c-a42e-4718-81e3-bf5260f887b3
+      - 04db4d43-d853-4546-bc38-ad81a0a930bc
+      - 01b75ec1-fe43-4e68-a647-19d3f3ba9f60
+      - 0a38627c-aaa6-4203-b3c0-9ea008d577df
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  396ddf90-3bab-4f17-8732-2b76968e41a6:
+    id: 396ddf90-3bab-4f17-8732-2b76968e41a6
+    content: Required targetNodeId param added to submit_step_output MCP tool schema
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  577b9d77-24f7-4608-b6e8-967e8f12317e:
+    id: 577b9d77-24f7-4608-b6e8-967e8f12317e
+    content: sendActions injects targetNodeId into the autonomous-route prompt INSTRUCTIONS header at prompt-render time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd9c9e4c-a42e-4718-81e3-bf5260f887b3:
+    id: bd9c9e4c-a42e-4718-81e3-bf5260f887b3
+    content: mcpSubmitOutputTool validates targetNodeId equals resolved boundNodeId when isAutomatic returns true; mismatch returns an MCP error tool result
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04db4d43-d853-4546-bc38-ad81a0a930bc:
+    id: 04db4d43-d853-4546-bc38-ad81a0a930bc
+    content: Manual-collab bypass - the gate 4 check is skipped when isAutomatic is false (proposalSubmitter handles the submission as today)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01b75ec1-fe43-4e68-a647-19d3f3ba9f60:
+    id: 01b75ec1-fe43-4e68-a647-19d3f3ba9f60
+    content: Structured log on token mismatch with both tokenTarget and resolvedTarget
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a38627c-aaa6-4203-b3c0-9ea008d577df:
+    id: 0a38627c-aaa6-4203-b3c0-9ea008d577df
+    content: Convert gate 4 it.todo placeholders to real tests in mcpSubmitOutputToolBindingToken.test.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  639536bf-b453-47dc-9abf-53fb8e73e863:
+    id: 639536bf-b453-47dc-9abf-53fb8e73e863
+    content: Acceptance criteria
+    children:
+      - 3fff5674-5204-4894-9408-ea1bf76d6550
+      - 1901fc79-43b9-4f35-9295-4d57e604603a
+      - 722e76a1-239b-4aa3-a4ed-42bfce29a447
+      - 3724b926-8110-4c9a-a5d0-237f8f592d8a
+      - e387eebe-478a-48bc-8c7c-9595e2e293c9
+      - deeb8302-5546-40eb-b556-f6cb7d4adae1
+      - b817d094-dda9-4824-9215-e7c2d8462a29
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fff5674-5204-4894-9408-ea1bf76d6550:
+    id: 3fff5674-5204-4894-9408-ea1bf76d6550
+    content: submit_step_output rejects with an MCP error when targetNodeId is missing on an autonomous-route call
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1901fc79-43b9-4f35-9295-4d57e604603a:
+    id: 1901fc79-43b9-4f35-9295-4d57e604603a
+    content: submit_step_output rejects when the provided targetNodeId differs from the resolved boundNodeId at submit time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  722e76a1-239b-4aa3-a4ed-42bfce29a447:
+    id: 722e76a1-239b-4aa3-a4ed-42bfce29a447
+    content: Same-target resubmissions succeed - UUID equality holds across N consecutive submits to the same node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3724b926-8110-4c9a-a5d0-237f8f592d8a:
+    id: 3724b926-8110-4c9a-a5d0-237f8f592d8a
+    content: Manual-collab (non-autonomous) submissions do not require targetNodeId - existing manual-collab behavior unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e387eebe-478a-48bc-8c7c-9595e2e293c9:
+    id: e387eebe-478a-48bc-8c7c-9595e2e293c9
+    content: Decomposition+recurse drift surfaces as a clean MCP error rather than a wrong-node write
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  deeb8302-5546-40eb-b556-f6cb7d4adae1:
+    id: deeb8302-5546-40eb-b556-f6cb7d4adae1
+    content: Token mismatch produces a structured log carrying tokenTarget and resolvedTarget
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b817d094-dda9-4824-9215-e7c2d8462a29:
+    id: b817d094-dda9-4824-9215-e7c2d8462a29
+    content: All previously-it.todo tests in mcpSubmitOutputToolBindingToken are real tests and passing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba09dd05-bd83-4ec8-9b47-808c18c0c1d6:
+    id: ba09dd05-bd83-4ec8-9b47-808c18c0c1d6
+    content: User story
+    children:
+      - 0f19a8dd-0afa-4d33-abfa-820e18bf13c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f19a8dd-0afa-4d33-abfa-820e18bf13c8:
+    id: 0f19a8dd-0afa-4d33-abfa-820e18bf13c8
+    content: Bug - Submission routing gates disagree, corrupting or misrouting workflow nodes
+    children:
+      - c54067f0-7b4f-4dfd-b0c2-cb85be529d68
+      - 14635902-5921-4663-9278-e8b1a3803077
+      - 19f9412f-5a2a-491f-ba77-95883f0423cf
+      - 7f3a322f-99e3-402d-8636-89c1aac74203
+      - 845c4d9d-6bb9-4c1e-a31f-33738c0d7fe7
+      - 4f41982a-415c-4cd3-9eb8-1effc937385e
+      - 32a43048-72b9-419d-a0a1-bc6f2ad46d77
+      - a352efab-d23d-4dca-8e05-4ee85deb4f27
+      - 937499c4-8858-46f0-8b7f-545b948fcf44
+      - 610384e7-c305-4311-aa1f-d6f1dd684687
+      - 03dae744-d242-42b0-84b0-034308038636
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c54067f0-7b4f-4dfd-b0c2-cb85be529d68:
+    id: c54067f0-7b4f-4dfd-b0c2-cb85be529d68
+    content: worktree
+    children:
+      - 454c83b5-17bb-4f65-a81d-7eaea3298a2c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  454c83b5-17bb-4f65-a81d-7eaea3298a2c:
+    id: 454c83b5-17bb-4f65-a81d-7eaea3298a2c
+    content: vscode://file/Users/brianfox/dev/Arborescent-routing-gates
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14635902-5921-4663-9278-e8b1a3803077:
+    id: 14635902-5921-4663-9278-e8b1a3803077
+    content: Summary
+    children:
+      - a3d3255b-b397-4e2d-aeb8-128c3059af3f
+      - 19dae418-92fd-4094-a04b-60163acb12a5
+      - 5207fa44-a066-4f74-ae57-619fcc18dc87
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3d3255b-b397-4e2d-aeb8-128c3059af3f:
+    id: a3d3255b-b397-4e2d-aeb8-128c3059af3f
+    content: Four independent gates decide where a submit_step_output payload lands - server-side autonomous check, renderer workflowExecutionStates check, renderer owningStepType / acceptMode check, and the session binding target itself
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19dae418-92fd-4094-a04b-60163acb12a5:
+    id: 19dae418-92fd-4094-a04b-60163acb12a5
+    content: Any disagreement between them silently corrupts the bound node (blob-write), surfaces an unexpected feedback panel, or writes to a different node than the one Claude was responding to
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5207fa44-a066-4f74-ae57-619fcc18dc87:
+    id: 5207fa44-a066-4f74-ae57-619fcc18dc87
+    content: All these writes happen synchronously inside the MCP submit call, before the collaborate step completes, so the autonomous parse + AcceptFeedbackCommand rebuild path never gets a chance once any gate misses
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19f9412f-5a2a-491f-ba77-95883f0423cf:
+    id: 19f9412f-5a2a-491f-ba77-95883f0423cf
+    content: Steps to reproduce
+    children:
+      - badb76d8-de29-4e20-99f3-1f03186f92e7
+      - 94673f98-dfdb-4d86-8a9c-20fb79007e6e
+      - 509ee055-989f-49af-85c3-cc7cfe3132cf
+      - 61e0ea4f-f2f5-4746-91b8-a94b776c3936
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  badb76d8-de29-4e20-99f3-1f03186f92e7:
+    id: badb76d8-de29-4e20-99f3-1f03186f92e7
+    content: Gate 2 miss - autonomous step bound, server isAutomatic=true, but workflowExecutionStates[nodeId] absent, applyStepOutput falls through to setState({...node, content}), dumping raw markdown into node.content with children left stale
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94673f98-dfdb-4d86-8a9c-20fb79007e6e:
+    id: 94673f98-dfdb-4d86-8a9c-20fb79007e6e
+    content: Gate 3 miss - gates 1 and 2 true, but findOwningWorkflowStepId returns null in handleAutonomousFeedback, acceptMode becomes 'manual-send-accept', submission surfaces via the feedback panel (executeCommand path) instead of executing directly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  509ee055-989f-49af-85c3-cc7cfe3132cf:
+    id: 509ee055-989f-49af-85c3-cc7cfe3132cf
+    content: Gate 4 miss - user-initiated in-flight rebind (or decomposition-recurse race) drifts the bound target between prompt-render and submit; submission lands on a node Claude was not addressing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61e0ea4f-f2f5-4746-91b8-a94b776c3936:
+    id: 61e0ea4f-f2f5-4746-91b8-a94b776c3936
+    content: 'Downstream symptom - a blob-written node whose content begins with ''# [ ]'' gets another heading prefix on the next serialization, producing the visible ''# [ ] # [ ]'' stutter at the top of the next prompt'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f3a322f-99e3-402d-8636-89c1aac74203:
+    id: 7f3a322f-99e3-402d-8636-89c1aac74203
+    content: Expected behavior
+    children:
+      - 086485a4-4cc9-4b80-bab7-8be13803eb1d
+      - 5ace4e83-6ca7-4220-a81d-52495855e30b
+      - 16632649-f36c-4d34-92b0-a9902a2af9a7
+      - fb29df96-895e-4af0-959f-1dfee830b3ee
+      - 998c06fc-4395-4347-a53a-45c04b2f8a14
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  086485a4-4cc9-4b80-bab7-8be13803eb1d:
+    id: 086485a4-4cc9-4b80-bab7-8be13803eb1d
+    content: Happy path - all four gates agree, submission parses, AcceptFeedbackCommand rebuilds the bound node's children, no panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ace4e83-6ca7-4220-a81d-52495855e30b:
+    id: 5ace4e83-6ca7-4220-a81d-52495855e30b
+    content: Root rewording / rewrite must continue to work - a single well-formed '# [ ] New title' applies as the new bound root
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16632649-f36c-4d34-92b0-a9902a2af9a7:
+    id: 16632649-f36c-4d34-92b0-a9902a2af9a7
+    content: Drift case - a submission whose target binding drifted since prompt-render is rejected with an MCP error; Claude's content for the original target is lost (user beware - they intentionally rebound)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb29df96-895e-4af0-959f-1dfee830b3ee:
+    id: fb29df96-895e-4af0-959f-1dfee830b3ee
+    content: Edge case - a submission arriving before the collaborate step has finished must still route through parse + rebuild, not direct content-write
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  998c06fc-4395-4347-a53a-45c04b2f8a14:
+    id: 998c06fc-4395-4347-a53a-45c04b2f8a14
+    content: Manual-collab on an unbound node must keep working - send to unbound node, Claude submits, feedback panel surfaces, user discusses and resends, pendingTarget persists across submits until accept/cancel (existing behavior, per commit f7e8b59); gate 4 does not apply to this path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  845c4d9d-6bb9-4c1e-a31f-33738c0d7fe7:
+    id: 845c4d9d-6bb9-4c1e-a31f-33738c0d7fe7
+    content: Actual behavior
+    children:
+      - fd30602f-9ed7-44ed-9b49-d3825cd9806e
+      - fdecb6dd-27ac-482b-98e1-425a00efff21
+      - 844b793e-7ebb-4513-ae1a-7cb93be82515
+      - 8ed8c322-7275-4d40-a705-45ba56010bcd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd30602f-9ed7-44ed-9b49-d3825cd9806e:
+    id: fd30602f-9ed7-44ed-9b49-d3825cd9806e
+    content: Gate 2 miss - node.content becomes a multi-line markdown blob; children stale; recoverable only via undo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdecb6dd-27ac-482b-98e1-425a00efff21:
+    id: fdecb6dd-27ac-482b-98e1-425a00efff21
+    content: Gate 3 miss - feedback panel appears for an autonomous step ('old mechanism' still active as the fallback in executeCommand)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  844b793e-7ebb-4513-ae1a-7cb93be82515:
+    id: 844b793e-7ebb-4513-ae1a-7cb93be82515
+    content: Gate 4 miss - the wrong node receives the write, then often hits one of the other failure paths inside that node's gate state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ed8c322-7275-4d40-a705-45ba56010bcd:
+    id: 8ed8c322-7275-4d40-a705-45ba56010bcd
+    content: '''# [ ] # [ ]'' stutter visible on next prompt as downstream artifact of the corrupted content'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f41982a-415c-4cd3-9eb8-1effc937385e:
+    id: 4f41982a-415c-4cd3-9eb8-1effc937385e
+    content: Suspected cause
+    children:
+      - 881328e3-e1b7-435c-9325-a1735e1b7663
+      - c5d4eae5-3974-4187-90ed-e1483f30eb19
+      - ead7a227-6463-4380-9014-a39faba6a922
+      - 9b51c39f-d9ba-4383-abdc-71aa7d043834
+      - 6a749ab2-a64f-4b36-a58c-fb077d65a426
+      - 53e244ac-8e55-4d45-ac48-cccec2b9395a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  881328e3-e1b7-435c-9325-a1735e1b7663:
+    id: 881328e3-e1b7-435c-9325-a1735e1b7663
+    content: Four independent routing decisions that should be derived from a single source of truth but are not
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5d4eae5-3974-4187-90ed-e1483f30eb19:
+    id: c5d4eae5-3974-4187-90ed-e1483f30eb19
+    content: Gate 1 - src/main/services/mcpSubmitOutputTool.ts isAutomatic checks metadata.stepType on the node or its immediate parent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ead7a227-6463-4380-9014-a39faba6a922:
+    id: ead7a227-6463-4380-9014-a39faba6a922
+    content: Gate 2 - src/renderer/services/mcpStepOutputApplierService.ts applyStepOutput checks state.workflowExecutionStates[nodeId]; on miss, falls through to setState({...node, content})
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b51c39f-d9ba-4383-abdc-71aa7d043834:
+    id: 9b51c39f-d9ba-4383-abdc-71aa7d043834
+    content: Gate 3 - src/renderer/store/tree/actions/workflowExecutionActions.ts handleAutonomousFeedback computes acceptMode from findOwningWorkflowStepId + owningStepType; when null, mode is 'manual-send-accept'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a749ab2-a64f-4b36-a58c-fb077d65a426:
+    id: 6a749ab2-a64f-4b36-a58c-fb077d65a426
+    content: Gate 4 - src/main/services/mcpSubmitOutputTool.ts resolves boundNodeId from oneShotTargetStore or bindingRegistry.lookup(sessionId) at submit time; verified drift only occurs in user-confirmed in-flight rebinds and decomposition+recurse hand-off
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53e244ac-8e55-4d45-ac48-cccec2b9395a:
+    id: 53e244ac-8e55-4d45-ac48-cccec2b9395a
+    content: Synchronous write inside the MCP submit call - happens before the collaborate step completes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32a43048-72b9-419d-a0a1-bc6f2ad46d77:
+    id: 32a43048-72b9-419d-a0a1-bc6f2ad46d77
+    content: Affected files
+    children:
+      - ee65ced5-fc49-424c-a893-8b45c10822f2
+      - 3d845839-a62d-4dd8-82f5-740fc27a40a7
+      - df5a2b46-4671-4579-acb5-9bf8efefc82e
+      - 34f627e6-1c22-4de6-a066-7c49f109150a
+      - cc81a0c3-8d51-49f2-bc8d-5b7e8ec3c772
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee65ced5-fc49-424c-a893-8b45c10822f2:
+    id: ee65ced5-fc49-424c-a893-8b45c10822f2
+    content: src/main/services/mcpSubmitOutputTool.ts - isAutomatic gate (gate 1) and boundNodeId resolution (gate 4)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d845839-a62d-4dd8-82f5-740fc27a40a7:
+    id: 3d845839-a62d-4dd8-82f5-740fc27a40a7
+    content: src/renderer/services/mcpStepOutputApplierService.ts - applyStepOutput direct content-write fallback (gate 2)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df5a2b46-4671-4579-acb5-9bf8efefc82e:
+    id: df5a2b46-4671-4579-acb5-9bf8efefc82e
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts - handleAutonomousFeedback acceptMode selection (gate 3)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34f627e6-1c22-4de6-a066-7c49f109150a:
+    id: 34f627e6-1c22-4de6-a066-7c49f109150a
+    content: src/renderer/store/tree/actions/sendActions.ts - prompt assembly site for the gate 4 targetNodeId token
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc81a0c3-8d51-49f2-bc8d-5b7e8ec3c772:
+    id: cc81a0c3-8d51-49f2-bc8d-5b7e8ec3c772
+    content: src/renderer/utils/markdown.ts - parseLine stutter normalisation (defense in depth, landed in PR1)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a352efab-d23d-4dca-8e05-4ee85deb4f27:
+    id: a352efab-d23d-4dca-8e05-4ee85deb4f27
+    content: Regression window
+    children:
+      - 910a59e1-d88a-4b5f-8797-e1005d980afb
+      - 08ea7ba2-faed-428d-b048-7446dd501ceb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  910a59e1-d88a-4b5f-8797-e1005d980afb:
+    id: 910a59e1-d88a-4b5f-8797-e1005d980afb
+    content: Last known good - unknown
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08ea7ba2-faed-428d-b048-7446dd501ceb:
+    id: 08ea7ba2-faed-428d-b048-7446dd501ceb
+    content: First observed broken - reproduced live in session ec7c00b3-cf3d-4011-9979-819df9e6941e and earlier in session dd16dfb9-55d4-4b93-a3c1-ef69398f5e22
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  937499c4-8858-46f0-8b7f-545b948fcf44:
+    id: 937499c4-8858-46f0-8b7f-545b948fcf44
+    content: Severity
+    children:
+      - 35a160cd-1436-4a39-81e0-2dd49777f3e4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  35a160cd-1436-4a39-81e0-2dd49777f3e4:
+    id: 35a160cd-1436-4a39-81e0-2dd49777f3e4
+    content: High - silently corrupts user-authored workflow nodes during routine submissions; can also misdirect submissions to unrelated nodes; only recoverable via undo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  610384e7-c305-4311-aa1f-d6f1dd684687:
+    id: 610384e7-c305-4311-aa1f-d6f1dd684687
+    content: Notes
+    children:
+      - e24e2557-b2a9-49cc-bcf6-150c331db935
+      - 0ebd12eb-87e8-4df9-8d25-2f7a5311ce2a
+      - 6a9f1100-c923-41b8-87e4-0f056772ae69
+      - d26acc22-1e2e-49be-a449-817bf6eb070f
+      - 92bda9bc-6323-4652-a184-98c933e47a19
+      - aedff7b4-862c-4783-a91c-bb9dc886ee95
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e24e2557-b2a9-49cc-bcf6-150c331db935:
+    id: e24e2557-b2a9-49cc-bcf6-150c331db935
+    content: Root rewording / rewrite must remain fully supported - any fix that rejects non-matching roots is out
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ebd12eb-87e8-4df9-8d25-2f7a5311ce2a:
+    id: 0ebd12eb-87e8-4df9-8d25-2f7a5311ce2a
+    content: Direct-write fallback in applyStepOutput is correct for non-workflow direct sends - must not be removed wholesale, only gated more carefully
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a9f1100-c923-41b8-87e4-0f056772ae69:
+    id: 6a9f1100-c923-41b8-87e4-0f056772ae69
+    content: Feedback panel route (gate 3 executeCommand) is still wired as the fallback; gate 3 alignment removes the accidental routing into it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d26acc22-1e2e-49be-a449-817bf6eb070f:
+    id: d26acc22-1e2e-49be-a449-817bf6eb070f
+    content: Manual-collab discuss-then-refresh loop on unbound nodes must remain intact (per commit f7e8b59); gate 4 does NOT run on manual-collab submissions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92bda9bc-6323-4652-a184-98c933e47a19:
+    id: 92bda9bc-6323-4652-a184-98c933e47a19
+    content: Verified - regular step advance does not rebind the session (only mode === 'recurse' produces 'workflow-advance' source per workflowExecutionActions.ts:420); only decomposition+recurse silently auto-confirms a rebind
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aedff7b4-862c-4783-a91c-bb9dc886ee95:
+    id: aedff7b4-862c-4783-a91c-bb9dc886ee95
+    content: Telemetry gap - no log fires when gates disagree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03dae744-d242-42b0-84b0-034308038636:
+    id: 03dae744-d242-42b0-84b0-034308038636
+    content: Technical refinement
+    children:
+      - 523f963e-7b7a-4450-8988-37e3c21f7d41
+      - 59a34378-45cb-422b-9076-d5696fc45a50
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  523f963e-7b7a-4450-8988-37e3c21f7d41:
+    id: 523f963e-7b7a-4450-8988-37e3c21f7d41
+    content: Complications
+    children:
+      - 9ece5d3a-8b02-477f-b6b8-06e2c3443d4a
+      - 4e97a137-bd92-4109-bfeb-a0ab4c1e40c0
+      - a1ccd089-33dd-48d7-840a-41d1d21802bc
+      - 53cc9222-2515-4204-a217-a05001245c5b
+      - cfab1de7-1ac1-4eb8-a0f8-abe176d6a6bf
+      - ccc19d3d-7fae-4623-9790-1d2b3e20e714
+      - 7a6f5df8-b67b-4995-a6f2-9cce38a18e5f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ece5d3a-8b02-477f-b6b8-06e2c3443d4a:
+    id: 9ece5d3a-8b02-477f-b6b8-06e2c3443d4a
+    content: Four gates must agree at apply time - derive 1+2+3 from a single source of truth and add a target-identity check at the submit boundary (gate 4)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e97a137-bd92-4109-bfeb-a0ab4c1e40c0:
+    id: 4e97a137-bd92-4109-bfeb-a0ab4c1e40c0
+    content: Timing - the write happens synchronously inside the MCP submit call
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1ccd089-33dd-48d7-840a-41d1d21802bc:
+    id: a1ccd089-33dd-48d7-840a-41d1d21802bc
+    content: Direct-write fallback must keep working for legitimate non-workflow direct sends
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53cc9222-2515-4204-a217-a05001245c5b:
+    id: 53cc9222-2515-4204-a217-a05001245c5b
+    content: Binding drift (gate 4) - rejected hard with an MCP error; Claude's content for the original target is lost
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfab1de7-1ac1-4eb8-a0f8-abe176d6a6bf:
+    id: cfab1de7-1ac1-4eb8-a0f8-abe176d6a6bf
+    content: Out of scope - any root-identity match; root rewording must remain supported
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccc19d3d-7fae-4623-9790-1d2b3e20e714:
+    id: ccc19d3d-7fae-4623-9790-1d2b3e20e714
+    content: Out of scope - manual-collab path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a6f5df8-b67b-4995-a6f2-9cce38a18e5f:
+    id: 7a6f5df8-b67b-4995-a6f2-9cce38a18e5f
+    content: ROI - aligning the four gates eliminates the dominant failure modes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59a34378-45cb-422b-9076-d5696fc45a50:
+    id: 59a34378-45cb-422b-9076-d5696fc45a50
+    content: Approach
+    children:
+      - 9329209d-5830-42dc-9fda-1eb84d5a9fb3
+      - 1577cbf3-89ef-4991-a086-fcdf18ae7dae
+      - e01fd387-4ab4-45cf-8c5a-25e131480ad8
+      - 5983b575-7dc2-42dd-9b89-85f7e22ad1b0
+      - 497ecded-fbf6-45a0-95ab-ea91a5e5ee41
+      - 999a061a-77e5-4bae-9b99-6fecbf88b7af
+      - 0155ced8-a323-4bed-b62e-821093a71101
+      - 9cee64c5-c1a5-494f-9bd1-ba4fda9409ae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9329209d-5830-42dc-9fda-1eb84d5a9fb3:
+    id: 9329209d-5830-42dc-9fda-1eb84d5a9fb3
+    content: Introduce a single function getAutonomousStepContext(nodeId, state) returning { stepId, execState } or null, used by gate 1, gate 2, and gate 3
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1577cbf3-89ef-4991-a086-fcdf18ae7dae:
+    id: 1577cbf3-89ef-4991-a086-fcdf18ae7dae
+    content: In applyStepOutput, when the unified function returns null but the node is structurally autonomous, refuse with a structured error rather than falling through to setState({ content })
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e01fd387-4ab4-45cf-8c5a-25e131480ad8:
+    id: e01fd387-4ab4-45cf-8c5a-25e131480ad8
+    content: Gate 4 - add required targetNodeId param to submit_step_output MCP tool; sendActions injects it at prompt-render time; mcpSubmitOutputTool validates it equals the resolved boundNodeId when isAutomatic is true; mismatch returns an MCP error tool result
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5983b575-7dc2-42dd-9b89-85f7e22ad1b0:
+    id: 5983b575-7dc2-42dd-9b89-85f7e22ad1b0
+    content: Gate 4 token is the plain target nodeId (UUID); same-target resubmissions remain valid by UUID equality
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  497ecded-fbf6-45a0-95ab-ea91a5e5ee41:
+    id: 497ecded-fbf6-45a0-95ab-ea91a5e5ee41
+    content: Add structured logs at every gate miss with a consistent shape
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  999a061a-77e5-4bae-9b99-6fecbf88b7af:
+    id: 999a061a-77e5-4bae-9b99-6fecbf88b7af
+    content: 'Harden parseLine against the ''# [ ] # [ ]'' stutter as defense in depth (landed in PR1)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0155ced8-a323-4bed-b62e-821093a71101:
+    id: 0155ced8-a323-4bed-b62e-821093a71101
+    content: 'Non-obvious - the user-visible ''# [ ] # [ ]'' is downstream of blob-writes; fixing only the parser leaves three of the four root causes intact'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cee64c5-c1a5-494f-9bd1-ba4fda9409ae:
+    id: 9cee64c5-c1a5-494f-9bd1-ba4fda9409ae
+    content: Non-obvious - gate 4 lives entirely on the server side and only the autonomous route is checked
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70747e99-d51c-4fdb-94a3-da40361dda85:
+    id: 70747e99-d51c-4fdb-94a3-da40361dda85
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  303df7b4-93ee-4c21-948c-2a1171c0723f:
+    id: 303df7b4-93ee-4c21-948c-2a1171c0723f
+    content: Summary of what is undone in PR3 and why
+    children:
+      - 9c3353ee-c3d3-467b-b8f9-084069967b23
+      - 62fdebcc-eb56-4aef-8eee-57e85058441d
+      - 9d35b1fd-4daf-44fd-ad5b-75b31e86bc73
+      - 6188a197-a9e4-426a-bbfe-357999f84cdc
+      - 1c3923c1-f0da-4842-bf4d-617b79156a64
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c3353ee-c3d3-467b-b8f9-084069967b23:
+    id: 9c3353ee-c3d3-467b-b8f9-084069967b23
+    content: 'PR3 root: all subtask + acceptance criteria delivered, 210/0 tests across affected files, lint clean, typecheck clean'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62fdebcc-eb56-4aef-8eee-57e85058441d:
+    id: 62fdebcc-eb56-4aef-8eee-57e85058441d
+    content: 'Complete bug fix: all four gates now have their counter-measures (PR1 parser hardening, PR2 unified predicate + gate 1+2+3 alignment, PR3 gate 4 token); the overall user story is functionally resolved'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d35b1fd-4daf-44fd-ad5b-75b31e86bc73:
+    id: 9d35b1fd-4daf-44fd-ad5b-75b31e86bc73
+    content: User story sub-tree items remain [ ] as bug documentation - Summary, Steps to reproduce, Expected behavior, Actual behavior, Suspected cause, Regression window, Severity, Notes, Complications are descriptive of the bug, not implementation deliverables
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6188a197-a9e4-426a-bbfe-357999f84cdc:
+    id: 6188a197-a9e4-426a-bbfe-357999f84cdc
+    content: Non-obvious caveat notes in User story Approach remain [ ] - they are reviewer-context callouts, not action items
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c3923c1-f0da-4842-bf4d-617b79156a64:
+    id: 1c3923c1-f0da-4842-bf4d-617b79156a64
+    content: Approach Affected files and Technical refinement Approach marked [x] - reflects that all enumerated implementation work is landed across PR1, PR2, and PR3
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a07734a7-8dc8-42c8-8e43-ef07b36b1ce0:
+    id: a07734a7-8dc8-42c8-8e43-ef07b36b1ce0
+    content: review feedback
+    children:
+      - 1c1d06f0-26dc-47a9-a60a-72671bab622d
+      - 63af65a7-d5c7-499a-8464-04401b9284dc
+      - 94c93bde-1f87-4e27-89a8-62241ca0833e
+      - f6101d6a-d2be-4aff-9f8c-c8cf2c02f989
+      - 5ae7d7ba-0aab-4f00-9b08-1cdd264844dc
+      - 16204bca-3404-41d9-836f-dd921944dc95
+      - 7314672f-c492-4d59-8645-7fb33ee8845d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c1d06f0-26dc-47a9-a60a-72671bab622d:
+    id: 1c1d06f0-26dc-47a9-a60a-72671bab622d
+    content: No blockers - 68 PR3 tests pass; lint and typecheck clean on diff; semantics match the agreed contract (autonomous-route only, hard MCP reject on missing/mismatch, manual-collab bypassed)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63af65a7-d5c7-499a-8464-04401b9284dc:
+    id: 63af65a7-d5c7-499a-8464-04401b9284dc
+    content: Nit - mcpServer.ts:254 keeps target_node_id zod schema .optional() so manual-collab still validates; the "required on autonomous route" claim is enforced at server runtime in mcpSubmitOutputTool, not at the schema layer. Add a one-line comment next to the zod schema explaining that the runtime gate is load-bearing, so a future reader doesn't tighten the schema and break manual-collab
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94c93bde-1f87-4e27-89a8-62241ca0833e:
+    id: 94c93bde-1f87-4e27-89a8-62241ca0833e
+    content: 'Nit - mcpSubmitOutputToolPendingTargetPersistence.test.ts has a test ("first to TARGET_2") that sends targetNodeId: TARGET while the resolved bound is TARGET_2; harmless today because it''s a manual-route test (gate 4 bypassed) but misleading; either pass TARGET_2 to match the resolved target, or drop targetNodeId on manual-route patches entirely to make the bypass intent explicit'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6101d6a-d2be-4aff-9f8c-c8cf2c02f989:
+    id: f6101d6a-d2be-4aff-9f8c-c8cf2c02f989
+    content: Praise - prompt directive lands inside the INSTRUCTIONS wrapper alongside SUBMIT_ONCE_INSTRUCTION, plus the MCP tool description carries the same contract - model sees two reinforcing signals
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ae7d7ba-0aab-4f00-9b08-1cdd264844dc:
+    id: 5ae7d7ba-0aab-4f00-9b08-1cdd264844dc
+    content: 'Praise - validation ordering is correct: missing-token check fires ONLY on the autonomous route (after isStructurallyAutonomous gate 1), matching the agreed scope'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16204bca-3404-41d9-836f-dd921944dc95:
+    id: 16204bca-3404-41d9-836f-dd921944dc95
+    content: Praise - convention compliance passes (comments are why-focused, naming matches existing boundNodeId/pendingTarget vocabulary, logger tag matches existing 'McpSubmit')
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7314672f-c492-4d59-8645-7fb33ee8845d:
+    id: 7314672f-c492-4d59-8645-7fb33ee8845d
+    content: 'Minor - empty-string default `targetNodeId: string = ''''` in buildCollaborateSubmitOutputTarget / buildBothOutputTarget reads slightly oddly; `?: string` would be more idiomatic but not worth churning'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6534e98-a57a-46a5-ab37-89600727a151:
+    id: c6534e98-a57a-46a5-ab37-89600727a151
+    content: Documentation decision for PR3
+    children:
+      - 32329ab6-0dfc-4d8b-8bb0-ff1806911971
+      - 680e3692-7c1c-4699-aee7-e3fbaa527525
+      - 1ecdea1f-c00d-4291-8767-d8d3c02a12fd
+      - e5840c01-0d87-4f01-a76a-a3bf7ec09498
+      - 6b03a8a3-948f-4202-b915-e1436f6e5bbe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32329ab6-0dfc-4d8b-8bb0-ff1806911971:
+    id: 32329ab6-0dfc-4d8b-8bb0-ff1806911971
+    content: Added single user-facing line to CHANGELOG.md Unreleased Bug fixes section covering the full four-gate fix that landed across PR1+PR2+PR3 - describes the user-visible failure modes (silent corruption, wrong-node writes, unexpected feedback panel) and the new behavior (drift surfaces as MCP error)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  680e3692-7c1c-4699-aee7-e3fbaa527525:
+    id: 680e3692-7c1c-4699-aee7-e3fbaa527525
+    content: No new docs/ pages added - the fix is invisible defense when working correctly; there is no new feature surface to document
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ecdea1f-c00d-4291-8767-d8d3c02a12fd:
+    id: 1ecdea1f-c00d-4291-8767-d8d3c02a12fd
+    content: No existing docs reference the broken behavior, so nothing to remove or rewrite
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5840c01-0d87-4f01-a76a-a3bf7ec09498:
+    id: e5840c01-0d87-4f01-a76a-a3bf7ec09498
+    content: No ambiguities or inconsistencies discovered in existing docs while reviewing PR3 scope
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b03a8a3-948f-4202-b915-e1436f6e5bbe:
+    id: 6b03a8a3-948f-4202-b915-e1436f6e5bbe
+    content: Changelog entry placed at top of Bug fixes section so it surfaces first in the Unreleased block
     children: []
     metadata:
       status: completed
