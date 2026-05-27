@@ -110,42 +110,58 @@ export function addNodesToRegistry(
   return newRegistry;
 }
 
-function validateAncestorRegistry(
-  nodes: Record<string, TreeNode>,
+/**
+ * Compares a LIVE (incrementally-maintained) ancestorRegistry against a fresh
+ * rebuild from `children`, logging any divergence. Unlike the prior helper —
+ * which only ever ran against a just-built registry and so could never detect
+ * drift — this is meant to be called with the registry currently in the store,
+ * right after an incremental structural update. `children` is authoritative;
+ * the registry is the denormalized cache, so any mismatch means the cache
+ * drifted and the renderer (children) and logic (registry) will disagree.
+ *
+ * Returns true when consistent, false when any divergence was found.
+ */
+export function checkRegistryConsistency(
   rootNodeId: string,
-  ancestorRegistry: AncestorRegistry
-): void {
-  if (process.env.NODE_ENV === 'production') return;
-
+  nodes: Record<string, TreeNode>,
+  liveRegistry: AncestorRegistry,
+  context = 'unknown',
+): boolean {
   const freshRegistry = buildAncestorRegistry(rootNodeId, nodes);
 
-  const registryKeys = new Set(Object.keys(ancestorRegistry));
+  const registryKeys = new Set(Object.keys(liveRegistry));
   const freshKeys = new Set(Object.keys(freshRegistry));
+  let consistent = true;
 
   for (const key of freshKeys) {
     if (!registryKeys.has(key)) {
-      logger.warn(`Missing node in registry: ${key}`, 'AncestorRegistry');
+      consistent = false;
+      logger.warn(`registry-drift [${context}] missing node in live registry: ${key}`, 'AncestorRegistry');
     }
   }
 
   for (const key of registryKeys) {
     if (!freshKeys.has(key)) {
-      logger.warn(`Stale node in registry: ${key}`, 'AncestorRegistry');
+      consistent = false;
+      logger.warn(`registry-drift [${context}] stale node in live registry: ${key}`, 'AncestorRegistry');
     }
   }
 
   for (const [nodeId, ancestors] of Object.entries(freshRegistry)) {
-    const currentAncestors = ancestorRegistry[nodeId];
+    const currentAncestors = liveRegistry[nodeId];
     if (!currentAncestors) continue;
 
     if (ancestors.length !== currentAncestors.length ||
         !ancestors.every((a, i) => a === currentAncestors[i])) {
+      consistent = false;
       logger.warn(
-        `Ancestor mismatch for ${nodeId}: expected [${ancestors.join(', ')}] got [${currentAncestors.join(', ')}]`,
+        `registry-drift [${context}] ancestor mismatch for ${nodeId}: children-derived [${ancestors.join(', ')}] vs live [${currentAncestors.join(', ')}]`,
         'AncestorRegistry'
       );
     }
   }
+
+  return consistent;
 }
 
 export function updateAncestorRegistry(
@@ -153,9 +169,6 @@ export function updateAncestorRegistry(
   nodes: Record<string, TreeNode>
 ): { nodes: Record<string, TreeNode>; ancestorRegistry: AncestorRegistry } {
   const ancestorRegistry = buildAncestorRegistry(rootNodeId, nodes);
-
-  validateAncestorRegistry(nodes, rootNodeId, ancestorRegistry);
-
   return { nodes, ancestorRegistry };
 }
 

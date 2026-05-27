@@ -20,6 +20,7 @@ import { HistoryManager } from './commands/HistoryManager';
 import { StepHistoryMap } from './stepHistory/stepHistory';
 import { StorageService } from '../../services/storageService';
 import { storeManager } from '../storeManager';
+import { checkRegistryConsistency } from '../../utils/ancestry';
 
 export type { WorkflowExecutionEntry };
 
@@ -74,8 +75,41 @@ export interface TreeState {
 
 const storageService = new StorageService();
 
+// On in dev (npm start) always; in a packaged build only when the renderer was
+// built with ARBO_DIAGNOSTICS=1 (see vite.renderer.config.ts). Lets the
+// production dogfood build run the registry-drift check without shipping the
+// overhead to a normal build.
+const DIAGNOSTICS_ON =
+  process.env.ARBO_DIAGNOSTICS === '1' || process.env.NODE_ENV !== 'production';
+
 export function createTreeStore(treeType: TreeType = 'workspace') {
-  return create<TreeState>((set, get) => {
+  return create<TreeState>((rawSet, get) => {
+    // Drift guard: structural mutations set { nodes, ancestorRegistry } together;
+    // content edits set only { nodes }. So checking object-form partials that
+    // carry ancestorRegistry catches exactly the incremental structural updates
+    // (the drift-prone paths) and never fires on typing. children is the source
+    // of truth; we compare the claimed registry against a fresh rebuild from it.
+    const set: typeof rawSet = (partial, replace?) => {
+      if (
+        DIAGNOSTICS_ON &&
+        partial !== null &&
+        typeof partial === 'object' &&
+        'ancestorRegistry' in partial &&
+        'nodes' in partial &&
+        partial.nodes &&
+        partial.ancestorRegistry
+      ) {
+        const rootNodeId = partial.rootNodeId ?? get().rootNodeId;
+        checkRegistryConsistency(
+          rootNodeId,
+          partial.nodes as Record<string, TreeNode>,
+          partial.ancestorRegistry as Record<string, string[]>,
+          'store.set',
+        );
+      }
+      return (rawSet as (p: typeof partial, r?: boolean) => void)(partial, replace);
+    };
+
     const historyManager = new HistoryManager();
     const persistenceActions = createPersistenceActions(get, set, storageService);
     const visualEffectsActions = createVisualEffectsActions(get, set);

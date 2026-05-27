@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-26T16:08:30.612Z'
+updated: '2026-05-27T12:29:10.239Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -83607,54 +83607,13 @@ nodes:
       - 5d8fcbcc-91b4-40c4-9adc-423a503a1042
       - e2a5edaf-6da0-4567-94c9-e13d252d38d9
     metadata:
-      isBlueprint: true
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isContextDeclaration: false
       blueprintIcon: BrickWall
       blueprintColor: '#c47f09'
-      isContextDeclaration: false
-      expanded: false
-  64ff36d6-ef8d-4864-b871-c47d7f23b563:
-    id: 64ff36d6-ef8d-4864-b871-c47d7f23b563
-    content: Build arborescent
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  4cb6fe9b-416b-43b2-be94-fdf737f477c8:
-    id: 4cb6fe9b-416b-43b2-be94-fdf737f477c8
-    content: Uninstall the existing system version
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  5d8fcbcc-91b4-40c4-9adc-423a503a1042:
-    id: 5d8fcbcc-91b4-40c4-9adc-423a503a1042
-    content: Reinstall with the new version
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  e2a5edaf-6da0-4567-94c9-e13d252d38d9:
-    id: e2a5edaf-6da0-4567-94c9-e13d252d38d9
-    content: Don't worry about closing any running versions
-    children:
-      - 3186ba8d-61da-48b5-8d5e-42f8390b6a02
-      - f0f0a8ab-8585-4598-9a95-0d78b8b49b08
-    metadata:
-      status: pending
-      isBlueprint: true
-  3186ba8d-61da-48b5-8d5e-42f8390b6a02:
-    id: 3186ba8d-61da-48b5-8d5e-42f8390b6a02
-    content: They will still work even if you reinstall
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  f0f0a8ab-8585-4598-9a95-0d78b8b49b08:
-    id: f0f0a8ab-8585-4598-9a95-0d78b8b49b08
-    content: The user can restart to have the new version
-    children: []
-    metadata:
-      status: pending
       isBlueprint: true
   6dfe8786-d370-4c64-a64a-73146ac8e11b:
     id: 6dfe8786-d370-4c64-a64a-73146ac8e11b
@@ -145116,25 +145075,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7ce29277-644d-4d30-8777-6a70cbe9ccd0:
-    id: 7ce29277-644d-4d30-8777-6a70cbe9ccd0
-    content: Commit the project.arbo if it needs to be
-    children: []
-    metadata:
-      isBlueprint: true
-  e37630d6-29f5-431f-bb7e-499d6c78d030:
-    id: e37630d6-29f5-431f-bb7e-499d6c78d030
-    content: Commit any outstanding changes
-    children:
-      - ea12451c-eebf-4ed2-a726-991f3152d34b
-    metadata:
-      isBlueprint: true
-  ea12451c-eebf-4ed2-a726-991f3152d34b:
-    id: ea12451c-eebf-4ed2-a726-991f3152d34b
-    content: Unless they are unfinished, in which case alert the user
-    children: []
-    metadata:
-      isBlueprint: true
   aec95f51-3088-48e5-8bd6-cfda0bcb0fe2:
     id: aec95f51-3088-48e5-8bd6-cfda0bcb0fe2
     content: Revert outbound MCP queue (PR8 + PR9), keep inbound MCP and file-watcher removal
@@ -175051,6 +174991,110 @@ nodes:
     children: []
     metadata:
       status: pending
+  e37630d6-29f5-431f-bb7e-499d6c78d030:
+    id: e37630d6-29f5-431f-bb7e-499d6c78d030
+    content: Commit any outstanding changes
+    children:
+      - ea12451c-eebf-4ed2-a726-991f3152d34b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ea12451c-eebf-4ed2-a726-991f3152d34b:
+    id: ea12451c-eebf-4ed2-a726-991f3152d34b
+    content: Unless they are unfinished, in which case alert the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  7ce29277-644d-4d30-8777-6a70cbe9ccd0:
+    id: 7ce29277-644d-4d30-8777-6a70cbe9ccd0
+    content: Commit the project.arbo if it needs to be
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  64ff36d6-ef8d-4864-b871-c47d7f23b563:
+    id: 64ff36d6-ef8d-4864-b871-c47d7f23b563
+    content: Build arborescent
+    children:
+      - 9602ca5c-1278-480e-8209-1d7c6882246c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9602ca5c-1278-480e-8209-1d7c6882246c:
+    id: 9602ca5c-1278-480e-8209-1d7c6882246c
+    content: 'Dogfood build: run `ARBO_DIAGNOSTICS=1 npm run make` to compile in the registry-drift diagnostic'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4cb6fe9b-416b-43b2-be94-fdf737f477c8:
+    id: 4cb6fe9b-416b-43b2-be94-fdf737f477c8
+    content: Uninstall the existing system version
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5d8fcbcc-91b4-40c4-9adc-423a503a1042:
+    id: 5d8fcbcc-91b4-40c4-9adc-423a503a1042
+    content: Reinstall with the new version
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e2a5edaf-6da0-4567-94c9-e13d252d38d9:
+    id: e2a5edaf-6da0-4567-94c9-e13d252d38d9
+    content: Don't worry about closing any running versions
+    children:
+      - 3186ba8d-61da-48b5-8d5e-42f8390b6a02
+      - f0f0a8ab-8585-4598-9a95-0d78b8b49b08
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3186ba8d-61da-48b5-8d5e-42f8390b6a02:
+    id: 3186ba8d-61da-48b5-8d5e-42f8390b6a02
+    content: They will still work even if you reinstall
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f0f0a8ab-8585-4598-9a95-0d78b8b49b08:
+    id: f0f0a8ab-8585-4598-9a95-0d78b8b49b08
+    content: The user can restart to have the new version
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
