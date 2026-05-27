@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-27T12:29:10.239Z'
+updated: '2026-05-27T14:21:30.190Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25470,7 +25470,8 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children: []
+    children:
+      - 7dc1f860-a3e9-4489-9db2-0cdff8f2476a
     metadata:
       status: pending
       isBlueprint: true
@@ -33382,6 +33383,7 @@ nodes:
       - 259f33e2-faad-4085-b1e4-53396a6da78e
       - ef8172e7-9f00-4495-9f4e-69b862af7dde
       - fbf20e91-d852-4406-9815-952fa7727f33
+      - be1572f5-4f2c-427e-9797-4bd300de63c4
       - bdceb696-248d-4199-9182-db0689445c07
       - ddd90208-5752-46cf-b72a-5fcbe040b2e0
       - b3dc5362-ca81-4cbe-8558-2800fa41354f
@@ -80818,7 +80820,8 @@ nodes:
   2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4:
     id: 2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4
     content: Worktree creation
-    children: []
+    children:
+      - 2d148d76-e0d3-4330-a378-2197983d5baf
     metadata:
       status: pending
       isBlueprint: true
@@ -89246,7 +89249,7 @@ nodes:
       - 16ce2eb9-9b01-40d7-96fa-94ddb4b3c060
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   1fb08d66-e49f-4bbe-ba21-acd2e04a5d73:
     id: 1fb08d66-e49f-4bbe-ba21-acd2e04a5d73
     content: Would be cool if we can send a command for claude to switch to different effort levels depending on the task
@@ -89314,7 +89317,7 @@ nodes:
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   042ee811-0108-4574-9a4c-2a7909572178:
     id: 042ee811-0108-4574-9a4c-2a7909572178
     content: Refactor right click menu
@@ -100628,14 +100631,14 @@ nodes:
       status: pending
   ff048f42-b3f8-4d4d-8ec1-043bed6ea4a4:
     id: ff048f42-b3f8-4d4d-8ec1-043bed6ea4a4
-    content: Don't do this directly to the project file
+    content: Add the node via the add_child_node MCP tool, not by hand-editing the project file
     children: []
     metadata:
       status: pending
       isBlueprint: true
   23a0bd08-fff7-4cf3-9858-6d3518fb5995:
     id: 23a0bd08-fff7-4cf3-9858-6d3518fb5995
-    content: Write the node to the feedback file directly as per the instructions
+    content: On an automatic step this commits straight to the project tree — there is no feedback-file route
     children: []
     metadata:
       status: pending
@@ -159085,8 +159088,7 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children:
-      - 7dc1f860-a3e9-4489-9db2-0cdff8f2476a
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -174980,17 +174982,25 @@ nodes:
       status: pending
   7dc1f860-a3e9-4489-9db2-0cdff8f2476a:
     id: 7dc1f860-a3e9-4489-9db2-0cdff8f2476a
-    content: Bug - can't see where to restore history from (recently did 4 PRs to allow for a history on workflow steps)
+    content: Bug - Step History menu is misplaced and renders empty with scrollbars
     children:
-      - ba3f238d-e313-4006-8b2b-469c3c27ba8a
+      - f93a7ccb-a808-48ae-b1d3-cece3dea163d
+      - 24b62452-e56f-4c8a-afe3-5a12259157e2
+      - a8eaee24-2b10-4e9b-8786-54d14e09e0a2
+      - f39e8e8c-aaf7-4f0a-8a5a-77b1f11d30aa
+      - e6b23246-fea2-4bac-a270-8b65ffd58045
+      - baf3bf6c-cf35-42d5-a208-959b38df52c9
+      - 7d8be480-21b6-4e60-a6b9-ff4fa208c49f
+      - 6d822f02-8ab6-4ef2-97b8-b4a55690a406
+      - a43fa553-144b-40e6-bbb7-4a2ffa6154c1
+      - 553c3dbe-f7b2-4cbf-9073-78fb786c6865
+      - c18bd484-3c25-4739-8d57-810e85e27798
     metadata:
       status: pending
-  ba3f238d-e313-4006-8b2b-469c3c27ba8a:
-    id: ba3f238d-e313-4006-8b2b-469c3c27ba8a
-    content: Nothing in right-click menu
-    children: []
-    metadata:
-      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 01e9ab16-4d3f-4f59-907a-a7b15fdffda4
   e37630d6-29f5-431f-bb7e-499d6c78d030:
     id: e37630d6-29f5-431f-bb7e-499d6c78d030
     content: Commit any outstanding changes
@@ -175095,6 +175105,792 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
+  be1572f5-4f2c-427e-9797-4bd300de63c4:
+    id: be1572f5-4f2c-427e-9797-4bd300de63c4
+    content: Manual testing
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  2d148d76-e0d3-4330-a378-2197983d5baf:
+    id: 2d148d76-e0d3-4330-a378-2197983d5baf
+    content: 'Bug: announce_step_done is rejected on a checkpoint step whose applied context is execute:false/collaborate:false, even when an explicit done-signal is the intended action'
+    children:
+      - 03b28a30-03f9-464e-8a4b-52c77c500584
+      - bd391698-e891-46ff-9f29-12d281bd126c
+      - 0d47b955-acf0-4c04-8f8f-1e3b95e1c86e
+      - 4e67529f-5dc3-49f1-a952-ca88e8a24e55
+      - a124534f-3653-40f8-b117-ba6a07ef4a89
+      - bddb89df-dd13-401c-acef-4fc273a1adaa
+      - e71ffc54-3474-4f5e-9ba1-40eb2deab079
+      - 00a44b62-ec4e-4968-9b30-0b60eea8f64d
+      - bee5f63f-ea08-4f1f-bb50-59b3cbbce791
+      - 0cf221c7-44f0-4cc2-86a7-eb848be6e427
+      - 80cdf388-34c8-4997-9dbe-6f7f81f29490
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: af40a936-93fe-4a52-abf3-98d8defacd84
+  03b28a30-03f9-464e-8a4b-52c77c500584:
+    id: 03b28a30-03f9-464e-8a4b-52c77c500584
+    content: Summary
+    children:
+      - e730331f-8228-4a7d-9cc7-9f1d8b09c863
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e730331f-8228-4a7d-9cc7-9f1d8b09c863:
+    id: e730331f-8228-4a7d-9cc7-9f1d8b09c863
+    content: announce_step_done refuses to fire on a checkpoint step because no execute/action context is applied — so the AI cannot signal completion of an action-mode checkpoint and the workflow stalls.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd391698-e891-46ff-9f29-12d281bd126c:
+    id: bd391698-e891-46ff-9f29-12d281bd126c
+    content: Steps to reproduce
+    children:
+      - b676ffa8-74b1-44cd-a4f4-e07edcbe65bc
+      - ae572a4d-71ff-4314-a861-122f63806a6a
+      - 7d710cca-dc98-4a6c-98ab-b3ae3b99c3a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b676ffa8-74b1-44cd-a4f4-e07edcbe65bc:
+    id: b676ffa8-74b1-44cd-a4f4-e07edcbe65bc
+    content: 'Precondition: a checkpoint workflow step exists with a context named "Verify code review fixes" that has collaborate:false and execute:false, and that context is not applied (inherited or direct) to the bound node.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae572a4d-71ff-4314-a861-122f63806a6a:
+    id: ae572a4d-71ff-4314-a861-122f63806a6a
+    content: 'User action: the AI finishes the checkpoint work and calls announce_step_done with the session_id to signal the step is done.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d710cca-dc98-4a6c-98ab-b3ae3b99c3a9:
+    id: 7d710cca-dc98-4a6c-98ab-b3ae3b99c3a9
+    content: 'Observation: announce_step_done returns an error stating no execute-only or action-mode context is applied to the bound step, so no done-signal is recorded.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d47b955-acf0-4c04-8f8f-1e3b95e1c86e:
+    id: 0d47b955-acf0-4c04-8f8f-1e3b95e1c86e
+    content: Expected behavior
+    children:
+      - f32dd0e1-937c-4185-aa4f-caa76094bd51
+      - 5abcd7fc-7ed4-4441-8cfa-b469831ba287
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f32dd0e1-937c-4185-aa4f-caa76094bd51:
+    id: f32dd0e1-937c-4185-aa4f-caa76094bd51
+    content: 'Happy path: the done-signal is accepted and the checkpoint step is marked done, then pauses for user validation as a checkpoint normally would — without auto-advancing past the checkpoint.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5abcd7fc-7ed4-4441-8cfa-b469831ba287:
+    id: 5abcd7fc-7ed4-4441-8cfa-b469831ba287
+    content: 'Edge cases: a context that is collaborate:false AND execute:false (a pure action/verify context) should be treated as a valid action-mode context for the purpose of accepting a done-signal, not as "no context applied."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e67529f-5dc3-49f1-a952-ca88e8a24e55:
+    id: 4e67529f-5dc3-49f1-a952-ca88e8a24e55
+    content: Actual behavior
+    children:
+      - 3e26715e-2166-4de4-8f78-b9833e0c17cc
+      - ca9a5985-4334-443f-9f74-3618eff51eac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e26715e-2166-4de4-8f78-b9833e0c17cc:
+    id: 3e26715e-2166-4de4-8f78-b9833e0c17cc
+    content: announce_step_done hits the no-applied-context guard (Guard 1) and is rejected before any done is recorded; even if the context were applied, the autonomy guard (Guard 3) would still reject it because checkpoint != autonomous.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca9a5985-4334-443f-9f74-3618eff51eac:
+    id: ca9a5985-4334-443f-9f74-3618eff51eac
+    content: 'User-visible symptom: the workflow appears stuck at the checkpoint with no way for the AI to signal completion via MCP, forcing manual resolution through the UI.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a124534f-3653-40f8-b117-ba6a07ef4a89:
+    id: a124534f-3653-40f8-b117-ba6a07ef4a89
+    content: Suspected cause
+    children:
+      - f7e0697f-6661-403e-bdff-e3225fdd1b02
+      - 31f4a22c-6eb7-4d3c-a3ee-6b28f031c0fb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7e0697f-6661-403e-bdff-e3225fdd1b02:
+    id: f7e0697f-6661-403e-bdff-e3225fdd1b02
+    content: 'Code path: executeAnnounceStepDone in src/main/services/mcpWriteTools.ts (~lines 151-184) — Guard 1 (getAppliedContextIdWithInheritance returns undefined) and Guard 3 (isStructurallyAutonomous requires parent stepType===''autonomous'', rejecting manual+checkpoint).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31f4a22c-6eb7-4d3c-a3ee-6b28f031c0fb:
+    id: 31f4a22c-6eb7-4d3c-a3ee-6b28f031c0fb
+    content: 'Why existing guards miss it: the guards categorically reject all non-autonomous steps and any step lacking an applied execute/action context, with no path for a checkpoint step carrying an action-only (execute:false/collaborate:false) context to accept a done-signal that merely marks done without advancing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bddb89df-dd13-401c-acef-4fc273a1adaa:
+    id: bddb89df-dd13-401c-acef-4fc273a1adaa
+    content: Affected files
+    children:
+      - 480c8f91-c08f-4785-abcd-1e34a9a8baed
+      - 50c0daa1-2a1c-4ad4-a1fd-8499f723c5bb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  480c8f91-c08f-4785-abcd-1e34a9a8baed:
+    id: 480c8f91-c08f-4785-abcd-1e34a9a8baed
+    content: 'Primary suspect: src/main/services/mcpWriteTools.ts (executeAnnounceStepDone guard chain).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50c0daa1-2a1c-4ad4-a1fd-8499f723c5bb:
+    id: 50c0daa1-2a1c-4ad4-a1fd-8499f723c5bb
+    content: 'Related surface: src/main/services/mcpSubmitOutputTool.ts and src/renderer/store/tree/actions/workflowHookEventHandler.ts (shared isStructurallyAutonomous predicate and checkpoint awaiting-validation handling).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e71ffc54-3474-4f5e-9ba1-40eb2deab079:
+    id: e71ffc54-3474-4f5e-9ba1-40eb2deab079
+    content: Regression window
+    children:
+      - 6aecc84c-4b8e-409e-b517-da6c041d845f
+      - eba63e2e-2a43-4498-afaa-ded18ad00d3c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6aecc84c-4b8e-409e-b517-da6c041d845f:
+    id: 6aecc84c-4b8e-409e-b517-da6c041d845f
+    content: 'Last known good: feature introduced in 395ceba (add announce_step_done MCP tool); behavior shaped by 7b3e036 (unify gates 1+2+3 around getAutonomousStepContext predicate).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eba63e2e-2a43-4498-afaa-ded18ad00d3c:
+    id: eba63e2e-2a43-4498-afaa-ded18ad00d3c
+    content: 'First observed broken: b289730 (collapse autonomous-step predicate to the subject-bound model) is the most recent change to the implicated guard chain.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00a44b62-ec4e-4968-9b30-0b60eea8f64d:
+    id: 00a44b62-ec4e-4968-9b30-0b60eea8f64d
+    content: Severity
+    children:
+      - ea94e693-5ce0-4543-b7b8-0ea0d251c929
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea94e693-5ce0-4543-b7b8-0ea0d251c929:
+    id: ea94e693-5ce0-4543-b7b8-0ea0d251c929
+    content: 'Medium: no data loss, but it blocks AI-driven completion of action-mode checkpoint steps and forces manual UI intervention, undermining autonomous workflow advancement.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bee5f63f-ea08-4f1f-bb50-59b3cbbce791:
+    id: bee5f63f-ea08-4f1f-bb50-59b3cbbce791
+    content: Notes
+    children:
+      - cfcfb548-d7b9-45f7-9d86-12373284937f
+      - 9c865455-64af-4d3c-b40d-efa41d02664d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfcfb548-d7b9-45f7-9d86-12373284937f:
+    id: cfcfb548-d7b9-45f7-9d86-12373284937f
+    content: 'Adjacent look-alikes: distinguish from mark_step_complete (routes through the general authority gate and allows collaborate:true) and from submit_step_output (requires collaborate:true) — this bug is specific to the announce_step_done action/execute path on checkpoints.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c865455-64af-4d3c-b40d-efa41d02664d:
+    id: 9c865455-64af-4d3c-b40d-efa41d02664d
+    content: 'UX/telemetry gap: the rejection message conflates "context not applied" with "context applied but wrong mode" — surface which condition actually failed, and consider a UI affordance or clearer error so the user knows to apply the action context or resolve the checkpoint manually.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cf221c7-44f0-4cc2-86a7-eb848be6e427:
+    id: 0cf221c7-44f0-4cc2-86a7-eb848be6e427
+    content: Technical refinement
+    children:
+      - 54a6e7aa-3f47-404b-885f-78bd957e631f
+      - 64900db3-85a6-40f8-9e2e-13a4dd070f4f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54a6e7aa-3f47-404b-885f-78bd957e631f:
+    id: 54a6e7aa-3f47-404b-885f-78bd957e631f
+    content: Flag complications
+    children:
+      - fc03fae3-4bfe-4b83-b7cc-7d1d74a9da9e
+      - 7c969d16-a484-4102-b542-b24fb6112bd0
+      - 7e2ec0f8-540b-4f28-bdcb-37f2547b496d
+      - 6f8fb7ac-45fb-4e39-b53e-bce60ef93f8a
+      - 4617a8f6-fc08-48e3-98e9-50abc53ebeb8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc03fae3-4bfe-4b83-b7cc-7d1d74a9da9e:
+    id: fc03fae3-4bfe-4b83-b7cc-7d1d74a9da9e
+    content: This is a design decision, not a pure bug — Guard 3 deliberately scopes announce_step_done to autonomous steps ("checkpoint steps must be resolved through the UI"); allowing it on checkpoints needs a product call before coding.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c969d16-a484-4102-b542-b24fb6112bd0:
+    id: 7c969d16-a484-4102-b542-b24fb6112bd0
+    content: 'Risk: marking a checkpoint complete must NOT bypass the awaiting-validation pause — the mark-complete must still route through workflowHookEventHandler, or the checkpoint silently auto-advances and loses its purpose.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e2ec0f8-540b-4f28-bdcb-37f2547b496d:
+    id: 7e2ec0f8-540b-4f28-bdcb-37f2547b496d
+    content: 'Edge case to define: a context that is collaborate:false AND execute:false is "neither" today — decide whether it counts as a valid action context for a done-signal or is just unapplied/misconfigured.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f8fb7ac-45fb-4e39-b53e-bce60ef93f8a:
+    id: 6f8fb7ac-45fb-4e39-b53e-bce60ef93f8a
+    content: 'Out of scope: manual (non-checkpoint) steps stay UI-only; submit_step_output semantics and any auto-advance-past-checkpoint behavior are unchanged.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4617a8f6-fc08-48e3-98e9-50abc53ebeb8:
+    id: 4617a8f6-fc08-48e3-98e9-50abc53ebeb8
+    content: 'ROI: the cheap, high-value part is splitting the conflated Guard 1/2 error message; relaxing Guard 3 for checkpoints is a larger semantic change — confirm it is actually wanted before investing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64900db3-85a6-40f8-9e2e-13a4dd070f4f:
+    id: 64900db3-85a6-40f8-9e2e-13a4dd070f4f
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - a3f24592-0f3f-4d7e-b6bf-5bbacaa47f1c
+      - 51c493be-55a8-4ca1-9494-4c8b153e7286
+      - 8c6a5449-0ac9-4e03-a7ce-aba44f0b877e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3f24592-0f3f-4d7e-b6bf-5bbacaa47f1c:
+    id: a3f24592-0f3f-4d7e-b6bf-5bbacaa47f1c
+    content: 'Changes land in the executeAnnounceStepDone guard chain (mcpWriteTools.ts:151-184): split the Guard 1 message to distinguish "no context applied" from "wrong mode," then decide a checkpoint exception for Guard 3.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  51c493be-55a8-4ca1-9494-4c8b153e7286:
+    id: 51c493be-55a8-4ca1-9494-4c8b153e7286
+    content: 'Key concept: separate "mark done" from "advance" — on a checkpoint a done-signal sets status=completed but still pauses for user validation rather than continuing the workflow.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c6a5449-0ac9-4e03-a7ce-aba44f0b877e:
+    id: 8c6a5449-0ac9-4e03-a7ce-aba44f0b877e
+    content: 'Non-obvious for the reviewer: in the reported repro the context was not applied at all (Guard 1 path), which may be correct behavior — the real ask (accept a done-signal on a checkpoint, Guard 3) is a separate and larger change.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  80cdf388-34c8-4997-9dbe-6f7f81f29490:
+    id: 80cdf388-34c8-4997-9dbe-6f7f81f29490
+    content: Worktree step — outcome and deviation encountered
+    children:
+      - 83d7d45e-2026-46f1-bf37-885299e7df55
+      - d25d8a0d-a0f3-44c2-9ab7-24f741ed896a
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  83d7d45e-2026-46f1-bf37-885299e7df55:
+    id: 83d7d45e-2026-46f1-bf37-885299e7df55
+    content: Worktree created at /Users/brianfox/dev/Arborescent-announce-checkpoint on branch fix/announce-step-done-checkpoint, forked from master (7fd1765); node_modules not symlinked; 'worktree' node added as the first child of this bug node with a nested vscode:// link.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d25d8a0d-a0f3-44c2-9ab7-24f741ed896a:
+    id: d25d8a0d-a0f3-44c2-9ab7-24f741ed896a
+    content: 'Deviation: the step instructed writing the worktree node to the feedback file and not the project file, but this step resolved as an automatic step, so add_child_node applied the node directly to the live tree (autosaved to project.arbo) — no feedback-file write path exists on an automatic step. Flagged via NeedsReview for your decision.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f93a7ccb-a808-48ae-b1d3-cece3dea163d:
+    id: f93a7ccb-a808-48ae-b1d3-cece3dea163d
+    content: worktree
+    children:
+      - 97302e3a-8ab4-4a43-9cce-3901ac428276
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97302e3a-8ab4-4a43-9cce-3901ac428276:
+    id: 97302e3a-8ab4-4a43-9cce-3901ac428276
+    content: vscode://file/Users/brianfox/dev/Arborescent-step-history-menu
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24b62452-e56f-4c8a-afe3-5a12259157e2:
+    id: 24b62452-e56f-4c8a-afe3-5a12259157e2
+    content: Summary
+    children:
+      - 76128e48-0a93-4fbf-af49-654057e945ec
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76128e48-0a93-4fbf-af49-654057e945ec:
+    id: 76128e48-0a93-4fbf-af49-654057e945ec
+    content: The "Step History" entry is nested inside the "Workflow" submenu instead of being its own "Step history" submenu, and when opened it shows scrollbars over an empty list.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8eaee24-2b10-4e9b-8786-54d14e09e0a2:
+    id: a8eaee24-2b10-4e9b-8786-54d14e09e0a2
+    content: Steps to reproduce
+    children:
+      - e8116cb1-c3e0-4057-afa5-6071ee14038d
+      - 12ffd538-fc2f-4b33-990d-0fc06c8e67e4
+      - d3c17867-1c74-46e1-82ba-720c53dd3927
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8116cb1-c3e0-4057-afa5-6071ee14038d:
+    id: e8116cb1-c3e0-4057-afa5-6071ee14038d
+    content: 'Precondition: a workflow step node that has captured at least one history entry, with the app running.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12ffd538-fc2f-4b33-990d-0fc06c8e67e4:
+    id: 12ffd538-fc2f-4b33-990d-0fc06c8e67e4
+    content: 'User action: right-click the workflow step node and open its context menu.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3c17867-1c74-46e1-82ba-720c53dd3927:
+    id: d3c17867-1c74-46e1-82ba-720c53dd3927
+    content: 'Observation: "Step History" appears under the "Workflow" submenu, and hovering it reveals a panel with vertical/horizontal scrollbars but no visible entries.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f39e8e8c-aaf7-4f0a-8a5a-77b1f11d30aa:
+    id: f39e8e8c-aaf7-4f0a-8a5a-77b1f11d30aa
+    content: Expected behavior
+    children:
+      - c1c2ea2d-a2b1-47a3-a998-12c2d835af8f
+      - c9cdde06-d656-4342-ae95-933489995b1f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1c2ea2d-a2b1-47a3-a998-12c2d835af8f:
+    id: c1c2ea2d-a2b1-47a3-a998-12c2d835af8f
+    content: 'Happy path: "Step history" is a top-level context-menu submenu (sibling of "Workflow"), and its panel lists each captured entry by parent label with a captured-at tooltip.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9cdde06-d656-4342-ae95-933489995b1f:
+    id: c9cdde06-d656-4342-ae95-933489995b1f
+    content: 'Edge case: when a step has no history, a disabled "Step history" item with a "No history yet" tooltip is shown rather than an empty scrollable panel.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6b23246-fea2-4bac-a270-8b65ffd58045:
+    id: e6b23246-fea2-4bac-a270-8b65ffd58045
+    content: Actual behavior
+    children:
+      - 5f8224e0-2370-4334-acbc-dae6483c8a41
+      - b411c6bb-a299-4057-ae44-7b9255c53c7f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f8224e0-2370-4334-acbc-dae6483c8a41:
+    id: 5f8224e0-2370-4334-acbc-dae6483c8a41
+    content: 'What happens: "Step History" is pushed into the "Workflow" submenu''s children, and its sub-panel is sized before its items render so the list area is clipped to near-zero height.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b411c6bb-a299-4057-ae44-7b9255c53c7f:
+    id: b411c6bb-a299-4057-ae44-7b9255c53c7f
+    content: 'User-visible symptoms: the history menu is in the wrong place, and the panel displays scrollbars with no items visible inside it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  baf3bf6c-cf35-42d5-a208-959b38df52c9:
+    id: baf3bf6c-cf35-42d5-a208-959b38df52c9
+    content: Suspected cause
+    children:
+      - ff9a8a26-5e68-464a-8a2c-d06498345400
+      - 735232b1-7053-40d0-9378-b62c3be1b2a9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff9a8a26-5e68-464a-8a2c-d06498345400:
+    id: ff9a8a26-5e68-464a-8a2c-d06498345400
+    content: 'Code path: buildStepHistoryItem is appended to submenuItems and returned under label ''Workflow'' in useWorkflowSubmenu.ts (lines 76-89), so history is structurally a child of "Workflow" rather than a separate submenu.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  735232b1-7053-40d0-9378-b62c3be1b2a9:
+    id: 735232b1-7053-40d0-9378-b62c3be1b2a9
+    content: 'Why the guard misses it: the empty-state guard (lines 36-42) only covers zero entries; the scrollbar-over-empty case is a layout-timing fault in useSubmenuPosition''s useLayoutEffect, which measures submenu height before nested items paint and applies an under-sized maxHeight (introduced by the viewport-clamp fix 1c0d34a).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d8be480-21b6-4e60-a6b9-ff4fa208c49f:
+    id: 7d8be480-21b6-4e60-a6b9-ff4fa208c49f
+    content: Affected files
+    children:
+      - c5742d06-5c08-4267-be35-d1e7cb8c03cb
+      - 1b3cbd18-2168-43f8-894c-d2b8cb1345ba
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5742d06-5c08-4267-be35-d1e7cb8c03cb:
+    id: c5742d06-5c08-4267-be35-d1e7cb8c03cb
+    content: 'Primary suspect: src/renderer/components/NodeContent/hooks/useWorkflowSubmenu.ts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b3cbd18-2168-43f8-894c-d2b8cb1345ba:
+    id: 1b3cbd18-2168-43f8-894c-d2b8cb1345ba
+    content: 'Related surface: src/renderer/components/ui/ContextMenu/Submenu/useSubmenuPosition.ts and src/renderer/components/ui/ContextMenu/Submenu/Submenu.tsx (with ContextMenu.css overflow rules)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d822f02-8ab6-4ef2-97b8-b4a55690a406:
+    id: 6d822f02-8ab6-4ef2-97b8-b4a55690a406
+    content: Regression window
+    children:
+      - 1cce7f29-8d0b-4fa7-b5bb-e07dd77f0e1f
+      - 6f6bfd0e-d8b0-40f8-8cd0-5e760c335fc5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cce7f29-8d0b-4fa7-b5bb-e07dd77f0e1f:
+    id: 1cce7f29-8d0b-4fa7-b5bb-e07dd77f0e1f
+    content: 'Last known good: before commit 46af7c0 ("feat: step-node history affordance with restoration via user undo stack"), which introduced the Step History menu item.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f6bfd0e-d8b0-40f8-8cd0-5e760c335fc5:
+    id: 6f6bfd0e-d8b0-40f8-8cd0-5e760c335fc5
+    content: 'First observed broken: the empty-with-scrollbars symptom traces to commit 1c0d34a ("fix: keep context submenu inside the viewport for tall menus") which added the layout-time height clamp.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a43fa553-144b-40e6-bbb7-4a2ffa6154c1:
+    id: a43fa553-144b-40e6-bbb7-4a2ffa6154c1
+    content: Severity
+    children:
+      - 1ccfaed7-a2e0-40d6-8f4f-1c9360b9f44f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ccfaed7-a2e0-40d6-8f4f-1c9360b9f44f:
+    id: 1ccfaed7-a2e0-40d6-8f4f-1c9360b9f44f
+    content: 'Severity: low-to-medium — non-blocking cosmetic/navigation defect that makes history hard to discover and unusable when the panel renders empty, but it does not corrupt data.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  553c3dbe-f7b2-4cbf-9073-78fb786c6865:
+    id: 553c3dbe-f7b2-4cbf-9073-78fb786c6865
+    content: Notes
+    children:
+      - c4bd6586-ffb0-458c-a784-256629738c02
+      - ee58fccc-fc2c-4a44-a09f-3cb37cadab26
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4bd6586-ffb0-458c-a784-256629738c02:
+    id: c4bd6586-ffb0-458c-a784-256629738c02
+    content: 'Disambiguation: the "Step history" submenu must not be confused with the "Workflow > Configure Step" item that legitimately belongs under "Workflow".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee58fccc-fc2c-4a44-a09f-3cb37cadab26:
+    id: ee58fccc-fc2c-4a44-a09f-3cb37cadab26
+    content: 'UX/telemetry gap: the submenu has no loading/empty placeholder distinct from the disabled "No history yet" state, so a height-miscalculation is indistinguishable from genuinely having no entries.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c18bd484-3c25-4739-8d57-810e85e27798:
+    id: c18bd484-3c25-4739-8d57-810e85e27798
+    content: Technical refinement
+    children:
+      - ac6c7eba-d495-4ef2-b955-830a2cf3be38
+      - 6a77c776-8030-4b73-a42d-5a40980edde6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac6c7eba-d495-4ef2-b955-830a2cf3be38:
+    id: ac6c7eba-d495-4ef2-b955-830a2cf3be38
+    content: Flag complications
+    children:
+      - e72ee322-2500-4bf0-b283-a4f69ef245a9
+      - 96e07eed-6731-4050-9f43-6f438bf51d96
+      - 79c141dc-e139-4665-a726-70b18432d1db
+      - 737aff7e-55e9-4001-b857-06e1ac283e2c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e72ee322-2500-4bf0-b283-a4f69ef245a9:
+    id: e72ee322-2500-4bf0-b283-a4f69ef245a9
+    content: 'The empty-with-scrollbars root cause is a hypothesis, not confirmed: useSubmenuPosition clamps maxHeight from a getBoundingClientRect taken in useLayoutEffect against the wrapper row''s available viewport space, so the fix needs a live reproduction near the viewport edge before committing to it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96e07eed-6731-4050-9f43-6f438bf51d96:
+    id: 96e07eed-6731-4050-9f43-6f438bf51d96
+    content: useSubmenuPosition is shared by every submenu level, so any change to its clamp logic risks regressing the original tall-menu viewport fix (1c0d34a) for other menus — not just Step history.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79c141dc-e139-4665-a726-70b18432d1db:
+    id: 79c141dc-e139-4665-a726-70b18432d1db
+    content: 'Out of scope: redesigning the history restoration flow itself and any broader context-menu refactor; this is limited to menu placement plus the empty/scrollbar rendering.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  737aff7e-55e9-4001-b857-06e1ac283e2c:
+    id: 737aff7e-55e9-4001-b857-06e1ac283e2c
+    content: 'ROI watch: the placement move is cheap and high-value, but chasing the scrollbar layout-timing fault could cost effort out of proportion to a cosmetic defect — consider shipping the placement fix first and treating the rendering fix as separable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a77c776-8030-4b73-a42d-5a40980edde6:
+    id: 6a77c776-8030-4b73-a42d-5a40980edde6
+    content: Summarise the approach
+    children:
+      - 3f588021-5209-4b68-b70c-5784ad7d3cad
+      - 1c99a95f-a4c6-4734-a918-f8292d730def
+      - cb9c5f28-f259-4bdf-899e-75e3dd1cb20c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f588021-5209-4b68-b70c-5784ad7d3cad:
+    id: 3f588021-5209-4b68-b70c-5784ad7d3cad
+    content: Extract buildStepHistoryItem out of buildWorkflowSubmenu and surface it as its own top-level context-menu item in useNodeContextMenu.ts, gated by the same isWorkflowStep condition; the "Workflow" submenu keeps only Configure Step / Remove from Workflow.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c99a95f-a4c6-4734-a918-f8292d730def:
+    id: 1c99a95f-a4c6-4734-a918-f8292d730def
+    content: For the empty/scrollbar symptom, treat near-zero available space in useSubmenuPosition as a flip-or-don't-clamp case rather than emitting a scrollable sliver, and recompute once items have painted instead of on first layout.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb9c5f28-f259-4bdf-899e-75e3dd1cb20c:
+    id: cb9c5f28-f259-4bdf-899e-75e3dd1cb20c
+    content: 'Non-obvious for the reviewer: moving Step history to the top level reduces nesting depth and may incidentally improve positioning, but the disabled "No history yet" empty state must move with it so the no-history case still reads correctly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -175142,7 +175938,9 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   972f98ab-fdf8-42c9-93cd-222f29ba6527:
     cwd: /Users/brianfox/dev/Arborescent
-  d6099f71-1b84-4006-b0d0-42d4ad9a2888:
-    cwd: /Users/brianfox/dev/Arborescent
   0d2b3fe2-4123-47f4-8ee0-31143de17f8b:
+    cwd: /Users/brianfox/dev/Arborescent
+  01e9ab16-4d3f-4f59-907a-a7b15fdffda4:
+    cwd: /Users/brianfox/dev/Arborescent
+  af40a936-93fe-4a52-abf3-98d8defacd84:
     cwd: /Users/brianfox/dev/Arborescent
