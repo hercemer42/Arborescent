@@ -9,7 +9,7 @@ import { usePanelStore } from '../../../store/panel/panelStore';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { buildStatusSubmenu } from './useStatusSubmenu';
-import { buildWorkflowSubmenu, buildWorkflowExecutionItems, buildWorkflowNavigationItems, combineExecutionAndNavigationItems } from './useWorkflowSubmenu';
+import { buildWorkflowSubmenu, buildStepHistoryMenuItem, buildWorkflowExecutionItems, buildWorkflowNavigationItems, combineExecutionAndNavigationItems } from './useWorkflowSubmenu';
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
 import { buildSendToWorkflowSubmenu } from './useSendToWorkflowSubmenu';
 import { buildEditSubmenu, prependSpellItems } from './menuBuilders/editSubmenu';
@@ -237,6 +237,12 @@ export function useNodeContextMenu(node: TreeNode) {
       ancestorRegistry,
       onRemoveFromWorkflow: () => actions.removeFromWorkflow(node.id),
       onConfigureStep: () => useStepConfigDialogStore.getState().open(node.id),
+    });
+
+    const stepHistoryMenuItem = buildStepHistoryMenuItem({
+      node: freshNode,
+      nodes,
+      ancestorRegistry,
       stepHistory: state.stepHistory,
       onRestoreStepHistory: handleRestoreStepHistory,
     });
@@ -353,6 +359,7 @@ export function useNodeContextMenu(node: TreeNode) {
       }] : []),
       ...(!isHyperlink && !isExternalLink && blueprintMenuItem ? [blueprintMenuItem] : []),
       ...(!isHyperlink && !isExternalLink && workflowMenuItem ? [workflowMenuItem] : []),
+      ...(!isHyperlink && !isExternalLink && stepHistoryMenuItem ? [stepHistoryMenuItem] : []),
       buildEditSubmenu({
         onSelect: () => actions.toggleNodeSelection(node.id),
         onCopy: () => copyNodeOrSelection(node.id, () => actions.copyNodes()),

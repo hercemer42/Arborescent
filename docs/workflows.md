@@ -123,7 +123,7 @@ Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — 
 
 Each workflow step keeps the last 10 changes it made as a browsable history attached to the step itself. `Ctrl+Z` reverts only your own actions; workflow output stays in step history instead of the undo stack, so a workflow run can never erase a manual edit you wanted to undo.
 
-To browse: right-click a workflow step → **Workflow** → **Step History**. Each entry shows the original parent's content as its label; hover an entry to see when it was captured. The item is disabled with "No history yet" until the step has run at least once.
+To browse: right-click a workflow step → **Step History**. Each entry shows the original parent's content as its label; hover an entry to see when it was captured. The item is disabled with "No history yet" until the step has run at least once.
 
 To restore: click an entry. A deep copy of the captured subtree appears as a child of the step alongside the current node. The current node and its terminal session are unchanged — restoration is non-destructive. Press `Ctrl+Z` to remove the restored copy cleanly. Restoring the same entry twice produces two independent copies; the history list itself is never modified by restoration.
 

@@ -7,6 +7,7 @@ import type { TreeNode } from '@shared/types';
 import { useSpellcheckStore } from '../../../../store/spellcheck/spellcheckStore';
 import { useTerminalStore } from '../../../../store/terminal/terminalStore';
 import { REVISE_AFTER_DISCUSSION_CONTEXT_ID } from '../../../../utils/nodeHelpers';
+import type { StepHistoryEntry } from '../../../../store/tree/stepHistory/stepHistory';
 
 // Helper to create mock event with DOM elements
 function createMockContextMenuEvent(x: number, y: number) {
@@ -554,6 +555,62 @@ describe('useNodeContextMenu', () => {
       expect(workflowMenu).toBeDefined();
       const configureItem = workflowMenu!.submenu!.find(item => item.label === 'Configure Step');
       expect(configureItem).toBeDefined();
+    });
+
+    function makeHistoryEntry(id: string, parentLabel: string): StepHistoryEntry {
+      return {
+        id,
+        capturedAt: '2026-05-25T10:00:00.000Z',
+        parentLabel,
+        rootNodeId: `snap-${id}`,
+        nodes: { [`snap-${id}`]: { id: `snap-${id}`, content: 'snap', children: [], metadata: {} } },
+        position: 0,
+      };
+    }
+
+    it('surfaces Step History as a top-level item, not nested inside the Workflow submenu', async () => {
+      store.setState({ stepHistory: { 'step-node': [makeHistoryEntry('e1', 'Problem statement')] } });
+
+      const { result } = renderHook(() => useNodeContextMenu(stepNode), { wrapper });
+      await openContextMenu(result);
+
+      expect(result.current.contextMenuItems.find(item => item.label === 'Step History')).toBeDefined();
+      const workflowMenu = result.current.contextMenuItems.find(item => item.label === 'Workflow');
+      expect(workflowMenu?.submenu?.find(item => item.label === 'Step History')).toBeUndefined();
+    });
+
+    it('lists captured history entries under the top-level Step History item', async () => {
+      store.setState({
+        stepHistory: { 'step-node': [makeHistoryEntry('e1', 'Alpha'), makeHistoryEntry('e2', 'Beta')] },
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(stepNode), { wrapper });
+      await openContextMenu(result);
+
+      const stepHistoryItem = result.current.contextMenuItems.find(item => item.label === 'Step History');
+      expect(stepHistoryItem?.submenu).toHaveLength(2);
+      expect(stepHistoryItem?.submenu?.[0].label).toBe('Alpha');
+    });
+
+    it('disables the top-level Step History item with a no-history tooltip when the step has no history', async () => {
+      store.setState({ stepHistory: {} });
+
+      const { result } = renderHook(() => useNodeContextMenu(stepNode), { wrapper });
+      await openContextMenu(result);
+
+      const stepHistoryItem = result.current.contextMenuItems.find(item => item.label === 'Step History');
+      expect(stepHistoryItem?.disabled).toBe(true);
+      expect(stepHistoryItem?.disabledTooltip).toBeTruthy();
+    });
+
+    it('does not surface a Step History item for a workflow-root node', async () => {
+      store.setState({ stepHistory: { 'step-node': [makeHistoryEntry('e1', 'Alpha')] } });
+      const workflowNode = store.getState().nodes['workflow'];
+
+      const { result } = renderHook(() => useNodeContextMenu(workflowNode), { wrapper });
+      await openContextMenu(result);
+
+      expect(result.current.contextMenuItems.find(item => item.label === 'Step History')).toBeUndefined();
     });
   });
 

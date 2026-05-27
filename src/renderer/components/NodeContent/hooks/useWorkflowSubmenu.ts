@@ -18,8 +18,25 @@ interface BuildWorkflowSubmenuParams {
   ancestorRegistry: AncestorRegistry;
   onRemoveFromWorkflow: () => void;
   onConfigureStep: () => void;
+}
+
+interface BuildStepHistoryMenuItemParams {
+  node: TreeNode;
+  nodes: Record<string, TreeNode>;
+  ancestorRegistry: AncestorRegistry;
   stepHistory?: StepHistoryMap;
   onRestoreStepHistory?: (stepId: string, entryId: string) => void;
+}
+
+function isWorkflowStepNode(
+  node: TreeNode,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry,
+): boolean {
+  const parentId = getParentIdOrNull(node.id, ancestorRegistry);
+  const parent = parentId ? nodes[parentId] : null;
+  const isWorkflow = node.metadata.isWorkflow === true;
+  return parent?.metadata.isWorkflow === true && !isWorkflow;
 }
 
 function formatCapturedAt(capturedAt: string): string {
@@ -50,19 +67,26 @@ function buildStepHistoryItem(
   };
 }
 
+export function buildStepHistoryMenuItem({
+  node,
+  nodes,
+  ancestorRegistry,
+  stepHistory,
+  onRestoreStepHistory,
+}: BuildStepHistoryMenuItemParams): ContextMenuItem | null {
+  if (!isWorkflowStepNode(node, nodes, ancestorRegistry)) return null;
+  return buildStepHistoryItem(node.id, stepHistory?.[node.id], onRestoreStepHistory);
+}
+
 export function buildWorkflowSubmenu({
   node,
   nodes,
   ancestorRegistry,
   onRemoveFromWorkflow,
   onConfigureStep,
-  stepHistory,
-  onRestoreStepHistory,
 }: BuildWorkflowSubmenuParams): ContextMenuItem | null {
-  const parentId = getParentIdOrNull(node.id, ancestorRegistry);
-  const parent = parentId ? nodes[parentId] : null;
   const isWorkflow = node.metadata.isWorkflow === true;
-  const isWorkflowStep = parent?.metadata.isWorkflow === true && !isWorkflow;
+  const isWorkflowStep = isWorkflowStepNode(node, nodes, ancestorRegistry);
 
   const submenuItems: ContextMenuItem[] = [];
 
@@ -78,7 +102,6 @@ export function buildWorkflowSubmenu({
       label: 'Configure Step',
       onClick: onConfigureStep,
     });
-    submenuItems.push(buildStepHistoryItem(node.id, stepHistory?.[node.id], onRestoreStepHistory));
   }
 
   if (submenuItems.length === 0) return null;

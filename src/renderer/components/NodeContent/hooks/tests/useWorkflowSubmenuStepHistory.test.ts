@@ -1,8 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
-import { buildWorkflowSubmenu } from '../useWorkflowSubmenu';
+import { buildStepHistoryMenuItem } from '../useWorkflowSubmenu';
 import { TreeNode } from '../../../../../shared/types';
 import type { StepHistoryEntry, StepHistoryMap } from '../../../../store/tree/stepHistory/stepHistory';
-import type { ContextMenuItem } from '../../../ui/ContextMenu';
 
 function createNode(id: string, overrides: Partial<TreeNode> = {}): TreeNode {
   return { id, content: id, children: [], metadata: {}, ...overrides };
@@ -38,23 +37,17 @@ function makeStepFixture() {
   return { nodes, ancestorRegistry };
 }
 
-function findItem(items: ContextMenuItem[] | undefined, label: string): ContextMenuItem | undefined {
-  return items?.find((it) => it.label === label);
-}
-
-describe('buildWorkflowSubmenu — Step History entry', () => {
+describe('buildStepHistoryMenuItem — top-level Step History item', () => {
   const callbacks = {
-    onRemoveFromWorkflow: vi.fn(),
-    onConfigureStep: vi.fn(),
     onRestoreStepHistory: vi.fn(),
   };
 
   describe('eligibility', () => {
-    it('does not add a Step History entry for a non-step node', () => {
+    it('returns null for a non-step node nested inside a step', () => {
       const { nodes, ancestorRegistry } = makeStepFixture();
       const stepHistory: StepHistoryMap = { 'step-1': [makeEntry()] };
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['task-a'],
         nodes,
         ancestorRegistry,
@@ -62,30 +55,28 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      // task-a is inside a step, not itself a step — Workflow submenu should not surface step-history.
-      expect(findItem(result?.submenu, 'Step History')).toBeUndefined();
+      expect(item).toBeNull();
     });
 
-    it('does not add a Step History entry for a workflow-root node', () => {
+    it('returns null for a workflow-root node', () => {
       const { nodes, ancestorRegistry } = makeStepFixture();
-      const stepHistory: StepHistoryMap = {};
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['workflow'],
         nodes,
         ancestorRegistry,
-        stepHistory,
+        stepHistory: {},
         ...callbacks,
       });
 
-      expect(findItem(result?.submenu, 'Step History')).toBeUndefined();
+      expect(item).toBeNull();
     });
 
-    it('adds a Step History entry for a workflow step node', () => {
+    it('returns a Step History item for a workflow step node', () => {
       const { nodes, ancestorRegistry } = makeStepFixture();
       const stepHistory: StepHistoryMap = { 'step-1': [makeEntry()] };
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
@@ -93,47 +84,16 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      expect(findItem(result?.submenu, 'Step History')).toBeDefined();
+      expect(item).toBeDefined();
+      expect(item?.label).toBe('Step History');
     });
   });
 
   describe('empty state', () => {
-    it('disables the Step History item when the step has no entries', () => {
-      const { nodes, ancestorRegistry } = makeStepFixture();
-      const stepHistory: StepHistoryMap = {};
-
-      const result = buildWorkflowSubmenu({
-        node: nodes['step-1'],
-        nodes,
-        ancestorRegistry,
-        stepHistory,
-        ...callbacks,
-      });
-
-      const item = findItem(result?.submenu, 'Step History');
-      expect(item).toBeDefined();
-      expect(item?.disabled).toBe(true);
-    });
-
-    it('disables the Step History item when stepHistory itself is undefined (legacy .arbo with no history)', () => {
+    it('disables the item when the step has no entries', () => {
       const { nodes, ancestorRegistry } = makeStepFixture();
 
-      const result = buildWorkflowSubmenu({
-        node: nodes['step-1'],
-        nodes,
-        ancestorRegistry,
-        stepHistory: undefined,
-        ...callbacks,
-      });
-
-      const item = findItem(result?.submenu, 'Step History');
-      expect(item?.disabled).toBe(true);
-    });
-
-    it('surfaces a no-history disabledTooltip on the empty Step History item', () => {
-      const { nodes, ancestorRegistry } = makeStepFixture();
-
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
@@ -141,14 +101,41 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      const item = findItem(result?.submenu, 'Step History');
+      expect(item?.disabled).toBe(true);
+    });
+
+    it('disables the item when stepHistory itself is undefined (legacy .arbo with no history)', () => {
+      const { nodes, ancestorRegistry } = makeStepFixture();
+
+      const item = buildStepHistoryMenuItem({
+        node: nodes['step-1'],
+        nodes,
+        ancestorRegistry,
+        stepHistory: undefined,
+        ...callbacks,
+      });
+
+      expect(item?.disabled).toBe(true);
+    });
+
+    it('surfaces a no-history disabledTooltip on the empty item', () => {
+      const { nodes, ancestorRegistry } = makeStepFixture();
+
+      const item = buildStepHistoryMenuItem({
+        node: nodes['step-1'],
+        nodes,
+        ancestorRegistry,
+        stepHistory: {},
+        ...callbacks,
+      });
+
       expect(item?.disabledTooltip).toBeTruthy();
     });
 
     it('does not attach a submenu when there are no entries', () => {
       const { nodes, ancestorRegistry } = makeStepFixture();
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
@@ -156,7 +143,6 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      const item = findItem(result?.submenu, 'Step History');
       // Either the submenu is omitted entirely or it has zero items — either is a valid empty-state shape.
       expect(item?.submenu?.length ?? 0).toBe(0);
     });
@@ -173,7 +159,7 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ],
       };
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
@@ -181,7 +167,6 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      const item = findItem(result?.submenu, 'Step History');
       expect(item?.submenu).toHaveLength(3);
     });
 
@@ -191,7 +176,7 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         'step-1': [makeEntry({ id: 'e1', parentLabel: 'Problem statement' })],
       };
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
@@ -199,8 +184,7 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      const historySubmenu = findItem(result?.submenu, 'Step History')?.submenu;
-      expect(historySubmenu?.[0].label).toBe('Problem statement');
+      expect(item?.submenu?.[0].label).toBe('Problem statement');
     });
 
     it('surfaces capturedAt via the entry tooltip', () => {
@@ -211,7 +195,7 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ],
       };
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
@@ -219,11 +203,10 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      const historySubmenu = findItem(result?.submenu, 'Step History')?.submenu;
       // The tooltip should contain the capturedAt timestamp in some form — the exact format
       // (raw ISO vs locale string) is a UI detail; what matters is that the timestamp is
       // discoverable on hover.
-      expect(historySubmenu?.[0].tooltip).toBeTruthy();
+      expect(item?.submenu?.[0].tooltip).toBeTruthy();
     });
 
     it('clicking an entry invokes onRestoreStepHistory with stepId and entryId', () => {
@@ -233,17 +216,15 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         'step-1': [makeEntry({ id: 'e1', parentLabel: 'A' })],
       };
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
         stepHistory,
-        ...callbacks,
         onRestoreStepHistory,
       });
 
-      const historySubmenu = findItem(result?.submenu, 'Step History')?.submenu;
-      historySubmenu?.[0].onClick?.();
+      item?.submenu?.[0].onClick?.();
       expect(onRestoreStepHistory).toHaveBeenCalledWith('step-1', 'e1');
     });
 
@@ -258,33 +239,16 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ],
       };
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
         stepHistory,
-        ...callbacks,
         onRestoreStepHistory,
       });
 
-      const historySubmenu = findItem(result?.submenu, 'Step History')?.submenu;
-      historySubmenu?.[1].onClick?.();
+      item?.submenu?.[1].onClick?.();
       expect(onRestoreStepHistory).toHaveBeenCalledWith('step-1', 'e2');
-    });
-
-    it('does not modify the existing Workflow submenu items (Configure Step / Remove from Workflow)', () => {
-      const { nodes, ancestorRegistry } = makeStepFixture();
-      const stepHistory: StepHistoryMap = { 'step-1': [makeEntry()] };
-
-      const result = buildWorkflowSubmenu({
-        node: nodes['step-1'],
-        nodes,
-        ancestorRegistry,
-        stepHistory,
-        ...callbacks,
-      });
-
-      expect(findItem(result?.submenu, 'Configure Step')).toBeDefined();
     });
   });
 
@@ -297,7 +261,7 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ],
       };
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
@@ -305,9 +269,8 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      const historySubmenu = findItem(result?.submenu, 'Step History')?.submenu;
-      expect(historySubmenu?.[0].label).not.toContain('2026');
-      expect(historySubmenu?.[0].label).not.toContain(':00');
+      expect(item?.submenu?.[0].label).not.toContain('2026');
+      expect(item?.submenu?.[0].label).not.toContain(':00');
     });
 
     it.todo(
@@ -322,7 +285,7 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         makeEntry({ id: `e${i}`, parentLabel: `Entry ${i}` }),
       );
 
-      const result = buildWorkflowSubmenu({
+      const item = buildStepHistoryMenuItem({
         node: nodes['step-1'],
         nodes,
         ancestorRegistry,
@@ -330,7 +293,6 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
         ...callbacks,
       });
 
-      const item = findItem(result?.submenu, 'Step History');
       expect(item?.submenu).toHaveLength(10);
       expect(item?.disabled).toBeFalsy();
     });
@@ -342,7 +304,7 @@ describe('buildWorkflowSubmenu — Step History entry', () => {
       };
 
       expect(() =>
-        buildWorkflowSubmenu({
+        buildStepHistoryMenuItem({
           node: nodes['step-1'],
           nodes,
           ancestorRegistry,
