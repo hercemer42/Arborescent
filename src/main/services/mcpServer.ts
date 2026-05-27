@@ -159,7 +159,7 @@ export class ArborescentMcpServer {
       {
         title: 'Announce action step complete',
         description:
-          'Signals that an autonomous workflow step has finished. Use this when the applied context is execute-only or pure action-mode (no content to submit). Rejected when the applied context has collaborate=true — those steps require submit_step_output with the reviewed content.',
+          'Signals that an autonomous or checkpoint workflow step has finished. Use this when the applied context is execute-only or pure action-mode (no content to submit). On a checkpoint, the subject is marked complete and the step then pauses for user validation rather than auto-advancing. Rejected on manual steps (UI-only) and when the applied context has collaborate=true — those steps require submit_step_output with the reviewed content.',
         inputSchema: sessionIdSchema,
       },
       async (args) => tools.announceStepDone({ sessionId: args.session_id }),
