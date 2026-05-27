@@ -14,16 +14,14 @@ interface FullState<TExecState = unknown> extends StructuralState {
   workflowExecutionStates: Record<string, TExecState>;
 }
 
-// Scope mirrors the server-side gate-1 contract: a node counts as autonomous
-// only when itself or its IMMEDIATE parent carries stepType='autonomous'.
-// Grandparent-autonomous shapes are intentionally excluded — production
-// submissions never reach the renderer applier through those paths because
-// the server's structural check rejects them upstream.
-//
-// The `ancestors.length > 0` guard is the orphan rule: a self-step with no
-// ancestors at all has no tree position to act as a step within, so we treat
-// it as null. This preserves compatibility with findOwningWorkflowStepId
-// (stepHistory.ts), which is used as the owning-step lookup elsewhere.
+// Binding contract: a session is always bound to the SUBJECT node — the node
+// that travels through the workflow's steps. Its UUID is stable across step
+// advances; what changes is its parent, which is always the current step.
+// The subject therefore sits at exactly depth-1 below the step it is in, so a
+// node counts as autonomous iff its IMMEDIATE parent carries
+// stepType='autonomous'. The subject itself never carries stepType (steps do),
+// and the depth never varies — so there is no self-step case and no reason to
+// walk past the immediate parent.
 function resolveStepId(
   nodeId: string,
   state: StructuralState,
@@ -34,9 +32,7 @@ function resolveStepId(
   const parentId = ancestors[ancestors.length - 1];
   const parent = parentId ? state.nodes[parentId] : null;
 
-  if (parent?.metadata?.stepType === 'autonomous') return parentId!;
-  if (node.metadata?.stepType === 'autonomous' && ancestors.length > 0) return nodeId;
-  return null;
+  return parent?.metadata?.stepType === 'autonomous' ? parentId! : null;
 }
 
 export function isStructurallyAutonomous(

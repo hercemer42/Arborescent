@@ -16,6 +16,8 @@ import { TreeNode } from '../../../shared/types';
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
 const TARGET = 'cccccccc-cccc-cccc-cccc-cccccccccc03';
+const BOUND_STEP = 'dddddddd-dddd-dddd-dddd-dddddddddd04';
+const TARGET_STEP = 'ffffffff-ffff-ffff-ffff-ffffffffff06';
 const CTX = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeee05';
 
 type StepType = 'manual' | 'checkpoint' | 'autonomous';
@@ -24,23 +26,35 @@ function makeNode(id: string, content: string, children: string[] = [], metadata
   return { id, content, children, metadata };
 }
 
+// BOUND and TARGET are both SUBJECTS (the one-shot target routes between them).
+// Each sits under its own STEP, and autonomy is decided by that step's
+// stepType — subjects never carry stepType themselves.
 function makeStateWithTwoNodes(
   boundStepType: StepType | undefined,
   targetStepType: StepType | undefined,
 ): TreeReadState {
-  const boundMeta: TreeNode['metadata'] = { appliedContextId: CTX };
-  if (boundStepType !== undefined) boundMeta.stepType = boundStepType;
-  const targetMeta: TreeNode['metadata'] = { appliedContextId: CTX };
-  if (targetStepType !== undefined) targetMeta.stepType = targetStepType;
+  const boundStepMeta: TreeNode['metadata'] = {};
+  if (boundStepType !== undefined) boundStepMeta.stepType = boundStepType;
+  const targetStepMeta: TreeNode['metadata'] = {};
+  if (targetStepType !== undefined) targetStepMeta.stepType = targetStepType;
   return {
     nodes: {
-      [ROOT]: makeNode(ROOT, 'Root', [BOUND, TARGET, CTX]),
-      [BOUND]: makeNode(BOUND, 'Bound', [], boundMeta),
-      [TARGET]: makeNode(TARGET, 'Target', [], targetMeta),
+      [ROOT]: makeNode(ROOT, 'Root', [BOUND_STEP, TARGET_STEP, CTX]),
+      [BOUND_STEP]: makeNode(BOUND_STEP, 'Bound step', [BOUND], boundStepMeta),
+      [BOUND]: makeNode(BOUND, 'Bound', [], { appliedContextId: CTX }),
+      [TARGET_STEP]: makeNode(TARGET_STEP, 'Target step', [TARGET], targetStepMeta),
+      [TARGET]: makeNode(TARGET, 'Target', [], { appliedContextId: CTX }),
       [CTX]: makeNode(CTX, 'Context', [], { isContextDeclaration: true, collaborate: true, execute: false }),
     },
     rootNodeId: ROOT,
-    ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT], [TARGET]: [ROOT], [CTX]: [ROOT] },
+    ancestorRegistry: {
+      [ROOT]: [],
+      [BOUND_STEP]: [ROOT],
+      [BOUND]: [ROOT, BOUND_STEP],
+      [TARGET_STEP]: [ROOT],
+      [TARGET]: [ROOT, TARGET_STEP],
+      [CTX]: [ROOT],
+    },
   };
 }
 

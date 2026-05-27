@@ -16,6 +16,7 @@ import { TreeNode } from '../../../shared/types';
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
+const STEP = 'dddddddd-dddd-dddd-dddd-dddddddddd04';
 const CTX = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeee05';
 
 type StepType = 'manual' | 'checkpoint' | 'autonomous';
@@ -24,17 +25,21 @@ function makeNode(id: string, content: string, children: string[] = [], metadata
   return { id, content, children, metadata };
 }
 
+// The session binds to the SUBJECT (BOUND), which travels through the
+// workflow; its parent is the current STEP carrying the stepType. The subject
+// never carries stepType itself.
 function makeState(stepType: StepType | undefined): TreeReadState {
-  const boundMetadata: TreeNode['metadata'] = { appliedContextId: CTX };
-  if (stepType !== undefined) boundMetadata.stepType = stepType;
+  const stepMetadata: TreeNode['metadata'] = {};
+  if (stepType !== undefined) stepMetadata.stepType = stepType;
   return {
     nodes: {
-      [ROOT]: makeNode(ROOT, 'Root', [BOUND, CTX]),
-      [BOUND]: makeNode(BOUND, 'Bound', [], boundMetadata),
+      [ROOT]: makeNode(ROOT, 'Root', [STEP, CTX]),
+      [STEP]: makeNode(STEP, 'Step', [BOUND], stepMetadata),
+      [BOUND]: makeNode(BOUND, 'Bound', [], { appliedContextId: CTX }),
       [CTX]: makeNode(CTX, 'Context', [], { isContextDeclaration: true, collaborate: true, execute: false }),
     },
     rootNodeId: ROOT,
-    ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT], [CTX]: [ROOT] },
+    ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP], [CTX]: [ROOT] },
   };
 }
 
@@ -354,12 +359,13 @@ describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
   function makeStateWithFlags(collaborate: boolean, execute: boolean): TreeReadState {
     return {
       nodes: {
-        [ROOT]: makeNode(ROOT, 'Root', [BOUND, CTX]),
-        [BOUND]: makeNode(BOUND, 'Bound', [], { appliedContextId: CTX, stepType: 'autonomous' }),
+        [ROOT]: makeNode(ROOT, 'Root', [STEP, CTX]),
+        [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'autonomous' }),
+        [BOUND]: makeNode(BOUND, 'Bound', [], { appliedContextId: CTX }),
         [CTX]: makeNode(CTX, 'Context', [], { isContextDeclaration: true, collaborate, execute }),
       },
       rootNodeId: ROOT,
-      ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT], [CTX]: [ROOT] },
+      ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP], [CTX]: [ROOT] },
     };
   }
 

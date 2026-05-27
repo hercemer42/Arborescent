@@ -18,6 +18,9 @@ const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
 const TARGET = 'cccccccc-cccc-cccc-cccc-cccccccccc03';
 const TARGET_2 = 'dddddddd-dddd-dddd-dddd-dddddddddd04';
 const CTX = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeee05';
+const BOUND_STEP = '11111111-1111-1111-1111-111111111101';
+const TARGET_STEP = '22222222-2222-2222-2222-222222222202';
+const TARGET_2_STEP = '33333333-3333-3333-3333-333333333303';
 
 type StepType = 'manual' | 'checkpoint' | 'autonomous';
 
@@ -25,27 +28,42 @@ function makeNode(id: string, content: string, children: string[] = [], metadata
   return { id, content, children, metadata };
 }
 
+// BOUND / TARGET / TARGET_2 are all SUBJECTS the one-shot target routes
+// between. Each sits under its own STEP; autonomy comes from that step's
+// stepType, never from the subject itself.
 function makeStateWithThreeNodes(
   boundStepType: StepType | undefined,
   targetStepType: StepType | undefined,
   secondTargetStepType: StepType | undefined,
 ): TreeReadState {
-  const boundMeta: TreeNode['metadata'] = { appliedContextId: CTX };
-  if (boundStepType !== undefined) boundMeta.stepType = boundStepType;
-  const targetMeta: TreeNode['metadata'] = { appliedContextId: CTX };
-  if (targetStepType !== undefined) targetMeta.stepType = targetStepType;
-  const target2Meta: TreeNode['metadata'] = { appliedContextId: CTX };
-  if (secondTargetStepType !== undefined) target2Meta.stepType = secondTargetStepType;
+  const boundStepMeta: TreeNode['metadata'] = {};
+  if (boundStepType !== undefined) boundStepMeta.stepType = boundStepType;
+  const targetStepMeta: TreeNode['metadata'] = {};
+  if (targetStepType !== undefined) targetStepMeta.stepType = targetStepType;
+  const target2StepMeta: TreeNode['metadata'] = {};
+  if (secondTargetStepType !== undefined) target2StepMeta.stepType = secondTargetStepType;
   return {
     nodes: {
-      [ROOT]: makeNode(ROOT, 'Root', [BOUND, TARGET, TARGET_2, CTX]),
-      [BOUND]: makeNode(BOUND, 'Bound', [], boundMeta),
-      [TARGET]: makeNode(TARGET, 'Target', [], targetMeta),
-      [TARGET_2]: makeNode(TARGET_2, 'Target2', [], target2Meta),
+      [ROOT]: makeNode(ROOT, 'Root', [BOUND_STEP, TARGET_STEP, TARGET_2_STEP, CTX]),
+      [BOUND_STEP]: makeNode(BOUND_STEP, 'Bound step', [BOUND], boundStepMeta),
+      [BOUND]: makeNode(BOUND, 'Bound', [], { appliedContextId: CTX }),
+      [TARGET_STEP]: makeNode(TARGET_STEP, 'Target step', [TARGET], targetStepMeta),
+      [TARGET]: makeNode(TARGET, 'Target', [], { appliedContextId: CTX }),
+      [TARGET_2_STEP]: makeNode(TARGET_2_STEP, 'Target2 step', [TARGET_2], target2StepMeta),
+      [TARGET_2]: makeNode(TARGET_2, 'Target2', [], { appliedContextId: CTX }),
       [CTX]: makeNode(CTX, 'Context', [], { isContextDeclaration: true, collaborate: true, execute: false }),
     },
     rootNodeId: ROOT,
-    ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT], [TARGET]: [ROOT], [TARGET_2]: [ROOT], [CTX]: [ROOT] },
+    ancestorRegistry: {
+      [ROOT]: [],
+      [BOUND_STEP]: [ROOT],
+      [BOUND]: [ROOT, BOUND_STEP],
+      [TARGET_STEP]: [ROOT],
+      [TARGET]: [ROOT, TARGET_STEP],
+      [TARGET_2_STEP]: [ROOT],
+      [TARGET_2]: [ROOT, TARGET_2_STEP],
+      [CTX]: [ROOT],
+    },
   };
 }
 

@@ -28,7 +28,7 @@ function makeState(): TestState {
   return {
     nodes: {
       [ROOT]: makeNode(ROOT, 'Root', [BOUND, SIBLING]),
-      [BOUND]: makeNode(BOUND, 'Bound', [GRANDCHILD], { stepType: 'autonomous' }),
+      [BOUND]: makeNode(BOUND, 'Bound', [GRANDCHILD], { note: 'keep-me' }),
       [SIBLING]: makeNode(SIBLING, 'Sibling', []),
       [GRANDCHILD]: makeNode(GRANDCHILD, 'Grandchild', []),
     },
@@ -144,10 +144,10 @@ describe('applyMutation — mark-complete', () => {
     expect(getCurrent().nodes[BOUND].metadata.status).toBe('abandoned');
   });
 
-  it('preserves other metadata keys (e.g., stepType)', () => {
+  it('preserves other metadata keys (e.g., note)', () => {
     const { store, getCurrent } = makeFakeStore();
     applyAs(store, BOUND, { kind: 'mark-complete', status: 'completed' });
-    expect(getCurrent().nodes[BOUND].metadata.stepType).toBe('autonomous');
+    expect(getCurrent().nodes[BOUND].metadata.note).toBe('keep-me');
   });
 });
 
@@ -247,13 +247,13 @@ describe('applyMutation — set-metadata', () => {
     applyAs(store, BOUND, { kind: 'set-metadata', key: 'custom', value: 42 });
     const after = getCurrent().nodes[BOUND];
     expect(after.metadata.custom).toBe(42);
-    expect(after.metadata.stepType).toBe('autonomous');
+    expect(after.metadata.note).toBe('keep-me');
   });
 
   it('overwrites an existing metadata key', () => {
     const { store, getCurrent } = makeFakeStore();
-    applyAs(store, BOUND, { kind: 'set-metadata', key: 'stepType', value: 'manual' });
-    expect(getCurrent().nodes[BOUND].metadata.stepType).toBe('manual');
+    applyAs(store, BOUND, { kind: 'set-metadata', key: 'note', value: 'changed' });
+    expect(getCurrent().nodes[BOUND].metadata.note).toBe('changed');
   });
 
   it('accepts complex (object) values', () => {

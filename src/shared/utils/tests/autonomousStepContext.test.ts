@@ -54,23 +54,7 @@ describe('getAutonomousStepContext — unified gate predicate', () => {
     expect(getAutonomousStepContext(BOUND, state)).toBeNull();
   });
 
-  it('returns { stepId, execState } when stepType="autonomous" is set directly on the node and workflowExecutionStates has an entry', () => {
-    const execEntry = { state: 'running' as const };
-    const state = makeState({
-      nodes: {
-        [ROOT]: makeNode(ROOT),
-        [BOUND]: makeNode(BOUND, { stepType: 'autonomous' }),
-      },
-      ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT] },
-      workflowExecutionStates: { [BOUND]: execEntry },
-    });
-    const result = getAutonomousStepContext(BOUND, state);
-    expect(result).not.toBeNull();
-    expect(result?.stepId).toBe(BOUND);
-    expect(result?.execState).toBe(execEntry);
-  });
-
-  it('returns { stepId, execState } when stepType="autonomous" is inherited from the immediate parent — stepId resolves to that parent', () => {
+  it('returns { stepId, execState } when the bound subject sits under an autonomous step (parent carries stepType) — stepId resolves to that parent', () => {
     const execEntry = { state: 'running' as const };
     const state = makeState({ workflowExecutionStates: { [BOUND]: execEntry } });
     const result = getAutonomousStepContext(BOUND, state);
@@ -79,30 +63,33 @@ describe('getAutonomousStepContext — unified gate predicate', () => {
     expect(result?.execState).toBe(execEntry);
   });
 
-  it('returns null when stepType="autonomous" is set structurally but workflowExecutionStates entry is missing (gate 2 miss)', () => {
-    const state = makeState({ workflowExecutionStates: {} });
+  it('returns null when the parent step is non-autonomous (manual) — the subject belongs to a step the user drives', () => {
+    const state = makeState({
+      nodes: {
+        [ROOT]: makeNode(ROOT),
+        [STEP]: makeNode(STEP, { stepType: 'manual' }),
+        [BOUND]: makeNode(BOUND),
+      },
+      workflowExecutionStates: { [BOUND]: { state: 'running' as const } },
+    });
     expect(getAutonomousStepContext(BOUND, state)).toBeNull();
   });
 
-  it('returns null when stepType="autonomous" is set structurally and exec state exists but findOwningWorkflowStepId yields no parent step (gate 3 miss)', () => {
-    // bound has stepType=autonomous directly, but the ancestor walk finds no step
-    // (i.e., the node has no ancestors with stepType at all). The unified
-    // predicate must still return null because gate 3 cannot resolve an owning
-    // step distinct from the node itself.
-    const execEntry = { state: 'running' as const };
+  it('returns null when the parent step is non-autonomous (checkpoint)', () => {
     const state = makeState({
       nodes: {
-        [BOUND]: makeNode(BOUND, { stepType: 'autonomous' }),
+        [ROOT]: makeNode(ROOT),
+        [STEP]: makeNode(STEP, { stepType: 'checkpoint' }),
+        [BOUND]: makeNode(BOUND),
       },
-      ancestorRegistry: { [BOUND]: [] },
-      workflowExecutionStates: { [BOUND]: execEntry },
+      workflowExecutionStates: { [BOUND]: { state: 'running' as const } },
     });
-    // Contract: when there is no parent step in the ancestor chain AND the
-    // node is the step itself, the predicate may either return null (strict
-    // owning-step required) or { stepId: BOUND, execState } (self is the step).
-    // The test pins to the strict interpretation so gate 3 is the active guard.
-    const result = getAutonomousStepContext(BOUND, state);
-    expect(result).toBeNull();
+    expect(getAutonomousStepContext(BOUND, state)).toBeNull();
+  });
+
+  it('returns null when the parent is an autonomous step but the workflowExecutionStates entry is missing (gate 2 miss)', () => {
+    const state = makeState({ workflowExecutionStates: {} });
+    expect(getAutonomousStepContext(BOUND, state)).toBeNull();
   });
 
   it('is deterministic — same input state and nodeId yield identical results across repeated calls', () => {

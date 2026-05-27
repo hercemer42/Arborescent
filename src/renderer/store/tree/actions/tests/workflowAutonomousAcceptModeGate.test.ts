@@ -149,20 +149,6 @@ describe('handleAutonomousFeedback — gate 3 acceptMode alignment via unified c
       expect(mockAcceptFeedbackCalls).toHaveLength(1);
       expect(mockAcceptFeedbackCalls[0].acceptMode).toBe('autonomous');
     });
-
-    it('acceptMode is "autonomous" when stepType=autonomous is set directly on the bound node (self-is-step) and the node is tree-attached', () => {
-      state.nodes = {
-        root: { id: 'root', content: 'Root', children: ['bound'], metadata: {} },
-        bound: { id: 'bound', content: 'Bound', children: [], metadata: { stepType: 'autonomous' } },
-      };
-      state.ancestorRegistry = { root: [], bound: ['root'] };
-      state.workflowExecutionStates = { bound: { state: 'running', terminalTabId: 'terminal-1', collaborating: true } };
-
-      actions.handleAutonomousFeedback('bound', '# refined');
-
-      expect(mockAcceptFeedbackCalls).toHaveLength(1);
-      expect(mockAcceptFeedbackCalls[0].acceptMode).toBe('autonomous');
-    });
   });
 
   describe('autonomous step never falls through to manual-send-accept', () => {

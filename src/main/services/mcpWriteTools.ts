@@ -7,6 +7,7 @@ import {
   getContextDeclarations,
   getAppliedContextIdWithInheritance,
 } from '../../shared/utils/permissionGate';
+import { isStructurallyAutonomous } from '../../shared/utils/autonomousStepContext';
 
 export type MutationRequest =
   | { kind: 'add-child'; parentId: string; content: string; position?: number }
@@ -72,7 +73,12 @@ function checkAuthority(
 }
 
 function isAutomatic(nodeId: string, state: TreeReadState): boolean {
-  return state.nodes[nodeId]?.metadata.stepType === 'autonomous';
+  // Mirrors gates 1+2+3 / submit_step_output: the bound node (the subject that
+  // travels through the workflow) is autonomous when its immediate parent — the
+  // current step — carries stepType='autonomous'. announce_step_done must use
+  // the same predicate so it never rejects a step submit_step_output accepts on
+  // the very same binding.
+  return isStructurallyAutonomous(nodeId, state);
 }
 
 function ok(payload: unknown): ToolResult {

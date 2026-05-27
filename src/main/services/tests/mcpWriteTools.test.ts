@@ -17,6 +17,7 @@ import { TreeNode } from '../../../shared/types';
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
 const SIBLING = 'cccccccc-cccc-cccc-cccc-cccccccccc03';
+const STEP = 'dddddddd-dddd-dddd-dddd-dddddddddd04';
 const CTX = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeee05';
 
 type StepType = 'manual' | 'checkpoint' | 'autonomous';
@@ -31,18 +32,23 @@ function makeNode(id: string, content: string, children: string[] = [], metadata
   return { id, content, children, metadata };
 }
 
+// Binding contract: the session binds to the SUBJECT (BOUND), which travels
+// through the workflow. Its parent is the current STEP, which carries the
+// stepType. The subject never carries stepType itself, so the fixture puts it
+// on STEP and parents BOUND under it.
 function makeState({ collaborate, execute, stepType }: SetupArgs): TreeReadState {
-  const boundMetadata: TreeNode['metadata'] = { appliedContextId: CTX };
-  if (stepType !== undefined) boundMetadata.stepType = stepType;
+  const stepMetadata: TreeNode['metadata'] = {};
+  if (stepType !== undefined) stepMetadata.stepType = stepType;
   return {
     nodes: {
-      [ROOT]: makeNode(ROOT, 'Root', [BOUND, SIBLING, CTX]),
-      [BOUND]: makeNode(BOUND, 'Bound', [], boundMetadata),
+      [ROOT]: makeNode(ROOT, 'Root', [STEP, CTX]),
+      [STEP]: makeNode(STEP, 'Step', [BOUND, SIBLING], stepMetadata),
+      [BOUND]: makeNode(BOUND, 'Bound', [], { appliedContextId: CTX }),
       [SIBLING]: makeNode(SIBLING, 'Sibling', []),
       [CTX]: makeNode(CTX, 'Context', [], { isContextDeclaration: true, collaborate, execute }),
     },
     rootNodeId: ROOT,
-    ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT], [SIBLING]: [ROOT], [CTX]: [ROOT] },
+    ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP], [SIBLING]: [ROOT, STEP], [CTX]: [ROOT] },
   };
 }
 
@@ -394,11 +400,12 @@ describe('createWriteTools — mode authority: no applied context blocks every t
     const treeReader = {
       readState: async () => ({
         nodes: {
-          [ROOT]: makeNode(ROOT, 'Root', [BOUND]),
-          [BOUND]: makeNode(BOUND, 'Bound', [], { stepType: 'autonomous' }),
+          [ROOT]: makeNode(ROOT, 'Root', [STEP]),
+          [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'autonomous' }),
+          [BOUND]: makeNode(BOUND, 'Bound', []),
         },
         rootNodeId: ROOT,
-        ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT] },
+        ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP] },
       }),
     };
     registry.register('sess-1', BOUND);
@@ -525,11 +532,12 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const treeReader = {
       readState: async () => ({
         nodes: {
-          [ROOT]: makeNode(ROOT, 'Root', [BOUND]),
-          [BOUND]: makeNode(BOUND, 'Bound', [], { stepType: 'autonomous' }),
+          [ROOT]: makeNode(ROOT, 'Root', [STEP]),
+          [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'autonomous' }),
+          [BOUND]: makeNode(BOUND, 'Bound', []),
         },
         rootNodeId: ROOT,
-        ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT] },
+        ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP] },
       }),
     };
     registry.register('sess-1', BOUND);
@@ -636,5 +644,40 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     expect(result.content[0].text).toMatch(/autonomous/i);
     expect(made.mutator.mutate).not.toHaveBeenCalled();
     expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+  });
+
+  // Regression: real bindings often target a CONTENT child of an autonomous
+  // step, not the step root. submit_step_output already treats that as
+  // autonomous via isStructurallyAutonomous; announceStepDone must agree, or
+  // identical configurations split between "this works" and "only valid on
+  // autonomous workflow steps" depending on which tool the agent reaches for.
+  it('announceStepDone on a subject whose parent step is autonomous issues a mark-complete mutation', async () => {
+    const registry = new SessionBindingRegistry();
+    const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
+    const treeReader = {
+      readState: async () => ({
+        nodes: {
+          [ROOT]: makeNode(ROOT, 'Root', [STEP, CTX]),
+          [STEP]: makeNode(STEP, 'Autonomous step', [BOUND], { stepType: 'autonomous' as const }),
+          [BOUND]: makeNode(BOUND, 'CONTENT child', [], { appliedContextId: CTX }),
+          [CTX]: makeNode(CTX, 'Context', [], { isContextDeclaration: true, collaborate: false, execute: true }),
+        },
+        rootNodeId: ROOT,
+        ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP], [CTX]: [ROOT] },
+      }),
+    };
+    registry.register('sess-1', BOUND);
+    const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
+    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBeFalsy();
+    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, {
+      kind: 'mark-complete',
+      status: 'completed',
+    } satisfies MutationRequest);
+    expect(oneShotTargetStore.setExplicitSubmitSeenThisTurn).toHaveBeenCalledWith('sess-1', true);
   });
 });

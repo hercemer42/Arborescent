@@ -9,6 +9,7 @@ import { TreeNode } from '../../../shared/types';
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
+const STEP = 'cccccccc-cccc-cccc-cccc-cccccccccc03';
 
 interface TestState {
   nodes: Record<string, TreeNode>;
@@ -26,21 +27,25 @@ function makeNode(id: string, content: string, metadata: TreeNode['metadata'] = 
   return { id, content, children: [], metadata };
 }
 
+// The session binds to the SUBJECT (BOUND), which travels through the
+// workflow; autonomy is determined by its parent STEP's stepType. The subject
+// never carries stepType. Pass stepMetadata={} to model a non-autonomous step
+// (free-terminal / manual send).
 function makeFakeStore(
   workflowExecutionStates: Record<string, unknown> = {},
   collaboratingNodeId: string | null = null,
-  boundMetadata: TreeNode['metadata'] = { stepType: 'autonomous' },
-  rootMetadata: TreeNode['metadata'] = {},
+  stepMetadata: TreeNode['metadata'] = { stepType: 'autonomous' },
 ) {
   const autoSave = vi.fn();
   const handleAutonomousFeedback = vi.fn();
   let state: TestState = {
     nodes: {
-      [ROOT]: makeNode(ROOT, 'Root', rootMetadata),
-      [BOUND]: makeNode(BOUND, 'Bound', boundMetadata),
+      [ROOT]: makeNode(ROOT, 'Root'),
+      [STEP]: makeNode(STEP, 'Step', stepMetadata),
+      [BOUND]: makeNode(BOUND, 'Bound'),
     },
     rootNodeId: ROOT,
-    ancestorRegistry: { [ROOT]: [], [BOUND]: [ROOT] },
+    ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP] },
     workflowExecutionStates,
     collaboratingNodeId,
     actions: { autoSave, handleAutonomousFeedback },
@@ -60,7 +65,7 @@ function makeFakeStore(
 
 describe('applyStepOutput — happy path', () => {
   it('replaces the bound node content and triggers autoSave when the node is not in an active workflow run', () => {
-    const { store, getCurrent, autoSave } = makeFakeStore({}, null, {}, {});
+    const { store, getCurrent, autoSave } = makeFakeStore({}, null, {});
     const result = applyStepOutput(store as never, BOUND, 'new content');
     expect(result).toEqual({ ok: true });
     expect(getCurrent().nodes[BOUND].content).toBe('new content');
@@ -92,7 +97,7 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
   });
 
   it('writes content directly when the bound node has no workflow execution entry AND is not structurally autonomous (free terminal use)', () => {
-    const { store, getCurrent, handleAutonomousFeedback } = makeFakeStore({}, null, {}, {});
+    const { store, getCurrent, handleAutonomousFeedback } = makeFakeStore({}, null, {});
     applyStepOutput(store as never, BOUND, 'free claude response');
     expect(getCurrent().nodes[BOUND].content).toBe('free claude response');
     expect(handleAutonomousFeedback).not.toHaveBeenCalled();
@@ -110,7 +115,7 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
     // The mcpSubmitOutputTool routes non-automatic steps to the proposalSubmitter
     // before ever reaching this applier, so the old "collaboratingNodeId guards
     // the applier" rule no longer applies.
-    const { store, getCurrent, autoSave } = makeFakeStore({}, BOUND, {}, {});
+    const { store, getCurrent, autoSave } = makeFakeStore({}, BOUND, {});
     applyStepOutput(store as never, BOUND, 'response');
     expect(getCurrent().nodes[BOUND].content).toBe('response');
     expect(autoSave).toHaveBeenCalledTimes(1);
@@ -118,7 +123,6 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
 
   it('returns an error if the workflow handler is unavailable for a workflow-active node', () => {
     const autoSave = vi.fn();
-    const STEP = 'cccccccc-cccc-cccc-cccc-cccccccccc03';
     let state = {
       nodes: {
         [STEP]: makeNode(STEP, 'Step', { stepType: 'autonomous' }),
@@ -145,17 +149,8 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
 // has no workflowExecutionStates entry at apply time, applyStepOutput must
 // fail-fast rather than silently blob-writing raw markdown into the node.
 describe('applyStepOutput — gate 1+2 alignment (fail-fast on routing divergence)', () => {
-  it('refuses (does not blob-write) when bound node is structurally autonomous via metadata.stepType but workflowExecutionStates entry is missing', () => {
-    const { store, getCurrent, autoSave } = makeFakeStore({}); // bound has stepType=autonomous by default, no exec state
-    const result = applyStepOutput(store as never, BOUND, 'late content');
-    expect(result.ok).toBe(false);
-    expect(getCurrent().nodes[BOUND].content).toBe('Bound');
-    expect(autoSave).not.toHaveBeenCalled();
-  });
-
-  it('refuses when bound node has no stepType but its parent has stepType="autonomous" and exec state is missing — same predicate as server isAutomatic', () => {
-    // bound is plain, parent (ROOT) carries stepType=autonomous
-    const { store, getCurrent, autoSave } = makeFakeStore({}, null, {}, { stepType: 'autonomous' });
+  it('refuses (does not blob-write) when the subject is under an autonomous step but the workflowExecutionStates entry is missing', () => {
+    const { store, getCurrent, autoSave } = makeFakeStore({}); // parent step autonomous by default, no exec state
     const result = applyStepOutput(store as never, BOUND, 'late content');
     expect(result.ok).toBe(false);
     expect(getCurrent().nodes[BOUND].content).toBe('Bound');
@@ -181,7 +176,7 @@ describe('applyStepOutput — gate 1+2 alignment (fail-fast on routing divergenc
   });
 
   it('still falls through to the legitimate direct-write path when the node is genuinely non-autonomous (no stepType, no autonomous parent) — preserves the free-claude / non-workflow direct send case', () => {
-    const { store, getCurrent, autoSave } = makeFakeStore({}, null, {}, {});
+    const { store, getCurrent, autoSave } = makeFakeStore({}, null, {});
     const result = applyStepOutput(store as never, BOUND, 'free content');
     expect(result).toEqual({ ok: true });
     expect(getCurrent().nodes[BOUND].content).toBe('free content');
