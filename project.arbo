@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-27T14:48:03.859Z'
+updated: '2026-05-27T15:34:58.085Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -92291,8 +92291,7 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children:
-      - 2d148d76-e0d3-4330-a378-2197983d5baf
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115500,6 +115499,7 @@ nodes:
       - 50c1cecf-2ee0-4850-9148-3d1935ee5f8c
       - f3a53bde-65f1-4479-9381-2b69119fbd46
       - 924b187c-f2db-4ceb-968b-440700b738e3
+      - 7dc1f860-a3e9-4489-9db2-0cdff8f2476a
     metadata:
       status: pending
       isBlueprint: true
@@ -124606,7 +124606,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 7dc1f860-a3e9-4489-9db2-0cdff8f2476a
+      - 2d148d76-e0d3-4330-a378-2197983d5baf
     metadata:
       status: pending
       isBlueprint: true
@@ -174983,7 +174983,7 @@ nodes:
       - dd05295d-0765-424d-8987-fefebf6ad4b9
       - 6e5d755a-4354-4712-8e11-d385128ea6c3
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -175103,20 +175103,20 @@ nodes:
     id: 2d148d76-e0d3-4330-a378-2197983d5baf
     content: 'Bug: announce_step_done is rejected on a checkpoint step whose applied context is execute:false/collaborate:false, even when an explicit done-signal is the intended action'
     children:
-      - 2322a3ec-2f45-45a9-9756-b99ee4fcbcb7
-      - 1c16b486-2b99-4f05-bd3b-64798c66ebc6
-      - 3a1eb1f0-3ded-4a09-b15a-57103ddca6ee
-      - 0b30f867-dad2-4801-824a-92ad50b3703f
-      - a1cf18b7-be78-4b62-ae94-dd7ae215f4b6
-      - bac32e64-2eb6-4452-943c-ef9abe08bc2e
-      - ee495949-a3d9-49c9-910e-31376b9e23d0
-      - 7783440c-a7b2-4aa2-adf7-ac3ad87cf54c
-      - dbb7e04f-d076-4355-82f7-6c8f8e3acef5
-      - 555e017b-b8d4-4730-b824-d1cbe520b617
-      - 66fbe536-bb8d-4302-abe0-192173b33bea
-      - 1d20217e-a571-4f6d-bd77-6c982d864146
-      - c8ea4844-6672-43ec-a187-6137937fab64
-      - e6b03593-ffe8-4ed8-8df4-4cbc07138fdb
+      - 022dfe52-98d6-40cc-985d-52f1f67df96f
+      - 8737fa7f-acc1-4cf8-8f78-3a99779f62fa
+      - 1e1f73f8-b301-4537-a723-868d8645364f
+      - 8718c37b-1046-42ea-a01d-f9a5f066be9e
+      - 8e23632e-8602-41f5-91c7-323097fe1e39
+      - b48eaa94-ddac-47e6-9e65-f8e795f14ea2
+      - 0cc96edf-d8aa-406e-bc26-ae6e371f88d0
+      - 2d13a038-be14-4a5e-aee0-f426d0e08087
+      - 0fb74a7a-6a26-4fb9-9182-213407a7ddbd
+      - 226dffe5-5ed7-444c-b2e0-2e33cc206f23
+      - f9a30257-9af1-46f3-b43b-c82ce3b67c72
+      - 288fa2bb-034c-4a97-b561-b56017e30c99
+      - 0fffe677-6bde-444d-baa1-08a278cb8602
+      - 1990a054-97d7-432d-81cd-18b16637ade9
     metadata:
       status: completed
       expanded: false
@@ -175137,493 +175137,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  2322a3ec-2f45-45a9-9756-b99ee4fcbcb7:
-    id: 2322a3ec-2f45-45a9-9756-b99ee4fcbcb7
-    content: Summary
-    children:
-      - 33b69276-ebb2-42db-b53a-68cc440d5873
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  33b69276-ebb2-42db-b53a-68cc440d5873:
-    id: 33b69276-ebb2-42db-b53a-68cc440d5873
-    content: announce_step_done refuses to fire on a checkpoint step because no execute/action context is applied — so the AI cannot signal completion of an action-mode checkpoint and the workflow stalls.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c16b486-2b99-4f05-bd3b-64798c66ebc6:
-    id: 1c16b486-2b99-4f05-bd3b-64798c66ebc6
-    content: Steps to reproduce
-    children:
-      - 59aac109-edf0-4b7f-9772-9a49940886d7
-      - d1de70d8-c566-44ba-8c17-a5dc7347ea2f
-      - bc4e0e09-2f10-409a-843e-283465a4f670
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  59aac109-edf0-4b7f-9772-9a49940886d7:
-    id: 59aac109-edf0-4b7f-9772-9a49940886d7
-    content: 'Precondition: a checkpoint workflow step exists with a context named "Verify code review fixes" that has collaborate:false and execute:false, and that context is not applied (inherited or direct) to the bound node.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d1de70d8-c566-44ba-8c17-a5dc7347ea2f:
-    id: d1de70d8-c566-44ba-8c17-a5dc7347ea2f
-    content: 'User action: the AI finishes the checkpoint work and calls announce_step_done with the session_id to signal the step is done.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc4e0e09-2f10-409a-843e-283465a4f670:
-    id: bc4e0e09-2f10-409a-843e-283465a4f670
-    content: 'Observation: announce_step_done returns an error stating no execute-only or action-mode context is applied to the bound step, so no done-signal is recorded.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a1eb1f0-3ded-4a09-b15a-57103ddca6ee:
-    id: 3a1eb1f0-3ded-4a09-b15a-57103ddca6ee
-    content: Expected behavior
-    children:
-      - d1c4d124-2fe2-44bc-9fe1-2bb618c50161
-      - ba03a41d-9e3d-4397-a825-6c24cf0b3e17
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d1c4d124-2fe2-44bc-9fe1-2bb618c50161:
-    id: d1c4d124-2fe2-44bc-9fe1-2bb618c50161
-    content: 'Happy path: the done-signal is accepted and the checkpoint step is marked done, then pauses for user validation as a checkpoint normally would — without auto-advancing past the checkpoint.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba03a41d-9e3d-4397-a825-6c24cf0b3e17:
-    id: ba03a41d-9e3d-4397-a825-6c24cf0b3e17
-    content: 'Edge cases: a context that is collaborate:false AND execute:false (a pure action/verify context) should be treated as a valid action-mode context for the purpose of accepting a done-signal, not as "no context applied."'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b30f867-dad2-4801-824a-92ad50b3703f:
-    id: 0b30f867-dad2-4801-824a-92ad50b3703f
-    content: Actual behavior
-    children:
-      - 8f3ec466-cfb9-4967-a957-1b6253854d1b
-      - 18f74a99-85d8-4ed1-9810-4921638dc6d6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f3ec466-cfb9-4967-a957-1b6253854d1b:
-    id: 8f3ec466-cfb9-4967-a957-1b6253854d1b
-    content: announce_step_done hits the no-applied-context guard (Guard 1) and is rejected before any done is recorded; even if the context were applied, the autonomy guard (Guard 3) would still reject it because checkpoint != autonomous.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  18f74a99-85d8-4ed1-9810-4921638dc6d6:
-    id: 18f74a99-85d8-4ed1-9810-4921638dc6d6
-    content: 'User-visible symptom: the workflow appears stuck at the checkpoint with no way for the AI to signal completion via MCP, forcing manual resolution through the UI.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1cf18b7-be78-4b62-ae94-dd7ae215f4b6:
-    id: a1cf18b7-be78-4b62-ae94-dd7ae215f4b6
-    content: Suspected cause
-    children:
-      - 8bf52e3a-7279-4bc2-84fd-a03a1d3c34a3
-      - edb9aadc-8fdd-4ddc-a6a7-20eddaa02204
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8bf52e3a-7279-4bc2-84fd-a03a1d3c34a3:
-    id: 8bf52e3a-7279-4bc2-84fd-a03a1d3c34a3
-    content: 'Code path: executeAnnounceStepDone in src/main/services/mcpWriteTools.ts (~lines 151-184) — Guard 1 (getAppliedContextIdWithInheritance returns undefined) and Guard 3 (isStructurallyAutonomous requires parent stepType===''autonomous'', rejecting manual+checkpoint).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  edb9aadc-8fdd-4ddc-a6a7-20eddaa02204:
-    id: edb9aadc-8fdd-4ddc-a6a7-20eddaa02204
-    content: 'Why existing guards miss it: the guards categorically reject all non-autonomous steps and any step lacking an applied execute/action context, with no path for a checkpoint step carrying an action-only (execute:false/collaborate:false) context to accept a done-signal that merely marks done without advancing.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bac32e64-2eb6-4452-943c-ef9abe08bc2e:
-    id: bac32e64-2eb6-4452-943c-ef9abe08bc2e
-    content: Affected files
-    children:
-      - 7aca49aa-e7c5-4319-9c8c-a6f0f501ceeb
-      - 373d7cb4-45d9-417a-8a49-326d937a8a73
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7aca49aa-e7c5-4319-9c8c-a6f0f501ceeb:
-    id: 7aca49aa-e7c5-4319-9c8c-a6f0f501ceeb
-    content: 'Primary suspect: src/main/services/mcpWriteTools.ts (executeAnnounceStepDone guard chain).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  373d7cb4-45d9-417a-8a49-326d937a8a73:
-    id: 373d7cb4-45d9-417a-8a49-326d937a8a73
-    content: 'Related surface: src/main/services/mcpSubmitOutputTool.ts and src/renderer/store/tree/actions/workflowHookEventHandler.ts (shared isStructurallyAutonomous predicate and checkpoint awaiting-validation handling).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ee495949-a3d9-49c9-910e-31376b9e23d0:
-    id: ee495949-a3d9-49c9-910e-31376b9e23d0
-    content: Regression window
-    children:
-      - 3906f2f5-d6da-4ef1-990d-fd71a6d45b30
-      - b2ffd9d5-9c71-48d1-8f8d-726141293981
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3906f2f5-d6da-4ef1-990d-fd71a6d45b30:
-    id: 3906f2f5-d6da-4ef1-990d-fd71a6d45b30
-    content: 'Last known good: feature introduced in 395ceba (add announce_step_done MCP tool); behavior shaped by 7b3e036 (unify gates 1+2+3 around getAutonomousStepContext predicate).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b2ffd9d5-9c71-48d1-8f8d-726141293981:
-    id: b2ffd9d5-9c71-48d1-8f8d-726141293981
-    content: 'First observed broken: b289730 (collapse autonomous-step predicate to the subject-bound model) is the most recent change to the implicated guard chain.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7783440c-a7b2-4aa2-adf7-ac3ad87cf54c:
-    id: 7783440c-a7b2-4aa2-adf7-ac3ad87cf54c
-    content: Severity
-    children:
-      - 9bf96f21-70e8-4ef0-a5d6-ab6456f7c5a6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9bf96f21-70e8-4ef0-a5d6-ab6456f7c5a6:
-    id: 9bf96f21-70e8-4ef0-a5d6-ab6456f7c5a6
-    content: 'Medium: no data loss, but it blocks AI-driven completion of action-mode checkpoint steps and forces manual UI intervention, undermining autonomous workflow advancement.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbb7e04f-d076-4355-82f7-6c8f8e3acef5:
-    id: dbb7e04f-d076-4355-82f7-6c8f8e3acef5
-    content: Notes
-    children:
-      - c718d350-3869-482d-b009-2b24dd0bcead
-      - 6097ab40-8135-47d6-ae62-2affbf846c4f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c718d350-3869-482d-b009-2b24dd0bcead:
-    id: c718d350-3869-482d-b009-2b24dd0bcead
-    content: 'Adjacent look-alikes: distinguish from mark_step_complete (routes through the general authority gate and allows collaborate:true) and from submit_step_output (requires collaborate:true) — this bug is specific to the announce_step_done action/execute path on checkpoints.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6097ab40-8135-47d6-ae62-2affbf846c4f:
-    id: 6097ab40-8135-47d6-ae62-2affbf846c4f
-    content: 'UX/telemetry gap: the rejection message conflates "context not applied" with "context applied but wrong mode" — surface which condition actually failed, and consider a UI affordance or clearer error so the user knows to apply the action context or resolve the checkpoint manually.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  555e017b-b8d4-4730-b824-d1cbe520b617:
-    id: 555e017b-b8d4-4730-b824-d1cbe520b617
-    content: Technical refinement
-    children:
-      - f57570eb-4865-4364-bba4-9c56739035ba
-      - fd90360a-c9e2-43ae-81cc-8a57f1e920b5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f57570eb-4865-4364-bba4-9c56739035ba:
-    id: f57570eb-4865-4364-bba4-9c56739035ba
-    content: Flag complications
-    children:
-      - 42d06f81-ac5c-438b-b9ea-3935be748a4c
-      - bf664004-e68c-4040-8072-081082e1cdbd
-      - dfe811aa-a83e-49a6-b893-51aee89bcce9
-      - bf3b81f7-8abc-4027-a155-3e64e5c5ae6e
-      - 627ac6cb-9680-4f31-a5b6-391ce5268624
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  42d06f81-ac5c-438b-b9ea-3935be748a4c:
-    id: 42d06f81-ac5c-438b-b9ea-3935be748a4c
-    content: This is a design decision, not a pure bug — Guard 3 deliberately scopes announce_step_done to autonomous steps ("checkpoint steps must be resolved through the UI"); allowing it on checkpoints needs a product call before coding.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf664004-e68c-4040-8072-081082e1cdbd:
-    id: bf664004-e68c-4040-8072-081082e1cdbd
-    content: 'Risk: marking a checkpoint complete must NOT bypass the awaiting-validation pause — the mark-complete must still route through workflowHookEventHandler, or the checkpoint silently auto-advances and loses its purpose.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dfe811aa-a83e-49a6-b893-51aee89bcce9:
-    id: dfe811aa-a83e-49a6-b893-51aee89bcce9
-    content: 'Edge case to define: a context that is collaborate:false AND execute:false is "neither" today — decide whether it counts as a valid action context for a done-signal or is just unapplied/misconfigured.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf3b81f7-8abc-4027-a155-3e64e5c5ae6e:
-    id: bf3b81f7-8abc-4027-a155-3e64e5c5ae6e
-    content: 'Out of scope: manual (non-checkpoint) steps stay UI-only; submit_step_output semantics and any auto-advance-past-checkpoint behavior are unchanged.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  627ac6cb-9680-4f31-a5b6-391ce5268624:
-    id: 627ac6cb-9680-4f31-a5b6-391ce5268624
-    content: 'ROI: the cheap, high-value part is splitting the conflated Guard 1/2 error message; relaxing Guard 3 for checkpoints is a larger semantic change — confirm it is actually wanted before investing.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd90360a-c9e2-43ae-81cc-8a57f1e920b5:
-    id: fd90360a-c9e2-43ae-81cc-8a57f1e920b5
-    content: Summarise the approach in 2-3 bullets
-    children:
-      - 0fa91f70-e91a-41c9-8d39-c1a833c2c4ac
-      - 13fcbf0a-0e83-40b2-991c-c62cc5f6035e
-      - a2817695-1fca-47ae-a3ae-3fa4182a9894
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0fa91f70-e91a-41c9-8d39-c1a833c2c4ac:
-    id: 0fa91f70-e91a-41c9-8d39-c1a833c2c4ac
-    content: 'Changes land in the executeAnnounceStepDone guard chain (mcpWriteTools.ts:151-184): split the Guard 1 message to distinguish "no context applied" from "wrong mode," then decide a checkpoint exception for Guard 3.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  13fcbf0a-0e83-40b2-991c-c62cc5f6035e:
-    id: 13fcbf0a-0e83-40b2-991c-c62cc5f6035e
-    content: 'Key concept: separate "mark done" from "advance" — on a checkpoint a done-signal sets status=completed but still pauses for user validation rather than continuing the workflow.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a2817695-1fca-47ae-a3ae-3fa4182a9894:
-    id: a2817695-1fca-47ae-a3ae-3fa4182a9894
-    content: 'Non-obvious for the reviewer: in the reported repro the context was not applied at all (Guard 1 path), which may be correct behavior — the real ask (accept a done-signal on a checkpoint, Guard 3) is a separate and larger change.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66fbe536-bb8d-4302-abe0-192173b33bea:
-    id: 66fbe536-bb8d-4302-abe0-192173b33bea
-    content: Worktree step — outcome and deviation encountered
-    children:
-      - c84b2aa3-1356-4b16-ae79-1a30dd3d699a
-      - 17dcb538-8137-4d05-8eca-b3123d730645
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  c84b2aa3-1356-4b16-ae79-1a30dd3d699a:
-    id: c84b2aa3-1356-4b16-ae79-1a30dd3d699a
-    content: Worktree created at /Users/brianfox/dev/Arborescent-announce-checkpoint on branch fix/announce-step-done-checkpoint, forked from master (7fd1765); node_modules not symlinked; 'worktree' node added as the first child of this bug node with a nested vscode:// link.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  17dcb538-8137-4d05-8eca-b3123d730645:
-    id: 17dcb538-8137-4d05-8eca-b3123d730645
-    content: 'Deviation: the step instructed writing the worktree node to the feedback file and not the project file, but this step resolved as an automatic step, so add_child_node applied the node directly to the live tree (autosaved to project.arbo) — no feedback-file write path exists on an automatic step. Flagged via NeedsReview for your decision.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  1d20217e-a571-4f6d-bd77-6c982d864146:
-    id: 1d20217e-a571-4f6d-bd77-6c982d864146
-    content: TDD step — outcome and reconciliation note
-    children:
-      - e6e5ae5b-f06c-43ea-9f83-e316f8d1428f
-      - 3332f45b-252d-4a45-a569-1c49a71c1822
-      - 8a91b72f-e994-4943-8480-9cc3d725f4b3
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  e6e5ae5b-f06c-43ea-9f83-e316f8d1428f:
-    id: e6e5ae5b-f06c-43ea-9f83-e316f8d1428f
-    content: Added title-only it.todo tests in src/main/services/tests/mcpWriteTools.test.ts (worktree) for the desired checkpoint/action-mode done-signal contract; bodies left empty because the exact behavior is an undecided design decision per the Technical refinement.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3332f45b-252d-4a45-a569-1c49a71c1822:
-    id: 3332f45b-252d-4a45-a569-1c49a71c1822
-    content: 'Verified only the changed test file runs (npm install + npx vitest run mcpWriteTools.test.ts in the worktree): PASS 81 / FAIL 0; only test code added, no feature code.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a91b72f-e994-4943-8480-9cc3d725f4b3:
-    id: 8a91b72f-e994-4943-8480-9cc3d725f4b3
-    content: 'Reconcile at implementation time: the existing passing test "announceStepDone is REJECTED on a checkpoint step in action-mode" asserts the current (to-be-changed) behavior and will need inverting or removing once Guard 3 is relaxed.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8ea4844-6672-43ec-a187-6137937fab64:
-    id: c8ea4844-6672-43ec-a187-6137937fab64
-    content: Implementation step — outcome and the design call made
-    children:
-      - a375dae6-27d9-497d-b441-967227bca275
-      - c40c20d1-ad4f-4f9b-97f2-b0582891a382
-      - 75e6feea-c1df-4a7b-ad98-603daf63ed7a
-      - 65054f96-c73b-45b0-a380-71bfcbbb505c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a375dae6-27d9-497d-b441-967227bca275:
-    id: a375dae6-27d9-497d-b441-967227bca275
-    content: Relaxed Guard 3 in executeAnnounceStepDone (mcpWriteTools.ts) to accept checkpoint steps in addition to autonomous; manual steps stay rejected (UI-only). Added resolveParentStepType to shared/utils/autonomousStepContext.ts and used it in place of the autonomous-only predicate.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c40c20d1-ad4f-4f9b-97f2-b0582891a382:
-    id: c40c20d1-ad4f-4f9b-97f2-b0582891a382
-    content: 'Confirmed the checkpoint validation guarantee is preserved with no renderer change: announce_step_done marks the subject complete and sets explicit_submit_seen, and the existing checkpoint Stop handler (workflowHookEventHandler) routes to awaiting-validation rather than advancing — so the done-signal pauses the workflow exactly as a checkpoint should.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  75e6feea-c1df-4a7b-ad98-603daf63ed7a:
-    id: 75e6feea-c1df-4a7b-ad98-603daf63ed7a
-    content: Filled the previously title-only tests with real assertions, inverted the stale "REJECTED on a checkpoint" test to assert acceptance, and added resolveParentStepType coverage; changed-file tests pass (97/0), no type or lint errors in changed files; not committed (awaiting go-ahead).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  65054f96-c73b-45b0-a380-71bfcbbb505c:
-    id: 65054f96-c73b-45b0-a380-71bfcbbb505c
-    content: 'Design call to confirm: I treated the accepted "Expected behavior" as the decision — checkpoints in action/execute-only mode now accept the done-signal, while Guard 1 (require an applied context) and Guard 2 (reject collaborate=true → use submit_step_output) are intentionally unchanged. The original repro failed on Guard 1 (no applied context), which remains correct behavior.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  e6b03593-ffe8-4ed8-8df4-4cbc07138fdb:
-    id: e6b03593-ffe8-4ed8-8df4-4cbc07138fdb
-    content: review feedback
-    children:
-      - e01f7bd9-726e-4c7d-8f06-c924624b64d5
-      - a4dc9ec4-a644-4fc1-b114-01e6b0c01010
-      - e3faaf65-897a-48d6-b4c4-10dc1421850b
-      - 222375f3-2faa-4e51-b2a4-b76bfdaaea2f
-    metadata:
-      status: pending
   b4ed0a2f-3495-436a-8323-6576910d1ed4:
     id: b4ed0a2f-3495-436a-8323-6576910d1ed4
     content: worktree
@@ -176062,30 +175575,532 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e01f7bd9-726e-4c7d-8f06-c924624b64d5:
-    id: e01f7bd9-726e-4c7d-8f06-c924624b64d5
-    content: 'Verdict: no blocking or should-fix items. Fix is correct and the checkpoint safety invariant was independently verified: announce_step_done on a checkpoint issues mark-complete + sets explicit_submit_seen, and the existing Stop handler (workflowHookEventHandler ~L141 gate, ~L203 checkpoint branch) routes the step to awaiting-validation and does NOT call advanceNode — so no auto-advance past user validation.'
+  022dfe52-98d6-40cc-985d-52f1f67df96f:
+    id: 022dfe52-98d6-40cc-985d-52f1f67df96f
+    content: Summary
+    children:
+      - 9d72b971-3edd-4549-9c8b-df869f9f79e1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d72b971-3edd-4549-9c8b-df869f9f79e1:
+    id: 9d72b971-3edd-4549-9c8b-df869f9f79e1
+    content: announce_step_done refuses to fire on a checkpoint step because no execute/action context is applied — so the AI cannot signal completion of an action-mode checkpoint and the workflow stalls.
     children: []
     metadata:
       status: pending
-  a4dc9ec4-a644-4fc1-b114-01e6b0c01010:
-    id: a4dc9ec4-a644-4fc1-b114-01e6b0c01010
-    content: 'Guard chain intact and correctly ordered in executeAnnounceStepDone: Guard 1 no-context -> Guard 2 collaborate=true (names submit_step_output) -> step-type guard accepting autonomous and checkpoint, rejecting manual and undefined stepType. resolveParentStepType returns undefined for root/missing/no-stepType nodes, which the guard handles correctly.'
+      expanded: true
+      deleted: false
+      plugins: {}
+  8737fa7f-acc1-4cf8-8f78-3a99779f62fa:
+    id: 8737fa7f-acc1-4cf8-8f78-3a99779f62fa
+    content: Steps to reproduce
+    children:
+      - 60c71235-2912-43d7-af9b-6a9b64a5dc3b
+      - b8429f01-1e12-476b-aba3-1786c8b50208
+      - 0f98222a-9f95-490a-aed3-71b799489e4c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60c71235-2912-43d7-af9b-6a9b64a5dc3b:
+    id: 60c71235-2912-43d7-af9b-6a9b64a5dc3b
+    content: 'Precondition: a checkpoint workflow step exists with a context named "Verify code review fixes" that has collaborate:false and execute:false, and that context is not applied (inherited or direct) to the bound node.'
     children: []
     metadata:
       status: pending
-  e3faaf65-897a-48d6-b4c4-10dc1421850b:
-    id: e3faaf65-897a-48d6-b4c4-10dc1421850b
-    content: 'Open nit worth a conscious decision: a TERMINAL checkpoint (last step, !hasNextStep) hits completeWorkflow() directly at workflowHookEventHandler ~L207, bypassing awaiting-validation — so announce_step_done on a final checkpoint would complete the workflow without the validation gate. This is pre-existing Stop-handler behavior, NOT introduced by this diff, and lives outside the changed files. No test covers announce_step_done against a terminal checkpoint; consider adding one or documenting the intent.'
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8429f01-1e12-476b-aba3-1786c8b50208:
+    id: b8429f01-1e12-476b-aba3-1786c8b50208
+    content: 'User action: the AI finishes the checkpoint work and calls announce_step_done with the session_id to signal the step is done.'
     children: []
     metadata:
       status: pending
-  222375f3-2faa-4e51-b2a4-b76bfdaaea2f:
-    id: 222375f3-2faa-4e51-b2a4-b76bfdaaea2f
-    content: 'Minor non-blocking nits: isAutomatic is now used only by executeMutation (the announce path intentionally diverged to resolveParentStepType — that divergence IS the fix); the message-disambiguation test couples to exact wording (asserts the no-context message lacks /collaborate/). Conventions clean (why-comments, DRY resolveParentStep extraction, consistent naming), test coverage adequate, type-check passes and 97 changed-file tests pass.'
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f98222a-9f95-490a-aed3-71b799489e4c:
+    id: 0f98222a-9f95-490a-aed3-71b799489e4c
+    content: 'Observation: announce_step_done returns an error stating no execute-only or action-mode context is applied to the bound step, so no done-signal is recorded.'
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e1f73f8-b301-4537-a723-868d8645364f:
+    id: 1e1f73f8-b301-4537-a723-868d8645364f
+    content: Expected behavior
+    children:
+      - 1954d42c-d9ee-4233-af0c-991688acacd4
+      - 8cf5b647-c3f9-4b31-a93b-d54a578a11c3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1954d42c-d9ee-4233-af0c-991688acacd4:
+    id: 1954d42c-d9ee-4233-af0c-991688acacd4
+    content: 'Happy path: the done-signal is accepted and the checkpoint step is marked done, then pauses for user validation as a checkpoint normally would — without auto-advancing past the checkpoint.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cf5b647-c3f9-4b31-a93b-d54a578a11c3:
+    id: 8cf5b647-c3f9-4b31-a93b-d54a578a11c3
+    content: 'Edge cases: a context that is collaborate:false AND execute:false (a pure action/verify context) should be treated as a valid action-mode context for the purpose of accepting a done-signal, not as "no context applied."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8718c37b-1046-42ea-a01d-f9a5f066be9e:
+    id: 8718c37b-1046-42ea-a01d-f9a5f066be9e
+    content: Actual behavior
+    children:
+      - 53c84976-5eec-4d69-8be8-a8fc18bea72f
+      - d9b1a943-4912-45de-b80d-f87184386895
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53c84976-5eec-4d69-8be8-a8fc18bea72f:
+    id: 53c84976-5eec-4d69-8be8-a8fc18bea72f
+    content: announce_step_done hits the no-applied-context guard (Guard 1) and is rejected before any done is recorded; even if the context were applied, the autonomy guard (Guard 3) would still reject it because checkpoint != autonomous.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9b1a943-4912-45de-b80d-f87184386895:
+    id: d9b1a943-4912-45de-b80d-f87184386895
+    content: 'User-visible symptom: the workflow appears stuck at the checkpoint with no way for the AI to signal completion via MCP, forcing manual resolution through the UI.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e23632e-8602-41f5-91c7-323097fe1e39:
+    id: 8e23632e-8602-41f5-91c7-323097fe1e39
+    content: Suspected cause
+    children:
+      - 9de92ceb-2551-4789-b6fa-04db2cbfec57
+      - e4ae624f-3ef5-4f73-8ae0-c3ca4cb334ae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9de92ceb-2551-4789-b6fa-04db2cbfec57:
+    id: 9de92ceb-2551-4789-b6fa-04db2cbfec57
+    content: 'Code path: executeAnnounceStepDone in src/main/services/mcpWriteTools.ts (~lines 151-184) — Guard 1 (getAppliedContextIdWithInheritance returns undefined) and Guard 3 (isStructurallyAutonomous requires parent stepType===''autonomous'', rejecting manual+checkpoint).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4ae624f-3ef5-4f73-8ae0-c3ca4cb334ae:
+    id: e4ae624f-3ef5-4f73-8ae0-c3ca4cb334ae
+    content: 'Why existing guards miss it: the guards categorically reject all non-autonomous steps and any step lacking an applied execute/action context, with no path for a checkpoint step carrying an action-only (execute:false/collaborate:false) context to accept a done-signal that merely marks done without advancing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b48eaa94-ddac-47e6-9e65-f8e795f14ea2:
+    id: b48eaa94-ddac-47e6-9e65-f8e795f14ea2
+    content: Affected files
+    children:
+      - 960d656e-8753-49f4-a6a7-b6f6f4c2e180
+      - fb6d49c4-da09-4f12-b000-681188e196aa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  960d656e-8753-49f4-a6a7-b6f6f4c2e180:
+    id: 960d656e-8753-49f4-a6a7-b6f6f4c2e180
+    content: 'Primary suspect: src/main/services/mcpWriteTools.ts (executeAnnounceStepDone guard chain).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb6d49c4-da09-4f12-b000-681188e196aa:
+    id: fb6d49c4-da09-4f12-b000-681188e196aa
+    content: 'Related surface: src/main/services/mcpSubmitOutputTool.ts and src/renderer/store/tree/actions/workflowHookEventHandler.ts (shared isStructurallyAutonomous predicate and checkpoint awaiting-validation handling).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cc96edf-d8aa-406e-bc26-ae6e371f88d0:
+    id: 0cc96edf-d8aa-406e-bc26-ae6e371f88d0
+    content: Regression window
+    children:
+      - 0b974faf-2bc7-4064-8df2-b8e404ce81c8
+      - e9fdf13d-c6bb-4439-9329-5a9299c9ba0f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b974faf-2bc7-4064-8df2-b8e404ce81c8:
+    id: 0b974faf-2bc7-4064-8df2-b8e404ce81c8
+    content: 'Last known good: feature introduced in 395ceba (add announce_step_done MCP tool); behavior shaped by 7b3e036 (unify gates 1+2+3 around getAutonomousStepContext predicate).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9fdf13d-c6bb-4439-9329-5a9299c9ba0f:
+    id: e9fdf13d-c6bb-4439-9329-5a9299c9ba0f
+    content: 'First observed broken: b289730 (collapse autonomous-step predicate to the subject-bound model) is the most recent change to the implicated guard chain.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d13a038-be14-4a5e-aee0-f426d0e08087:
+    id: 2d13a038-be14-4a5e-aee0-f426d0e08087
+    content: Severity
+    children:
+      - 063a9e67-132d-48ed-bfef-26806887cb85
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  063a9e67-132d-48ed-bfef-26806887cb85:
+    id: 063a9e67-132d-48ed-bfef-26806887cb85
+    content: 'Medium: no data loss, but it blocks AI-driven completion of action-mode checkpoint steps and forces manual UI intervention, undermining autonomous workflow advancement.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fb74a7a-6a26-4fb9-9182-213407a7ddbd:
+    id: 0fb74a7a-6a26-4fb9-9182-213407a7ddbd
+    content: Notes
+    children:
+      - 047be3e3-fac2-4284-9efc-5ee477e62192
+      - bc1b4eed-f20f-4f31-8bda-e6b277e705d5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  047be3e3-fac2-4284-9efc-5ee477e62192:
+    id: 047be3e3-fac2-4284-9efc-5ee477e62192
+    content: 'Adjacent look-alikes: distinguish from mark_step_complete (routes through the general authority gate and allows collaborate:true) and from submit_step_output (requires collaborate:true) — this bug is specific to the announce_step_done action/execute path on checkpoints.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc1b4eed-f20f-4f31-8bda-e6b277e705d5:
+    id: bc1b4eed-f20f-4f31-8bda-e6b277e705d5
+    content: 'UX/telemetry gap: the rejection message conflates "context not applied" with "context applied but wrong mode" — surface which condition actually failed, and consider a UI affordance or clearer error so the user knows to apply the action context or resolve the checkpoint manually.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  226dffe5-5ed7-444c-b2e0-2e33cc206f23:
+    id: 226dffe5-5ed7-444c-b2e0-2e33cc206f23
+    content: Technical refinement
+    children:
+      - ecf99527-cda6-4542-91a6-41f726fcec49
+      - 3ab90537-51f3-46cc-b51a-8edf2318192e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecf99527-cda6-4542-91a6-41f726fcec49:
+    id: ecf99527-cda6-4542-91a6-41f726fcec49
+    content: Flag complications
+    children:
+      - 494a9cc8-70c7-43b7-ade8-1db7237f69e5
+      - f371e40b-7e3f-40b9-9958-37b93f8653ee
+      - 227fe8f8-d75e-410f-93aa-0833b07a8208
+      - 8a973b64-181e-423e-b39e-9ae686dc2f29
+      - 7206680e-cb4d-4b58-8c8f-affbb1e84e5f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  494a9cc8-70c7-43b7-ade8-1db7237f69e5:
+    id: 494a9cc8-70c7-43b7-ade8-1db7237f69e5
+    content: This is a design decision, not a pure bug — Guard 3 deliberately scopes announce_step_done to autonomous steps ("checkpoint steps must be resolved through the UI"); allowing it on checkpoints needs a product call before coding.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f371e40b-7e3f-40b9-9958-37b93f8653ee:
+    id: f371e40b-7e3f-40b9-9958-37b93f8653ee
+    content: 'Risk: marking a checkpoint complete must NOT bypass the awaiting-validation pause — the mark-complete must still route through workflowHookEventHandler, or the checkpoint silently auto-advances and loses its purpose.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  227fe8f8-d75e-410f-93aa-0833b07a8208:
+    id: 227fe8f8-d75e-410f-93aa-0833b07a8208
+    content: 'Edge case to define: a context that is collaborate:false AND execute:false is "neither" today — decide whether it counts as a valid action context for a done-signal or is just unapplied/misconfigured.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a973b64-181e-423e-b39e-9ae686dc2f29:
+    id: 8a973b64-181e-423e-b39e-9ae686dc2f29
+    content: 'Out of scope: manual (non-checkpoint) steps stay UI-only; submit_step_output semantics and any auto-advance-past-checkpoint behavior are unchanged.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7206680e-cb4d-4b58-8c8f-affbb1e84e5f:
+    id: 7206680e-cb4d-4b58-8c8f-affbb1e84e5f
+    content: 'ROI: the cheap, high-value part is splitting the conflated Guard 1/2 error message; relaxing Guard 3 for checkpoints is a larger semantic change — confirm it is actually wanted before investing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ab90537-51f3-46cc-b51a-8edf2318192e:
+    id: 3ab90537-51f3-46cc-b51a-8edf2318192e
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - e2fd5af3-c53e-4aa0-9b56-0cb88090a55d
+      - 7774c3ff-2beb-4a26-a0aa-f36c1f282f9a
+      - 999ad78f-c655-415c-90b0-53a5ea214805
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2fd5af3-c53e-4aa0-9b56-0cb88090a55d:
+    id: e2fd5af3-c53e-4aa0-9b56-0cb88090a55d
+    content: 'Changes land in the executeAnnounceStepDone guard chain (mcpWriteTools.ts:151-184): split the Guard 1 message to distinguish "no context applied" from "wrong mode," then decide a checkpoint exception for Guard 3.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7774c3ff-2beb-4a26-a0aa-f36c1f282f9a:
+    id: 7774c3ff-2beb-4a26-a0aa-f36c1f282f9a
+    content: 'Key concept: separate "mark done" from "advance" — on a checkpoint a done-signal sets status=completed but still pauses for user validation rather than continuing the workflow.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  999ad78f-c655-415c-90b0-53a5ea214805:
+    id: 999ad78f-c655-415c-90b0-53a5ea214805
+    content: 'Non-obvious for the reviewer: in the reported repro the context was not applied at all (Guard 1 path), which may be correct behavior — the real ask (accept a done-signal on a checkpoint, Guard 3) is a separate and larger change.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9a30257-9af1-46f3-b43b-c82ce3b67c72:
+    id: f9a30257-9af1-46f3-b43b-c82ce3b67c72
+    content: Worktree step — outcome and deviation encountered
+    children:
+      - 564b1cf0-49eb-4917-8cec-81eab0db9a91
+      - 98b23700-7179-4e8f-9f43-c265bbc758e8
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  564b1cf0-49eb-4917-8cec-81eab0db9a91:
+    id: 564b1cf0-49eb-4917-8cec-81eab0db9a91
+    content: Worktree created at /Users/brianfox/dev/Arborescent-announce-checkpoint on branch fix/announce-step-done-checkpoint, forked from master (7fd1765); node_modules not symlinked; 'worktree' node added as the first child of this bug node with a nested vscode:// link.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98b23700-7179-4e8f-9f43-c265bbc758e8:
+    id: 98b23700-7179-4e8f-9f43-c265bbc758e8
+    content: 'Deviation: the step instructed writing the worktree node to the feedback file and not the project file, but this step resolved as an automatic step, so add_child_node applied the node directly to the live tree (autosaved to project.arbo) — no feedback-file write path exists on an automatic step. Flagged via NeedsReview for your decision.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  288fa2bb-034c-4a97-b561-b56017e30c99:
+    id: 288fa2bb-034c-4a97-b561-b56017e30c99
+    content: TDD step — outcome and reconciliation note
+    children:
+      - 9e155ee9-fc02-4a8b-a65e-1b5c51ba677e
+      - c46b3f79-936a-4e45-807e-4108a31014b1
+      - 84b1c516-7fa0-48f9-b74a-5a2bdaa830c0
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e155ee9-fc02-4a8b-a65e-1b5c51ba677e:
+    id: 9e155ee9-fc02-4a8b-a65e-1b5c51ba677e
+    content: Added title-only it.todo tests in src/main/services/tests/mcpWriteTools.test.ts (worktree) for the desired checkpoint/action-mode done-signal contract; bodies left empty because the exact behavior is an undecided design decision per the Technical refinement.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c46b3f79-936a-4e45-807e-4108a31014b1:
+    id: c46b3f79-936a-4e45-807e-4108a31014b1
+    content: 'Verified only the changed test file runs (npm install + npx vitest run mcpWriteTools.test.ts in the worktree): PASS 81 / FAIL 0; only test code added, no feature code.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84b1c516-7fa0-48f9-b74a-5a2bdaa830c0:
+    id: 84b1c516-7fa0-48f9-b74a-5a2bdaa830c0
+    content: 'Reconcile at implementation time: the existing passing test "announceStepDone is REJECTED on a checkpoint step in action-mode" asserts the current (to-be-changed) behavior and will need inverting or removing once Guard 3 is relaxed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fffe677-6bde-444d-baa1-08a278cb8602:
+    id: 0fffe677-6bde-444d-baa1-08a278cb8602
+    content: Implementation step — outcome and the design call made
+    children:
+      - 502bc828-e53f-4502-9674-c72684549dea
+      - dd4e3f5b-1942-4561-acd6-2f0f2eae6c53
+      - 66ef0894-51a5-42f7-9a2e-6be74cd72976
+      - a8dd5eb4-12b0-46db-8737-5afe55eb5693
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  502bc828-e53f-4502-9674-c72684549dea:
+    id: 502bc828-e53f-4502-9674-c72684549dea
+    content: Relaxed Guard 3 in executeAnnounceStepDone (mcpWriteTools.ts) to accept checkpoint steps in addition to autonomous; manual steps stay rejected (UI-only). Added resolveParentStepType to shared/utils/autonomousStepContext.ts and used it in place of the autonomous-only predicate.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd4e3f5b-1942-4561-acd6-2f0f2eae6c53:
+    id: dd4e3f5b-1942-4561-acd6-2f0f2eae6c53
+    content: 'Confirmed the checkpoint validation guarantee is preserved with no renderer change: announce_step_done marks the subject complete and sets explicit_submit_seen, and the existing checkpoint Stop handler (workflowHookEventHandler) routes to awaiting-validation rather than advancing — so the done-signal pauses the workflow exactly as a checkpoint should.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66ef0894-51a5-42f7-9a2e-6be74cd72976:
+    id: 66ef0894-51a5-42f7-9a2e-6be74cd72976
+    content: Filled the previously title-only tests with real assertions, inverted the stale "REJECTED on a checkpoint" test to assert acceptance, and added resolveParentStepType coverage; changed-file tests pass (97/0), no type or lint errors in changed files; not committed (awaiting go-ahead).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8dd5eb4-12b0-46db-8737-5afe55eb5693:
+    id: a8dd5eb4-12b0-46db-8737-5afe55eb5693
+    content: 'Design call to confirm: I treated the accepted "Expected behavior" as the decision — checkpoints in action/execute-only mode now accept the done-signal, while Guard 1 (require an applied context) and Guard 2 (reject collaborate=true → use submit_step_output) are intentionally unchanged. The original repro failed on Guard 1 (no applied context), which remains correct behavior.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1990a054-97d7-432d-81cd-18b16637ade9:
+    id: 1990a054-97d7-432d-81cd-18b16637ade9
+    content: Code review resolution — outcome
+    children:
+      - 5c562ae0-a924-4b18-be68-3ef28e399802
+      - ae6eafd8-6bb0-4edc-8bd9-bcf7facfbc92
+      - 20e47799-ef1a-4f25-91f2-0d19d65db457
+      - 9f4b7ff3-7d10-4f38-9470-6a591daa8f28
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c562ae0-a924-4b18-be68-3ef28e399802:
+    id: 5c562ae0-a924-4b18-be68-3ef28e399802
+    content: 'Major issues fixed: none — the agent review found no blocking or should-fix items, and a follow-up discussion confirmed the fix is correct and the checkpoint safety invariant holds.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae6eafd8-6bb0-4edc-8bd9-bcf7facfbc92:
+    id: ae6eafd8-6bb0-4edc-8bd9-bcf7facfbc92
+    content: 'Minor issues fixed: none — the remaining nits were either non-actionable or out of scope (no code change made this step).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20e47799-ef1a-4f25-91f2-0d19d65db457:
+    id: 20e47799-ef1a-4f25-91f2-0d19d65db457
+    content: 'Skipped (out of scope, agreed with reviewer via SendMessage): terminal checkpoint (last step, !hasNextStep) auto-completes via completeWorkflow() at workflowHookEventHandler ~L207, bypassing awaiting-validation — this is pre-existing Stop-handler behavior shared by all triggers (submit_step_output, permissive default), not a regression introduced by this diff, and changing it is a separate product decision. Logged as a possible follow-up: "should terminal checkpoints offer a review gate before auto-complete?"'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f4b7ff3-7d10-4f38-9470-6a591daa8f28:
+    id: 9f4b7ff3-7d10-4f38-9470-6a591daa8f28
+    content: 'Skipped (non-actionable): isAutomatic is now used only by executeMutation (the announce path''s divergence to resolveParentStepType IS the fix); the message-disambiguation test couples to exact wording (low risk).'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
