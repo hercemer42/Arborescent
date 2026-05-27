@@ -22,17 +22,23 @@ interface FullState<TExecState = unknown> extends StructuralState {
 // stepType='autonomous'. The subject itself never carries stepType (steps do),
 // and the depth never varies — so there is no self-step case and no reason to
 // walk past the immediate parent.
-function resolveStepId(
+function resolveParentStep(
   nodeId: string,
   state: StructuralState,
-): string | null {
+): TreeNode | null {
   const node = state.nodes[nodeId];
   if (!node) return null;
   const ancestors = state.ancestorRegistry[nodeId] ?? [];
   const parentId = ancestors[ancestors.length - 1];
-  const parent = parentId ? state.nodes[parentId] : null;
+  return parentId ? state.nodes[parentId] ?? null : null;
+}
 
-  return parent?.metadata?.stepType === 'autonomous' ? parentId! : null;
+function resolveStepId(
+  nodeId: string,
+  state: StructuralState,
+): string | null {
+  const parent = resolveParentStep(nodeId, state);
+  return parent?.metadata?.stepType === 'autonomous' ? parent.id : null;
 }
 
 export function isStructurallyAutonomous(
@@ -40,6 +46,13 @@ export function isStructurallyAutonomous(
   state: StructuralState,
 ): boolean {
   return resolveStepId(nodeId, state) !== null;
+}
+
+export function resolveParentStepType(
+  nodeId: string,
+  state: StructuralState,
+): TreeNode['metadata']['stepType'] {
+  return resolveParentStep(nodeId, state)?.metadata?.stepType;
 }
 
 export function getAutonomousStepContext<TExecState = unknown>(

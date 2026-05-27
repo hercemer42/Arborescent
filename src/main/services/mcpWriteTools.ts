@@ -7,7 +7,7 @@ import {
   getContextDeclarations,
   getAppliedContextIdWithInheritance,
 } from '../../shared/utils/permissionGate';
-import { isStructurallyAutonomous } from '../../shared/utils/autonomousStepContext';
+import { isStructurallyAutonomous, resolveParentStepType } from '../../shared/utils/autonomousStepContext';
 
 export type MutationRequest =
   | { kind: 'add-child'; parentId: string; content: string; position?: number }
@@ -73,11 +73,10 @@ function checkAuthority(
 }
 
 function isAutomatic(nodeId: string, state: TreeReadState): boolean {
-  // Mirrors gates 1+2+3 / submit_step_output: the bound node (the subject that
-  // travels through the workflow) is autonomous when its immediate parent — the
-  // current step — carries stepType='autonomous'. announce_step_done must use
-  // the same predicate so it never rejects a step submit_step_output accepts on
-  // the very same binding.
+  // The bound node (the subject that travels through the workflow) is autonomous
+  // when its immediate parent — the current step — carries stepType='autonomous'.
+  // This gates the executeMutation proposal route: only an autonomous step applies
+  // a mutation directly; manual and checkpoint steps queue it for user review.
   return isStructurallyAutonomous(nodeId, state);
 }
 
@@ -170,8 +169,14 @@ async function executeAnnounceStepDone(
     );
   }
 
-  if (!isAutomatic(boundNodeId, state)) {
-    return err('announce_step_done is only valid on autonomous workflow steps. Manual and checkpoint steps must be resolved through the user interface.');
+  // A checkpoint is the natural home for an action-mode done-signal: there is no
+  // content to submit for review, so submit_step_output does not apply. Marking
+  // the subject complete here does NOT skip the checkpoint's validation — the Stop
+  // handler still routes a checkpoint to awaiting-validation rather than advancing.
+  // Manual steps stay UI-only: their Stop handler ignores the done-signal entirely.
+  const stepType = resolveParentStepType(boundNodeId, state);
+  if (stepType !== 'autonomous' && stepType !== 'checkpoint') {
+    return err('announce_step_done is only valid on autonomous or checkpoint workflow steps. Manual steps must be resolved through the user interface.');
   }
 
   const result = await deps.treeMutator.mutate(boundNodeId, { kind: 'mark-complete', status: 'completed' });

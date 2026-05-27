@@ -633,17 +633,20 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
   });
 
-  it('announceStepDone is REJECTED on a checkpoint step in action-mode and does NOT mutate or set explicit_submit_seen', async () => {
+  it('announceStepDone is ACCEPTED on a checkpoint step in action-mode and issues a mark-complete (the checkpoint then pauses for validation via the Stop handler)', async () => {
     const made = makeDeps({ collaborate: false, execute: false, stepType: 'checkpoint' });
     made.registry.register('sess-1', BOUND);
     const tools = createWriteTools(made.deps);
 
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
-    expect(result.isError).toBe(true);
-    expect(result.content[0].text).toMatch(/autonomous/i);
-    expect(made.mutator.mutate).not.toHaveBeenCalled();
-    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+    expect(result.isError).toBeFalsy();
+    expect(made.mutator.mutate).toHaveBeenCalledWith(BOUND, {
+      kind: 'mark-complete',
+      status: 'completed',
+    } satisfies MutationRequest);
+    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).toHaveBeenCalledWith('sess-1', true);
+    expect(made.proposalSubmitter.submit).not.toHaveBeenCalled();
   });
 
   // Regression: real bindings often target a CONTENT child of an autonomous
@@ -679,5 +682,89 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
       status: 'completed',
     } satisfies MutationRequest);
     expect(oneShotTargetStore.setExplicitSubmitSeenThisTurn).toHaveBeenCalledWith('sess-1', true);
+  });
+});
+
+describe('createWriteTools — announceStepDone on a checkpoint: mode and context guards still apply', () => {
+  it('accepts the done-signal on a checkpoint step in execute-only mode (collaborate:false, execute:true)', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'checkpoint' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBeFalsy();
+    expect(made.mutator.mutate).toHaveBeenCalledWith(BOUND, {
+      kind: 'mark-complete',
+      status: 'completed',
+    } satisfies MutationRequest);
+  });
+
+  it('still rejects the done-signal on a checkpoint when no context is applied at all (the no-context guard is unchanged)', async () => {
+    const registry = new SessionBindingRegistry();
+    const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
+    const treeReader = {
+      readState: async () => ({
+        nodes: {
+          [ROOT]: makeNode(ROOT, 'Root', [STEP]),
+          [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'checkpoint' as const }),
+          [BOUND]: makeNode(BOUND, 'Bound', []),
+        },
+        rootNodeId: ROOT,
+        ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP] },
+      }),
+    };
+    registry.register('sess-1', BOUND);
+    const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
+    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/no context is applied|requires an explicitly applied/i);
+    expect(mutator.mutate).not.toHaveBeenCalled();
+  });
+
+  it('still rejects the done-signal on a checkpoint whose applied context is collaborate=true and names submit_step_output instead', async () => {
+    const made = makeDeps({ collaborate: true, execute: false, stepType: 'checkpoint' });
+    made.registry.register('sess-1', BOUND);
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toContain('submit_step_output');
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
+  });
+
+  it('rejection messages distinguish "no context applied" from "context applied but in collaborate mode"', async () => {
+    const registry = new SessionBindingRegistry();
+    const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
+    const treeReader = {
+      readState: async () => ({
+        nodes: {
+          [ROOT]: makeNode(ROOT, 'Root', [STEP]),
+          [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'checkpoint' as const }),
+          [BOUND]: makeNode(BOUND, 'Bound', []),
+        },
+        rootNodeId: ROOT,
+        ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP] },
+      }),
+    };
+    registry.register('sess-1', BOUND);
+    const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
+    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const noContextTools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
+
+    const noContext = await noContextTools.announceStepDone({ sessionId: 'sess-1' });
+
+    const collab = makeDeps({ collaborate: true, execute: false, stepType: 'checkpoint' });
+    collab.registry.register('sess-2', BOUND);
+    const wrongMode = await createWriteTools(collab.deps).announceStepDone({ sessionId: 'sess-2' });
+
+    expect(noContext.content[0].text).toMatch(/no context is applied/i);
+    expect(noContext.content[0].text).not.toMatch(/collaborate/i);
+    expect(wrongMode.content[0].text).toMatch(/collaborate/i);
   });
 });

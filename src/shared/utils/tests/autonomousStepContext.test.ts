@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { TreeNode } from '../../types';
-import { getAutonomousStepContext } from '../autonomousStepContext';
+import { getAutonomousStepContext, resolveParentStepType } from '../autonomousStepContext';
 
 // Unified gate predicate shared between gate 1 (server: mcpSubmitOutputTool),
 // gate 2 (renderer: applyStepOutput), and gate 3 (renderer:
@@ -104,5 +104,41 @@ describe('getAutonomousStepContext — unified gate predicate', () => {
     const snapshot = JSON.stringify(state);
     getAutonomousStepContext(BOUND, state);
     expect(JSON.stringify(state)).toBe(snapshot);
+  });
+});
+
+describe('resolveParentStepType — the immediate parent step type of the bound subject', () => {
+  it.each(['autonomous', 'checkpoint', 'manual'] as const)(
+    'returns "%s" when the parent step carries that stepType',
+    (stepType) => {
+      const state = makeState({
+        nodes: {
+          [ROOT]: makeNode(ROOT),
+          [STEP]: makeNode(STEP, { stepType }),
+          [BOUND]: makeNode(BOUND),
+        },
+      });
+      expect(resolveParentStepType(BOUND, state)).toBe(stepType);
+    },
+  );
+
+  it('returns undefined when the parent step carries no stepType', () => {
+    const state = makeState({
+      nodes: {
+        [ROOT]: makeNode(ROOT),
+        [STEP]: makeNode(STEP),
+        [BOUND]: makeNode(BOUND),
+      },
+    });
+    expect(resolveParentStepType(BOUND, state)).toBeUndefined();
+  });
+
+  it('returns undefined when the node has no parent (root) or is missing from the tree', () => {
+    const state = makeState({
+      nodes: { [ROOT]: makeNode(ROOT) },
+      ancestorRegistry: { [ROOT]: [] },
+    });
+    expect(resolveParentStepType(ROOT, state)).toBeUndefined();
+    expect(resolveParentStepType('missing-node', state)).toBeUndefined();
   });
 });
