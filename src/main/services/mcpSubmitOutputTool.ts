@@ -66,6 +66,15 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       }
 
       if (!isStructurallyAutonomous(boundNodeId, state)) {
+        if (targetNodeId && targetNodeId !== boundNodeId) {
+          logger.warn(
+            `gate-miss gate=4 session=${sessionId} tokenTarget=${targetNodeId} resolvedTarget=${boundNodeId} reason=drift-proposal-route`,
+            'McpSubmit',
+          );
+          return err(
+            `submit_step_output target drift — token target ${targetNodeId} does not match resolved bound node ${boundNodeId}`,
+          );
+        }
         const proposal = await deps.proposalSubmitter.submit({
           sessionId,
           nodeId: boundNodeId,

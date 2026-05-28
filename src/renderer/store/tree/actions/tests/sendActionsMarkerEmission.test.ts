@@ -207,6 +207,13 @@ describe('sendActions — marker emission per target (US-B)', () => {
     expect(sent).not.toContain(ARBORESCENT_TARGET_MARKER_PREFIX);
   });
 
+  it('manual terminal collab prompt instructs the assistant to pass target_node_id on submit (so the server can detect drift)', async () => {
+    await actions.collaborateInTerminal(NODE_ID, 'term-1');
+
+    const sent = executeMock.mock.calls[0][1] as string;
+    expect(sent).toContain(`target_node_id="${NODE_ID}"`);
+  });
+
   it('web collab — clipboard payload carries NEITHER marker (web has no MCP hook to register against)', async () => {
     await actions.collaborate(NODE_ID);
 

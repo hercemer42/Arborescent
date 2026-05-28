@@ -172,7 +172,7 @@ ${SUBMIT_ONCE_INSTRUCTION}`;
 }
 
 function buildTerminalCollaboratePrompt(reviewContext: string, content: string, decomposition: boolean = false, isAutonomous: boolean = false, targetNodeId: string = ''): string {
-  const outputTarget = buildCollaborateSubmitOutputTarget(isAutonomous ? targetNodeId : '');
+  const outputTarget = buildCollaborateSubmitOutputTarget(targetNodeId);
   const instructions = wrapInstructions(buildCollaborateInstructions(reviewContext, outputTarget, decomposition, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
@@ -220,7 +220,7 @@ ${outputTarget}${needsReview}`;
 }
 
 function buildTerminalBothPrompt(executeContext: string, content: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false, targetNodeId: string = ''): string {
-  const outputTarget = buildBothOutputTarget(isAutonomous ? targetNodeId : '');
+  const outputTarget = buildBothOutputTarget(targetNodeId);
   const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
 }

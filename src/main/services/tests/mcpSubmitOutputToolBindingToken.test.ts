@@ -19,13 +19,16 @@ import { TreeNode } from '../../../shared/types';
 // boundNodeId is resolved at submit time from oneShotTargetStore.pendingTarget
 // or bindingRegistry.lookup, which may have drifted from the node the prompt
 // was originally rendered for (workflow advance, new send, one-shot target
-// set, decomposition recurse). The fix passes a target-keyed token
-// (targetNodeId, a plain UUID) on the submit_step_output MCP call and rejects
-// the submission with an MCP error when the resolved boundNodeId disagrees.
+// set, decomposition recurse). The submission carries a target-keyed token
+// (targetNodeId, a plain UUID) and is rejected with an MCP error when the
+// resolved boundNodeId disagrees.
 //
-// Scope: the token check fires ONLY on the autonomous route (server gate 1
-// admits via isStructurallyAutonomous). Manual-collab and free terminal sends
-// route through the proposalSubmitter before gate 4 would matter.
+// Scope:
+//   - Autonomous route: token is REQUIRED; missing or mismatched token rejects.
+//   - Proposal/manual-collab route: token is OPTIONAL (backward compat for
+//     in-flight conversations) but VALIDATED when present; a mismatched token
+//     rejects with the same drift error rather than silently writing to the
+//     bound node.
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
@@ -184,8 +187,8 @@ describe('createSubmitOutputTool — gate 4 happy path (same-target)', () => {
   });
 });
 
-describe('createSubmitOutputTool — gate 4 bypass on manual-collab (non-autonomous) route', () => {
-  it('manual-collab submission with no targetNodeId routes to proposalSubmitter as today — gate 4 does not run', async () => {
+describe('createSubmitOutputTool — gate 4 on manual-collab (non-autonomous) route', () => {
+  it('manual-collab submission with no targetNodeId routes to proposalSubmitter (token is optional on the manual route for backward compat)', async () => {
     const made = makeDeps('manual');
     made.registry.register('sess-1', BOUND);
     const tool = createSubmitOutputTool(made.deps);
@@ -200,7 +203,7 @@ describe('createSubmitOutputTool — gate 4 bypass on manual-collab (non-autonom
     expect(made.applier.apply).not.toHaveBeenCalled();
   });
 
-  it('manual-collab submission with a stale targetNodeId still routes to proposalSubmitter — gate 4 only applies on the autonomous route', async () => {
+  it('manual-collab submission with a stale targetNodeId is rejected as drift — gate 4 now applies on the proposal route', async () => {
     const made = makeDeps('manual');
     made.registry.register('sess-1', BOUND);
     const tool = createSubmitOutputTool(made.deps);
@@ -210,10 +213,26 @@ describe('createSubmitOutputTool — gate 4 bypass on manual-collab (non-autonom
       content: 'manual response',
       targetNodeId: OTHER_TARGET,
     });
+    expect(result.isError).toBe(true);
+    const errorText = result.content[0].text.toLowerCase();
+    expect(errorText).toMatch(/drift|target/);
+    expect(made.proposalSubmitter.submit).not.toHaveBeenCalled();
+    expect(made.applier.apply).not.toHaveBeenCalled();
+  });
+
+  it('manual-collab submission with a matching targetNodeId routes to proposalSubmitter normally', async () => {
+    const made = makeDeps('manual');
+    made.registry.register('sess-1', BOUND);
+    const tool = createSubmitOutputTool(made.deps);
+
+    const result = await tool.submitStepOutput({
+      sessionId: 'sess-1',
+      content: 'manual response',
+      targetNodeId: BOUND,
+    });
     expect(result.isError).toBeFalsy();
     expect(JSON.parse(result.content[0].text)).toMatchObject({ applied: false, proposed: true });
     expect(made.proposalSubmitter.submit).toHaveBeenCalledTimes(1);
-    expect(made.applier.apply).not.toHaveBeenCalled();
   });
 
   it('multiple manual-collab resubmissions to the same pendingTarget all succeed (discuss-then-refresh loop preserved per commit f7e8b59)', async () => {
@@ -226,6 +245,7 @@ describe('createSubmitOutputTool — gate 4 bypass on manual-collab (non-autonom
       const result = await tool.submitStepOutput({
         sessionId: 'sess-1',
         content: `iteration ${i}`,
+        targetNodeId: BOUND,
       });
       expect(result.isError).toBeFalsy();
     }

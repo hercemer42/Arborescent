@@ -335,21 +335,21 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
 
   it('working node under stepType=manual still routes to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = setupTool('manual');
-    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'manual result' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: WORKING, content: 'manual result' });
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
 
   it('working node under stepType=checkpoint still routes to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = setupTool('checkpoint');
-    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'checkpoint result' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: WORKING, content: 'checkpoint result' });
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
 
   it('working node under a parent with no stepType still routes to the proposal submitter', async () => {
     const { tool, applier, proposalSubmitter } = setupTool(undefined);
-    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: WORKING, content: 'x' });
     expect(applier.apply).not.toHaveBeenCalled();
     expect(proposalSubmitter.submit).toHaveBeenCalledTimes(1);
   });
