@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-28T13:04:47.117Z'
+updated: '2026-05-28T14:37:49.341Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14411,8 +14411,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children:
-      - 6afbf0be-e1b8-4b16-83e8-e77a31e8e013
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -23708,7 +23707,8 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children: []
+    children:
+      - f1f2a96e-9f35-4144-9f11-dd7d3266bd25
     metadata:
       status: pending
       isBlueprint: true
@@ -124607,7 +124607,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 6afbf0be-e1b8-4b16-83e8-e77a31e8e013
     metadata:
       status: pending
       isBlueprint: true
@@ -159075,9 +159076,7 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children:
-      - 559c948d-8447-4dba-8205-2160ee75da8d
-      - f1f2a96e-9f35-4144-9f11-dd7d3266bd25
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -176108,10 +176107,10 @@ nodes:
     id: 6afbf0be-e1b8-4b16-83e8-e77a31e8e013
     content: Improve flow for manual workflow steps
     children:
-      - 6e86a410-00ce-47b4-b177-6db87d97125c
-      - 7ad4715c-b5bb-4019-8a81-761db1bf9f78
-      - 11682f5b-b399-4b6e-a1ee-60758f4f295d
-      - 8d3c41b7-3462-4950-b565-a1c78c0ea7b0
+      - 029fc864-5832-4fd6-a721-1201b68dde0c
+      - 88a385db-d748-43b3-a87c-b57d1da9b30b
+      - 1fcf5950-436e-4adf-981f-e39d9558bb32
+      - ac022d47-5e35-46a4-8a39-7b3b3b7073ee
     metadata:
       status: completed
       expanded: false
@@ -176124,718 +176123,990 @@ nodes:
     children:
       - 93df94d3-96a2-4f83-89dd-088be2e0af91
       - 30439ad3-340e-481b-adb1-07b61e7669d0
+      - ec3925cb-2ea7-4688-9432-7ff63c83ea92
+      - 70447bd3-ecc5-433a-884f-15f144ad0cfc
+      - b378ff16-abb8-4296-9081-f2422628e3fa
+      - 7bbb2d0c-95d8-4c9f-acb3-1d8efec38e99
+      - ad88d92b-edcd-4eb5-aac2-fd226456602a
+      - c91cbe3c-3247-4db6-bd6c-f38fba7a449d
+      - 8fb32a4f-2d75-405d-a0b0-e6954a460ad1
+      - 4097049e-799d-40d5-a8b2-611ef66cd7bc
     metadata:
       status: pending
-  93df94d3-96a2-4f83-89dd-088be2e0af91:
-    id: 93df94d3-96a2-4f83-89dd-088be2e0af91
-    content: Refer to session 65164a7e-ed73-4704-a24f-7ae972a0e6d8
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 38e60c5a-2928-42a7-9a4d-6ef81532408e
+  029fc864-5832-4fd6-a721-1201b68dde0c:
+    id: 029fc864-5832-4fd6-a721-1201b68dde0c
+    content: Acceptance for the whole released element
+    children:
+      - 9bb3d79e-1321-4576-a6e6-648db5387a70
+      - ef7577f0-3b21-44f2-97ff-ed77fd0a007c
+      - 6bed485e-5511-4086-aaee-30cc29625831
+      - 4fbd5055-f2db-4b72-bb7e-ff2fb8d58fc1
+      - 5fa59915-bb24-431e-929a-7fa133585c0b
+      - a34ba6a8-1f39-4e07-b22f-aaae0a2dc51e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bb3d79e-1321-4576-a6e6-648db5387a70:
+    id: 9bb3d79e-1321-4576-a6e6-648db5387a70
+    content: A user on a manual workflow step can advance from the node context menu with a single action that targets the node's bound session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef7577f0-3b21-44f2-97ff-ed77fd0a007c:
+    id: ef7577f0-3b21-44f2-97ff-ed77fd0a007c
+    content: A user on a manual workflow step whose node has no bound session can start the workflow from the same menu, which binds the node and sends in one action.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bed485e-5511-4086-aaee-30cc29625831:
+    id: 6bed485e-5511-4086-aaee-30cc29625831
+    content: Neither action can send the prompt to a session other than the one the node is (or becomes) bound to.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fbd5055-f2db-4b72-bb7e-ff2fb8d58fc1:
+    id: 4fbd5055-f2db-4b72-bb7e-ff2fb8d58fc1
+    content: After either action sends the prompt, the workflow pauses on the manual step and only advances when the user clicks the existing "Resend step" or "Next step" controls used for paused workflows.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fa59915-bb24-431e-929a-7fa133585c0b:
+    id: 5fa59915-bb24-431e-929a-7fa133585c0b
+    content: Existing ad-hoc "Send to <session>" entries are unchanged in destination and do not introduce a post-send pause.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a34ba6a8-1f39-4e07-b22f-aaae0a2dc51e:
+    id: a34ba6a8-1f39-4e07-b22f-aaae0a2dc51e
+    content: When the bound session is unreachable, the action behaves the same as resuming a checkpoint or automatic step against an unreachable bound session - no special-case handling for manual steps.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88a385db-d748-43b3-a87c-b57d1da9b30b:
+    id: 88a385db-d748-43b3-a87c-b57d1da9b30b
+    content: Chunking decision
+    children:
+      - 247735fd-b871-4b12-b55a-b15834485ebb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  247735fd-b871-4b12-b55a-b15834485ebb:
+    id: 247735fd-b871-4b12-b55a-b15834485ebb
+    content: Ship as a single chunk - "Start workflow" and "Resume workflow" are two states of the same binding-aware action; releasing only one leaves either unbound nodes or bound nodes without a coherent path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fcf5950-436e-4adf-981f-e39d9558bb32:
+    id: 1fcf5950-436e-4adf-981f-e39d9558bb32
+    content: 'User story: Start and resume manual workflow steps from the bound session'
+    children:
+      - 616d064d-fcf6-441a-b664-6c051f309335
+      - c0d722da-486f-4679-b74e-ed304bfebe64
+      - 1f707144-2e51-4381-a5e2-7f0aa348a782
+      - d273c395-8b65-43cf-8a1c-06f8bd9b1463
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  616d064d-fcf6-441a-b664-6c051f309335:
+    id: 616d064d-fcf6-441a-b664-6c051f309335
+    content: Title
+    children:
+      - b43df790-fe26-4bbd-9ac5-95d66a1c9dc7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b43df790-fe26-4bbd-9ac5-95d66a1c9dc7:
+    id: b43df790-fe26-4bbd-9ac5-95d66a1c9dc7
+    content: Bind-aware Start/Resume workflow actions for manual steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0d722da-486f-4679-b74e-ed304bfebe64:
+    id: c0d722da-486f-4679-b74e-ed304bfebe64
+    content: Product spec
+    children:
+      - a8350b23-aaaa-4f59-9e4a-6b17d5f9352d
+      - b3eac2b8-d7b7-41e2-be34-abd71bbeff5e
+      - 34c355e5-853d-4739-90fe-cc631e461231
+      - 0658739d-5efa-4671-9bfe-8a7157c6fd5d
+      - b73d39e0-4402-4b2a-a6f4-81936d52664f
+      - 8752830d-fff8-4c76-ac0c-327b6273e3c2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8350b23-aaaa-4f59-9e4a-6b17d5f9352d:
+    id: a8350b23-aaaa-4f59-9e4a-6b17d5f9352d
+    content: Context
+    children:
+      - 095c6827-9dbd-4b82-88ef-32e081e2ec82
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  095c6827-9dbd-4b82-88ef-32e081e2ec82:
+    id: 095c6827-9dbd-4b82-88ef-32e081e2ec82
+    content: Arborescent workflows interleave automated and manual steps. Automated steps run inside the bound session; manual steps rely on the user relaying the prompt themselves. Today the relay is decoupled from the binding -the prompt can land in any open session - which breaks the continuity that bound sessions are meant to provide.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3eac2b8-d7b7-41e2-be34-abd71bbeff5e:
+    id: b3eac2b8-d7b7-41e2-be34-abd71bbeff5e
+    content: User
+    children:
+      - 316bc2f6-674c-44a6-8f6e-d4a7bbd2f6a6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  316bc2f6-674c-44a6-8f6e-d4a7bbd2f6a6:
+    id: 316bc2f6-674c-44a6-8f6e-d4a7bbd2f6a6
+    content: A workflow author/runner driving a multi-step Arborescent workflow that mixes automated and manual steps.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34c355e5-853d-4739-90fe-cc631e461231:
+    id: 34c355e5-853d-4739-90fe-cc631e461231
+    content: Current experience and why it is insufficient
+    children:
+      - 02981b21-0502-4f26-9022-269eaf7241e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02981b21-0502-4f26-9022-269eaf7241e3:
+    id: 02981b21-0502-4f26-9022-269eaf7241e3
+    content: To advance a manual step the user right-clicks the node and picks a destination session. Nothing enforces that the destination matches the node's bound session, so prompts often land in the wrong place. Recovery means cancelling, locating the right session, and re-sending - friction that undermines the binding contract.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0658739d-5efa-4671-9bfe-8a7157c6fd5d:
+    id: 0658739d-5efa-4671-9bfe-8a7157c6fd5d
+    content: Goal
+    children:
+      - afe78cfa-c6c4-407e-bb6e-9d00fde77bd1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  afe78cfa-c6c4-407e-bb6e-9d00fde77bd1:
+    id: afe78cfa-c6c4-407e-bb6e-9d00fde77bd1
+    content: A single bind-aware menu entry - "Start workflow" when unbound, "Resume workflow" when bound - that routes the manual-step prompt to the correct session and pauses the workflow, matching checkpoint-step semantics.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b73d39e0-4402-4b2a-a6f4-81936d52664f:
+    id: b73d39e0-4402-4b2a-a6f4-81936d52664f
+    content: Business rules
+    children:
+      - 0ba850fa-0626-4245-9318-56d842cd371d
+      - 17929c2d-632c-4ddd-8d78-565e1b9284cb
+      - 291620c2-b0f3-4d8a-afe9-6c845957af5a
+      - 299aee28-7f15-45d9-abc3-a0a161d79aa8
+      - 2a02bc8a-9898-479b-86a1-85ab32eee2d0
+      - abe14b6b-c0ae-45a5-afc8-e2fe73ac2924
+      - 68f5246d-9dd8-42ee-b6df-c37a07fd1488
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ba850fa-0626-4245-9318-56d842cd371d:
+    id: 0ba850fa-0626-4245-9318-56d842cd371d
+    content: When a manual-step node has no bound session, the node context menu shows "Start workflow" and does not show "Resume workflow".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17929c2d-632c-4ddd-8d78-565e1b9284cb:
+    id: 17929c2d-632c-4ddd-8d78-565e1b9284cb
+    content: When a manual-step node has a bound session, the node context menu shows "Resume workflow" and does not show "Start workflow".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  291620c2-b0f3-4d8a-afe9-6c845957af5a:
+    id: 291620c2-b0f3-4d8a-afe9-6c845957af5a
+    content: '"Start workflow" binds the node using the same binding flow as any other workflow step, sends the manual-step prompt to the newly bound session, and pauses the workflow with checkpoint-step semantics.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  299aee28-7f15-45d9-abc3-a0a161d79aa8:
+    id: 299aee28-7f15-45d9-abc3-a0a161d79aa8
+    content: '"Resume workflow" sends the manual-step prompt to the existing bound session and pauses the workflow with checkpoint-step semantics.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a02bc8a-9898-479b-86a1-85ab32eee2d0:
+    id: 2a02bc8a-9898-479b-86a1-85ab32eee2d0
+    content: From the paused state the user advances using the existing "Resend step" or "Next step" controls used by other paused workflows - no new controls are introduced.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abe14b6b-c0ae-45a5-afc8-e2fe73ac2924:
+    id: abe14b6b-c0ae-45a5-afc8-e2fe73ac2924
+    content: Existing per-session "Send to entries remain available for ad-hoc routing and do not trigger the post-send pause.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68f5246d-9dd8-42ee-b6df-c37a07fd1488:
+    id: 68f5246d-9dd8-42ee-b6df-c37a07fd1488
+    content: Unreachable bound sessions are handled by the same path used by checkpoint and automatic steps today - manual steps introduce no special-case fallback, rebind, or recovery.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8752830d-fff8-4c76-ac0c-327b6273e3c2:
+    id: 8752830d-fff8-4c76-ac0c-327b6273e3c2
+    content: Acceptance criteria
+    children:
+      - 089c30dc-b32c-4190-aeb5-e0aecbce921b
+      - 73263b1e-3b79-47f9-b02f-94d0bd0315bd
+      - 3da97b4f-3ade-4198-a0d7-1d1184831434
+      - ed4e7ee6-70d0-42c3-b094-16ba477f81a4
+      - 156c642b-48d8-4ca0-a1d8-c64531ad48be
+      - 9090e045-fd1e-400c-8f97-f438625c504d
+      - 2ff45cae-bc33-4dea-a51f-86f50e3ad157
+      - 2777a027-d640-4cf2-87f2-8ad00d5a9d8c
+      - 0aa75b79-c606-47f5-8a6f-a3aca65e13fc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  089c30dc-b32c-4190-aeb5-e0aecbce921b:
+    id: 089c30dc-b32c-4190-aeb5-e0aecbce921b
+    content: Right-clicking a manual-step node with no bound session shows "Start workflow" and not "Resume workflow".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73263b1e-3b79-47f9-b02f-94d0bd0315bd:
+    id: 73263b1e-3b79-47f9-b02f-94d0bd0315bd
+    content: Right-clicking a manual-step node with a bound session shows "Resume workflow" and not "Start workflow".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3da97b4f-3ade-4198-a0d7-1d1184831434:
+    id: 3da97b4f-3ade-4198-a0d7-1d1184831434
+    content: Invoking "Start workflow" binds the node via the existing workflow-step binding flow, delivers the prompt to the newly bound session, and leaves the workflow paused on the step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed4e7ee6-70d0-42c3-b094-16ba477f81a4:
+    id: ed4e7ee6-70d0-42c3-b094-16ba477f81a4
+    content: Invoking "Resume workflow" delivers the prompt to the bound session and to no other session, and leaves the workflow paused on the step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  156c642b-48d8-4ca0-a1d8-c64531ad48be:
+    id: 156c642b-48d8-4ca0-a1d8-c64531ad48be
+    content: After either action, the workflow is in the same paused state used by checkpoint steps and does not auto-advance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9090e045-fd1e-400c-8f97-f438625c504d:
+    id: 9090e045-fd1e-400c-8f97-f438625c504d
+    content: From the paused state, clicking the existing "Resend step" re-sends the manual step's prompt to the bound session and re-enters the paused state.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ff45cae-bc33-4dea-a51f-86f50e3ad157:
+    id: 2ff45cae-bc33-4dea-a51f-86f50e3ad157
+    content: From the paused state, clicking the existing "Next step" advances the workflow to the next step exactly as it does for checkpoint pauses.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2777a027-d640-4cf2-87f2-8ad00d5a9d8c:
+    id: 2777a027-d640-4cf2-87f2-8ad00d5a9d8c
+    content: Invoking "Resume workflow" against an unreachable bound session produces the same outcome as resuming a checkpoint or automatic step in the same situation - no manual-step-specific behaviour.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0aa75b79-c606-47f5-8a6f-a3aca65e13fc:
+    id: 0aa75b79-c606-47f5-8a6f-a3aca65e13fc
+    content: Existing "Send to <session>" entries still target the chosen session and do not introduce the post-send pause.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f707144-2e51-4381-a5e2-7f0aa348a782:
+    id: 1f707144-2e51-4381-a5e2-7f0aa348a782
+    content: Implementation proposal
+    children:
+      - ce0c2cf6-7d4d-49f5-9646-eca1b43d4cbc
+      - 7a77299c-aa49-477d-8008-11b6acfe8922
+      - 42f57048-29c1-4cd3-8451-e1666d0c24bc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce0c2cf6-7d4d-49f5-9646-eca1b43d4cbc:
+    id: ce0c2cf6-7d4d-49f5-9646-eca1b43d4cbc
+    content: Approach
+    children:
+      - 0129db55-746b-4d94-ae3a-aaa4f206327f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0129db55-746b-4d94-ae3a-aaa4f206327f:
+    id: 0129db55-746b-4d94-ae3a-aaa4f206327f
+    content: In the renderer node context menu, expose a single bind-aware entry that renders as "Start workflow" when the node is on a manual step without a binding and as "Resume workflow" when the node is on a manual step with a binding. "Start workflow" reuses the existing workflow-step binding flow to attach a session, then delegates to the same send path as "Resume workflow". Both transition the step into the checkpoint-style paused state on completion of the send, so the existing "Resend step" and "Next step" controls drive recovery and advancement with no new UI. Unreachable-session handling is left to the existing send path, identical to checkpoint and automatic steps.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a77299c-aa49-477d-8008-11b6acfe8922:
+    id: 7a77299c-aa49-477d-8008-11b6acfe8922
+    content: Touchpoints
+    children:
+      - 4be9a53d-47e2-4e69-88a9-2342b531da09
+      - 2791c5fc-196b-4e58-84bc-14df001be79f
+      - cdb25bc0-4109-4303-abab-a2faed850e26
+      - 305fc7f4-fcae-4c9d-a7cc-f1349a17662e
+      - c315fd79-6916-4fa3-96c3-f99226bcc14b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4be9a53d-47e2-4e69-88a9-2342b531da09:
+    id: 4be9a53d-47e2-4e69-88a9-2342b531da09
+    content: Renderer node context menu component - bind-aware label and visibility
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2791c5fc-196b-4e58-84bc-14df001be79f:
+    id: 2791c5fc-196b-4e58-84bc-14df001be79f
+    content: Workflow step state machine - extend the post-send pause currently used by checkpoint steps to also cover manual steps invoked via Start/Resume workflow, so the existing Resend/Next controls light up unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdb25bc0-4109-4303-abab-a2faed850e26:
+    id: cdb25bc0-4109-4303-abab-a2faed850e26
+    content: Session routing service - reuse the existing send-to-bound-session path; no changes to its unreachable-session behaviour
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  305fc7f4-fcae-4c9d-a7cc-f1349a17662e:
+    id: 305fc7f4-fcae-4c9d-a7cc-f1349a17662e
+    content: Workflow binding flow - invoked from "Start workflow" exactly as it is from other workflow-step entry points
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c315fd79-6916-4fa3-96c3-f99226bcc14b:
+    id: c315fd79-6916-4fa3-96c3-f99226bcc14b
+    content: Tests covering the bind-aware menu visibility, the Start path (bind - send - pause), the Resume path (send ‚Üí pause), and Resend and Next from the paused state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42f57048-29c1-4cd3-8451-e1666d0c24bc:
+    id: 42f57048-29c1-4cd3-8451-e1666d0c24bc
+    content: Constraints to call out
+    children:
+      - 44ca8f27-762f-458d-a89d-e29760360b52
+      - 81aeecab-880e-4e06-828e-9b752ad80c5b
+      - af1240d7-5f2d-4d14-88fe-37ccc7617e82
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44ca8f27-762f-458d-a89d-e29760360b52:
+    id: 44ca8f27-762f-458d-a89d-e29760360b52
+    content: The post-send pause must be triggered by Start/Resume workflow specifically, not by every send - applying it to ad-hoc "Send to - entries would silently block workflows in surprising ways.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81aeecab-880e-4e06-828e-9b752ad80c5b:
+    id: 81aeecab-880e-4e06-828e-9b752ad80c5b
+    content: '"Start workflow" must reuse the existing binding flow rather than introduce a parallel one, to avoid drift between manual and automated step bindings.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af1240d7-5f2d-4d14-88fe-37ccc7617e82:
+    id: af1240d7-5f2d-4d14-88fe-37ccc7617e82
+    content: No new pause-state controls - Resend step and Next step are reused as-is; introducing a parallel control set for manual steps would fragment the paused-workflow UX.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d273c395-8b65-43cf-8a1c-06f8bd9b1463:
+    id: d273c395-8b65-43cf-8a1c-06f8bd9b1463
+    content: Technical refinement
+    children:
+      - 1f6df67a-7910-4cb0-9d72-47333f1a0fc6
+      - 004106b0-da14-4b57-bffb-fc5bc4444f7f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f6df67a-7910-4cb0-9d72-47333f1a0fc6:
+    id: 1f6df67a-7910-4cb0-9d72-47333f1a0fc6
+    content: Complications
+    children:
+      - fd2a0567-2667-4b33-bd7b-a269f72d4b9c
+      - 3408c335-eb2f-45ff-8aa2-13a95fbd2144
+      - 1a00d45f-928d-41d2-825a-a42c9ed7e069
+      - 3e3d050f-c007-4100-a76d-7a34730d956f
+      - 5dca23fc-f2b0-47ae-a502-890a6f2387b2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd2a0567-2667-4b33-bd7b-a269f72d4b9c:
+    id: fd2a0567-2667-4b33-bd7b-a269f72d4b9c
+    content: Today manual steps hold no workflow execution entry - when the predecessor advances into a manual step, the predecessor's entry is removed and none is created for the manual step itself. "Resume workflow" needs a persisted binding to read, so the state machine must start creating/retaining an entry for manual steps. This is a state-model change, not just a menu addition.
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3408c335-eb2f-45ff-8aa2-13a95fbd2144:
+    id: 3408c335-eb2f-45ff-8aa2-13a95fbd2144
+    content: A workflow whose root step is manual currently cannot start at all - the existing eligibility check rejects nodes with no parent. "Start workflow" on a root manual node only works if that check is loosened or a manual-root bootstrap path is added; without it, the unbound-state entry is a no-op at the root.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a00d45f-928d-41d2-825a-a42c9ed7e069:
+    id: 1a00d45f-928d-41d2-825a-a42c9ed7e069
+    content: The bind-aware menu split (Start vs Resume) is downstream of the entry-creation change above - without persisted state for manual steps, the menu would always show "Start workflow".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e3d050f-c007-4100-a76d-7a34730d956f:
+    id: 3e3d050f-c007-4100-a76d-7a34730d956f
+    content: Existing "Send to <session>" entries stay alongside the new entry by design. A user picking "Send to <bound session>" gets the prompt to the right session but no post-send pause, which can look like a silent regression. Worth a label or grouping in the menu; not blocking.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dca23fc-f2b0-47ae-a502-890a6f2387b2:
+    id: 5dca23fc-f2b0-47ae-a502-890a6f2387b2
+    content: Out-of-scope reminder - inheriting checkpoint/automatic unreachable-session behaviour means a closed bound terminal produces a silent-write-then-error-toast, not a graceful reopen. Manual-step users hit the same gap; addressing it would be a separate cross-step-type story.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  004106b0-da14-4b57-bffb-fc5bc4444f7f:
+    id: 004106b0-da14-4b57-bffb-fc5bc4444f7f
+    content: Approach summary
+    children:
+      - 9b5dd95f-915e-493c-9b85-643455a459a1
+      - 7f1d6127-15b4-4250-92e9-6b8276363240
+      - 66e4b0f0-84a3-4386-b1d0-5ebfc05f4175
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b5dd95f-915e-493c-9b85-643455a459a1:
+    id: 9b5dd95f-915e-493c-9b85-643455a459a1
+    content: 'Lands in the renderer: workflow execution state machine in `workflowExecutionActions.ts` plus the node context menu component. Reuses three existing primitives - workflow-step binding flow, send-to-bound-session, checkpoint-style paused state. No main-process or IPC changes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f1d6127-15b4-4250-92e9-6b8276363240:
+    id: 7f1d6127-15b4-4250-92e9-6b8276363240
+    content: Core non-obvious change is in the state machine, not the UI - manual steps must start creating and retaining their own workflow execution entry so the bound `terminalTabId` survives between advance and the user's next action.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66e4b0f0-84a3-4386-b1d0-5ebfc05f4175:
+    id: 66e4b0f0-84a3-4386-b1d0-5ebfc05f4175
+    content: Second non-obvious change - the workflow-eligibility check must accept manual-root nodes (or be paired with a bootstrap path) so "Start workflow" can actually launch a workflow whose first step is manual.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac022d47-5e35-46a4-8a39-7b3b3b7073ee:
+    id: ac022d47-5e35-46a4-8a39-7b3b3b7073ee
+    content: Challenges and pushback
+    children:
+      - f4e086ca-dd58-4ea6-80d4-07d32423f61a
+      - fb905e0f-776f-4c93-bbf4-cb6c9b62df73
+      - 185dedae-c44f-4bb3-91e7-3493c70b174d
+      - d2bd8a0d-c009-4f2f-ad90-fe86ca8618f0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4e086ca-dd58-4ea6-80d4-07d32423f61a:
+    id: f4e086ca-dd58-4ea6-80d4-07d32423f61a
+    content: Naming risk - "Start workflow" / "Resume workflow" overlap with broader workflow concepts. Worth a short user-test pass against alternatives like "Send and pause" / "Continue in bound session"; not blocking.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb905e0f-776f-4c93-bbf4-cb6c9b62df73:
+    id: fb905e0f-776f-4c93-bbf4-cb6c9b62df73
+    content: No over-engineering flagged - the proposal composes existing primitives (workflow-step binding flow, send-to-bound-session, checkpoint-pause, Resend/Next controls) rather than adding new infrastructure.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  185dedae-c44f-4bb3-91e7-3493c70b174d:
+    id: 185dedae-c44f-4bb3-91e7-3493c70b174d
+    content: ROI is favourable - single bind-aware menu entry plus a small extension of the pause path against a recurring papercut that breaks the workflow/session binding promise.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2bd8a0d-c009-4f2f-ad90-fe86ca8618f0:
+    id: d2bd8a0d-c009-4f2f-ad90-fe86ca8618f0
+    content: Out of scope and explicitly not added - unreachable-session reopen/rebind (current platform behaviour inherited as-is), multi-session broadcast, queueing prompts when the bound session is busy, visualising bound-session identity in the tree.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  93df94d3-96a2-4f83-89dd-088be2e0af91:
+    id: 93df94d3-96a2-4f83-89dd-088be2e0af91
+    content: Summary
+    children:
+      - c9e37d50-11de-429c-9fb9-ba6993917967
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9e37d50-11de-429c-9fb9-ba6993917967:
+    id: c9e37d50-11de-429c-9fb9-ba6993917967
+    content: Manual send or 'revise after discussion' on an arbitrary node writes its output to the currently bound node instead of the targeted node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
   30439ad3-340e-481b-adb1-07b61e7669d0:
     id: 30439ad3-340e-481b-adb1-07b61e7669d0
+    content: Steps to reproduce
+    children:
+      - 96b0fcfb-4c30-4a44-8c27-a3901be9f1b5
+      - 15039a95-c80c-486b-b61d-be7abbd40b9b
+      - 002f9f0f-63e2-462b-bff7-a666056fd945
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96b0fcfb-4c30-4a44-8c27-a3901be9f1b5:
+    id: 96b0fcfb-4c30-4a44-8c27-a3901be9f1b5
+    content: Start a workflow that binds node A to the session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15039a95-c80c-486b-b61d-be7abbd40b9b:
+    id: 15039a95-c80c-486b-b61d-be7abbd40b9b
+    content: Without unbinding, invoke manual send or 'revise after discussion' on a different node B
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  002f9f0f-63e2-462b-bff7-a666056fd945:
+    id: 002f9f0f-63e2-462b-bff7-a666056fd945
+    content: Observe that the assistant response is applied to node A, not node B
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec3925cb-2ea7-4688-9432-7ff63c83ea92:
+    id: ec3925cb-2ea7-4688-9432-7ff63c83ea92
+    content: Expected behavior
+    children:
+      - 48024655-7ad1-4925-bd72-4d9872f92d2b
+      - f3301ab5-0362-4ad2-82ed-12a15108a082
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48024655-7ad1-4925-bd72-4d9872f92d2b:
+    id: 48024655-7ad1-4925-bd72-4d9872f92d2b
+    content: Manual send and revise-after-discussion target the node the user acted on, regardless of which node is bound to the session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3301ab5-0362-4ad2-82ed-12a15108a082:
+    id: f3301ab5-0362-4ad2-82ed-12a15108a082
+    content: The bound node's authored subtree remains untouched when the user acts on a non-bound node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70447bd3-ecc5-433a-884f-15f144ad0cfc:
+    id: 70447bd3-ecc5-433a-884f-15f144ad0cfc
+    content: Actual behavior
+    children:
+      - 69e77ece-ac6c-41c2-a8e8-d6d89589c987
+      - 761c211b-8d9a-4445-a201-726e95721260
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69e77ece-ac6c-41c2-a8e8-d6d89589c987:
+    id: 69e77ece-ac6c-41c2-a8e8-d6d89589c987
+    content: Output is applied to the bound node A
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  761c211b-8d9a-4445-a201-726e95721260:
+    id: 761c211b-8d9a-4445-a201-726e95721260
+    content: The targeted node B receives nothing, and node A's existing subtree may be overwritten or corrupted
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b378ff16-abb8-4296-9081-f2422628e3fa:
+    id: b378ff16-abb8-4296-9081-f2422628e3fa
+    content: User-visible symptoms
+    children:
+      - 79cb9132-b81b-4dc4-b5a9-0c723c7727f3
+      - f8ae84d4-6410-492e-9cc7-c72ac1764cfb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  79cb9132-b81b-4dc4-b5a9-0c723c7727f3:
+    id: 79cb9132-b81b-4dc4-b5a9-0c723c7727f3
+    content: Feedback panel or applied content appears under the wrong node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8ae84d4-6410-492e-9cc7-c72ac1764cfb:
+    id: f8ae84d4-6410-492e-9cc7-c72ac1764cfb
+    content: Silent loss of authored content on the bound node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bbb2d0c-95d8-4c9f-acb3-1d8efec38e99:
+    id: 7bbb2d0c-95d8-4c9f-acb3-1d8efec38e99
+    content: Suspected cause
+    children:
+      - fb88c0b0-7c84-4082-a159-571d287d89b3
+      - 1872f413-3a9f-4311-ba14-f0c9ebc33a71
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb88c0b0-7c84-4082-a159-571d287d89b3:
+    id: fb88c0b0-7c84-4082-a159-571d287d89b3
+    content: Manual-send and revise-after-discussion paths resolve the submission target from the active session binding rather than from the right-clicked node id
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1872f413-3a9f-4311-ba14-f0c9ebc33a71:
+    id: 1872f413-3a9f-4311-ba14-f0c9ebc33a71
+    content: target_node_id guard on submit_step_output may not be enforced for manual-collab submissions, so the drift is not caught server-side
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad88d92b-edcd-4eb5-aac2-fd226456602a:
+    id: ad88d92b-edcd-4eb5-aac2-fd226456602a
+    content: Affected files
+    children:
+      - c5c8bf78-cf9a-448d-bc5a-8255bd604795
+      - 70488a8c-70f9-4af1-a082-57d664d84381
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5c8bf78-cf9a-448d-bc5a-8255bd604795:
+    id: c5c8bf78-cf9a-448d-bc5a-8255bd604795
+    content: Renderer action handlers for 'revise after discussion' and manual send (right-click / context menu flow)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70488a8c-70f9-4af1-a082-57d664d84381:
+    id: 70488a8c-70f9-4af1-a082-57d664d84381
+    content: submit_step_output MCP handler and its bound-node resolution logic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c91cbe3c-3247-4db6-bd6c-f38fba7a449d:
+    id: c91cbe3c-3247-4db6-bd6c-f38fba7a449d
+    content: Regression window
+    children:
+      - f789f04c-4ad3-4d48-b4b2-b6a10566fb7e
+      - 408f087a-c2a3-494f-874b-a9444f966661
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f789f04c-4ad3-4d48-b4b2-b6a10566fb7e:
+    id: f789f04c-4ad3-4d48-b4b2-b6a10566fb7e
+    content: 'Last known good: unknown — needs bisect'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  408f087a-c2a3-494f-874b-a9444f966661:
+    id: 408f087a-c2a3-494f-874b-a9444f966661
+    content: 'First observed: session 65164a7e-ed73-4704-a24f-7ae972a0e6d8'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fb32a4f-2d75-405d-a0b0-e6954a460ad1:
+    id: 8fb32a4f-2d75-405d-a0b0-e6954a460ad1
+    content: Severity
+    children:
+      - 7478f597-9830-4f73-b406-903af52c8aef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7478f597-9830-4f73-b406-903af52c8aef:
+    id: 7478f597-9830-4f73-b406-903af52c8aef
+    content: High — silently corrupts the bound node's authored subtree and discards the user's intended write to another node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4097049e-799d-40d5-a8b2-611ef66cd7bc:
+    id: 4097049e-799d-40d5-a8b2-611ef66cd7bc
+    content: Notes
+    children:
+      - 01fa24c5-7dd3-4a3b-861d-e8c18d96012e
+      - 2f471bf9-0ee0-4447-8340-b8ed6eca0d1c
+      - 0bda32f5-7c78-441a-827e-4eb752c94510
+      - 6e6f074f-b62c-4ceb-a6f9-d2b28a1f281f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01fa24c5-7dd3-4a3b-861d-e8c18d96012e:
+    id: 01fa24c5-7dd3-4a3b-861d-e8c18d96012e
+    content: Refer to session 65164a7e-ed73-4704-a24f-7ae972a0e6d8 for the original repro context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f471bf9-0ee0-4447-8340-b8ed6eca0d1c:
+    id: 2f471bf9-0ee0-4447-8340-b8ed6eca0d1c
+    content: Related to the CONTENT-root preservation rule for submit_step_output — same family of bound-node mis-targeting
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bda32f5-7c78-441a-827e-4eb752c94510:
+    id: 0bda32f5-7c78-441a-827e-4eb752c94510
     content: We should be able to do a manual send or 'revise after discussion' on any node without it being written to the bound node
     children: []
     metadata:
       status: pending
-  559c948d-8447-4dba-8205-2160ee75da8d:
-    id: 559c948d-8447-4dba-8205-2160ee75da8d
-    content: Bug - still can't 'Revise after discussion'
-    children:
-      - b23f6e7f-a62f-47ba-bcdc-ff337e906c96
-    metadata:
-      status: pending
-      sessionId: 1315f630-72e2-4a8a-b54f-8b179dc2c18f
-  b23f6e7f-a62f-47ba-bcdc-ff337e906c96:
-    id: b23f6e7f-a62f-47ba-bcdc-ff337e906c96
-    content: This is in an entirely new session
-    children:
-      - 4cde4fdf-5816-4033-b664-9bd9552388e3
-      - c4370e0f-b80f-4658-8a14-48ca0e85c119
-    metadata:
-      status: pending
-  4cde4fdf-5816-4033-b664-9bd9552388e3:
-    id: 4cde4fdf-5816-4033-b664-9bd9552388e3
-    content: 'Arborescent returns : unbound — session has no binding'
-    children: []
-    metadata:
-      status: pending
-  c4370e0f-b80f-4658-8a14-48ca0e85c119:
-    id: c4370e0f-b80f-4658-8a14-48ca0e85c119
-    content: But we should be able to do this (or send) without a binding
-    children: []
-    metadata:
-      status: pending
-  6e86a410-00ce-47b4-b177-6db87d97125c:
-    id: 6e86a410-00ce-47b4-b177-6db87d97125c
-    content: Acceptance for the whole released element
-    children:
-      - 695d4069-96a8-4155-9eb2-d87093c5077c
-      - 6144f476-4094-4507-a67c-4487b8423cfe
-      - 200386ca-6974-4357-ae65-33b0644a0dd5
-      - 6d481e8b-480a-4c40-ba9e-fc006ce48037
-      - 2c3e5a0c-b822-4338-a8c1-4f722caa5def
-      - 2103ca6b-810e-4dd4-b2dc-2e9a6b35c576
-    metadata:
-      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  695d4069-96a8-4155-9eb2-d87093c5077c:
-    id: 695d4069-96a8-4155-9eb2-d87093c5077c
-    content: A user on a manual workflow step can advance from the node context menu with a single action that targets the node's bound session.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6144f476-4094-4507-a67c-4487b8423cfe:
-    id: 6144f476-4094-4507-a67c-4487b8423cfe
-    content: A user on a manual workflow step whose node has no bound session can start the workflow from the same menu, which binds the node and sends in one action.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  200386ca-6974-4357-ae65-33b0644a0dd5:
-    id: 200386ca-6974-4357-ae65-33b0644a0dd5
-    content: Neither action can send the prompt to a session other than the one the node is (or becomes) bound to.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d481e8b-480a-4c40-ba9e-fc006ce48037:
-    id: 6d481e8b-480a-4c40-ba9e-fc006ce48037
-    content: After either action sends the prompt, the workflow pauses on the manual step and only advances when the user clicks the existing "Resend step" or "Next step" controls used for paused workflows.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c3e5a0c-b822-4338-a8c1-4f722caa5def:
-    id: 2c3e5a0c-b822-4338-a8c1-4f722caa5def
-    content: Existing ad-hoc "Send to <session>" entries are unchanged in destination and do not introduce a post-send pause.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2103ca6b-810e-4dd4-b2dc-2e9a6b35c576:
-    id: 2103ca6b-810e-4dd4-b2dc-2e9a6b35c576
-    content: When the bound session is unreachable, the action behaves the same as resuming a checkpoint or automatic step against an unreachable bound session — no special-case handling for manual steps.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ad4715c-b5bb-4019-8a81-761db1bf9f78:
-    id: 7ad4715c-b5bb-4019-8a81-761db1bf9f78
-    content: Chunking decision
-    children:
-      - 025e3022-c9fb-4f5e-9862-397d2114cbc5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  025e3022-c9fb-4f5e-9862-397d2114cbc5:
-    id: 025e3022-c9fb-4f5e-9862-397d2114cbc5
-    content: Ship as a single chunk — "Start workflow" and "Resume workflow" are two states of the same binding-aware action; releasing only one leaves either unbound nodes or bound nodes without a coherent path.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  11682f5b-b399-4b6e-a1ee-60758f4f295d:
-    id: 11682f5b-b399-4b6e-a1ee-60758f4f295d
-    content: 'User story: Start and resume manual workflow steps from the bound session'
-    children:
-      - c013e062-32da-4a0a-859c-c695a7fcdff8
-      - 8a382e26-ba88-4108-967f-edc73781a2e5
-      - 6b78e8dd-a4ef-46a1-977c-4c8e008c5ec9
-      - ec0edaed-e01b-47cb-b95a-6ee64bd2d0f8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c013e062-32da-4a0a-859c-c695a7fcdff8:
-    id: c013e062-32da-4a0a-859c-c695a7fcdff8
-    content: Title
-    children:
-      - d5c4d5d9-9a11-4696-9217-6eda0a162e0c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d5c4d5d9-9a11-4696-9217-6eda0a162e0c:
-    id: d5c4d5d9-9a11-4696-9217-6eda0a162e0c
-    content: Bind-aware Start/Resume workflow actions for manual steps
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a382e26-ba88-4108-967f-edc73781a2e5:
-    id: 8a382e26-ba88-4108-967f-edc73781a2e5
-    content: Product spec
-    children:
-      - 6128bd0d-bf45-44a5-a94a-dbbfbe8a3dad
-      - 189ceba3-fa8b-4666-b3f2-25b49b5a059b
-      - d479f940-f506-4dec-b254-2c1564338d1e
-      - 7b0aeb92-c563-4570-988f-e84f653f5ca8
-      - b54eb68d-7ff7-4ff0-b0cf-558be08f51bf
-      - 36e0098c-6c13-4e25-b4eb-b8200c974e20
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6128bd0d-bf45-44a5-a94a-dbbfbe8a3dad:
-    id: 6128bd0d-bf45-44a5-a94a-dbbfbe8a3dad
-    content: Context
-    children:
-      - 3e6a13f6-b7ae-4e35-84f9-8eb66ce903d8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e6a13f6-b7ae-4e35-84f9-8eb66ce903d8:
-    id: 3e6a13f6-b7ae-4e35-84f9-8eb66ce903d8
-    content: Arborescent workflows interleave automated and manual steps. Automated steps run inside the bound session; manual steps rely on the user relaying the prompt themselves. Today the relay is decoupled from the binding — the prompt can land in any open session — which breaks the continuity that bound sessions are meant to provide.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  189ceba3-fa8b-4666-b3f2-25b49b5a059b:
-    id: 189ceba3-fa8b-4666-b3f2-25b49b5a059b
-    content: User
-    children:
-      - e89bf44f-7d1f-423d-9349-5d26df6e9a41
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e89bf44f-7d1f-423d-9349-5d26df6e9a41:
-    id: e89bf44f-7d1f-423d-9349-5d26df6e9a41
-    content: A workflow author/runner driving a multi-step Arborescent workflow that mixes automated and manual steps.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d479f940-f506-4dec-b254-2c1564338d1e:
-    id: d479f940-f506-4dec-b254-2c1564338d1e
-    content: Current experience and why it is insufficient
-    children:
-      - 4051926d-4234-4b6e-a53d-a3dbbad2a0a4
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4051926d-4234-4b6e-a53d-a3dbbad2a0a4:
-    id: 4051926d-4234-4b6e-a53d-a3dbbad2a0a4
-    content: To advance a manual step the user right-clicks the node and picks a destination session. Nothing enforces that the destination matches the node's bound session, so prompts often land in the wrong place. Recovery means cancelling, locating the right session, and re-sending — friction that undermines the binding contract.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b0aeb92-c563-4570-988f-e84f653f5ca8:
-    id: 7b0aeb92-c563-4570-988f-e84f653f5ca8
-    content: Goal
-    children:
-      - 62a7ca03-aa29-4ee4-93ac-b2147cb98670
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  62a7ca03-aa29-4ee4-93ac-b2147cb98670:
-    id: 62a7ca03-aa29-4ee4-93ac-b2147cb98670
-    content: A single bind-aware menu entry — "Start workflow" when unbound, "Resume workflow" when bound — that routes the manual-step prompt to the correct session and pauses the workflow, matching checkpoint-step semantics.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b54eb68d-7ff7-4ff0-b0cf-558be08f51bf:
-    id: b54eb68d-7ff7-4ff0-b0cf-558be08f51bf
-    content: Business rules
-    children:
-      - 6034c041-a01e-4a20-b9c8-d8ecc74cb7ad
-      - 7388b6ba-c3f5-4d76-a51a-5f288ea3986f
-      - 71c4781d-f6c2-4d3e-8fed-5ea893953929
-      - ec51e406-e09e-46dc-a22d-ee0f119fc75f
-      - 69e48f7b-eb65-4d67-b1dd-f4aee11d66a3
-      - 6bee24fe-2b2a-4980-b492-c5b9e6644e68
-      - 36bc4a9f-bdd9-456d-833f-ebc7f60534ef
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6034c041-a01e-4a20-b9c8-d8ecc74cb7ad:
-    id: 6034c041-a01e-4a20-b9c8-d8ecc74cb7ad
-    content: When a manual-step node has no bound session, the node context menu shows "Start workflow" and does not show "Resume workflow".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7388b6ba-c3f5-4d76-a51a-5f288ea3986f:
-    id: 7388b6ba-c3f5-4d76-a51a-5f288ea3986f
-    content: When a manual-step node has a bound session, the node context menu shows "Resume workflow" and does not show "Start workflow".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  71c4781d-f6c2-4d3e-8fed-5ea893953929:
-    id: 71c4781d-f6c2-4d3e-8fed-5ea893953929
-    content: '"Start workflow" binds the node using the same binding flow as any other workflow step, sends the manual-step prompt to the newly bound session, and pauses the workflow with checkpoint-step semantics.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ec51e406-e09e-46dc-a22d-ee0f119fc75f:
-    id: ec51e406-e09e-46dc-a22d-ee0f119fc75f
-    content: '"Resume workflow" sends the manual-step prompt to the existing bound session and pauses the workflow with checkpoint-step semantics.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  69e48f7b-eb65-4d67-b1dd-f4aee11d66a3:
-    id: 69e48f7b-eb65-4d67-b1dd-f4aee11d66a3
-    content: From the paused state the user advances using the existing "Resend step" or "Next step" controls used by other paused workflows — no new controls are introduced.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6bee24fe-2b2a-4980-b492-c5b9e6644e68:
-    id: 6bee24fe-2b2a-4980-b492-c5b9e6644e68
-    content: Existing per-session "Send to…" entries remain available for ad-hoc routing and do not trigger the post-send pause.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  36bc4a9f-bdd9-456d-833f-ebc7f60534ef:
-    id: 36bc4a9f-bdd9-456d-833f-ebc7f60534ef
-    content: Unreachable bound sessions are handled by the same path used by checkpoint and automatic steps today — manual steps introduce no special-case fallback, rebind, or recovery.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  36e0098c-6c13-4e25-b4eb-b8200c974e20:
-    id: 36e0098c-6c13-4e25-b4eb-b8200c974e20
-    content: Acceptance criteria
-    children:
-      - f0c608da-3a24-4130-8dbf-c0a4a65ea619
-      - c4fb089f-2316-451c-9a9c-5ed1ae7b984a
-      - e2f2ba65-195a-4f18-8f46-c04c6804760a
-      - ef761e80-c7b4-401a-808f-7f70a8b57736
-      - f6efc826-037e-4256-af6c-ca30b4a74cb5
-      - b6399529-3393-47be-bc79-f592d085ff83
-      - 30459f0b-11be-4bbd-899b-c0b70e7d9b41
-      - 0f5f44b4-b66d-41cc-b4e2-09f66ad1b136
-      - 944f5ac8-46d6-4922-ad61-49d5c3117cbf
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0c608da-3a24-4130-8dbf-c0a4a65ea619:
-    id: f0c608da-3a24-4130-8dbf-c0a4a65ea619
-    content: Right-clicking a manual-step node with no bound session shows "Start workflow" and not "Resume workflow".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4fb089f-2316-451c-9a9c-5ed1ae7b984a:
-    id: c4fb089f-2316-451c-9a9c-5ed1ae7b984a
-    content: Right-clicking a manual-step node with a bound session shows "Resume workflow" and not "Start workflow".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2f2ba65-195a-4f18-8f46-c04c6804760a:
-    id: e2f2ba65-195a-4f18-8f46-c04c6804760a
-    content: Invoking "Start workflow" binds the node via the existing workflow-step binding flow, delivers the prompt to the newly bound session, and leaves the workflow paused on the step.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef761e80-c7b4-401a-808f-7f70a8b57736:
-    id: ef761e80-c7b4-401a-808f-7f70a8b57736
-    content: Invoking "Resume workflow" delivers the prompt to the bound session and to no other session, and leaves the workflow paused on the step.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f6efc826-037e-4256-af6c-ca30b4a74cb5:
-    id: f6efc826-037e-4256-af6c-ca30b4a74cb5
-    content: After either action, the workflow is in the same paused state used by checkpoint steps and does not auto-advance.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6399529-3393-47be-bc79-f592d085ff83:
-    id: b6399529-3393-47be-bc79-f592d085ff83
-    content: From the paused state, clicking the existing "Resend step" re-sends the manual step's prompt to the bound session and re-enters the paused state.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  30459f0b-11be-4bbd-899b-c0b70e7d9b41:
-    id: 30459f0b-11be-4bbd-899b-c0b70e7d9b41
-    content: From the paused state, clicking the existing "Next step" advances the workflow to the next step exactly as it does for checkpoint pauses.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f5f44b4-b66d-41cc-b4e2-09f66ad1b136:
-    id: 0f5f44b4-b66d-41cc-b4e2-09f66ad1b136
-    content: Invoking "Resume workflow" against an unreachable bound session produces the same outcome as resuming a checkpoint or automatic step in the same situation — no manual-step-specific behaviour.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  944f5ac8-46d6-4922-ad61-49d5c3117cbf:
-    id: 944f5ac8-46d6-4922-ad61-49d5c3117cbf
-    content: Existing "Send to <session>" entries still target the chosen session and do not introduce the post-send pause.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6b78e8dd-a4ef-46a1-977c-4c8e008c5ec9:
-    id: 6b78e8dd-a4ef-46a1-977c-4c8e008c5ec9
-    content: Implementation proposal
-    children:
-      - ed2245ed-d085-4241-ba05-9022c09ca4a7
-      - 0577bec4-2616-4a3d-84c4-42e6c09378ce
-      - dbadfbe2-f91d-47fb-8583-7c498f3187e1
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed2245ed-d085-4241-ba05-9022c09ca4a7:
-    id: ed2245ed-d085-4241-ba05-9022c09ca4a7
-    content: Approach
-    children:
-      - de9e3680-a4c2-4d7d-b7e0-958b5a0854a8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de9e3680-a4c2-4d7d-b7e0-958b5a0854a8:
-    id: de9e3680-a4c2-4d7d-b7e0-958b5a0854a8
-    content: In the renderer node context menu, expose a single bind-aware entry that renders as "Start workflow" when the node is on a manual step without a binding and as "Resume workflow" when the node is on a manual step with a binding. "Start workflow" reuses the existing workflow-step binding flow to attach a session, then delegates to the same send path as "Resume workflow". Both transition the step into the checkpoint-style paused state on completion of the send, so the existing "Resend step" and "Next step" controls drive recovery and advancement with no new UI. Unreachable-session handling is left to the existing send path, identical to checkpoint and automatic steps.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0577bec4-2616-4a3d-84c4-42e6c09378ce:
-    id: 0577bec4-2616-4a3d-84c4-42e6c09378ce
-    content: Touchpoints
-    children:
-      - 8823ab0c-7f14-4b9b-8a2e-ea0f538cdddb
-      - e80da2cf-92b0-4f3a-a983-f7b170518627
-      - 4db97e36-488d-4df8-aa30-4270750e8fd6
-      - bcbe5cd3-1beb-48ba-a74b-ac2889dbc586
-      - 72992339-53c8-4044-b6be-89e7ff663115
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8823ab0c-7f14-4b9b-8a2e-ea0f538cdddb:
-    id: 8823ab0c-7f14-4b9b-8a2e-ea0f538cdddb
-    content: Renderer node context menu component — bind-aware label and visibility
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e80da2cf-92b0-4f3a-a983-f7b170518627:
-    id: e80da2cf-92b0-4f3a-a983-f7b170518627
-    content: Workflow step state machine — extend the post-send pause currently used by checkpoint steps to also cover manual steps invoked via Start/Resume workflow, so the existing Resend/Next controls light up unchanged
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4db97e36-488d-4df8-aa30-4270750e8fd6:
-    id: 4db97e36-488d-4df8-aa30-4270750e8fd6
-    content: Session routing service — reuse the existing send-to-bound-session path; no changes to its unreachable-session behaviour
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bcbe5cd3-1beb-48ba-a74b-ac2889dbc586:
-    id: bcbe5cd3-1beb-48ba-a74b-ac2889dbc586
-    content: Workflow binding flow — invoked from "Start workflow" exactly as it is from other workflow-step entry points
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  72992339-53c8-4044-b6be-89e7ff663115:
-    id: 72992339-53c8-4044-b6be-89e7ff663115
-    content: Tests covering the bind-aware menu visibility, the Start path (bind → send → pause), the Resume path (send → pause), and Resend and Next from the paused state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbadfbe2-f91d-47fb-8583-7c498f3187e1:
-    id: dbadfbe2-f91d-47fb-8583-7c498f3187e1
-    content: Constraints to call out
-    children:
-      - fbc98faf-804d-4fcc-821d-fb01c1f7a3e7
-      - 3244d749-b633-4549-9726-96648c2ed994
-      - 6c3f04fe-7c97-440f-b71c-df33552d2b49
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fbc98faf-804d-4fcc-821d-fb01c1f7a3e7:
-    id: fbc98faf-804d-4fcc-821d-fb01c1f7a3e7
-    content: The post-send pause must be triggered by Start/Resume workflow specifically, not by every send — applying it to ad-hoc "Send to…" entries would silently block workflows in surprising ways.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3244d749-b633-4549-9726-96648c2ed994:
-    id: 3244d749-b633-4549-9726-96648c2ed994
-    content: '"Start workflow" must reuse the existing binding flow rather than introduce a parallel one, to avoid drift between manual and automated step bindings.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c3f04fe-7c97-440f-b71c-df33552d2b49:
-    id: 6c3f04fe-7c97-440f-b71c-df33552d2b49
-    content: No new pause-state controls — Resend step and Next step are reused as-is; introducing a parallel control set for manual steps would fragment the paused-workflow UX.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ec0edaed-e01b-47cb-b95a-6ee64bd2d0f8:
-    id: ec0edaed-e01b-47cb-b95a-6ee64bd2d0f8
-    content: Technical refinement
-    children:
-      - 0c196da6-711c-4cd7-b3e9-d3a616e745de
-      - 3702e000-89c8-4e48-97ea-14fc6d38a852
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c196da6-711c-4cd7-b3e9-d3a616e745de:
-    id: 0c196da6-711c-4cd7-b3e9-d3a616e745de
-    content: Complications
-    children:
-      - 93baaa9e-94be-4d54-bc7c-0615e63e635e
-      - dc294588-ff45-4c45-904d-083534ead061
-      - e48ad830-32a7-415f-9cb4-adfdb47770aa
-      - d64695cb-9d23-4a15-9794-1d1e73e5693a
-      - 4f97ba9c-c115-451a-b70d-3ee7d3b3eb11
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  93baaa9e-94be-4d54-bc7c-0615e63e635e:
-    id: 93baaa9e-94be-4d54-bc7c-0615e63e635e
-    content: Today manual steps hold no workflow execution entry — when the predecessor advances into a manual step, the predecessor's entry is removed and none is created for the manual step itself. "Resume workflow" needs a persisted binding to read, so the state machine must start creating/retaining an entry for manual steps. This is a state-model change, not just a menu addition.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc294588-ff45-4c45-904d-083534ead061:
-    id: dc294588-ff45-4c45-904d-083534ead061
-    content: A workflow whose root step is manual currently cannot start at all — the existing eligibility check rejects nodes with no parent. "Start workflow" on a root manual node only works if that check is loosened or a manual-root bootstrap path is added; without it, the unbound-state entry is a no-op at the root.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e48ad830-32a7-415f-9cb4-adfdb47770aa:
-    id: e48ad830-32a7-415f-9cb4-adfdb47770aa
-    content: The bind-aware menu split (Start vs Resume) is downstream of the entry-creation change above — without persisted state for manual steps, the menu would always show "Start workflow".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d64695cb-9d23-4a15-9794-1d1e73e5693a:
-    id: d64695cb-9d23-4a15-9794-1d1e73e5693a
-    content: Existing "Send to <session>" entries stay alongside the new entry by design. A user picking "Send to <bound session>" gets the prompt to the right session but no post-send pause, which can look like a silent regression. Worth a label or grouping in the menu; not blocking.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f97ba9c-c115-451a-b70d-3ee7d3b3eb11:
-    id: 4f97ba9c-c115-451a-b70d-3ee7d3b3eb11
-    content: Out-of-scope reminder — inheriting checkpoint/automatic unreachable-session behaviour means a closed bound terminal produces a silent-write-then-error-toast, not a graceful reopen. Manual-step users hit the same gap; addressing it would be a separate cross-step-type story.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3702e000-89c8-4e48-97ea-14fc6d38a852:
-    id: 3702e000-89c8-4e48-97ea-14fc6d38a852
-    content: Approach summary
-    children:
-      - 9d9b181a-4cf5-4726-8826-4dbffa231273
-      - 863e5edc-e9ea-4fed-af58-54c8ab95e126
-      - 51a685b6-c575-4900-9bc4-96a250314b5e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d9b181a-4cf5-4726-8826-4dbffa231273:
-    id: 9d9b181a-4cf5-4726-8826-4dbffa231273
-    content: 'Lands in the renderer: workflow execution state machine in `workflowExecutionActions.ts` plus the node context menu component. Reuses three existing primitives — workflow-step binding flow, send-to-bound-session, checkpoint-style paused state. No main-process or IPC changes.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  863e5edc-e9ea-4fed-af58-54c8ab95e126:
-    id: 863e5edc-e9ea-4fed-af58-54c8ab95e126
-    content: Core non-obvious change is in the state machine, not the UI — manual steps must start creating and retaining their own workflow execution entry so the bound `terminalTabId` survives between advance and the user's next action.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  51a685b6-c575-4900-9bc4-96a250314b5e:
-    id: 51a685b6-c575-4900-9bc4-96a250314b5e
-    content: Second non-obvious change — the workflow-eligibility check must accept manual-root nodes (or be paired with a bootstrap path) so "Start workflow" can actually launch a workflow whose first step is manual.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d3c41b7-3462-4950-b565-a1c78c0ea7b0:
-    id: 8d3c41b7-3462-4950-b565-a1c78c0ea7b0
-    content: Challenges and pushback
-    children:
-      - 645c08b1-2ff1-4be9-9a45-130a99ae85b6
-      - 373ed88a-59b6-4056-87ff-8e3daf09dcb8
-      - e1f0906e-c026-485f-8fda-64e4fd1268a1
-      - 7bc49783-739d-4b24-9242-644e4f90ae04
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  645c08b1-2ff1-4be9-9a45-130a99ae85b6:
-    id: 645c08b1-2ff1-4be9-9a45-130a99ae85b6
-    content: Naming risk — "Start workflow" / "Resume workflow" overlap with broader workflow concepts. Worth a short user-test pass against alternatives like "Send and pause" / "Continue in bound session"; not blocking.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  373ed88a-59b6-4056-87ff-8e3daf09dcb8:
-    id: 373ed88a-59b6-4056-87ff-8e3daf09dcb8
-    content: No over-engineering flagged — the proposal composes existing primitives (workflow-step binding flow, send-to-bound-session, checkpoint-pause, Resend/Next controls) rather than adding new infrastructure.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e1f0906e-c026-485f-8fda-64e4fd1268a1:
-    id: e1f0906e-c026-485f-8fda-64e4fd1268a1
-    content: ROI is favourable — single bind-aware menu entry plus a small extension of the pause path against a recurring papercut that breaks the workflow/session binding promise.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7bc49783-739d-4b24-9242-644e4f90ae04:
-    id: 7bc49783-739d-4b24-9242-644e4f90ae04
-    content: Out of scope and explicitly not added — unreachable-session reopen/rebind (current platform behaviour inherited as-is), multi-session broadcast, queueing prompts when the bound session is busy, visualising bound-session identity in the tree.
+  6e6f074f-b62c-4ceb-a6f9-d2b28a1f281f:
+    id: 6e6f074f-b62c-4ceb-a6f9-d2b28a1f281f
+    content: Consider surfacing the resolved target node id in the feedback panel header so mis-targeting is visible before accept
     children: []
     metadata:
       status: pending
@@ -176889,8 +177160,6 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   972f98ab-fdf8-42c9-93cd-222f29ba6527:
     cwd: /Users/brianfox/dev/Arborescent
-  0d2b3fe2-4123-47f4-8ee0-31143de17f8b:
-    cwd: /Users/brianfox/dev/Arborescent
   01e9ab16-4d3f-4f59-907a-a7b15fdffda4:
     cwd: /Users/brianfox/dev/Arborescent
   af40a936-93fe-4a52-abf3-98d8defacd84:
@@ -176898,4 +177167,8 @@ sessionRegistry:
   d0444d0e-d7da-4e86-9743-f2bd5c7ccf9c:
     cwd: /Users/brianfox/dev/Arborescent
   1315f630-72e2-4a8a-b54f-8b179dc2c18f:
+    cwd: /Users/brianfox/dev/Arborescent
+  e3d426bf-5d70-4e91-9c53-192f3bd98ca0:
+    cwd: /Users/brianfox/dev/Arborescent
+  38e60c5a-2928-42a7-9a4d-6ef81532408e:
     cwd: /Users/brianfox/dev/Arborescent
