@@ -76,15 +76,13 @@ If the workflow has multiple decomposition steps, each recurse step pairs with t
 
 ## Running a Workflow
 
-Place an item inside an autonomous or checkpoint workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.
-
-**Start Workflow** is not available on manual steps — use **Send** to send content to the terminal directly.
+Place an item inside any workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.
 
 What happens at each step depends on its type:
 
 - **Autonomous** — Content is sent to the terminal. When the AI finishes, the result is applied automatically and the item advances to the next step. With a Collaborate state the node content is replaced; with Collaborate & Execute the item statuses are updated; with Execute or Action no feedback is expected and the step advances on AI completion. If the feedback can't be parsed, or if the AI flags questions during the run, the workflow pauses — resume it manually.
 - **Checkpoint** — Content is sent to the terminal. When the AI finishes, the feedback panel opens for you to review the result. Right-click → **Next step** to advance to the next step and resume execution there, or **Resend step** to send the current step again on the same terminal (use this when the AI paused with a question and you want to answer it in place). Advancing from the last step completes the workflow automatically.
-- **Manual** — The item waits at the step. Nothing is sent automatically. Use **Send** to send content, then **Next step** to advance manually.
+- **Manual** — Content is sent to the terminal and the workflow pauses at the step regardless of how the AI finishes — the same paused state checkpoint uses. Right-click → **Resume Workflow** re-sends the step on the same bound terminal; **Next step** advances. Ad-hoc **Send** still works for one-off relays that don't enter the paused state.
 
 The **step's applied context** takes precedence over the working item's own context — that's how you steer the AI differently at each phase of the workflow. If the step has no applied context (and inherits none from the workflow chain), the working item's own context applies. If neither has a context, the branch's raw content is sent without scaffolding — apply **Basic execution** (Collaborate & Execute) to get the AI to make changes and update item statuses. Manual sends (right-click → **Send**) are unaffected by step contexts and always use the working item's own context.
 
@@ -113,7 +111,7 @@ A toast notification tells you what happened. Reordering the item within the sam
 
 Deleting a running item stops its workflow immediately and releases the terminal.
 
-A paused checkpoint step (awaiting validation) offers two distinct actions. **Resend step** re-sends the current step on the same terminal without advancing — pick this when the AI asked you a question and you've edited the step content with your answer. **Next step** advances to the next workflow step and resumes execution there if that step is autonomous or checkpoint.
+A paused step (awaiting validation) offers two distinct actions. **Resend step** re-sends the current step on the same terminal without advancing — pick this when the AI asked you a question and you've edited the step content with your answer. **Next step** advances to the next workflow step and resumes execution there if that step is autonomous or checkpoint. Manual paused steps follow the same pattern, except the re-send action is labelled **Resume Workflow**.
 
 On app restart, all previously running items are stopped. Checkpoint items awaiting validation are preserved. Reopen a terminal and resend or advance them as needed.
 

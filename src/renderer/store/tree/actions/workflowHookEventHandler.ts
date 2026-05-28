@@ -195,8 +195,21 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
           advanceNode(runningNodeId);
         }
       } else if (stepType === 'manual') {
+        const { workflowExecutionStates: currentStates } = get();
+        const currentEntry = currentStates[runningNodeId];
+        if (currentEntry && currentEntry.state === 'running') {
+          set({
+            workflowExecutionStates: {
+              ...currentStates,
+              [runningNodeId]: {
+                ...currentEntry,
+                state: 'awaiting-validation',
+              },
+            },
+          });
+        }
         logger.info(
-          `Hook Stop ignored: manual step ${position.currentStepId} — user drives advancement`,
+          `Hook Stop on manual step ${position.currentStepId} — pausing for user to advance`,
           'WorkflowExecution',
           { nodeId: runningNodeId },
         );

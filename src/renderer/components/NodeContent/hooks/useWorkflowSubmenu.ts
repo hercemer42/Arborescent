@@ -139,18 +139,21 @@ export function buildWorkflowExecutionItems({
     return [{ label: 'Stop Workflow', onClick: onStopWorkflow }];
   }
 
+  const position = getWorkflowStepPosition(node.id, nodes, ancestorRegistry);
+  const stepNode = position ? nodes[position.currentStepId] : null;
+  const stepType = stepNode?.metadata.stepType as string | undefined;
+  const isManual = stepType === 'manual';
+
   if (entry?.state === 'awaiting-validation') {
+    const sendLabel = isManual ? 'Resume Workflow' : 'Resend step';
     return [
-      { label: 'Resend step', onClick: onResendStep },
+      { label: sendLabel, onClick: onResendStep },
       { label: 'Stop Workflow', onClick: onStopWorkflow },
     ];
   }
 
   if (isEligibleForExecution(node.id, nodes, ancestorRegistry, workflowExecutionStates)) {
-    const position = getWorkflowStepPosition(node.id, nodes, ancestorRegistry);
-    const stepNode = position ? nodes[position.currentStepId] : null;
-    const stepType = stepNode?.metadata.stepType as string | undefined;
-    if (stepType === 'autonomous' || stepType === 'checkpoint') {
+    if (stepType === 'autonomous' || stepType === 'checkpoint' || stepType === 'manual') {
       return [{ label: 'Start Workflow', onClick: onStartWorkflow }];
     }
   }
@@ -200,7 +203,9 @@ export function combineExecutionAndNavigationItems(
   navigationItems: ContextMenuItem[],
   resumeSessionItem: ContextMenuItem | null = null,
 ): ContextMenuItem[] {
-  const resendIdx = executionItems.findIndex(item => item.label === 'Resend step');
+  const resendIdx = executionItems.findIndex(
+    item => item.label === 'Resend step' || item.label === 'Resume Workflow',
+  );
   const nextStepIdx = navigationItems.findIndex(item => item.label === 'Next step');
   const resume = resumeSessionItem ? [resumeSessionItem] : [];
 

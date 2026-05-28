@@ -334,7 +334,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       expect(state.nodes['step-2'].children).toContain('task-a');
     });
 
-    it('manual steps stay no-op regardless of explicit_submit_seen — user drives advancement', () => {
+    it('manual steps pause at awaiting-validation regardless of explicit_submit_seen — user drives advancement', () => {
       state.nodes['step-1'].metadata.stepType = 'manual';
       state.workflowExecutionStates['task-a'] = {
         state: 'running',
@@ -348,7 +348,8 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       });
 
       expect(state.nodes['step-1'].children).toContain('task-a');
-      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
+      expect(state.workflowExecutionStates['task-a'].terminalTabId).toBe('terminal-1');
     });
 
     it('absent explicit_submit_seen is treated as permissive (backward-compat for callers that do not set the gate)', () => {

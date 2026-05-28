@@ -140,7 +140,7 @@ describe('buildWorkflowExecutionItems', () => {
     expect(result[0].label).toBe('Start Workflow');
   });
 
-  it('should not show Start Workflow for eligible nodes in manual steps', () => {
+  it('should show Start Workflow for eligible nodes in manual steps', () => {
     const manualNodes: Record<string, TreeNode> = {
       ...workflowNodes,
       'step1': createNode('step1', { children: ['task'], metadata: { isBlueprint: true, stepType: 'manual' } }),
@@ -154,7 +154,29 @@ describe('buildWorkflowExecutionItems', () => {
       ...defaultCallbacks,
     });
 
-    expect(result).toEqual([]);
+    expect(result).toHaveLength(1);
+    expect(result[0].label).toBe('Start Workflow');
+  });
+
+  it('should show Resume Workflow (not Resend step) for manual steps awaiting validation', () => {
+    const manualNodes: Record<string, TreeNode> = {
+      ...workflowNodes,
+      'step1': createNode('step1', { children: ['task'], metadata: { isBlueprint: true, stepType: 'manual' } }),
+    };
+
+    const result = buildWorkflowExecutionItems({
+      node: manualNodes['task'],
+      nodes: manualNodes,
+      ancestorRegistry: ancestors,
+      workflowExecutionStates: {
+        task: { state: 'awaiting-validation', terminalTabId: 't1' },
+      },
+      ...defaultCallbacks,
+    });
+
+    const labels = result.map(item => item.label);
+    expect(labels).toContain('Resume Workflow');
+    expect(labels).not.toContain('Resend step');
   });
 
   it('should show Start Workflow for eligible nodes in checkpoint steps', () => {
