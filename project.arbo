@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-28T14:37:49.341Z'
+updated: '2026-05-28T15:58:13.498Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23707,8 +23707,7 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children:
-      - f1f2a96e-9f35-4144-9f11-dd7d3266bd25
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -33205,7 +33204,6 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 5d9968e7-fee9-46ef-8d2f-00b6bed31071
       - 970a479d-2ad9-4330-9fad-af9f651fcac1
       - 64ef3f59-914b-43b8-8c24-a461ce731779
       - a3dc1418-84c1-4d99-9d17-f658480f6517
@@ -89248,7 +89246,7 @@ nodes:
       - 16ce2eb9-9b01-40d7-96fa-94ddb4b3c060
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   1fb08d66-e49f-4bbe-ba21-acd2e04a5d73:
     id: 1fb08d66-e49f-4bbe-ba21-acd2e04a5d73
     content: Would be cool if we can send a command for claude to switch to different effort levels depending on the task
@@ -115502,6 +115500,7 @@ nodes:
       - 924b187c-f2db-4ceb-968b-440700b738e3
       - 7dc1f860-a3e9-4489-9db2-0cdff8f2476a
       - 2d148d76-e0d3-4330-a378-2197983d5baf
+      - 6afbf0be-e1b8-4b16-83e8-e77a31e8e013
     metadata:
       status: pending
       isBlueprint: true
@@ -124608,7 +124607,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 6afbf0be-e1b8-4b16-83e8-e77a31e8e013
+      - f1f2a96e-9f35-4144-9f11-dd7d3266bd25
     metadata:
       status: pending
       isBlueprint: true
@@ -132276,97 +132275,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5d9968e7-fee9-46ef-8d2f-00b6bed31071:
-    id: 5d9968e7-fee9-46ef-8d2f-00b6bed31071
-    content: Undo is problematic with more than one user
-    children:
-      - fd11af80-55ca-49a6-a621-48f4c096e591
-      - b9c15ad4-48de-431d-976c-4467934110d4
-      - bb9298df-9fe5-403b-bec7-2f52e8c276b4
-      - 3a70ccf9-8865-40ad-ac48-c5aa4cebc29f
-    metadata:
-      status: pending
-      expanded: false
-  fd11af80-55ca-49a6-a621-48f4c096e591:
-    id: fd11af80-55ca-49a6-a621-48f4c096e591
-    content: If the AI is making changes at the same time as the user
-    children:
-      - 0c4570cd-8e3f-4c80-a81d-64d8642e61f1
-      - 9fdd7d32-944e-4ae2-ae09-5f4c14ac15f5
-    metadata:
-      status: pending
-  0c4570cd-8e3f-4c80-a81d-64d8642e61f1:
-    id: 0c4570cd-8e3f-4c80-a81d-64d8642e61f1
-    content: For example, the AI is manipulating node content in workflows
-    children: []
-    metadata:
-      status: pending
-  9fdd7d32-944e-4ae2-ae09-5f4c14ac15f5:
-    id: 9fdd7d32-944e-4ae2-ae09-5f4c14ac15f5
-    content: And the user is refining a problem statement in another node
-    children: []
-    metadata:
-      status: pending
-  b9c15ad4-48de-431d-976c-4467934110d4:
-    id: b9c15ad4-48de-431d-976c-4467934110d4
-    content: Then if the user wants to undo anything
-    children:
-      - 9776961d-180e-4d28-a95f-b0cb2582fb57
-    metadata:
-      status: pending
-  9776961d-180e-4d28-a95f-b0cb2582fb57:
-    id: 9776961d-180e-4d28-a95f-b0cb2582fb57
-    content: They'll need to undo anything the AI did to get to the stuff that they did
-    children: []
-    metadata:
-      status: pending
-  bb9298df-9fe5-403b-bec7-2f52e8c276b4:
-    id: bb9298df-9fe5-403b-bec7-2f52e8c276b4
-    content: Need to have separate undo queues for both user and AI
-    children:
-      - a6da8e13-7ece-4e94-bfdc-4ef45501338a
-      - 31146f4e-038c-4792-951a-caaa8ab5ac92
-    metadata:
-      status: pending
-  a6da8e13-7ece-4e94-bfdc-4ef45501338a:
-    id: a6da8e13-7ece-4e94-bfdc-4ef45501338a
-    content: And actually we can have multiple AIs
-    children: []
-    metadata:
-      status: pending
-  31146f4e-038c-4792-951a-caaa8ab5ac92:
-    id: 31146f4e-038c-4792-951a-caaa8ab5ac92
-    content: So we need to have unlimited undo queues per user or session
-    children: []
-    metadata:
-      status: pending
-  3a70ccf9-8865-40ad-ac48-c5aa4cebc29f:
-    id: 3a70ccf9-8865-40ad-ac48-c5aa4cebc29f
-    content: I think it needs to be handled by recording a revision history on each element
-    children:
-      - a89a3b02-2cab-4683-a9a5-6510651fc11e
-      - e3e48e71-1d7f-4968-9412-99eb87e891e1
-    metadata:
-      status: pending
-  a89a3b02-2cab-4683-a9a5-6510651fc11e:
-    id: a89a3b02-2cab-4683-a9a5-6510651fc11e
-    content: But this implies that we keep the elements in a database, not in a yaml file
-    children: []
-    metadata:
-      status: pending
-  e3e48e71-1d7f-4968-9412-99eb87e891e1:
-    id: e3e48e71-1d7f-4968-9412-99eb87e891e1
-    content: This is something we'll need to move towards anyway
-    children:
-      - cd147978-07db-4d2d-a857-00b083eceecd
-    metadata:
-      status: pending
-  cd147978-07db-4d2d-a857-00b083eceecd:
-    id: cd147978-07db-4d2d-a857-00b083eceecd
-    content: While keeping the yaml export to share blueprints/contexts etc
-    children: []
-    metadata:
-      status: pending
   21c5463f-cf58-4efb-8b90-52a43652cbfc:
     id: 21c5463f-cf58-4efb-8b90-52a43652cbfc
     content: worktree
@@ -176121,18 +176029,19 @@ nodes:
     id: f1f2a96e-9f35-4144-9f11-dd7d3266bd25
     content: Bug when trying to review after discussion on a node while another node was bound in the session
     children:
-      - 93df94d3-96a2-4f83-89dd-088be2e0af91
-      - 30439ad3-340e-481b-adb1-07b61e7669d0
-      - ec3925cb-2ea7-4688-9432-7ff63c83ea92
-      - 70447bd3-ecc5-433a-884f-15f144ad0cfc
-      - b378ff16-abb8-4296-9081-f2422628e3fa
-      - 7bbb2d0c-95d8-4c9f-acb3-1d8efec38e99
-      - ad88d92b-edcd-4eb5-aac2-fd226456602a
-      - c91cbe3c-3247-4db6-bd6c-f38fba7a449d
-      - 8fb32a4f-2d75-405d-a0b0-e6954a460ad1
-      - 4097049e-799d-40d5-a8b2-611ef66cd7bc
+      - a6282217-9aa3-4259-a000-8806f288a42f
+      - 07c4a057-5d6e-41c4-8b68-a3694a81636a
+      - ac8f8edd-7dd0-45a6-95b1-733a590fa9df
+      - e7a2a07d-bd36-4bdd-90b0-2c155b6c19cf
+      - 0855ea78-7da2-4c06-84eb-e6f67919224b
+      - ce62d586-602c-44e7-87bb-aa26d7ce01fe
+      - bcab2ea7-9408-4832-ac0e-c2d3fbb53a98
+      - 0487f715-73ed-4388-b757-c03a42eb93dd
+      - 8e641868-96b0-413c-97af-c5db010152f6
+      - 3e225fc7-6920-4408-8069-85fb595f3e8e
+      - 0f2a59d3-479b-4f03-afb9-a033bf1c22a2
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -176813,18 +176722,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  93df94d3-96a2-4f83-89dd-088be2e0af91:
-    id: 93df94d3-96a2-4f83-89dd-088be2e0af91
+  a6282217-9aa3-4259-a000-8806f288a42f:
+    id: a6282217-9aa3-4259-a000-8806f288a42f
     content: Summary
     children:
-      - c9e37d50-11de-429c-9fb9-ba6993917967
+      - 539920a7-d8aa-4abf-bbad-b09ad543ca22
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c9e37d50-11de-429c-9fb9-ba6993917967:
-    id: c9e37d50-11de-429c-9fb9-ba6993917967
+  539920a7-d8aa-4abf-bbad-b09ad543ca22:
+    id: 539920a7-d8aa-4abf-bbad-b09ad543ca22
     content: Manual send or 'revise after discussion' on an arbitrary node writes its output to the currently bound node instead of the targeted node
     children: []
     metadata:
@@ -176832,20 +176741,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  30439ad3-340e-481b-adb1-07b61e7669d0:
-    id: 30439ad3-340e-481b-adb1-07b61e7669d0
+  07c4a057-5d6e-41c4-8b68-a3694a81636a:
+    id: 07c4a057-5d6e-41c4-8b68-a3694a81636a
     content: Steps to reproduce
     children:
-      - 96b0fcfb-4c30-4a44-8c27-a3901be9f1b5
-      - 15039a95-c80c-486b-b61d-be7abbd40b9b
-      - 002f9f0f-63e2-462b-bff7-a666056fd945
+      - bd3a86fa-b5fd-45ea-857c-8b94745276b3
+      - aa956e32-9474-4d10-b90e-fb8e28581d54
+      - e9966818-3a64-4ee7-8998-246c6f83d9fe
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  96b0fcfb-4c30-4a44-8c27-a3901be9f1b5:
-    id: 96b0fcfb-4c30-4a44-8c27-a3901be9f1b5
+  bd3a86fa-b5fd-45ea-857c-8b94745276b3:
+    id: bd3a86fa-b5fd-45ea-857c-8b94745276b3
     content: Start a workflow that binds node A to the session
     children: []
     metadata:
@@ -176853,8 +176762,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  15039a95-c80c-486b-b61d-be7abbd40b9b:
-    id: 15039a95-c80c-486b-b61d-be7abbd40b9b
+  aa956e32-9474-4d10-b90e-fb8e28581d54:
+    id: aa956e32-9474-4d10-b90e-fb8e28581d54
     content: Without unbinding, invoke manual send or 'revise after discussion' on a different node B
     children: []
     metadata:
@@ -176862,8 +176771,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  002f9f0f-63e2-462b-bff7-a666056fd945:
-    id: 002f9f0f-63e2-462b-bff7-a666056fd945
+  e9966818-3a64-4ee7-8998-246c6f83d9fe:
+    id: e9966818-3a64-4ee7-8998-246c6f83d9fe
     content: Observe that the assistant response is applied to node A, not node B
     children: []
     metadata:
@@ -176871,19 +176780,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ec3925cb-2ea7-4688-9432-7ff63c83ea92:
-    id: ec3925cb-2ea7-4688-9432-7ff63c83ea92
+  ac8f8edd-7dd0-45a6-95b1-733a590fa9df:
+    id: ac8f8edd-7dd0-45a6-95b1-733a590fa9df
     content: Expected behavior
     children:
-      - 48024655-7ad1-4925-bd72-4d9872f92d2b
-      - f3301ab5-0362-4ad2-82ed-12a15108a082
+      - 70e5f0ff-d389-47e6-8342-4ec0a8990b64
+      - 360a55fd-e384-451c-932e-a3824f699834
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  48024655-7ad1-4925-bd72-4d9872f92d2b:
-    id: 48024655-7ad1-4925-bd72-4d9872f92d2b
+  70e5f0ff-d389-47e6-8342-4ec0a8990b64:
+    id: 70e5f0ff-d389-47e6-8342-4ec0a8990b64
     content: Manual send and revise-after-discussion target the node the user acted on, regardless of which node is bound to the session
     children: []
     metadata:
@@ -176891,8 +176800,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f3301ab5-0362-4ad2-82ed-12a15108a082:
-    id: f3301ab5-0362-4ad2-82ed-12a15108a082
+  360a55fd-e384-451c-932e-a3824f699834:
+    id: 360a55fd-e384-451c-932e-a3824f699834
     content: The bound node's authored subtree remains untouched when the user acts on a non-bound node
     children: []
     metadata:
@@ -176900,19 +176809,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  70447bd3-ecc5-433a-884f-15f144ad0cfc:
-    id: 70447bd3-ecc5-433a-884f-15f144ad0cfc
+  e7a2a07d-bd36-4bdd-90b0-2c155b6c19cf:
+    id: e7a2a07d-bd36-4bdd-90b0-2c155b6c19cf
     content: Actual behavior
     children:
-      - 69e77ece-ac6c-41c2-a8e8-d6d89589c987
-      - 761c211b-8d9a-4445-a201-726e95721260
+      - 8858b117-bab1-4b04-8b41-124e2600c887
+      - 48674926-7c53-42be-85c0-ed121ab27627
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  69e77ece-ac6c-41c2-a8e8-d6d89589c987:
-    id: 69e77ece-ac6c-41c2-a8e8-d6d89589c987
+  8858b117-bab1-4b04-8b41-124e2600c887:
+    id: 8858b117-bab1-4b04-8b41-124e2600c887
     content: Output is applied to the bound node A
     children: []
     metadata:
@@ -176920,8 +176829,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  761c211b-8d9a-4445-a201-726e95721260:
-    id: 761c211b-8d9a-4445-a201-726e95721260
+  48674926-7c53-42be-85c0-ed121ab27627:
+    id: 48674926-7c53-42be-85c0-ed121ab27627
     content: The targeted node B receives nothing, and node A's existing subtree may be overwritten or corrupted
     children: []
     metadata:
@@ -176929,19 +176838,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b378ff16-abb8-4296-9081-f2422628e3fa:
-    id: b378ff16-abb8-4296-9081-f2422628e3fa
+  0855ea78-7da2-4c06-84eb-e6f67919224b:
+    id: 0855ea78-7da2-4c06-84eb-e6f67919224b
     content: User-visible symptoms
     children:
-      - 79cb9132-b81b-4dc4-b5a9-0c723c7727f3
-      - f8ae84d4-6410-492e-9cc7-c72ac1764cfb
+      - 57c12c4b-35ca-4eb1-b896-ff1a5fcbd705
+      - 61b0c165-6b1e-40ab-b47f-e6b3ba0e9d70
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  79cb9132-b81b-4dc4-b5a9-0c723c7727f3:
-    id: 79cb9132-b81b-4dc4-b5a9-0c723c7727f3
+  57c12c4b-35ca-4eb1-b896-ff1a5fcbd705:
+    id: 57c12c4b-35ca-4eb1-b896-ff1a5fcbd705
     content: Feedback panel or applied content appears under the wrong node
     children: []
     metadata:
@@ -176949,8 +176858,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f8ae84d4-6410-492e-9cc7-c72ac1764cfb:
-    id: f8ae84d4-6410-492e-9cc7-c72ac1764cfb
+  61b0c165-6b1e-40ab-b47f-e6b3ba0e9d70:
+    id: 61b0c165-6b1e-40ab-b47f-e6b3ba0e9d70
     content: Silent loss of authored content on the bound node
     children: []
     metadata:
@@ -176958,19 +176867,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7bbb2d0c-95d8-4c9f-acb3-1d8efec38e99:
-    id: 7bbb2d0c-95d8-4c9f-acb3-1d8efec38e99
+  ce62d586-602c-44e7-87bb-aa26d7ce01fe:
+    id: ce62d586-602c-44e7-87bb-aa26d7ce01fe
     content: Suspected cause
     children:
-      - fb88c0b0-7c84-4082-a159-571d287d89b3
-      - 1872f413-3a9f-4311-ba14-f0c9ebc33a71
+      - 6a0cb8f2-8f03-4d9c-816f-5cfb2a3bb346
+      - 8529052c-3ea1-4fdc-9da7-b7543dfed779
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  fb88c0b0-7c84-4082-a159-571d287d89b3:
-    id: fb88c0b0-7c84-4082-a159-571d287d89b3
+  6a0cb8f2-8f03-4d9c-816f-5cfb2a3bb346:
+    id: 6a0cb8f2-8f03-4d9c-816f-5cfb2a3bb346
     content: Manual-send and revise-after-discussion paths resolve the submission target from the active session binding rather than from the right-clicked node id
     children: []
     metadata:
@@ -176978,8 +176887,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1872f413-3a9f-4311-ba14-f0c9ebc33a71:
-    id: 1872f413-3a9f-4311-ba14-f0c9ebc33a71
+  8529052c-3ea1-4fdc-9da7-b7543dfed779:
+    id: 8529052c-3ea1-4fdc-9da7-b7543dfed779
     content: target_node_id guard on submit_step_output may not be enforced for manual-collab submissions, so the drift is not caught server-side
     children: []
     metadata:
@@ -176987,19 +176896,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ad88d92b-edcd-4eb5-aac2-fd226456602a:
-    id: ad88d92b-edcd-4eb5-aac2-fd226456602a
+  bcab2ea7-9408-4832-ac0e-c2d3fbb53a98:
+    id: bcab2ea7-9408-4832-ac0e-c2d3fbb53a98
     content: Affected files
     children:
-      - c5c8bf78-cf9a-448d-bc5a-8255bd604795
-      - 70488a8c-70f9-4af1-a082-57d664d84381
+      - 38c0dbbf-0ce3-4417-b169-a2d054345580
+      - 446c145c-90d0-4fb4-aa7c-93c1ac6de266
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c5c8bf78-cf9a-448d-bc5a-8255bd604795:
-    id: c5c8bf78-cf9a-448d-bc5a-8255bd604795
+  38c0dbbf-0ce3-4417-b169-a2d054345580:
+    id: 38c0dbbf-0ce3-4417-b169-a2d054345580
     content: Renderer action handlers for 'revise after discussion' and manual send (right-click / context menu flow)
     children: []
     metadata:
@@ -177007,8 +176916,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  70488a8c-70f9-4af1-a082-57d664d84381:
-    id: 70488a8c-70f9-4af1-a082-57d664d84381
+  446c145c-90d0-4fb4-aa7c-93c1ac6de266:
+    id: 446c145c-90d0-4fb4-aa7c-93c1ac6de266
     content: submit_step_output MCP handler and its bound-node resolution logic
     children: []
     metadata:
@@ -177016,19 +176925,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c91cbe3c-3247-4db6-bd6c-f38fba7a449d:
-    id: c91cbe3c-3247-4db6-bd6c-f38fba7a449d
+  0487f715-73ed-4388-b757-c03a42eb93dd:
+    id: 0487f715-73ed-4388-b757-c03a42eb93dd
     content: Regression window
     children:
-      - f789f04c-4ad3-4d48-b4b2-b6a10566fb7e
-      - 408f087a-c2a3-494f-874b-a9444f966661
+      - 04ef3d42-1c29-404c-8246-cf577a902029
+      - f110bc7e-5231-4201-956c-07708517b9b0
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f789f04c-4ad3-4d48-b4b2-b6a10566fb7e:
-    id: f789f04c-4ad3-4d48-b4b2-b6a10566fb7e
+  04ef3d42-1c29-404c-8246-cf577a902029:
+    id: 04ef3d42-1c29-404c-8246-cf577a902029
     content: 'Last known good: unknown — needs bisect'
     children: []
     metadata:
@@ -177036,8 +176945,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  408f087a-c2a3-494f-874b-a9444f966661:
-    id: 408f087a-c2a3-494f-874b-a9444f966661
+  f110bc7e-5231-4201-956c-07708517b9b0:
+    id: f110bc7e-5231-4201-956c-07708517b9b0
     content: 'First observed: session 65164a7e-ed73-4704-a24f-7ae972a0e6d8'
     children: []
     metadata:
@@ -177045,18 +176954,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8fb32a4f-2d75-405d-a0b0-e6954a460ad1:
-    id: 8fb32a4f-2d75-405d-a0b0-e6954a460ad1
+  8e641868-96b0-413c-97af-c5db010152f6:
+    id: 8e641868-96b0-413c-97af-c5db010152f6
     content: Severity
     children:
-      - 7478f597-9830-4f73-b406-903af52c8aef
+      - a701918d-96f1-4cc4-a1fc-d117dd5c2e22
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7478f597-9830-4f73-b406-903af52c8aef:
-    id: 7478f597-9830-4f73-b406-903af52c8aef
+  a701918d-96f1-4cc4-a1fc-d117dd5c2e22:
+    id: a701918d-96f1-4cc4-a1fc-d117dd5c2e22
     content: High — silently corrupts the bound node's authored subtree and discards the user's intended write to another node
     children: []
     metadata:
@@ -177064,21 +176973,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4097049e-799d-40d5-a8b2-611ef66cd7bc:
-    id: 4097049e-799d-40d5-a8b2-611ef66cd7bc
+  3e225fc7-6920-4408-8069-85fb595f3e8e:
+    id: 3e225fc7-6920-4408-8069-85fb595f3e8e
     content: Notes
     children:
-      - 01fa24c5-7dd3-4a3b-861d-e8c18d96012e
-      - 2f471bf9-0ee0-4447-8340-b8ed6eca0d1c
-      - 0bda32f5-7c78-441a-827e-4eb752c94510
-      - 6e6f074f-b62c-4ceb-a6f9-d2b28a1f281f
+      - 36bbab12-29a5-4d51-a9d2-6ceb191009e2
+      - ff9e5d8f-c467-4767-92a3-b58f2628e814
+      - dc26c159-238e-495a-bceb-721e7c16975d
+      - be59a364-bdad-403c-9841-bff9631cc3d1
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  01fa24c5-7dd3-4a3b-861d-e8c18d96012e:
-    id: 01fa24c5-7dd3-4a3b-861d-e8c18d96012e
+  36bbab12-29a5-4d51-a9d2-6ceb191009e2:
+    id: 36bbab12-29a5-4d51-a9d2-6ceb191009e2
     content: Refer to session 65164a7e-ed73-4704-a24f-7ae972a0e6d8 for the original repro context
     children: []
     metadata:
@@ -177086,8 +176995,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2f471bf9-0ee0-4447-8340-b8ed6eca0d1c:
-    id: 2f471bf9-0ee0-4447-8340-b8ed6eca0d1c
+  ff9e5d8f-c467-4767-92a3-b58f2628e814:
+    id: ff9e5d8f-c467-4767-92a3-b58f2628e814
     content: Related to the CONTENT-root preservation rule for submit_step_output — same family of bound-node mis-targeting
     children: []
     metadata:
@@ -177095,8 +177004,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0bda32f5-7c78-441a-827e-4eb752c94510:
-    id: 0bda32f5-7c78-441a-827e-4eb752c94510
+  dc26c159-238e-495a-bceb-721e7c16975d:
+    id: dc26c159-238e-495a-bceb-721e7c16975d
     content: We should be able to do a manual send or 'revise after discussion' on any node without it being written to the bound node
     children: []
     metadata:
@@ -177104,12 +177013,111 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6e6f074f-b62c-4ceb-a6f9-d2b28a1f281f:
-    id: 6e6f074f-b62c-4ceb-a6f9-d2b28a1f281f
+  be59a364-bdad-403c-9841-bff9631cc3d1:
+    id: be59a364-bdad-403c-9841-bff9631cc3d1
     content: Consider surfacing the resolved target node id in the feedback panel header so mis-targeting is visible before accept
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f2a59d3-479b-4f03-afb9-a033bf1c22a2:
+    id: 0f2a59d3-479b-4f03-afb9-a033bf1c22a2
+    content: Technical refinement
+    children:
+      - f6e67443-75a4-4132-92d7-d626ca75b634
+      - 9f25dad3-4e6a-4a53-aacb-711405bccd22
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6e67443-75a4-4132-92d7-d626ca75b634:
+    id: f6e67443-75a4-4132-92d7-d626ca75b634
+    content: Approach
+    children:
+      - 846ccc69-e947-422c-b20a-b6379c24b9ac
+      - a0bf930a-9ca9-43a6-985d-b99c92bfb822
+      - dbf4bea3-a2ca-441f-a6cf-7b3c13182eaa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  846ccc69-e947-422c-b20a-b6379c24b9ac:
+    id: 846ccc69-e947-422c-b20a-b6379c24b9ac
+    content: 'Routing pin already exists: `oneShotTargetStore.pendingTarget` (set via the `<!-- ARBORESCENT_TARGET -->` marker / `register-target` hook) is consulted before `bindingRegistry.lookup` in submitStepOutput — the bug means that pin is either never set, cleared too early, or bypassed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0bf930a-9ca9-43a6-985d-b99c92bfb822:
+    id: a0bf930a-9ca9-43a6-985d-b99c92bfb822
+    content: Fix likely splits across renderer (ensure the target marker is emitted on every revise-after-discussion send via `maybePrependRoutingMarker`, and that no follow-up discussion turn drops it) and main (extend the gate-4 target_node_id token guard to the proposal/manual route so a misrouted submit fails loud instead of silently writing to the bound node)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbf4bea3-a2ca-441f-a6cf-7b3c13182eaa:
+    id: dbf4bea3-a2ca-441f-a6cf-7b3c13182eaa
+    content: Add a regression test that mirrors the repro — workflow-bound A on terminal T, manual revise on B in same T — asserting the proposal arrives for B, not A
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f25dad3-4e6a-4a53-aacb-711405bccd22:
+    id: 9f25dad3-4e6a-4a53-aacb-711405bccd22
+    content: Complications
+    children:
+      - ee3bd54f-07a4-4b97-94d5-d391dfb50017
+      - 5fbef095-fa58-4762-9e14-1e6e2976c86f
+      - 97540261-efab-4938-b6f6-599eedb723bc
+      - 3dfd32cd-dbf0-4548-a98d-d86eb3a46af7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee3bd54f-07a4-4b97-94d5-d391dfb50017:
+    id: ee3bd54f-07a4-4b97-94d5-d391dfb50017
+    content: Edge case — B may sit under an autonomous step, which flips the route to the autonomous branch and demands a target_node_id echo the assistant won't have on a manual send; decide whether revise-on-autonomous-subtree is in scope or explicit-error out
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fbef095-fa58-4762-9e14-1e6e2976c86f:
+    id: 5fbef095-fa58-4762-9e14-1e6e2976c86f
+    content: '`markManualCollabResolved` (fires on cancelCollaboration / acceptFeedback) clears pendingTarget — verify it cannot race ahead of an in-flight discussion''s submit and silently drop the route back to bindingRegistry'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  97540261-efab-4938-b6f6-599eedb723bc:
+    id: 97540261-efab-4938-b6f6-599eedb723bc
+    content: Variable named `boundNodeId` in submitStepOutput conflates "session-bound" with "pinned manual target" — rename once routing is verified to avoid further drift in future edits
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dfd32cd-dbf0-4548-a98d-d86eb3a46af7:
+    id: 3dfd32cd-dbf0-4548-a98d-d86eb3a46af7
+    content: Out of scope — changes to how workflow steps bind their own nodes; this fix should only affect the manual/revise routing pin and its enforcement
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
