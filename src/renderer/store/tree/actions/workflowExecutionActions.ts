@@ -42,6 +42,8 @@ import {
 } from "./workflowSessionResume";
 import { decideWorkflowStartRoute } from "../../../utils/workflowStartRoute";
 import { useTerminalStore } from "../../terminal/terminalStore";
+import { useRebindPreflightStore } from "../../rebindPreflightStore";
+import { usePendingRebindDialogStore } from "../../pendingRebindDialogStore";
 import { extractTaskTitle } from "../../../utils/terminalTabTitle";
 import {
   StepHistoryMap,
@@ -224,6 +226,19 @@ export const createWorkflowExecutionActions = (
     return null;
   }
 
+  // The node that owns the live session currently running on the terminal. A
+  // stale originNodeId (a "blue bar" with no live session) is intentionally not
+  // treated as a binding — only an active session counts as a rebind target.
+  function findSessionBoundNodeForTerminal(terminalId: string): string | null {
+    const { workflowSessionMap } = get();
+    for (const [sessionId, boundTerminalId] of Object.entries(workflowSessionMap)) {
+      if (boundTerminalId !== terminalId) continue;
+      const owner = findNodeIdBySessionId(sessionId);
+      if (owner) return owner;
+    }
+    return null;
+  }
+
   function reattachOriginNodeForResumedSession(terminalId: string, sessionId: string): void {
     const terminalStore = useTerminalStore.getState();
     const terminal = terminalStore.terminals.find((t) => t.id === terminalId);
@@ -376,8 +391,6 @@ export const createWorkflowExecutionActions = (
     terminalId: string,
     mode: "spawn" | "reattach" | "recurse",
   ): void {
-    const { nodes, workflowExecutionStates } = get();
-
     const existingNodeId = findRunningNodeOnTerminal(terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
       useToastStore
@@ -388,6 +401,59 @@ export const createWorkflowExecutionActions = (
         );
       return;
     }
+
+    // A user-initiated start onto a terminal whose live session belongs to a
+    // different node is a rebind: defer the reassignment, tab rename, and send
+    // until the user confirms. The recurse handoff legitimately moves a terminal
+    // from a parent to its decomposed child, so it is never gated.
+    if (mode !== "recurse") {
+      // A rebind confirmation is already awaiting the user on this terminal;
+      // ignore repeat starts so the pending preflight request is not clobbered.
+      if (usePendingRebindDialogStore.getState().isPending(terminalId)) {
+        return;
+      }
+      const boundNodeId = findSessionBoundNodeForTerminal(terminalId);
+      if (boundNodeId && boundNodeId !== nodeId) {
+        requestWorkflowStartRebind(terminalId, boundNodeId, nodeId, mode);
+        return;
+      }
+    }
+
+    commitWorkflowStartOnTerminal(nodeId, terminalId, mode);
+  }
+
+  function requestWorkflowStartRebind(
+    terminalId: string,
+    previousNodeId: string,
+    nodeId: string,
+    mode: "spawn" | "reattach" | "recurse",
+  ): void {
+    usePendingRebindDialogStore.getState().markPending(terminalId);
+    useRebindPreflightStore.getState().request({
+      terminalId,
+      previousNodeId,
+      newNodeId: nodeId,
+      // The user has authorized the rebind, so the deferred start is now an
+      // authorized hand-off — dispatch it as 'workflow-advance' (rebindPreconfirmed)
+      // so the main process auto-confirms the session rebind instead of raising a
+      // second, reactive confirmation dialog for the rebind just approved.
+      replay: async () => {
+        commitWorkflowStartOnTerminal(nodeId, terminalId, mode, true);
+      },
+    });
+    logger.info(
+      `Preflight rebind queued for workflow start: terminal ${terminalId} bound to ${previousNodeId}, awaiting confirmation to start ${nodeId}`,
+      "WorkflowExecution",
+    );
+  }
+
+  function commitWorkflowStartOnTerminal(
+    nodeId: string,
+    terminalId: string,
+    mode: "spawn" | "reattach" | "recurse",
+    rebindPreconfirmed = false,
+  ): void {
+    const { nodes, workflowExecutionStates } = get();
 
     const prefsState = usePreferencesStore.getState();
     if (!prefsState.hasLaunchedWorkflow) {
@@ -418,7 +484,8 @@ export const createWorkflowExecutionActions = (
     // first.
     const { workflowSessionMap } = get();
     const terminalAlreadyHasSession = Object.values(workflowSessionMap).includes(terminalId);
-    const bindingSource: AutonomousSendSource = mode === 'recurse' ? 'workflow-advance' : 'workflow-start';
+    const bindingSource: AutonomousSendSource =
+      mode === 'recurse' || rebindPreconfirmed ? 'workflow-advance' : 'workflow-start';
     if (terminalAlreadyHasSession) {
       clearSessionManager.maybeClearThenSend(nodeId, terminalId, bindingSource);
     } else {
