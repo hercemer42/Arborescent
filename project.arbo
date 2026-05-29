@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-29T14:09:45.985Z'
+updated: '2026-05-29T15:46:37.476Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -92290,8 +92290,7 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children:
-      - 2545f974-a79e-471f-b0ef-eea0d2bdae22
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115503,6 +115502,7 @@ nodes:
       - 2d148d76-e0d3-4330-a378-2197983d5baf
       - 6afbf0be-e1b8-4b16-83e8-e77a31e8e013
       - f1f2a96e-9f35-4144-9f11-dd7d3266bd25
+      - da423e73-81ff-4c46-8cdb-4c8c9357ecdc
     metadata:
       status: pending
       isBlueprint: true
@@ -124609,7 +124609,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - da423e73-81ff-4c46-8cdb-4c8c9357ecdc
+      - 2545f974-a79e-471f-b0ef-eea0d2bdae22
     metadata:
       status: pending
       isBlueprint: true
@@ -177151,482 +177151,25 @@ nodes:
     id: 2545f974-a79e-471f-b0ef-eea0d2bdae22
     content: Collaborate & Execute only allows for node status modifications
     children:
-      - 28ae337e-131b-4e7b-8483-295cca4534b4
-      - 653653cd-e306-43f2-bc61-c534ece004fb
-      - 5be00d84-7c2b-4aaf-8a75-7f0c3d2a06d9
-      - 5cac3889-bbaa-4512-8a89-f70fac3f359d
-      - aeb61aee-e6bf-4f87-9f86-cfbe1c4e8747
-      - d3b04944-a2f4-49b9-94b0-18553af1112b
-      - e54c0423-bc9a-4347-8f61-b21a4493582a
-      - 43150edb-2718-48cc-ac16-7d72bac8d448
-      - 323ca6e2-f731-4df1-bb0a-0d8f7846e37c
-      - 5e408ad7-b3ed-4beb-b321-f93dba31061b
-      - 19327a3d-9c75-4c90-a4e7-d2bf8d484b8a
+      - 9aac2c99-072d-44ed-9259-4c39e680ff18
+      - 754cdd8f-5e2b-495b-b32a-04ea62678a39
+      - a3a96437-5405-4f64-9932-b279da48c043
+      - fb027762-ca95-4b43-b2a2-599e616325d9
+      - cee5ae0c-c702-4770-b6a8-381d769cd6ab
+      - 7f73e0c6-8c4e-4a5d-9cbb-2b0027581d52
+      - f656e7b0-14a2-4709-859d-f06e7878d141
+      - defea4de-5aef-4da8-b76a-97603990af7a
+      - 5fc58752-4b6c-4859-b1d3-93e74a8025ae
+      - a8834cae-218d-4c59-aa58-d42988e3d13c
+      - 5dd7631a-f8a7-4a25-b361-d0f42eb7c78e
+      - c8b1425f-492c-4e1a-956d-3e8b4b68d8bb
+      - 65dee722-97c1-4286-a41d-62c5cb2b5935
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
       sessionId: df9dbfac-a110-49d6-9ec6-ebdb9ae81eba
-  28ae337e-131b-4e7b-8483-295cca4534b4:
-    id: 28ae337e-131b-4e7b-8483-295cca4534b4
-    content: Summary
-    children:
-      - 965f4221-d950-4337-a42b-280d046be372
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  965f4221-d950-4337-a42b-280d046be372:
-    id: 965f4221-d950-4337-a42b-280d046be372
-    content: The Collaborate & Execute prompt frames the task around marking checkboxes and does not mention that the AI can also add nodes, so additions rarely happen even when the context would call for them.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  653653cd-e306-43f2-bc61-c534ece004fb:
-    id: 653653cd-e306-43f2-bc61-c534ece004fb
-    content: Steps to reproduce
-    children:
-      - 8c1da990-788f-4975-b0d2-048e666d33af
-      - c98b235a-a66e-43e0-9e95-8b9a40f9f6b2
-      - 60e0f5ad-1929-4e50-9fb8-e37e7a1ced98
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8c1da990-788f-4975-b0d2-048e666d33af:
-    id: 8c1da990-788f-4975-b0d2-048e666d33af
-    content: 'Precondition: a node or context set to Collaborate (or Collaborate & Execute) sends its list to the AI via the prompt built by buildCollaborateInstructions in sendActions.ts.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c98b235a-a66e-43e0-9e95-8b9a40f9f6b2:
-    id: c98b235a-a66e-43e0-9e95-8b9a40f9f6b2
-    content: 'User action: the AI receives the SINGLE_ROOT_OUTPUT_FORMAT block, which describes only the [ ]/[x]/[-] checkbox states.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  60e0f5ad-1929-4e50-9fb8-e37e7a1ced98:
-    id: 60e0f5ad-1929-4e50-9fb8-e37e7a1ced98
-    content: 'Observation: the AI updates statuses but tends not to add new nodes — as in the completed session 121ce44e in ~/dev/forest.arbo, where only status changes came back.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5be00d84-7c2b-4aaf-8a75-7f0c3d2a06d9:
-    id: 5be00d84-7c2b-4aaf-8a75-7f0c3d2a06d9
-    content: Expected behavior
-    children:
-      - c5e31c4f-cc7e-4bdf-9e35-b2b729ac23cd
-      - 469d5442-587c-47c9-b305-8f3f7540f564
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c5e31c4f-cc7e-4bdf-9e35-b2b729ac23cd:
-    id: c5e31c4f-cc7e-4bdf-9e35-b2b729ac23cd
-    content: The prompt conveys that the AI may both modify checkbox status and add new nodes, choosing whichever fits the context.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  469d5442-587c-47c9-b305-8f3f7540f564:
-    id: 469d5442-587c-47c9-b305-8f3f7540f564
-    content: 'Neither action is mandatory: when the context calls for no status change or no additions, leaving the list as-is is a valid outcome.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5cac3889-bbaa-4512-8a89-f70fac3f359d:
-    id: 5cac3889-bbaa-4512-8a89-f70fac3f359d
-    content: Actual behavior
-    children:
-      - 240e9515-e936-48cc-86c3-dae4beaa7852
-      - 546ca3bb-1083-4a94-9a4a-8a766baf651b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  240e9515-e936-48cc-86c3-dae4beaa7852:
-    id: 240e9515-e936-48cc-86c3-dae4beaa7852
-    content: The OUTPUT FORMAT documents only checkbox semantics, so the model reads its role as status-only and additions fall out of scope.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  546ca3bb-1083-4a94-9a4a-8a766baf651b:
-    id: 546ca3bb-1083-4a94-9a4a-8a766baf651b
-    content: Items the AI might otherwise surface do not get added, so the list stays as flat as it arrived.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  aeb61aee-e6bf-4f87-9f86-cfbe1c4e8747:
-    id: aeb61aee-e6bf-4f87-9f86-cfbe1c4e8747
-    content: Suspected cause
-    children:
-      - 7589f306-dca5-4b71-bae3-16eb493f9a24
-      - 967f078f-0f18-4f71-b287-35768e1d9341
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7589f306-dca5-4b71-bae3-16eb493f9a24:
-    id: 7589f306-dca5-4b71-bae3-16eb493f9a24
-    content: SINGLE_ROOT_OUTPUT_FORMAT and HEADING_PERSISTENCE_RULES in sendActions.ts describe checkbox states and value persistence but never state that adding a heading line creates a new node.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  967f078f-0f18-4f71-b287-35768e1d9341:
-    id: 967f078f-0f18-4f71-b287-35768e1d9341
-    content: DEFAULT_REVIEW_CONTEXT does mention additions, but a user-supplied context replaces it, leaving the always-present checkbox-only OUTPUT FORMAT as the only framing.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d3b04944-a2f4-49b9-94b0-18553af1112b:
-    id: d3b04944-a2f4-49b9-94b0-18553af1112b
-    content: Affected files
-    children:
-      - d3e47d00-c74c-4c47-9894-39b18e84839f
-      - a10b0182-67ec-4e2c-af83-e2a5197cea4c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d3e47d00-c74c-4c47-9894-39b18e84839f:
-    id: d3e47d00-c74c-4c47-9894-39b18e84839f
-    content: 'Primary suspect: src/renderer/store/tree/actions/sendActions.ts (SINGLE_ROOT_OUTPUT_FORMAT, buildCollaborateInstructions)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a10b0182-67ec-4e2c-af83-e2a5197cea4c:
-    id: a10b0182-67ec-4e2c-af83-e2a5197cea4c
-    content: 'Related surface: src/renderer/store/tree/actions/sendActions.ts (DEFAULT_REVIEW_CONTEXT, DECOMPOSITION_OUTPUT_FORMAT)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e54c0423-bc9a-4347-8f61-b21a4493582a:
-    id: e54c0423-bc9a-4347-8f61-b21a4493582a
-    content: Regression window
-    children:
-      - 58c6e5a4-2b22-4d41-8318-d94f97832c81
-      - a63919f4-f8c6-463e-a4b1-7b2478b80e04
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  58c6e5a4-2b22-4d41-8318-d94f97832c81:
-    id: 58c6e5a4-2b22-4d41-8318-d94f97832c81
-    content: 'Long-standing: the OUTPUT FORMAT has framed output as checkbox states since collaborate prompts were introduced — not a recent regression.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a63919f4-f8c6-463e-a4b1-7b2478b80e04:
-    id: a63919f4-f8c6-463e-a4b1-7b2478b80e04
-    content: Observed in session 121ce44e (~/dev/forest.arbo), a completed code-conformance review run.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  43150edb-2718-48cc-ac16-7d72bac8d448:
-    id: 43150edb-2718-48cc-ac16-7d72bac8d448
-    content: Severity
-    children:
-      - 50dd923c-3896-4a11-b06c-86d90a0e5354
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  50dd923c-3896-4a11-b06c-86d90a0e5354:
-    id: 50dd923c-3896-4a11-b06c-86d90a0e5354
-    content: 'Low-to-moderate: nothing breaks, but the collaborate flow under-uses the AI by implying it can only tick boxes.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  323ca6e2-f731-4df1-bb0a-0d8f7846e37c:
-    id: 323ca6e2-f731-4df1-bb0a-0d8f7846e37c
-    content: Notes
-    children:
-      - fee8db78-b485-4db6-b9a2-1a84f5da8f85
-      - 01c97aa9-cd8f-4d04-9769-14f109c14029
-      - d5e8086d-4ca7-48e2-bbbc-74c829d868c6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fee8db78-b485-4db6-b9a2-1a84f5da8f85:
-    id: fee8db78-b485-4db6-b9a2-1a84f5da8f85
-    content: 'Disambiguation: this is prompt wording, not the reconcile/apply code — reconcileFeedback.ts and the MCP add-child path already support additions.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  01c97aa9-cd8f-4d04-9769-14f109c14029:
-    id: 01c97aa9-cd8f-4d04-9769-14f109c14029
-    content: 'The wording should add capability without obligation: make clear both checkbox edits and node additions are available and optional.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d5e8086d-4ca7-48e2-bbbc-74c829d868c6:
-    id: d5e8086d-4ca7-48e2-bbbc-74c829d868c6
-    content: 'Reference resolved: "Check 121ce44e-6ea4-4fc0-b998-ef6861711526" points to a session in ~/dev/forest.arbo, not Arborescent''s project.arbo.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5e408ad7-b3ed-4beb-b321-f93dba31061b:
-    id: 5e408ad7-b3ed-4beb-b321-f93dba31061b
-    content: Technical refinement
-    children:
-      - d9fcd8d0-e459-415a-a3a7-8587d2f88338
-      - d19c2259-08e1-4769-9fd9-77412acf6c56
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d9fcd8d0-e459-415a-a3a7-8587d2f88338:
-    id: d9fcd8d0-e459-415a-a3a7-8587d2f88338
-    content: Flag complications
-    children:
-      - 38a6fcc0-c476-4549-8628-bbf18e2cab6f
-      - d671d0e2-09a5-4dfb-bc5e-29f3f4a5fd6d
-      - b8766cb4-608f-42bd-9bb4-99ece1db9b25
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  38a6fcc0-c476-4549-8628-bbf18e2cab6f:
-    id: 38a6fcc0-c476-4549-8628-bbf18e2cab6f
-    content: Edge cases or risks not already in acceptance criteria
-    children:
-      - a700e806-e39c-433b-af21-cae5ea196443
-      - 471b4930-6f11-435a-9b7e-8765bd5feb6f
-      - 405eb43e-4a05-411a-823c-99dda4fb46c3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a700e806-e39c-433b-af21-cae5ea196443:
-    id: a700e806-e39c-433b-af21-cae5ea196443
-    content: Inviting additions could nudge the model to over-add on routine status-only reviews — mitigated by permissive, non-obligatory phrasing.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  471b4930-6f11-435a-9b7e-8765bd5feb6f:
-    id: 471b4930-6f11-435a-9b7e-8765bd5feb6f
-    content: In single-root mode the wording must not imply a new top-level root, or multi-root output is rejected by the parser.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  405eb43e-4a05-411a-823c-99dda4fb46c3:
-    id: 405eb43e-4a05-411a-823c-99dda4fb46c3
-    content: The same OUTPUT FORMAT feeds autonomous Collaborate & Execute steps, so the change affects autonomous runs too — intended, but worth noting.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d671d0e2-09a5-4dfb-bc5e-29f3f4a5fd6d:
-    id: d671d0e2-09a5-4dfb-bc5e-29f3f4a5fd6d
-    content: Anything explicitly out of scope
-    children:
-      - 46f76c50-10ac-40e7-bea3-ec42d37bb2c3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  46f76c50-10ac-40e7-bea3-ec42d37bb2c3:
-    id: 46f76c50-10ac-40e7-bea3-ec42d37bb2c3
-    content: No changes to reconcile/apply code, MCP add-child, DEFAULT_REVIEW_CONTEXT semantics, the revise flow, or any UI affordance.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b8766cb4-608f-42bd-9bb4-99ece1db9b25:
-    id: b8766cb4-608f-42bd-9bb4-99ece1db9b25
-    content: Any complexity that calls the ROI into question
-    children:
-      - a7757f87-d565-4c77-9f23-61a0b62ef5eb
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a7757f87-d565-4c77-9f23-61a0b62ef5eb:
-    id: a7757f87-d565-4c77-9f23-61a0b62ef5eb
-    content: None — it is a one-bullet wording change; the only wrinkle is non-deterministic LLM behaviour, so additions are verified by behavioural spot-check rather than unit assertion.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d19c2259-08e1-4769-9fd9-77412acf6c56:
-    id: d19c2259-08e1-4769-9fd9-77412acf6c56
-    content: Summarise the approach
-    children:
-      - 0c07d183-b6dc-45fb-bec6-acfdd7a915de
-      - 71c75b32-8de0-4a2f-8506-6bae87df6ef9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c07d183-b6dc-45fb-bec6-acfdd7a915de:
-    id: 0c07d183-b6dc-45fb-bec6-acfdd7a915de
-    content: Architecture / key concepts / where the changes land
-    children:
-      - fce264ec-3a00-428c-8e31-86df6a98ee60
-      - 5ad5b075-a8cc-4d90-b9e0-082ba9866de3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fce264ec-3a00-428c-8e31-86df6a98ee60:
-    id: fce264ec-3a00-428c-8e31-86df6a98ee60
-    content: Add one permissive, mode-agnostic bullet to the Collaborate OUTPUT FORMAT wording in sendActions.ts stating the AI may update status and/or add nodes, neither required.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5ad5b075-a8cc-4d90-b9e0-082ba9866de3:
-    id: 5ad5b075-a8cc-4d90-b9e0-082ba9866de3
-    content: Wording only — reconcile and the MCP add-child path already apply additions, so there is no logic change.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  71c75b32-8de0-4a2f-8506-6bae87df6ef9:
-    id: 71c75b32-8de0-4a2f-8506-6bae87df6ef9
-    content: Call out anything non-obvious or likely to surprise the reviewer
-    children:
-      - 0f50a82a-8c35-4aa9-af27-58a70aa5ccf6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f50a82a-8c35-4aa9-af27-58a70aa5ccf6:
-    id: 0f50a82a-8c35-4aa9-af27-58a70aa5ccf6
-    content: It also affects autonomous Collaborate & Execute runs (shared format), and existing send-prompt tests use substring/positional checks, so there is no snapshot churn.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  19327a3d-9c75-4c90-a4e7-d2bf8d484b8a:
-    id: 19327a3d-9c75-4c90-a4e7-d2bf8d484b8a
-    content: Test stage notes
-    children:
-      - de9c6201-b452-4a2f-bf2d-695231755cd8
-      - a75e1e2b-5b4e-4438-bf90-648d778f225b
-      - 9cc22988-4838-43fd-bfc4-adea710ce5d8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de9c6201-b452-4a2f-bf2d-695231755cd8:
-    id: de9c6201-b452-4a2f-bf2d-695231755cd8
-    content: Added src/renderer/store/tree/actions/tests/collaboratePromptNodeAdditions.test.ts in the worktree (test code only, no feature code).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a75e1e2b-5b4e-4438-bf90-648d778f225b:
-    id: a75e1e2b-5b4e-4438-bf90-648d778f225b
-    content: 'TDD red as expected: 3 new-behaviour assertions fail pending the wording change (collaborate may-add-nodes, optionality, collaborate-and-execute may-add-nodes); the single-root regression guard passes; one title-only it.todo covers the non-deterministic status-only behaviour.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9cc22988-4838-43fd-bfc4-adea710ce5d8:
-    id: 9cc22988-4838-43fd-bfc4-adea710ce5d8
-    content: The 'worktree' node and its VS Code link added via add_child_node in the prior stage were dropped — the autonomous pass-through submit rebuilds the bound subtree from the submitted CONTENT, which does not contain that node; the worktree on disk (~/dev/Arborescent-collab-prompt-additions) is intact but its tree annotation is gone.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
   caa597d2-e373-47a6-a523-237ceb394b53:
     id: caa597d2-e373-47a6-a523-237ceb394b53
     content: Summary
@@ -178150,6 +177693,563 @@ nodes:
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9aac2c99-072d-44ed-9259-4c39e680ff18:
+    id: 9aac2c99-072d-44ed-9259-4c39e680ff18
+    content: Summary
+    children:
+      - e69c1c0c-63b6-4add-9283-9bc393335c66
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e69c1c0c-63b6-4add-9283-9bc393335c66:
+    id: e69c1c0c-63b6-4add-9283-9bc393335c66
+    content: The Collaborate & Execute prompt frames the task around marking checkboxes and does not mention that the AI can also add nodes, so additions rarely happen even when the context would call for them.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  754cdd8f-5e2b-495b-b32a-04ea62678a39:
+    id: 754cdd8f-5e2b-495b-b32a-04ea62678a39
+    content: Steps to reproduce
+    children:
+      - 226edf04-6556-4a4f-abb8-10bbb145a5f9
+      - 89ec97c9-ec5e-43a1-9b79-98e739531087
+      - c5fe906a-e09f-4adb-8f28-839037fffcaf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  226edf04-6556-4a4f-abb8-10bbb145a5f9:
+    id: 226edf04-6556-4a4f-abb8-10bbb145a5f9
+    content: 'Precondition: a node or context set to Collaborate (or Collaborate & Execute) sends its list to the AI via the prompt built by buildCollaborateInstructions in sendActions.ts.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89ec97c9-ec5e-43a1-9b79-98e739531087:
+    id: 89ec97c9-ec5e-43a1-9b79-98e739531087
+    content: 'User action: the AI receives the SINGLE_ROOT_OUTPUT_FORMAT block, which describes only the [ ]/[x]/[-] checkbox states.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5fe906a-e09f-4adb-8f28-839037fffcaf:
+    id: c5fe906a-e09f-4adb-8f28-839037fffcaf
+    content: 'Observation: the AI updates statuses but tends not to add new nodes — as in the completed session 121ce44e in ~/dev/forest.arbo, where only status changes came back.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3a96437-5405-4f64-9932-b279da48c043:
+    id: a3a96437-5405-4f64-9932-b279da48c043
+    content: Expected behavior
+    children:
+      - 570a4ae1-aa91-4c69-bf8b-c89bc6d45f27
+      - e980517b-5260-41d9-81e5-2b99eae233a3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  570a4ae1-aa91-4c69-bf8b-c89bc6d45f27:
+    id: 570a4ae1-aa91-4c69-bf8b-c89bc6d45f27
+    content: The prompt conveys that the AI may both modify checkbox status and add new nodes, choosing whichever fits the context.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e980517b-5260-41d9-81e5-2b99eae233a3:
+    id: e980517b-5260-41d9-81e5-2b99eae233a3
+    content: 'Neither action is mandatory: when the context calls for no status change or no additions, leaving the list as-is is a valid outcome.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb027762-ca95-4b43-b2a2-599e616325d9:
+    id: fb027762-ca95-4b43-b2a2-599e616325d9
+    content: Actual behavior
+    children:
+      - 6f7d1cf1-d26f-4353-9bb0-5a3ceaa5f8dd
+      - 949b97af-b159-4eb2-9c37-6dcae544d083
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f7d1cf1-d26f-4353-9bb0-5a3ceaa5f8dd:
+    id: 6f7d1cf1-d26f-4353-9bb0-5a3ceaa5f8dd
+    content: The OUTPUT FORMAT documents only checkbox semantics, so the model reads its role as status-only and additions fall out of scope.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  949b97af-b159-4eb2-9c37-6dcae544d083:
+    id: 949b97af-b159-4eb2-9c37-6dcae544d083
+    content: Items the AI might otherwise surface do not get added, so the list stays as flat as it arrived.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cee5ae0c-c702-4770-b6a8-381d769cd6ab:
+    id: cee5ae0c-c702-4770-b6a8-381d769cd6ab
+    content: Suspected cause
+    children:
+      - 7c90aacd-5d1d-4881-be25-bab55b393b81
+      - f62daa05-de18-4a79-a66f-8bea1697fe3c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c90aacd-5d1d-4881-be25-bab55b393b81:
+    id: 7c90aacd-5d1d-4881-be25-bab55b393b81
+    content: SINGLE_ROOT_OUTPUT_FORMAT and HEADING_PERSISTENCE_RULES in sendActions.ts describe checkbox states and value persistence but never state that adding a heading line creates a new node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f62daa05-de18-4a79-a66f-8bea1697fe3c:
+    id: f62daa05-de18-4a79-a66f-8bea1697fe3c
+    content: DEFAULT_REVIEW_CONTEXT does mention additions, but a user-supplied context replaces it, leaving the always-present checkbox-only OUTPUT FORMAT as the only framing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f73e0c6-8c4e-4a5d-9cbb-2b0027581d52:
+    id: 7f73e0c6-8c4e-4a5d-9cbb-2b0027581d52
+    content: Affected files
+    children:
+      - a266ed4d-246a-41ba-b000-e3d5061a7075
+      - 056fa677-cd9e-4e65-88a2-7da01d61eb06
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a266ed4d-246a-41ba-b000-e3d5061a7075:
+    id: a266ed4d-246a-41ba-b000-e3d5061a7075
+    content: 'Primary suspect: src/renderer/store/tree/actions/sendActions.ts (SINGLE_ROOT_OUTPUT_FORMAT, buildCollaborateInstructions)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  056fa677-cd9e-4e65-88a2-7da01d61eb06:
+    id: 056fa677-cd9e-4e65-88a2-7da01d61eb06
+    content: 'Related surface: src/renderer/store/tree/actions/sendActions.ts (DEFAULT_REVIEW_CONTEXT, DECOMPOSITION_OUTPUT_FORMAT)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f656e7b0-14a2-4709-859d-f06e7878d141:
+    id: f656e7b0-14a2-4709-859d-f06e7878d141
+    content: Regression window
+    children:
+      - 74873537-3565-4d61-988d-6c4b7d8fa3f5
+      - 152bc018-5a98-4d6f-94fc-da067f7dbd0c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74873537-3565-4d61-988d-6c4b7d8fa3f5:
+    id: 74873537-3565-4d61-988d-6c4b7d8fa3f5
+    content: 'Long-standing: the OUTPUT FORMAT has framed output as checkbox states since collaborate prompts were introduced — not a recent regression.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  152bc018-5a98-4d6f-94fc-da067f7dbd0c:
+    id: 152bc018-5a98-4d6f-94fc-da067f7dbd0c
+    content: Observed in session 121ce44e (~/dev/forest.arbo), a completed code-conformance review run.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  defea4de-5aef-4da8-b76a-97603990af7a:
+    id: defea4de-5aef-4da8-b76a-97603990af7a
+    content: Severity
+    children:
+      - 91126e5f-2b09-4ca1-bf99-bbf5ae64846d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91126e5f-2b09-4ca1-bf99-bbf5ae64846d:
+    id: 91126e5f-2b09-4ca1-bf99-bbf5ae64846d
+    content: 'Low-to-moderate: nothing breaks, but the collaborate flow under-uses the AI by implying it can only tick boxes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fc58752-4b6c-4859-b1d3-93e74a8025ae:
+    id: 5fc58752-4b6c-4859-b1d3-93e74a8025ae
+    content: Notes
+    children:
+      - f0ebb147-881f-42a6-88a8-96009fe506fc
+      - 1ac95504-a36d-47e0-9205-1ca5fa5bc732
+      - e7d6f26f-f743-4536-91ef-d83d135c0804
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0ebb147-881f-42a6-88a8-96009fe506fc:
+    id: f0ebb147-881f-42a6-88a8-96009fe506fc
+    content: 'Disambiguation: this is prompt wording, not the reconcile/apply code — reconcileFeedback.ts and the MCP add-child path already support additions.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ac95504-a36d-47e0-9205-1ca5fa5bc732:
+    id: 1ac95504-a36d-47e0-9205-1ca5fa5bc732
+    content: 'The wording should add capability without obligation: make clear both checkbox edits and node additions are available and optional.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7d6f26f-f743-4536-91ef-d83d135c0804:
+    id: e7d6f26f-f743-4536-91ef-d83d135c0804
+    content: 'Reference resolved: "Check 121ce44e-6ea4-4fc0-b998-ef6861711526" points to a session in ~/dev/forest.arbo, not Arborescent''s project.arbo.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8834cae-218d-4c59-aa58-d42988e3d13c:
+    id: a8834cae-218d-4c59-aa58-d42988e3d13c
+    content: Technical refinement
+    children:
+      - 018f541c-161b-4ed7-907c-e66b5cddbec9
+      - 039a2ae1-1764-4ebc-b1b6-3e5e43f24937
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  018f541c-161b-4ed7-907c-e66b5cddbec9:
+    id: 018f541c-161b-4ed7-907c-e66b5cddbec9
+    content: Flag complications
+    children:
+      - afdcfee2-5971-4e00-bc6d-6dd125abef76
+      - 24fa6a07-fc68-44f9-b040-b41effbf812b
+      - 3dea98f4-b103-455c-b937-d243952be694
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  afdcfee2-5971-4e00-bc6d-6dd125abef76:
+    id: afdcfee2-5971-4e00-bc6d-6dd125abef76
+    content: Edge cases or risks not already in acceptance criteria
+    children:
+      - 1656aad5-26e3-4d6c-996f-9c8837a513d8
+      - 892f01b9-2d29-4ed6-9832-2ae5a1181529
+      - 042f07cf-b994-40fb-b3ab-3420813d75c7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1656aad5-26e3-4d6c-996f-9c8837a513d8:
+    id: 1656aad5-26e3-4d6c-996f-9c8837a513d8
+    content: Inviting additions could nudge the model to over-add on routine status-only reviews — mitigated by permissive, non-obligatory phrasing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  892f01b9-2d29-4ed6-9832-2ae5a1181529:
+    id: 892f01b9-2d29-4ed6-9832-2ae5a1181529
+    content: In single-root mode the wording must not imply a new top-level root, or multi-root output is rejected by the parser.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  042f07cf-b994-40fb-b3ab-3420813d75c7:
+    id: 042f07cf-b994-40fb-b3ab-3420813d75c7
+    content: The same OUTPUT FORMAT feeds autonomous Collaborate & Execute steps, so the change affects autonomous runs too — intended, but worth noting.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24fa6a07-fc68-44f9-b040-b41effbf812b:
+    id: 24fa6a07-fc68-44f9-b040-b41effbf812b
+    content: Anything explicitly out of scope
+    children:
+      - 71abd73b-8004-481e-9406-9bd24d558f2e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71abd73b-8004-481e-9406-9bd24d558f2e:
+    id: 71abd73b-8004-481e-9406-9bd24d558f2e
+    content: No changes to reconcile/apply code, MCP add-child, DEFAULT_REVIEW_CONTEXT semantics, the revise flow, or any UI affordance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dea98f4-b103-455c-b937-d243952be694:
+    id: 3dea98f4-b103-455c-b937-d243952be694
+    content: Any complexity that calls the ROI into question
+    children:
+      - b94e25f9-6c50-4a3f-93c2-acd3a6b1b4d2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b94e25f9-6c50-4a3f-93c2-acd3a6b1b4d2:
+    id: b94e25f9-6c50-4a3f-93c2-acd3a6b1b4d2
+    content: None — it is a one-bullet wording change; the only wrinkle is non-deterministic LLM behaviour, so additions are verified by behavioural spot-check rather than unit assertion.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  039a2ae1-1764-4ebc-b1b6-3e5e43f24937:
+    id: 039a2ae1-1764-4ebc-b1b6-3e5e43f24937
+    content: Summarise the approach
+    children:
+      - a738ae64-8169-42a9-b130-eee72b6b3141
+      - 3e4cf1db-5cc7-4d66-9cfc-7c866c3f5d28
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a738ae64-8169-42a9-b130-eee72b6b3141:
+    id: a738ae64-8169-42a9-b130-eee72b6b3141
+    content: Architecture / key concepts / where the changes land
+    children:
+      - a373f66b-4453-4445-b8f1-8c699374e611
+      - 8c6ac109-3d0d-4c68-84ba-00a161580650
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a373f66b-4453-4445-b8f1-8c699374e611:
+    id: a373f66b-4453-4445-b8f1-8c699374e611
+    content: Add one permissive, mode-agnostic bullet to the Collaborate OUTPUT FORMAT wording in sendActions.ts stating the AI may update status and/or add nodes, neither required.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c6ac109-3d0d-4c68-84ba-00a161580650:
+    id: 8c6ac109-3d0d-4c68-84ba-00a161580650
+    content: Wording only — reconcile and the MCP add-child path already apply additions, so there is no logic change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e4cf1db-5cc7-4d66-9cfc-7c866c3f5d28:
+    id: 3e4cf1db-5cc7-4d66-9cfc-7c866c3f5d28
+    content: Call out anything non-obvious or likely to surprise the reviewer
+    children:
+      - 3e62306f-ff29-40ff-9dec-efc0fc9d2c0d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e62306f-ff29-40ff-9dec-efc0fc9d2c0d:
+    id: 3e62306f-ff29-40ff-9dec-efc0fc9d2c0d
+    content: It also affects autonomous Collaborate & Execute runs (shared format), and existing send-prompt tests use substring/positional checks, so there is no snapshot churn.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dd7631a-f8a7-4a25-b361-d0f42eb7c78e:
+    id: 5dd7631a-f8a7-4a25-b361-d0f42eb7c78e
+    content: Test stage notes
+    children:
+      - 136e06af-db4b-40fc-8d72-95bb05d27286
+      - 666c1f2b-d0a7-4662-b4bc-6eb5d57f61ab
+      - 7798daa3-6842-4b3c-9dc5-3b0457f2ce2f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  136e06af-db4b-40fc-8d72-95bb05d27286:
+    id: 136e06af-db4b-40fc-8d72-95bb05d27286
+    content: Added src/renderer/store/tree/actions/tests/collaboratePromptNodeAdditions.test.ts in the worktree (test code only, no feature code).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  666c1f2b-d0a7-4662-b4bc-6eb5d57f61ab:
+    id: 666c1f2b-d0a7-4662-b4bc-6eb5d57f61ab
+    content: 'TDD red as expected: 3 new-behaviour assertions fail pending the wording change (collaborate may-add-nodes, optionality, collaborate-and-execute may-add-nodes); the single-root regression guard passes; one title-only it.todo covers the non-deterministic status-only behaviour.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7798daa3-6842-4b3c-9dc5-3b0457f2ce2f:
+    id: 7798daa3-6842-4b3c-9dc5-3b0457f2ce2f
+    content: The 'worktree' node and its VS Code link added via add_child_node in the prior stage were dropped — the autonomous pass-through submit rebuilds the bound subtree from the submitted CONTENT, which does not contain that node; the worktree on disk (~/dev/Arborescent-collab-prompt-additions) is intact but its tree annotation is gone.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8b1425f-492c-4e1a-956d-3e8b4b68d8bb:
+    id: c8b1425f-492c-4e1a-956d-3e8b4b68d8bb
+    content: review feedback
+    children:
+      - 2d4a347d-1817-47fd-af48-d19a294386f7
+      - 972097bf-da66-4b1d-aefb-e821d7664433
+      - a86012fe-7105-4040-a401-4d54c305ed97
+      - baf864de-da5e-44b7-b66d-8bbe64d77268
+      - de18e558-7d5a-4171-8ae5-2765f62aabc3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d4a347d-1817-47fd-af48-d19a294386f7:
+    id: 2d4a347d-1817-47fd-af48-d19a294386f7
+    content: 'Verdict: approve-with-nits — the bullet lands only in SINGLE_ROOT_OUTPUT_FORMAT, DECOMPOSITION_OUTPUT_FORMAT is untouched, the single-root invariant is preserved ("under the root"), and all 152 scoped tests pass.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  972097bf-da66-4b1d-aefb-e821d7664433:
+    id: 972097bf-da66-4b1d-aefb-e821d7664433
+    content: 'Both-mode contradiction (main finding): SINGLE_ROOT_OUTPUT_FORMAT is shared by the execute/both path (buildExecuteInstructions, used by buildTerminalBothPrompt). In collaborate+execute mode the new "you may add new nodes" bullet contradicts buildBothOutputTarget''s "do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers". Resolve by intent: if additions are collaborate-only, move the bullet into buildCollaborateInstructions instead of the shared SINGLE_ROOT_OUTPUT_FORMAT; if both-mode additions are intended, soften the buildBothOutputTarget "do not add items" line. The earlier "intended" technical-refinement note did not account for this output-target conflict.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a86012fe-7105-4040-a401-4d54c305ed97:
+    id: a86012fe-7105-4040-a401-4d54c305ed97
+    content: 'Test follow-up: collaboratePromptNodeAdditions.test.ts asserts both-mode receives the bullet, which encodes the contradicted behaviour — revisit once intent is decided (flip to a negative assertion if collaborate-only).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  baf864de-da5e-44b7-b66d-8bbe64d77268:
+    id: baf864de-da5e-44b7-b66d-8bbe64d77268
+    content: 'Test follow-up: add a negative assertion that a decomposition-mode prompt does NOT contain the additions wording, to lock the "decomposition unchanged" invariant (currently only structurally separated, not tested).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de18e558-7d5a-4171-8ae5-2765f62aabc3:
+    id: de18e558-7d5a-4171-8ae5-2765f62aabc3
+    content: 'Comment follow-up: the test file header implies the bullet could live in the shared HEADING_PERSISTENCE_RULES, which would leak into DECOMPOSITION_OUTPUT_FORMAT (spec-forbidden) — tighten the comment so a future editor does not take it as license.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65dee722-97c1-4286-a41d-62c5cb2b5935:
+    id: 65dee722-97c1-4286-a41d-62c5cb2b5935
+    content: Run test pass notes
+    children:
+      - 814776e5-04f6-4545-9c02-f0c906bc1daf
+      - daa24043-f15d-4646-a1d9-1abc10055b6e
+      - 01598239-e69f-4a05-91e8-57947a34039f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  814776e5-04f6-4545-9c02-f0c906bc1daf:
+    id: 814776e5-04f6-4545-9c02-f0c906bc1daf
+    content: 'Feature scope is green: collaboratePromptNodeAdditions.test.ts plus the directly-related sendActions.test.ts and sendPromptDisambiguation.test.ts all pass; every deterministic acceptance criterion has implementing code and a matching assertion; the two behavioural criteria remain the title-only it.todo.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  daa24043-f15d-4646-a1d9-1abc10055b6e:
+    id: daa24043-f15d-4646-a1d9-1abc10055b6e
+    content: 'Pre-existing unrelated failures resolved: the worktree had forked from committed HEAD without fixes that were sitting uncommitted in the main checkout — feedbackService, useNodeContextMenuResendStep, sendPromptDisambiguation, four workflow tests, and the buildBothOutputTarget wording in sendActions.ts; those changes were brought into the worktree and merged with the feature edit.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01598239-e69f-4a05-91e8-57947a34039f:
+    id: 01598239-e69f-4a05-91e8-57947a34039f
+    content: 'Full suite green after the merge: 4789 passing, 0 failing; lint clean apart from one pre-existing import/no-cycle warning; type-check clean. project.arbo was intentionally not copied over since it is live workspace state, not a code fix.'
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
