@@ -184,6 +184,17 @@ describe('send prompt — write-back disambiguation', () => {
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/submission's root heading MUST be the CONTENT section's root/i);
     });
+
+    it('forbids re-prefixing the root heading (the doubled "# [x] # [x]" stutter shape)', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
+
+      await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
+
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
+      expect(prompt).toMatch(/do NOT wrap it under a new heading or repeat the/i);
+      expect(prompt).toMatch(/must not itself begin with `#`/i);
+    });
   });
 
   describe('collaborate-mode write-back also forbids CONTEXT echo', () => {

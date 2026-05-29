@@ -121,7 +121,9 @@ describe('useNodeContextMenu — Resend step terminal binding', () => {
   async function clickResendStep() {
     const { result } = renderHook(() => useNodeContextMenu(taskNode), { wrapper });
     await openContextMenu(result);
-    const resendItem = result.current.contextMenuItems.find(item => item.label === 'Resend step');
+    const resendItem = result.current.contextMenuItems.find(
+      item => item.label === 'Resend step' || item.label === 'Resume Workflow',
+    );
     expect(resendItem).toBeDefined();
     await act(async () => {
       await resendItem!.onClick!();

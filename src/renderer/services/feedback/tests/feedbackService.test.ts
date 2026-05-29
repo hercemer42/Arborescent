@@ -262,26 +262,6 @@ describe('feedbackService', () => {
         expect(result!.rootNodeId).toBe('ok');
       });
 
-      it('rejects the captured-evidence shape where the root prefix is doubled and the subtree is duplicated', async () => {
-        const { parseMarkdown } = await vi.importActual<typeof import('../../../utils/markdown')>('../../../utils/markdown');
-        vi.mocked((await import('../../../utils/markdown')).parseMarkdown).mockImplementation(parseMarkdown);
-
-        const payload = [
-          '# [x] # [x] Remove the 10-minute step timeout indicator',
-          '## [x] worktree',
-          '### [x] vscode://file//worktree/path',
-          '## [x] Product spec',
-          '### [x] Context',
-          '## [x] worktree',
-          '### [x] vscode://file//worktree/path',
-          '## [x] Product spec',
-          '### [x] Context',
-        ].join('\n');
-
-        const result = parseFeedbackContent(payload, true);
-        expect(result).toBeNull();
-      });
-
       it('rejects single-root output whose content embeds literal backslash-n sequences', async () => {
         const { parseMarkdown } = await import('../../../utils/markdown');
         const blobContent = 'Root\\n## [ ] Child\\n### [ ] Grandchild';

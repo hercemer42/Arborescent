@@ -76,12 +76,22 @@ const HEADING_PERSISTENCE_RULES = `- Only heading lines persist between steps; n
   ### [ ] first criterion, independently testable
   ### [ ] second criterion, independently testable`;
 
-const SINGLE_ROOT_OUTPUT_FORMAT = `OUTPUT FORMAT:
+const SINGLE_ROOT_STATUS_RULES = `OUTPUT FORMAT:
 - Must have exactly one root node (single # heading)
 - Use markdown headings for hierarchy (# root, ## child, ### grandchild)
-- Use [ ] for pending items, [x] for completed, [-] for failed
-${HEADING_PERSISTENCE_RULES}
+- Use [ ] for pending items, [x] for completed, [-] for failed`;
+
+const NODE_ADDITIONS_RULE = `- You may update existing items' status and/or add new nodes under the root (a new heading line becomes a new node) — do whichever the content calls for; neither is required.`;
+
+const SINGLE_ROOT_FORMAT_TRAILER = `${HEADING_PERSISTENCE_RULES}
 - Constrain your feedback to bullet points using markdown headings — no prose.`;
+
+const SINGLE_ROOT_OUTPUT_FORMAT = `${SINGLE_ROOT_STATUS_RULES}
+${SINGLE_ROOT_FORMAT_TRAILER}`;
+
+const COLLABORATE_SINGLE_ROOT_OUTPUT_FORMAT = `${SINGLE_ROOT_STATUS_RULES}
+${NODE_ADDITIONS_RULE}
+${SINGLE_ROOT_FORMAT_TRAILER}`;
 
 const DECOMPOSITION_OUTPUT_FORMAT = `OUTPUT FORMAT:
 - Output one or more top-level items, each starting with a single # heading.
@@ -106,7 +116,7 @@ ${HEADING_PERSISTENCE_RULES}
 - Constrain your feedback to bullet points using markdown headings — no prose.`;
 
 function getOutputFormat(decomposition: boolean): string {
-  return decomposition ? DECOMPOSITION_OUTPUT_FORMAT : SINGLE_ROOT_OUTPUT_FORMAT;
+  return decomposition ? DECOMPOSITION_OUTPUT_FORMAT : COLLABORATE_SINGLE_ROOT_OUTPUT_FORMAT;
 }
 
 function buildCollaborateInstructions(reviewContext: string, outputTarget: string, decomposition: boolean = false, isAutonomous: boolean = false): string {
@@ -165,7 +175,7 @@ function buildBothOutputTarget(targetNodeId: string = ''): string {
 - Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
 - Do NOT replace the CONTENT list with a summary of what you did or a "what was done" checklist
 - Do NOT include the CONTEXT or INSTRUCTIONS sections in the submission — only the updated CONTENT list
-- The submission's root heading MUST be the CONTENT section's root, byte-for-byte, with only status markers added — never a re-emitted CONTEXT root
+- The submission's root heading MUST be the CONTENT section's root: reuse that exact heading line and change only its status marker (e.g. \`# [ ] Title\` → \`# [x] Title\`) — do NOT wrap it under a new heading or repeat the \`#\`/\`[ ]\`/\`[x]\` prefix (the root title text must not itself begin with \`#\` or a \`[ ]\`/\`[x]\` marker), and never re-emit the CONTEXT root
 - Skip items already marked [x]
 - If issues were encountered, append a single new child node at the end of the list describing them
 ${SUBMIT_ONCE_INSTRUCTION}`;

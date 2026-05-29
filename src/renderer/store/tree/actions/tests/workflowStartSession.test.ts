@@ -68,6 +68,7 @@ vi.mock('../../../terminal/terminalStore', () => ({
       createNewTerminal: mockCreateNewTerminal,
       terminals: mockTerminals,
       updateTerminal: mockUpdateTerminal,
+      markTerminalProcessing: vi.fn(),
     }),
   },
 }));
