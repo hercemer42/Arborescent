@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-29T15:46:37.476Z'
+updated: '2026-06-02T14:52:00.112Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -115434,6 +115434,7 @@ nodes:
     id: b3dc5362-ca81-4cbe-8558-2800fa41354f
     content: Done
     children:
+      - 2545f974-a79e-471f-b0ef-eea0d2bdae22
       - 0344bb2e-2b99-4bfb-8019-85d233fd50b7
       - fe57b52d-8ce0-4d9e-a2fc-f71e1df94e6c
       - 87917b51-6c7c-49ea-83a8-d64a4512583e
@@ -124609,7 +124610,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 2545f974-a79e-471f-b0ef-eea0d2bdae22
+      - 19472555-f967-45b7-a4dc-3bb2d56e2c09
     metadata:
       status: pending
       isBlueprint: true
@@ -178253,6 +178254,506 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  19472555-f967-45b7-a4dc-3bb2d56e2c09:
+    id: 19472555-f967-45b7-a4dc-3bb2d56e2c09
+    content: 'Bug: Arborescent rejects multiple roots on a step that has decomposition marked'
+    children:
+      - 28d24259-aac0-48fa-b189-b21485f52f96
+      - 7720831a-69dc-42a9-b8e1-77dce945fc40
+      - c1e00959-b32a-4d9a-95cd-36cbb1635f2e
+      - 8fc8b557-43af-48f6-90f9-718b0622d24c
+      - 4455228d-1b6a-4254-9a77-1ee2790709c7
+      - ba815b21-7c51-4123-8f4d-7a061d9d75f1
+      - d196a8ac-5fce-4532-a4ff-819ab6fec892
+      - 20b56c36-2c78-4a91-9dee-0eb420f429bb
+      - a1756c09-a809-4ecf-8f8c-716c81c3dbe8
+      - f405f080-583c-4dd9-9bda-76b98eea5219
+      - f0f47858-d050-4bfc-94ac-a8c050a1ac45
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 91b4230b-a37e-4085-a2eb-1a8d748a3d4e
+  28d24259-aac0-48fa-b189-b21485f52f96:
+    id: 28d24259-aac0-48fa-b189-b21485f52f96
+    content: Summary
+    children:
+      - 12394b47-666c-4914-8489-29756cd30219
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12394b47-666c-4914-8489-29756cd30219:
+    id: 12394b47-666c-4914-8489-29756cd30219
+    content: Submitting ≥2 `#` root nodes to a decomposition-enabled step is rejected as "not a decomposition step", so decomposition output never lands
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7720831a-69dc-42a9-b8e1-77dce945fc40:
+    id: 7720831a-69dc-42a9-b8e1-77dce945fc40
+    content: Steps to reproduce
+    children:
+      - 9617cbf0-583c-4594-83ce-df3709ce5b02
+      - 98f8ea47-6422-42e7-8cac-56787ff9c45b
+      - b9eeee3c-494f-43eb-958d-780aee7e99f7
+      - 7c576f91-1209-4b02-badb-e7a36edd8d2d
+      - 11ff42fc-4e5e-4a71-83d2-69bd72fa47a3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9617cbf0-583c-4594-83ce-df3709ce5b02:
+    id: 9617cbf0-583c-4594-83ce-df3709ce5b02
+    content: Open forest.arbo in ~/dev (home/dev folder); the step is clearly marked with decomposition enabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98f8ea47-6422-42e7-8cac-56787ff9c45b:
+    id: 98f8ea47-6422-42e7-8cac-56787ff9c45b
+    content: Run the step and have Claude submit ≥2 `#` root nodes via submit_step_output
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9eeee3c-494f-43eb-958d-780aee7e99f7:
+    id: b9eeee3c-494f-43eb-958d-780aee7e99f7
+    content: 'Server rejects with: "Content has 3 root nodes, expected exactly 1 … this step does not allow decomposition"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c576f91-1209-4b02-badb-e7a36edd8d2d:
+    id: 7c576f91-1209-4b02-badb-e7a36edd8d2d
+    content: 'Repro session_id: fd75fd09-9083-4fb1-94c9-4273c24776ef'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11ff42fc-4e5e-4a71-83d2-69bd72fa47a3:
+    id: 11ff42fc-4e5e-4a71-83d2-69bd72fa47a3
+    content: 'Repro target_node_id: dc36b24c-dc1b-4f66-a591-894bda45dfe6'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1e00959-b32a-4d9a-95cd-36cbb1635f2e:
+    id: c1e00959-b32a-4d9a-95cd-36cbb1635f2e
+    content: Expected behavior
+    children:
+      - ee67b2d9-69d8-405d-b3dd-46b1020faa4a
+      - 29caadd6-e536-46e2-8b60-feadc725bee1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee67b2d9-69d8-405d-b3dd-46b1020faa4a:
+    id: ee67b2d9-69d8-405d-b3dd-46b1020faa4a
+    content: 'Happy path: a decomposition-marked step accepts multiple `#` roots and creates one decomposed sibling per root'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29caadd6-e536-46e2-8b60-feadc725bee1:
+    id: 29caadd6-e536-46e2-8b60-feadc725bee1
+    content: 'Edge cases: single-root submission still works; non-decomposition steps still reject ≥2 roots with the existing message'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fc8b557-43af-48f6-90f9-718b0622d24c:
+    id: 8fc8b557-43af-48f6-90f9-718b0622d24c
+    content: Actual behavior
+    children:
+      - 37a5c6d5-e3ec-4700-8eb8-2a5728c6322f
+      - 555a4c1b-848f-403a-a963-a22e84927aea
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  37a5c6d5-e3ec-4700-8eb8-2a5728c6322f:
+    id: 37a5c6d5-e3ec-4700-8eb8-2a5728c6322f
+    content: Multi-root submission is rejected by the decomposition guard even though the step is decomposition-enabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  555a4c1b-848f-403a-a963-a22e84927aea:
+    id: 555a4c1b-848f-403a-a963-a22e84927aea
+    content: 'User-visible symptom: submit fails, feedback never applies, workflow does not advance past the step'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4455228d-1b6a-4254-9a77-1ee2790709c7:
+    id: 4455228d-1b6a-4254-9a77-1ee2790709c7
+    content: Suspected cause
+    children:
+      - 8d785593-269a-4302-a4da-4af197c0051c
+      - d20e35f6-d84f-46ed-8301-49d4c1d69e70
+      - 8fc075ba-03ec-4e13-ac31-0fbabffa6421
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d785593-269a-4302-a4da-4af197c0051c:
+    id: 8d785593-269a-4302-a4da-4af197c0051c
+    content: workflowExecutionActions.ts derives `decomposition` per-submit via isDecompositionEnabled(nodeId, …); when it returns false the feedbackService guard rejects ≥2 roots
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d20e35f6-d84f-46ed-8301-49d4c1d69e70:
+    id: d20e35f6-d84f-46ed-8301-49d4c1d69e70
+    content: isDecompositionEnabled depends on getWorkflowStepPosition resolving currentStepId; if position resolves to the wrong node (or metadata.decomposition isn't seen there) the flag is false despite the step being marked
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fc075ba-03ec-4e13-ac31-0fbabffa6421:
+    id: 8fc075ba-03ec-4e13-ac31-0fbabffa6421
+    content: 'Why the existing guard doesn''t cover it: the guard keys only off the derived boolean, not the step''s actual metadata, so any resolution drift silently downgrades a decomposition step to single-root'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba815b21-7c51-4123-8f4d-7a061d9d75f1:
+    id: ba815b21-7c51-4123-8f4d-7a061d9d75f1
+    content: Affected files
+    children:
+      - 42b0c8b2-67f8-4310-8337-04b227558738
+      - 0517307c-04eb-41f2-aea8-8057fd093313
+      - f68bf338-e621-45c0-8d95-e004756fbe43
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42b0c8b2-67f8-4310-8337-04b227558738:
+    id: 42b0c8b2-67f8-4310-8337-04b227558738
+    content: 'Primary suspect: src/renderer/store/tree/actions/workflowExecutionActions.ts (~line 1164, computes decomposition flag for submit)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0517307c-04eb-41f2-aea8-8057fd093313:
+    id: 0517307c-04eb-41f2-aea8-8057fd093313
+    content: 'Related surface: src/renderer/utils/workflowHelpers.ts (~line 284, isDecompositionEnabled / getWorkflowStepPosition)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f68bf338-e621-45c0-8d95-e004756fbe43:
+    id: f68bf338-e621-45c0-8d95-e004756fbe43
+    content: 'Rejection gate: src/renderer/services/feedback/feedbackService.ts (~line 50, multi-root rejection message)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d196a8ac-5fce-4532-a4ff-819ab6fec892:
+    id: d196a8ac-5fce-4532-a4ff-819ab6fec892
+    content: Regression window
+    children:
+      - 4c26a2e0-96a8-49e9-be10-b959dd010bdc
+      - 45eb9962-c39b-4086-b8d2-d77be7ffa29c
+      - 27768419-3567-47c5-bd4d-2746c5b1908e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c26a2e0-96a8-49e9-be10-b959dd010bdc:
+    id: 4c26a2e0-96a8-49e9-be10-b959dd010bdc
+    content: 'Last known good: feature landed in 78f8fdf "feat: node decomposition"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45eb9962-c39b-4086-b8d2-d77be7ffa29c:
+    id: 45eb9962-c39b-4086-b8d2-d77be7ffa29c
+    content: 'First suspected broken: bc68302 "refactor: split sessionId (identity) from groupId (decomposition lineage)" — see Technical refinement, this is likely a red herring'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27768419-3567-47c5-bd4d-2746c5b1908e:
+    id: 27768419-3567-47c5-bd4d-2746c5b1908e
+    content: 'First observed: 2026-06-02'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20b56c36-2c78-4a91-9dee-0eb420f429bb:
+    id: 20b56c36-2c78-4a91-9dee-0eb420f429bb
+    content: Severity
+    children:
+      - 80ec5849-fba1-4226-8d6d-ae604238fcf6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80ec5849-fba1-4226-8d6d-ae604238fcf6:
+    id: 80ec5849-fba1-4226-8d6d-ae604238fcf6
+    content: 'High: decomposition is unusable on affected steps; blocks the whole workflow branch, no workaround beyond collapsing to a single root'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1756c09-a809-4ecf-8f8c-716c81c3dbe8:
+    id: a1756c09-a809-4ecf-8f8c-716c81c3dbe8
+    content: Notes
+    children:
+      - 63ab1050-a607-4c78-b276-b38b9b22a4eb
+      - 6f15063c-6aa5-4ad3-8772-8240a1ceaf42
+      - 507ce82f-1cdf-4318-8b37-07b249b51ceb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63ab1050-a607-4c78-b276-b38b9b22a4eb:
+    id: 63ab1050-a607-4c78-b276-b38b9b22a4eb
+    content: 'Disambiguate from the packed-blob rejection (different message and cause: escaped newlines or embedded heading/checkbox markers in one root)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f15063c-6aa5-4ad3-8772-8240a1ceaf42:
+    id: 6f15063c-6aa5-4ad3-8772-8240a1ceaf42
+    content: Disambiguate from the legitimate non-decomposition multi-root rejection (correct behavior when step truly isn't decomposition)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  507ce82f-1cdf-4318-8b37-07b249b51ceb:
+    id: 507ce82f-1cdf-4318-8b37-07b249b51ceb
+    content: 'UX/telemetry gap: rejection message should name the resolved step node and its decomposition metadata value so flag-derivation drift is diagnosable from the error alone'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f405f080-583c-4dd9-9bda-76b98eea5219:
+    id: f405f080-583c-4dd9-9bda-76b98eea5219
+    content: Technical refinement
+    children:
+      - a5717beb-d872-4740-bc2c-45264b3facd0
+      - 746f4071-b014-4522-bfa1-13ab122523e8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5717beb-d872-4740-bc2c-45264b3facd0:
+    id: a5717beb-d872-4740-bc2c-45264b3facd0
+    content: Flag complications
+    children:
+      - 4e215e99-6951-46dd-bc84-1bda4f3eca2a
+      - 8cf83459-8ce2-43aa-aee2-8f8d2491c19f
+      - 7339c43f-7e6c-450b-8f0a-ce024582261b
+      - 74be13cb-39c2-4f0b-a749-9eb7c262fca3
+      - 184bd1a0-5ca2-4f1a-9e86-94c7911cea51
+      - bf9480b9-4974-4048-bc1f-079c34164aae
+      - a20109ef-c917-4e8c-b8e6-3a6d0bbd80af
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e215e99-6951-46dd-bc84-1bda4f3eca2a:
+    id: 4e215e99-6951-46dd-bc84-1bda4f3eca2a
+    content: 'Root cause is narrower than first stated: getWorkflowStepPosition only returns non-null for an exact workflow → step → boundNode topology and reads decomposition off the bound node''s DIRECT parent; any other depth returns null so the flag is false'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cf83459-8ce2-43aa-aee2-8f8d2491c19f:
+    id: 8cf83459-8ce2-43aa-aee2-8f8d2491c19f
+    content: So the trigger is bound-node depth relative to the workflow, not metadata drift — e.g. the bound node IS the marked step (parent is the workflow node) or sits a level deeper than grandchild
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7339c43f-7e6c-450b-8f0a-ce024582261b:
+    id: 7339c43f-7e6c-450b-8f0a-ce024582261b
+    content: 'Regression-window guess is likely wrong: this resolver is pure topology and never reads sessionId/groupId, so bc68302 is probably not the cause — the defect has likely existed since 78f8fdf; don''t bisect down the sessionId split'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74be13cb-39c2-4f0b-a749-9eb7c262fca3:
+    id: 74be13cb-39c2-4f0b-a749-9eb7c262fca3
+    content: 'Risk: getWorkflowStepPosition is shared by step indexing, recurse, and sibling resolution — widening it for decomposition could regress those paths; prefer a narrow ancestor-walking decomposition resolver over editing the shared helper'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  184bd1a0-5ca2-4f1a-9e86-94c7911cea51:
+    id: 184bd1a0-5ca2-4f1a-9e86-94c7911cea51
+    content: 'Open question / out of scope: whether decomposition should be inherited from an ancestor step or only the immediate step — resolve the intended semantics before coding, as it changes the fix'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf9480b9-4974-4048-bc1f-079c34164aae:
+    id: bf9480b9-4974-4048-bc1f-079c34164aae
+    content: 'Out of scope: the packed-blob guard and the legitimate non-decomposition multi-root rejection are correct and stay unchanged'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a20109ef-c917-4e8c-b8e6-3a6d0bbd80af:
+    id: a20109ef-c917-4e8c-b8e6-3a6d0bbd80af
+    content: 'ROI gate: first confirm forest.arbo''s actual topology (where the decomposition flag sits vs the bound node) — the entire fix hinges on it and the verified depth may shrink this to a one-line resolver change'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  746f4071-b014-4522-bfa1-13ab122523e8:
+    id: 746f4071-b014-4522-bfa1-13ab122523e8
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - 8915d5ac-40d9-4f38-ac9a-d55cd5ad821d
+      - 8bd93aee-ab79-455c-afaf-07b19eeb4ff6
+      - 5e9f2d7d-bcaa-4c7c-8302-6b06814d6f0d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8915d5ac-40d9-4f38-ac9a-d55cd5ad821d:
+    id: 8915d5ac-40d9-4f38-ac9a-d55cd5ad821d
+    content: 'Fix lands in workflowHelpers.ts: make decomposition resolution depth-tolerant by walking the ancestor chain to the nearest workflow-step ancestor instead of assuming a fixed grandparent-is-workflow shape'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bd93aee-ab79-455c-afaf-07b19eeb4ff6:
+    id: 8bd93aee-ab79-455c-afaf-07b19eeb4ff6
+    content: Leave feedbackService.ts guard and workflowExecutionActions.ts call site as-is; the only behavioral change is that isDecompositionEnabled now returns true for marked steps regardless of bound-node depth
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e9f2d7d-bcaa-4c7c-8302-6b06814d6f0d:
+    id: 5e9f2d7d-bcaa-4c7c-8302-6b06814d6f0d
+    content: 'Non-obvious for the reviewer: the listed regression commit is a probable red herring, and touching the shared position helper directly is the tempting-but-risky path — keep the change scoped to flag resolution and cover it with a depth-varying unit test'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0f47858-d050-4bfc-94ac-a8c050a1ac45:
+    id: f0f47858-d050-4bfc-94ac-a8c050a1ac45
+    content: Documentation step outcome
+    children:
+      - f98e5c15-70da-40ce-b218-9d9572e75150
+      - 79f75899-f2e4-4bab-94c3-49b81e7b9de7
+      - 250809b9-6a5e-4779-85e4-ca45920f7a02
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f98e5c15-70da-40ce-b218-9d9572e75150:
+    id: f98e5c15-70da-40ce-b218-9d9572e75150
+    content: 'No docs prose change: docs/workflows.md decomposition section already describes "AI may produce one or more top-level items … replaced as siblings"; this fix restores that documented behavior and changes nothing user-facing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79f75899-f2e4-4bab-94c3-49b81e7b9de7:
+    id: 79f75899-f2e4-4bab-94c3-49b81e7b9de7
+    content: 'No changelog entry: this is a bug fix to "Decomposition mode", which still sits under CHANGELOG.md "## Unreleased" — per convention no separate line for fixing an unreleased feature, and it would be bloat'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  250809b9-6a5e-4779-85e4-ca45920f7a02:
+    id: 250809b9-6a5e-4779-85e4-ca45920f7a02
+    content: 'Inconsistency to confirm: git tag v0.2.0 (2026-05-17) contains the decomposition commit 78f8fdf (2026-03-16), yet CHANGELOG.md lists decomposition (and ~20 other features) under "## Unreleased" with no 0.2.0 section — if v0.2.0 actually shipped, the changelog needs a release heading and this fix may then warrant a bug-fix line'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -178315,4 +178816,6 @@ sessionRegistry:
   3c3acf37-e602-43ec-8534-f90473652b93:
     cwd: /Users/brianfox/dev/Arborescent
   df9dbfac-a110-49d6-9ec6-ebdb9ae81eba:
+    cwd: /Users/brianfox/dev/Arborescent
+  91b4230b-a37e-4085-a2eb-1a8d748a3d4e:
     cwd: /Users/brianfox/dev/Arborescent
