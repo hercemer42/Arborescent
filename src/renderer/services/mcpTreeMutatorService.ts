@@ -5,7 +5,7 @@ import type {
 } from '../../shared/types/electronApi';
 import { TreeStore } from '../store/tree/treeStore';
 import { TreeNode } from '../../shared/types';
-import { storeManager } from '../store/storeManager';
+import { findStoreOwningSession } from '../store/storeOwnership';
 import { logger } from './logger';
 import {
   addNodeToRegistry,
@@ -16,13 +16,6 @@ import { getParentIdOrNull } from '../utils/parentLookup';
 import { shouldInheritBlueprint } from '../utils/nodeHelpers';
 import { createTreeNode } from '../utils/nodeConstruction';
 import { v4 as uuidv4 } from 'uuid';
-
-function findStoreForNode(nodeId: string): TreeStore | null {
-  for (const store of storeManager.getAllStores()) {
-    if (store.getState().nodes[nodeId]) return store;
-  }
-  return null;
-}
 
 export function applyMutation(store: TreeStore, nodeId: string, request: MutationRequest): MutationResult {
   switch (request.kind) {
@@ -251,10 +244,10 @@ export function startMcpTreeMutatorService(): () => void {
 }
 
 function handleRequest(request: TreeMutateRequest): MutationResult {
-  const store = findStoreForNode(request.nodeId);
+  const store = findStoreOwningSession(request.sessionId);
   if (!store) {
-    logger.warn(`tree-mutate: node ${request.nodeId} not found in any open store`, 'McpTreeMutator');
-    return { ok: false, error: `Node ${request.nodeId} not found in any open file` };
+    logger.warn(`tree-mutate: no open file owns session ${request.sessionId}`, 'McpTreeMutator');
+    return { ok: false, error: `No open file owns session ${request.sessionId}` };
   }
   try {
     return applyMutation(store, request.nodeId, request.request);

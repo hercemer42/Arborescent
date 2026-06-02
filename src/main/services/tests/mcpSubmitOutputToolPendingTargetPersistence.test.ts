@@ -116,12 +116,12 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
-    expect(applier.apply).toHaveBeenNthCalledWith(1, TARGET, 'first response');
+    expect(applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', TARGET, 'first response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'second response' });
 
-    expect(applier.apply).toHaveBeenNthCalledWith(2, TARGET, 'second response');
+    expect(applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', TARGET, 'second response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
   });
 
@@ -183,7 +183,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
-    expect(applier.apply).toHaveBeenCalledWith(TARGET, 'first response');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'first response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
   });
 
@@ -217,13 +217,13 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
-    expect(applier.apply).toHaveBeenCalledWith(TARGET, 'first response');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'first response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
 
     const second = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'second response' });
     const payload = JSON.parse(second.content[0].text);
     expect(payload.applied).toBe(true);
-    expect(applier.apply).toHaveBeenNthCalledWith(2, TARGET, 'second response');
+    expect(applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', TARGET, 'second response');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
   });
 
@@ -279,13 +279,13 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     });
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
-    expect(applier.apply).toHaveBeenNthCalledWith(1, TARGET, 'first response');
+    expect(applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', TARGET, 'first response');
 
     oneShotTargetStore.markManualCollabResolved('sess-1');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(null);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'after resolve' });
-    expect(applier.apply).toHaveBeenNthCalledWith(2, BOUND, 'after resolve');
+    expect(applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', BOUND, 'after resolve');
   });
 
   it('manual route on the same node as the workflow binding — refreshes via pendingTarget while open, falls through to binding (same node) after resolve', async () => {
@@ -302,15 +302,15 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'first' });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'refresh' });
 
-    expect(applier.apply).toHaveBeenNthCalledWith(1, BOUND, 'first');
-    expect(applier.apply).toHaveBeenNthCalledWith(2, BOUND, 'refresh');
+    expect(applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', BOUND, 'first');
+    expect(applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', BOUND, 'refresh');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(BOUND);
 
     oneShotTargetStore.markManualCollabResolved('sess-1');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(null);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'after resolve' });
-    expect(applier.apply).toHaveBeenNthCalledWith(3, BOUND, 'after resolve');
+    expect(applier.apply).toHaveBeenNthCalledWith(3, 'sess-1', BOUND, 'after resolve');
   });
 
   it('explicit resolution with no binding leaves the session fully unbound — next submit returns unbound', async () => {

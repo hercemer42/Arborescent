@@ -99,8 +99,8 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       pendingTargetNodeId: TARGET,
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'freeform response' });
-    expect(applier.apply).toHaveBeenCalledWith(TARGET, 'freeform response');
-    expect(applier.apply).not.toHaveBeenCalledWith(BOUND, 'freeform response');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'freeform response');
+    expect(applier.apply).not.toHaveBeenCalledWith('sess-1', BOUND, 'freeform response');
   });
 
   it('falls back to the binding when pendingTarget is null (existing workflow flow unchanged)', async () => {
@@ -110,7 +110,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       pendingTargetNodeId: null,
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'workflow response' });
-    expect(applier.apply).toHaveBeenCalledWith(BOUND, 'workflow response');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', BOUND, 'workflow response');
   });
 
   it('a one-shot target routes the response even when the session has NO binding', async () => {
@@ -124,7 +124,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       pendingTargetNodeId: TARGET,
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'freeform response' });
-    expect(applier.apply).toHaveBeenCalledWith(TARGET, 'freeform response');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'freeform response');
   });
 
   it('autonomous-vs-non-automatic gate reads the TARGET node stepType, not the binding stepType', async () => {
@@ -166,7 +166,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
       pendingTargetNodeId: TARGET,
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
-    expect(applier.apply).toHaveBeenCalledWith(TARGET, 'x');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'x');
   });
 
   it('a one-shot target that points to a node missing from the tree returns an orphan-style error', async () => {
@@ -250,6 +250,6 @@ describe('createSubmitOutputTool — Stop-hook safety net is universally no-op (
   it('explicit origin is NOT gated — when Claude calls submit_step_output explicitly the workflow asked for it', async () => {
     const { tool, applier } = gateScenario({ markerSeen: false });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'explicit response' });
-    expect(applier.apply).toHaveBeenCalledWith(BOUND, 'explicit response');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', BOUND, 'explicit response');
   });
 });

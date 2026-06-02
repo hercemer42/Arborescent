@@ -26,6 +26,7 @@ export interface RebindRequestEvent {
 
 export interface TreeReadRequest {
   requestId: string;
+  sessionId: string;
   nodeId: string;
 }
 
@@ -53,6 +54,7 @@ export type MutationResult = { ok: true } | { ok: false; error: string };
 
 export interface TreeMutateRequest {
   requestId: string;
+  sessionId: string;
   nodeId: string;
   request: MutationRequest;
 }
@@ -64,6 +66,7 @@ export interface TreeMutateResponse {
 
 export interface StepOutputApplyRequest {
   requestId: string;
+  sessionId: string;
   nodeId: string;
   content: string;
 }

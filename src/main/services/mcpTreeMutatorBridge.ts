@@ -6,6 +6,7 @@ export const TREE_MUTATE_REQUEST_CHANNEL = 'mcp:tree-mutate-request';
 
 export interface TreeMutateRequest {
   requestId: string;
+  sessionId: string;
   nodeId: string;
   request: MutationRequest;
 }
@@ -37,7 +38,7 @@ export function createMcpTreeMutatorBridge(
     resolver(response.result);
   });
 
-  async function mutate(boundNodeId: string, request: MutationRequest): Promise<MutationResult> {
+  async function mutate(sessionId: string, boundNodeId: string, request: MutationRequest): Promise<MutationResult> {
     if (!boundNodeId) {
       return { ok: false, error: 'No bound node id provided' };
     }
@@ -58,7 +59,7 @@ export function createMcpTreeMutatorBridge(
         resolve(result);
       });
 
-      deps.sendToRenderer(TREE_MUTATE_REQUEST_CHANNEL, { requestId, nodeId: boundNodeId, request });
+      deps.sendToRenderer(TREE_MUTATE_REQUEST_CHANNEL, { requestId, sessionId, nodeId: boundNodeId, request });
     });
   }
 

@@ -249,8 +249,8 @@ describe('createSubmitOutputTool — bug repro: revise-after-discussion on B whi
     await tool.submitStepOutput({ sessionId: 'sess-1', content: 'revise response' });
     const proposalNodeIds = (proposalSubmitter.submit as unknown as { mock: { calls: Array<[{ nodeId: string }]> } })
       .mock.calls.map((c) => c[0].nodeId);
-    const applierNodeIds = (applier.apply as unknown as { mock: { calls: Array<[string, string]> } })
-      .mock.calls.map((c) => c[0]);
+    const applierNodeIds = (applier.apply as unknown as { mock: { calls: Array<[string, string, string]> } })
+      .mock.calls.map((c) => c[1]);
     const allCalls = [...proposalNodeIds, ...applierNodeIds];
     expect(allCalls).not.toContain(BOUND_A);
     expect(allCalls).toContain(TARGET_B);

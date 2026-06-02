@@ -171,7 +171,7 @@ describe('createSubmitOutputTool — gate 4 happy path (same-target)', () => {
     });
     expect(result.isError).toBeFalsy();
     expect(JSON.parse(result.content[0].text)).toEqual({ applied: true });
-    expect(applier.apply).toHaveBeenCalledWith(BOUND, 'matched content');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', BOUND, 'matched content');
   });
 
   it('N consecutive same-target submissions all succeed (token is plain UUID, not a monotonic counter)', async () => {

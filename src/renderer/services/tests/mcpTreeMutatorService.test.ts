@@ -1,12 +1,16 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 
 vi.mock('../logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
+vi.mock('../../store/storeOwnership', () => ({
+  findStoreOwningSession: vi.fn(),
+}));
 
-import { applyMutation } from '../mcpTreeMutatorService';
+import { applyMutation, startMcpTreeMutatorService } from '../mcpTreeMutatorService';
+import { findStoreOwningSession } from '../../store/storeOwnership';
 import { TreeNode } from '../../../shared/types';
-import type { MutationRequest } from '../../../shared/types/electronApi';
+import type { MutationRequest, TreeMutateRequest } from '../../../shared/types/electronApi';
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
@@ -61,6 +65,55 @@ function makeFakeStore(): { store: { getState(): TestState; setState(partial: Pa
 function applyAs(store: any, nodeId: string, request: MutationRequest) {
   return applyMutation(store, nodeId, request);
 }
+
+describe('startMcpTreeMutatorService — file-scoped resolution (Ticket A, write path)', () => {
+  const ownerOf = findStoreOwningSession as unknown as Mock;
+
+  function captureHandler(): (req: TreeMutateRequest) => void {
+    let handler!: (req: TreeMutateRequest) => void;
+    (window.electron.onMcpTreeMutateRequest as unknown as Mock).mockImplementation(
+      (cb: (req: TreeMutateRequest) => void) => {
+        handler = cb;
+        return () => {};
+      },
+    );
+    startMcpTreeMutatorService();
+    return handler;
+  }
+
+  beforeEach(() => {
+    ownerOf.mockReset();
+    (window.electron.onMcpTreeMutateRequest as unknown as Mock).mockReturnValue(vi.fn());
+    (window.electron.respondToMcpTreeMutate as unknown as Mock).mockResolvedValue(undefined);
+  });
+
+  it('mutates the store that owns the session, resolved by sessionId not by sweeping', () => {
+    const { store, getCurrent } = makeFakeStore();
+    ownerOf.mockReturnValue(store);
+
+    const handler = captureHandler();
+    handler({ requestId: 'r1', sessionId: 'sess-1', nodeId: BOUND, request: { kind: 'set-content', content: 'scoped' } });
+
+    expect(ownerOf).toHaveBeenCalledWith('sess-1');
+    expect(getCurrent().nodes[BOUND].content).toBe('scoped');
+    expect(window.electron.respondToMcpTreeMutate).toHaveBeenCalledWith({
+      requestId: 'r1',
+      result: { ok: true },
+    });
+  });
+
+  it('fails closed when no open file owns the session', () => {
+    ownerOf.mockReturnValue(null);
+
+    const handler = captureHandler();
+    handler({ requestId: 'r2', sessionId: 'sess-unknown', nodeId: BOUND, request: { kind: 'set-content', content: 'x' } });
+
+    expect(window.electron.respondToMcpTreeMutate).toHaveBeenCalledWith({
+      requestId: 'r2',
+      result: { ok: false, error: expect.stringContaining('No open file owns session') },
+    });
+  });
+});
 
 describe('applyMutation — add-child', () => {
   it('appends a new node under the given parent, sets status=pending, and updates ancestorRegistry', () => {

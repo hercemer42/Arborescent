@@ -276,7 +276,7 @@ describe('createWriteTools — happy paths: each tool issues the right MutationR
 
   it('addChildNode issues kind="add-child" with parent_id and content', async () => {
     await tools.addChildNode({ sessionId: 'sess-1', parent_id: BOUND, content: 'new child' });
-    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'add-child',
       parentId: BOUND,
       content: 'new child',
@@ -285,7 +285,7 @@ describe('createWriteTools — happy paths: each tool issues the right MutationR
 
   it('appendToNode issues kind="append" with content', async () => {
     await tools.appendToNode({ sessionId: 'sess-1', content: 'tail' });
-    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'append',
       content: 'tail',
     } satisfies MutationRequest);
@@ -293,7 +293,7 @@ describe('createWriteTools — happy paths: each tool issues the right MutationR
 
   it('markStepComplete issues kind="mark-complete" with the status', async () => {
     await tools.markStepComplete({ sessionId: 'sess-1', status: 'abandoned' });
-    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'mark-complete',
       status: 'abandoned',
     } satisfies MutationRequest);
@@ -301,7 +301,7 @@ describe('createWriteTools — happy paths: each tool issues the right MutationR
 
   it('setNodeContent issues kind="set-content" with content', async () => {
     await tools.setNodeContent({ sessionId: 'sess-1', content: 'replaced' });
-    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'set-content',
       content: 'replaced',
     } satisfies MutationRequest);
@@ -309,12 +309,12 @@ describe('createWriteTools — happy paths: each tool issues the right MutationR
 
   it('deleteNode issues kind="delete"', async () => {
     await tools.deleteNode({ sessionId: 'sess-1' });
-    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, { kind: 'delete' } satisfies MutationRequest);
+    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, { kind: 'delete' } satisfies MutationRequest);
   });
 
   it('moveNode issues kind="move" with new_parent_id and optional position', async () => {
     await tools.moveNode({ sessionId: 'sess-1', new_parent_id: SIBLING, position: 2 });
-    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'move',
       newParentId: SIBLING,
       position: 2,
@@ -323,7 +323,7 @@ describe('createWriteTools — happy paths: each tool issues the right MutationR
 
   it('setNodeMetadata issues kind="set-metadata" with key and value', async () => {
     await tools.setNodeMetadata({ sessionId: 'sess-1', key: 'custom', value: { x: 1 } });
-    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'set-metadata',
       key: 'custom',
       value: { x: 1 },
@@ -471,7 +471,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
     expect(result.isError).toBeFalsy();
-    expect(made.mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(made.mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'mark-complete',
       status: 'completed',
     } satisfies MutationRequest);
@@ -485,7 +485,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
     expect(result.isError).toBeFalsy();
-    expect(made.mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(made.mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'mark-complete',
       status: 'completed',
     } satisfies MutationRequest);
@@ -641,7 +641,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
     expect(result.isError).toBeFalsy();
-    expect(made.mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(made.mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'mark-complete',
       status: 'completed',
     } satisfies MutationRequest);
@@ -677,7 +677,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
     expect(result.isError).toBeFalsy();
-    expect(mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'mark-complete',
       status: 'completed',
     } satisfies MutationRequest);
@@ -694,7 +694,7 @@ describe('createWriteTools — announceStepDone on a checkpoint: mode and contex
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
     expect(result.isError).toBeFalsy();
-    expect(made.mutator.mutate).toHaveBeenCalledWith(BOUND, {
+    expect(made.mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
       kind: 'mark-complete',
       status: 'completed',
     } satisfies MutationRequest);

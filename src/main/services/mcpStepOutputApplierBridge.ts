@@ -6,6 +6,7 @@ export const STEP_OUTPUT_APPLY_REQUEST_CHANNEL = 'mcp:step-output-apply-request'
 
 export interface StepOutputApplyRequest {
   requestId: string;
+  sessionId: string;
   nodeId: string;
   content: string;
 }
@@ -40,6 +41,7 @@ export function createMcpStepOutputApplierBridge(
   });
 
   async function apply(
+    sessionId: string,
     boundNodeId: string,
     content: string,
   ): Promise<{ ok: true } | { ok: false; error: string }> {
@@ -65,6 +67,7 @@ export function createMcpStepOutputApplierBridge(
 
       deps.sendToRenderer(STEP_OUTPUT_APPLY_REQUEST_CHANNEL, {
         requestId,
+        sessionId,
         nodeId: boundNodeId,
         content,
       });

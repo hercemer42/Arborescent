@@ -1,11 +1,16 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 
 vi.mock('../logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
+vi.mock('../../store/storeOwnership', () => ({
+  findStoreOwningSession: vi.fn(),
+}));
 
-import { applyStepOutput } from '../mcpStepOutputApplierService';
+import { applyStepOutput, startMcpStepOutputApplierService } from '../mcpStepOutputApplierService';
+import { findStoreOwningSession } from '../../store/storeOwnership';
 import { TreeNode } from '../../../shared/types';
+import type { StepOutputApplyRequest } from '../../../shared/types/electronApi';
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
@@ -62,6 +67,55 @@ function makeFakeStore(
     handleAutonomousFeedback,
   };
 }
+
+describe('startMcpStepOutputApplierService — file-scoped resolution (Ticket A, write path)', () => {
+  const ownerOf = findStoreOwningSession as unknown as Mock;
+
+  function captureHandler(): (req: StepOutputApplyRequest) => void {
+    let handler!: (req: StepOutputApplyRequest) => void;
+    (window.electron.onMcpStepOutputApplyRequest as unknown as Mock).mockImplementation(
+      (cb: (req: StepOutputApplyRequest) => void) => {
+        handler = cb;
+        return () => {};
+      },
+    );
+    startMcpStepOutputApplierService();
+    return handler;
+  }
+
+  beforeEach(() => {
+    ownerOf.mockReset();
+    (window.electron.onMcpStepOutputApplyRequest as unknown as Mock).mockReturnValue(vi.fn());
+    (window.electron.respondToMcpStepOutputApply as unknown as Mock).mockResolvedValue(undefined);
+  });
+
+  it('applies to the store that owns the session, resolved by sessionId not by sweeping', () => {
+    const { store, getCurrent } = makeFakeStore({}, null, {});
+    ownerOf.mockReturnValue(store);
+
+    const handler = captureHandler();
+    handler({ requestId: 'r1', sessionId: 'sess-1', nodeId: BOUND, content: 'scoped write' });
+
+    expect(ownerOf).toHaveBeenCalledWith('sess-1');
+    expect(getCurrent().nodes[BOUND].content).toBe('scoped write');
+    expect(window.electron.respondToMcpStepOutputApply).toHaveBeenCalledWith({
+      requestId: 'r1',
+      result: { ok: true },
+    });
+  });
+
+  it('fails closed when no open file owns the session', () => {
+    ownerOf.mockReturnValue(null);
+
+    const handler = captureHandler();
+    handler({ requestId: 'r2', sessionId: 'sess-unknown', nodeId: BOUND, content: 'x' });
+
+    expect(window.electron.respondToMcpStepOutputApply).toHaveBeenCalledWith({
+      requestId: 'r2',
+      result: { ok: false, error: expect.stringContaining('No open file owns session') },
+    });
+  });
+});
 
 describe('applyStepOutput — happy path', () => {
   it('replaces the bound node content and triggers autoSave when the node is not in an active workflow run', () => {

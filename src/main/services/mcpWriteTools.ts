@@ -21,7 +21,7 @@ export type MutationRequest =
 export type MutationResult = { ok: true } | { ok: false; error: string };
 
 export interface TreeMutator {
-  mutate(boundNodeId: string, request: MutationRequest): Promise<MutationResult>;
+  mutate(sessionId: string, boundNodeId: string, request: MutationRequest): Promise<MutationResult>;
 }
 
 export interface WriteToolsDeps {
@@ -97,7 +97,7 @@ async function resolveBoundState(deps: WriteToolsDeps, sessionId: string): Promi
   if (!boundNodeId) {
     return { ok: false, error: err(`No binding found for session ${sessionId}. The session is not bound to any node.`) };
   }
-  const state = await deps.treeReader.readState(boundNodeId);
+  const state = await deps.treeReader.readState(sessionId, boundNodeId);
   if (!state) {
     return { ok: false, error: err('Tree state is unavailable. The renderer may not be ready or no file is open.') };
   }
@@ -140,7 +140,7 @@ async function executeMutation(
     return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
   }
 
-  const result = await deps.treeMutator.mutate(boundNodeId, request);
+  const result = await deps.treeMutator.mutate(sessionId, boundNodeId, request);
   if (!result.ok) {
     return err(result.error);
   }
@@ -179,7 +179,7 @@ async function executeAnnounceStepDone(
     return err('announce_step_done is only valid on autonomous or checkpoint workflow steps. Manual steps must be resolved through the user interface.');
   }
 
-  const result = await deps.treeMutator.mutate(boundNodeId, { kind: 'mark-complete', status: 'completed' });
+  const result = await deps.treeMutator.mutate(sessionId, boundNodeId, { kind: 'mark-complete', status: 'completed' });
   if (!result.ok) {
     return err(result.error);
   }

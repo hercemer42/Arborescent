@@ -1,28 +1,7 @@
 import { useEffect } from 'react';
-import { storeManager } from '../store/storeManager';
 import { useTerminalStore } from '../store/terminal/terminalStore';
 import { logger } from '../services/logger';
-import type { TreeStore } from '../store/tree/treeStore';
-
-function findStoreOwningTerminal(terminalId: string): TreeStore | null {
-  const { fileStates } = useTerminalStore.getState();
-  for (const [filePath, state] of Object.entries(fileStates)) {
-    if (state.terminals.some((t) => t.id === terminalId)) {
-      return storeManager.getAllStoreEntries().find((e) => e.filePath === filePath)?.store ?? null;
-    }
-  }
-  return null;
-}
-
-function findStoreOwningSession(sessionId: string): TreeStore | null {
-  for (const { store } of storeManager.getAllStoreEntries()) {
-    const map = store.getState().workflowSessionMap;
-    if (map && Object.prototype.hasOwnProperty.call(map, sessionId)) {
-      return store;
-    }
-  }
-  return null;
-}
+import { findStoreOwningSession, findStoreOwningTerminal } from '../store/storeOwnership';
 
 export function useHookEventListener(): void {
   useEffect(() => {

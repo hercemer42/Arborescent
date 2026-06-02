@@ -79,13 +79,13 @@ describe('createSubmitOutputTool — automatic step writes directly to the node'
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'AI response' });
     expect(result.isError).toBeFalsy();
     expect(JSON.parse(result.content[0].text)).toEqual({ applied: true });
-    expect(applier.apply).toHaveBeenCalledWith(BOUND, 'AI response');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', BOUND, 'AI response');
   });
 
   it('an empty content string still triggers an apply — empty is a valid AI response', async () => {
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: '' });
     expect(result.isError).toBeFalsy();
-    expect(applier.apply).toHaveBeenCalledWith(BOUND, '');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', BOUND, '');
   });
 });
 
@@ -103,8 +103,8 @@ describe('createSubmitOutputTool — repeated submits in one session each go thr
 
     expect(second.isError).toBeFalsy();
     expect(JSON.parse(second.content[0].text)).toEqual({ applied: true });
-    expect(made.applier.apply).toHaveBeenNthCalledWith(1, BOUND, 'first');
-    expect(made.applier.apply).toHaveBeenNthCalledWith(2, BOUND, 'second');
+    expect(made.applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', BOUND, 'first');
+    expect(made.applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', BOUND, 'second');
   });
 
   it('a second manual-step submit queues another proposal so the feedback panel can refresh', async () => {
@@ -329,7 +329,7 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
     const { tool, applier, proposalSubmitter } = setupTool('autonomous');
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: WORKING, content: 'autonomous result' });
     expect(result.isError).toBeFalsy();
-    expect(applier.apply).toHaveBeenCalledWith(WORKING, 'autonomous result');
+    expect(applier.apply).toHaveBeenCalledWith('sess-1', WORKING, 'autonomous result');
     expect(proposalSubmitter.submit).not.toHaveBeenCalled();
   });
 

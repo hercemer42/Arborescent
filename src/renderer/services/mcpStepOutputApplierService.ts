@@ -2,7 +2,7 @@ import type {
   StepOutputApplyRequest,
 } from '../../shared/types/electronApi';
 import { TreeStore } from '../store/tree/treeStore';
-import { storeManager } from '../store/storeManager';
+import { findStoreOwningSession } from '../store/storeOwnership';
 import { logger } from './logger';
 import {
   getAutonomousStepContext,
@@ -10,13 +10,6 @@ import {
 } from '../../shared/utils/autonomousStepContext';
 
 export type ApplyResult = { ok: true } | { ok: false; error: string };
-
-function findStoreForNode(nodeId: string): TreeStore | null {
-  for (const store of storeManager.getAllStores()) {
-    if (store.getState().nodes[nodeId]) return store;
-  }
-  return null;
-}
 
 interface StoreActionsForApply {
   autoSave?: () => void;
@@ -87,13 +80,13 @@ export function startMcpStepOutputApplierService(): () => void {
 }
 
 function handleRequest(request: StepOutputApplyRequest): ApplyResult {
-  const store = findStoreForNode(request.nodeId);
+  const store = findStoreOwningSession(request.sessionId);
   if (!store) {
     logger.warn(
-      `step-output-apply: node ${request.nodeId} not found in any open store`,
+      `step-output-apply: no open file owns session ${request.sessionId}`,
       'McpStepOutputApplier',
     );
-    return { ok: false, error: `Node ${request.nodeId} not found in any open file` };
+    return { ok: false, error: `No open file owns session ${request.sessionId}` };
   }
   try {
     return applyStepOutput(store, request.nodeId, request.content);

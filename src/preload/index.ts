@@ -139,7 +139,7 @@ const api: ElectronAPI = {
   onMcpTreeReadRequest: (callback) => {
     const listener = (
       _event: Electron.IpcRendererEvent,
-      data: { requestId: string; nodeId: string },
+      data: { requestId: string; sessionId: string; nodeId: string },
     ) => callback(data);
     ipcRenderer.on('mcp:tree-read-request', listener);
     return () => ipcRenderer.removeListener('mcp:tree-read-request', listener);

@@ -13,7 +13,7 @@ export interface TreeReadState {
 }
 
 export interface TreeReader {
-  readState(boundNodeId: string): Promise<TreeReadState | null>;
+  readState(sessionId: string, boundNodeId: string): Promise<TreeReadState | null>;
 }
 
 export interface ReadToolsDeps {
@@ -173,7 +173,7 @@ async function withBoundNode<T>(
   if (!boundNodeId) {
     return err(`No binding found for session ${sessionId}. The session is not bound to any node.`);
   }
-  const state = await deps.treeReader.readState(boundNodeId);
+  const state = await deps.treeReader.readState(sessionId, boundNodeId);
   if (!state) {
     return err('Tree state is unavailable. The renderer may not be ready or no file is open.');
   }

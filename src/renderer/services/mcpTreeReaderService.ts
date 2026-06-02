@@ -1,26 +1,27 @@
 import type { TreeReadRequest, TreeReadResponse } from '../../shared/types/electronApi';
 import { logger } from './logger';
-import { storeManager } from '../store/storeManager';
+import { findStoreOwningSession } from '../store/storeOwnership';
 
-function findStateForNode(nodeId: string): TreeReadResponse['state'] {
-  for (const store of storeManager.getAllStores()) {
-    const state = store.getState();
-    if (state.nodes[nodeId]) {
-      return {
-        nodes: state.nodes,
-        rootNodeId: state.rootNodeId,
-        ancestorRegistry: state.ancestorRegistry,
-      };
-    }
-  }
-  return null;
+function findStateForNode(sessionId: string, nodeId: string): TreeReadResponse['state'] {
+  const store = findStoreOwningSession(sessionId);
+  if (!store) return null;
+  const state = store.getState();
+  if (!state.nodes[nodeId]) return null;
+  return {
+    nodes: state.nodes,
+    rootNodeId: state.rootNodeId,
+    ancestorRegistry: state.ancestorRegistry,
+  };
 }
 
 export function startMcpTreeReaderService(): () => void {
   return window.electron.onMcpTreeReadRequest((request: TreeReadRequest) => {
-    const state = findStateForNode(request.nodeId);
+    const state = findStateForNode(request.sessionId, request.nodeId);
     if (!state) {
-      logger.warn(`tree-read: node ${request.nodeId} not found in any open store`, 'McpTreeReader');
+      logger.warn(
+        `tree-read: node ${request.nodeId} not resolvable in the file bound to session ${request.sessionId}`,
+        'McpTreeReader',
+      );
     }
     void window.electron.respondToMcpTreeRead({ requestId: request.requestId, state });
   });

@@ -7,6 +7,7 @@ export const TREE_READ_RESPONSE_CHANNEL = 'mcp:tree-read-response';
 
 export interface TreeReadRequest {
   requestId: string;
+  sessionId: string;
   nodeId: string;
 }
 
@@ -37,7 +38,7 @@ export function createMcpTreeReaderBridge(
     resolver(response.state);
   });
 
-  async function readState(boundNodeId: string): Promise<TreeReadState | null> {
+  async function readState(sessionId: string, boundNodeId: string): Promise<TreeReadState | null> {
     if (!boundNodeId) return null;
     const requestId = randomUUID();
     return new Promise<TreeReadState | null>((resolve) => {
@@ -56,7 +57,7 @@ export function createMcpTreeReaderBridge(
         resolve(state);
       });
 
-      deps.sendToRenderer(TREE_READ_REQUEST_CHANNEL, { requestId, nodeId: boundNodeId });
+      deps.sendToRenderer(TREE_READ_REQUEST_CHANNEL, { requestId, sessionId, nodeId: boundNodeId });
     });
   }
 

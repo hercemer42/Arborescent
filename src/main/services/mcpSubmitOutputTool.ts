@@ -7,6 +7,7 @@ import { isStructurallyAutonomous } from '../../shared/utils/autonomousStepConte
 
 export interface StepOutputApplier {
   apply(
+    sessionId: string,
     boundNodeId: string,
     content: string,
   ): Promise<{ ok: true } | { ok: false; error: string }>;
@@ -57,7 +58,7 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return ok({ applied: false, reason: 'unbound — session has no binding' });
       }
 
-      const state = await deps.treeReader.readState(boundNodeId);
+      const state = await deps.treeReader.readState(sessionId, boundNodeId);
       if (!state) {
         return err('Tree state is unavailable. The renderer may not be ready or no file is open.');
       }
@@ -108,7 +109,7 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         );
       }
 
-      const result = await deps.applier.apply(boundNodeId, content);
+      const result = await deps.applier.apply(sessionId, boundNodeId, content);
       if (!result.ok) {
         return err(result.error);
       }
