@@ -286,9 +286,37 @@ export function isDecompositionEnabled(
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
 ): boolean {
-  const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
-  if (!position) return false;
-  return nodes[position.currentStepId]?.metadata.decomposition === true;
+  const step = getEnclosingWorkflowStep(nodeId, nodes, ancestorRegistry);
+  if (!step) return false;
+  return nodes[step.stepId]?.metadata.decomposition === true;
+}
+
+interface EnclosingWorkflowStep {
+  workflowId: string;
+  stepId: string;
+  stepIndex: number;
+}
+
+function getEnclosingWorkflowStep(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): EnclosingWorkflowStep | null {
+  const ancestors = ancestorRegistry[nodeId] ?? [];
+  const workflowId = ancestors.findLast(
+    (ancestorId) => nodes[ancestorId]?.metadata.isWorkflow === true,
+  );
+  if (!workflowId) return null;
+
+  const workflowChildren = nodes[workflowId]?.children;
+  if (!workflowChildren) return null;
+
+  const workflowAncestorIndex = ancestors.lastIndexOf(workflowId);
+  const stepId = ancestors[workflowAncestorIndex + 1] ?? nodeId;
+  const stepIndex = workflowChildren.indexOf(stepId);
+  if (stepIndex === -1) return null;
+
+  return { workflowId, stepId, stepIndex };
 }
 
 export function findDecompositionStepInWorkflow(
@@ -296,23 +324,12 @@ export function findDecompositionStepInWorkflow(
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
 ): string | null {
-  const ancestors = ancestorRegistry[stepId] ?? [];
-  const workflowId = ancestors.findLast(
-    (ancestorId) => nodes[ancestorId]?.metadata.isWorkflow === true,
-  );
-  if (!workflowId) return null;
+  const step = getEnclosingWorkflowStep(stepId, nodes, ancestorRegistry);
+  if (!step) return null;
 
-  const workflow = nodes[workflowId];
-  if (!workflow) return null;
-
-  const workflowAncestorIndex = ancestors.lastIndexOf(workflowId);
-  const siblingId = ancestors[workflowAncestorIndex + 1] ?? stepId;
-
-  const siblingIndex = workflow.children.indexOf(siblingId);
-  if (siblingIndex === -1) return null;
-
-  for (let i = siblingIndex; i >= 0; i--) {
-    const childId = workflow.children[i];
+  const workflowChildren = nodes[step.workflowId]?.children ?? [];
+  for (let i = step.stepIndex; i >= 0; i--) {
+    const childId = workflowChildren[i];
     if (nodes[childId]?.metadata.decomposition === true) {
       return childId;
     }
