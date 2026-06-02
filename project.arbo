@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-02T20:21:07.027Z'
+updated: '2026-06-02T20:23:14.616Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23708,8 +23708,7 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children:
-      - f8357f01-bfb5-436e-9a7d-3310ff67c22c
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -83655,7 +83654,8 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children: []
+    children:
+      - f8357f01-bfb5-436e-9a7d-3310ff67c22c
     metadata:
       status: pending
       isBlueprint: true
@@ -115515,6 +115515,7 @@ nodes:
       - 19472555-f967-45b7-a4dc-3bb2d56e2c09
       - 236ca1e3-a932-4861-b9f7-142c5ca6ab82
       - 73c0b75b-0e06-4e82-9f82-205f45601fca
+      - e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
     metadata:
       status: pending
       isBlueprint: true
@@ -124620,8 +124621,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -178868,7 +178868,7 @@ nodes:
       - b0a956e7-bbe0-4452-b83d-789b00836a3f
       - 95abd2b7-aed6-477c-ac5a-3a667ae6aa85
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -179665,10 +179665,11 @@ nodes:
     id: f8357f01-bfb5-436e-9a7d-3310ff67c22c
     content: Make the main-process registry the single authoritative session↔node resolver
     children:
-      - 970742d1-1308-40c1-9e5e-e3aeee5ab3bc
-      - b78ecdb9-4c23-40a4-a851-b8ea7913ffe7
-      - 7599da69-75ca-4931-abda-70a7db940959
-      - 30a5366f-1995-4555-a19f-3c24601e8454
+      - e06a7690-7d82-4f36-8d21-078709f0eb6f
+      - 633d1493-7b06-4774-b94e-8ec2c834727c
+      - ac2daac3-c434-479f-b8c9-2fbf5aa44b92
+      - 68b6c1b3-54c5-429b-8e06-9f09268e5a9c
+      - c3c9b03d-1d18-4b86-88d9-db9a597631c0
     metadata:
       status: pending
       expanded: false
@@ -179873,582 +179874,6 @@ nodes:
   403ddd2d-bda5-432e-8265-6e388ffbfa29:
     id: 403ddd2d-bda5-432e-8265-6e388ffbfa29
     content: Error taxonomy first (cheap, unblocks debugging), then split out binding resolution, then make it canonical (single source of truth), then merge-not-replace once test coverage supports it
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  970742d1-1308-40c1-9e5e-e3aeee5ab3bc:
-    id: 970742d1-1308-40c1-9e5e-e3aeee5ab3bc
-    content: 📄 Product spec
-    children:
-      - b7d142b0-7924-48ac-91ee-713a4bd94826
-      - 31f36d83-c3de-4bf7-a524-8dadc579ee1b
-      - f9574a2b-18bd-49f4-bba2-48367852781c
-      - 8ad2cc98-133e-44d6-8f07-2725c17f0638
-      - 29831271-f75d-4123-a9d5-cf39ec910473
-      - 98c584a9-8d21-4bd3-93cc-636ac30765e8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b7d142b0-7924-48ac-91ee-713a4bd94826:
-    id: b7d142b0-7924-48ac-91ee-713a4bd94826
-    content: Context
-    children:
-      - 53d3d0b8-c38f-41d1-936f-0002bcf5611d
-      - bab7e310-4d94-4ba2-950c-0fc70d3dc5a7
-      - 7b679548-0ff3-48ed-b69a-7e3225c432da
-      - 5a24ebd2-6ab9-4c65-8d8e-76e88914cd84
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  53d3d0b8-c38f-41d1-936f-0002bcf5611d:
-    id: 53d3d0b8-c38f-41d1-936f-0002bcf5611d
-    content: Arborescent binds an AI terminal session to the tree node it is working on so AI output routes back to the right node.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bab7e310-4d94-4ba2-950c-0fc70d3dc5a7:
-    id: bab7e310-4d94-4ba2-950c-0fc70d3dc5a7
-    content: 'The same binding is reconstructed in two places: the main-process SessionBindingRegistry (authoritative for MCP consumers) and a brute-force renderer scan of node.metadata.sessionId (findNodeIdBySessionId).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b679548-0ff3-48ed-b69a-7e3225c432da:
-    id: 7b679548-0ff3-48ed-b69a-7e3225c432da
-    content: 'Two resolvers that can disagree are the shared root cause behind three user-visible failures: dangling binding on bound-node delete, submit desync, and session wedge.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a24ebd2-6ab9-4c65-8d8e-76e88914cd84:
-    id: 5a24ebd2-6ab9-4c65-8d8e-76e88914cd84
-    content: Recent commits already patched instances of the delete and desync bugs; this story retires the structural class, not the first-touch symptoms.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  31f36d83-c3de-4bf7-a524-8dadc579ee1b:
-    id: 31f36d83-c3de-4bf7-a524-8dadc579ee1b
-    content: User
-    children:
-      - ef0ebf0e-e12b-48b0-9379-828e68863247
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef0ebf0e-e12b-48b0-9379-828e68863247:
-    id: ef0ebf0e-e12b-48b0-9379-828e68863247
-    content: A person running an AI workflow in Arborescent who sends a node to a terminal and expects the AI's output to land back on that exact node — across deletes, multi-file, rebinds, and reloads.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f9574a2b-18bd-49f4-bba2-48367852781c:
-    id: f9574a2b-18bd-49f4-bba2-48367852781c
-    content: Current experience and why it is insufficient
-    children:
-      - a179dae3-cfb0-4e5c-9198-5a02e9fc83b4
-      - 148c488c-c41f-4216-b1af-d6c0a145aca8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a179dae3-cfb0-4e5c-9198-5a02e9fc83b4:
-    id: a179dae3-cfb0-4e5c-9198-5a02e9fc83b4
-    content: The renderer resolves bindings via its own scan rather than the authoritative registry, so the two can drift apart.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  148c488c-c41f-4216-b1af-d6c0a145aca8:
-    id: 148c488c-c41f-4216-b1af-d6c0a145aca8
-    content: When they drift, output silently lands on the wrong or a stale node, a deleted node leaves a dangling pointer, or a workflow wedges with no recoverable signal — each previously fixed only as a point patch.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8ad2cc98-133e-44d6-8f07-2725c17f0638:
-    id: 8ad2cc98-133e-44d6-8f07-2725c17f0638
-    content: Goal
-    children:
-      - a66fc389-a59f-489f-9b55-69551228964a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a66fc389-a59f-489f-9b55-69551228964a:
-    id: a66fc389-a59f-489f-9b55-69551228964a
-    content: AI output for a session always resolves through one authoritative resolver to that session's bound node, or fails loudly — never silently mis-routes, dangles, or wedges.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  29831271-f75d-4123-a9d5-cf39ec910473:
-    id: 29831271-f75d-4123-a9d5-cf39ec910473
-    content: Business rules
-    children:
-      - 4a9e5836-2f96-4621-bb54-47c9189b9624
-      - b4433d0f-dbcd-4415-8e9d-a3842f13c1bf
-      - 5d1a61af-191b-4a33-b4ef-cd3a448d9e0d
-      - d508ce83-85b1-4b2c-b923-7e6a20b8ed03
-      - 6c1075d0-7059-44c0-862b-bc7077d344b6
-      - 9ff84754-52d1-43b4-999b-c6b0e91620aa
-      - 30207e7f-2ee1-453e-8e0f-1a71b06b46d9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4a9e5836-2f96-4621-bb54-47c9189b9624:
-    id: 4a9e5836-2f96-4621-bb54-47c9189b9624
-    content: The main-process SessionBindingRegistry is the single source of truth for the session→node relationship; all callers must resolve through it.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4433d0f-dbcd-4415-8e9d-a3842f13c1bf:
-    id: b4433d0f-dbcd-4415-8e9d-a3842f13c1bf
-    content: The renderer must derive bindings from the registry over IPC and must not maintain a second, independently-computed resolver.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5d1a61af-191b-4a33-b4ef-cd3a448d9e0d:
-    id: 5d1a61af-191b-4a33-b4ef-cd3a448d9e0d
-    content: node.metadata.sessionId is retained solely as the persisted seed that hydrates the registry on file open and preserves legacy-file compatibility, never as a runtime resolver.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d508ce83-85b1-4b2c-b923-7e6a20b8ed03:
-    id: d508ce83-85b1-4b2c-b923-7e6a20b8ed03
-    content: When a session cannot be resolved to a live node, the system fails closed — it refuses the write and surfaces the condition rather than guessing or stalling silently.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c1075d0-7059-44c0-862b-bc7077d344b6:
-    id: 6c1075d0-7059-44c0-862b-bc7077d344b6
-    content: The existing rebind-confirmation gate is preserved; output does not follow a newly-bound node until the rebind is confirmed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ff84754-52d1-43b4-999b-c6b0e91620aa:
-    id: 9ff84754-52d1-43b4-999b-c6b0e91620aa
-    content: Resolution stays scoped to the session's own file so two open files sharing a node id never cross-route.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  30207e7f-2ee1-453e-8e0f-1a71b06b46d9:
-    id: 30207e7f-2ee1-453e-8e0f-1a71b06b46d9
-    content: Before any resolver is repointed or the scan is deleted, the existing binding and workflow-execution test suite must be audited and hardened so it covers the happy-path, multi-file, rebind, delete, desync, wedge, and reload behaviours and passes on today's code, establishing the regression net the refactor relies on.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  98c584a9-8d21-4bd3-93cc-636ac30765e8:
-    id: 98c584a9-8d21-4bd3-93cc-636ac30765e8
-    content: Acceptance criteria
-    children:
-      - 98843ad8-1861-4b11-b257-7e012f11f505
-      - 724d5046-5309-4b68-8d56-d267790fff05
-      - 227d0550-ff60-4634-8586-a4b2d567042b
-      - 60ea9e2e-7210-4363-bc1a-c0e5cae7e5a8
-      - 255295df-8c9c-4f6c-aa31-f5a115e6549f
-      - dad58d20-12bd-4608-8f2e-a322e3ee7234
-      - 9f29e778-1c07-42e3-b7a5-3c61abd825af
-      - e8a63158-21a7-4eb1-8804-240f2ae11e47
-      - 67a60bd9-7295-42ba-bb25-2d25e0939509
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  98843ad8-1861-4b11-b257-7e012f11f505:
-    id: 98843ad8-1861-4b11-b257-7e012f11f505
-    content: The current binding and workflow tests are confirmed to exercise the three bug scenarios and the happy/multi-file/rebind/reload paths and pass green on today's code, establishing a baseline before any refactor change lands.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  724d5046-5309-4b68-8d56-d267790fff05:
-    id: 724d5046-5309-4b68-8d56-d267790fff05
-    content: Any coverage gap in that baseline is closed with a characterization test before the corresponding code is touched, so a regression introduced by the refactor fails the suite rather than reaching users.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  227d0550-ff60-4634-8586-a4b2d567042b:
-    id: 227d0550-ff60-4634-8586-a4b2d567042b
-    content: Sending a node to a session and round-tripping AI output repeatedly lands on that same node with no drift.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  60ea9e2e-7210-4363-bc1a-c0e5cae7e5a8:
-    id: 60ea9e2e-7210-4363-bc1a-c0e5cae7e5a8
-    content: With two files open that share a node id, each session's output routes to the node in its own file, never the other's.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  255295df-8c9c-4f6c-aa31-f5a115e6549f:
-    id: 255295df-8c9c-4f6c-aa31-f5a115e6549f
-    content: Binding a session to a new node still triggers the existing rebind confirmation, and after confirmation every caller resolves to the new node.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dad58d20-12bd-4608-8f2e-a322e3ee7234:
-    id: dad58d20-12bd-4608-8f2e-a322e3ee7234
-    content: Deleting a bound node leaves no resolver pointing at the missing node, and a subsequent submit for that session fails closed without writing to a stale or absent node.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f29e778-1c07-42e3-b7a5-3c61abd825af:
-    id: 9f29e778-1c07-42e3-b7a5-3c61abd825af
-    content: For any given session the registry and the renderer return the same node — desync cannot occur by construction.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8a63158-21a7-4eb1-8804-240f2ae11e47:
-    id: e8a63158-21a7-4eb1-8804-240f2ae11e47
-    content: An unresolvable session surfaces a recoverable/broken-chain state to the user instead of stalling silently.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  67a60bd9-7295-42ba-bb25-2d25e0939509:
-    id: 67a60bd9-7295-42ba-bb25-2d25e0939509
-    content: Reopening a file reconstructs the binding from persisted metadata, or shows the broken-chain indicator when it cannot.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b78ecdb9-4c23-40a4-a851-b8ea7913ffe7:
-    id: b78ecdb9-4c23-40a4-a851-b8ea7913ffe7
-    content: 🔧 Implementation proposal
-    children:
-      - 0aa0ba4c-7605-40a5-89e4-f098435a9b07
-      - 8cf69e8d-2131-441f-aa60-e85fb2546cb5
-      - 219d0b75-99d0-4e3c-8ac2-c882ddc29247
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0aa0ba4c-7605-40a5-89e4-f098435a9b07:
-    id: 0aa0ba4c-7605-40a5-89e4-f098435a9b07
-    content: Approach
-    children:
-      - ce212829-0d02-4a35-b8f9-c03bc91353a5
-      - 6ab7b6d5-7929-46f6-bf78-2afb50b814f3
-      - 9d670193-ff58-40d4-a294-ba9133b86cca
-      - e3b8224a-867d-484a-816d-7fe91a85d13a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ce212829-0d02-4a35-b8f9-c03bc91353a5:
-    id: ce212829-0d02-4a35-b8f9-c03bc91353a5
-    content: Begin by hardening the existing binding/workflow test suite into a green regression baseline so any behavioural change introduced by the refactor is caught by a failing test.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ab7b6d5-7929-46f6-bf78-2afb50b814f3:
-    id: 6ab7b6d5-7929-46f6-bf78-2afb50b814f3
-    content: Treat the main-process SessionBindingRegistry as the canonical owner (it already exposes lookup and already backs the MCP submit/read/write tools).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d670193-ff58-40d4-a294-ba9133b86cca:
-    id: 9d670193-ff58-40d4-a294-ba9133b86cca
-    content: Expose registry.lookup to the renderer over a new IPC channel alongside the existing seed/clear/rebind bridges.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e3b8224a-867d-484a-816d-7fe91a85d13a:
-    id: e3b8224a-867d-484a-816d-7fe91a85d13a
-    content: Repoint findSessionBoundNodeForTerminal and reattachOriginNodeForResumedSession through the IPC resolver, then delete the redundant renderer scan findNodeIdBySessionId.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8cf69e8d-2131-441f-aa60-e85fb2546cb5:
-    id: 8cf69e8d-2131-441f-aa60-e85fb2546cb5
-    content: Touchpoints
-    children:
-      - 6ee3a4ef-add1-4a35-923e-9ba57874df22
-      - 2bd9dade-c308-4669-8f72-e48aa202d683
-      - 03e9ddb7-f92d-4cff-89c5-49876ee72a1b
-      - 6c69f53f-0b73-4a05-afc4-cfc8e65ce38b
-      - ba813af6-7a49-4c13-ac1b-7e8c210df606
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ee3a4ef-add1-4a35-923e-9ba57874df22:
-    id: 6ee3a4ef-add1-4a35-923e-9ba57874df22
-    content: Tests (first) — audit and harden the workflow execution, resume reconciliation, and submit-output suites into a green baseline; add a fail-closed-after-delete regression test and close any coverage gaps on the seven behaviours above.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2bd9dade-c308-4669-8f72-e48aa202d683:
-    id: 2bd9dade-c308-4669-8f72-e48aa202d683
-    content: Main services — sessionBindingRegistry.ts (expose a renderer-facing resolve) and seedBindingsIpcBridge.ts (extend).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  03e9ddb7-f92d-4cff-89c5-49876ee72a1b:
-    id: 03e9ddb7-f92d-4cff-89c5-49876ee72a1b
-    content: IPC/preload — add a resolveBinding(sessionId) channel; MCP tools stay untouched as they are already registry-backed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c69f53f-0b73-4a05-afc4-cfc8e65ce38b:
-    id: 6c69f53f-0b73-4a05-afc4-cfc8e65ce38b
-    content: 'Renderer store — workflowExecutionActions.ts: repoint the two scan callers and delete findNodeIdBySessionId.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba813af6-7a49-4c13-ac1b-7e8c210df606:
-    id: ba813af6-7a49-4c13-ac1b-7e8c210df606
-    content: Persistence — none; the .arbo format is unchanged and node.metadata.sessionId remains the persisted seed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  219d0b75-99d0-4e3c-8ac2-c882ddc29247:
-    id: 219d0b75-99d0-4e3c-8ac2-c882ddc29247
-    content: Constraints to call out
-    children:
-      - 49576be5-f1cd-4a3e-9520-c2f1d7b00c10
-      - ee343653-5227-4ca9-b326-dc038d90fe84
-      - 3b8cfc78-a4d8-4cff-98e1-7d1727593ca9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  49576be5-f1cd-4a3e-9520-c2f1d7b00c10:
-    id: 49576be5-f1cd-4a3e-9520-c2f1d7b00c10
-    content: node.metadata.sessionId cannot be retired — it is the durable seed and legacy-file compat surface (extractSessionBindings dedups legacy multi-stamps); demote it from resolver to seed only.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ee343653-5227-4ca9-b326-dc038d90fe84:
-    id: ee343653-5227-4ca9-b326-dc038d90fe84
-    content: 'Ordering is load-bearing: harden the regression net first, then ship the registry-backed renderer resolver, and only then delete the scan, since reattachOriginNodeForResumedSession currently relies on the scan as a resume fallback.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b8cfc78-a4d8-4cff-98e1-7d1727593ca9:
-    id: 3b8cfc78-a4d8-4cff-98e1-7d1727593ca9
-    content: Main and renderer are separate processes; the single source of truth is one authoritative owner plus an IPC sync protocol, not one shared in-memory object.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7599da69-75ca-4931-abda-70a7db940959:
-    id: 7599da69-75ca-4931-abda-70a7db940959
-    content: Chunking decision — split into a precondition plus 2 PRs, by relation not by feature flag
-    children:
-      - dcf09393-bd9a-4b38-8782-f2cda74d81dd
-      - 3ab5f05e-2735-4dfd-acdf-9c85aa20b3bb
-      - 3c0a67eb-8063-4929-8daf-3860b2379c94
-      - e88a09b8-4191-4087-93c6-b5b2796aba1a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dcf09393-bd9a-4b38-8782-f2cda74d81dd:
-    id: dcf09393-bd9a-4b38-8782-f2cda74d81dd
-    content: PR0 (precondition) — audit and harden the existing binding/workflow tests into a green regression baseline and close coverage gaps before any production code changes.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ab5f05e-2735-4dfd-acdf-9c85aa20b3bb:
-    id: 3ab5f05e-2735-4dfd-acdf-9c85aa20b3bb
-    content: PR1 (the structural win) — add the resolver IPC, repoint the two callers, and delete the scan; small, mechanical, fully testable against the baseline established in PR0.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c0a67eb-8063-4929-8daf-3860b2379c94:
-    id: 3c0a67eb-8063-4929-8daf-3860b2379c94
-    content: PR2 (user-facing recovery) — broken-chain indicator and fail-closed surfacing for unresolvable sessions and reload, reviewed separately because it touches recovery UX rather than resolver plumbing.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e88a09b8-4191-4087-93c6-b5b2796aba1a:
-    id: e88a09b8-4191-4087-93c6-b5b2796aba1a
-    content: A feature flag is rejected — the goal is deleting a duplicate resolver, and a flag would preserve the very duplication being removed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  30a5366f-1995-4555-a19f-3c24601e8454:
-    id: 30a5366f-1995-4555-a19f-3c24601e8454
-    content: Challenge — review findings
-    children:
-      - ea60247a-4828-4a25-a232-c58a16df194b
-      - 6ec78d71-0d3a-4ae3-9c06-40c660b85d11
-      - f0bb2d8e-33a7-477d-9632-c94f38a51392
-      - 032fea39-0b5a-485e-91c2-8a19998f6361
-      - bdb05941-cccf-4589-b809-d1c1f8c73ed3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ea60247a-4828-4a25-a232-c58a16df194b:
-    id: ea60247a-4828-4a25-a232-c58a16df194b
-    content: 'ROI is positive: deleting findNodeIdBySessionId removes the only resolver that can drift from the registry, retiring the whole desync class for a small, low-risk diff.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ec78d71-0d3a-4ae3-9c06-40c660b85d11:
-    id: 6ec78d71-0d3a-4ae3-9c06-40c660b85d11
-    content: 'Over-engineering trap to avoid: do not fold workflowSessionMap (session→terminal) and terminalNodeAssignments (terminal→node, send gate) into one binding store — they answer routing/gating questions, and merging them produces a god-object that re-couples what this work removes.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0bb2d8e-33a7-477d-9632-c94f38a51392:
-    id: f0bb2d8e-33a7-477d-9632-c94f38a51392
-    content: 'Scope to reject: no .arbo format change, no rebind-UX rework, no MCP-tool changes — the "ONE store" framing overreaches; the actual win is one resolver and one persisted seed.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  032fea39-0b5a-485e-91c2-8a19998f6361:
-    id: 032fea39-0b5a-485e-91c2-8a19998f6361
-    content: The prior point patches lower urgency but not value — while the scan exists, any future code path can pick the weak resolver and silently reopen the desync; deleting it makes the canonical path the only path.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bdb05941-cccf-4589-b809-d1c1f8c73ed3:
-    id: bdb05941-cccf-4589-b809-d1c1f8c73ed3
-    content: No new delete-path work is needed beyond a regression test — releaseSessionBindings already fires on the bound-node delete and clipboard paths; verify, do not re-fix.
     children: []
     metadata:
       status: pending
@@ -180988,6 +180413,701 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e06a7690-7d82-4f36-8d21-078709f0eb6f:
+    id: e06a7690-7d82-4f36-8d21-078709f0eb6f
+    content: 📄 Product spec
+    children:
+      - a7b74603-f7ba-47bc-8407-3d7ad578912a
+      - c2811232-9720-4c55-84f4-d0cedec25703
+      - 19459c26-6f5c-416c-af5d-6be43ea58faa
+      - c0010840-84bb-4d70-8453-6fdcb77ca0c2
+      - d604c865-d614-4938-a88d-d70dfe1531da
+      - 2318ba52-e924-4536-adcf-dfeaf271ba6d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7b74603-f7ba-47bc-8407-3d7ad578912a:
+    id: a7b74603-f7ba-47bc-8407-3d7ad578912a
+    content: Context
+    children:
+      - 4fef6838-bd6c-4d53-8a76-e3fa6c42a580
+      - 61fc34e7-e5f0-4967-a9c6-58395b71378b
+      - cc0f5187-83e8-4bce-b10e-feb6d79c0514
+      - a8814c83-e250-4135-abb8-9f4b129f29b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fef6838-bd6c-4d53-8a76-e3fa6c42a580:
+    id: 4fef6838-bd6c-4d53-8a76-e3fa6c42a580
+    content: Arborescent binds an AI terminal session to the tree node it is working on so AI output routes back to the right node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61fc34e7-e5f0-4967-a9c6-58395b71378b:
+    id: 61fc34e7-e5f0-4967-a9c6-58395b71378b
+    content: 'The same binding is reconstructed in two places: the main-process SessionBindingRegistry (authoritative for MCP consumers) and a brute-force renderer scan of node.metadata.sessionId (findNodeIdBySessionId).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc0f5187-83e8-4bce-b10e-feb6d79c0514:
+    id: cc0f5187-83e8-4bce-b10e-feb6d79c0514
+    content: 'Two resolvers that can disagree are the shared root cause behind three user-visible failures: dangling binding on bound-node delete, submit desync, and session wedge.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8814c83-e250-4135-abb8-9f4b129f29b9:
+    id: a8814c83-e250-4135-abb8-9f4b129f29b9
+    content: Recent commits already patched instances of the delete and desync bugs; this story retires the structural class, not the first-touch symptoms.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2811232-9720-4c55-84f4-d0cedec25703:
+    id: c2811232-9720-4c55-84f4-d0cedec25703
+    content: User
+    children:
+      - 803c5851-c09f-43a5-b91a-d302c173ec96
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  803c5851-c09f-43a5-b91a-d302c173ec96:
+    id: 803c5851-c09f-43a5-b91a-d302c173ec96
+    content: A person running an AI workflow in Arborescent who sends a node to a terminal and expects the AI's output to land back on that exact node — across deletes, multi-file, rebinds, and reloads.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19459c26-6f5c-416c-af5d-6be43ea58faa:
+    id: 19459c26-6f5c-416c-af5d-6be43ea58faa
+    content: Current experience and why it is insufficient
+    children:
+      - 84bc49ee-5e06-46c0-843a-df10bd7056ab
+      - d595e4a4-21a2-4d3c-9d8b-649931690a88
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84bc49ee-5e06-46c0-843a-df10bd7056ab:
+    id: 84bc49ee-5e06-46c0-843a-df10bd7056ab
+    content: The renderer resolves bindings via its own scan rather than the authoritative registry, so the two can drift apart.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d595e4a4-21a2-4d3c-9d8b-649931690a88:
+    id: d595e4a4-21a2-4d3c-9d8b-649931690a88
+    content: When they drift, output silently lands on the wrong or a stale node, a deleted node leaves a dangling pointer, or a workflow wedges with no recoverable signal — each previously fixed only as a point patch.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0010840-84bb-4d70-8453-6fdcb77ca0c2:
+    id: c0010840-84bb-4d70-8453-6fdcb77ca0c2
+    content: Goal
+    children:
+      - 19af74a1-1b52-474d-b6b4-83a5dd5aa191
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19af74a1-1b52-474d-b6b4-83a5dd5aa191:
+    id: 19af74a1-1b52-474d-b6b4-83a5dd5aa191
+    content: AI output for a session always resolves through one authoritative resolver to that session's bound node, or fails loudly — never silently mis-routes, dangles, or wedges.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d604c865-d614-4938-a88d-d70dfe1531da:
+    id: d604c865-d614-4938-a88d-d70dfe1531da
+    content: Business rules
+    children:
+      - 7c8190b3-76b4-4e3b-83e1-73bd5b407904
+      - 87ba445d-2b7e-4f22-89cd-ee41556c7bb7
+      - beaa6cbc-6042-4ea3-bdeb-76f3b3c950d9
+      - 7baa5830-48ea-4191-8f05-fc778193d070
+      - a2a5eb4a-6cd7-4d54-8ed8-fb412b899dcd
+      - cb82714a-b805-445f-bd2c-6f4ff0fbafd0
+      - ee8f2189-63ed-4f22-b37f-8cc7721b6774
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c8190b3-76b4-4e3b-83e1-73bd5b407904:
+    id: 7c8190b3-76b4-4e3b-83e1-73bd5b407904
+    content: The main-process SessionBindingRegistry is the single source of truth for the session→node relationship; all callers must resolve through it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87ba445d-2b7e-4f22-89cd-ee41556c7bb7:
+    id: 87ba445d-2b7e-4f22-89cd-ee41556c7bb7
+    content: The renderer must derive bindings from the registry over IPC and must not maintain a second, independently-computed resolver.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  beaa6cbc-6042-4ea3-bdeb-76f3b3c950d9:
+    id: beaa6cbc-6042-4ea3-bdeb-76f3b3c950d9
+    content: node.metadata.sessionId is retained solely as the persisted seed that hydrates the registry on file open and preserves legacy-file compatibility, never as a runtime resolver.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7baa5830-48ea-4191-8f05-fc778193d070:
+    id: 7baa5830-48ea-4191-8f05-fc778193d070
+    content: When a session cannot be resolved to a live node, the system fails closed — it refuses the write and surfaces the condition rather than guessing or stalling silently.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2a5eb4a-6cd7-4d54-8ed8-fb412b899dcd:
+    id: a2a5eb4a-6cd7-4d54-8ed8-fb412b899dcd
+    content: The existing rebind-confirmation gate is preserved; output does not follow a newly-bound node until the rebind is confirmed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb82714a-b805-445f-bd2c-6f4ff0fbafd0:
+    id: cb82714a-b805-445f-bd2c-6f4ff0fbafd0
+    content: Resolution stays scoped to the session's own file so two open files sharing a node id never cross-route.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee8f2189-63ed-4f22-b37f-8cc7721b6774:
+    id: ee8f2189-63ed-4f22-b37f-8cc7721b6774
+    content: Before any resolver is repointed or the scan is deleted, the existing binding and workflow-execution test suite must be audited and hardened so it covers the happy-path, multi-file, rebind, delete, desync, wedge, and reload behaviours and passes on today's code, establishing the regression net the refactor relies on.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2318ba52-e924-4536-adcf-dfeaf271ba6d:
+    id: 2318ba52-e924-4536-adcf-dfeaf271ba6d
+    content: Acceptance criteria
+    children:
+      - d164de0c-183c-4855-b74b-4502284e3888
+      - 00ad46a9-de9d-4db9-9abb-826cee6728ab
+      - 8a140cd1-7d86-44cb-8e1c-72f392868cb9
+      - e18c3ed8-a65b-42a7-af5f-8eb972167ad3
+      - ec1f0253-e4eb-4a7a-be7f-0714e031124b
+      - a858ec84-6e69-4681-acd1-253b3f65d08c
+      - ec82cc38-1f04-4852-8a51-40b26b2bc1e5
+      - 9b47f066-990a-4a73-ac28-6828dfc4d6bb
+      - fd2b99c0-0b99-4f53-919c-0c30973a956e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d164de0c-183c-4855-b74b-4502284e3888:
+    id: d164de0c-183c-4855-b74b-4502284e3888
+    content: The current binding and workflow tests are confirmed to exercise the three bug scenarios and the happy/multi-file/rebind/reload paths and pass green on today's code, establishing a baseline before any refactor change lands.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00ad46a9-de9d-4db9-9abb-826cee6728ab:
+    id: 00ad46a9-de9d-4db9-9abb-826cee6728ab
+    content: Any coverage gap in that baseline is closed with a characterization test before the corresponding code is touched, so a regression introduced by the refactor fails the suite rather than reaching users.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a140cd1-7d86-44cb-8e1c-72f392868cb9:
+    id: 8a140cd1-7d86-44cb-8e1c-72f392868cb9
+    content: Sending a node to a session and round-tripping AI output repeatedly lands on that same node with no drift.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e18c3ed8-a65b-42a7-af5f-8eb972167ad3:
+    id: e18c3ed8-a65b-42a7-af5f-8eb972167ad3
+    content: With two files open that share a node id, each session's output routes to the node in its own file, never the other's.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec1f0253-e4eb-4a7a-be7f-0714e031124b:
+    id: ec1f0253-e4eb-4a7a-be7f-0714e031124b
+    content: Binding a session to a new node still triggers the existing rebind confirmation, and after confirmation every caller resolves to the new node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a858ec84-6e69-4681-acd1-253b3f65d08c:
+    id: a858ec84-6e69-4681-acd1-253b3f65d08c
+    content: Deleting a bound node leaves no resolver pointing at the missing node, and a subsequent submit for that session fails closed without writing to a stale or absent node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec82cc38-1f04-4852-8a51-40b26b2bc1e5:
+    id: ec82cc38-1f04-4852-8a51-40b26b2bc1e5
+    content: For any given session the registry and the renderer return the same node — desync cannot occur by construction.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b47f066-990a-4a73-ac28-6828dfc4d6bb:
+    id: 9b47f066-990a-4a73-ac28-6828dfc4d6bb
+    content: An unresolvable session surfaces a recoverable/broken-chain state to the user instead of stalling silently.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd2b99c0-0b99-4f53-919c-0c30973a956e:
+    id: fd2b99c0-0b99-4f53-919c-0c30973a956e
+    content: Reopening a file reconstructs the binding from persisted metadata, or shows the broken-chain indicator when it cannot.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  633d1493-7b06-4774-b94e-8ec2c834727c:
+    id: 633d1493-7b06-4774-b94e-8ec2c834727c
+    content: 🔧 Implementation proposal
+    children:
+      - d4a1db3b-e67f-4b55-8a6c-c1e0715eac28
+      - 64c8144c-5af6-4d5e-8351-426659f858e4
+      - 5b4b8e50-5baf-403c-a51d-2c8a72b3f1ab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4a1db3b-e67f-4b55-8a6c-c1e0715eac28:
+    id: d4a1db3b-e67f-4b55-8a6c-c1e0715eac28
+    content: Approach
+    children:
+      - dde61433-3049-4196-a6f2-ceac28f52470
+      - 4e44523b-0cd4-4bb2-85cc-81b92c520a9f
+      - a22eca13-aff1-407d-9d74-6f62734908a8
+      - ad459746-08e3-4c58-b8ad-ba2e2a857ec3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dde61433-3049-4196-a6f2-ceac28f52470:
+    id: dde61433-3049-4196-a6f2-ceac28f52470
+    content: Begin by hardening the existing binding/workflow test suite into a green regression baseline so any behavioural change introduced by the refactor is caught by a failing test.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e44523b-0cd4-4bb2-85cc-81b92c520a9f:
+    id: 4e44523b-0cd4-4bb2-85cc-81b92c520a9f
+    content: Treat the main-process SessionBindingRegistry as the canonical owner (it already exposes lookup and already backs the MCP submit/read/write tools).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a22eca13-aff1-407d-9d74-6f62734908a8:
+    id: a22eca13-aff1-407d-9d74-6f62734908a8
+    content: Expose registry.lookup to the renderer over a new IPC channel alongside the existing seed/clear/rebind bridges.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad459746-08e3-4c58-b8ad-ba2e2a857ec3:
+    id: ad459746-08e3-4c58-b8ad-ba2e2a857ec3
+    content: Repoint findSessionBoundNodeForTerminal and reattachOriginNodeForResumedSession through the IPC resolver, then delete the redundant renderer scan findNodeIdBySessionId.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64c8144c-5af6-4d5e-8351-426659f858e4:
+    id: 64c8144c-5af6-4d5e-8351-426659f858e4
+    content: Touchpoints
+    children:
+      - f563efde-2d53-422d-b9a9-f0056e461921
+      - 3e596085-580d-4f8c-8325-c069d594962b
+      - 7bcc6617-d18e-4532-84a8-289e2808c358
+      - c88361df-f8e8-41ea-838e-9cc63987f470
+      - b2295ddc-e61d-4a4f-8bb1-7daa33196ab6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f563efde-2d53-422d-b9a9-f0056e461921:
+    id: f563efde-2d53-422d-b9a9-f0056e461921
+    content: Tests (first) — audit and harden the workflow execution, resume reconciliation, and submit-output suites into a green baseline; add a fail-closed-after-delete regression test and close any coverage gaps on the seven behaviours above.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e596085-580d-4f8c-8325-c069d594962b:
+    id: 3e596085-580d-4f8c-8325-c069d594962b
+    content: Main services — sessionBindingRegistry.ts (expose a renderer-facing resolve) and seedBindingsIpcBridge.ts (extend).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bcc6617-d18e-4532-84a8-289e2808c358:
+    id: 7bcc6617-d18e-4532-84a8-289e2808c358
+    content: IPC/preload — add a resolveBinding(sessionId) channel; MCP tools stay untouched as they are already registry-backed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c88361df-f8e8-41ea-838e-9cc63987f470:
+    id: c88361df-f8e8-41ea-838e-9cc63987f470
+    content: 'Renderer store — workflowExecutionActions.ts: repoint the two scan callers and delete findNodeIdBySessionId.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2295ddc-e61d-4a4f-8bb1-7daa33196ab6:
+    id: b2295ddc-e61d-4a4f-8bb1-7daa33196ab6
+    content: Persistence — none; the .arbo format is unchanged and node.metadata.sessionId remains the persisted seed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b4b8e50-5baf-403c-a51d-2c8a72b3f1ab:
+    id: 5b4b8e50-5baf-403c-a51d-2c8a72b3f1ab
+    content: Constraints to call out
+    children:
+      - 8a81e5b2-d6e5-41d6-abe7-9322efa66dce
+      - f9fd1724-28b7-42a0-b887-87f5aa711a5e
+      - e905893c-241e-4379-8035-3c63773fac52
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a81e5b2-d6e5-41d6-abe7-9322efa66dce:
+    id: 8a81e5b2-d6e5-41d6-abe7-9322efa66dce
+    content: node.metadata.sessionId cannot be retired — it is the durable seed and legacy-file compat surface (extractSessionBindings dedups legacy multi-stamps); demote it from resolver to seed only.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9fd1724-28b7-42a0-b887-87f5aa711a5e:
+    id: f9fd1724-28b7-42a0-b887-87f5aa711a5e
+    content: 'Ordering is load-bearing: harden the regression net first, then ship the registry-backed renderer resolver, and only then delete the scan, since reattachOriginNodeForResumedSession currently relies on the scan as a resume fallback.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e905893c-241e-4379-8035-3c63773fac52:
+    id: e905893c-241e-4379-8035-3c63773fac52
+    content: Main and renderer are separate processes; the single source of truth is one authoritative owner plus an IPC sync protocol, not one shared in-memory object.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac2daac3-c434-479f-b8c9-2fbf5aa44b92:
+    id: ac2daac3-c434-479f-b8c9-2fbf5aa44b92
+    content: Chunking decision — split into a precondition plus 2 PRs, by relation not by feature flag
+    children:
+      - 440625de-696e-461d-b2ea-e912b5799fbc
+      - abe91eaa-e00f-426e-9fee-ac0db7014155
+      - 20847909-21bb-4be7-9c63-b092600efb11
+      - 962c8878-6e93-451d-b2b1-d6a350dc3618
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  440625de-696e-461d-b2ea-e912b5799fbc:
+    id: 440625de-696e-461d-b2ea-e912b5799fbc
+    content: PR0 (precondition) — audit and harden the existing binding/workflow tests into a green regression baseline and close coverage gaps before any production code changes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abe91eaa-e00f-426e-9fee-ac0db7014155:
+    id: abe91eaa-e00f-426e-9fee-ac0db7014155
+    content: PR1 (the structural win) — add the resolver IPC, repoint the two callers, and delete the scan; small, mechanical, fully testable against the baseline established in PR0.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20847909-21bb-4be7-9c63-b092600efb11:
+    id: 20847909-21bb-4be7-9c63-b092600efb11
+    content: PR2 (user-facing recovery) — broken-chain indicator and fail-closed surfacing for unresolvable sessions and reload, reviewed separately because it touches recovery UX rather than resolver plumbing.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  962c8878-6e93-451d-b2b1-d6a350dc3618:
+    id: 962c8878-6e93-451d-b2b1-d6a350dc3618
+    content: A feature flag is rejected — the goal is deleting a duplicate resolver, and a flag would preserve the very duplication being removed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68b6c1b3-54c5-429b-8e06-9f09268e5a9c:
+    id: 68b6c1b3-54c5-429b-8e06-9f09268e5a9c
+    content: Challenge — review findings
+    children:
+      - b181bf3e-aff2-4b83-98ef-d57ab63c87c3
+      - c8fa6954-7a77-4546-8c17-8d829e0e9d38
+      - e79404dd-3558-4765-b208-50b6bae258f9
+      - a56cf106-fbc2-4676-89ef-32982c0a207f
+      - d00a42b1-a3f6-4d21-99c8-729f518630ab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b181bf3e-aff2-4b83-98ef-d57ab63c87c3:
+    id: b181bf3e-aff2-4b83-98ef-d57ab63c87c3
+    content: 'ROI is positive: deleting findNodeIdBySessionId removes the only resolver that can drift from the registry, retiring the whole desync class for a small, low-risk diff.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8fa6954-7a77-4546-8c17-8d829e0e9d38:
+    id: c8fa6954-7a77-4546-8c17-8d829e0e9d38
+    content: 'Over-engineering trap to avoid: do not fold workflowSessionMap (session→terminal) and terminalNodeAssignments (terminal→node, send gate) into one binding store — they answer routing/gating questions, and merging them produces a god-object that re-couples what this work removes.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e79404dd-3558-4765-b208-50b6bae258f9:
+    id: e79404dd-3558-4765-b208-50b6bae258f9
+    content: 'Scope to reject: no .arbo format change, no rebind-UX rework, no MCP-tool changes — the "ONE store" framing overreaches; the actual win is one resolver and one persisted seed.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a56cf106-fbc2-4676-89ef-32982c0a207f:
+    id: a56cf106-fbc2-4676-89ef-32982c0a207f
+    content: The prior point patches lower urgency but not value — while the scan exists, any future code path can pick the weak resolver and silently reopen the desync; deleting it makes the canonical path the only path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d00a42b1-a3f6-4d21-99c8-729f518630ab:
+    id: d00a42b1-a3f6-4d21-99c8-729f518630ab
+    content: No new delete-path work is needed beyond a regression test — releaseSessionBindings already fires on the bound-node delete and clipboard paths; verify, do not re-fix.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3c9b03d-1d18-4b86-88d9-db9a597631c0:
+    id: c3c9b03d-1d18-4b86-88d9-db9a597631c0
+    content: Technical refinement
+    children:
+      - 86cded2d-55f1-4980-b1be-10a234392b04
+      - 44d5ca62-518e-488a-8f96-c3c70190f7fb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86cded2d-55f1-4980-b1be-10a234392b04:
+    id: 86cded2d-55f1-4980-b1be-10a234392b04
+    content: Complications
+    children:
+      - 652efb86-3eb0-4421-af8f-5ad1cbd9d1d5
+      - ae222002-68d3-4c16-84e2-fa60288ea7bc
+      - e15eea69-5ebf-4103-a63e-e1bc6a11d51b
+      - 219e08fc-165b-4d6f-a147-8c30825cabd0
+      - ab1ce653-f68a-4d0e-934b-a5aee27736aa
+      - 0bf38cfc-dc7f-4bc1-98c0-e7cb733da186
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  652efb86-3eb0-4421-af8f-5ad1cbd9d1d5:
+    id: 652efb86-3eb0-4421-af8f-5ad1cbd9d1d5
+    content: 'Sync-to-async cascade: the renderer resolvers and their call sites (findSessionBoundNodeForTerminal in startWorkflowOnTerminal, findRunningNodeOnTerminal, reattachOriginNodeForResumedSession in registerSession) are all synchronous today, and there is no async binding IPC in the renderer — replacing the in-memory scan with a registry lookup over IPC turns resolution async and cascades up the synchronous send/preflight path.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae222002-68d3-4c16-84e2-fa60288ea7bc:
+    id: ae222002-68d3-4c16-84e2-fa60288ea7bc
+    content: 'Mirror risk: if those call sites cannot go async, the likely fallback is a renderer-side cached copy of the registry kept in sync via the rebind event — which re-introduces the very second resolver this work deletes unless it is strictly a push-synced, read-only mirror with no independent computation.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e15eea69-5ebf-4103-a63e-e1bc6a11d51b:
+    id: e15eea69-5ebf-4103-a63e-e1bc6a11d51b
+    content: 'File-scoping is not in the registry: the registry is keyed by sessionId alone (Map<sessionId,nodeId>), and which file a session belongs to is resolved renderer-side by findStoreOwningSession scanning each store''s workflowSessionMap — so workflowSessionMap is load-bearing for file disambiguation, not a disposable index, and resolve-by-session still depends on it.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  219e08fc-165b-4d6f-a147-8c30825cabd0:
+    id: 219e08fc-165b-4d6f-a147-8c30825cabd0
+    content: 'Seeding race on file open: the registry is hydrated from metadata via IPC after a file opens, so a resolve that races ahead of seeding returns a miss — the fail-closed path must distinguish "not yet seeded" from "genuinely unbound" or it will flash a false broken-chain on freshly opened files.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab1ce653-f68a-4d0e-934b-a5aee27736aa:
+    id: ab1ce653-f68a-4d0e-934b-a5aee27736aa
+    content: 'Out of scope (unchanged): workflowSessionMap and terminalNodeAssignments are retained, no .arbo format change, no rebind-UX rework, and MCP read/write/submit tools stay untouched.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bf38cfc-dc7f-4bc1-98c0-e7cb733da186:
+    id: 0bf38cfc-dc7f-4bc1-98c0-e7cb733da186
+    content: 'ROI caveat: if the synchronous call sites cannot tolerate async resolution and force a cached mirror, the net duplication removed shrinks toward zero — confirm the call sites can go async (or accept a read-only push-synced mirror) before committing; otherwise the cheaper move is to keep the scan but make it defer to the registry.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  44d5ca62-518e-488a-8f96-c3c70190f7fb:
+    id: 44d5ca62-518e-488a-8f96-c3c70190f7fb
+    content: Approach summary
+    children:
+      - 37dda5f7-81a4-46c6-a0a1-98578191fe4d
+      - 33ec006c-8d00-4610-b235-12072a1eb1b9
+      - e810ebe6-073c-4c48-9402-36bea9752ad9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37dda5f7-81a4-46c6-a0a1-98578191fe4d:
+    id: 37dda5f7-81a4-46c6-a0a1-98578191fe4d
+    content: The canonical owner already exists — the main-process SessionBindingRegistry (sessionId→nodeId), which already backs the MCP tools; the work exposes its lookup to the renderer over a new IPC channel, repoints the two renderer resolvers through it, and deletes findNodeIdBySessionId, with node.metadata.sessionId kept only as the persisted seed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33ec006c-8d00-4610-b235-12072a1eb1b9:
+    id: 33ec006c-8d00-4610-b235-12072a1eb1b9
+    content: The non-obvious decisions for the reviewer are (a) the renderer scan is synchronous, so going through main is a sync-to-async change or a push-synced read-only mirror, and (b) the registry is keyed by sessionId alone while file-scoping lives in the renderer's findStoreOwningSession/workflowSessionMap, which must stay correct.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e810ebe6-073c-4c48-9402-36bea9752ad9:
+    id: e810ebe6-073c-4c48-9402-36bea9752ad9
+    content: Changes land narrowly in sessionBindingRegistry.ts plus a new resolve IPC channel and workflowExecutionActions.ts (delete the scan); the MCP tools and the .arbo format are not touched.
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}
