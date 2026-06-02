@@ -133,6 +133,7 @@ describe('clipboardActions', () => {
     multiSelectedNodeIds: Set<string>;
     currentFilePath: string | null;
     blueprintModeEnabled: boolean;
+    workflowSessionMap?: Record<string, string>;
   };
 
   // Helper to check if a node is marked as cut via transient metadata
@@ -747,6 +748,29 @@ describe('clipboardActions', () => {
           expect.arrayContaining(['node-1', 'node-2']),
           expect.any(Function)
         );
+      });
+
+      it('releases session bindings for every deleted node and descendant', () => {
+        vi.mocked(window.electron.clearSessionBindings).mockResolvedValue(undefined);
+        state.nodes['node-1'].metadata = { sessionId: 'sess-1' };
+        state.nodes['node-3'].metadata = { sessionId: 'sess-3' };
+        state.nodes['node-2'].metadata = { sessionId: 'sess-2' };
+        state.workflowSessionMap = {
+          'sess-1': 't1',
+          'sess-2': 't2',
+          'sess-3': 't3',
+          'sess-keep': 't4',
+        };
+        state.multiSelectedNodeIds = new Set(['node-1', 'node-2']);
+
+        actions.deleteSelectedNodes();
+
+        const cleared = vi
+          .mocked(window.electron.clearSessionBindings)
+          .mock.calls.flatMap((call) => [...(call[0] as string[])])
+          .sort();
+        expect(cleared).toEqual(['sess-1', 'sess-2', 'sess-3']);
+        expect(state.workflowSessionMap).toEqual({ 'sess-keep': 't4' });
       });
     });
   });

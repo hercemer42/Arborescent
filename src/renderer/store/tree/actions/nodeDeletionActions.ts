@@ -9,6 +9,7 @@ import { DeleteNodeCommand } from '../commands/DeleteNodeCommand';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { captureStepDeletions, notifyDeletionDisruption } from './workflowDisruption';
+import { collectBoundSessionIds, releaseSessionBindings } from './sessionBindingCleanup';
 
 export interface NodeDeletionActions {
   deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
@@ -21,6 +22,7 @@ type StoreState = {
   activeNodeId: string | null;
   cursorPosition: number;
   collaboratingNodeId: string | null;
+  workflowSessionMap?: Record<string, string>;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
@@ -87,6 +89,7 @@ export const createNodeDeletionActions = (
     }
 
     const descendantIds = getNodeAndDescendantIds([nodeId], nodes);
+    const releasedSessionIds = collectBoundSessionIds(descendantIds, nodes);
     const stepDeletions = captureStepDeletions([nodeId], state);
 
     const command = new DeleteNodeCommand(
@@ -106,6 +109,8 @@ export const createNodeDeletionActions = (
     state.actions.executeCommand(command);
 
     notifyDeletionDisruption(get, descendantIds, stepDeletions);
+
+    releaseSessionBindings(releasedSessionIds, get, set);
 
     return true;
   }

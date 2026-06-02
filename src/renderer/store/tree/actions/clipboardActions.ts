@@ -32,6 +32,7 @@ import { AncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { storeManager } from '../../storeManager';
 import { captureStepDeletions, notifyDeletionDisruption } from './workflowDisruption';
+import { collectBoundSessionIds, releaseSessionBindings } from './sessionBindingCleanup';
 
 export interface ClipboardActions {
   cutNodes: () => Promise<'cut' | 'no-selection'>;
@@ -51,6 +52,7 @@ type StoreState = {
   multiSelectedNodeIds: Set<string>;
   currentFilePath: string | null;
   blueprintModeEnabled: boolean;
+  workflowSessionMap?: Record<string, string>;
 };
 
 type StoreActions = {
@@ -114,6 +116,7 @@ export const createClipboardActions = (
       const currentState = get();
 
       const allDeletedIds = getNodeAndDescendantIds(nodeIds, currentState.nodes);
+      const releasedSessionIds = collectBoundSessionIds(allDeletedIds, currentState.nodes);
       const stepDeletions = captureStepDeletions(nodeIds, currentState);
 
       const command = new DeleteMultipleNodesCommand(
@@ -130,6 +133,8 @@ export const createClipboardActions = (
       actions.executeCommand(command);
 
       notifyDeletionDisruption(get, allDeletedIds, stepDeletions);
+
+      releaseSessionBindings(releasedSessionIds, get, set);
     });
   }
 
