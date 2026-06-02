@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-02T18:46:09.477Z'
+updated: '2026-06-02T20:21:07.027Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23709,7 +23709,7 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
+      - f8357f01-bfb5-436e-9a7d-3310ff67c22c
     metadata:
       status: pending
       isBlueprint: true
@@ -80787,6 +80787,12 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - f279d03c-b14a-4568-b56a-2ea5b6f6cc1d
+      - dee03dac-d4a0-4977-9c2f-4a714d56b618
+      - 85dde574-3fee-450e-b4bc-36588f9bcf45
+      - 748bd1b2-f196-4f26-95c0-1a46974254dc
+      - c2a2f129-6b9d-4028-8c31-f516ed6b7e4e
+      - 0f4148c3-4015-4a45-8969-2a534c9e5848
       - 100b2256-04ef-4f1c-9498-8d5b39860fbe
       - e353e6df-5cc7-40af-9e7b-a9da29963cd2
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
@@ -115508,6 +115514,7 @@ nodes:
       - da423e73-81ff-4c46-8cdb-4c8c9357ecdc
       - 19472555-f967-45b7-a4dc-3bb2d56e2c09
       - 236ca1e3-a932-4861-b9f7-142c5ca6ab82
+      - 73c0b75b-0e06-4e82-9f82-205f45601fca
     metadata:
       status: pending
       isBlueprint: true
@@ -124614,7 +124621,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 73c0b75b-0e06-4e82-9f82-205f45601fca
+      - e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
     metadata:
       status: pending
       isBlueprint: true
@@ -178838,180 +178845,34 @@ nodes:
       - 576cb75f-9dfb-4deb-acb5-f201803f49f1
       - f035b6b0-c733-4b1e-aa54-5b79ed03dbcd
     metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  e8ecac4a-58e3-49af-beb4-1e9d217bfc6c:
+    id: e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
+    content: Ticket B - a target marker silently fails to register unless it is the first bytes of the prompt
+    children:
+      - 70b960ef-7e89-401b-b976-fc7cf1f9cbec
+      - feec11d0-604e-43ad-9dcd-6c7403cadb70
+      - e215fc72-9683-4646-ae72-5e116a59b636
+      - 3c389440-e1e4-4b2e-a8f7-f6887f3aa801
+      - 8808d10f-4b0b-4cf3-89b8-358aec65a08b
+      - 0ee4b705-8833-4c19-ae38-7a0877303b2c
+      - f94ab366-ea89-4299-ab2e-35647689116c
+      - a379a6df-fa2a-455d-b03a-e629849b022d
+      - c74abc15-bce0-40bd-8b17-dc4f3e3f826b
+      - cace8b10-5ccb-4514-81ac-16a3537c00e2
+      - 9a3121ba-375f-4e0d-a654-32c6970e4ed2
+      - d4a056fb-1450-4f5c-9e8d-927b831d9699
+      - b0a956e7-bbe0-4452-b83d-789b00836a3f
+      - 95abd2b7-aed6-477c-ac5a-3a667ae6aa85
+    metadata:
       status: pending
       expanded: false
       deleted: false
       plugins: {}
       sessionId: eff7cc9a-9e32-49db-bd93-1654c749635f
-  e8ecac4a-58e3-49af-beb4-1e9d217bfc6c:
-    id: e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
-    content: Ticket B - a target marker silently fails to register unless it is the first bytes of the prompt
-    children:
-      - 60491b4a-21de-4435-aae2-6793724ab963
-      - 9c6d7226-7b32-4020-899f-00da0828bb9a
-      - 61d4bad3-74cf-4c48-8dca-1f3b0095be3b
-      - d7f601b7-3e74-4abd-a844-6882a3e334ef
-      - fd9a254b-f362-4ca1-b73c-98f7918b388c
-      - 16fb4b59-6b34-4c33-a496-ce510d9ad24e
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  60491b4a-21de-4435-aae2-6793724ab963:
-    id: 60491b4a-21de-4435-aae2-6793724ab963
-    content: Symptom
-    children:
-      - cc9b113a-d586-4f9d-9f89-3b303d346a1c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cc9b113a-d586-4f9d-9f89-3b303d346a1c:
-    id: cc9b113a-d586-4f9d-9f89-3b303d346a1c
-    content: 'A send whose ARBORESCENT_TARGET marker is preceded by any text (e.g. a typed instruction) does not bind: submit_step_output returns {"applied":false,"reason":"unbound ‚Äî session has no binding"} (or falls back to the standing binding and drift-guards), and the raw marker leaks into the model''s prompt instead of being stripped.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c6d7226-7b32-4020-899f-00da0828bb9a:
-    id: 9c6d7226-7b32-4020-899f-00da0828bb9a
-    content: Live reproduction
-    children:
-      - 726ff71d-38ad-4a60-be51-4df409303f15
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  726ff71d-38ad-4a60-be51-4df409303f15:
-    id: 726ff71d-38ad-4a60-be51-4df409303f15
-    content: 'In this session a send of the form `Let''s create a new bug in Arborescent : <!-- ARBORESCENT_TARGET: 974f185f-... -->` returned "unbound ‚Äî session has no binding"; the marker was visible (unstripped) in the model prompt, confirming it was never matched.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  61d4bad3-74cf-4c48-8dca-1f3b0095be3b:
-    id: 61d4bad3-74cf-4c48-8dca-1f3b0095be3b
-    content: Root cause
-    children:
-      - 255175c2-9385-46f4-80b3-d8d377f98156
-      - a0789091-0432-440b-8fe5-572a1c8bd500
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  255175c2-9385-46f4-80b3-d8d377f98156:
-    id: 255175c2-9385-46f4-80b3-d8d377f98156
-    content: The UserPromptSubmit hook target regex (HOOK_TARGET_MARKER_REGEX in src/main/services/hookScripts.ts) is ^-anchored and matches only at the current start of the prompt; any leading prose before the marker defeats the match.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a0789091-0432-440b-8fe5-572a1c8bd500:
-    id: a0789091-0432-440b-8fe5-572a1c8bd500
-    content: On a miss the marker is neither stripped (so it leaks into the conversation) nor posted to register-target (so no pendingTarget is set) ‚Äî a silent double failure with no log of intent-vs-result.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d7f601b7-3e74-4abd-a844-6882a3e334ef:
-    id: d7f601b7-3e74-4abd-a844-6882a3e334ef
-    content: Impact
-    children:
-      - e1b8cd16-3cf1-4064-9139-19ccd3233c94
-      - c3e2f02e-2e34-49dd-8f97-125482047115
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e1b8cd16-3cf1-4064-9139-19ccd3233c94:
-    id: e1b8cd16-3cf1-4064-9139-19ccd3233c94
-    content: Any manual send where the user types text before the marker silently no-ops or misroutes, with an error naming the wrong cause ("unbound" / "drift") rather than "marker not at prompt start".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c3e2f02e-2e34-49dd-8f97-125482047115:
-    id: c3e2f02e-2e34-49dd-8f97-125482047115
-    content: Marker text leaks into the model's context, polluting the prompt.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd9a254b-f362-4ca1-b73c-98f7918b388c:
-    id: fd9a254b-f362-4ca1-b73c-98f7918b388c
-    content: Proposed fix
-    children:
-      - d84abee0-3f4d-434d-8e69-525ff0720050
-      - bef28d8c-c4d9-4dfb-b7c9-a0468a0fbee0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d84abee0-3f4d-434d-8e69-525ff0720050:
-    id: d84abee0-3f4d-434d-8e69-525ff0720050
-    content: Make marker extraction scan for the marker anywhere in the prompt (or guarantee the send path always prepends it at byte 0), and always strip a matched marker even when registration is skipped.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bef28d8c-c4d9-4dfb-b7c9-a0468a0fbee0:
-    id: bef28d8c-c4d9-4dfb-b7c9-a0468a0fbee0
-    content: When a target marker is present but does not resolve to a binding, return an error that names the real cause instead of a generic "unbound".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  16fb4b59-6b34-4c33-a496-ce510d9ad24e:
-    id: 16fb4b59-6b34-4c33-a496-ce510d9ad24e
-    content: Acceptance criteria
-    children:
-      - 8c4ea195-2920-4939-9f3c-7ada9cc82995
-      - 38e9d1ef-08ef-4961-8c97-0686bd88d7a4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8c4ea195-2920-4939-9f3c-7ada9cc82995:
-    id: 8c4ea195-2920-4939-9f3c-7ada9cc82995
-    content: A send with leading text before the ARBORESCENT_TARGET marker binds correctly and the marker is stripped from the model prompt.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  38e9d1ef-08ef-4961-8c97-0686bd88d7a4:
-    id: 38e9d1ef-08ef-4961-8c97-0686bd88d7a4
-    content: submit_step_output rejection messages name the actual cause (marker-not-registered) rather than generic "unbound".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   45d5dff6-c0ad-4be3-990a-cd36fbfec3f6:
     id: 45d5dff6-c0ad-4be3-990a-cd36fbfec3f6
     content: worktree
@@ -179800,6 +179661,1336 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  f8357f01-bfb5-436e-9a7d-3310ff67c22c:
+    id: f8357f01-bfb5-436e-9a7d-3310ff67c22c
+    content: Make the main-process registry the single authoritative session↔node resolver
+    children:
+      - 970742d1-1308-40c1-9e5e-e3aeee5ab3bc
+      - b78ecdb9-4c23-40a4-a851-b8ea7913ffe7
+      - 7599da69-75ca-4931-abda-70a7db940959
+      - 30a5366f-1995-4555-a19f-3c24601e8454
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 37055118-76e7-4b21-aec7-20311afc406b
+  f279d03c-b14a-4568-b56a-2ea5b6f6cc1d:
+    id: f279d03c-b14a-4568-b56a-2ea5b6f6cc1d
+    content: Merge-not-replace for the autonomous submit rebuild
+    children:
+      - efead4ac-a6fa-4e2f-acad-b592b7bab84f
+      - 5b4935ba-ec74-483f-919f-5892bd565af0
+      - 4652a0a6-2edd-490e-b28c-160d68fa68d0
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  efead4ac-a6fa-4e2f-acad-b592b7bab84f:
+    id: efead4ac-a6fa-4e2f-acad-b592b7bab84f
+    content: 'Problem: executeSingleRootStrategy deletes the snapshot''s descendants and re-adds only what is in CONTENT (acceptFeedbackStrategies.ts:179-183), so out-of-band add_child_node nodes vanish unless they are also echoed in the submit'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b4935ba-ec74-483f-919f-5892bd565af0:
+    id: 5b4935ba-ec74-483f-919f-5892bd565af0
+    content: 'Approach: reconcile instead of wholesale-replace — preserve nodes not referenced in CONTENT, or require explicit deletion markers'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4652a0a6-2edd-490e-b28c-160d68fa68d0:
+    id: 4652a0a6-2edd-490e-b28c-160d68fa68d0
+    content: 'Risk: medium-high; it is core to feedback application, so it needs strong test coverage first — current behavior is latent data loss'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dee03dac-d4a0-4977-9c2f-4a714d56b618:
+    id: dee03dac-d4a0-4977-9c2f-4a714d56b618
+    content: Discriminated error taxonomy for submit / readState
+    children:
+      - 9388fdbc-d2d0-41b6-96f0-d5a050f46667
+      - 66b1f742-4529-43d8-a071-a53f267f2ac8
+      - d6aec8ab-1304-4041-9ca5-182b68a2810f
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  9388fdbc-d2d0-41b6-96f0-d5a050f46667:
+    id: 9388fdbc-d2d0-41b6-96f0-d5a050f46667
+    content: 'Problem: "Tree state is unavailable" conflates renderer-not-ready, no-file-open, bound-node-in-another-open-file, and bound-node-deleted — four conditions with four different remedies behind one misleading message (mcpSubmitOutputTool.ts:62)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66b1f742-4529-43d8-a071-a53f267f2ac8:
+    id: 66b1f742-4529-43d8-a071-a53f267f2ac8
+    content: 'Approach: have readState / mcpTreeReaderService return a discriminated result (not-ready | node-in-no-open-store | ok) so submit_step_output can report the real cause (including "bound node was deleted")'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6aec8ab-1304-4041-9ca5-182b68a2810f:
+    id: d6aec8ab-1304-4041-9ca5-182b68a2810f
+    content: 'Risk: low and isolated — do this one first; immediate debugging payoff for you and for AI sessions'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85dde574-3fee-450e-b4bc-36588f9bcf45:
+    id: 85dde574-3fee-450e-b4bc-36588f9bcf45
+    content: Unify the single- and multi-node deletion paths
+    children:
+      - 16c56630-2e35-495d-b8ff-adbeb3ee2d30
+      - f6f56a0b-f4b0-4bb9-9f08-4b41eafc03a4
+      - 152ff7d0-aed8-4149-8a30-8eb8be15e1d1
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  16c56630-2e35-495d-b8ff-adbeb3ee2d30:
+    id: 16c56630-2e35-495d-b8ff-adbeb3ee2d30
+    content: 'Problem: deleteNode and clipboardActions.executeMultiNodeDelete are parallel implementations (capture descendants → command → notifyDeletionDisruption); the binding cleanup had to be added to both and a code review caught the initially-missed path'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6f56a0b-f4b0-4bb9-9f08-4b41eafc03a4:
+    id: f6f56a0b-f4b0-4bb9-9f08-4b41eafc03a4
+    content: 'Approach: collapse to a deleteNodes(ids[]) core with single-node delete as a one-element wrapper, reconciling DeleteNodeCommand vs DeleteMultipleNodesCommand'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  152ff7d0-aed8-4149-8a30-8eb8be15e1d1:
+    id: 152ff7d0-aed8-4149-8a30-8eb8be15e1d1
+    content: 'Risk: medium; the two commands differ and must be reconciled, but it ends the "fix one path, forget the sibling" bug class'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  748bd1b2-f196-4f26-95c0-1a46974254dc:
+    id: 748bd1b2-f196-4f26-95c0-1a46974254dc
+    content: Split workflowExecutionActions.ts and extract binding resolution
+    children:
+      - 0e92edbc-5769-4592-955c-c89b4d70e5a3
+      - 780c64d2-dfd1-47b1-92d4-69fbf3fe14a5
+      - 987d9ee5-4723-42b8-96ee-52c5f6f61781
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  0e92edbc-5769-4592-955c-c89b4d70e5a3:
+    id: 0e92edbc-5769-4592-955c-c89b4d70e5a3
+    content: 'Problem: the file is ~1290 lines with multiple responsibilities, against the project''s 500-line / multi-responsibility split rule; it already delegates some managers but not the core'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  780c64d2-dfd1-47b1-92d4-69fbf3fe14a5:
+    id: 780c64d2-dfd1-47b1-92d4-69fbf3fe14a5
+    content: 'Approach: extract the ack/retry machinery and the terminal↔node resolution helpers (findRunningNodeOnTerminal, findSessionBoundNodeForTerminal, findNodeIdBySessionId) into focused modules'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  987d9ee5-4723-42b8-96ee-52c5f6f61781:
+    id: 987d9ee5-4723-42b8-96ee-52c5f6f61781
+    content: 'Risk: low-medium and mechanical; pulling binding resolution out is the natural first step toward the single-source-of-truth refactor'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2a2f129-6b9d-4028-8c31-f516ed6b7e4e:
+    id: c2a2f129-6b9d-4028-8c31-f516ed6b7e4e
+    content: Lower-priority cleanups
+    children:
+      - 4c78bf4f-5308-4a39-8a32-f01b14a292b4
+      - 0b7fccf9-e58d-4952-af11-6614beccdf8f
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  4c78bf4f-5308-4a39-8a32-f01b14a292b4:
+    id: 4c78bf4f-5308-4a39-8a32-f01b14a292b4
+    content: Resolve the pre-existing import/no-cycle warnings in store/tree/actions (cycles cause subtle init-order fragility)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b7fccf9-e58d-4952-af11-6614beccdf8f:
+    id: 0b7fccf9-e58d-4952-af11-6614beccdf8f
+    content: 'Replace the get() as StoreState & { actions?: ... } cross-module reach-through with explicit dependency injection'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f4148c3-4015-4a45-8969-2a534c9e5848:
+    id: 0f4148c3-4015-4a45-8969-2a534c9e5848
+    content: Suggested sequence
+    children:
+      - 403ddd2d-bda5-432e-8265-6e388ffbfa29
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  403ddd2d-bda5-432e-8265-6e388ffbfa29:
+    id: 403ddd2d-bda5-432e-8265-6e388ffbfa29
+    content: Error taxonomy first (cheap, unblocks debugging), then split out binding resolution, then make it canonical (single source of truth), then merge-not-replace once test coverage supports it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  970742d1-1308-40c1-9e5e-e3aeee5ab3bc:
+    id: 970742d1-1308-40c1-9e5e-e3aeee5ab3bc
+    content: 📄 Product spec
+    children:
+      - b7d142b0-7924-48ac-91ee-713a4bd94826
+      - 31f36d83-c3de-4bf7-a524-8dadc579ee1b
+      - f9574a2b-18bd-49f4-bba2-48367852781c
+      - 8ad2cc98-133e-44d6-8f07-2725c17f0638
+      - 29831271-f75d-4123-a9d5-cf39ec910473
+      - 98c584a9-8d21-4bd3-93cc-636ac30765e8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7d142b0-7924-48ac-91ee-713a4bd94826:
+    id: b7d142b0-7924-48ac-91ee-713a4bd94826
+    content: Context
+    children:
+      - 53d3d0b8-c38f-41d1-936f-0002bcf5611d
+      - bab7e310-4d94-4ba2-950c-0fc70d3dc5a7
+      - 7b679548-0ff3-48ed-b69a-7e3225c432da
+      - 5a24ebd2-6ab9-4c65-8d8e-76e88914cd84
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53d3d0b8-c38f-41d1-936f-0002bcf5611d:
+    id: 53d3d0b8-c38f-41d1-936f-0002bcf5611d
+    content: Arborescent binds an AI terminal session to the tree node it is working on so AI output routes back to the right node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bab7e310-4d94-4ba2-950c-0fc70d3dc5a7:
+    id: bab7e310-4d94-4ba2-950c-0fc70d3dc5a7
+    content: 'The same binding is reconstructed in two places: the main-process SessionBindingRegistry (authoritative for MCP consumers) and a brute-force renderer scan of node.metadata.sessionId (findNodeIdBySessionId).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b679548-0ff3-48ed-b69a-7e3225c432da:
+    id: 7b679548-0ff3-48ed-b69a-7e3225c432da
+    content: 'Two resolvers that can disagree are the shared root cause behind three user-visible failures: dangling binding on bound-node delete, submit desync, and session wedge.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a24ebd2-6ab9-4c65-8d8e-76e88914cd84:
+    id: 5a24ebd2-6ab9-4c65-8d8e-76e88914cd84
+    content: Recent commits already patched instances of the delete and desync bugs; this story retires the structural class, not the first-touch symptoms.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31f36d83-c3de-4bf7-a524-8dadc579ee1b:
+    id: 31f36d83-c3de-4bf7-a524-8dadc579ee1b
+    content: User
+    children:
+      - ef0ebf0e-e12b-48b0-9379-828e68863247
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef0ebf0e-e12b-48b0-9379-828e68863247:
+    id: ef0ebf0e-e12b-48b0-9379-828e68863247
+    content: A person running an AI workflow in Arborescent who sends a node to a terminal and expects the AI's output to land back on that exact node — across deletes, multi-file, rebinds, and reloads.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9574a2b-18bd-49f4-bba2-48367852781c:
+    id: f9574a2b-18bd-49f4-bba2-48367852781c
+    content: Current experience and why it is insufficient
+    children:
+      - a179dae3-cfb0-4e5c-9198-5a02e9fc83b4
+      - 148c488c-c41f-4216-b1af-d6c0a145aca8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a179dae3-cfb0-4e5c-9198-5a02e9fc83b4:
+    id: a179dae3-cfb0-4e5c-9198-5a02e9fc83b4
+    content: The renderer resolves bindings via its own scan rather than the authoritative registry, so the two can drift apart.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  148c488c-c41f-4216-b1af-d6c0a145aca8:
+    id: 148c488c-c41f-4216-b1af-d6c0a145aca8
+    content: When they drift, output silently lands on the wrong or a stale node, a deleted node leaves a dangling pointer, or a workflow wedges with no recoverable signal — each previously fixed only as a point patch.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ad2cc98-133e-44d6-8f07-2725c17f0638:
+    id: 8ad2cc98-133e-44d6-8f07-2725c17f0638
+    content: Goal
+    children:
+      - a66fc389-a59f-489f-9b55-69551228964a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a66fc389-a59f-489f-9b55-69551228964a:
+    id: a66fc389-a59f-489f-9b55-69551228964a
+    content: AI output for a session always resolves through one authoritative resolver to that session's bound node, or fails loudly — never silently mis-routes, dangles, or wedges.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29831271-f75d-4123-a9d5-cf39ec910473:
+    id: 29831271-f75d-4123-a9d5-cf39ec910473
+    content: Business rules
+    children:
+      - 4a9e5836-2f96-4621-bb54-47c9189b9624
+      - b4433d0f-dbcd-4415-8e9d-a3842f13c1bf
+      - 5d1a61af-191b-4a33-b4ef-cd3a448d9e0d
+      - d508ce83-85b1-4b2c-b923-7e6a20b8ed03
+      - 6c1075d0-7059-44c0-862b-bc7077d344b6
+      - 9ff84754-52d1-43b4-999b-c6b0e91620aa
+      - 30207e7f-2ee1-453e-8e0f-1a71b06b46d9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a9e5836-2f96-4621-bb54-47c9189b9624:
+    id: 4a9e5836-2f96-4621-bb54-47c9189b9624
+    content: The main-process SessionBindingRegistry is the single source of truth for the session→node relationship; all callers must resolve through it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4433d0f-dbcd-4415-8e9d-a3842f13c1bf:
+    id: b4433d0f-dbcd-4415-8e9d-a3842f13c1bf
+    content: The renderer must derive bindings from the registry over IPC and must not maintain a second, independently-computed resolver.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d1a61af-191b-4a33-b4ef-cd3a448d9e0d:
+    id: 5d1a61af-191b-4a33-b4ef-cd3a448d9e0d
+    content: node.metadata.sessionId is retained solely as the persisted seed that hydrates the registry on file open and preserves legacy-file compatibility, never as a runtime resolver.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d508ce83-85b1-4b2c-b923-7e6a20b8ed03:
+    id: d508ce83-85b1-4b2c-b923-7e6a20b8ed03
+    content: When a session cannot be resolved to a live node, the system fails closed — it refuses the write and surfaces the condition rather than guessing or stalling silently.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c1075d0-7059-44c0-862b-bc7077d344b6:
+    id: 6c1075d0-7059-44c0-862b-bc7077d344b6
+    content: The existing rebind-confirmation gate is preserved; output does not follow a newly-bound node until the rebind is confirmed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ff84754-52d1-43b4-999b-c6b0e91620aa:
+    id: 9ff84754-52d1-43b4-999b-c6b0e91620aa
+    content: Resolution stays scoped to the session's own file so two open files sharing a node id never cross-route.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30207e7f-2ee1-453e-8e0f-1a71b06b46d9:
+    id: 30207e7f-2ee1-453e-8e0f-1a71b06b46d9
+    content: Before any resolver is repointed or the scan is deleted, the existing binding and workflow-execution test suite must be audited and hardened so it covers the happy-path, multi-file, rebind, delete, desync, wedge, and reload behaviours and passes on today's code, establishing the regression net the refactor relies on.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98c584a9-8d21-4bd3-93cc-636ac30765e8:
+    id: 98c584a9-8d21-4bd3-93cc-636ac30765e8
+    content: Acceptance criteria
+    children:
+      - 98843ad8-1861-4b11-b257-7e012f11f505
+      - 724d5046-5309-4b68-8d56-d267790fff05
+      - 227d0550-ff60-4634-8586-a4b2d567042b
+      - 60ea9e2e-7210-4363-bc1a-c0e5cae7e5a8
+      - 255295df-8c9c-4f6c-aa31-f5a115e6549f
+      - dad58d20-12bd-4608-8f2e-a322e3ee7234
+      - 9f29e778-1c07-42e3-b7a5-3c61abd825af
+      - e8a63158-21a7-4eb1-8804-240f2ae11e47
+      - 67a60bd9-7295-42ba-bb25-2d25e0939509
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98843ad8-1861-4b11-b257-7e012f11f505:
+    id: 98843ad8-1861-4b11-b257-7e012f11f505
+    content: The current binding and workflow tests are confirmed to exercise the three bug scenarios and the happy/multi-file/rebind/reload paths and pass green on today's code, establishing a baseline before any refactor change lands.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  724d5046-5309-4b68-8d56-d267790fff05:
+    id: 724d5046-5309-4b68-8d56-d267790fff05
+    content: Any coverage gap in that baseline is closed with a characterization test before the corresponding code is touched, so a regression introduced by the refactor fails the suite rather than reaching users.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  227d0550-ff60-4634-8586-a4b2d567042b:
+    id: 227d0550-ff60-4634-8586-a4b2d567042b
+    content: Sending a node to a session and round-tripping AI output repeatedly lands on that same node with no drift.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60ea9e2e-7210-4363-bc1a-c0e5cae7e5a8:
+    id: 60ea9e2e-7210-4363-bc1a-c0e5cae7e5a8
+    content: With two files open that share a node id, each session's output routes to the node in its own file, never the other's.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  255295df-8c9c-4f6c-aa31-f5a115e6549f:
+    id: 255295df-8c9c-4f6c-aa31-f5a115e6549f
+    content: Binding a session to a new node still triggers the existing rebind confirmation, and after confirmation every caller resolves to the new node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dad58d20-12bd-4608-8f2e-a322e3ee7234:
+    id: dad58d20-12bd-4608-8f2e-a322e3ee7234
+    content: Deleting a bound node leaves no resolver pointing at the missing node, and a subsequent submit for that session fails closed without writing to a stale or absent node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f29e778-1c07-42e3-b7a5-3c61abd825af:
+    id: 9f29e778-1c07-42e3-b7a5-3c61abd825af
+    content: For any given session the registry and the renderer return the same node — desync cannot occur by construction.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8a63158-21a7-4eb1-8804-240f2ae11e47:
+    id: e8a63158-21a7-4eb1-8804-240f2ae11e47
+    content: An unresolvable session surfaces a recoverable/broken-chain state to the user instead of stalling silently.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67a60bd9-7295-42ba-bb25-2d25e0939509:
+    id: 67a60bd9-7295-42ba-bb25-2d25e0939509
+    content: Reopening a file reconstructs the binding from persisted metadata, or shows the broken-chain indicator when it cannot.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b78ecdb9-4c23-40a4-a851-b8ea7913ffe7:
+    id: b78ecdb9-4c23-40a4-a851-b8ea7913ffe7
+    content: 🔧 Implementation proposal
+    children:
+      - 0aa0ba4c-7605-40a5-89e4-f098435a9b07
+      - 8cf69e8d-2131-441f-aa60-e85fb2546cb5
+      - 219d0b75-99d0-4e3c-8ac2-c882ddc29247
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0aa0ba4c-7605-40a5-89e4-f098435a9b07:
+    id: 0aa0ba4c-7605-40a5-89e4-f098435a9b07
+    content: Approach
+    children:
+      - ce212829-0d02-4a35-b8f9-c03bc91353a5
+      - 6ab7b6d5-7929-46f6-bf78-2afb50b814f3
+      - 9d670193-ff58-40d4-a294-ba9133b86cca
+      - e3b8224a-867d-484a-816d-7fe91a85d13a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce212829-0d02-4a35-b8f9-c03bc91353a5:
+    id: ce212829-0d02-4a35-b8f9-c03bc91353a5
+    content: Begin by hardening the existing binding/workflow test suite into a green regression baseline so any behavioural change introduced by the refactor is caught by a failing test.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ab7b6d5-7929-46f6-bf78-2afb50b814f3:
+    id: 6ab7b6d5-7929-46f6-bf78-2afb50b814f3
+    content: Treat the main-process SessionBindingRegistry as the canonical owner (it already exposes lookup and already backs the MCP submit/read/write tools).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d670193-ff58-40d4-a294-ba9133b86cca:
+    id: 9d670193-ff58-40d4-a294-ba9133b86cca
+    content: Expose registry.lookup to the renderer over a new IPC channel alongside the existing seed/clear/rebind bridges.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3b8224a-867d-484a-816d-7fe91a85d13a:
+    id: e3b8224a-867d-484a-816d-7fe91a85d13a
+    content: Repoint findSessionBoundNodeForTerminal and reattachOriginNodeForResumedSession through the IPC resolver, then delete the redundant renderer scan findNodeIdBySessionId.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cf69e8d-2131-441f-aa60-e85fb2546cb5:
+    id: 8cf69e8d-2131-441f-aa60-e85fb2546cb5
+    content: Touchpoints
+    children:
+      - 6ee3a4ef-add1-4a35-923e-9ba57874df22
+      - 2bd9dade-c308-4669-8f72-e48aa202d683
+      - 03e9ddb7-f92d-4cff-89c5-49876ee72a1b
+      - 6c69f53f-0b73-4a05-afc4-cfc8e65ce38b
+      - ba813af6-7a49-4c13-ac1b-7e8c210df606
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ee3a4ef-add1-4a35-923e-9ba57874df22:
+    id: 6ee3a4ef-add1-4a35-923e-9ba57874df22
+    content: Tests (first) — audit and harden the workflow execution, resume reconciliation, and submit-output suites into a green baseline; add a fail-closed-after-delete regression test and close any coverage gaps on the seven behaviours above.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bd9dade-c308-4669-8f72-e48aa202d683:
+    id: 2bd9dade-c308-4669-8f72-e48aa202d683
+    content: Main services — sessionBindingRegistry.ts (expose a renderer-facing resolve) and seedBindingsIpcBridge.ts (extend).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03e9ddb7-f92d-4cff-89c5-49876ee72a1b:
+    id: 03e9ddb7-f92d-4cff-89c5-49876ee72a1b
+    content: IPC/preload — add a resolveBinding(sessionId) channel; MCP tools stay untouched as they are already registry-backed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c69f53f-0b73-4a05-afc4-cfc8e65ce38b:
+    id: 6c69f53f-0b73-4a05-afc4-cfc8e65ce38b
+    content: 'Renderer store — workflowExecutionActions.ts: repoint the two scan callers and delete findNodeIdBySessionId.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba813af6-7a49-4c13-ac1b-7e8c210df606:
+    id: ba813af6-7a49-4c13-ac1b-7e8c210df606
+    content: Persistence — none; the .arbo format is unchanged and node.metadata.sessionId remains the persisted seed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  219d0b75-99d0-4e3c-8ac2-c882ddc29247:
+    id: 219d0b75-99d0-4e3c-8ac2-c882ddc29247
+    content: Constraints to call out
+    children:
+      - 49576be5-f1cd-4a3e-9520-c2f1d7b00c10
+      - ee343653-5227-4ca9-b326-dc038d90fe84
+      - 3b8cfc78-a4d8-4cff-98e1-7d1727593ca9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  49576be5-f1cd-4a3e-9520-c2f1d7b00c10:
+    id: 49576be5-f1cd-4a3e-9520-c2f1d7b00c10
+    content: node.metadata.sessionId cannot be retired — it is the durable seed and legacy-file compat surface (extractSessionBindings dedups legacy multi-stamps); demote it from resolver to seed only.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee343653-5227-4ca9-b326-dc038d90fe84:
+    id: ee343653-5227-4ca9-b326-dc038d90fe84
+    content: 'Ordering is load-bearing: harden the regression net first, then ship the registry-backed renderer resolver, and only then delete the scan, since reattachOriginNodeForResumedSession currently relies on the scan as a resume fallback.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b8cfc78-a4d8-4cff-98e1-7d1727593ca9:
+    id: 3b8cfc78-a4d8-4cff-98e1-7d1727593ca9
+    content: Main and renderer are separate processes; the single source of truth is one authoritative owner plus an IPC sync protocol, not one shared in-memory object.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7599da69-75ca-4931-abda-70a7db940959:
+    id: 7599da69-75ca-4931-abda-70a7db940959
+    content: Chunking decision — split into a precondition plus 2 PRs, by relation not by feature flag
+    children:
+      - dcf09393-bd9a-4b38-8782-f2cda74d81dd
+      - 3ab5f05e-2735-4dfd-acdf-9c85aa20b3bb
+      - 3c0a67eb-8063-4929-8daf-3860b2379c94
+      - e88a09b8-4191-4087-93c6-b5b2796aba1a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcf09393-bd9a-4b38-8782-f2cda74d81dd:
+    id: dcf09393-bd9a-4b38-8782-f2cda74d81dd
+    content: PR0 (precondition) — audit and harden the existing binding/workflow tests into a green regression baseline and close coverage gaps before any production code changes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ab5f05e-2735-4dfd-acdf-9c85aa20b3bb:
+    id: 3ab5f05e-2735-4dfd-acdf-9c85aa20b3bb
+    content: PR1 (the structural win) — add the resolver IPC, repoint the two callers, and delete the scan; small, mechanical, fully testable against the baseline established in PR0.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c0a67eb-8063-4929-8daf-3860b2379c94:
+    id: 3c0a67eb-8063-4929-8daf-3860b2379c94
+    content: PR2 (user-facing recovery) — broken-chain indicator and fail-closed surfacing for unresolvable sessions and reload, reviewed separately because it touches recovery UX rather than resolver plumbing.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e88a09b8-4191-4087-93c6-b5b2796aba1a:
+    id: e88a09b8-4191-4087-93c6-b5b2796aba1a
+    content: A feature flag is rejected — the goal is deleting a duplicate resolver, and a flag would preserve the very duplication being removed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30a5366f-1995-4555-a19f-3c24601e8454:
+    id: 30a5366f-1995-4555-a19f-3c24601e8454
+    content: Challenge — review findings
+    children:
+      - ea60247a-4828-4a25-a232-c58a16df194b
+      - 6ec78d71-0d3a-4ae3-9c06-40c660b85d11
+      - f0bb2d8e-33a7-477d-9632-c94f38a51392
+      - 032fea39-0b5a-485e-91c2-8a19998f6361
+      - bdb05941-cccf-4589-b809-d1c1f8c73ed3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea60247a-4828-4a25-a232-c58a16df194b:
+    id: ea60247a-4828-4a25-a232-c58a16df194b
+    content: 'ROI is positive: deleting findNodeIdBySessionId removes the only resolver that can drift from the registry, retiring the whole desync class for a small, low-risk diff.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ec78d71-0d3a-4ae3-9c06-40c660b85d11:
+    id: 6ec78d71-0d3a-4ae3-9c06-40c660b85d11
+    content: 'Over-engineering trap to avoid: do not fold workflowSessionMap (session→terminal) and terminalNodeAssignments (terminal→node, send gate) into one binding store — they answer routing/gating questions, and merging them produces a god-object that re-couples what this work removes.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0bb2d8e-33a7-477d-9632-c94f38a51392:
+    id: f0bb2d8e-33a7-477d-9632-c94f38a51392
+    content: 'Scope to reject: no .arbo format change, no rebind-UX rework, no MCP-tool changes — the "ONE store" framing overreaches; the actual win is one resolver and one persisted seed.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  032fea39-0b5a-485e-91c2-8a19998f6361:
+    id: 032fea39-0b5a-485e-91c2-8a19998f6361
+    content: The prior point patches lower urgency but not value — while the scan exists, any future code path can pick the weak resolver and silently reopen the desync; deleting it makes the canonical path the only path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdb05941-cccf-4589-b809-d1c1f8c73ed3:
+    id: bdb05941-cccf-4589-b809-d1c1f8c73ed3
+    content: No new delete-path work is needed beyond a regression test — releaseSessionBindings already fires on the bound-node delete and clipboard paths; verify, do not re-fix.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70b960ef-7e89-401b-b976-fc7cf1f9cbec:
+    id: 70b960ef-7e89-401b-b976-fc7cf1f9cbec
+    content: worktree
+    children:
+      - e38fe3ad-2b95-42ee-a10a-8d4a6cb0e4c6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e38fe3ad-2b95-42ee-a10a-8d4a6cb0e4c6:
+    id: e38fe3ad-2b95-42ee-a10a-8d4a6cb0e4c6
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-target-marker)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  feec11d0-604e-43ad-9dcd-6c7403cadb70:
+    id: feec11d0-604e-43ad-9dcd-6c7403cadb70
+    content: Symptom
+    children:
+      - 833c8098-c94f-4048-a7bd-9cd9d7f91cf5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  833c8098-c94f-4048-a7bd-9cd9d7f91cf5:
+    id: 833c8098-c94f-4048-a7bd-9cd9d7f91cf5
+    content: 'A send whose ARBORESCENT_TARGET marker is preceded by any text (e.g. a typed instruction) does not bind: submit_step_output returns {"applied":false,"reason":"unbound — session has no binding"} (or falls back to the standing binding and drift-guards), and the raw marker leaks into the model''s prompt instead of being stripped.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e215fc72-9683-4646-ae72-5e116a59b636:
+    id: e215fc72-9683-4646-ae72-5e116a59b636
+    content: Live reproduction
+    children:
+      - cb44f13e-a292-44cc-ad03-702fbf00623d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb44f13e-a292-44cc-ad03-702fbf00623d:
+    id: cb44f13e-a292-44cc-ad03-702fbf00623d
+    content: 'In this session a send of the form `Let''s create a new bug in Arborescent : <!-- ARBORESCENT_TARGET: 974f185f-... -->` returned "unbound — session has no binding"; the marker was visible (unstripped) in the model prompt, confirming it was never matched.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c389440-e1e4-4b2e-a8f7-f6887f3aa801:
+    id: 3c389440-e1e4-4b2e-a8f7-f6887f3aa801
+    content: Root cause
+    children:
+      - dbef8391-dbf9-40cf-93bd-f04ee0e0878e
+      - 4c537da0-b9af-4487-8f2a-40bb4a06e4ad
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbef8391-dbf9-40cf-93bd-f04ee0e0878e:
+    id: dbef8391-dbf9-40cf-93bd-f04ee0e0878e
+    content: The UserPromptSubmit hook target regex (HOOK_TARGET_MARKER_REGEX in src/main/services/hookScripts.ts) is ^-anchored and matches only at the current start of the prompt; any leading prose before the marker defeats the match.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c537da0-b9af-4487-8f2a-40bb4a06e4ad:
+    id: 4c537da0-b9af-4487-8f2a-40bb4a06e4ad
+    content: On a miss the marker is neither stripped (so it leaks into the conversation) nor posted to register-target (so no pendingTarget is set) — a silent double failure with no log of intent-vs-result.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8808d10f-4b0b-4cf3-89b8-358aec65a08b:
+    id: 8808d10f-4b0b-4cf3-89b8-358aec65a08b
+    content: Impact
+    children:
+      - 433ff5a6-36c9-43d5-ab7a-e0f0eeb9b6de
+      - cabace64-fe46-4b14-ae8a-f4da0fff3f8a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  433ff5a6-36c9-43d5-ab7a-e0f0eeb9b6de:
+    id: 433ff5a6-36c9-43d5-ab7a-e0f0eeb9b6de
+    content: Any manual send where the user types text before the marker silently no-ops or misroutes, with an error naming the wrong cause ("unbound" / "drift") rather than "marker not at prompt start".
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cabace64-fe46-4b14-ae8a-f4da0fff3f8a:
+    id: cabace64-fe46-4b14-ae8a-f4da0fff3f8a
+    content: Marker text leaks into the model's context, polluting the prompt.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ee4b705-8833-4c19-ae38-7a0877303b2c:
+    id: 0ee4b705-8833-4c19-ae38-7a0877303b2c
+    content: Proposed fix
+    children:
+      - 4ddc100c-0697-4233-8522-b06ff44c0532
+      - 6238d4fa-1572-42c0-bd70-0120de97cd24
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ddc100c-0697-4233-8522-b06ff44c0532:
+    id: 4ddc100c-0697-4233-8522-b06ff44c0532
+    content: Make marker extraction scan for the marker anywhere in the prompt (or guarantee the send path always prepends it at byte 0), and always strip a matched marker even when registration is skipped.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6238d4fa-1572-42c0-bd70-0120de97cd24:
+    id: 6238d4fa-1572-42c0-bd70-0120de97cd24
+    content: When a target marker is present but does not resolve to a binding, return an error that names the real cause instead of a generic "unbound".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f94ab366-ea89-4299-ab2e-35647689116c:
+    id: f94ab366-ea89-4299-ab2e-35647689116c
+    content: Acceptance criteria
+    children:
+      - 09126b7d-6283-4553-9b17-c9a452ee622d
+      - 4ca82827-c30f-4f99-adba-bfb0ce246af6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09126b7d-6283-4553-9b17-c9a452ee622d:
+    id: 09126b7d-6283-4553-9b17-c9a452ee622d
+    content: A send with leading text before the ARBORESCENT_TARGET marker binds correctly and the marker is stripped from the model prompt.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ca82827-c30f-4f99-adba-bfb0ce246af6:
+    id: 4ca82827-c30f-4f99-adba-bfb0ce246af6
+    content: submit_step_output rejection messages name the actual cause (marker-not-registered) rather than generic "unbound".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a379a6df-fa2a-455d-b03a-e629849b022d:
+    id: a379a6df-fa2a-455d-b03a-e629849b022d
+    content: Technical refinement
+    children:
+      - 7790448d-83a8-4e7a-afa0-15273b446ae5
+      - e2611288-d6a3-44a2-9915-ae2b4dd85a0f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7790448d-83a8-4e7a-afa0-15273b446ae5:
+    id: 7790448d-83a8-4e7a-afa0-15273b446ae5
+    content: Complications
+    children:
+      - 034d5274-d554-40f5-a94d-3ebc32216f70
+      - 6159643f-ece7-4cb0-b71d-7ac1e26f47bd
+      - fae4ea8e-103f-42b0-95ea-ff9434c1bfa9
+      - 9014fa1c-882b-43b2-97bc-286a8b81dcdc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  034d5274-d554-40f5-a94d-3ebc32216f70:
+    id: 034d5274-d554-40f5-a94d-3ebc32216f70
+    content: 'Reproduce the exact origin first: Arborescent''s send path already prepends the marker at byte 0 (maybePrependRoutingMarker returns marker + body), so a mid-prompt marker implies either a send flow that places typed text before the marker, or a hand-typed/pasted marker in a free terminal prompt. The correct fix differs by origin (fix send-path assembly vs. relax the hook), so confirm which produced the repro before coding.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6159643f-ece7-4cb0-b71d-7ac1e26f47bd:
+    id: 6159643f-ece7-4cb0-b71d-7ac1e26f47bd
+    content: '"Scan anywhere" is hazardous: marker-like text legitimately appears in CONTENT — this very ticket node contains a literal ARBORESCENT_TARGET line. A naive global scan would false-match and strip/register from content. Any relaxation must anchor to a safe position (start-of-prompt, or the marker on its own first line), never a free match.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fae4ea8e-103f-42b0-95ea-ff9434c1bfa9:
+    id: fae4ea8e-103f-42b0-95ea-ff9434c1bfa9
+    content: 'Shared path risk: stripMarkers handles the binding marker (ARBORESCENT_NODE) and the target marker together and strips binding-first; the fix must not regress workflow-start/advance binding stripping.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9014fa1c-882b-43b2-97bc-286a8b81dcdc:
+    id: 9014fa1c-882b-43b2-97bc-286a8b81dcdc
+    content: 'Out of scope: file-scoped resolution (Ticket A, merged). This ticket is only marker registration/stripping plus the misleading error message.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2611288-d6a3-44a2-9915-ae2b4dd85a0f:
+    id: e2611288-d6a3-44a2-9915-ae2b4dd85a0f
+    content: Approach
+    children:
+      - befb55ba-f205-4294-8068-c598a27180b7
+      - a79f9ddc-5d6a-461c-9ae4-cc19e4b2cf81
+      - 882d4dd0-cb20-4987-bad6-14874301be01
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  befb55ba-f205-4294-8068-c598a27180b7:
+    id: befb55ba-f205-4294-8068-c598a27180b7
+    content: 'Lands in src/main/services/hookScripts.ts (stripMarkers / HOOK_TARGET_MARKER_REGEX) and possibly src/renderer/store/tree/actions/sendActions.ts (send-path assembly). Two independent parts: recognize+strip the target marker when present, and replace the generic "unbound" with an error that names marker-not-registered.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a79f9ddc-5d6a-461c-9ae4-cc19e4b2cf81:
+    id: a79f9ddc-5d6a-461c-9ae4-cc19e4b2cf81
+    content: Always strip a matched marker even when registration is skipped, so it can never leak into the model context regardless of bind outcome.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  882d4dd0-cb20-4987-bad6-14874301be01:
+    id: 882d4dd0-cb20-4987-bad6-14874301be01
+    content: 'Non-obvious: the marker is normally at byte 0, so this is an edge of manual/typed sends rather than the common workflow path — keep the change narrow to avoid regressing the binding-marker route.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c74abc15-bce0-40bd-8b17-dc4f3e3f826b:
+    id: c74abc15-bce0-40bd-8b17-dc4f3e3f826b
+    content: TDD note — tests written title-only; existing test conflicts with AC1
+    children:
+      - 646bbe1c-71dd-412c-b61f-4dc19fb381bf
+      - b08b78d3-9588-440d-a4c8-56a4ee06640f
+      - 47e8adbe-7ae7-4166-a76f-e47675fe4863
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  646bbe1c-71dd-412c-b61f-4dc19fb381bf:
+    id: 646bbe1c-71dd-412c-b61f-4dc19fb381bf
+    content: 'Added 3 it.todo to src/shared/utils/tests/arborescentMarker.test.ts (Ticket B describe block): AC1 (leading-text marker binds + is stripped), the scan-anywhere false-positive guard, and AC2 (clearer error). Title-only because the fix is undecided between relaxing the parser (extractArborescentMarkers) and fixing the send path to prepend at byte 0.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b08b78d3-9588-440d-a4c8-56a4ee06640f:
+    id: b08b78d3-9588-440d-a4c8-56a4ee06640f
+    content: 'Conflict resolved at implement time: the existing test "returns null for a target marker that is not on the first line" was updated to assert extraction, since the fix relaxes the parser (scan-anywhere). The 3 it.todo were replaced with real tests.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47e8adbe-7ae7-4166-a76f-e47675fe4863:
+    id: 47e8adbe-7ae7-4166-a76f-e47675fe4863
+    content: Existing arborescentMarker tests pass (file loads clean, 20 passing, 3 todos pending); only the changed file was run. Deps installed in the worktree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cace8b10-5ccb-4514-81ac-16a3537c00e2:
+    id: cace8b10-5ccb-4514-81ac-16a3537c00e2
+    content: Implementation blocked — design decision needed (NeedsReview fired)
+    children:
+      - c409616f-4021-4a20-98ef-37915ab7021c
+      - f95bec3f-a4bd-46f0-9f97-a5bcb0dd0774
+      - 744ef597-8ff4-499a-9a9d-7a7c09a67e95
+      - 9e93f00e-7ce8-4791-9e2c-5114ddce3333
+      - 84fbc137-3f92-4463-afdc-5e8f63a7091f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c409616f-4021-4a20-98ef-37915ab7021c:
+    id: c409616f-4021-4a20-98ef-37915ab7021c
+    content: 'Confirmed origin: executeInTerminal (src/renderer/services/terminalExecution.ts) bracketed-pastes the marker+payload WITHOUT clearing the terminal''s current input line, then sends Enter — so text the user pre-typed lands before the marker on the SAME line; the marker ends up mid-line, not merely non-byte-0.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f95bec3f-a4bd-46f0-9f97-a5bcb0dd0774:
+    id: f95bec3f-a4bd-46f0-9f97-a5bcb0dd0774
+    content: 'Consequence: the refinement''s "safe" relaxation (recognize a marker on its own line) does NOT fix the repro, because there the marker shares a line with the user''s typed text. AC1 (bind with leading text) cannot be met without either a mid-line scan (the hazardous approach) or a send-side change.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  744ef597-8ff4-499a-9a9d-7a7c09a67e95:
+    id: 744ef597-8ff4-499a-9a9d-7a7c09a67e95
+    content: 'Option 1 (send-side): clear the input line before the bracketed paste (e.g. Ctrl+U) so the marker is always at byte 0 — most predictable, no parser hazard; tradeoff is it discards any text the user had typed before triggering the send.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e93f00e-7ce8-4791-9e2c-5114ddce3333:
+    id: 9e93f00e-7ce8-4791-9e2c-5114ddce3333
+    content: 'Option 2 (hook-side, CHOSEN): scan for the strict full-UUID marker anywhere incl. mid-line and strip+register the first match. User confirmed the 36-char-UUID-in-fixed-comment grammar makes accidental collision unrealistic; chosen because it also preserves the user''s pre-typed text (no clearing). Implemented in extractArborescentMarkers + hook stripMarkers (regex de-anchored, splice-out-first-match); unbound message improved to name the cause.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84fbc137-3f92-4463-afdc-5e8f63a7091f:
+    id: 84fbc137-3f92-4463-afdc-5e8f63a7091f
+    content: 'Option 3 (revise AC1): do not support leading-text binding; instead always strip any detected marker and return a clear error — rejected, would not meet AC1.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a3121ba-375f-4e0d-a654-32c6970e4ed2:
+    id: 9a3121ba-375f-4e0d-a654-32c6970e4ed2
+    content: AI refactor note
+    children:
+      - f3c1bff5-197a-47dd-b504-dd204548ec84
+      - 4571c534-19be-43ac-bcf6-c9d5644eb14e
+      - c7f28303-0f29-448a-9653-b5898c772fd6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3c1bff5-197a-47dd-b504-dd204548ec84:
+    id: f3c1bff5-197a-47dd-b504-dd204548ec84
+    content: 'No refactoring needed: extractArborescentMarkers (shared) and the hook''s stripMarkers mirror each other with the same spliceOutMatch helper and find-first+splice logic; naming/structure follow conventions; no abandoned code.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4571c534-19be-43ac-bcf6-c9d5644eb14e:
+    id: 4571c534-19be-43ac-bcf6-c9d5644eb14e
+    content: 'Coverage note: the edited logic is tested via arborescentMarker.test.ts (26 passing, 0 todos). The hook''s stripMarkers is a deliberate duplicate (the hook is a standalone generated script that cannot import shared TS), so it is covered transitively; its dedicated test file (userPromptSubmitHook.test.ts) is a pre-existing PR2 it.todo backlog (45 todos), not expanded here — filling it needs a subprocess harness, out of scope for this fix.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7f28303-0f29-448a-9653-b5898c772fd6:
+    id: c7f28303-0f29-448a-9653-b5898c772fd6
+    content: 'Standard checks: tsc clean, eslint clean on changed files, 104 tests pass across changed/new files (0 failures, pre-existing todos unaffected); changed files only. Not committed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4a056fb-1450-4f5c-9e8d-927b831d9699:
+    id: d4a056fb-1450-4f5c-9e8d-927b831d9699
+    content: review feedback
+    children:
+      - 2fa3b3d4-e47b-4084-b3c1-65efb653eee2
+      - 13c2f845-9633-42fa-b834-d0107ba7a29b
+      - e456c4c3-8483-4058-8b45-4642f490f1e8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fa3b3d4-e47b-4084-b3c1-65efb653eee2:
+    id: 2fa3b3d4-e47b-4084-b3c1-65efb653eee2
+    content: 'Verdict: correct — ship it. No blocker/high/medium. Reviewer confirmed the two parsers (extractArborescentMarkers + hook stripMarkers) are equivalent, splice has no off-by-one, match.index handling is sound, and de-anchoring did not regress the two-marker/ordering, strip-at-most-one, empty/no-match/malformed-UUID, or binding/workflow-start-advance paths. Ran affected suites (passing), type-check clean, lint clean (only pre-existing dependency-cycle warnings, none in changed files).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13c2f845-9633-42fa-b834-d0107ba7a29b:
+    id: 13c2f845-9633-42fa-b834-d0107ba7a29b
+    content: 'LOW/nit (accepted tradeoff, no action): when a marker lands mid-line, the trailing whitespace match eats one following newline of the user''s prose. The AC1 test asserts this deliberately — conscious record only, consistent with the scan-anywhere decision.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e456c4c3-8483-4058-8b45-4642f490f1e8:
+    id: e456c4c3-8483-4058-8b45-4642f490f1e8
+    content: Tests are real and cover the de-anchoring risk surface (same-line lead, binding + source preservation, truncated-UUID guard, flipped not-on-first-line expectation); the unbound test keeps the original assertion and adds /target|marker/. No empty tests. userPromptSubmitHook.test.ts remains a pre-existing it.todo backlog; hook logic covered transitively via the shared .source.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0a956e7-bbe0-4452-b83d-789b00836a3f:
+    id: b0a956e7-bbe0-4452-b83d-789b00836a3f
+    content: review resolution
+    children:
+      - 6d9f7706-3878-4bf6-aca0-ec6f5ec9ecec
+      - 263b14c9-58e2-414c-8168-a43f25f8e2c9
+      - e5c192c8-e57a-4b1a-9c76-f121ea989365
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d9f7706-3878-4bf6-aca0-ec6f5ec9ecec:
+    id: 6d9f7706-3878-4bf6-aca0-ec6f5ec9ecec
+    content: 'Major issues fixed: none — the review verdict was ship-it with no blocker/high/medium.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  263b14c9-58e2-414c-8168-a43f25f8e2c9:
+    id: 263b14c9-58e2-414c-8168-a43f25f8e2c9
+    content: 'Minor issues fixed: none.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5c192c8-e57a-4b1a-9c76-f121ea989365:
+    id: e5c192c8-e57a-4b1a-9c76-f121ea989365
+    content: 'Skipped — LOW/nit (mid-line marker eats one trailing newline of pre-typed prose): won''t-fix, accepted tradeoff. Verified in code: the trailing-whitespace consumption is the same behavior the regex always had at byte 0 (cleanly removes the marker''s own line); mid-line it only joins the user''s stray lead-in to the payload that followed, which is harmless. The binding/workflow path is unaffected because its marker is always prepended at byte 0, never mid-line. No code change. (SendMessage unavailable; finding is a confirmed no-action nit, so no adversarial discussion round was warranted.)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95abd2b7-aed6-477c-ac5a-3a667ae6aa85:
+    id: 95abd2b7-aed6-477c-ac5a-3a667ae6aa85
+    content: documentation
+    children:
+      - c41c763b-0b76-4007-b311-14429b7404e4
+      - 024c1520-8aaf-4af6-805d-38518fecd8d6
+      - d81f6df5-555a-47e9-8a9a-d5e7645f9cb7
+      - 1151a740-baef-429f-bc3e-fd731f800eb6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c41c763b-0b76-4007-b311-14429b7404e4:
+    id: c41c763b-0b76-4007-b311-14429b7404e4
+    content: 'No user-facing docs needed: internal marker-recognition/stripping bug fix with no new command/workflow/concept. The behavior change (manual sends now tolerate leading text) is implicit/discoverable and non-blocking — per conventions, not documented.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  024c1520-8aaf-4af6-805d-38518fecd8d6:
+    id: 024c1520-8aaf-4af6-805d-38518fecd8d6
+    content: 'No existing doc requires changes: the only "marker" mentions in docs/ refer to [x]/[-] status markers, not the ARBORESCENT_TARGET routing marker; nothing describes the old "marker must lead" constraint, so nothing is now inaccurate.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d81f6df5-555a-47e9-8a9a-d5e7645f9cb7:
+    id: d81f6df5-555a-47e9-8a9a-d5e7645f9cb7
+    content: 'No changelog line: bug fix to features still under Unreleased (MCP marker routing / "Manual sends keep the workflow''s binding"), which the convention excludes.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1151a740-baef-429f-bc3e-fd731f800eb6:
+    id: 1151a740-baef-429f-bc3e-fd731f800eb6
+    content: Nothing unclear or inconsistent surfaced in the existing docs relative to this fix.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -179871,3 +181062,5 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   6c1c691e-18bb-451c-96a6-6d0c086f9782:
     cwd: /Users/brianfox/dev/agent-nodejs
+  37055118-76e7-4b21-aec7-20311afc406b:
+    cwd: /Users/brianfox/dev/Arborescent
