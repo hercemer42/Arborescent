@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-02T18:20:01.734Z'
+updated: '2026-06-02T18:46:09.477Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23710,7 +23710,6 @@ nodes:
     content: Technical refinement
     children:
       - e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
-      - 8d3c23ef-f953-468c-ab07-51bc94a5d02e
     metadata:
       status: pending
       isBlueprint: true
@@ -25473,8 +25472,7 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children:
-      - 73c0b75b-0e06-4e82-9f82-205f45601fca
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115509,6 +115507,7 @@ nodes:
       - f1f2a96e-9f35-4144-9f11-dd7d3266bd25
       - da423e73-81ff-4c46-8cdb-4c8c9357ecdc
       - 19472555-f967-45b7-a4dc-3bb2d56e2c09
+      - 236ca1e3-a932-4861-b9f7-142c5ca6ab82
     metadata:
       status: pending
       isBlueprint: true
@@ -124615,7 +124614,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 236ca1e3-a932-4861-b9f7-142c5ca6ab82
+      - 73c0b75b-0e06-4e82-9f82-205f45601fca
     metadata:
       status: pending
       isBlueprint: true
@@ -178789,28 +178788,7 @@ nodes:
       - 41aa7521-725a-49da-93f2-f31c213efb71
       - 57089f21-15bf-41e1-8968-516fcce540b7
     metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      sessionId: 10dd097d-742e-48fa-a8dc-1151bc83c426
-  8d3c23ef-f953-468c-ab07-51bc94a5d02e:
-    id: 8d3c23ef-f953-468c-ab07-51bc94a5d02e
-    content: TICKET 2 — Renderer↔main-registry binding desync on submit
-    children:
-      - 056ee0c2-e43f-49c9-a0a2-34394914b4bd
-      - be06314c-e513-4705-a330-5153587f441f
-      - 7993ce12-5d88-4d33-ac3f-13c94e11da07
-      - 44f0a958-86ba-4e7f-8da7-d0644a128c72
-      - d039a796-e2e8-4a26-bf78-23acad8b78c9
-      - d2cd0564-8bf6-4cc3-b06a-27a9c07dd67a
-      - 4523e93a-a286-4ed7-b468-b5193a65ef6e
-      - 57cf1fb2-cf38-4278-9701-7677e903275b
-      - 547f8f45-931d-4c71-a0fd-76f5b1fdb483
-      - 22f8c995-026c-4406-8788-28512264f0e6
-      - 1d63efeb-ab51-468f-b6e1-8677222ee5bd
-    metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -178834,105 +178812,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  056ee0c2-e43f-49c9-a0a2-34394914b4bd:
-    id: 056ee0c2-e43f-49c9-a0a2-34394914b4bd
-    content: 'Problem: the renderer marks the node bound and sends the prompt, but the main SessionBindingRegistry has no session→node entry, so submit_step_output is rejected'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  be06314c-e513-4705-a330-5153587f441f:
-    id: be06314c-e513-4705-a330-5153587f441f
-    content: 'Confirmed error (session 6c1c691e, node bc72f630): "unbound — session has no binding" — the AI noted the binding never existed and fired NeedsReview'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7993ce12-5d88-4d33-ac3f-13c94e11da07:
-    id: 7993ce12-5d88-4d33-ac3f-13c94e11da07
-    content: 'Confirmed error (session fd75fd09, node dc36b24c): "Tree state is unavailable. The renderer may not be ready or no file is open." (mcpSubmitOutputTool.ts:62)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  44f0a958-86ba-4e7f-8da7-d0644a128c72:
-    id: 44f0a958-86ba-4e7f-8da7-d0644a128c72
-    content: 'Suspected cause: the registry binding lands only when the register-binding hook fires for a runner-launched session; a terminal started outside the runner (or before registration) leaves submit resolving boundNodeId=null (mcpSubmitOutputTool.ts:54-58)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d039a796-e2e8-4a26-bf78-23acad8b78c9:
-    id: d039a796-e2e8-4a26-bf78-23acad8b78c9
-    content: 'New evidence this session: the one-shot ARBORESCENT_TARGET re-bind failed to unwedge submit WHILE lookup still pointed at the deleted node ("Tree state is unavailable"), but a later re-bind to a live node SUCCEEDED — so the wedge is transient and clears once the binding lands on a live node; the failure window is bounded to "bound node deleted, no live target yet"'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2cd0564-8bf6-4cc3-b06a-27a9c07dd67a:
-    id: d2cd0564-8bf6-4cc3-b06a-27a9c07dd67a
-    content: 'New clarification: readState searches ALL open stores (mcpTreeReaderService.ts:6), so "Tree state is unavailable" means the resolved boundNodeId is in no open tree — not a wrong-active-file issue'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4523e93a-a286-4ed7-b468-b5193a65ef6e:
-    id: 4523e93a-a286-4ed7-b468-b5193a65ef6e
-    content: 'Relationship to Ticket 1: the deletion-dangling-binding is the entry into this wedge; since the failure window is bounded to the deleted-node case, fixing Ticket 1 (clear the binding on delete) likely closes it — the pure externally-launched-session desync still needs its own repro to confirm anything remains'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  57cf1fb2-cf38-4278-9701-7677e903275b:
-    id: 57cf1fb2-cf38-4278-9701-7677e903275b
-    content: 'Coupled work: rebind gate resolves the bound node via the findNodeIdBySessionId metadata scan (workflowExecutionActions.ts:220-240); "Tree state is unavailable" should queue/retry rather than hard-fail'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  547f8f45-931d-4c71-a0fd-76f5b1fdb483:
-    id: 547f8f45-931d-4c71-a0fd-76f5b1fdb483
-    content: 'Next step: implement Ticket 1, then re-test the pure desync (runner-launched vs externally-launched session) to isolate whether the registry ever receives the binding'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  22f8c995-026c-4406-8788-28512264f0e6:
-    id: 22f8c995-026c-4406-8788-28512264f0e6
-    content: 'Why defer: needs the single-source-of-truth design plus one clean repro to confirm the desync timing before implementing'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1d63efeb-ab51-468f-b6e1-8677222ee5bd:
-    id: 1d63efeb-ab51-468f-b6e1-8677222ee5bd
-    content: 'Status: has live evidence; still needs the isolated pure-desync repro before the single-source-of-truth fix'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   0dcad7cb-fcab-49ab-abe0-2a130c01d3aa:
     id: 0dcad7cb-fcab-49ab-abe0-2a130c01d3aa
     content: Workflow revise/send target resolution ‚Äî two bugs
@@ -178946,15 +178825,18 @@ nodes:
     id: 73c0b75b-0e06-4e82-9f82-205f45601fca
     content: Ticket A - node resolution ignores the tab/file scope a binding already lives in (architectural)
     children:
-      - c42ee674-972d-42f8-a129-97c4b570e2ff
-      - 295ab68d-ec39-4079-b9c5-8c5277674dac
-      - 735f0e14-2bd2-478d-8152-2a5fdeef090b
-      - dc1ffa74-810e-4ab3-b269-9636f21046f3
-      - 806be038-0b32-4132-a20f-f80f24c280e0
-      - 2a1921e1-406c-430f-89e5-bd3d9b5c6c3f
-      - f0caa643-c3d1-41ad-9c6f-2f7337181a5f
-      - 13a1ff36-4be4-4d60-aea6-a2cbcefffe0f
-      - f2d617b7-a873-4b73-8a22-2c6c91228f2c
+      - 15c71777-e931-41e5-8b88-ba5ba7854350
+      - fa7697e8-b0cc-4cbc-8157-a789ca568434
+      - 607df90d-2907-4323-95c1-c4664c0b8475
+      - 618c6797-09c8-4992-b4a4-73db8101ba63
+      - 82efd8da-3ab4-4bc3-93a5-7af7d2637d2d
+      - eb6b4aa7-3437-47e6-af05-59968d88e76c
+      - 79818f34-ff20-44e3-ad5a-115fd1b54d5c
+      - 8046fd04-26ee-4a96-9e33-d88309e0996d
+      - 708574eb-5356-4275-a1ef-551dd894ef42
+      - 34028938-1cdd-49a2-90ee-d9d37cfae4df
+      - 576cb75f-9dfb-4deb-acb5-f201803f49f1
+      - f035b6b0-c733-4b1e-aa54-5b79ed03dbcd
     metadata:
       status: pending
       expanded: false
@@ -179127,357 +179009,6 @@ nodes:
     children: []
     metadata:
       status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c42ee674-972d-42f8-a129-97c4b570e2ff:
-    id: c42ee674-972d-42f8-a129-97c4b570e2ff
-    content: worktree
-    children:
-      - 401cb9c5-b5f3-43ce-9b4d-ff47cd193f4c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  401cb9c5-b5f3-43ce-9b4d-ff47cd193f4c:
-    id: 401cb9c5-b5f3-43ce-9b4d-ff47cd193f4c
-    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-file-scoped-resolution)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  295ab68d-ec39-4079-b9c5-8c5277674dac:
-    id: 295ab68d-ec39-4079-b9c5-8c5277674dac
-    content: Statement
-    children:
-      - 9f51ef12-0a83-44b7-a92b-7442a2998673
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f51ef12-0a83-44b7-a92b-7442a2998673:
-    id: 9f51ef12-0a83-44b7-a92b-7442a2998673
-    content: Tabs are 1:1 with files (switching file means a different tab), and terminals/sessions live inside a tab. A binding therefore belongs to exactly one file by construction; a binding that references a node in any other file is invalid. There is no legitimate cross-file binding.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  735f0e14-2bd2-478d-8152-2a5fdeef090b:
-    id: 735f0e14-2bd2-478d-8152-2a5fdeef090b
-    content: Symptom
-    children:
-      - 994eccc6-6c04-4d98-9052-7e95862b2e7d
-      - 3ff82af4-7ac7-4e68-91fa-5b436fd77e07
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  994eccc6-6c04-4d98-9052-7e95862b2e7d:
-    id: 994eccc6-6c04-4d98-9052-7e95862b2e7d
-    content: A revise/send submission resolves to (or the drift guard rejects against) a same-id node in a different file than the bound one.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ff82af4-7ac7-4e68-91fa-5b436fd77e07:
-    id: 3ff82af4-7ac7-4e68-91fa-5b436fd77e07
-    content: 'Observed in session 67f316d6: a node that also existed in another open .arbo caused submit_step_output to resolve/drift against the wrong file''s node; a later submit failed with "Tree state is unavailable" once the bound node''s file was no longer open.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc1ffa74-810e-4ab3-b269-9636f21046f3:
-    id: dc1ffa74-810e-4ab3-b269-9636f21046f3
-    content: Root cause
-    children:
-      - afc0d418-5e11-4e3d-852a-214e5e6bff14
-      - b8caaaab-eb45-484e-b487-5bf7085e6629
-      - 596e6021-fc48-4983-9ff7-0c00af38d568
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  afc0d418-5e11-4e3d-852a-214e5e6bff14:
-    id: afc0d418-5e11-4e3d-852a-214e5e6bff14
-    content: The MCP tree-read request (src/main/services/mcpTreeReaderBridge.ts) carries only { requestId, nodeId } — no session or file context — so findStateForNode (src/renderer/services/mcpTreeReaderService.ts) has nothing to scope by and sweeps storeManager.getAllStores(), returning the first store whose map holds the id.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b8caaaab-eb45-484e-b487-5bf7085e6629:
-    id: b8caaaab-eb45-484e-b487-5bf7085e6629
-    content: 'The tab/file scope already exists and is unused at resolution time: stores are keyed by filePath (storeManager), terminals are organized per file (terminalStore fileStates keyed by filePath), and a session maps to a terminal (workflowSessionMap). Resolution never walks session to terminal to file to store; it goes straight from a bare UUID to a global sweep.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  596e6021-fc48-4983-9ff7-0c00af38d568:
-    id: 596e6021-fc48-4983-9ff7-0c00af38d568
-    content: No gate enforces that a session's bound node lives in the session's own tab/file.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  806be038-0b32-4132-a20f-f80f24c280e0:
-    id: 806be038-0b32-4132-a20f-f80f24c280e0
-    content: Impact
-    children:
-      - 7d19f783-49b4-4ca4-8823-175e8af38562
-      - bf5c5fd3-059e-4b2f-bf03-e51c3db45c52
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7d19f783-49b4-4ca4-8823-175e8af38562:
-    id: 7d19f783-49b4-4ca4-8823-175e8af38562
-    content: A binding can silently resolve into a file it does not belong to; revisions can be written to the wrong file with no warning.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf5c5fd3-059e-4b2f-bf03-e51c3db45c52:
-    id: bf5c5fd3-059e-4b2f-bf03-e51c3db45c52
-    content: Once the bound node's file is not open, submit fails with a generic "Tree state is unavailable" error that gives no actionable cause.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a1921e1-406c-430f-89e5-bd3d9b5c6c3f:
-    id: 2a1921e1-406c-430f-89e5-bd3d9b5c6c3f
-    content: Proposed fix
-    children:
-      - 927d3a51-925a-47b7-bd66-e187711aee56
-      - 4688785c-0a97-4417-a4fa-054a0b28350c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  927d3a51-925a-47b7-bd66-e187711aee56:
-    id: 927d3a51-925a-47b7-bd66-e187711aee56
-    content: Thread the session (or its bound file) through the tree-read request so resolution scopes to that session's file store via session to terminal to filePath to getStoreForFile; never sweep other stores.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4688785c-0a97-4417-a4fa-054a0b28350c:
-    id: 4688785c-0a97-4417-a4fa-054a0b28350c
-    content: Enforce at the tab/session/binding level that a binding only ever references a node in its tab's file; treat anything outside it as not-found.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0caa643-c3d1-41ad-9c6f-2f7337181a5f:
-    id: f0caa643-c3d1-41ad-9c6f-2f7337181a5f
-    content: Acceptance criteria
-    children:
-      - 1b0d281c-661d-4d96-acc0-4aa1ec1859a3
-      - 874973ff-d7bb-4652-bc08-75b746eac68d
-      - 250fb498-7444-4995-9a5c-9fd434d29cb6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b0d281c-661d-4d96-acc0-4aa1ec1859a3:
-    id: 1b0d281c-661d-4d96-acc0-4aa1ec1859a3
-    content: A session's node resolution consults only the store for the file its tab is open against; other open stores are never searched.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  874973ff-d7bb-4652-bc08-75b746eac68d:
-    id: 874973ff-d7bb-4652-bc08-75b746eac68d
-    content: A binding can never be created or resolved against a node in a different file than its tab.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  250fb498-7444-4995-9a5c-9fd434d29cb6:
-    id: 250fb498-7444-4995-9a5c-9fd434d29cb6
-    content: A node id absent from the session's file resolves to not-found with a clear error, never to a same-id node in another open file.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  13a1ff36-4be4-4d60-aea6-a2cbcefffe0f:
-    id: 13a1ff36-4be4-4d60-aea6-a2cbcefffe0f
-    content: Technical refinement
-    children:
-      - 5c926bbf-bf7e-4061-8680-79b1c23a73cd
-      - b274f576-8309-47c5-8a4f-55d21dec1637
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5c926bbf-bf7e-4061-8680-79b1c23a73cd:
-    id: 5c926bbf-bf7e-4061-8680-79b1c23a73cd
-    content: Complications
-    children:
-      - 81fd74cb-8078-4857-a704-883c45f61d5e
-      - 0e020e1f-39b8-4a5e-88ac-199485d82ed7
-      - 5f257d68-23e4-4444-8ee8-f58d973137ce
-      - e888f185-1f93-426d-9649-fcbdcfbafc90
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  81fd74cb-8078-4857-a704-883c45f61d5e:
-    id: 81fd74cb-8078-4857-a704-883c45f61d5e
-    content: 'Edge case: a session with a binding but no terminal-to-file mapping yet (registration race), or whose bound file has been closed, must fail closed to not-found — never fall back to a global sweep.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0e020e1f-39b8-4a5e-88ac-199485d82ed7:
-    id: 0e020e1f-39b8-4a5e-88ac-199485d82ed7
-    content: 'Zoom paths: storeManager keys stores by source path via parseZoomPath, so scoping must resolve the source filePath, not the zoom path.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f257d68-23e4-4444-8ee8-f58d973137ce:
-    id: 5f257d68-23e4-4444-8ee8-f58d973137ce
-    content: 'Out of scope: Ticket B (marker registration), and any intentional cross-file node references/links, which are not bindings.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  e888f185-1f93-426d-9649-fcbdcfbafc90:
-    id: e888f185-1f93-426d-9649-fcbdcfbafc90
-    content: 'ROI: the duplicate-id trigger is a rare manual-backup artifact, but the scoping fix is small and kills a whole class of silent misroutes whenever the same node is open in two tabs — worth doing.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b274f576-8309-47c5-8a4f-55d21dec1637:
-    id: b274f576-8309-47c5-8a4f-55d21dec1637
-    content: Approach
-    children:
-      - 457b98c2-77f9-4dfd-8882-3436b0e4c1d0
-      - 01cd2fde-b378-4908-ad39-089f26a69877
-      - b2be5165-6da2-43a7-b584-90c20b0690f0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  457b98c2-77f9-4dfd-8882-3436b0e4c1d0:
-    id: 457b98c2-77f9-4dfd-8882-3436b0e4c1d0
-    content: Add the session (or resolved bound filePath) to the tree-read IPC request; changes land in mcpTreeReaderBridge.ts (request shape) and mcpTreeReaderService.ts (scoped lookup), with the submit/read tools passing the session they already hold.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  01cd2fde-b378-4908-ad39-089f26a69877:
-    id: 01cd2fde-b378-4908-ad39-089f26a69877
-    content: findStateForNode resolves session to terminal to filePath to getStoreForFile and consults only that store, instead of sweeping getAllStores().
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b2be5165-6da2-43a7-b584-90c20b0690f0:
-    id: b2be5165-6da2-43a7-b584-90c20b0690f0
-    content: 'Non-obvious: the scope is not a new identity to invent — it already exists in terminalStore''s per-file fileStates and workflowSessionMap; the only new piece is a reverse session-to-file lookup, plus failing closed when it is absent.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f2d617b7-a873-4b73-8a22-2c6c91228f2c:
-    id: f2d617b7-a873-4b73-8a22-2c6c91228f2c
-    content: Implementation note — all MCP resolution paths scoped by session (read + write/mutate)
-    children:
-      - 61ea5c73-2f21-449c-9a0e-7b7803aa981c
-      - cd81dd8b-dd33-4039-bbef-65c07d42119d
-      - 8abb128c-f14a-465f-ae14-ff4786cc28f7
-      - 24f4ef3a-f599-491f-87ff-2cd55d4dda06
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  61ea5c73-2f21-449c-9a0e-7b7803aa981c:
-    id: 61ea5c73-2f21-449c-9a0e-7b7803aa981c
-    content: Shared resolver findStoreOwningSession (extracted to src/renderer/store/storeOwnership.ts, reused by useHookEventListener) resolves a session to its owning file store via the per-store workflowSessionMap — copy-proof, since a duplicated node carries its sessionId stamp but not store-level state.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd81dd8b-dd33-4039-bbef-65c07d42119d:
-    id: cd81dd8b-dd33-4039-bbef-65c07d42119d
-    content: 'Read path: tree-read IPC carries sessionId; findStateForNode consults only the bound file''s store, fails closed when none owns the session.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8abb128c-f14a-465f-ae14-ff4786cc28f7:
-    id: 8abb128c-f14a-465f-ae14-ff4786cc28f7
-    content: 'Write path: step-output apply and tree mutate IPC carry sessionId; both services resolve via findStoreOwningSession instead of a getAllStores() sweep, satisfying criterion 2 for autonomous writes and all mutations.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  24f4ef3a-f599-491f-87ff-2cd55d4dda06:
-    id: 24f4ef3a-f599-491f-87ff-2cd55d4dda06
-    content: 'Verified: tsc clean, eslint clean on changed files, 275 tests pass across the changed/new files (incl. new scoping + fail-closed tests for reader, applier, and mutator services). Not committed.'
-    children: []
-    metadata:
-      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -179755,6 +179286,514 @@ nodes:
   91fbde3b-d4ed-4cb2-871e-c8fb8439523d:
     id: 91fbde3b-d4ed-4cb2-871e-c8fb8439523d
     content: 'Checks after the fix: 120 tests pass across the 3 affected files; lint 0 errors (only pre-existing import/no-cycle warnings); type-check clean'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15c71777-e931-41e5-8b88-ba5ba7854350:
+    id: 15c71777-e931-41e5-8b88-ba5ba7854350
+    content: worktree
+    children:
+      - be342d4a-492b-4b6c-a35a-5825bb03f1de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be342d4a-492b-4b6c-a35a-5825bb03f1de:
+    id: be342d4a-492b-4b6c-a35a-5825bb03f1de
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-file-scoped-resolution)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa7697e8-b0cc-4cbc-8157-a789ca568434:
+    id: fa7697e8-b0cc-4cbc-8157-a789ca568434
+    content: Statement
+    children:
+      - 82989995-5c9b-4af2-b661-c98cb67ae530
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82989995-5c9b-4af2-b661-c98cb67ae530:
+    id: 82989995-5c9b-4af2-b661-c98cb67ae530
+    content: Tabs are 1:1 with files (switching file means a different tab), and terminals/sessions live inside a tab. A binding therefore belongs to exactly one file by construction; a binding that references a node in any other file is invalid. There is no legitimate cross-file binding.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  607df90d-2907-4323-95c1-c4664c0b8475:
+    id: 607df90d-2907-4323-95c1-c4664c0b8475
+    content: Symptom
+    children:
+      - 4f8646e8-eb7e-428b-808d-623c2f2b91f9
+      - 497af4aa-d0e9-422b-ace9-2f2ac1ca1168
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f8646e8-eb7e-428b-808d-623c2f2b91f9:
+    id: 4f8646e8-eb7e-428b-808d-623c2f2b91f9
+    content: A revise/send submission resolves to (or the drift guard rejects against) a same-id node in a different file than the bound one.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  497af4aa-d0e9-422b-ace9-2f2ac1ca1168:
+    id: 497af4aa-d0e9-422b-ace9-2f2ac1ca1168
+    content: 'Observed in session 67f316d6: a node that also existed in another open .arbo caused submit_step_output to resolve/drift against the wrong file''s node; a later submit failed with "Tree state is unavailable" once the bound node''s file was no longer open.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  618c6797-09c8-4992-b4a4-73db8101ba63:
+    id: 618c6797-09c8-4992-b4a4-73db8101ba63
+    content: Root cause
+    children:
+      - f3b1c1f2-389f-4c80-8b9e-c9d38b2a2d72
+      - 15050dc8-6d30-49fd-b991-589e3bbe02c4
+      - de846c2d-dec9-4300-aa93-c0db611ec51d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3b1c1f2-389f-4c80-8b9e-c9d38b2a2d72:
+    id: f3b1c1f2-389f-4c80-8b9e-c9d38b2a2d72
+    content: The MCP tree-read request (src/main/services/mcpTreeReaderBridge.ts) carries only { requestId, nodeId } — no session or file context — so findStateForNode (src/renderer/services/mcpTreeReaderService.ts) has nothing to scope by and sweeps storeManager.getAllStores(), returning the first store whose map holds the id.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15050dc8-6d30-49fd-b991-589e3bbe02c4:
+    id: 15050dc8-6d30-49fd-b991-589e3bbe02c4
+    content: 'The tab/file scope already exists and is unused at resolution time: stores are keyed by filePath (storeManager), terminals are organized per file (terminalStore fileStates keyed by filePath), and a session maps to a terminal (workflowSessionMap). Resolution never walks session to terminal to file to store; it goes straight from a bare UUID to a global sweep.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  de846c2d-dec9-4300-aa93-c0db611ec51d:
+    id: de846c2d-dec9-4300-aa93-c0db611ec51d
+    content: No gate enforces that a session's bound node lives in the session's own tab/file.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82efd8da-3ab4-4bc3-93a5-7af7d2637d2d:
+    id: 82efd8da-3ab4-4bc3-93a5-7af7d2637d2d
+    content: Impact
+    children:
+      - 6a661e39-dfd4-4c3c-824f-d7161edb7a40
+      - 76d80c7e-a388-44d3-a9da-b3daefcdd72b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a661e39-dfd4-4c3c-824f-d7161edb7a40:
+    id: 6a661e39-dfd4-4c3c-824f-d7161edb7a40
+    content: A binding can silently resolve into a file it does not belong to; revisions can be written to the wrong file with no warning.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76d80c7e-a388-44d3-a9da-b3daefcdd72b:
+    id: 76d80c7e-a388-44d3-a9da-b3daefcdd72b
+    content: Once the bound node's file is not open, submit fails with a generic "Tree state is unavailable" error that gives no actionable cause.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb6b4aa7-3437-47e6-af05-59968d88e76c:
+    id: eb6b4aa7-3437-47e6-af05-59968d88e76c
+    content: Proposed fix
+    children:
+      - 93f5836b-e95b-4fc5-8dc8-42be0e939220
+      - f26e400f-5d2e-4ee1-8bf0-5c3457d05728
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93f5836b-e95b-4fc5-8dc8-42be0e939220:
+    id: 93f5836b-e95b-4fc5-8dc8-42be0e939220
+    content: Thread the session (or its bound file) through the tree-read request so resolution scopes to that session's file store via session to terminal to filePath to getStoreForFile; never sweep other stores.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f26e400f-5d2e-4ee1-8bf0-5c3457d05728:
+    id: f26e400f-5d2e-4ee1-8bf0-5c3457d05728
+    content: Enforce at the tab/session/binding level that a binding only ever references a node in its tab's file; treat anything outside it as not-found.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79818f34-ff20-44e3-ad5a-115fd1b54d5c:
+    id: 79818f34-ff20-44e3-ad5a-115fd1b54d5c
+    content: Acceptance criteria
+    children:
+      - 80623a43-6399-4520-aa1e-cd101cf9854e
+      - babd8a33-8203-4f25-862d-2c4cd6c1a2c6
+      - 7d39d80a-3077-4ba8-aa95-ae80c420a4bf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  80623a43-6399-4520-aa1e-cd101cf9854e:
+    id: 80623a43-6399-4520-aa1e-cd101cf9854e
+    content: A session's node resolution consults only the store for the file its tab is open against; other open stores are never searched.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  babd8a33-8203-4f25-862d-2c4cd6c1a2c6:
+    id: babd8a33-8203-4f25-862d-2c4cd6c1a2c6
+    content: A binding can never be created or resolved against a node in a different file than its tab.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d39d80a-3077-4ba8-aa95-ae80c420a4bf:
+    id: 7d39d80a-3077-4ba8-aa95-ae80c420a4bf
+    content: A node id absent from the session's file resolves to not-found with a clear error, never to a same-id node in another open file.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8046fd04-26ee-4a96-9e33-d88309e0996d:
+    id: 8046fd04-26ee-4a96-9e33-d88309e0996d
+    content: Technical refinement
+    children:
+      - 11ac5995-f957-4b0c-bf75-411455290ffe
+      - 4fb69f7a-19d2-473c-98e1-595050dc931e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11ac5995-f957-4b0c-bf75-411455290ffe:
+    id: 11ac5995-f957-4b0c-bf75-411455290ffe
+    content: Complications
+    children:
+      - 0027e951-cfb6-46ff-a6f2-30da86a0a0b6
+      - 0d02c4b5-a469-4bd2-b973-de0d71ee4569
+      - 5b1a8a7f-ce41-4500-8c91-155784f853f1
+      - d94f5802-e040-470d-a501-a2a2319ca345
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0027e951-cfb6-46ff-a6f2-30da86a0a0b6:
+    id: 0027e951-cfb6-46ff-a6f2-30da86a0a0b6
+    content: 'Edge case: a session with a binding but no terminal-to-file mapping yet (registration race), or whose bound file has been closed, must fail closed to not-found — never fall back to a global sweep.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d02c4b5-a469-4bd2-b973-de0d71ee4569:
+    id: 0d02c4b5-a469-4bd2-b973-de0d71ee4569
+    content: 'Zoom paths: storeManager keys stores by source path via parseZoomPath, so scoping must resolve the source filePath, not the zoom path.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b1a8a7f-ce41-4500-8c91-155784f853f1:
+    id: 5b1a8a7f-ce41-4500-8c91-155784f853f1
+    content: 'Out of scope: Ticket B (marker registration), and any intentional cross-file node references/links, which are not bindings.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d94f5802-e040-470d-a501-a2a2319ca345:
+    id: d94f5802-e040-470d-a501-a2a2319ca345
+    content: 'ROI: the duplicate-id trigger is a rare manual-backup artifact, but the scoping fix is small and kills a whole class of silent misroutes whenever the same node is open in two tabs — worth doing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fb69f7a-19d2-473c-98e1-595050dc931e:
+    id: 4fb69f7a-19d2-473c-98e1-595050dc931e
+    content: Approach
+    children:
+      - 7602904f-661f-48f9-9286-8bc225d9849e
+      - 78d1b893-39a5-4cc9-bbcc-4a46b970d875
+      - c8a8a8f8-ebc3-4549-b43f-d0cc82b4c64a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7602904f-661f-48f9-9286-8bc225d9849e:
+    id: 7602904f-661f-48f9-9286-8bc225d9849e
+    content: Add the session (or resolved bound filePath) to the tree-read IPC request; changes land in mcpTreeReaderBridge.ts (request shape) and mcpTreeReaderService.ts (scoped lookup), with the submit/read tools passing the session they already hold.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78d1b893-39a5-4cc9-bbcc-4a46b970d875:
+    id: 78d1b893-39a5-4cc9-bbcc-4a46b970d875
+    content: findStateForNode resolves session to terminal to filePath to getStoreForFile and consults only that store, instead of sweeping getAllStores().
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8a8a8f8-ebc3-4549-b43f-d0cc82b4c64a:
+    id: c8a8a8f8-ebc3-4549-b43f-d0cc82b4c64a
+    content: 'Non-obvious: the scope is not a new identity to invent — it already exists in terminalStore''s per-file fileStates and workflowSessionMap; the only new piece is a reverse session-to-file lookup, plus failing closed when it is absent.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  708574eb-5356-4275-a1ef-551dd894ef42:
+    id: 708574eb-5356-4275-a1ef-551dd894ef42
+    content: Implementation note — all MCP resolution paths scoped by session (read + write/mutate)
+    children:
+      - 507a727b-5422-4541-a327-8b8853808fa3
+      - 90ff6d80-9bb1-4225-a3cc-4eb89cd7603d
+      - 2602fb07-c71a-4c7d-ae8f-502e7df53eaf
+      - 3e4e4ebe-5b13-455e-b896-779b8db6c7f0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  507a727b-5422-4541-a327-8b8853808fa3:
+    id: 507a727b-5422-4541-a327-8b8853808fa3
+    content: Shared resolver findStoreOwningSession (extracted to src/renderer/store/storeOwnership.ts, reused by useHookEventListener) resolves a session to its owning file store via the per-store workflowSessionMap — copy-proof, since a duplicated node carries its sessionId stamp but not store-level state.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90ff6d80-9bb1-4225-a3cc-4eb89cd7603d:
+    id: 90ff6d80-9bb1-4225-a3cc-4eb89cd7603d
+    content: 'Read path: tree-read IPC carries sessionId; findStateForNode consults only the bound file''s store, fails closed when none owns the session.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2602fb07-c71a-4c7d-ae8f-502e7df53eaf:
+    id: 2602fb07-c71a-4c7d-ae8f-502e7df53eaf
+    content: 'Write path: step-output apply and tree mutate IPC carry sessionId; both services resolve via findStoreOwningSession instead of a getAllStores() sweep, satisfying criterion 2 for autonomous writes and all mutations.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e4e4ebe-5b13-455e-b896-779b8db6c7f0:
+    id: 3e4e4ebe-5b13-455e-b896-779b8db6c7f0
+    content: 'Verified: tsc clean, eslint clean on changed files, 275 tests pass across the changed/new files (incl. new scoping + fail-closed tests for reader, applier, and mutator services). Not committed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34028938-1cdd-49a2-90ee-d9d37cfae4df:
+    id: 34028938-1cdd-49a2-90ee-d9d37cfae4df
+    content: review feedback
+    children:
+      - 422dbf07-7604-4070-9851-68648dc6106b
+      - 67d99f9a-cab3-4bff-ae1d-b3f2ee816068
+      - 62318e88-57f2-4659-829a-8d23ee7ea7a0
+      - 922cc20e-9386-4357-bf64-243cb4a92377
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  422dbf07-7604-4070-9851-68648dc6106b:
+    id: 422dbf07-7604-4070-9851-68648dc6106b
+    content: 'Verdict: correct and complete. sessionId is threaded end-to-end (shared types, 3 bridges, preload, 3 renderer services); no leftover getAllStores sweep in the targeted services; no blocker/high/medium findings. Reviewer ran type-check (clean) and affected tests (passing).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67d99f9a-cab3-4bff-ae1d-b3f2ee816068:
+    id: 67d99f9a-cab3-4bff-ae1d-b3f2ee816068
+    content: 'LOW — persisted-but-not-live sessions now fail closed (judged intended/safe): findStoreOwningSession keys on workflowSessionMap, which is populated only by registerSession on SessionStart / session-terminal-mapping and is NOT restored by loadFromPath (persistenceActions restores sessionRegistry, not workflowSessionMap). Meanwhile the MAIN binding registry IS seeded on file open from node.metadata.sessionId (fileActions extractSessionBindings). So a metadata-only (not-live) session resolves in main but findStoreOwningSession returns null -> service fails closed, where the old sweep would have found the node. Safe because such a session has no live terminal and SessionStart fires before an AI can call a tool. Action for resolution step: confirm no --resume/reattach path calls an MCP tool in the window after main seeding but before renderer registerSession; the fail-closed branches log a clear warning so any such case is diagnosable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62318e88-57f2-4659-829a-8d23ee7ea7a0:
+    id: 62318e88-57f2-4659-829a-8d23ee7ea7a0
+    content: NIT — findStoreOwningSession adds `if (!sessionId) return null` not present in the original useHookEventListener version; harmless, covered by storeOwnership.test.ts. No action needed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  922cc20e-9386-4357-bf64-243cb4a92377:
+    id: 922cc20e-9386-4357-bf64-243cb4a92377
+    content: Conventions clean (pure helper in store/, why-not-what comments, consistent naming, uniform fail-closed messages). Tests meaningful with no empty tests; bridge tests assert sessionId is carried in the IPC payload.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  576cb75f-9dfb-4deb-acb5-f201803f49f1:
+    id: 576cb75f-9dfb-4deb-acb5-f201803f49f1
+    content: review resolution
+    children:
+      - 34c4c72a-d47f-4562-8404-9f93210aab2d
+      - e7e30d5c-d98b-449e-96fc-4932884c03aa
+      - 62af6cfb-de30-4f70-b4bd-95d62cb50be2
+      - 682782c2-e08e-426f-90e0-d576095f1fce
+      - 8d4009a2-75dc-4bd5-a936-83d76e30cb16
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34c4c72a-d47f-4562-8404-9f93210aab2d:
+    id: 34c4c72a-d47f-4562-8404-9f93210aab2d
+    content: 'Major issues fixed: none — the review raised no blocker/high/medium and verified the change is correct and complete.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7e30d5c-d98b-449e-96fc-4932884c03aa:
+    id: e7e30d5c-d98b-449e-96fc-4932884c03aa
+    content: 'Minor issues fixed: none.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62af6cfb-de30-4f70-b4bd-95d62cb50be2:
+    id: 62af6cfb-de30-4f70-b4bd-95d62cb50be2
+    content: 'Skipped — LOW (persisted-not-live fail-closed): won''t-fix, by design. Premises verified in code (workflowSessionMap not restored by loadFromPath; main registry seeded from node metadata via seedBindingsIpcBridge). Pressure-tested with an independent adversarial reviewer that traced every lifecycle path (open / claude --resume / reattach / restart / close) and conceded no refuting path: a tool call only originates from a live session whose SessionStart populates workflowSessionMap; resume eagerly seeds the map synchronously via bindSessionTab (workflowSessionResume.ts) before hooks fire; restart spawns fresh PTYs needing a new SessionStart; close unregisters registry + map in lockstep (clearSessionBindingsForFile). Only residual is a sub-second async race that fails closed with a clear retryable error — strictly safer than the cross-file mis-resolution being fixed. Restoring workflowSessionMap on load would be wrong (it maps to a live terminalId).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  682782c2-e08e-426f-90e0-d576095f1fce:
+    id: 682782c2-e08e-426f-90e0-d576095f1fce
+    content: 'Skipped — NIT (the `if (!sessionId) return null` guard): no action; harmless hardening already covered by storeOwnership.test.ts.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d4009a2-75dc-4bd5-a936-83d76e30cb16:
+    id: 8d4009a2-75dc-4bd5-a936-83d76e30cb16
+    content: No code changes made this step; the implementation stands as reviewed (tsc clean, eslint clean, 295 tests passing across changed files).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f035b6b0-c733-4b1e-aa54-5b79ed03dbcd:
+    id: f035b6b0-c733-4b1e-aa54-5b79ed03dbcd
+    content: documentation
+    children:
+      - ae71ca54-624b-44e7-9b8c-c24547e0ee1d
+      - 1610ea1d-0259-4d49-b00a-6179a3487e9d
+      - ebaa3663-b8da-4896-aa70-a106e93d5008
+      - eba5d824-c101-45b0-8fd7-2b367a502f8f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae71ca54-624b-44e7-9b8c-c24547e0ee1d:
+    id: ae71ca54-624b-44e7-9b8c-c24547e0ee1d
+    content: 'No user-facing docs needed: this is an internal binding-resolution correctness fix with no new command/workflow/concept; per conventions, implicit/non-blocking behavior is not documented and forcing an entry would bloat the docs.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1610ea1d-0259-4d49-b00a-6179a3487e9d:
+    id: 1610ea1d-0259-4d49-b00a-6179a3487e9d
+    content: 'No existing doc requires changes: workflows.md (rebind dialog, bound-node stripe) and workflow.md (active sessions continue across files) describe user-facing behavior unchanged by this fix; none described the old cross-file mis-resolution, so nothing is now inaccurate.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebaa3663-b8da-4896-aa70-a106e93d5008:
+    id: ebaa3663-b8da-4896-aa70-a106e93d5008
+    content: 'No changelog line: this is a bug fix to features still under Unreleased (implemented after the last release), which the convention excludes.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  eba5d824-c101-45b0-8fd7-2b367a502f8f:
+    id: eba5d824-c101-45b0-8fd7-2b367a502f8f
+    content: Nothing unclear or inconsistent surfaced in the existing docs relative to this fix.
     children: []
     metadata:
       status: completed
