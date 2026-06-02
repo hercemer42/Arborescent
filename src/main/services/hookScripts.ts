@@ -173,30 +173,26 @@ process.stdin.on('end', () => {
   }).finally(() => process.exit(0));
 });
 
+function spliceOutMatch(text, m) {
+  const start = m.index || 0;
+  return text.slice(0, start) + text.slice(start + m[0].length);
+}
+
 function stripMarkers(prompt) {
   let remaining = prompt;
   let bindingUuid = '';
   let bindingSource = '';
   let targetUuid = '';
-  for (let i = 0; i < 2; i++) {
-    if (!bindingUuid) {
-      const m = remaining.match(HOOK_BINDING_MARKER_REGEX);
-      if (m) {
-        bindingUuid = m[1];
-        bindingSource = m[2] || '';
-        remaining = remaining.slice(m[0].length);
-        continue;
-      }
-    }
-    if (!targetUuid) {
-      const m = remaining.match(HOOK_TARGET_MARKER_REGEX);
-      if (m) {
-        targetUuid = m[1];
-        remaining = remaining.slice(m[0].length);
-        continue;
-      }
-    }
-    break;
+  const bindingMatch = remaining.match(HOOK_BINDING_MARKER_REGEX);
+  if (bindingMatch) {
+    bindingUuid = bindingMatch[1];
+    bindingSource = bindingMatch[2] || '';
+    remaining = spliceOutMatch(remaining, bindingMatch);
+  }
+  const targetMatch = remaining.match(HOOK_TARGET_MARKER_REGEX);
+  if (targetMatch) {
+    targetUuid = targetMatch[1];
+    remaining = spliceOutMatch(remaining, targetMatch);
   }
   return { stripped: remaining, bindingUuid: bindingUuid, bindingSource: bindingSource, targetUuid: targetUuid };
 }

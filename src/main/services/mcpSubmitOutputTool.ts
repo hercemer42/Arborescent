@@ -55,7 +55,11 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       const boundNodeId = pendingTarget ?? deps.bindingRegistry.lookup(sessionId);
       if (!boundNodeId) {
         logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false reason=unbound`, 'McpSubmit');
-        return ok({ applied: false, reason: 'unbound — session has no binding' });
+        return ok({
+          applied: false,
+          reason:
+            'unbound — no target node registered and no workflow binding for this session. If you sent with a target node, its ARBORESCENT_TARGET marker did not reach the prompt (check it was included in the message).',
+        });
       }
 
       const state = await deps.treeReader.readState(sessionId, boundNodeId);

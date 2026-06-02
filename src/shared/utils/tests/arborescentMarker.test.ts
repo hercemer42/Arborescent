@@ -134,13 +134,13 @@ describe('extractArborescentMarkers — both markers together', () => {
     });
   });
 
-  it('returns null for a target marker that is not on the first line', () => {
+  it('extracts a target marker that is not on the first line (Ticket B — leading content no longer defeats it)', () => {
     const prompt = `prelude\n<!-- ARBORESCENT_TARGET: ${TARGET_UUID} -->\nrest`;
     expect(extractArborescentMarkers(prompt)).toEqual({
       bindingNodeUuid: null,
       bindingSource: null,
-      targetNodeUuid: null,
-      stripped: prompt,
+      targetNodeUuid: TARGET_UUID,
+      stripped: 'prelude\nrest',
     });
   });
 
@@ -230,6 +230,37 @@ describe('extractArborescentMarkers — binding marker source field (US-C)', () 
     // Source values are lowercase kebab — the regex must not match exotic input
     // so the dispatcher cannot be steered with a hand-crafted prompt.
     const prompt = `<!-- ARBORESCENT_NODE: ${SAMPLE_UUID} Workflow-Advance -->\nrest`;
+    expect(extractArborescentMarkers(prompt)).toEqual({
+      bindingNodeUuid: null,
+      bindingSource: null,
+      targetNodeUuid: null,
+      stripped: prompt,
+    });
+  });
+});
+
+describe('extractArborescentMarkers — Ticket B: target marker preceded by leading content', () => {
+  // Arborescent pastes the marker+payload after whatever the user has typed in
+  // the terminal, so the marker can land mid-line. The parser now finds the
+  // marker anywhere and splices it out; the strict 36-char UUID grammar is the
+  // guard against matching marker-like prose in legitimate content.
+  it('binds and strips a target marker preceded by leading text on the same line (AC1)', () => {
+    const prompt = `Let's create a new bug : <!-- ARBORESCENT_TARGET: ${TARGET_UUID} -->\n===BEGIN INSTRUCTIONS===`;
+    const result = extractArborescentMarkers(prompt);
+    expect(result.targetNodeUuid).toBe(TARGET_UUID);
+    expect(result.stripped).toBe("Let's create a new bug : ===BEGIN INSTRUCTIONS===");
+  });
+
+  it('strips the binding marker too when preceded by leading text, preserving its source token', () => {
+    const prompt = `lead <!-- ARBORESCENT_NODE: ${SAMPLE_UUID} workflow-start -->\nbody`;
+    const result = extractArborescentMarkers(prompt);
+    expect(result.bindingNodeUuid).toBe(SAMPLE_UUID);
+    expect(result.bindingSource).toBe('workflow-start');
+    expect(result.stripped).toBe('lead body');
+  });
+
+  it('does not match a truncated / non-UUID marker even when scanning the whole prompt — the strict UUID shape guards against false positives in content', () => {
+    const prompt = 'discussing <!-- ARBORESCENT_TARGET: 974f185f-not-a-real-uuid --> inline';
     expect(extractArborescentMarkers(prompt)).toEqual({
       bindingNodeUuid: null,
       bindingSource: null,

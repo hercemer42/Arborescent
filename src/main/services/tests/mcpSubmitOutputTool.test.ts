@@ -228,6 +228,8 @@ describe('createSubmitOutputTool — unbound session is a graceful no-op (not an
     const payload = JSON.parse(result.content[0].text);
     expect(payload.applied).toBe(false);
     expect(payload.reason).toMatch(/unbound|no binding|not bound/i);
+    // AC2 (Ticket B): the reason names the likely real cause (target marker / no binding) rather than a bare "unbound"
+    expect(payload.reason).toMatch(/target|marker/i);
     expect(made.applier.apply).not.toHaveBeenCalled();
   });
 
