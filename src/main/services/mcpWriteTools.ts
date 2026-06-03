@@ -1,6 +1,7 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { resolveBinding } from './bindingResolution';
-import { TreeReader, TreeReadState, ToolResult, treeReadFailure } from './mcpReadTools';
+import { TreeReader, TreeReadState, ToolResult, treeReadFailure, codedErr } from './mcpReadTools';
+import { MCP_ERROR_CODES } from '../../shared/utils/mcpErrorCodes';
 import { ProposalSubmitter } from './mcpProposalBridge';
 import { OneShotTargetStore } from './oneShotTargetStore';
 import {
@@ -71,10 +72,6 @@ function ok(payload: unknown): ToolResult {
   return { content: [{ type: 'text', text: JSON.stringify(payload) }] };
 }
 
-function err(message: string): ToolResult {
-  return { content: [{ type: 'text', text: message }], isError: true };
-}
-
 type ResolvedBoundState =
   | { ok: true; boundNodeId: string; state: TreeReadState }
   | { ok: false; error: ToolResult };
@@ -82,7 +79,13 @@ type ResolvedBoundState =
 async function resolveBoundState(deps: WriteToolsDeps, sessionId: string): Promise<ResolvedBoundState> {
   const resolved = resolveBinding({ bindingRegistry: deps.bindingRegistry }, sessionId, { oneShot: false });
   if (!resolved) {
-    return { ok: false, error: err(`No binding found for session ${sessionId}. The session is not bound to any node.`) };
+    return {
+      ok: false,
+      error: codedErr(
+        `No binding found for session ${sessionId}. The session is not bound to any node.`,
+        MCP_ERROR_CODES.writeUnbound,
+      ),
+    };
   }
   const boundNodeId = resolved.nodeId;
   const read = await deps.treeReader.readState(sessionId, boundNodeId);
@@ -110,7 +113,10 @@ async function executeMutation(
 
   const mode = resolveBoundStepMode(state, boundNodeId);
   if (mode === 'no-context') {
-    return err('No context is applied to the bound step. Tree-modifying tools require an explicitly applied context.');
+    return codedErr(
+      'No context is applied to the bound step. Tree-modifying tools require an explicitly applied context.',
+      MCP_ERROR_CODES.writeNoContext,
+    );
   }
 
   // The policy table draws the route distinction: direct-apply (autonomous)
@@ -121,14 +127,15 @@ async function executeMutation(
     ? MODE_POLICY[mode].directApplyMutationKinds
     : MODE_POLICY[mode].proposalMutationKinds;
   if (!allowedKinds.includes(request.kind)) {
-    return err(MODE_POLICY[mode].mutationRefusal);
+    return codedErr(MODE_POLICY[mode].mutationRefusal, MCP_ERROR_CODES.writeModeRefusal);
   }
 
   let mutationNodeId = boundNodeId;
   if (targetNodeId !== undefined && targetNodeId !== boundNodeId) {
     if (!isWithinBoundSubtree(state, boundNodeId, targetNodeId)) {
-      return err(
+      return codedErr(
         `node_id ${targetNodeId} does not resolve to a node within the bound subtree rooted at ${boundNodeId}.`,
+        MCP_ERROR_CODES.writeOutsideBoundSubtree,
       );
     }
     mutationNodeId = targetNodeId;
@@ -140,13 +147,13 @@ async function executeMutation(
       nodeId: mutationNodeId,
       request,
     });
-    if (!proposal.ok) return err(proposal.error);
+    if (!proposal.ok) return codedErr(proposal.error, MCP_ERROR_CODES.writeUpstreamFailure);
     return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
   }
 
   const result = await deps.treeMutator.mutate(sessionId, mutationNodeId, request);
   if (!result.ok) {
-    return err(result.error);
+    return codedErr(result.error, MCP_ERROR_CODES.writeUpstreamFailure);
   }
   return ok({ applied: true });
 }
@@ -161,11 +168,17 @@ async function executeAnnounceStepDone(
 
   const mode = resolveBoundStepMode(state, boundNodeId);
   if (mode === 'no-context') {
-    return err('No context is applied to the bound step. announce_step_done requires an explicitly applied context whose mode completes via announce.');
+    return codedErr(
+      'No context is applied to the bound step. announce_step_done requires an explicitly applied context whose mode completes via announce.',
+      MCP_ERROR_CODES.writeNoContext,
+    );
   }
 
   if (MODE_POLICY[mode].completionTool !== 'announce_step_done') {
-    return err(MODE_POLICY[mode].announceRefusal ?? 'announce_step_done is not valid for this step mode.');
+    return codedErr(
+      MODE_POLICY[mode].announceRefusal ?? 'announce_step_done is not valid for this step mode.',
+      MCP_ERROR_CODES.writeModeRefusal,
+    );
   }
 
   // A checkpoint is the natural home for an action-mode done-signal: there is no
@@ -175,12 +188,15 @@ async function executeAnnounceStepDone(
   // Manual steps stay UI-only: their Stop handler ignores the done-signal entirely.
   const stepType = resolveParentStepType(boundNodeId, state);
   if (stepType !== 'autonomous' && stepType !== 'checkpoint') {
-    return err('announce_step_done is only valid on autonomous or checkpoint workflow steps. Manual steps must be resolved through the user interface.');
+    return codedErr(
+      'announce_step_done is only valid on autonomous or checkpoint workflow steps. Manual steps must be resolved through the user interface.',
+      MCP_ERROR_CODES.writeManualStep,
+    );
   }
 
   const result = await deps.treeMutator.mutate(sessionId, boundNodeId, { kind: 'mark-complete', status: 'completed' });
   if (!result.ok) {
-    return err(result.error);
+    return codedErr(result.error, MCP_ERROR_CODES.writeUpstreamFailure);
   }
 
   deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);

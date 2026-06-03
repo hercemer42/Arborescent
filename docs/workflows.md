@@ -243,6 +243,8 @@ Each line is tagged with the workflow node it concerns when one was resolvable, 
 
 When Claude calls an MCP tool but Arborescent can't resolve the node its session is bound to, the tool reply names the actual cause — the renderer wasn't ready yet, no open file owns the session, or the bound node is no longer in its file (deleted, or the file was closed). Claude reads the reply and reacts on its own; the same cause is logged as `tree-read failure kind=<cause>` with the session and node ids for when you're reconstructing what happened.
 
+Every refused or failed MCP tool call also carries a stable error code (`write/unbound`, `write/mode-refusal`, `write/target-drift`, and so on) alongside the human-readable reply, and when the failure is logged the line carries the identical string as `code=<code>`. When you're tracing why an agent's call was refused, grep the log for the code the agent reported — a line that matches is the exact refusal it saw.
+
 The log is appended to across sessions and rotates at 5 MB, keeping the three previous files (`arborescent.log.1` through `.3`). Attach the file to bug reports.
 
 ## Dragging Workflows

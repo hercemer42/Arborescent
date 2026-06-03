@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { logger } from './logger';
 import { StepOutputApplier } from './mcpSubmitOutputTool';
+import { McpErrorCode } from '../../shared/utils/mcpErrorCodes';
 
 export const STEP_OUTPUT_APPLY_REQUEST_CHANNEL = 'mcp:step-output-apply-request';
 
@@ -13,7 +14,7 @@ export interface StepOutputApplyRequest {
 
 export interface StepOutputApplyResponse {
   requestId: string;
-  result: { ok: true } | { ok: false; error: string };
+  result: { ok: true } | { ok: false; error: string; code?: McpErrorCode };
 }
 
 export interface McpStepOutputApplierBridgeDeps {
@@ -31,7 +32,7 @@ export interface McpStepOutputApplierBridge extends StepOutputApplier {
 export function createMcpStepOutputApplierBridge(
   deps: McpStepOutputApplierBridgeDeps,
 ): McpStepOutputApplierBridge {
-  const pending = new Map<string, (result: { ok: true } | { ok: false; error: string }) => void>();
+  const pending = new Map<string, (result: StepOutputApplyResponse['result']) => void>();
 
   const unsubscribe = deps.onRendererResponse((response) => {
     const resolver = pending.get(response.requestId);
@@ -44,7 +45,7 @@ export function createMcpStepOutputApplierBridge(
     sessionId: string,
     boundNodeId: string,
     content: string,
-  ): Promise<{ ok: true } | { ok: false; error: string }> {
+  ): Promise<StepOutputApplyResponse['result']> {
     if (!boundNodeId) {
       return { ok: false, error: 'No bound node id provided' };
     }

@@ -9,8 +9,9 @@ import {
   getAutonomousStepContext,
   isStructurallyAutonomous,
 } from '../../shared/utils/autonomousStepContext';
+import { MCP_ERROR_CODES, McpErrorCode } from '../../shared/utils/mcpErrorCodes';
 
-export type ApplyResult = { ok: true } | { ok: false; error: string };
+export type ApplyResult = { ok: true } | { ok: false; error: string; code: McpErrorCode };
 
 interface StoreActionsForApply {
   autoSave?: () => void;
@@ -32,7 +33,9 @@ export function applyStepOutput(
 ): ApplyResult {
   const state = store.getState();
   const node = state.nodes[nodeId];
-  if (!node) return { ok: false, error: `Node ${nodeId} not found` };
+  if (!node) {
+    return { ok: false, error: `Node ${nodeId} not found`, code: MCP_ERROR_CODES.applierNodeNotFound };
+  }
 
   // Autonomous workflow steps must route through handleAutonomousFeedback so
   // submitted markdown is parsed, decomposition children are created, the
@@ -44,7 +47,11 @@ export function applyStepOutput(
   if (context !== null) {
     const handler = getActions(store)?.handleAutonomousFeedback;
     if (!handler) {
-      return { ok: false, error: `Workflow handler unavailable for node ${nodeId}` };
+      return {
+        ok: false,
+        error: `Workflow handler unavailable for node ${nodeId}`,
+        code: MCP_ERROR_CODES.applierHandlerUnavailable,
+      };
     }
     handler(nodeId, content);
     return { ok: true };
@@ -54,12 +61,13 @@ export function applyStepOutput(
   // missing — refuse rather than blob-write raw markdown into the node.
   if (isStructurallyAutonomous(nodeId, state)) {
     logger.warn(
-      `gate-miss gate=1+2 node=${nodeId} reason=missing-context`,
+      `gate-miss gate=1+2 node=${nodeId} reason=missing-context code=${MCP_ERROR_CODES.applierRoutingDisagreement}`,
       'McpStepOutputApplier',
     );
     return {
       ok: false,
       error: `Routing gate disagreement for node ${nodeId} — autonomous step has no execution context`,
+      code: MCP_ERROR_CODES.applierRoutingDisagreement,
     };
   }
 
@@ -89,12 +97,16 @@ function handleRequest(request: StepOutputApplyRequest): ApplyResult {
       `step-output-apply: no open file owns session ${request.sessionId}`,
       'McpStepOutputApplier',
     );
-    return { ok: false, error: `No open file owns session ${request.sessionId}` };
+    return {
+      ok: false,
+      error: `No open file owns session ${request.sessionId}`,
+      code: MCP_ERROR_CODES.applierNoStore,
+    };
   }
   try {
     return applyStepOutput(store, request.nodeId, request.content);
   } catch (error) {
     logger.error('step-output-apply threw', error as Error, 'McpStepOutputApplier');
-    return { ok: false, error: (error as Error).message };
+    return { ok: false, error: (error as Error).message, code: MCP_ERROR_CODES.applierThrew };
   }
 }

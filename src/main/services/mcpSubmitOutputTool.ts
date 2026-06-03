@@ -1,10 +1,11 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { resolveBinding } from './bindingResolution';
-import { TreeReader, ToolResult, treeReadFailure } from './mcpReadTools';
+import { TreeReader, ToolResult, treeReadFailure, codedErr } from './mcpReadTools';
 import { OneShotTargetStore } from './oneShotTargetStore';
 import { ProposalSubmitter } from './mcpProposalBridge';
 import { logger } from './logger';
 import { isStructurallyAutonomous } from '../../shared/utils/autonomousStepContext';
+import { MCP_ERROR_CODES, McpErrorCode } from '../../shared/utils/mcpErrorCodes';
 import {
   resolveContextFlags,
   getContextDeclarations,
@@ -18,7 +19,7 @@ export interface StepOutputApplier {
     sessionId: string,
     boundNodeId: string,
     content: string,
-  ): Promise<{ ok: true } | { ok: false; error: string }>;
+  ): Promise<{ ok: true } | { ok: false; error: string; code?: McpErrorCode }>;
 }
 
 export interface SubmitOutputToolDeps {
@@ -44,10 +45,6 @@ function ok(payload: unknown): ToolResult {
   return { content: [{ type: 'text', text: JSON.stringify(payload) }] };
 }
 
-function err(message: string): ToolResult {
-  return { content: [{ type: 'text', text: message }], isError: true };
-}
-
 export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutputTool {
   return {
     submitStepOutput: async ({ sessionId, content, targetNodeId, origin = 'explicit' }) => {
@@ -65,11 +62,15 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         { oneShot: true },
       );
       if (!resolved) {
-        logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false reason=unbound`, 'McpSubmit');
+        logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false reason=unbound code=${MCP_ERROR_CODES.writeUnbound}`, 'McpSubmit');
+        // The unbound response is success-shaped (applied:false), not an MCP
+        // error, so its code rides inside the JSON payload instead of a
+        // structured error field.
         return ok({
           applied: false,
           reason:
             'unbound — no target node registered and no workflow binding for this session. If you sent with a target node, its ARBORESCENT_TARGET marker did not reach the prompt (check it was included in the message).',
+          code: MCP_ERROR_CODES.writeUnbound,
         });
       }
 
@@ -88,14 +89,20 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       if (resolved.source !== 'one-shot') {
         const contextId = getAppliedContextIdWithInheritance(boundNodeId, state.nodes, state.ancestorRegistry);
         if (!contextId) {
-          logger.warn(`submit_step_output session=${sessionId} node=${boundNodeId} refused=no-context`, 'McpSubmit');
-          return err('No context is applied to the bound step. submit_step_output requires an explicitly applied collaborate context.');
+          logger.warn(`submit_step_output session=${sessionId} node=${boundNodeId} refused=no-context code=${MCP_ERROR_CODES.writeNoContext}`, 'McpSubmit');
+          return codedErr(
+            'No context is applied to the bound step. submit_step_output requires an explicitly applied collaborate context.',
+            MCP_ERROR_CODES.writeNoContext,
+          );
         }
         const mode = resolveStepMode(resolveContextFlags(contextId, state.nodes, getContextDeclarations(state.nodes)));
         const policy = MODE_POLICY[mode];
         if (policy.completionTool !== 'submit_step_output') {
-          logger.warn(`submit_step_output session=${sessionId} node=${boundNodeId} refused=mode mode=${mode}`, 'McpSubmit');
-          return err(policy.submitRefusal ?? 'submit_step_output is not permitted for this step mode.');
+          logger.warn(`submit_step_output session=${sessionId} node=${boundNodeId} refused=mode mode=${mode} code=${MCP_ERROR_CODES.writeModeRefusal}`, 'McpSubmit');
+          return codedErr(
+            policy.submitRefusal ?? 'submit_step_output is not permitted for this step mode.',
+            MCP_ERROR_CODES.writeModeRefusal,
+          );
         }
       }
 
@@ -107,11 +114,12 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       if (resolved.source === 'one-shot' || !isStructurallyAutonomous(boundNodeId, state)) {
         if (targetNodeId && targetNodeId !== boundNodeId) {
           logger.warn(
-            `gate-miss gate=4 session=${sessionId} tokenTarget=${targetNodeId} resolvedTarget=${boundNodeId} reason=drift-proposal-route`,
+            `gate-miss gate=4 session=${sessionId} tokenTarget=${targetNodeId} resolvedTarget=${boundNodeId} reason=drift-proposal-route code=${MCP_ERROR_CODES.writeTargetDrift}`,
             'McpSubmit',
           );
-          return err(
+          return codedErr(
             `submit_step_output target drift — token target ${targetNodeId} does not match resolved bound node ${boundNodeId}`,
+            MCP_ERROR_CODES.writeTargetDrift,
           );
         }
         const proposal = await deps.proposalSubmitter.submit({
@@ -119,7 +127,7 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
           nodeId: boundNodeId,
           request: { kind: 'submit-step-output', content },
         });
-        if (!proposal.ok) return err(proposal.error);
+        if (!proposal.ok) return codedErr(proposal.error, MCP_ERROR_CODES.writeUpstreamFailure);
         deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);
         logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false proposed=true node=${boundNodeId}`, 'McpSubmit');
         return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
@@ -130,26 +138,28 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       // advance, user-confirmed in-flight rebind, decomposition+recurse race).
       if (!targetNodeId) {
         logger.warn(
-          `gate-miss gate=4 session=${sessionId} node=${boundNodeId} reason=missing-token`,
+          `gate-miss gate=4 session=${sessionId} node=${boundNodeId} reason=missing-token code=${MCP_ERROR_CODES.writeMissingToken}`,
           'McpSubmit',
         );
-        return err(
+        return codedErr(
           `submit_step_output requires target_node_id on the autonomous route — expected ${boundNodeId}`,
+          MCP_ERROR_CODES.writeMissingToken,
         );
       }
       if (targetNodeId !== boundNodeId) {
         logger.warn(
-          `gate-miss gate=4 session=${sessionId} tokenTarget=${targetNodeId} resolvedTarget=${boundNodeId} reason=drift`,
+          `gate-miss gate=4 session=${sessionId} tokenTarget=${targetNodeId} resolvedTarget=${boundNodeId} reason=drift code=${MCP_ERROR_CODES.writeTargetDrift}`,
           'McpSubmit',
         );
-        return err(
+        return codedErr(
           `submit_step_output target drift — token target ${targetNodeId} does not match resolved bound node ${boundNodeId}`,
+          MCP_ERROR_CODES.writeTargetDrift,
         );
       }
 
       const result = await deps.applier.apply(sessionId, boundNodeId, content);
       if (!result.ok) {
-        return err(result.error);
+        return codedErr(result.error, result.code ?? MCP_ERROR_CODES.writeUpstreamFailure);
       }
 
       deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);

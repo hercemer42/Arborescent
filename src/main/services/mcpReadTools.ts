@@ -2,6 +2,7 @@ import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { resolveBinding } from './bindingResolution';
 import { logger } from './logger';
 import { TreeNode } from '../../shared/types';
+import { MCP_ERROR_CODES, McpErrorCode } from '../../shared/utils/mcpErrorCodes';
 import {
   resolveContextFlags,
   getContextDeclarations,
@@ -83,6 +84,18 @@ function err(message: string): ToolResult {
   return { content: [{ type: 'text', text: message }], isError: true };
 }
 
+// The code travels as a structured field so the prose in content[0].text
+// stays verbatim for consumers that log it as-is.
+export function codedErr(message: string, code: McpErrorCode): ToolResult {
+  return { content: [{ type: 'text', text: message }], isError: true, structuredContent: { code } };
+}
+
+const TREE_READ_FAILURE_CODES: Record<TreeReadFailureKind, McpErrorCode> = {
+  'not-ready': MCP_ERROR_CODES.readNotReady,
+  'no-session-store': MCP_ERROR_CODES.readNoSessionStore,
+  'node-not-in-open-store': MCP_ERROR_CODES.readNodeNotInOpenStore,
+};
+
 const TREE_READ_FAILURE_MESSAGES: Record<TreeReadFailureKind, (sessionId: string, boundNodeId: string) => string> = {
   'not-ready': (sessionId, boundNodeId) =>
     `Tree read for node ${boundNodeId} (session ${sessionId}) got no response — the renderer is not ready. This is transient: retry once after a short wait.`,
@@ -97,8 +110,9 @@ export function treeReadFailure(
   sessionId: string,
   boundNodeId: string,
 ): ToolResult {
-  logger.warn(`tree-read failure kind=${kind} session=${sessionId} node=${boundNodeId}`, 'McpTreeRead');
-  return err(TREE_READ_FAILURE_MESSAGES[kind](sessionId, boundNodeId));
+  const code = TREE_READ_FAILURE_CODES[kind];
+  logger.warn(`tree-read failure kind=${kind} code=${code} session=${sessionId} node=${boundNodeId}`, 'McpTreeRead');
+  return codedErr(TREE_READ_FAILURE_MESSAGES[kind](sessionId, boundNodeId), code);
 }
 
 function modeLabel(collaborate: boolean, execute: boolean): ModeLabel {
@@ -202,7 +216,10 @@ async function withBoundNode<T>(
 ): Promise<ToolResult> {
   const resolved = resolveBinding({ bindingRegistry: deps.bindingRegistry }, sessionId, { oneShot: false });
   if (!resolved) {
-    return err(`No binding found for session ${sessionId}. The session is not bound to any node.`);
+    return codedErr(
+      `No binding found for session ${sessionId}. The session is not bound to any node.`,
+      MCP_ERROR_CODES.writeUnbound,
+    );
   }
   const boundNodeId = resolved.nodeId;
   const read = await deps.treeReader.readState(sessionId, boundNodeId);

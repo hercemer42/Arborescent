@@ -112,7 +112,7 @@ describe('startMcpStepOutputApplierService — file-scoped resolution (Ticket A,
 
     expect(window.electron.respondToMcpStepOutputApply).toHaveBeenCalledWith({
       requestId: 'r2',
-      result: { ok: false, error: expect.stringContaining('No open file owns session') },
+      result: { ok: false, error: expect.stringContaining('No open file owns session'), code: 'applier/no-store' },
     });
   });
 });
@@ -129,7 +129,7 @@ describe('applyStepOutput — happy path', () => {
   it('errors when the bound node is not in the store', () => {
     const { store } = makeFakeStore();
     const result = applyStepOutput(store as never, 'missing-node', 'x');
-    expect(result).toEqual({ ok: false, error: expect.stringContaining('not found') });
+    expect(result).toEqual({ ok: false, error: expect.stringContaining('not found'), code: 'applier/node-not-found' });
   });
 });
 
@@ -195,7 +195,11 @@ describe('applyStepOutput — autonomous workflow dispatch', () => {
       },
     };
     const result = applyStepOutput(store as never, BOUND, 'x');
-    expect(result).toEqual({ ok: false, error: expect.stringContaining('Workflow handler unavailable') });
+    expect(result).toEqual({
+      ok: false,
+      error: expect.stringContaining('Workflow handler unavailable'),
+      code: 'applier/workflow-handler-unavailable',
+    });
   });
 });
 

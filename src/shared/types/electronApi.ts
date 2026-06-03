@@ -10,6 +10,8 @@
  * but not the other, `tsc --noEmit` fails at the `satisfies` check.
  */
 
+import type { McpErrorCode } from '../utils/mcpErrorCodes';
+
 export interface HookEventPayload {
   session_id: string;
   hook_event_name: string;
@@ -78,7 +80,7 @@ export interface StepOutputApplyRequest {
 
 export interface StepOutputApplyResponse {
   requestId: string;
-  result: { ok: true } | { ok: false; error: string };
+  result: { ok: true } | { ok: false; error: string; code?: McpErrorCode };
 }
 
 export type ProposalPayload =
