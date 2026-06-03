@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-03T20:31:24.520Z'
+updated: '2026-06-03T21:19:12.902Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33381,7 +33381,6 @@ nodes:
       - 259f33e2-faad-4085-b1e4-53396a6da78e
       - ef8172e7-9f00-4495-9f4e-69b862af7dde
       - fbf20e91-d852-4406-9815-952fa7727f33
-      - be1572f5-4f2c-427e-9797-4bd300de63c4
       - bdceb696-248d-4199-9182-db0689445c07
       - ddd90208-5752-46cf-b72a-5fcbe040b2e0
       - b3dc5362-ca81-4cbe-8558-2800fa41354f
@@ -80786,7 +80785,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 42e74ca9-2d62-439b-93ff-b040a4989a07
       - 2b90588b-8c43-44be-8376-a4269b6c6ee2
       - 09f5ffea-f6d2-43f8-8ac6-da046a982e60
       - e353e6df-5cc7-40af-9e7b-a9da29963cd2
@@ -115524,6 +115522,7 @@ nodes:
       - 85dde574-3fee-450e-b4bc-36588f9bcf45
       - 01cff27f-daa2-48ac-990f-1031db9cc5cb
       - 4f0782b5-830f-4ddf-870a-827c5f4ca28c
+      - 651e3053-cc28-4ac0-94b1-306fefece2a6
     metadata:
       status: pending
       isBlueprint: true
@@ -124630,7 +124629,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 651e3053-cc28-4ac0-94b1-306fefece2a6
+      - 42e74ca9-2d62-439b-93ff-b040a4989a07
     metadata:
       status: pending
       isBlueprint: true
@@ -174580,13 +174579,6 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
-  be1572f5-4f2c-427e-9797-4bd300de63c4:
-    id: be1572f5-4f2c-427e-9797-4bd300de63c4
-    content: Manual testing
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   2d148d76-e0d3-4330-a378-2197983d5baf:
     id: 2d148d76-e0d3-4330-a378-2197983d5baf
     content: 'Bug: announce_step_done is rejected on a checkpoint step whose applied context is execute:false/collaborate:false, even when an explicit done-signal is the intended action'
@@ -185536,461 +185528,17 @@ nodes:
     id: 42e74ca9-2d62-439b-93ff-b040a4989a07
     content: User story 4 — Canonical binding authority (SSOT convergence)
     children:
-      - 0ac9043d-c7a9-4a25-bd30-fd9b66ce2d67
-      - 4ac4ffb7-483f-4862-84e9-1c5845ed3215
+      - 549cc854-3bdf-4111-8be7-236ba68ed52a
+      - 63511c1b-5d7f-4396-af21-051b3dabf054
+      - 30df3730-a50d-4cc2-8a6b-257c3be5d254
+      - 2a203c2f-4a88-4921-aa9b-d2c651fe05e3
+      - 9d8e83da-b3f7-4be2-91a1-e188c81fe7f2
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
-  0ac9043d-c7a9-4a25-bd30-fd9b66ce2d67:
-    id: 0ac9043d-c7a9-4a25-bd30-fd9b66ce2d67
-    content: 📄 Product spec
-    children:
-      - 8a5edd3b-74d7-4907-8eae-4aea400f02de
-      - a655a2d8-cba4-4d26-915e-56708b7d132a
-      - b9a668a7-2a0a-4d9e-ae71-37618c265efe
-      - a7f3b8da-e0a8-4e15-80c1-15b53fe5b5d6
-      - c59e57a8-153e-4262-9426-4678bed1c242
-      - c79b9bfd-fc83-4033-aba7-2c0f5cf23cdd
-      - ccaead90-cc38-4616-9d92-138bc4f93553
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a5edd3b-74d7-4907-8eae-4aea400f02de:
-    id: 8a5edd3b-74d7-4907-8eae-4aea400f02de
-    content: Context
-    children:
-      - 6d5acc00-9190-4369-8bf5-32babb342557
-      - a03e7436-ef37-4851-a5e5-4fa17428d349
-      - 34713f99-20fb-4d2e-ab8c-436b4302886e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d5acc00-9190-4369-8bf5-32babb342557:
-    id: 6d5acc00-9190-4369-8bf5-32babb342557
-    content: 'Binding facts are spread across five stores today: main''s sessionBindingRegistry (session→node), renderer''s workflowSessionMap (session→terminal), terminalNodeAssignments (terminal→running node), terminalStore.originNodeId (terminal→creating node), and node.metadata.sessionId (persistence hint, re-seeded into the registry on file open)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a03e7436-ef37-4851-a5e5-4fa17428d349:
-    id: a03e7436-ef37-4851-a5e5-4fa17428d349
-    content: 'Code audit finding: a literal cross-process shared registry is the wrong shape — the process boundary would put IPC on every resolution, and main and renderer legitimately own different facts; the convergence is one authoritative owner per fact, not one store'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  34713f99-20fb-4d2e-ab8c-436b4302886e:
-    id: 34713f99-20fb-4d2e-ab8c-436b4302886e
-    content: 'Known drift example: deleting a bound node then rebinding the terminal leaves node.metadata.sessionId stale while main''s registry holds the new binding — routing stays correct only because resolvers happen to prefer workflowSessionMap over metadata'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a655a2d8-cba4-4d26-915e-56708b7d132a:
-    id: a655a2d8-cba4-4d26-915e-56708b7d132a
-    content: User
-    children:
-      - 121dc5d2-2b97-490d-b6f7-f021da9bb234
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  121dc5d2-2b97-490d-b6f7-f021da9bb234:
-    id: 121dc5d2-2b97-490d-b6f7-f021da9bb234
-    content: The developer debugging binding and rebind bugs, who today must reason about five stores with implicit, undocumented precedence between them
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9a668a7-2a0a-4d9e-ae71-37618c265efe:
-    id: b9a668a7-2a0a-4d9e-ae71-37618c265efe
-    content: Current experience
-    children:
-      - 573ca083-bee6-4da8-9503-b57494b7828c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  573ca083-bee6-4da8-9503-b57494b7828c:
-    id: 573ca083-bee6-4da8-9503-b57494b7828c
-    content: 'Authority is implicit: which store wins for which question is encoded in resolver ordering and comments, so a fix in one layer can silently contradict the other and drift is only caught when routing misbehaves'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a7f3b8da-e0a8-4e15-80c1-15b53fe5b5d6:
-    id: a7f3b8da-e0a8-4e15-80c1-15b53fe5b5d6
-    content: Goal
-    children:
-      - faeb2036-c08d-4d28-a249-44d209d0b9e8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  faeb2036-c08d-4d28-a249-44d209d0b9e8:
-    id: faeb2036-c08d-4d28-a249-44d209d0b9e8
-    content: Every binding fact has exactly one documented authoritative owner, all resolution reads go through the two extracted resolver modules against that owner, and derived copies are demoted to hints that no routing decision may read
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c59e57a8-153e-4262-9426-4678bed1c242:
-    id: c59e57a8-153e-4262-9426-4678bed1c242
-    content: Business rules
-    children:
-      - e8e636fb-8179-490c-b34b-75f48dabf000
-      - 0e165210-9a2e-446d-bc07-af22a79d2200
-      - a0e66a1d-f54e-4342-94bb-dafe42fe70da
-      - 3be905eb-cef8-4bed-af8e-a3945e4af4dd
-      - f792aba5-478a-4293-848b-923d54ed8661
-      - 727730aa-07b8-440f-9bd0-d558577978e5
-      - 03507c01-e591-446c-a460-2309f45e8327
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8e636fb-8179-490c-b34b-75f48dabf000:
-    id: e8e636fb-8179-490c-b34b-75f48dabf000
-    content: Main's sessionBindingRegistry is the sole authority for session→node; no other store is consulted to answer which node owns a session
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0e165210-9a2e-446d-bc07-af22a79d2200:
-    id: 0e165210-9a2e-446d-bc07-af22a79d2200
-    content: Renderer's workflowSessionMap is the sole authority for session→terminal; main keeps no copy of that fact
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a0e66a1d-f54e-4342-94bb-dafe42fe70da:
-    id: a0e66a1d-f54e-4342-94bb-dafe42fe70da
-    content: node.metadata.sessionId is a persistence hint only — it seeds the registry on file open and is never read for live routing decisions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3be905eb-cef8-4bed-af8e-a3945e4af4dd:
-    id: 3be905eb-cef8-4bed-af8e-a3945e4af4dd
-    content: A stale originNodeId with no live session never counts as a binding (preserves today's intentional behavior)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f792aba5-478a-4293-848b-923d54ed8661:
-    id: f792aba5-478a-4293-848b-923d54ed8661
-    content: 'The rebind protocol is preserved exactly: pendingRebind/confirmRebind with user dialog for workflow-start conflicts, silent auto-confirm for workflow-advance'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  727730aa-07b8-440f-9bd0-d558577978e5:
-    id: 727730aa-07b8-440f-9bd0-d558577978e5
-    content: The authority table is published as a typed shared contract (MODE_POLICY precedent) and is the single place a new binding fact gets an owner assigned
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  03507c01-e591-446c-a460-2309f45e8327:
-    id: 03507c01-e591-446c-a460-2309f45e8327
-    content: terminalBindingResolution.ts (renderer) and resolveBinding (main) remain the only read paths; this story changes what they read, never their signatures or call sites
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c79b9bfd-fc83-4033-aba7-2c0f5cf23cdd:
-    id: c79b9bfd-fc83-4033-aba7-2c0f5cf23cdd
-    content: Acceptance criteria
-    children:
-      - 54c27dbe-3885-4fe4-bf48-52a295913e1c
-      - fc5dd737-97c3-4cd7-ae10-e07761172644
-      - 338e33d1-c15e-46d6-85bc-2140f56578f0
-      - b95d37b9-79d9-43b0-bb33-289b283cfc3e
-      - c9398e99-98c9-40f3-a022-57ef3a81847b
-      - e8f29802-8f46-41cc-85de-ad00e7342b8c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  54c27dbe-3885-4fe4-bf48-52a295913e1c:
-    id: 54c27dbe-3885-4fe4-bf48-52a295913e1c
-    content: A shared binding-authority table enumerates each binding fact, its single authoritative owner, and its sync mechanism, and the table is imported (not duplicated) wherever authority is asserted
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc5dd737-97c3-4cd7-ae10-e07761172644:
-    id: fc5dd737-97c3-4cd7-ae10-e07761172644
-    content: An audit confirms no routing decision reads node.metadata.sessionId, with a test pinning the demotion
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  338e33d1-c15e-46d6-85bc-2140f56578f0:
-    id: 338e33d1-c15e-46d6-85bc-2140f56578f0
-    content: 'Drift regression test: delete a bound node, rebind the terminal, and verify routing follows the registry while the stale metadata is ignored'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b95d37b9-79d9-43b0-bb33-289b283cfc3e:
-    id: b95d37b9-79d9-43b0-bb33-289b283cfc3e
-    content: 'File-reopen seeding conflict test: stale persisted metadata triggers the pendingRebind flow rather than silently overwriting the registry'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9398e99-98c9-40f3-a022-57ef3a81847b:
-    id: c9398e99-98c9-40f3-a022-57ef3a81847b
-    content: All resolver call sites are byte-identical to pre-story state; only resolver internals changed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8f29802-8f46-41cc-85de-ad00e7342b8c:
-    id: e8f29802-8f46-41cc-85de-ad00e7342b8c
-    content: Existing rebind gate suites pass unchanged (workflowStartRebindGate, restartBindingResolution, sessionPointerRebind, descendantPointerRebind)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ccaead90-cc38-4616-9d92-138bc4f93553:
-    id: ccaead90-cc38-4616-9d92-138bc4f93553
-    content: Non-goals
-    children:
-      - 5fb78a5c-7f72-4e1b-936a-b0306ff73535
-      - de607e03-e8a9-4b91-a4ee-e40706da8ba5
-      - a3319333-f46a-4112-ace0-21b0c8168643
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5fb78a5c-7f72-4e1b-936a-b0306ff73535:
-    id: 5fb78a5c-7f72-4e1b-936a-b0306ff73535
-    content: No cross-process registry, no IPC on the resolution path, and no merging of main and renderer state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  de607e03-e8a9-4b91-a4ee-e40706da8ba5:
-    id: de607e03-e8a9-4b91-a4ee-e40706da8ba5
-    content: No change to the rebind UX or the silent workflow-advance confirm
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a3319333-f46a-4112-ace0-21b0c8168643:
-    id: a3319333-f46a-4112-ace0-21b0c8168643
-    content: No new binding facts — this story assigns owners to the five that exist
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ac4ffb7-483f-4862-84e9-1c5845ed3215:
-    id: 4ac4ffb7-483f-4862-84e9-1c5845ed3215
-    content: 🔧 Implementation proposal
-    children:
-      - b48368ac-78a9-4d5b-b708-9a36600e4558
-      - 54ffbef7-ed1c-4c9d-9dc0-e9be7d157dbc
-      - e6bad72b-47df-43c4-bd56-1eef583e131b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b48368ac-78a9-4d5b-b708-9a36600e4558:
-    id: b48368ac-78a9-4d5b-b708-9a36600e4558
-    content: Approach
-    children:
-      - 95827c2d-66ec-4d9b-a500-8873838b97bf
-      - 5e14f464-34c5-4355-986d-97d5a8cf35e5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  95827c2d-66ec-4d9b-a500-8873838b97bf:
-    id: 95827c2d-66ec-4d9b-a500-8873838b97bf
-    content: 'Publish the authority table as a typed shared module, then sweep each layer: route every remaining ad-hoc binding read through its layer''s extracted resolver, demote metadata.sessionId readers to the seeding path only, and add the drift and reopen-conflict regression tests'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5e14f464-34c5-4355-986d-97d5a8cf35e5:
-    id: 5e14f464-34c5-4355-986d-97d5a8cf35e5
-    content: The deliverable is the enforced contract plus the demotions — most of the mechanical extraction work was already done by the renderer US and story 2, which is why this story stays small despite the SSOT label
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  54ffbef7-ed1c-4c9d-9dc0-e9be7d157dbc:
-    id: 54ffbef7-ed1c-4c9d-9dc0-e9be7d157dbc
-    content: Touchpoints
-    children:
-      - ecb3d9da-ca5b-4b21-9665-68ebccf826fb
-      - b771f5d9-befa-432c-8d94-a5994c19fbea
-      - 6be1c36b-e7f0-4157-8c08-51ae385e53dd
-      - 7ba66307-595d-42f1-8fdf-ab9ef63df33b
-      - b5245e37-2460-4749-a29b-24fcacaa4577
-      - 1bf98b7d-4f7b-4810-8698-c8fc4cc9b8a7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ecb3d9da-ca5b-4b21-9665-68ebccf826fb:
-    id: ecb3d9da-ca5b-4b21-9665-68ebccf826fb
-    content: New shared binding-authority module in src/shared/utils
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b771f5d9-befa-432c-8d94-a5994c19fbea:
-    id: b771f5d9-befa-432c-8d94-a5994c19fbea
-    content: terminalBindingResolution.ts internals (renderer)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6be1c36b-e7f0-4157-8c08-51ae385e53dd:
-    id: 6be1c36b-e7f0-4157-8c08-51ae385e53dd
-    content: resolveBinding internals (main)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ba66307-595d-42f1-8fdf-ab9ef63df33b:
-    id: 7ba66307-595d-42f1-8fdf-ab9ef63df33b
-    content: extractSessionBindings file-open seeding path
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5245e37-2460-4749-a29b-24fcacaa4577:
-    id: b5245e37-2460-4749-a29b-24fcacaa4577
-    content: Audit of all node.metadata.sessionId readers
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1bf98b7d-4f7b-4810-8698-c8fc4cc9b8a7:
-    id: 1bf98b7d-4f7b-4810-8698-c8fc4cc9b8a7
-    content: Drift and reopen-conflict regression tests
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e6bad72b-47df-43c4-bd56-1eef583e131b:
-    id: e6bad72b-47df-43c4-bd56-1eef583e131b
-    content: Constraints to call out
-    children:
-      - ffc85937-4a7f-4b62-894b-d7a8abf737ed
-      - 01f681ad-b74f-402f-8f1d-b32db7800bab
-      - 555cd08f-ad90-433e-9c03-36a337ee0f51
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ffc85937-4a7f-4b62-894b-d7a8abf737ed:
-    id: ffc85937-4a7f-4b62-894b-d7a8abf737ed
-    content: Hard-gated on both the renderer extraction (in-progress worktree) and story 2 landing — the resolvers are the enforcement points, so speccing enforcement before they exist would target moving code
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  01f681ad-b74f-402f-8f1d-b32db7800bab:
-    id: 01f681ad-b74f-402f-8f1d-b32db7800bab
-    content: 'The original "single source of truth" framing from the sequence is deliberately narrowed: single authority per fact, not single store — a shared registry across the process boundary was evaluated and rejected'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  555cd08f-ad90-433e-9c03-36a337ee0f51:
-    id: 555cd08f-ad90-433e-9c03-36a337ee0f51
-    content: Touching the seeding path interacts with the rebind dialog flow; the reopen-conflict test must land in the same PR as any seeding change
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
+      sessionId: d01185a6-56c5-4058-9a36-8bee3a24d6b7
   1e093156-1159-421d-9dde-88864ec581ec:
     id: 1e093156-1159-421d-9dde-88864ec581ec
     content: worktree
@@ -189801,6 +189349,641 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  549cc854-3bdf-4111-8be7-236ba68ed52a:
+    id: 549cc854-3bdf-4111-8be7-236ba68ed52a
+    content: worktree
+    children:
+      - 56f829a9-2ac5-4691-b9cd-ef55bf555529
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56f829a9-2ac5-4691-b9cd-ef55bf555529:
+    id: 56f829a9-2ac5-4691-b9cd-ef55bf555529
+    content: vscode://file/Users/brianfox/dev/Arborescent-binding-authority
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63511c1b-5d7f-4396-af21-051b3dabf054:
+    id: 63511c1b-5d7f-4396-af21-051b3dabf054
+    content: 📄 Product spec
+    children:
+      - 2d5f18bb-f310-4f8b-abd1-13eed3a5206c
+      - f16bba0c-1172-4aaf-b89e-1ee20429b568
+      - 740bc7c5-9b1f-4674-a509-c63fecd6ea9b
+      - 73a9217a-07c5-489e-b58f-187a59c7fcfb
+      - 8ada73d6-d102-41f8-9922-6447518d1074
+      - 3bd4cae2-857d-4a59-a5a1-b49353f6efbd
+      - 1ab22323-4b3d-4510-a63f-c8b1bbe16a5b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d5f18bb-f310-4f8b-abd1-13eed3a5206c:
+    id: 2d5f18bb-f310-4f8b-abd1-13eed3a5206c
+    content: Context
+    children:
+      - b11db199-3379-42b0-a14f-781b1e42d220
+      - c4651f75-5418-41e3-b4b4-8374d329fb41
+      - a6b18129-cc08-4ece-82e1-9dcd3a24d944
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b11db199-3379-42b0-a14f-781b1e42d220:
+    id: b11db199-3379-42b0-a14f-781b1e42d220
+    content: 'Binding facts are spread across five stores today: main''s sessionBindingRegistry (session→node), renderer''s workflowSessionMap (session→terminal), terminalNodeAssignments (terminal→running node), terminalStore.originNodeId (terminal→creating node), and node.metadata.sessionId (persistence hint, re-seeded into the registry on file open)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4651f75-5418-41e3-b4b4-8374d329fb41:
+    id: c4651f75-5418-41e3-b4b4-8374d329fb41
+    content: 'Code audit finding: a literal cross-process shared registry is the wrong shape — the process boundary would put IPC on every resolution, and main and renderer legitimately own different facts; the convergence is one authoritative owner per fact, not one store'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6b18129-cc08-4ece-82e1-9dcd3a24d944:
+    id: a6b18129-cc08-4ece-82e1-9dcd3a24d944
+    content: 'Known drift example: deleting a bound node then rebinding the terminal leaves node.metadata.sessionId stale while main''s registry holds the new binding — routing stays correct only because resolvers happen to prefer workflowSessionMap over metadata'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f16bba0c-1172-4aaf-b89e-1ee20429b568:
+    id: f16bba0c-1172-4aaf-b89e-1ee20429b568
+    content: User
+    children:
+      - 25edd20e-b208-463f-b316-50790f35ffcf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25edd20e-b208-463f-b316-50790f35ffcf:
+    id: 25edd20e-b208-463f-b316-50790f35ffcf
+    content: The developer debugging binding and rebind bugs, who today must reason about five stores with implicit, undocumented precedence between them
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  740bc7c5-9b1f-4674-a509-c63fecd6ea9b:
+    id: 740bc7c5-9b1f-4674-a509-c63fecd6ea9b
+    content: Current experience
+    children:
+      - 0d23c785-92ee-433a-85a0-2cc5e4de5f39
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d23c785-92ee-433a-85a0-2cc5e4de5f39:
+    id: 0d23c785-92ee-433a-85a0-2cc5e4de5f39
+    content: 'Authority is implicit: which store wins for which question is encoded in resolver ordering and comments, so a fix in one layer can silently contradict the other and drift is only caught when routing misbehaves'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73a9217a-07c5-489e-b58f-187a59c7fcfb:
+    id: 73a9217a-07c5-489e-b58f-187a59c7fcfb
+    content: Goal
+    children:
+      - 3b01d7c3-97b6-44f1-a6e5-29cbfec07b32
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b01d7c3-97b6-44f1-a6e5-29cbfec07b32:
+    id: 3b01d7c3-97b6-44f1-a6e5-29cbfec07b32
+    content: Every binding fact has exactly one documented authoritative owner, all resolution reads go through the two extracted resolver modules against that owner, and derived copies are demoted to hints that no routing decision may read
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ada73d6-d102-41f8-9922-6447518d1074:
+    id: 8ada73d6-d102-41f8-9922-6447518d1074
+    content: Business rules
+    children:
+      - ece73157-eab7-4b4a-a807-29f5ae8d1f5d
+      - ca506f0b-bf2f-4633-a929-cbbdc3b74bcd
+      - 35f7ee78-ffb3-4f54-9b73-9555a2b0addf
+      - e9eb30be-cf56-49c2-8df0-c1be303f4167
+      - b9d664ad-4014-48a3-aa44-be0d5ef6aad2
+      - 4a1967ad-8ecd-4f8b-948c-63ea459b99cd
+      - 10b170b3-5e6d-4577-b06b-dfeea7ccc6de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ece73157-eab7-4b4a-a807-29f5ae8d1f5d:
+    id: ece73157-eab7-4b4a-a807-29f5ae8d1f5d
+    content: Main's sessionBindingRegistry is the sole authority for session→node; no other store is consulted to answer which node owns a session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca506f0b-bf2f-4633-a929-cbbdc3b74bcd:
+    id: ca506f0b-bf2f-4633-a929-cbbdc3b74bcd
+    content: Renderer's workflowSessionMap is the sole authority for session→terminal; main keeps no copy of that fact
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35f7ee78-ffb3-4f54-9b73-9555a2b0addf:
+    id: 35f7ee78-ffb3-4f54-9b73-9555a2b0addf
+    content: node.metadata.sessionId is a persistence hint only — it seeds the registry on file open and is never read for live routing decisions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9eb30be-cf56-49c2-8df0-c1be303f4167:
+    id: e9eb30be-cf56-49c2-8df0-c1be303f4167
+    content: A stale originNodeId with no live session never counts as a binding (preserves today's intentional behavior)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9d664ad-4014-48a3-aa44-be0d5ef6aad2:
+    id: b9d664ad-4014-48a3-aa44-be0d5ef6aad2
+    content: 'The rebind protocol is preserved exactly: pendingRebind/confirmRebind with user dialog for workflow-start conflicts, silent auto-confirm for workflow-advance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a1967ad-8ecd-4f8b-948c-63ea459b99cd:
+    id: 4a1967ad-8ecd-4f8b-948c-63ea459b99cd
+    content: The authority table is published as a typed shared contract (MODE_POLICY precedent) and is the single place a new binding fact gets an owner assigned
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10b170b3-5e6d-4577-b06b-dfeea7ccc6de:
+    id: 10b170b3-5e6d-4577-b06b-dfeea7ccc6de
+    content: terminalBindingResolution.ts (renderer) and resolveBinding (main) remain the only read paths; this story changes what they read, never their signatures or call sites
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bd4cae2-857d-4a59-a5a1-b49353f6efbd:
+    id: 3bd4cae2-857d-4a59-a5a1-b49353f6efbd
+    content: Acceptance criteria
+    children:
+      - 04a5147a-2245-44a8-866c-b05494aaaffb
+      - dc1a3bde-cb9e-41c8-a18c-1a4e797b0d5c
+      - 9306aea1-8957-4a9a-8679-0ad12d0add97
+      - e29ad5e7-022b-4f35-9347-50251d8472d4
+      - 8eccbba9-b8d6-4045-bb36-05288aff734c
+      - ebdc38b9-f862-452f-a4af-a8829082affd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04a5147a-2245-44a8-866c-b05494aaaffb:
+    id: 04a5147a-2245-44a8-866c-b05494aaaffb
+    content: A shared binding-authority table enumerates each binding fact, its single authoritative owner, and its sync mechanism, and the table is imported (not duplicated) wherever authority is asserted
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc1a3bde-cb9e-41c8-a18c-1a4e797b0d5c:
+    id: dc1a3bde-cb9e-41c8-a18c-1a4e797b0d5c
+    content: An audit confirms no routing decision reads node.metadata.sessionId, with a test pinning the demotion
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9306aea1-8957-4a9a-8679-0ad12d0add97:
+    id: 9306aea1-8957-4a9a-8679-0ad12d0add97
+    content: 'Drift regression test: delete a bound node, rebind the terminal, and verify routing follows the registry while the stale metadata is ignored'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e29ad5e7-022b-4f35-9347-50251d8472d4:
+    id: e29ad5e7-022b-4f35-9347-50251d8472d4
+    content: 'File-reopen seeding conflict test: stale persisted metadata triggers the pendingRebind flow rather than silently overwriting the registry'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8eccbba9-b8d6-4045-bb36-05288aff734c:
+    id: 8eccbba9-b8d6-4045-bb36-05288aff734c
+    content: All resolver call sites are byte-identical to pre-story state; only resolver internals changed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebdc38b9-f862-452f-a4af-a8829082affd:
+    id: ebdc38b9-f862-452f-a4af-a8829082affd
+    content: Existing rebind gate suites pass unchanged (workflowStartRebindGate, restartBindingResolution, sessionPointerRebind, descendantPointerRebind)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ab22323-4b3d-4510-a63f-c8b1bbe16a5b:
+    id: 1ab22323-4b3d-4510-a63f-c8b1bbe16a5b
+    content: Non-goals
+    children:
+      - 77070021-6127-4b31-a1b1-48ce0a7c54b0
+      - c505a82d-d1d4-4616-a854-a3ea54ab0886
+      - e3762193-be37-40ad-a48f-fd1126b0f89d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77070021-6127-4b31-a1b1-48ce0a7c54b0:
+    id: 77070021-6127-4b31-a1b1-48ce0a7c54b0
+    content: No cross-process registry, no IPC on the resolution path, and no merging of main and renderer state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c505a82d-d1d4-4616-a854-a3ea54ab0886:
+    id: c505a82d-d1d4-4616-a854-a3ea54ab0886
+    content: No change to the rebind UX or the silent workflow-advance confirm
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3762193-be37-40ad-a48f-fd1126b0f89d:
+    id: e3762193-be37-40ad-a48f-fd1126b0f89d
+    content: No new binding facts — this story assigns owners to the five that exist
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30df3730-a50d-4cc2-8a6b-257c3be5d254:
+    id: 30df3730-a50d-4cc2-8a6b-257c3be5d254
+    content: 🔧 Implementation proposal
+    children:
+      - 747a2b93-90be-45e9-bfe3-be5caedc22c8
+      - fb5a3803-7d5a-4df2-81fc-87f4174b5ba0
+      - 4bf63f9a-8263-49e4-b085-589ac7b06ab4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  747a2b93-90be-45e9-bfe3-be5caedc22c8:
+    id: 747a2b93-90be-45e9-bfe3-be5caedc22c8
+    content: Approach
+    children:
+      - d1184475-7ac3-4a2a-bc7e-0e7fb3b4e7f2
+      - fa215a0b-4e36-4d50-837e-c9ac05dcf4ed
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1184475-7ac3-4a2a-bc7e-0e7fb3b4e7f2:
+    id: d1184475-7ac3-4a2a-bc7e-0e7fb3b4e7f2
+    content: 'Publish the authority table as a typed shared module, then sweep each layer: route every remaining ad-hoc binding read through its layer''s extracted resolver, demote metadata.sessionId readers to the seeding path only, and add the drift and reopen-conflict regression tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa215a0b-4e36-4d50-837e-c9ac05dcf4ed:
+    id: fa215a0b-4e36-4d50-837e-c9ac05dcf4ed
+    content: The deliverable is the enforced contract plus the demotions — most of the mechanical extraction work was already done by the renderer US and story 2, which is why this story stays small despite the SSOT label
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb5a3803-7d5a-4df2-81fc-87f4174b5ba0:
+    id: fb5a3803-7d5a-4df2-81fc-87f4174b5ba0
+    content: Touchpoints
+    children:
+      - 18ba12ec-8921-4db9-ba78-2613ab98bdaa
+      - fed72711-9de6-4649-be36-8db6af08dd7b
+      - 4fb8808c-811d-478e-9dc8-e179f062ff57
+      - b6d2c75f-63c6-4272-933d-20016165847d
+      - d78754c0-2086-47ca-8571-cf99326440f5
+      - e85900df-1fe7-444b-835e-b50d57d2de86
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18ba12ec-8921-4db9-ba78-2613ab98bdaa:
+    id: 18ba12ec-8921-4db9-ba78-2613ab98bdaa
+    content: New shared binding-authority module in src/shared/utils
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fed72711-9de6-4649-be36-8db6af08dd7b:
+    id: fed72711-9de6-4649-be36-8db6af08dd7b
+    content: terminalBindingResolution.ts internals (renderer)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fb8808c-811d-478e-9dc8-e179f062ff57:
+    id: 4fb8808c-811d-478e-9dc8-e179f062ff57
+    content: resolveBinding internals (main)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6d2c75f-63c6-4272-933d-20016165847d:
+    id: b6d2c75f-63c6-4272-933d-20016165847d
+    content: extractSessionBindings file-open seeding path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d78754c0-2086-47ca-8571-cf99326440f5:
+    id: d78754c0-2086-47ca-8571-cf99326440f5
+    content: Audit of all node.metadata.sessionId readers
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e85900df-1fe7-444b-835e-b50d57d2de86:
+    id: e85900df-1fe7-444b-835e-b50d57d2de86
+    content: Drift and reopen-conflict regression tests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bf63f9a-8263-49e4-b085-589ac7b06ab4:
+    id: 4bf63f9a-8263-49e4-b085-589ac7b06ab4
+    content: Constraints to call out
+    children:
+      - dc04afe8-c288-4489-b373-d53331f76071
+      - 78e4e83d-bf10-43e4-8798-e4ac78b68cd1
+      - 7f0262cb-f1f1-421e-a10b-c95aad5c77c5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc04afe8-c288-4489-b373-d53331f76071:
+    id: dc04afe8-c288-4489-b373-d53331f76071
+    content: Hard-gated on both the renderer extraction (in-progress worktree) and story 2 landing — the resolvers are the enforcement points, so speccing enforcement before they exist would target moving code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78e4e83d-bf10-43e4-8798-e4ac78b68cd1:
+    id: 78e4e83d-bf10-43e4-8798-e4ac78b68cd1
+    content: 'The original "single source of truth" framing from the sequence is deliberately narrowed: single authority per fact, not single store — a shared registry across the process boundary was evaluated and rejected'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f0262cb-f1f1-421e-a10b-c95aad5c77c5:
+    id: 7f0262cb-f1f1-421e-a10b-c95aad5c77c5
+    content: Touching the seeding path interacts with the rebind dialog flow; the reopen-conflict test must land in the same PR as any seeding change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a203c2f-4a88-4921-aa9b-d2c651fe05e3:
+    id: 2a203c2f-4a88-4921-aa9b-d2c651fe05e3
+    content: Technical refinement
+    children:
+      - 255e9ecf-7f3a-4c15-a095-a3f1b1ce82ca
+      - 014be2c2-3470-4756-b400-043097ec31d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  255e9ecf-7f3a-4c15-a095-a3f1b1ce82ca:
+    id: 255e9ecf-7f3a-4c15-a095-a3f1b1ce82ca
+    content: Complications
+    children:
+      - 15b2b9d2-b9b4-4a97-8d10-cb7ab755e668
+      - a334b4e7-a03e-4db3-8f2e-7643d25373ec
+      - 8af509db-0388-4076-be84-bab02afbb1b6
+      - 3f0df713-8e43-48c6-bc77-59ad573cc1c9
+      - fb90c836-b2ff-443c-a9c0-3af5f2f175b4
+      - 0fd1bf9c-945e-4741-972f-9d696044c9d8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15b2b9d2-b9b4-4a97-8d10-cb7ab755e668:
+    id: 15b2b9d2-b9b4-4a97-8d10-cb7ab755e668
+    content: 'Rule conflict as written: renderer session→node resolution (findLiveNodeWithSessionId in activeSessionNodeId.ts) is an index built over node.metadata.sessionId, so "registry is sole session→node authority" + "metadata never read for routing" + "no IPC on resolution path" cannot all hold cross-process — the rule must be scoped per process (main: registry; renderer: its metadata-derived index is the local session→node fact), otherwise scope balloons far past "stays small"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a334b4e7-a03e-4db3-8f2e-7643d25373ec:
+    id: a334b4e7-a03e-4db3-8f2e-7643d25373ec
+    content: The renderer resolver itself reads metadata.sessionId today (findCapturableNodeForTerminal bookmark gate at terminalBindingResolution.ts:44) — demotion touches resolver semantics, not just ad-hoc readers, and that gate intentionally blocks capture onto a node bookmarked to another session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8af509db-0388-4076-be84-bab02afbb1b6:
+    id: 8af509db-0388-4076-be84-bab02afbb1b6
+    content: ~17 non-test metadata.sessionId reader sites exist (resume, liveness, stamping, accept-feedback) and many are legitimate hint reads — the audit AC is unfalsifiable until "routing decision" gets a crisp definition distinguishing it from hint reads
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f0df713-8e43-48c6-bc77-59ad573cc1c9:
+    id: 3f0df713-8e43-48c6-bc77-59ad573cc1c9
+    content: workflowSessionMap is per-file tree store and storeOwnership.findStoreOwningSession already iterates all open stores — "sole authority for session→terminal" is distributed across open files; the authority table must state per-file scoping or it misdescribes reality
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb90c836-b2ff-443c-a9c0-3af5f2f175b4:
+    id: fb90c836-b2ff-443c-a9c0-3af5f2f175b4
+    content: 'ROI risk: a typed authority table that resolvers merely import is documentation-as-code; value holds only if the resolvers actually consume it (typed fact keys / owner lookups), which should be the bar for the "imported wherever asserted" criterion'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fd1bf9c-945e-4741-972f-9d696044c9d8:
+    id: 0fd1bf9c-945e-4741-972f-9d696044c9d8
+    content: The byte-identical-call-sites AC depends on two unlanded changes (renderer extraction worktree, story 2); any rename in either invalidates the baseline, so the AC must be re-baselined after both land
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  014be2c2-3470-4756-b400-043097ec31d4:
+    id: 014be2c2-3470-4756-b400-043097ec31d4
+    content: Approach summary
+    children:
+      - 9ff224a5-acb7-4934-bab4-2dcde570e571
+      - 5af44cb4-dc26-48bc-be8a-5f01919792be
+      - 504514c7-d7a8-43ef-8a4a-2f3fad89d636
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ff224a5-acb7-4934-bab4-2dcde570e571:
+    id: 9ff224a5-acb7-4934-bab4-2dcde570e571
+    content: One typed binding-authority table in src/shared/utils (MODE_POLICY precedent) naming each fact, its per-process owner, and its sync mechanism, consumed — not just imported — by both extracted resolvers
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5af44cb4-dc26-48bc-be8a-5f01919792be:
+    id: 5af44cb4-dc26-48bc-be8a-5f01919792be
+    content: 'Demotion is asymmetric by design: main never reads metadata.sessionId for routing (registry only); renderer keeps its metadata-derived session index as its local authority — all changes land inside resolver internals plus the extractSessionBindings seeding path'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  504514c7-d7a8-43ef-8a4a-2f3fad89d636:
+    id: 504514c7-d7a8-43ef-8a4a-2f3fad89d636
+    content: 'Non-obvious for the reviewer: expect per-process authority, not global metadata demotion — the renderer''s session→node lookup is legitimately built on metadata, and the reopen-conflict test must ship in the same PR as any seeding change'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d8e83da-b3f7-4be2-91a1-e188c81fe7f2:
+    id: 9d8e83da-b3f7-4be2-91a1-e188c81fe7f2
+    content: review feedback
+    children:
+      - 89073cc5-ca19-42d3-97ef-506584a258c0
+      - 87fa7a6a-0cec-43fe-b844-c4da82dce963
+      - 6d83cc9f-d449-4509-81b7-280bf3d7cb6e
+      - a4495ed5-8baa-41c2-ad94-88204863c3f2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89073cc5-ca19-42d3-97ef-506584a258c0:
+    id: 89073cc5-ca19-42d3-97ef-506584a258c0
+    content: No critical or major findings — declared CONSULTED_BINDING_FACTS sets match each resolver body's reads, additive exports collide with no caller (MCP tools import only resolveBinding; workflow actions import only the finder functions), and the MainBindingFact/RendererBindingFact typing genuinely breaks at tsc if a fact's owner moves in the table
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87fa7a6a-0cec-43fe-b844-c4da82dce963:
+    id: 87fa7a6a-0cec-43fe-b844-c4da82dce963
+    content: 'Minor finding, fixed in this step: the metadata demotion audit scanned only top-level src/main/services, so a future metadata.sessionId read in a subdirectory would have evaded it — now scans src/main recursively excluding tests directories, re-run green'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d83cc9f-d449-4509-81b7-280bf3d7cb6e:
+    id: 6d83cc9f-d449-4509-81b7-280bf3d7cb6e
+    content: 'Nit, accepted as-is: the audit is a substring scan that would also match the token inside comments or strings — acceptable because the expected occurrence count is zero, so any match warrants human attention'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4495ed5-8baa-41c2-ad94-88204863c3f2:
+    id: a4495ed5-8baa-41c2-ad94-88204863c3f2
+    content: 'Conventions verified: why-comments only with no story or ticket references, DI-based mocks, no empty tests, tests in tests/ subdirectories, and the table mirrors the MODE_POLICY satisfies-pattern precedent'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -189889,4 +190072,6 @@ sessionRegistry:
   b1147442-15f8-4488-a58d-ca0bf7755b57:
     cwd: /Users/brianfox/dev/Arborescent
   24d511be-0257-4da8-a8a3-01a20f2b3871:
+    cwd: /Users/brianfox/dev/Arborescent
+  d01185a6-56c5-4058-9a36-8bee3a24d6b7:
     cwd: /Users/brianfox/dev/Arborescent
