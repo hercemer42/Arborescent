@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-03T20:16:12.748Z'
+updated: '2026-06-03T20:31:24.520Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -92305,8 +92305,7 @@ nodes:
   ef8172e7-9f00-4495-9f4e-69b862af7dde:
     id: ef8172e7-9f00-4495-9f4e-69b862af7dde
     content: AI code review resolution
-    children:
-      - 651e3053-cc28-4ac0-94b1-306fefece2a6
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115524,6 +115523,7 @@ nodes:
       - 748bd1b2-f196-4f26-95c0-1a46974254dc
       - 85dde574-3fee-450e-b4bc-36588f9bcf45
       - 01cff27f-daa2-48ac-990f-1031db9cc5cb
+      - 4f0782b5-830f-4ddf-870a-827c5f4ca28c
     metadata:
       status: pending
       isBlueprint: true
@@ -124630,7 +124630,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 4f0782b5-830f-4ddf-870a-827c5f4ca28c
+      - 651e3053-cc28-4ac0-94b1-306fefece2a6
     metadata:
       status: pending
       isBlueprint: true
@@ -185477,12 +185477,12 @@ nodes:
     id: 651e3053-cc28-4ac0-94b1-306fefece2a6
     content: User story 1 — Introduce a machine-readable error code namespace for the MCP write path
     children:
-      - d3c52cfa-e266-44db-b34a-c11f69961b46
-      - b09367ff-7d3f-4103-951f-a4d5592f7056
-      - 2072d7b8-6906-4fc1-8454-c751e882ba27
-      - 886fa259-c00d-4ea0-80e3-81c1d0a52d9f
-      - 5c44813e-f177-4137-9ce8-6a3d3b49dfb0
-      - d6532a63-2f7a-4431-a6e5-9cc8ec4477ec
+      - 837b4b00-b6ea-4750-ae33-d186455486c1
+      - b331b411-ad23-4b8e-b451-e62d56b904f6
+      - e6d6eefd-7e98-46fe-87b4-23d97c828bfc
+      - 8574c958-c7b4-460b-a2ba-0ec2acf6c34d
+      - c3356ccd-2556-4cca-a4ca-00f04e475194
+      - 328055b5-29fd-404d-8aa3-266010c7c93b
     metadata:
       status: completed
       expanded: false
@@ -185527,7 +185527,7 @@ nodes:
       - df9c8511-d558-4e15-b2c5-8e0ad062edc6
       - 8371918e-85fa-4c16-9cc3-910663201bad
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -186856,570 +186856,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  d3c52cfa-e266-44db-b34a-c11f69961b46:
-    id: d3c52cfa-e266-44db-b34a-c11f69961b46
-    content: worktree
-    children:
-      - fabf8177-28d0-44d3-b0a3-eb725ba89de5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fabf8177-28d0-44d3-b0a3-eb725ba89de5:
-    id: fabf8177-28d0-44d3-b0a3-eb725ba89de5
-    content: vscode://file/Users/brianfox/dev/Arborescent-mcp-error-codes
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b09367ff-7d3f-4103-951f-a4d5592f7056:
-    id: b09367ff-7d3f-4103-951f-a4d5592f7056
-    content: 📄 Product spec
-    children:
-      - 7a3a40f5-9d52-4478-af36-1dea769b1b00
-      - e71640cd-4085-4058-bf49-25600e12d304
-      - cd7dc46b-221d-4f55-b671-5fbe68a16f28
-      - eac32bed-14f9-4259-b545-98d3292c5468
-      - 4603c665-4e52-4e32-8ea4-da45d99c9111
-      - 28e4b20c-8287-4639-b06f-ad034135d404
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a3a40f5-9d52-4478-af36-1dea769b1b00:
-    id: 7a3a40f5-9d52-4478-af36-1dea769b1b00
-    content: Context
-    children:
-      - c01c6619-8708-46b2-bd8b-460e83d5b913
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c01c6619-8708-46b2-bd8b-460e83d5b913:
-    id: c01c6619-8708-46b2-bd8b-460e83d5b913
-    content: Read-path failures have discriminated kinds with a prose message table; write/submit tools return ad-hoc err(string) results with no machine-readable code anywhere in the MCP server
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e71640cd-4085-4058-bf49-25600e12d304:
-    id: e71640cd-4085-4058-bf49-25600e12d304
-    content: User
-    children:
-      - ae5886db-ebbb-4f24-82ed-f38a3c2e4ff6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ae5886db-ebbb-4f24-82ed-f38a3c2e4ff6:
-    id: ae5886db-ebbb-4f24-82ed-f38a3c2e4ff6
-    content: AI agents calling submit/write tools that must branch on failure (retry vs re-bind vs abort), and the developer correlating client-facing errors with gate=/reason= log lines
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd7dc46b-221d-4f55-b671-5fbe68a16f28:
-    id: cd7dc46b-221d-4f55-b671-5fbe68a16f28
-    content: Current experience
-    children:
-      - 7312965c-0247-4745-b4a3-d06de7e3f3b0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7312965c-0247-4745-b4a3-d06de7e3f3b0:
-    id: 7312965c-0247-4745-b4a3-d06de7e3f3b0
-    content: Failures arrive as freeform prose, so agents pattern-match English that silently breaks on reword, and log lines cannot be tied to what the client saw
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eac32bed-14f9-4259-b545-98d3292c5468:
-    id: eac32bed-14f9-4259-b545-98d3292c5468
-    content: Goal
-    children:
-      - 103d6424-ef3d-4774-8c8e-1e396e5f2c36
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  103d6424-ef3d-4774-8c8e-1e396e5f2c36:
-    id: 103d6424-ef3d-4774-8c8e-1e396e5f2c36
-    content: Every write-path failure returns a stable machine-readable code alongside prose, with the existing read-path kinds folded into the same namespace
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4603c665-4e52-4e32-8ea4-da45d99c9111:
-    id: 4603c665-4e52-4e32-8ea4-da45d99c9111
-    content: Business rules
-    children:
-      - 14bec3ba-213d-4429-b2ca-119345149a60
-      - dd6d91f0-4230-4c14-8fc2-c2f21b5236ad
-      - 1e538180-8b17-448a-87eb-8f58ee913882
-      - 510fa50b-ab97-483d-b620-8688430642d3
-      - d544b1db-ac18-4663-9652-c672c5e5d298
-      - 808ac403-b124-4b55-b0dc-eb908c50d750
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14bec3ba-213d-4429-b2ca-119345149a60:
-    id: 14bec3ba-213d-4429-b2ca-119345149a60
-    content: Error codes are stable and additive; once published, a code's identity must not change
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd6d91f0-4230-4c14-8fc2-c2f21b5236ad:
-    id: dd6d91f0-4230-4c14-8fc2-c2f21b5236ad
-    content: The prose message for any code may be reworded freely without it being a breaking change
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1e538180-8b17-448a-87eb-8f58ee913882:
-    id: 1e538180-8b17-448a-87eb-8f58ee913882
-    content: The three existing read-path kinds (not-ready, no-session-store, node-not-in-open-store) fold into the same code namespace with observable behavior unchanged
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  510fa50b-ab97-483d-b620-8688430642d3:
-    id: 510fa50b-ab97-483d-b620-8688430642d3
-    content: The code travels as a structured JSON field; content[0].text prose stays verbatim because the sole consumer (hookScripts.ts) logs text as-is
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d544b1db-ac18-4663-9652-c672c5e5d298:
-    id: d544b1db-ac18-4663-9652-c672c5e5d298
-    content: Log lines emit the same code string the client receives
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  808ac403-b124-4b55-b0dc-eb908c50d750:
-    id: 808ac403-b124-4b55-b0dc-eb908c50d750
-    content: 'Applier failures form a sub-namespace covering all five distinct modes: node-not-found, workflow-handler-unavailable, routing-disagreement, applier-threw, and no-store'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  28e4b20c-8287-4639-b06f-ad034135d404:
-    id: 28e4b20c-8287-4639-b06f-ad034135d404
-    content: Acceptance criteria
-    children:
-      - 0fd2f416-891c-4fe1-82ec-6ae581519468
-      - 3d6e1847-dd12-41c7-8e61-0dc199f162a7
-      - 666010d1-5312-46c4-97a2-f8212fec1531
-      - 10581ca8-9636-41db-8e7d-31232d137d09
-      - 7b57f8d6-63d2-45b8-b282-f621cd2e9715
-      - 2424bea3-f94e-4954-9b1d-049aeb47ff7b
-      - 30a4511e-5199-43ab-bf0d-4e8c5a2c222c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0fd2f416-891c-4fe1-82ec-6ae581519468:
-    id: 0fd2f416-891c-4fe1-82ec-6ae581519468
-    content: A shared error module exposes a stable code enum and code-to-message records
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d6e1847-dd12-41c7-8e61-0dc199f162a7:
-    id: 3d6e1847-dd12-41c7-8e61-0dc199f162a7
-    content: All read-path kinds are represented as codes with existing read-path tests passing untouched
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  666010d1-5312-46c4-97a2-f8212fec1531:
-    id: 666010d1-5312-46c4-97a2-f8212fec1531
-    content: Every ad-hoc err(string) return in submit/write tools is replaced with a coded error (unbound, no-context, mode-gate refusal, target drift, missing token)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  10581ca8-9636-41db-8e7d-31232d137d09:
-    id: 10581ca8-9636-41db-8e7d-31232d137d09
-    content: Each of the five applier failure modes carries a distinct code
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b57f8d6-63d2-45b8-b282-f621cd2e9715:
-    id: 7b57f8d6-63d2-45b8-b282-f621cd2e9715
-    content: gate=/reason= log lines carry the same code delivered to the client
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2424bea3-f94e-4954-9b1d-049aeb47ff7b:
-    id: 2424bea3-f94e-4954-9b1d-049aeb47ff7b
-    content: content[0].text prose is unchanged for the hookScripts consumer
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  30a4511e-5199-43ab-bf0d-4e8c5a2c222c:
-    id: 30a4511e-5199-43ab-bf0d-4e8c5a2c222c
-    content: A table test covers every code-to-message mapping, mirroring mcpTreeReadErrorTaxonomyMessages.test.ts
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2072d7b8-6906-4fc1-8454-c751e882ba27:
-    id: 2072d7b8-6906-4fc1-8454-c751e882ba27
-    content: 🔧 Implementation proposal
-    children:
-      - 20b6ec4c-727d-48b2-969a-e5a38a576483
-      - 8dcc75dd-30bc-4d8b-b6ad-d18ad112dd71
-      - 2b5c49c9-740b-442b-b71c-b595f44673fb
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  20b6ec4c-727d-48b2-969a-e5a38a576483:
-    id: 20b6ec4c-727d-48b2-969a-e5a38a576483
-    content: Approach
-    children:
-      - a9f20499-fb85-4fae-852b-59b404d80e8e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9f20499-fb85-4fae-852b-59b404d80e8e:
-    id: a9f20499-fb85-4fae-852b-59b404d80e8e
-    content: Create a shared error module defining the first code enum and record table, retrofit the existing read-path kinds into it, replace ad-hoc string returns at submit/write call sites, and thread the code into gate/reason logging so client and log agree
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8dcc75dd-30bc-4d8b-b6ad-d18ad112dd71:
-    id: 8dcc75dd-30bc-4d8b-b6ad-d18ad112dd71
-    content: Touchpoints
-    children:
-      - e87c6dfc-256d-40ca-b068-89a6e5aa87c3
-      - f88a4276-de14-4005-b7b1-056bc156baa4
-      - 4dc1cc65-f050-40dc-af7f-a2ea6a354a68
-      - f2ba02d7-8088-4da2-b65e-8133b561718a
-      - 1f448b8c-3f96-4f73-9667-edc7572bf7f1
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e87c6dfc-256d-40ca-b068-89a6e5aa87c3:
-    id: e87c6dfc-256d-40ca-b068-89a6e5aa87c3
-    content: New shared error module in src/shared/utils (permissionGate.ts precedent)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f88a4276-de14-4005-b7b1-056bc156baa4:
-    id: f88a4276-de14-4005-b7b1-056bc156baa4
-    content: mcpSubmitOutputTool.ts and mcpWriteTools.ts error returns
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4dc1cc65-f050-40dc-af7f-a2ea6a354a68:
-    id: 4dc1cc65-f050-40dc-af7f-a2ea6a354a68
-    content: mcpReadTools.ts kind definitions
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f2ba02d7-8088-4da2-b65e-8133b561718a:
-    id: f2ba02d7-8088-4da2-b65e-8133b561718a
-    content: mcpStepOutputApplierService.ts (renderer) for the applier sub-namespace
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1f448b8c-3f96-4f73-9667-edc7572bf7f1:
-    id: 1f448b8c-3f96-4f73-9667-edc7572bf7f1
-    content: New code table test
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b5c49c9-740b-442b-b71c-b595f44673fb:
-    id: 2b5c49c9-740b-442b-b71c-b595f44673fb
-    content: Constraints to call out
-    children:
-      - 48a487f9-ae72-4b75-9aae-980c0e5ea20e
-      - f8a771de-6ac8-45e2-959f-6e02252b4c29
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  48a487f9-ae72-4b75-9aae-980c0e5ea20e:
-    id: 48a487f9-ae72-4b75-9aae-980c0e5ea20e
-    content: The module must live in src/shared because applier failures originate in the renderer — a main-only module would force an import inversion across the process boundary
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f8a771de-6ac8-45e2-959f-6e02252b4c29:
-    id: f8a771de-6ac8-45e2-959f-6e02252b4c29
-    content: Codes are a contract from the moment they ship; resist scope creep into coding every internal error
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  886fa259-c00d-4ea0-80e3-81c1d0a52d9f:
-    id: 886fa259-c00d-4ea0-80e3-81c1d0a52d9f
-    content: Technical refinement
-    children:
-      - 4cc7a105-59fa-4eb0-b5c5-e394a05bcf91
-      - 777ab88e-3bc6-49c7-9202-96bedae79eb5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4cc7a105-59fa-4eb0-b5c5-e394a05bcf91:
-    id: 4cc7a105-59fa-4eb0-b5c5-e394a05bcf91
-    content: Complications
-    children:
-      - fb0b6e49-e3ae-43c6-a737-7970a37ee69f
-      - 9f8f7ac6-1c8e-44ef-981c-7c7cc24a0f95
-      - 8a7b1fab-c76d-462d-b44e-4ecaf990648d
-      - cdf87519-876d-48a9-a798-ff6af28f52dd
-      - 1b223760-87b8-4717-804e-0abeff1199fb
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fb0b6e49-e3ae-43c6-a737-7970a37ee69f:
-    id: fb0b6e49-e3ae-43c6-a737-7970a37ee69f
-    content: The unbound case is not an err(string) today — submit returns a success-shaped ok({applied:false, reason}) payload (mcpSubmitOutputTool.ts:65); coding it as an error would change observable behavior, so its code must land inside the JSON reason payload instead
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f8f7ac6-1c8e-44ef-981c-7c7cc24a0f95:
-    id: 9f8f7ac6-1c8e-44ef-981c-7c7cc24a0f95
-    content: 'Applier codes must cross the renderer→main IPC boundary: ApplyResult is {ok:false, error:string} via shared/types/electronApi — adding a code field touches the IPC types and applier bridge, a touchpoint the proposal does not list'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a7b1fab-c76d-462d-b44e-4ecaf990648d:
-    id: 8a7b1fab-c76d-462d-b44e-4ecaf990648d
-    content: Pass-through errors (err(proposal.error) from the proposal bridge, err(result.error) from the applier) have no local failure mode — they need a generic wrapper code, or the contract leaks uncoded strings; resist coding the proposal bridge itself (out of scope)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cdf87519-876d-48a9-a798-ff6af28f52dd:
-    id: cdf87519-876d-48a9-a798-ff6af28f52dd
-    content: Structured-field delivery rides on CallToolResult's open shape (structuredContent, SDK ^1.29.0 supports it); verify the client actually surfaces it before relying on it, else the code would have to be embedded in text — conflicting with the prose-verbatim rule
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b223760-87b8-4717-804e-0abeff1199fb:
-    id: 1b223760-87b8-4717-804e-0abeff1199fb
-    content: 'ROI caveat: today''s only prose consumer is the hookScripts log; the agent-branching consumer is prospective, so the stability contract cost lands before any consumer benefit — acceptable only because the retrofit is small'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  777ab88e-3bc6-49c7-9202-96bedae79eb5:
-    id: 777ab88e-3bc6-49c7-9202-96bedae79eb5
-    content: Approach summary
-    children:
-      - 623c58c7-4688-438c-8e28-565a0d34c39b
-      - f89e6513-2bc6-4c21-8ce0-82c15a18f032
-      - f1e132b6-ae2a-402b-862c-f41472bf4cb4
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  623c58c7-4688-438c-8e28-565a0d34c39b:
-    id: 623c58c7-4688-438c-8e28-565a0d34c39b
-    content: One shared module in src/shared/utils exports the code enum and code→message table; read-path kinds, submit/write call sites, and the renderer applier all swap ad-hoc strings for table lookups
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f89e6513-2bc6-4c21-8ce0-82c15a18f032:
-    id: f89e6513-2bc6-4c21-8ce0-82c15a18f032
-    content: The code travels as a structured field on the tool result while content[0].text prose stays verbatim, and gate=/reason= log lines emit the identical code string
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1e132b6-ae2a-402b-862c-f41472bf4cb4:
-    id: f1e132b6-ae2a-402b-862c-f41472bf4cb4
-    content: 'Non-obvious: two plumbing seams — the unbound non-error JSON payload, and the ApplyResult IPC shape — carry the code differently from the plain err() sites and will surprise a reviewer expecting one uniform mechanism'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5c44813e-f177-4137-9ce8-6a3d3b49dfb0:
-    id: 5c44813e-f177-4137-9ce8-6a3d3b49dfb0
-    content: Undone
-    children:
-      - bf403d89-3bb7-45ee-8093-4d08a3d8837a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf403d89-3bb7-45ee-8093-4d08a3d8837a:
-    id: bf403d89-3bb7-45ee-8093-4d08a3d8837a
-    content: Live-client surfacing of structuredContent remains unverified — the SDK's CallToolResult schema confirms the field serializes over the wire without an outputSchema, but whether a real MCP client session exposes it to the agent needs an end-to-end check in a running app, which unit tests cannot cover
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6532a63-2f7a-4431-a6e5-9cc8ec4477ec:
-    id: d6532a63-2f7a-4431-a6e5-9cc8ec4477ec
-    content: review feedback
-    children:
-      - 0f58e298-5e78-43db-b770-022152506aab
-      - 6d12ec94-ef60-4a1b-9353-00cb93f975f0
-      - 9472c123-bd61-475f-bc5a-356b25df53b7
-      - 817d0d1c-c1da-4517-a2cc-fccfaf247d79
-      - 8b237ddc-acd6-46bc-ab53-fa3b1d0e961f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f58e298-5e78-43db-b770-022152506aab:
-    id: 0f58e298-5e78-43db-b770-022152506aab
-    content: 'Verdict: solid and well-tested — type-check green, 55 affected tests pass, every gated write/submit/applier failure coded, prose verbatim, logs match client codes; no critical issues'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d12ec94-ef60-4a1b-9353-00cb93f975f0:
-    id: 6d12ec94-ef60-4a1b-9353-00cb93f975f0
-    content: IMPORTANT — mcpReadTools.ts:218 withBoundNode returns a bare uncoded err('No binding found...') for unbound sessions while the identical semantic failure is coded write/unbound in mcpWriteTools.ts:80 and mcpSubmitOutputTool.ts:69; either retrofit it with codedErr(..., writeUnbound) or state the read-path exclusion explicitly in the PR description
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9472c123-bd61-475f-bc5a-356b25df53b7:
-    id: 9472c123-bd61-475f-bc5a-356b25df53b7
-    content: 'MINOR — mcpErrorCodesWritePath.test.ts:84 harness cast ''as { ok: true } | { ok: false; error: string }'' strips the code field the test itself injects and asserts; widen the cast with code?: McpErrorCode so the harness self-documents'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  817d0d1c-c1da-4517-a2cc-fccfaf247d79:
-    id: 817d0d1c-c1da-4517-a2cc-fccfaf247d79
-    content: MINOR — codeOf comments in mcpErrorCodesWritePath.test.ts:124 and mcpStepOutputApplierErrorCodes.test.ts:23 narrate pre-feature TDD sequencing ('compile before the feature lands, fail red') which is stale now the feature exists; reword to explain present intent or drop
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b237ddc-acd6-46bc-ab53-fa3b1d0e961f:
-    id: 8b237ddc-acd6-46bc-ab53-fa3b1d0e961f
-    content: NOTE — required ApplyResult.code (renderer) narrowing to optional code? across the duplicated IPC response types (electronApi.ts:81, mcpStepOutputApplierBridge.ts:17) is safe and both copies were updated in lockstep, but the duplication means a future single-sided edit would silently drop the code at the ipcMain seam with no compile error
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   28224b90-3ec9-49e5-9b89-ca57f4065fc8:
     id: 28224b90-3ec9-49e5-9b89-ca57f4065fc8
     content: worktree
@@ -189798,6 +189234,570 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  837b4b00-b6ea-4750-ae33-d186455486c1:
+    id: 837b4b00-b6ea-4750-ae33-d186455486c1
+    content: worktree
+    children:
+      - d673fd89-50c9-42a5-9382-e07d44deb4a7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d673fd89-50c9-42a5-9382-e07d44deb4a7:
+    id: d673fd89-50c9-42a5-9382-e07d44deb4a7
+    content: vscode://file/Users/brianfox/dev/Arborescent-mcp-error-codes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b331b411-ad23-4b8e-b451-e62d56b904f6:
+    id: b331b411-ad23-4b8e-b451-e62d56b904f6
+    content: 📄 Product spec
+    children:
+      - 04db584b-c696-49e1-b3c5-55b6d2f153fa
+      - 42dcda3f-0e1e-4b39-b35e-1ef96f409d80
+      - 07a30a61-40cc-4e14-b947-20e1c920f5a7
+      - ad71fc52-089a-445f-acb8-78d93ee7d305
+      - d152f2ed-0eac-41ac-95c8-4632d90851ac
+      - c4b7ff95-783e-4151-8156-482c1a8c7a91
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04db584b-c696-49e1-b3c5-55b6d2f153fa:
+    id: 04db584b-c696-49e1-b3c5-55b6d2f153fa
+    content: Context
+    children:
+      - 529da865-e978-4b8f-b04c-462de79ea4d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  529da865-e978-4b8f-b04c-462de79ea4d4:
+    id: 529da865-e978-4b8f-b04c-462de79ea4d4
+    content: Read-path failures have discriminated kinds with a prose message table; write/submit tools return ad-hoc err(string) results with no machine-readable code anywhere in the MCP server
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42dcda3f-0e1e-4b39-b35e-1ef96f409d80:
+    id: 42dcda3f-0e1e-4b39-b35e-1ef96f409d80
+    content: User
+    children:
+      - 7fd1beaa-280b-41f3-aab9-1e3e13619342
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fd1beaa-280b-41f3-aab9-1e3e13619342:
+    id: 7fd1beaa-280b-41f3-aab9-1e3e13619342
+    content: AI agents calling submit/write tools that must branch on failure (retry vs re-bind vs abort), and the developer correlating client-facing errors with gate=/reason= log lines
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07a30a61-40cc-4e14-b947-20e1c920f5a7:
+    id: 07a30a61-40cc-4e14-b947-20e1c920f5a7
+    content: Current experience
+    children:
+      - b22ccf27-04ef-4a60-b9fa-83afd8a67b26
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b22ccf27-04ef-4a60-b9fa-83afd8a67b26:
+    id: b22ccf27-04ef-4a60-b9fa-83afd8a67b26
+    content: Failures arrive as freeform prose, so agents pattern-match English that silently breaks on reword, and log lines cannot be tied to what the client saw
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad71fc52-089a-445f-acb8-78d93ee7d305:
+    id: ad71fc52-089a-445f-acb8-78d93ee7d305
+    content: Goal
+    children:
+      - a862cd36-ff45-47b5-96c2-dbe5d50d3805
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a862cd36-ff45-47b5-96c2-dbe5d50d3805:
+    id: a862cd36-ff45-47b5-96c2-dbe5d50d3805
+    content: Every write-path failure returns a stable machine-readable code alongside prose, with the existing read-path kinds folded into the same namespace
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d152f2ed-0eac-41ac-95c8-4632d90851ac:
+    id: d152f2ed-0eac-41ac-95c8-4632d90851ac
+    content: Business rules
+    children:
+      - 1920b50c-d8b0-403a-a898-082c7af90289
+      - ec736f4a-4431-4efa-8191-238faea2b45d
+      - 55823272-2cc6-4442-9632-7d720d8fc0c3
+      - 02ddf4f8-e3c5-4ce1-ad52-82588ae8b0fe
+      - f7c3379e-22b9-4e87-be90-76e2b55fc268
+      - c66b469d-ce61-4711-8deb-20a716156263
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1920b50c-d8b0-403a-a898-082c7af90289:
+    id: 1920b50c-d8b0-403a-a898-082c7af90289
+    content: Error codes are stable and additive; once published, a code's identity must not change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec736f4a-4431-4efa-8191-238faea2b45d:
+    id: ec736f4a-4431-4efa-8191-238faea2b45d
+    content: The prose message for any code may be reworded freely without it being a breaking change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55823272-2cc6-4442-9632-7d720d8fc0c3:
+    id: 55823272-2cc6-4442-9632-7d720d8fc0c3
+    content: The three existing read-path kinds (not-ready, no-session-store, node-not-in-open-store) fold into the same code namespace with observable behavior unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02ddf4f8-e3c5-4ce1-ad52-82588ae8b0fe:
+    id: 02ddf4f8-e3c5-4ce1-ad52-82588ae8b0fe
+    content: The code travels as a structured JSON field; content[0].text prose stays verbatim because the sole consumer (hookScripts.ts) logs text as-is
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7c3379e-22b9-4e87-be90-76e2b55fc268:
+    id: f7c3379e-22b9-4e87-be90-76e2b55fc268
+    content: Log lines emit the same code string the client receives
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c66b469d-ce61-4711-8deb-20a716156263:
+    id: c66b469d-ce61-4711-8deb-20a716156263
+    content: 'Applier failures form a sub-namespace covering all five distinct modes: node-not-found, workflow-handler-unavailable, routing-disagreement, applier-threw, and no-store'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4b7ff95-783e-4151-8156-482c1a8c7a91:
+    id: c4b7ff95-783e-4151-8156-482c1a8c7a91
+    content: Acceptance criteria
+    children:
+      - 6ba80a7d-f48f-474f-8078-63c980b2d9ee
+      - 046f541c-8746-44da-b816-3e7b6651ea11
+      - 6c3a8373-a25b-4254-b5de-c52e4a829a4c
+      - fb700da6-e27f-4f6d-90c2-f348fce4584e
+      - c896e10d-6c65-4bc1-8e1a-d88c2385bc51
+      - d9199b9d-d576-4a37-8e6d-29a245f7bf97
+      - 65b6d7ea-2413-4016-a2a8-d2dc0e615e48
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ba80a7d-f48f-474f-8078-63c980b2d9ee:
+    id: 6ba80a7d-f48f-474f-8078-63c980b2d9ee
+    content: A shared error module exposes a stable code enum and code-to-message records
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  046f541c-8746-44da-b816-3e7b6651ea11:
+    id: 046f541c-8746-44da-b816-3e7b6651ea11
+    content: All read-path kinds are represented as codes with existing read-path tests passing untouched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c3a8373-a25b-4254-b5de-c52e4a829a4c:
+    id: 6c3a8373-a25b-4254-b5de-c52e4a829a4c
+    content: Every ad-hoc err(string) return in submit/write tools is replaced with a coded error (unbound, no-context, mode-gate refusal, target drift, missing token)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb700da6-e27f-4f6d-90c2-f348fce4584e:
+    id: fb700da6-e27f-4f6d-90c2-f348fce4584e
+    content: Each of the five applier failure modes carries a distinct code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c896e10d-6c65-4bc1-8e1a-d88c2385bc51:
+    id: c896e10d-6c65-4bc1-8e1a-d88c2385bc51
+    content: gate=/reason= log lines carry the same code delivered to the client
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9199b9d-d576-4a37-8e6d-29a245f7bf97:
+    id: d9199b9d-d576-4a37-8e6d-29a245f7bf97
+    content: content[0].text prose is unchanged for the hookScripts consumer
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65b6d7ea-2413-4016-a2a8-d2dc0e615e48:
+    id: 65b6d7ea-2413-4016-a2a8-d2dc0e615e48
+    content: A table test covers every code-to-message mapping, mirroring mcpTreeReadErrorTaxonomyMessages.test.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6d6eefd-7e98-46fe-87b4-23d97c828bfc:
+    id: e6d6eefd-7e98-46fe-87b4-23d97c828bfc
+    content: 🔧 Implementation proposal
+    children:
+      - 50a8b7ed-7728-4a86-b4cc-993750b64a61
+      - c272525d-2da9-46d4-b6c5-971e1b086dda
+      - 0bfa1a14-5e3a-4dd2-9181-3b5ca114221d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50a8b7ed-7728-4a86-b4cc-993750b64a61:
+    id: 50a8b7ed-7728-4a86-b4cc-993750b64a61
+    content: Approach
+    children:
+      - 04adad2c-ec9b-45bc-a751-d0b634b61217
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04adad2c-ec9b-45bc-a751-d0b634b61217:
+    id: 04adad2c-ec9b-45bc-a751-d0b634b61217
+    content: Create a shared error module defining the first code enum and record table, retrofit the existing read-path kinds into it, replace ad-hoc string returns at submit/write call sites, and thread the code into gate/reason logging so client and log agree
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c272525d-2da9-46d4-b6c5-971e1b086dda:
+    id: c272525d-2da9-46d4-b6c5-971e1b086dda
+    content: Touchpoints
+    children:
+      - f9cdbfc6-c1ee-4650-b846-53799510afc7
+      - fdedb830-fdde-4666-b105-9836ed09157a
+      - 946131d7-1aff-45e4-9040-ada4a60eafda
+      - f354988c-efa9-42df-9bf4-829e10a3b5e0
+      - 7557a080-f205-4a06-a629-1b09af939a6b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9cdbfc6-c1ee-4650-b846-53799510afc7:
+    id: f9cdbfc6-c1ee-4650-b846-53799510afc7
+    content: New shared error module in src/shared/utils (permissionGate.ts precedent)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdedb830-fdde-4666-b105-9836ed09157a:
+    id: fdedb830-fdde-4666-b105-9836ed09157a
+    content: mcpSubmitOutputTool.ts and mcpWriteTools.ts error returns
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  946131d7-1aff-45e4-9040-ada4a60eafda:
+    id: 946131d7-1aff-45e4-9040-ada4a60eafda
+    content: mcpReadTools.ts kind definitions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f354988c-efa9-42df-9bf4-829e10a3b5e0:
+    id: f354988c-efa9-42df-9bf4-829e10a3b5e0
+    content: mcpStepOutputApplierService.ts (renderer) for the applier sub-namespace
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7557a080-f205-4a06-a629-1b09af939a6b:
+    id: 7557a080-f205-4a06-a629-1b09af939a6b
+    content: New code table test
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bfa1a14-5e3a-4dd2-9181-3b5ca114221d:
+    id: 0bfa1a14-5e3a-4dd2-9181-3b5ca114221d
+    content: Constraints to call out
+    children:
+      - 422da86b-23d7-4c2e-b6c5-6ba4db05d8dd
+      - bccad5b9-5941-452e-bba7-dceb1c363a6b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  422da86b-23d7-4c2e-b6c5-6ba4db05d8dd:
+    id: 422da86b-23d7-4c2e-b6c5-6ba4db05d8dd
+    content: The module must live in src/shared because applier failures originate in the renderer — a main-only module would force an import inversion across the process boundary
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bccad5b9-5941-452e-bba7-dceb1c363a6b:
+    id: bccad5b9-5941-452e-bba7-dceb1c363a6b
+    content: Codes are a contract from the moment they ship; resist scope creep into coding every internal error
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8574c958-c7b4-460b-a2ba-0ec2acf6c34d:
+    id: 8574c958-c7b4-460b-a2ba-0ec2acf6c34d
+    content: Technical refinement
+    children:
+      - 88b38508-698d-4917-a7f3-614c926a7b23
+      - 82981adc-1708-4e57-9302-a8cc3e73e93c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88b38508-698d-4917-a7f3-614c926a7b23:
+    id: 88b38508-698d-4917-a7f3-614c926a7b23
+    content: Complications
+    children:
+      - 652a7f93-b88d-40df-baf2-e277e4f6c0f9
+      - 76030c29-774d-4aa5-8757-05c4ba98e558
+      - cda1479b-e6a6-4800-8972-6d6022a81abe
+      - e717bd49-c327-4b8a-b94d-909c2d09373e
+      - ebfcdc61-44e3-4297-b392-e471a45b022c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  652a7f93-b88d-40df-baf2-e277e4f6c0f9:
+    id: 652a7f93-b88d-40df-baf2-e277e4f6c0f9
+    content: The unbound case is not an err(string) today — submit returns a success-shaped ok({applied:false, reason}) payload (mcpSubmitOutputTool.ts:65); coding it as an error would change observable behavior, so its code must land inside the JSON reason payload instead
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76030c29-774d-4aa5-8757-05c4ba98e558:
+    id: 76030c29-774d-4aa5-8757-05c4ba98e558
+    content: 'Applier codes must cross the renderer→main IPC boundary: ApplyResult is {ok:false, error:string} via shared/types/electronApi — adding a code field touches the IPC types and applier bridge, a touchpoint the proposal does not list'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cda1479b-e6a6-4800-8972-6d6022a81abe:
+    id: cda1479b-e6a6-4800-8972-6d6022a81abe
+    content: Pass-through errors (err(proposal.error) from the proposal bridge, err(result.error) from the applier) have no local failure mode — they need a generic wrapper code, or the contract leaks uncoded strings; resist coding the proposal bridge itself (out of scope)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e717bd49-c327-4b8a-b94d-909c2d09373e:
+    id: e717bd49-c327-4b8a-b94d-909c2d09373e
+    content: Structured-field delivery rides on CallToolResult's open shape (structuredContent, SDK ^1.29.0 supports it); verify the client actually surfaces it before relying on it, else the code would have to be embedded in text — conflicting with the prose-verbatim rule
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebfcdc61-44e3-4297-b392-e471a45b022c:
+    id: ebfcdc61-44e3-4297-b392-e471a45b022c
+    content: 'ROI caveat: today''s only prose consumer is the hookScripts log; the agent-branching consumer is prospective, so the stability contract cost lands before any consumer benefit — acceptable only because the retrofit is small'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82981adc-1708-4e57-9302-a8cc3e73e93c:
+    id: 82981adc-1708-4e57-9302-a8cc3e73e93c
+    content: Approach summary
+    children:
+      - 77fe1c83-2a0a-4f0b-8f2f-593199c4029b
+      - 5f9a9a3d-ccac-4018-b1b2-35f85ab64c11
+      - 1ca85bd8-990a-4f15-83b5-25c0bc760e86
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77fe1c83-2a0a-4f0b-8f2f-593199c4029b:
+    id: 77fe1c83-2a0a-4f0b-8f2f-593199c4029b
+    content: One shared module in src/shared/utils exports the code enum and code→message table; read-path kinds, submit/write call sites, and the renderer applier all swap ad-hoc strings for table lookups
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f9a9a3d-ccac-4018-b1b2-35f85ab64c11:
+    id: 5f9a9a3d-ccac-4018-b1b2-35f85ab64c11
+    content: The code travels as a structured field on the tool result while content[0].text prose stays verbatim, and gate=/reason= log lines emit the identical code string
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ca85bd8-990a-4f15-83b5-25c0bc760e86:
+    id: 1ca85bd8-990a-4f15-83b5-25c0bc760e86
+    content: 'Non-obvious: two plumbing seams — the unbound non-error JSON payload, and the ApplyResult IPC shape — carry the code differently from the plain err() sites and will surprise a reviewer expecting one uniform mechanism'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3356ccd-2556-4cca-a4ca-00f04e475194:
+    id: c3356ccd-2556-4cca-a4ca-00f04e475194
+    content: Undone
+    children:
+      - 06ce5ffb-00fe-4c67-ad39-b506778c8c8f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  06ce5ffb-00fe-4c67-ad39-b506778c8c8f:
+    id: 06ce5ffb-00fe-4c67-ad39-b506778c8c8f
+    content: Live-client surfacing of structuredContent remains unverified — the SDK's CallToolResult schema confirms the field serializes over the wire without an outputSchema, but whether a real MCP client session exposes it to the agent needs an end-to-end check in a running app, which unit tests cannot cover
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  328055b5-29fd-404d-8aa3-266010c7c93b:
+    id: 328055b5-29fd-404d-8aa3-266010c7c93b
+    content: review feedback
+    children:
+      - 41cb148e-92cd-4531-bc49-6c77899977d5
+      - 7d728ece-e4e6-4e25-96c5-675bb0ef7cd9
+      - 1272ea20-d3b7-4c68-8ac3-c3b506b51753
+      - 4a2466b2-99b7-4369-a385-5abafb9038f0
+      - 3b71df7a-d01c-49ec-9a36-98f776d705d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41cb148e-92cd-4531-bc49-6c77899977d5:
+    id: 41cb148e-92cd-4531-bc49-6c77899977d5
+    content: 'Verdict: solid and well-tested — type-check green, 55 affected tests pass, every gated write/submit/applier failure coded, prose verbatim, logs match client codes; no critical issues'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d728ece-e4e6-4e25-96c5-675bb0ef7cd9:
+    id: 7d728ece-e4e6-4e25-96c5-675bb0ef7cd9
+    content: IMPORTANT — mcpReadTools.ts:218 withBoundNode returns a bare uncoded err('No binding found...') for unbound sessions while the identical semantic failure is coded write/unbound in mcpWriteTools.ts:80 and mcpSubmitOutputTool.ts:69; either retrofit it with codedErr(..., writeUnbound) or state the read-path exclusion explicitly in the PR description
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1272ea20-d3b7-4c68-8ac3-c3b506b51753:
+    id: 1272ea20-d3b7-4c68-8ac3-c3b506b51753
+    content: 'MINOR — mcpErrorCodesWritePath.test.ts:84 harness cast ''as { ok: true } | { ok: false; error: string }'' strips the code field the test itself injects and asserts; widen the cast with code?: McpErrorCode so the harness self-documents'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a2466b2-99b7-4369-a385-5abafb9038f0:
+    id: 4a2466b2-99b7-4369-a385-5abafb9038f0
+    content: MINOR — codeOf comments in mcpErrorCodesWritePath.test.ts:124 and mcpStepOutputApplierErrorCodes.test.ts:23 narrate pre-feature TDD sequencing ('compile before the feature lands, fail red') which is stale now the feature exists; reword to explain present intent or drop
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b71df7a-d01c-49ec-9a36-98f776d705d4:
+    id: 3b71df7a-d01c-49ec-9a36-98f776d705d4
+    content: NOTE — required ApplyResult.code (renderer) narrowing to optional code? across the duplicated IPC response types (electronApi.ts:81, mcpStepOutputApplierBridge.ts:17) is safe and both copies were updated in lockstep, but the duplication means a future single-sided edit would silently drop the code at the ipcMain seam with no compile error
+    children: []
+    metadata:
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
