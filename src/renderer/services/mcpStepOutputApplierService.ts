@@ -3,6 +3,7 @@ import type {
 } from '../../shared/types/electronApi';
 import { TreeStore } from '../store/tree/treeStore';
 import { findStoreOwningSession } from '../store/storeOwnership';
+import { syncBoundTerminalTitles } from '../store/terminal/syncBoundTerminalTitles';
 import { logger } from './logger';
 import {
   getAutonomousStepContext,
@@ -62,12 +63,14 @@ export function applyStepOutput(
     };
   }
 
+  const updatedNode = { ...node, content };
   store.setState({
     nodes: {
       ...state.nodes,
-      [nodeId]: { ...node, content },
+      [nodeId]: updatedNode,
     },
   });
+  syncBoundTerminalTitles(nodeId, updatedNode);
   triggerAutoSave(store);
   return { ok: true };
 }

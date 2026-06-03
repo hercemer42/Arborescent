@@ -43,6 +43,7 @@ import {
 } from "./workflowSessionResume";
 import { decideWorkflowStartRoute } from "../../../utils/workflowStartRoute";
 import { useTerminalStore } from "../../terminal/terminalStore";
+import { resyncBoundTerminalTitles } from "../../terminal/syncBoundTerminalTitles";
 import { useRebindPreflightStore } from "../../rebindPreflightStore";
 import { usePendingRebindDialogStore } from "../../pendingRebindDialogStore";
 import { extractTaskTitle } from "../../../utils/terminalTabTitle";
@@ -1239,6 +1240,10 @@ export const createWorkflowExecutionActions = (
       if (priorActiveNodeId !== nodeId) {
         set({ activeNodeId: priorActiveNodeId });
       }
+
+      // The command rewrites the bound subtree (and may migrate originNodeId),
+      // so re-derive every bound terminal title from the settled tree.
+      resyncBoundTerminalTitles(get().nodes);
     }
 
     if (decompositionStepId) {

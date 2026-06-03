@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode } from '@shared/types';
 
 import { createWorkflowExecutionActions } from '../workflowExecutionActions';
+import { useTerminalStore } from '../../../terminal/terminalStore';
 
 vi.mock('../../../services/logger', () => ({
   logger: {
@@ -132,6 +133,13 @@ describe('decomposition acceptance — terminal reassignment and first-sibling a
     };
 
     setState = (partial) => { state = { ...state, ...partial }; };
+
+    useTerminalStore.setState({
+      terminals: [],
+      activeTerminalId: null,
+      currentFilePath: null,
+      fileStates: {},
+    });
 
     vi.clearAllMocks();
     mockTriggerAutosave = vi.fn();
@@ -344,6 +352,48 @@ describe('decomposition acceptance — terminal reassignment and first-sibling a
       expect(state.nodes['step-2'].children).not.toContain('orchestrator');
       expect(state.workflowExecutionStates['sib-1']?.state).toBe('running');
       expect(state.terminalNodeAssignments['terminal-1']).toBe('sib-1');
+
+      vi.useRealTimers();
+    });
+  });
+
+  describe('post-accept terminal title resync', () => {
+    it('re-derives the bound terminal tab title from the settled tree after the accept command runs', () => {
+      vi.useFakeTimers();
+
+      const terminals = [
+        { id: 'terminal-1', title: 'Orchestrator', cwd: '/tmp', originNodeId: 'orchestrator' },
+      ] as unknown as ReturnType<typeof useTerminalStore.getState>['terminals'];
+      useTerminalStore.setState({
+        terminals,
+        activeTerminalId: 'terminal-1',
+        currentFilePath: '/project.arbo',
+        fileStates: { '/project.arbo': { terminals, activeTerminalId: 'terminal-1' } },
+      });
+
+      // Single-root accept that rewrites the bound node's content in place.
+      mockParseFeedbackContent.mockReturnValue({
+        nodes: {
+          'orchestrator': { id: 'orchestrator', content: 'Orchestrator — renamed by accept', children: [], metadata: {} },
+        },
+        rootNodeId: 'orchestrator',
+        rootNodeIds: ['orchestrator'],
+        nodeCount: 1,
+      });
+      mockAcceptFeedbackExecute.mockImplementation(() => {
+        state = {
+          ...state,
+          nodes: {
+            ...state.nodes,
+            'orchestrator': { ...state.nodes['orchestrator'], content: 'Orchestrator — renamed by accept' },
+          },
+        };
+      });
+
+      actions.handleAutonomousFeedback('orchestrator', '# Orchestrator — renamed by accept');
+
+      const title = useTerminalStore.getState().terminals.find((t) => t.id === 'terminal-1')?.title;
+      expect(title).toBe('Orchestrator — renamed by accept');
 
       vi.useRealTimers();
     });

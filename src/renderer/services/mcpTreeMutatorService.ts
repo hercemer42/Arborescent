@@ -6,6 +6,7 @@ import type {
 import { TreeStore } from '../store/tree/treeStore';
 import { TreeNode } from '../../shared/types';
 import { findStoreOwningSession } from '../store/storeOwnership';
+import { syncBoundTerminalTitles } from '../store/terminal/syncBoundTerminalTitles';
 import { logger } from './logger';
 import {
   addNodeToRegistry,
@@ -213,7 +214,9 @@ function updateNode(
   const state = store.getState();
   const node = state.nodes[nodeId];
   if (!node) return { ok: false, error: `Node ${nodeId} not found` };
-  store.setState({ nodes: { ...state.nodes, [nodeId]: updater(node) } });
+  const updatedNode = updater(node);
+  store.setState({ nodes: { ...state.nodes, [nodeId]: updatedNode } });
+  syncBoundTerminalTitles(nodeId, updatedNode);
   triggerAutoSave(store);
   return { ok: true };
 }
