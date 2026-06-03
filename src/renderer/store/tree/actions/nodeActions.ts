@@ -7,8 +7,6 @@ import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
 import { SetStatusBatchCommand } from '../commands/SetStatusBatchCommand';
 import { CreateNodeCommand } from '../commands/CreateNodeCommand';
 import { SplitNodeCommand } from '../commands/SplitNodeCommand';
-import { logger } from '../../../services/logger';
-import { useToastStore } from '../../toast/toastStore';
 import { syncBoundTerminalTitles } from '../../terminal/syncBoundTerminalTitles';
 
 export interface NodeActions {
@@ -32,7 +30,6 @@ type StoreState = {
   activeNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
-  collaboratingNodeId: string | null;
   blueprintModeEnabled: boolean;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
@@ -60,20 +57,11 @@ export const createNodeActions = (
         refreshContextDeclarations?: () => void;
       };
     };
-    const { nodes, collaboratingNodeId } = state;
+    const { nodes } = state;
     const node = nodes[nodeId];
     if (!node) return;
 
     if (node.metadata.isHyperlink === true || node.metadata.isExternalLink === true) {
-      return;
-    }
-
-    if (collaboratingNodeId === nodeId) {
-      useToastStore.getState().addToast(
-        'Cannot edit node in collaboration - Please finish or cancel the collaboration first',
-        'error'
-      );
-      logger.error('Cannot edit node in collaboration', new Error('Node is being collaborated on'), 'TreeStore');
       return;
     }
 
