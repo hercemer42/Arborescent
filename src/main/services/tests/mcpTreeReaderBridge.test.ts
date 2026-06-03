@@ -11,7 +11,7 @@ import {
   TreeReadResponse,
   TREE_READ_REQUEST_CHANNEL,
 } from '../mcpTreeReaderBridge';
-import { TreeReadState } from '../mcpReadTools';
+import { TreeReadState, TreeReadResult } from '../mcpReadTools';
 
 const NODE_A = 'node-a';
 const SESSION = 'sess-1';
@@ -24,6 +24,10 @@ function makeState(): TreeReadState {
     rootNodeId: NODE_A,
     ancestorRegistry: { [NODE_A]: [] },
   };
+}
+
+function okRead(state: TreeReadState): TreeReadResult {
+  return { kind: 'ok', state };
 }
 
 function makeFakeResponseChannel(): {
@@ -72,37 +76,40 @@ describe('createMcpTreeReaderBridge — request/reply', () => {
     expect(payload.sessionId).toBe(SESSION);
     expect(payload.requestId).toMatch(/^[0-9a-f-]{36}$/);
 
-    channel.emit({ requestId: payload.requestId, state: makeState() });
+    channel.emit({ requestId: payload.requestId, state: okRead(makeState()) });
     await promise;
   });
 
-  it('resolves with the state when a response with matching requestId arrives', async () => {
+  it('resolves with the ok result when a response with matching requestId arrives', async () => {
     const promise = bridge.readState(SESSION, NODE_A);
     const [, payload] = sendToRenderer.mock.calls[0] as [string, TreeReadRequest];
 
-    const state = makeState();
-    channel.emit({ requestId: payload.requestId, state });
+    const result = okRead(makeState());
+    channel.emit({ requestId: payload.requestId, state: result });
 
-    await expect(promise).resolves.toEqual(state);
+    await expect(promise).resolves.toEqual(result);
   });
 
-  it('resolves with null when the renderer returns null state', async () => {
-    const promise = bridge.readState(SESSION, NODE_A);
-    const [, payload] = sendToRenderer.mock.calls[0] as [string, TreeReadRequest];
+  it.each(['no-session-store', 'node-not-in-open-store'] as const)(
+    'forwards a renderer %s variant unchanged',
+    async (kind) => {
+      const promise = bridge.readState(SESSION, NODE_A);
+      const [, payload] = sendToRenderer.mock.calls[0] as [string, TreeReadRequest];
 
-    channel.emit({ requestId: payload.requestId, state: null });
+      channel.emit({ requestId: payload.requestId, state: { kind } });
 
-    await expect(promise).resolves.toBeNull();
-  });
+      await expect(promise).resolves.toEqual({ kind });
+    },
+  );
 
   it('ignores a response whose requestId does not match a pending request', async () => {
     const promise = bridge.readState(SESSION, NODE_A);
     const [, payload] = sendToRenderer.mock.calls[0] as [string, TreeReadRequest];
 
-    channel.emit({ requestId: 'unrelated-request-id', state: makeState() });
-    channel.emit({ requestId: payload.requestId, state: makeState() });
+    channel.emit({ requestId: 'unrelated-request-id', state: { kind: 'no-session-store' } });
+    channel.emit({ requestId: payload.requestId, state: okRead(makeState()) });
 
-    await expect(promise).resolves.not.toBeNull();
+    await expect(promise).resolves.toMatchObject({ kind: 'ok' });
   });
 
   it('concurrent requests resolve independently by their requestId', async () => {
@@ -113,21 +120,34 @@ describe('createMcpTreeReaderBridge — request/reply', () => {
     const id1 = (sendToRenderer.mock.calls[0][1] as TreeReadRequest).requestId;
     const id2 = (sendToRenderer.mock.calls[1][1] as TreeReadRequest).requestId;
 
-    const state2 = makeState();
-    channel.emit({ requestId: id2, state: state2 });
-    await expect(p2).resolves.toEqual(state2);
+    const result2 = okRead(makeState());
+    channel.emit({ requestId: id2, state: result2 });
+    await expect(p2).resolves.toEqual(result2);
 
-    const state1 = makeState();
-    channel.emit({ requestId: id1, state: state1 });
-    await expect(p1).resolves.toEqual(state1);
+    const result1 = okRead(makeState());
+    channel.emit({ requestId: id1, state: result1 });
+    await expect(p1).resolves.toEqual(result1);
   });
 
-  it('returns null when no response arrives within timeoutMs', async () => {
+  it('resolves not-ready when no response arrives within timeoutMs', async () => {
     const promise = bridge.readState(SESSION, NODE_A);
 
     vi.advanceTimersByTime(5000);
 
-    await expect(promise).resolves.toBeNull();
+    await expect(promise).resolves.toEqual({ kind: 'not-ready' });
+  });
+
+  it('concurrent requests resolve to their own variants — one answered ok, one timing out to not-ready', async () => {
+    const answered = bridge.readState(SESSION, 'node-1');
+    const abandoned = bridge.readState(SESSION, 'node-2');
+
+    const id1 = (sendToRenderer.mock.calls[0][1] as TreeReadRequest).requestId;
+    const result = okRead(makeState());
+    channel.emit({ requestId: id1, state: result });
+    await expect(answered).resolves.toEqual(result);
+
+    vi.advanceTimersByTime(5000);
+    await expect(abandoned).resolves.toEqual({ kind: 'not-ready' });
   });
 
   it('a late response after timeout is ignored without throwing', async () => {
@@ -135,21 +155,21 @@ describe('createMcpTreeReaderBridge — request/reply', () => {
     const [, payload] = sendToRenderer.mock.calls[0] as [string, TreeReadRequest];
 
     vi.advanceTimersByTime(5000);
-    await expect(promise).resolves.toBeNull();
+    await expect(promise).resolves.toEqual({ kind: 'not-ready' });
 
     expect(() => {
-      channel.emit({ requestId: payload.requestId, state: makeState() });
+      channel.emit({ requestId: payload.requestId, state: okRead(makeState()) });
     }).not.toThrow();
   });
 
-  it('returns null immediately when the bound nodeId is an empty string', async () => {
-    await expect(bridge.readState(SESSION, '')).resolves.toBeNull();
+  it('resolves node-not-in-open-store immediately when the bound nodeId is an empty string', async () => {
+    await expect(bridge.readState(SESSION, '')).resolves.toEqual({ kind: 'node-not-in-open-store' });
     expect(sendToRenderer).not.toHaveBeenCalled();
   });
 });
 
 describe('createMcpTreeReaderBridge — dispose', () => {
-  it('dispose unsubscribes from the renderer response channel', async () => {
+  it('dispose resolves pending requests as not-ready and unsubscribes from the renderer response channel', async () => {
     vi.useFakeTimers();
     const sendToRenderer = vi.fn();
     const channel = makeFakeResponseChannel();
@@ -163,7 +183,7 @@ describe('createMcpTreeReaderBridge — dispose', () => {
     bridge.dispose();
 
     vi.advanceTimersByTime(100);
-    await expect(pending).resolves.toBeNull();
+    await expect(pending).resolves.toEqual({ kind: 'not-ready' });
     vi.useRealTimers();
   });
 });

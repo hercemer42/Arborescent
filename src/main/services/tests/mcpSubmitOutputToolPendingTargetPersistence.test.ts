@@ -10,7 +10,7 @@ import {
   StepOutputApplier,
 } from '../mcpSubmitOutputTool';
 import { OneShotTargetStore } from '../oneShotTargetStore';
-import { TreeReadState } from '../mcpReadTools';
+import { TreeReadState, TreeReadResult } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
@@ -82,9 +82,10 @@ function makeToolFor(opts: {
   };
   const oneShotTargetStore = new OneShotTargetStore();
   const treeReader = {
-    readState: vi.fn(async () =>
-      makeStateWithThreeNodes(opts.boundStepType, opts.targetStepType, opts.secondTargetStepType),
-    ),
+    readState: vi.fn(async (_sessionId: string, nodeId: string): Promise<TreeReadResult> => {
+      const state = makeStateWithThreeNodes(opts.boundStepType, opts.targetStepType, opts.secondTargetStepType);
+      return state.nodes[nodeId] ? { kind: 'ok', state } : { kind: 'node-not-in-open-store' };
+    }),
   };
   const proposalSubmitter = {
     submit: vi.fn(async () => opts.proposalResult ?? ({ ok: true as const, proposalId: 'p' })),

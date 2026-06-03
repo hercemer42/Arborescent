@@ -1,5 +1,5 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
-import { TreeReader, TreeReadState, ToolResult } from './mcpReadTools';
+import { TreeReader, TreeReadState, ToolResult, treeReadFailure } from './mcpReadTools';
 import { ProposalSubmitter } from './mcpProposalBridge';
 import { OneShotTargetStore } from './oneShotTargetStore';
 import {
@@ -97,14 +97,11 @@ async function resolveBoundState(deps: WriteToolsDeps, sessionId: string): Promi
   if (!boundNodeId) {
     return { ok: false, error: err(`No binding found for session ${sessionId}. The session is not bound to any node.`) };
   }
-  const state = await deps.treeReader.readState(sessionId, boundNodeId);
-  if (!state) {
-    return { ok: false, error: err('Tree state is unavailable. The renderer may not be ready or no file is open.') };
+  const read = await deps.treeReader.readState(sessionId, boundNodeId);
+  if (read.kind !== 'ok') {
+    return { ok: false, error: treeReadFailure(read.kind, sessionId, boundNodeId) };
   }
-  if (!state.nodes[boundNodeId]) {
-    return { ok: false, error: err(`Bound node ${boundNodeId} not found in the tree (orphan binding).`) };
-  }
-  return { ok: true, boundNodeId, state };
+  return { ok: true, boundNodeId, state: read.state };
 }
 
 async function executeMutation(

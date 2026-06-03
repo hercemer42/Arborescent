@@ -1,4 +1,5 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
+import { logger } from './logger';
 import { TreeNode } from '../../shared/types';
 import {
   resolveContextFlags,
@@ -12,8 +13,19 @@ export interface TreeReadState {
   ancestorRegistry: Record<string, string[]>;
 }
 
+// The renderer produces ok | no-session-store | node-not-in-open-store; the
+// bridge alone fabricates not-ready (timeout or dispose). node-not-in-open-store
+// is deliberately non-decisive: the owning store cannot tell a deleted node
+// from one bound in another file, and sweeping other open files would break
+// the invariant that a session never resolves nodes outside its owning file.
+export type TreeReadFailureKind = 'not-ready' | 'no-session-store' | 'node-not-in-open-store';
+
+export type TreeReadResult =
+  | { kind: 'ok'; state: TreeReadState }
+  | { kind: TreeReadFailureKind };
+
 export interface TreeReader {
-  readState(sessionId: string, boundNodeId: string): Promise<TreeReadState | null>;
+  readState(sessionId: string, boundNodeId: string): Promise<TreeReadResult>;
 }
 
 export interface ReadToolsDeps {
@@ -68,6 +80,24 @@ function ok(payload: unknown): ToolResult {
 
 function err(message: string): ToolResult {
   return { content: [{ type: 'text', text: message }], isError: true };
+}
+
+const TREE_READ_FAILURE_MESSAGES: Record<TreeReadFailureKind, (sessionId: string, boundNodeId: string) => string> = {
+  'not-ready': (sessionId, boundNodeId) =>
+    `Tree read for node ${boundNodeId} (session ${sessionId}) got no response — the renderer is not ready. This is transient: retry once after a short wait.`,
+  'no-session-store': (sessionId, boundNodeId) =>
+    `No open file owns session ${sessionId} (bound node ${boundNodeId}) — the file may not be open, or the session may not be registered yet.`,
+  'node-not-in-open-store': (sessionId, boundNodeId) =>
+    `Bound node ${boundNodeId} is not in the file owned by session ${sessionId} — it may have been deleted, or it lives in a different file than the one resolved for this session.`,
+};
+
+export function treeReadFailure(
+  kind: TreeReadFailureKind,
+  sessionId: string,
+  boundNodeId: string,
+): ToolResult {
+  logger.warn(`tree-read failure kind=${kind} session=${sessionId} node=${boundNodeId}`, 'McpTreeRead');
+  return err(TREE_READ_FAILURE_MESSAGES[kind](sessionId, boundNodeId));
 }
 
 function modeLabel(collaborate: boolean, execute: boolean): ModeLabel {
@@ -173,14 +203,11 @@ async function withBoundNode<T>(
   if (!boundNodeId) {
     return err(`No binding found for session ${sessionId}. The session is not bound to any node.`);
   }
-  const state = await deps.treeReader.readState(sessionId, boundNodeId);
-  if (!state) {
-    return err('Tree state is unavailable. The renderer may not be ready or no file is open.');
+  const read = await deps.treeReader.readState(sessionId, boundNodeId);
+  if (read.kind !== 'ok') {
+    return treeReadFailure(read.kind, sessionId, boundNodeId);
   }
-  if (!state.nodes[boundNodeId]) {
-    return err(`Bound node ${boundNodeId} not found in the tree (orphan binding).`);
-  }
-  const payload = await fn(boundNodeId, state);
+  const payload = await fn(boundNodeId, read.state);
   return ok(payload);
 }
 

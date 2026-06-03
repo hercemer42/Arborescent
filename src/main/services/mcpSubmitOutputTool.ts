@@ -1,5 +1,5 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
-import { TreeReader, ToolResult } from './mcpReadTools';
+import { TreeReader, ToolResult, treeReadFailure } from './mcpReadTools';
 import { OneShotTargetStore } from './oneShotTargetStore';
 import { ProposalSubmitter } from './mcpProposalBridge';
 import { logger } from './logger';
@@ -62,13 +62,11 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         });
       }
 
-      const state = await deps.treeReader.readState(sessionId, boundNodeId);
-      if (!state) {
-        return err('Tree state is unavailable. The renderer may not be ready or no file is open.');
+      const read = await deps.treeReader.readState(sessionId, boundNodeId);
+      if (read.kind !== 'ok') {
+        return treeReadFailure(read.kind, sessionId, boundNodeId);
       }
-      if (!state.nodes[boundNodeId]) {
-        return err(`Bound node ${boundNodeId} not found in the tree (orphan binding).`);
-      }
+      const state = read.state;
 
       if (!isStructurallyAutonomous(boundNodeId, state)) {
         if (targetNodeId && targetNodeId !== boundNodeId) {

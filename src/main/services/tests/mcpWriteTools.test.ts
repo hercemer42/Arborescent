@@ -11,8 +11,12 @@ import {
   TreeMutator,
   MutationRequest,
 } from '../mcpWriteTools';
-import { TreeReadState } from '../mcpReadTools';
+import { TreeReadState, TreeReadResult } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
+
+function okRead(state: TreeReadState): TreeReadResult {
+  return { kind: 'ok', state };
+}
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
@@ -57,7 +61,14 @@ function makeDeps(setup: SetupArgs) {
   const mutator: TreeMutator = {
     mutate: vi.fn(async () => ({ ok: true as const })),
   };
-  const treeReader = { readState: vi.fn(async () => makeState(setup)) };
+  // Mirrors renderer semantics: ok only when the bound node is in the owning
+  // store, node-not-in-open-store otherwise.
+  const treeReader = {
+    readState: vi.fn(async (_sessionId: string, nodeId: string): Promise<TreeReadResult> => {
+      const state = makeState(setup);
+      return state.nodes[nodeId] ? okRead(state) : { kind: 'node-not-in-open-store' };
+    }),
+  };
   let nextProposalId = 1;
   const proposalSubmitter = {
     submit: vi.fn(async () => ({ ok: true as const, proposalId: `prop-${nextProposalId++}` })),
@@ -363,7 +374,7 @@ describe('createWriteTools — error propagation', () => {
     const result = await callTool(tools, 'addChildNode');
 
     expect(result.isError).toBe(true);
-    expect(result.content[0].text).toMatch(/not found|orphan/i);
+    expect(result.content[0].text).toMatch(/deleted|not in the file/i);
     expect(made.mutator.mutate).not.toHaveBeenCalled();
   });
 
@@ -374,7 +385,7 @@ describe('createWriteTools — error propagation', () => {
     const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
     const tools = createWriteTools({
       bindingRegistry: registry,
-      treeReader: { readState: async () => null },
+      treeReader: { readState: async (): Promise<TreeReadResult> => ({ kind: 'not-ready' }) },
       treeMutator: mutator,
       proposalSubmitter,
       oneShotTargetStore,
@@ -398,7 +409,7 @@ describe('createWriteTools — mode authority: no applied context blocks every t
     const registry = new SessionBindingRegistry();
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const treeReader = {
-      readState: async () => ({
+      readState: async () => okRead({
         nodes: {
           [ROOT]: makeNode(ROOT, 'Root', [STEP]),
           [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'autonomous' }),
@@ -444,7 +455,7 @@ describe('createWriteTools — server-side authority is live (no caching)', () =
     let collaborate = true;
     const treeReader = {
       readState: async () =>
-        makeState({ collaborate, execute: false, stepType: 'autonomous' }),
+        okRead(makeState({ collaborate, execute: false, stepType: 'autonomous' })),
     };
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
@@ -530,7 +541,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const registry = new SessionBindingRegistry();
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const treeReader = {
-      readState: async () => ({
+      readState: async () => okRead({
         nodes: {
           [ROOT]: makeNode(ROOT, 'Root', [STEP]),
           [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'autonomous' }),
@@ -571,7 +582,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
     expect(result.isError).toBe(true);
-    expect(result.content[0].text).toMatch(/not found|orphan/i);
+    expect(result.content[0].text).toMatch(/deleted|not in the file/i);
     expect(made.mutator.mutate).not.toHaveBeenCalled();
   });
 
@@ -658,7 +669,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const registry = new SessionBindingRegistry();
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const treeReader = {
-      readState: async () => ({
+      readState: async () => okRead({
         nodes: {
           [ROOT]: makeNode(ROOT, 'Root', [STEP, CTX]),
           [STEP]: makeNode(STEP, 'Autonomous step', [BOUND], { stepType: 'autonomous' as const }),
@@ -704,7 +715,7 @@ describe('createWriteTools — announceStepDone on a checkpoint: mode and contex
     const registry = new SessionBindingRegistry();
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const treeReader = {
-      readState: async () => ({
+      readState: async () => okRead({
         nodes: {
           [ROOT]: makeNode(ROOT, 'Root', [STEP]),
           [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'checkpoint' as const }),
@@ -742,7 +753,7 @@ describe('createWriteTools — announceStepDone on a checkpoint: mode and contex
     const registry = new SessionBindingRegistry();
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const treeReader = {
-      readState: async () => ({
+      readState: async () => okRead({
         nodes: {
           [ROOT]: makeNode(ROOT, 'Root', [STEP]),
           [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'checkpoint' as const }),

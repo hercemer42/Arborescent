@@ -11,8 +11,12 @@ import {
   StepOutputApplier,
 } from '../mcpSubmitOutputTool';
 import { OneShotTargetStore } from '../oneShotTargetStore';
-import { TreeReadState } from '../mcpReadTools';
+import { TreeReadState, TreeReadResult } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
+
+function okRead(state: TreeReadState): TreeReadResult {
+  return { kind: 'ok', state };
+}
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
@@ -48,7 +52,14 @@ function makeDeps(stepType: StepType | undefined) {
   const applier: StepOutputApplier = {
     apply: vi.fn(async () => ({ ok: true as const })),
   };
-  const treeReader = { readState: vi.fn(async () => makeState(stepType)) };
+  // Mirrors renderer semantics: ok only when the bound node is in the owning
+  // store, node-not-in-open-store otherwise.
+  const treeReader = {
+    readState: vi.fn(async (_sessionId: string, nodeId: string): Promise<TreeReadResult> => {
+      const state = makeState(stepType);
+      return state.nodes[nodeId] ? okRead(state) : { kind: 'node-not-in-open-store' };
+    }),
+  };
   const oneShotTargetStore = new OneShotTargetStore();
   let nextProposalId = 1;
   const proposalSubmitter = {
@@ -250,7 +261,7 @@ describe('createSubmitOutputTool — error propagation', () => {
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
     expect(result.isError).toBe(true);
-    expect(result.content[0].text).toMatch(/not found|orphan/i);
+    expect(result.content[0].text).toMatch(/deleted|not in the file/i);
     expect(made.applier.apply).not.toHaveBeenCalled();
   });
 
@@ -260,7 +271,7 @@ describe('createSubmitOutputTool — error propagation', () => {
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
     const tool = createSubmitOutputTool({
       bindingRegistry: registry,
-      treeReader: { readState: async () => null },
+      treeReader: { readState: async (): Promise<TreeReadResult> => ({ kind: 'not-ready' }) },
       applier,
       oneShotTargetStore: new OneShotTargetStore(),
       proposalSubmitter,
@@ -317,7 +328,7 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
   function setupTool(stepType: StepType | undefined) {
     const registry = new SessionBindingRegistry();
     const applier: StepOutputApplier = { apply: vi.fn(async () => ({ ok: true as const })) };
-    const treeReader = { readState: async () => makeWorkflowState(stepType) };
+    const treeReader = { readState: async () => okRead(makeWorkflowState(stepType)) };
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
     registry.register('sess-1', WORKING);
     return {
@@ -374,7 +385,7 @@ describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
   function makeToolFor(collaborate: boolean, execute: boolean) {
     const registry = new SessionBindingRegistry();
     const applier: StepOutputApplier = { apply: vi.fn(async () => ({ ok: true as const })) };
-    const treeReader = { readState: async () => makeStateWithFlags(collaborate, execute) };
+    const treeReader = { readState: async () => okRead(makeStateWithFlags(collaborate, execute)) };
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
     return {

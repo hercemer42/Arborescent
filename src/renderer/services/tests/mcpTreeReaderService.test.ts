@@ -61,26 +61,37 @@ describe('mcpTreeReaderService — file-scoped node resolution (Ticket A)', () =
     expect(ownerOf).toHaveBeenCalledWith('sess-1');
     expect(respondMock()).toHaveBeenCalledWith({
       requestId: 'r1',
-      state: { nodes: boundFile.nodes, rootNodeId: 'X', ancestorRegistry: {} },
+      state: { kind: 'ok', state: { nodes: boundFile.nodes, rootNodeId: 'X', ancestorRegistry: {} } },
     });
   });
 
-  it('returns not-found when the id is absent from the bound file (never a same-id node in another file)', async () => {
+  it('returns node-not-in-open-store when the id is absent from the bound file (never a same-id node in another file)', async () => {
     const boundFile: ReadableState = { nodes: {}, rootNodeId: 'root', ancestorRegistry: {} };
     ownerOf.mockReturnValue(fakeStore(boundFile));
 
     const handler = captureHandler();
     await handler({ requestId: 'r2', sessionId: 'sess-1', nodeId: 'X' });
 
-    expect(respondMock()).toHaveBeenCalledWith({ requestId: 'r2', state: null });
+    expect(respondMock()).toHaveBeenCalledWith({ requestId: 'r2', state: { kind: 'node-not-in-open-store' } });
   });
 
-  it('fails closed to not-found when no open file owns the session (registration race or closed file)', async () => {
+  it('fails closed to no-session-store when no open file owns the session (registration race or closed file)', async () => {
     ownerOf.mockReturnValue(null);
 
     const handler = captureHandler();
     await handler({ requestId: 'r3', sessionId: 'sess-unknown', nodeId: 'X' });
 
-    expect(respondMock()).toHaveBeenCalledWith({ requestId: 'r3', state: null });
+    expect(respondMock()).toHaveBeenCalledWith({ requestId: 'r3', state: { kind: 'no-session-store' } });
+  });
+
+  it('a node id present only in a non-owning store still yields node-not-in-open-store, never a false ok', async () => {
+    const boundFile: ReadableState = { nodes: {}, rootNodeId: 'root', ancestorRegistry: {} };
+    ownerOf.mockReturnValue(fakeStore(boundFile));
+
+    const handler = captureHandler();
+    await handler({ requestId: 'r4', sessionId: 'sess-1', nodeId: 'X' });
+
+    expect(ownerOf).toHaveBeenCalledTimes(1);
+    expect(respondMock()).toHaveBeenCalledWith({ requestId: 'r4', state: { kind: 'node-not-in-open-store' } });
   });
 });

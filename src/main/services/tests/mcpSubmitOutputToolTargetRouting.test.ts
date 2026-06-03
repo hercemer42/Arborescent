@@ -10,7 +10,7 @@ import {
   StepOutputApplier,
 } from '../mcpSubmitOutputTool';
 import { OneShotTargetStore } from '../oneShotTargetStore';
-import { TreeReadState } from '../mcpReadTools';
+import { TreeReadState, TreeReadResult } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
@@ -69,7 +69,10 @@ function makeToolFor(opts: {
   const applier: StepOutputApplier = { apply: vi.fn(async () => ({ ok: true as const })) };
   const oneShotTargetStore = new OneShotTargetStore();
   const treeReader = {
-    readState: vi.fn(async () => makeStateWithTwoNodes(opts.boundStepType, opts.targetStepType)),
+    readState: vi.fn(async (_sessionId: string, nodeId: string): Promise<TreeReadResult> => {
+      const state = makeStateWithTwoNodes(opts.boundStepType, opts.targetStepType);
+      return state.nodes[nodeId] ? { kind: 'ok', state } : { kind: 'node-not-in-open-store' };
+    }),
   };
   const proposalSubmitter = {
     submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })),
@@ -169,7 +172,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
     expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'x');
   });
 
-  it('a one-shot target that points to a node missing from the tree returns an orphan-style error', async () => {
+  it('a one-shot target that points to a node missing from the tree returns a node-not-in-open-store error', async () => {
     const registry = new SessionBindingRegistry();
     registry.register('sess-1', BOUND);
     const oneShotTargetStore = new OneShotTargetStore();
@@ -177,7 +180,12 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
     const applier: StepOutputApplier = { apply: vi.fn(async () => ({ ok: true as const })) };
     const tool = createSubmitOutputTool({
       bindingRegistry: registry,
-      treeReader: { readState: vi.fn(async () => makeStateWithTwoNodes('autonomous', 'autonomous')) },
+      treeReader: {
+        readState: vi.fn(async (_sessionId: string, nodeId: string): Promise<TreeReadResult> => {
+          const state = makeStateWithTwoNodes('autonomous', 'autonomous');
+          return state.nodes[nodeId] ? { kind: 'ok', state } : { kind: 'node-not-in-open-store' };
+        }),
+      },
       applier,
       oneShotTargetStore,
       proposalSubmitter: { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) },
@@ -185,7 +193,7 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
 
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
     expect(result.isError).toBe(true);
-    expect(result.content[0].text).toMatch(/not found|orphan/i);
+    expect(result.content[0].text).toMatch(/deleted|not in the file/i);
     expect(applier.apply).not.toHaveBeenCalled();
   });
 });

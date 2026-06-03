@@ -36,9 +36,14 @@ export interface SerializedTreeReadState {
   ancestorRegistry: Record<string, string[]>;
 }
 
+export type SerializedTreeReadResult =
+  | { kind: 'ok'; state: SerializedTreeReadState }
+  | { kind: 'no-session-store' }
+  | { kind: 'node-not-in-open-store' };
+
 export interface TreeReadResponse {
   requestId: string;
-  state: SerializedTreeReadState | null;
+  state: SerializedTreeReadResult;
 }
 
 export type MutationRequest =

@@ -11,7 +11,7 @@ import {
   StepOutputApplier,
 } from '../mcpSubmitOutputTool';
 import { OneShotTargetStore } from '../oneShotTargetStore';
-import { TreeReadState } from '../mcpReadTools';
+import { TreeReadState, TreeReadResult } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
 
 // Gate 4: target-keyed binding token.
@@ -64,7 +64,12 @@ function makeDeps(stepType: StepType | undefined) {
   const applier: StepOutputApplier = {
     apply: vi.fn(async () => ({ ok: true as const })),
   };
-  const treeReader = { readState: vi.fn(async () => makeState(stepType)) };
+  const treeReader = {
+    readState: vi.fn(async (_sessionId: string, nodeId: string): Promise<TreeReadResult> => {
+      const state = makeState(stepType);
+      return state.nodes[nodeId] ? { kind: 'ok', state } : { kind: 'node-not-in-open-store' };
+    }),
+  };
   const oneShotTargetStore = new OneShotTargetStore();
   let nextProposalId = 1;
   const proposalSubmitter = {

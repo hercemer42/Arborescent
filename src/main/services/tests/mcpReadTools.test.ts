@@ -5,7 +5,7 @@ vi.mock('../logger', () => ({
 }));
 
 import { SessionBindingRegistry } from '../sessionBindingRegistry';
-import { createReadTools, ReadTools, TreeReadState } from '../mcpReadTools';
+import { createReadTools, ReadTools, TreeReadState, TreeReadResult } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
 
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
@@ -59,12 +59,19 @@ function makeState(overrides: Partial<TreeReadState> = {}): TreeReadState {
 function makeDeps(initialState: TreeReadState | null = makeState()) {
   let state = initialState;
   const registry = new SessionBindingRegistry();
+  // Mirrors the producer semantics: null state stands in for a renderer that
+  // never answered, a present state without the node for node-not-in-open-store.
   return {
     registry,
     setState: (next: TreeReadState | null) => { state = next; },
     deps: {
       bindingRegistry: registry,
-      treeReader: { readState: vi.fn(async () => state) },
+      treeReader: {
+        readState: vi.fn(async (_sessionId: string, nodeId: string): Promise<TreeReadResult> => {
+          if (!state) return { kind: 'not-ready' };
+          return state.nodes[nodeId] ? { kind: 'ok', state } : { kind: 'node-not-in-open-store' };
+        }),
+      },
     },
   };
 }
@@ -110,7 +117,7 @@ describe('createReadTools — get_node', () => {
     const result = await tools.getNode({ sessionId: 'sess-1' });
 
     expect(result.isError).toBe(true);
-    expect(result.content[0].text).toMatch(/not found|orphan/i);
+    expect(result.content[0].text).toMatch(/deleted|not in the file/i);
   });
 
   it('returns a descriptive error when the renderer tree state is unavailable', async () => {
@@ -302,7 +309,7 @@ describe('createReadTools — mode resolution is server-side and live', () => {
     const registry = new SessionBindingRegistry();
     const tools = createReadTools({
       bindingRegistry: registry,
-      treeReader: { readState: async () => state },
+      treeReader: { readState: async (): Promise<TreeReadResult> => ({ kind: 'ok', state }) },
     });
     registry.register('sess-1', CHILD_A);
 
@@ -324,7 +331,7 @@ describe('createReadTools — mode resolution is server-side and live', () => {
   });
 
   it('calls readState on every invocation rather than caching tree state', async () => {
-    const readState = vi.fn(async () => makeState());
+    const readState = vi.fn(async (): Promise<TreeReadResult> => ({ kind: 'ok', state: makeState() }));
     const registry = new SessionBindingRegistry();
     const tools = createReadTools({
       bindingRegistry: registry,

@@ -10,7 +10,7 @@ import {
   StepOutputApplier,
 } from '../mcpSubmitOutputTool';
 import { OneShotTargetStore } from '../oneShotTargetStore';
-import { TreeReadState } from '../mcpReadTools';
+import { TreeReadState, TreeReadResult } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
 
 // Gate 4 on the manual/collab (proposal) route: when the assistant supplies
@@ -67,7 +67,12 @@ function makeTool(opts: {
   const oneShotTargetStore = new OneShotTargetStore();
   if (opts.pendingTargetNodeId) oneShotTargetStore.setPendingTarget('sess-1', opts.pendingTargetNodeId);
   if (opts.markerSeen !== undefined) oneShotTargetStore.setMarkerSeenThisTurn('sess-1', opts.markerSeen);
-  const treeReader = { readState: vi.fn(async () => makeState(opts.boundStepType, opts.targetStepType)) };
+  const treeReader = {
+    readState: vi.fn(async (_sessionId: string, nodeId: string): Promise<TreeReadResult> => {
+      const state = makeState(opts.boundStepType, opts.targetStepType);
+      return state.nodes[nodeId] ? { kind: 'ok', state } : { kind: 'node-not-in-open-store' };
+    }),
+  };
   const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
   const tool = createSubmitOutputTool({
     bindingRegistry: registry,
