@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-03T18:29:06.957Z'
+updated: '2026-06-03T18:30:19.226Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25649,8 +25649,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - f279d03c-b14a-4568-b56a-2ea5b6f6cc1d
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115519,6 +115518,7 @@ nodes:
       - e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
       - d0ea449a-5792-49c2-89ad-5f7abaacb301
       - dee03dac-d4a0-4977-9c2f-4a714d56b618
+      - fc5c60dc-50c4-4ba1-9c72-117edeab709f
     metadata:
       status: pending
       isBlueprint: true
@@ -124625,9 +124625,9 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - fc5c60dc-50c4-4ba1-9c72-117edeab709f
       - 822b85f1-a9a2-4812-a4e1-0997b466543b
       - 2d4f53ce-63e5-49d0-a258-fb701d70dfeb
+      - f279d03c-b14a-4568-b56a-2ea5b6f6cc1d
     metadata:
       status: pending
       isBlueprint: true
@@ -179649,17 +179649,17 @@ nodes:
     id: f279d03c-b14a-4568-b56a-2ea5b6f6cc1d
     content: Merge-not-replace for the autonomous submit rebuild
     children:
-      - 60df8ad8-6bb0-44c9-809a-7398243ae5c9
-      - 0d8c7e42-58c2-4272-98be-911873c09287
-      - a87751b8-11b9-4493-b2ef-7be083518fec
-      - aa96588d-e330-4bc8-a5ea-930993b2473d
-      - 4c3447d1-2c38-49ba-a05f-48c4e689b4af
-      - 20303875-5c38-4aa5-8da6-17c497c828d4
-      - f195c8ef-d399-4da1-9de7-03eeb257c465
-      - 00035e60-0f54-4e7f-8295-03db71b93de5
-      - 3ed41802-0d21-47bb-bb1c-4927d98e6d0c
-      - 87699a34-df57-4ea6-979a-ca9cd77a54d4
-      - d710b1b0-148e-4e1b-baeb-059cd4a35b7e
+      - 8f6c06c7-d9d0-4f2f-a16a-f95f4c4c09c4
+      - b96e73cb-ace3-4693-afec-9ea3ddc60ed2
+      - 7e2c1640-aabe-4a22-9771-9d0139c7b12c
+      - d0ba7cf3-d2ac-42c3-b4e0-22edfd6df695
+      - 03e39cf1-098f-4bd1-8aac-56e8b99bcb18
+      - d84700d9-b6b7-4576-a581-db220f19a30c
+      - 5b419c3f-eda3-491a-a4d1-6408100df330
+      - d929106f-ea47-43b5-9245-d4b3d235f31e
+      - e20aaf02-439a-48fd-9c50-b5d1469721eb
+      - 1fbef9f6-e789-4730-b1ef-d5dea8596f6d
+      - c205d383-1f64-4775-abd2-47b53d885979
     metadata:
       status: completed
       expanded: false
@@ -179701,9 +179701,10 @@ nodes:
       - 152ff7d0-aed8-4149-8a30-8eb8be15e1d1
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
+      sessionId: 44bda6f6-5749-41f2-b47e-4bcfe9a8ab0d
   16c56630-2e35-495d-b8ff-adbeb3ee2d30:
     id: 16c56630-2e35-495d-b8ff-adbeb3ee2d30
     content: 'Problem: deleteNode and clipboardActions.executeMultiNodeDelete are parallel implementations (capture descendants → command → notifyDeletionDisruption); the binding cleanup had to be added to both and a code review caught the initially-missed path'
@@ -182564,1071 +182565,13 @@ nodes:
       - cabbcf4b-f940-4546-ad4d-3932b77434fe
     metadata:
       status: pending
+      expanded: false
   45c6e476-2eb0-469f-81f5-9babf7519cb7:
     id: 45c6e476-2eb0-469f-81f5-9babf7519cb7
     content: Have an update/log area for workflow step transitions instead of spamming toasts
     children: []
     metadata:
       status: pending
-  60df8ad8-6bb0-44c9-809a-7398243ae5c9:
-    id: 60df8ad8-6bb0-44c9-809a-7398243ae5c9
-    content: worktree
-    children:
-      - a63f6599-a252-4049-918e-ee254f08ea03
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a63f6599-a252-4049-918e-ee254f08ea03:
-    id: a63f6599-a252-4049-918e-ee254f08ea03
-    content: vscode://file//Users/brianfox/dev/Arborescent-mode-policy-gating
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d8c7e42-58c2-4272-98be-911873c09287:
-    id: 0d8c7e42-58c2-4272-98be-911873c09287
-    content: 'Problem: executeSingleRootStrategy deletes the snapshot''s descendants and re-adds only what is in CONTENT (acceptFeedbackStrategies.ts:179-183), so out-of-band add_child_node nodes vanish unless they are also echoed in the submit'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a87751b8-11b9-4493-b2ef-7be083518fec:
-    id: a87751b8-11b9-4493-b2ef-7be083518fec
-    content: 'Approach: reconcile instead of wholesale-replace — preserve nodes not referenced in CONTENT, or require explicit deletion markers'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa96588d-e330-4bc8-a5ea-930993b2473d:
-    id: aa96588d-e330-4bc8-a5ea-930993b2473d
-    content: 'Risk: medium-high; it is core to feedback application, so it needs strong test coverage first — current behavior is latent data loss'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c3447d1-2c38-49ba-a05f-48c4e689b4af:
-    id: 4c3447d1-2c38-49ba-a05f-48c4e689b4af
-    content: 'Decision: merge-not-replace rejected — superseded by server-side MCP tool gating by step mode, so the destructive rebuild can never coexist with incremental writes'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  20303875-5c38-4aa5-8da6-17c497c828d4:
-    id: 20303875-5c38-4aa5-8da6-17c497c828d4
-    content: 'User story: Gate submit_step_output and announce_step_done by step mode via a shared mode policy table'
-    children:
-      - 3da564e1-969b-4319-88dc-834371507f3f
-      - 821cfc87-4951-474c-8be0-959d9471a88b
-      - c18e64e8-348a-41fd-a0dc-c47d5232957a
-      - df9d9aaa-7cb7-493a-bca0-3f688b058549
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3da564e1-969b-4319-88dc-834371507f3f:
-    id: 3da564e1-969b-4319-88dc-834371507f3f
-    content: 📄 Product spec
-    children:
-      - d4fc2dc3-a674-47cc-bbc0-c5b1aa4eb297
-      - 83a1043c-f035-4834-8fd9-43f003cec760
-      - 4c586916-90ea-457f-afe9-322268ffe48d
-      - 74c09413-6e6f-4cdb-ae06-fce3615e5707
-      - 75e16b8d-2f93-4e18-95e4-25680d28599a
-      - 8631ea83-962e-4e28-b72c-44294fe273c1
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d4fc2dc3-a674-47cc-bbc0-c5b1aa4eb297:
-    id: d4fc2dc3-a674-47cc-bbc0-c5b1aa4eb297
-    content: Context
-    children:
-      - 11fcdc4f-ff88-4321-bc14-f3244a2d1e41
-      - 89a821fc-220c-40fe-bc93-ae7142ba23e7
-      - 946fa863-0b9d-4ef5-a6fe-e32b3f1dbbca
-      - db1179ff-96a3-43b8-8d30-882f3c8bdb60
-      - 5d990f53-f1bc-47c1-ac06-91edbcb1406d
-      - dbca4313-2dd5-43df-a78b-efa0f7f8f473
-      - 9298f0d2-3bb1-4ef1-a5ad-917472cb9308
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  11fcdc4f-ff88-4321-bc14-f3244a2d1e41:
-    id: 11fcdc4f-ff88-4321-bc14-f3244a2d1e41
-    content: Workflow steps carry an applied context whose collaborate/execute flags form four modes — collaborate, collaborate & execute, execute, action — and checkAuthority (mcpWriteTools.ts:54-73) already gates the incremental mutation tools per mode with explanatory refusals
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  89a821fc-220c-40fe-bc93-ae7142ba23e7:
-    id: 89a821fc-220c-40fe-bc93-ae7142ba23e7
-    content: 'Gap 1: submit_step_output (mcpSubmitOutputTool.ts) never consults context flags — its rebuild deletes the bound subtree''s descendants and re-adds from the submission, silently wiping mid-run add_child_node additions in collaborate & execute steps'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  946fa863-0b9d-4ef5-a6fe-e32b3f1dbbca:
-    id: 946fa863-0b9d-4ef5-a6fe-e32b3f1dbbca
-    content: 'Gap 2: announce_step_done rejects any collaborate=true context and its error text tells the agent to call submit_step_output instead (mcpWriteTools.ts:166-169) — the server''s own error steers collaborate & execute agents into the destructive rebuild'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  db1179ff-96a3-43b8-8d30-882f3c8bdb60:
-    id: db1179ff-96a3-43b8-8d30-882f3c8bdb60
-    content: 'Gap 3: the collaborate & execute prompt copy (buildBothOutputTarget, sendActions.ts) broadcasts submit-the-list as the completion path, contradicting the gate; its intent is already incremental in spirit (only change status markers, append one child for issues), so the flip maps existing intents onto native tools'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5d990f53-f1bc-47c1-ac06-91edbcb1406d:
-    id: 5d990f53-f1bc-47c1-ac06-91edbcb1406d
-    content: 'Gap 4: per-item check-offs in collaborate & execute currently work only through the full-list resubmit — mark_step_complete (mcpServer.ts:144-155) targets the bound node exclusively and cannot tick an individual child item, so the incremental channel needs node targeting before it can replace the rebuild'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbca4313-2dd5-43df-a78b-efa0f7f8f473:
-    id: dbca4313-2dd5-43df-a78b-efa0f7f8f473
-    content: 'Root cause of the gap class: the mode-to-permissions matrix has no single home — it is re-derived by independent if-chains in checkAuthority, the announce gate, and the prompt dispatch, and sites drift apart; Gap 2 is that drift'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9298f0d2-3bb1-4ef1-a5ad-917472cb9308:
-    id: 9298f0d2-3bb1-4ef1-a5ad-917472cb9308
-    content: 'Prompt rules alone are insufficient as enforcement: they degrade under context pressure and compaction and compete with other instructions, exactly in the long autonomous runs where mid-run additions accumulate — but prompt broadcast must still agree with the gate so refusals are the exception, not the routine'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  83a1043c-f035-4834-8fd9-43f003cec760:
-    id: 83a1043c-f035-4834-8fd9-43f003cec760
-    content: User
-    children:
-      - 20618739-50da-4d81-8203-57ef1cdc8624
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  20618739-50da-4d81-8203-57ef1cdc8624:
-    id: 20618739-50da-4d81-8203-57ef1cdc8624
-    content: A power user running autonomous AI workflows over their own trees; silent data loss is the worst outcome, while a mid-run refusal with an explanatory error is acceptable — agents recover and retry the correct tool
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c586916-90ea-457f-afe9-322268ffe48d:
-    id: 4c586916-90ea-457f-afe9-322268ffe48d
-    content: Current experience and why it is insufficient
-    children:
-      - 58b34adb-9742-4896-beed-2859015f4d6f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  58b34adb-9742-4896-beed-2859015f4d6f:
-    id: 58b34adb-9742-4896-beed-2859015f4d6f
-    content: A collaborate & execute agent finishing its work is either refused by announce_step_done and redirected into submit_step_output, or calls submit directly as its prompt instructs — both routes end in the rebuild that silently deletes the nodes it just added, concentrated in the longest, most autonomous runs
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  74c09413-6e6f-4cdb-ae06-fce3615e5707:
-    id: 74c09413-6e6f-4cdb-ae06-fce3615e5707
-    content: Goal
-    children:
-      - 77e1d33f-cace-4365-8a69-d57b2e07a675
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  77e1d33f-cace-4365-8a69-d57b2e07a675:
-    id: 77e1d33f-cace-4365-8a69-d57b2e07a675
-    content: Every step mode has exactly one completion channel and one set of permitted write tools, defined once in a shared policy table that the MCP gates and the step prompts both consume, with every refusal naming the mode and the permitted alternative
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  75e16b8d-2f93-4e18-95e4-25680d28599a:
-    id: 75e16b8d-2f93-4e18-95e4-25680d28599a
-    content: Business rules
-    children:
-      - 4728f01a-a4f0-4503-b092-7068276456d8
-      - c82ef440-da71-48be-aa83-fa09825e52c8
-      - 428232ba-5178-4a88-bcea-dedd3da130bc
-      - d2b97cf6-feca-4b1c-b24c-8503358b0a72
-      - 0555c447-ba22-4e1d-8587-5737e897f5d6
-      - c4fb1c19-efef-4916-b247-2d547f5d313d
-      - 16bd1dfa-351a-4205-a5f9-c083cd52bdef
-      - 1730cda8-ee5c-4504-82ba-dd4c2025f331
-      - b3f9c85e-8e24-4c75-8336-bdb3bc204da5
-      - cf7aa700-1926-453c-b688-638cb8d665ab
-      - e36c6c88-92e6-4209-922d-f1565219a3eb
-      - e852827b-9c98-4bbe-aa88-b49b9f5617ef
-      - e5c25f36-4b1f-4f27-8c93-9f981bc55bfe
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4728f01a-a4f0-4503-b092-7068276456d8:
-    id: 4728f01a-a4f0-4503-b092-7068276456d8
-    content: 1. Every tree-writing and completion tool requires an applied context (own or inherited); with none the call is refused with the existing no-context error
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c82ef440-da71-48be-aa83-fa09825e52c8:
-    id: c82ef440-da71-48be-aa83-fa09825e52c8
-    content: 2. submit_step_output is permitted only when the applied context is pure collaborate (collaborate=true, execute=false); in collaborate & execute, execute-only, and action modes it is refused with an error naming the mode and directing the agent to its permitted path — this gate is net-new
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  428232ba-5178-4a88-bcea-dedd3da130bc:
-    id: 428232ba-5178-4a88-bcea-dedd3da130bc
-    content: 3. announce_step_done is permitted for collaborate & execute, execute-only, and action modes; it is refused only for pure collaborate (directed to submit_step_output) and no-context — the gate narrows from any-collaborate to collaborate-without-execute
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2b97cf6-feca-4b1c-b24c-8503358b0a72:
-    id: d2b97cf6-feca-4b1c-b24c-8503358b0a72
-    content: 4. announce_step_done remains valid only on autonomous and checkpoint steps; manual steps stay UI-only, and on a checkpoint it marks the subject complete then pauses for user validation
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0555c447-ba22-4e1d-8587-5737e897f5d6:
-    id: 0555c447-ba22-4e1d-8587-5737e897f5d6
-    content: '5. Incremental mutation authority is unchanged: execute-only and action refuse all mutations, collaborate & execute allows additive kinds only (add_child_node, append_to_node, mark_step_complete), pure collaborate allows all kinds'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4fb1c19-efef-4916-b247-2d547f5d313d:
-    id: c4fb1c19-efef-4916-b247-2d547f5d313d
-    content: 6. On the autonomous direct-apply route under pure collaborate, incremental mutations including mark_step_complete are refused and directed to express all changes in the single submit_step_output — a direct-applied write would be wiped by the rebuild, and a leaked transient status is worse than a clean refusal
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  16bd1dfa-351a-4205-a5f9-c083cd52bdef:
-    id: 16bd1dfa-351a-4205-a5f9-c083cd52bdef
-    content: 7. Manual and checkpoint routes keep proposing incremental mutations to the user-reviewed proposal queue in every mode that allows them — the proposal queue is the human in the loop, so no silent-loss hole exists there
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1730cda8-ee5c-4504-82ba-dd4c2025f331:
-    id: 1730cda8-ee5c-4504-82ba-dd4c2025f331
-    content: 8. Every mode-based refusal names the step's mode and exactly one permitted alternative; no refusal leaves the agent without a stated next action
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b3f9c85e-8e24-4c75-8336-bdb3bc204da5:
-    id: b3f9c85e-8e24-4c75-8336-bdb3bc204da5
-    content: 9. Manual one-off sends with no workflow binding keep working unchanged — they resolve to default flags (pure collaborate), so submit_step_output passes the gate and routes to the feedback panel as today
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf7aa700-1926-453c-b688-638cb8d665ab:
-    id: cf7aa700-1926-453c-b688-638cb8d665ab
-    content: 10. Gating is evaluated live per call from a fresh tree snapshot, so context or step-type edits mid-run take effect on the next gated call; in-flight workflows are governed by the new gate on their next call, with the redirect error as the self-healing migration mechanism
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e36c6c88-92e6-4209-922d-f1565219a3eb:
-    id: e36c6c88-92e6-4209-922d-f1565219a3eb
-    content: 11. The collaborate & execute step prompt instructs the agent to tick item statuses via mark_step_complete with the item's node_id (resolving ids via get_tree first), record issues via add_child_node, and complete via announce_step_done; it no longer instructs or mentions submit_step_output — prompt broadcast and gate enforce the same channel
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e852827b-9c98-4bbe-aa88-b49b9f5617ef:
-    id: e852827b-9c98-4bbe-aa88-b49b9f5617ef
-    content: 12. The mode-to-permissions mapping (completion tool, permitted mutation kinds, refusal copy) is defined exactly once, in a shared declarative policy table keyed by mode; the submit gate, the announce gate, checkAuthority, and the prompt dispatch all consume that table rather than re-deriving the matrix
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5c25f36-4b1f-4f27-8c93-9f981bc55bfe:
-    id: e5c25f36-4b1f-4f27-8c93-9f981bc55bfe
-    content: 13. mark_step_complete accepts an optional node_id that must resolve to a node within the bound subtree, enabling per-item check-offs through the incremental channel; omitted, it targets the bound node exactly as today, and a node_id outside the bound subtree is refused with an error naming the bound root
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8631ea83-962e-4e28-b72c-44294fe273c1:
-    id: 8631ea83-962e-4e28-b72c-44294fe273c1
-    content: Acceptance criteria
-    children:
-      - 98a1cdba-fb64-4ac0-869f-fc0eea5c00f4
-      - 06cf940c-fb7c-4731-b13f-3a3b13a46aec
-      - 2f98d795-cff8-48e4-aedc-34fc9c9eada8
-      - 5e2d1adc-b286-4a49-9b2b-4e5e2dbdb23f
-      - a1cc2785-c71f-41cc-a8e9-591e365117e6
-      - 87a45460-016d-4a8d-9bbb-6c8291125bfb
-      - 8ff65b2b-0612-4c3c-ab9d-5d436552a05c
-      - d2cbe08e-efd6-49a0-b50b-93242ba04c9c
-      - 36e5c58a-aba6-4dae-ac47-1b8a1f9a664b
-      - 3e7fcb7d-dd47-4b7b-927f-6e5a6a1d6223
-      - 1ea9d566-87da-4ec3-879c-cfc4abb7e9c7
-      - 7bda3e46-6124-4e1d-8d55-c08da20c8eb6
-      - 6cfff33a-bb16-4fd1-9c52-0b635837a35f
-      - bbf68e36-7c7b-453f-8704-959734ff430e
-      - 84fb4c8a-188e-4bba-b0c4-5b6b23e5c829
-      - 2dd09fb2-d432-480a-8a9f-beeb2883be0d
-      - 2914eb78-d488-40e9-820b-4ea86cc1af94
-      - 7db2911f-d6d4-4eae-8bdf-e9972edda79d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  98a1cdba-fb64-4ac0-869f-fc0eea5c00f4:
-    id: 98a1cdba-fb64-4ac0-869f-fc0eea5c00f4
-    content: A pure-collaborate step's submit_step_output succeeds and applies or proposes per its route, exactly as today
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  06cf940c-fb7c-4731-b13f-3a3b13a46aec:
-    id: 06cf940c-fb7c-4731-b13f-3a3b13a46aec
-    content: A collaborate & execute step adds child nodes incrementally then completes via announce_step_done; the additions persist and no rebuild occurs
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f98d795-cff8-48e4-aedc-34fc9c9eada8:
-    id: 2f98d795-cff8-48e4-aedc-34fc9c9eada8
-    content: submit_step_output on a collaborate & execute step is refused with an error naming the mode and directing to announce_step_done; no subtree deletion occurs
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5e2d1adc-b286-4a49-9b2b-4e5e2dbdb23f:
-    id: 5e2d1adc-b286-4a49-9b2b-4e5e2dbdb23f
-    content: submit_step_output on an execute-only step and on an action-mode step is each refused, the error naming the mode and directing to announce_step_done
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1cc2785-c71f-41cc-a8e9-591e365117e6:
-    id: a1cc2785-c71f-41cc-a8e9-591e365117e6
-    content: submit_step_output on a bound step with no applied context is refused with the no-context error
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  87a45460-016d-4a8d-9bbb-6c8291125bfb:
-    id: 87a45460-016d-4a8d-9bbb-6c8291125bfb
-    content: announce_step_done succeeds on collaborate & execute, execute-only, and action-mode contexts on autonomous and checkpoint steps
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8ff65b2b-0612-4c3c-ab9d-5d436552a05c:
-    id: 8ff65b2b-0612-4c3c-ab9d-5d436552a05c
-    content: announce_step_done on a pure-collaborate step is refused with an error directing to submit_step_output
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2cbe08e-efd6-49a0-b50b-93242ba04c9c:
-    id: d2cbe08e-efd6-49a0-b50b-93242ba04c9c
-    content: announce_step_done on a manual step is refused and directed to the UI; on a checkpoint it marks the subject complete then pauses for validation
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  36e5c58a-aba6-4dae-ac47-1b8a1f9a664b:
-    id: 36e5c58a-aba6-4dae-ac47-1b8a1f9a664b
-    content: On a collaborate & execute step, mark_step_complete with a node_id resolving to a descendant of the bound node updates that item's status; without node_id it targets the bound node as today
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e7fcb7d-dd47-4b7b-927f-6e5a6a1d6223:
-    id: 3e7fcb7d-dd47-4b7b-927f-6e5a6a1d6223
-    content: mark_step_complete with a node_id outside the bound subtree is refused with an error naming the bound root; no status change occurs
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ea9d566-87da-4ec3-879c-cfc4abb7e9c7:
-    id: 1ea9d566-87da-4ec3-879c-cfc4abb7e9c7
-    content: On an autonomous pure-collaborate step, add_child_node, append_to_node, and mark_step_complete are each refused with an error directing the agent to express changes in its single submit_step_output
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7bda3e46-6124-4e1d-8d55-c08da20c8eb6:
-    id: 7bda3e46-6124-4e1d-8d55-c08da20c8eb6
-    content: On a manual and on a checkpoint pure-collaborate step, an incremental mutation produces a proposal in the user-reviewed queue, not a refusal
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6cfff33a-bb16-4fd1-9c52-0b635837a35f:
-    id: 6cfff33a-bb16-4fd1-9c52-0b635837a35f
-    content: Non-additive mutations in collaborate & execute remain refused with the existing execute-and-collaborate message on every route
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bbf68e36-7c7b-453f-8704-959734ff430e:
-    id: bbf68e36-7c7b-453f-8704-959734ff430e
-    content: The rendered collaborate & execute terminal prompt contains the incremental-tools-plus-announce instructions including id resolution via get_tree, and contains no reference to submit_step_output; pure-collaborate, execute-only, action, and web prompt copy is unchanged
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  84fb4c8a-188e-4bba-b0c4-5b6b23e5c829:
-    id: 84fb4c8a-188e-4bba-b0c4-5b6b23e5c829
-    content: 'A unit test asserts the policy-table invariant directly: every mode maps to exactly one completion tool, and no mode permits both submit_step_output and incremental direct-apply writes'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2dd09fb2-d432-480a-8a9f-beeb2883be0d:
-    id: 2dd09fb2-d432-480a-8a9f-beeb2883be0d
-    content: A manual one-off send with no workflow binding still reaches the feedback panel unchanged
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2914eb78-d488-40e9-820b-4ea86cc1af94:
-    id: 2914eb78-d488-40e9-820b-4ea86cc1af94
-    content: Editing a context's flags or a step's type between two calls changes the next call's gating outcome without restarting the workflow
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7db2911f-d6d4-4eae-8bdf-e9972edda79d:
-    id: 7db2911f-d6d4-4eae-8bdf-e9972edda79d
-    content: Every refusal across the gated tools returns an isError result naming the mode and exactly one permitted alternative
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  821cfc87-4951-474c-8be0-959d9471a88b:
-    id: 821cfc87-4951-474c-8be0-959d9471a88b
-    content: 🔧 Implementation proposal
-    children:
-      - 378587e1-ff63-479f-8af6-84a691773ff6
-      - 72f90724-444d-4b67-94bb-c58be738b715
-      - 37ff126a-0682-48d5-b1d7-d85acb970ad0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  378587e1-ff63-479f-8af6-84a691773ff6:
-    id: 378587e1-ff63-479f-8af6-84a691773ff6
-    content: Approach
-    children:
-      - 319553a1-4893-49b9-bb8f-d7f7da0d2ad2
-      - 18483960-cc4f-48ca-b16c-97365743d84a
-      - b479b3cd-d83a-4351-b686-60e371d388bd
-      - 00b99702-016a-43e1-9e5a-5dbe94ceefbf
-      - b4f19815-32c1-4d1e-96c2-15f6eca1ad36
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  319553a1-4893-49b9-bb8f-d7f7da0d2ad2:
-    id: 319553a1-4893-49b9-bb8f-d7f7da0d2ad2
-    content: 'Centralize the matrix: add resolveStepMode(flags) returning a named mode (collaborate, both, execute, action) and a declarative MODE_POLICY table — mode to completion tool, permitted mutation kinds, and refusal copy — in shared permissionGate.ts, importable by both the main-process MCP gates and the renderer prompt builder'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  18483960-cc4f-48ca-b16c-97365743d84a:
-    id: 18483960-cc4f-48ca-b16c-97365743d84a
-    content: 'Consume the table everywhere the matrix is currently re-derived: the net-new submit gate, the narrowed announce gate, checkAuthority''s mutation authority, and the sendActions prompt dispatch — the announce narrowing and the both-mode prompt flip fall out of the table rather than being hand-edited at each site'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b479b3cd-d83a-4351-b686-60e371d388bd:
-    id: b479b3cd-d83a-4351-b686-60e371d388bd
-    content: Extend mark_step_complete with optional node_id validated against the bound subtree so per-item check-offs ride the incremental channel — the capability the full-list resubmit was providing for collaborate & execute
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  00b99702-016a-43e1-9e5a-5dbe94ceefbf:
-    id: 00b99702-016a-43e1-9e5a-5dbe94ceefbf
-    content: This is a static permission matrix resolved live per call, not a state machine — the workflow lifecycle (running, awaiting-validation, advance) stays where it is and is untouched
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4f19815-32c1-4d1e-96c2-15f6eca1ad36:
-    id: b4f19815-32c1-4d1e-96c2-15f6eca1ad36
-    content: 'Already built, do not rebuild: the resolveContextFlags and getAppliedContextIdWithInheritance primitives the table layers on, ADDITIVE_KINDS as the table''s collaborate & execute entry, and the explicit_submit_seen advance plumbing that announce_step_done already sets — no Stop-handler change needed'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  72f90724-444d-4b67-94bb-c58be738b715:
-    id: 72f90724-444d-4b67-94bb-c58be738b715
-    content: Touchpoints
-    children:
-      - 41c6d9af-627f-48f0-89a5-a39ee90e3b6d
-      - b4a9ae8e-7e44-4bce-8ca3-036f834a0343
-      - d934e9c8-94a5-488d-a3c0-f531ddb0b735
-      - 51f96c87-bd48-4c98-bb8f-a9a395002f99
-      - 4af5505b-ee57-497e-83be-49a76a74d1b3
-      - ef82560e-867c-4f09-9329-6cd1398059b7
-      - ad2e975f-bf92-4344-b12e-6973b1c215d5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  41c6d9af-627f-48f0-89a5-a39ee90e3b6d:
-    id: 41c6d9af-627f-48f0-89a5-a39ee90e3b6d
-    content: permissionGate.ts (shared) — add resolveStepMode and the MODE_POLICY table with per-mode completion tool, permitted mutation kinds, and refusal copy; unit-test the table invariant here
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4a9ae8e-7e44-4bce-8ca3-036f834a0343:
-    id: b4a9ae8e-7e44-4bce-8ca3-036f834a0343
-    content: mcpSubmitOutputTool.ts — resolve the mode after the bound state loads and refuse outside pure collaborate using the table's copy, keeping the unbound and one-shot short-circuits ahead of flag resolution so manual sends keep working
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d934e9c8-94a5-488d-a3c0-f531ddb0b735:
-    id: d934e9c8-94a5-488d-a3c0-f531ddb0b735
-    content: mcpWriteTools.ts — rework checkAuthority and the announce gate to consume the table (announce narrows to collaborate-without-execute as a table consequence), add the autonomous pure-collaborate incremental block after the authority refusals keyed on the direct-apply route, and thread the optional node_id through markStepComplete
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  51f96c87-bd48-4c98-bb8f-a9a395002f99:
-    id: 51f96c87-bd48-4c98-bb8f-a9a395002f99
-    content: 'mcpServer.ts — add optional node_id to the mark_step_complete schema, update both completion-tool descriptions: drop "applied regardless of context mode flags" from submit and narrow announce''s collaborate wording'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4af5505b-ee57-497e-83be-49a76a74d1b3:
-    id: 4af5505b-ee57-497e-83be-49a76a74d1b3
-    content: mcpTreeMutatorService.ts — route mark-complete to the targeted node after validating it resolves within the bound subtree; omitted node_id falls back to the bound node
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef82560e-867c-4f09-9329-6cd1398059b7:
-    id: ef82560e-867c-4f09-9329-6cd1398059b7
-    content: 'sendActions.ts — derive the per-mode output target from the table''s completion channel; flip buildBothOutputTarget to the incremental channel: tick items via mark_step_complete with node_id (resolve ids via get_tree), issues via add_child_node, completion via announce_step_done; drop the target_node_id and submit-once clauses from both-mode; pure-collaborate, execute-only, action, and web copy unchanged'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad2e975f-bf92-4344-b12e-6973b1c215d5:
-    id: ad2e975f-bf92-4344-b12e-6973b1c215d5
-    content: Tests — invert mcpSubmitOutputTool.test.ts:386-405 (which currently assert submit succeeds in all three flag modes), add refusal and permit coverage per mode for both tools and the autonomous-route block, cover node_id targeting and out-of-subtree refusal for mark_step_complete, add prompt-copy assertions for the both-mode flip, add the policy-table invariant test, keep existing checkAuthority behavior coverage green through the rework
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  37ff126a-0682-48d5-b1d7-d85acb970ad0:
-    id: 37ff126a-0682-48d5-b1d7-d85acb970ad0
-    content: Constraints to call out
-    children:
-      - 16ca903e-125c-4566-a491-39d6b4b2066c
-      - a893a3f8-31ab-441b-9157-925e95fd5380
-      - e22e9e25-61d3-4a10-b2e1-f4e091e8443f
-      - 79786c19-55d9-427f-9298-094d4cbe020b
-      - 924fc953-db96-4718-8be5-4563f50120cf
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  16ca903e-125c-4566-a491-39d6b4b2066c:
-    id: 16ca903e-125c-4566-a491-39d6b4b2066c
-    content: The submit gate, the announce gate change, the prompt-copy flip, and the mark_step_complete node targeting must ship together — without node targeting the incremental channel cannot replace the resubmit's per-item check-offs, and without the prompt flip collaborate & execute agents have no completion path
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a893a3f8-31ab-441b-9157-925e95fd5380:
-    id: a893a3f8-31ab-441b-9157-925e95fd5380
-    content: The checkAuthority rework must be behavior-preserving for mutation authority (rule 5) — existing tests pin it; only the announce and submit gates change observable behavior
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e22e9e25-61d3-4a10-b2e1-f4e091e8443f:
-    id: e22e9e25-61d3-4a10-b2e1-f4e091e8443f
-    content: The completion-tool change is user-visible for existing collaborate & execute workflows; the redirect error is the self-healing migration mechanism, surfaced in release notes, with no per-step compatibility shim
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  79786c19-55d9-427f-9298-094d4cbe020b:
-    id: 79786c19-55d9-427f-9298-094d4cbe020b
-    content: The autonomous-route block must sit after authority resolution and key on the route, not on authority, so the user-reviewed proposal routes are untouched
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  924fc953-db96-4718-8be5-4563f50120cf:
-    id: 924fc953-db96-4718-8be5-4563f50120cf
-    content: The "applied regardless of context mode flags" exemption being removed was load-bearing only for the auto-submit safety net (commit 5961477); the safety net was neutered to a no-op by commit 517161a, so the exemption and the tests pinning it protect a repealed design, not a live one
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c18e64e8-348a-41fd-a0dc-c47d5232957a:
-    id: c18e64e8-348a-41fd-a0dc-c47d5232957a
-    content: Chunking decision
-    children:
-      - 75e1a123-abd2-4fe6-b195-2f532adc4a4f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  75e1a123-abd2-4fe6-b195-2f532adc4a4f:
-    id: 75e1a123-abd2-4fe6-b195-2f532adc4a4f
-    content: One chunk — the policy table, its consumers, and the node-targeting extension enforce a single invariant (which mode owns which completion channel, with that channel actually sufficient for the mode's work) and splitting would create the exact dual-channel inconsistency the story removes
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  df9d9aaa-7cb7-493a-bca0-3f688b058549:
-    id: df9d9aaa-7cb7-493a-bca0-3f688b058549
-    content: Challenges
-    children:
-      - 25941a51-7247-404a-be12-fd60911d60b1
-      - 6f132bb8-b0e7-4ac9-ad0c-9509d19dc485
-      - 1adf0bad-454f-489f-bd9b-9a17e0e361fe
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  25941a51-7247-404a-be12-fd60911d60b1:
-    id: 25941a51-7247-404a-be12-fd60911d60b1
-    content: 'ROI is high and scope contained: this closes two server-side gaps, one prompt contradiction, and one capability gap, and the policy table removes the drift mechanism that produced the gap class instead of patching one instance'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6f132bb8-b0e7-4ac9-ad0c-9509d19dc485:
-    id: 6f132bb8-b0e7-4ac9-ad0c-9509d19dc485
-    content: 'Rejected as over-engineering or out of scope: submit-time merge reconciliation, prompt-only enforcement, per-step compatibility shims, new step types or flags, making the rebuild additive, blocking the user-reviewed proposal routes, a transition-based state-machine framework (modes have no transitions — the lifecycle state machine lives elsewhere), and a content-matching fallback for item ids (get_tree id resolution is deterministic; heading-text matching is not)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1adf0bad-454f-489f-bd9b-9a17e0e361fe:
-    id: 1adf0bad-454f-489f-bd9b-9a17e0e361fe
-    content: 'UX risk accepted with mitigation: collaborate & execute steps started before the change get a refusal on first submit attempt; the error names the correct tool, so the run self-corrects with no data loss'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f195c8ef-d399-4da1-9de7-03eeb257c465:
-    id: f195c8ef-d399-4da1-9de7-03eeb257c465
-    content: Technical refinement
-    children:
-      - 80cbcae6-c961-4af7-a42d-4504312335ac
-      - dab9ed0d-d434-4f22-be19-9f053e9055b2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  80cbcae6-c961-4af7-a42d-4504312335ac:
-    id: 80cbcae6-c961-4af7-a42d-4504312335ac
-    content: Complications
-    children:
-      - a95ad4ad-575a-4662-9cf9-ddf1d3cf3a31
-      - 40a103bd-d906-4355-bfbd-9d7dccd3e926
-      - 3b726e01-57d0-44e4-8646-ead6ca5585a7
-      - 012e4cef-17e2-4149-8f43-cfd7bb994b3d
-      - 1e6bbde3-95ba-48fe-acf9-205f9b1b760f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a95ad4ad-575a-4662-9cf9-ddf1d3cf3a31:
-    id: a95ad4ad-575a-4662-9cf9-ddf1d3cf3a31
-    content: 'Targeted ticks meet the proposal queue: on manual and checkpoint steps a node_id-scoped mark_step_complete becomes a proposal, so the proposal payload and review UI must represent which item is being ticked — the one place scope could creep into renderer UI work; fallback if heavy is restricting node_id to the autonomous route, where the capability is actually needed'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  40a103bd-d906-4355-bfbd-9d7dccd3e926:
-    id: 40a103bd-d906-4355-bfbd-9d7dccd3e926
-    content: 'Residual accepted risk not in the acceptance criteria: on manual and checkpoint pure-collaborate steps a user-approved mid-run proposal can still be overwritten by a later user-accepted submission — visible and user-approved, deliberately not gated; a warning on accept is explicitly out of scope'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b726e01-57d0-44e4-8646-ead6ca5585a7:
-    id: 3b726e01-57d0-44e4-8646-ead6ca5585a7
-    content: The prompt's get_tree id-resolution step assumes get_tree returns node ids in agent-usable form and adds one read round-trip per collaborate & execute run — verify the read tool's output shape before the prompt copy lands
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  012e4cef-17e2-4149-8f43-cfd7bb994b3d:
-    id: 012e4cef-17e2-4149-8f43-cfd7bb994b3d
-    content: MODE_POLICY lives in shared/ and is imported by both processes — it must stay dependency-free, and the refusal copy naming MCP tools moves into the shared module with it (cosmetic coupling, accepted)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1e6bbde3-95ba-48fe-acf9-205f9b1b760f:
-    id: 1e6bbde3-95ba-48fe-acf9-205f9b1b760f
-    content: 'ROI check: contained except for the proposal-queue rendering of targeted ticks above; if that balloons, descope it rather than the gates — the gates close the data loss on their own'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dab9ed0d-d434-4f22-be19-9f053e9055b2:
-    id: dab9ed0d-d434-4f22-be19-9f053e9055b2
-    content: Approach summary
-    children:
-      - 2fad9e50-8fee-42e8-b692-d157f4883121
-      - a5dac00c-d1ef-44af-b89e-db298e14f13e
-      - 05f67c21-1606-45aa-874c-d280e561e206
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2fad9e50-8fee-42e8-b692-d157f4883121:
-    id: 2fad9e50-8fee-42e8-b692-d157f4883121
-    content: One shared MODE_POLICY table (permissionGate.ts) keyed by resolveStepMode(flags); the submit gate, announce gate, checkAuthority, and prompt dispatch all consume it, so gates and prompts can no longer drift apart — the drift is what produced the bug class
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a5dac00c-d1ef-44af-b89e-db298e14f13e:
-    id: a5dac00c-d1ef-44af-b89e-db298e14f13e
-    content: 'Both completion tools get mode gates (submit_step_output: pure collaborate only, net-new; announce_step_done: every other mode) and mark_step_complete gains a bound-subtree-scoped node_id so collaborate & execute can tick items without the destructive full-list rebuild'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  05f67c21-1606-45aa-874c-d280e561e206:
-    id: 05f67c21-1606-45aa-874c-d280e561e206
-    content: 'Non-obvious for the reviewer: submit''s flag exemption was a vestige of the auto-submit safety net (added 5961477, repealed 517161a), so inverting the tests that pin it is deliberate; everything ships as one chunk or collaborate & execute is left with no completion path'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  00035e60-0f54-4e7f-8295-03db71b93de5:
-    id: 00035e60-0f54-4e7f-8295-03db71b93de5
-    content: 'Implementation note: mcpTreeMutatorService needed no code change — it already routes mark-complete by the passed node id, so the main-process gate validates the subtree and passes the target through; targeted-tick proposals carry the target node id in the payload but the proposal review UI renders them with its existing generic presentation (the accepted complication)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ed41802-0d21-47bb-bb1c-4927d98e6d0c:
-    id: 3ed41802-0d21-47bb-bb1c-4927d98e6d0c
-    content: Undone summary
-    children:
-      - b0aecd3d-1e3c-41ce-b699-dc5057214797
-      - f01e20bf-1de8-46a0-99bd-8ee05c29de79
-      - aa148a51-7ad6-4d99-9098-48de097aa265
-      - ab65fe8d-2136-462d-94b8-5af8c56d453d
-      - 5f1c48b1-83fd-4833-8f58-a9faaa828dd1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b0aecd3d-1e3c-41ce-b699-dc5057214797:
-    id: b0aecd3d-1e3c-41ce-b699-dc5057214797
-    content: Merge-not-replace reconciliation — abandoned by decision; superseded by the implemented mode gating, which makes the destructive rebuild and incremental writes structurally exclusive
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  f01e20bf-1de8-46a0-99bd-8ee05c29de79:
-    id: f01e20bf-1de8-46a0-99bd-8ee05c29de79
-    content: Proposal review UI rendering of targeted ticks — chose not to build; the proposal payload carries the target node id but the review UI keeps its existing generic presentation, per the accepted complication and ROI fallback
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa148a51-7ad6-4d99-9098-48de097aa265:
-    id: aa148a51-7ad6-4d99-9098-48de097aa265
-    content: Warning when an accepted submission overwrites a previously approved mid-run proposal — explicitly out of scope; the overwrite is user-visible and user-approved on those routes
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab65fe8d-2136-462d-94b8-5af8c56d453d:
-    id: ab65fe8d-2136-462d-94b8-5af8c56d453d
-    content: Release note for the collaborate & execute completion-tool change — the constraint calls for surfacing it at release; no release process exists in this workflow, so it remains pending until the branch ships
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f1c48b1-83fd-4833-8f58-a9faaa828dd1:
-    id: 5f1c48b1-83fd-4833-8f58-a9faaa828dd1
-    content: Branch not committed or merged — feat/mode-policy-gating in the worktree holds the uncommitted implementation; git operations are user-handled per project convention
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  87699a34-df57-4ea6-979a-ca9cd77a54d4:
-    id: 87699a34-df57-4ea6-979a-ca9cd77a54d4
-    content: 'AI refactor pass: rewrote all test comments and titles that referenced the user story, rule numbers, commit hashes, or iteration history into timeless why-comments per the comments convention; consolidated the remaining three mutation-refusal strings out of an mcpWriteTools switch into MODE_POLICY (mutationRefusal now a required table field), fully honoring the single-home rule; verified no empty tests and no abandoned code; tsc clean, 1623 touched-area tests passing, eslint zero errors with one pre-existing import/no-cycle warning on sendActions that exists on master'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d710b1b0-148e-4e1b-baeb-059cd4a35b7e:
-    id: d710b1b0-148e-4e1b-baeb-059cd4a35b7e
-    content: review feedback
-    children:
-      - cba1356b-8e28-4e61-a13d-98a57600acdc
-      - 2915a6d8-5248-4a19-902d-4da3f3a8cd94
-      - 9ddd9eab-76d8-41ab-bcb3-51ea1a31bbce
-      - b4384178-65dc-4b11-b2d6-9bb74e160a8d
-      - 3842b2ea-560f-46ef-a4f3-98bceaed38ba
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cba1356b-8e28-4e61-a13d-98a57600acdc:
-    id: cba1356b-8e28-4e61-a13d-98a57600acdc
-    content: 'BLOCKER (verified failing): mcpTreeReadErrorTaxonomyMessages.test.ts:149-157 — makeOkState() binds the session to BOUND with no appliedContextId and no context-declaration node, so the new submit mode gate refuses it (no-context) and the success-path test asserting applied:true now fails; fix by mirroring mcpSubmitOutputTool.test.ts makeWorkflowState: give BOUND appliedContextId pointing at a collaborate:true/execute:false isContextDeclaration node under ROOT and register both in ancestorRegistry'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2915a6d8-5248-4a19-902d-4da3f3a8cd94:
-    id: 2915a6d8-5248-4a19-902d-4da3f3a8cd94
-    content: 'SHOULD-FIX: no test pins the pendingTarget (one-shot manual send) bypass of the submit mode gate — add a test in mcpSubmitOutputToolModeGating.test.ts that sets oneShotTargetStore pendingTarget for a node under a collaborate:false/execute:true context and asserts submitStepOutput still applies or proposes with no mode refusal; today a regression moving the gate above the pendingTarget short-circuit would pass every existing test'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ddd9eab-76d8-41ab-bcb3-51ea1a31bbce:
-    id: 9ddd9eab-76d8-41ab-bcb3-51ea1a31bbce
-    content: 'NIT: mcpWriteToolsModeGating.test.ts manual node_id proposal test only counts proposalSubmitter calls — strengthen to toHaveBeenCalledWith nodeId: CHILD so a regression that sends boundNodeId instead of the targeted node on the proposal route is caught'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4384178-65dc-4b11-b2d6-9bb74e160a8d:
-    id: b4384178-65dc-4b11-b2d6-9bb74e160a8d
-    content: 'CONFIRMED BY DESIGN (no action): manual both-mode prompts name no completion tool — manual steps resolve through the UI, pinned deliberately by sendActions.test.ts; reviewer flagged it only for confirmation'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3842b2ea-560f-46ef-a4f3-98bceaed38ba:
-    id: 3842b2ea-560f-46ef-a4f3-98bceaed38ba
-    content: 'CONFIRMED CLEAN: gate ordering in mcpSubmitOutputTool (unbound and read-failure short-circuits precede the mode gate, pendingTarget bypass precedes flag resolution, gate-4 target checks remain downstream); action-mode early return covers buildSendPayloadBody before the mode switch; no dangling references to the removed checkAuthority/ADDITIVE_KINDS; MODE_POLICY disjointness invariant directly asserted; comment style, naming, and schema descriptions all conform — full-suite run by the reviewer surfaced only the one blocker above'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   cabbcf4b-f940-4546-ad4d-3932b77434fe:
     id: cabbcf4b-f940-4546-ad4d-3932b77434fe
     content: When within a zoom window
@@ -185356,6 +184299,1065 @@ nodes:
     children: []
     metadata:
       status: pending
+  8f6c06c7-d9d0-4f2f-a16a-f95f4c4c09c4:
+    id: 8f6c06c7-d9d0-4f2f-a16a-f95f4c4c09c4
+    content: worktree
+    children:
+      - 25e2720d-87a2-4bd5-81f8-3a7c675d335c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25e2720d-87a2-4bd5-81f8-3a7c675d335c:
+    id: 25e2720d-87a2-4bd5-81f8-3a7c675d335c
+    content: vscode://file//Users/brianfox/dev/Arborescent-mode-policy-gating
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b96e73cb-ace3-4693-afec-9ea3ddc60ed2:
+    id: b96e73cb-ace3-4693-afec-9ea3ddc60ed2
+    content: 'Problem: executeSingleRootStrategy deletes the snapshot''s descendants and re-adds only what is in CONTENT (acceptFeedbackStrategies.ts:179-183), so out-of-band add_child_node nodes vanish unless they are also echoed in the submit'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e2c1640-aabe-4a22-9771-9d0139c7b12c:
+    id: 7e2c1640-aabe-4a22-9771-9d0139c7b12c
+    content: 'Approach: reconcile instead of wholesale-replace — preserve nodes not referenced in CONTENT, or require explicit deletion markers'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0ba7cf3-d2ac-42c3-b4e0-22edfd6df695:
+    id: d0ba7cf3-d2ac-42c3-b4e0-22edfd6df695
+    content: 'Risk: medium-high; it is core to feedback application, so it needs strong test coverage first — current behavior is latent data loss'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03e39cf1-098f-4bd1-8aac-56e8b99bcb18:
+    id: 03e39cf1-098f-4bd1-8aac-56e8b99bcb18
+    content: 'Decision: merge-not-replace rejected — superseded by server-side MCP tool gating by step mode, so the destructive rebuild can never coexist with incremental writes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d84700d9-b6b7-4576-a581-db220f19a30c:
+    id: d84700d9-b6b7-4576-a581-db220f19a30c
+    content: 'User story: Gate submit_step_output and announce_step_done by step mode via a shared mode policy table'
+    children:
+      - 33d33046-8f59-4fcf-9b61-24a68c935209
+      - 97a146f3-95b1-4800-b5aa-9e072e0707ba
+      - 8718d919-120d-4cc2-aa1b-64f063af4cd1
+      - 9d73acc1-781f-4c28-b92b-8121e9a293a7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33d33046-8f59-4fcf-9b61-24a68c935209:
+    id: 33d33046-8f59-4fcf-9b61-24a68c935209
+    content: 📄 Product spec
+    children:
+      - fd15e0f2-8ddf-4df9-81f5-7444eb8de15a
+      - 19aac33f-79b4-46b0-8a3b-a4432b74fec0
+      - 18d57762-743d-45db-8e75-2c104c169079
+      - 6f63e43f-be3b-46ac-8000-a4734cbe11dd
+      - 2f63b1ad-03f3-4b9c-9454-452a6d7c9ade
+      - 6bdd9548-6a86-4738-b3c4-227a7e169480
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd15e0f2-8ddf-4df9-81f5-7444eb8de15a:
+    id: fd15e0f2-8ddf-4df9-81f5-7444eb8de15a
+    content: Context
+    children:
+      - 6e1fcf8c-3fd1-4860-a217-4b122e1aeb91
+      - 9ffaaeda-88e7-44b1-b9e8-b6aa075b0949
+      - d6362958-ae58-4adc-b922-cf8084fcdf73
+      - 3c8ee19b-287b-4d09-bf44-993fcd25e4d1
+      - 187c0ab3-de49-4387-8303-2db8b1d260a2
+      - 5da379b8-711f-4562-95b3-bfeb7d1de5a8
+      - 1ee8b9f0-829f-45b7-af2f-a5cd263ece73
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e1fcf8c-3fd1-4860-a217-4b122e1aeb91:
+    id: 6e1fcf8c-3fd1-4860-a217-4b122e1aeb91
+    content: Workflow steps carry an applied context whose collaborate/execute flags form four modes — collaborate, collaborate & execute, execute, action — and checkAuthority (mcpWriteTools.ts:54-73) already gates the incremental mutation tools per mode with explanatory refusals
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ffaaeda-88e7-44b1-b9e8-b6aa075b0949:
+    id: 9ffaaeda-88e7-44b1-b9e8-b6aa075b0949
+    content: 'Gap 1: submit_step_output (mcpSubmitOutputTool.ts) never consults context flags — its rebuild deletes the bound subtree''s descendants and re-adds from the submission, silently wiping mid-run add_child_node additions in collaborate & execute steps'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6362958-ae58-4adc-b922-cf8084fcdf73:
+    id: d6362958-ae58-4adc-b922-cf8084fcdf73
+    content: 'Gap 2: announce_step_done rejects any collaborate=true context and its error text tells the agent to call submit_step_output instead (mcpWriteTools.ts:166-169) — the server''s own error steers collaborate & execute agents into the destructive rebuild'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c8ee19b-287b-4d09-bf44-993fcd25e4d1:
+    id: 3c8ee19b-287b-4d09-bf44-993fcd25e4d1
+    content: 'Gap 3: the collaborate & execute prompt copy (buildBothOutputTarget, sendActions.ts) broadcasts submit-the-list as the completion path, contradicting the gate; its intent is already incremental in spirit (only change status markers, append one child for issues), so the flip maps existing intents onto native tools'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  187c0ab3-de49-4387-8303-2db8b1d260a2:
+    id: 187c0ab3-de49-4387-8303-2db8b1d260a2
+    content: 'Gap 4: per-item check-offs in collaborate & execute currently work only through the full-list resubmit — mark_step_complete (mcpServer.ts:144-155) targets the bound node exclusively and cannot tick an individual child item, so the incremental channel needs node targeting before it can replace the rebuild'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5da379b8-711f-4562-95b3-bfeb7d1de5a8:
+    id: 5da379b8-711f-4562-95b3-bfeb7d1de5a8
+    content: 'Root cause of the gap class: the mode-to-permissions matrix has no single home — it is re-derived by independent if-chains in checkAuthority, the announce gate, and the prompt dispatch, and sites drift apart; Gap 2 is that drift'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ee8b9f0-829f-45b7-af2f-a5cd263ece73:
+    id: 1ee8b9f0-829f-45b7-af2f-a5cd263ece73
+    content: 'Prompt rules alone are insufficient as enforcement: they degrade under context pressure and compaction and compete with other instructions, exactly in the long autonomous runs where mid-run additions accumulate — but prompt broadcast must still agree with the gate so refusals are the exception, not the routine'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19aac33f-79b4-46b0-8a3b-a4432b74fec0:
+    id: 19aac33f-79b4-46b0-8a3b-a4432b74fec0
+    content: User
+    children:
+      - e758fe53-3eeb-4f41-9844-8211f332ee12
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e758fe53-3eeb-4f41-9844-8211f332ee12:
+    id: e758fe53-3eeb-4f41-9844-8211f332ee12
+    content: A power user running autonomous AI workflows over their own trees; silent data loss is the worst outcome, while a mid-run refusal with an explanatory error is acceptable — agents recover and retry the correct tool
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18d57762-743d-45db-8e75-2c104c169079:
+    id: 18d57762-743d-45db-8e75-2c104c169079
+    content: Current experience and why it is insufficient
+    children:
+      - f6b50786-3d82-42eb-89b0-12ca6e4272f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6b50786-3d82-42eb-89b0-12ca6e4272f5:
+    id: f6b50786-3d82-42eb-89b0-12ca6e4272f5
+    content: A collaborate & execute agent finishing its work is either refused by announce_step_done and redirected into submit_step_output, or calls submit directly as its prompt instructs — both routes end in the rebuild that silently deletes the nodes it just added, concentrated in the longest, most autonomous runs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f63e43f-be3b-46ac-8000-a4734cbe11dd:
+    id: 6f63e43f-be3b-46ac-8000-a4734cbe11dd
+    content: Goal
+    children:
+      - 773a3136-3131-416b-b361-1fc79bcbdbe2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  773a3136-3131-416b-b361-1fc79bcbdbe2:
+    id: 773a3136-3131-416b-b361-1fc79bcbdbe2
+    content: Every step mode has exactly one completion channel and one set of permitted write tools, defined once in a shared policy table that the MCP gates and the step prompts both consume, with every refusal naming the mode and the permitted alternative
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f63b1ad-03f3-4b9c-9454-452a6d7c9ade:
+    id: 2f63b1ad-03f3-4b9c-9454-452a6d7c9ade
+    content: Business rules
+    children:
+      - f65ab10f-d452-46e5-8530-4f2024df6064
+      - 5cfcfc0b-481d-4608-86b5-73729cf83235
+      - 368aa623-282d-4d41-a790-5f0aad815b07
+      - 668bd6c3-bdc7-4f74-9693-f8856f5f6f9b
+      - 7b3eac11-7361-4283-9fcf-c54a29052383
+      - da92daf0-92f3-4830-a08c-fe5b4323197d
+      - 9eeceb3b-8503-4d24-927d-a3c680aa4483
+      - 54f4e75d-429d-4d24-9805-f329d6d72095
+      - a11da4c2-9ee5-4bee-8639-52a18154b345
+      - a16e9a04-c012-499c-bd1f-e61793cf6019
+      - db0e6164-f89e-41af-8c45-8cb116c922c7
+      - fb063a4f-593e-43e9-ab73-3386dd09d961
+      - 946823d9-fd71-467f-8024-2c55fbfa68b5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f65ab10f-d452-46e5-8530-4f2024df6064:
+    id: f65ab10f-d452-46e5-8530-4f2024df6064
+    content: 1. Every tree-writing and completion tool requires an applied context (own or inherited); with none the call is refused with the existing no-context error
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cfcfc0b-481d-4608-86b5-73729cf83235:
+    id: 5cfcfc0b-481d-4608-86b5-73729cf83235
+    content: 2. submit_step_output is permitted only when the applied context is pure collaborate (collaborate=true, execute=false); in collaborate & execute, execute-only, and action modes it is refused with an error naming the mode and directing the agent to its permitted path — this gate is net-new
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  368aa623-282d-4d41-a790-5f0aad815b07:
+    id: 368aa623-282d-4d41-a790-5f0aad815b07
+    content: 3. announce_step_done is permitted for collaborate & execute, execute-only, and action modes; it is refused only for pure collaborate (directed to submit_step_output) and no-context — the gate narrows from any-collaborate to collaborate-without-execute
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  668bd6c3-bdc7-4f74-9693-f8856f5f6f9b:
+    id: 668bd6c3-bdc7-4f74-9693-f8856f5f6f9b
+    content: 4. announce_step_done remains valid only on autonomous and checkpoint steps; manual steps stay UI-only, and on a checkpoint it marks the subject complete then pauses for user validation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b3eac11-7361-4283-9fcf-c54a29052383:
+    id: 7b3eac11-7361-4283-9fcf-c54a29052383
+    content: '5. Incremental mutation authority is unchanged: execute-only and action refuse all mutations, collaborate & execute allows additive kinds only (add_child_node, append_to_node, mark_step_complete), pure collaborate allows all kinds'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da92daf0-92f3-4830-a08c-fe5b4323197d:
+    id: da92daf0-92f3-4830-a08c-fe5b4323197d
+    content: 6. On the autonomous direct-apply route under pure collaborate, incremental mutations including mark_step_complete are refused and directed to express all changes in the single submit_step_output — a direct-applied write would be wiped by the rebuild, and a leaked transient status is worse than a clean refusal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9eeceb3b-8503-4d24-927d-a3c680aa4483:
+    id: 9eeceb3b-8503-4d24-927d-a3c680aa4483
+    content: 7. Manual and checkpoint routes keep proposing incremental mutations to the user-reviewed proposal queue in every mode that allows them — the proposal queue is the human in the loop, so no silent-loss hole exists there
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54f4e75d-429d-4d24-9805-f329d6d72095:
+    id: 54f4e75d-429d-4d24-9805-f329d6d72095
+    content: 8. Every mode-based refusal names the step's mode and exactly one permitted alternative; no refusal leaves the agent without a stated next action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a11da4c2-9ee5-4bee-8639-52a18154b345:
+    id: a11da4c2-9ee5-4bee-8639-52a18154b345
+    content: 9. Manual one-off sends with no workflow binding keep working unchanged — they resolve to default flags (pure collaborate), so submit_step_output passes the gate and routes to the feedback panel as today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a16e9a04-c012-499c-bd1f-e61793cf6019:
+    id: a16e9a04-c012-499c-bd1f-e61793cf6019
+    content: 10. Gating is evaluated live per call from a fresh tree snapshot, so context or step-type edits mid-run take effect on the next gated call; in-flight workflows are governed by the new gate on their next call, with the redirect error as the self-healing migration mechanism
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db0e6164-f89e-41af-8c45-8cb116c922c7:
+    id: db0e6164-f89e-41af-8c45-8cb116c922c7
+    content: 11. The collaborate & execute step prompt instructs the agent to tick item statuses via mark_step_complete with the item's node_id (resolving ids via get_tree first), record issues via add_child_node, and complete via announce_step_done; it no longer instructs or mentions submit_step_output — prompt broadcast and gate enforce the same channel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb063a4f-593e-43e9-ab73-3386dd09d961:
+    id: fb063a4f-593e-43e9-ab73-3386dd09d961
+    content: 12. The mode-to-permissions mapping (completion tool, permitted mutation kinds, refusal copy) is defined exactly once, in a shared declarative policy table keyed by mode; the submit gate, the announce gate, checkAuthority, and the prompt dispatch all consume that table rather than re-deriving the matrix
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  946823d9-fd71-467f-8024-2c55fbfa68b5:
+    id: 946823d9-fd71-467f-8024-2c55fbfa68b5
+    content: 13. mark_step_complete accepts an optional node_id that must resolve to a node within the bound subtree, enabling per-item check-offs through the incremental channel; omitted, it targets the bound node exactly as today, and a node_id outside the bound subtree is refused with an error naming the bound root
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bdd9548-6a86-4738-b3c4-227a7e169480:
+    id: 6bdd9548-6a86-4738-b3c4-227a7e169480
+    content: Acceptance criteria
+    children:
+      - fc29eab9-6808-4e73-bc2a-91a9f325ae5d
+      - b223160f-e95c-47b9-9913-0735e7c6bbaf
+      - c826121c-7a9a-453d-b31d-869c67747b0a
+      - ff5a538a-d4c9-460d-af8f-b52da0cca982
+      - c33c6c27-dc0e-4a95-b4fc-fb2d44de5051
+      - ed6a288f-1215-456b-98cf-3541000732e1
+      - b1fc3c97-04b7-44a4-951a-dfd27a850754
+      - a3e8754b-e9d6-41b4-a4d6-5006f231b135
+      - ea23c6d0-9306-443f-9e95-8ede3baccc3b
+      - eb56a9aa-9bd0-47d1-b860-06cddfcfe84d
+      - 757ad6b8-190a-4158-a54e-41e7fc4b529d
+      - dcf85640-4b2e-4872-9291-140d778c6f6b
+      - 5295c556-9142-4d08-981a-01dd4341cec5
+      - b8339a33-7800-4488-892b-612746116a17
+      - 1004e71f-7024-49a2-bd79-09f157bc09d7
+      - 29180d36-07b3-49fd-9605-b6641556b14d
+      - 6c52f61b-7207-4b6f-9626-f97b9a71a79b
+      - 76dbf11f-e1ca-4fc8-ad26-b4566bbeceaa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc29eab9-6808-4e73-bc2a-91a9f325ae5d:
+    id: fc29eab9-6808-4e73-bc2a-91a9f325ae5d
+    content: A pure-collaborate step's submit_step_output succeeds and applies or proposes per its route, exactly as today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b223160f-e95c-47b9-9913-0735e7c6bbaf:
+    id: b223160f-e95c-47b9-9913-0735e7c6bbaf
+    content: A collaborate & execute step adds child nodes incrementally then completes via announce_step_done; the additions persist and no rebuild occurs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c826121c-7a9a-453d-b31d-869c67747b0a:
+    id: c826121c-7a9a-453d-b31d-869c67747b0a
+    content: submit_step_output on a collaborate & execute step is refused with an error naming the mode and directing to announce_step_done; no subtree deletion occurs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff5a538a-d4c9-460d-af8f-b52da0cca982:
+    id: ff5a538a-d4c9-460d-af8f-b52da0cca982
+    content: submit_step_output on an execute-only step and on an action-mode step is each refused, the error naming the mode and directing to announce_step_done
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c33c6c27-dc0e-4a95-b4fc-fb2d44de5051:
+    id: c33c6c27-dc0e-4a95-b4fc-fb2d44de5051
+    content: submit_step_output on a bound step with no applied context is refused with the no-context error
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed6a288f-1215-456b-98cf-3541000732e1:
+    id: ed6a288f-1215-456b-98cf-3541000732e1
+    content: announce_step_done succeeds on collaborate & execute, execute-only, and action-mode contexts on autonomous and checkpoint steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1fc3c97-04b7-44a4-951a-dfd27a850754:
+    id: b1fc3c97-04b7-44a4-951a-dfd27a850754
+    content: announce_step_done on a pure-collaborate step is refused with an error directing to submit_step_output
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3e8754b-e9d6-41b4-a4d6-5006f231b135:
+    id: a3e8754b-e9d6-41b4-a4d6-5006f231b135
+    content: announce_step_done on a manual step is refused and directed to the UI; on a checkpoint it marks the subject complete then pauses for validation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea23c6d0-9306-443f-9e95-8ede3baccc3b:
+    id: ea23c6d0-9306-443f-9e95-8ede3baccc3b
+    content: On a collaborate & execute step, mark_step_complete with a node_id resolving to a descendant of the bound node updates that item's status; without node_id it targets the bound node as today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb56a9aa-9bd0-47d1-b860-06cddfcfe84d:
+    id: eb56a9aa-9bd0-47d1-b860-06cddfcfe84d
+    content: mark_step_complete with a node_id outside the bound subtree is refused with an error naming the bound root; no status change occurs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  757ad6b8-190a-4158-a54e-41e7fc4b529d:
+    id: 757ad6b8-190a-4158-a54e-41e7fc4b529d
+    content: On an autonomous pure-collaborate step, add_child_node, append_to_node, and mark_step_complete are each refused with an error directing the agent to express changes in its single submit_step_output
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcf85640-4b2e-4872-9291-140d778c6f6b:
+    id: dcf85640-4b2e-4872-9291-140d778c6f6b
+    content: On a manual and on a checkpoint pure-collaborate step, an incremental mutation produces a proposal in the user-reviewed queue, not a refusal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5295c556-9142-4d08-981a-01dd4341cec5:
+    id: 5295c556-9142-4d08-981a-01dd4341cec5
+    content: Non-additive mutations in collaborate & execute remain refused with the existing execute-and-collaborate message on every route
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8339a33-7800-4488-892b-612746116a17:
+    id: b8339a33-7800-4488-892b-612746116a17
+    content: The rendered collaborate & execute terminal prompt contains the incremental-tools-plus-announce instructions including id resolution via get_tree, and contains no reference to submit_step_output; pure-collaborate, execute-only, action, and web prompt copy is unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1004e71f-7024-49a2-bd79-09f157bc09d7:
+    id: 1004e71f-7024-49a2-bd79-09f157bc09d7
+    content: 'A unit test asserts the policy-table invariant directly: every mode maps to exactly one completion tool, and no mode permits both submit_step_output and incremental direct-apply writes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29180d36-07b3-49fd-9605-b6641556b14d:
+    id: 29180d36-07b3-49fd-9605-b6641556b14d
+    content: A manual one-off send with no workflow binding still reaches the feedback panel unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c52f61b-7207-4b6f-9626-f97b9a71a79b:
+    id: 6c52f61b-7207-4b6f-9626-f97b9a71a79b
+    content: Editing a context's flags or a step's type between two calls changes the next call's gating outcome without restarting the workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76dbf11f-e1ca-4fc8-ad26-b4566bbeceaa:
+    id: 76dbf11f-e1ca-4fc8-ad26-b4566bbeceaa
+    content: Every refusal across the gated tools returns an isError result naming the mode and exactly one permitted alternative
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97a146f3-95b1-4800-b5aa-9e072e0707ba:
+    id: 97a146f3-95b1-4800-b5aa-9e072e0707ba
+    content: 🔧 Implementation proposal
+    children:
+      - 2270edae-d8df-44e5-a4fe-06e9c37636cf
+      - 8acb581d-182b-46de-9f41-9ef1d3a24022
+      - 6a5a69a4-d364-42d5-b42a-d40771353caf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2270edae-d8df-44e5-a4fe-06e9c37636cf:
+    id: 2270edae-d8df-44e5-a4fe-06e9c37636cf
+    content: Approach
+    children:
+      - 691ec274-e642-4554-bbc0-76cb0b46458a
+      - dd922793-19dc-4175-a367-639c1232f6fa
+      - cbc3f790-dc61-4a68-93a5-aca7571b8acf
+      - a6ac78a8-d22f-40c6-beed-6f2d4b1a294c
+      - 31f3edda-6e7e-4aa2-ae02-ff3ed2c6f6c6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  691ec274-e642-4554-bbc0-76cb0b46458a:
+    id: 691ec274-e642-4554-bbc0-76cb0b46458a
+    content: 'Centralize the matrix: add resolveStepMode(flags) returning a named mode (collaborate, both, execute, action) and a declarative MODE_POLICY table — mode to completion tool, permitted mutation kinds, and refusal copy — in shared permissionGate.ts, importable by both the main-process MCP gates and the renderer prompt builder'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd922793-19dc-4175-a367-639c1232f6fa:
+    id: dd922793-19dc-4175-a367-639c1232f6fa
+    content: 'Consume the table everywhere the matrix is currently re-derived: the net-new submit gate, the narrowed announce gate, checkAuthority''s mutation authority, and the sendActions prompt dispatch — the announce narrowing and the both-mode prompt flip fall out of the table rather than being hand-edited at each site'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbc3f790-dc61-4a68-93a5-aca7571b8acf:
+    id: cbc3f790-dc61-4a68-93a5-aca7571b8acf
+    content: Extend mark_step_complete with optional node_id validated against the bound subtree so per-item check-offs ride the incremental channel — the capability the full-list resubmit was providing for collaborate & execute
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6ac78a8-d22f-40c6-beed-6f2d4b1a294c:
+    id: a6ac78a8-d22f-40c6-beed-6f2d4b1a294c
+    content: This is a static permission matrix resolved live per call, not a state machine — the workflow lifecycle (running, awaiting-validation, advance) stays where it is and is untouched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31f3edda-6e7e-4aa2-ae02-ff3ed2c6f6c6:
+    id: 31f3edda-6e7e-4aa2-ae02-ff3ed2c6f6c6
+    content: 'Already built, do not rebuild: the resolveContextFlags and getAppliedContextIdWithInheritance primitives the table layers on, ADDITIVE_KINDS as the table''s collaborate & execute entry, and the explicit_submit_seen advance plumbing that announce_step_done already sets — no Stop-handler change needed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8acb581d-182b-46de-9f41-9ef1d3a24022:
+    id: 8acb581d-182b-46de-9f41-9ef1d3a24022
+    content: Touchpoints
+    children:
+      - 0041b683-6b12-4c2b-9408-d0007c4a007e
+      - 538879b5-0d9d-46a7-bdcd-88bf56933923
+      - c508260d-564e-43ef-bfde-58b4bbd5f5fe
+      - 040cb71b-3ad2-43dc-89cc-c1714faee8d9
+      - f58e4721-8293-4ffb-8abc-75a614f45d98
+      - d8c5bbfd-adac-48d3-acc3-8f9c036d3333
+      - 49332ba4-92ca-4891-9cbc-18208b8642ec
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0041b683-6b12-4c2b-9408-d0007c4a007e:
+    id: 0041b683-6b12-4c2b-9408-d0007c4a007e
+    content: permissionGate.ts (shared) — add resolveStepMode and the MODE_POLICY table with per-mode completion tool, permitted mutation kinds, and refusal copy; unit-test the table invariant here
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  538879b5-0d9d-46a7-bdcd-88bf56933923:
+    id: 538879b5-0d9d-46a7-bdcd-88bf56933923
+    content: mcpSubmitOutputTool.ts — resolve the mode after the bound state loads and refuse outside pure collaborate using the table's copy, keeping the unbound and one-shot short-circuits ahead of flag resolution so manual sends keep working
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c508260d-564e-43ef-bfde-58b4bbd5f5fe:
+    id: c508260d-564e-43ef-bfde-58b4bbd5f5fe
+    content: mcpWriteTools.ts — rework checkAuthority and the announce gate to consume the table (announce narrows to collaborate-without-execute as a table consequence), add the autonomous pure-collaborate incremental block after the authority refusals keyed on the direct-apply route, and thread the optional node_id through markStepComplete
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  040cb71b-3ad2-43dc-89cc-c1714faee8d9:
+    id: 040cb71b-3ad2-43dc-89cc-c1714faee8d9
+    content: 'mcpServer.ts — add optional node_id to the mark_step_complete schema, update both completion-tool descriptions: drop "applied regardless of context mode flags" from submit and narrow announce''s collaborate wording'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f58e4721-8293-4ffb-8abc-75a614f45d98:
+    id: f58e4721-8293-4ffb-8abc-75a614f45d98
+    content: mcpTreeMutatorService.ts — route mark-complete to the targeted node after validating it resolves within the bound subtree; omitted node_id falls back to the bound node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8c5bbfd-adac-48d3-acc3-8f9c036d3333:
+    id: d8c5bbfd-adac-48d3-acc3-8f9c036d3333
+    content: 'sendActions.ts — derive the per-mode output target from the table''s completion channel; flip buildBothOutputTarget to the incremental channel: tick items via mark_step_complete with node_id (resolve ids via get_tree), issues via add_child_node, completion via announce_step_done; drop the target_node_id and submit-once clauses from both-mode; pure-collaborate, execute-only, action, and web copy unchanged'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49332ba4-92ca-4891-9cbc-18208b8642ec:
+    id: 49332ba4-92ca-4891-9cbc-18208b8642ec
+    content: Tests — invert mcpSubmitOutputTool.test.ts:386-405 (which currently assert submit succeeds in all three flag modes), add refusal and permit coverage per mode for both tools and the autonomous-route block, cover node_id targeting and out-of-subtree refusal for mark_step_complete, add prompt-copy assertions for the both-mode flip, add the policy-table invariant test, keep existing checkAuthority behavior coverage green through the rework
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a5a69a4-d364-42d5-b42a-d40771353caf:
+    id: 6a5a69a4-d364-42d5-b42a-d40771353caf
+    content: Constraints to call out
+    children:
+      - 1bea241c-a6c8-4c47-aae3-d5c7da3b4be0
+      - 5384991e-2f4b-4fa8-82df-9c80796ccd00
+      - cb39f86e-244e-417b-b372-bdd5eafad373
+      - 0f4b3728-1e18-4a5d-ac37-da204cbf8c7d
+      - 684e804f-31af-4e38-aac7-30a3dabd3b65
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bea241c-a6c8-4c47-aae3-d5c7da3b4be0:
+    id: 1bea241c-a6c8-4c47-aae3-d5c7da3b4be0
+    content: The submit gate, the announce gate change, the prompt-copy flip, and the mark_step_complete node targeting must ship together — without node targeting the incremental channel cannot replace the resubmit's per-item check-offs, and without the prompt flip collaborate & execute agents have no completion path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5384991e-2f4b-4fa8-82df-9c80796ccd00:
+    id: 5384991e-2f4b-4fa8-82df-9c80796ccd00
+    content: The checkAuthority rework must be behavior-preserving for mutation authority (rule 5) — existing tests pin it; only the announce and submit gates change observable behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb39f86e-244e-417b-b372-bdd5eafad373:
+    id: cb39f86e-244e-417b-b372-bdd5eafad373
+    content: The completion-tool change is user-visible for existing collaborate & execute workflows; the redirect error is the self-healing migration mechanism, surfaced in release notes, with no per-step compatibility shim
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f4b3728-1e18-4a5d-ac37-da204cbf8c7d:
+    id: 0f4b3728-1e18-4a5d-ac37-da204cbf8c7d
+    content: The autonomous-route block must sit after authority resolution and key on the route, not on authority, so the user-reviewed proposal routes are untouched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  684e804f-31af-4e38-aac7-30a3dabd3b65:
+    id: 684e804f-31af-4e38-aac7-30a3dabd3b65
+    content: The "applied regardless of context mode flags" exemption being removed was load-bearing only for the auto-submit safety net (commit 5961477); the safety net was neutered to a no-op by commit 517161a, so the exemption and the tests pinning it protect a repealed design, not a live one
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8718d919-120d-4cc2-aa1b-64f063af4cd1:
+    id: 8718d919-120d-4cc2-aa1b-64f063af4cd1
+    content: Chunking decision
+    children:
+      - e89b07cc-bbbf-4fb8-8765-2b7990a3991c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e89b07cc-bbbf-4fb8-8765-2b7990a3991c:
+    id: e89b07cc-bbbf-4fb8-8765-2b7990a3991c
+    content: One chunk — the policy table, its consumers, and the node-targeting extension enforce a single invariant (which mode owns which completion channel, with that channel actually sufficient for the mode's work) and splitting would create the exact dual-channel inconsistency the story removes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d73acc1-781f-4c28-b92b-8121e9a293a7:
+    id: 9d73acc1-781f-4c28-b92b-8121e9a293a7
+    content: Challenges
+    children:
+      - 3ae2264e-6749-48fb-9f2b-6b7f6d993e64
+      - 88ce2fb1-c7b5-4ea5-ae31-f73cca6a7888
+      - 704eae25-5016-48fa-a7aa-611392923c0b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ae2264e-6749-48fb-9f2b-6b7f6d993e64:
+    id: 3ae2264e-6749-48fb-9f2b-6b7f6d993e64
+    content: 'ROI is high and scope contained: this closes two server-side gaps, one prompt contradiction, and one capability gap, and the policy table removes the drift mechanism that produced the gap class instead of patching one instance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88ce2fb1-c7b5-4ea5-ae31-f73cca6a7888:
+    id: 88ce2fb1-c7b5-4ea5-ae31-f73cca6a7888
+    content: 'Rejected as over-engineering or out of scope: submit-time merge reconciliation, prompt-only enforcement, per-step compatibility shims, new step types or flags, making the rebuild additive, blocking the user-reviewed proposal routes, a transition-based state-machine framework (modes have no transitions — the lifecycle state machine lives elsewhere), and a content-matching fallback for item ids (get_tree id resolution is deterministic; heading-text matching is not)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  704eae25-5016-48fa-a7aa-611392923c0b:
+    id: 704eae25-5016-48fa-a7aa-611392923c0b
+    content: 'UX risk accepted with mitigation: collaborate & execute steps started before the change get a refusal on first submit attempt; the error names the correct tool, so the run self-corrects with no data loss'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b419c3f-eda3-491a-a4d1-6408100df330:
+    id: 5b419c3f-eda3-491a-a4d1-6408100df330
+    content: Technical refinement
+    children:
+      - 12f0da1e-a386-44db-9f43-dcdf381bee2f
+      - 8c464eec-33f6-43a0-a8d3-771127f3f75e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12f0da1e-a386-44db-9f43-dcdf381bee2f:
+    id: 12f0da1e-a386-44db-9f43-dcdf381bee2f
+    content: Complications
+    children:
+      - 67f7a880-88f6-47fc-96f0-5ad9f8150430
+      - b129efb4-a60d-4921-9d02-bd650e15071a
+      - d15b62af-8be8-43cb-8efe-080b9e0d091b
+      - 214b5e91-adec-4f4d-91ec-525759f5d875
+      - 143693e9-ab76-4b7e-aedf-0044b131a969
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67f7a880-88f6-47fc-96f0-5ad9f8150430:
+    id: 67f7a880-88f6-47fc-96f0-5ad9f8150430
+    content: 'Targeted ticks meet the proposal queue: on manual and checkpoint steps a node_id-scoped mark_step_complete becomes a proposal, so the proposal payload and review UI must represent which item is being ticked — the one place scope could creep into renderer UI work; fallback if heavy is restricting node_id to the autonomous route, where the capability is actually needed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b129efb4-a60d-4921-9d02-bd650e15071a:
+    id: b129efb4-a60d-4921-9d02-bd650e15071a
+    content: 'Residual accepted risk not in the acceptance criteria: on manual and checkpoint pure-collaborate steps a user-approved mid-run proposal can still be overwritten by a later user-accepted submission — visible and user-approved, deliberately not gated; a warning on accept is explicitly out of scope'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d15b62af-8be8-43cb-8efe-080b9e0d091b:
+    id: d15b62af-8be8-43cb-8efe-080b9e0d091b
+    content: The prompt's get_tree id-resolution step assumes get_tree returns node ids in agent-usable form and adds one read round-trip per collaborate & execute run — verify the read tool's output shape before the prompt copy lands
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  214b5e91-adec-4f4d-91ec-525759f5d875:
+    id: 214b5e91-adec-4f4d-91ec-525759f5d875
+    content: MODE_POLICY lives in shared/ and is imported by both processes — it must stay dependency-free, and the refusal copy naming MCP tools moves into the shared module with it (cosmetic coupling, accepted)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  143693e9-ab76-4b7e-aedf-0044b131a969:
+    id: 143693e9-ab76-4b7e-aedf-0044b131a969
+    content: 'ROI check: contained except for the proposal-queue rendering of targeted ticks above; if that balloons, descope it rather than the gates — the gates close the data loss on their own'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c464eec-33f6-43a0-a8d3-771127f3f75e:
+    id: 8c464eec-33f6-43a0-a8d3-771127f3f75e
+    content: Approach summary
+    children:
+      - 4e24cdf0-0c07-4207-8046-148de191c809
+      - 05b81bc4-3357-4d1b-b6b0-955cb808e27a
+      - 3e434c74-2342-493d-b820-2b1488bda552
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e24cdf0-0c07-4207-8046-148de191c809:
+    id: 4e24cdf0-0c07-4207-8046-148de191c809
+    content: One shared MODE_POLICY table (permissionGate.ts) keyed by resolveStepMode(flags); the submit gate, announce gate, checkAuthority, and prompt dispatch all consume it, so gates and prompts can no longer drift apart — the drift is what produced the bug class
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05b81bc4-3357-4d1b-b6b0-955cb808e27a:
+    id: 05b81bc4-3357-4d1b-b6b0-955cb808e27a
+    content: 'Both completion tools get mode gates (submit_step_output: pure collaborate only, net-new; announce_step_done: every other mode) and mark_step_complete gains a bound-subtree-scoped node_id so collaborate & execute can tick items without the destructive full-list rebuild'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e434c74-2342-493d-b820-2b1488bda552:
+    id: 3e434c74-2342-493d-b820-2b1488bda552
+    content: 'Non-obvious for the reviewer: submit''s flag exemption was a vestige of the auto-submit safety net (added 5961477, repealed 517161a), so inverting the tests that pin it is deliberate; everything ships as one chunk or collaborate & execute is left with no completion path'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d929106f-ea47-43b5-9245-d4b3d235f31e:
+    id: d929106f-ea47-43b5-9245-d4b3d235f31e
+    content: 'Implementation note: mcpTreeMutatorService needed no code change — it already routes mark-complete by the passed node id, so the main-process gate validates the subtree and passes the target through; targeted-tick proposals carry the target node id in the payload but the proposal review UI renders them with its existing generic presentation (the accepted complication)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e20aaf02-439a-48fd-9c50-b5d1469721eb:
+    id: e20aaf02-439a-48fd-9c50-b5d1469721eb
+    content: Undone summary
+    children:
+      - aa6056f4-c799-494a-aad3-f5029b8564b7
+      - 5d6d6587-a7c8-42d5-af44-268a59b6b26d
+      - 6b26792b-7003-4828-9ede-0a79a51a4436
+      - 4fce100c-43a1-4a08-bc14-7759c34917b3
+      - 24890d30-1524-403d-ab77-6eac7258fbf7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa6056f4-c799-494a-aad3-f5029b8564b7:
+    id: aa6056f4-c799-494a-aad3-f5029b8564b7
+    content: Merge-not-replace reconciliation — abandoned by decision; superseded by the implemented mode gating, which makes the destructive rebuild and incremental writes structurally exclusive
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d6d6587-a7c8-42d5-af44-268a59b6b26d:
+    id: 5d6d6587-a7c8-42d5-af44-268a59b6b26d
+    content: Proposal review UI rendering of targeted ticks — chose not to build; the proposal payload carries the target node id but the review UI keeps its existing generic presentation, per the accepted complication and ROI fallback
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b26792b-7003-4828-9ede-0a79a51a4436:
+    id: 6b26792b-7003-4828-9ede-0a79a51a4436
+    content: Warning when an accepted submission overwrites a previously approved mid-run proposal — explicitly out of scope; the overwrite is user-visible and user-approved on those routes
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fce100c-43a1-4a08-bc14-7759c34917b3:
+    id: 4fce100c-43a1-4a08-bc14-7759c34917b3
+    content: Release note for the collaborate & execute completion-tool change — the constraint calls for surfacing it at release; no release process exists in this workflow, so it remains pending until the branch ships
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24890d30-1524-403d-ab77-6eac7258fbf7:
+    id: 24890d30-1524-403d-ab77-6eac7258fbf7
+    content: Branch not committed or merged — feat/mode-policy-gating in the worktree holds the uncommitted implementation; git operations are user-handled per project convention
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fbef9f6-e789-4730-b1ef-d5dea8596f6d:
+    id: 1fbef9f6-e789-4730-b1ef-d5dea8596f6d
+    content: 'AI refactor pass: rewrote all test comments and titles that referenced the user story, rule numbers, commit hashes, or iteration history into timeless why-comments per the comments convention; consolidated the remaining three mutation-refusal strings out of an mcpWriteTools switch into MODE_POLICY (mutationRefusal now a required table field), fully honoring the single-home rule; verified no empty tests and no abandoned code; tsc clean, 1623 touched-area tests passing, eslint zero errors with one pre-existing import/no-cycle warning on sendActions that exists on master'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c205d383-1f64-4775-abd2-47b53d885979:
+    id: c205d383-1f64-4775-abd2-47b53d885979
+    content: review feedback
+    children:
+      - 143ff3d8-86bf-4ea9-9b13-0b4b88581c03
+      - ff2b9be0-06a8-4610-a0ac-108b8fbfbdb1
+      - 6ac2ee23-5df6-43aa-bce7-63dc4e917a21
+      - 26c7df58-3671-4f96-8625-7cf8361916b4
+      - 05cc7faa-1358-4119-b561-fb56d8b25864
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  143ff3d8-86bf-4ea9-9b13-0b4b88581c03:
+    id: 143ff3d8-86bf-4ea9-9b13-0b4b88581c03
+    content: 'BLOCKER (verified failing): mcpTreeReadErrorTaxonomyMessages.test.ts:149-157 — makeOkState() binds the session to BOUND with no appliedContextId and no context-declaration node, so the new submit mode gate refuses it (no-context) and the success-path test asserting applied:true now fails; fix by mirroring mcpSubmitOutputTool.test.ts makeWorkflowState: give BOUND appliedContextId pointing at a collaborate:true/execute:false isContextDeclaration node under ROOT and register both in ancestorRegistry'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff2b9be0-06a8-4610-a0ac-108b8fbfbdb1:
+    id: ff2b9be0-06a8-4610-a0ac-108b8fbfbdb1
+    content: 'SHOULD-FIX: no test pins the pendingTarget (one-shot manual send) bypass of the submit mode gate — add a test in mcpSubmitOutputToolModeGating.test.ts that sets oneShotTargetStore pendingTarget for a node under a collaborate:false/execute:true context and asserts submitStepOutput still applies or proposes with no mode refusal; today a regression moving the gate above the pendingTarget short-circuit would pass every existing test'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ac2ee23-5df6-43aa-bce7-63dc4e917a21:
+    id: 6ac2ee23-5df6-43aa-bce7-63dc4e917a21
+    content: 'NIT: mcpWriteToolsModeGating.test.ts manual node_id proposal test only counts proposalSubmitter calls — strengthen to toHaveBeenCalledWith nodeId: CHILD so a regression that sends boundNodeId instead of the targeted node on the proposal route is caught'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  26c7df58-3671-4f96-8625-7cf8361916b4:
+    id: 26c7df58-3671-4f96-8625-7cf8361916b4
+    content: 'CONFIRMED BY DESIGN (no action): manual both-mode prompts name no completion tool — manual steps resolve through the UI, pinned deliberately by sendActions.test.ts; reviewer flagged it only for confirmation'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05cc7faa-1358-4119-b561-fb56d8b25864:
+    id: 05cc7faa-1358-4119-b561-fb56d8b25864
+    content: 'CONFIRMED CLEAN: gate ordering in mcpSubmitOutputTool (unbound and read-failure short-circuits precede the mode gate, pendingTarget bypass precedes flag resolution, gate-4 target checks remain downstream); action-mode early return covers buildSendPayloadBody before the mode switch; no dangling references to the removed checkAuthority/ADDITIVE_KINDS; MODE_POLICY disjointness invariant directly asserted; comment style, naming, and schema descriptions all conform — full-suite run by the reviewer surfaced only the one blocker above'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
