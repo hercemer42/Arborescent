@@ -246,7 +246,7 @@ export class ArborescentMcpServer {
       {
         title: 'Submit step output',
         description:
-          'Submits the assistant response back to the bound Arborescent node. The binding comes from any Arborescent send (a one-off send-to-terminal, or a workflow step). If the bound node sits under an autonomous workflow step, the content is applied directly to the node. Otherwise — manual sends, and manual/checkpoint workflow steps — the content appears in the feedback panel for the user to review and accept or reject; call again with revised content to refresh the panel. On workflow steps this is the pure-collaborate completion channel only: refused when the applied context has execute enabled or neither flag set — those steps complete via announce_step_done.',
+          'Submits the assistant response back to the bound Arborescent node. The binding comes from any Arborescent send (a one-off send-to-terminal, or a workflow step). Workflow submits on an autonomous step apply the content directly to the node. Everything else — all one-off manual sends regardless of the target\'s step type, and manual/checkpoint workflow steps — appears in the feedback panel for the user to review and accept or reject; call again with revised content to refresh the panel. On workflow steps this is the pure-collaborate completion channel only: refused when the applied context has execute enabled or neither flag set — those steps complete via announce_step_done.',
         inputSchema: {
           session_id: z.string().min(1).describe('Claude Code session ID'),
           content: z.string().describe('Assistant response content to apply to the bound node'),
@@ -257,7 +257,7 @@ export class ArborescentMcpServer {
           target_node_id: z
             .string()
             .optional()
-            .describe('Echo of the bound node UUID that the prompt was rendered for. Required on autonomous-route submissions; the server rejects the call if it does not match the resolved bound node at submit time (guards against in-flight rebind drift). Omit for manual-collab and free-terminal submissions.'),
+            .describe('Echo of the bound node UUID that the prompt was rendered for. Required on autonomous workflow-route submissions; the server rejects the call if it does not match the resolved bound node at submit time (guards against in-flight rebind drift). Omit for manual-collab and free-terminal submissions.'),
           origin: z
             .enum(['explicit', 'safety-net'])
             .optional()

@@ -48,7 +48,7 @@ A branch whose entire content is a single backticked snippet runs in the termina
 
 ### How it works
 
-**Terminal mode**: Instructions tell the AI to call the `submit_step_output` MCP tool with its response. Arborescent routes the submission to the Feedback panel for review, or applies it directly on autonomous workflow steps.
+**Terminal mode**: Instructions tell the AI to call the `submit_step_output` MCP tool with its response. Arborescent routes the submission to the Feedback panel for review. Only a workflow running an autonomous step applies its submission directly — your own sends always land in the panel, even when the target sits under an autonomous step.
 
 **Browser mode**: Instructions tell the AI to format its response as markdown in a code block. Copy the AI's response to your clipboard. Arborescent watches the clipboard and displays the result when it detects a compatible format.
 

@@ -99,7 +99,12 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         }
       }
 
-      if (!isStructurallyAutonomous(boundNodeId, state)) {
+      // One-shot manual sends always route to the user-reviewed proposal
+      // panel, even onto an autonomous target — the rebuilding applier
+      // replaces the target's subtree and would destroy children added
+      // out-of-band during the turn. Only workflow submits on a structurally
+      // autonomous step auto-apply.
+      if (resolved.source === 'one-shot' || !isStructurallyAutonomous(boundNodeId, state)) {
         if (targetNodeId && targetNodeId !== boundNodeId) {
           logger.warn(
             `gate-miss gate=4 session=${sessionId} tokenTarget=${targetNodeId} resolvedTarget=${boundNodeId} reason=drift-proposal-route`,

@@ -96,14 +96,22 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
   // binding. Effective destination = pendingTarget ?? binding.
 
   it('routes submit content to pendingTarget when one is set, NOT to the binding', async () => {
-    const { tool, applier } = makeToolFor({
+    // US3: a one-shot send onto an autonomous target now routes to the
+    // proposal panel (never the rebuilding applier) — but still against
+    // TARGET, never the workflow-bound node.
+    const { tool, applier, proposalSubmitter } = makeToolFor({
       boundStepType: 'autonomous',
       targetStepType: 'autonomous',
       pendingTargetNodeId: TARGET,
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'freeform response' });
-    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'freeform response');
-    expect(applier.apply).not.toHaveBeenCalledWith('sess-1', BOUND, 'freeform response');
+    expect(proposalSubmitter.submit).toHaveBeenCalledWith(
+      expect.objectContaining({ nodeId: TARGET }),
+    );
+    expect(proposalSubmitter.submit).not.toHaveBeenCalledWith(
+      expect.objectContaining({ nodeId: BOUND }),
+    );
+    expect(applier.apply).not.toHaveBeenCalled();
   });
 
   it('falls back to the binding when pendingTarget is null (existing workflow flow unchanged)', async () => {
@@ -119,15 +127,19 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
   it('a one-shot target routes the response even when the session has NO binding', async () => {
     // Business rule: "A one-shot target applies regardless of whether the
     // session is currently bound." Manual collab into an unbound terminal
-    // still lands on the target.
-    const { tool, applier } = makeToolFor({
+    // still lands on the target — via the proposal route since US3 (the
+    // target sits under an autonomous step).
+    const { tool, applier, proposalSubmitter } = makeToolFor({
       boundStepType: 'autonomous',
       targetStepType: 'autonomous',
       bindSession: false,
       pendingTargetNodeId: TARGET,
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'freeform response' });
-    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'freeform response');
+    expect(proposalSubmitter.submit).toHaveBeenCalledWith(
+      expect.objectContaining({ nodeId: TARGET }),
+    );
+    expect(applier.apply).not.toHaveBeenCalled();
   });
 
   it('autonomous-vs-non-automatic gate reads the TARGET node stepType, not the binding stepType', async () => {
@@ -159,17 +171,22 @@ describe('createSubmitOutputTool — one-shot target overrides the binding (US-B
     );
   });
 
-  it('manual binding with an autonomous target — auto-applies against the target', async () => {
+  it('manual binding with an autonomous target — routes to proposal against the target (US3)', async () => {
     // The mirror case: workflow's binding is on a manual step (waiting for
-    // user confirmation), but a freeform send to an autonomous target should
-    // still auto-apply on that target.
-    const { tool, applier } = makeToolFor({
+    // user confirmation) and a freeform send targets an autonomous node.
+    // Since US3 the one-shot/autonomous combination routes to the proposal
+    // panel instead of auto-applying — the rebuilding applier would drop
+    // out-of-band children added earlier in the turn.
+    const { tool, applier, proposalSubmitter } = makeToolFor({
       boundStepType: 'manual',
       targetStepType: 'autonomous',
       pendingTargetNodeId: TARGET,
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
-    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'x');
+    expect(proposalSubmitter.submit).toHaveBeenCalledWith(
+      expect.objectContaining({ nodeId: TARGET }),
+    );
+    expect(applier.apply).not.toHaveBeenCalled();
   });
 
   it('a one-shot target that points to a node missing from the tree returns a node-not-in-open-store error', async () => {

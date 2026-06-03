@@ -108,8 +108,8 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
   // markManualCollabResolved on accept / reject / cancel. This mirrors
   // workflow-binding semantics and supports the discuss-then-refresh loop.
 
-  it('preserves pendingTarget after a successful direct apply so the next submit refreshes the same target', async () => {
-    const { tool, applier, oneShotTargetStore } = makeToolFor({
+  it('preserves pendingTarget after a successful submit onto an autonomous target so the next submit refreshes the same target', async () => {
+    const { tool, proposalSubmitter, oneShotTargetStore } = makeToolFor({
       boundStepType: 'autonomous',
       targetStepType: 'autonomous',
       pendingTargetNodeId: TARGET,
@@ -117,12 +117,18 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
-    expect(applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', TARGET, 'first response');
+    expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ nodeId: TARGET, request: expect.objectContaining({ content: 'first response' }) }),
+    );
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'second response' });
 
-    expect(applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', TARGET, 'second response');
+    expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({ nodeId: TARGET, request: expect.objectContaining({ content: 'second response' }) }),
+    );
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
   });
 
@@ -174,17 +180,19 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
   });
 
-  it('does NOT clear pendingTarget when the applier returns an error — the operation has not actually completed', async () => {
-    const { tool, applier, oneShotTargetStore } = makeToolFor({
+  it('does NOT clear pendingTarget when the proposal submitter errors on an autonomous target — the operation has not actually completed', async () => {
+    const { tool, proposalSubmitter, oneShotTargetStore } = makeToolFor({
       boundStepType: 'autonomous',
       targetStepType: 'autonomous',
       pendingTargetNodeId: TARGET,
-      applierResult: { ok: false, error: 'apply failed' },
+      proposalResult: { ok: false, error: 'proposal rejected' },
     });
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
-    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'first response');
+    expect(proposalSubmitter.submit).toHaveBeenCalledWith(
+      expect.objectContaining({ nodeId: TARGET }),
+    );
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
   });
 
@@ -209,7 +217,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     // produces a usable route. Successive MCP submits within the open
     // panel must continue to land on the same node until the renderer
     // explicitly resolves the manual collab.
-    const { tool, applier, oneShotTargetStore } = makeToolFor({
+    const { tool, proposalSubmitter, oneShotTargetStore } = makeToolFor({
       boundStepType: 'autonomous',
       targetStepType: 'autonomous',
       bindSession: false,
@@ -218,13 +226,19 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
 
-    expect(applier.apply).toHaveBeenCalledWith('sess-1', TARGET, 'first response');
+    expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ nodeId: TARGET }),
+    );
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
 
     const second = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'second response' });
     const payload = JSON.parse(second.content[0].text);
-    expect(payload.applied).toBe(true);
-    expect(applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', TARGET, 'second response');
+    expect(payload.proposed).toBe(true);
+    expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({ nodeId: TARGET, request: expect.objectContaining({ content: 'second response' }) }),
+    );
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(TARGET);
   });
 
@@ -273,20 +287,23 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     // cancel, dropping the manual route. From that point on, follow-up
     // submits behave as if the manual send had never happened: they fall
     // through to whatever workflow binding (or nothing) exists.
-    const { tool, applier, oneShotTargetStore } = makeToolFor({
+    const { tool, applier, proposalSubmitter, oneShotTargetStore } = makeToolFor({
       boundStepType: 'autonomous',
       targetStepType: 'autonomous',
       pendingTargetNodeId: TARGET,
     });
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'first response' });
-    expect(applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', TARGET, 'first response');
+    expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ nodeId: TARGET }),
+    );
 
     oneShotTargetStore.markManualCollabResolved('sess-1');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(null);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'after resolve' });
-    expect(applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', BOUND, 'after resolve');
+    expect(applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', BOUND, 'after resolve');
   });
 
   it('manual route on the same node as the workflow binding — refreshes via pendingTarget while open, falls through to binding (same node) after resolve', async () => {
@@ -294,7 +311,7 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     // workflow already binds. Successive submits during the open panel route
     // via pendingTarget; after resolve, pendingTarget clears and routing
     // falls through to the binding — which resolves to the same node.
-    const { tool, applier, oneShotTargetStore } = makeToolFor({
+    const { tool, applier, proposalSubmitter, oneShotTargetStore } = makeToolFor({
       boundStepType: 'autonomous',
       targetStepType: 'autonomous',
       pendingTargetNodeId: BOUND,
@@ -303,15 +320,21 @@ describe('createSubmitOutputTool — pendingTarget persists across submits (manu
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'first' });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'refresh' });
 
-    expect(applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', BOUND, 'first');
-    expect(applier.apply).toHaveBeenNthCalledWith(2, 'sess-1', BOUND, 'refresh');
+    expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({ nodeId: BOUND, request: expect.objectContaining({ content: 'first' }) }),
+    );
+    expect(proposalSubmitter.submit).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({ nodeId: BOUND, request: expect.objectContaining({ content: 'refresh' }) }),
+    );
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(BOUND);
 
     oneShotTargetStore.markManualCollabResolved('sess-1');
     expect(oneShotTargetStore.pendingTarget('sess-1')).toBe(null);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'after resolve' });
-    expect(applier.apply).toHaveBeenNthCalledWith(3, 'sess-1', BOUND, 'after resolve');
+    expect(applier.apply).toHaveBeenNthCalledWith(1, 'sess-1', BOUND, 'after resolve');
   });
 
   it('explicit resolution with no binding leaves the session fully unbound — next submit returns unbound', async () => {
