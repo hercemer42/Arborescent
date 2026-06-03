@@ -1,7 +1,20 @@
 import type { TreeNode } from '../../../../shared/types';
 import type { WorkflowExecutionEntry } from '../../../utils/workflowHelpers';
+import type { RendererBindingFact } from '../../../../shared/utils/bindingAuthority';
 import { findLiveNodeWithSessionId } from '../selectors/activeSessionNodeId';
 import { useTerminalStore } from '../../terminal/terminalStore';
+
+// Typed against BINDING_AUTHORITY: this resolver may consult only facts the
+// table assigns to the renderer. Hint-only facts never answer routing on
+// their own: the persisted sessionId may key an answer only after
+// re-validation against live state (node present, chain unbroken), and the
+// origin bookmark only gates capture — it is never the returned binding.
+export const CONSULTED_BINDING_FACTS: readonly RendererBindingFact[] = [
+  'session-to-terminal',
+  'terminal-to-running-node',
+  'terminal-to-origin-node',
+  'persisted-session-hint',
+];
 
 export type BindingResolutionState = {
   nodes: Record<string, TreeNode>;
