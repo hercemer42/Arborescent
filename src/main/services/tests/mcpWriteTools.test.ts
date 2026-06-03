@@ -127,7 +127,11 @@ describe('createWriteTools — mode authority: execute-only blocks every tree-mo
   });
 });
 
-describe('createWriteTools — mode authority: collaborate-only allows every tree-modifying tool', () => {
+// Collaborate-only authority allows every mutation KIND, but the autonomous
+// direct-apply route refuses them toward the single submit channel — a
+// direct-applied write would be wiped by the step's own rebuild. The kind
+// authority survives on the proposal routes (see the checkpoint block below).
+describe('createWriteTools — autonomous collaborate-only refuses direct-apply mutations toward submit_step_output', () => {
   let mutator: TreeMutator;
   let tools: WriteTools;
 
@@ -138,10 +142,29 @@ describe('createWriteTools — mode authority: collaborate-only allows every tre
     tools = createWriteTools(made.deps);
   });
 
-  it.each(ALL_WRITE_TOOLS)('%s is mode-allowed in collaborate-only mode', async (toolName) => {
+  it.each(ALL_WRITE_TOOLS)('%s is refused on the autonomous route in collaborate-only mode', async (toolName) => {
+    const result = await callTool(tools, toolName);
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/submit_step_output/);
+    expect(mutator.mutate).not.toHaveBeenCalled();
+  });
+});
+
+describe('createWriteTools — checkpoint collaborate-only still allows every mutation kind via the proposal route', () => {
+  let made: ReturnType<typeof makeDeps>;
+  let tools: WriteTools;
+
+  beforeEach(() => {
+    made = makeDeps({ collaborate: true, execute: false, stepType: 'checkpoint' });
+    made.registry.register('sess-1', BOUND);
+    tools = createWriteTools(made.deps);
+  });
+
+  it.each(ALL_WRITE_TOOLS)('%s routes to the proposal submitter in collaborate-only mode', async (toolName) => {
     const result = await callTool(tools, toolName);
     expect(result.isError).toBeFalsy();
-    expect(mutator.mutate).toHaveBeenCalled();
+    expect(made.proposalSubmitter.submit).toHaveBeenCalledTimes(1);
+    expect(made.mutator.mutate).not.toHaveBeenCalled();
   });
 });
 
@@ -210,8 +233,10 @@ describe('createWriteTools — mode authority: collaborate+execute allows only a
 });
 
 describe('createWriteTools — step-type gate: non-automatic steps route to the proposal submitter (PR7)', () => {
+  // Routing is probed in both-mode: addChildNode is additive, so it is
+  // permitted on every route and the probe isolates the step-type split.
   function withStepType(stepType: StepType | undefined) {
-    const made = makeDeps({ collaborate: true, execute: false, stepType });
+    const made = makeDeps({ collaborate: true, execute: true, stepType });
     made.registry.register('sess-1', BOUND);
     return { tools: createWriteTools(made.deps), mutator: made.mutator, proposalSubmitter: made.proposalSubmitter };
   }
@@ -274,12 +299,15 @@ describe('createWriteTools — step-type gate: non-automatic steps route to the 
   });
 });
 
-describe('createWriteTools — happy paths: each tool issues the right MutationRequest shape', () => {
+// Collaborate-only autonomous does not direct-apply, so additive request
+// shapes are pinned via both-mode (the remaining direct-apply path) and
+// destructive shapes via the collaborate checkpoint proposal route.
+describe('createWriteTools — happy paths: each additive tool issues the right MutationRequest shape (both-mode direct apply)', () => {
   let mutator: TreeMutator;
   let tools: WriteTools;
 
   beforeEach(() => {
-    const made = makeDeps({ collaborate: true, execute: false, stepType: 'autonomous' });
+    const made = makeDeps({ collaborate: true, execute: true, stepType: 'autonomous' });
     made.registry.register('sess-1', BOUND);
     mutator = made.mutator;
     tools = createWriteTools(made.deps);
@@ -309,42 +337,58 @@ describe('createWriteTools — happy paths: each tool issues the right MutationR
       status: 'abandoned',
     } satisfies MutationRequest);
   });
+});
+
+describe('createWriteTools — happy paths: each destructive tool issues the right MutationRequest shape (collaborate checkpoint proposal route)', () => {
+  let made: ReturnType<typeof makeDeps>;
+  let tools: WriteTools;
+
+  beforeEach(() => {
+    made = makeDeps({ collaborate: true, execute: false, stepType: 'checkpoint' });
+    made.registry.register('sess-1', BOUND);
+    tools = createWriteTools(made.deps);
+  });
 
   it('setNodeContent issues kind="set-content" with content', async () => {
     await tools.setNodeContent({ sessionId: 'sess-1', content: 'replaced' });
-    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
-      kind: 'set-content',
-      content: 'replaced',
-    } satisfies MutationRequest);
+    expect(made.proposalSubmitter.submit).toHaveBeenCalledWith({
+      sessionId: 'sess-1',
+      nodeId: BOUND,
+      request: { kind: 'set-content', content: 'replaced' } satisfies MutationRequest,
+    });
   });
 
   it('deleteNode issues kind="delete"', async () => {
     await tools.deleteNode({ sessionId: 'sess-1' });
-    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, { kind: 'delete' } satisfies MutationRequest);
+    expect(made.proposalSubmitter.submit).toHaveBeenCalledWith({
+      sessionId: 'sess-1',
+      nodeId: BOUND,
+      request: { kind: 'delete' } satisfies MutationRequest,
+    });
   });
 
   it('moveNode issues kind="move" with new_parent_id and optional position', async () => {
     await tools.moveNode({ sessionId: 'sess-1', new_parent_id: SIBLING, position: 2 });
-    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
-      kind: 'move',
-      newParentId: SIBLING,
-      position: 2,
-    } satisfies MutationRequest);
+    expect(made.proposalSubmitter.submit).toHaveBeenCalledWith({
+      sessionId: 'sess-1',
+      nodeId: BOUND,
+      request: { kind: 'move', newParentId: SIBLING, position: 2 } satisfies MutationRequest,
+    });
   });
 
   it('setNodeMetadata issues kind="set-metadata" with key and value', async () => {
     await tools.setNodeMetadata({ sessionId: 'sess-1', key: 'custom', value: { x: 1 } });
-    expect(mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, {
-      kind: 'set-metadata',
-      key: 'custom',
-      value: { x: 1 },
-    } satisfies MutationRequest);
+    expect(made.proposalSubmitter.submit).toHaveBeenCalledWith({
+      sessionId: 'sess-1',
+      nodeId: BOUND,
+      request: { kind: 'set-metadata', key: 'custom', value: { x: 1 } } satisfies MutationRequest,
+    });
   });
 });
 
 describe('createWriteTools — error propagation', () => {
   it('a write to an unbound session returns a descriptive error and does not call the mutator', async () => {
-    const made = makeDeps({ collaborate: true, execute: false, stepType: 'autonomous' });
+    const made = makeDeps({ collaborate: true, execute: true, stepType: 'autonomous' });
     const tools = createWriteTools(made.deps);
 
     const result = await callTool(tools, 'addChildNode');
@@ -355,7 +399,7 @@ describe('createWriteTools — error propagation', () => {
   });
 
   it('a mutator returning ok=false surfaces the error message and marks isError', async () => {
-    const made = makeDeps({ collaborate: true, execute: false, stepType: 'autonomous' });
+    const made = makeDeps({ collaborate: true, execute: true, stepType: 'autonomous' });
     made.registry.register('sess-1', BOUND);
     made.mutator.mutate = vi.fn(async () => ({ ok: false as const, error: 'parent does not exist' }));
     const tools = createWriteTools(made.deps);
@@ -367,7 +411,7 @@ describe('createWriteTools — error propagation', () => {
   });
 
   it('a write against an orphan binding (node missing from tree) returns a descriptive error', async () => {
-    const made = makeDeps({ collaborate: true, execute: false, stepType: 'autonomous' });
+    const made = makeDeps({ collaborate: true, execute: true, stepType: 'autonomous' });
     made.registry.register('sess-1', 'unknown-node');
     const tools = createWriteTools(made.deps);
 
@@ -450,12 +494,15 @@ describe('createWriteTools — mode authority: action mode (collaborate=false, e
 });
 
 describe('createWriteTools — server-side authority is live (no caching)', () => {
+  // The liveness probe rides both-mode addChildNode (the autonomous
+  // direct-apply path) and flips the context to action mode, since
+  // collaborate-only autonomous does not direct-apply.
   it('flipping the mode between calls is reflected immediately', async () => {
     const registry = new SessionBindingRegistry();
-    let collaborate = true;
+    let execute = true;
     const treeReader = {
       readState: async () =>
-        okRead(makeState({ collaborate, execute: false, stepType: 'autonomous' })),
+        okRead(makeState({ collaborate: execute, execute, stepType: 'autonomous' })),
     };
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
@@ -463,11 +510,12 @@ describe('createWriteTools — server-side authority is live (no caching)', () =
     const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
     registry.register('sess-1', BOUND);
 
-    const first = await tools.deleteNode({ sessionId: 'sess-1' });
+    // both-mode (collaborate+execute): additive direct-apply allowed
+    const first = await tools.addChildNode({ sessionId: 'sess-1', parent_id: BOUND, content: 'child' });
     expect(first.isError).toBeFalsy();
 
-    collaborate = false; // flip to execute-only state by removing collaborate
-    const second = await tools.deleteNode({ sessionId: 'sess-1' });
+    execute = false; // context edit lands mid-run: collaborate flag also drops → action mode, all writes refused
+    const second = await tools.addChildNode({ sessionId: 'sess-1', parent_id: BOUND, content: 'child' });
     expect(second.isError).toBe(true);
     expect(mutator.mutate).toHaveBeenCalledTimes(1);
   });
@@ -514,16 +562,17 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     expect(made.mutator.mutate).not.toHaveBeenCalled();
   });
 
-  it('announceStepDone is REJECTED on a both-mode (collaborate+execute) step and the error names submit_step_output as the alternative', async () => {
+  // Both-mode steps work incrementally and complete via announce — a
+  // rejection here would redirect agents into the destructive submit rebuild.
+  it('announceStepDone is PERMITTED on a both-mode (collaborate+execute) step — announce is its completion channel', async () => {
     const made = makeDeps({ collaborate: true, execute: true, stepType: 'autonomous' });
     made.registry.register('sess-1', BOUND);
     const tools = createWriteTools(made.deps);
 
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
-    expect(result.isError).toBe(true);
-    expect(result.content[0].text).toContain('submit_step_output');
-    expect(made.mutator.mutate).not.toHaveBeenCalled();
+    expect(result.isError).toBeFalsy();
+    expect(made.mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, { kind: 'mark-complete', status: 'completed' });
   });
 
   it('announceStepDone returns a descriptive error when no binding exists for the session', async () => {

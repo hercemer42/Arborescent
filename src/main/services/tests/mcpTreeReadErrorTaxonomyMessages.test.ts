@@ -15,6 +15,7 @@ import { TreeNode } from '../../../shared/types';
 const ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const BOUND = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
 const STEP = 'dddddddd-dddd-dddd-dddd-dddddddddd04';
+const CTX = 'eeeeeeee-eeee-eeee-eeee-eeeeeeeeee05';
 const SESSION = 'sess-1';
 
 const OLD_CATCH_ALL = 'Tree state is unavailable. The renderer may not be ready or no file is open.';
@@ -29,15 +30,18 @@ function makeNode(id: string, content: string, children: string[] = [], metadata
   return { id, content, children, metadata };
 }
 
+// The bound node carries a pure-collaborate context so the submit mode gate
+// passes and the success-path test keeps pinning the read taxonomy, not the gate.
 function makeOkState(): TreeReadState {
   return {
     nodes: {
-      [ROOT]: makeNode(ROOT, 'Root', [STEP]),
+      [ROOT]: makeNode(ROOT, 'Root', [STEP, CTX]),
       [STEP]: makeNode(STEP, 'Step', [BOUND], { stepType: 'autonomous' }),
-      [BOUND]: makeNode(BOUND, 'Bound', []),
+      [BOUND]: makeNode(BOUND, 'Bound', [], { appliedContextId: CTX }),
+      [CTX]: makeNode(CTX, 'Context', [], { isContextDeclaration: true, collaborate: true, execute: false }),
     },
     rootNodeId: ROOT,
-    ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP] },
+    ancestorRegistry: { [ROOT]: [], [STEP]: [ROOT], [BOUND]: [ROOT, STEP], [CTX]: [ROOT] },
   };
 }
 

@@ -167,28 +167,23 @@ describe('Workflow steps preserve the original node content', () => {
       expect(writeBackInstructions).toMatch(/CONTENT/);
     });
 
-    it('forbids replacing CONTENT with a summary of work that was done', async () => {
+    // The summary-replacement failure mode is structurally gone in both-mode:
+    // there is no submission to replace. The prompt reports through MCP tools.
+    it('contains no submit write-back — progress is recorded via mark_step_complete', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
-      expect(prompt).toMatch(/summary|what you did|what was done|done list/i);
+      expect(prompt).not.toContain('submit_step_output');
+      expect(prompt).toContain('mark_step_complete');
     });
 
-    it('forbids writing a "what was done" checklist in place of the original list', async () => {
+    it('explicitly states that only statuses should change, not the list items themselves', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
-      expect(prompt).toMatch(/do not (replace|overwrite|substitute).*(with|for) (a|the) (summary|checklist|list of|what was done)/i);
-    });
-
-    it('explicitly states that only status markers should change, not the list items themselves', async () => {
-      const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
-      const prompt = getTerminalPrompt(executeInTerminal);
-
-      expect(prompt).toContain('only change status markers');
+      expect(prompt).toContain('only change statuses');
     });
 
     it('explicitly forbids rewriting, reorganizing, or retitling the list', async () => {
@@ -207,12 +202,12 @@ describe('Workflow steps preserve the original node content', () => {
       expect(prompt).toContain('Skip items already marked [x]');
     });
 
-    it('allows appending a single child node for issues encountered', async () => {
+    it('records issues via add_child_node', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
-      expect(prompt).toContain('append a single new child node at the end');
+      expect(prompt).toContain('add_child_node');
     });
   });
 
@@ -290,7 +285,7 @@ describe('Workflow steps preserve the original node content', () => {
       expect(prompt).toContain('Refactor toast store to comply with conventions');
       expect(prompt).toContain('Move DOM side effects to a service');
       expect(prompt).toContain('Do NOT rewrite, reorganize, retitle');
-      expect(prompt).toContain('only change status markers');
+      expect(prompt).toContain('only change statuses');
     });
   });
 

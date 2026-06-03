@@ -6,6 +6,9 @@ import {
   resolveContextFlags,
   getContextDeclarations,
   getAppliedContextIdWithInheritance,
+  resolveStepMode,
+  MODE_POLICY,
+  StepMode,
 } from '../../shared/utils/permissionGate';
 import { isStructurallyAutonomous, resolveParentStepType } from '../../shared/utils/autonomousStepContext';
 
@@ -35,7 +38,7 @@ export interface WriteToolsDeps {
 export interface WriteTools {
   addChildNode(args: { sessionId: string; parent_id: string; content: string; position?: number }): Promise<ToolResult>;
   appendToNode(args: { sessionId: string; content: string }): Promise<ToolResult>;
-  markStepComplete(args: { sessionId: string; status: 'completed' | 'abandoned' }): Promise<ToolResult>;
+  markStepComplete(args: { sessionId: string; status: 'completed' | 'abandoned'; node_id?: string }): Promise<ToolResult>;
   announceStepDone(args: { sessionId: string }): Promise<ToolResult>;
   setNodeContent(args: { sessionId: string; content: string }): Promise<ToolResult>;
   deleteNode(args: { sessionId: string }): Promise<ToolResult>;
@@ -43,19 +46,7 @@ export interface WriteTools {
   setNodeMetadata(args: { sessionId: string; key: string; value: unknown }): Promise<ToolResult>;
 }
 
-const ADDITIVE_KINDS: ReadonlySet<MutationRequest['kind']> = new Set([
-  'add-child',
-  'append',
-  'mark-complete',
-]);
-
-type Authority = 'allowed' | 'no-context' | 'execute-only' | 'action-mode' | 'destructive-in-both';
-
-function checkAuthority(
-  state: TreeReadState,
-  boundNodeId: string,
-  kind: MutationRequest['kind'],
-): Authority {
+function resolveBoundStepMode(state: TreeReadState, boundNodeId: string): StepMode | 'no-context' {
   // No applied context (own or inherited) means no explicit grant of write authority.
   // Writes default to denied — action mode does not bind, so a bound session reaching
   // a context-less node is an inconsistent state we should refuse rather than fall
@@ -64,12 +55,7 @@ function checkAuthority(
   if (!contextId) return 'no-context';
 
   const declarations = getContextDeclarations(state.nodes);
-  const flags = resolveContextFlags(contextId, state.nodes, declarations);
-
-  if (!flags.collaborate && flags.execute) return 'execute-only';
-  if (!flags.collaborate && !flags.execute) return 'action-mode';
-  if (flags.execute && !ADDITIVE_KINDS.has(kind)) return 'destructive-in-both';
-  return 'allowed';
+  return resolveStepMode(resolveContextFlags(contextId, state.nodes, declarations));
 }
 
 function isAutomatic(nodeId: string, state: TreeReadState): boolean {
@@ -104,40 +90,59 @@ async function resolveBoundState(deps: WriteToolsDeps, sessionId: string): Promi
   return { ok: true, boundNodeId, state: read.state };
 }
 
+function isWithinBoundSubtree(state: TreeReadState, boundNodeId: string, nodeId: string): boolean {
+  if (nodeId === boundNodeId) return true;
+  if (!state.nodes[nodeId]) return false;
+  return (state.ancestorRegistry[nodeId] ?? []).includes(boundNodeId);
+}
+
 async function executeMutation(
   deps: WriteToolsDeps,
   sessionId: string,
   request: MutationRequest,
+  targetNodeId?: string,
 ): Promise<ToolResult> {
   const resolved = await resolveBoundState(deps, sessionId);
   if (!resolved.ok) return resolved.error;
   const { boundNodeId, state } = resolved;
 
-  const authority = checkAuthority(state, boundNodeId, request.kind);
-  if (authority === 'no-context') {
+  const mode = resolveBoundStepMode(state, boundNodeId);
+  if (mode === 'no-context') {
     return err('No context is applied to the bound step. Tree-modifying tools require an explicitly applied context.');
   }
-  if (authority === 'execute-only') {
-    return err('This is an execute-only step — the current step does not permit node modifications.');
-  }
-  if (authority === 'action-mode') {
-    return err('This is an action-mode step (neither execute nor collaborate set). Tree-modifying tools are not permitted.');
-  }
-  if (authority === 'destructive-in-both') {
-    return err('In execute-and-collaborate mode, only additions and check-offs are allowed; other mutations are blocked.');
+
+  // The policy table draws the route distinction: direct-apply (autonomous)
+  // and proposal (manual/checkpoint) routes carry separate kind allowances,
+  // because the proposal queue is user-reviewed while direct applies are not.
+  const automatic = isAutomatic(boundNodeId, state);
+  const allowedKinds = automatic
+    ? MODE_POLICY[mode].directApplyMutationKinds
+    : MODE_POLICY[mode].proposalMutationKinds;
+  if (!allowedKinds.includes(request.kind)) {
+    return err(MODE_POLICY[mode].mutationRefusal);
   }
 
-  if (!isAutomatic(boundNodeId, state)) {
+  let mutationNodeId = boundNodeId;
+  if (targetNodeId !== undefined && targetNodeId !== boundNodeId) {
+    if (!isWithinBoundSubtree(state, boundNodeId, targetNodeId)) {
+      return err(
+        `node_id ${targetNodeId} does not resolve to a node within the bound subtree rooted at ${boundNodeId}.`,
+      );
+    }
+    mutationNodeId = targetNodeId;
+  }
+
+  if (!automatic) {
     const proposal = await deps.proposalSubmitter.submit({
       sessionId,
-      nodeId: boundNodeId,
+      nodeId: mutationNodeId,
       request,
     });
     if (!proposal.ok) return err(proposal.error);
     return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
   }
 
-  const result = await deps.treeMutator.mutate(sessionId, boundNodeId, request);
+  const result = await deps.treeMutator.mutate(sessionId, mutationNodeId, request);
   if (!result.ok) {
     return err(result.error);
   }
@@ -152,18 +157,13 @@ async function executeAnnounceStepDone(
   if (!resolved.ok) return resolved.error;
   const { boundNodeId, state } = resolved;
 
-  const contextId = getAppliedContextIdWithInheritance(boundNodeId, state.nodes, state.ancestorRegistry);
-  if (!contextId) {
-    return err('No context is applied to the bound step. announce_step_done requires an explicitly applied execute-only or action-mode context.');
+  const mode = resolveBoundStepMode(state, boundNodeId);
+  if (mode === 'no-context') {
+    return err('No context is applied to the bound step. announce_step_done requires an explicitly applied context whose mode completes via announce.');
   }
 
-  const declarations = getContextDeclarations(state.nodes);
-  const flags = resolveContextFlags(contextId, state.nodes, declarations);
-
-  if (flags.collaborate) {
-    return err(
-      'announce_step_done is not valid when the applied context has collaborate=true — the step expects content for user review. Call submit_step_output with your updated content instead.',
-    );
+  if (MODE_POLICY[mode].completionTool !== 'announce_step_done') {
+    return err(MODE_POLICY[mode].announceRefusal ?? 'announce_step_done is not valid for this step mode.');
   }
 
   // A checkpoint is the natural home for an action-mode done-signal: there is no
@@ -197,7 +197,7 @@ export function createWriteTools(deps: WriteToolsDeps): WriteTools {
     appendToNode: (args) =>
       executeMutation(deps, args.sessionId, { kind: 'append', content: args.content }),
     markStepComplete: (args) =>
-      executeMutation(deps, args.sessionId, { kind: 'mark-complete', status: args.status }),
+      executeMutation(deps, args.sessionId, { kind: 'mark-complete', status: args.status }, args.node_id),
     announceStepDone: (args) => executeAnnounceStepDone(deps, args.sessionId),
     setNodeContent: (args) =>
       executeMutation(deps, args.sessionId, { kind: 'set-content', content: args.content }),

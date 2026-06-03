@@ -304,16 +304,21 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
   const WORKFLOW = 'wwwwwwww-wwww-wwww-wwww-wwwwwwwwww09';
   const STEP = 'ssssssss-ssss-ssss-ssss-ssssssssss08';
   const WORKING = 'wwwwwwww-wwww-wwww-wwww-wwwwwwwwww10';
+  const WORKFLOW_CTX = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx11';
 
+  // Workflow sends always carry an applied context — the working node here
+  // rides a pure-collaborate one so the submit mode gate passes and these
+  // tests keep pinning the routing (apply vs proposal), not the gate.
   function makeWorkflowState(stepType: StepType | undefined): TreeReadState {
     const stepMetadata: TreeNode['metadata'] = {};
     if (stepType !== undefined) stepMetadata.stepType = stepType;
     return {
       nodes: {
-        [ROOT]: makeNode(ROOT, 'Root', [WORKFLOW]),
+        [ROOT]: makeNode(ROOT, 'Root', [WORKFLOW, WORKFLOW_CTX]),
         [WORKFLOW]: makeNode(WORKFLOW, 'Workflow', [STEP], { isWorkflow: true }),
         [STEP]: makeNode(STEP, 'Step', [WORKING], stepMetadata),
-        [WORKING]: makeNode(WORKING, 'Working node content', []),
+        [WORKING]: makeNode(WORKING, 'Working node content', [], { appliedContextId: WORKFLOW_CTX }),
+        [WORKFLOW_CTX]: makeNode(WORKFLOW_CTX, 'Review context', [], { isContextDeclaration: true, collaborate: true, execute: false }),
       },
       rootNodeId: ROOT,
       ancestorRegistry: {
@@ -321,6 +326,7 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
         [WORKFLOW]: [ROOT],
         [STEP]: [ROOT, WORKFLOW],
         [WORKING]: [ROOT, WORKFLOW, STEP],
+        [WORKFLOW_CTX]: [ROOT],
       },
     };
   }
@@ -368,7 +374,10 @@ describe('createSubmitOutputTool — bound working-node under an autonomous step
   });
 });
 
-describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
+// Submit is gated to pure collaborate: in execute-bearing modes the rebuild
+// would silently overwrite incremental writes recorded during the run, so
+// those modes are refused toward announce_step_done.
+describe('createSubmitOutputTool — mode-gated on automatic steps (pure collaborate only)', () => {
   function makeStateWithFlags(collaborate: boolean, execute: boolean): TreeReadState {
     return {
       nodes: {
@@ -401,18 +410,20 @@ describe('createSubmitOutputTool — mode-agnostic on automatic steps', () => {
     expect(applier.apply).toHaveBeenCalled();
   });
 
-  it('execute-only mode allows submit_step_output on an automatic step (this is the output channel, not a tree-mutation)', async () => {
+  it('execute-only mode refuses submit_step_output, directing to announce_step_done', async () => {
     const { tool, applier } = makeToolFor(false, true);
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
-    expect(result.isError).toBeFalsy();
-    expect(applier.apply).toHaveBeenCalled();
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/announce_step_done/);
+    expect(applier.apply).not.toHaveBeenCalled();
   });
 
-  it('collaborate+execute mode allows submit_step_output on an automatic step', async () => {
+  it('collaborate+execute mode refuses submit_step_output — the rebuild would wipe mid-run incremental additions', async () => {
     const { tool, applier } = makeToolFor(true, true);
     const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
-    expect(result.isError).toBeFalsy();
-    expect(applier.apply).toHaveBeenCalled();
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toMatch(/announce_step_done/);
+    expect(applier.apply).not.toHaveBeenCalled();
   });
 });
 

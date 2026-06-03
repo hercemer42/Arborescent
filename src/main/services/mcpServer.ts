@@ -145,21 +145,22 @@ export class ArborescentMcpServer {
       'mark_step_complete',
       {
         title: 'Mark bound step status',
-        description: 'Marks the bound step as completed or abandoned. Only allowed on automatic steps in collaborate or collaborate+execute mode.',
+        description: 'Marks the bound step — or, via node_id, an individual item within its subtree — as completed or abandoned. Allowed in collaborate+execute mode (direct on autonomous steps, proposed for review on manual/checkpoint); refused on autonomous collaborate-only steps, where status changes belong in the submit_step_output content.',
         inputSchema: {
           ...sessionIdSchema,
-          status: z.enum(['completed', 'abandoned']).describe('New status for the bound step'),
+          status: z.enum(['completed', 'abandoned']).describe('New status for the target node'),
+          node_id: z.string().min(1).optional().describe('Optional node to mark; must be within the bound subtree. Defaults to the bound step itself. Resolve ids with get_tree.'),
         },
       },
-      async (args) => tools.markStepComplete({ sessionId: args.session_id, status: args.status }),
+      async (args) => tools.markStepComplete({ sessionId: args.session_id, status: args.status, node_id: args.node_id }),
     );
 
     mcp.registerTool(
       'announce_step_done',
       {
-        title: 'Announce action step complete',
+        title: 'Announce step complete',
         description:
-          'Signals that an autonomous or checkpoint workflow step has finished. Use this when the applied context is execute-only or pure action-mode (no content to submit). On a checkpoint, the subject is marked complete and the step then pauses for user validation rather than auto-advancing. Rejected on manual steps (UI-only) and when the applied context has collaborate=true — those steps require submit_step_output with the reviewed content.',
+          'Signals that an autonomous or checkpoint workflow step has finished. Use this for every mode except pure collaborate: collaborate+execute (incremental changes are already recorded), execute-only, and action-mode. On a checkpoint, the subject is marked complete and the step then pauses for user validation rather than auto-advancing. Rejected on manual steps (UI-only) and on pure-collaborate steps — those complete via submit_step_output with the reviewed content.',
         inputSchema: sessionIdSchema,
       },
       async (args) => tools.announceStepDone({ sessionId: args.session_id }),
@@ -245,7 +246,7 @@ export class ArborescentMcpServer {
       {
         title: 'Submit step output',
         description:
-          'Submits the assistant response back to the bound Arborescent node. The binding comes from any Arborescent send (a one-off send-to-terminal, or a workflow step). If the bound node sits under an autonomous workflow step, the content is applied directly to the node. Otherwise — manual sends, and manual/checkpoint workflow steps — the content appears in the feedback panel for the user to review and accept or reject; call again with revised content to refresh the panel. Applied regardless of context mode flags.',
+          'Submits the assistant response back to the bound Arborescent node. The binding comes from any Arborescent send (a one-off send-to-terminal, or a workflow step). If the bound node sits under an autonomous workflow step, the content is applied directly to the node. Otherwise — manual sends, and manual/checkpoint workflow steps — the content appears in the feedback panel for the user to review and accept or reject; call again with revised content to refresh the panel. On workflow steps this is the pure-collaborate completion channel only: refused when the applied context has execute enabled or neither flag set — those steps complete via announce_step_done.',
         inputSchema: {
           session_id: z.string().min(1).describe('Claude Code session ID'),
           content: z.string().describe('Assistant response content to apply to the bound node'),

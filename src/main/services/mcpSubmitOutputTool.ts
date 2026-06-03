@@ -4,6 +4,13 @@ import { OneShotTargetStore } from './oneShotTargetStore';
 import { ProposalSubmitter } from './mcpProposalBridge';
 import { logger } from './logger';
 import { isStructurallyAutonomous } from '../../shared/utils/autonomousStepContext';
+import {
+  resolveContextFlags,
+  getContextDeclarations,
+  getAppliedContextIdWithInheritance,
+  resolveStepMode,
+  MODE_POLICY,
+} from '../../shared/utils/permissionGate';
 
 export interface StepOutputApplier {
   apply(
@@ -67,6 +74,24 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return treeReadFailure(read.kind, sessionId, boundNodeId);
       }
       const state = read.state;
+
+      // Mode gate: submit_step_output is the collaborate completion channel
+      // only. One-shot manual sends (pendingTarget) bypass the gate — they
+      // have no workflow step, route to the user-reviewed feedback panel, and
+      // must keep working regardless of the target node's context.
+      if (!pendingTarget) {
+        const contextId = getAppliedContextIdWithInheritance(boundNodeId, state.nodes, state.ancestorRegistry);
+        if (!contextId) {
+          logger.warn(`submit_step_output session=${sessionId} node=${boundNodeId} refused=no-context`, 'McpSubmit');
+          return err('No context is applied to the bound step. submit_step_output requires an explicitly applied collaborate context.');
+        }
+        const mode = resolveStepMode(resolveContextFlags(contextId, state.nodes, getContextDeclarations(state.nodes)));
+        const policy = MODE_POLICY[mode];
+        if (policy.completionTool !== 'submit_step_output') {
+          logger.warn(`submit_step_output session=${sessionId} node=${boundNodeId} refused=mode mode=${mode}`, 'McpSubmit');
+          return err(policy.submitRefusal ?? 'submit_step_output is not permitted for this step mode.');
+        }
+      }
 
       if (!isStructurallyAutonomous(boundNodeId, state)) {
         if (targetNodeId && targetNodeId !== boundNodeId) {

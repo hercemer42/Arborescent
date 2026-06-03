@@ -145,55 +145,59 @@ describe('send prompt — write-back disambiguation', () => {
   });
 
   describe('execute-mode terminal prompt', () => {
-    it('tells the AI to preserve the CONTENT list and only change status markers', async () => {
+    // The submission-mangling failure modes these tests guarded (summary
+    // replacement, CONTEXT echo, root re-prefixing) are structurally gone in
+    // both-mode: there is no submission. The prompt pins the incremental
+    // contract instead.
+    it('tells the AI to preserve the CONTENT list and only change statuses', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/only change status markers/);
+      expect(prompt).toMatch(/only change statuses/);
     });
 
-    it('tells the AI NOT to replace CONTENT with a "what was done" summary', async () => {
+    it('contains no submit_step_output write-back and reports via mark_step_complete', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/Do NOT replace the CONTENT list with a summary/);
+      expect(prompt).not.toContain('submit_step_output');
+      expect(prompt).toContain('mark_step_complete');
     });
 
-    it('explicitly forbids including the CONTEXT or INSTRUCTIONS sections in the submission', async () => {
+    it('instructs resolving item node ids via get_tree before ticking', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/Do NOT include the CONTEXT or INSTRUCTIONS sections/i);
+      expect(prompt).toContain('get_tree');
     });
 
-    it('tells the AI the submission root MUST be the CONTENT root (not a re-emitted CONTEXT root)', async () => {
+    it('records issues via add_child_node instead of appending to a resubmitted list', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/submission's root heading MUST be the CONTENT section's root/i);
+      expect(prompt).toContain('add_child_node');
     });
 
-    it('forbids re-prefixing the root heading (the doubled "# [x] # [x]" stutter shape)', async () => {
+    it('omits the markdown list output-format scaffolding that would contradict the MCP channel', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
-      expect(prompt).toMatch(/do NOT wrap it under a new heading or repeat the/i);
-      expect(prompt).toMatch(/must not itself begin with `#`/i);
+      expect(prompt).not.toContain('Must have exactly one root node');
     });
   });
 

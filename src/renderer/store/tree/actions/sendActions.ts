@@ -11,6 +11,7 @@ import {
   ContextFlags,
 } from '../../../utils/nodeHelpers';
 import { BASE_INSTRUCTION_RULES, STEP_CONTEXT_FRAMING, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
+import { resolveStepMode, MODE_POLICY } from '../../../../shared/utils/permissionGate';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
 import {
@@ -167,18 +168,14 @@ function buildExecuteOnlyOutputTarget(isAutonomous: boolean): string {
   return `IMPORTANT: Make the requested code changes in the codebase. Report what you did in your terminal output.${announceLine}`;
 }
 
-function buildBothOutputTarget(targetNodeId: string = ''): string {
-  const targetClause = targetNodeId
-    ? `\n- Pass target_node_id="${targetNodeId}" on the submit_step_output call so the server can verify the binding has not drifted; the call is rejected without it`
-    : '';
-  return `IMPORTANT: Make the requested code changes in the codebase. Then submit the updated CONTENT list with completed items marked [x] and failed items [-] by calling the arborescent submit_step_output MCP tool with your session_id and the updated list as the content argument. Do not write to any file.${targetClause}
-- Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
-- Do NOT replace the CONTENT list with a summary of what you did or a "what was done" checklist
-- Do NOT include the CONTEXT or INSTRUCTIONS sections in the submission — only the updated CONTENT list
-- The submission's root heading MUST be the CONTENT section's root: reuse that exact heading line and change only its status marker (e.g. \`# [ ] Title\` → \`# [x] Title\`) — do NOT wrap it under a new heading or repeat the \`#\`/\`[ ]\`/\`[x]\` prefix (the root title text must not itself begin with \`#\` or a \`[ ]\`/\`[x]\` marker), and never re-emit the CONTEXT root
+function buildBothOutputTarget(isAutonomous: boolean): string {
+  const announceLine = isAutonomous ? `\n${ANNOUNCE_STEP_DONE_INSTRUCTION}` : '';
+  return `IMPORTANT: Make the requested code changes in the codebase. This step records progress incrementally through the arborescent MCP tools — there is no list to resubmit, and do not write to any file.
+- First call get_tree with your session_id to resolve the node ids of the CONTENT items
+- Mark each completed item by calling mark_step_complete with your session_id, the item's node_id, and status "completed"; mark failed items with status "abandoned"
 - Skip items already marked [x]
-- If issues were encountered, append a single new child node at the end of the list describing them
-${SUBMIT_ONCE_INSTRUCTION}`;
+- Do NOT rewrite, reorganize, retitle existing items — only change statuses
+- If issues were encountered, record them once by calling add_child_node with the bound step as parent_id${announceLine}`;
 }
 
 function buildTerminalCollaboratePrompt(reviewContext: string, content: string, decomposition: boolean = false, isAutonomous: boolean = false, targetNodeId: string = ''): string {
@@ -212,9 +209,12 @@ Then continue working and summarize your questions at the end of your output. Th
 Only use this if there are genuine issues — do not use it for minor concerns.`;
 }
 
-function buildExecuteInstructions(executeContext: string, outputTarget: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false): string {
+function buildExecuteInstructions(executeContext: string, outputTarget: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false, includeOutputFormat: boolean = true): string {
   const needsReview = includeNeedsReview ? `\n${buildNeedsReviewInstruction(sessionId)}` : '';
   const inlineChecks = isAutonomous ? `\n${AUTONOMOUS_INLINE_CHECKS_CLAUSE}` : '';
+  // Both-mode steps report through MCP tools, not a returned list, so the
+  // markdown output-format scaffolding would contradict the output target.
+  const outputFormatSection = includeOutputFormat ? `${SINGLE_ROOT_OUTPUT_FORMAT}\n\n` : '';
   return `${BASE_INSTRUCTION_RULES}
 - Treat everything in CONTENT as the prompt to execute.
 - Making file changes, writing code, and running commands is expected and required.${inlineChecks}
@@ -224,14 +224,12 @@ ${STEP_CONTEXT_FRAMING}
 
 ${executeContext.trimEnd()}
 
-${SINGLE_ROOT_OUTPUT_FORMAT}
-
-${outputTarget}${needsReview}`;
+${outputFormatSection}${outputTarget}${needsReview}`;
 }
 
-function buildTerminalBothPrompt(executeContext: string, content: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false, targetNodeId: string = ''): string {
-  const outputTarget = buildBothOutputTarget(targetNodeId);
-  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId, isAutonomous));
+function buildTerminalBothPrompt(executeContext: string, content: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false): string {
+  const outputTarget = buildBothOutputTarget(isAutonomous);
+  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId, isAutonomous, false));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
@@ -297,21 +295,25 @@ function buildSendPayloadBody(args: SendPayloadArgs): string {
     return instructionContext.trimEnd();
   }
 
-  const bothOn = flags.collaborate && flags.execute;
-  const executeOnly = flags.execute && !flags.collaborate;
+  // The prompt dispatch reads the same policy table the MCP gates enforce, so
+  // the completion channel a step is told to use is the one the server permits.
+  const mode = resolveStepMode(flags);
+  const completionTool = MODE_POLICY[mode].completionTool;
   const isAutonomous = target === 'autonomous-terminal';
   const includeNeedsReview = isAutonomous && flags.execute;
 
   switch (target) {
     case 'web':
-      if (bothOn) return buildWebExecutePrompt(instructionContext, nodeContent);
-      if (executeOnly) return buildWebExecuteOnlyPrompt(instructionContext, nodeContent);
+      if (mode === 'both') return buildWebExecutePrompt(instructionContext, nodeContent);
+      if (mode === 'execute') return buildWebExecuteOnlyPrompt(instructionContext, nodeContent);
       return buildWebCollaboratePrompt(instructionContext, nodeContent, decomposition);
     case 'terminal':
     case 'autonomous-terminal':
-      if (bothOn) return buildTerminalBothPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous, nodeId);
-      if (executeOnly) return buildTerminalExecuteOnlyPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous);
-      return buildTerminalCollaboratePrompt(instructionContext, nodeContent, decomposition, isAutonomous, nodeId);
+      if (completionTool === 'submit_step_output') {
+        return buildTerminalCollaboratePrompt(instructionContext, nodeContent, decomposition, isAutonomous, nodeId);
+      }
+      if (mode === 'both') return buildTerminalBothPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous);
+      return buildTerminalExecuteOnlyPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId, isAutonomous);
   }
 }
 

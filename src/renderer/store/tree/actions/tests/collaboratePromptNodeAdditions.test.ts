@@ -159,10 +159,13 @@ describe('collaborate prompt — node additions are permitted, not just status e
     });
   });
 
-  describe('collaborate & execute mode — additions are withheld (execute contract is status-only)', () => {
-    it('does not offer node additions, so it cannot contradict the execute output target', async () => {
+  // Both-mode works incrementally, so the prompt explicitly offers
+  // add_child_node for issues instead of withholding additions behind a
+  // full-list resubmit.
+  describe('collaborate & execute mode — additions ride the incremental channel', () => {
+    it('offers node additions via the add_child_node MCP tool', async () => {
       const prompt = await promptFor('both-ctx', { collaborate: true, execute: true });
-      expect(prompt).not.toMatch(PERMITS_ADDING_NODES);
+      expect(prompt).toContain('add_child_node');
     });
   });
 
