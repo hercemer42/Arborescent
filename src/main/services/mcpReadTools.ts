@@ -1,4 +1,5 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
+import { resolveBinding } from './bindingResolution';
 import { logger } from './logger';
 import { TreeNode } from '../../shared/types';
 import {
@@ -199,10 +200,11 @@ async function withBoundNode<T>(
   sessionId: string,
   fn: (boundNodeId: string, state: TreeReadState) => T | Promise<T>,
 ): Promise<ToolResult> {
-  const boundNodeId = deps.bindingRegistry.lookup(sessionId);
-  if (!boundNodeId) {
+  const resolved = resolveBinding({ bindingRegistry: deps.bindingRegistry }, sessionId, { oneShot: false });
+  if (!resolved) {
     return err(`No binding found for session ${sessionId}. The session is not bound to any node.`);
   }
+  const boundNodeId = resolved.nodeId;
   const read = await deps.treeReader.readState(sessionId, boundNodeId);
   if (read.kind !== 'ok') {
     return treeReadFailure(read.kind, sessionId, boundNodeId);

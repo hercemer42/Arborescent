@@ -1,4 +1,5 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
+import { resolveBinding } from './bindingResolution';
 import { TreeReader, TreeReadState, ToolResult, treeReadFailure } from './mcpReadTools';
 import { ProposalSubmitter } from './mcpProposalBridge';
 import { OneShotTargetStore } from './oneShotTargetStore';
@@ -74,15 +75,16 @@ function err(message: string): ToolResult {
   return { content: [{ type: 'text', text: message }], isError: true };
 }
 
-type ResolvedBinding =
+type ResolvedBoundState =
   | { ok: true; boundNodeId: string; state: TreeReadState }
   | { ok: false; error: ToolResult };
 
-async function resolveBoundState(deps: WriteToolsDeps, sessionId: string): Promise<ResolvedBinding> {
-  const boundNodeId = deps.bindingRegistry.lookup(sessionId);
-  if (!boundNodeId) {
+async function resolveBoundState(deps: WriteToolsDeps, sessionId: string): Promise<ResolvedBoundState> {
+  const resolved = resolveBinding({ bindingRegistry: deps.bindingRegistry }, sessionId, { oneShot: false });
+  if (!resolved) {
     return { ok: false, error: err(`No binding found for session ${sessionId}. The session is not bound to any node.`) };
   }
+  const boundNodeId = resolved.nodeId;
   const read = await deps.treeReader.readState(sessionId, boundNodeId);
   if (read.kind !== 'ok') {
     return { ok: false, error: treeReadFailure(read.kind, sessionId, boundNodeId) };

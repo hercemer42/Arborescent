@@ -1,4 +1,5 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
+import { resolveBinding } from './bindingResolution';
 import { TreeReader, ToolResult, treeReadFailure } from './mcpReadTools';
 import { OneShotTargetStore } from './oneShotTargetStore';
 import { ProposalSubmitter } from './mcpProposalBridge';
@@ -58,9 +59,12 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return ok({ applied: false, reason: 'safety-net no-op — explicit submit_step_output required for completion' });
       }
 
-      const pendingTarget = deps.oneShotTargetStore.pendingTarget(sessionId);
-      const boundNodeId = pendingTarget ?? deps.bindingRegistry.lookup(sessionId);
-      if (!boundNodeId) {
+      const resolved = resolveBinding(
+        { bindingRegistry: deps.bindingRegistry, oneShotTargetStore: deps.oneShotTargetStore },
+        sessionId,
+        { oneShot: true },
+      );
+      if (!resolved) {
         logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false reason=unbound`, 'McpSubmit');
         return ok({
           applied: false,
@@ -69,6 +73,8 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         });
       }
 
+      const boundNodeId = resolved.nodeId;
+
       const read = await deps.treeReader.readState(sessionId, boundNodeId);
       if (read.kind !== 'ok') {
         return treeReadFailure(read.kind, sessionId, boundNodeId);
@@ -76,10 +82,10 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
       const state = read.state;
 
       // Mode gate: submit_step_output is the collaborate completion channel
-      // only. One-shot manual sends (pendingTarget) bypass the gate — they
-      // have no workflow step, route to the user-reviewed feedback panel, and
-      // must keep working regardless of the target node's context.
-      if (!pendingTarget) {
+      // only. One-shot manual sends bypass the gate — they have no workflow
+      // step, route to the user-reviewed feedback panel, and must keep
+      // working regardless of the target node's context.
+      if (resolved.source !== 'one-shot') {
         const contextId = getAppliedContextIdWithInheritance(boundNodeId, state.nodes, state.ancestorRegistry);
         if (!contextId) {
           logger.warn(`submit_step_output session=${sessionId} node=${boundNodeId} refused=no-context`, 'McpSubmit');
