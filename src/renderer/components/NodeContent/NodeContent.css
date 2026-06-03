@@ -342,3 +342,22 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
+
+.broken-chain-indicator {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--red-500, #ef4444);
+  pointer-events: auto;
+}
+
+.checkbox-icon-wrapper .broken-chain-indicator {
+  right: -19px;
+}
+
+.blueprint-icon-wrapper .broken-chain-indicator {
+  right: -17px;
+}

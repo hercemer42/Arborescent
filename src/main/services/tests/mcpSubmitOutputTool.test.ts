@@ -557,3 +557,33 @@ describe('createSubmitOutputTool — submission logging records origin and appli
   });
 });
 
+describe('createSubmitOutputTool — fail-closed after the bound node is deleted (binding released)', () => {
+  it('a submit for a session whose binding was released (node deleted) returns applied=false and never writes', async () => {
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    // Simulate deletion of the bound node: releaseSessionBindings → clearSessionBindings
+    // unregisters the session in the authoritative registry.
+    made.registry.unregister('sess-1');
+    const tool = createSubmitOutputTool(made.deps);
+
+    const result = await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'late response' });
+
+    expect(result.isError).toBeFalsy();
+    const payload = JSON.parse(result.content[0].text);
+    expect(payload.applied).toBe(false);
+    expect(payload.reason).toMatch(/unbound|no binding|not bound/i);
+    expect(made.applier.apply).not.toHaveBeenCalled();
+  });
+
+  it('does not fall back to the former node — the released binding never resolves, so no tree read happens', async () => {
+    const made = makeDeps('autonomous');
+    made.registry.register('sess-1', BOUND);
+    made.registry.unregister('sess-1');
+    const tool = createSubmitOutputTool(made.deps);
+
+    await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
+
+    expect(made.treeReader.readState).not.toHaveBeenCalled();
+  });
+});
+

@@ -35,4 +35,24 @@ describe('findStoreOwningSession', () => {
     expect(findStoreOwningSession('sess-missing')).toBeNull();
     expect(findStoreOwningSession('')).toBeNull();
   });
+
+  it('routes each session to its own file even when two open files share the same node id (multi-file scoping)', () => {
+    // Both files contain a node with the SAME id; resolution keys off the unique
+    // sessionId via workflowSessionMap, never the node id, so a shared id can
+    // never cross-route. Regression anchor for the multi-file AC.
+    const sharedNodes = { 'dup-node': { id: 'dup-node', content: '', children: [], metadata: {} } };
+    const fileA = {
+      getState: () => ({ workflowSessionMap: { 'sess-A': 'term-1' }, nodes: sharedNodes }),
+    } as unknown as TreeStore;
+    const fileB = {
+      getState: () => ({ workflowSessionMap: { 'sess-B': 'term-2' }, nodes: sharedNodes }),
+    } as unknown as TreeStore;
+    entries.mockReturnValue([
+      { filePath: '/a.arbo', store: fileA },
+      { filePath: '/b.arbo', store: fileB },
+    ]);
+
+    expect(findStoreOwningSession('sess-A')).toBe(fileA);
+    expect(findStoreOwningSession('sess-B')).toBe(fileB);
+  });
 });

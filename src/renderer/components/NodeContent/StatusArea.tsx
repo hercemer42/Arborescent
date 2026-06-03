@@ -1,6 +1,6 @@
 import type { MouseEvent } from 'react';
 import { createElement } from 'react';
-import { Asterisk, Cog, Link, Pause, Play } from 'lucide-react';
+import { Asterisk, Cog, Link, Pause, Play, Unlink } from 'lucide-react';
 import type { TreeNode, NodeStatus } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import type { LucideIcon } from '../ui/CustomizeDialog/CustomizeDialog';
@@ -43,6 +43,23 @@ function WorkflowOverlay({ executionState, onStop }: WorkflowOverlayProps) {
     );
   }
   return null;
+}
+
+interface BrokenChainIndicatorProps {
+  broken: boolean;
+}
+
+function BrokenChainIndicator({ broken }: BrokenChainIndicatorProps) {
+  if (!broken) return null;
+  return (
+    <span
+      className="broken-chain-indicator"
+      title="Session link broken — re-send this node to reconnect"
+      aria-label="Session link broken"
+    >
+      <Unlink size={14} />
+    </span>
+  );
 }
 
 interface StatusAreaProps {
@@ -176,6 +193,7 @@ export function StatusArea({
           </span>
         )}
         <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} />
+        <BrokenChainIndicator broken={node.metadata.brokenChain === true} />
       </span>
     );
   }
@@ -187,6 +205,7 @@ export function StatusArea({
         onToggle={() => onToggleStatus(node.id)}
       />
       <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} />
+      <BrokenChainIndicator broken={node.metadata.brokenChain === true} />
     </span>
   );
 }

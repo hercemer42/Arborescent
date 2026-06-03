@@ -6,7 +6,7 @@ import { createTreeStore, type TreeStore } from '../../../store/tree/treeStore';
 import { createPartialMockActions } from '../../../test/helpers/mockStoreActions';
 import type { TreeNode } from '@shared/types';
 
-describe('broken-chain visual indicator removal', () => {
+describe('broken-chain visual indicator', () => {
   let store: TreeStore;
 
   const brokenNode: TreeNode = {
@@ -70,28 +70,14 @@ describe('broken-chain visual indicator removal', () => {
       </TreeStoreContext.Provider>,
     );
 
-  it('does not render a .broken-chain-indicator element on a node whose metadata.brokenChain is true', () => {
+  it('renders a .broken-chain-indicator on a node whose metadata.brokenChain is true', () => {
     const { container } = renderWithProvider(brokenNode);
-    expect(container.querySelector('.broken-chain-indicator')).not.toBeInTheDocument();
+    expect(container.querySelector('.broken-chain-indicator')).toBeInTheDocument();
   });
 
-  it('does not render a .broken-chain-indicator element on a node whose metadata.brokenChain is absent', () => {
+  it('does not render the indicator on a node whose metadata.brokenChain is absent', () => {
     const { container } = renderWithProvider(liveNode);
     expect(container.querySelector('.broken-chain-indicator')).not.toBeInTheDocument();
-  });
-
-  it('does not apply the .broken-chain class to .node-content when metadata.brokenChain is true', () => {
-    const { container } = renderWithProvider(brokenNode);
-    const nodeContent = container.querySelector('.node-content');
-    expect(nodeContent).toBeInTheDocument();
-    expect(nodeContent?.classList.contains('broken-chain')).toBe(false);
-  });
-
-  it('does not apply the .broken-chain class to .node-content when metadata.brokenChain is absent', () => {
-    const { container } = renderWithProvider(liveNode);
-    const nodeContent = container.querySelector('.node-content');
-    expect(nodeContent).toBeInTheDocument();
-    expect(nodeContent?.classList.contains('broken-chain')).toBe(false);
   });
 
   it('renders the node content text unchanged when brokenChain is true', () => {
@@ -99,8 +85,29 @@ describe('broken-chain visual indicator removal', () => {
     expect(getByText('Step with broken chain')).toBeInTheDocument();
   });
 
-  it('preserves the status checkbox on a broken-chain node — only the dot is removed, not other indicators', () => {
+  it('preserves the status checkbox alongside the broken-chain indicator', () => {
     const { container } = renderWithProvider(brokenNode);
     expect(container.querySelector('.checkbox-icon-wrapper')).toBeInTheDocument();
+    expect(container.querySelector('.broken-chain-indicator')).toBeInTheDocument();
+  });
+
+  it('clears the indicator once the binding is re-resolved (brokenChain removed)', () => {
+    const { container, rerender } = renderWithProvider(brokenNode);
+    expect(container.querySelector('.broken-chain-indicator')).toBeInTheDocument();
+
+    rerender(
+      <TreeStoreContext.Provider value={store}>
+        <NodeContent
+          node={{ ...brokenNode, metadata: { ...brokenNode.metadata, brokenChain: false } }}
+          depth={0}
+        />
+      </TreeStoreContext.Provider>,
+    );
+    expect(container.querySelector('.broken-chain-indicator')).not.toBeInTheDocument();
+  });
+
+  it('exposes the broken-chain state to assistive tech via an accessible name', () => {
+    const { getByLabelText } = renderWithProvider(brokenNode);
+    expect(getByLabelText('Session link broken')).toBeInTheDocument();
   });
 });

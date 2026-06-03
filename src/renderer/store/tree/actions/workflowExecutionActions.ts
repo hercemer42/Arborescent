@@ -2,6 +2,7 @@ import { TreeNode } from "../../../../shared/types";
 import { useToastStore } from "../../toast/toastStore";
 import { logger } from "../../../services/logger";
 import { AncestorRegistry, moveNodeInRegistry } from "../../../utils/ancestry";
+import { findLiveNodeWithSessionId } from "../selectors/activeSessionNodeId";
 import { VisualEffectsActions } from "./visualEffectsActions";
 import {
   isEligibleForExecution,
@@ -217,15 +218,6 @@ export const createWorkflowExecutionActions = (
     return originNodeId;
   }
 
-  function findNodeIdBySessionId(sessionId: string): string | null {
-    const { nodes } = get();
-    const sortedIds = Object.keys(nodes).sort();
-    for (const nodeId of sortedIds) {
-      if (nodes[nodeId]?.metadata.sessionId === sessionId) return nodeId;
-    }
-    return null;
-  }
-
   // The node that owns the live session currently running on the terminal. A
   // stale originNodeId (a "blue bar" with no live session) is intentionally not
   // treated as a binding — only an active session counts as a rebind target.
@@ -233,7 +225,7 @@ export const createWorkflowExecutionActions = (
     const { workflowSessionMap } = get();
     for (const [sessionId, boundTerminalId] of Object.entries(workflowSessionMap)) {
       if (boundTerminalId !== terminalId) continue;
-      const owner = findNodeIdBySessionId(sessionId);
+      const owner = findLiveNodeWithSessionId(get().nodes, sessionId);
       if (owner) return owner;
     }
     return null;
@@ -264,7 +256,7 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
-    const reattachNodeId = findNodeIdBySessionId(sessionId);
+    const reattachNodeId = findLiveNodeWithSessionId(get().nodes, sessionId);
     if (!reattachNodeId) return;
     terminalStore.updateTerminal(terminalId, { originNodeId: reattachNodeId });
     syncTerminalTitleFromNode(terminalId, get().nodes[reattachNodeId]);

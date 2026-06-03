@@ -80,7 +80,7 @@ function getSessionIndex(nodes: Record<string, TreeNode>): Map<string, string> {
   return index;
 }
 
-function findLiveNodeWithSessionId(
+export function findLiveNodeWithSessionId(
   nodes: Record<string, TreeNode> | undefined,
   sessionId: string,
 ): string | null {
