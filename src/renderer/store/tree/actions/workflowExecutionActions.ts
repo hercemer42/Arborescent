@@ -32,6 +32,12 @@ import { findAllParentsOf, removeNodeFromAllParents } from "../../../utils/treeI
 import { createDisruptionReactions } from "./workflowDisruptionReactions";
 import { createHookEventHandler, HookEventPayload } from "./workflowHookEventHandler";
 import { createClearSessionManager } from "./workflowClearSession";
+import { createAckRetryManager } from "./workflowAckManager";
+import {
+  findRunningNodeOnTerminal,
+  findCapturableNodeForTerminal,
+  findSessionBoundNodeForTerminal,
+} from "./terminalBindingResolution";
 import { createClaudeLaunchManager } from "./workflowClaudeLaunch";
 import {
   createSessionResumeManager,
@@ -100,71 +106,15 @@ export const createWorkflowExecutionActions = (
   invalidateUndoEntriesTouching?: (nodeIds: Set<string>) => void,
 ): WorkflowExecutionActions => {
   const MAX_RECURSE_ITERATIONS = 50;
-  const ACK_TIMEOUT_MS = 5000;
-  const ACK_RETRY_CAP = 3;
   const recurseCounters = new Map<string, number>();
   const recurseWithoutDecompositionWarned = new Set<string>();
   const lastAcceptedContentByNode = new Map<string, string>();
-  const pendingAcks = new Map<string, { terminalId: string; attempts: number; timer: ReturnType<typeof setTimeout> }>();
-  // ACKs that arrived before their pending entry was registered (the
-  // autonomousCollaborate promise had not yet resolved). Prevents the
-  // late-registered timer from firing a spurious retry.
-  const preconsumedAcks = new Set<string>();
 
-  function clearPendingAck(nodeId: string): void {
-    const entry = pendingAcks.get(nodeId);
-    if (entry) {
-      clearTimeout(entry.timer);
-      pendingAcks.delete(nodeId);
-    }
-    preconsumedAcks.delete(nodeId);
-  }
-
-  function consumePendingAck(nodeId: string): void {
-    const entry = pendingAcks.get(nodeId);
-    if (entry) {
-      clearTimeout(entry.timer);
-      pendingAcks.delete(nodeId);
-      return;
-    }
-    preconsumedAcks.add(nodeId);
-  }
-
-  function registerPendingAck(nodeId: string, terminalId: string): void {
-    if (preconsumedAcks.has(nodeId)) {
-      preconsumedAcks.delete(nodeId);
-      return;
-    }
-
-    const existing = pendingAcks.get(nodeId);
-    if (existing) clearTimeout(existing.timer);
-    const attempts = existing ? existing.attempts + 1 : 1;
-
-    const timer = setTimeout(() => {
-      if (attempts >= ACK_RETRY_CAP) {
-        failAckRetryCap(nodeId);
-      } else {
-        sendContentToTerminal(nodeId, terminalId);
-      }
-    }, ACK_TIMEOUT_MS);
-
-    pendingAcks.set(nodeId, { terminalId, attempts, timer });
-  }
-
-  function failAckRetryCap(nodeId: string): void {
-    const { nodes } = get();
-    const node = nodes[nodeId];
-    const nodeName = node?.content || nodeId;
-
-    clearPendingAck(nodeId);
-    stopWorkflow(nodeId);
-
-    useToastStore.getState().addToast(
-      `Workflow step "${nodeName}" could not be delivered after ${ACK_RETRY_CAP} attempts. Check that UserPromptSubmit is configured in ~/.claude/settings.json.`,
-      'error',
-    );
-    void notifyWorkflowEvent('alert', 'Workflow delivery failed', `"${nodeName}" could not be delivered`);
-  }
+  const ackManager = createAckRetryManager({
+    get,
+    sendContentToTerminal: (id, tid) => sendContentToTerminal(id, tid),
+    stopWorkflow: (id) => stopWorkflow(id),
+  });
 
   const clearSessionManager = createClearSessionManager({
     get,
@@ -179,58 +129,6 @@ export const createWorkflowExecutionActions = (
   });
 
   const sessionResumeManager = createSessionResumeManager({ get, set });
-
-  function findRunningNodeOnTerminal(terminalId: string): string | null {
-    const explicit = get().terminalNodeAssignments?.[terminalId];
-    if (explicit) return explicit;
-    const { workflowExecutionStates } = get();
-    for (const [nodeId, entry] of Object.entries(workflowExecutionStates)) {
-      if (
-        (entry.state === "running" || entry.state === "awaiting-validation") &&
-        entry.terminalTabId === terminalId
-      ) {
-        return nodeId;
-      }
-    }
-    return null;
-  }
-
-  function findCapturableNodeForTerminal(
-    terminalId: string,
-    incomingSessionId: string,
-  ): string | null {
-    const running = findRunningNodeOnTerminal(terminalId);
-    if (running) return running;
-    const originNodeId = useTerminalStore
-      .getState()
-      .terminals.find((t) => t.id === terminalId)?.originNodeId;
-    if (!originNodeId) return null;
-    const originNode = get().nodes[originNodeId];
-    if (!originNode) return null;
-    const bookmarked = originNode.metadata.sessionId;
-    if (
-      typeof bookmarked === 'string' &&
-      bookmarked.length > 0 &&
-      bookmarked !== incomingSessionId &&
-      originNode.metadata.brokenChain !== true
-    ) {
-      return null;
-    }
-    return originNodeId;
-  }
-
-  // The node that owns the live session currently running on the terminal. A
-  // stale originNodeId (a "blue bar" with no live session) is intentionally not
-  // treated as a binding — only an active session counts as a rebind target.
-  function findSessionBoundNodeForTerminal(terminalId: string): string | null {
-    const { workflowSessionMap } = get();
-    for (const [sessionId, boundTerminalId] of Object.entries(workflowSessionMap)) {
-      if (boundTerminalId !== terminalId) continue;
-      const owner = findLiveNodeWithSessionId(get().nodes, sessionId);
-      if (owner) return owner;
-    }
-    return null;
-  }
 
   function reattachOriginNodeForResumedSession(terminalId: string, sessionId: string): void {
     const terminalStore = useTerminalStore.getState();
@@ -384,7 +282,7 @@ export const createWorkflowExecutionActions = (
     terminalId: string,
     mode: "spawn" | "reattach" | "recurse",
   ): void {
-    const existingNodeId = findRunningNodeOnTerminal(terminalId);
+    const existingNodeId = findRunningNodeOnTerminal(get, terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
       useToastStore
         .getState()
@@ -405,7 +303,7 @@ export const createWorkflowExecutionActions = (
       if (usePendingRebindDialogStore.getState().isPending(terminalId)) {
         return;
       }
-      const boundNodeId = findSessionBoundNodeForTerminal(terminalId);
+      const boundNodeId = findSessionBoundNodeForTerminal(get, terminalId);
       if (boundNodeId && boundNodeId !== nodeId) {
         requestWorkflowStartRebind(terminalId, boundNodeId, nodeId, mode);
         return;
@@ -502,7 +400,7 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
-    clearPendingAck(nodeId);
+    ackManager.clearPendingAck(nodeId);
     clearSessionManager.clearPending(nodeId);
     claudeLaunchManager.clearPending(nodeId);
     lastAcceptedContentByNode.delete(nodeId);
@@ -539,7 +437,7 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
-    const existingNodeId = findRunningNodeOnTerminal(terminalId);
+    const existingNodeId = findRunningNodeOnTerminal(get, terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
       useToastStore
         .getState()
@@ -581,7 +479,7 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
-    const existingNodeId = findRunningNodeOnTerminal(terminalId);
+    const existingNodeId = findRunningNodeOnTerminal(get, terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
       useToastStore
         .getState()
@@ -982,7 +880,7 @@ export const createWorkflowExecutionActions = (
       }
 
       autonomousCollaborateInTerminal(nodeId, terminalId, flags, stepContextOverride, bindingSource).then(() => {
-        registerPendingAck(nodeId, terminalId);
+        ackManager.registerPendingAck(nodeId, terminalId);
       }).catch((error) => {
         logger.error(
           "Failed to send to terminal",
@@ -1029,8 +927,8 @@ export const createWorkflowExecutionActions = (
     }
     updatedMap[trimmed] = terminalId;
 
-    const runningNodeId = findRunningNodeOnTerminal(terminalId);
-    const captureNodeId = findCapturableNodeForTerminal(terminalId, trimmed);
+    const runningNodeId = findRunningNodeOnTerminal(get, terminalId);
+    const captureNodeId = findCapturableNodeForTerminal(get, terminalId, trimmed);
     const nodesWithCapture = captureNodeId
       ? captureSessionOnNode(nodes, captureNodeId, trimmed)
       : nodes;
@@ -1079,8 +977,8 @@ export const createWorkflowExecutionActions = (
   const handleHookEvent = createHookEventHandler({
     get,
     set,
-    findRunningNodeOnTerminal,
-    consumePendingAck,
+    findRunningNodeOnTerminal: (terminalId) => findRunningNodeOnTerminal(get, terminalId),
+    consumePendingAck: ackManager.consumePendingAck,
     advanceNode,
     completeWorkflow,
     stopWorkflow,
@@ -1101,10 +999,7 @@ export const createWorkflowExecutionActions = (
       }
     }
 
-    for (const nodeId of Array.from(pendingAcks.keys())) {
-      clearPendingAck(nodeId);
-    }
-    preconsumedAcks.clear();
+    ackManager.clearAll();
 
     clearSessionManager.clearAllPending();
 
@@ -1130,7 +1025,7 @@ export const createWorkflowExecutionActions = (
   const disruptionReactions = createDisruptionReactions({
     get,
     set,
-    clearPendingAck,
+    clearPendingAck: ackManager.clearPendingAck,
     clearPendingClear: clearSessionManager.clearPending,
     clearPendingLaunch: claudeLaunchManager.clearPending,
     clearLastAcceptedContent: (nodeId) => lastAcceptedContentByNode.delete(nodeId),
