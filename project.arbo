@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-03T20:14:00.385Z'
+updated: '2026-06-03T20:14:50.142Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25649,8 +25649,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - 4f0782b5-830f-4ddf-870a-827c5f4ca28c
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -124631,6 +124630,7 @@ nodes:
     content: Merge to master
     children:
       - 01cff27f-daa2-48ac-990f-1031db9cc5cb
+      - 4f0782b5-830f-4ddf-870a-827c5f4ca28c
     metadata:
       status: pending
       isBlueprint: true
@@ -185515,16 +185515,17 @@ nodes:
     id: 4f0782b5-830f-4ddf-870a-827c5f4ca28c
     content: User story 3 — Close the one-shot/autonomous gating gap (route to proposal)
     children:
-      - a36ba8b0-405d-419e-9c6a-3ceb4eb8dd32
-      - d91adb73-3748-468a-a854-126160ed88ce
-      - 73af7e50-4f83-4328-a25a-dd7a926e0b62
-      - b46a4275-38c9-4db2-8ac6-bb43711a6a7f
-      - bf924e59-e038-4505-af2d-db0a5e269dee
-      - 4997351c-8816-42e2-9c8d-9c4ecedd53e0
-      - d7ff4a84-8a30-4e34-967a-260fe1e143d2
-      - 7c8a9872-089e-494c-9c03-fafb985faf95
-      - 4b37ffdf-a2b4-4958-a6b9-fb37c4a293ea
-      - 7e4a3bfc-e462-447e-928c-da19fd1b0d57
+      - 98e149c5-b9c1-4b1c-8cf6-c318610a503a
+      - e2a2778d-3943-46f0-ac65-c9eb5bf14a20
+      - 2bb094e4-e67b-458b-a1e7-d1faa18aa597
+      - 2e65d6e5-3c5d-4859-b093-245f83e8d89f
+      - 818f2845-e365-4859-8fc0-2db3c6f17d84
+      - 20035a42-2d95-4e73-b858-8e3c876fa78a
+      - 44e8f49d-fb6a-471d-96f6-124daccc97e5
+      - 70f1ff8c-5141-45f3-be9b-c41990aca907
+      - d59a4e2c-14ac-4fc0-ad24-97cead629dd3
+      - df9c8511-d558-4e15-b2c5-8e0ad062edc6
+      - 8371918e-85fa-4c16-9cc3-910663201bad
     metadata:
       status: pending
       expanded: false
@@ -188423,726 +188424,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a36ba8b0-405d-419e-9c6a-3ceb4eb8dd32:
-    id: a36ba8b0-405d-419e-9c6a-3ceb4eb8dd32
-    content: worktree
-    children:
-      - 16e2cc91-c293-411d-8c97-8f19381bcf17
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  16e2cc91-c293-411d-8c97-8f19381bcf17:
-    id: 16e2cc91-c293-411d-8c97-8f19381bcf17
-    content: vscode://file/Users/brianfox/dev/Arborescent-oneshot-autonomous-routing
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d91adb73-3748-468a-a854-126160ed88ce:
-    id: d91adb73-3748-468a-a854-126160ed88ce
-    content: 📄 Product spec
-    children:
-      - 1302683a-52cb-464c-857e-5715ad3b8303
-      - 53deffd2-51a5-48a5-96ad-47e6057130e1
-      - ce6d1ce5-4fb1-43b1-90ab-d938bbac690c
-      - a780c2f1-5052-4ac3-8cdc-bdaa61e87543
-      - 6bca886d-7f5b-4d6c-aaf0-0b83c54e7413
-      - e14284cb-edf6-4e79-bfcd-8e50815423e9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1302683a-52cb-464c-857e-5715ad3b8303:
-    id: 1302683a-52cb-464c-857e-5715ad3b8303
-    content: Context
-    children:
-      - 92ed072c-1721-48c2-98d9-11572dcb7ff4
-      - 2c77928d-292e-41a2-a0a1-65f22044d5fd
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  92ed072c-1721-48c2-98d9-11572dcb7ff4:
-    id: 92ed072c-1721-48c2-98d9-11572dcb7ff4
-    content: The mode gate is guarded by !pendingTarget, so a one-shot manual send onto a node under an autonomous step bypasses the gate and reaches the rebuilding applier, dropping out-of-band add_child_node children added earlier in the turn
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c77928d-292e-41a2-a0a1-65f22044d5fd:
-    id: 2c77928d-292e-41a2-a0a1-65f22044d5fd
-    content: This is the one data-loss path that survived the landed tool-gating fix — the problem merge-not-replace was meant to solve, still open on the manual-send route
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  53deffd2-51a5-48a5-96ad-47e6057130e1:
-    id: 53deffd2-51a5-48a5-96ad-47e6057130e1
-    content: User
-    children:
-      - b688f59b-af4d-49ca-96b5-8d5bc73cff5b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b688f59b-af4d-49ca-96b5-8d5bc73cff5b:
-    id: b688f59b-af4d-49ca-96b5-8d5bc73cff5b
-    content: The human at the terminal performing a deliberate one-shot manual send toward a workflow tree
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ce6d1ce5-4fb1-43b1-90ab-d938bbac690c:
-    id: ce6d1ce5-4fb1-43b1-90ab-d938bbac690c
-    content: Current experience
-    children:
-      - aa857956-005e-4bcc-844c-e0212cd38674
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa857956-005e-4bcc-844c-e0212cd38674:
-    id: aa857956-005e-4bcc-844c-e0212cd38674
-    content: The send silently succeeds but destroys children created out-of-band during the turn, with no warning or trace
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a780c2f1-5052-4ac3-8cdc-bdaa61e87543:
-    id: a780c2f1-5052-4ac3-8cdc-bdaa61e87543
-    content: Goal
-    children:
-      - 1828d052-1cb8-4687-9631-1bd903e839bb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1828d052-1cb8-4687-9631-1bd903e839bb:
-    id: 1828d052-1cb8-4687-9631-1bd903e839bb
-    content: A one-shot send targeting a structurally autonomous node routes to the proposal/feedback panel instead of the rebuilding applier, so data survives and the human reviews the change
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6bca886d-7f5b-4d6c-aaf0-0b83c54e7413:
-    id: 6bca886d-7f5b-4d6c-aaf0-0b83c54e7413
-    content: Business rules
-    children:
-      - 529e469a-d6d8-44a4-a787-f7351cd03abd
-      - 9d6cbab1-cf76-4a8d-9cff-d5b70409d4da
-      - 3c0c597d-50c4-493d-a811-c265c95342df
-      - 85710764-536e-483e-bce3-1c3b8a9537fc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  529e469a-d6d8-44a4-a787-f7351cd03abd:
-    id: 529e469a-d6d8-44a4-a787-f7351cd03abd
-    content: When pendingTarget is set and the resolved node is structurally autonomous, the send routes to the proposal/feedback panel, never the rebuilding applier
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d6cbab1-cf76-4a8d-9cff-d5b70409d4da:
-    id: 9d6cbab1-cf76-4a8d-9cff-d5b70409d4da
-    content: Out-of-band children added earlier in the turn must survive the send
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c0c597d-50c4-493d-a811-c265c95342df:
-    id: 3c0c597d-50c4-493d-a811-c265c95342df
-    content: One-shot sends onto non-autonomous nodes are unaffected and continue to apply as before
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  85710764-536e-483e-bce3-1c3b8a9537fc:
-    id: 85710764-536e-483e-bce3-1c3b8a9537fc
-    content: If a target cannot be safely turned into a proposal, the send is refused with a story 1 error code rather than silently rebuilding
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e14284cb-edf6-4e79-bfcd-8e50815423e9:
-    id: e14284cb-edf6-4e79-bfcd-8e50815423e9
-    content: Acceptance criteria
-    children:
-      - 962a95ee-1aed-4dcd-9c91-f06d8f927cef
-      - e7fb182a-2b15-42c2-bb6f-32a693f05da8
-      - 55c3b4d9-9c4b-4ca0-a7ce-7bbbe8c68fea
-      - 358b6567-52d5-4db8-ac15-c830a87fed71
-      - 3e48ca16-6fce-48cd-abfd-8339bb2fddda
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  962a95ee-1aed-4dcd-9c91-f06d8f927cef:
-    id: 962a95ee-1aed-4dcd-9c91-f06d8f927cef
-    content: A one-shot send onto an autonomous node lands in the proposal/feedback panel and the rebuilding applier is not invoked
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e7fb182a-2b15-42c2-bb6f-32a693f05da8:
-    id: e7fb182a-2b15-42c2-bb6f-32a693f05da8
-    content: Out-of-band children added earlier in the turn are present after the routed send (regression test for the data-loss path)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  55c3b4d9-9c4b-4ca0-a7ce-7bbbe8c68fea:
-    id: 55c3b4d9-9c4b-4ca0-a7ce-7bbbe8c68fea
-    content: A one-shot send onto a non-autonomous node still applies via its existing route, unchanged
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  358b6567-52d5-4db8-ac15-c830a87fed71:
-    id: 358b6567-52d5-4db8-ac15-c830a87fed71
-    content: The refusal fallback emits a story 1 code when proposal routing is not possible
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e48ca16-6fce-48cd-abfd-8339bb2fddda:
-    id: 3e48ca16-6fce-48cd-abfd-8339bb2fddda
-    content: A focused test covers the autonomous-target manual-send routing decision
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  73af7e50-4f83-4328-a25a-dd7a926e0b62:
-    id: 73af7e50-4f83-4328-a25a-dd7a926e0b62
-    content: 🔧 Implementation proposal
-    children:
-      - 43cfaa69-1582-436f-b36c-8428e69a666e
-      - e0f08c75-4c7d-47ee-8268-df0205924a86
-      - ad41500f-74a5-464e-83fc-e9d763b1a57d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  43cfaa69-1582-436f-b36c-8428e69a666e:
-    id: 43cfaa69-1582-436f-b36c-8428e69a666e
-    content: Approach
-    children:
-      - 205eed8e-cf6d-4c5f-854d-cd0692b65301
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  205eed8e-cf6d-4c5f-854d-cd0692b65301:
-    id: 205eed8e-cf6d-4c5f-854d-cd0692b65301
-    content: At the point where pendingTarget currently bypasses the mode gate, detect structural autonomy of the resolved node and divert to the proposal/feedback route instead of the rebuilding applier, using story 2's resolver for one-shot-ness and story 1's codes for the refusal fallback
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0f08c75-4c7d-47ee-8268-df0205924a86:
-    id: e0f08c75-4c7d-47ee-8268-df0205924a86
-    content: Touchpoints
-    children:
-      - e000875d-7a2f-4ee4-8b17-b84a896d3298
-      - ef48c918-c1b5-4131-8374-215654d54d1d
-      - 3de615d5-8ee7-4033-ad86-62cf16131b50
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e000875d-7a2f-4ee4-8b17-b84a896d3298:
-    id: e000875d-7a2f-4ee4-8b17-b84a896d3298
-    content: mcpSubmitOutputTool.ts gate/routing branch
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef48c918-c1b5-4131-8374-215654d54d1d:
-    id: ef48c918-c1b5-4131-8374-215654d54d1d
-    content: Proposal/feedback panel entry path
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3de615d5-8ee7-4033-ad86-62cf16131b50:
-    id: 3de615d5-8ee7-4033-ad86-62cf16131b50
-    content: Focused routing tests
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad41500f-74a5-464e-83fc-e9d763b1a57d:
-    id: ad41500f-74a5-464e-83fc-e9d763b1a57d
-    content: Constraints to call out
-    children:
-      - 29086913-0c96-41f0-99c8-6cd36ffab538
-      - 07bf3810-0bed-4cdd-aca7-42ad01a02e0f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  29086913-0c96-41f0-99c8-6cd36ffab538:
-    id: 29086913-0c96-41f0-99c8-6cd36ffab538
-    content: Depends on stories 1 and 2
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  07bf3810-0bed-4cdd-aca7-42ad01a02e0f:
-    id: 07bf3810-0bed-4cdd-aca7-42ad01a02e0f
-    content: 'Medium risk: changes a live routing decision on the manual-send path; must not break legitimate one-shot sends onto non-autonomous nodes'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b46a4275-38c9-4db2-8ac6-bb43711a6a7f:
-    id: b46a4275-38c9-4db2-8ac6-bb43711a6a7f
-    content: Technical refinement
-    children:
-      - 3040d3c1-3342-4b8b-9049-229fe9338f4f
-      - 5491debe-c12c-4eb5-8496-2e066cb679ff
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3040d3c1-3342-4b8b-9049-229fe9338f4f:
-    id: 3040d3c1-3342-4b8b-9049-229fe9338f4f
-    content: Complications
-    children:
-      - eff6a801-bf90-4a7a-ab0c-764fae09e76f
-      - 75c9a03e-1d58-4b18-8fc3-b98b282b0606
-      - 87fc0851-84fd-4bd8-8868-10692e78e9d9
-      - 88e334e4-5a13-4675-84ce-cd3f1b68a021
-      - 5e6007e9-951b-4b4a-9fcf-d160e8faf986
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eff6a801-bf90-4a7a-ab0c-764fae09e76f:
-    id: eff6a801-bf90-4a7a-ab0c-764fae09e76f
-    content: 'Acceptance path risk: if an accepted proposal applies through the same rebuilding applier, the data loss is deferred behind a review click, not fixed — acceptance must merge, or the out-of-band-survival criterion must be tested after acceptance, not just after routing'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  75c9a03e-1d58-4b18-8fc3-b98b282b0606:
-    id: 75c9a03e-1d58-4b18-8fc3-b98b282b0606
-    content: 'Drift-guard asymmetry: the autonomous route requires target_node_id (gate 4) while the proposal branch only errors on mismatch — the diverted route needs an explicit decision on whether the token stays mandatory for autonomous targets'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  87fc0851-84fd-4bd8-8868-10692e78e9d9:
-    id: 87fc0851-84fd-4bd8-8868-10692e78e9d9
-    content: 'Same-session overlap: a one-shot send targeting the session''s own actively bound autonomous step would now return proposed instead of applied — anything that advances the workflow on applied:true must tolerate the proposed outcome'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  88e334e4-5a13-4675-84ce-cd3f1b68a021:
-    id: 88e334e4-5a13-4675-84ce-cd3f1b68a021
-    content: 'Out of scope: proposal panel UX changes and merge-not-replace inside the applier itself'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  5e6007e9-951b-4b4a-9fcf-d160e8faf986:
-    id: 5e6007e9-951b-4b4a-9fcf-d160e8faf986
-    content: 'ROI holds: production change is a small routing-condition adjustment reusing the existing proposal branch; the bulk of the effort is tests'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5491debe-c12c-4eb5-8496-2e066cb679ff:
-    id: 5491debe-c12c-4eb5-8496-2e066cb679ff
-    content: Approach summary
-    children:
-      - 363255c8-05c8-4de1-a2c5-41323b5c48cc
-      - de81d775-c45c-4f8b-8b69-1f12f112b05f
-      - 2356040e-b108-4d8f-807b-2d90cba2aceb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  363255c8-05c8-4de1-a2c5-41323b5c48cc:
-    id: 363255c8-05c8-4de1-a2c5-41323b5c48cc
-    content: 'Single routing change in mcpSubmitOutputTool.ts: when the one-shot resolver fires and the resolved node is structurally autonomous, divert into the existing proposal branch; non-autonomous one-shots and workflow autonomous submits keep their current routes'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de81d775-c45c-4f8b-8b69-1f12f112b05f:
-    id: de81d775-c45c-4f8b-8b69-1f12f112b05f
-    content: 'Non-obvious: the existing mode-gate-bypass comment already claims one-shot sends route to the feedback panel — the routing condition just never honored it for autonomous targets, so this change makes documented behavior real'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2356040e-b108-4d8f-807b-2d90cba2aceb:
-    id: 2356040e-b108-4d8f-807b-2d90cba2aceb
-    content: 'Refusal fallback: a proposalSubmitter failure on the diverted route returns a story 1 code and never falls through to the applier'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf924e59-e038-4505-af2d-db0a5e269dee:
-    id: bf924e59-e038-4505-af2d-db0a5e269dee
-    content: TDD step notes
-    children:
-      - 427ba724-201a-4801-bde0-0c0343c8f605
-      - 6c2341c7-5d7a-455d-ab51-19b7fa34aa32
-      - e42c5053-81d0-407e-9a86-9a5f49b02209
-      - a8a68671-0b45-4eb2-b9ba-c5d54f53809c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  427ba724-201a-4801-bde0-0c0343c8f605:
-    id: 427ba724-201a-4801-bde0-0c0343c8f605
-    content: New file mcpSubmitOutputToolOneShotAutonomousRouting.test.ts — 12 failing tests assert the US3 proposal routing, 13 regression guards pass, type-check clean
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c2341c7-5d7a-455d-ab51-19b7fa34aa32:
-    id: 6c2341c7-5d7a-455d-ab51-19b7fa34aa32
-    content: Three pre-existing tests in mcpSubmitOutputToolTargetRouting.test.ts asserted auto-apply for one-shot autonomous targets and were flipped to the US3 expectation — they fail until implementation
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e42c5053-81d0-407e-9a86-9a5f49b02209:
-    id: e42c5053-81d0-407e-9a86-9a5f49b02209
-    content: Stories 1 and 2 have no commits on this branch, so the story-1 refusal code and the gate-4 token requirement on the diverted route are title-only it.todo tests pending those decisions
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a8a68671-0b45-4eb2-b9ba-c5d54f53809c:
-    id: a8a68671-0b45-4eb2-b9ba-c5d54f53809c
-    content: Out-of-band survival after proposal acceptance is a renderer acceptance-path concern with undecided merge semantics — captured as a title-only test
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4997351c-8816-42e2-9c8d-9c4ecedd53e0:
-    id: 4997351c-8816-42e2-9c8d-9c4ecedd53e0
-    content: Implementation step notes
-    children:
-      - 4fee41a1-960b-4586-b5d6-56fb5e725b3d
-      - 814c026e-7010-49d2-a0c7-a97290b0af6c
-      - 5fa8b2d1-6bc4-4b12-8f29-503e5022dc1e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fee41a1-960b-4586-b5d6-56fb5e725b3d:
-    id: 4fee41a1-960b-4586-b5d6-56fb5e725b3d
-    content: Routing implemented as pendingTarget || !isStructurallyAutonomous diverting into the existing proposal branch — all 615 main-services tests pass, lint and type-check clean
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  814c026e-7010-49d2-a0c7-a97290b0af6c:
-    id: 814c026e-7010-49d2-a0c7-a97290b0af6c
-    content: Five pre-existing pendingTarget-persistence tests also locked in the old auto-apply behavior and were flipped to the proposal-route expectation, keeping their persistence assertions intact
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5fa8b2d1-6bc4-4b12-8f29-503e5022dc1e:
-    id: 5fa8b2d1-6bc4-4b12-8f29-503e5022dc1e
-    content: Story-1 error codes do not exist on this branch (dependency has no commits), so the refusal returns a hard MCP error without a story-1 code — that criterion and the gate-4 token decision remain open as it.todo tests
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d7ff4a84-8a30-4e34-967a-260fe1e143d2:
-    id: d7ff4a84-8a30-4e34-967a-260fe1e143d2
-    content: Refactor step notes
-    children:
-      - b811b644-35a3-4fff-b3cb-7717c734206f
-      - 8d30cb5f-6c09-44e3-af28-0673ee684524
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b811b644-35a3-4fff-b3cb-7717c734206f:
-    id: b811b644-35a3-4fff-b3cb-7717c734206f
-    content: The submit_step_output tool description in mcpServer.ts still promised direct apply for any node under an autonomous step — updated to state that only workflow submits on autonomous steps apply directly and all one-off manual sends go to the feedback panel
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d30cb5f-6c09-44e3-af28-0673ee684524:
-    id: 8d30cb5f-6c09-44e3-af28-0673ee684524
-    content: No abandoned attempts, no empty test bodies (it.todo title-only tests are the sanctioned convention), 615 main-services tests pass, lint and type-check clean on all changed files
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7c8a9872-089e-494c-9c03-fafb985faf95:
-    id: 7c8a9872-089e-494c-9c03-fafb985faf95
-    content: review feedback
-    children:
-      - e686b990-0c6d-455f-b047-ce51a762f25c
-      - 4e57863d-3247-424d-bf26-2692510a24c9
-      - 21eb4db3-0a03-4ebc-af5f-1981af43f79c
-      - a5404674-bf47-41ca-99db-a9b6e037e1c5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e686b990-0c6d-455f-b047-ce51a762f25c:
-    id: e686b990-0c6d-455f-b047-ce51a762f25c
-    content: 'Verdict: fix is correct, minimal, conventionally clean — no critical or major findings; 615 main-services tests pass, type-check clean'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e57863d-3247-424d-bf26-2692510a24c9:
-    id: 4e57863d-3247-424d-bf26-2692510a24c9
-    content: 'Consumers verified: only the AI reads the {applied}/{proposed} payload (mcpServer returns it verbatim, no branching); renderer proposal receiver opens the feedback panel via processIncomingFeedbackContent, confirming review-not-apply end to end'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  21eb4db3-0a03-4ebc-af5f-1981af43f79c:
-    id: 21eb4db3-0a03-4ebc-af5f-1981af43f79c
-    content: 'Minor finding fixed during review: target_node_id schema description in mcpServer.ts overstated the token as required on all autonomous submissions — narrowed to autonomous workflow-route, since the diverted one-shot proposal branch only drift-checks the token when present'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a5404674-bf47-41ca-99db-a9b6e037e1c5:
-    id: a5404674-bf47-41ca-99db-a9b6e037e1c5
-    content: 'Reviewer confirmed the deferred acceptance-path concern: finishAccept in sendActions.ts also rebuilds from feedback content, so out-of-band survival through proposal acceptance stays a separate story — already tracked as an it.todo'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4b37ffdf-a2b4-4958-a6b9-fb37c4a293ea:
-    id: 4b37ffdf-a2b4-4958-a6b9-fb37c4a293ea
-    content: Review resolution
-    children:
-      - f144b4d7-50a8-4f82-83d1-d2e83ac3a9b8
-      - 9b1e9f61-033c-45a6-b206-3be11263647f
-      - c814929a-fb7f-4dc2-8376-ec6ff0a5b7a2
-      - 4566acb5-34a5-4169-8fbe-365816ee4804
-      - e48a55c9-fc7d-4d93-86ce-012926540fa1
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f144b4d7-50a8-4f82-83d1-d2e83ac3a9b8:
-    id: f144b4d7-50a8-4f82-83d1-d2e83ac3a9b8
-    content: 'Major issues fixed: none — the review reported no critical or major findings'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b1e9f61-033c-45a6-b206-3be11263647f:
-    id: 9b1e9f61-033c-45a6-b206-3be11263647f
-    content: 'Minor issues fixed: target_node_id schema description narrowed to autonomous workflow-route in mcpServer.ts; reviewer re-read the line and confirmed the wording faithful to the gate-4 and proposal-branch implementation'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c814929a-fb7f-4dc2-8376-ec6ff0a5b7a2:
-    id: c814929a-fb7f-4dc2-8376-ec6ff0a5b7a2
-    content: 'Discussion outcome: author verified one-shot collaborate prompts still pass the token (sendActions.ts buildCollaborateSubmitOutputTarget) and the reviewer confirmed no caller contradicts the server and no path is stricter post-change — routing is strictly more permissive'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4566acb5-34a5-4169-8fbe-365816ee4804:
-    id: 4566acb5-34a5-4169-8fbe-365816ee4804
-    content: 'Feedback skipped: none — the reviewer withdrew the sole finding as resolved and stood by the deferred finishAccept acceptance-path observation as intentional, already tracked as an it.todo'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e48a55c9-fc7d-4d93-86ce-012926540fa1:
-    id: e48a55c9-fc7d-4d93-86ce-012926540fa1
-    content: 'Note: SendMessage tool unavailable in this session — the discussion round ran as a follow-up code-reviewer agent carrying the original report context'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7e4a3bfc-e462-447e-928c-da19fd1b0d57:
-    id: 7e4a3bfc-e462-447e-928c-da19fd1b0d57
-    content: Test pass verification
-    children:
-      - da2d140e-889f-4d30-bd24-30290da3c9ce
-      - 7b599fa2-1501-4de1-ba02-082b3a291588
-      - 7446bf9e-a27e-45ee-8d86-f86f4da4b272
-      - 285a6547-7c1b-499b-bba2-980d667c91c2
-      - cd96cfd2-8183-48bb-82bc-c88aa82e133e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  da2d140e-889f-4d30-bd24-30290da3c9ce:
-    id: da2d140e-889f-4d30-bd24-30290da3c9ce
-    content: 'Every acceptance criterion traced to its implementing code and test: AC1 routing condition plus proposal-route tests, AC2 applier-never-invoked regression guard (the applier is the only subtree-rebuilder reachable from a send, so the unit proxy is the global property at this layer), AC3 regression guards plus full suite, AC5 focused routing test'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b599fa2-1501-4de1-ba02-082b3a291588:
-    id: 7b599fa2-1501-4de1-ba02-082b3a291588
-    content: AC4 (story-1 refusal code) remains open by dependency, not by gap — refusal behavior is implemented and tested minus the code vocabulary, which cannot be invented ahead of story 1
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7446bf9e-a27e-45ee-8d86-f86f4da4b272:
-    id: 7446bf9e-a27e-45ee-8d86-f86f4da4b272
-    content: Only implementation without a matching criterion is the mcpServer.ts description wording — documentation consequence of AC1, no behavior change
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  285a6547-7c1b-499b-bba2-980d667c91c2:
-    id: 285a6547-7c1b-499b-bba2-980d667c91c2
-    content: Every risk in the refinement has a test or an explicit it.todo; no test asserts simplified behavior where the spec requires cross-cutting behavior
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd96cfd2-8183-48bb-82bc-c88aa82e133e:
-    id: cd96cfd2-8183-48bb-82bc-c88aa82e133e
-    content: 'Final validation: 615 main-services tests pass, zero TypeScript errors, lint clean on all five changed files — no discrepancies to fix'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   8e003584-c56e-4bc2-865e-93202c18af61:
     id: 8e003584-c56e-4bc2-865e-93202c18af61
     content: 📄 Product spec
@@ -189745,6 +189026,775 @@ nodes:
   25018329-253b-4a25-86d5-6b4f22ee2921:
     id: 25018329-253b-4a25-86d5-6b4f22ee2921
     content: 'Documentation: no docs or changelog changes required — the refactor is strictly behavior-preserving and invisible to users; docs/workflow.md and docs/workflows.md describe submit_step_output routing, one-shot sends, and mode gating at the user level and all of that behavior is unchanged, nothing redundant to remove, and per the conventions an internal refactor that is implicit, discoverable-in-code, and non-blocking earns no changelog entry'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98e149c5-b9c1-4b1c-8cf6-c318610a503a:
+    id: 98e149c5-b9c1-4b1c-8cf6-c318610a503a
+    content: worktree
+    children:
+      - 8aa1e015-4d72-4f51-ba06-3ff9f96683bf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8aa1e015-4d72-4f51-ba06-3ff9f96683bf:
+    id: 8aa1e015-4d72-4f51-ba06-3ff9f96683bf
+    content: vscode://file/Users/brianfox/dev/Arborescent-oneshot-autonomous-routing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2a2778d-3943-46f0-ac65-c9eb5bf14a20:
+    id: e2a2778d-3943-46f0-ac65-c9eb5bf14a20
+    content: 📄 Product spec
+    children:
+      - 0dae14c7-c45a-4fcf-b050-15fee109eeac
+      - ac365835-6586-4dd0-ac4e-4c91036dcffc
+      - 87e0b29b-90b3-4f80-87e0-f0bddcd42e05
+      - 168dd744-0272-4464-adbb-4c0273a746a4
+      - 04b188f0-2a20-4246-9fc3-f3a29dfd2009
+      - dcbc3608-4ed9-4341-88df-ca6dffda320a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dae14c7-c45a-4fcf-b050-15fee109eeac:
+    id: 0dae14c7-c45a-4fcf-b050-15fee109eeac
+    content: Context
+    children:
+      - 70e59558-3f39-4c10-bd6a-56ac3ec118f0
+      - 0409aa54-ec43-4d5f-acc8-e6e3c03051a5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70e59558-3f39-4c10-bd6a-56ac3ec118f0:
+    id: 70e59558-3f39-4c10-bd6a-56ac3ec118f0
+    content: The mode gate is guarded by !pendingTarget, so a one-shot manual send onto a node under an autonomous step bypasses the gate and reaches the rebuilding applier, dropping out-of-band add_child_node children added earlier in the turn
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0409aa54-ec43-4d5f-acc8-e6e3c03051a5:
+    id: 0409aa54-ec43-4d5f-acc8-e6e3c03051a5
+    content: This is the one data-loss path that survived the landed tool-gating fix — the problem merge-not-replace was meant to solve, still open on the manual-send route
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac365835-6586-4dd0-ac4e-4c91036dcffc:
+    id: ac365835-6586-4dd0-ac4e-4c91036dcffc
+    content: User
+    children:
+      - 70a7f2ee-bb2f-40f1-b07c-11cdea508844
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70a7f2ee-bb2f-40f1-b07c-11cdea508844:
+    id: 70a7f2ee-bb2f-40f1-b07c-11cdea508844
+    content: The human at the terminal performing a deliberate one-shot manual send toward a workflow tree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87e0b29b-90b3-4f80-87e0-f0bddcd42e05:
+    id: 87e0b29b-90b3-4f80-87e0-f0bddcd42e05
+    content: Current experience
+    children:
+      - 3300fa9e-c1eb-42d4-a48c-ec1bd0164997
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3300fa9e-c1eb-42d4-a48c-ec1bd0164997:
+    id: 3300fa9e-c1eb-42d4-a48c-ec1bd0164997
+    content: The send silently succeeds but destroys children created out-of-band during the turn, with no warning or trace
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  168dd744-0272-4464-adbb-4c0273a746a4:
+    id: 168dd744-0272-4464-adbb-4c0273a746a4
+    content: Goal
+    children:
+      - e39e66f6-92fd-4f79-b81c-a293025d20c7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e39e66f6-92fd-4f79-b81c-a293025d20c7:
+    id: e39e66f6-92fd-4f79-b81c-a293025d20c7
+    content: A one-shot send targeting a structurally autonomous node routes to the proposal/feedback panel instead of the rebuilding applier, so data survives and the human reviews the change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04b188f0-2a20-4246-9fc3-f3a29dfd2009:
+    id: 04b188f0-2a20-4246-9fc3-f3a29dfd2009
+    content: Business rules
+    children:
+      - 45cf66e8-cbdc-46b6-a191-1c810153fb96
+      - 781ab3c8-b463-4409-b252-94db97bbd193
+      - 2f14d0c0-3bb2-4925-bc41-0187d82de59c
+      - acb69033-4acd-4a52-be46-7dde58c02174
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45cf66e8-cbdc-46b6-a191-1c810153fb96:
+    id: 45cf66e8-cbdc-46b6-a191-1c810153fb96
+    content: When pendingTarget is set and the resolved node is structurally autonomous, the send routes to the proposal/feedback panel, never the rebuilding applier
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  781ab3c8-b463-4409-b252-94db97bbd193:
+    id: 781ab3c8-b463-4409-b252-94db97bbd193
+    content: Out-of-band children added earlier in the turn must survive the send
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f14d0c0-3bb2-4925-bc41-0187d82de59c:
+    id: 2f14d0c0-3bb2-4925-bc41-0187d82de59c
+    content: One-shot sends onto non-autonomous nodes are unaffected and continue to apply as before
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acb69033-4acd-4a52-be46-7dde58c02174:
+    id: acb69033-4acd-4a52-be46-7dde58c02174
+    content: If a target cannot be safely turned into a proposal, the send is refused with a story 1 error code rather than silently rebuilding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcbc3608-4ed9-4341-88df-ca6dffda320a:
+    id: dcbc3608-4ed9-4341-88df-ca6dffda320a
+    content: Acceptance criteria
+    children:
+      - 04b1f819-5253-43c7-8616-fdd39f15db6a
+      - ee01fd15-ee27-4c8e-85f7-15fab5eaa76f
+      - 80313496-1422-4d85-8462-61c790ebdc22
+      - 730eae29-56ea-44f7-a1e1-2148802437dd
+      - 4e84ae55-8cc8-481e-b448-3e5388a32bc6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04b1f819-5253-43c7-8616-fdd39f15db6a:
+    id: 04b1f819-5253-43c7-8616-fdd39f15db6a
+    content: A one-shot send onto an autonomous node lands in the proposal/feedback panel and the rebuilding applier is not invoked
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee01fd15-ee27-4c8e-85f7-15fab5eaa76f:
+    id: ee01fd15-ee27-4c8e-85f7-15fab5eaa76f
+    content: Out-of-band children added earlier in the turn are present after the routed send (regression test for the data-loss path)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80313496-1422-4d85-8462-61c790ebdc22:
+    id: 80313496-1422-4d85-8462-61c790ebdc22
+    content: A one-shot send onto a non-autonomous node still applies via its existing route, unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  730eae29-56ea-44f7-a1e1-2148802437dd:
+    id: 730eae29-56ea-44f7-a1e1-2148802437dd
+    content: The refusal fallback emits a story 1 code when proposal routing is not possible
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e84ae55-8cc8-481e-b448-3e5388a32bc6:
+    id: 4e84ae55-8cc8-481e-b448-3e5388a32bc6
+    content: A focused test covers the autonomous-target manual-send routing decision
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bb094e4-e67b-458b-a1e7-d1faa18aa597:
+    id: 2bb094e4-e67b-458b-a1e7-d1faa18aa597
+    content: 🔧 Implementation proposal
+    children:
+      - 4db1110a-90d7-40c0-a308-7e7d2b9a22e9
+      - 89973960-e188-44dc-a78b-55222600e577
+      - e062b971-2079-4b80-a4e4-c9f960dec42a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4db1110a-90d7-40c0-a308-7e7d2b9a22e9:
+    id: 4db1110a-90d7-40c0-a308-7e7d2b9a22e9
+    content: Approach
+    children:
+      - e54f75bc-6d49-4a9c-abac-5c4d5abe0e68
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e54f75bc-6d49-4a9c-abac-5c4d5abe0e68:
+    id: e54f75bc-6d49-4a9c-abac-5c4d5abe0e68
+    content: At the point where pendingTarget currently bypasses the mode gate, detect structural autonomy of the resolved node and divert to the proposal/feedback route instead of the rebuilding applier, using story 2's resolver for one-shot-ness and story 1's codes for the refusal fallback
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89973960-e188-44dc-a78b-55222600e577:
+    id: 89973960-e188-44dc-a78b-55222600e577
+    content: Touchpoints
+    children:
+      - 65ce2b67-0917-4ff8-9c71-1f5d358e3241
+      - 485383e8-97f7-4998-b75a-886238a5f6e9
+      - 4764d0fd-fbee-4420-a6a4-ff683c1d1bb3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65ce2b67-0917-4ff8-9c71-1f5d358e3241:
+    id: 65ce2b67-0917-4ff8-9c71-1f5d358e3241
+    content: mcpSubmitOutputTool.ts gate/routing branch
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  485383e8-97f7-4998-b75a-886238a5f6e9:
+    id: 485383e8-97f7-4998-b75a-886238a5f6e9
+    content: Proposal/feedback panel entry path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4764d0fd-fbee-4420-a6a4-ff683c1d1bb3:
+    id: 4764d0fd-fbee-4420-a6a4-ff683c1d1bb3
+    content: Focused routing tests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e062b971-2079-4b80-a4e4-c9f960dec42a:
+    id: e062b971-2079-4b80-a4e4-c9f960dec42a
+    content: Constraints to call out
+    children:
+      - 595c99ef-c328-4bcb-a62c-db1072583d52
+      - 4ac6eba6-8bb2-4184-9ee4-e8b88dc11833
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  595c99ef-c328-4bcb-a62c-db1072583d52:
+    id: 595c99ef-c328-4bcb-a62c-db1072583d52
+    content: Depends on stories 1 and 2
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ac6eba6-8bb2-4184-9ee4-e8b88dc11833:
+    id: 4ac6eba6-8bb2-4184-9ee4-e8b88dc11833
+    content: 'Medium risk: changes a live routing decision on the manual-send path; must not break legitimate one-shot sends onto non-autonomous nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e65d6e5-3c5d-4859-b093-245f83e8d89f:
+    id: 2e65d6e5-3c5d-4859-b093-245f83e8d89f
+    content: Technical refinement
+    children:
+      - 64ba7abf-d5b6-4333-8711-9a2ebcc020b8
+      - ff072666-1bb8-437f-8f06-7d9430256ddb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64ba7abf-d5b6-4333-8711-9a2ebcc020b8:
+    id: 64ba7abf-d5b6-4333-8711-9a2ebcc020b8
+    content: Complications
+    children:
+      - 0f3c2ea0-b974-475c-b16f-aa336db48788
+      - 843a1f7f-40ba-43eb-8bfd-2ce7ade20303
+      - 7cb609e4-6a9a-4453-98df-dcbcc5528dd0
+      - 818a8923-06d8-4ffa-a2f5-0ab1e0db8e4b
+      - 213c870c-aa8a-442e-ad85-768cfad846cc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f3c2ea0-b974-475c-b16f-aa336db48788:
+    id: 0f3c2ea0-b974-475c-b16f-aa336db48788
+    content: 'Acceptance path risk: if an accepted proposal applies through the same rebuilding applier, the data loss is deferred behind a review click, not fixed — acceptance must merge, or the out-of-band-survival criterion must be tested after acceptance, not just after routing'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  843a1f7f-40ba-43eb-8bfd-2ce7ade20303:
+    id: 843a1f7f-40ba-43eb-8bfd-2ce7ade20303
+    content: 'Drift-guard asymmetry: the autonomous route requires target_node_id (gate 4) while the proposal branch only errors on mismatch — the diverted route needs an explicit decision on whether the token stays mandatory for autonomous targets'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7cb609e4-6a9a-4453-98df-dcbcc5528dd0:
+    id: 7cb609e4-6a9a-4453-98df-dcbcc5528dd0
+    content: 'Same-session overlap: a one-shot send targeting the session''s own actively bound autonomous step would now return proposed instead of applied — anything that advances the workflow on applied:true must tolerate the proposed outcome'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  818a8923-06d8-4ffa-a2f5-0ab1e0db8e4b:
+    id: 818a8923-06d8-4ffa-a2f5-0ab1e0db8e4b
+    content: 'Out of scope: proposal panel UX changes and merge-not-replace inside the applier itself'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  213c870c-aa8a-442e-ad85-768cfad846cc:
+    id: 213c870c-aa8a-442e-ad85-768cfad846cc
+    content: 'ROI holds: production change is a small routing-condition adjustment reusing the existing proposal branch; the bulk of the effort is tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff072666-1bb8-437f-8f06-7d9430256ddb:
+    id: ff072666-1bb8-437f-8f06-7d9430256ddb
+    content: Approach summary
+    children:
+      - 4ef7eb5f-ca26-4c81-910e-d48255ec76e9
+      - b6386884-1af4-4da4-bb4e-53eb78ab33ca
+      - 9b19a64b-5f37-4d79-ae53-d3ed2938b4e2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ef7eb5f-ca26-4c81-910e-d48255ec76e9:
+    id: 4ef7eb5f-ca26-4c81-910e-d48255ec76e9
+    content: 'Single routing change in mcpSubmitOutputTool.ts: when the one-shot resolver fires and the resolved node is structurally autonomous, divert into the existing proposal branch; non-autonomous one-shots and workflow autonomous submits keep their current routes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6386884-1af4-4da4-bb4e-53eb78ab33ca:
+    id: b6386884-1af4-4da4-bb4e-53eb78ab33ca
+    content: 'Non-obvious: the existing mode-gate-bypass comment already claims one-shot sends route to the feedback panel — the routing condition just never honored it for autonomous targets, so this change makes documented behavior real'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b19a64b-5f37-4d79-ae53-d3ed2938b4e2:
+    id: 9b19a64b-5f37-4d79-ae53-d3ed2938b4e2
+    content: 'Refusal fallback: a proposalSubmitter failure on the diverted route returns a story 1 code and never falls through to the applier'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  818f2845-e365-4859-8fc0-2db3c6f17d84:
+    id: 818f2845-e365-4859-8fc0-2db3c6f17d84
+    content: TDD step notes
+    children:
+      - e7a41278-5210-437e-a3d8-adb96f6f08e6
+      - 2523fa49-15d5-436e-b3b6-a85821b15331
+      - 22a662f6-a097-4dfd-b956-96c4cf603798
+      - 74bb4140-5ada-422a-94dd-9a14d3c474aa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7a41278-5210-437e-a3d8-adb96f6f08e6:
+    id: e7a41278-5210-437e-a3d8-adb96f6f08e6
+    content: New file mcpSubmitOutputToolOneShotAutonomousRouting.test.ts — 12 failing tests assert the US3 proposal routing, 13 regression guards pass, type-check clean
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2523fa49-15d5-436e-b3b6-a85821b15331:
+    id: 2523fa49-15d5-436e-b3b6-a85821b15331
+    content: Three pre-existing tests in mcpSubmitOutputToolTargetRouting.test.ts asserted auto-apply for one-shot autonomous targets and were flipped to the US3 expectation — they fail until implementation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22a662f6-a097-4dfd-b956-96c4cf603798:
+    id: 22a662f6-a097-4dfd-b956-96c4cf603798
+    content: Stories 1 and 2 have no commits on this branch, so the story-1 refusal code and the gate-4 token requirement on the diverted route are title-only it.todo tests pending those decisions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74bb4140-5ada-422a-94dd-9a14d3c474aa:
+    id: 74bb4140-5ada-422a-94dd-9a14d3c474aa
+    content: Out-of-band survival after proposal acceptance is a renderer acceptance-path concern with undecided merge semantics — captured as a title-only test
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20035a42-2d95-4e73-b858-8e3c876fa78a:
+    id: 20035a42-2d95-4e73-b858-8e3c876fa78a
+    content: Implementation step notes
+    children:
+      - edc4eb5b-4e88-4c98-830e-9e5d38d0da8e
+      - 10ccc021-e510-45ff-b6fc-cfaf7528fb2b
+      - 620d2bb5-b458-4db4-b726-7fd6905bfe1c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  edc4eb5b-4e88-4c98-830e-9e5d38d0da8e:
+    id: edc4eb5b-4e88-4c98-830e-9e5d38d0da8e
+    content: Routing implemented as pendingTarget || !isStructurallyAutonomous diverting into the existing proposal branch — all 615 main-services tests pass, lint and type-check clean
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10ccc021-e510-45ff-b6fc-cfaf7528fb2b:
+    id: 10ccc021-e510-45ff-b6fc-cfaf7528fb2b
+    content: Five pre-existing pendingTarget-persistence tests also locked in the old auto-apply behavior and were flipped to the proposal-route expectation, keeping their persistence assertions intact
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  620d2bb5-b458-4db4-b726-7fd6905bfe1c:
+    id: 620d2bb5-b458-4db4-b726-7fd6905bfe1c
+    content: Story-1 error codes do not exist on this branch (dependency has no commits), so the refusal returns a hard MCP error without a story-1 code — that criterion and the gate-4 token decision remain open as it.todo tests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44e8f49d-fb6a-471d-96f6-124daccc97e5:
+    id: 44e8f49d-fb6a-471d-96f6-124daccc97e5
+    content: Refactor step notes
+    children:
+      - f2453624-567c-468a-8b27-1e8755a4cd8f
+      - 40417b84-b6c7-48a7-a645-ce16ff4ce259
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2453624-567c-468a-8b27-1e8755a4cd8f:
+    id: f2453624-567c-468a-8b27-1e8755a4cd8f
+    content: The submit_step_output tool description in mcpServer.ts still promised direct apply for any node under an autonomous step — updated to state that only workflow submits on autonomous steps apply directly and all one-off manual sends go to the feedback panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40417b84-b6c7-48a7-a645-ce16ff4ce259:
+    id: 40417b84-b6c7-48a7-a645-ce16ff4ce259
+    content: No abandoned attempts, no empty test bodies (it.todo title-only tests are the sanctioned convention), 615 main-services tests pass, lint and type-check clean on all changed files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70f1ff8c-5141-45f3-be9b-c41990aca907:
+    id: 70f1ff8c-5141-45f3-be9b-c41990aca907
+    content: review feedback
+    children:
+      - 2f1b9947-6549-48a3-b97b-42bf9619ac9c
+      - 5d8ffe41-d6f8-43c6-a1f7-b2b6480a3abe
+      - 34adf98a-d6dc-4b43-8027-26eec6078aa2
+      - a5059406-3786-416c-a34c-eacd8d076cb2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f1b9947-6549-48a3-b97b-42bf9619ac9c:
+    id: 2f1b9947-6549-48a3-b97b-42bf9619ac9c
+    content: 'Verdict: fix is correct, minimal, conventionally clean — no critical or major findings; 615 main-services tests pass, type-check clean'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d8ffe41-d6f8-43c6-a1f7-b2b6480a3abe:
+    id: 5d8ffe41-d6f8-43c6-a1f7-b2b6480a3abe
+    content: 'Consumers verified: only the AI reads the {applied}/{proposed} payload (mcpServer returns it verbatim, no branching); renderer proposal receiver opens the feedback panel via processIncomingFeedbackContent, confirming review-not-apply end to end'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34adf98a-d6dc-4b43-8027-26eec6078aa2:
+    id: 34adf98a-d6dc-4b43-8027-26eec6078aa2
+    content: 'Minor finding fixed during review: target_node_id schema description in mcpServer.ts overstated the token as required on all autonomous submissions — narrowed to autonomous workflow-route, since the diverted one-shot proposal branch only drift-checks the token when present'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5059406-3786-416c-a34c-eacd8d076cb2:
+    id: a5059406-3786-416c-a34c-eacd8d076cb2
+    content: 'Reviewer confirmed the deferred acceptance-path concern: finishAccept in sendActions.ts also rebuilds from feedback content, so out-of-band survival through proposal acceptance stays a separate story — already tracked as an it.todo'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d59a4e2c-14ac-4fc0-ad24-97cead629dd3:
+    id: d59a4e2c-14ac-4fc0-ad24-97cead629dd3
+    content: Review resolution
+    children:
+      - d89dc810-b16f-459f-bc79-e2c51c3bb7c0
+      - 5509041e-dcc6-45c1-81e5-92284f982658
+      - 669576fc-ecfc-497d-84b8-29783dba9579
+      - e08eea31-64ba-4c0d-8bdd-e1bc62c744b9
+      - 70ba345d-2b3c-4c3a-9604-2b7ae6fb721d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d89dc810-b16f-459f-bc79-e2c51c3bb7c0:
+    id: d89dc810-b16f-459f-bc79-e2c51c3bb7c0
+    content: 'Major issues fixed: none — the review reported no critical or major findings'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5509041e-dcc6-45c1-81e5-92284f982658:
+    id: 5509041e-dcc6-45c1-81e5-92284f982658
+    content: 'Minor issues fixed: target_node_id schema description narrowed to autonomous workflow-route in mcpServer.ts; reviewer re-read the line and confirmed the wording faithful to the gate-4 and proposal-branch implementation'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  669576fc-ecfc-497d-84b8-29783dba9579:
+    id: 669576fc-ecfc-497d-84b8-29783dba9579
+    content: 'Discussion outcome: author verified one-shot collaborate prompts still pass the token (sendActions.ts buildCollaborateSubmitOutputTarget) and the reviewer confirmed no caller contradicts the server and no path is stricter post-change — routing is strictly more permissive'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e08eea31-64ba-4c0d-8bdd-e1bc62c744b9:
+    id: e08eea31-64ba-4c0d-8bdd-e1bc62c744b9
+    content: 'Feedback skipped: none — the reviewer withdrew the sole finding as resolved and stood by the deferred finishAccept acceptance-path observation as intentional, already tracked as an it.todo'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70ba345d-2b3c-4c3a-9604-2b7ae6fb721d:
+    id: 70ba345d-2b3c-4c3a-9604-2b7ae6fb721d
+    content: 'Note: SendMessage tool unavailable in this session — the discussion round ran as a follow-up code-reviewer agent carrying the original report context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df9c8511-d558-4e15-b2c5-8e0ad062edc6:
+    id: df9c8511-d558-4e15-b2c5-8e0ad062edc6
+    content: Test pass verification
+    children:
+      - 68934d32-f067-4512-bb61-9cca605dce32
+      - 6d986e5d-3c13-4a40-ad1d-cc95039ea602
+      - c8a77304-3f18-43e0-815c-4ab09773a949
+      - 47e4c26e-4503-40ee-b0ef-053bc66451d7
+      - 2530637c-7eaf-4a57-b818-4a57221a73b4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68934d32-f067-4512-bb61-9cca605dce32:
+    id: 68934d32-f067-4512-bb61-9cca605dce32
+    content: 'Every acceptance criterion traced to its implementing code and test: AC1 routing condition plus proposal-route tests, AC2 applier-never-invoked regression guard (the applier is the only subtree-rebuilder reachable from a send, so the unit proxy is the global property at this layer), AC3 regression guards plus full suite, AC5 focused routing test'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d986e5d-3c13-4a40-ad1d-cc95039ea602:
+    id: 6d986e5d-3c13-4a40-ad1d-cc95039ea602
+    content: AC4 (story-1 refusal code) remains open by dependency, not by gap — refusal behavior is implemented and tested minus the code vocabulary, which cannot be invented ahead of story 1
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8a77304-3f18-43e0-815c-4ab09773a949:
+    id: c8a77304-3f18-43e0-815c-4ab09773a949
+    content: Only implementation without a matching criterion is the mcpServer.ts description wording — documentation consequence of AC1, no behavior change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47e4c26e-4503-40ee-b0ef-053bc66451d7:
+    id: 47e4c26e-4503-40ee-b0ef-053bc66451d7
+    content: Every risk in the refinement has a test or an explicit it.todo; no test asserts simplified behavior where the spec requires cross-cutting behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2530637c-7eaf-4a57-b818-4a57221a73b4:
+    id: 2530637c-7eaf-4a57-b818-4a57221a73b4
+    content: 'Final validation: 615 main-services tests pass, zero TypeScript errors, lint clean on all five changed files — no discrepancies to fix'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8371918e-85fa-4c16-9cc3-910663201bad:
+    id: 8371918e-85fa-4c16-9cc3-910663201bad
+    content: Documentation step notes
+    children:
+      - 7a269640-6ff8-48e0-9560-a7cfe1152fdb
+      - 95fcfc12-430f-41ec-a1f1-f0bb59dcb052
+      - 77135118-669a-48f4-8fae-df4cf8ead212
+      - 95cf896a-d602-4e9e-875a-c635a83f4700
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a269640-6ff8-48e0-9560-a7cfe1152fdb:
+    id: 7a269640-6ff8-48e0-9560-a7cfe1152fdb
+    content: 'docs/workflow.md Terminal mode paragraph clarified: only a workflow running an autonomous step applies its submission directly — your own sends always land in the Feedback panel, even when the target sits under an autonomous step'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95fcfc12-430f-41ec-a1f1-f0bb59dcb052:
+    id: 95fcfc12-430f-41ec-a1f1-f0bb59dcb052
+    content: 'CHANGELOG.md: no new line added — US3 fixes the MCP tool-gating feature which is itself still in Unreleased; instead the existing Manual-sends entry was amended to state that manual-send responses always arrive in the Feedback panel and can never overwrite a subtree without approval'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77135118-669a-48f4-8fae-df4cf8ead212:
+    id: 77135118-669a-48f4-8fae-df4cf8ead212
+    content: 'docs/workflows.md step-type descriptions verified accurate: the Autonomous bullet describes workflow-driven sends, which still apply directly — no change needed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95cf896a-d602-4e9e-875a-c635a83f4700:
+    id: 95cf896a-d602-4e9e-875a-c635a83f4700
+    content: 'No new doc file: the behavior is discoverable (the panel opens) and non-blocking, so two sentence-level amendments suffice without bloating the docs'
     children: []
     metadata:
       status: completed
