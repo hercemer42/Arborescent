@@ -3,7 +3,7 @@ import { createNavigationActions } from '../navigationActions';
 import type { TreeNode } from '@shared/types';
 
 describe('navigationActions', () => {
-  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; ancestorRegistry: Record<string, string[]>; activeNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null; actions?: { executeCommand?: (cmd: unknown) => void } };
+  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; ancestorRegistry: Record<string, string[]>; activeNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createNavigationActions>;
   let mockExecuteCommand: ReturnType<typeof vi.fn>;
@@ -51,7 +51,6 @@ describe('navigationActions', () => {
       activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
-      actions: { executeCommand: mockExecuteCommand },
     };
 
     setState = (partial) => {
@@ -60,7 +59,8 @@ describe('navigationActions', () => {
 
     actions = createNavigationActions(
       () => state,
-      setState
+      setState,
+      mockExecuteCommand
     );
   });
 

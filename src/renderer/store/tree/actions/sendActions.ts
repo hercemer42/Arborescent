@@ -1,4 +1,4 @@
-import { TreeState } from '../treeStore';
+import type { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
 import {
   buildContentWithContext,
@@ -23,8 +23,10 @@ import { usePanelStore } from '../../panel/panelStore';
 import { usePendingRebindDialogStore } from '../../pendingRebindDialogStore';
 import { useRebindPreflightStore } from '../../rebindPreflightStore';
 import { VisualEffectsActions } from './visualEffectsActions';
+import { Command } from '../commands/Command';
 import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
 import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
+// eslint-disable-next-line import/no-cycle -- inert: feedbackService functions are called from action bodies at event time; feedbackTreeStore's treeStore import resolves before any send fires. Story 2 (storeManager hub topology) removes this edge.
 import {
   parseFeedbackContentWithReason,
   initializeFeedbackStore,
@@ -423,6 +425,7 @@ export function createSendActions(
   set: (partial: Partial<TreeState> | ((state: TreeState) => Partial<TreeState>)) => void,
   _visualEffects: VisualEffectsActions,
   autoSave: () => void,
+  executeCommand: (command: Command) => void,
   getAllStores?: () => { getState: () => { collaboratingNodeId: string | null; collaborationSource: string | null; currentFilePath: string | null } }[],
 ): SendActions {
   function setFeedbackTempFile(nodeId: string, tempFilePath: string | undefined): void {
@@ -583,15 +586,9 @@ export function createSendActions(
     },
 
     acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
-      const state = get() as TreeState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-      const { collaboratingNodeId, nodes, collaboratingTerminalId, workflowSessionMap } = state;
+      const { collaboratingNodeId, nodes, collaboratingTerminalId, workflowSessionMap } = get();
 
       if (!collaboratingNodeId || !nodes[collaboratingNodeId]) return;
-
-      if (!state.actions?.executeCommand) {
-        logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'SendActions');
-        return;
-      }
 
       notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
 
@@ -603,7 +600,7 @@ export function createSendActions(
         mode: 'feedback',
       });
 
-      state.actions.executeCommand(
+      executeCommand(
         new AcceptFeedbackCommand(collaboratingNodeId, newRootNodeId, newNodesMap, get, set, autoSave, undefined, reconciled.idMap)
       );
     },
@@ -879,12 +876,6 @@ export function createSendActions(
 
         logger.info(`Accepting feedback with ${Object.keys(feedbackContent.nodes).length} nodes`, 'SendActions');
 
-        const stateWithActions = get() as TreeState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-        if (!stateWithActions.actions?.executeCommand) {
-          logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'SendActions');
-          return;
-        }
-
         notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
 
         const { decomposition, nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
@@ -916,7 +907,7 @@ export function createSendActions(
               mode: decomposition ? 'decomposition' : 'feedback',
             }).idMap;
 
-        stateWithActions.actions.executeCommand(
+        executeCommand(
           new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig, precomputedIdMap)
         );
 

@@ -2,6 +2,7 @@ import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { updateNodeMetadata, getParentId } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
+import { Command } from '../commands/Command';
 import { ContentEditCommand } from '../commands/ContentEditCommand';
 import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
 import { SetStatusBatchCommand } from '../commands/SetStatusBatchCommand';
@@ -34,6 +35,12 @@ type StoreState = {
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
+export interface NodeActionDeps {
+  executeCommand: (command: Command) => void;
+  refreshContextDeclarations?: () => void;
+  refreshSummaryVisibleNodeIds?: () => void;
+}
+
 function generateId(): string {
   return uuidv4();
 }
@@ -41,7 +48,8 @@ function generateId(): string {
 export const createNodeActions = (
   get: () => StoreState,
   set: StoreSetter,
-  triggerAutosave?: () => void
+  triggerAutosave: (() => void) | undefined,
+  deps: NodeActionDeps
 ): NodeActions => {
   function selectNode(nodeId: string, cursorPosition?: number): void {
     set({
@@ -51,13 +59,7 @@ export const createNodeActions = (
   }
 
   function updateContent(nodeId: string, content: string): void {
-    const state = get() as StoreState & {
-      actions?: {
-        executeCommand?: (cmd: unknown) => void;
-        refreshContextDeclarations?: () => void;
-      };
-    };
-    const { nodes } = state;
+    const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
@@ -67,22 +69,18 @@ export const createNodeActions = (
 
     const oldContent = node.content;
 
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot update content with undo/redo support');
-    }
-
     const command = new ContentEditCommand(
       nodeId,
-      () => (get() as StoreState).nodes,
+      () => get().nodes,
       (updatedNodes) => set({ nodes: updatedNodes }),
       oldContent,
       content,
       (nodeId, cursorPosition) => set({ activeNodeId: nodeId, cursorPosition }),
       triggerAutosave,
-      state.actions.refreshContextDeclarations
+      deps.refreshContextDeclarations
     );
-    state.actions.executeCommand(command);
-    syncBoundTerminalTitles(nodeId, (get() as StoreState).nodes[nodeId]);
+    deps.executeCommand(command);
+    syncBoundTerminalTitles(nodeId, get().nodes[nodeId]);
   }
 
   function updateStatus(nodeId: string, status: NodeStatus): void {
@@ -94,66 +92,51 @@ export const createNodeActions = (
   }
 
   function toggleStatus(nodeId: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void; refreshSummaryVisibleNodeIds?: () => void } };
-    const { nodes } = state;
+    const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
-
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot toggle status with undo/redo support');
-    }
 
     const command = new ToggleStatusCommand(
       nodeId,
-      () => (get() as StoreState).nodes,
+      () => get().nodes,
       (updatedNodes) => set({ nodes: updatedNodes }),
       (nodeId, cursorPosition) => set({ activeNodeId: nodeId, cursorPosition }),
       triggerAutosave,
-      () => state.actions?.refreshSummaryVisibleNodeIds?.()
+      () => deps.refreshSummaryVisibleNodeIds?.()
     );
-    state.actions.executeCommand(command);
+    deps.executeCommand(command);
   }
 
   function markAllAsComplete(nodeId: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void; refreshSummaryVisibleNodeIds?: () => void } };
-    const { nodes } = state;
+    const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
-
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot mark all as complete with undo/redo support');
-    }
 
     const command = new SetStatusBatchCommand(
       nodeId,
       'completed',
-      () => (get() as StoreState).nodes,
+      () => get().nodes,
       (updatedNodes) => set({ nodes: updatedNodes }),
       triggerAutosave,
-      () => state.actions?.refreshSummaryVisibleNodeIds?.()
+      () => deps.refreshSummaryVisibleNodeIds?.()
     );
-    state.actions.executeCommand(command);
+    deps.executeCommand(command);
   }
 
   function markAllAsIncomplete(nodeId: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void; refreshSummaryVisibleNodeIds?: () => void } };
-    const { nodes } = state;
+    const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
-
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot mark all as incomplete with undo/redo support');
-    }
 
     const command = new SetStatusBatchCommand(
       nodeId,
       'pending',
-      () => (get() as StoreState).nodes,
+      () => get().nodes,
       (updatedNodes) => set({ nodes: updatedNodes }),
       triggerAutosave,
-      () => state.actions?.refreshSummaryVisibleNodeIds?.()
+      () => deps.refreshSummaryVisibleNodeIds?.()
     );
-    state.actions.executeCommand(command);
+    deps.executeCommand(command);
   }
 
   function setCursorPosition(position: number): void {
@@ -165,8 +148,7 @@ export const createNodeActions = (
   }
 
   function createNode(currentNodeId: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes, rootNodeId, ancestorRegistry, blueprintModeEnabled } = state;
+    const { nodes, rootNodeId, ancestorRegistry, blueprintModeEnabled } = get();
     const currentNode = nodes[currentNodeId];
     if (!currentNode) return;
 
@@ -187,10 +169,6 @@ export const createNodeActions = (
       position = parent.children.indexOf(currentNodeId) + 1;
     }
 
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot create node with undo/redo support');
-    }
-
     const initialMetadata = blueprintModeEnabled ? { isBlueprint: true } : undefined;
 
     const command = new CreateNodeCommand(
@@ -199,7 +177,7 @@ export const createNodeActions = (
       position,
       '',
       () => {
-        const currentState = get() as StoreState;
+        const currentState = get();
         return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
       },
       (partial) => set(partial as Partial<StoreState>),
@@ -207,12 +185,11 @@ export const createNodeActions = (
       initialMetadata,
       currentNodeId
     );
-    state.actions.executeCommand(command);
+    deps.executeCommand(command);
   }
 
   function createNodeBefore(currentNodeId: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes, rootNodeId, ancestorRegistry, blueprintModeEnabled } = state;
+    const { nodes, rootNodeId, ancestorRegistry, blueprintModeEnabled } = get();
     const currentNode = nodes[currentNodeId];
     if (!currentNode) return;
 
@@ -223,10 +200,6 @@ export const createNodeActions = (
     if (!parent) return;
     const position = parent.children.indexOf(currentNodeId);
 
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot create node with undo/redo support');
-    }
-
     const initialMetadata = blueprintModeEnabled ? { isBlueprint: true } : undefined;
 
     const command = new CreateNodeCommand(
@@ -235,7 +208,7 @@ export const createNodeActions = (
       position,
       '',
       () => {
-        const currentState = get() as StoreState;
+        const currentState = get();
         return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
       },
       (partial) => set(partial as Partial<StoreState>),
@@ -243,21 +216,16 @@ export const createNodeActions = (
       initialMetadata,
       currentNodeId
     );
-    state.actions.executeCommand(command);
+    deps.executeCommand(command);
   }
 
   function splitNode(nodeId: string, content: string, cursorPosition: number, createAsChild: boolean = false): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes } = state;
+    const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
     if (node.metadata.isHyperlink === true || node.metadata.isExternalLink === true) {
       return;
-    }
-
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot split node with undo/redo support');
     }
 
     const contentBefore = content.slice(0, cursorPosition);
@@ -272,7 +240,7 @@ export const createNodeActions = (
       contentAfter,
       cursorPosition,
       () => {
-        const currentState = get() as StoreState;
+        const currentState = get();
         return {
           nodes: currentState.nodes,
           rootNodeId: currentState.rootNodeId,
@@ -283,7 +251,7 @@ export const createNodeActions = (
       triggerAutosave,
       createAsChild
     );
-    state.actions.executeCommand(command);
+    deps.executeCommand(command);
   }
 
   return {

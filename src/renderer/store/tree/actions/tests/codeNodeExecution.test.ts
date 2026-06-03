@@ -109,7 +109,7 @@ const buildHarness = (
     startDeleteAnimation: vi.fn(),
     clearDeleteAnimation: vi.fn(),
   };
-  const actions = createSendActions(get, mockSet, visualEffects, vi.fn());
+  const actions = createSendActions(get, mockSet, visualEffects, vi.fn(), vi.fn());
   return { state, actions, mockSet };
 };
 

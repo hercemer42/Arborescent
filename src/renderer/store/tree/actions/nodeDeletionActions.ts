@@ -5,11 +5,13 @@ import {
   findPreviousNode,
   getNodeAndDescendantIds,
 } from '../../../utils/nodeHelpers';
+import { Command } from '../commands/Command';
+// eslint-disable-next-line import/no-cycle -- inert: the command's filesStore read happens on execute, never during module init. Story 2 (storeManager hub topology) removes this edge.
 import { DeleteNodeCommand } from '../commands/DeleteNodeCommand';
 import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesCommand';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
-import { captureStepDeletions, notifyDeletionDisruption } from './workflowDisruption';
+import { captureStepDeletions, notifyDeletionDisruption, DisruptionActions } from './workflowDisruption';
 import { collectBoundSessionIds, releaseSessionBindings } from './sessionBindingCleanup';
 import { StepHistoryMap } from '../stepHistory/stepHistory';
 
@@ -60,11 +62,13 @@ function clearNodeContent(
 export const createNodeDeletionActions = (
   get: () => StoreState,
   set: StoreSetter,
-  triggerAutosave?: () => void
+  triggerAutosave: (() => void) | undefined,
+  executeCommand: (command: Command) => void,
+  disruption?: DisruptionActions
 ): NodeDeletionActions => {
 
   function commandStateGetter() {
-    const currentState = get() as StoreState;
+    const currentState = get();
     return {
       nodes: currentState.nodes,
       rootNodeId: currentState.rootNodeId,
@@ -76,11 +80,7 @@ export const createNodeDeletionActions = (
   function deleteNodes(nodeIds: string[]): void {
     if (nodeIds.length === 0) return;
 
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot delete node with undo/redo support');
-    }
+    const state = get();
 
     const allDeletedIds = getNodeAndDescendantIds(nodeIds, state.nodes);
     const releasedSessionIds = collectBoundSessionIds(allDeletedIds, state.nodes);
@@ -91,15 +91,15 @@ export const createNodeDeletionActions = (
       nodeIds.length === 1
         ? new DeleteNodeCommand(nodeIds[0], commandStateGetter, setter, findPreviousNode, triggerAutosave)
         : new DeleteMultipleNodesCommand(nodeIds, commandStateGetter, setter, findPreviousNode, triggerAutosave);
-    state.actions.executeCommand(command);
+    executeCommand(command);
 
-    notifyDeletionDisruption(get, allDeletedIds, stepDeletions);
+    notifyDeletionDisruption(get, allDeletedIds, stepDeletions, disruption);
 
     releaseSessionBindings(releasedSessionIds, get, set);
   }
 
   function deleteNode(nodeId: string, confirmed = false): boolean {
-    const state = get() as StoreState;
+    const state = get();
     const { nodes, rootNodeId, collaboratingNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return true;

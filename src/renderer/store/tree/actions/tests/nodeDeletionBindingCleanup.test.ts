@@ -46,7 +46,6 @@ describe('nodeDeletionActions — session binding cleanup', () => {
     state = {
       rootNodeId: 'root',
       workflowSessionMap: {},
-      actions: { executeCommand: mockExecuteCommand },
       ...partial,
     } as TestState;
     setState = (p) => {
@@ -57,6 +56,8 @@ describe('nodeDeletionActions — session binding cleanup', () => {
       () => state as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setState as any,
+      undefined,
+      mockExecuteCommand
     );
   }
 

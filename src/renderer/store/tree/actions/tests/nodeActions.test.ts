@@ -13,7 +13,6 @@ describe('nodeActions', () => {
     rememberedVisualX: number | null;
     collaboratingNodeId: string | null;
     blueprintModeEnabled: boolean;
-    actions?: { executeCommand?: (cmd: unknown) => void };
   };
   let state: TestState;
   let setState: (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
@@ -66,7 +65,6 @@ describe('nodeActions', () => {
       rememberedVisualX: null,
       collaboratingNodeId: null,
       blueprintModeEnabled: false,
-      actions: { executeCommand: mockExecuteCommand },
     };
 
     setState = (partial) => {
@@ -83,7 +81,8 @@ describe('nodeActions', () => {
       () => state,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setState as any,
-      mockTriggerAutosave
+      mockTriggerAutosave,
+      { executeCommand: mockExecuteCommand }
     );
   });
 

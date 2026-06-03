@@ -167,7 +167,7 @@ describe('workflow disruption — movement wiring', () => {
       state = { ...state, ...partial };
     };
 
-    // Wire real workflow execution handlers onto state.actions
+    // Wire real workflow execution handlers into the movement deps
     const executionActions = createWorkflowExecutionActions(
       () => state,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -176,11 +176,6 @@ describe('workflow disruption — movement wiring', () => {
       mockVisualEffects
     );
 
-    state.actions = {
-      executeCommand: mockExecuteCommand,
-      handleNodeMovedManually: executionActions.handleNodeMovedManually,
-    };
-
     movementActions = createNodeMovementActions(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       () => state as any,
@@ -188,7 +183,11 @@ describe('workflow disruption — movement wiring', () => {
       setState as any,
       mockTriggerAutosave,
       mockVisualEffects,
-      mockNavigation
+      mockNavigation,
+      {
+        executeCommand: mockExecuteCommand,
+        handleNodeMovedManually: executionActions.handleNodeMovedManually,
+      }
     );
   });
 

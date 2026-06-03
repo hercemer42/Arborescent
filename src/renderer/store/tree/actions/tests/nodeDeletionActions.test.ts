@@ -10,7 +10,6 @@ describe('nodeDeletionActions', () => {
     ancestorRegistry: AncestorRegistry;
     activeNodeId?: string | null;
     cursorPosition?: number;
-    actions?: { executeCommand?: (cmd: unknown) => void };
   };
   let state: TestState;
   let setState: (partial: Partial<TestState>) => void;
@@ -57,7 +56,6 @@ describe('nodeDeletionActions', () => {
         'node-2': ['root'],
         'node-3': ['root', 'node-1'],
       },
-      actions: { executeCommand: mockExecuteCommand },
     };
 
     setState = (partial) => {
@@ -68,7 +66,9 @@ describe('nodeDeletionActions', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       () => state as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      setState as any
+      setState as any,
+      undefined,
+      mockExecuteCommand
     );
   });
 

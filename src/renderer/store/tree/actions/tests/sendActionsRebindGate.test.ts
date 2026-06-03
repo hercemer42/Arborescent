@@ -138,7 +138,7 @@ describe('sendActions — sends blocked while a rebind dialog is pending for the
       startDeleteAnimation: vi.fn(),
       clearDeleteAnimation: vi.fn(),
     };
-    actions = createSendActions(mockGet, mockSet, noOpVisualEffects, vi.fn());
+    actions = createSendActions(mockGet, mockSet, noOpVisualEffects, vi.fn(), vi.fn());
     executeMock = executeInTerminal as Mock;
   });
 

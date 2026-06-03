@@ -97,9 +97,7 @@ describe('sendActions — manual collab resolve trigger', () => {
       workflowExecutionStates: {},
       workflowSessionMap: {},
       terminalNodeAssignments: {},
-      actions: {
-        executeCommand: vi.fn((cmd: { execute?: () => void }) => cmd.execute?.()),
-      } as unknown as TreeState['actions'],
+      actions: {} as TreeState['actions'],
       sessionRegistry: {},
     };
 
@@ -114,7 +112,7 @@ describe('sendActions — manual collab resolve trigger', () => {
       scrollToNode: vi.fn(),
       startDeleteAnimation: vi.fn(),
       clearDeleteAnimation: vi.fn(),
-    }, vi.fn());
+    }, vi.fn(), vi.fn());
   });
 
   describe('cancelCollaboration', () => {
@@ -233,22 +231,7 @@ describe('sendActions — manual collab resolve trigger', () => {
       expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
     });
 
-    it('does NOT fire when executeCommand is unavailable — IPC must not clear the MCP route on a path that leaves the panel open', () => {
-      mockState.collaboratingNodeId = 'child1';
-      mockState.collaboratingTerminalId = 'term-1';
-      mockState.workflowSessionMap = { 'sess-C': 'term-1' };
-      mockState.actions = { executeCommand: undefined } as unknown as TreeState['actions'];
-
-      const newRoot: TreeNode = {
-        id: 'new-child1',
-        content: 'Updated',
-        children: [],
-        metadata: { plugins: {} },
-      };
-
-      actions.acceptFeedback('new-child1', { 'new-child1': newRoot });
-
-      expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
-    });
+    // executeCommand is a required constructor dependency, so there is no
+    // unavailable path to guard against here.
   });
 });

@@ -19,8 +19,8 @@ import { VisualEffectsActions } from './visualEffectsActions';
 import { useClipboardCacheStore, ClipboardCacheContent } from '../../clipboard/clipboardCacheStore';
 import { useToastStore } from '../../toast/toastStore';
 import { v4 as uuidv4 } from 'uuid';
+// eslint-disable-next-line import/no-cycle -- inert: storeManager.getStoreForFile is only called inside paste handlers at event time. Story 2 (storeManager hub topology) removes this edge.
 import { storeManager } from '../../storeManager';
-import { notifyMovementDisruption } from './workflowDisruption';
 
 /**
  * Paste orchestration for clipboardActions. Each entry point takes a
@@ -45,6 +45,7 @@ interface PasteStoreState {
 interface PasteStoreActions {
   executeCommand: (command: Command) => void;
   autoSave?: () => void;
+  handleNodeMovedManually?: (nodeId: string) => void;
 }
 
 export interface PasteContext {
@@ -131,7 +132,7 @@ export function handleCutPaste(
     actions.executeCommand(command);
 
     if (targetParentId !== preParentId) {
-      notifyMovementDisruption(get, nodeId);
+      actions.handleNodeMovedManually?.(nodeId);
     }
   }
 

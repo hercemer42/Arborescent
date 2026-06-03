@@ -133,7 +133,7 @@ describe('sendActions — binding marker source token (US-C)', () => {
       startDeleteAnimation: vi.fn(),
       clearDeleteAnimation: vi.fn(),
     };
-    actions = createSendActions(mockGet, mockSet, noOpVisualEffects, vi.fn());
+    actions = createSendActions(mockGet, mockSet, noOpVisualEffects, vi.fn(), vi.fn());
     executeMock = executeInTerminal as Mock;
   });
 

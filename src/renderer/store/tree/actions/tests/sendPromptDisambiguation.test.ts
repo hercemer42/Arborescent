@@ -129,7 +129,7 @@ describe('send prompt — write-back disambiguation', () => {
       startDeleteAnimation: vi.fn(), clearDeleteAnimation: vi.fn(),
     };
 
-    actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn());
+    actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn(), vi.fn());
   });
 
   describe('collaborate-mode terminal prompt', () => {

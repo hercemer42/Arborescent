@@ -8,7 +8,7 @@ import {
 } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
-import { ContextDeclarationInfo, ContextMode } from '../treeStore';
+import type { ContextDeclarationInfo, ContextMode } from '../treeStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { Command } from '../commands/Command';
 import { DeclareContextCommand } from '../commands/DeclareContextCommand';

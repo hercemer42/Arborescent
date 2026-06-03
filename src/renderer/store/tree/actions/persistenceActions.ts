@@ -4,7 +4,7 @@ import { StorageService } from '../../../../shared/interfaces';
 import { updateAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { createArboFile } from '../../../utils/document';
 import { getContextDeclarations } from '../../../utils/nodeHelpers';
-import { ContextDeclarationInfo } from '../treeStore';
+import type { ContextDeclarationInfo } from '../treeStore';
 
 const STATUS_MIGRATION_MAP: Record<string, NodeStatus> = {
   '☐': 'pending',
@@ -41,7 +41,8 @@ type StoreGetter = () => StoreState;
 export const createPersistenceActions = (
   get: StoreGetter,
   set: StoreSetter,
-  storage: StorageService
+  storage: StorageService,
+  restoreCollaborationState?: () => Promise<void>
 ): PersistenceActions => {
   let autosaveTimeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -134,10 +135,7 @@ export const createPersistenceActions = (
     });
 
     // Restore collaboration state if there's collaboration metadata
-    const state = get() as StoreState & { actions?: { restoreCollaborationState?: () => Promise<void> } };
-    if (state.actions?.restoreCollaborationState) {
-      await state.actions.restoreCollaborationState();
-    }
+    await restoreCollaborationState?.();
 
     return { created: data.created, author: data.author };
   }

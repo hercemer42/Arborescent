@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+// eslint-disable-next-line import/no-cycle -- inert: createFileActions runs after all modules load; the back-edge (DeleteNodeCommand -> filesStore) is a lazy getState read. Story 2 (storeManager hub topology) removes this edge.
 import { createFileActions, FileActions } from './actions/fileActions';
 import { StorageService } from '../../services/storageService';
 import { SessionState } from '@shared/interfaces';

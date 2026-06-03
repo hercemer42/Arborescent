@@ -101,12 +101,12 @@ function createActions(stateRef: { current: TestState }) {
     stateRef.current = { ...stateRef.current, ...next };
   };
   const executeCommand = vi.fn((cmd: { execute: () => void }) => cmd.execute());
-  stateRef.current.actions = { executeCommand };
   return createNodeActions(
     get,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     set as any,
     vi.fn(),
+    { executeCommand }
   );
 }
 

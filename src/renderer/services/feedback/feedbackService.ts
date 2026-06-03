@@ -1,6 +1,7 @@
 import { TreeNode } from '../../../shared/types';
 import { parseMarkdown } from '../../utils/markdown';
 import { wrapNodesWithHiddenRoot } from '../../utils/nodeHelpers';
+// eslint-disable-next-line import/no-cycle -- inert: feedbackTreeStore is dereferenced inside service functions at call time, never during module init. Story 2 (storeManager hub topology) removes this edge.
 import { feedbackTreeStore } from '../../store/feedback/feedbackTreeStore';
 import { reconcileFeedback } from '../../store/feedback/reconcileFeedback';
 import { deleteFeedbackTempFile } from './feedbackTempFileService';

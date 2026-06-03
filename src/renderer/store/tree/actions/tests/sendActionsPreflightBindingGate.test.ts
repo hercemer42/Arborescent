@@ -148,7 +148,7 @@ describe('sendActions — preflight rebind gate: do not paste before confirmatio
       startDeleteAnimation: vi.fn(),
       clearDeleteAnimation: vi.fn(),
     };
-    actions = createSendActions(mockGet, mockSet, noOpVisualEffects, vi.fn());
+    actions = createSendActions(mockGet, mockSet, noOpVisualEffects, vi.fn(), vi.fn());
     executeMock = executeInTerminal as Mock;
   });
 

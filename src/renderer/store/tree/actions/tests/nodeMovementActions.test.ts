@@ -75,7 +75,6 @@ describe('nodeMovementActions', () => {
       },
       cursorPosition: 0,
       rememberedVisualX: null,
-      actions: { executeCommand: mockExecuteCommand },
     };
 
     setState = (partial) => {
@@ -104,7 +103,8 @@ describe('nodeMovementActions', () => {
       setState as any,
       undefined,
       mockVisualEffects,
-      mockNavigation
+      mockNavigation,
+      { executeCommand: mockExecuteCommand }
     );
   });
 
@@ -202,7 +202,8 @@ describe('nodeMovementActions', () => {
         setState as any,
         undefined,
         mockVisualEffects,
-        mockNavigation
+        mockNavigation,
+        { executeCommand: mockExecuteCommand }
       );
 
       actions.indentNode('node-2');

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle -- inert: createTreeStore is invoked on demand (getStoreForFile), never during module init; this is the hub edge itself. Story 2 (storeManager hub topology) removes it.
 import { createTreeStore, TreeStore } from './tree/treeStore';
 import { logger } from '../services/logger';
 import { parseZoomPath } from '../utils/zoomPath';

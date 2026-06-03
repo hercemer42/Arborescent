@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle -- inert: createTreeStore runs after all modules load; back-edge (sendActions -> feedbackService) resolves at call time. Story 2 (storeManager hub topology) removes this edge.
 import { createTreeStore, TreeStore } from '../tree/treeStore';
 import type { TreeNode } from '../../../shared/types';
 

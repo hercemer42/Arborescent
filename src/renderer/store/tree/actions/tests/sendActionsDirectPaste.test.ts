@@ -99,6 +99,7 @@ function makeActions(state: TreeState) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockVisualEffects as any,
     vi.fn(),
+    vi.fn(),
   );
 }
 

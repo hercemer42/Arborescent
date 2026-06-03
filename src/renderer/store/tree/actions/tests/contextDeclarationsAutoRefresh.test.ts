@@ -90,13 +90,12 @@ describe('contextDeclarations stay in sync with context node edits', () => {
     nodeActions = createNodeActions(
       () => state as never,
       setState as never,
-      vi.fn()
+      vi.fn(),
+      {
+        executeCommand,
+        refreshContextDeclarations: contextActions.refreshContextDeclarations,
+      }
     );
-
-    state.actions = {
-      executeCommand,
-      refreshContextDeclarations: contextActions.refreshContextDeclarations,
-    };
   });
 
   function declarationFor(nodeId: string) {

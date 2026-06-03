@@ -1,4 +1,5 @@
 import { StorageService } from '../../../../shared/interfaces';
+// eslint-disable-next-line import/no-cycle -- inert: storeManager methods are only called from action bodies at event time, never during module init. Story 2 (storeManager hub topology) removes this edge.
 import { storeManager } from '../../storeManager';
 import { logger } from '../../../services/logger';
 import { cleanupFeedback } from '../../../services/feedback/feedbackService';

@@ -6,10 +6,12 @@ import { createBlueprintActions, BlueprintActions } from './actions/blueprintAct
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
 import { createPersistenceActions, PersistenceActions } from './actions/persistenceActions';
 import { createNodeMovementActions, NodeMovementActions } from './actions/nodeMovementActions';
+// eslint-disable-next-line import/no-cycle -- inert: factory composition runs inside create() after all modules load (deep edge: DeleteNodeCommand -> filesStore -> storeManager). Story 2 (storeManager hub topology) removes this edge.
 import { createNodeDeletionActions, NodeDeletionActions } from './actions/nodeDeletionActions';
 import { createVisualEffectsActions, VisualEffectsActions, FlashIntensity } from './actions/visualEffectsActions';
 import { createSelectionActions, SelectionActions } from './actions/selectionActions';
 import { createHistoryActions, HistoryActions } from './actions/historyActions';
+// eslint-disable-next-line import/no-cycle -- inert: factory composition runs inside create() after all modules load (deep edge: feedbackService -> feedbackTreeStore). Story 2 (storeManager hub topology) removes this edge.
 import { createSendActions, SendActions } from './actions/sendActions';
 import { createClipboardActions, ClipboardActions } from './actions/clipboardActions';
 import { createSummaryActions, SummaryActions } from './actions/summaryActions';
@@ -17,6 +19,7 @@ import { createWorkflowActions, WorkflowActions } from './actions/workflowAction
 import { createWorkflowExecutionActions, WorkflowExecutionActions, WorkflowExecutionEntry } from './actions/workflowExecutionActions';
 import { createSendToWorkflowActions, SendToWorkflowActions } from './actions/sendToWorkflowActions';
 import { HistoryManager } from './commands/HistoryManager';
+import { DisruptionActions } from './actions/workflowDisruption';
 import { StepHistoryMap } from './stepHistory/stepHistory';
 import { StorageService } from '../../services/storageService';
 import { storeManager } from '../storeManager';
@@ -111,25 +114,42 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
     };
 
     const historyManager = new HistoryManager();
-    const persistenceActions = createPersistenceActions(get, set, storageService);
-    const visualEffectsActions = createVisualEffectsActions(get, set);
-    const navigationActions = createNavigationActions(get, set);
-    const selectionActions = createSelectionActions(get, set);
     const historyActions = createHistoryActions(historyManager);
+    const executeCommand = historyActions.executeCommand;
 
-    const nodeDeletionActions = createNodeDeletionActions(get, set, persistenceActions.autoSave);
-    const sendActions = createSendActions(get, set, visualEffectsActions, persistenceActions.autoSave, () => storeManager.getAllStores());
+    // Late-binding refs for genuine forward references: the owners
+    // (sendActions, workflowExecutionActions) are created further down because
+    // they depend on actions constructed here first. Populated before the
+    // store factory returns, same idiom as workflowExecutionRef below.
+    const collaborationRestoreRef: { restoreCollaborationState?: () => Promise<void> } = {};
+    const disruptionRef: DisruptionActions & { handleNodeMovedManually?: (nodeId: string) => void } = {};
 
-    const contextActions = createContextActions(get, set, persistenceActions.autoSave, historyActions.executeCommand);
+    const persistenceActions = createPersistenceActions(
+      get,
+      set,
+      storageService,
+      async () => { await collaborationRestoreRef.restoreCollaborationState?.(); }
+    );
+    const visualEffectsActions = createVisualEffectsActions(get, set);
+    const navigationActions = createNavigationActions(get, set, executeCommand);
+    const selectionActions = createSelectionActions(get, set);
+
+    const nodeDeletionActions = createNodeDeletionActions(get, set, persistenceActions.autoSave, executeCommand, disruptionRef);
+    const sendActions = createSendActions(get, set, visualEffectsActions, persistenceActions.autoSave, executeCommand, () => storeManager.getAllStores());
+    collaborationRestoreRef.restoreCollaborationState = sendActions.restoreCollaborationState;
+
+    const contextActions = createContextActions(get, set, persistenceActions.autoSave, executeCommand);
+    const summaryActions = createSummaryActions(get, set, persistenceActions.autoSave);
 
     const clipboardActions = createClipboardActions(
       get,
       set,
       () => ({
-        executeCommand: historyActions.executeCommand,
+        executeCommand,
         deleteNode: nodeDeletionActions.deleteNode,
         deleteNodes: nodeDeletionActions.deleteNodes,
         autoSave: persistenceActions.autoSave,
+        handleNodeMovedManually: (nodeId: string) => disruptionRef.handleNodeMovedManually?.(nodeId),
       }),
       visualEffectsActions,
       persistenceActions.autoSave
@@ -140,7 +160,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       get,
       set,
       persistenceActions.autoSave,
-      historyActions.executeCommand,
+      executeCommand,
       visualEffectsActions,
       (nodeId, terminalId) => workflowExecutionRef.continueWorkflow?.(nodeId, terminalId),
     );
@@ -150,10 +170,14 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       persistenceActions.autoSave,
       visualEffectsActions,
       sendActions.autonomousCollaborateInTerminal,
-      historyActions.executeCommand,
+      executeCommand,
       historyActions.invalidateUndoEntriesTouching,
     );
     workflowExecutionRef.continueWorkflow = workflowExecutionActions.continueWorkflow;
+    disruptionRef.handleNodeDeleted = workflowExecutionActions.handleNodeDeleted;
+    disruptionRef.handleStepDeleted = workflowExecutionActions.handleStepDeleted;
+    disruptionRef.handleAllStepsRemoved = workflowExecutionActions.handleAllStepsRemoved;
+    disruptionRef.handleNodeMovedManually = workflowExecutionActions.handleNodeMovedManually;
 
     return {
       nodes: {},
@@ -191,22 +215,29 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       stepHistory: {},
 
       actions: {
-        ...createNodeActions(get, set, persistenceActions.autoSave),
+        ...createNodeActions(get, set, persistenceActions.autoSave, {
+          executeCommand,
+          refreshContextDeclarations: contextActions.refreshContextDeclarations,
+          refreshSummaryVisibleNodeIds: summaryActions.refreshSummaryVisibleNodeIds,
+        }),
         ...contextActions,
-        ...createBlueprintActions(get, set, persistenceActions.autoSave, historyActions.executeCommand, contextActions.refreshContextDeclarations),
+        ...createBlueprintActions(get, set, persistenceActions.autoSave, executeCommand, contextActions.refreshContextDeclarations),
         ...navigationActions,
         ...persistenceActions,
-        ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions, navigationActions),
+        ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions, navigationActions, {
+          executeCommand,
+          handleNodeMovedManually: (nodeId) => disruptionRef.handleNodeMovedManually?.(nodeId),
+        }),
         ...nodeDeletionActions,
         ...visualEffectsActions,
         ...selectionActions,
         ...historyActions,
         ...sendActions,
         ...clipboardActions,
-        ...createSummaryActions(get, set, persistenceActions.autoSave),
+        ...summaryActions,
         ...workflowActions,
         ...workflowExecutionActions,
-        ...createSendToWorkflowActions(get, set, persistenceActions.autoSave, visualEffectsActions, historyActions.executeCommand),
+        ...createSendToWorkflowActions(get, set, persistenceActions.autoSave, visualEffectsActions, executeCommand),
       },
     };
   });

@@ -97,6 +97,7 @@ describe('UUID marker — manual terminal sends (one-shot TARGET marker)', () =>
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockVisualEffects as any,
       vi.fn(),
+      vi.fn(),
     );
     const mod = await import('../../../../services/terminalExecution');
     executeInTerminalMock = mod.executeInTerminal as ReturnType<typeof vi.fn>;
@@ -154,6 +155,7 @@ describe('UUID marker — action mode', () => {
       mockSet as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mockVisualEffects as any,
+      vi.fn(),
       vi.fn(),
     );
     const mod = await import('../../../../services/terminalExecution');

@@ -62,12 +62,6 @@ describe('nodeDeletionActions — deleteNodes(ids[]) core', () => {
       rootNodeId: 'root',
       workflowSessionMap: {},
       multiSelectedNodeIds: new Set(),
-      actions: {
-        executeCommand: mockExecuteCommand,
-        handleNodeDeleted,
-        handleStepDeleted,
-        handleAllStepsRemoved,
-      },
       ...partial,
     } as TestState;
     const setState = (p: Partial<TestState>) => {
@@ -78,6 +72,13 @@ describe('nodeDeletionActions — deleteNodes(ids[]) core', () => {
       () => state as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setState as any,
+      undefined,
+      mockExecuteCommand,
+      {
+        handleNodeDeleted,
+        handleStepDeleted,
+        handleAllStepsRemoved,
+      }
     );
   }
 

@@ -134,7 +134,7 @@ describe('sendActions — collaborate & execute prompt broadcasts the incrementa
       startDeleteAnimation: vi.fn(),
       clearDeleteAnimation: vi.fn(),
     };
-    actions = createSendActions(mockGet, mockSet, noOpVisualEffects, vi.fn());
+    actions = createSendActions(mockGet, mockSet, noOpVisualEffects, vi.fn(), vi.fn());
     executeMock = executeInTerminal as Mock;
   });
 

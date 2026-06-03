@@ -195,12 +195,6 @@ describe('sendActions', () => {
       command.execute();
     });
 
-    // Add executeCommand to the mock state's actions
-    mockState.actions = {
-      executeCommand: mockExecuteCommand,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
-
     const mockVisualEffects = {
       flashNode: vi.fn(),
       scrollToNode: vi.fn(),
@@ -210,7 +204,7 @@ describe('sendActions', () => {
 
     const mockAutoSave = vi.fn();
 
-    actions = createSendActions(mockGet, mockSet, mockVisualEffects, mockAutoSave);
+    actions = createSendActions(mockGet, mockSet, mockVisualEffects, mockAutoSave, mockExecuteCommand);
   });
 
   describe('startCollaboration', () => {

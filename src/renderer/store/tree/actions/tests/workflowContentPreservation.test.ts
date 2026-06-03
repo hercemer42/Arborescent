@@ -148,7 +148,7 @@ describe('Workflow steps preserve the original node content', () => {
       startDeleteAnimation: vi.fn(), clearDeleteAnimation: vi.fn(),
     };
 
-    actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn());
+    actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn(), vi.fn());
 
     mockState.nodes.feature.metadata.appliedContextId = 'exec-ctx';
     mockState.nodes.refactor.metadata.appliedContextId = 'exec-ctx';

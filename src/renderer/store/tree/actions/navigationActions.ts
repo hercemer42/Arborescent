@@ -1,5 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { findPreviousNode, findNextNode } from '../../../utils/nodeHelpers';
+import { Command } from '../commands/Command';
 import { ToggleExpandCommand } from '../commands/ToggleExpandCommand';
 
 export interface NavigationActions {
@@ -39,7 +40,8 @@ function selectNode(
 
 export const createNavigationActions = (
   get: () => StoreState,
-  set: StoreSetter
+  set: StoreSetter,
+  executeCommand: (command: Command) => void
 ): NavigationActions => {
   function moveUp(cursorPosition?: number, rememberedVisualX?: number | null, boundaryNodeId?: string): void {
     const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
@@ -109,26 +111,21 @@ export const createNavigationActions = (
   }
 
   function toggleNode(nodeId: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes } = state;
+    const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
     // Only allow toggling if the node has children
     if (node.children.length === 0) return;
 
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot toggle expand with undo/redo support');
-    }
-
     const command = new ToggleExpandCommand(
       nodeId,
-      () => (get() as StoreState).nodes,
+      () => get().nodes,
       (updatedNodes) => set({ nodes: updatedNodes }),
       (nodeId, cursorPosition) => set({ activeNodeId: nodeId, cursorPosition }),
       undefined // no autosave for expand/collapse
     );
-    state.actions.executeCommand(command);
+    executeCommand(command);
   }
 
   return {

@@ -16,6 +16,7 @@ import {
   WorkflowExecutionEntry,
 } from "../../../utils/workflowHelpers";
 import { getParentIdOrNull } from "../../../utils/parentLookup";
+// eslint-disable-next-line import/no-cycle -- inert: parseFeedbackContent is called per workflow step at event time, never during module init. Story 2 (storeManager hub topology) removes this edge.
 import { parseFeedbackContent } from "../../../services/feedback/feedbackService";
 import { AcceptFeedbackCommand } from "../commands/AcceptFeedbackCommand";
 import { StepType } from "../commands/SetStepTypeCommand";

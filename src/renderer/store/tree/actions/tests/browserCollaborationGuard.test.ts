@@ -124,8 +124,6 @@ describe('browser collaboration guard across files', () => {
     });
 
     const mockExecuteCommand = vi.fn((command: { execute: () => void }) => command.execute());
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mockState.actions = { executeCommand: mockExecuteCommand } as any;
 
     const mockVisualEffects = {
       flashNode: vi.fn(),
@@ -135,7 +133,7 @@ describe('browser collaboration guard across files', () => {
     };
 
     mockGetAllStores.mockReturnValue([]);
-    actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn(), mockGetAllStores);
+    actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn(), mockExecuteCommand, mockGetAllStores);
   });
 
   describe('collaboration source tracking', () => {

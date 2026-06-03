@@ -156,7 +156,7 @@ describe('workflow disruption — deletion wiring', () => {
       state = { ...state, ...partial };
     };
 
-    // Create workflow execution actions to wire real handlers onto state.actions
+    // Create workflow execution actions to wire real handlers into the deletion deps
     const executionActions = createWorkflowExecutionActions(
       () => state,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -165,19 +165,18 @@ describe('workflow disruption — deletion wiring', () => {
       mockVisualEffects
     );
 
-    state.actions = {
-      executeCommand: mockExecuteCommand,
-      handleNodeDeleted: executionActions.handleNodeDeleted,
-      handleStepDeleted: executionActions.handleStepDeleted,
-      handleAllStepsRemoved: executionActions.handleAllStepsRemoved,
-    };
-
     deletionActions = createNodeDeletionActions(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       () => state as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setState as any,
-      mockTriggerAutosave
+      mockTriggerAutosave,
+      mockExecuteCommand,
+      {
+        handleNodeDeleted: executionActions.handleNodeDeleted,
+        handleStepDeleted: executionActions.handleStepDeleted,
+        handleAllStepsRemoved: executionActions.handleAllStepsRemoved,
+      }
     );
   });
 

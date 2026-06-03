@@ -7,7 +7,7 @@ type TreeState = {
   ancestorRegistry: Record<string, string[]>;
 };
 
-type DisruptionActions = {
+export type DisruptionActions = {
   handleNodeDeleted?: (nodeId: string) => void;
   handleStepDeleted?: (stepId: string) => void;
   handleAllStepsRemoved?: (workflowId: string) => void;
@@ -33,30 +33,22 @@ export function captureStepDeletions(
 export function notifyDeletionDisruption(
   get: () => TreeState,
   allDeletedIds: string[],
-  stepDeletions: StepDeletion[]
+  stepDeletions: StepDeletion[],
+  disruption: DisruptionActions | undefined
 ): void {
-  const actions = (get() as TreeState & { actions?: DisruptionActions }).actions;
-  if (!actions) return;
+  if (!disruption) return;
 
   for (const id of allDeletedIds) {
-    actions.handleNodeDeleted?.(id);
+    disruption.handleNodeDeleted?.(id);
   }
 
   for (const { stepId, workflowId } of stepDeletions) {
-    actions.handleStepDeleted?.(stepId);
+    disruption.handleStepDeleted?.(stepId);
 
     const currentState = get();
     const workflow = currentState.nodes[workflowId];
     if (workflow && workflow.children.length === 0) {
-      actions.handleAllStepsRemoved?.(workflowId);
+      disruption.handleAllStepsRemoved?.(workflowId);
     }
   }
-}
-
-export function notifyMovementDisruption(
-  get: () => TreeState,
-  nodeId: string
-): void {
-  const actions = (get() as TreeState & { actions?: { handleNodeMovedManually?: (id: string) => void } }).actions;
-  actions?.handleNodeMovedManually?.(nodeId);
 }

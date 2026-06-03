@@ -92,7 +92,6 @@ describe('editing a node during collaboration', () => {
       rememberedVisualX: null,
       collaboratingNodeId: 'collab-node',
       blueprintModeEnabled: false,
-      actions: { executeCommand: mockExecuteCommand },
     };
 
     const setState = (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => {
@@ -107,7 +106,8 @@ describe('editing a node during collaboration', () => {
       () => state,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setState as any,
-      vi.fn()
+      vi.fn(),
+      { executeCommand: mockExecuteCommand }
     );
   });
 

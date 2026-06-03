@@ -154,6 +154,38 @@ describe('persistenceActions', () => {
       expect(result).toEqual({ created: mockData.created, author: mockData.author });
     });
 
+    it('invokes the late-bound restoreCollaborationState after loading', async () => {
+      const restoreCollaborationState = vi.fn(() => Promise.resolve());
+      actions = createPersistenceActions(
+        () => state,
+        setState,
+        mockStorage,
+        restoreCollaborationState
+      );
+
+      const mockData = {
+        format: 'Arborescent' as const,
+        version: '1.0.0',
+        created: '2025-01-01',
+        updated: '2025-01-02',
+        author: 'Test',
+        rootNodeId: 'loaded-root',
+        nodes: {
+          'loaded-root': {
+            id: 'loaded-root',
+            content: 'Loaded Project',
+            children: [],
+            metadata: {},
+          },
+        },
+      };
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
+
+      await actions.loadFromPath('/test/path.arbo');
+
+      expect(restoreCollaborationState).toHaveBeenCalledTimes(1);
+    });
+
     it('should set activeNodeId to first child of root when root has children', async () => {
       const mockData = {
         format: 'Arborescent' as const,

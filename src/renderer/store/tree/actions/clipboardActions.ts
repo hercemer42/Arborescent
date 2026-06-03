@@ -7,6 +7,7 @@ import {
   getNodeIdsFromSelection,
   flashNodes,
 } from './clipboardHelpers';
+// eslint-disable-next-line import/no-cycle -- inert: paste handlers reach storeManager lazily at paste time, never during module init. Story 2 (storeManager hub topology) removes this edge.
 import {
   handleCutPaste,
   handleCopyPaste,
@@ -54,6 +55,7 @@ type StoreActions = {
   deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
   deleteNodes: (nodeIds: string[]) => void;
   autoSave?: () => void;
+  handleNodeMovedManually?: (nodeId: string) => void;
 };
 
 type StoreSetter = (partial: Partial<StoreState>) => void;

@@ -1,4 +1,4 @@
-import { TerminalInfo } from '../store/terminal/terminalStore';
+import type { TerminalInfo } from '../store/terminal/terminalStore';
 import { logger } from './logger';
 
 export async function createTerminal(

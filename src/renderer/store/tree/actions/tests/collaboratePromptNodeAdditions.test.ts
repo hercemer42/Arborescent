@@ -132,7 +132,7 @@ describe('collaborate prompt — node additions are permitted, not just status e
       startDeleteAnimation: vi.fn(), clearDeleteAnimation: vi.fn(),
     };
 
-    actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn());
+    actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn(), vi.fn());
   });
 
   async function promptFor(contextId: string, flags?: { collaborate: boolean; execute: boolean }): Promise<string> {

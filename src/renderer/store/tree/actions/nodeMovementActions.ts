@@ -3,9 +3,9 @@ import { AncestorRegistry } from '../../../utils/ancestry';
 import { getParentId } from '../../../utils/nodeHelpers';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { NavigationActions } from './navigationActions';
+import { Command } from '../commands/Command';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
 import { useToastStore } from '../../toast/toastStore';
-import { notifyMovementDisruption } from './workflowDisruption';
 
 export interface NodeMovementActions {
   indentNode: (nodeId: string) => void;
@@ -13,6 +13,11 @@ export interface NodeMovementActions {
   moveNodeUp: (nodeId: string) => void;
   moveNodeDown: (nodeId: string) => void;
   dropNode: (nodeId: string, targetNodeId: string, dropZone: 'before' | 'after' | 'child') => void;
+}
+
+export interface NodeMovementDeps {
+  executeCommand: (command: Command) => void;
+  handleNodeMovedManually?: (nodeId: string) => void;
 }
 
 type StoreState = {
@@ -155,9 +160,10 @@ function calculateSiblingParentMove(
 function moveNodeVertically(
   nodeId: string,
   direction: 'up' | 'down',
-  state: StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } },
+  state: StoreState,
   set: StoreSetter,
   get: () => StoreState,
+  deps: NodeMovementDeps,
   triggerAutosave?: () => void
 ): void {
   const { nodes, rootNodeId, ancestorRegistry } = state;
@@ -197,10 +203,6 @@ function moveNodeVertically(
     }
   }
 
-  if (!state.actions?.executeCommand) {
-    throw new Error('Command system not initialized - cannot move node with undo/redo support');
-  }
-
   const command = new MoveNodeCommand(
     nodeId,
     newParentId,
@@ -216,31 +218,28 @@ function moveNodeVertically(
     (partial) => set(partial as Partial<StoreState>),
     triggerAutosave
   );
-  state.actions.executeCommand(command);
+  deps.executeCommand(command);
 
   if (newParentId !== parentId) {
-    notifyMovementDisruption(get, nodeId);
+    deps.handleNodeMovedManually?.(nodeId);
   }
 }
 
 export const createNodeMovementActions = (
   get: () => StoreState,
   set: StoreSetter,
-  triggerAutosave?: () => void,
-  visualEffects?: VisualEffectsActions,
-  navigation?: NavigationActions
+  triggerAutosave: (() => void) | undefined,
+  visualEffects: VisualEffectsActions | undefined,
+  navigation: NavigationActions | undefined,
+  deps: NodeMovementDeps
 ): NodeMovementActions => {
   function executeMoveCommand(nodeId: string, newParentId: string, newPosition: number): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+    const state = get();
 
     const error = validateNodeMove(nodeId, newParentId, state);
     if (error) {
       useToastStore.getState().addToast(error, 'error');
       return;
-    }
-
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot move node with undo/redo support');
     }
 
     const currentParentId = getParentId(nodeId, state.ancestorRegistry, state.rootNodeId);
@@ -250,7 +249,7 @@ export const createNodeMovementActions = (
       newParentId,
       newPosition,
       () => {
-        const currentState = get() as StoreState;
+        const currentState = get();
         return {
           nodes: currentState.nodes,
           rootNodeId: currentState.rootNodeId,
@@ -260,17 +259,15 @@ export const createNodeMovementActions = (
       (partial) => set(partial as Partial<StoreState>),
       triggerAutosave
     );
-    state.actions.executeCommand(command);
+    deps.executeCommand(command);
 
     if (newParentId !== currentParentId) {
-      const actions = (get() as StoreState & { actions?: { handleNodeMovedManually?: (id: string) => void } }).actions;
-      actions?.handleNodeMovedManually?.(nodeId);
+      deps.handleNodeMovedManually?.(nodeId);
     }
   }
 
   function indentNode(nodeId: string): void {
-    const state = get() as StoreState;
-    const { nodes, ancestorRegistry, rootNodeId } = state;
+    const { nodes, ancestorRegistry, rootNodeId } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
@@ -299,8 +296,7 @@ export const createNodeMovementActions = (
   }
 
   function outdentNode(nodeId: string): void {
-    const state = get() as StoreState;
-    const { nodes, rootNodeId, ancestorRegistry } = state;
+    const { nodes, rootNodeId, ancestorRegistry } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
@@ -327,13 +323,11 @@ export const createNodeMovementActions = (
   }
 
   function moveNodeUp(nodeId: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    moveNodeVertically(nodeId, 'up', state, set, get, triggerAutosave);
+    moveNodeVertically(nodeId, 'up', get(), set, get, deps, triggerAutosave);
   }
 
   function moveNodeDown(nodeId: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    moveNodeVertically(nodeId, 'down', state, set, get, triggerAutosave);
+    moveNodeVertically(nodeId, 'down', get(), set, get, deps, triggerAutosave);
   }
 
   function dropNode(
@@ -341,7 +335,7 @@ export const createNodeMovementActions = (
     targetNodeId: string,
     dropZone: 'before' | 'after' | 'child'
   ): void {
-    const state = get() as StoreState;
+    const state = get();
     const { nodes } = state;
 
     const dropTarget = calculateDropTarget(nodeId, targetNodeId, dropZone, state);

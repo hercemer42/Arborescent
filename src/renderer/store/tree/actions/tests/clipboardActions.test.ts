@@ -246,9 +246,11 @@ describe('clipboardActions', () => {
     // (command execution, binding release) keep observing end-to-end behavior.
     const nodeDeletionActions = createNodeDeletionActions(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      () => ({ ...state, actions: { executeCommand: mockExecuteCommand } }) as any,
+      () => state as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      setState as any
+      setState as any,
+      undefined,
+      mockExecuteCommand
     );
 
     actions = createClipboardActions(

@@ -1,6 +1,6 @@
 import { StorageService, BrowserSession, BrowserTab } from '../../../../shared/interfaces';
 import { logger } from '../../../services/logger';
-import { DEFAULT_BROWSER_URL } from '../browserStore';
+import { DEFAULT_BROWSER_URL } from '../constants';
 import type { FileBrowserState, BrowserState } from '../browserStore';
 import { resolveToSourceFilePath } from '../../../utils/zoomPath';
 
