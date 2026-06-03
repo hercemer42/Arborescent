@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-03T08:54:17.957Z'
+updated: '2026-06-03T12:56:21.161Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -80786,8 +80786,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - f279d03c-b14a-4568-b56a-2ea5b6f6cc1d
-      - dee03dac-d4a0-4977-9c2f-4a714d56b618
       - 85dde574-3fee-450e-b4bc-36588f9bcf45
       - 748bd1b2-f196-4f26-95c0-1a46974254dc
       - c2a2f129-6b9d-4028-8c31-f516ed6b7e4e
@@ -83654,7 +83652,8 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children: []
+    children:
+      - f279d03c-b14a-4568-b56a-2ea5b6f6cc1d
     metadata:
       status: pending
       isBlueprint: true
@@ -115515,6 +115514,7 @@ nodes:
       - 236ca1e3-a932-4861-b9f7-142c5ca6ab82
       - 73c0b75b-0e06-4e82-9f82-205f45601fca
       - e8ecac4a-58e3-49af-beb4-1e9d217bfc6c
+      - d0ea449a-5792-49c2-89ad-5f7abaacb301
     metadata:
       status: pending
       isBlueprint: true
@@ -124621,7 +124621,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - d0ea449a-5792-49c2-89ad-5f7abaacb301
+      - dee03dac-d4a0-4977-9c2f-4a714d56b618
     metadata:
       status: pending
       isBlueprint: true
@@ -158999,6 +158999,7 @@ nodes:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
     children:
+      - fc5c60dc-50c4-4ba1-9c72-117edeab709f
       - 0dcad7cb-fcab-49ab-abe0-2a130c01d3aa
       - 974f185f-1384-4981-aa3d-7d37f35a00d0
     metadata:
@@ -179663,82 +179664,46 @@ nodes:
       plugins: {}
   f279d03c-b14a-4568-b56a-2ea5b6f6cc1d:
     id: f279d03c-b14a-4568-b56a-2ea5b6f6cc1d
-    content: Merge-not-replace for the autonº$omous submit rebuild
+    content: Merge-not-replace for the autonomous submit rebuild
     children:
-      - efead4ac-a6fa-4e2f-acad-b592b7bab84f
-      - 5b4935ba-ec74-483f-919f-5892bd565af0
-      - 4652a0a6-2edd-490e-b28c-160d68fa68d0
+      - afce18c6-8556-4c36-bdc8-fe88c4f281c2
+      - 5c7cc0cb-4068-4278-927b-e55427aa9dc5
+      - 62492ac8-7a00-4aad-99c3-6c78cb73e47f
+      - 41f4eb1a-e934-444c-a7d1-85022afe07ff
+      - c87bc602-b1d5-4717-971d-88c5fb792219
+      - 83eb2a8a-39ae-4f96-a365-4e78cc7d3e00
     metadata:
       status: pending
       expanded: false
       deleted: false
       plugins: {}
-  efead4ac-a6fa-4e2f-acad-b592b7bab84f:
-    id: efead4ac-a6fa-4e2f-acad-b592b7bab84f
-    content: 'Problem: executeSingleRootStrategy deletes the snapshot''s descendants and re-adds only what is in CONTENT (acceptFeedbackStrategies.ts:179-183), so out-of-band add_child_node nodes vanish unless they are also echoed in the submit'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b4935ba-ec74-483f-919f-5892bd565af0:
-    id: 5b4935ba-ec74-483f-919f-5892bd565af0
-    content: 'Approach: reconcile instead of wholesale-replace — preserve nodes not referenced in CONTENT, or require explicit deletion markers'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4652a0a6-2edd-490e-b28c-160d68fa68d0:
-    id: 4652a0a6-2edd-490e-b28c-160d68fa68d0
-    content: 'Risk: medium-high; it is core to feedback application, so it needs strong test coverage first — current behavior is latent data loss'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
+      sessionId: 0f6436ca-97e6-41ed-8b3a-b57f285e38cb
   dee03dac-d4a0-4977-9c2f-4a714d56b618:
     id: dee03dac-d4a0-4977-9c2f-4a714d56b618
-    content: Discriminated error taxonomy for submit / readState
+    content: Discriminated error taxonomy for psubmit / readState
     children:
-      - 9388fdbc-d2d0-41b6-96f0-d5a050f46667
-      - 66b1f742-4529-43d8-a071-a53f267f2ac8
-      - d6aec8ab-1304-4041-9ca5-182b68a2810f
+      - f07cfa06-ef0a-4505-b7d0-8115ab409d74
+      - 0ab7c849-3a71-4aa8-abf6-1e88d4f755b1
+      - 67b00200-cee0-4be6-899c-32e9a4f9e38b
+      - c00b8b30-1505-484c-9d92-014f009472ad
+      - f442fd49-3a9b-4065-8e19-736ba8549cb5
+      - eb293050-a7e7-4734-b34a-aa472cc54311
+      - 6796792c-e793-4d8c-a4a3-df8e34a16b83
+      - 5fd0ff3c-b199-4930-b165-d3285dd2b200
+      - 963d2f28-2f7d-45b5-8d38-20af01da8764
+      - 0f85d7e2-0f2e-41e7-8e97-8986d4d456ff
+      - af912c00-3d7c-41d1-ac47-7396b1f0476e
+      - cfb17698-9b9a-4329-a809-49c93f550152
+      - 89a754ff-e848-4b60-8a8c-6eb7eb77cc46
+      - 02ac42fb-c084-4472-8b61-2e1c1450a4cf
+      - 772a1db2-a600-4977-afa4-8c720ea85bc0
+      - 7c807005-9408-4e0c-813b-b66b9d8b16fb
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
-  9388fdbc-d2d0-41b6-96f0-d5a050f46667:
-    id: 9388fdbc-d2d0-41b6-96f0-d5a050f46667
-    content: 'Problem: "Tree state is unavailable" conflates renderer-not-ready, no-file-open, bound-node-in-another-open-file, and bound-node-deleted — four conditions with four different remedies behind one misleading message (mcpSubmitOutputTool.ts:62)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66b1f742-4529-43d8-a071-a53f267f2ac8:
-    id: 66b1f742-4529-43d8-a071-a53f267f2ac8
-    content: 'Approach: have readState / mcpTreeReaderService return a discriminated result (not-ready | node-in-no-open-store | ok) so submit_step_output can report the real cause (including "bound node was deleted")'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6aec8ab-1304-4041-9ca5-182b68a2810f:
-    id: d6aec8ab-1304-4041-9ca5-182b68a2810f
-    content: 'Risk: low and isolated — do this one first; immediate debugging payoff for you and for AI sessions'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
+      sessionId: 78d1f5ac-f4f5-44ea-802f-d39878c0b2d8
   85dde574-3fee-450e-b4bc-36588f9bcf45:
     id: 85dde574-3fee-450e-b4bc-36588f9bcf45
     content: Unify the single- and multi-node deletion paths
@@ -180416,7 +180381,7 @@ nodes:
       - d2b53462-1fc2-4051-b511-1b577600d0dc
       - 79932264-8834-4a70-ba3b-8da069d7f558
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -181542,6 +181507,1891 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  fc5c60dc-50c4-4ba1-9c72-117edeab709f:
+    id: fc5c60dc-50c4-4ba1-9c72-117edeab709f
+    content: Possible to edit a node in collaboration
+    children:
+      - 357c4754-5b99-4e7e-9aa2-20962cea0a03
+      - 03ad06d6-ed41-4078-8f2d-0a44b92e3439
+      - 622c361b-8d01-465f-a031-522d293f347e
+    metadata:
+      status: pending
+  357c4754-5b99-4e7e-9aa2-20962cea0a03:
+    id: 357c4754-5b99-4e7e-9aa2-20962cea0a03
+    content: We can edit it but we also get an error toaster saying we can't edit it
+    children: []
+    metadata:
+      status: pending
+  03ad06d6-ed41-4078-8f2d-0a44b92e3439:
+    id: 03ad06d6-ed41-4078-8f2d-0a44b92e3439
+    content: Decide if it's just a user beware (can edit, but it'll be overridden, no error)
+    children: []
+    metadata:
+      status: pending
+  622c361b-8d01-465f-a031-522d293f347e:
+    id: 622c361b-8d01-465f-a031-522d293f347e
+    content: Or block editing
+    children: []
+    metadata:
+      status: pending
+  afce18c6-8556-4c36-bdc8-fe88c4f281c2:
+    id: afce18c6-8556-4c36-bdc8-fe88c4f281c2
+    content: 'Problem: executeSingleRootStrategy deletes the snapshot''s descendants and re-adds only what is in CONTENT (acceptFeedbackStrategies.ts:179-183), so out-of-band add_child_node nodes vanish unless they are also echoed in the submit'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c7cc0cb-4068-4278-927b-e55427aa9dc5:
+    id: 5c7cc0cb-4068-4278-927b-e55427aa9dc5
+    content: 'Approach: reconcile instead of wholesale-replace — preserve nodes not referenced in CONTENT, or require explicit deletion markers'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  62492ac8-7a00-4aad-99c3-6c78cb73e47f:
+    id: 62492ac8-7a00-4aad-99c3-6c78cb73e47f
+    content: 'Risk: medium-high; it is core to feedback application, so it needs strong test coverage first — current behavior is latent data loss'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41f4eb1a-e934-444c-a7d1-85022afe07ff:
+    id: 41f4eb1a-e934-444c-a7d1-85022afe07ff
+    content: 'Decision: merge-not-replace rejected — superseded by server-side MCP tool gating by step mode, so the destructive rebuild can never coexist with incremental writes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c87bc602-b1d5-4717-971d-88c5fb792219:
+    id: c87bc602-b1d5-4717-971d-88c5fb792219
+    content: 'User story: Gate submit_step_output and announce_step_done by step mode via a shared mode policy table'
+    children:
+      - e4797073-8344-4892-af05-0d3868a8c532
+      - 2514e27d-bdd8-4e83-8549-64db943f193e
+      - b689ff7d-8525-4f6b-a123-0cb2f89843ee
+      - 49d8872d-1f1c-46fe-bd2c-3f614d6d4774
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4797073-8344-4892-af05-0d3868a8c532:
+    id: e4797073-8344-4892-af05-0d3868a8c532
+    content: 📄 Product spec
+    children:
+      - bef6be68-16dc-4da3-8d02-d720b505c0da
+      - 0d86615d-764f-4279-afa5-28060dbb5328
+      - b6b11e63-cbea-4f6a-aed3-16a0a74edc39
+      - 6142e97b-31b0-4435-a8c7-8edbbf446159
+      - b4385015-8109-43b3-a0b6-5cfacaca998f
+      - b4c971fd-818e-4375-a66e-eb6783289f06
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bef6be68-16dc-4da3-8d02-d720b505c0da:
+    id: bef6be68-16dc-4da3-8d02-d720b505c0da
+    content: Context
+    children:
+      - a7ff737d-c413-40bc-90a9-1107b70ac7b2
+      - 9e01eb87-2b93-4c13-81ed-655265189ea3
+      - e36f7572-4bcc-4174-ac9b-5f8421f4260d
+      - f3e92226-2259-41dc-b0ef-2ab9da20608c
+      - 98370900-2517-4eb8-8a2f-8fd90a73a1c9
+      - 998757cb-1362-48a8-ae16-5abc789da5ed
+      - 067a2ad0-0c5f-462d-8ef6-4ac52efb3535
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7ff737d-c413-40bc-90a9-1107b70ac7b2:
+    id: a7ff737d-c413-40bc-90a9-1107b70ac7b2
+    content: Workflow steps carry an applied context whose collaborate/execute flags form four modes — collaborate, collaborate & execute, execute, action — and checkAuthority (mcpWriteTools.ts:54-73) already gates the incremental mutation tools per mode with explanatory refusals
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e01eb87-2b93-4c13-81ed-655265189ea3:
+    id: 9e01eb87-2b93-4c13-81ed-655265189ea3
+    content: 'Gap 1: submit_step_output (mcpSubmitOutputTool.ts) never consults context flags — its rebuild deletes the bound subtree''s descendants and re-adds from the submission, silently wiping mid-run add_child_node additions in collaborate & execute steps'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e36f7572-4bcc-4174-ac9b-5f8421f4260d:
+    id: e36f7572-4bcc-4174-ac9b-5f8421f4260d
+    content: 'Gap 2: announce_step_done rejects any collaborate=true context and its error text tells the agent to call submit_step_output instead (mcpWriteTools.ts:166-169) — the server''s own error steers collaborate & execute agents into the destructive rebuild'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3e92226-2259-41dc-b0ef-2ab9da20608c:
+    id: f3e92226-2259-41dc-b0ef-2ab9da20608c
+    content: 'Gap 3: the collaborate & execute prompt copy (buildBothOutputTarget, sendActions.ts) broadcasts submit-the-list as the completion path, contradicting the gate; its intent is already incremental in spirit (only change status markers, append one child for issues), so the flip maps existing intents onto native tools'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98370900-2517-4eb8-8a2f-8fd90a73a1c9:
+    id: 98370900-2517-4eb8-8a2f-8fd90a73a1c9
+    content: 'Gap 4: per-item check-offs in collaborate & execute currently work only through the full-list resubmit — mark_step_complete (mcpServer.ts:144-155) targets the bound node exclusively and cannot tick an individual child item, so the incremental channel needs node targeting before it can replace the rebuild'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  998757cb-1362-48a8-ae16-5abc789da5ed:
+    id: 998757cb-1362-48a8-ae16-5abc789da5ed
+    content: 'Root cause of the gap class: the mode-to-permissions matrix has no single home — it is re-derived by independent if-chains in checkAuthority, the announce gate, and the prompt dispatch, and sites drift apart; Gap 2 is that drift'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  067a2ad0-0c5f-462d-8ef6-4ac52efb3535:
+    id: 067a2ad0-0c5f-462d-8ef6-4ac52efb3535
+    content: 'Prompt rules alone are insufficient as enforcement: they degrade under context pressure and compaction and compete with other instructions, exactly in the long autonomous runs where mid-run additions accumulate — but prompt broadcast must still agree with the gate so refusals are the exception, not the routine'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d86615d-764f-4279-afa5-28060dbb5328:
+    id: 0d86615d-764f-4279-afa5-28060dbb5328
+    content: User
+    children:
+      - 0b9a4506-3efa-4af3-8500-debb693c9750
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b9a4506-3efa-4af3-8500-debb693c9750:
+    id: 0b9a4506-3efa-4af3-8500-debb693c9750
+    content: A power user running autonomous AI workflows over their own trees; silent data loss is the worst outcome, while a mid-run refusal with an explanatory error is acceptable — agents recover and retry the correct tool
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6b11e63-cbea-4f6a-aed3-16a0a74edc39:
+    id: b6b11e63-cbea-4f6a-aed3-16a0a74edc39
+    content: Current experience and why it is insufficient
+    children:
+      - 684b5f49-9634-4d64-bf3e-8ed7ef8eeab1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  684b5f49-9634-4d64-bf3e-8ed7ef8eeab1:
+    id: 684b5f49-9634-4d64-bf3e-8ed7ef8eeab1
+    content: A collaborate & execute agent finishing its work is either refused by announce_step_done and redirected into submit_step_output, or calls submit directly as its prompt instructs — both routes end in the rebuild that silently deletes the nodes it just added, concentrated in the longest, most autonomous runs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6142e97b-31b0-4435-a8c7-8edbbf446159:
+    id: 6142e97b-31b0-4435-a8c7-8edbbf446159
+    content: Goal
+    children:
+      - 4b231f2f-2a4b-4302-a496-4dafc2c424a3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b231f2f-2a4b-4302-a496-4dafc2c424a3:
+    id: 4b231f2f-2a4b-4302-a496-4dafc2c424a3
+    content: Every step mode has exactly one completion channel and one set of permitted write tools, defined once in a shared policy table that the MCP gates and the step prompts both consume, with every refusal naming the mode and the permitted alternative
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4385015-8109-43b3-a0b6-5cfacaca998f:
+    id: b4385015-8109-43b3-a0b6-5cfacaca998f
+    content: Business rules
+    children:
+      - c9dcd0c4-9d89-4367-bbab-77ab0307adc7
+      - 8a2f73b6-896b-4f22-bfdc-fd7c12ffdcf3
+      - f9154cd2-6339-468f-8b81-d21e06814b5c
+      - f4ce6bd4-073c-4f4b-9376-52e4866ef01a
+      - d1c40de0-c0b4-4ada-a38d-a369d8602579
+      - d241e159-1d99-4a72-bfd6-72adbd8ccf33
+      - 27874df3-23c1-4466-9b19-774e7fe7873e
+      - 5be1ea11-22c2-4cfe-b88e-3cf7519c0ed4
+      - 004060fc-5de0-4f97-8431-98c25abfba18
+      - 8df11671-8d83-46f3-90ff-01e5eb150b34
+      - 4b4b2441-17ac-4605-b080-2d95e356d1c8
+      - bcaef1c1-b122-4b9a-be10-d778b267acb5
+      - 5074fb27-4b9e-4fd9-ae78-a8e316cdd24d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9dcd0c4-9d89-4367-bbab-77ab0307adc7:
+    id: c9dcd0c4-9d89-4367-bbab-77ab0307adc7
+    content: 1. Every tree-writing and completion tool requires an applied context (own or inherited); with none the call is refused with the existing no-context error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a2f73b6-896b-4f22-bfdc-fd7c12ffdcf3:
+    id: 8a2f73b6-896b-4f22-bfdc-fd7c12ffdcf3
+    content: 2. submit_step_output is permitted only when the applied context is pure collaborate (collaborate=true, execute=false); in collaborate & execute, execute-only, and action modes it is refused with an error naming the mode and directing the agent to its permitted path — this gate is net-new
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9154cd2-6339-468f-8b81-d21e06814b5c:
+    id: f9154cd2-6339-468f-8b81-d21e06814b5c
+    content: 3. announce_step_done is permitted for collaborate & execute, execute-only, and action modes; it is refused only for pure collaborate (directed to submit_step_output) and no-context — the gate narrows from any-collaborate to collaborate-without-execute
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4ce6bd4-073c-4f4b-9376-52e4866ef01a:
+    id: f4ce6bd4-073c-4f4b-9376-52e4866ef01a
+    content: 4. announce_step_done remains valid only on autonomous and checkpoint steps; manual steps stay UI-only, and on a checkpoint it marks the subject complete then pauses for user validation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1c40de0-c0b4-4ada-a38d-a369d8602579:
+    id: d1c40de0-c0b4-4ada-a38d-a369d8602579
+    content: '5. Incremental mutation authority is unchanged: execute-only and action refuse all mutations, collaborate & execute allows additive kinds only (add_child_node, append_to_node, mark_step_complete), pure collaborate allows all kinds'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d241e159-1d99-4a72-bfd6-72adbd8ccf33:
+    id: d241e159-1d99-4a72-bfd6-72adbd8ccf33
+    content: 6. On the autonomous direct-apply route under pure collaborate, incremental mutations including mark_step_complete are refused and directed to express all changes in the single submit_step_output — a direct-applied write would be wiped by the rebuild, and a leaked transient status is worse than a clean refusal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27874df3-23c1-4466-9b19-774e7fe7873e:
+    id: 27874df3-23c1-4466-9b19-774e7fe7873e
+    content: 7. Manual and checkpoint routes keep proposing incremental mutations to the user-reviewed proposal queue in every mode that allows them — the proposal queue is the human in the loop, so no silent-loss hole exists there
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5be1ea11-22c2-4cfe-b88e-3cf7519c0ed4:
+    id: 5be1ea11-22c2-4cfe-b88e-3cf7519c0ed4
+    content: 8. Every mode-based refusal names the step's mode and exactly one permitted alternative; no refusal leaves the agent without a stated next action
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  004060fc-5de0-4f97-8431-98c25abfba18:
+    id: 004060fc-5de0-4f97-8431-98c25abfba18
+    content: 9. Manual one-off sends with no workflow binding keep working unchanged — they resolve to default flags (pure collaborate), so submit_step_output passes the gate and routes to the feedback panel as today
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8df11671-8d83-46f3-90ff-01e5eb150b34:
+    id: 8df11671-8d83-46f3-90ff-01e5eb150b34
+    content: 10. Gating is evaluated live per call from a fresh tree snapshot, so context or step-type edits mid-run take effect on the next gated call; in-flight workflows are governed by the new gate on their next call, with the redirect error as the self-healing migration mechanism
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b4b2441-17ac-4605-b080-2d95e356d1c8:
+    id: 4b4b2441-17ac-4605-b080-2d95e356d1c8
+    content: 11. The collaborate & execute step prompt instructs the agent to tick item statuses via mark_step_complete with the item's node_id (resolving ids via get_tree first), record issues via add_child_node, and complete via announce_step_done; it no longer instructs or mentions submit_step_output — prompt broadcast and gate enforce the same channel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcaef1c1-b122-4b9a-be10-d778b267acb5:
+    id: bcaef1c1-b122-4b9a-be10-d778b267acb5
+    content: 12. The mode-to-permissions mapping (completion tool, permitted mutation kinds, refusal copy) is defined exactly once, in a shared declarative policy table keyed by mode; the submit gate, the announce gate, checkAuthority, and the prompt dispatch all consume that table rather than re-deriving the matrix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5074fb27-4b9e-4fd9-ae78-a8e316cdd24d:
+    id: 5074fb27-4b9e-4fd9-ae78-a8e316cdd24d
+    content: 13. mark_step_complete accepts an optional node_id that must resolve to a node within the bound subtree, enabling per-item check-offs through the incremental channel; omitted, it targets the bound node exactly as today, and a node_id outside the bound subtree is refused with an error naming the bound root
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4c971fd-818e-4375-a66e-eb6783289f06:
+    id: b4c971fd-818e-4375-a66e-eb6783289f06
+    content: Acceptance criteria
+    children:
+      - f39c08b0-ff5d-488d-9060-8d636f4a811a
+      - a757af90-d3f7-43cb-85c2-82fd0eee28e8
+      - 8ebca319-af63-4236-b058-1340f77c94aa
+      - cbb5cc3a-0480-490e-acaa-d2d4062f728e
+      - 0d305592-89f8-4069-8ae8-62d34a066aeb
+      - 8da2f43c-1e76-4db6-90e2-d81ff139a789
+      - 760cbb47-4d04-45a3-8c5e-af16ff9116ac
+      - f96397ac-a1de-4678-be15-223746f3ff89
+      - 02234c2a-5e67-4905-9450-b4e5ca18f7dd
+      - aa8a9f4b-b626-4584-808d-6c686123ebed
+      - 6ea851a6-7390-4810-89f2-ac10d52c61b6
+      - 4bc67ba0-cdd2-462c-9d19-7a48f2d82213
+      - 0b3c9aab-fd24-40a3-92a0-408e2af168a8
+      - 76337fd9-87e7-48ba-bb33-d978d85c3643
+      - 4f1c1e15-452d-46f7-8687-1be230bc9f1e
+      - ed7cfdba-cb7f-4515-8f0d-94a98433f004
+      - def0111f-0c84-49c7-8b99-c058afcd630f
+      - c0ea7b3d-d5c1-4e49-9a07-d82732282fba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f39c08b0-ff5d-488d-9060-8d636f4a811a:
+    id: f39c08b0-ff5d-488d-9060-8d636f4a811a
+    content: A pure-collaborate step's submit_step_output succeeds and applies or proposes per its route, exactly as today
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a757af90-d3f7-43cb-85c2-82fd0eee28e8:
+    id: a757af90-d3f7-43cb-85c2-82fd0eee28e8
+    content: A collaborate & execute step adds child nodes incrementally then completes via announce_step_done; the additions persist and no rebuild occurs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ebca319-af63-4236-b058-1340f77c94aa:
+    id: 8ebca319-af63-4236-b058-1340f77c94aa
+    content: submit_step_output on a collaborate & execute step is refused with an error naming the mode and directing to announce_step_done; no subtree deletion occurs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbb5cc3a-0480-490e-acaa-d2d4062f728e:
+    id: cbb5cc3a-0480-490e-acaa-d2d4062f728e
+    content: submit_step_output on an execute-only step and on an action-mode step is each refused, the error naming the mode and directing to announce_step_done
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d305592-89f8-4069-8ae8-62d34a066aeb:
+    id: 0d305592-89f8-4069-8ae8-62d34a066aeb
+    content: submit_step_output on a bound step with no applied context is refused with the no-context error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8da2f43c-1e76-4db6-90e2-d81ff139a789:
+    id: 8da2f43c-1e76-4db6-90e2-d81ff139a789
+    content: announce_step_done succeeds on collaborate & execute, execute-only, and action-mode contexts on autonomous and checkpoint steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  760cbb47-4d04-45a3-8c5e-af16ff9116ac:
+    id: 760cbb47-4d04-45a3-8c5e-af16ff9116ac
+    content: announce_step_done on a pure-collaborate step is refused with an error directing to submit_step_output
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f96397ac-a1de-4678-be15-223746f3ff89:
+    id: f96397ac-a1de-4678-be15-223746f3ff89
+    content: announce_step_done on a manual step is refused and directed to the UI; on a checkpoint it marks the subject complete then pauses for validation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  02234c2a-5e67-4905-9450-b4e5ca18f7dd:
+    id: 02234c2a-5e67-4905-9450-b4e5ca18f7dd
+    content: On a collaborate & execute step, mark_step_complete with a node_id resolving to a descendant of the bound node updates that item's status; without node_id it targets the bound node as today
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa8a9f4b-b626-4584-808d-6c686123ebed:
+    id: aa8a9f4b-b626-4584-808d-6c686123ebed
+    content: mark_step_complete with a node_id outside the bound subtree is refused with an error naming the bound root; no status change occurs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ea851a6-7390-4810-89f2-ac10d52c61b6:
+    id: 6ea851a6-7390-4810-89f2-ac10d52c61b6
+    content: On an autonomous pure-collaborate step, add_child_node, append_to_node, and mark_step_complete are each refused with an error directing the agent to express changes in its single submit_step_output
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bc67ba0-cdd2-462c-9d19-7a48f2d82213:
+    id: 4bc67ba0-cdd2-462c-9d19-7a48f2d82213
+    content: On a manual and on a checkpoint pure-collaborate step, an incremental mutation produces a proposal in the user-reviewed queue, not a refusal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b3c9aab-fd24-40a3-92a0-408e2af168a8:
+    id: 0b3c9aab-fd24-40a3-92a0-408e2af168a8
+    content: Non-additive mutations in collaborate & execute remain refused with the existing execute-and-collaborate message on every route
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76337fd9-87e7-48ba-bb33-d978d85c3643:
+    id: 76337fd9-87e7-48ba-bb33-d978d85c3643
+    content: The rendered collaborate & execute terminal prompt contains the incremental-tools-plus-announce instructions including id resolution via get_tree, and contains no reference to submit_step_output; pure-collaborate, execute-only, action, and web prompt copy is unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f1c1e15-452d-46f7-8687-1be230bc9f1e:
+    id: 4f1c1e15-452d-46f7-8687-1be230bc9f1e
+    content: 'A unit test asserts the policy-table invariant directly: every mode maps to exactly one completion tool, and no mode permits both submit_step_output and incremental direct-apply writes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed7cfdba-cb7f-4515-8f0d-94a98433f004:
+    id: ed7cfdba-cb7f-4515-8f0d-94a98433f004
+    content: A manual one-off send with no workflow binding still reaches the feedback panel unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  def0111f-0c84-49c7-8b99-c058afcd630f:
+    id: def0111f-0c84-49c7-8b99-c058afcd630f
+    content: Editing a context's flags or a step's type between two calls changes the next call's gating outcome without restarting the workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0ea7b3d-d5c1-4e49-9a07-d82732282fba:
+    id: c0ea7b3d-d5c1-4e49-9a07-d82732282fba
+    content: Every refusal across the gated tools returns an isError result naming the mode and exactly one permitted alternative
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2514e27d-bdd8-4e83-8549-64db943f193e:
+    id: 2514e27d-bdd8-4e83-8549-64db943f193e
+    content: 🔧 Implementation proposal
+    children:
+      - 18b9e9be-204f-473a-8cbb-a424a7a219d1
+      - 56e7aec4-02b4-49fe-80ee-1cf81770c336
+      - 9d9613c1-1feb-4999-97d0-7fccf324b503
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18b9e9be-204f-473a-8cbb-a424a7a219d1:
+    id: 18b9e9be-204f-473a-8cbb-a424a7a219d1
+    content: Approach
+    children:
+      - a7123fdc-47e0-4cab-8595-475f45691607
+      - 5b6d29c2-6424-4d65-bfed-5dfdf3e60cab
+      - 03dc7326-e5d0-4f1b-a2b5-79ddf2d5024b
+      - 8351d8b0-d5bd-446e-8394-7fe12d1c1c68
+      - 9c19e57c-3bf3-468d-8473-fbd43b48609f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7123fdc-47e0-4cab-8595-475f45691607:
+    id: a7123fdc-47e0-4cab-8595-475f45691607
+    content: 'Centralize the matrix: add resolveStepMode(flags) returning a named mode (collaborate, both, execute, action) and a declarative MODE_POLICY table — mode to completion tool, permitted mutation kinds, and refusal copy — in shared permissionGate.ts, importable by both the main-process MCP gates and the renderer prompt builder'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b6d29c2-6424-4d65-bfed-5dfdf3e60cab:
+    id: 5b6d29c2-6424-4d65-bfed-5dfdf3e60cab
+    content: 'Consume the table everywhere the matrix is currently re-derived: the net-new submit gate, the narrowed announce gate, checkAuthority''s mutation authority, and the sendActions prompt dispatch — the announce narrowing and the both-mode prompt flip fall out of the table rather than being hand-edited at each site'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03dc7326-e5d0-4f1b-a2b5-79ddf2d5024b:
+    id: 03dc7326-e5d0-4f1b-a2b5-79ddf2d5024b
+    content: Extend mark_step_complete with optional node_id validated against the bound subtree so per-item check-offs ride the incremental channel — the capability the full-list resubmit was providing for collaborate & execute
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8351d8b0-d5bd-446e-8394-7fe12d1c1c68:
+    id: 8351d8b0-d5bd-446e-8394-7fe12d1c1c68
+    content: This is a static permission matrix resolved live per call, not a state machine — the workflow lifecycle (running, awaiting-validation, advance) stays where it is and is untouched
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c19e57c-3bf3-468d-8473-fbd43b48609f:
+    id: 9c19e57c-3bf3-468d-8473-fbd43b48609f
+    content: 'Already built, do not rebuild: the resolveContextFlags and getAppliedContextIdWithInheritance primitives the table layers on, ADDITIVE_KINDS as the table''s collaborate & execute entry, and the explicit_submit_seen advance plumbing that announce_step_done already sets — no Stop-handler change needed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56e7aec4-02b4-49fe-80ee-1cf81770c336:
+    id: 56e7aec4-02b4-49fe-80ee-1cf81770c336
+    content: Touchpoints
+    children:
+      - c5e88c7b-be0e-4962-b125-43e940661d19
+      - 6b7f4ce9-a557-4ed5-a617-580687b42869
+      - 4c1e3fbf-f349-4671-abc5-a4ad212a469f
+      - e2da545a-7b45-4f30-8b19-a7bff41efcab
+      - 138d9c97-71e9-4539-89e6-a96fc03c1e2e
+      - 6011ccac-3a5b-45f4-9026-988c2f0ec0cb
+      - 746eee5d-4af9-4167-ab03-f2c5f6c79ca0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5e88c7b-be0e-4962-b125-43e940661d19:
+    id: c5e88c7b-be0e-4962-b125-43e940661d19
+    content: permissionGate.ts (shared) — add resolveStepMode and the MODE_POLICY table with per-mode completion tool, permitted mutation kinds, and refusal copy; unit-test the table invariant here
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b7f4ce9-a557-4ed5-a617-580687b42869:
+    id: 6b7f4ce9-a557-4ed5-a617-580687b42869
+    content: mcpSubmitOutputTool.ts — resolve the mode after the bound state loads and refuse outside pure collaborate using the table's copy, keeping the unbound and one-shot short-circuits ahead of flag resolution so manual sends keep working
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c1e3fbf-f349-4671-abc5-a4ad212a469f:
+    id: 4c1e3fbf-f349-4671-abc5-a4ad212a469f
+    content: mcpWriteTools.ts — rework checkAuthority and the announce gate to consume the table (announce narrows to collaborate-without-execute as a table consequence), add the autonomous pure-collaborate incremental block after the authority refusals keyed on the direct-apply route, and thread the optional node_id through markStepComplete
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2da545a-7b45-4f30-8b19-a7bff41efcab:
+    id: e2da545a-7b45-4f30-8b19-a7bff41efcab
+    content: 'mcpServer.ts — add optional node_id to the mark_step_complete schema, update both completion-tool descriptions: drop "applied regardless of context mode flags" from submit and narrow announce''s collaborate wording'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  138d9c97-71e9-4539-89e6-a96fc03c1e2e:
+    id: 138d9c97-71e9-4539-89e6-a96fc03c1e2e
+    content: mcpTreeMutatorService.ts — route mark-complete to the targeted node after validating it resolves within the bound subtree; omitted node_id falls back to the bound node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6011ccac-3a5b-45f4-9026-988c2f0ec0cb:
+    id: 6011ccac-3a5b-45f4-9026-988c2f0ec0cb
+    content: 'sendActions.ts — derive the per-mode output target from the table''s completion channel; flip buildBothOutputTarget to the incremental channel: tick items via mark_step_complete with node_id (resolve ids via get_tree), issues via add_child_node, completion via announce_step_done; drop the target_node_id and submit-once clauses from both-mode; pure-collaborate, execute-only, action, and web copy unchanged'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  746eee5d-4af9-4167-ab03-f2c5f6c79ca0:
+    id: 746eee5d-4af9-4167-ab03-f2c5f6c79ca0
+    content: Tests — invert mcpSubmitOutputTool.test.ts:386-405 (which currently assert submit succeeds in all three flag modes), add refusal and permit coverage per mode for both tools and the autonomous-route block, cover node_id targeting and out-of-subtree refusal for mark_step_complete, add prompt-copy assertions for the both-mode flip, add the policy-table invariant test, keep existing checkAuthority behavior coverage green through the rework
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d9613c1-1feb-4999-97d0-7fccf324b503:
+    id: 9d9613c1-1feb-4999-97d0-7fccf324b503
+    content: Constraints to call out
+    children:
+      - 6bc8ec4c-3437-4ad8-b439-3c07a98ddbb8
+      - 5d32f864-0e04-4620-8d19-c3d3989023fe
+      - c5509750-cbae-4d1f-8853-09a63f8cb07b
+      - e14b20ec-fa42-462c-851b-01516e9bf1f2
+      - 0300eab2-0b66-49a7-9ae1-9c7cb7004282
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bc8ec4c-3437-4ad8-b439-3c07a98ddbb8:
+    id: 6bc8ec4c-3437-4ad8-b439-3c07a98ddbb8
+    content: The submit gate, the announce gate change, the prompt-copy flip, and the mark_step_complete node targeting must ship together — without node targeting the incremental channel cannot replace the resubmit's per-item check-offs, and without the prompt flip collaborate & execute agents have no completion path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d32f864-0e04-4620-8d19-c3d3989023fe:
+    id: 5d32f864-0e04-4620-8d19-c3d3989023fe
+    content: The checkAuthority rework must be behavior-preserving for mutation authority (rule 5) — existing tests pin it; only the announce and submit gates change observable behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5509750-cbae-4d1f-8853-09a63f8cb07b:
+    id: c5509750-cbae-4d1f-8853-09a63f8cb07b
+    content: The completion-tool change is user-visible for existing collaborate & execute workflows; the redirect error is the self-healing migration mechanism, surfaced in release notes, with no per-step compatibility shim
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e14b20ec-fa42-462c-851b-01516e9bf1f2:
+    id: e14b20ec-fa42-462c-851b-01516e9bf1f2
+    content: The autonomous-route block must sit after authority resolution and key on the route, not on authority, so the user-reviewed proposal routes are untouched
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0300eab2-0b66-49a7-9ae1-9c7cb7004282:
+    id: 0300eab2-0b66-49a7-9ae1-9c7cb7004282
+    content: The "applied regardless of context mode flags" exemption being removed was load-bearing only for the auto-submit safety net (commit 5961477); the safety net was neutered to a no-op by commit 517161a, so the exemption and the tests pinning it protect a repealed design, not a live one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b689ff7d-8525-4f6b-a123-0cb2f89843ee:
+    id: b689ff7d-8525-4f6b-a123-0cb2f89843ee
+    content: Chunking decision
+    children:
+      - 55f00f3c-68f7-48ac-b0fe-54aa40570e53
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55f00f3c-68f7-48ac-b0fe-54aa40570e53:
+    id: 55f00f3c-68f7-48ac-b0fe-54aa40570e53
+    content: One chunk — the policy table, its consumers, and the node-targeting extension enforce a single invariant (which mode owns which completion channel, with that channel actually sufficient for the mode's work) and splitting would create the exact dual-channel inconsistency the story removes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  49d8872d-1f1c-46fe-bd2c-3f614d6d4774:
+    id: 49d8872d-1f1c-46fe-bd2c-3f614d6d4774
+    content: Challenges
+    children:
+      - d91133ae-bfe1-4973-90a7-c931e8a437ae
+      - 8804a860-085c-4ae2-974f-72e8aca3eeca
+      - 5f2c30a8-17c0-4b96-864f-0553e3ef91d1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d91133ae-bfe1-4973-90a7-c931e8a437ae:
+    id: d91133ae-bfe1-4973-90a7-c931e8a437ae
+    content: 'ROI is high and scope contained: this closes two server-side gaps, one prompt contradiction, and one capability gap, and the policy table removes the drift mechanism that produced the gap class instead of patching one instance'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8804a860-085c-4ae2-974f-72e8aca3eeca:
+    id: 8804a860-085c-4ae2-974f-72e8aca3eeca
+    content: 'Rejected as over-engineering or out of scope: submit-time merge reconciliation, prompt-only enforcement, per-step compatibility shims, new step types or flags, making the rebuild additive, blocking the user-reviewed proposal routes, a transition-based state-machine framework (modes have no transitions — the lifecycle state machine lives elsewhere), and a content-matching fallback for item ids (get_tree id resolution is deterministic; heading-text matching is not)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f2c30a8-17c0-4b96-864f-0553e3ef91d1:
+    id: 5f2c30a8-17c0-4b96-864f-0553e3ef91d1
+    content: 'UX risk accepted with mitigation: collaborate & execute steps started before the change get a refusal on first submit attempt; the error names the correct tool, so the run self-corrects with no data loss'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  83eb2a8a-39ae-4f96-a365-4e78cc7d3e00:
+    id: 83eb2a8a-39ae-4f96-a365-4e78cc7d3e00
+    content: Technical refinement
+    children:
+      - f0bba405-2791-467d-947b-76ec438da35c
+      - cb86b287-59d0-41e1-98f2-971ca3d49948
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0bba405-2791-467d-947b-76ec438da35c:
+    id: f0bba405-2791-467d-947b-76ec438da35c
+    content: Complications
+    children:
+      - 1b39a51d-7665-4021-9c3e-9e535069b43f
+      - c91e9a30-f32b-470f-aa3f-bfed6c656428
+      - d7269ad8-e434-4776-bb35-849ec446db33
+      - 81c6da86-d2a2-4d9b-b05a-f650a2010b80
+      - c8decb87-5a42-42c3-ae2c-38a2237da25e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b39a51d-7665-4021-9c3e-9e535069b43f:
+    id: 1b39a51d-7665-4021-9c3e-9e535069b43f
+    content: 'Targeted ticks meet the proposal queue: on manual and checkpoint steps a node_id-scoped mark_step_complete becomes a proposal, so the proposal payload and review UI must represent which item is being ticked — the one place scope could creep into renderer UI work; fallback if heavy is restricting node_id to the autonomous route, where the capability is actually needed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c91e9a30-f32b-470f-aa3f-bfed6c656428:
+    id: c91e9a30-f32b-470f-aa3f-bfed6c656428
+    content: 'Residual accepted risk not in the acceptance criteria: on manual and checkpoint pure-collaborate steps a user-approved mid-run proposal can still be overwritten by a later user-accepted submission — visible and user-approved, deliberately not gated; a warning on accept is explicitly out of scope'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7269ad8-e434-4776-bb35-849ec446db33:
+    id: d7269ad8-e434-4776-bb35-849ec446db33
+    content: The prompt's get_tree id-resolution step assumes get_tree returns node ids in agent-usable form and adds one read round-trip per collaborate & execute run — verify the read tool's output shape before the prompt copy lands
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81c6da86-d2a2-4d9b-b05a-f650a2010b80:
+    id: 81c6da86-d2a2-4d9b-b05a-f650a2010b80
+    content: MODE_POLICY lives in shared/ and is imported by both processes — it must stay dependency-free, and the refusal copy naming MCP tools moves into the shared module with it (cosmetic coupling, accepted)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8decb87-5a42-42c3-ae2c-38a2237da25e:
+    id: c8decb87-5a42-42c3-ae2c-38a2237da25e
+    content: 'ROI check: contained except for the proposal-queue rendering of targeted ticks above; if that balloons, descope it rather than the gates — the gates close the data loss on their own'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb86b287-59d0-41e1-98f2-971ca3d49948:
+    id: cb86b287-59d0-41e1-98f2-971ca3d49948
+    content: Approach summary
+    children:
+      - 072e1927-08ea-43ad-92eb-883d18e4c001
+      - ddc3a491-f06d-4500-bf93-56b25fe4ecdd
+      - c6386c22-7d79-41c4-bfaa-ef04eba96be0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  072e1927-08ea-43ad-92eb-883d18e4c001:
+    id: 072e1927-08ea-43ad-92eb-883d18e4c001
+    content: One shared MODE_POLICY table (permissionGate.ts) keyed by resolveStepMode(flags); the submit gate, announce gate, checkAuthority, and prompt dispatch all consume it, so gates and prompts can no longer drift apart — the drift is what produced the bug class
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddc3a491-f06d-4500-bf93-56b25fe4ecdd:
+    id: ddc3a491-f06d-4500-bf93-56b25fe4ecdd
+    content: 'Both completion tools get mode gates (submit_step_output: pure collaborate only, net-new; announce_step_done: every other mode) and mark_step_complete gains a bound-subtree-scoped node_id so collaborate & execute can tick items without the destructive full-list rebuild'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6386c22-7d79-41c4-bfaa-ef04eba96be0:
+    id: c6386c22-7d79-41c4-bfaa-ef04eba96be0
+    content: 'Non-obvious for the reviewer: submit''s flag exemption was a vestige of the auto-submit safety net (added 5961477, repealed 517161a), so inverting the tests that pin it is deliberate; everything ships as one chunk or collaborate & execute is left with no completion path'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f07cfa06-ef0a-4505-b7d0-8115ab409d74:
+    id: f07cfa06-ef0a-4505-b7d0-8115ab409d74
+    content: worktree
+    children:
+      - d2ab777d-0bb6-4ac0-baa5-d42a68934a11
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2ab777d-0bb6-4ac0-baa5-d42a68934a11:
+    id: d2ab777d-0bb6-4ac0-baa5-d42a68934a11
+    content: vscode://file/Users/brianfox/dev/Arborescent-tree-read-error-taxonomy
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ab7c849-3a71-4aa8-abf6-1e88d4f755b1:
+    id: 0ab7c849-3a71-4aa8-abf6-1e88d4f755b1
+    content: 'Problem: "Tree state is unavailable" conflates renderer-not-ready, no-file-open, bound-node-in-another-open-file, and bound-node-deleted — four conditions with four different remedies behind one misleading message (mcpSubmitOutputTool.ts:62)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67b00200-cee0-4be6-899c-32e9a4f9e38b:
+    id: 67b00200-cee0-4be6-899c-32e9a4f9e38b
+    content: 'Approach: have readState / mcpTreeReaderService return a discriminated result (not-ready | node-in-no-open-store | ok) so submit_step_output can report the real cause (including "bound node was deleted")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c00b8b30-1505-484c-9d92-014f009472ad:
+    id: c00b8b30-1505-484c-9d92-014f009472ad
+    content: 'Risk: low and isolated — do this one first; immediate debugging payoff for you and for AI sessions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f442fd49-3a9b-4065-8e19-736ba8549cb5:
+    id: f442fd49-3a9b-4065-8e19-736ba8549cb5
+    content: 'User story: Discriminated error variants for the tree-read path so submit_step_output reports the real failure cause'
+    children:
+      - f1afadbb-aae4-4446-8610-a293132a3468
+      - 912cf6c4-2f69-4f0b-a332-de1ee7bacac9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1afadbb-aae4-4446-8610-a293132a3468:
+    id: f1afadbb-aae4-4446-8610-a293132a3468
+    content: 📄 Product spec
+    children:
+      - 64a00b76-2b98-4264-af5f-fde9f91481f6
+      - 561882d8-6b6d-428a-b1be-c5802cd58e7d
+      - ad8db0b0-39f6-4d4e-8059-b72457c6253e
+      - 3cd1791c-a70d-47e6-be6c-f102f7c17a84
+      - f74d4bc8-e80b-4e13-8dee-37c124c90928
+      - d3eb7050-8127-47e3-95ec-922200588525
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64a00b76-2b98-4264-af5f-fde9f91481f6:
+    id: 64a00b76-2b98-4264-af5f-fde9f91481f6
+    content: Context
+    children:
+      - 6750763a-4505-43f8-be81-40f24584d545
+      - 68ec3cbe-9be9-482a-8d21-a12fe7607ad3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6750763a-4505-43f8-be81-40f24584d545:
+    id: 6750763a-4505-43f8-be81-40f24584d545
+    content: submit_step_output and all tree-read consumers collapse every pre-read failure to one catch-all string because readState returns null for bridge timeout, no owning store, and node-absent alike (mcpTreeReaderService.ts findStateForNode, mcpTreeReaderBridge.ts timeout/dispose)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68ec3cbe-9be9-482a-8d21-a12fe7607ad3:
+    id: 68ec3cbe-9be9-482a-8d21-a12fe7607ad3
+    content: 'The misleading message drives wrong remediation: agents retry on a deleted node, or tell the operator to open a file that is already open'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  561882d8-6b6d-428a-b1be-c5802cd58e7d:
+    id: 561882d8-6b6d-428a-b1be-c5802cd58e7d
+    content: User
+    children:
+      - 0ca387b3-cc6b-44f0-8f70-e0a1bc759b7e
+      - 41880746-dc6b-4881-bfeb-5c11ed210920
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ca387b3-cc6b-44f0-8f70-e0a1bc759b7e:
+    id: 0ca387b3-cc6b-44f0-8f70-e0a1bc759b7e
+    content: 'Primary: the AI agent in an in-app terminal session, which parses the error string to choose its next action'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41880746-dc6b-4881-bfeb-5c11ed210920:
+    id: 41880746-dc6b-4881-bfeb-5c11ed210920
+    content: 'Secondary: the developer/operator reading logs to understand why a workflow step did not advance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad8db0b0-39f6-4d4e-8059-b72457c6253e:
+    id: ad8db0b0-39f6-4d4e-8059-b72457c6253e
+    content: Current experience
+    children:
+      - 648f6240-2faf-4922-b955-86ec81dcc27f
+      - 95108bf8-2549-401f-8497-a2567005f00c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  648f6240-2faf-4922-b955-86ec81dcc27f:
+    id: 648f6240-2faf-4922-b955-86ec81dcc27f
+    content: All pre-read failures produce the identical string "Tree state is unavailable. The renderer may not be ready or no file is open." — speculative causes that are frequently both wrong
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95108bf8-2549-401f-8497-a2567005f00c:
+    id: 95108bf8-2549-401f-8497-a2567005f00c
+    content: Only the post-read orphan-binding case is reported distinctly today; the pre-read null swallows the rest
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cd1791c-a70d-47e6-be6c-f102f7c17a84:
+    id: 3cd1791c-a70d-47e6-be6c-f102f7c17a84
+    content: Goal
+    children:
+      - 62c37cd7-dc30-4178-ad80-d696ad6c283b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62c37cd7-dc30-4178-ad80-d696ad6c283b:
+    id: 62c37cd7-dc30-4178-ad80-d696ad6c283b
+    content: A session that fails to resolve its bound node receives an error naming the actual cause and correct remedy, so the agent takes the right next action instead of guessing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f74d4bc8-e80b-4e13-8dee-37c124c90928:
+    id: f74d4bc8-e80b-4e13-8dee-37c124c90928
+    content: Business rules
+    children:
+      - 7f3b4856-6f3b-481a-8f1b-b2c6b2e093d8
+      - c8f08f95-c8d5-4c76-8c16-5972f73f9669
+      - a696e5ec-5944-47f1-8360-196eb82cef85
+      - 953080d6-02a2-4a2c-83fa-b55af27be145
+      - 824a5c2f-c68b-4b64-ad8a-568751bbb964
+      - e095ad18-71ae-4906-9cd9-ca81e6c87fb1
+      - e93697ef-77c7-49bd-9082-69513af1cd48
+      - 1dff9923-e98d-44b6-8717-e0975972316a
+      - ca53320b-871a-4da4-9156-b69cfd40f983
+      - fc8816d2-5d78-4435-aa38-3b0c11713098
+      - 2bb235fc-3cf0-4461-9da3-abfd7133a7f6
+      - 1365497a-3c4e-4e5e-a641-6d58466234a4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f3b4856-6f3b-481a-8f1b-b2c6b2e093d8:
+    id: 7f3b4856-6f3b-481a-8f1b-b2c6b2e093d8
+    content: 'The tree-read path returns a discriminated result with exactly three observable failure variants plus success: not-ready, no-session-store, node-not-in-open-store, and ok — replacing the bare null'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8f08f95-c8d5-4c76-8c16-5972f73f9669:
+    id: c8f08f95-c8d5-4c76-8c16-5972f73f9669
+    content: A bridge timeout or dispose maps to not-ready; the message states the condition is transient and that retrying after a short wait is appropriate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a696e5ec-5944-47f1-8360-196eb82cef85:
+    id: a696e5ec-5944-47f1-8360-196eb82cef85
+    content: When no open store owns the session, the result is no-session-store; the message states the file may not be open or the session may not be registered yet (the branch also fires during a transient session-registration race)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  953080d6-02a2-4a2c-83fa-b55af27be145:
+    id: 953080d6-02a2-4a2c-83fa-b55af27be145
+    content: When the session's owning store is found but the bound node is absent, the result is node-not-in-open-store; the message names both possibilities — node deleted, or node bound in a file other than the one resolved for this session — and makes no distinguishability claim
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  824a5c2f-c68b-4b64-ad8a-568751bbb964:
+    id: 824a5c2f-c68b-4b64-ad8a-568751bbb964
+    content: 'No cross-file scan is performed to disambiguate deleted vs wrong-file: it would violate the invariant that a session never resolves nodes outside its owning file, and node-id collisions across files could produce confidently wrong messages'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e095ad18-71ae-4906-9cd9-ca81e6c87fb1:
+    id: e095ad18-71ae-4906-9cd9-ca81e6c87fb1
+    content: Every variant message includes the boundNodeId and sessionId
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e93697ef-77c7-49bd-9082-69513af1cd48:
+    id: e93697ef-77c7-49bd-9082-69513af1cd48
+    content: Retry guidance is surfaced only on not-ready; node-not-in-open-store carries no bare-retry advice
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1dff9923-e98d-44b6-8717-e0975972316a:
+    id: 1dff9923-e98d-44b6-8717-e0975972316a
+    content: The renderer produces ok, no-session-store, and node-not-in-open-store; the bridge alone fabricates not-ready on timeout/dispose
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca53320b-871a-4da4-9156-b69cfd40f983:
+    id: ca53320b-871a-4da4-9156-b69cfd40f983
+    content: The previous post-read orphan check (!state.nodes[boundNodeId]) is subsumed by the node-not-in-open-store variant and removed from all three consumers rather than left as dead code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc8816d2-5d78-4435-aa38-3b0c11713098:
+    id: fc8816d2-5d78-4435-aa38-3b0c11713098
+    content: All three main-side consumers (mcpReadTools withBoundNode, mcpWriteTools resolveBoundState, mcpSubmitOutputTool) switch on the variant via one shared helper, not three copies
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bb235fc-3cf0-4461-9da3-abfd7133a7f6:
+    id: 2bb235fc-3cf0-4461-9da3-abfd7133a7f6
+    content: Each variant emits one structured main-process log line carrying the discriminated cause
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1365497a-3c4e-4e5e-a641-6d58466234a4:
+    id: 1365497a-3c4e-4e5e-a641-6d58466234a4
+    content: The success path is byte-for-byte unchanged and error messages keep the existing plain-string err() style — no error-code framework
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3eb7050-8127-47e3-95ec-922200588525:
+    id: d3eb7050-8127-47e3-95ec-922200588525
+    content: Acceptance criteria
+    children:
+      - 77c49014-96cc-4142-b323-5e2aef186436
+      - 1d221753-540b-4c9c-b466-f96778912d0e
+      - e2fa7e7f-fcfe-46a8-b03e-d9e983ca4d90
+      - 708f7316-c5f8-46a8-b355-c88cb395848b
+      - 5c0549f1-ac91-4a57-b086-2f42b88feb06
+      - 92deb119-d5b0-460e-9460-30e8d46b256f
+      - 9d0d5aeb-1d7a-4c10-adfb-72aa5d66eb69
+      - e61b9abb-7500-4fe6-bd50-2977a647b335
+      - aacc19ce-6e6e-4faf-aa0d-c93b32637b3c
+      - 4d39a70e-7514-4625-85a8-5800298b40b2
+      - d41d9fc5-b77e-4cbc-a446-a9409e74acd6
+      - b9f9ab6a-8f8c-490f-a878-bff878cb6c31
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77c49014-96cc-4142-b323-5e2aef186436:
+    id: 77c49014-96cc-4142-b323-5e2aef186436
+    content: Bridge timeout yields not-ready with a message naming the renderer-not-ready/transient condition and recommending retry, including boundNodeId and sessionId
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d221753-540b-4c9c-b466-f96778912d0e:
+    id: 1d221753-540b-4c9c-b466-f96778912d0e
+    content: Bridge dispose() with a pending request resolves it as not-ready, not a silent null misread downstream as node-absent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2fa7e7f-fcfe-46a8-b03e-d9e983ca4d90:
+    id: e2fa7e7f-fcfe-46a8-b03e-d9e983ca4d90
+    content: A session owned by no store yields no-session-store with a message saying the file may not be open or the session may not be registered yet
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  708f7316-c5f8-46a8-b355-c88cb395848b:
+    id: 708f7316-c5f8-46a8-b355-c88cb395848b
+    content: The existing session-registration-race test passes and observes no-session-store rather than the old catch-all string
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c0549f1-ac91-4a57-b086-2f42b88feb06:
+    id: 5c0549f1-ac91-4a57-b086-2f42b88feb06
+    content: Store found but bound node absent yields node-not-in-open-store with a message naming both deleted and wrong-file possibilities
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92deb119-d5b0-460e-9460-30e8d46b256f:
+    id: 92deb119-d5b0-460e-9460-30e8d46b256f
+    content: A node id present only in a non-owning store still yields node-not-in-open-store, never a false ok — asserted by test, no cross-store scan
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d0d5aeb-1d7a-4c10-adfb-72aa5d66eb69:
+    id: 9d0d5aeb-1d7a-4c10-adfb-72aa5d66eb69
+    content: The standalone post-read orphan check is gone from all three consumers with equivalent coverage asserted via the node-not-in-open-store variant
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e61b9abb-7500-4fe6-bd50-2977a647b335:
+    id: e61b9abb-7500-4fe6-bd50-2977a647b335
+    content: All three consumers route through one shared variant-switch helper; no duplicated null preamble remains
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aacc19ce-6e6e-4faf-aa0d-c93b32637b3c:
+    id: aacc19ce-6e6e-4faf-aa0d-c93b32637b3c
+    content: The three error variants are mutually distinguishable by automated test — no two conditions produce the same message
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d39a70e-7514-4625-85a8-5800298b40b2:
+    id: 4d39a70e-7514-4625-85a8-5800298b40b2
+    content: The discriminated type lands in both shared/types/electronApi.ts and mcpTreeReaderBridge.ts in the same change; npm run type-check passes including the preload satisfies guard
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d41d9fc5-b77e-4cbc-a446-a9409e74acd6:
+    id: d41d9fc5-b77e-4cbc-a446-a9409e74acd6
+    content: The success path is unchanged — existing success-path tests pass without modification, and the pre-read unbound branch is untouched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9f9ab6a-8f8c-490f-a878-bff878cb6c31:
+    id: b9f9ab6a-8f8c-490f-a878-bff878cb6c31
+    content: npm run lint and npm run test:run pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  912cf6c4-2f69-4f0b-a332-de1ee7bacac9:
+    id: 912cf6c4-2f69-4f0b-a332-de1ee7bacac9
+    content: 🔧 Implementation proposal
+    children:
+      - c18b5bbe-25cc-4109-89c4-8b22430b21e8
+      - d8922e37-b9d1-4a48-94e3-8656e3f2f68d
+      - f1b7a39a-6332-485c-9a27-06482451630b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c18b5bbe-25cc-4109-89c4-8b22430b21e8:
+    id: c18b5bbe-25cc-4109-89c4-8b22430b21e8
+    content: Approach
+    children:
+      - 4d11a49a-a9a6-4325-a9e2-b8e103c91a17
+      - 59f72519-6b9c-45c7-998d-ffb0c7e7d8d7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d11a49a-a9a6-4325-a9e2-b8e103c91a17:
+    id: 4d11a49a-a9a6-4325-a9e2-b8e103c91a17
+    content: Introduce TreeReadResult — a discriminated union (ok with state | not-ready | no-session-store | node-not-in-open-store) in mcpReadTools.ts — and change TreeReader.readState to return it instead of TreeReadState | null
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59f72519-6b9c-45c7-998d-ffb0c7e7d8d7:
+    id: 59f72519-6b9c-45c7-998d-ffb0c7e7d8d7
+    content: Renderer findStateForNode produces the three observable variants; the bridge maps timeout/dispose to not-ready and forwards otherwise; the three main-side consumers replace their shared null preamble with one factored variant switch emitting per-variant err() strings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8922e37-b9d1-4a48-94e3-8656e3f2f68d:
+    id: d8922e37-b9d1-4a48-94e3-8656e3f2f68d
+    content: Touchpoints
+    children:
+      - 67b5d790-4d88-4ea5-9dbd-ff9b8fc876e4
+      - dd9cbbe2-cbe3-4151-964b-42fc9ae74930
+      - 310c92d5-24f6-4600-989b-b246953f5205
+      - eb5f5942-8838-420d-b1bb-3f17915968b6
+      - 0f1064c6-26b9-46e2-a07e-2e6711f6a8f6
+      - 1d91986e-0115-484e-b3d6-958469e20725
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67b5d790-4d88-4ea5-9dbd-ff9b8fc876e4:
+    id: 67b5d790-4d88-4ea5-9dbd-ff9b8fc876e4
+    content: 'Shared types: electronApi.ts TreeReadResponse.state becomes the discriminated wire shape (the contract guarded by the preload satisfies check)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd9cbbe2-cbe3-4151-964b-42fc9ae74930:
+    id: dd9cbbe2-cbe3-4151-964b-42fc9ae74930
+    content: 'Main internals: mcpReadTools.ts (TreeReadResult, TreeReader signature) and mcpTreeReaderBridge.ts (private response type, pending-map value type, timeout/dispose resolve not-ready)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  310c92d5-24f6-4600-989b-b246953f5205:
+    id: 310c92d5-24f6-4600-989b-b246953f5205
+    content: 'Renderer service: mcpTreeReaderService.ts findStateForNode returns the variant — no-store branch maps to no-session-store, node-absent branch to node-not-in-open-store'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb5f5942-8838-420d-b1bb-3f17915968b6:
+    id: eb5f5942-8838-420d-b1bb-3f17915968b6
+    content: 'Main consumers: mcpSubmitOutputTool.ts, mcpReadTools withBoundNode, mcpWriteTools resolveBoundState — shared variant-switch helper plus authoritative main-process log per cause'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f1064c6-26b9-46e2-a07e-2e6711f6a8f6:
+    id: 0f1064c6-26b9-46e2-a07e-2e6711f6a8f6
+    content: 'Preload and main wiring: respondToMcpTreeRead pass-through recompiles only; verify no narrowing needed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d91986e-0115-484e-b3d6-958469e20725:
+    id: 1d91986e-0115-484e-b3d6-958469e20725
+    content: 'Tests: the ~6 test files mocking readState as null updated to the union; add bridge timeout→not-ready, renderer variant-split, and mutual-distinguishability assertions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1b7a39a-6332-485c-9a27-06482451630b:
+    id: f1b7a39a-6332-485c-9a27-06482451630b
+    content: Constraints to call out
+    children:
+      - d6542e67-a142-466f-8676-6043efea8357
+      - 9c56628d-a7de-4fa9-9493-3834eccc49fe
+      - cd6c73e5-2c40-45f2-9de0-4c5ed6ca0258
+      - f5cb0af1-2047-4ab5-8e3a-ab5913818cc6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6542e67-a142-466f-8676-6043efea8357:
+    id: d6542e67-a142-466f-8676-6043efea8357
+    content: The type is dual-declared (electronApi.ts wire type and mcpTreeReaderBridge.ts internal type) and must land atomically with renderer and consumers or type-check fails — do not half-land
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c56628d-a7de-4fa9-9493-3834eccc49fe:
+    id: 9c56628d-a7de-4fa9-9493-3834eccc49fe
+    content: 'Two producers feed one union: not-ready originates only in the bridge; the renderer can never emit it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd6c73e5-2c40-45f2-9de0-4c5ed6ca0258:
+    id: cd6c73e5-2c40-45f2-9de0-4c5ed6ca0258
+    content: The orphan check is subsumed, not preserved — fold it into the variant, do not leave a dead post-read if
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5cb0af1-2047-4ab5-8e3a-ab5913818cc6:
+    id: f5cb0af1-2047-4ab5-8e3a-ab5913818cc6
+    content: node-not-in-open-store is intentionally non-decisive (deleted vs wrong-file) and must stay that way — no cross-file scan, preserving the never-sweep-other-files invariant
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb293050-a7e7-4734-b34a-aa472cc54311:
+    id: eb293050-a7e7-4734-b34a-aa472cc54311
+    content: Decomposition decision
+    children:
+      - e84c49f0-2443-4d57-9f8a-f50c5c9320d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e84c49f0-2443-4d57-9f8a-f50c5c9320d4:
+    id: e84c49f0-2443-4d57-9f8a-f50c5c9320d4
+    content: One story, no split — the dual-declared type, both producers, and all three consumers must move together to keep type-check green; splitting would create a window where wire and internal types disagree
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6796792c-e793-4d8c-a4a3-df8e34a16b83:
+    id: 6796792c-e793-4d8c-a4a3-df8e34a16b83
+    content: Challenge notes (PM↔engineer converged after 2 rounds, all 4 engineer disagreements accepted)
+    children:
+      - bf599d26-7a86-401c-97ef-b6015aa35c79
+      - 1e297a18-6ec3-4975-9713-180adfd5c668
+      - 42336d64-d663-44d9-8d3d-2b5422adf04c
+      - c6958b54-c221-458b-b243-bd826ade5ae1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf599d26-7a86-401c-97ef-b6015aa35c79:
+    id: bf599d26-7a86-401c-97ef-b6015aa35c79
+    content: 'Correction to the problem statement: the four conditions are three at the data layer — "node in another open file" and "node deleted" collapse to one renderer observation (store found, node absent) and are not distinguishable without violating the owning-file invariant'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e297a18-6ec3-4975-9713-180adfd5c668:
+    id: 1e297a18-6ec3-4975-9713-180adfd5c668
+    content: 'Correction to the approach: "bare retry won''t succeed" is wrong for no-session-store''s registration-race sub-case, which is transient — message softened accordingly'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42336d64-d663-44d9-8d3d-2b5422adf04c:
+    id: 42336d64-d663-44d9-8d3d-2b5422adf04c
+    content: 'Over-engineering guard: resist a future fourth wrong-file variant — the data layer cannot support it without re-opening the cross-file-scan invariant; flag, don''t smuggle'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6958b54-c221-458b-b243-bd826ade5ae1:
+    id: c6958b54-c221-458b-b243-bd826ade5ae1
+    content: 'ROI: favorable — one helper, one type, three call sites de-duplicated (net line reduction) against recurring agent-confusion cost on the most common autonomous-submit failure mode'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fd0ff3c-b199-4930-b165-d3285dd2b200:
+    id: 5fd0ff3c-b199-4930-b165-d3285dd2b200
+    content: Technical refinement
+    children:
+      - a9b9a203-57b2-410c-b40b-3a5991436df9
+      - ca9c4b83-4753-41c8-a3cb-561836686060
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9b9a203-57b2-410c-b40b-3a5991436df9:
+    id: a9b9a203-57b2-410c-b40b-3a5991436df9
+    content: Flagged complications
+    children:
+      - 3da04ee1-b3b1-4e96-8e0a-63e2574dd4f2
+      - a171336d-10f6-4894-bf68-f286e400f4c8
+      - e36a91a4-55f6-4a40-b835-7545b687ed47
+      - 3696766b-c90b-4a58-8ff6-7c61772c909c
+      - 53432c71-78d9-401f-bf3e-e217a6573373
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3da04ee1-b3b1-4e96-8e0a-63e2574dd4f2:
+    id: 3da04ee1-b3b1-4e96-8e0a-63e2574dd4f2
+    content: 'Retry-loop risk: not-ready (and the no-session-store registration race) invite retries, but an agent cannot tell a booting renderer from a hung one — messages should bound the guidance (retry once after a short wait) or an agent can loop indefinitely against a hung renderer'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a171336d-10f6-4894-bf68-f286e400f4c8:
+    id: a171336d-10f6-4894-bf68-f286e400f4c8
+    content: The same readState path serves one-shot manual sends (pendingTarget in mcpSubmitOutputTool) as well as workflow bindings — variant messages must read correctly when the resolved node is a one-off send target, not a workflow step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e36a91a4-55f6-4a40-b835-7545b687ed47:
+    id: e36a91a4-55f6-4a40-b835-7545b687ed47
+    content: Bridge dispose() resolves in-flight requests as not-ready during normal app teardown — correct behaviour, but keep its log level low to avoid quit-time noise
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3696766b-c90b-4a58-8ff6-7c61772c909c:
+    id: 3696766b-c90b-4a58-8ff6-7c61772c909c
+    content: 'Out of scope: cross-file scan to disambiguate deleted vs wrong-file, renderer readiness handshake or auto-retry inside the bridge, and any change to the pre-read unbound branch'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53432c71-78d9-401f-bf3e-e217a6573373:
+    id: 53432c71-78d9-401f-bf3e-e217a6573373
+    content: 'ROI holds: the bulk of the diff is mechanical test-mock updates (~6 files); the production change is a net line reduction'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca9c4b83-4753-41c8-a3cb-561836686060:
+    id: ca9c4b83-4753-41c8-a3cb-561836686060
+    content: Approach summary
+    children:
+      - 7f632265-e11f-418c-a203-f510281552a0
+      - a4327caa-c656-4f39-bfcb-492cc6e61bb1
+      - 732a3966-44e2-458b-92c4-e4a2164f3894
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f632265-e11f-418c-a203-f510281552a0:
+    id: 7f632265-e11f-418c-a203-f510281552a0
+    content: 'Replace readState''s null with a discriminated TreeReadResult (ok | not-ready | no-session-store | node-not-in-open-store): the renderer produces the three observable variants, the bridge alone fabricates not-ready on timeout/dispose'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4327caa-c656-4f39-bfcb-492cc6e61bb1:
+    id: a4327caa-c656-4f39-bfcb-492cc6e61bb1
+    content: The three main-side consumers (submit/read/write tools) swap their duplicated null+orphan preamble for one shared variant-switch helper emitting per-cause err() strings with sessionId/boundNodeId and one log line per variant
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  732a3966-44e2-458b-92c4-e4a2164f3894:
+    id: 732a3966-44e2-458b-92c4-e4a2164f3894
+    content: 'Reviewer surprises: the wire type is dual-declared (electronApi.ts + bridge-internal) under the preload satisfies guard so the change must land atomically, and the familiar post-read orphan check disappears — subsumed by node-not-in-open-store, not lost'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  963d2f28-2f7d-45b5-8d38-20af01da8764:
+    id: 963d2f28-2f7d-45b5-8d38-20af01da8764
+    content: 'TDD red phase: 3 new test files in the worktree (bridge taxonomy, renderer taxonomy, consumer messages) — 16 failing as expected, 4 passing as intentional pins (bridge pass-through forwarding, unbound branch), 1 todo (empty-nodeId variant uncertain), eslint clean'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f85d7e2-0f2e-41e7-8e97-8986d4d456ff:
+    id: 0f85d7e2-0f2e-41e7-8e97-8986d4d456ff
+    content: 'Implementation complete: 15 files changed plus 3 new test files (+200/-110), type-check clean, full lint 0 errors, full test:run 4851 passed — empty-nodeId todo resolved as node-not-in-open-store without an IPC round trip; uncommitted in worktree per instructions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af912c00-3d7c-41d1-ac47-7396b1f0476e:
+    id: af912c00-3d7c-41d1-ac47-7396b1f0476e
+    content: 'Verification summary: what is undone and why'
+    children:
+      - c6a163b6-3e40-4638-9199-60be5be196c0
+      - b39f4ca6-fd65-44f7-a65f-9ddc56fadf29
+      - 26129c1f-1c41-4647-bb76-8074d651ab2a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6a163b6-3e40-4638-9199-60be5be196c0:
+    id: c6a163b6-3e40-4638-9199-60be5be196c0
+    content: 'All spec items verified implemented on disk in the worktree: TreeReadResult union and treeReadFailure helper in mcpReadTools.ts, both variants produced in mcpTreeReaderService.ts, not-ready fabricated only in mcpTreeReaderBridge.ts, wire union in electronApi.ts, all three consumers on the shared helper, full suite green'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b39f4ca6-fd65-44f7-a65f-9ddc56fadf29:
+    id: b39f4ca6-fd65-44f7-a65f-9ddc56fadf29
+    content: Cross-file scan, renderer readiness handshake or bridge auto-retry, and changes to the pre-read unbound branch — deliberately abandoned as out of scope per the spec's owning-file invariant
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  26129c1f-1c41-4647-bb76-8074d651ab2a:
+    id: 26129c1f-1c41-4647-bb76-8074d651ab2a
+    content: Commit and merge of the worktree branch feat/tree-read-error-taxonomy — undone because the workflow forbids committing until asked; 18 changed/new files sit uncommitted in the worktree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfb17698-9b9a-4329-a809-49c93f550152:
+    id: cfb17698-9b9a-4329-a809-49c93f550152
+    content: 'AI refactor pass: removed red-phase scaffolding casts (readerOf unknown, emitVariant) in favour of TreeReadResult typing, consolidated the two redundant taxonomy test files into the owning contract files (bridge gains variant-forwarding it.each and concurrent-mixed test, renderer Ticket A gains the non-owning-store test) and deleted them — type-check clean, 209 tests passing in changed files, eslint clean'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89a754ff-e848-4b60-8a8c-6eb7eb77cc46:
+    id: 89a754ff-e848-4b60-8a8c-6eb7eb77cc46
+    content: review feedback
+    children:
+      - 6b586049-30b7-46db-8c0e-f0a7c741de6f
+      - 847ad4eb-742e-44d3-b001-ca3ccbc35d97
+      - 6f97f315-1995-4af8-9588-999f7632471c
+      - 445c5063-6363-4caf-a406-46a033ee5c28
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b586049-30b7-46db-8c0e-f0a7c741de6f:
+    id: 6b586049-30b7-46db-8c0e-f0a7c741de6f
+    content: 'Verdict: clean — code-reviewer agent found no blockers and no should-fix issues across the full worktree diff, calling code (preload, main.ts wiring), and conventions; type-check clean, 209 tests in affected files passing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  847ad4eb-742e-44d3-b001-ca3ccbc35d97:
+    id: 847ad4eb-742e-44d3-b001-ca3ccbc35d97
+    content: 'Dispose/timeout race explicitly checked and ruled out: the pending resolver closes over its timer and clears it before resolving, and the timeout callback is guarded by pending.delete, so dispose-then-late-timer cannot double-resolve (mcpTreeReaderBridge.ts:51,60-63,73)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f97f315-1995-4af8-9588-999f7632471c:
+    id: 6f97f315-1995-4af8-9588-999f7632471c
+    content: 'Observation for future maintainers: two TreeReadResponse types ride the same IPC channel by hand-kept sync — bridge-internal (state: TreeReadResult, includes not-ready) vs electronApi wire type (SerializedTreeReadResult, excludes not-ready); intentional pre-existing seam shared with the mutate path, safe because the renderer provably never emits not-ready, but not enforced by a shared definition'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  445c5063-6363-4caf-a406-46a033ee5c28:
+    id: 445c5063-6363-4caf-a406-46a033ee5c28
+    content: Old catch-all string fully purged from production; sole remaining reference is the OLD_CATCH_ALL negative assertion in mcpTreeReadErrorTaxonomyMessages.test.ts; unbound branch verified untouched (short-circuits before readState); no red-phase scaffolding, .only/.skip, or new todos left behind
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02ac42fb-c084-4472-8b61-2e1c1450a4cf:
+    id: 02ac42fb-c084-4472-8b61-2e1c1450a4cf
+    content: 'Review resolution: discussed all findings with the reviewer agent — no code changes warranted'
+    children:
+      - 42794a59-6566-4c16-afc6-502bca3bf4b3
+      - 5190ff25-f569-47ee-940e-3b97bf807e37
+      - d224cec7-13d6-4bf8-b3f1-60e2d4cc90ce
+      - a2e08541-c5d6-464e-aaaa-7747bb77b934
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42794a59-6566-4c16-afc6-502bca3bf4b3:
+    id: 42794a59-6566-4c16-afc6-502bca3bf4b3
+    content: 'Major issues fixed: none — the review reported no blockers or should-fix issues'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5190ff25-f569-47ee-940e-3b97bf807e37:
+    id: 5190ff25-f569-47ee-940e-3b97bf807e37
+    content: 'Minor issues fixed: none — dispose/timeout race independently re-verified safe (resolver clears its timer before resolving; timeout callback pending.delete-guarded)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d224cec7-13d6-4bf8-b3f1-60e2d4cc90ce:
+    id: d224cec7-13d6-4bf8-b3f1-60e2d4cc90ce
+    content: 'Feedback skipped with reviewer concession 1: unifying the dual TreeReadResponse declarations was challenged and conceded — deriving the bridge type from the wire type would pull TreeNode into shared/ or force boundary casts, and the not-ready divergence is load-bearing (bridge-only variant); hand-sync matches the mutate-path convention'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2e08541-c5d6-464e-aaaa-7747bb77b934:
+    id: a2e08541-c5d6-464e-aaaa-7747bb77b934
+    content: 'Feedback skipped with reviewer concession 2: adversarial recheck of renderer warn-level logging on no-session-store found no spam risk — withBoundNode short-circuits unbound sessions before any renderer request, and the renderer store map is populated before main ever holds a binding, so no-session-store means a genuinely closed/unowned file and warn is the correct level'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  772a1db2-a600-4977-afa4-8c720ea85bc0:
+    id: 772a1db2-a600-4977-afa4-8c720ea85bc0
+    content: 'Test pass and fix: criterion-to-test sweep found one coverage gap and closed it — the business rule "each variant emits one structured main-process log line" had implementation (treeReadFailure logger.warn) but no assertion; added a per-variant logger.warn test (called once, message carries kind=) to mcpTreeReadErrorTaxonomyMessages.test.ts — 10/10 passing, lint and type-check clean; one implementation beyond explicit criteria noted for the record: bridge maps an empty boundNodeId to node-not-in-open-store without an IPC round trip (disclosed in two prior accepted submissions)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c807005-9408-4e0c-813b-b66b9d8b16fb:
+    id: 7c807005-9408-4e0c-813b-b66b9d8b16fb
+    content: 'Documentation: one paragraph added to docs/workflows.md Activity log section (the troubleshooting surface) — tool replies now name the actual cause when a bound node can''t be resolved, and the cause is greppable as tree-read failure kind= with session and node ids; no dedicated page (agent-facing messages are self-describing and non-blocking), no changelog line (refines the MCP tools feature that is itself still in Unreleased), no redundant references found to remove'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -181606,4 +183456,8 @@ sessionRegistry:
   91b4230b-a37e-4085-a2eb-1a8d748a3d4e:
     cwd: /Users/brianfox/dev/Arborescent
   37055118-76e7-4b21-aec7-20311afc406b:
+    cwd: /Users/brianfox/dev/Arborescent
+  0f6436ca-97e6-41ed-8b3a-b57f285e38cb:
+    cwd: /Users/brianfox/dev/Arborescent
+  78d1f5ac-f4f5-44ea-802f-d39878c0b2d8:
     cwd: /Users/brianfox/dev/Arborescent
