@@ -128,6 +128,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       () => ({
         executeCommand: historyActions.executeCommand,
         deleteNode: nodeDeletionActions.deleteNode,
+        deleteNodes: nodeDeletionActions.deleteNodes,
         autoSave: persistenceActions.autoSave,
       }),
       visualEffectsActions,

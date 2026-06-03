@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { createClipboardActions, ClipboardActions } from '../clipboardActions';
+import { createNodeDeletionActions } from '../nodeDeletionActions';
 import type { TreeNode } from '@shared/types';
 import type { VisualEffectsActions } from '../visualEffectsActions';
 
@@ -241,12 +242,22 @@ describe('clipboardActions', () => {
       state = { ...state, ...partial };
     };
 
+    // The deleteNodes dependency is the real core so multi-delete assertions
+    // (command execution, binding release) keep observing end-to-end behavior.
+    const nodeDeletionActions = createNodeDeletionActions(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      () => ({ ...state, actions: { executeCommand: mockExecuteCommand } }) as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setState as any
+    );
+
     actions = createClipboardActions(
       () => state,
       setState,
       () => ({
         executeCommand: mockExecuteCommand,
         deleteNode: mockDeleteNode,
+        deleteNodes: nodeDeletionActions.deleteNodes,
         autoSave: mockAutoSave,
       }),
       visualEffects,

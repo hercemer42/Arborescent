@@ -6,13 +6,16 @@ import {
   getNodeAndDescendantIds,
 } from '../../../utils/nodeHelpers';
 import { DeleteNodeCommand } from '../commands/DeleteNodeCommand';
+import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesCommand';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { captureStepDeletions, notifyDeletionDisruption } from './workflowDisruption';
 import { collectBoundSessionIds, releaseSessionBindings } from './sessionBindingCleanup';
+import { StepHistoryMap } from '../stepHistory/stepHistory';
 
 export interface NodeDeletionActions {
   deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
+  deleteNodes: (nodeIds: string[]) => void;
 }
 
 type StoreState = {
@@ -23,6 +26,8 @@ type StoreState = {
   cursorPosition: number;
   collaboratingNodeId: string | null;
   workflowSessionMap?: Record<string, string>;
+  multiSelectedNodeIds?: Set<string>;
+  stepHistory?: StepHistoryMap;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
@@ -58,8 +63,43 @@ export const createNodeDeletionActions = (
   triggerAutosave?: () => void
 ): NodeDeletionActions => {
 
-  function deleteNode(nodeId: string, confirmed = false): boolean {
+  function commandStateGetter() {
+    const currentState = get() as StoreState;
+    return {
+      nodes: currentState.nodes,
+      rootNodeId: currentState.rootNodeId,
+      ancestorRegistry: currentState.ancestorRegistry,
+      stepHistory: currentState.stepHistory,
+    };
+  }
+
+  function deleteNodes(nodeIds: string[]): void {
+    if (nodeIds.length === 0) return;
+
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+
+    if (!state.actions?.executeCommand) {
+      throw new Error('Command system not initialized - cannot delete node with undo/redo support');
+    }
+
+    const allDeletedIds = getNodeAndDescendantIds(nodeIds, state.nodes);
+    const releasedSessionIds = collectBoundSessionIds(allDeletedIds, state.nodes);
+    const stepDeletions = captureStepDeletions(nodeIds, state);
+
+    const setter = (partial: Partial<StoreState>) => set(partial);
+    const command =
+      nodeIds.length === 1
+        ? new DeleteNodeCommand(nodeIds[0], commandStateGetter, setter, findPreviousNode, triggerAutosave)
+        : new DeleteMultipleNodesCommand(nodeIds, commandStateGetter, setter, findPreviousNode, triggerAutosave);
+    state.actions.executeCommand(command);
+
+    notifyDeletionDisruption(get, allDeletedIds, stepDeletions);
+
+    releaseSessionBindings(releasedSessionIds, get, set);
+  }
+
+  function deleteNode(nodeId: string, confirmed = false): boolean {
+    const state = get() as StoreState;
     const { nodes, rootNodeId, collaboratingNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return true;
@@ -84,38 +124,13 @@ export const createNodeDeletionActions = (
       return true;
     }
 
-    if (!state.actions?.executeCommand) {
-      throw new Error('Command system not initialized - cannot delete node with undo/redo support');
-    }
-
-    const descendantIds = getNodeAndDescendantIds([nodeId], nodes);
-    const releasedSessionIds = collectBoundSessionIds(descendantIds, nodes);
-    const stepDeletions = captureStepDeletions([nodeId], state);
-
-    const command = new DeleteNodeCommand(
-      nodeId,
-      () => {
-        const currentState = get() as StoreState;
-        return {
-          nodes: currentState.nodes,
-          rootNodeId: currentState.rootNodeId,
-          ancestorRegistry: currentState.ancestorRegistry,
-        };
-      },
-      (partial) => set(partial as Partial<StoreState>),
-      findPreviousNode,
-      triggerAutosave
-    );
-    state.actions.executeCommand(command);
-
-    notifyDeletionDisruption(get, descendantIds, stepDeletions);
-
-    releaseSessionBindings(releasedSessionIds, get, set);
+    deleteNodes([nodeId]);
 
     return true;
   }
 
   return {
     deleteNode,
+    deleteNodes,
   };
 };

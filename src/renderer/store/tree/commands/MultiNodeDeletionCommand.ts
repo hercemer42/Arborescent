@@ -193,8 +193,12 @@ export class MultiNodeDeletionCommand extends BaseCommand {
       updatedNodes[nodeId] = { ...node };
     });
 
+    // Ascending order keeps every splice index valid: each node's original
+    // position already accounts for lower-positioned siblings, whether they
+    // survived or are restored first. Descending order spliced past the end
+    // when all of a parent's children were deleted, scrambling their order.
     const sortedSnapshots = Array.from(this.snapshots.entries()).sort(
-      ([, a], [, b]) => b.position - a.position
+      ([, a], [, b]) => a.position - b.position
     );
 
     for (const [nodeId, snapshot] of sortedSnapshots) {

@@ -174,8 +174,14 @@ describe('MultiNodeDeletionCommand', () => {
     });
 
     it('should restore multiple deleted nodes in correct positions', () => {
+      // Three siblings, because two cannot distinguish restoration orders:
+      // with all children deleted, any splice order reproduces a 2-element list.
+      nodes['node-3'] = { id: 'node-3', content: 'Node 3', children: [], metadata: {} };
+      nodes.root = { ...nodes.root, children: ['node-1', 'node-2', 'node-3'] };
+      ancestorRegistry['node-3'] = ['root'];
+
       const command = new MultiNodeDeletionCommand(
-        ['node-1', 'node-2'],
+        ['node-1', 'node-2', 'node-3'],
         () => ({ nodes, rootNodeId, ancestorRegistry }),
         setState,
         findPreviousNode,
@@ -194,8 +200,9 @@ describe('MultiNodeDeletionCommand', () => {
       const setStateCall = setState.mock.calls[0][0];
       expect(setStateCall.nodes['node-1']).toBeDefined();
       expect(setStateCall.nodes['node-2']).toBeDefined();
+      expect(setStateCall.nodes['node-3']).toBeDefined();
       // Should restore in original order
-      expect(setStateCall.nodes['root'].children).toEqual(['node-1', 'node-2']);
+      expect(setStateCall.nodes['root'].children).toEqual(['node-1', 'node-2', 'node-3']);
     });
 
     it('should select first restored node', () => {
