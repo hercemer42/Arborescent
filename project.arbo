@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-03T21:19:12.902Z'
+updated: '2026-06-03T22:28:58.397Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14412,7 +14412,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children: []
+    children:
+      - 7466cf69-5a0c-43ea-b080-1cd122743608
     metadata:
       status: completed
       expanded: true
@@ -80785,8 +80786,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 2b90588b-8c43-44be-8376-a4269b6c6ee2
-      - 09f5ffea-f6d2-43f8-8ac6-da046a982e60
       - e353e6df-5cc7-40af-9e7b-a9da29963cd2
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
       - 6f0fe0b2-1aeb-4392-97c7-f8fee83d7b24
@@ -115523,6 +115522,7 @@ nodes:
       - 01cff27f-daa2-48ac-990f-1031db9cc5cb
       - 4f0782b5-830f-4ddf-870a-827c5f4ca28c
       - 651e3053-cc28-4ac0-94b1-306fefece2a6
+      - 42e74ca9-2d62-439b-93ff-b040a4989a07
     metadata:
       status: pending
       isBlueprint: true
@@ -124629,7 +124629,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 42e74ca9-2d62-439b-93ff-b040a4989a07
+      - 2b90588b-8c43-44be-8376-a4269b6c6ee2
     metadata:
       status: pending
       isBlueprint: true
@@ -184831,640 +184831,24 @@ nodes:
     id: 2b90588b-8c43-44be-8376-a4269b6c6ee2
     content: Story 1 — Explicit store action dependencies + benign cycle removal
     children:
-      - 73ac4d98-7454-484d-9d48-2653e89e15b9
-      - 0e489770-071e-4740-abef-c5d41a45cc22
+      - faa9096b-19e4-4616-8c10-3994060c1a32
+      - 466d4167-5944-489c-b0ff-438729b5c556
+      - 4ba7b69d-afc9-4226-b615-88dfb2ea447a
+      - 8385e93b-d362-4350-b4c5-8e0998b7bb0d
+      - ab2ff738-2a1e-4514-bd1d-3ffdef237f5d
+      - 20ba0ceb-0511-496a-8161-1d0bb3c83d97
+      - 583298c0-4852-448e-921c-fea9b6e39b31
+      - d1ce82c4-f07e-4bff-a17b-98c3adee11e1
+      - 5763c75b-0d76-4da5-ab6a-666c1c158df7
+      - 1099421a-7147-4332-a97e-c41b053129ef
+      - 157838c7-37c8-40f0-ada8-ea3fc233458c
+      - add4ed04-e1ee-4c63-817b-f08b34ffb22a
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
-  73ac4d98-7454-484d-9d48-2653e89e15b9:
-    id: 73ac4d98-7454-484d-9d48-2653e89e15b9
-    content: 📄 Product spec
-    children:
-      - 4bf083a9-6ef2-4d1e-a278-f35086533b6a
-      - 6fbd7280-43cc-4dcf-807f-834e04b4b0ac
-      - 8f23c900-f63b-4074-bebd-399ac23a40e3
-      - 1a4f053a-75d4-4585-ae0f-4274b9cc22d3
-      - a7b8044d-ef5c-44d1-9bae-e9bd235ef59a
-      - 24e634af-65a4-47dd-b1d4-0d3ef60e2ce7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4bf083a9-6ef2-4d1e-a278-f35086533b6a:
-    id: 4bf083a9-6ef2-4d1e-a278-f35086533b6a
-    content: Context
-    children:
-      - ef2d0081-bbff-40d8-b26b-da656c458ae8
-      - 249a6590-26cb-472c-9e27-5e41a24c7b73
-      - 5f337989-94bd-4706-a145-16956060d62d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef2d0081-bbff-40d8-b26b-da656c458ae8:
-    id: ef2d0081-bbff-40d8-b26b-da656c458ae8
-    content: 'The Zustand store layer carries ~20 import/no-cycle warnings and 14 get() as StoreState & { actions?: ... } reach-through casts in src/renderer/store/tree/actions'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  249a6590-26cb-472c-9e27-5e41a24c7b73:
-    id: 249a6590-26cb-472c-9e27-5e41a24c7b73
-    content: Every cycle back-edge currently fires lazily inside closures, so module init order is correct by accident, not by design
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f337989-94bd-4706-a145-16956060d62d:
-    id: 5f337989-94bd-4706-a145-16956060d62d
-    content: Five sibling factories already take executeCommand as a typed constructor param — the casts are historical drift, not a needed pattern
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6fbd7280-43cc-4dcf-807f-834e04b4b0ac:
-    id: 6fbd7280-43cc-4dcf-807f-834e04b4b0ac
-    content: User
-    children:
-      - d5083423-900d-4b1b-897c-f8751425f83d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d5083423-900d-4b1b-897c-f8751425f83d:
-    id: d5083423-900d-4b1b-897c-f8751425f83d
-    content: Maintainer and future contributors (including AI agents) editing the store layer; no end-user surface
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f23c900-f63b-4074-bebd-399ac23a40e3:
-    id: 8f23c900-f63b-4074-bebd-399ac23a40e3
-    content: Current experience and why it is insufficient
-    children:
-      - cc850f53-be98-4123-a8e7-18912f4e88f3
-      - 8a8ca039-2e07-46b5-ae27-1718c380cffd
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cc850f53-be98-4123-a8e7-18912f4e88f3:
-    id: cc850f53-be98-4123-a8e7-18912f4e88f3
-    content: Cross-slice reach-throughs silently no-op via optional chaining when a slice is absent, defeating TypeScript strict mode
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a8ca039-2e07-46b5-ae27-1718c380cffd:
-    id: 8a8ca039-2e07-46b5-ae27-1718c380cffd
-    content: Refactors near treeStore composition risk init-order breakage with no compiler or lint signal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1a4f053a-75d4-4585-ae0f-4274b9cc22d3:
-    id: 1a4f053a-75d4-4585-ae0f-4274b9cc22d3
-    content: Goal
-    children:
-      - 70095f1a-25f8-4266-a9f6-ce146c5fbad5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  70095f1a-25f8-4266-a9f6-ce146c5fbad5:
-    id: 70095f1a-25f8-4266-a9f6-ce146c5fbad5
-    content: Cross-slice dependencies in store/tree/actions are explicit and compile-time checked, and every remaining import cycle is either removed or annotated with its rationale
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a7b8044d-ef5c-44d1-9bae-e9bd235ef59a:
-    id: a7b8044d-ef5c-44d1-9bae-e9bd235ef59a
-    content: Business rules
-    children:
-      - e6b91e1e-2243-40a7-ad9e-1bc8706559f4
-      - f6c52444-9b9d-44bd-8a84-f01a02cf7f6d
-      - 8fd74e72-5833-405d-9e16-a438d235172e
-      - f22c653b-0ad8-45fd-8cf6-38616118dd6a
-      - 8e2cd425-d1ab-4ac1-9dc4-ecad9a0a2c06
-      - a000abe9-5b39-44a1-af6f-21f0b60d1cfb
-      - aefeae01-446b-4600-ac74-aeffa6bc8e9b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e6b91e1e-2243-40a7-ad9e-1bc8706559f4:
-    id: e6b91e1e-2243-40a7-ad9e-1bc8706559f4
-    content: All 14 actions? reach-through cast sites must be removed; a missing cross-slice dependency must be a compile-time error, never a silent runtime no-op
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f6c52444-9b9d-44bd-8a84-f01a02cf7f6d:
-    id: f6c52444-9b9d-44bd-8a84-f01a02cf7f6d
-    content: Plain typed get() reads of own-slice state stay untouched; no DI container or new abstraction is introduced
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8fd74e72-5833-405d-9e16-a438d235172e:
-    id: 8fd74e72-5833-405d-9e16-a438d235172e
-    content: The ~8 executeCommand reach-throughs (nodeActions, navigationActions, nodeMovementActions, nodeDeletionActions, sendActions) receive executeCommand as a constructor param, matching the existing createXManagerDeps pattern
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f22c653b-0ad8-45fd-8cf6-38616118dd6a:
-    id: f22c653b-0ad8-45fd-8cf6-38616118dd6a
-    content: The 4 genuine forward references (refreshSummaryVisibleNodeIds, restoreCollaborationState, handleNodeMovedManually, workflowDisruption handlers) use the existing workflowExecutionRef late-binding idiom from treeStore.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e2cd425-d1ab-4ac1-9dc4-ecad9a0a2c06:
-    id: 8e2cd425-d1ab-4ac1-9dc4-ecad9a0a2c06
-    content: Benign split-slice cycles (browser/terminal/files — Family A) are broken via a per-slice constants module and import type conversions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a000abe9-5b39-44a1-af6f-21f0b60d1cfb:
-    id: a000abe9-5b39-44a1-af6f-21f0b60d1cfb
-    content: storeManager hub cycles (Families B/C/D) are NOT refactored in this story; each surviving edge gets a targeted eslint-disable-next-line import/no-cycle with a why-inert comment naming the Story 2 entry criterion
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aefeae01-446b-4600-ac74-aeffa6bc8e9b:
-    id: aefeae01-446b-4600-ac74-aeffa6bc8e9b
-    content: The dead 'Command system not initialized' throws are deleted once executeCommand is a real param — keeping them would mask the fix
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  24e634af-65a4-47dd-b1d4-0d3ef60e2ce7:
-    id: 24e634af-65a4-47dd-b1d4-0d3ef60e2ce7
-    content: Acceptance criteria
-    children:
-      - ae8b84aa-2c7b-4548-b38c-f17d99994e9c
-      - 435e2962-875b-4f5f-8ae2-90053bc6fc31
-      - af0a2e26-db39-4bfc-afbd-f40378ff1210
-      - d1644b84-7a8e-4154-9ed1-10fe62a7cf82
-      - 99adb720-3afb-400e-861a-d6f8afff93c8
-      - ba6c9dd2-ae95-4974-ae3d-dc9aada9144f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ae8b84aa-2c7b-4548-b38c-f17d99994e9c:
-    id: ae8b84aa-2c7b-4548-b38c-f17d99994e9c
-    content: 'Zero get() as StoreState & { actions?: ... } casts remain in src/renderer/store/tree/actions'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  435e2962-875b-4f5f-8ae2-90053bc6fc31:
-    id: 435e2962-875b-4f5f-8ae2-90053bc6fc31
-    content: Zero unannotated import/no-cycle warnings remain under src/renderer/store; every surviving warning carries a targeted disable, a one-line inertness rationale, and a reference to Story 2
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  af0a2e26-db39-4bfc-afbd-f40378ff1210:
-    id: af0a2e26-db39-4bfc-afbd-f40378ff1210
-    content: npm run type-check passes with no new any casts or suppressions beyond the agreed Family B/C/D annotations
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d1644b84-7a8e-4154-9ed1-10fe62a7cf82:
-    id: d1644b84-7a8e-4154-9ed1-10fe62a7cf82
-    content: npm run lint and npm run test:run pass; existing action tests keep their intent (mocks updated from actions reach-through to constructor params only)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  99adb720-3afb-400e-861a-d6f8afff93c8:
-    id: 99adb720-3afb-400e-861a-d6f8afff93c8
-    content: Collaboration-restore and workflow-disruption paths behave identically (editDuringCollaboration and nodeDeletionBindingCleanup tests stay green)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba6c9dd2-ae95-4974-ae3d-dc9aada9144f:
-    id: ba6c9dd2-ae95-4974-ae3d-dc9aada9144f
-    content: No user-visible behavior change — pure refactor
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0e489770-071e-4740-abef-c5d41a45cc22:
-    id: 0e489770-071e-4740-abef-c5d41a45cc22
-    content: 🔧 Implementation proposal
-    children:
-      - 91c40158-a198-42d3-9780-2169378eb4ed
-      - e1eb5417-63c1-487d-a01e-1c79315c876b
-      - 8f8fa137-3d46-4e58-97e0-2074f1ecf40d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  91c40158-a198-42d3-9780-2169378eb4ed:
-    id: 91c40158-a198-42d3-9780-2169378eb4ed
-    content: Approach
-    children:
-      - 80bac3c5-50db-45f6-b92f-3c585675da78
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  80bac3c5-50db-45f6-b92f-3c585675da78:
-    id: 80bac3c5-50db-45f6-b92f-3c585675da78
-    content: Mechanical param-passing for 2a plus the in-repo late-binding ref idiom for 2b; lands entirely in src/renderer/store (renderer only — no main process, persistence, or API surface)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e1eb5417-63c1-487d-a01e-1c79315c876b:
-    id: e1eb5417-63c1-487d-a01e-1c79315c876b
-    content: Touchpoints
-    children:
-      - cca53a87-d7fb-406f-a2be-0b6874653a70
-      - 2502da65-3618-4773-b9cc-7c2cfba388bf
-      - e54a8dd3-9ba2-446b-94fd-55b642d8e44e
-      - 6cba2209-e87e-43cb-acfd-a1ee66560aaa
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cca53a87-d7fb-406f-a2be-0b6874653a70:
-    id: cca53a87-d7fb-406f-a2be-0b6874653a70
-    content: treeStore.ts slice composition (~lines 113-211)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2502da65-3618-4773-b9cc-7c2cfba388bf:
-    id: 2502da65-3618-4773-b9cc-7c2cfba388bf
-    content: 'tree/actions: nodeActions, nodeMovementActions, nodeDeletionActions, navigationActions, persistenceActions, sendActions, workflowDisruption'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e54a8dd3-9ba2-446b-94fd-55b642d8e44e:
-    id: e54a8dd3-9ba2-446b-94fd-55b642d8e44e
-    content: 'browser/terminal/files slices: per-slice constants module, import type conversions'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6cba2209-e87e-43cb-acfd-a1ee66560aaa:
-    id: 6cba2209-e87e-43cb-acfd-a1ee66560aaa
-    content: 'Tests: factory mocks updated to pass executeCommand / late-binding deps'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f8fa137-3d46-4e58-97e0-2074f1ecf40d:
-    id: 8f8fa137-3d46-4e58-97e0-2074f1ecf40d
-    content: Constraints to call out
-    children:
-      - cb348522-4889-4f98-b4c6-57004d2a00d5
-      - f76b12fc-b4ca-460f-a37b-c9079c35c87c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb348522-4889-4f98-b4c6-57004d2a00d5:
-    id: cb348522-4889-4f98-b4c6-57004d2a00d5
-    content: Do not bundle storeManager topology changes into this diff — keeps it reviewable and bisectable if init order surprises
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f76b12fc-b4ca-460f-a37b-c9079c35c87c:
-    id: f76b12fc-b4ca-460f-a37b-c9079c35c87c
-    content: Land casts and Family A as separate commits so each is independently revertable
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09f5ffea-f6d2-43f8-8ac6-da046a982e60:
-    id: 09f5ffea-f6d2-43f8-8ac6-da046a982e60
-    content: Story 2 — Decouple storeManager service-locator (deferred, tests-first)
-    children:
-      - fcf32da1-bee5-4765-b199-9090da57d207
-      - 83f5d710-9bc2-40f9-b9fb-21633ad17d7c
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  fcf32da1-bee5-4765-b199-9090da57d207:
-    id: fcf32da1-bee5-4765-b199-9090da57d207
-    content: 📄 Product spec
-    children:
-      - 8546e394-53ff-420e-a64c-8871cdf0311d
-      - 991a9757-ad28-481a-9477-92b7506fcd56
-      - 1743315b-b631-4981-a2f3-72ae23d3ca50
-      - 6e4b17eb-741a-4999-9e20-694dd5ab621e
-      - 573a2601-5358-4426-a849-d47be682861c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8546e394-53ff-420e-a64c-8871cdf0311d:
-    id: 8546e394-53ff-420e-a64c-8871cdf0311d
-    content: Context
-    children:
-      - 0807aa56-726f-46e2-9a45-79292a4afa57
-      - 7b004697-c155-4412-8972-91ccb83b5018
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0807aa56-726f-46e2-9a45-79292a4afa57:
-    id: 0807aa56-726f-46e2-9a45-79292a4afa57
-    content: storeManager is a singleton instantiated at module load; treeStore, fileActions, clipboard handlers, DeleteNodeCommand, and feedback/send actions close import cycles through it (Families B/C/D)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b004697-c155-4412-8972-91ccb83b5018:
-    id: 7b004697-c155-4412-8972-91ccb83b5018
-    content: These cycles are currently inert (lazy closure access only) — the risk is latent, which is why this is deferred rather than bundled
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  991a9757-ad28-481a-9477-92b7506fcd56:
-    id: 991a9757-ad28-481a-9477-92b7506fcd56
-    content: User
-    children:
-      - 22496080-ea5c-4827-bcf3-81b331cf2940
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  22496080-ea5c-4827-bcf3-81b331cf2940:
-    id: 22496080-ea5c-4827-bcf3-81b331cf2940
-    content: Maintainer refactoring file-lifecycle or store-init code
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1743315b-b631-4981-a2f3-72ae23d3ca50:
-    id: 1743315b-b631-4981-a2f3-72ae23d3ca50
-    content: Goal
-    children:
-      - 30a89fa0-0261-4335-ae6e-4a97f6eceec4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  30a89fa0-0261-4335-ae6e-4a97f6eceec4:
-    id: 30a89fa0-0261-4335-ae6e-4a97f6eceec4
-    content: Store action modules no longer import the storeManager singleton; store accessors are injected, eliminating the remaining annotated cycles
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e4b17eb-741a-4999-9e20-694dd5ab621e:
-    id: 6e4b17eb-741a-4999-9e20-694dd5ab621e
-    content: Business rules
-    children:
-      - 8e788b96-b4b3-46f7-b5f0-7d7f15808fff
-      - 548d9759-d78f-4691-b13d-52a0b86e43f1
-      - 328ea326-8768-472f-a996-68f0ba967b6d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e788b96-b4b3-46f7-b5f0-7d7f15808fff:
-    id: 8e788b96-b4b3-46f7-b5f0-7d7f15808fff
-    content: 'Hard entry criterion: integration tests covering store init order and multi-file lifecycle (open/close/save, cross-file paste, zoom) must exist and pass BEFORE any topology change'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  548d9759-d78f-4691-b13d-52a0b86e43f1:
-    id: 548d9759-d78f-4691-b13d-52a0b86e43f1
-    content: Action modules receive getAllStores / getStoreForFile accessors as params, extending the injection treeStore already does for sendActions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  328ea326-8768-472f-a996-68f0ba967b6d:
-    id: 328ea326-8768-472f-a996-68f0ba967b6d
-    content: Each removed annotation must delete its eslint-disable in the same commit as the fix
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  573a2601-5358-4426-a849-d47be682861c:
-    id: 573a2601-5358-4426-a849-d47be682861c
-    content: Acceptance criteria
-    children:
-      - e278b85b-7936-4ee6-886a-f9ec8d85982d
-      - aaa78bd1-32f6-4842-90be-2e650227cc6b
-      - b22cff03-1ac3-45cd-9715-4f79571c0e4f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e278b85b-7936-4ee6-886a-f9ec8d85982d:
-    id: e278b85b-7936-4ee6-886a-f9ec8d85982d
-    content: Zero import/no-cycle warnings (including annotated ones) remain under src/renderer/store
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aaa78bd1-32f6-4842-90be-2e650227cc6b:
-    id: aaa78bd1-32f6-4842-90be-2e650227cc6b
-    content: New integration tests cover multi-file open/close/save and cross-file paste before the refactor lands
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b22cff03-1ac3-45cd-9715-4f79571c0e4f:
-    id: b22cff03-1ac3-45cd-9715-4f79571c0e4f
-    content: npm run type-check, lint, and test:run pass; no behavior change
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  83f5d710-9bc2-40f9-b9fb-21633ad17d7c:
-    id: 83f5d710-9bc2-40f9-b9fb-21633ad17d7c
-    content: 🔧 Implementation proposal
-    children:
-      - 09304e28-ca95-4a11-ab45-7c9665b87822
-      - 08e2c58e-2d08-4436-a905-8b9a51996b70
-      - a2321bc6-5a20-4701-8c99-25da30fa9dba
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09304e28-ca95-4a11-ab45-7c9665b87822:
-    id: 09304e28-ca95-4a11-ab45-7c9665b87822
-    content: Approach
-    children:
-      - 51151d08-7eb4-4be7-be9e-afaa52d272e1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  51151d08-7eb4-4be7-be9e-afaa52d272e1:
-    id: 51151d08-7eb4-4be7-be9e-afaa52d272e1
-    content: Replace direct singleton imports with injected accessors in clipboardPasteHandlers, fileActions, DeleteNodeCommand, and sendActions/feedbackTreeStore; L effort, high blast radius — its own PR
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  08e2c58e-2d08-4436-a905-8b9a51996b70:
-    id: 08e2c58e-2d08-4436-a905-8b9a51996b70
-    content: Touchpoints
-    children:
-      - 7b889457-653a-4c1a-af01-f0c9923aec24
-      - bf0c8b5a-787a-4923-acfb-782e2ae24e6c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b889457-653a-4c1a-af01-f0c9923aec24:
-    id: 7b889457-653a-4c1a-af01-f0c9923aec24
-    content: storeManager.ts, treeStore.ts, files/fileActions.ts, tree/commands/DeleteNodeCommand.ts, tree/actions/clipboardPasteHandlers.ts, feedback/feedbackTreeStore.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf0c8b5a-787a-4923-acfb-782e2ae24e6c:
-    id: bf0c8b5a-787a-4923-acfb-782e2ae24e6c
-    content: New integration tests for init order and file lifecycle
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a2321bc6-5a20-4701-8c99-25da30fa9dba:
-    id: a2321bc6-5a20-4701-8c99-25da30fa9dba
-    content: Constraints to call out
-    children:
-      - cdca785c-a18d-4d9a-90ed-560ddd29248a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cdca785c-a18d-4d9a-90ed-560ddd29248a:
-    id: cdca785c-a18d-4d9a-90ed-560ddd29248a
-    content: Do not start as a drive-by; gated on the test coverage entry criterion — current correctness is load-bearing-by-accident
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
+      sessionId: af606ac1-1723-481e-9777-770ea5917034
   651e3053-cc28-4ac0-94b1-306fefece2a6:
     id: 651e3053-cc28-4ac0-94b1-306fefece2a6
     content: User story 1 — Introduce a machine-readable error code namespace for the MCP write path
@@ -189984,6 +189368,1265 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  7466cf69-5a0c-43ea-b080-1cd122743608:
+    id: 7466cf69-5a0c-43ea-b080-1cd122743608
+    content: Story 2 ‚Äî Decouple storeManager service-locator via injected accessors
+    children:
+      - e7a45145-a670-404c-b867-a3ed3b4463b0
+      - edc29d6a-762f-4760-b61d-9e1e92de7fb1
+      - b6d1f9f3-471a-4d95-a4ee-36fdaf4a9592
+      - d5f8a6b9-7075-4350-b52a-429216ea5a46
+      - 226ea080-e332-4bcd-8424-bb124539fd0c
+      - 41cc1c9b-7bf8-4177-a07a-d40c2cf9346b
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      groupId: fb7b2a36-b6f5-462d-8cbf-5bc42eef1f5c
+      sessionId: 8f1b9cef-42cc-4806-975d-7013963e1227
+  e7a45145-a670-404c-b867-a3ed3b4463b0:
+    id: e7a45145-a670-404c-b867-a3ed3b4463b0
+    content: worktree
+    children:
+      - fc5df796-47dd-4316-8125-18a4a0b501ac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc5df796-47dd-4316-8125-18a4a0b501ac:
+    id: fc5df796-47dd-4316-8125-18a4a0b501ac
+    content: vscode://file/Users/brianfox/dev/Arborescent-store-manager-accessors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  edc29d6a-762f-4760-b61d-9e1e92de7fb1:
+    id: edc29d6a-762f-4760-b61d-9e1e92de7fb1
+    content: Scope
+    children:
+      - 044d7e76-8aab-4b75-b0c9-e672c706765d
+      - 28690b43-e13e-43cb-9caa-7d16c49d4ecd
+      - 3c549823-9acb-4944-97fa-0d0f96ef538d
+      - 2e5615b0-f464-4c5c-a158-6b702803df05
+      - 80289a4e-f4b4-4c82-9be3-839d82f2ebc6
+      - aabdb6c8-42e9-44aa-ac09-3f0c90406154
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  044d7e76-8aab-4b75-b0c9-e672c706765d:
+    id: 044d7e76-8aab-4b75-b0c9-e672c706765d
+    content: Integration tests covering store init order and multi-file lifecycle (open/close/save, cross-file paste, zoom) are written first inside this PR via the workflow TDD step ‚Äî commits preceding any topology change; extend existing coverage (fileCloseCleanup, sessionRestoreIntegration, cross-file clipboard tests), don't duplicate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28690b43-e13e-43cb-9caa-7d16c49d4ecd:
+    id: 28690b43-e13e-43cb-9caa-7d16c49d4ecd
+    content: 'Define a narrow store-access interface: read accessors (getStoreForFile/getAllStores) plus the lifecycle subset fileActions needs (moveStore, closeFile, hasStore) ‚Äî fileActions has 18 call sites, more than read-only access'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c549823-9acb-4944-97fa-0d0f96ef538d:
+    id: 3c549823-9acb-4944-97fa-0d0f96ef538d
+    content: 'storeManager becomes the composition root: wires its own methods into createTreeStore and the action factories, removing module-load singleton imports from action modules'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e5615b0-f464-4c5c-a158-6b702803df05:
+    id: 2e5615b0-f464-4c5c-a158-6b702803df05
+    content: 'Migrate actual direct importers: fileActions, clipboardActions, clipboardPasteHandlers, treeStore, storeOwnership (DeleteNodeCommand and feedbackTreeStore listed in the original spec do not import storeManager directly ‚Äî feedbackTreeStore is only affected via the createTreeStore signature change)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  80289a4e-f4b4-4c82-9be3-839d82f2ebc6:
+    id: 80289a4e-f4b4-4c82-9be3-839d82f2ebc6
+    content: 'treeStore‚ÜîstoreManager is the hard cycle: createTreeStore''s autoSave wiring closes over storeManager.getAllStores, so fixing it changes the createTreeStore signature, which also touches feedbackTreeStore''s call site'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aabdb6c8-42e9-44aa-ac09-3f0c90406154:
+    id: aabdb6c8-42e9-44aa-ac09-3f0c90406154
+    content: 'Re-verify the annotation assumption first: verified ‚Äî no eslint-disable import/no-cycle annotations exist under src/renderer/store (rule is repo-wide warn), so the criterion reduces to zero warnings'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6d1f9f3-471a-4d95-a4ee-36fdaf4a9592:
+    id: b6d1f9f3-471a-4d95-a4ee-36fdaf4a9592
+    content: Acceptance criteria
+    children:
+      - 63e2a11d-8547-450e-95ba-6e07c84117c4
+      - 7a2e541a-eff0-4502-a87c-8cf55ce3d437
+      - 5a2eaac2-8fb1-4c6f-8e1b-e050fcabfa56
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  63e2a11d-8547-450e-95ba-6e07c84117c4:
+    id: 63e2a11d-8547-450e-95ba-6e07c84117c4
+    content: Zero import/no-cycle warnings remain under src/renderer/store
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a2e541a-eff0-4502-a87c-8cf55ce3d437:
+    id: 7a2e541a-eff0-4502-a87c-8cf55ce3d437
+    content: New integration tests cover init order, multi-file open/close/save, cross-file paste, and zoom, and pass both before and after the topology change ‚Äî no behavior change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a2eaac2-8fb1-4c6f-8e1b-e050fcabfa56:
+    id: 5a2eaac2-8fb1-4c6f-8e1b-e050fcabfa56
+    content: npm run type-check, lint, and test:run pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5f8a6b9-7075-4350-b52a-429216ea5a46:
+    id: d5f8a6b9-7075-4350-b52a-429216ea5a46
+    content: Dependency
+    children:
+      - e362c1d7-d7ad-479b-b9a3-066321acd82b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e362c1d7-d7ad-479b-b9a3-066321acd82b:
+    id: e362c1d7-d7ad-479b-b9a3-066321acd82b
+    content: Story 1 (explicit action deps) is in progress in Arborescent-store-explicit-deps and touches the same treeStore wiring ‚Äî Story 2 forked from master per user decision; rebase on Story 1 once it lands, before the topology change starts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  226ea080-e332-4bcd-8424-bb124539fd0c:
+    id: 226ea080-e332-4bcd-8424-bb124539fd0c
+    content: User story
+    children:
+      - ec1bf836-65d1-468c-9984-1c54d422408b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec1bf836-65d1-468c-9984-1c54d422408b:
+    id: ec1bf836-65d1-468c-9984-1c54d422408b
+    content: üìÑ Product spec
+    children:
+      - 0b99798b-e9c3-47a9-ba6a-730ed51ac95e
+      - 2228ed4c-72ad-40ab-b2c7-910c95704e37
+      - 6e0ca6c4-c2d7-4900-815f-72a7189629a7
+      - 3ebe3727-2ef9-47e7-a8b3-4062c056cce6
+      - b9f9b7ea-28b7-45c8-ba6d-444ae2497815
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b99798b-e9c3-47a9-ba6a-730ed51ac95e:
+    id: 0b99798b-e9c3-47a9-ba6a-730ed51ac95e
+    content: Context
+    children:
+      - c5b1e02e-9c2f-4884-a0ad-c6ea035e64d7
+      - 9e33c9f9-71de-46f8-bf49-2caa0fdc0fe4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5b1e02e-9c2f-4884-a0ad-c6ea035e64d7:
+    id: c5b1e02e-9c2f-4884-a0ad-c6ea035e64d7
+    content: storeManager is a singleton instantiated at module load; treeStore, fileActions, clipboard handlers, and feedback/send actions close import cycles through it (Families B/C/D)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e33c9f9-71de-46f8-bf49-2caa0fdc0fe4:
+    id: 9e33c9f9-71de-46f8-bf49-2caa0fdc0fe4
+    content: These cycles are currently inert (lazy closure access only) ‚Äî the risk is latent, which is why this is deferred rather than bundled
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2228ed4c-72ad-40ab-b2c7-910c95704e37:
+    id: 2228ed4c-72ad-40ab-b2c7-910c95704e37
+    content: User
+    children:
+      - 83a51f8c-3b9f-47ed-926a-7f65b0251a0d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  83a51f8c-3b9f-47ed-926a-7f65b0251a0d:
+    id: 83a51f8c-3b9f-47ed-926a-7f65b0251a0d
+    content: Maintainer refactoring file-lifecycle or store-init code
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e0ca6c4-c2d7-4900-815f-72a7189629a7:
+    id: 6e0ca6c4-c2d7-4900-815f-72a7189629a7
+    content: Goal
+    children:
+      - 6b0ffdc6-6fd9-452c-8454-27a8d8e1f792
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b0ffdc6-6fd9-452c-8454-27a8d8e1f792:
+    id: 6b0ffdc6-6fd9-452c-8454-27a8d8e1f792
+    content: Store action modules no longer import the storeManager singleton; store accessors are injected, eliminating the remaining cycles
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ebe3727-2ef9-47e7-a8b3-4062c056cce6:
+    id: 3ebe3727-2ef9-47e7-a8b3-4062c056cce6
+    content: Business rules
+    children:
+      - 34bf69ec-716b-4aa3-940f-c507c4bc014b
+      - fb483300-aaec-48d2-a112-3fe95e27c521
+      - 996c1b02-35d1-475e-ac50-596029f6124e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  34bf69ec-716b-4aa3-940f-c507c4bc014b:
+    id: 34bf69ec-716b-4aa3-940f-c507c4bc014b
+    content: 'Hard entry criterion: integration tests covering store init order and multi-file lifecycle (open/close/save, cross-file paste, zoom) must exist and pass BEFORE any topology change'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb483300-aaec-48d2-a112-3fe95e27c521:
+    id: fb483300-aaec-48d2-a112-3fe95e27c521
+    content: Action modules receive injected store accessors as params, extending the injection treeStore already does for sendActions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  996c1b02-35d1-475e-ac50-596029f6124e:
+    id: 996c1b02-35d1-475e-ac50-596029f6124e
+    content: Each removed annotation must delete its eslint-disable in the same commit as the fix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9f9b7ea-28b7-45c8-ba6d-444ae2497815:
+    id: b9f9b7ea-28b7-45c8-ba6d-444ae2497815
+    content: Acceptance criteria
+    children:
+      - 8e3f2886-4393-4700-bae1-7043704da383
+      - a90ca7d2-358c-4822-9b24-a60955e143bb
+      - f4240b93-b3f7-4794-acdd-7e0836b62034
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e3f2886-4393-4700-bae1-7043704da383:
+    id: 8e3f2886-4393-4700-bae1-7043704da383
+    content: Zero import/no-cycle warnings (including annotated ones) remain under src/renderer/store
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a90ca7d2-358c-4822-9b24-a60955e143bb:
+    id: a90ca7d2-358c-4822-9b24-a60955e143bb
+    content: New integration tests cover multi-file open/close/save and cross-file paste before the refactor lands
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4240b93-b3f7-4794-acdd-7e0836b62034:
+    id: f4240b93-b3f7-4794-acdd-7e0836b62034
+    content: npm run type-check, lint, and test:run pass; no behavior change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41cc1c9b-7bf8-4177-a07a-d40c2cf9346b:
+    id: 41cc1c9b-7bf8-4177-a07a-d40c2cf9346b
+    content: Issues
+    children:
+      - b1620c96-6677-45c9-afee-a4a17980f73b
+      - 20643f46-0137-4aa2-abc5-ba4e29dd4d44
+      - 02754b03-8de5-412b-a072-5092ba3daecd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1620c96-6677-45c9-afee-a4a17980f73b:
+    id: b1620c96-6677-45c9-afee-a4a17980f73b
+    content: Node text has mojibake (‚Äî for em-dash, üìÑ for emoji, ‚Üî for arrow) — UTF-8 bytes were decoded as Mac-Roman somewhere in the clipboard-paste path; preserved as-is per no-rewrite rule, worth fixing the encoding at the paste boundary
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20643f46-0137-4aa2-abc5-ba4e29dd4d44:
+    id: 20643f46-0137-4aa2-abc5-ba4e29dd4d44
+    content: 'Resolved: TDD step initially adopted Story 1''s worktree (Arborescent-store-explicit-deps) by mistake ‚Äî Story 1 is actively in progress there; Story 2 now has its own worktree (Arborescent-store-manager-accessors, branch refactor/store-manager-injected-accessors, forked from master) and the test file was moved there; all 17 tests pass on the clean baseline'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02754b03-8de5-412b-a072-5092ba3daecd:
+    id: 02754b03-8de5-412b-a072-5092ba3daecd
+    content: 'Implementation step paused on the Dependency gate: Story 1 has not landed (master still at 462bb20) and its WIP now also modifies clipboardActions.ts and clipboardPasteHandlers.ts ‚Äî the same files Story 2 migrates; starting the topology change now would race a parallel rewrite of the same wiring ‚Äî NeedsReview sent; resume this step after Story 1 lands and this branch is rebased, or explicitly waive the gate'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  faa9096b-19e4-4616-8c10-3994060c1a32:
+    id: faa9096b-19e4-4616-8c10-3994060c1a32
+    content: worktree
+    children:
+      - 464c9222-2c01-4ea5-88e3-2fc60e15d942
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  464c9222-2c01-4ea5-88e3-2fc60e15d942:
+    id: 464c9222-2c01-4ea5-88e3-2fc60e15d942
+    content: vscode://file/Users/brianfox/dev/Arborescent-store-explicit-deps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  466d4167-5944-489c-b0ff-438729b5c556:
+    id: 466d4167-5944-489c-b0ff-438729b5c556
+    content: 📄 Product spec
+    children:
+      - ff4edaa5-e7ff-42cd-ab70-86a0ab4c88a5
+      - 8ca96ae9-e246-4503-9b34-3af972d8c38a
+      - c9558697-1313-44eb-92d0-e393d1845c5f
+      - 4ff678a6-dd73-4b78-8feb-21131a20af94
+      - 9bfca92c-6f85-46b4-8cae-f5916caa8366
+      - f5142e87-cdc3-4470-9529-a75926d94fff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff4edaa5-e7ff-42cd-ab70-86a0ab4c88a5:
+    id: ff4edaa5-e7ff-42cd-ab70-86a0ab4c88a5
+    content: Context
+    children:
+      - f4f8209a-75dc-43a4-a4f9-ded947c6f8d6
+      - c15f7871-566a-48b8-8acd-e8d20bfc2c66
+      - ce435222-72ff-418c-b176-d3b78f8c814d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4f8209a-75dc-43a4-a4f9-ded947c6f8d6:
+    id: f4f8209a-75dc-43a4-a4f9-ded947c6f8d6
+    content: 'The Zustand store layer carries ~20 import/no-cycle warnings and 14 get() as StoreState & { actions?: ... } reach-through casts in src/renderer/store/tree/actions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c15f7871-566a-48b8-8acd-e8d20bfc2c66:
+    id: c15f7871-566a-48b8-8acd-e8d20bfc2c66
+    content: Every cycle back-edge currently fires lazily inside closures, so module init order is correct by accident, not by design
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce435222-72ff-418c-b176-d3b78f8c814d:
+    id: ce435222-72ff-418c-b176-d3b78f8c814d
+    content: Five sibling factories already take executeCommand as a typed constructor param — the casts are historical drift, not a needed pattern
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ca96ae9-e246-4503-9b34-3af972d8c38a:
+    id: 8ca96ae9-e246-4503-9b34-3af972d8c38a
+    content: User
+    children:
+      - 09f1fb59-f868-4322-9b5e-228a4e14d919
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09f1fb59-f868-4322-9b5e-228a4e14d919:
+    id: 09f1fb59-f868-4322-9b5e-228a4e14d919
+    content: Maintainer and future contributors (including AI agents) editing the store layer; no end-user surface
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9558697-1313-44eb-92d0-e393d1845c5f:
+    id: c9558697-1313-44eb-92d0-e393d1845c5f
+    content: Current experience and why it is insufficient
+    children:
+      - 02986066-5d5b-49f8-8f17-89f045887588
+      - 82c7f4d4-9b57-422e-9349-d5a0c149c01a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02986066-5d5b-49f8-8f17-89f045887588:
+    id: 02986066-5d5b-49f8-8f17-89f045887588
+    content: Cross-slice reach-throughs silently no-op via optional chaining when a slice is absent, defeating TypeScript strict mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82c7f4d4-9b57-422e-9349-d5a0c149c01a:
+    id: 82c7f4d4-9b57-422e-9349-d5a0c149c01a
+    content: Refactors near treeStore composition risk init-order breakage with no compiler or lint signal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ff678a6-dd73-4b78-8feb-21131a20af94:
+    id: 4ff678a6-dd73-4b78-8feb-21131a20af94
+    content: Goal
+    children:
+      - f334fe02-162d-41fc-912a-c25e029eb807
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f334fe02-162d-41fc-912a-c25e029eb807:
+    id: f334fe02-162d-41fc-912a-c25e029eb807
+    content: Cross-slice dependencies in store/tree/actions are explicit and compile-time checked, and every remaining import cycle is either removed or annotated with its rationale
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bfca92c-6f85-46b4-8cae-f5916caa8366:
+    id: 9bfca92c-6f85-46b4-8cae-f5916caa8366
+    content: Business rules
+    children:
+      - 2162b5b2-9f9e-460f-ac94-afb4ba559cde
+      - c655ba8e-3a7c-4a51-b2d5-54fdde9a1e3b
+      - 90a80394-e800-494b-a890-7cc986abe989
+      - 2c672f12-7a13-4e30-9cec-bc68696e0142
+      - 64b9412b-3783-4de3-a861-a107f251f5cd
+      - 51dfd6e5-35e2-417c-baec-2b9388c8fa7e
+      - 8d6a36be-dff4-4c40-ba07-9f34ff519e9b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2162b5b2-9f9e-460f-ac94-afb4ba559cde:
+    id: 2162b5b2-9f9e-460f-ac94-afb4ba559cde
+    content: All 14 actions? reach-through cast sites must be removed; a missing cross-slice dependency must be a compile-time error, never a silent runtime no-op
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c655ba8e-3a7c-4a51-b2d5-54fdde9a1e3b:
+    id: c655ba8e-3a7c-4a51-b2d5-54fdde9a1e3b
+    content: Plain typed get() reads of own-slice state stay untouched; no DI container or new abstraction is introduced
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90a80394-e800-494b-a890-7cc986abe989:
+    id: 90a80394-e800-494b-a890-7cc986abe989
+    content: The ~8 executeCommand reach-throughs (nodeActions, navigationActions, nodeMovementActions, nodeDeletionActions, sendActions) receive executeCommand as a constructor param, matching the existing createXManagerDeps pattern
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c672f12-7a13-4e30-9cec-bc68696e0142:
+    id: 2c672f12-7a13-4e30-9cec-bc68696e0142
+    content: The 4 genuine forward references (refreshSummaryVisibleNodeIds, restoreCollaborationState, handleNodeMovedManually, workflowDisruption handlers) use the existing workflowExecutionRef late-binding idiom from treeStore.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64b9412b-3783-4de3-a861-a107f251f5cd:
+    id: 64b9412b-3783-4de3-a861-a107f251f5cd
+    content: Benign split-slice cycles (browser/terminal/files — Family A) are broken via a per-slice constants module and import type conversions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51dfd6e5-35e2-417c-baec-2b9388c8fa7e:
+    id: 51dfd6e5-35e2-417c-baec-2b9388c8fa7e
+    content: storeManager hub cycles (Families B/C/D) are NOT refactored in this story; each surviving edge gets a targeted eslint-disable-next-line import/no-cycle with a why-inert comment naming the Story 2 entry criterion
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d6a36be-dff4-4c40-ba07-9f34ff519e9b:
+    id: 8d6a36be-dff4-4c40-ba07-9f34ff519e9b
+    content: The dead 'Command system not initialized' throws are deleted once executeCommand is a real param — keeping them would mask the fix
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5142e87-cdc3-4470-9529-a75926d94fff:
+    id: f5142e87-cdc3-4470-9529-a75926d94fff
+    content: Acceptance criteria
+    children:
+      - 03b7ee28-fff4-4880-95dd-c13385eb6f2e
+      - 81dfb594-33fa-4f78-8a67-c9d94c9f2c42
+      - d16ddc67-9920-4ba1-98c8-ae08818a38f2
+      - 8b2bfb3d-27c0-46c5-b401-d5945f7f869f
+      - 94b9514e-fa16-4685-a32b-1ba8a515661f
+      - 3ef412bd-266b-4161-b90b-5cef879fa4f6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03b7ee28-fff4-4880-95dd-c13385eb6f2e:
+    id: 03b7ee28-fff4-4880-95dd-c13385eb6f2e
+    content: 'Zero get() as StoreState & { actions?: ... } casts remain in src/renderer/store/tree/actions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81dfb594-33fa-4f78-8a67-c9d94c9f2c42:
+    id: 81dfb594-33fa-4f78-8a67-c9d94c9f2c42
+    content: Zero unannotated import/no-cycle warnings remain under src/renderer/store; every surviving warning carries a targeted disable, a one-line inertness rationale, and a reference to Story 2
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d16ddc67-9920-4ba1-98c8-ae08818a38f2:
+    id: d16ddc67-9920-4ba1-98c8-ae08818a38f2
+    content: npm run type-check passes with no new any casts or suppressions beyond the agreed Family B/C/D annotations
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b2bfb3d-27c0-46c5-b401-d5945f7f869f:
+    id: 8b2bfb3d-27c0-46c5-b401-d5945f7f869f
+    content: npm run lint and npm run test:run pass; existing action tests keep their intent (mocks updated from actions reach-through to constructor params only)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94b9514e-fa16-4685-a32b-1ba8a515661f:
+    id: 94b9514e-fa16-4685-a32b-1ba8a515661f
+    content: Collaboration-restore and workflow-disruption paths behave identically (editDuringCollaboration and nodeDeletionBindingCleanup tests stay green)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ef412bd-266b-4161-b90b-5cef879fa4f6:
+    id: 3ef412bd-266b-4161-b90b-5cef879fa4f6
+    content: No user-visible behavior change — pure refactor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ba7b69d-afc9-4226-b615-88dfb2ea447a:
+    id: 4ba7b69d-afc9-4226-b615-88dfb2ea447a
+    content: 🔧 Implementation proposal
+    children:
+      - da0bd459-ec7f-4fbb-9e20-a2a70ca78213
+      - ddb0057b-026f-4cc0-85ae-c382df586bb0
+      - 35ab1245-025e-4744-bf20-e468d7f6a0ce
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da0bd459-ec7f-4fbb-9e20-a2a70ca78213:
+    id: da0bd459-ec7f-4fbb-9e20-a2a70ca78213
+    content: Approach
+    children:
+      - 501de410-36c1-4409-ac5a-4d7b92bd337b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  501de410-36c1-4409-ac5a-4d7b92bd337b:
+    id: 501de410-36c1-4409-ac5a-4d7b92bd337b
+    content: Mechanical param-passing for 2a plus the in-repo late-binding ref idiom for 2b; lands entirely in src/renderer/store (renderer only — no main process, persistence, or API surface)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddb0057b-026f-4cc0-85ae-c382df586bb0:
+    id: ddb0057b-026f-4cc0-85ae-c382df586bb0
+    content: Touchpoints
+    children:
+      - 6fac2beb-df33-4598-98d1-5b4c4f7b7ab1
+      - f134c349-d979-467b-bb21-ec3c51386f18
+      - ff4a9cf2-c2c3-4aff-af78-1bd1a1934d86
+      - ecd0dbfb-32c3-470c-9801-c00d5e5cd1fc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fac2beb-df33-4598-98d1-5b4c4f7b7ab1:
+    id: 6fac2beb-df33-4598-98d1-5b4c4f7b7ab1
+    content: treeStore.ts slice composition (~lines 113-211)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f134c349-d979-467b-bb21-ec3c51386f18:
+    id: f134c349-d979-467b-bb21-ec3c51386f18
+    content: 'tree/actions: nodeActions, nodeMovementActions, nodeDeletionActions, navigationActions, persistenceActions, sendActions, workflowDisruption'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff4a9cf2-c2c3-4aff-af78-1bd1a1934d86:
+    id: ff4a9cf2-c2c3-4aff-af78-1bd1a1934d86
+    content: 'browser/terminal/files slices: per-slice constants module, import type conversions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecd0dbfb-32c3-470c-9801-c00d5e5cd1fc:
+    id: ecd0dbfb-32c3-470c-9801-c00d5e5cd1fc
+    content: 'Tests: factory mocks updated to pass executeCommand / late-binding deps'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35ab1245-025e-4744-bf20-e468d7f6a0ce:
+    id: 35ab1245-025e-4744-bf20-e468d7f6a0ce
+    content: Constraints to call out
+    children:
+      - 4d6035fd-8619-4bcf-be40-5d16cae5ecdb
+      - d079008b-ace3-40c2-893c-e225d28171db
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d6035fd-8619-4bcf-be40-5d16cae5ecdb:
+    id: 4d6035fd-8619-4bcf-be40-5d16cae5ecdb
+    content: Do not bundle storeManager topology changes into this diff — keeps it reviewable and bisectable if init order surprises
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d079008b-ace3-40c2-893c-e225d28171db:
+    id: d079008b-ace3-40c2-893c-e225d28171db
+    content: Land casts and Family A as separate commits so each is independently revertable
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8385e93b-d362-4350-b4c5-8e0998b7bb0d:
+    id: 8385e93b-d362-4350-b4c5-8e0998b7bb0d
+    content: Technical refinement
+    children:
+      - 8d1da410-9678-45ee-98c2-a593090e9f63
+      - 7b620b55-ce6b-4222-a8ab-9c47e6090b19
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d1da410-9678-45ee-98c2-a593090e9f63:
+    id: 8d1da410-9678-45ee-98c2-a593090e9f63
+    content: Complications
+    children:
+      - 3cb37827-153e-477f-a4e3-962930ac57cd
+      - 74204136-7fda-40a9-bd13-2f8279dd644d
+      - 913dc506-349f-4b52-9bbe-d41370a42b59
+      - d5c68ffb-5cb1-497d-b3e0-9acecfcf5125
+      - 810539b5-37d2-48ee-a7f1-d4d5376514ad
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cb37827-153e-477f-a4e3-962930ac57cd:
+    id: 3cb37827-153e-477f-a4e3-962930ac57cd
+    content: Deleting the 10 'Command system not initialized' throws removes behaviour some tests assert — those tests must be deleted, not just re-mocked, which slightly bends the 'tests keep their intent' acceptance criterion
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74204136-7fda-40a9-bd13-2f8279dd644d:
+    id: 74204136-7fda-40a9-bd13-2f8279dd644d
+    content: The workflowExecutionRef late-binding idiom keeps optional-call semantics for the 4 forward references — if one fires before treeStore composition completes (e.g. during startup rehydrate) it still silently no-ops; the compile-time guarantee only covers the executeCommand sites
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  913dc506-349f-4b52-9bbe-d41370a42b59:
+    id: 913dc506-349f-4b52-9bbe-d41370a42b59
+    content: Annotating surviving Family B/C/D warnings puts eslint-disable lines in the exact files Story 2 will rework, creating churn if both stories are in flight simultaneously
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5c68ffb-5cb1-497d-b3e0-9acecfcf5125:
+    id: d5c68ffb-5cb1-497d-b3e0-9acecfcf5125
+    content: 'Out of scope: storeManager hub topology (Families B/C/D), any DI container, and the undo/redo command system itself'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  810539b5-37d2-48ee-a7f1-d4d5376514ad:
+    id: 810539b5-37d2-48ee-a7f1-d4d5376514ad
+    content: ROI is sound — mechanical, low-risk, compiler-enforced payoff; the main cost is mock churn across the ~5 action-factory test suites
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b620b55-ce6b-4222-a8ab-9c47e6090b19:
+    id: 7b620b55-ce6b-4222-a8ab-9c47e6090b19
+    content: Approach summary
+    children:
+      - e3f77622-ef4d-48ce-8edc-4e46b4fe6323
+      - 67eca796-76dc-4e44-855a-f6550808f605
+      - ef223784-dfcc-4905-9016-b178589657be
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3f77622-ef4d-48ce-8edc-4e46b4fe6323:
+    id: e3f77622-ef4d-48ce-8edc-4e46b4fe6323
+    content: Thread executeCommand as a typed constructor param into the 5 action factories (matching the existing createXManagerDeps pattern), removing all 14 reach-through casts and the now-unreachable init throws
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67eca796-76dc-4e44-855a-f6550808f605:
+    id: 67eca796-76dc-4e44-855a-f6550808f605
+    content: Break Family A browser/terminal/files cycles via per-slice constants modules and import type; annotate the surviving storeManager hub edges with targeted disables referencing Story 2
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef223784-dfcc-4905-9016-b178589657be:
+    id: ef223784-dfcc-4905-9016-b178589657be
+    content: 'Everything lands in src/renderer/store as two independently revertable commits (cast removal, then Family A); non-obvious bit: the late-binding ref is mutated after construction at treeStore.ts:138-156, so its 4 call sites stay runtime-optional by design'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab2ff738-2a1e-4514-bd1d-3ffdef237f5d:
+    id: ab2ff738-2a1e-4514-bd1d-3ffdef237f5d
+    content: TDD tests written — src/renderer/store/tree/actions/tests/explicitActionDeps.test.ts (13 red / 7 green guards / 5 todo; red = 'Command system not initialized', the exact reach-through being removed)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20ba0ceb-0511-496a-8161-1d0bb3c83d97:
+    id: 20ba0ceb-0511-496a-8161-1d0bb3c83d97
+    content: Implementation notes — deviations and outcomes
+    children:
+      - d561c0b2-9af7-42cb-8da8-befa7573aa0c
+      - fbd9c7f8-8885-4ab4-b4cf-eb888df8e73f
+      - 29339940-dfe2-4a5c-bc29-7b5230ce5adf
+      - 1f3c2383-1efb-43ff-97cf-6b5657068e60
+      - adabd4df-e9a1-4ed8-b4a9-d96c1cd33c08
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d561c0b2-9af7-42cb-8da8-befa7573aa0c:
+    id: d561c0b2-9af7-42cb-8da8-befa7573aa0c
+    content: 'All checks green in worktree: 0 reach-through casts, 0 unannotated import/no-cycle warnings (20 → 13 annotated survivors incl. feedbackService.ts outside store/), type-check 0 errors, lint clean, 2268 store tests pass; 49 files, +248/−250'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbd9c7f8-8885-4ab4-b4cf-eb888df8e73f:
+    id: fbd9c7f8-8885-4ab4-b4cf-eb888df8e73f
+    content: refreshSummaryVisibleNodeIds did not need late-binding — summaryActions was hoisted above nodeActions in composition and passed directly (compile-checked, stronger than the ref idiom); restoreCollaborationState and the disruption handlers use late-binding refs as planned
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29339940-dfe2-4a5c-bc29-7b5230ce5adf:
+    id: 29339940-dfe2-4a5c-bc29-7b5230ce5adf
+    content: notifyMovementDisruption was deleted (callers now use the injected handleNodeMovedManually); clipboardPasteHandlers reach it via the explicit PasteStoreActions bag
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f3c2383-1efb-43ff-97cf-6b5657068e60:
+    id: 1f3c2383-1efb-43ff-97cf-6b5657068e60
+    content: One obsolete guard test deleted in sendActionsManualCollabResolve ('executeCommand unavailable' path no longer exists); predicted by the refinement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adabd4df-e9a1-4ed8-b4a9-d96c1cd33c08:
+    id: adabd4df-e9a1-4ed8-b4a9-d96c1cd33c08
+    content: Not committed — repo convention is user handles git, so the two-commit split (casts, then Family A) is left to commit time; both change sets are cleanly separable by file list
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  583298c0-4852-448e-921c-fea9b6e39b31:
+    id: 583298c0-4852-448e-921c-fea9b6e39b31
+    content: Verification summary — what remains undone
+    children:
+      - 2c389b8a-71d0-4a3e-8dfe-eb7275a326da
+      - 9bb64d5a-5646-4f9f-ba4b-8b7cf91cee0c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c389b8a-71d0-4a3e-8dfe-eb7275a326da:
+    id: 2c389b8a-71d0-4a3e-8dfe-eb7275a326da
+    content: 'Re-verified in worktree at this step: 0 reach-through casts, 0 import/no-cycle warnings across store/ and services/, type-check 0 errors, changes present and uncommitted'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bb64d5a-5646-4f9f-ba4b-8b7cf91cee0c:
+    id: 9bb64d5a-5646-4f9f-ba4b-8b7cf91cee0c
+    content: 'Only abandoned item: landing casts and Family A as two separate commits — abandoned because git operations are user-handled by repo convention; the change sets remain cleanly separable for commit time'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1ce82c4-f07e-4bff-a17b-98c3adee11e1:
+    id: d1ce82c4-f07e-4bff-a17b-98c3adee11e1
+    content: AI refactor pass — convention cleanup applied
+    children:
+      - 3f3bd7ae-30a1-4b18-a801-ee3352776263
+      - 916002f4-4790-4f3e-8cad-b87e19011632
+      - 4146fa11-dddd-412b-82ff-16f1222e8d81
+      - 21d26b57-ef28-4df0-814e-5b93fb9ae33f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f3bd7ae-30a1-4b18-a801-ee3352776263:
+    id: 3f3bd7ae-30a1-4b18-a801-ee3352776263
+    content: Removed 4 redundant no-op get() as StoreState casts left in nodeDeletionActions and nodeMovementActions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  916002f4-4790-4f3e-8cad-b87e19011632:
+    id: 916002f4-4790-4f3e-8cad-b87e19011632
+    content: Inlined the TDD-scaffold make* factory aliases and dropped redundant mock casts in explicitActionDeps.test.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4146fa11-dddd-412b-82ff-16f1222e8d81:
+    id: 4146fa11-dddd-412b-82ff-16f1222e8d81
+    content: Reworded an iteration-history comment in sendActionsManualCollabResolve to a present-tense why
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21d26b57-ef28-4df0-814e-5b93fb9ae33f:
+    id: 21d26b57-ef28-4df0-814e-5b93fb9ae33f
+    content: No abandoned artifacts (both untracked files intentional), no empty tests, type-check 0 errors, lint clean, full store suite 2268 passed / 0 failed; not committed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5763c75b-0d76-4da5-ab6a-666c1c158df7:
+    id: 5763c75b-0d76-4da5-ab6a-666c1c158df7
+    content: review feedback
+    children:
+      - b7684f0a-0be5-4077-8350-5af076357f98
+      - 3b83f96a-8401-4480-b885-7ee9e69a9238
+      - c0efc52c-3f37-42f9-8392-17d4fa8fed4d
+      - f3e8df0a-5cf4-4fc5-be18-39e352f5dc6c
+      - 7ad16990-a0fb-47c4-96a6-3115b28aa6cc
+      - 094bfc69-b1b8-49ea-8217-3999305f8f40
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7684f0a-0be5-4077-8350-5af076357f98:
+    id: b7684f0a-0be5-4077-8350-5af076357f98
+    content: Verdict from pr-review-toolkit:code-reviewer — no blockers, no should-fix; full suite 5130 passed / 0 failed, type-check clean, lint clean including --report-unused-disable-directives (all 13 cycle disables suppress real edges)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b83f96a-8401-4480-b885-7ee9e69a9238:
+    id: 3b83f96a-8401-4480-b885-7ee9e69a9238
+    content: Init-order verified SAFE — collaborationRestoreRef and disruptionRef are populated before the store factory returns (treeStore.ts:139,177-180) and every consumer dereferences them lazily via optional chaining at event time; no use-before-populate window
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0efc52c-3f37-42f9-8392-17d4fa8fed4d:
+    id: c0efc52c-3f37-42f9-8392-17d4fa8fed4d
+    content: acceptFeedback/finishAccept guard removal verified NOT a regression — the old log-and-return branch was unreachable in production because treeStore always passes the real executeCommand; removal is dead-code elimination
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3e8df0a-5cf4-4fc5-be18-39e352f5dc6c:
+    id: f3e8df0a-5cf4-4fc5-be18-39e352f5dc6c
+    content: External callers verified unaffected — the five factories are constructed only in treeStore.ts; public action surface (e.g. useFeedbackActions finishAccept) unchanged; clipboard cut-paste disruption wiring behaviorally identical to the deleted notifyMovementDisruption
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ad16990-a0fb-47c4-96a6-3115b28aa6cc:
+    id: 7ad16990-a0fb-47c4-96a6-3115b28aa6cc
+    content: Nit 1 FIXED in this step — dead mockState.actions executeCommand stub in sendActionsManualCollabResolve.test.ts removed (factory no longer reads get().actions); file re-run 9/9 green, type-check clean
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  094bfc69-b1b8-49ea-8217-3999305f8f40:
+    id: 094bfc69-b1b8-49ea-8217-3999305f8f40
+    content: 'Nit 2 acknowledged, no action — deps-object (nodeActions, nodeMovementActions) vs positional (navigationActions, nodeDeletionActions, sendActions) signature asymmetry is intentional: multi-dep factories get a bag, single/double-dep stay positional'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1099421a-7147-4332-a97e-c41b053129ef:
+    id: 1099421a-7147-4332-a97e-c41b053129ef
+    content: Review resolution — discussed with reviewer agent, all findings closed
+    children:
+      - e54c22cf-da98-463b-ba88-6804ee854fdb
+      - 6aed7968-6e8b-49e9-af36-491ddf6f8a57
+      - 5ba06bf8-a0d3-484c-9875-48c9d3efa303
+      - 9ed94e02-d54e-454d-b90b-6020d233186c
+      - 511a0ca7-05d8-42a1-8ed6-713cece904de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e54c22cf-da98-463b-ba88-6804ee854fdb:
+    id: e54c22cf-da98-463b-ba88-6804ee854fdb
+    content: 'Major issues fixed: none — review found no blockers or should-fix issues'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6aed7968-6e8b-49e9-af36-491ddf6f8a57:
+    id: 6aed7968-6e8b-49e9-af36-491ddf6f8a57
+    content: 'Minor issues fixed: nit 1 dead mock stub, resolved as actions: {} as TreeState[''actions'']; reviewer APPROVED the shape (typed-partial alternative rejected as worse — would force casts at every call site)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ba06bf8-a0d3-484c-9875-48c9d3efa303:
+    id: 5ba06bf8-a0d3-484c-9875-48c9d3efa303
+    content: 'Feedback skipped: nit 2 signature asymmetry — pushed back with the in-repo precedent (positional single-dep, deps-object multi-dep); reviewer WITHDREW the finding entirely and agreed unification belongs to Story 2 if anywhere'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ed94e02-d54e-454d-b90b-6020d233186c:
+    id: 9ed94e02-d54e-454d-b90b-6020d233186c
+    content: 'Probed the reviewer''s own claim rather than blindly validating: the clipboardActions eslint-disable above a multi-line import was empirically confirmed live (removing it re-fires import/no-cycle at line 10 col 1, the import-statement opening line)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  511a0ca7-05d8-42a1-8ed6-713cece904de:
+    id: 511a0ca7-05d8-42a1-8ed6-713cece904de
+    content: 'Reviewer re-read both touched files: no new concerns; final verdict ''ship it'''
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  157838c7-37c8-40f0-ada8-ea3fc233458c:
+    id: 157838c7-37c8-40f0-ada8-ea3fc233458c
+    content: Test pass & fix — acceptance criteria semantically verified, no discrepancies
+    children:
+      - 57df435a-ce37-4e69-aa11-5f4f789a4e2b
+      - 288b53bc-15ea-41f2-bd38-9205ad812d39
+      - f6caf676-1086-472f-b27c-d4a02a45bfb8
+      - 1990b832-4394-4702-91ed-bced4fa4614f
+      - d923cffe-f0ac-4ef7-b038-e39e21de7b28
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57df435a-ce37-4e69-aa11-5f4f789a4e2b:
+    id: 57df435a-ce37-4e69-aa11-5f4f789a4e2b
+    content: 'Full npm run test:run executed in worktree: 5130 passed / 0 failed / 1 skipped / 615 todo across 365 files'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  288b53bc-15ea-41f2-bd38-9205ad812d39:
+    id: 288b53bc-15ea-41f2-bd38-9205ad812d39
+    content: Every acceptance criterion mapped to its implementing code and re-verified (grep 0 casts, eslint 0 cycle warnings, type-check 0 errors)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6caf676-1086-472f-b27c-d4a02a45bfb8:
+    id: f6caf676-1086-472f-b27c-d4a02a45bfb8
+    content: The 3 added as-any occurrences are relocated test-harness casts (setState as any / state as any) identical to the removed lines at the same call sites — zero new any in production code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1990b832-4394-4702-91ed-bced4fa4614f:
+    id: 1990b832-4394-4702-91ed-bced4fa4614f
+    content: Every test-plan risk has a corresponding test (routing, late-binding callbacks, reparent vs same-parent, deletion disruption, restore-after-load, acceptFeedback via injected executeCommand); no local-vs-global assertion mismatches found
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d923cffe-f0ac-4ef7-b038-e39e21de7b28:
+    id: d923cffe-f0ac-4ef7-b038-e39e21de7b28
+    content: No unimplemented criteria and no un-specced implementation beyond the feedbackService annotation already recorded (a superset of the store-scoped criterion)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  add4ed04-e1ee-4c63-817b-f08b34ffb22a:
+    id: add4ed04-e1ee-4c63-817b-f08b34ffb22a
+    content: Documentation — no changes warranted by the conventions themselves
+    children:
+      - 4b417e95-fd9b-4484-a93e-77ee8db8277f
+      - 60299406-90c3-4a58-8bfd-a64f2504e543
+      - 50f487e0-2774-45b1-9046-0363902ef465
+      - 1d5cdbe5-0e23-4eb5-b66d-11487b6022e9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b417e95-fd9b-4484-a93e-77ee8db8277f:
+    id: 4b417e95-fd9b-4484-a93e-77ee8db8277f
+    content: 'Internal refactor with no end-user surface: nothing in docs/ (workflow-structured user docs) references the changed store internals — verified by grep; nothing to remove or modify'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60299406-90c3-4a58-8bfd-a64f2504e543:
+    id: 60299406-90c3-4a58-8bfd-a64f2504e543
+    content: 'No changelog entry: CHANGELOG.md is strictly user-facing features and this change is invisible to users (''Don''t add an entry if it''s not useful to the user'')'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50f487e0-2774-45b1-9046-0363902ef465:
+    id: 50f487e0-2774-45b1-9046-0363902ef465
+    content: CLAUDE.md developer conventions re-checked and still accurate (Zustand organized actions pattern, business logic in store actions, actions organized by domain)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d5cdbe5-0e23-4eb5-b66d-11487b6022e9:
+    id: 1d5cdbe5-0e23-4eb5-b66d-11487b6022e9
+    content: Nothing unclear or inconsistent to warn about
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -190074,4 +190717,8 @@ sessionRegistry:
   24d511be-0257-4da8-a8a3-01a20f2b3871:
     cwd: /Users/brianfox/dev/Arborescent
   d01185a6-56c5-4058-9a36-8bee3a24d6b7:
+    cwd: /Users/brianfox/dev/Arborescent
+  af606ac1-1723-481e-9777-770ea5917034:
+    cwd: /Users/brianfox/dev/Arborescent
+  8f1b9cef-42cc-4806-975d-7013963e1227:
     cwd: /Users/brianfox/dev/Arborescent
