@@ -60,9 +60,9 @@ Requires the SessionStart hook — see [Hook Setup](#hook-setup).
 
 When **decomposition** turns one item into many siblings — for example, a problem statement into five user stories — you typically want each of those items to continue through the remaining steps. Enable **Recurse** in the step configuration dialog to process them sequentially without manual intervention.
 
-After a node completes a recurse-enabled step, the system finds the next waiting sibling under the decomposition step that produced this batch and starts it on the same terminal. Siblings are processed in order (first child first), repeating until every one has been handled.
+After a node completes a recurse-enabled step, the system finds the next waiting sibling under the decomposition step that produced this batch and starts it on the same terminal. Siblings are processed in order (first child first), repeating until every one has been handled. Each sibling pauses at the recurse step after its pass, so the batch collects there while the rest are processed.
 
-Recurse only processes decomposed siblings. Set recurse on a workflow that has no decomposition step and nothing happens — a warning toast tells you to pair recurse with decomposition somewhere in the workflow. The step settings dialog flags the dependency in the description text under each option.
+Recurse only pauses items that have decomposition siblings to coordinate. An item that was never decomposed passes through an automated recurse step like any other step. Set recurse on a workflow that has no decomposition step and nothing happens — a warning toast tells you to pair recurse with decomposition somewhere in the workflow. The step settings dialog flags the dependency in the description text under each option.
 
 Stopping the workflow mid-recurse leaves all unprocessed siblings in their current steps. Nothing is lost. You can start them individually later or restart the workflow.
 

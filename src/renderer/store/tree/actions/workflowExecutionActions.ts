@@ -732,17 +732,40 @@ export const createWorkflowExecutionActions = (
     return true;
   }
 
+  // A node only pauses at a recurse step when it has decomposition siblings —
+  // either still waiting to run, or already parked at the recurse step. A node
+  // that was never decomposed traverses the step like any other. Decomposition
+  // always stamps a shared groupId on its outputs, so an undefined group means
+  // no decomposed siblings — without that guard, unrelated ungrouped nodes
+  // parked at the step would falsely halt each other.
+  function hasDecomposedSiblings(recurseStepId: string, completedNodeId: string): boolean {
+    const { nodes } = get();
+    const originGroupId = nodes[completedNodeId]?.metadata.groupId;
+    const parkedSiblingAtRecurseStep = originGroupId !== undefined && (nodes[recurseStepId]?.children.some(
+      (childId) => childId !== completedNodeId && nodes[childId]?.metadata.groupId === originGroupId,
+    ) ?? false);
+    return parkedSiblingAtRecurseStep || findWaitingDecomposedSibling(recurseStepId, completedNodeId) !== null;
+  }
+
+  function findWaitingDecomposedSibling(stepId: string, completedNodeId: string): string | null {
+    const { nodes, ancestorRegistry, workflowExecutionStates } = get();
+    const decompositionStepId = findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry);
+    const originGroupId = nodes[completedNodeId]?.metadata.groupId;
+
+    return (
+      findNextDecomposedSibling(stepId, nodes, workflowExecutionStates, completedNodeId, originGroupId)
+      ?? (decompositionStepId
+        ? findNextDecomposedSibling(decompositionStepId, nodes, workflowExecutionStates, completedNodeId, originGroupId)
+        : null)
+    );
+  }
+
   function checkRecurse(stepId: string, terminalId: string, completedNodeId: string): void {
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
 
     const decompositionStepId = findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry);
-    const originGroupId = nodes[completedNodeId]?.metadata.groupId;
 
-    const sibling =
-      findNextDecomposedSibling(stepId, nodes, workflowExecutionStates, completedNodeId, originGroupId)
-      ?? (decompositionStepId
-        ? findNextDecomposedSibling(decompositionStepId, nodes, workflowExecutionStates, completedNodeId, originGroupId)
-        : null);
+    const sibling = findWaitingDecomposedSibling(stepId, completedNodeId);
 
     if (sibling) {
       // Recurse-marked and completeWorkflow paths pre-delete the orchestrator's state
@@ -852,7 +875,11 @@ export const createWorkflowExecutionActions = (
         nodes,
         ancestorRegistry,
       );
-      if (previousStep?.metadata.recurse === true && decompositionStepId !== null) {
+      const haltsAtRecurseStep =
+        previousStep?.metadata.recurse === true &&
+        decompositionStepId !== null &&
+        hasDecomposedSiblings(previousParentId, nodeId);
+      if (haltsAtRecurseStep) {
         const terminalId = entry.terminalTabId;
         const nodeName = nodes[nodeId]?.content || nodeId;
         stopWorkflow(nodeId);

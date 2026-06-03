@@ -1396,9 +1396,15 @@ describe('createWorkflowExecutionActions', () => {
     it('halts the last decomposed sibling at the recurse step even when no waiting siblings remain', () => {
       vi.useFakeTimers();
 
-      state.nodes['step-2'].children = ['task-a'];
+      // task-b already completed its pass and is parked at the recurse step —
+      // the last sibling parks alongside it instead of advancing past alone.
+      // Both carry the shared groupId their decomposition stamped on them.
+      state.nodes['step-2'].children = ['task-b', 'task-a'];
       state.nodes['step-1'].children = [];
+      state.nodes['task-a'].metadata.groupId = 'group-1';
+      state.nodes['task-b'].metadata.groupId = 'group-1';
       state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
+      state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-2'];
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
