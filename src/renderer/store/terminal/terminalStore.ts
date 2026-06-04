@@ -114,6 +114,20 @@ async function saveTerminalSession(fileStates: Record<string, FileTerminalState>
   }
 }
 
+function createTerminalNumberAllocator(existingTitles: string[]): () => number {
+  const usedNumbers = new Set<number>();
+  for (const title of existingTitles) {
+    const match = title.match(/^Terminal (\d+)$/);
+    if (match) usedNumbers.add(parseInt(match[1], 10));
+  }
+  return function allocateTerminalNumber(): number {
+    let n = 1;
+    while (usedNumbers.has(n)) n++;
+    usedNumbers.add(n);
+    return n;
+  };
+}
+
 export const useTerminalStore = create<TerminalState>((set, get) => ({
   terminals: [],
   activeTerminalId: null,
@@ -319,29 +333,22 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     const { currentFilePath, fileStates } = get();
     if (!currentFilePath) return;
 
-    const fileState = fileStates[currentFilePath];
+    // The active file can switch while a PTY is still spawning, so bind this pass to the
+    // file it started restoring rather than following the live active file.
+    const targetFilePath = currentFilePath;
+
+    const fileState = fileStates[targetFilePath];
     if (!fileState?.pendingRestore?.length) return;
 
     const pending = fileState.pendingRestore;
-    const clearedFileStates = updateFileState(fileStates, currentFilePath, {
-      pendingRestore: undefined,
-    });
-    set({ fileStates: clearedFileStates });
+    set({ fileStates: updateFileState(fileStates, targetFilePath, { pendingRestore: undefined }) });
 
-    const usedNumbers = new Set<number>();
-    function recordTitle(title: string): void {
-      const match = title.match(/^Terminal (\d+)$/);
-      if (match) usedNumbers.add(parseInt(match[1], 10));
-    }
-    for (const t of get().terminals) recordTitle(t.title);
-    for (const entry of pending) if (entry.title !== 'Resume') recordTitle(entry.title);
-    function allocateTerminalNumber(): number {
-      let n = 1;
-      while (usedNumbers.has(n)) n++;
-      usedNumbers.add(n);
-      return n;
-    }
+    const allocateTerminalNumber = createTerminalNumberAllocator([
+      ...fileState.terminals.map((t) => t.title),
+      ...pending.map((entry) => entry.title),
+    ]);
 
+    const restored: TerminalInfo[] = [];
     for (const entry of pending) {
       try {
         const restoredTitle = entry.title === 'Resume'
@@ -351,14 +358,27 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
         // SessionStart hook can bind whatever conversation lands in this tab back to its
         // original node. If a different session ends up here, the rebind dialog will surface.
         const terminalInfo = await createTerminalService(restoredTitle, undefined, undefined, entry.cwd, entry.originNodeId);
-        const restored = entry.originNodeId
-          ? { ...terminalInfo, originNodeId: entry.originNodeId }
-          : terminalInfo;
-        get().addTerminal(restored);
+        restored.push(entry.originNodeId ? { ...terminalInfo, originNodeId: entry.originNodeId } : terminalInfo);
       } catch (error) {
         logger.error('Failed to restore terminal', error as Error, 'TerminalStore');
       }
     }
+
+    if (restored.length === 0) return;
+
+    const latestFileStates = get().fileStates;
+    const targetTerminals = [...getFileState(latestFileStates, targetFilePath).terminals, ...restored];
+    const activeTerminalId = restored[restored.length - 1].id;
+    const newFileStates = updateFileState(latestFileStates, targetFilePath, {
+      terminals: targetTerminals,
+      activeTerminalId,
+    });
+
+    set({
+      fileStates: newFileStates,
+      ...(get().currentFilePath === targetFilePath ? { terminals: targetTerminals, activeTerminalId } : {}),
+    });
+    void saveTerminalSession(newFileStates);
   },
 
   closeFileTerminals: async (filePath: string) => {
