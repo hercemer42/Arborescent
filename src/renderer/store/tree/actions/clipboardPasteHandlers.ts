@@ -19,8 +19,7 @@ import { VisualEffectsActions } from './visualEffectsActions';
 import { useClipboardCacheStore, ClipboardCacheContent } from '../../clipboard/clipboardCacheStore';
 import { useToastStore } from '../../toast/toastStore';
 import { v4 as uuidv4 } from 'uuid';
-// eslint-disable-next-line import/no-cycle -- inert: storeManager.getStoreForFile is only called inside paste handlers at event time. Story 2 (storeManager hub topology) removes this edge.
-import { storeManager } from '../../storeManager';
+import type { TreeStore } from '../treeStore';
 
 /**
  * Paste orchestration for clipboardActions. Each entry point takes a
@@ -57,6 +56,7 @@ export interface PasteContext {
   triggerAutosave?: () => void;
   visualEffects: VisualEffectsActions;
   clearCutState: () => void;
+  getStoreForFile?: (filePath: string) => TreeStore;
 }
 
 export function handleCutPaste(
@@ -146,9 +146,14 @@ export function handleCrossFileCutPaste(
   cache: ClipboardCacheContent,
   ctx: PasteContext,
 ): PasteResult {
-  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects, clearCutState } = ctx;
+  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects, clearCutState, getStoreForFile } = ctx;
 
-  const sourceStore = storeManager.getStoreForFile(cache.sourceFilePath!);
+  if (!getStoreForFile) {
+    clearCutState();
+    return 'no-content';
+  }
+
+  const sourceStore = getStoreForFile(cache.sourceFilePath!);
   const sourceState = sourceStore.getState();
   const sourceNodes = sourceState.nodes;
 
@@ -215,12 +220,13 @@ function getSourceNodes(
   cache: ClipboardCacheContent,
   currentFilePath: string | null,
   currentNodes: Record<string, TreeNode>,
+  getStoreForFile?: (filePath: string) => TreeStore,
 ): Record<string, TreeNode> | null {
   if (!cache.sourceFilePath || cache.sourceFilePath === currentFilePath) {
     return currentNodes;
   }
 
-  const sourceStore = storeManager.getStoreForFile(cache.sourceFilePath);
+  const sourceStore = getStoreForFile?.(cache.sourceFilePath);
   if (!sourceStore) {
     return null;
   }
@@ -283,9 +289,9 @@ export function handleCopyPaste(
     return null;
   }
 
-  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects } = ctx;
+  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects, getStoreForFile } = ctx;
 
-  const sourceNodes = getSourceNodes(cache, state.currentFilePath, state.nodes);
+  const sourceNodes = getSourceNodes(cache, state.currentFilePath, state.nodes, getStoreForFile);
   if (!sourceNodes) {
     return null;
   }

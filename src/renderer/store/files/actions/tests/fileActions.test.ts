@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi, Mock } from 'vitest';
 import { createFileActions } from '../fileActions';
 import type { StorageService } from '@shared/interfaces';
 import type { File } from '../../filesStore';
+import type { StoreAccess } from '../../../storeAccess';
 
 // Mock dependencies
 vi.mock('../../../storeManager', () => ({
@@ -131,7 +132,7 @@ describe('fileActions', () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
-    actions = createFileActions(get, mockStorage);
+    actions = createFileActions(get, mockStorage, () => storeManager as unknown as StoreAccess);
   });
 
   describe('createNewFile', () => {

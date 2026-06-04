@@ -2,8 +2,9 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TabBar } from '../TabBar';
-import { useFilesStore } from '../../../store/files/filesStore';
+import { useFilesStore, setFileActionsStoreAccess } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
+import type { StoreAccess } from '../../../store/storeAccess';
 import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore } from '../../../store/tree/treeStore';
 
@@ -33,6 +34,7 @@ const renderWithProvider = (ui: React.ReactElement) => {
 
 describe('TabBar', () => {
   beforeEach(() => {
+    setFileActionsStoreAccess(storeManager as unknown as StoreAccess);
     useFilesStore.setState({
       files: [],
       activeFilePath: null,

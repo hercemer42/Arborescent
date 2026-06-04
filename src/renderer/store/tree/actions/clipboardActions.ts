@@ -7,7 +7,6 @@ import {
   getNodeIdsFromSelection,
   flashNodes,
 } from './clipboardHelpers';
-// eslint-disable-next-line import/no-cycle -- inert: paste handlers reach storeManager lazily at paste time, never during module init. Story 2 (storeManager hub topology) removes this edge.
 import {
   handleCutPaste,
   handleCopyPaste,
@@ -27,7 +26,7 @@ import { useHyperlinkClipboardStore } from '../../clipboard/hyperlinkClipboardSt
 import { useToastStore } from '../../toast/toastStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
-import { storeManager } from '../../storeManager';
+import type { TreeStore } from '../treeStore';
 
 export interface ClipboardActions {
   cutNodes: () => Promise<'cut' | 'no-selection'>;
@@ -65,7 +64,8 @@ export const createClipboardActions = (
   set: StoreSetter,
   getActions: () => StoreActions,
   visualEffects: VisualEffectsActions,
-  triggerAutosave?: () => void
+  triggerAutosave?: () => void,
+  getStoreForFile?: (filePath: string) => TreeStore
 ): ClipboardActions => {
   function clearCutState(): void {
     const cache = useClipboardCacheStore.getState().getCache();
@@ -76,8 +76,8 @@ export const createClipboardActions = (
       const sourceFilePath = cache?.sourceFilePath;
       const currentFilePath = currentState.currentFilePath;
 
-      const targetStore = sourceFilePath && sourceFilePath !== currentFilePath
-        ? storeManager.getStoreForFile(sourceFilePath)
+      const targetStore = sourceFilePath && sourceFilePath !== currentFilePath && getStoreForFile
+        ? getStoreForFile(sourceFilePath)
         : null;
 
       const targetNodes = targetStore ? targetStore.getState().nodes : currentState.nodes;
@@ -213,6 +213,7 @@ export const createClipboardActions = (
       triggerAutosave,
       visualEffects,
       clearCutState,
+      getStoreForFile,
     };
 
     const clipboardText = await readFromClipboard('ClipboardActions:paste');

@@ -263,7 +263,8 @@ describe('clipboardActions', () => {
         autoSave: mockAutoSave,
       }),
       visualEffects,
-      mockAutoSave
+      mockAutoSave,
+      ((filePath: string) => mockStoreFiles[filePath]) as unknown as Parameters<typeof createClipboardActions>[5]
     );
   });
 

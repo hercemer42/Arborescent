@@ -6,6 +6,7 @@ import * as filesStoreModule from '../../../../store/files/filesStore';
 // Mock the filesStore
 vi.mock('../../../../store/files/filesStore', () => ({
   useFilesStore: vi.fn(),
+  setFileActionsStoreAccess: vi.fn(),
 }));
 
 describe('useFileMenuState', () => {

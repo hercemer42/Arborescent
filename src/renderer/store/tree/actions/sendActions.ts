@@ -26,7 +26,6 @@ import { VisualEffectsActions } from './visualEffectsActions';
 import { Command } from '../commands/Command';
 import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
 import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
-// eslint-disable-next-line import/no-cycle -- inert: feedbackService functions are called from action bodies at event time; feedbackTreeStore's treeStore import resolves before any send fires. Story 2 (storeManager hub topology) removes this edge.
 import {
   parseFeedbackContentWithReason,
   initializeFeedbackStore,

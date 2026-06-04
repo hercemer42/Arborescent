@@ -1,8 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { feedbackTreeStore } from '../feedbackTreeStore';
+import { createTreeStore } from '../../tree/treeStore';
 
 describe('FeedbackTreeStoreManager', () => {
   beforeEach(() => {
+    feedbackTreeStore.setStoreFactory(() => createTreeStore('feedback'));
     feedbackTreeStore.clearAll();
   });
 

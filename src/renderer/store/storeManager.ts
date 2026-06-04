@@ -1,5 +1,7 @@
-// eslint-disable-next-line import/no-cycle -- inert: createTreeStore is invoked on demand (getStoreForFile), never during module init; this is the hub edge itself. Story 2 (storeManager hub topology) removes it.
-import { createTreeStore, TreeStore } from './tree/treeStore';
+import { createTreeStore, TreeStore, TreeStoreDeps } from './tree/treeStore';
+import type { StoreAccess } from './storeAccess';
+import { setFileActionsStoreAccess } from './files/filesStore';
+import { feedbackTreeStore } from './feedback/feedbackTreeStore';
 import { logger } from '../services/logger';
 import { parseZoomPath } from '../utils/zoomPath';
 import { useTabIndicatorStore, TabIndicatorState } from './tabIndicators/tabIndicatorStore';
@@ -17,16 +19,27 @@ function computeIndicators(state: { collaboratingNodeId: string | null; workflow
   return { feedbackPending, workflowRunning, actionRequired };
 }
 
-class StoreManager {
+class StoreManager implements StoreAccess {
   private stores = new Map<string, TreeStore>();
   private subscriptions = new Map<string, () => void>();
+
+  private treeStoreDeps(): TreeStoreDeps {
+    return {
+      getAllStores: () => this.getAllStores(),
+      getStoreForFile: (filePath: string) => this.getStoreForFile(filePath),
+    };
+  }
+
+  createFeedbackStore(): TreeStore {
+    return createTreeStore('feedback', this.treeStoreDeps());
+  }
 
   getStoreForFile(filePath: string): TreeStore {
     const zoomInfo = parseZoomPath(filePath);
     const actualPath = zoomInfo ? zoomInfo.sourceFilePath : filePath;
 
     if (!this.stores.has(actualPath)) {
-      const store = createTreeStore();
+      const store = createTreeStore('workspace', this.treeStoreDeps());
       this.stores.set(actualPath, store);
       this.subscribeToIndicators(actualPath, store);
     }
@@ -110,3 +123,11 @@ class StoreManager {
 }
 
 export const storeManager = new StoreManager();
+
+// Composition root: feed the two singletons that can't take constructor
+// injection. These run on module load, so storeManager must stay eagerly
+// imported on the renderer's startup path (App -> Workspace/useAppInitialization)
+// — a future lazy-load would let a file/feedback action fire before wiring and
+// trip the use-before-wired guards in filesStore/feedbackTreeStore.
+setFileActionsStoreAccess(storeManager);
+feedbackTreeStore.setStoreFactory(() => storeManager.createFeedbackStore());

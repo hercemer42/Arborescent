@@ -1,15 +1,24 @@
-// eslint-disable-next-line import/no-cycle -- inert: createTreeStore runs after all modules load; back-edge (sendActions -> feedbackService) resolves at call time. Story 2 (storeManager hub topology) removes this edge.
-import { createTreeStore, TreeStore } from '../tree/treeStore';
+import type { TreeStore } from '../tree/treeStore';
 import type { TreeNode } from '../../../shared/types';
+
+type FeedbackStoreFactory = () => TreeStore;
 
 class FeedbackTreeStoreManager {
   private stores = new Map<string, TreeStore>();
   private version = 0;
   private versionListeners = new Set<() => void>();
+  private storeFactory: FeedbackStoreFactory | null = null;
+
+  setStoreFactory(factory: FeedbackStoreFactory): void {
+    this.storeFactory = factory;
+  }
 
   initialize(filePath: string, nodes: Record<string, TreeNode>, rootNodeId: string): void {
     if (!this.stores.has(filePath)) {
-      this.stores.set(filePath, createTreeStore('feedback'));
+      if (!this.storeFactory) {
+        throw new Error('Feedback store factory used before storeManager wired it');
+      }
+      this.stores.set(filePath, this.storeFactory());
     }
 
     const store = this.stores.get(filePath)!;

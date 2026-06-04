@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { create, type StoreApi, type UseBoundStore } from 'zustand';
 import { TreeNode, TreeType } from '../../../shared/types';
 import { createNodeActions, NodeActions } from './actions/nodeActions';
 import { createContextActions, ContextActions } from './actions/contextActions';
@@ -6,12 +6,10 @@ import { createBlueprintActions, BlueprintActions } from './actions/blueprintAct
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
 import { createPersistenceActions, PersistenceActions } from './actions/persistenceActions';
 import { createNodeMovementActions, NodeMovementActions } from './actions/nodeMovementActions';
-// eslint-disable-next-line import/no-cycle -- inert: factory composition runs inside create() after all modules load (deep edge: DeleteNodeCommand -> filesStore -> storeManager). Story 2 (storeManager hub topology) removes this edge.
 import { createNodeDeletionActions, NodeDeletionActions } from './actions/nodeDeletionActions';
 import { createVisualEffectsActions, VisualEffectsActions, FlashIntensity } from './actions/visualEffectsActions';
 import { createSelectionActions, SelectionActions } from './actions/selectionActions';
 import { createHistoryActions, HistoryActions } from './actions/historyActions';
-// eslint-disable-next-line import/no-cycle -- inert: factory composition runs inside create() after all modules load (deep edge: feedbackService -> feedbackTreeStore). Story 2 (storeManager hub topology) removes this edge.
 import { createSendActions, SendActions } from './actions/sendActions';
 import { createClipboardActions, ClipboardActions } from './actions/clipboardActions';
 import { createSummaryActions, SummaryActions } from './actions/summaryActions';
@@ -22,10 +20,14 @@ import { HistoryManager } from './commands/HistoryManager';
 import { DisruptionActions } from './actions/workflowDisruption';
 import { StepHistoryMap } from './stepHistory/stepHistory';
 import { StorageService } from '../../services/storageService';
-import { storeManager } from '../storeManager';
 import { checkRegistryConsistency } from '../../utils/ancestry';
 
 export type { WorkflowExecutionEntry };
+
+export interface TreeStoreDeps {
+  getAllStores: () => TreeStore[];
+  getStoreForFile: (filePath: string) => TreeStore;
+}
 
 export type ContextMode = 'collaborate' | 'execute';
 
@@ -85,7 +87,9 @@ const storageService = new StorageService();
 const DIAGNOSTICS_ON =
   process.env.ARBO_DIAGNOSTICS === '1' || process.env.NODE_ENV !== 'production';
 
-export function createTreeStore(treeType: TreeType = 'workspace') {
+export function createTreeStore(treeType: TreeType = 'workspace', deps?: TreeStoreDeps): TreeStore {
+  const getAllStores = deps?.getAllStores ?? (() => []);
+  const getStoreForFile = deps?.getStoreForFile;
   return create<TreeState>((rawSet, get) => {
     // Drift guard: structural mutations set { nodes, ancestorRegistry } together;
     // content edits set only { nodes }. So checking object-form partials that
@@ -135,7 +139,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
     const selectionActions = createSelectionActions(get, set);
 
     const nodeDeletionActions = createNodeDeletionActions(get, set, persistenceActions.autoSave, executeCommand, disruptionRef);
-    const sendActions = createSendActions(get, set, visualEffectsActions, persistenceActions.autoSave, executeCommand, () => storeManager.getAllStores());
+    const sendActions = createSendActions(get, set, visualEffectsActions, persistenceActions.autoSave, executeCommand, getAllStores);
     collaborationRestoreRef.restoreCollaborationState = sendActions.restoreCollaborationState;
 
     const contextActions = createContextActions(get, set, persistenceActions.autoSave, executeCommand);
@@ -152,7 +156,8 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         handleNodeMovedManually: (nodeId: string) => disruptionRef.handleNodeMovedManually?.(nodeId),
       }),
       visualEffectsActions,
-      persistenceActions.autoSave
+      persistenceActions.autoSave,
+      getStoreForFile
     );
 
     const workflowExecutionRef: { continueWorkflow?: (nodeId: string, terminalId: string | null) => void } = {};
@@ -243,4 +248,4 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
   });
 }
 
-export type TreeStore = ReturnType<typeof createTreeStore>;
+export type TreeStore = UseBoundStore<StoreApi<TreeState>>;

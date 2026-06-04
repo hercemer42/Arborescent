@@ -6,7 +6,6 @@ import {
   getNodeAndDescendantIds,
 } from '../../../utils/nodeHelpers';
 import { Command } from '../commands/Command';
-// eslint-disable-next-line import/no-cycle -- inert: the command's filesStore read happens on execute, never during module init. Story 2 (storeManager hub topology) removes this edge.
 import { DeleteNodeCommand } from '../commands/DeleteNodeCommand';
 import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesCommand';
 import { logger } from '../../../services/logger';

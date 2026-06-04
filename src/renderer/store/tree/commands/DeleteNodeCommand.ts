@@ -2,7 +2,6 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { removeNodeFromRegistry, addNodesToRegistry } from '../../../utils/ancestry';
 import { getParentId } from '../../../utils/nodeHelpers';
-// eslint-disable-next-line import/no-cycle -- inert: useFilesStore.getState is read on command execute, never during module init. Story 2 (storeManager hub topology) removes this edge.
 import { useFilesStore } from '../../files/filesStore';
 import { StepHistoryEntry, StepHistoryMap } from '../stepHistory/stepHistory';
 

@@ -74,7 +74,7 @@ vi.mock('../store/files/filesStore', () => {
     vi.fn((selector: (s: typeof filesStoreState) => unknown) => selector(filesStoreState)),
     { getState: () => filesStoreState, subscribe: vi.fn(() => vi.fn()) }
   );
-  return { useFilesStore: useFilesStoreMock };
+  return { useFilesStore: useFilesStoreMock, setFileActionsStoreAccess: vi.fn() };
 });
 
 vi.mock('../store/toast/toastStore', () => {

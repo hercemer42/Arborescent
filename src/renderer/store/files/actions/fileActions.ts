@@ -1,13 +1,12 @@
 import { StorageService } from '../../../../shared/interfaces';
-// eslint-disable-next-line import/no-cycle -- inert: storeManager methods are only called from action bodies at event time, never during module init. Story 2 (storeManager hub topology) removes this edge.
-import { storeManager } from '../../storeManager';
+import type { StoreAccess } from '../../storeAccess';
 import { logger } from '../../../services/logger';
 import { cleanupFeedback } from '../../../services/feedback/feedbackService';
 import { createArboFile, extractBlueprintNodes } from '../../../utils/document';
 import { createBlankDocument } from '../../../utils/defaultTemplate';
 import { extractSessionBindings } from '../../../utils/extractSessionBindings';
 import { useTerminalStore } from '../../terminal/terminalStore';
-import { File } from '../filesStore';
+import type { File } from '../filesStore';
 import { getDisplayName } from '../../../../shared/utils/fileNaming';
 
 export interface FileActions {
@@ -33,7 +32,7 @@ type StoreState = {
 };
 type StoreGetter = () => StoreState;
 
-export const createFileActions = (get: StoreGetter, storage: StorageService): FileActions => {
+export const createFileActions = (get: StoreGetter, storage: StorageService, getStoreAccess: () => StoreAccess): FileActions => {
   async function promptUnsavedChanges(displayName: string): Promise<'save' | 'discard' | 'cancel'> {
     const response = await storage.showUnsavedChangesDialog(displayName);
     if (response === 0) return 'save';
@@ -46,7 +45,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     newPath: string,
     logContext: string
   ): Promise<void> {
-    const store = storeManager.getStoreForFile(filePath);
+    const store = getStoreAccess().getStoreForFile(filePath);
     const { fileMeta, actions } = store.getState();
     await actions.saveToPath(newPath, fileMeta || undefined);
     logger.success(`File saved: ${newPath}`, logContext, false);
@@ -57,7 +56,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     await storage.deleteTempFile(oldPath);
     const displayName = getDisplayName(newPath, false);
 
-    storeManager.moveStore(oldPath, newPath);
+    getStoreAccess().moveStore(oldPath, newPath);
 
     markAsSaved(oldPath, newPath, displayName);
   }
@@ -68,7 +67,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     showToast: boolean = false
   ): Promise<void> {
     const { openFile } = get();
-    const store = storeManager.getStoreForFile(path);
+    const store = getStoreAccess().getStoreForFile(path);
     const { actions } = store.getState();
     await actions.loadFromPath(path);
 
@@ -85,7 +84,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     const seed = window.electron?.seedSessionBindings;
     if (typeof seed !== 'function') return;
     try {
-      const { nodes } = storeManager.getStoreForFile(path).getState();
+      const { nodes } = getStoreAccess().getStoreForFile(path).getState();
       const pairs = extractSessionBindings(nodes, collectTerminalOriginNodeIds(path));
       if (pairs.length === 0) return;
       await seed(pairs);
@@ -107,7 +106,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     const clear = window.electron?.clearSessionBindings;
     if (typeof clear !== 'function') return;
     try {
-      const { nodes } = storeManager.getStoreForFile(path).getState();
+      const { nodes } = getStoreAccess().getStoreForFile(path).getState();
       const sessionIds = extractSessionBindings(nodes).map((pair) => pair.sessionId);
       if (sessionIds.length === 0) return;
       await clear(sessionIds);
@@ -122,7 +121,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     const arboFile = createArboFile(blank.nodes, blank.rootNodeId);
     const tempPath = await storage.createTempFile(arboFile);
 
-    const store = storeManager.getStoreForFile(tempPath);
+    const store = getStoreAccess().getStoreForFile(tempPath);
     const { actions } = store.getState();
 
     actions.initialize(blank.nodes, blank.rootNodeId);
@@ -200,7 +199,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
           continue;
         }
 
-        const store = storeManager.getStoreForFile(zoom.sourceFilePath);
+        const store = getStoreAccess().getStoreForFile(zoom.sourceFilePath);
         const node = store.getState().nodes[zoom.nodeId];
         if (!node) {
           logger.error(
@@ -288,15 +287,15 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
   }
 
   function hasRunningWorkflows(filePath: string): boolean {
-    if (!storeManager.hasStore(filePath)) return false;
-    const store = storeManager.getStoreForFile(filePath);
+    if (!getStoreAccess().hasStore(filePath)) return false;
+    const store = getStoreAccess().getStoreForFile(filePath);
     const { workflowExecutionStates } = store.getState();
     return Object.values(workflowExecutionStates).some(entry => entry.state === 'running');
   }
 
   function hasActiveCollaborationSession(filePath: string): boolean {
-    if (!storeManager.hasStore(filePath)) return false;
-    const store = storeManager.getStoreForFile(filePath);
+    if (!getStoreAccess().hasStore(filePath)) return false;
+    const store = getStoreAccess().getStoreForFile(filePath);
     return store.getState().collaboratingNodeId !== null;
   }
 
@@ -304,7 +303,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     if (!hasActiveCollaborationSession(filePath)) return true;
     const confirmed = await storage.showActiveSessionDialog(getDisplayName(filePath, false));
     if (!confirmed) return false;
-    const store = storeManager.getStoreForFile(filePath);
+    const store = getStoreAccess().getStoreForFile(filePath);
     const { collaboratingNodeId, nodes } = store.getState();
     const tempFilePath = collaboratingNodeId
       ? nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined
@@ -323,7 +322,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
       const confirmed = await storage.showRunningWorkflowDialog(displayName);
       if (!confirmed) return;
 
-      const store = storeManager.getStoreForFile(filePath);
+      const store = getStoreAccess().getStoreForFile(filePath);
       const { workflowExecutionStates, actions } = store.getState();
       for (const nodeId of Object.keys(workflowExecutionStates)) {
         if (workflowExecutionStates[nodeId].state === 'running') {
@@ -363,7 +362,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
 
     await clearSessionBindingsForFile(filePath);
 
-    await storeManager.closeFile(filePath);
+    await getStoreAccess().closeFile(filePath);
     closeFileAction(filePath);
   }
 
@@ -428,7 +427,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         // For non-temporary files, still need to update the tab name and store mapping
         const { markAsSaved } = get();
         const displayName = getDisplayName(path, false);
-        storeManager.moveStore(filePath, path);
+        getStoreAccess().moveStore(filePath, path);
         markAsSaved(filePath, path, displayName);
       }
     } catch (error) {
@@ -456,7 +455,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
 
   async function exportAsBlueprint(filePath: string): Promise<void> {
     try {
-      const store = storeManager.getStoreForFile(filePath);
+      const store = getStoreAccess().getStoreForFile(filePath);
       const { nodes, rootNodeId, fileMeta } = store.getState();
 
       // Extract only blueprint nodes
@@ -520,7 +519,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
       const arboFile = createArboFile(importedNodes, data.rootNodeId);
       const tempPath = await storage.createTempFile(arboFile);
 
-      const store = storeManager.getStoreForFile(tempPath);
+      const store = getStoreAccess().getStoreForFile(tempPath);
       const { actions } = store.getState();
 
       actions.initialize(importedNodes, data.rootNodeId);
