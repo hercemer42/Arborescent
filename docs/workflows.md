@@ -117,6 +117,8 @@ When an autonomous step pauses because the AI judged the task had outgrown the r
 
 On app restart, all previously running items are stopped. Checkpoint items awaiting validation are preserved. Reopen a terminal and resend or advance them as needed.
 
+A step the AI had already finished — but that hadn't advanced yet when the restart hit — now recovers on its own: it advances once the AI's completion registers, so a finished step no longer stalls silently across a restart. If it genuinely can't continue (for example its terminal was closed), a persistent notice flags the step and selects it rather than dropping quietly.
+
 Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — you need to start the workflow again.
 
 ## Step History

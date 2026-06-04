@@ -7,6 +7,7 @@ import {
   getWorkflowStepNumber,
 } from '../../../utils/workflowHelpers';
 import type { StepType } from '../commands/SetStepTypeCommand';
+import { findCompletedNodeWithSessionId } from '../selectors/activeSessionNodeId';
 import { useToastStore } from '../../toast/toastStore';
 import { logger } from '../../../services/logger';
 import { notifyWorkflowEvent } from '../../../services/workflowNotification';
@@ -37,6 +38,8 @@ export interface HookEventHandlerDeps {
   advanceNode: (nodeId: string) => void;
   completeWorkflow: (nodeId: string) => void;
   stopWorkflow: (nodeId: string) => void;
+  isTerminalLive: (terminalId: string) => boolean;
+  revealNode: (nodeId: string) => void;
 }
 
 /**
@@ -54,7 +57,80 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
     advanceNode,
     completeWorkflow,
     stopWorkflow,
+    isTerminalLive,
+    revealNode,
   } = deps;
+
+  // When a Stop arrives but transient run-state was lost (renderer reload, app
+  // restart, rebind), recover the advance from the durable session→node
+  // binding: the live node whose persisted sessionId matches the event and
+  // whose status is already 'completed'. Re-seed the minimal running entry the
+  // advance flow requires, then let the normal Stop routing run.
+  // Durable recoveries already performed, keyed by session + the step that was
+  // completed. Guards the terminal-completion path, where advanceNode →
+  // completeWorkflow deletes the transient entry (so the entry check below no
+  // longer blocks a duplicate Stop) while the node keeps its completed status —
+  // without this a second Stop would re-run completeWorkflow. Non-terminal
+  // advances move the node to a new step, so a genuine later completion has a
+  // different key and is not blocked.
+  const recoveredCompletions = new Set<string>();
+
+  function recoverCompletedStepFromDurableBinding(
+    sessionId: string,
+    terminalId: string,
+  ): string | 'stuck' | null {
+    const { nodes, ancestorRegistry, workflowExecutionStates } = get();
+    const nodeId = findCompletedNodeWithSessionId(nodes, sessionId);
+    if (!nodeId) return null;
+    // A live transient entry means the node was never lost — defer to the
+    // normal path so a duplicate or late Stop cannot double-advance.
+    if (workflowExecutionStates[nodeId]) return null;
+
+    const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
+    if (!position) return null;
+    const completionKey = `${sessionId}:${position.currentStepId}`;
+    if (recoveredCompletions.has(completionKey)) return null;
+    recoveredCompletions.add(completionKey);
+
+    if (!isTerminalLive(terminalId)) {
+      surfaceStuckStep(nodeId, terminalId);
+      return 'stuck';
+    }
+
+    set({
+      workflowExecutionStates: {
+        ...workflowExecutionStates,
+        [nodeId]: { state: 'running', terminalTabId: terminalId },
+      },
+    });
+    return nodeId;
+  }
+
+  function surfaceStuckStep(nodeId: string, terminalId: string): void {
+    const { nodes, workflowExecutionStates } = get();
+    const stepName = nodes[nodeId]?.content || nodeId;
+    // Park the completed step for manual continuation so the existing continue
+    // affordance can advance it once a terminal is available again.
+    set({
+      workflowExecutionStates: {
+        ...workflowExecutionStates,
+        [nodeId]: { state: 'awaiting-validation', terminalTabId: terminalId },
+      },
+    });
+    revealNode(nodeId);
+    useToastStore
+      .getState()
+      .addToast(
+        `"${stepName}" finished but its terminal is gone — open a terminal and continue the step.`,
+        'warning',
+        { persistent: true, actions: [{ label: 'Show step', onClick: () => revealNode(nodeId) }] },
+      );
+    void notifyWorkflowEvent(
+      'alert',
+      'Workflow needs attention',
+      `"${stepName}" finished but its terminal is gone`,
+    );
+  }
 
   return function handleHookEvent(event: HookEventPayload): void {
     const { workflowSessionMap } = get();
@@ -67,7 +143,16 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
       return;
     }
 
-    const runningNodeId = findRunningNodeOnTerminal(terminalId);
+    let runningNodeId = findRunningNodeOnTerminal(terminalId);
+    let durablyRecovered = false;
+    if (!runningNodeId && event.hook_event_name === 'Stop') {
+      const recovery = recoverCompletedStepFromDurableBinding(event.session_id, terminalId);
+      if (recovery === 'stuck') return;
+      if (recovery) {
+        runningNodeId = recovery;
+        durablyRecovered = true;
+      }
+    }
     if (!runningNodeId) {
       logger.warn(
         `Hook event ${event.hook_event_name} dropped: no running node on terminal ${terminalId}`,
@@ -138,7 +223,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
         { nodeId: runningNodeId },
       );
 
-      if (!explicitSubmitSeen && stepType !== 'manual') {
+      if (!explicitSubmitSeen && !durablyRecovered && stepType !== 'manual') {
         logger.info(
           `Hook Stop gated: no explicit submit this turn — bound step ${position.currentStepId} remains in flight`,
           'WorkflowExecution',

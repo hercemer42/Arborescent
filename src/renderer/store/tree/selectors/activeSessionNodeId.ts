@@ -87,3 +87,21 @@ export function findLiveNodeWithSessionId(
   if (!nodes) return null;
   return getSessionIndex(nodes).get(sessionId) ?? null;
 }
+
+// The completed-but-not-yet-advanced node a session drove: the durable evidence
+// the Stop hook needs to recover an advance after transient run-state was lost.
+// Skips non-completed and broken-chain nodes so a stale sessionId is never
+// treated as authority. Realistically one completed node carries a given
+// sessionId; if several ever did, the first in iteration order wins.
+export function findCompletedNodeWithSessionId(
+  nodes: Record<string, TreeNode> | undefined,
+  sessionId: string,
+): string | null {
+  if (!nodes || !sessionId) return null;
+  for (const [nodeId, node] of Object.entries(nodes)) {
+    if (node.metadata.sessionId !== sessionId) continue;
+    if (node.metadata.brokenChain === true) continue;
+    if (node.metadata.status === 'completed') return nodeId;
+  }
+  return null;
+}

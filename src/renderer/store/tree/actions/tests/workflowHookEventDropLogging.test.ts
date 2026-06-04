@@ -37,6 +37,8 @@ function makeDeps(overrides: Partial<DepArgs> = {}): DepArgs {
     advanceNode: vi.fn(),
     completeWorkflow: vi.fn(),
     stopWorkflow: vi.fn(),
+    isTerminalLive: vi.fn(() => true),
+    revealNode: vi.fn(),
     ...overrides,
   };
 }

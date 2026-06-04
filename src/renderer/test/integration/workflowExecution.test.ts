@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode } from '@shared/types';
 import { createWorkflowExecutionActions, WorkflowExecutionActions } from '../../store/tree/actions/workflowExecutionActions';
+import { useTerminalStore, type TerminalInfo } from '../../store/terminal/terminalStore';
 
 vi.mock('@/services/logger', () => ({
   logger: { info: vi.fn(), error: vi.fn() },
@@ -55,6 +56,7 @@ type TestState = {
   workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
   workflowSessionMap: Record<string, string>;
   sessionRegistry: Record<string, { cwd: string }>;
+  terminalNodeAssignments?: Record<string, string>;
 };
 
 function buildThreeStepWorkflow(): TestState {
@@ -113,6 +115,67 @@ describe('Integration: Workflow Execution', () => {
     const created = createActions(stateRef);
     actions = created.actions;
     mockAutonomousCollaborate = created.mockAutonomousCollaborate;
+  });
+
+  describe('durable-binding Stop recovery after run-state loss', () => {
+    const liveTerminal: TerminalInfo = {
+      id: 'term-1',
+      title: 'Terminal 1',
+      cwd: '/tmp',
+      shellCommand: 'bash',
+      shellArgs: [],
+      pinnedToBottom: false,
+    };
+
+    it('recovers the advance end-to-end when transient run-state was cleared by a reload', () => {
+      vi.useFakeTimers();
+      useTerminalStore.setState({ terminals: [liveTerminal] });
+      const state = () => stateRef.current;
+      try {
+        void actions.startWorkflow('task', 'term-1');
+        actions.registerSession('session-1', 'term-1');
+        // the session is durably stamped onto the bound node
+        expect(state().nodes['task'].metadata.sessionId).toBe('session-1');
+
+        // announce_step_done persists the completed status on the bound node
+        stateRef.current = {
+          ...stateRef.current,
+          nodes: {
+            ...stateRef.current.nodes,
+            task: {
+              ...stateRef.current.nodes['task'],
+              metadata: { ...stateRef.current.nodes['task'].metadata, status: 'completed' },
+            },
+          },
+        };
+
+        // a reload clears all transient run-state (initializeExecutionState contract)
+        // while the node keeps its persisted sessionId + completed status
+        stateRef.current = {
+          ...stateRef.current,
+          workflowExecutionStates: {},
+          terminalNodeAssignments: {},
+          workflowSessionMap: {},
+        };
+
+        actions.handleHookEvent({
+          session_id: 'session-1',
+          hook_event_name: 'Stop',
+          terminal_id: 'term-1',
+          explicit_submit_seen: true,
+        });
+        vi.advanceTimersByTime(1500);
+
+        // the durable fallback re-seeded the running entry and the real advanceNode
+        // advanced the node to the next step — the crux working end-to-end
+        expect(state().nodes['s2'].children).toContain('task');
+        expect(state().nodes['s1'].children).not.toContain('task');
+        expect(state().workflowExecutionStates['task'].state).toBe('running');
+      } finally {
+        useTerminalStore.setState({ terminals: [] });
+        vi.useRealTimers();
+      }
+    });
   });
 
   describe('full workflow traversal (autonomous → autonomous → manual)', () => {

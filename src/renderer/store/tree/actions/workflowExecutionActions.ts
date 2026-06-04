@@ -1022,6 +1022,12 @@ export const createWorkflowExecutionActions = (
     advanceNode,
     completeWorkflow,
     stopWorkflow,
+    isTerminalLive: (terminalId) =>
+      useTerminalStore.getState().terminals.some((t) => t.id === terminalId),
+    revealNode: (nodeId) => {
+      visualEffects?.flashNode(nodeId, 'advance');
+      visualEffects?.scrollToNode(nodeId);
+    },
   });
 
   function initializeExecutionState(): void {

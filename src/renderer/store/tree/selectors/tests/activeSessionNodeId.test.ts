@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import type { TreeNode } from '../../../../../shared/types';
-import { selectActiveSessionNodeId, type SessionSelectorState } from '../activeSessionNodeId';
+import {
+  selectActiveSessionNodeId,
+  findCompletedNodeWithSessionId,
+  type SessionSelectorState,
+} from '../activeSessionNodeId';
 
 const emptyState: SessionSelectorState = {
   workflowExecutionStates: {},
@@ -331,5 +335,51 @@ describe('selectActiveSessionNodeId', () => {
       );
       expect(selectActiveSessionNodeId(replacedState, 'terminal-1')).toBeNull();
     });
+  });
+});
+
+describe('findCompletedNodeWithSessionId', () => {
+  it('returns the completed node bound to the session', () => {
+    const nodes = {
+      'node-done': makeNode('node-done', { sessionId: 'sess-1', status: 'completed' }),
+    };
+    expect(findCompletedNodeWithSessionId(nodes, 'sess-1')).toBe('node-done');
+  });
+
+  it('returns null when the session-owning node is not completed', () => {
+    const nodes = {
+      'node-running': makeNode('node-running', { sessionId: 'sess-1', status: 'pending' }),
+    };
+    expect(findCompletedNodeWithSessionId(nodes, 'sess-1')).toBeNull();
+  });
+
+  it('returns null when no node carries the session id', () => {
+    const nodes = {
+      'node-other': makeNode('node-other', { sessionId: 'sess-other', status: 'completed' }),
+    };
+    expect(findCompletedNodeWithSessionId(nodes, 'sess-1')).toBeNull();
+  });
+
+  it('skips a brokenChain node even when it is completed (stale sessionId is not authority)', () => {
+    const nodes = {
+      'node-stale': makeNode('node-stale', {
+        sessionId: 'sess-1',
+        status: 'completed',
+        brokenChain: true,
+      }),
+    };
+    expect(findCompletedNodeWithSessionId(nodes, 'sess-1')).toBeNull();
+  });
+
+  it('prefers the completed node when several chain nodes share the same sessionId', () => {
+    const nodes = {
+      'node-earlier': makeNode('node-earlier', { sessionId: 'sess-1', status: 'pending' }),
+      'node-frontier': makeNode('node-frontier', { sessionId: 'sess-1', status: 'completed' }),
+    };
+    expect(findCompletedNodeWithSessionId(nodes, 'sess-1')).toBe('node-frontier');
+  });
+
+  it('returns null for an undefined nodes record', () => {
+    expect(findCompletedNodeWithSessionId(undefined, 'sess-1')).toBeNull();
   });
 });
