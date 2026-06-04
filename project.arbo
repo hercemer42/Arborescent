@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-04T08:35:39.041Z'
+updated: '2026-06-04T16:22:25.822Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8784,7 +8784,7 @@ nodes:
       - bc87a3a5-29fe-4b9e-a2a1-d773468a88d5
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -14412,7 +14412,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children: []
+    children:
+      - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
     metadata:
       status: completed
       expanded: true
@@ -80785,7 +80786,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - e353e6df-5cc7-40af-9e7b-a9da29963cd2
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
       - 6f0fe0b2-1aeb-4392-97c7-f8fee83d7b24
       - 100b2256-04ef-4f1c-9498-8d5b39860fbe
@@ -92301,7 +92301,8 @@ nodes:
   ef8172e7-9f00-4495-9f4e-69b862af7dde:
     id: ef8172e7-9f00-4495-9f4e-69b862af7dde
     content: AI code review resolution
-    children: []
+    children:
+      - 6863591d-d52d-4950-a8b7-49ab2f28e6c7
     metadata:
       status: pending
       isBlueprint: true
@@ -124629,7 +124630,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - f79d4cde-f843-4412-b46d-686a4745c036
     metadata:
       status: pending
       isBlueprint: true
@@ -158987,8 +158989,7 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children:
-      - 6863591d-d52d-4950-a8b7-49ab2f28e6c7
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -185783,12 +185784,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e353e6df-5cc7-40af-9e7b-a9da29963cd2:
-    id: e353e6df-5cc7-40af-9e7b-a9da29963cd2
-    content: Some broken tests
-    children: []
-    metadata:
-      status: pending
   28224b90-3ec9-49e5-9b89-ca57f4065fc8:
     id: 28224b90-3ec9-49e5-9b89-ca57f4065fc8
     content: worktree
@@ -191202,54 +191197,2471 @@ nodes:
     id: 6863591d-d52d-4950-a8b7-49ab2f28e6c7
     content: Resuming with a prompt broken
     children:
-      - 0f6c635a-8c2b-49fd-9489-639b62c10b7a
-      - 498147fc-ae46-49ea-bf3b-86c7b9f3624c
-      - 287d6f99-7a23-47c7-9398-884a8b305fec
-      - d41b7059-7b59-40ac-aa85-b9beae03b825
-      - ffccdc4d-1bd1-410a-8c8b-9c515380421d
-      - d6f78b25-cba3-49ca-8c03-792d6066b822
+      - 9f49bb16-f2c1-44e0-afd2-8d691fb2e88e
+      - accccaa0-5bb2-46ec-a312-00d2557104f3
+      - 9f33d030-8777-4137-ac08-bfab3a7583ac
+      - 6687c92f-f7da-4c64-ae2d-0b0c9cc13eaa
+      - e576e2c8-7ad8-4c38-8afd-1053b1265b2d
+      - 77a3be7e-0d3e-4495-9452-328dfcd26637
+      - 2b22d097-f893-435d-80d9-6076d506bfc4
+      - 4fcf23d6-a22b-4f25-aac1-0e867b668303
+      - bff9e7b1-f9e8-4915-8eae-63666d3f5aa1
+      - 7390fed9-ab7b-4e74-998c-f6fac78ea800
+      - 1f34d257-c3b8-4cad-b0e3-7c46675efdae
+      - 5c0c0d75-2373-4fcd-88fc-645b88c41476
+      - 636f9782-ed9c-4cf5-aa24-616b31944f25
     metadata:
-      status: pending
-  0f6c635a-8c2b-49fd-9489-639b62c10b7a:
-    id: 0f6c635a-8c2b-49fd-9489-639b62c10b7a
-    content: For instance when you close a terminal for a session in a workflow
-    children: []
-    metadata:
-      status: pending
-  498147fc-ae46-49ea-bf3b-86c7b9f3624c:
-    id: 498147fc-ae46-49ea-bf3b-86c7b9f3624c
-    content: Then right click on the workflow, resume step/next step
-    children: []
-    metadata:
-      status: pending
-  287d6f99-7a23-47c7-9398-884a8b305fec:
-    id: 287d6f99-7a23-47c7-9398-884a8b305fec
-    content: It sends the prompt at the same time as changing directory/resuming the claude session
-    children: []
-    metadata:
-      status: pending
-  d41b7059-7b59-40ac-aa85-b9beae03b825:
-    id: d41b7059-7b59-40ac-aa85-b9beae03b825
-    content: The result is that it queues the 3 prompts the timeout allows for, which queues 3 prompts for claude
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: edcf227c-e876-4f79-93bd-b1012ceb61e9
+  f79d4cde-f843-4412-b46d-686a4745c036:
+    id: f79d4cde-f843-4412-b46d-686a4745c036
+    content: Add an instruction to the prompt to ask Claude to pause the task in progress and ask the user to increase the effort
     children:
-      - 8653564f-01f2-41d9-87f4-af265aa9e3ef
+      - 383a6d7d-b25d-4dbe-be6f-bfe013f84db3
+      - 63bca662-f66a-49cc-aba1-63d7486ba43d
+      - 897e05f6-4f1f-4b89-9250-b03753233ea2
+      - db463f06-f77a-4ceb-8ff4-aae4953e863e
+      - 77f9fa42-0d4e-4ceb-98c2-35e759fe923c
+      - c404f502-e2c0-48c2-9edc-254c2a47dda9
+      - 6b73c936-b70d-4b0f-b90e-a4bf4ab3d752
+      - c4b39ac0-4fff-4fdb-a32a-782508301ca7
+      - 6b41cf6d-f1e9-4c8a-8a6d-862f9786c881
+      - 90ce8a51-6153-4c43-a1c7-3d6cbdb63133
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: f55a4782-c576-4ae3-b73e-e376b07ee68a
+  3e48eeeb-38b6-4154-8a57-ec0bbe812ab0:
+    id: 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
+    content: Completed autonomous steps stall instead of advancing
+    children:
+      - 812f5eed-5ba4-42c0-b0f4-cb122bc7e11b
+      - 936a9b8a-410a-4057-b883-f63e5a74b747
+      - 681384a7-90de-459b-9da5-1c537806b1c4
+      - 870aaecd-c7c8-4449-ad4b-4b934906630d
+      - 43d689d0-6921-414f-bf2f-b8a023ddda51
+      - 7f3fb3d0-956d-4ae5-ae25-b33aed87ed60
+      - 1de41fed-cfe7-4b2d-8210-47cb9ec22c2b
+      - 272aae31-3f0b-4989-b313-9afde00aa63a
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: b4613641-8229-4d9c-956e-000394ffde89
+  383a6d7d-b25d-4dbe-be6f-bfe013f84db3:
+    id: 383a6d7d-b25d-4dbe-be6f-bfe013f84db3
+    content: worktree
+    children:
+      - 4c7b3c09-fee7-4872-89fd-20dc44385240
     metadata:
       status: pending
-  ffccdc4d-1bd1-410a-8c8b-9c515380421d:
-    id: ffccdc4d-1bd1-410a-8c8b-9c515380421d
-    content: And also the workflow is paused because of the 3 timeouts
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c7b3c09-fee7-4872-89fd-20dc44385240:
+    id: 4c7b3c09-fee7-4872-89fd-20dc44385240
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-pause-raise-effort) — feat/pause-raise-effort @ /Users/brianfox/dev/Arborescent-pause-raise-effort'
     children: []
     metadata:
       status: pending
-  8653564f-01f2-41d9-87f4-af265aa9e3ef:
-    id: 8653564f-01f2-41d9-87f4-af265aa9e3ef
-    content: But the 'enter' button press isn't simulated, so the user has to do it by hand
+      expanded: true
+      deleted: false
+      plugins: {}
+  63bca662-f66a-49cc-aba1-63d7486ba43d:
+    id: 63bca662-f66a-49cc-aba1-63d7486ba43d
+    content: Title
+    children:
+      - 8f1ebc67-4a06-41ab-84a8-20183a321be8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f1ebc67-4a06-41ab-84a8-20183a321be8:
+    id: 8f1ebc67-4a06-41ab-84a8-20183a321be8
+    content: Pause an autonomous execute step and ask the user to raise reasoning effort when the task outgrows its original scope
     children: []
     metadata:
       status: pending
-  d6f78b25-cba3-49ca-8c03-792d6066b822:
-    id: d6f78b25-cba3-49ca-8c03-792d6066b822
-    content: Should wait for the session to be resumed before sending the prompts
+      expanded: true
+      deleted: false
+      plugins: {}
+  897e05f6-4f1f-4b89-9250-b03753233ea2:
+    id: 897e05f6-4f1f-4b89-9250-b03753233ea2
+    content: 📄 Product spec
+    children:
+      - abe5bab7-ac37-44e0-9730-7103300ca20c
+      - 3a8c7fe7-4a76-4149-a767-ee1a79693d06
+      - b229330b-797f-4505-a26c-ad58f20e1e85
+      - 9f319f5a-9b4d-406c-b1f5-2e9464becdba
+      - 542a69c3-c32c-436e-8a86-109af176da70
+      - f7b7d5ad-a4c3-4cf0-859d-c82910a9df75
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abe5bab7-ac37-44e0-9730-7103300ca20c:
+    id: abe5bab7-ac37-44e0-9730-7103300ca20c
+    content: Context
+    children:
+      - 5b7af26a-fd7a-4eae-84df-9fe7fe1a6258
+      - f3019246-49f3-4efb-a50e-372c62d22689
+      - edc9a933-0314-4854-8f4e-cb99ed000049
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b7af26a-fd7a-4eae-84df-9fe7fe1a6258:
+    id: 5b7af26a-fd7a-4eae-84df-9fe7fe1a6258
+    content: Arborescent runs autonomous execute steps where Claude Code works in the terminal at a user-chosen reasoning-effort level, which is a Claude Code / user-side setting Arborescent cannot change programmatically.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3019246-49f3-4efb-a50e-372c62d22689:
+    id: f3019246-49f3-4efb-a50e-372c62d22689
+    content: When a task turns out harder mid-implementation than the chosen effort can handle well, Claude has no instruction to stop and currently pushes through, shipping a weaker result.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  edc9a933-0314-4854-8f4e-cb99ed000049:
+    id: edc9a933-0314-4854-8f4e-cb99ed000049
+    content: 'A pause path already exists: buildNeedsReviewInstruction() POSTs to a local hook that pauses the workflow and notifies the user; this feature adds a new trigger on that same path, not new plumbing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a8c7fe7-4a76-4149-a767-ee1a79693d06:
+    id: 3a8c7fe7-4a76-4149-a767-ee1a79693d06
+    content: User
+    children:
+      - 3066d890-f97e-44e8-9a54-3161089aa5d9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3066d890-f97e-44e8-9a54-3161089aa5d9:
+    id: 3066d890-f97e-44e8-9a54-3161089aa5d9
+    content: Workflow operator (IC/engineer) running an autonomous Arborescent workflow away from the keyboard, who owns the reasoning-effort dial and trusts Claude to either finish or stop.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b229330b-797f-4505-a26c-ad58f20e1e85:
+    id: b229330b-797f-4505-a26c-ad58f20e1e85
+    content: Current experience and why it is insufficient
+    children:
+      - d9392766-185c-473f-9f37-68b70dad3837
+      - 4b208862-ecc8-4f77-8384-ce5e3f21bc23
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9392766-185c-473f-9f37-68b70dad3837:
+    id: d9392766-185c-473f-9f37-68b70dad3837
+    content: Today's NeedsReview instruction fires on ambiguities, spec problems, and quality risks, but it does not name complexity outgrowing effort, so Claude under-triggers and grinds through at low effort — the silent-degradation failure this is meant to prevent.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b208862-ecc8-4f77-8384-ce5e3f21bc23:
+    id: 4b208862-ecc8-4f77-8384-ce5e3f21bc23
+    content: Even on a normal pause the user gets no signal that effort was the bottleneck, so they do not know the fix is to raise reasoning effort and re-run.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f319f5a-9b4d-406c-b1f5-2e9464becdba:
+    id: 9f319f5a-9b4d-406c-b1f5-2e9464becdba
+    content: Goal
+    children:
+      - 33dabb01-0953-4452-9589-de0a2585be65
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33dabb01-0953-4452-9589-de0a2585be65:
+    id: 33dabb01-0953-4452-9589-de0a2585be65
+    content: Claude pauses an autonomous execute step and explicitly asks the user to raise reasoning effort (or switch to a more capable model/mode) when the work outgrows its original scope, instead of silently producing a poor result.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  542a69c3-c32c-436e-8a86-109af176da70:
+    id: 542a69c3-c32c-436e-8a86-109af176da70
+    content: Business rules
+    children:
+      - e7cb5b2d-5a43-4b7c-84c8-9e2229781b33
+      - e0684e36-5a78-4ccd-8727-09e8a06003c5
+      - 7a5b3400-7ee8-4688-a0cf-cb07c256938e
+      - 65d640a9-f4d4-4142-b894-88e37fa72f07
+      - 3f8aa323-c0e9-4ed0-b455-1fac0f3ab053
+      - 546e319a-55a6-4764-99a1-9af4201f3d02
+      - a22e86a8-ccbb-4a05-9772-38a232f29b66
+      - 38e601f9-e304-4a1c-b625-2a88a12180fa
+      - 59f6f2a5-e5ad-4513-a2eb-067b0d95d000
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7cb5b2d-5a43-4b7c-84c8-9e2229781b33:
+    id: e7cb5b2d-5a43-4b7c-84c8-9e2229781b33
+    content: 1. The instruction must be appended to the existing NeedsReview block and reuse the same hook POST and pause/notify mechanism; it must not introduce a separate hook event, endpoint, or workflow state.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0684e36-5a78-4ccd-8727-09e8a06003c5:
+    id: e0684e36-5a78-4ccd-8727-09e8a06003c5
+    content: 2. The instruction must be injected under exactly the existing condition (isAutonomous && flags.execute), so it appears only in autonomous execute-only and autonomous both-mode prompts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a5b3400-7ee8-4688-a0cf-cb07c256938e:
+    id: 7a5b3400-7ee8-4688-a0cf-cb07c256938e
+    content: 3. The instruction must not appear in non-autonomous/manual sends, in browser/clipboard prompts, or in collaborate-only steps, because those have no autonomous pause loop and a human is already driving.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65d640a9-f4d4-4142-b894-88e37fa72f07:
+    id: 65d640a9-f4d4-4142-b894-88e37fa72f07
+    content: 4. The instruction must direct Claude to pause only when the work proves materially larger or more intricate than the original task scope — enough that the reasoning effort the run was started with would force shortcuts or lower-quality output — not for ordinary difficulty or anything already covered by existing NeedsReview triggers.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f8aa323-c0e9-4ed0-b455-1fac0f3ab053:
+    id: 3f8aa323-c0e9-4ed0-b455-1fac0f3ab053
+    content: '5. When Claude pauses for scope escalation, its end-of-output summary must state that the step is paused pending user action (not failed), that the task outgrew the reasoning effort the run was started with (with a one-line reason), what it completed and the exact point it stopped, and the concrete remedy: raise the reasoning effort (or switch to a more capable model/mode) and then re-run this step.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  546e319a-55a6-4764-99a1-9af4201f3d02:
+    id: 546e319a-55a6-4764-99a1-9af4201f3d02
+    content: 6. Claude must not silently continue at insufficient effort once it judges the work has outgrown the current level; pausing is the required behaviour in that case.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a22e86a8-ccbb-4a05-9772-38a232f29b66:
+    id: a22e86a8-ccbb-4a05-9772-38a232f29b66
+    content: 7. Claude must not claim to change, or attempt to change, the reasoning effort or model itself, because that setting is outside Arborescent's control and only the user can change it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38e601f9-e304-4a1c-b625-2a88a12180fa:
+    id: 38e601f9-e304-4a1c-b625-2a88a12180fa
+    content: 8. The existing "only genuine issues, not minor concerns" guardrail must be preserved as the last line, widened to cover real scope escalation, so the new trigger does not lower the bar for pausing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59f6f2a5-e5ad-4513-a2eb-067b0d95d000:
+    id: 59f6f2a5-e5ad-4513-a2eb-067b0d95d000
+    content: 9. Resumption uses the existing manual re-send/advance flow; no auto-resume or auto-retry at higher effort is built.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7b7d5ad-a4c3-4cf0-859d-c82910a9df75:
+    id: f7b7d5ad-a4c3-4cf0-859d-c82910a9df75
+    content: Acceptance criteria
+    children:
+      - 809be471-d3fb-43fe-a9b8-0e7b34b4d071
+      - a8d3fdea-d0df-4136-ae71-9654b8a95278
+      - 56ac4af0-2e63-4466-b135-a7f645ebd922
+      - f3fa2fee-19f7-40b9-bae7-d61cbd0cc624
+      - 9c20c74c-77e5-4b10-b882-5321b6ccfa55
+      - 326240f7-dee5-4bfc-a32c-8bdfcde61aeb
+      - 08b07796-3506-44be-aed5-9e40d4552af2
+      - 98c10deb-67a7-4171-85b4-2879adbd1483
+      - 4223bcc5-41f6-4d1e-ac0e-68d9ae3f5e0d
+      - 4b7adf16-031e-4d25-84d0-62426e30efa6
+      - 0c198be5-2d6e-4c35-b4fc-845fb9d4b658
+      - e0a63707-63b9-4d0c-8045-41f6f53f98d9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  809be471-d3fb-43fe-a9b8-0e7b34b4d071:
+    id: 809be471-d3fb-43fe-a9b8-0e7b34b4d071
+    content: An autonomous execute-only prompt (buildTerminalExecuteOnlyPrompt, isAutonomous=true, flags.execute=true) includes the new scope-escalation instruction text.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8d3fdea-d0df-4136-ae71-9654b8a95278:
+    id: a8d3fdea-d0df-4136-ae71-9654b8a95278
+    content: An autonomous both-mode prompt (buildTerminalBothPrompt, isAutonomous=true, flags.execute=true) includes the new instruction text.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56ac4af0-2e63-4466-b135-a7f645ebd922:
+    id: 56ac4af0-2e63-4466-b135-a7f645ebd922
+    content: A manual (isAutonomous=false) execute prompt does not include the new instruction text.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3fa2fee-19f7-40b9-bae7-d61cbd0cc624:
+    id: f3fa2fee-19f7-40b9-bae7-d61cbd0cc624
+    content: A collaborate-only prompt (flags.execute=false) does not include the new instruction text, for both autonomous and manual targets.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c20c74c-77e5-4b10-b882-5321b6ccfa55:
+    id: 9c20c74c-77e5-4b10-b882-5321b6ccfa55
+    content: Any web/clipboard prompt does not include the new instruction text.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  326240f7-dee5-4bfc-a32c-8bdfcde61aeb:
+    id: 326240f7-dee5-4bfc-a32c-8bdfcde61aeb
+    content: A prompt containing the scope-escalation instruction also contains the existing NeedsReview hook POST (curl), confirming reuse of the same path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08b07796-3506-44be-aed5-9e40d4552af2:
+    id: 08b07796-3506-44be-aed5-9e40d4552af2
+    content: The instruction text names the concrete remedy (raise the reasoning effort, or switch to a more capable model/mode, then re-run this step) so the user-facing ask is explicit and actionable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98c10deb-67a7-4171-85b4-2879adbd1483:
+    id: 98c10deb-67a7-4171-85b4-2879adbd1483
+    content: The instruction text frames the trigger as the task outgrowing the effort the run was started with (a delta from original scope), not generic difficulty — verifiable by string inspection.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4223bcc5-41f6-4d1e-ac0e-68d9ae3f5e0d:
+    id: 4223bcc5-41f6-4d1e-ac0e-68d9ae3f5e0d
+    content: The instruction text states Claude must not silently push through and must not change the effort or model itself.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b7adf16-031e-4d25-84d0-62426e30efa6:
+    id: 4b7adf16-031e-4d25-84d0-62426e30efa6
+    content: No new hook event, endpoint, workflow flag, or store field is introduced; the production diff is confined to the instruction strings in sendActions.ts plus tests.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c198be5-2d6e-4c35-b4fc-845fb9d4b658:
+    id: 0c198be5-2d6e-4c35-b4fc-845fb9d4b658
+    content: Existing NeedsReview send/prompt tests still pass with prompt structure unchanged aside from the appended text.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0a63707-63b9-4d0c-8045-41f6f53f98d9:
+    id: e0a63707-63b9-4d0c-8045-41f6f53f98d9
+    content: 'Non-functional: the added text is one concise clause, not a second full mechanism, so prompt size is not materially bloated.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db463f06-f77a-4ceb-8ff4-aae4953e863e:
+    id: db463f06-f77a-4ceb-8ff4-aae4953e863e
+    content: 🔧 Implementation proposal
+    children:
+      - 02908d6d-a0cc-4a87-9e7e-a2b7bf18723c
+      - 34b41288-15d6-4f94-960c-cc88df4bf4ce
+      - c1c1b31f-713f-4000-82b3-88d5cb99dbb2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  02908d6d-a0cc-4a87-9e7e-a2b7bf18723c:
+    id: 02908d6d-a0cc-4a87-9e7e-a2b7bf18723c
+    content: Approach
+    children:
+      - 67f42132-dc30-48f1-82fe-b35a17f9fb6a
+      - 6510e0e3-6cad-4eb1-9592-2f0405130b1f
+      - 590147a2-7066-4758-b914-38e051a8a6c1
+      - d2d3831f-3242-4603-bd4f-c4a2fa88e880
+      - 806b58dd-a4f0-4454-8c74-3a4a48afef66
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67f42132-dc30-48f1-82fe-b35a17f9fb6a:
+    id: 67f42132-dc30-48f1-82fe-b35a17f9fb6a
+    content: 'Option A, scoped narrowly: append one scope-escalation clause to buildNeedsReviewInstruction(sessionId) in src/renderer/store/tree/actions/sendActions.ts (~lines 205-211); do not touch DEFAULT_EXECUTE_CONTEXT.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6510e0e3-6cad-4eb1-9592-2f0405130b1f:
+    id: 6510e0e3-6cad-4eb1-9592-2f0405130b1f
+    content: Reuse the entire existing NeedsReview pause path (hook server, dispatcher, handler, toast, summarize-in-output convention); no signature change, no new param, no new builder.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  590147a2-7066-4758-b914-38e051a8a6c1:
+    id: 590147a2-7066-4758-b914-38e051a8a6c1
+    content: Rejected Option B (new increasingComplexityAware metadata flag) and Option C (standalone composable system-instruction context) as over-engineering for a one-clause prompt addition with no author-time configuration to store.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2d3831f-3242-4603-bd4f-c4a2fa88e880:
+    id: d2d3831f-3242-4603-bd4f-c4a2fa88e880
+    content: 'Proposed clause to append (verbatim): "This includes scope escalation. If, partway through, the work proves materially larger or more intricate than the task you were handed — enough that doing it well would exceed the reasoning effort this run was started with — stop and POST to the hook above instead of pressing on at a level that forces shortcuts. In your closing summary: (1) say you paused because the task outgrew the effort it was started with, (2) note what you completed and the exact point you stopped, and (3) ask the user to raise the reasoning effort (or switch to a more capable model/mode) and re-run this step. You cannot change that setting yourself, so state the action plainly."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  806b58dd-a4f0-4454-8c74-3a4a48afef66:
+    id: 806b58dd-a4f0-4454-8c74-3a4a48afef66
+    content: 'Widened guardrail to keep as the last line: "Use this only for genuine blockers or real scope escalation — not ordinary difficulty or minor uncertainty."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34b41288-15d6-4f94-960c-cc88df4bf4ce:
+    id: 34b41288-15d6-4f94-960c-cc88df4bf4ce
+    content: Touchpoints
+    children:
+      - c9890e6a-bdb2-4bef-88db-543d17b9fa58
+      - 2ed301b3-4a91-4d2f-9ee2-04ac94fce3e4
+      - fe2f01e7-dba2-47c3-afeb-8c3f537cce1e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9890e6a-bdb2-4bef-88db-543d17b9fa58:
+    id: c9890e6a-bdb2-4bef-88db-543d17b9fa58
+    content: src/renderer/store/tree/actions/sendActions.ts — buildNeedsReviewInstruction() is the only production change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ed301b3-4a91-4d2f-9ee2-04ac94fce3e4:
+    id: 2ed301b3-4a91-4d2f-9ee2-04ac94fce3e4
+    content: 'Tests: src/renderer/store/tree/actions/tests/sendActions.test.ts — add a positive assertion that the autonomous-execute prompt contains the scope-escalation/reasoning-effort wording, and negative assertions that non-autonomous execute, collaborate, and web prompts do not; existing NeedsReview substring tests stay green.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe2f01e7-dba2-47c3-afeb-8c3f537cce1e:
+    id: fe2f01e7-dba2-47c3-afeb-8c3f537cce1e
+    content: No type changes (treeNode.ts, permissionGate.ts untouched) and no hook/IPC changes (hookEventDispatcher.ts / workflowHookEventHandler.ts unchanged).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1c1b31f-713f-4000-82b3-88d5cb99dbb2:
+    id: c1c1b31f-713f-4000-82b3-88d5cb99dbb2
+    content: Constraints to call out
+    children:
+      - 145613bf-ab71-4deb-b011-21e6acf7ab5a
+      - b6b670e8-b07b-4fd3-ae79-e09473d3493d
+      - 47095ab5-54c3-4081-814c-fcc9ba9808fc
+      - adfba52c-b053-4a16-9947-4d3ca380b90c
+      - 2b93bad0-228d-4821-b942-767f00657f19
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  145613bf-ab71-4deb-b011-21e6acf7ab5a:
+    id: 145613bf-ab71-4deb-b011-21e6acf7ab5a
+    content: Scope is autonomous-execute-only (gate isAutonomous && flags.execute); manual-execute coverage is deliberately out of scope because the non-autonomous path has no hook to POST to and would need a summarize-only variant (possible fast-follow).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6b670e8-b07b-4fd3-ae79-e09473d3493d:
+    id: b6b670e8-b07b-4fd3-ae79-e09473d3493d
+    content: Reasoning effort and model cannot be changed programmatically by Arborescent; this is prompt text only — Claude asks, the human bumps the setting and re-runs.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47095ab5-54c3-4081-814c-fcc9ba9808fc:
+    id: 47095ab5-54c3-4081-814c-fcc9ba9808fc
+    content: 'Hook payload stays as-is: NeedsReview carries no reason field and fires a fixed toast, so the effort ask travels in Claude''s terminal-output summary, not the hook JSON; a distinct "effort requested" toast would need a reason field plumbed end-to-end and is a separate fast-follow.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  adfba52c-b053-4a16-9947-4d3ca380b90c:
+    id: adfba52c-b053-4a16-9947-4d3ca380b90c
+    content: 'Keep DEFAULT_EXECUTE_CONTEXT out of scope: defaultExecuteContext.test.ts asserts it does not match /review/i, so adding pause-for-review wording there would break it — landing in the NeedsReview clause sidesteps this.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b93bad0-228d-4821-b942-767f00657f19:
+    id: 2b93bad0-228d-4821-b942-767f00657f19
+    content: No interaction with the heading-only parser — the clause lives in the INSTRUCTIONS block, not in returned CONTENT.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77f9fa42-0d4e-4ceb-98c2-35e759fe923c:
+    id: 77f9fa42-0d4e-4ceb-98c2-35e759fe923c
+    content: Scope and split decision
+    children:
+      - 5346fd57-a6d7-4724-930f-aa6628c6c17f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5346fd57-a6d7-4724-930f-aa6628c6c17f:
+    id: 5346fd57-a6d7-4724-930f-aa6628c6c17f
+    content: 'One chunk — do not split: the change is a single coherent prompt clause with no feature-flaggable sub-piece and no independent design/PM-review boundary, and splitting would create speculative plumbing with no standalone value.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c404f502-e2c0-48c2-9edc-254c2a47dda9:
+    id: c404f502-e2c0-48c2-9edc-254c2a47dda9
+    content: Challenges and pushback
+    children:
+      - 7ac5b0eb-5d56-4626-9885-e10fe8548732
+      - 41aab1a6-7865-431d-9293-67d9555b3afd
+      - ec3a5f80-816a-4195-9295-4256c1a5b783
+      - 9a8a9334-411f-467f-85c1-bad2be13d1dd
+      - a10caf64-0b48-43c2-a9e7-c6781710f86a
+      - e90299e8-eb87-4934-b535-c1664c13e838
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ac5b0eb-5d56-4626-9885-e10fe8548732:
+    id: 7ac5b0eb-5d56-4626-9885-e10fe8548732
+    content: 'UX: the pause message must name the concrete lever (raise reasoning effort, or switch to a more capable model) and that the user re-runs the step; a vague "do more / increase the effort" would leave the operator with a paused workflow they cannot act on (enforced by business rule 5 and the proposed wording).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41aab1a6-7865-431d-9293-67d9555b3afd:
+    id: 41aab1a6-7865-431d-9293-67d9555b3afd
+    content: 'UX risk: the main threat is over-pausing/false alarms that break the walk-away value of autonomous mode, mitigated only by the widened "genuine issues / real escalation only" guardrail — watch in dogfooding.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec3a5f80-816a-4195-9295-4256c1a5b783:
+    id: ec3a5f80-816a-4195-9295-4256c1a5b783
+    content: 'Known limitation: the trigger is self-assessed and subjective, and a low-effort run is the one least able to notice it has outgrown its budget (chicken-and-egg); inherent to the request, handled by wording rather than a detector.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a8a9334-411f-467f-85c1-bad2be13d1dd:
+    id: 9a8a9334-411f-467f-85c1-bad2be13d1dd
+    content: 'Over-engineering: Options B/C (metadata flag, context layer) are unjustified for one sentence; reuse buildNeedsReviewInstruction and the existing pause infra so net production diff is a few lines in one function.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a10caf64-0b48-43c2-a9e7-c6781710f86a:
+    id: a10caf64-0b48-43c2-a9e7-c6781710f86a
+    content: 'ROI: modest but real and high relative to cost — the marginal value is naming the case so Claude triggers reliably and making the remedy actionable; if telemetry later shows NeedsReview already catches these, this becomes wording polish.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e90299e8-eb87-4934-b535-c1664c13e838:
+    id: e90299e8-eb87-4934-b535-c1664c13e838
+    content: 'Out of scope (do not build): programmatic effort or model change; auto-retry/auto-resume at higher effort; new hook event / reason field / metadata flag; manual and collaborate coverage; a distinct "effort requested" toast.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b73c936-b70d-4b0f-b90e-a4bf4ab3d752:
+    id: 6b73c936-b70d-4b0f-b90e-a4bf4ab3d752
+    content: Technical refinement
+    children:
+      - c3a759ed-11ed-452e-8e82-cfea323c980f
+      - cf4e91de-06f2-40d2-a258-d425363d7409
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3a759ed-11ed-452e-8e82-cfea323c980f:
+    id: c3a759ed-11ed-452e-8e82-cfea323c980f
+    content: Complications and risks
+    children:
+      - 4d245ea5-526d-4e83-b351-32529bf961ea
+      - 0c750396-8fbb-4857-b7e4-c913464e056c
+      - 23aef695-7aaf-4494-9461-615fe0e6c6e0
+      - 23c7aef9-5671-4507-9b3c-829ca1f95374
+      - 27abf6c0-4064-463f-afbe-aa5ec48c7e39
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d245ea5-526d-4e83-b351-32529bf961ea:
+    id: 4d245ea5-526d-4e83-b351-32529bf961ea
+    content: 'Non-idempotent re-run: a scope-escalation pause can leave partial file edits in the working tree, so "raise effort and re-run this step" re-executes against a dirty tree rather than a clean slate; resetting/stashing before re-running is on the user and is not handled by this change.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c750396-8fbb-4857-b7e4-c913464e056c:
+    id: 0c750396-8fbb-4857-b7e4-c913464e056c
+    content: 'Shared-block dilution: the clause is appended to the multi-trigger NeedsReview block, so loosening it can raise pause propensity for the existing triggers too, not just the new one — the widened "genuine issues / real escalation only" guardrail (rule 8) is the only thing holding the bar.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23aef695-7aaf-4494-9461-615fe0e6c6e0:
+    id: 23aef695-7aaf-4494-9461-615fe0e6c6e0
+    content: 'No measurement: there is no telemetry on trigger rate or false-alarm rate, so whether this helps or merely adds pauses is unfalsifiable today — the ROI note''s "if telemetry later shows" is aspirational, not available.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23c7aef9-5671-4507-9b3c-829ca1f95374:
+    id: 23c7aef9-5671-4507-9b3c-829ca1f95374
+    content: 'ROI caveat: reliability is inverted — a genuinely under-powered run is the one least able to notice it is under-powered — so realistic value concentrates in the mid-effort band; if execute steps routinely start under-powered, raising their default effort is the higher-leverage fix and would largely subsume this (noted, not in scope).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27abf6c0-4064-463f-afbe-aa5ec48c7e39:
+    id: 27abf6c0-4064-463f-afbe-aa5ec48c7e39
+    content: 'Out of scope confirmed: programmatic effort/model change, auto-resume/auto-retry, working-tree cleanup on pause, a distinct "effort requested" notification, and manual/collaborate coverage all stay out; this is prompt text only.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf4e91de-06f2-40d2-a258-d425363d7409:
+    id: cf4e91de-06f2-40d2-a258-d425363d7409
+    content: Approach summary
+    children:
+      - a964bfb3-5599-4e71-9c1b-2dcf0e0977ce
+      - 8205d704-7256-4e1c-919d-42e42cd6d976
+      - 7b88c38a-2009-4710-8a8b-8f5f6d42152f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a964bfb3-5599-4e71-9c1b-2dcf0e0977ce:
+    id: a964bfb3-5599-4e71-9c1b-2dcf0e0977ce
+    content: One clause appended to buildNeedsReviewInstruction() in sendActions.ts, gated by the existing isAutonomous && flags.execute, riding the existing hook/pause/notify path — the entire production surface is prompt text plus two test assertions, with no new state, types, or IPC.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8205d704-7256-4e1c-919d-42e42cd6d976:
+    id: 8205d704-7256-4e1c-919d-42e42cd6d976
+    content: 'Reviewer surprise (ordering): the clause references "the hook above," so it must sit after the existing curl POST line in the string; reordering the block silently breaks the reference.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b88c38a-2009-4710-8a8b-8f5f6d42152f:
+    id: 7b88c38a-2009-4710-8a8b-8f5f6d42152f
+    content: 'Reviewer surprise (no distinct signal): the effort ask travels only in Claude''s terminal-output summary, not the hook payload, so the user sees the generic NeedsReview toast and must read the terminal — there is no "needs more effort" notification.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4b39ac0-4fff-4fdb-a32a-782508301ca7:
+    id: c4b39ac0-4fff-4fdb-a32a-782508301ca7
+    content: Verification summary — undone and why
+    children:
+      - 36ccd27e-a212-43c8-8752-72156410fafc
+      - 2aac95b2-e913-43da-88ea-8740d18426a4
+      - 3f0796b3-5942-43d4-b5f4-031d82ff02db
+      - d347ee72-2cc5-4b2a-a31f-906c8656a941
+      - ddbd8dfd-4caf-443c-a4e9-b6828435c76d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  36ccd27e-a212-43c8-8752-72156410fafc:
+    id: 36ccd27e-a212-43c8-8752-72156410fafc
+    content: 'Implemented and verified: the scope-escalation clause + widened guardrail in buildNeedsReviewInstruction(); all 12 acceptance criteria and 9 business rules satisfied; 152/152 tests pass; lint and type-check clean; production diff confined to sendActions.ts (+2/-1) plus tests.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2aac95b2-e913-43da-88ea-8740d18426a4:
+    id: 2aac95b2-e913-43da-88ea-8740d18426a4
+    content: Manual-execute coverage not built — deliberately out of scope; the non-autonomous path has no hook to POST to, so it would need a summarize-only variant (possible fast-follow).
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f0796b3-5942-43d4-b5f4-031d82ff02db:
+    id: 3f0796b3-5942-43d4-b5f4-031d82ff02db
+    content: Distinct "effort requested" notification not built — deliberately out of scope; would require a reason field plumbed end-to-end (hook → dispatcher → handler → toast); the ask rides the generic NeedsReview toast + terminal summary instead.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d347ee72-2cc5-4b2a-a31f-906c8656a941:
+    id: d347ee72-2cc5-4b2a-a31f-906c8656a941
+    content: Auto-resume / auto-retry at higher effort not built — deliberately out of scope; resumption stays the existing manual re-send/advance, and working-tree cleanup after a pause is left to the user.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddbd8dfd-4caf-443c-a4e9-b6828435c76d:
+    id: ddbd8dfd-4caf-443c-a4e9-b6828435c76d
+    content: Telemetry on trigger / false-alarm rate not built — never in scope; flagged as a known limitation that leaves the feature's real-world ROI unfalsifiable until dogfooding data exists.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  812f5eed-5ba4-42c0-b0f4-cb122bc7e11b:
+    id: 812f5eed-5ba4-42c0-b0f4-cb122bc7e11b
+    content: worktree
+    children:
+      - 3bca2cb1-cb47-488f-b26d-5edcee8bcd98
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bca2cb1-cb47-488f-b26d-5edcee8bcd98:
+    id: 3bca2cb1-cb47-488f-b26d-5edcee8bcd98
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-stall-advance) — branch `fix/completed-steps-stall-advance` (forked from master 24d03c9)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  936a9b8a-410a-4057-b883-f63e5a74b747:
+    id: 936a9b8a-410a-4057-b883-f63e5a74b747
+    content: 📄 Product spec
+    children:
+      - 16f99d03-b346-4ea8-86a0-b80ea9591a67
+      - 03495cee-de4c-4c82-a9a2-460f6cc257af
+      - c5a828d0-e38e-48bc-8b8f-be7b4bfa6d29
+      - 8890a2a0-3567-4dcd-8110-93a704b0315a
+      - 5c8df912-16d0-445f-9b89-9d656a461fc4
+      - a9b970a2-9e14-4d27-ad5c-19e282d6780d
+      - ec48c620-9eba-4fec-82a7-d242561e10dd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16f99d03-b346-4ea8-86a0-b80ea9591a67:
+    id: 16f99d03-b346-4ea8-86a0-b80ea9591a67
+    content: Context
+    children:
+      - e220bae3-fec6-4bd5-aaa1-bf5faf428027
+      - 21028743-0a45-40e9-862b-206196e9d590
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e220bae3-fec6-4bd5-aaa1-bf5faf428027:
+    id: e220bae3-fec6-4bd5-aaa1-bf5faf428027
+    content: 'Arborescent advances autonomous/execute steps automatically: the AI signals completion with the durable `announce_step_done` MCP call, which persists `metadata.status=''completed''` on the bound node, but the actual advance is performed only by the Claude Code `Stop` hook calling `advanceNode` — coupling a durable completion signal to a lossy advance trigger.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21028743-0a45-40e9-862b-206196e9d590:
+    id: 21028743-0a45-40e9-862b-206196e9d590
+    content: The `Stop` handler resolves which node to advance from transient in-memory run-state (`terminalNodeAssignments` / `workflowExecutionStates`) and drops the event when that state is gone, even though the durable persisted session→node binding (`metadata.sessionId`) plus the persisted completed status still identify the node and prove it was completed-but-not-advanced.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03495cee-de4c-4c82-a9a2-460f6cc257af:
+    id: 03495cee-de4c-4c82-a9a2-460f6cc257af
+    content: User / persona
+    children:
+      - c66f3efb-0e5d-4243-8569-44781f0709e4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c66f3efb-0e5d-4243-8569-44781f0709e4:
+    id: c66f3efb-0e5d-4243-8569-44781f0709e4
+    content: A user or AI agent running a multi-step Arborescent workflow (e.g. the maintainer driving the bug-fix workflow) who expects autonomous steps to chain without manual intervention.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5a828d0-e38e-48bc-8b8f-be7b4bfa6d29:
+    id: c5a828d0-e38e-48bc-8b8f-be7b4bfa6d29
+    content: Current experience and why it is insufficient
+    children:
+      - 12307b6e-107c-4038-924f-1e8c899058fd
+      - 3be21202-a9d3-4b89-9a62-b21cb58afcc6
+      - da5eb717-4a3b-44da-8b47-bffa1f97de88
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  12307b6e-107c-4038-924f-1e8c899058fd:
+    id: 12307b6e-107c-4038-924f-1e8c899058fd
+    content: 'After an autonomous step finishes and `announce_step_done` marks it complete, the workflow often does not advance: no next prompt is sent and no error is shown.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3be21202-a9d3-4b89-9a62-b21cb58afcc6:
+    id: 3be21202-a9d3-4b89-9a62-b21cb58afcc6
+    content: 'It strands whenever the advancing `Stop` arrives after the in-memory run-state was cleared by a renderer reload, app restart (`initializeExecutionState`), or rebind; the renderer logs `Stop dropped: no running node on terminal` (logged in the thousands).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da5eb717-4a3b-44da-8b47-bffa1f97de88:
+    id: da5eb717-4a3b-44da-8b47-bffa1f97de88
+    content: The user gets no signal and must notice the stall and manually trigger "Next step".
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8890a2a0-3567-4dcd-8110-93a704b0315a:
+    id: 8890a2a0-3567-4dcd-8110-93a704b0315a
+    content: Goal
+    children:
+      - f27c7b61-1e12-4d3e-a644-ff59f0af660d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f27c7b61-1e12-4d3e-a644-ff59f0af660d:
+    id: f27c7b61-1e12-4d3e-a644-ff59f0af660d
+    content: A step marked complete reliably advances the workflow, or visibly flags that it is stuck with a one-click recovery, without depending on transient run-state surviving.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c8df912-16d0-445f-9b89-9d656a461fc4:
+    id: 5c8df912-16d0-445f-9b89-9d656a461fc4
+    content: Business rules
+    children:
+      - ffa49c43-4615-4dda-993f-aec53d624d70
+      - bb1c41db-df64-45ba-a26f-1fa756a71fad
+      - 7e21c1df-2bd8-43f4-b126-e4e7ffbc6689
+      - d3d270de-42c9-40a8-ae86-c42228630a22
+      - 2708456b-7c91-4938-9425-86a45efc2fe9
+      - 28674cd5-84cc-4b73-96a1-a02d2bb687f8
+      - 9feb7d44-1ac6-4536-9225-33b48cc96a40
+      - e4305486-74b4-4f34-a2c5-118746c4765d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffa49c43-4615-4dda-993f-aec53d624d70:
+    id: ffa49c43-4615-4dda-993f-aec53d624d70
+    content: When an autonomous step is marked complete via `announce_step_done`, the workflow must advance exactly as it does on a normal `Stop`; a checkpoint step must route to awaiting-validation, not auto-advance.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb1c41db-df64-45ba-a26f-1fa756a71fad:
+    id: bb1c41db-df64-45ba-a26f-1fa756a71fad
+    content: When a `Stop` cannot resolve a running node from transient state, the handler must fall back to the durable session→node binding — the live, chain-unbroken node whose persisted `metadata.sessionId` equals the event's `session_id` — before dropping the event.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e21c1df-2bd8-43f4-b126-e4e7ffbc6689:
+    id: 7e21c1df-2bd8-43f4-b126-e4e7ffbc6689
+    content: 'The durable fallback advances only on positive evidence the step was completed-but-not-advanced: the resolved node is still parked at its current step AND already carries `metadata.status===''completed''`; no new persisted advance-armed field is introduced, the existing status is the signal.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3d270de-42c9-40a8-ae86-c42228630a22:
+    id: d3d270de-42c9-40a8-ae86-c42228630a22
+    content: Transient run-state is authoritative when present (`state==='running'`); the durable fallback only fills the gap when no valid transient entry exists and must never override a live transient binding.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2708456b-7c91-4938-9425-86a45efc2fe9:
+    id: 2708456b-7c91-4938-9425-86a45efc2fe9
+    content: Advancement must stay gated on terminal readiness; the next step's prompt must never be sent into a still-busy REPL.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28674cd5-84cc-4b73-96a1-a02d2bb687f8:
+    id: 28674cd5-84cc-4b73-96a1-a02d2bb687f8
+    content: 'Advancement must be idempotent and derived from tree state rather than new bookkeeping: once a node has advanced it no longer matches the completed-and-parked predicate, so a late or duplicate `Stop` is a no-op; the existing dispatcher clear-on-read already de-dups the normal autonomous path.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9feb7d44-1ac6-4536-9225-33b48cc96a40:
+    id: 9feb7d44-1ac6-4536-9225-33b48cc96a40
+    content: If a completed step cannot be advanced (no resolvable durable binding, or readiness never reached), the workflow must surface a visible, persistent, actionable stuck state with one-click recovery — never fail silently and never auto-dismiss.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4305486-74b4-4f34-a2c5-118746c4765d:
+    id: e4305486-74b4-4f34-a2c5-118746c4765d
+    content: Manual steps remain UI-driven and must not auto-advance via this path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9b970a2-9e14-4d27-ad5c-19e282d6780d:
+    id: a9b970a2-9e14-4d27-ad5c-19e282d6780d
+    content: Acceptance criteria
+    children:
+      - 847523a7-df7b-4868-9a96-86ba48ec2123
+      - 598b529b-2b4f-46c8-9d38-7f21abd2b340
+      - bbee2407-e58e-478e-b62a-992038d44574
+      - 065a42e3-2d34-4e8d-95b4-39243b4fa894
+      - 6c199f72-705e-4b13-8e79-53461b7f678f
+      - 033e6bad-56d7-42bd-8fe9-ed6188476f56
+      - cf32414f-b022-4fea-83eb-0f1641008035
+      - 1df18775-bfd8-4dab-a3f1-c2be585903ce
+      - 8e6b1d90-7e7d-401a-8502-ce8b7c9adc8d
+      - 0df99b1f-daa4-4ae1-99e7-4c65f7c3a2f6
+      - 1bb2c7a4-c249-417b-9337-410ef56a7407
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  847523a7-df7b-4868-9a96-86ba48ec2123:
+    id: 847523a7-df7b-4868-9a96-86ba48ec2123
+    content: With run-state intact, an autonomous step completes and advances exactly as today, with no behaviour change (regression baseline).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  598b529b-2b4f-46c8-9d38-7f21abd2b340:
+    id: 598b529b-2b4f-46c8-9d38-7f21abd2b340
+    content: Given an autonomous step whose transient run-state was cleared by reload/restart, when a `Stop` arrives for its session, the workflow advances and sends the next prompt, resolved via the persisted session→node binding.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbee2407-e58e-478e-b62a-992038d44574:
+    id: bbee2407-e58e-478e-b62a-992038d44574
+    content: Given a live rebind where transient state points at a different node, the session-owning completed node is the one advanced (resolution keyed on `session_id`), and a live transient binding is never overridden.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  065a42e3-2d34-4e8d-95b4-39243b4fa894:
+    id: 065a42e3-2d34-4e8d-95b4-39243b4fa894
+    content: Given a node the user intentionally stopped (subject not marked complete), when a `Stop` arrives with no running node, the workflow does not advance.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c199f72-705e-4b13-8e79-53461b7f678f:
+    id: 6c199f72-705e-4b13-8e79-53461b7f678f
+    content: A duplicate or late `Stop` for an already-advanced node performs no action (no double-advance, no double-send).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  033e6bad-56d7-42bd-8fe9-ed6188476f56:
+    id: 033e6bad-56d7-42bd-8fe9-ed6188476f56
+    content: The advance path never sends the next prompt into a busy REPL (readiness gate preserved).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf32414f-b022-4fea-83eb-0f1641008035:
+    id: cf32414f-b022-4fea-83eb-0f1641008035
+    content: A checkpoint step under the same lost-state conditions routes to awaiting-validation, not auto-advance, inheriting checkpoint routing rather than reimplementing it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1df18775-bfd8-4dab-a3f1-c2be585903ce:
+    id: 1df18775-bfd8-4dab-a3f1-c2be585903ce
+    content: A manual step does not auto-advance via this path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e6b1d90-7e7d-401a-8502-ce8b7c9adc8d:
+    id: 8e6b1d90-7e7d-401a-8502-ce8b7c9adc8d
+    content: When a completed step cannot be advanced, a persistent, actionable stuck indicator appears stating the reason class (e.g. terminal busy vs completion-unconfirmed) and selects/deep-links the stalled node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0df99b1f-daa4-4ae1-99e7-4c65f7c3a2f6:
+    id: 0df99b1f-daa4-4ae1-99e7-4c65f7c3a2f6
+    content: Activating the stuck indicator's one-click recovery advances the stalled step through the same readiness-gated path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bb2c7a4-c249-417b-9337-410ef56a7407:
+    id: 1bb2c7a4-c249-417b-9337-410ef56a7407
+    content: '`Stop dropped: no running node` no longer fires when a resolvable durable binding exists for the session, and still logs distinctly when no binding is resolvable.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec48c620-9eba-4fec-82a7-d242561e10dd:
+    id: ec48c620-9eba-4fec-82a7-d242561e10dd
+    content: Non-functional
+    children:
+      - 3dc47a4b-52d1-4bcb-8084-43a9a3d76fa0
+      - 6c2707f8-7f89-4474-9760-d972636b238b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dc47a4b-52d1-4bcb-8084-43a9a3d76fa0:
+    id: 3dc47a4b-52d1-4bcb-8084-43a9a3d76fa0
+    content: Durable resolution is at most O(nodes) on a hook event (not a hot path) — negligible cost; the only new UI is the stuck indicator, which reuses existing persistent toast-with-actions and `notifyWorkflowEvent` patterns.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c2707f8-7f89-4474-9760-d972636b238b:
+    id: 6c2707f8-7f89-4474-9760-d972636b238b
+    content: No new persisted state is added (not for completion evidence, idempotency, or the stuck flag); the stuck state is derived from the tree and re-derives correctly after restart.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  681384a7-90de-459b-9da5-1c537806b1c4:
+    id: 681384a7-90de-459b-9da5-1c537806b1c4
+    content: 🔧 Implementation proposal
+    children:
+      - 8079362c-d389-4f0c-96ab-b8f1d4c9c3ef
+      - b6ff7159-47a1-4d2e-8069-3134bfbe02c6
+      - 8647236b-8386-44e2-ac9a-955d9ee68241
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8079362c-d389-4f0c-96ab-b8f1d4c9c3ef:
+    id: 8079362c-d389-4f0c-96ab-b8f1d4c9c3ef
+    content: Approach
+    children:
+      - a9c1b49c-e5b2-4b89-8bbc-b86b1bf555d1
+      - e1c35e10-3c7e-4af5-9d7d-6185a0761bcc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9c1b49c-e5b2-4b89-8bbc-b86b1bf555d1:
+    id: a9c1b49c-e5b2-4b89-8bbc-b86b1bf555d1
+    content: 'At the early "no running node" drop in `handleHookEvent` — which precedes the Stop branch, not inside it — add a durable fallback: resolve the session-owning live node, and if it is still parked at its step and `metadata.status===''completed''`, re-seed a minimal transient `running` entry and route it through the existing `advanceNode` flow so readiness gating and checkpoint/manual routing are inherited.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1c35e10-3c7e-4af5-9d7d-6185a0761bcc:
+    id: e1c35e10-3c7e-4af5-9d7d-6185a0761bcc
+    content: Treat the persisted completed status as the durable advance-armed signal; idempotency falls out of the tree-state predicate. The never-arriving-`Stop` automatic timer backstop is deferred — this story ships detect-and-surface plus one-click manual recovery instead.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6ff7159-47a1-4d2e-8069-3134bfbe02c6:
+    id: b6ff7159-47a1-4d2e-8069-3134bfbe02c6
+    content: Touchpoints
+    children:
+      - 9c17ecb4-d772-4ee9-9d22-af64f37c02a6
+      - 1e2e926e-1991-4919-a6a4-6cba3a29793d
+      - d79a1ec4-8377-4729-bc9c-f67b001558e9
+      - db411c2b-582b-4b91-b12a-7d6e30b69718
+      - e986fd14-78cc-42b9-99a0-72c26518aae2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c17ecb4-d772-4ee9-9d22-af64f37c02a6:
+    id: 9c17ecb4-d772-4ee9-9d22-af64f37c02a6
+    content: '`workflowHookEventHandler.ts` — insert the durable-binding fallback at/around the early "no running node" drop at the top of `handleHookEvent`, before the event is discarded.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e2e926e-1991-4919-a6a4-6cba3a29793d:
+    id: 1e2e926e-1991-4919-a6a4-6cba3a29793d
+    content: '`terminalBindingResolution.ts` — add a thin completed-session-node resolver alongside the existing `findSessionBoundNodeForTerminal`; reuse `findLiveNodeWithSessionId`, which lives in `selectors/activeSessionNodeId.ts` (not this file), for the live re-validation.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d79a1ec4-8377-4729-bc9c-f67b001558e9:
+    id: d79a1ec4-8377-4729-bc9c-f67b001558e9
+    content: '`workflowExecutionActions.ts` — `advanceNode` currently hard-requires a transient `running` entry and reads `entry.terminalTabId`, so the fallback must re-seed that entry first, reusing the `continueWorkflow` re-seed pattern; `initializeExecutionState` (which resets `workflowSessionMap` to `{}`) is the reset that motivates the fix.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db411c2b-582b-4b91-b12a-7d6e30b69718:
+    id: db411c2b-582b-4b91-b12a-7d6e30b69718
+    content: UI — reuse the existing persistent toast-with-actions / `notifyWorkflowEvent` for the stuck indicator and its one-click recovery; no new component.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e986fd14-78cc-42b9-99a0-72c26518aae2:
+    id: e986fd14-78cc-42b9-99a0-72c26518aae2
+    content: Tests — reload/restart recovery; live-rebind recovery; intentionally-stopped does not advance; duplicate-Stop no-op; checkpoint routes to awaiting-validation; manual unchanged; resolver-fallback units; run-state-intact regression baseline.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8647236b-8386-44e2-ac9a-955d9ee68241:
+    id: 8647236b-8386-44e2-ac9a-955d9ee68241
+    content: Constraints to call out
+    children:
+      - ff33d9c5-740b-415b-8f31-53e825026945
+      - f04e97ae-8e14-42e7-935c-a901ffabfec4
+      - 88a1ebe7-77d1-4192-81e8-e12a6a238945
+      - 3fa3388e-26b3-486f-a816-3cf52bd3408b
+      - 66d01c83-898e-4932-aa0c-98050ecc1e56
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff33d9c5-740b-415b-8f31-53e825026945:
+    id: ff33d9c5-740b-415b-8f31-53e825026945
+    content: '`advanceNode` silently no-ops on a durably-resolved node unless a transient `running` entry is re-seeded first — this re-seed is the crux of the change, not an afterthought.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f04e97ae-8e14-42e7-935c-a901ffabfec4:
+    id: f04e97ae-8e14-42e7-935c-a901ffabfec4
+    content: 'The fallback must be inserted at the early drop site, not "in the Stop branch": control never reaches the Stop branch once the running-node lookup returns null.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88a1ebe7-77d1-4192-81e8-e12a6a238945:
+    id: 88a1ebe7-77d1-4192-81e8-e12a6a238945
+    content: Terminal resolution after reload depends on `workflowSessionMap` being repopulated; it is reset to `{}` on init and the handler falls back to `event.terminal_id`. If neither resolves a terminal, recovery falls to the user acting on the node — the manual nudge is the safety net for this case.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fa3388e-26b3-486f-a816-3cf52bd3408b:
+    id: 3fa3388e-26b3-486f-a816-3cf52bd3408b
+    content: Durable resolution must re-validate (node present, chain unbroken / not `brokenChain`) per the persisted-session-hint authority rule — a stale `sessionId` must not be treated as authority.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66d01c83-898e-4932-aa0c-98050ecc1e56:
+    id: 66d01c83-898e-4932-aa0c-98050ecc1e56
+    content: 'Readiness regression: never advance blind on a timer; any advance must pass the existing readiness gate.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  870aaecd-c7c8-4449-ad4b-4b934906630d:
+    id: 870aaecd-c7c8-4449-ad4b-4b934906630d
+    content: Scope and chunking decision
+    children:
+      - 6044e37d-90bd-459b-b8b7-18e3ac6934fb
+      - 1df667a7-6683-4ad8-b03d-128f1a40bdae
+      - 3927943f-9c8d-44db-a46d-0d66a2970a53
+      - cc906053-de89-44c3-989c-b02ba694199f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6044e37d-90bd-459b-b8b7-18e3ac6934fb:
+    id: 6044e37d-90bd-459b-b8b7-18e3ac6934fb
+    content: 'Ship as ONE story — the durable-binding fallback and the stuck indicator are mutually dependent: the indicator is the failure branch of the fallback, and shipping the fallback without it reintroduces silent failure. Neither warrants a feature-flag boundary.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1df667a7-6683-4ad8-b03d-128f1a40bdae:
+    id: 1df667a7-6683-4ad8-b03d-128f1a40bdae
+    content: 'In scope: durable fallback advance, tree-state idempotency, and a persistent/actionable stuck indicator whose recovery action is a one-click manual nudge.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3927943f-9c8d-44db-a46d-0d66a2970a53:
+    id: 3927943f-9c8d-44db-a46d-0d66a2970a53
+    content: 'Out of scope, stated explicitly: the automatic never-arriving-`Stop` timer backstop (separate future story — it lives in the main process while advancement is in the renderer and advances on absence of a signal); retroactive startup reconciliation of the already-stalled workflows (a separate migration); broadening cross-session/multi-terminal disambiguation; making hook delivery/transport reliable; the separate resume-prompt readiness fix.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc906053-de89-44c3-989c-b02ba694199f:
+    id: cc906053-de89-44c3-989c-b02ba694199f
+    content: 'Known consequence: an already-completed-but-parked node becomes eligible for the stuck indicator / manual nudge the next time its tree is open — recovery is user-initiated per node, not a startup sweep.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43d689d0-6921-414f-bf2f-b8a023ddda51:
+    id: 43d689d0-6921-414f-bf2f-b8a023ddda51
+    content: Review and challenge
+    children:
+      - 047dd27c-fdb0-4dad-8116-53d25895188d
+      - 838100ce-8775-4a9d-9998-669d6e403fe2
+      - 2ae8a55c-1eb5-4c45-b9f1-b62a9b56cebb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  047dd27c-fdb0-4dad-8116-53d25895188d:
+    id: 047dd27c-fdb0-4dad-8116-53d25895188d
+    content: UX
+    children:
+      - 4f29e7db-2dcd-4e0e-bdb0-da5ea98242e2
+      - 0c5ee24a-1a47-46c0-895d-a0e4ccb454b3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f29e7db-2dcd-4e0e-bdb0-da5ea98242e2:
+    id: 4f29e7db-2dcd-4e0e-bdb0-da5ea98242e2
+    content: A passive auto-dismiss toast would just relocate the manual "Next step" hunt — the stuck indicator must be persistent, state why it is stuck, select the node, and offer one-click recovery.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c5ee24a-1a47-46c0-895d-a0e4ccb454b3:
+    id: 0c5ee24a-1a47-46c0-895d-a0e4ccb454b3
+    content: Successful durable-fallback advance must be silent (it is the happy path the user expected); the indicator fires only on a defined genuinely-blocked predicate, not on every fallback.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  838100ce-8775-4a9d-9998-669d6e403fe2:
+    id: 838100ce-8775-4a9d-9998-669d6e403fe2
+    content: Over-engineering avoided
+    children:
+      - 9e063c50-c6d0-4394-b85e-73c699bb26f6
+      - 61614b7f-7be1-46f5-86b1-6ca667c485bd
+      - 5c1d2dbe-1219-450c-9718-7fd4e9b815aa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e063c50-c6d0-4394-b85e-73c699bb26f6:
+    id: 9e063c50-c6d0-4394-b85e-73c699bb26f6
+    content: 'No new advancement state machine and no persisted execution map: reuse the node''s existing `metadata.status===''completed''` plus `findLiveNodeWithSessionId` / `findSessionBoundNodeForTerminal`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61614b7f-7be1-46f5-86b1-6ca667c485bd:
+    id: 61614b7f-7be1-46f5-86b1-6ca667c485bd
+    content: No new persisted fields for evidence, idempotency, or stuck-state — all three derive from existing tree state.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c1d2dbe-1219-450c-9718-7fd4e9b815aa:
+    id: 5c1d2dbe-1219-450c-9718-7fd4e9b815aa
+    content: Idempotency is not reimplemented for the normal path — the existing dispatcher clear-on-read already de-dups same-turn Stops there.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ae8a55c-1eb5-4c45-b9f1-b62a9b56cebb:
+    id: 2ae8a55c-1eb5-4c45-b9f1-b62a9b56cebb
+    content: ROI
+    children:
+      - c5f69992-6abf-47c5-9d79-7cb37b398acd
+      - 0c53e81c-71bb-4dfe-ac2d-8b410dd88c9e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5f69992-6abf-47c5-9d79-7cb37b398acd:
+    id: c5f69992-6abf-47c5-9d79-7cb37b398acd
+    content: 'High-ROI core: the durable-binding fallback is small, contained, and removes the silent drop logged in the thousands.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c53e81c-71bb-4dfe-ac2d-8b410dd88c9e:
+    id: 0c53e81c-71bb-4dfe-ac2d-8b410dd88c9e
+    content: The automatic timeout backstop is unproven in frequency and higher-risk (advances on absence of a signal, across the main/renderer boundary); deferring it while shipping the manual nudge captures the recovery value at a fraction of the risk.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f3fb3d0-956d-4ae5-ae25-b33aed87ed60:
+    id: 7f3fb3d0-956d-4ae5-ae25-b33aed87ed60
+    content: Technical refinement
+    children:
+      - 969ab6d3-4061-4383-ad44-e7bb5480f5f6
+      - 08165e22-c4f2-4668-baa0-88c1604a9fbf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  969ab6d3-4061-4383-ad44-e7bb5480f5f6:
+    id: 969ab6d3-4061-4383-ad44-e7bb5480f5f6
+    content: Complications
+    children:
+      - 3f8c8042-3e54-4952-b78f-ba328128837e
+      - 1c3bacb0-f50b-4209-9b00-0561aba7ded0
+      - c9cbbb94-0cab-46a7-93f2-33543dbb2361
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f8c8042-3e54-4952-b78f-ba328128837e:
+    id: 3f8c8042-3e54-4952-b78f-ba328128837e
+    content: Edge cases / risks not yet in acceptance criteria
+    children:
+      - 6ed8f9bf-5454-40f0-8ce4-8edd13409dca
+      - 32034890-e003-45d6-9a50-fe0439c64568
+      - 340cbeef-d5f2-486a-96dd-51f615bc96e6
+      - d0cc624f-59b4-408b-931d-81f5492d91a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ed8f9bf-5454-40f0-8ce4-8edd13409dca:
+    id: 6ed8f9bf-5454-40f0-8ce4-8edd13409dca
+    content: 'Duplicate `metadata.sessionId` across a chain: session-node resolution is first-writer-wins over the node index, so if several nodes a session drove still carry its id, the fallback could resolve a non-frontier node — resolution must prefer the completed-but-parked frontier node, with a test to cover it.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32034890-e003-45d6-9a50-fe0439c64568:
+    id: 32034890-e003-45d6-9a50-fe0439c64568
+    content: 'Binding resolves but the terminal is gone: after reload the re-seed may target a `terminalTabId` derived from `event.terminal_id` whose tab was closed — this must route to the stuck indicator, not send into a dead tab; the criteria cover "no resolvable binding" but not "binding resolves, terminal absent".'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  340cbeef-d5f2-486a-96dd-51f615bc96e6:
+    id: 340cbeef-d5f2-486a-96dd-51f615bc96e6
+    content: A checkpoint completed via `announce_step_done` is parked awaiting-validation, not awaiting-advance — the completed-and-parked predicate must exclude awaiting-validation so the fallback routes to validation once and never re-fires in a loop.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0cc624f-59b4-408b-931d-81f5492d91a9:
+    id: d0cc624f-59b4-408b-931d-81f5492d91a9
+    content: 'TOCTOU on reload: run-state can repopulate (SessionStart / register-binding) at the same moment a `Stop` arrives, so the tree-state idempotency predicate — not just same-turn de-dup — is the single guard preventing a transient-path and durable-path double-advance.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c3bacb0-f50b-4209-9b00-0561aba7ded0:
+    id: 1c3bacb0-f50b-4209-9b00-0561aba7ded0
+    content: Out of scope (restated)
+    children:
+      - cbdad7c5-6d75-43fd-bb9b-2ac11d20ad9a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbdad7c5-6d75-43fd-bb9b-2ac11d20ad9a:
+    id: cbdad7c5-6d75-43fd-bb9b-2ac11d20ad9a
+    content: Automatic never-arriving-`Stop` timer backstop; retroactive startup reconciliation of already-stalled workflows; multi-terminal / duplicate-session disambiguation beyond the frontier guard; hook delivery/transport reliability; the separate resume-prompt readiness fix.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9cbbb94-0cab-46a7-93f2-33543dbb2361:
+    id: c9cbbb94-0cab-46a7-93f2-33543dbb2361
+    content: ROI watch-point
+    children:
+      - 847cd2f0-0930-454f-bf19-79f617bef787
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  847cd2f0-0930-454f-bf19-79f617bef787:
+    id: 847cd2f0-0930-454f-bf19-79f617bef787
+    content: The fallback core is small and high-ROI; the piece at risk of ballooning is the stuck-indicator UX — keep it to the existing persistent-toast-with-action pattern, since a working fallback makes it rare and a bespoke panel would not pay back.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08165e22-c4f2-4668-baa0-88c1604a9fbf:
+    id: 08165e22-c4f2-4668-baa0-88c1604a9fbf
+    content: Approach summary
+    children:
+      - 431559e5-787f-4804-81c1-a07d480e35c3
+      - 6f389eda-b622-4871-98af-be28ea2e412a
+      - 6ed64c4c-3fcc-4a04-8ab8-b78f62e94aa8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  431559e5-787f-4804-81c1-a07d480e35c3:
+    id: 431559e5-787f-4804-81c1-a07d480e35c3
+    content: 'Lands renderer-side in the hook path: add a durable session→node fallback at the early "no running node" drop in `handleHookEvent`, re-seed a minimal transient `running` entry, and reuse the existing `advanceNode` flow so readiness gating and checkpoint/manual routing are inherited for free.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f389eda-b622-4871-98af-be28ea2e412a:
+    id: 6f389eda-b622-4871-98af-be28ea2e412a
+    content: 'Key concept: the persisted `metadata.status===''completed''` is both the advance-armed signal and the idempotency anchor — no new persisted state; resolution reuses `findLiveNodeWithSessionId` + `findSessionBoundNodeForTerminal`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ed64c4c-3fcc-4a04-8ab8-b78f62e94aa8:
+    id: 6ed64c4c-3fcc-4a04-8ab8-b78f62e94aa8
+    content: 'Will surprise a reviewer: `advanceNode` silently no-ops without a re-seeded `running` entry (the re-seed is the crux), and the fallback must sit before the Stop branch because control never reaches it once the running-node lookup returns null.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1de41fed-cfe7-4b2d-8210-47cb9ec22c2b:
+    id: 1de41fed-cfe7-4b2d-8210-47cb9ec22c2b
+    content: Investigation update — bug hit mid-session in edcf227c, investigated twice, then paused; no fix implemented yet (diagnosis + this spec only)
+    children:
+      - cc19e53f-c0c9-4479-b355-5d84d381402b
+      - e165e9ba-dc65-4dc5-8020-0d2dc4c12492
+      - 9b633ced-1b3b-45c1-a555-7ee8f78413e9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc19e53f-c0c9-4479-b355-5d84d381402b:
+    id: cc19e53f-c0c9-4479-b355-5d84d381402b
+    content: 'Live reproduction confirmed the diagnosis and the durable-binding fallback direction: the stall fired on real autonomous steps (Worktree, then TDD), with `Stop dropped: no running node` warnings in the thousands (~3,296 observed), and reproduced even with `explicit_submit_seen=true` — so the drop is at running-node resolution, not the submit gate.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e165e9ba-dc65-4dc5-8020-0d2dc4c12492:
+    id: e165e9ba-dc65-4dc5-8020-0d2dc4c12492
+    content: 'New cause found on recurrence — the stall is also a regression: it became systematic right after a recent build, suspected in commits `b2ca9e6` (inject store accessors to remove storeManager cycles) and `867731a` (explicit store action dependencies). The Stop handler may resolve `workflowExecutionStates` from a different store instance than `startWorkflow` wrote to (`getStoreForFile` creates a new store on a key miss), giving "no running node" even when run-state was never cleared.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b633ced-1b3b-45c1-a555-7ee8f78413e9:
+    id: 9b633ced-1b3b-45c1-a555-7ee8f78413e9
+    content: 'Implication: confirm and handle this cross-store wiring regression before assuming the durable-binding fallback alone closes the bug — it is distinct from the transient-state-loss path specced above (the refactors left the advance logic itself untouched) and was left unresolved at handoff.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b41cf6d-f1e9-4c8a-8a6d-862f9786c881:
+    id: 6b41cf6d-f1e9-4c8a-8a6d-862f9786c881
+    content: review feedback
+    children:
+      - 77d13883-8d3f-4175-b672-5ff3930c8bf0
+      - 094895a7-2844-4820-9220-e49aec85a169
+      - 58210995-bcbb-413f-85c6-a16425487e6f
+      - 3f7e3b6e-a4b8-4215-9259-5a7414fb35f6
+      - 32b7e547-3482-47f0-865c-8987cdd64630
+    metadata:
+      status: pending
+  77d13883-8d3f-4175-b672-5ff3930c8bf0:
+    id: 77d13883-8d3f-4175-b672-5ff3930c8bf0
+    content: 'Verdict: APPROVE (code-reviewer subagent). No blocking or should-fix findings; the production change is prompt-text-only and does exactly what the spec claims.'
+    children: []
+    metadata:
+      status: pending
+  094895a7-2844-4820-9220-e49aec85a169:
+    id: 094895a7-2844-4820-9220-e49aec85a169
+    content: 'Gating verified: the clause lives in buildNeedsReviewInstruction, reached only via buildTerminalExecuteOnlyPrompt / buildTerminalBothPrompt when includeNeedsReview = isAutonomous && flags.execute (sendActions.ts:305). Collaborate-only short-circuits to buildTerminalCollaboratePrompt (:314) and web never passes includeNeedsReview (:308-311), so manual, collaborate-only, and web/clipboard prompts correctly omit it.'
+    children: []
+    metadata:
+      status: pending
+  58210995-bcbb-413f-85c6-a16425487e6f:
+    id: 58210995-bcbb-413f-85c6-a16425487e6f
+    content: 'Correctness: the clause''s "POST to the hook above" reference is valid because the clause sits after the curl POST line in the same template literal. Change is +2/-1 with no new hook/endpoint/flag/state; the long template line and the "why"-style test comment are convention-consistent (no JSDoc, no ticket refs).'
+    children: []
+    metadata:
+      status: pending
+  3f7e3b6e-a4b8-4215-9259-5a7414fb35f6:
+    id: 3f7e3b6e-a4b8-4215-9259-5a7414fb35f6
+    content: 'Tests: 10 new tests exercise the right modes (autonomous via autonomousCollaborateInTerminal, manual via collaborateInTerminal, web via collaborate). Every asserted phrase occurs only in the new clause/guardrail (grep-confirmed), so positive matches are uniquely anchored and not.toContain checks cannot pass for the wrong reason; no empty tests; isolation sound; full file 152/152 pass.'
+    children: []
+    metadata:
+      status: pending
+  32b7e547-3482-47f0-865c-8987cdd64630:
+    id: 32b7e547-3482-47f0-865c-8987cdd64630
+    content: 'Optional nit (no change needed): the manual-mode omission tests rely on the default isAutonomous=false, so the "autonomous axis" is proven in aggregate across the block rather than per-test. Readability only, not a coverage gap.'
+    children: []
+    metadata:
+      status: pending
+  272aae31-3f0b-4989-b313-9afde00aa63a:
+    id: 272aae31-3f0b-4989-b313-9afde00aa63a
+    content: 'TDD tests added (worktree): `src/renderer/store/tree/actions/tests/workflowDurableAdvanceFallback.test.ts`. RED (3, fail until the fallback lands): durable-binding advance when run-state cleared; "no running node" drop-warning suppressed once a binding resolves; resolution via `event.terminal_id` after `workflowSessionMap` reset. GREEN guards (5): not-completed → no advance; no binding → drop still fires; transient authoritative (never overrides a live binding); run-state-intact regression baseline; manual step never auto-advances. Title-only (post-fix shape uncertain): stuck indicator (persistent/actionable/reason-class/deep-link/a11y/one-click recovery), idempotency + TOCTOU double-advance, the `advanceNode` re-seed crux, recovered-checkpoint routing, duplicate-`sessionId` frontier resolution. Caveat: the suspected cross-store wiring regression (`b2ca9e6`/`867731a`) is NOT covered by these tests — green here will not by itself prove the bug fixed. Harness assumes the fallback resolves inline via `findLiveNodeWithSessionId(nodes, session_id)`; if the fix injects a new resolver dep instead, update `makeDeps` in this file.'
+    children: []
+    metadata:
+      status: pending
+  90ce8a51-6153-4c43-a1c7-3d6cbdb63133:
+    id: 90ce8a51-6153-4c43-a1c7-3d6cbdb63133
+    content: review resolution
+    children:
+      - 7994aa94-7c16-46bc-9c91-525bae9714a1
+      - 387d455d-fe84-4e1a-baf3-15247ce7aafd
+      - e02742e7-4fac-435e-8868-98781ae41ec8
+    metadata:
+      status: pending
+  7994aa94-7c16-46bc-9c91-525bae9714a1:
+    id: 7994aa94-7c16-46bc-9c91-525bae9714a1
+    content: 'Major issues fixed: none — the review verdict was APPROVE with no blocking and no should-fix findings.'
+    children: []
+    metadata:
+      status: pending
+  387d455d-fe84-4e1a-baf3-15247ce7aafd:
+    id: 387d455d-fe84-4e1a-baf3-15247ce7aafd
+    content: 'Minor issues fixed: none — no code or test change was required; the diff stands as reviewed.'
+    children: []
+    metadata:
+      status: pending
+  e02742e7-4fac-435e-8868-98781ae41ec8:
+    id: e02742e7-4fac-435e-8868-98781ae41ec8
+    content: 'Feedback skipped (with justification): the single optional nit — "manual-mode tests prove the autonomous axis only in aggregate." Skipped, and mildly pushed back on: the gate isAutonomous && flags.execute is in fact cleanly isolated by matched flag pairs (autonomous-both vs manual-execute differ only in isAutonomous; autonomous-both vs autonomous-collaborate-only differ only in execute), so there is no readability gap or coverage hole. The reviewer itself marked it "no change needed." Verified directly against sendActions.ts:304-317 since SendMessage to the reviewer agent was unavailable this session.'
+    children: []
+    metadata:
+      status: pending
+  9f49bb16-f2c1-44e0-afd2-8d691fb2e88e:
+    id: 9f49bb16-f2c1-44e0-afd2-8d691fb2e88e
+    content: worktree
+    children:
+      - 5220d779-fdff-41f5-9935-80238bbf3052
+      - 5a7580ae-b615-4622-9dda-0a523eb119c3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5220d779-fdff-41f5-9935-80238bbf3052:
+    id: 5220d779-fdff-41f5-9935-80238bbf3052
+    content: vscode://file//Users/brianfox/dev/Arborescent-resume-prompt-readiness
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a7580ae-b615-4622-9dda-0a523eb119c3:
+    id: 5a7580ae-b615-4622-9dda-0a523eb119c3
+    content: 'branch: fix/resume-prompt-session-readiness (forked from master @ 24d03c9)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  accccaa0-5bb2-46ec-a312-00d2557104f3:
+    id: accccaa0-5bb2-46ec-a312-00d2557104f3
+    content: Summary
+    children:
+      - 7344b0db-cedf-4a4c-8bf2-0a759f87001d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7344b0db-cedf-4a4c-8bf2-0a759f87001d:
+    id: 7344b0db-cedf-4a4c-8bf2-0a759f87001d
+    content: Resuming a workflow step whose terminal was closed sends the step prompt before the `claude --resume` session is ready, so the prompt is pasted but never submitted, re-sent 3× on ACK timeout, then the workflow is paused.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f33d030-8777-4137-ac08-bfab3a7583ac:
+    id: 9f33d030-8777-4137-ac08-bfab3a7583ac
+    content: Steps to reproduce
+    children:
+      - ac64ea2e-8d3d-4e67-b626-7a7310abf2fb
+      - 4f030327-8548-4702-af2d-d0a1bff08a8b
+      - 9af3b073-d06b-44ed-ad5e-f9a522053241
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac64ea2e-8d3d-4e67-b626-7a7310abf2fb:
+    id: ac64ea2e-8d3d-4e67-b626-7a7310abf2fb
+    content: 'Precondition: start a workflow on an autonomous/checkpoint step so a Claude session binds to a terminal tab, then close that terminal tab — the session becomes `alive-detached` with its `sessionId`/cwd retained in `sessionRegistry`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f030327-8548-4702-af2d-d0a1bff08a8b:
+    id: 4f030327-8548-4702-af2d-d0a1bff08a8b
+    content: 'User action: right-click the workflow node and choose "Next step" (or otherwise re-trigger the step) so `startWorkflow` routes to `resume-in-new-tab`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9af3b073-d06b-44ed-ad5e-f9a522053241:
+    id: 9af3b073-d06b-44ed-ad5e-f9a522053241
+    content: 'Observation: a new terminal opens running `claude --resume <id>` and the step prompt is pasted into it at the same time, while Claude is still resuming / changing directory.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6687c92f-f7da-4c64-ae2d-0b0c9cc13eaa:
+    id: 6687c92f-f7da-4c64-ae2d-0b0c9cc13eaa
+    content: Expected behavior
+    children:
+      - a23204d4-60e9-4d0a-b7e0-6a87c1bb5de0
+      - cb264205-0ef1-4ada-923a-54d51dee673c
+      - 10e2c66b-50ba-4065-a464-7cf9d2e2e353
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a23204d4-60e9-4d0a-b7e0-6a87c1bb5de0:
+    id: a23204d4-60e9-4d0a-b7e0-6a87c1bb5de0
+    content: 'Happy path: wait for the resumed session''s SessionStart (hook → `registerSession`) before sending the step prompt — the same deferral the fresh-launch path uses — so the prompt lands in a ready REPL and auto-submits.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb264205-0ef1-4ada-923a-54d51dee673c:
+    id: cb264205-0ef1-4ada-923a-54d51dee673c
+    content: 'Edge case: if the resumed session never starts (Claude missing, resume fails, hook unconfigured), surface a clear timeout/error instead of silently re-pasting 3× and pausing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10e2c66b-50ba-4065-a464-7cf9d2e2e353:
+    id: 10e2c66b-50ba-4065-a464-7cf9d2e2e353
+    content: 'Edge case: if the session no longer exists on disk, abort the resume up front, as the manual "Resume session" path already does via `claudeSessionExists`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e576e2c8-7ad8-4c38-8afd-1053b1265b2d:
+    id: e576e2c8-7ad8-4c38-8afd-1053b1265b2d
+    content: Actual behavior
+    children:
+      - 131061eb-0100-484c-828a-5addabd0d191
+      - 0986107b-6f3b-42a4-95e2-23bb81cadf1e
+      - 3dead9e8-3c1e-423a-af24-83514d396ec5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  131061eb-0100-484c-828a-5addabd0d191:
+    id: 131061eb-0100-484c-828a-5addabd0d191
+    content: The `resume-in-new-tab` branch writes `claude --resume <id>\r` then immediately sends the step prompt with no wait for session readiness.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0986107b-6f3b-42a4-95e2-23bb81cadf1e:
+    id: 0986107b-6f3b-42a4-95e2-23bb81cadf1e
+    content: The prompt is delivered as a bracketed paste but the trailing `\r` does not register as a submit because Claude's REPL is still resuming, so the text sits unsent in the input box.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dead9e8-3c1e-423a-af24-83514d396ec5:
+    id: 3dead9e8-3c1e-423a-af24-83514d396ec5
+    content: 'User-visible: the user must press Enter by hand; no ACK arrives, so the prompt is re-pasted up to 3× at 5s intervals, and after the 3rd timeout the workflow is stopped with a "could not be delivered after 3 attempts" toast.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77a3be7e-0d3e-4495-9452-328dfcd26637:
+    id: 77a3be7e-0d3e-4495-9452-328dfcd26637
+    content: Suspected cause
+    children:
+      - 11e90c5f-68a1-4b5a-95c6-95730a72e9d8
+      - 047fd6f4-66e6-4dff-9415-02b68fbbf817
+      - 0f3dfaca-b0df-4a6c-aec6-03cba3526775
+      - daace2e6-4950-49eb-bed7-6fba8e612265
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11e90c5f-68a1-4b5a-95c6-95730a72e9d8:
+    id: 11e90c5f-68a1-4b5a-95c6-95730a72e9d8
+    content: '`startWorkflow` resume branch calls `bindSessionTab` optimistically right after writing `claude --resume`, before SessionStart fires (src/renderer/store/tree/actions/workflowExecutionActions.ts:252-261).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  047fd6f4-66e6-4dff-9415-02b68fbbf817:
+    id: 047fd6f4-66e6-4dff-9415-02b68fbbf817
+    content: That eager bind makes `commitWorkflowStartOnTerminal` see `terminalAlreadyHasSession === true`, routing to `clearSessionManager.maybeClearThenSend` → immediate `sendPrompt` instead of `claudeLaunchManager.launchIfNeededThenSend` (workflowExecutionActions.ts:376-384).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f3dfaca-b0df-4a6c-aec6-03cba3526775:
+    id: 0f3dfaca-b0df-4a6c-aec6-03cba3526775
+    content: '`launchIfNeededThenSend` is the only path that defers the send until `onSessionStartConfirmed`; the resume path bypasses it, so nothing waits for the session to come up (src/renderer/store/tree/actions/workflowClaudeLaunch.ts:31-52).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  daace2e6-4950-49eb-bed7-6fba8e612265:
+    id: daace2e6-4950-49eb-bed7-6fba8e612265
+    content: 'Why the existing guard misses it: the SessionStart-gated deferral exists only for fresh `claude\r` launches — resume reuses an already-"bound" session id, skipping the launch gate, leaving only the ACK-retry timer, which just re-pastes into a not-yet-ready REPL (src/renderer/store/tree/actions/workflowAckManager.ts:63-69).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b22d097-f893-435d-80d9-6076d506bfc4:
+    id: 2b22d097-f893-435d-80d9-6076d506bfc4
+    content: Affected files
+    children:
+      - 4192d05b-0732-4800-bab5-910d270be581
+      - a6ed6c88-ade3-4354-9f3c-dcc876692da4
+      - f9e7e994-7e43-4c8e-8575-0aa404f6b0c3
+      - f27fbc5e-2cc2-4ee2-8ca4-a4c7a272ab60
+      - d3a6bb6b-d8ee-4c9a-be3c-552edc80b85c
+      - a0adae82-92e6-4916-9c58-a4a649231e76
+      - 198a04a3-d7ff-48ba-b4cd-5634f729da8a
+      - 183e8e4f-6edb-41ae-9ba7-9959680a055d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4192d05b-0732-4800-bab5-910d270be581:
+    id: 4192d05b-0732-4800-bab5-910d270be581
+    content: 'Primary suspect: src/renderer/store/tree/actions/workflowExecutionActions.ts:252-261 — resume-in-new-tab eager bind + immediate `startWorkflowOnTerminal`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6ed6c88-ade3-4354-9f3c-dcc876692da4:
+    id: a6ed6c88-ade3-4354-9f3c-dcc876692da4
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts:376-384 — `terminalAlreadyHasSession` branch that skips the launch-deferral.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9e7e994-7e43-4c8e-8575-0aa404f6b0c3:
+    id: f9e7e994-7e43-4c8e-8575-0aa404f6b0c3
+    content: src/renderer/store/tree/actions/workflowClaudeLaunch.ts:31-52 — the correct SessionStart-gated deferral the resume path should reuse.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f27fbc5e-2cc2-4ee2-8ca4-a4c7a272ab60:
+    id: f27fbc5e-2cc2-4ee2-8ca4-a4c7a272ab60
+    content: src/renderer/services/terminalExecution.ts:9-13 — bracketed paste + fixed 200ms + `\r`; the Enter that does not register during resume.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3a6bb6b-d8ee-4c9a-be3c-552edc80b85c:
+    id: d3a6bb6b-d8ee-4c9a-be3c-552edc80b85c
+    content: 'src/renderer/store/tree/actions/workflowAckManager.ts:5-6,63-89 — `ACK_RETRY_CAP=3` / `ACK_TIMEOUT_MS=5000`: the 3 re-pastes then `stopWorkflow`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0adae82-92e6-4916-9c58-a4a649231e76:
+    id: a0adae82-92e6-4916-9c58-a4a649231e76
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts:549-593 — `dispatchRecurseStart` / `openInheritedResumeTerminal` share the same eager-bind-then-send race on the recurse path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  198a04a3-d7ff-48ba-b4cd-5634f729da8a:
+    id: 198a04a3-d7ff-48ba-b4cd-5634f729da8a
+    content: src/renderer/store/tree/actions/workflowClearSession.ts:30-31 — parallel `CLEAR_RETRY_CAP=3` race when the step has `clearSession`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  183e8e4f-6edb-41ae-9ba7-9959680a055d:
+    id: 183e8e4f-6edb-41ae-9ba7-9959680a055d
+    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts:250-259 — `autoStartAfterMove` triggers `startWorkflow` on "Next step".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fcf23d6-a22b-4f25-aac1-0e867b668303:
+    id: 4fcf23d6-a22b-4f25-aac1-0e867b668303
+    content: Regression window
+    children:
+      - 346fac9d-e545-442d-9846-8bc113169b3a
+      - a7d30bc6-804a-4993-b4d6-4f2c299a4324
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  346fac9d-e545-442d-9846-8bc113169b3a:
+    id: 346fac9d-e545-442d-9846-8bc113169b3a
+    content: 'Last known good: before e84dd49 (2026-05-09) — no `claude --resume` send path existed, so the resume-specific race could not occur.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7d30bc6-804a-4993-b4d6-4f2c299a4324:
+    id: a7d30bc6-804a-4993-b4d6-4f2c299a4324
+    content: 'First observed broken: e84dd49 (2026-05-09, "resumable AI sessions per workflow step"), extended same-day by 89892f2 and 2219213; the "3 prompts then pause" amplification comes from the ACK-retry cap added earlier in d0b124d (2026-04-19).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bff9e7b1-f9e8-4915-8eae-63666d3f5aa1:
+    id: bff9e7b1-f9e8-4915-8eae-63666d3f5aa1
+    content: Severity
+    children:
+      - 1bb06cbe-8e6a-4f54-bf5f-dd87403e3db7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bb06cbe-8e6a-4f54-bf5f-dd87403e3db7:
+    id: 1bb06cbe-8e6a-4f54-bf5f-dd87403e3db7
+    content: 'Medium-high: every resume-after-close stalls — the user must press Enter manually and the workflow silently pauses after ~15s; no data loss, but it breaks the core "resume step / Next step" UX.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7390fed9-ab7b-4e74-998c-f6fac78ea800:
+    id: 7390fed9-ab7b-4e74-998c-f6fac78ea800
+    content: Notes
+    children:
+      - 7ea9689c-52fe-437b-b28c-1bc6f25026d0
+      - da9fbe98-a78b-48d5-8770-0fd7668b4a89
+      - 31d95c65-aa30-4eae-be64-8740dfe6c54e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ea9689c-52fe-437b-b28c-1bc6f25026d0:
+    id: 7ea9689c-52fe-437b-b28c-1bc6f25026d0
+    content: 'Look-alike to disambiguate: the manual "Resume session" menu item only opens the terminal and does NOT send a prompt (src/renderer/store/tree/actions/workflowSessionResume.ts:148-159), so it does not show the race — distinguish it from "Next step" / auto-start, which does.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da9fbe98-a78b-48d5-8770-0fd7668b4a89:
+    id: da9fbe98-a78b-48d5-8770-0fd7668b4a89
+    content: 'Look-alike to disambiguate: the `/clear` retry race (CLEAR_RETRY_CAP=3) only triggers when the step has `clearSession` set — separate from the prompt ACK race, though both cap at 3 attempts / 5s.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31d95c65-aa30-4eae-be64-8740dfe6c54e:
+    id: 31d95c65-aa30-4eae-be64-8740dfe6c54e
+    content: 'UX/telemetry gap: there is no readiness signal between "`claude --resume` issued" and "session live" — add a pending-resume state and gate the prompt send on SessionStart; the "could not be delivered after 3 attempts" toast also misattributes the cause to missing UserPromptSubmit config when the real cause is sending too early.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f34d257-c3b8-4cad-b0e3-7c46675efdae:
+    id: 1f34d257-c3b8-4cad-b0e3-7c46675efdae
+    content: Technical refinement
+    children:
+      - 5726e181-0ea6-436f-a843-bb0f66d9b7f2
+      - 8b2ab1aa-7fa8-4f28-9e98-e7d436aa2278
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5726e181-0ea6-436f-a843-bb0f66d9b7f2:
+    id: 5726e181-0ea6-436f-a843-bb0f66d9b7f2
+    content: Flag complications
+    children:
+      - a92b19a7-3d92-4580-94ef-52f1a8b742ec
+      - a79b079e-c871-4218-b774-4de3a35ebab8
+      - 03798079-eee8-429f-b40a-e8b360e5da71
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a92b19a7-3d92-4580-94ef-52f1a8b742ec:
+    id: a92b19a7-3d92-4580-94ef-52f1a8b742ec
+    content: Edge cases / risks
+    children:
+      - 23246364-d39b-4c76-8fec-4f2d63a91238
+      - 4cc81bbe-b1b1-4bcd-94a0-a5cbcef3ed49
+      - 6be1f926-d56a-4736-bc10-2fd5971d24e4
+      - 6d8f98b4-7fae-4a78-81bc-6842ee7cdd1c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23246364-d39b-4c76-8fec-4f2d63a91238:
+    id: 23246364-d39b-4c76-8fec-4f2d63a91238
+    content: 'Dependency verified, not assumed: `claude --resume` does reach `registerSession` — the SessionStart hook posts on any source incl. "resume" (hookScripts.ts:94-104) and `registerSession` already calls `onSessionStartConfirmed` for the terminal (workflowExecutionActions.ts:974), so the resumed session''s start is observable to gate on.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cc81bbe-b1b1-4bcd-94a0-a5cbcef3ed49:
+    id: 4cc81bbe-b1b1-4bcd-94a0-a5cbcef3ed49
+    content: 'A bounded resume-wait timeout is required: if SessionStart never arrives (Claude not installed, hooks unconfigured) the deferred send would hang — the existing fresh-launch deferral has no timeout either, so this gap must be closed here, not inherited.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6be1f926-d56a-4736-bc10-2fd5971d24e4:
+    id: 6be1f926-d56a-4736-bc10-2fd5971d24e4
+    content: All resume entry points must change together — `resume-in-new-tab` (Next step / Start Workflow) and the recurse path (`dispatchRecurseStart` / `openInheritedResumeTerminal`), plus the `/clear`-then-send sequence on `clearSession` steps — or recurse chains and clear-steps keep racing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d8f98b4-7fae-4a78-81bc-6842ee7cdd1c:
+    id: 6d8f98b4-7fae-4a78-81bc-6842ee7cdd1c
+    content: 'Decouple "tab bound for routing/liveness" from "ready to send": deferring the send must not break `focus-existing-tab` routing or let a rapid second "Next step" spawn a duplicate resume tab.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a79b079e-c871-4218-b774-4de3a35ebab8:
+    id: a79b079e-c871-4218-b774-4de3a35ebab8
+    content: Out of scope
+    children:
+      - 06f6058f-5973-4f50-bc65-bc7dd1103b21
+      - 82240d02-35dc-414c-8832-e5e762ce9169
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06f6058f-5973-4f50-bc65-bc7dd1103b21:
+    id: 06f6058f-5973-4f50-bc65-bc7dd1103b21
+    content: Re-engineering the bracketed-paste + 200ms + `\r` timing in `terminalExecution.ts` — the un-submitted Enter is a symptom of sending too early and resolves once the send waits for readiness.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  82240d02-35dc-414c-8832-e5e762ce9169:
+    id: 82240d02-35dc-414c-8832-e5e762ce9169
+    content: General retry/timeout hardening of the fresh-launch `claudeLaunchManager` beyond what this fix needs (pre-existing gap).
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  03798079-eee8-429f-b40a-e8b360e5da71:
+    id: 03798079-eee8-429f-b40a-e8b360e5da71
+    content: ROI / complexity
+    children:
+      - 10bc6690-fbe9-47cb-9011-f4ff42c6a77f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10bc6690-fbe9-47cb-9011-f4ff42c6a77f:
+    id: 10bc6690-fbe9-47cb-9011-f4ff42c6a77f
+    content: 'Bounded and de-risked: the required SessionStart-on-resume signal already exists and already drives the fresh-launch deferral, so the fix mostly re-routes the resume branches through that same gate rather than inventing a mechanism — clearly worth doing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b2ab1aa-7fa8-4f28-9e98-e7d436aa2278:
+    id: 8b2ab1aa-7fa8-4f28-9e98-e7d436aa2278
+    content: Summarise the approach
+    children:
+      - e0354bb9-ac3c-499f-85cb-8f6a45e97446
+      - f4bc378c-768a-4333-8c8e-ede4642b1366
+      - 9bfd781f-7f7b-43ca-9ab3-4cece4a32d31
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0354bb9-ac3c-499f-85cb-8f6a45e97446:
+    id: e0354bb9-ac3c-499f-85cb-8f6a45e97446
+    content: Register a pending prompt-send keyed by the new terminal on each resume path and let the resumed session's SessionStart trigger it — reuse/extend the `workflowClaudeLaunch.ts` pending mechanism as a no-write variant (since `claude --resume` is already issued) — instead of eagerly `bindSessionTab` + immediate `startWorkflowOnTerminal` → send.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4bc378c-768a-4333-8c8e-ede4642b1366:
+    id: f4bc378c-768a-4333-8c8e-ede4642b1366
+    content: 'Non-obvious for the reviewer: the bug is not in the Enter/paste code — reusing an already-"bound" session id makes `commitWorkflowStartOnTerminal` take the immediate-send branch and skip the SessionStart gate; keep the tab↔session bind for routing but hang the send off SessionStart.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bfd781f-7f7b-43ca-9ab3-4cece4a32d31:
+    id: 9bfd781f-7f7b-43ca-9ab3-4cece4a32d31
+    content: Add a bounded resume-wait timeout that surfaces a clear error instead of hanging, and corrects the misleading "check UserPromptSubmit config" toast.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c0c0d75-2373-4fcd-88fc-645b88c41476:
+    id: 5c0c0d75-2373-4fcd-88fc-645b88c41476
+    content: Verification summary
+    children:
+      - 9856e39b-fe85-4786-8a74-eb7be964091a
+      - 44c23f0b-a609-4857-9ba9-c8df87b7a8fc
+      - b24fe8ff-c36d-487f-8b46-fe5dd9ea3ce1
+      - 3d4b7b87-0626-4cf1-aa84-bd41e683763e
+      - 904d388c-5db4-4332-921d-65871b706b29
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9856e39b-fe85-4786-8a74-eb7be964091a:
+    id: 9856e39b-fe85-4786-8a74-eb7be964091a
+    content: 'Implemented & verified: SessionStart-gated deferral (no-write `deferSendUntilSessionStart` — never writes `claude\r`), bounded 30s resume-wait timeout that stops the workflow with a clear error, both resume entry points (resume-in-new-tab + recurse), and clearSession-on-resume routed through `maybeClearThenSend` (clears only after the session is ready). Action suite 1426/0, workflow integration 21/0, ESLint + tsc clean on changed files.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44c23f0b-a609-4857-9ba9-c8df87b7a8fc:
+    id: 44c23f0b-a609-4857-9ba9-c8df87b7a8fc
+    content: 'Undone: the up-front `claudeSessionExists` abort on the start/recurse resume path (matching the manual Resume path). The 30s timeout already fails a gone/never-starting session gracefully (stop + clear error), so this is an optional faster-failure refinement, not required for correctness — left for a follow-up.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b24fe8ff-c36d-487f-8b46-fe5dd9ea3ce1:
+    id: b24fe8ff-c36d-487f-8b46-fe5dd9ea3ce1
+    content: 'Abandoned (out of scope by design): re-engineering `terminalExecution.ts` paste/200ms/`\r` timing — the un-submitted Enter resolves once the send waits for readiness, so no change was needed.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d4b7b87-0626-4cf1-aa84-bd41e683763e:
+    id: 3d4b7b87-0626-4cf1-aa84-bd41e683763e
+    content: 'Abandoned (out of scope by design): adding a timeout to the fresh-launch `claudeLaunchManager` — pre-existing gap beyond this fix; the new timeout is resume-specific.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  904d388c-5db4-4332-921d-65871b706b29:
+    id: 904d388c-5db4-4332-921d-65871b706b29
+    content: 'Test-coverage note: recurse-resume and clearSession-on-resume integration cases are left as `it.todo` because they exercise the same `deferSend` code path already covered by unit tests plus the resume-in-new-tab integration test; full harnesses (decomposition siblings, clear-retry timers) would be high-boilerplate for little added confidence.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  636f9782-ed9c-4cf5-aa24-616b31944f25:
+    id: 636f9782-ed9c-4cf5-aa24-616b31944f25
+    content: review feedback
+    children:
+      - 617d1154-566e-4f98-8f2e-452448ac798b
+      - 5a83a8ee-68e2-4875-8f36-283747a8096d
+      - 21d5b168-5be9-45a6-b0db-d08c1aabfb5e
+      - fa359e18-1a59-4b4d-8588-816fe812bcc7
+    metadata:
+      status: pending
+  617d1154-566e-4f98-8f2e-452448ac798b:
+    id: 617d1154-566e-4f98-8f2e-452448ac798b
+    content: 'Verdict: ship-ready, no blocking issues. Reviewer ran type-check + eslint (clean) and the 42 changed-file tests (pass). Race confirmed closed at both resume entry points; eager-bind/defer ordering, timer lifecycle, idempotency on duplicate SessionStart, and clearSession routing (disjoint pendingSends vs pendingClears maps) all verified sound.'
+    children: []
+    metadata:
+      status: pending
+  5a83a8ee-68e2-4875-8f36-283747a8096d:
+    id: 5a83a8ee-68e2-4875-8f36-283747a8096d
+    content: 'Should-fix — retry re-race after timeout: handleResumeTimeout (workflowExecutionActions.ts) calls stopWorkflow(nodeId) but leaves the spawned resume terminal AND its eager workflowSessionMap[sessionId]→terminal entry. A later startWorkflow then routes focus-existing-tab into that half-dead tab and sends immediately — a milder repeat of the original race. Fix: thread terminalId into handleResumeTimeout and drop the workflowSessionMap entry (and/or close the stranded tab) so a retry re-routes through a clean resume.'
+    children: []
+    metadata:
+      status: pending
+  21d5b168-5be9-45a6-b0db-d08c1aabfb5e:
+    id: 21d5b168-5be9-45a6-b0db-d08c1aabfb5e
+    content: 'Nits: (a) launchIfNeededThenSend''s terminalWrite-reject handler inlines pendingSends.delete instead of discardPending (workflowClaudeLaunch.ts) — use discardPending uniformly. (b) Add why-comments: clearPending→discardPending is the resume-timer cleanup on terminal-close and only fires because handleTerminalClosed guards entry.state===''running''; and in commitWorkflowStartOnTerminal, deferSend MUST be checked before terminalAlreadyHasSession because the resume path eager-binds the session map first (ordering is load-bearing).'
+    children: []
+    metadata:
+      status: pending
+  fa359e18-1a59-4b4d-8588-816fe812bcc7:
+    id: fa359e18-1a59-4b4d-8588-816fe812bcc7
+    content: 'Test gaps (non-blocking): the timeout unit test advances 60s for a 30s constant so it doesn''t pin the boundary; and recurse-resume passing deferSend=true is covered only by code-read, not a test — consider promoting the recurse-resume it.todo since recurse is the autonomous hot path.'
     children: []
     metadata:
       status: pending
@@ -191332,10 +193744,6 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   b6be4def-d51f-4d8c-8d7d-fa3c11346bb0:
     cwd: /Users/brianfox/dev/Arborescent
-  492ffcf3-97e8-4558-9d43-77faa5826d26:
-    cwd: /Users/brianfox/dev/Arborescent
-  a0ac9e86-4221-4f4b-8eac-33969b2b0821:
-    cwd: /Users/brianfox/dev/Arborescent
   42c0538f-6594-4362-aabb-e52ff7974591:
     cwd: /Users/brianfox/dev/Arborescent
   b1147442-15f8-4488-a58d-ca0bf7755b57:
@@ -191347,4 +193755,10 @@ sessionRegistry:
   af606ac1-1723-481e-9777-770ea5917034:
     cwd: /Users/brianfox/dev/Arborescent
   8f1b9cef-42cc-4806-975d-7013963e1227:
+    cwd: /Users/brianfox/dev/Arborescent
+  edcf227c-e876-4f79-93bd-b1012ceb61e9:
+    cwd: /Users/brianfox/dev/Arborescent
+  f55a4782-c576-4ae3-b73e-e376b07ee68a:
+    cwd: /Users/brianfox/dev/Arborescent
+  b4613641-8229-4d9c-956e-000394ffde89:
     cwd: /Users/brianfox/dev/Arborescent
