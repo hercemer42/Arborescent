@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-03T22:28:58.397Z'
+updated: '2026-06-04T08:24:03.147Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14412,8 +14412,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children:
-      - 7466cf69-5a0c-43ea-b080-1cd122743608
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -33200,7 +33199,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: NotebookPen
       blueprintColor: '#14b8a6'
-      expanded: true
+      expanded: false
   13c5048b-15eb-4989-a6fc-25032e5c131f:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
@@ -115523,6 +115522,7 @@ nodes:
       - 4f0782b5-830f-4ddf-870a-827c5f4ca28c
       - 651e3053-cc28-4ac0-94b1-306fefece2a6
       - 42e74ca9-2d62-439b-93ff-b040a4989a07
+      - 2b90588b-8c43-44be-8376-a4269b6c6ee2
     metadata:
       status: pending
       isBlueprint: true
@@ -124629,7 +124629,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 2b90588b-8c43-44be-8376-a4269b6c6ee2
+      - 7466cf69-5a0c-43ea-b080-1cd122743608
     metadata:
       status: pending
       isBlueprint: true
@@ -189372,373 +189372,26 @@ nodes:
     id: 7466cf69-5a0c-43ea-b080-1cd122743608
     content: Story 2 ‚Äî Decouple storeManager service-locator via injected accessors
     children:
-      - e7a45145-a670-404c-b867-a3ed3b4463b0
-      - edc29d6a-762f-4760-b61d-9e1e92de7fb1
-      - b6d1f9f3-471a-4d95-a4ee-36fdaf4a9592
-      - d5f8a6b9-7075-4350-b52a-429216ea5a46
-      - 226ea080-e332-4bcd-8424-bb124539fd0c
-      - 41cc1c9b-7bf8-4177-a07a-d40c2cf9346b
+      - e9a731dd-4134-4d59-af88-3db2d7eb0bcf
+      - 7a67d300-b6c8-4ece-8b7d-bf7b6164b4aa
+      - 2c7f880b-6cd9-48ea-a1fe-42f976af3176
+      - cd261cb5-d876-4585-bab2-28ad2cbf16ae
+      - 43dc574f-d705-4775-b8fc-fdbd7a2fa6ac
+      - 09a1b6a6-d516-467e-b618-8a32201bf5d4
+      - ae294834-2074-4756-9a8f-b97435aafcbe
+      - bb83906a-c9c6-47fd-8ca8-b503e5f8c8a1
+      - 7da93328-ee44-4e52-867e-03e188251804
+      - 0ad21177-d19e-4f3f-88eb-2f9bc59f484a
+      - 92edc563-21d9-48ef-8c99-5b1e1bf14f84
+      - ba5e3843-c154-4ebd-adef-41d171a03936
+      - 216a39da-3b5e-4639-812c-3cea32029c2c
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
       groupId: fb7b2a36-b6f5-462d-8cbf-5bc42eef1f5c
       sessionId: 8f1b9cef-42cc-4806-975d-7013963e1227
-  e7a45145-a670-404c-b867-a3ed3b4463b0:
-    id: e7a45145-a670-404c-b867-a3ed3b4463b0
-    content: worktree
-    children:
-      - fc5df796-47dd-4316-8125-18a4a0b501ac
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc5df796-47dd-4316-8125-18a4a0b501ac:
-    id: fc5df796-47dd-4316-8125-18a4a0b501ac
-    content: vscode://file/Users/brianfox/dev/Arborescent-store-manager-accessors
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  edc29d6a-762f-4760-b61d-9e1e92de7fb1:
-    id: edc29d6a-762f-4760-b61d-9e1e92de7fb1
-    content: Scope
-    children:
-      - 044d7e76-8aab-4b75-b0c9-e672c706765d
-      - 28690b43-e13e-43cb-9caa-7d16c49d4ecd
-      - 3c549823-9acb-4944-97fa-0d0f96ef538d
-      - 2e5615b0-f464-4c5c-a158-6b702803df05
-      - 80289a4e-f4b4-4c82-9be3-839d82f2ebc6
-      - aabdb6c8-42e9-44aa-ac09-3f0c90406154
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  044d7e76-8aab-4b75-b0c9-e672c706765d:
-    id: 044d7e76-8aab-4b75-b0c9-e672c706765d
-    content: Integration tests covering store init order and multi-file lifecycle (open/close/save, cross-file paste, zoom) are written first inside this PR via the workflow TDD step ‚Äî commits preceding any topology change; extend existing coverage (fileCloseCleanup, sessionRestoreIntegration, cross-file clipboard tests), don't duplicate
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  28690b43-e13e-43cb-9caa-7d16c49d4ecd:
-    id: 28690b43-e13e-43cb-9caa-7d16c49d4ecd
-    content: 'Define a narrow store-access interface: read accessors (getStoreForFile/getAllStores) plus the lifecycle subset fileActions needs (moveStore, closeFile, hasStore) ‚Äî fileActions has 18 call sites, more than read-only access'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c549823-9acb-4944-97fa-0d0f96ef538d:
-    id: 3c549823-9acb-4944-97fa-0d0f96ef538d
-    content: 'storeManager becomes the composition root: wires its own methods into createTreeStore and the action factories, removing module-load singleton imports from action modules'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e5615b0-f464-4c5c-a158-6b702803df05:
-    id: 2e5615b0-f464-4c5c-a158-6b702803df05
-    content: 'Migrate actual direct importers: fileActions, clipboardActions, clipboardPasteHandlers, treeStore, storeOwnership (DeleteNodeCommand and feedbackTreeStore listed in the original spec do not import storeManager directly ‚Äî feedbackTreeStore is only affected via the createTreeStore signature change)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  80289a4e-f4b4-4c82-9be3-839d82f2ebc6:
-    id: 80289a4e-f4b4-4c82-9be3-839d82f2ebc6
-    content: 'treeStore‚ÜîstoreManager is the hard cycle: createTreeStore''s autoSave wiring closes over storeManager.getAllStores, so fixing it changes the createTreeStore signature, which also touches feedbackTreeStore''s call site'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aabdb6c8-42e9-44aa-ac09-3f0c90406154:
-    id: aabdb6c8-42e9-44aa-ac09-3f0c90406154
-    content: 'Re-verify the annotation assumption first: verified ‚Äî no eslint-disable import/no-cycle annotations exist under src/renderer/store (rule is repo-wide warn), so the criterion reduces to zero warnings'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6d1f9f3-471a-4d95-a4ee-36fdaf4a9592:
-    id: b6d1f9f3-471a-4d95-a4ee-36fdaf4a9592
-    content: Acceptance criteria
-    children:
-      - 63e2a11d-8547-450e-95ba-6e07c84117c4
-      - 7a2e541a-eff0-4502-a87c-8cf55ce3d437
-      - 5a2eaac2-8fb1-4c6f-8e1b-e050fcabfa56
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  63e2a11d-8547-450e-95ba-6e07c84117c4:
-    id: 63e2a11d-8547-450e-95ba-6e07c84117c4
-    content: Zero import/no-cycle warnings remain under src/renderer/store
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a2e541a-eff0-4502-a87c-8cf55ce3d437:
-    id: 7a2e541a-eff0-4502-a87c-8cf55ce3d437
-    content: New integration tests cover init order, multi-file open/close/save, cross-file paste, and zoom, and pass both before and after the topology change ‚Äî no behavior change
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a2eaac2-8fb1-4c6f-8e1b-e050fcabfa56:
-    id: 5a2eaac2-8fb1-4c6f-8e1b-e050fcabfa56
-    content: npm run type-check, lint, and test:run pass
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d5f8a6b9-7075-4350-b52a-429216ea5a46:
-    id: d5f8a6b9-7075-4350-b52a-429216ea5a46
-    content: Dependency
-    children:
-      - e362c1d7-d7ad-479b-b9a3-066321acd82b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e362c1d7-d7ad-479b-b9a3-066321acd82b:
-    id: e362c1d7-d7ad-479b-b9a3-066321acd82b
-    content: Story 1 (explicit action deps) is in progress in Arborescent-store-explicit-deps and touches the same treeStore wiring ‚Äî Story 2 forked from master per user decision; rebase on Story 1 once it lands, before the topology change starts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  226ea080-e332-4bcd-8424-bb124539fd0c:
-    id: 226ea080-e332-4bcd-8424-bb124539fd0c
-    content: User story
-    children:
-      - ec1bf836-65d1-468c-9984-1c54d422408b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ec1bf836-65d1-468c-9984-1c54d422408b:
-    id: ec1bf836-65d1-468c-9984-1c54d422408b
-    content: üìÑ Product spec
-    children:
-      - 0b99798b-e9c3-47a9-ba6a-730ed51ac95e
-      - 2228ed4c-72ad-40ab-b2c7-910c95704e37
-      - 6e0ca6c4-c2d7-4900-815f-72a7189629a7
-      - 3ebe3727-2ef9-47e7-a8b3-4062c056cce6
-      - b9f9b7ea-28b7-45c8-ba6d-444ae2497815
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b99798b-e9c3-47a9-ba6a-730ed51ac95e:
-    id: 0b99798b-e9c3-47a9-ba6a-730ed51ac95e
-    content: Context
-    children:
-      - c5b1e02e-9c2f-4884-a0ad-c6ea035e64d7
-      - 9e33c9f9-71de-46f8-bf49-2caa0fdc0fe4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c5b1e02e-9c2f-4884-a0ad-c6ea035e64d7:
-    id: c5b1e02e-9c2f-4884-a0ad-c6ea035e64d7
-    content: storeManager is a singleton instantiated at module load; treeStore, fileActions, clipboard handlers, and feedback/send actions close import cycles through it (Families B/C/D)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e33c9f9-71de-46f8-bf49-2caa0fdc0fe4:
-    id: 9e33c9f9-71de-46f8-bf49-2caa0fdc0fe4
-    content: These cycles are currently inert (lazy closure access only) ‚Äî the risk is latent, which is why this is deferred rather than bundled
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2228ed4c-72ad-40ab-b2c7-910c95704e37:
-    id: 2228ed4c-72ad-40ab-b2c7-910c95704e37
-    content: User
-    children:
-      - 83a51f8c-3b9f-47ed-926a-7f65b0251a0d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  83a51f8c-3b9f-47ed-926a-7f65b0251a0d:
-    id: 83a51f8c-3b9f-47ed-926a-7f65b0251a0d
-    content: Maintainer refactoring file-lifecycle or store-init code
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e0ca6c4-c2d7-4900-815f-72a7189629a7:
-    id: 6e0ca6c4-c2d7-4900-815f-72a7189629a7
-    content: Goal
-    children:
-      - 6b0ffdc6-6fd9-452c-8454-27a8d8e1f792
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6b0ffdc6-6fd9-452c-8454-27a8d8e1f792:
-    id: 6b0ffdc6-6fd9-452c-8454-27a8d8e1f792
-    content: Store action modules no longer import the storeManager singleton; store accessors are injected, eliminating the remaining cycles
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ebe3727-2ef9-47e7-a8b3-4062c056cce6:
-    id: 3ebe3727-2ef9-47e7-a8b3-4062c056cce6
-    content: Business rules
-    children:
-      - 34bf69ec-716b-4aa3-940f-c507c4bc014b
-      - fb483300-aaec-48d2-a112-3fe95e27c521
-      - 996c1b02-35d1-475e-ac50-596029f6124e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  34bf69ec-716b-4aa3-940f-c507c4bc014b:
-    id: 34bf69ec-716b-4aa3-940f-c507c4bc014b
-    content: 'Hard entry criterion: integration tests covering store init order and multi-file lifecycle (open/close/save, cross-file paste, zoom) must exist and pass BEFORE any topology change'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fb483300-aaec-48d2-a112-3fe95e27c521:
-    id: fb483300-aaec-48d2-a112-3fe95e27c521
-    content: Action modules receive injected store accessors as params, extending the injection treeStore already does for sendActions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  996c1b02-35d1-475e-ac50-596029f6124e:
-    id: 996c1b02-35d1-475e-ac50-596029f6124e
-    content: Each removed annotation must delete its eslint-disable in the same commit as the fix
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9f9b7ea-28b7-45c8-ba6d-444ae2497815:
-    id: b9f9b7ea-28b7-45c8-ba6d-444ae2497815
-    content: Acceptance criteria
-    children:
-      - 8e3f2886-4393-4700-bae1-7043704da383
-      - a90ca7d2-358c-4822-9b24-a60955e143bb
-      - f4240b93-b3f7-4794-acdd-7e0836b62034
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e3f2886-4393-4700-bae1-7043704da383:
-    id: 8e3f2886-4393-4700-bae1-7043704da383
-    content: Zero import/no-cycle warnings (including annotated ones) remain under src/renderer/store
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a90ca7d2-358c-4822-9b24-a60955e143bb:
-    id: a90ca7d2-358c-4822-9b24-a60955e143bb
-    content: New integration tests cover multi-file open/close/save and cross-file paste before the refactor lands
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4240b93-b3f7-4794-acdd-7e0836b62034:
-    id: f4240b93-b3f7-4794-acdd-7e0836b62034
-    content: npm run type-check, lint, and test:run pass; no behavior change
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41cc1c9b-7bf8-4177-a07a-d40c2cf9346b:
-    id: 41cc1c9b-7bf8-4177-a07a-d40c2cf9346b
-    content: Issues
-    children:
-      - b1620c96-6677-45c9-afee-a4a17980f73b
-      - 20643f46-0137-4aa2-abc5-ba4e29dd4d44
-      - 02754b03-8de5-412b-a072-5092ba3daecd
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1620c96-6677-45c9-afee-a4a17980f73b:
-    id: b1620c96-6677-45c9-afee-a4a17980f73b
-    content: Node text has mojibake (‚Äî for em-dash, üìÑ for emoji, ‚Üî for arrow) — UTF-8 bytes were decoded as Mac-Roman somewhere in the clipboard-paste path; preserved as-is per no-rewrite rule, worth fixing the encoding at the paste boundary
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  20643f46-0137-4aa2-abc5-ba4e29dd4d44:
-    id: 20643f46-0137-4aa2-abc5-ba4e29dd4d44
-    content: 'Resolved: TDD step initially adopted Story 1''s worktree (Arborescent-store-explicit-deps) by mistake ‚Äî Story 1 is actively in progress there; Story 2 now has its own worktree (Arborescent-store-manager-accessors, branch refactor/store-manager-injected-accessors, forked from master) and the test file was moved there; all 17 tests pass on the clean baseline'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  02754b03-8de5-412b-a072-5092ba3daecd:
-    id: 02754b03-8de5-412b-a072-5092ba3daecd
-    content: 'Implementation step paused on the Dependency gate: Story 1 has not landed (master still at 462bb20) and its WIP now also modifies clipboardActions.ts and clipboardPasteHandlers.ts ‚Äî the same files Story 2 migrates; starting the topology change now would race a parallel rewrite of the same wiring ‚Äî NeedsReview sent; resume this step after Story 1 lands and this branch is rebased, or explicitly waive the gate'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   faa9096b-19e4-4616-8c10-3994060c1a32:
     id: faa9096b-19e4-4616-8c10-3994060c1a32
     content: worktree
@@ -190624,6 +190277,923 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9a731dd-4134-4d59-af88-3db2d7eb0bcf:
+    id: e9a731dd-4134-4d59-af88-3db2d7eb0bcf
+    content: worktree
+    children:
+      - 5d1b045a-4134-4f97-9755-80a49db63924
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d1b045a-4134-4f97-9755-80a49db63924:
+    id: 5d1b045a-4134-4f97-9755-80a49db63924
+    content: vscode://file/Users/brianfox/dev/Arborescent-store-manager-accessors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a67d300-b6c8-4ece-8b7d-bf7b6164b4aa:
+    id: 7a67d300-b6c8-4ece-8b7d-bf7b6164b4aa
+    content: Scope
+    children:
+      - 6d7198db-0233-4b7c-8428-76031a927237
+      - a5af11ef-121c-4883-a704-59fc83e57ca3
+      - f3a44f3f-9da8-490f-ad07-7e63c3fb6ef6
+      - 2d0ec9e1-0346-4bf9-b98b-ea8e51c5748b
+      - 00aa5c20-716b-450b-a19e-76ba19ee4879
+      - 09fe8fed-475e-4ebd-b31c-8ccbd23f103b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d7198db-0233-4b7c-8428-76031a927237:
+    id: 6d7198db-0233-4b7c-8428-76031a927237
+    content: Integration tests covering store init order and multi-file lifecycle (open/close/save, cross-file paste, zoom) are written first inside this PR via the workflow TDD step ‚Äî commits preceding any topology change; extend existing coverage (fileCloseCleanup, sessionRestoreIntegration, cross-file clipboard tests), don't duplicate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5af11ef-121c-4883-a704-59fc83e57ca3:
+    id: a5af11ef-121c-4883-a704-59fc83e57ca3
+    content: 'Define a narrow store-access interface: read accessors (getStoreForFile/getAllStores) plus the lifecycle subset fileActions needs (moveStore, closeFile, hasStore) ‚Äî fileActions has 18 call sites, more than read-only access'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3a44f3f-9da8-490f-ad07-7e63c3fb6ef6:
+    id: f3a44f3f-9da8-490f-ad07-7e63c3fb6ef6
+    content: 'storeManager becomes the composition root: wires its own methods into createTreeStore and the action factories, removing module-load singleton imports from action modules'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d0ec9e1-0346-4bf9-b98b-ea8e51c5748b:
+    id: 2d0ec9e1-0346-4bf9-b98b-ea8e51c5748b
+    content: 'Migrate actual direct importers: fileActions, clipboardActions, clipboardPasteHandlers, treeStore, storeOwnership (DeleteNodeCommand and feedbackTreeStore listed in the original spec do not import storeManager directly ‚Äî feedbackTreeStore is only affected via the createTreeStore signature change)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00aa5c20-716b-450b-a19e-76ba19ee4879:
+    id: 00aa5c20-716b-450b-a19e-76ba19ee4879
+    content: 'treeStore‚ÜîstoreManager is the hard cycle: createTreeStore''s autoSave wiring closes over storeManager.getAllStores, so fixing it changes the createTreeStore signature, which also touches feedbackTreeStore''s call site'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09fe8fed-475e-4ebd-b31c-8ccbd23f103b:
+    id: 09fe8fed-475e-4ebd-b31c-8ccbd23f103b
+    content: 'Re-verify the annotation assumption first: corrected ‚Äî 11 eslint-disable import/no-cycle annotations now exist (Story 1 added them, each tagged ''Story 2 removes this edge''); my pre-Story-1 ''zero annotations'' reading was stale; criterion = delete all 11 + eliminate the underlying cycles'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c7f880b-6cd9-48ea-a1fe-42f976af3176:
+    id: 2c7f880b-6cd9-48ea-a1fe-42f976af3176
+    content: Acceptance criteria
+    children:
+      - 0a60f30e-0cc9-4e0c-89d2-1c34a2a02668
+      - f07c9c36-e82c-4fe8-9d51-b85534c3d885
+      - 8f87b469-2482-454c-ae25-cad205ed2227
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a60f30e-0cc9-4e0c-89d2-1c34a2a02668:
+    id: 0a60f30e-0cc9-4e0c-89d2-1c34a2a02668
+    content: Zero import/no-cycle warnings remain under src/renderer/store
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f07c9c36-e82c-4fe8-9d51-b85534c3d885:
+    id: f07c9c36-e82c-4fe8-9d51-b85534c3d885
+    content: New integration tests cover init order, multi-file open/close/save, cross-file paste, and zoom, and pass both before and after the topology change ‚Äî no behavior change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f87b469-2482-454c-ae25-cad205ed2227:
+    id: 8f87b469-2482-454c-ae25-cad205ed2227
+    content: npm run type-check, lint, and test:run pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd261cb5-d876-4585-bab2-28ad2cbf16ae:
+    id: cd261cb5-d876-4585-bab2-28ad2cbf16ae
+    content: Dependency
+    children:
+      - 627f7f05-2b07-41bb-b3da-0c085a7904f7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  627f7f05-2b07-41bb-b3da-0c085a7904f7:
+    id: 627f7f05-2b07-41bb-b3da-0c085a7904f7
+    content: Story 1 merged at 867731a; this branch rebased on master cleanly (only the new test file); 17 tests still green
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43dc574f-d705-4775-b8fc-fdbd7a2fa6ac:
+    id: 43dc574f-d705-4775-b8fc-fdbd7a2fa6ac
+    content: Scope correction discovered at implementation
+    children:
+      - b40c5f96-4555-481f-b6ef-4359c5ceeb6a
+      - 06262b82-1684-4660-9fbe-8041b4ad9737
+      - 7128c91c-6cf3-4994-a551-decdba682f3a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b40c5f96-4555-481f-b6ef-4359c5ceeb6a:
+    id: b40c5f96-4555-481f-b6ef-4359c5ceeb6a
+    content: Reality is 11 annotated edges across 12 files, not '5 importers' ‚Äî includes 3 independent module-level singletons (storeManager, filesStore, feedbackTreeStore) plus 2 command/service hops (DeleteNodeCommand‚ÜífilesStore, sendActions‚ÜífeedbackService‚ÜífeedbackTreeStore)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06262b82-1684-4660-9fbe-8041b4ad9737:
+    id: 06262b82-1684-4660-9fbe-8041b4ad9737
+    content: 'Story 1''s pattern (factory takes accessor params) cleanly fixes everything created INSIDE createTreeStore: inject getStoreForFile/getAllStores into createTreeStore, pass down to clipboard + nodeDeletion factories ‚Äî kills treeStore‚ÜístoreManager, clipboardActions/clipboardPasteHandlers‚ÜístoreManager, and the DeleteNodeCommand edge'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7128c91c-6cf3-4994-a551-decdba682f3a:
+    id: 7128c91c-6cf3-4994-a551-decdba682f3a
+    content: 'The unsolved part is the independent singletons: filesStore and feedbackTreeStore are created at their own module load, not by createTreeStore, so they can''t take constructor injection ‚Äî this is the ''new pattern'' decision'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09a1b6a6-d516-467e-b618-8a32201bf5d4:
+    id: 09a1b6a6-d516-467e-b618-8a32201bf5d4
+    content: 'Design decision: Option A chosen'
+    children:
+      - d402fe65-4d56-4c64-99ca-f64684ed031f
+      - ac6b2b8a-e8ef-45cd-8781-8865f3dd5dba
+      - c8e4b54e-0b3f-4750-9093-2ba942c01d7c
+      - c0367178-0c5f-4572-8e6a-f0fe6e96f0f8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d402fe65-4d56-4c64-99ca-f64684ed031f:
+    id: d402fe65-4d56-4c64-99ca-f64684ed031f
+    content: 'Composition root = storeManager: it already imports createTreeStore (the one allowed hub edge) and will also import the filesStore and feedbackTreeStore singletons, injecting access into them at its own module load'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac6b2b8a-e8ef-45cd-8781-8865f3dd5dba:
+    id: ac6b2b8a-e8ef-45cd-8781-8865f3dd5dba
+    content: No separate bootstrap module and no scattered setter calls from app entry - storeManager wires everything because it is imported before any file or feedback operation can run
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8e4b54e-0b3f-4750-9093-2ba942c01d7c:
+    id: c8e4b54e-0b3f-4750-9093-2ba942c01d7c
+    content: Option B (lazy dynamic import) rejected - introduces an async-import style not used elsewhere in the codebase
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0367178-0c5f-4572-8e6a-f0fe6e96f0f8:
+    id: c0367178-0c5f-4572-8e6a-f0fe6e96f0f8
+    content: Option C (relocate functions) rejected - larger diff, changes file ownership
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae294834-2074-4756-9a8f-b97435aafcbe:
+    id: ae294834-2074-4756-9a8f-b97435aafcbe
+    content: Option A implementation plan
+    children:
+      - 8b55735a-3961-47e2-be98-8f957b3ab6e3
+      - 1285a7f0-9d1e-44b2-a24a-82212ac74e8a
+      - 317bb1b8-1e7f-4f14-9138-30e1586d8c2d
+      - fece4c6d-2e00-4f9a-b6bb-766253c7b1e6
+      - d3d4a756-db06-4090-bd03-7d9671741f62
+      - 6a3a4450-5351-45fc-a077-9a71a48ac103
+      - bded347a-e138-494b-a770-70a878887378
+      - 6abe6816-ad0a-4780-8eba-a06c2e51635e
+      - 91752bc7-d3d3-4e3b-8200-529fca04f1fb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b55735a-3961-47e2-be98-8f957b3ab6e3:
+    id: 8b55735a-3961-47e2-be98-8f957b3ab6e3
+    content: New leaf module storeAccess.ts
+    children:
+      - 2e7f01da-c7cb-4486-be3c-530a6e378dc4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e7f01da-c7cb-4486-be3c-530a6e378dc4:
+    id: 2e7f01da-c7cb-4486-be3c-530a6e378dc4
+    content: store/storeAccess.ts holds a type-only StoreAccess interface (getStoreForFile, getAllStores, getAllStoreEntries, moveStore, closeFile, hasStore); it is a leaf imported as a type only, so it introduces no runtime cycle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1285a7f0-9d1e-44b2-a24a-82212ac74e8a:
+    id: 1285a7f0-9d1e-44b2-a24a-82212ac74e8a
+    content: createTreeStore signature change
+    children:
+      - c0b3f3aa-5046-4f59-b197-8029dc02a7f1
+      - d71651ef-42df-48a7-965b-60b40f84a2e1
+      - 78d66a96-264a-46a3-b332-0611a49f73be
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0b3f3aa-5046-4f59-b197-8029dc02a7f1:
+    id: c0b3f3aa-5046-4f59-b197-8029dc02a7f1
+    content: Add a TreeStoreDeps param carrying getAllStores, getStoreForFile, the feedbackTreeStore singleton, and a filesStore read thunk
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d71651ef-42df-48a7-965b-60b40f84a2e1:
+    id: d71651ef-42df-48a7-965b-60b40f84a2e1
+    content: Remove the storeManager import; sendActions reads getAllStores from deps and the clipboard factories read getStoreForFile from deps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78d66a96-264a-46a3-b332-0611a49f73be:
+    id: 78d66a96-264a-46a3-b332-0611a49f73be
+    content: feedbackStore and the filesStore read are threaded in from storeManager so sendActions and DeleteNodeCommand stop importing those singletons
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  317bb1b8-1e7f-4f14-9138-30e1586d8c2d:
+    id: 317bb1b8-1e7f-4f14-9138-30e1586d8c2d
+    content: storeManager as composition root
+    children:
+      - 2eb8b183-07bf-4829-8661-758eb7d80a14
+      - c251e2f3-3577-4aea-a9aa-eaa8c17d34c0
+      - 7b2eb87d-4cd4-4934-991b-232a3049bc0a
+      - 8cbb0f92-1eb9-4bb9-94c1-c8c4700ac259
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2eb8b183-07bf-4829-8661-758eb7d80a14:
+    id: 2eb8b183-07bf-4829-8661-758eb7d80a14
+    content: Declare that StoreManager implements StoreAccess (it already has all six methods)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c251e2f3-3577-4aea-a9aa-eaa8c17d34c0:
+    id: c251e2f3-3577-4aea-a9aa-eaa8c17d34c0
+    content: getStoreForFile calls createTreeStore(type, deps) passing its own accessors, the feedbackTreeStore singleton, and the filesStore read thunk
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b2eb87d-4cd4-4934-991b-232a3049bc0a:
+    id: 7b2eb87d-4cd4-4934-991b-232a3049bc0a
+    content: At module load storeManager calls setFeedbackStoreFactory(...) and setFileActionsStoreAccess(this) to feed the two independent singletons
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cbb0f92-1eb9-4bb9-94c1-c8c4700ac259:
+    id: 8cbb0f92-1eb9-4bb9-94c1-c8c4700ac259
+    content: storeManager keeps importing createTreeStore but the edge is now one-directional (treeStore no longer imports storeManager) so its eslint-disable is removed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fece4c6d-2e00-4f9a-b6bb-766253c7b1e6:
+    id: fece4c6d-2e00-4f9a-b6bb-766253c7b1e6
+    content: clipboard handlers
+    children:
+      - be2e8d08-db12-4d21-be0f-db9464b0e4ef
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be2e8d08-db12-4d21-be0f-db9464b0e4ef:
+    id: be2e8d08-db12-4d21-be0f-db9464b0e4ef
+    content: createClipboardActions receives getStoreForFile in its deps bag; clipboardPasteHandlers paste functions receive getStoreForFile via the PasteContext; remove the storeManager import and disable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3d4a756-db06-4090-bd03-7d9671741f62:
+    id: d3d4a756-db06-4090-bd03-7d9671741f62
+    content: fileActions and filesStore
+    children:
+      - c6065e72-e54c-4159-b65a-d6651b28a94b
+      - 353687a7-3018-4d2e-98fa-11b3cd50d105
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6065e72-e54c-4159-b65a-d6651b28a94b:
+    id: c6065e72-e54c-4159-b65a-d6651b28a94b
+    content: createFileActions(get, storage, getStoreAccess) reads the injected StoreAccess lazily through a thunk so module-load order stays safe
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  353687a7-3018-4d2e-98fa-11b3cd50d105:
+    id: 353687a7-3018-4d2e-98fa-11b3cd50d105
+    content: filesStore exposes setFileActionsStoreAccess(access) storing a module-level ref; remove the storeManager import and disable from both fileActions and filesStore
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a3a4450-5351-45fc-a077-9a71a48ac103:
+    id: 6a3a4450-5351-45fc-a077-9a71a48ac103
+    content: DeleteNodeCommand and nodeDeletionActions
+    children:
+      - 43151d11-caa1-4db9-b22e-615ba55a7d6c
+      - 30e30200-940d-4ffd-954c-6bfb5ae9243a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43151d11-caa1-4db9-b22e-615ba55a7d6c:
+    id: 43151d11-caa1-4db9-b22e-615ba55a7d6c
+    content: DeleteNodeCommand takes the filesStore read it performs as a constructor callback instead of importing useFilesStore
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30e30200-940d-4ffd-954c-6bfb5ae9243a:
+    id: 30e30200-940d-4ffd-954c-6bfb5ae9243a
+    content: nodeDeletionActions supplies that callback from the createTreeStore filesStore-read dep; remove the useFilesStore import and disable from DeleteNodeCommand and the disable from nodeDeletionActions and treeStore
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bded347a-e138-494b-a770-70a878887378:
+    id: bded347a-e138-494b-a770-70a878887378
+    content: feedbackTreeStore and sendActions
+    children:
+      - 46ed5d3a-87da-4af7-bff7-38543d5f6f6c
+      - 7d78160b-0e64-4d50-84f0-910d4870fb18
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46ed5d3a-87da-4af7-bff7-38543d5f6f6c:
+    id: 46ed5d3a-87da-4af7-bff7-38543d5f6f6c
+    content: feedbackTreeStore stops importing createTreeStore, exposes setFeedbackStoreFactory(factory), and uses the injected factory in initialize; remove the import and disable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d78160b-0e64-4d50-84f0-910d4870fb18:
+    id: 7d78160b-0e64-4d50-84f0-910d4870fb18
+    content: sendActions receives the feedbackTreeStore singleton via createSendActions deps (threaded from createTreeStore feedbackStore); remove the import and disable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6abe6816-ad0a-4780-8eba-a06c2e51635e:
+    id: 6abe6816-ad0a-4780-8eba-a06c2e51635e
+    content: storeOwnership
+    children:
+      - 3b2232c2-e7ca-4eca-8ace-6d4f47d586cc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b2232c2-e7ca-4eca-8ace-6d4f47d586cc:
+    id: 3b2232c2-e7ca-4eca-8ace-6d4f47d586cc
+    content: storeOwnership was NOT among the 11 annotated edges, so storeManager -> storeOwnership is not a detected cycle; leave its import as-is (optional later cleanup), do not expand scope to chase it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91752bc7-d3d3-4e3b-8200-529fca04f1fb:
+    id: 91752bc7-d3d3-4e3b-8200-529fca04f1fb
+    content: Wiring order and safety
+    children:
+      - 30b1b00c-4d2f-4b0e-9de5-73aea21d556e
+      - dff4c890-660c-40eb-9dea-b52877f5c56b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30b1b00c-4d2f-4b0e-9de5-73aea21d556e:
+    id: 30b1b00c-4d2f-4b0e-9de5-73aea21d556e
+    content: Every injected read is an event-time thunk (never invoked at module init), preserving the 'inert' semantics the annotations describe
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dff4c890-660c-40eb-9dea-b52877f5c56b:
+    id: dff4c890-660c-40eb-9dea-b52877f5c56b
+    content: storeManager module load sets both singleton injectors before any getStoreForFile or file operation can run
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb83906a-c9c6-47fd-8ca8-b503e5f8c8a1:
+    id: bb83906a-c9c6-47fd-8ca8-b503e5f8c8a1
+    content: Verification
+    children:
+      - 23398bed-e656-4d57-9f8d-a079475c1682
+      - 2c3786c0-a32c-43f6-8042-0fa0e0cddeb9
+      - 4abb0ad3-8b22-48f4-bef1-34bfb679f496
+      - 6e7bbe0e-4308-4f02-bac1-4da5ea32ef73
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23398bed-e656-4d57-9f8d-a079475c1682:
+    id: 23398bed-e656-4d57-9f8d-a079475c1682
+    content: Delete each of the 11 eslint-disable import/no-cycle annotations in the same commit as the fix that removes its edge
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c3786c0-a32c-43f6-8042-0fa0e0cddeb9:
+    id: 2c3786c0-a32c-43f6-8042-0fa0e0cddeb9
+    content: npx eslint src/renderer/store reports zero warnings with the rule active and no disables present
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4abb0ad3-8b22-48f4-bef1-34bfb679f496:
+    id: 4abb0ad3-8b22-48f4-bef1-34bfb679f496
+    content: The 17 integration tests plus the storeManager, fileActions, clipboard, and feedback unit suites pass unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e7bbe0e-4308-4f02-bac1-4da5ea32ef73:
+    id: 6e7bbe0e-4308-4f02-bac1-4da5ea32ef73
+    content: type-check, lint, and test:run are green with no behavior change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7da93328-ee44-4e52-867e-03e188251804:
+    id: 7da93328-ee44-4e52-867e-03e188251804
+    content: ROI re-confirm (per refinement flag)
+    children:
+      - 3e454188-f7b2-4ef9-9df5-1436926b9b0c
+      - f879a4b6-66c5-418e-9fc3-9b56f99b74e8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e454188-f7b2-4ef9-9df5-1436926b9b0c:
+    id: 3e454188-f7b2-4ef9-9df5-1436926b9b0c
+    content: Every one of the 11 edges is annotated 'inert' (lazy/getState reads at event time, never module-init); build is green, runtime is unaffected ‚Äî payoff is purely removing the disable comments and satisfying the lint rule
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f879a4b6-66c5-418e-9fc3-9b56f99b74e8:
+    id: f879a4b6-66c5-418e-9fc3-9b56f99b74e8
+    content: High blast radius across 3 singletons + commands; user confirmed proceeding now with Option A
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ad21177-d19e-4f3f-88eb-2f9bc59f484a:
+    id: 0ad21177-d19e-4f3f-88eb-2f9bc59f484a
+    content: User story
+    children:
+      - 6c681526-47ae-46dd-b08d-acf73b2eade4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c681526-47ae-46dd-b08d-acf73b2eade4:
+    id: 6c681526-47ae-46dd-b08d-acf73b2eade4
+    content: üìÑ Product spec
+    children:
+      - 8149017d-c6a2-42cb-8e01-c712f1df62a6
+      - 7e6598ce-0dc0-4fc4-b82e-773e9612526c
+      - 513be6e6-2b9c-49f0-892a-6f1f990c46f1
+      - 650d2bff-11bc-4948-a784-f58f686fc261
+      - e768b695-542a-4d45-8812-e49872325fe3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8149017d-c6a2-42cb-8e01-c712f1df62a6:
+    id: 8149017d-c6a2-42cb-8e01-c712f1df62a6
+    content: Context
+    children:
+      - f1f306c1-84e8-43d0-858d-b331dad94668
+      - 912e393f-e0b6-4656-a1b2-2fbfeed76b07
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1f306c1-84e8-43d0-858d-b331dad94668:
+    id: f1f306c1-84e8-43d0-858d-b331dad94668
+    content: storeManager is a singleton instantiated at module load; treeStore, fileActions, clipboard handlers, and feedback/send actions close import cycles through it (Families B/C/D)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  912e393f-e0b6-4656-a1b2-2fbfeed76b07:
+    id: 912e393f-e0b6-4656-a1b2-2fbfeed76b07
+    content: These cycles are currently inert (lazy closure access only) ‚Äî the risk is latent, which is why this is deferred rather than bundled
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e6598ce-0dc0-4fc4-b82e-773e9612526c:
+    id: 7e6598ce-0dc0-4fc4-b82e-773e9612526c
+    content: User
+    children:
+      - afece6d0-d108-4f55-824e-01d422b40d00
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  afece6d0-d108-4f55-824e-01d422b40d00:
+    id: afece6d0-d108-4f55-824e-01d422b40d00
+    content: Maintainer refactoring file-lifecycle or store-init code
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  513be6e6-2b9c-49f0-892a-6f1f990c46f1:
+    id: 513be6e6-2b9c-49f0-892a-6f1f990c46f1
+    content: Goal
+    children:
+      - cb263215-b88f-4e02-98e6-c57874ed5a3f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb263215-b88f-4e02-98e6-c57874ed5a3f:
+    id: cb263215-b88f-4e02-98e6-c57874ed5a3f
+    content: Store action modules no longer import the storeManager singleton; store accessors are injected, eliminating the remaining cycles
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  650d2bff-11bc-4948-a784-f58f686fc261:
+    id: 650d2bff-11bc-4948-a784-f58f686fc261
+    content: Business rules
+    children:
+      - 668875b7-5ded-48cd-afe4-1f3c051b9b5e
+      - 33ff544f-4078-4cc4-8c9d-439938b7daf5
+      - 12d4e0bd-f6db-46c3-8e72-02bc707cf25b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  668875b7-5ded-48cd-afe4-1f3c051b9b5e:
+    id: 668875b7-5ded-48cd-afe4-1f3c051b9b5e
+    content: 'Hard entry criterion: integration tests covering store init order and multi-file lifecycle (open/close/save, cross-file paste, zoom) must exist and pass BEFORE any topology change'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33ff544f-4078-4cc4-8c9d-439938b7daf5:
+    id: 33ff544f-4078-4cc4-8c9d-439938b7daf5
+    content: Action modules receive injected store accessors as params, extending the injection treeStore already does for sendActions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  12d4e0bd-f6db-46c3-8e72-02bc707cf25b:
+    id: 12d4e0bd-f6db-46c3-8e72-02bc707cf25b
+    content: Each removed annotation must delete its eslint-disable in the same commit as the fix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e768b695-542a-4d45-8812-e49872325fe3:
+    id: e768b695-542a-4d45-8812-e49872325fe3
+    content: Acceptance criteria
+    children:
+      - e338c133-727c-48e5-9205-d5f214486c24
+      - 3eb274fa-07b7-4f1c-9653-ea3bf190ac65
+      - 3b70493c-3e9e-4fca-9d7c-ca19ffcce97f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e338c133-727c-48e5-9205-d5f214486c24:
+    id: e338c133-727c-48e5-9205-d5f214486c24
+    content: Zero import/no-cycle warnings (including annotated ones) remain under src/renderer/store
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3eb274fa-07b7-4f1c-9653-ea3bf190ac65:
+    id: 3eb274fa-07b7-4f1c-9653-ea3bf190ac65
+    content: New integration tests cover multi-file open/close/save and cross-file paste before the refactor lands
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b70493c-3e9e-4fca-9d7c-ca19ffcce97f:
+    id: 3b70493c-3e9e-4fca-9d7c-ca19ffcce97f
+    content: npm run type-check, lint, and test:run pass; no behavior change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92edc563-21d9-48ef-8c99-5b1e1bf14f84:
+    id: 92edc563-21d9-48ef-8c99-5b1e1bf14f84
+    content: Issues
+    children:
+      - 989a7bbb-f2d7-4c01-bc40-0fa3c540adfc
+      - ffdfd2e1-77ed-43ff-87e7-9d385959802f
+      - a2a49ec6-4390-454b-a9d6-5b1c9984d72f
+      - 5203ca0a-bcc0-473e-be66-0b20f3251805
+      - da5582ec-a985-423a-8426-17d3bbf51d1e
+      - daa6753f-e4f7-451d-9304-64a75231e360
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  989a7bbb-f2d7-4c01-bc40-0fa3c540adfc:
+    id: 989a7bbb-f2d7-4c01-bc40-0fa3c540adfc
+    content: Node text has mojibake (‚Äî for em-dash, üìÑ for emoji, ‚Üî for arrow) — UTF-8 bytes were decoded as Mac-Roman somewhere in the clipboard-paste path; preserved as-is per no-rewrite rule, worth fixing the encoding at the paste boundary
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffdfd2e1-77ed-43ff-87e7-9d385959802f:
+    id: ffdfd2e1-77ed-43ff-87e7-9d385959802f
+    content: 'Resolved: TDD step initially adopted Story 1''s worktree by mistake; Story 2 now has its own worktree (Arborescent-store-manager-accessors), test file moved, 17 tests pass'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2a49ec6-4390-454b-a9d6-5b1c9984d72f:
+    id: a2a49ec6-4390-454b-a9d6-5b1c9984d72f
+    content: 'Resolved: implementation paused on the singleton-injection design fork; user chose Option A and it is now specced above ‚Äî ready to implement on next advance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5203ca0a-bcc0-473e-be66-0b20f3251805:
+    id: 5203ca0a-bcc0-473e-be66-0b20f3251805
+    content: 'Plan refinements during implementation (all green: type-check 0 errors, eslint store 0 warnings, 2285 store tests + navigationService pass): (1) DeleteNodeCommand/nodeDeletion needed NO callback injection ‚Äî once the singleton value-imports were cut, useFilesStore became acyclic, so DeleteNodeCommand keeps its plain import minus the disable; (2) a residual filesStore<->fileActions cycle remained because fileActions imported the File type as a value ‚Äî fixed by making it import type; (3) TreeStore alias changed from ReturnType<typeof createTreeStore> to UseBoundStore<StoreApi<TreeState>> to break a type-level self-reference introduced by TreeStoreDeps; (4) three suites updated for the new injection seam (feedbackTreeStore wires setStoreFactory in beforeEach, clipboardActions test passes getStoreForFile, fileActions test passes getStoreAccess); no commit made (awaiting explicit request)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da5582ec-a985-423a-8426-17d3bbf51d1e:
+    id: da5582ec-a985-423a-8426-17d3bbf51d1e
+    content: 'Verification found full test:run is NOT green (store-scoped run was, but the whole suite is not): 3 suites regress because storeManager module-load now calls the new setFileActionsStoreAccess export. App.test.tsx and MenuBar/useFileMenuState.test.tsx partially mock filesStore without setFileActionsStoreAccess so they fail to load; TabBar.test.tsx ''close file when close button clicked'' mocks the whole storeManager module, so its load-time wiring never runs and storeManager.closeFile is never invoked through the injected path. Feature code is correct (runtime always loads storeManager first); fix is updating those 3 test mocks (add setFileActionsStoreAccess: vi.fn() to the filesStore mocks; rewire the TabBar close-file expectation) ‚Äî deferred here because this is a verification step with no code changes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  daa6753f-e4f7-451d-9304-64a75231e360:
+    id: daa6753f-e4f7-451d-9304-64a75231e360
+    content: 'AI refactor pass resolved the 3 test regressions: App.test.tsx and useFileMenuState.test.tsx filesStore mocks now export setFileActionsStoreAccess: vi.fn(); TabBar.test.tsx wires setFileActionsStoreAccess(storeManager) in beforeEach so close-file routes through the injected access to the mocked storeManager.closeFile. Full suite now green (366 files passed, 5147 tests, 0 failed); type-check 0 errors; eslint clean on all changed/new files. Production diff reviewed for conventions ‚Äî no console/TODO/story-refs/any/eslint-disable, no abandoned attempts, only `as unknown as` casts in tests (sanctioned pattern); no commit made'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba5e3843-c154-4ebd-adef-41d171a03936:
+    id: ba5e3843-c154-4ebd-adef-41d171a03936
+    content: review feedback
+    children:
+      - 029b9c68-5615-41ef-9d77-c5a7b1597e19
+      - 54193887-ec84-479d-8749-cd0e2505806f
+      - 6e440685-664b-4168-a718-875a05d5e0ae
+      - 5eca73b7-2669-41b0-9fdc-37d87821cef6
+      - 076edd73-31e8-49db-a416-6cb6106cc418
+      - 8fd34e67-e1e5-4b51-b7af-51ba7b97e81d
+      - 08a9c65f-a86d-4618-a673-201fe2f67c66
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  029b9c68-5615-41ef-9d77-c5a7b1597e19:
+    id: 029b9c68-5615-41ef-9d77-c5a7b1597e19
+    content: 'Reviewer verdict: no blocking issues; injection wiring sound, type-check/lint/affected tests pass. Reviewed full diff (14 modified + 2 new) against the live import graph, not just the diff.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54193887-ec84-479d-8749-cd0e2505806f:
+    id: 54193887-ec84-479d-8749-cd0e2505806f
+    content: 'Module-load-order risk verified SAFE: renderer.tsx -> App -> Workspace/useAppInitialization all statically import storeManager, so its module body (the two setter calls at storeManager.ts:127-128) runs during eager graph eval, before root.render() and any file/feedback action. Thunks are lazy (filesStore passes requireStoreAccess the function, not its result); feedbackTreeStore.initialize only runs from sendActions bodies at event time.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e440685-664b-4168-a718-875a05d5e0ae:
+    id: 6e440685-664b-4168-a718-875a05d5e0ae
+    content: 'Optional-deps fallbacks verified SAFE: only production callers of createTreeStore are inside storeManager and both pass full treeStoreDeps(); the undefined-getStoreForFile (cross-file paste -> no-content) and empty getAllStores (autosave) branches are unreachable in real callers, exercised only by bare createTreeStore() test stores. New integration test covers real cross-file paste through the manager.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5eca73b7-2669-41b0-9fdc-37d87821cef6:
+    id: 5eca73b7-2669-41b0-9fdc-37d87821cef6
+    content: Throw-based guards (requireStoreAccess, feedback factory 'used before wired') judged appropriate fail-fast for a programming error; no silent failure. Keep.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  076edd73-31e8-49db-a416-6cb6106cc418:
+    id: 076edd73-31e8-49db-a416-6cb6106cc418
+    content: 'FIXED during review ‚Äî 12th stale disable: feedbackService.ts:4 still carried an eslint-disable import/no-cycle tagged ''Story 2 removes this edge''. It lives under src/renderer/services (outside my store-scoped grep+eslint), which is why the earlier passes missed it. Verified by removal+relint that the cycle IS gone (feedbackTreeStore no longer imports createTreeStore), so the disable was DEAD ‚Äî reviewer''s claim that the cycle still exists was inverted. Deleted the dead disable; eslint feedbackService clean, type-check 0, feedback suites pass (69). Now ZERO Story 2 no-cycle disables remain anywhere in src/renderer (non-test).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fd34e67-e1e5-4b51-b7af-51ba7b97e81d:
+    id: 8fd34e67-e1e5-4b51-b7af-51ba7b97e81d
+    content: 'ACCEPTED + FIXED: added the ''why'' comment at storeManager.ts:127-128 documenting that these setters are the composition root and must run before any file/feedback action, so a future lazy-load of storeManager (or trimming the Workspace/useAppInitialization static import) won''t silently reintroduce a use-before-wired throw. eslint clean, type-check 0, storeManager tests pass (12).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08a9c65f-a86d-4618-a673-201fe2f67c66:
+    id: 08a9c65f-a86d-4618-a673-201fe2f67c66
+    content: 'SKIPPED (pushed back): the clipboardPasteHandlers.ts JSDoc-style block comments (lines ~24-33 and ~237-242) are pre-existing ''why'' prose with no JSDoc @tags, not introduced by this PR''s functional diff. Rewriting comment delimiters on a behavior-neutral, tightly-scoped refactor is out-of-scope churn; reviewer itself rated it ''only if touching the file anyway''. Left for a dedicated cleanup. (SendMessage to the reviewer agent was unavailable in this environment, so findings were validated directly against the code.)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  216a39da-3b5e-4639-812c-3cea32029c2c:
+    id: 216a39da-3b5e-4639-812c-3cea32029c2c
+    content: 'Documentation assessment: no user-facing docs or changelog entry warranted ‚Äî this is an internal architecture refactor (storeManager service-locator decoupling / import-cycle removal) with zero user-observable behavior change. The docs/ pages (workflow, contexts, blueprints, shortcuts) are user-task-oriented and none reference internal store architecture, so nothing to update or correct. CHANGELOG.md is strictly user-facing (every entry describes visible behavior); per the conventions an internal refactor with no behavior change is not consequential and an entry would bloat it. Nothing unclear or inconsistent to warn about.'
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}
