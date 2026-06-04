@@ -1256,6 +1256,114 @@ describe('sendActions', () => {
     });
   });
 
+  // Scope-escalation clause: a new NeedsReview trigger telling the agent to pause
+  // and ask the user to raise reasoning effort when the task outgrows the effort
+  // the run was started with. It rides the existing NeedsReview hook, so it must
+  // appear only where NeedsReview already does (autonomous execute) and nowhere else.
+  describe('scope-escalation raise-effort instruction', () => {
+    beforeEach(() => {
+      mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+    });
+
+    it('includes the scope-escalation raise-effort clause in an autonomous execute-only prompt', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('scope escalation');
+      expect(terminalContent).toContain('reasoning effort');
+      expect(terminalContent).toContain('more capable model');
+      expect(terminalContent).toContain('re-run this step');
+    });
+
+    it('includes the scope-escalation raise-effort clause in an autonomous both-mode prompt', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('scope escalation');
+      expect(terminalContent).toContain('reasoning effort');
+    });
+
+    it('omits the scope-escalation clause from a manual (non-autonomous) execute prompt', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toContain('scope escalation');
+      expect(terminalContent).not.toContain('reasoning effort');
+    });
+
+    it('omits the scope-escalation clause from an autonomous collaborate-only prompt', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: false });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toContain('scope escalation');
+    });
+
+    it('omits the scope-escalation clause from a manual collaborate-only prompt', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: false });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toContain('scope escalation');
+    });
+
+    it('omits the scope-escalation clause from a web/clipboard execute prompt', async () => {
+      await actions.collaborate('child1', { collaborate: true, execute: true });
+
+      const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+      expect(clipboardContent).not.toContain('scope escalation');
+      expect(clipboardContent).not.toContain('reasoning effort');
+    });
+
+    it('keeps the scope-escalation clause on the existing NeedsReview hook path (same curl POST)', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('scope escalation');
+      expect(terminalContent).toContain('NeedsReview');
+      expect(terminalContent).toContain('ARBORESCENT_HOOK_PORT');
+    });
+
+    it('frames the trigger as the task outgrowing the started effort, not generic difficulty', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('materially larger');
+      expect(terminalContent).toContain('outgrew the effort');
+    });
+
+    it('instructs the agent not to push through and not to change the effort itself', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('forces shortcuts');
+      expect(terminalContent).toContain('cannot change that setting');
+    });
+
+    it('keeps the widened genuine-issues guardrail so the new trigger does not lower the bar', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('genuine blockers or real scope escalation');
+    });
+  });
+
   describe('collaboration persistence', () => {
     describe('startCollaboration', () => {
       it('should set collaboratingNodeId without saving metadata', () => {

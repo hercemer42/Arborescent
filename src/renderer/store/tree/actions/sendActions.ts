@@ -207,7 +207,8 @@ function buildNeedsReviewInstruction(sessionId: string): string {
 IMPORTANT: If you encounter issues that require user input (ambiguities, spec problems, technical constraints, or anything that could compromise the quality of your output), run this command:
 curl -s -X POST http://127.0.0.1:\${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '\${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{"session_id": "${sessionId}", "hook_event_name": "NeedsReview", "terminal_id": "'\${ARBORESCENT_TERMINAL_ID}'"}'
 Then continue working and summarize your questions at the end of your output. The workflow will pause for review after you finish.
-Only use this if there are genuine issues — do not use it for minor concerns.`;
+This includes scope escalation. If, partway through, the work proves materially larger or more intricate than the task you were handed — enough that doing it well would exceed the reasoning effort this run was started with — stop and POST to the hook above instead of pressing on at a level that forces shortcuts. In your closing summary: (1) say you paused because the task outgrew the effort it was started with, (2) note what you completed and the exact point you stopped, and (3) ask the user to raise the reasoning effort (or switch to a more capable model/mode) and re-run this step. You cannot change that setting yourself, so state the action plainly.
+Use this only for genuine blockers or real scope escalation — not ordinary difficulty or minor uncertainty.`;
 }
 
 function buildExecuteInstructions(executeContext: string, outputTarget: string, includeNeedsReview: boolean = false, sessionId: string = '', isAutonomous: boolean = false, includeOutputFormat: boolean = true): string {

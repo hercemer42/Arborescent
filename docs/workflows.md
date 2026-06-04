@@ -113,6 +113,8 @@ Deleting a running item stops its workflow immediately and releases the terminal
 
 A paused step (awaiting validation) offers two distinct actions. **Resend step** re-sends the current step on the same terminal without advancing — pick this when the AI asked you a question and you've edited the step content with your answer. **Next step** advances to the next workflow step and resumes execution there if that step is autonomous or checkpoint. Manual paused steps follow the same pattern, except the re-send action is labelled **Resume Workflow**.
 
+When an autonomous step pauses because the AI judged the task had outgrown the reasoning effort it was started with, the fix isn't in the content: raise Claude Code's reasoning effort (or switch to a more capable model), then **Resend step**.
+
 On app restart, all previously running items are stopped. Checkpoint items awaiting validation are preserved. Reopen a terminal and resend or advance them as needed.
 
 Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — you need to start the workflow again.
