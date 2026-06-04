@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-04T08:24:03.147Z'
+updated: '2026-06-04T08:35:39.041Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -115523,6 +115523,7 @@ nodes:
       - 651e3053-cc28-4ac0-94b1-306fefece2a6
       - 42e74ca9-2d62-439b-93ff-b040a4989a07
       - 2b90588b-8c43-44be-8376-a4269b6c6ee2
+      - 7466cf69-5a0c-43ea-b080-1cd122743608
     metadata:
       status: pending
       isBlueprint: true
@@ -124628,8 +124629,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 7466cf69-5a0c-43ea-b080-1cd122743608
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -158987,7 +158987,8 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children: []
+    children:
+      - 6863591d-d52d-4950-a8b7-49ab2f28e6c7
     metadata:
       status: pending
       isBlueprint: true
@@ -191197,6 +191198,61 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  6863591d-d52d-4950-a8b7-49ab2f28e6c7:
+    id: 6863591d-d52d-4950-a8b7-49ab2f28e6c7
+    content: Resuming with a prompt broken
+    children:
+      - 0f6c635a-8c2b-49fd-9489-639b62c10b7a
+      - 498147fc-ae46-49ea-bf3b-86c7b9f3624c
+      - 287d6f99-7a23-47c7-9398-884a8b305fec
+      - d41b7059-7b59-40ac-aa85-b9beae03b825
+      - ffccdc4d-1bd1-410a-8c8b-9c515380421d
+      - d6f78b25-cba3-49ca-8c03-792d6066b822
+    metadata:
+      status: pending
+  0f6c635a-8c2b-49fd-9489-639b62c10b7a:
+    id: 0f6c635a-8c2b-49fd-9489-639b62c10b7a
+    content: For instance when you close a terminal for a session in a workflow
+    children: []
+    metadata:
+      status: pending
+  498147fc-ae46-49ea-bf3b-86c7b9f3624c:
+    id: 498147fc-ae46-49ea-bf3b-86c7b9f3624c
+    content: Then right click on the workflow, resume step/next step
+    children: []
+    metadata:
+      status: pending
+  287d6f99-7a23-47c7-9398-884a8b305fec:
+    id: 287d6f99-7a23-47c7-9398-884a8b305fec
+    content: It sends the prompt at the same time as changing directory/resuming the claude session
+    children: []
+    metadata:
+      status: pending
+  d41b7059-7b59-40ac-aa85-b9beae03b825:
+    id: d41b7059-7b59-40ac-aa85-b9beae03b825
+    content: The result is that it queues the 3 prompts the timeout allows for, which queues 3 prompts for claude
+    children:
+      - 8653564f-01f2-41d9-87f4-af265aa9e3ef
+    metadata:
+      status: pending
+  ffccdc4d-1bd1-410a-8c8b-9c515380421d:
+    id: ffccdc4d-1bd1-410a-8c8b-9c515380421d
+    content: And also the workflow is paused because of the 3 timeouts
+    children: []
+    metadata:
+      status: pending
+  8653564f-01f2-41d9-87f4-af265aa9e3ef:
+    id: 8653564f-01f2-41d9-87f4-af265aa9e3ef
+    content: But the 'enter' button press isn't simulated, so the user has to do it by hand
+    children: []
+    metadata:
+      status: pending
+  d6f78b25-cba3-49ca-8c03-792d6066b822:
+    id: d6f78b25-cba3-49ca-8c03-792d6066b822
+    content: Should wait for the session to be resumed before sending the prompts
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
