@@ -109,6 +109,14 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
   function surfaceStuckStep(nodeId: string, terminalId: string): void {
     const { nodes, workflowExecutionStates } = get();
     const stepName = nodes[nodeId]?.content || nodeId;
+    // WARN so this reaches the persisted log — the stuck branch is otherwise
+    // only visible as a toast, which makes a wrongly-stuck advance impossible to
+    // diagnose after the fact.
+    logger.warn(
+      `Durable advance parked: node ${nodeId} completed but terminal ${terminalId} is not live`,
+      'WorkflowExecution',
+      { nodeId },
+    );
     // Park the completed step for manual continuation so the existing continue
     // affordance can advance it once a terminal is available again.
     set({

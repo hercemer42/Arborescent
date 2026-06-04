@@ -4,7 +4,7 @@ import { createWorkflowExecutionActions, WorkflowExecutionActions } from '../../
 import { useTerminalStore, type TerminalInfo } from '../../store/terminal/terminalStore';
 
 vi.mock('@/services/logger', () => ({
-  logger: { info: vi.fn(), error: vi.fn() },
+  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
 
 const { mockAddToast } = vi.hoisted(() => ({
@@ -172,7 +172,57 @@ describe('Integration: Workflow Execution', () => {
         expect(state().nodes['s1'].children).not.toContain('task');
         expect(state().workflowExecutionStates['task'].state).toBe('running');
       } finally {
-        useTerminalStore.setState({ terminals: [] });
+        useTerminalStore.setState({ terminals: [], fileStates: {}, currentFilePath: null });
+        vi.useRealTimers();
+      }
+    });
+
+    it('recovers a background workflow whose terminal lives in a non-active file', () => {
+      vi.useFakeTimers();
+      // The workflow's terminal lives in its own file's state; a DIFFERENT file
+      // is focused, so the active-file-scoped `terminals` list does not contain
+      // it. Liveness must be judged across all files or the advance is wrongly
+      // routed to the stuck path (regression: background-workflow stall).
+      useTerminalStore.setState({
+        currentFilePath: '/other.arbo',
+        terminals: [],
+        fileStates: {
+          '/work.arbo': { terminals: [liveTerminal], activeTerminalId: 'term-1' },
+          '/other.arbo': { terminals: [], activeTerminalId: null },
+        },
+      });
+      const state = () => stateRef.current;
+      try {
+        void actions.startWorkflow('task', 'term-1');
+        actions.registerSession('session-1', 'term-1');
+
+        stateRef.current = {
+          ...stateRef.current,
+          nodes: {
+            ...stateRef.current.nodes,
+            task: {
+              ...stateRef.current.nodes['task'],
+              metadata: { ...stateRef.current.nodes['task'].metadata, status: 'completed' },
+            },
+          },
+          workflowExecutionStates: {},
+          terminalNodeAssignments: {},
+          workflowSessionMap: {},
+        };
+
+        actions.handleHookEvent({
+          session_id: 'session-1',
+          hook_event_name: 'Stop',
+          terminal_id: 'term-1',
+          explicit_submit_seen: true,
+        });
+        vi.advanceTimersByTime(1500);
+
+        // advanced, not parked at its current step as stuck
+        expect(state().nodes['s2'].children).toContain('task');
+        expect(state().workflowExecutionStates['task'].state).toBe('running');
+      } finally {
+        useTerminalStore.setState({ terminals: [], fileStates: {}, currentFilePath: null });
         vi.useRealTimers();
       }
     });

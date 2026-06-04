@@ -503,6 +503,8 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
       expect(typeof options?.actions?.[0]?.onClick).toBe('function');
       const warns = loggerMocks.warn.mock.calls.map((c) => String(c[0]));
       expect(warns.some((m) => /no running node/i.test(m))).toBe(false);
+      // the stuck branch logs a distinct WARN so it is diagnosable in the file log
+      expect(warns.some((m) => /parked.*terminal .* not live/i.test(m))).toBe(true);
     });
 
     it('parks the stalled step as awaiting-validation so the existing continue affordance can recover it', () => {

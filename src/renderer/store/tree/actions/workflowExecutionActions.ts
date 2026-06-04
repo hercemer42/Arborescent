@@ -1022,8 +1022,17 @@ export const createWorkflowExecutionActions = (
     advanceNode,
     completeWorkflow,
     stopWorkflow,
-    isTerminalLive: (terminalId) =>
-      useTerminalStore.getState().terminals.some((t) => t.id === terminalId),
+    isTerminalLive: (terminalId) => {
+      // Check every file's terminals, not the active file's list alone: a
+      // background workflow's terminal lives in its own file's state even when
+      // another file is focused, so scoping to the active file would falsely
+      // report it dead and route the advance to the stuck path.
+      const { terminals, fileStates } = useTerminalStore.getState();
+      return (
+        terminals.some((t) => t.id === terminalId) ||
+        Object.values(fileStates).some((fs) => fs.terminals.some((t) => t.id === terminalId))
+      );
+    },
     revealNode: (nodeId) => {
       visualEffects?.flashNode(nodeId, 'advance');
       visualEffects?.scrollToNode(nodeId);
