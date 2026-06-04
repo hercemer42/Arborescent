@@ -92,6 +92,7 @@ describe('workflow restart after stop — prompt must reach the terminal (bug: g
       terminalWrite: mockTerminalWrite,
       terminalGetCwd: vi.fn().mockResolvedValue(null),
       stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
+      claudeSessionExists: vi.fn().mockResolvedValue(true),
     } } as unknown as Window & typeof globalThis;
 
     state = {
@@ -227,6 +228,15 @@ describe('workflow restart after stop — prompt must reach the terminal (bug: g
         'terminal-resumed',
         expect.stringContaining('claude --resume sess-1'),
       );
+
+      // Readiness contract (bug fix): the workflow prompt must NOT be pasted while
+      // `claude --resume` is still starting up. It is deferred until the resumed
+      // session announces SessionStart (registerSession), so it lands in a ready REPL
+      // and is actually submitted rather than left sitting in the input box.
+      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
+
+      actions.registerSession('sess-1', 'terminal-resumed', 'resume');
+
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith(
         'task-a',
         'terminal-resumed',
@@ -257,6 +267,62 @@ describe('workflow restart after stop — prompt must reach the terminal (bug: g
       await actions.startWorkflow('task-a', null);
 
       expect(state.workflowExecutionStates['task-a']?.terminalTabId).toBe('terminal-resumed');
+
+      // Let the resumed session start so the deferred-send timer is cleared.
+      actions.registerSession('sess-1', 'terminal-resumed', 'resume');
+    });
+
+    it('on resume timeout, stops the workflow and drops the phantom session mapping so a retry re-routes cleanly', async () => {
+      vi.useFakeTimers();
+      try {
+        mockTerminals.push({ id: 'terminal-1' });
+        state.nodes['task-a'].metadata.sessionId = 'sess-1';
+        state.workflowSessionMap['sess-1'] = 'terminal-1';
+        state.sessionRegistry['sess-1'] = { cwd: '/Users/me/project' };
+
+        await actions.startWorkflow('task-a', 'terminal-1');
+        actions.stopWorkflow('task-a');
+        mockTerminals.length = 0;
+        delete state.workflowSessionMap['sess-1'];
+        mockCreateNewTerminal.mockImplementation(async () => {
+          const created = { id: 'terminal-resumed' };
+          mockTerminals.push(created);
+          return created;
+        });
+
+        await actions.startWorkflow('task-a', null);
+        // Eager bind created the phantom mapping; the send is deferred, awaiting SessionStart.
+        expect(state.workflowSessionMap['sess-1']).toBe('terminal-resumed');
+        expect(state.workflowExecutionStates['task-a']?.state).toBe('running');
+
+        vi.advanceTimersByTime(31000);
+
+        // SessionStart never arrived: workflow stopped and the phantom mapping is gone.
+        expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+        expect(state.workflowSessionMap['sess-1']).toBeUndefined();
+        expect(mockAddToast).toHaveBeenCalledWith(
+          expect.stringContaining('did not start in time'),
+          'error',
+        );
+      } finally {
+        vi.clearAllTimers();
+        vi.useRealTimers();
+      }
+    });
+
+    it('aborts the resume up front when the session no longer exists on disk (no terminal spawned)', async () => {
+      vi.mocked(global.window.electron.claudeSessionExists).mockResolvedValue(false);
+      state.nodes['task-a'].metadata.sessionId = 'sess-1';
+      state.sessionRegistry['sess-1'] = { cwd: '/Users/me/project' };
+
+      await actions.startWorkflow('task-a', null);
+
+      expect(mockCreateNewTerminal).not.toHaveBeenCalled();
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('no longer exists on disk'),
+        'error',
+      );
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
   });
 
@@ -283,7 +349,14 @@ describe('workflow restart after stop — prompt must reach the terminal (bug: g
   });
 
   describe('resume-in-new-tab readiness (deferred)', () => {
-    it.todo('waits for SessionStart from the resumed claude process before sending the workflow prompt, so the prompt does not race claude --resume startup');
-    it.todo('respects clearSession=true on the step by issuing /clear after the resumed session is ready, not before claude --resume has finished initializing');
+    // Core defer-then-fire behaviour is asserted in
+    // 'stop → kill terminal → resume session → start' above; these cover the edges.
+    it.todo('fires the deferred prompt exactly once — a duplicate SessionStart for the resumed terminal does not re-send');
+    it.todo('surfaces a bounded-timeout error and stops waiting if SessionStart never arrives, instead of hanging or re-pasting the prompt');
+    it.todo('the resume-timeout error is surfaced as an accessible, dismissible toast — no silent stall');
+    it.todo('defers identically on the recurse path (dispatchRecurseStart / openInheritedResumeTerminal) — the inherited-session resume does not send before SessionStart');
+    it.todo('respects clearSession=true by issuing /clear only after the resumed session is ready, not before claude --resume has initialised');
+    it.todo('a rapid second resume / Next step does not spawn a duplicate resume tab or double-send');
+    it.todo('still binds the tab↔session mapping for routing even though the send is deferred (focus-existing-tab keeps working on a later action)');
   });
 });

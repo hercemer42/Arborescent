@@ -326,7 +326,7 @@ describe('startWorkflow — auto session routing (PR1)', () => {
       );
     });
 
-    it('sends the prompt on the resume-in-new-tab route after writing claude --resume', async () => {
+    it('defers the prompt on the resume-in-new-tab route until the resumed session starts', async () => {
       mockCreateNewTerminal.mockImplementation(async () => {
         const created = { id: 'terminal-new' };
         mockTerminals.push(created);
@@ -341,6 +341,11 @@ describe('startWorkflow — auto session routing (PR1)', () => {
         (call) => typeof call[1] === 'string' && (call[1] as string).includes('--resume sess-1'),
       );
       expect(resumeWrites).toHaveLength(1);
+      // The prompt is held until the resumed session announces SessionStart.
+      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
+
+      actions.registerSession('sess-1', 'terminal-new', 'resume');
+
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith(
         'task-a',
         'terminal-new',

@@ -148,4 +148,58 @@ describe('createClaudeLaunchManager', () => {
     it.todo('rejects empty terminalId without writing claude or registering pending');
     it.todo('rejects empty nodeId without writing claude or registering pending');
   });
+
+  // Resume-prompt readiness fix: the resume path already writes
+  // "claude --resume <id>", so it needs a deferral that registers a pending send
+  // WITHOUT writing "claude\r" itself, fired by the same onSessionStartConfirmed path.
+  describe('no-write deferral — resume path', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+    afterEach(() => {
+      vi.clearAllTimers();
+      vi.useRealTimers();
+    });
+
+    it('registers a pending send WITHOUT writing "claude\\r" (claude --resume was already issued by the resume path)', () => {
+      manager.deferSendUntilSessionStart('task-a', 'terminal-1');
+      expect(mockTerminalWrite).not.toHaveBeenCalled();
+      expect(mockSendPrompt).not.toHaveBeenCalled();
+    });
+
+    it('fires the deferred send when the resumed session\'s SessionStart arrives', () => {
+      manager.deferSendUntilSessionStart('task-a', 'terminal-1');
+      manager.onSessionStartConfirmed('terminal-1', 'task-a');
+      expect(mockSendPrompt).toHaveBeenCalledWith('task-a', 'terminal-1', undefined);
+    });
+
+    it('routes a resumed send through sendAfterResume (clear-aware), not the direct sendPrompt', () => {
+      const sendAfterResume = vi.fn();
+      const resumeManager = createClaudeLaunchManager({
+        get: () => state,
+        sendPrompt: mockSendPrompt,
+        sendAfterResume,
+      });
+      resumeManager.deferSendUntilSessionStart('task-a', 'terminal-1', 'workflow-start');
+      resumeManager.onSessionStartConfirmed('terminal-1', 'task-a');
+      expect(sendAfterResume).toHaveBeenCalledWith('task-a', 'terminal-1', 'workflow-start');
+      expect(mockSendPrompt).not.toHaveBeenCalled();
+    });
+
+    it('surfaces a bounded-timeout error and clears the pending entry if SessionStart never arrives', () => {
+      const onResumeTimeout = vi.fn();
+      const timeoutManager = createClaudeLaunchManager({
+        get: () => state,
+        sendPrompt: mockSendPrompt,
+        onResumeTimeout,
+      });
+      timeoutManager.deferSendUntilSessionStart('task-a', 'terminal-1');
+      vi.advanceTimersByTime(29000);
+      expect(onResumeTimeout).not.toHaveBeenCalled();
+      vi.advanceTimersByTime(2000);
+      expect(onResumeTimeout).toHaveBeenCalledWith('task-a', 'terminal-1');
+      timeoutManager.onSessionStartConfirmed('terminal-1', 'task-a');
+      expect(mockSendPrompt).not.toHaveBeenCalled();
+    });
+  });
 });

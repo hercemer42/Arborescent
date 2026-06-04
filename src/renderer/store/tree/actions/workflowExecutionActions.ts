@@ -42,10 +42,12 @@ import { createClaudeLaunchManager } from "./workflowClaudeLaunch";
 import {
   createSessionResumeManager,
   captureSessionOnNode,
+  checkClaudeSessionExists,
   clearBrokenChainOnNode,
   inheritSessionOnNode,
   markBrokenChainOnNode,
   resumeTabTitle,
+  shortSessionId,
 } from "./workflowSessionResume";
 import { decideWorkflowStartRoute } from "../../../utils/workflowStartRoute";
 import { useTerminalStore } from "../../terminal/terminalStore";
@@ -126,9 +128,31 @@ export const createWorkflowExecutionActions = (
   const claudeLaunchManager = createClaudeLaunchManager({
     get,
     sendPrompt: (id, tid, source) => sendContentToTerminal(id, tid, source),
+    sendAfterResume: (id, tid, source) => clearSessionManager.maybeClearThenSend(id, tid, source),
+    onResumeTimeout: (id, tid) => handleResumeTimeout(id, tid),
   });
 
   const sessionResumeManager = createSessionResumeManager({ get, set });
+
+  function handleResumeTimeout(nodeId: string, terminalId: string): void {
+    const nodeName = get().nodes[nodeId]?.content || nodeId;
+    stopWorkflow(nodeId);
+    // The eager bindSessionTab mapped this terminal to the session before SessionStart;
+    // the session never came up, so drop that phantom mapping — otherwise a retry would
+    // focus-existing-tab into the half-started tab (re-racing the prompt) and liveness
+    // would read the dead session as alive.
+    const { workflowSessionMap } = get();
+    const entries = Object.entries(workflowSessionMap);
+    const pruned = entries.filter(([, tid]) => tid !== terminalId);
+    if (pruned.length !== entries.length) {
+      set({ workflowSessionMap: Object.fromEntries(pruned) });
+    }
+    useToastStore.getState().addToast(
+      `Resumed Claude session for "${nodeName}" did not start in time — workflow stopped. Open the terminal to confirm Claude launched, then retry.`,
+      'error',
+    );
+    void notifyWorkflowEvent('alert', 'Resume timed out', `"${nodeName}" — resumed session did not start`);
+  }
 
   function reattachOriginNodeForResumedSession(terminalId: string, sessionId: string): void {
     const terminalStore = useTerminalStore.getState();
@@ -250,6 +274,15 @@ export const createWorkflowExecutionActions = (
     }
 
     if (route.kind === "resume-in-new-tab" && route.cwd) {
+      // Abort up front if the session is gone from disk (matches the manual Resume path)
+      // so we do not spawn a doomed `claude --resume` and wait out the readiness timeout.
+      if ((await checkClaudeSessionExists(route.cwd, route.sessionId)) === false) {
+        useToastStore.getState().addToast(
+          `Session ${shortSessionId(route.sessionId)} no longer exists on disk — cannot resume`,
+          "error",
+        );
+        return;
+      }
       try {
         const title = resumeTabTitle(node, route.sessionId);
         const created = await useTerminalStore.getState().createNewTerminal(title, route.cwd, nodeId);
@@ -257,7 +290,7 @@ export const createWorkflowExecutionActions = (
         await window.electron.terminalWrite(created.id, `claude --resume ${route.sessionId}\r`);
         sessionResumeManager.bindSessionTab(created.id, route.sessionId);
         stampSessionOnStartNode(nodeId, route.sessionId);
-        startWorkflowOnTerminal(nodeId, created.id, "reattach");
+        startWorkflowOnTerminal(nodeId, created.id, "reattach", true);
         return;
       } catch (error) {
         logger.error("Failed to resume session for workflow start — falling back to fresh", error as Error, "WorkflowExecution");
@@ -281,6 +314,7 @@ export const createWorkflowExecutionActions = (
     nodeId: string,
     terminalId: string,
     mode: "spawn" | "reattach" | "recurse",
+    deferSend = false,
   ): void {
     const existingNodeId = findRunningNodeOnTerminal(get, terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
@@ -310,7 +344,7 @@ export const createWorkflowExecutionActions = (
       }
     }
 
-    commitWorkflowStartOnTerminal(nodeId, terminalId, mode);
+    commitWorkflowStartOnTerminal(nodeId, terminalId, mode, false, deferSend);
   }
 
   function requestWorkflowStartRebind(
@@ -343,6 +377,7 @@ export const createWorkflowExecutionActions = (
     terminalId: string,
     mode: "spawn" | "reattach" | "recurse",
     rebindPreconfirmed = false,
+    deferSend = false,
   ): void {
     const { nodes, workflowExecutionStates } = get();
 
@@ -369,15 +404,20 @@ export const createWorkflowExecutionActions = (
 
     void window.electron.startKeepAwake();
 
-    // Dispatch runs uniformly for spawn / reattach / recurse — isEligibleForExecution
-    // upstream already rules out genuinely-running nodes, so every call here is a
-    // fresh send. The branch below only decides whether claude needs to be auto-launched
-    // first.
+    // isEligibleForExecution upstream already rules out genuinely-running nodes, so
+    // every call here is a fresh send; the branch only picks the delivery path. A
+    // resumed `claude --resume` tab defers the send until its SessionStart arrives so
+    // the prompt does not race startup; a tab already hosting a live session
+    // clears-then-sends; an empty tab auto-launches claude first. deferSend is checked
+    // first because the resume path eager-binds the session map, so the
+    // terminalAlreadyHasSession branch would otherwise capture a not-yet-ready tab.
     const { workflowSessionMap } = get();
     const terminalAlreadyHasSession = Object.values(workflowSessionMap).includes(terminalId);
     const bindingSource: AutonomousSendSource =
       mode === 'recurse' || rebindPreconfirmed ? 'workflow-advance' : 'workflow-start';
-    if (terminalAlreadyHasSession) {
+    if (deferSend) {
+      claudeLaunchManager.deferSendUntilSessionStart(nodeId, terminalId, bindingSource);
+    } else if (terminalAlreadyHasSession) {
       clearSessionManager.maybeClearThenSend(nodeId, terminalId, bindingSource);
     } else {
       claudeLaunchManager.launchIfNeededThenSend(nodeId, terminalId, bindingSource);
@@ -552,7 +592,7 @@ export const createWorkflowExecutionActions = (
         const inherited = inheritSessionOnNode(get().nodes, nextNodeId, route.sessionId);
         if (inherited !== get().nodes) set({ nodes: inherited });
         sessionResumeManager.bindSessionTab(newTabId, route.sessionId);
-        startWorkflowOnTerminal(nextNodeId, newTabId, 'recurse');
+        startWorkflowOnTerminal(nextNodeId, newTabId, 'recurse', true);
         return;
       } catch (error) {
         logger.error('Failed to resume parent session for recurse — falling back to fresh', error as Error, 'WorkflowExecution');

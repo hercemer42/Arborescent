@@ -95,7 +95,7 @@ export function resumeTabTitle(node: TreeNode | undefined, sessionId?: string): 
   return sessionId ? `${base} · ${shortSessionId(sessionId)}` : base;
 }
 
-async function checkClaudeSessionExists(cwd: string, sessionId: string): Promise<boolean | null> {
+export async function checkClaudeSessionExists(cwd: string, sessionId: string): Promise<boolean | null> {
   const probe = window.electron.claudeSessionExists;
   if (typeof probe !== 'function') return null;
   try {
