@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-04T21:10:36.469Z'
+updated: '2026-06-04T22:26:22.766Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33756,8 +33756,7 @@ nodes:
   6d973cbb-3c7c-4ac4-925d-ffd5d659332c:
     id: 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
     content: Feature verification
-    children:
-      - 5bff2b75-39f1-4910-83c7-5f3c772858bc
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115527,6 +115526,8 @@ nodes:
       - 7466cf69-5a0c-43ea-b080-1cd122743608
       - f79d4cde-f843-4412-b46d-686a4745c036
       - 6863591d-d52d-4950-a8b7-49ab2f28e6c7
+      - 6f0fe0b2-1aeb-4392-97c7-f8fee83d7b24
+      - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
     metadata:
       status: pending
       isBlueprint: true
@@ -124633,8 +124634,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 6f0fe0b2-1aeb-4392-97c7-f8fee83d7b24
-      - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
+      - 5bff2b75-39f1-4910-83c7-5f3c772858bc
     metadata:
       status: pending
       isBlueprint: true
@@ -194342,11 +194342,17 @@ nodes:
     id: 5bff2b75-39f1-4910-83c7-5f3c772858bc
     content: PR1 - Restore terminals under their correct .arbo file on restart
     children:
-      - 03a86634-5c49-4741-a05c-184b712f80c1
-      - ac7a9e0f-0d0f-41d1-b99b-010132d0cf70
-      - 4c8afb5d-8f73-414d-9360-ff97b25bc9e3
-      - 99d97d9c-cc8f-40ed-acdd-c0d3291a1831
-      - 4590b644-828a-456d-8de3-215a42fe59e0
+      - de559e4c-2801-42e5-a2cb-f5d5bd6b3703
+      - ce3a8a62-a30d-4b91-ba56-74642d90d127
+      - 10b47281-3a6e-4456-b286-8da4230d5316
+      - d00881ec-4cd8-4825-b3dd-4c03418edde9
+      - e58b9bea-e140-4d4e-a8f7-668fb6ae06e7
+      - 6792266b-4699-4e67-9f48-0ed0efbb0a3c
+      - c8f45af9-ef41-4e76-8eab-fde85969efef
+      - 6b3d1f64-8832-4559-99f4-b8ed789e70d8
+      - 76cfb936-8122-4d83-8178-9b5ba6ce098f
+      - 2d03a5e8-0212-4ff0-8c88-75ed2cead9b2
+      - bfa69573-89d9-47eb-a8e0-d8207de5c36a
     metadata:
       status: completed
       expanded: false
@@ -194354,383 +194360,6 @@ nodes:
       plugins: {}
       groupId: abe8b43d-0d26-4f1a-8022-48fb48a2fc45
       sessionId: 494b2ddb-8aed-48f6-b9c3-b2ba02fc3137
-  ac7a9e0f-0d0f-41d1-b99b-010132d0cf70:
-    id: ac7a9e0f-0d0f-41d1-b99b-010132d0cf70
-    content: User story
-    children:
-      - 67e0a03f-08f4-4ec3-a24c-948266e802c8
-      - 1a7527bf-ed0e-4e52-a74e-a30628adcef6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  67e0a03f-08f4-4ec3-a24c-948266e802c8:
-    id: 67e0a03f-08f4-4ec3-a24c-948266e802c8
-    content: 📄 Product spec
-    children:
-      - 3964e81c-466b-46b6-9a39-8f03008c5714
-      - 5b3acbcc-e0af-440b-b5be-7608b3735dd1
-      - cd9e6754-c1a9-48a5-a182-5c7124609418
-      - c11aeb5c-fff3-40a9-9211-b407e9c36310
-      - 1c2f5f23-de2c-4110-b9a5-e8ec78133694
-      - c3cee97b-b5a5-47ad-a20e-2aba9f2594fc
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3964e81c-466b-46b6-9a39-8f03008c5714:
-    id: 3964e81c-466b-46b6-9a39-8f03008c5714
-    content: Context
-    children:
-      - f30a5993-8ced-42e4-83db-6c97eac52c5b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f30a5993-8ced-42e4-83db-6c97eac52c5b:
-    id: f30a5993-8ced-42e4-83db-6c97eac52c5b
-    content: Arborescent persists each .arbo file's terminals separately and reopens them on restart with their titles and working directories, but when two or more files each have their own terminals, restart collapses every terminal under a single file regardless of which file each belonged to.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b3acbcc-e0af-440b-b5be-7608b3735dd1:
-    id: 5b3acbcc-e0af-440b-b5be-7608b3735dd1
-    content: User
-    children:
-      - ed7e643e-bb54-41de-ac21-67c54c3812f6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed7e643e-bb54-41de-ac21-67c54c3812f6:
-    id: ed7e643e-bb54-41de-ac21-67c54c3812f6
-    content: A user working across two or more .arbo files, each with its own set of terminals.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd9e6754-c1a9-48a5-a182-5c7124609418:
-    id: cd9e6754-c1a9-48a5-a182-5c7124609418
-    content: Current experience and why it is insufficient
-    children:
-      - 1d3d2455-0a4e-40d1-a2f5-19287fc1dd81
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1d3d2455-0a4e-40d1-a2f5-19287fc1dd81:
-    id: 1d3d2455-0a4e-40d1-a2f5-19287fc1dd81
-    content: Terminals reopen with the right title and folder, but all of them appear under one file, so the user can no longer trust which terminals belong to which file, and the mis-grouped layout is re-persisted and sticks across subsequent restarts.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c11aeb5c-fff3-40a9-9211-b407e9c36310:
-    id: c11aeb5c-fff3-40a9-9211-b407e9c36310
-    content: Goal
-    children:
-      - e98ccc4b-05b4-4074-b795-c4522b9b3d9f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e98ccc4b-05b4-4074-b795-c4522b9b3d9f:
-    id: e98ccc4b-05b4-4074-b795-c4522b9b3d9f
-    content: After restart, every terminal reappears under the same .arbo file it belonged to before shutdown.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c2f5f23-de2c-4110-b9a5-e8ec78133694:
-    id: 1c2f5f23-de2c-4110-b9a5-e8ec78133694
-    content: Business rules
-    children:
-      - e031bf7f-e0c6-41f2-8842-e4405a4ca0f9
-      - cce13174-6709-4ae7-9662-02495465fb80
-      - 0799e608-32a3-4d76-825a-806c949a394d
-      - f293d7d5-aaf1-4d4f-8460-35475eb3b7ce
-      - 9142392c-d302-4ff9-a7f6-24972c3c4910
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e031bf7f-e0c6-41f2-8842-e4405a4ca0f9:
-    id: e031bf7f-e0c6-41f2-8842-e4405a4ca0f9
-    content: On restart, each restored terminal must be materialized under the same .arbo file it was associated with before shutdown.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cce13174-6709-4ae7-9662-02495465fb80:
-    id: cce13174-6709-4ae7-9662-02495465fb80
-    content: A terminal must never be materialized under a different file than its persisted association, regardless of which file is active first or the order in which files are opened.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0799e608-32a3-4d76-825a-806c949a394d:
-    id: 0799e608-32a3-4d76-825a-806c949a394d
-    content: The restore pass must not persist an intermediate or mis-grouped layout; the saved session must keep reflecting the correct per-file association.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f293d7d5-aaf1-4d4f-8460-35475eb3b7ce:
-    id: f293d7d5-aaf1-4d4f-8460-35475eb3b7ce
-    content: Restoring one file's terminals must not move, duplicate, or drop terminals belonging to another file.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9142392c-d302-4ff9-a7f6-24972c3c4910:
-    id: 9142392c-d302-4ff9-a7f6-24972c3c4910
-    content: A single-file project must restore exactly as before, with no regression.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c3cee97b-b5a5-47ad-a20e-2aba9f2594fc:
-    id: c3cee97b-b5a5-47ad-a20e-2aba9f2594fc
-    content: Acceptance criteria
-    children:
-      - dee7ba66-64f7-46ea-a367-2d9afad67c92
-      - 2c765e24-8820-49f2-b599-483b45961aac
-      - b6e8bda0-188b-4391-b7d0-1473ce18e759
-      - 05edceda-d75a-411f-adee-cc6d82470746
-      - cf93ced9-5bc0-4686-8eff-1e35d86baa69
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dee7ba66-64f7-46ea-a367-2d9afad67c92:
-    id: dee7ba66-64f7-46ea-a367-2d9afad67c92
-    content: With two .arbo files each having their own terminals, after a full restart every terminal appears under the file it was attached to before restart, with matching per-file counts.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c765e24-8820-49f2-b599-483b45961aac:
-    id: 2c765e24-8820-49f2-b599-483b45961aac
-    content: Opening file A after restart shows only A's terminals; opening file B shows only B's terminals.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6e8bda0-188b-4391-b7d0-1473ce18e759:
-    id: b6e8bda0-188b-4391-b7d0-1473ce18e759
-    content: Each restored terminal's title and working directory match its pre-restart values under its correct file.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  05edceda-d75a-411f-adee-cc6d82470746:
-    id: 05edceda-d75a-411f-adee-cc6d82470746
-    content: Restarting a second time without changes preserves correct per-file grouping (the mis-grouped state is not re-persisted).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf93ced9-5bc0-4686-8eff-1e35d86baa69:
-    id: cf93ced9-5bc0-4686-8eff-1e35d86baa69
-    content: A project with a single .arbo file and its terminals restores unchanged.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1a7527bf-ed0e-4e52-a74e-a30628adcef6:
-    id: 1a7527bf-ed0e-4e52-a74e-a30628adcef6
-    content: 🔧 Implementation proposal
-    children:
-      - 87e04543-7c6b-42af-af77-32563436e350
-      - 3ef252bc-0653-4a8d-b50b-f7cd786ee082
-      - 96fdc625-b09f-491d-a930-909ddaafc059
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  87e04543-7c6b-42af-af77-32563436e350:
-    id: 87e04543-7c6b-42af-af77-32563436e350
-    content: Approach
-    children:
-      - 61a3764b-27fb-4b33-ab12-ea2154310e08
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  61a3764b-27fb-4b33-ab12-ea2154310e08:
-    id: 61a3764b-27fb-4b33-ab12-ea2154310e08
-    content: The persisted shape is already keyed per file, so the data is correct and the defect is in materialization, which spawns each restored entry through the global active-file addTerminal (writing into whichever file is active and saving on every iteration), so a file-switch or async PTY spawn mid-loop lands terminals in the wrong bucket and re-persists it; fix by writing each file's terminals via a filePath-explicit atomic update against a captured target path with a single save at the end of the restore pass.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ef252bc-0653-4a8d-b50b-f7cd786ee082:
-    id: 3ef252bc-0653-4a8d-b50b-f7cd786ee082
-    content: Touchpoints
-    children:
-      - 66cc729c-548b-4e3b-8f34-c921d4ccc6d4
-      - 73e58daf-3361-46d5-92ab-a8757a2add75
-      - e0d3d628-19c7-44da-b71f-d76bb70eef5f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  66cc729c-548b-4e3b-8f34-c921d4ccc6d4:
-    id: 66cc729c-548b-4e3b-8f34-c921d4ccc6d4
-    content: 'Terminal store: materializeRestoredTerminals — add against a captured target filePath instead of the global currentFilePath, and save once at the end of the restore pass instead of per iteration (src/renderer/store/terminal/terminalStore.ts).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  73e58daf-3361-46d5-92ab-a8757a2add75:
-    id: 73e58daf-3361-46d5-92ab-a8757a2add75
-    content: 'App init hook: ensure setActiveFile fixes the target file before materialize spawns terminals (src/renderer/hooks/useAppInitialization.ts).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0d3d628-19c7-44da-b71f-d76bb70eef5f:
-    id: e0d3d628-19c7-44da-b71f-d76bb70eef5f
-    content: 'Tests: reproduce two-file restore with no bunching; regression test for single-file restore.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  96fdc625-b09f-491d-a930-909ddaafc059:
-    id: 96fdc625-b09f-491d-a930-909ddaafc059
-    content: Constraints to call out
-    children:
-      - bcecdd37-4839-45f4-891b-45a6a23d8e5b
-      - b1d9f0f3-ee54-40ee-bc7b-c49fe20f7452
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bcecdd37-4839-45f4-891b-45a6a23d8e5b:
-    id: bcecdd37-4839-45f4-891b-45a6a23d8e5b
-    content: 'Prerequisite for the resume work: session resume binds per file, so terminals must be in the correct file bucket before any resume binds, or sessions resume into the wrong file''s store.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1d9f0f3-ee54-40ee-bc7b-c49fe20f7452:
-    id: b1d9f0f3-ee54-40ee-bc7b-c49fe20f7452
-    content: The per-iteration save during the loop is what makes the wrong layout sticky across the next restart, so the fix must remove it, not just correct the in-memory grouping.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c8afb5d-8f73-414d-9360-ff97b25bc9e3:
-    id: 4c8afb5d-8f73-414d-9360-ff97b25bc9e3
-    content: Scope of this PR
-    children:
-      - e9809f13-3848-4129-8c0a-1aacf6f93ce3
-      - 684e240c-0db3-43a4-a3cb-d94199c95b87
-      - 0ce26724-131c-40f0-827a-78ee14d2aed0
-      - 97c65409-1fb5-43de-9236-65a8d44391c5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e9809f13-3848-4129-8c0a-1aacf6f93ce3:
-    id: e9809f13-3848-4129-8c0a-1aacf6f93ce3
-    content: 'In scope: make materializeRestoredTerminals write each restored terminal into a captured, filePath-explicit bucket rather than the global active file, with a single save at the end of the restore pass.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  684e240c-0db3-43a4-a3cb-d94199c95b87:
-    id: 684e240c-0db3-43a4-a3cb-d94199c95b87
-    content: 'Out of scope: sessionId persistence and any Claude resume — this PR only corrects per-file association.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0ce26724-131c-40f0-827a-78ee14d2aed0:
-    id: 0ce26724-131c-40f0-827a-78ee14d2aed0
-    content: 'Depends on: nothing; independently mergeable and the prerequisite for PR3.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  97c65409-1fb5-43de-9236-65a8d44391c5:
-    id: 97c65409-1fb5-43de-9236-65a8d44391c5
-    content: 'Independently verifiable: two-file restore shows no bunching, single-file restore is unchanged, and a second restart does not re-bunch.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  99d97d9c-cc8f-40ed-acdd-c0d3291a1831:
-    id: 99d97d9c-cc8f-40ed-acdd-c0d3291a1831
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   270acf71-da39-4d20-8cb3-fe7d8292713e:
     id: 270acf71-da39-4d20-8cb3-fe7d8292713e
     content: PR2 - Gate Claude resume on shell-prompt readiness
@@ -195769,22 +195398,531 @@ nodes:
     children: []
     metadata:
       status: pending
-  03a86634-5c49-4741-a05c-184b712f80c1:
-    id: 03a86634-5c49-4741-a05c-184b712f80c1
+  de559e4c-2801-42e5-a2cb-f5d5bd6b3703:
+    id: de559e4c-2801-42e5-a2cb-f5d5bd6b3703
     content: worktree
     children:
-      - 23d26366-c79e-4475-b0ed-69691172323e
+      - a992369b-2029-4c74-9494-a449ba279936
     metadata:
       status: completed
-  23d26366-c79e-4475-b0ed-69691172323e:
-    id: 23d26366-c79e-4475-b0ed-69691172323e
+      expanded: true
+      deleted: false
+      plugins: {}
+  a992369b-2029-4c74-9494-a449ba279936:
+    id: a992369b-2029-4c74-9494-a449ba279936
     content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-restore-terminals-per-file)'
     children: []
     metadata:
       status: completed
-  4590b644-828a-456d-8de3-215a42fe59e0:
-    id: 4590b644-828a-456d-8de3-215a42fe59e0
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce3a8a62-a30d-4b91-ba56-74642d90d127:
+    id: ce3a8a62-a30d-4b91-ba56-74642d90d127
+    content: User story
+    children:
+      - 22fb60ae-31b9-4fc2-a99b-3c5061723b4c
+      - 0861858b-f151-4e43-afd6-ec825d609809
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22fb60ae-31b9-4fc2-a99b-3c5061723b4c:
+    id: 22fb60ae-31b9-4fc2-a99b-3c5061723b4c
+    content: 📄 Product spec
+    children:
+      - f0b5b3f2-82d2-4ddd-920d-843076fdd8d2
+      - bf1fe187-70b3-4f93-ba50-40c52a640cce
+      - ed521ed9-9e32-410c-a108-e24dfc51f38e
+      - bc7a7c66-f7df-49be-b871-a6db98aa31a4
+      - 5c4bc518-b487-4fee-bfd8-022f770a645a
+      - e113329e-2098-4a1b-8493-a203a07b7ae1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0b5b3f2-82d2-4ddd-920d-843076fdd8d2:
+    id: f0b5b3f2-82d2-4ddd-920d-843076fdd8d2
+    content: Context
+    children:
+      - 58ecba09-5ff2-4828-a196-ab97eb16c2b6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  58ecba09-5ff2-4828-a196-ab97eb16c2b6:
+    id: 58ecba09-5ff2-4828-a196-ab97eb16c2b6
+    content: Arborescent persists each .arbo file's terminals separately and reopens them on restart with their titles and working directories, but when two or more files each have their own terminals, restart collapses every terminal under a single file regardless of which file each belonged to.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf1fe187-70b3-4f93-ba50-40c52a640cce:
+    id: bf1fe187-70b3-4f93-ba50-40c52a640cce
+    content: User
+    children:
+      - 2dabace5-8bc2-4428-a23d-1a268c16fe10
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2dabace5-8bc2-4428-a23d-1a268c16fe10:
+    id: 2dabace5-8bc2-4428-a23d-1a268c16fe10
+    content: A user working across two or more .arbo files, each with its own set of terminals.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed521ed9-9e32-410c-a108-e24dfc51f38e:
+    id: ed521ed9-9e32-410c-a108-e24dfc51f38e
+    content: Current experience and why it is insufficient
+    children:
+      - e140e412-c17e-4d89-a082-3ef4c11f0f08
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e140e412-c17e-4d89-a082-3ef4c11f0f08:
+    id: e140e412-c17e-4d89-a082-3ef4c11f0f08
+    content: Terminals reopen with the right title and folder, but all of them appear under one file, so the user can no longer trust which terminals belong to which file, and the mis-grouped layout is re-persisted and sticks across subsequent restarts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc7a7c66-f7df-49be-b871-a6db98aa31a4:
+    id: bc7a7c66-f7df-49be-b871-a6db98aa31a4
+    content: Goal
+    children:
+      - 1ab58abe-9c2b-4526-ab71-5a9564e6e190
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ab58abe-9c2b-4526-ab71-5a9564e6e190:
+    id: 1ab58abe-9c2b-4526-ab71-5a9564e6e190
+    content: After restart, every terminal reappears under the same .arbo file it belonged to before shutdown.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c4bc518-b487-4fee-bfd8-022f770a645a:
+    id: 5c4bc518-b487-4fee-bfd8-022f770a645a
+    content: Business rules
+    children:
+      - 8cbe74a7-dd17-4d02-9c63-8f28af9e509d
+      - a85dcfcd-6ef9-43ad-a6ba-9bdeb8426596
+      - 40762105-0274-4700-bf75-93717e7597a2
+      - f8067502-44d4-46f0-afb8-1b2e2b8fa9eb
+      - 8a342c06-4be9-4f08-b755-2970bf7cc755
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cbe74a7-dd17-4d02-9c63-8f28af9e509d:
+    id: 8cbe74a7-dd17-4d02-9c63-8f28af9e509d
+    content: On restart, each restored terminal must be materialized under the same .arbo file it was associated with before shutdown.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a85dcfcd-6ef9-43ad-a6ba-9bdeb8426596:
+    id: a85dcfcd-6ef9-43ad-a6ba-9bdeb8426596
+    content: A terminal must never be materialized under a different file than its persisted association, regardless of which file is active first or the order in which files are opened.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40762105-0274-4700-bf75-93717e7597a2:
+    id: 40762105-0274-4700-bf75-93717e7597a2
+    content: The restore pass must not persist an intermediate or mis-grouped layout; the saved session must keep reflecting the correct per-file association.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8067502-44d4-46f0-afb8-1b2e2b8fa9eb:
+    id: f8067502-44d4-46f0-afb8-1b2e2b8fa9eb
+    content: Restoring one file's terminals must not move, duplicate, or drop terminals belonging to another file.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a342c06-4be9-4f08-b755-2970bf7cc755:
+    id: 8a342c06-4be9-4f08-b755-2970bf7cc755
+    content: A single-file project must restore exactly as before, with no regression.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e113329e-2098-4a1b-8493-a203a07b7ae1:
+    id: e113329e-2098-4a1b-8493-a203a07b7ae1
+    content: Acceptance criteria
+    children:
+      - 13e825ec-df2a-418d-9462-8c85b013cfa9
+      - fb2a0363-494b-4002-8318-345de9abfc92
+      - b8262aa0-d7d4-4617-ba4d-200a707a4c36
+      - 66c529e7-7a57-4e30-b261-3751bb5dec12
+      - eb4baae4-2c69-4854-a5d4-ddb0df40f8a8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13e825ec-df2a-418d-9462-8c85b013cfa9:
+    id: 13e825ec-df2a-418d-9462-8c85b013cfa9
+    content: With two .arbo files each having their own terminals, after a full restart every terminal appears under the file it was attached to before restart, with matching per-file counts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb2a0363-494b-4002-8318-345de9abfc92:
+    id: fb2a0363-494b-4002-8318-345de9abfc92
+    content: Opening file A after restart shows only A's terminals; opening file B shows only B's terminals.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8262aa0-d7d4-4617-ba4d-200a707a4c36:
+    id: b8262aa0-d7d4-4617-ba4d-200a707a4c36
+    content: Each restored terminal's title and working directory match its pre-restart values under its correct file.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66c529e7-7a57-4e30-b261-3751bb5dec12:
+    id: 66c529e7-7a57-4e30-b261-3751bb5dec12
+    content: Restarting a second time without changes preserves correct per-file grouping (the mis-grouped state is not re-persisted).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb4baae4-2c69-4854-a5d4-ddb0df40f8a8:
+    id: eb4baae4-2c69-4854-a5d4-ddb0df40f8a8
+    content: A project with a single .arbo file and its terminals restores unchanged.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0861858b-f151-4e43-afd6-ec825d609809:
+    id: 0861858b-f151-4e43-afd6-ec825d609809
+    content: 🔧 Implementation proposal
+    children:
+      - e45ab51e-3a04-4f5b-8005-ba215a8e56c0
+      - 038dc5ee-9ac6-4908-967a-a05ff93f7030
+      - a56e50fb-17be-4e8b-b9f0-ce50358d365a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e45ab51e-3a04-4f5b-8005-ba215a8e56c0:
+    id: e45ab51e-3a04-4f5b-8005-ba215a8e56c0
+    content: Approach
+    children:
+      - 9744f88b-6a7b-4cfc-bde3-35f28e8df435
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9744f88b-6a7b-4cfc-bde3-35f28e8df435:
+    id: 9744f88b-6a7b-4cfc-bde3-35f28e8df435
+    content: The persisted shape is already keyed per file, so the data is correct and the defect is in materialization, which spawns each restored entry through the global active-file addTerminal (writing into whichever file is active and saving on every iteration), so a file-switch or async PTY spawn mid-loop lands terminals in the wrong bucket and re-persists it; fix by writing each file's terminals via a filePath-explicit atomic update against a captured target path with a single save at the end of the restore pass.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  038dc5ee-9ac6-4908-967a-a05ff93f7030:
+    id: 038dc5ee-9ac6-4908-967a-a05ff93f7030
+    content: Touchpoints
+    children:
+      - d9b6b53b-f730-4628-8ad5-6a7ef6b8a862
+      - 19f42fff-2919-4bf2-a849-991d31483cf0
+      - 54a509c4-060f-4767-b892-0505eeb86d34
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9b6b53b-f730-4628-8ad5-6a7ef6b8a862:
+    id: d9b6b53b-f730-4628-8ad5-6a7ef6b8a862
+    content: 'Terminal store: materializeRestoredTerminals — add against a captured target filePath instead of the global currentFilePath, and save once at the end of the restore pass instead of per iteration (src/renderer/store/terminal/terminalStore.ts).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19f42fff-2919-4bf2-a849-991d31483cf0:
+    id: 19f42fff-2919-4bf2-a849-991d31483cf0
+    content: 'App init hook: ensure setActiveFile fixes the target file before materialize spawns terminals (src/renderer/hooks/useAppInitialization.ts).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54a509c4-060f-4767-b892-0505eeb86d34:
+    id: 54a509c4-060f-4767-b892-0505eeb86d34
+    content: 'Tests: reproduce two-file restore with no bunching; regression test for single-file restore.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a56e50fb-17be-4e8b-b9f0-ce50358d365a:
+    id: a56e50fb-17be-4e8b-b9f0-ce50358d365a
+    content: Constraints to call out
+    children:
+      - 0bc33b17-897d-4d4a-b1f7-d1f29bfe9430
+      - 0e5d52db-d58c-4baf-b7c3-8f259f1c5a00
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bc33b17-897d-4d4a-b1f7-d1f29bfe9430:
+    id: 0bc33b17-897d-4d4a-b1f7-d1f29bfe9430
+    content: 'Prerequisite for the resume work: session resume binds per file, so terminals must be in the correct file bucket before any resume binds, or sessions resume into the wrong file''s store.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e5d52db-d58c-4baf-b7c3-8f259f1c5a00:
+    id: 0e5d52db-d58c-4baf-b7c3-8f259f1c5a00
+    content: The per-iteration save during the loop is what makes the wrong layout sticky across the next restart, so the fix must remove it, not just correct the in-memory grouping.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10b47281-3a6e-4456-b286-8da4230d5316:
+    id: 10b47281-3a6e-4456-b286-8da4230d5316
+    content: Scope of this PR
+    children:
+      - 803810a3-4ced-4284-85fe-ae8e8a79c8b6
+      - a459d618-dc11-419b-b45d-43ed1b55888b
+      - d76da5f7-c49e-4fba-be26-0517cc57cf81
+      - af2bce00-ab4f-4cb4-b031-38a52edc0b5a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  803810a3-4ced-4284-85fe-ae8e8a79c8b6:
+    id: 803810a3-4ced-4284-85fe-ae8e8a79c8b6
+    content: 'In scope: make materializeRestoredTerminals write each restored terminal into a captured, filePath-explicit bucket rather than the global active file, with a single save at the end of the restore pass.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a459d618-dc11-419b-b45d-43ed1b55888b:
+    id: a459d618-dc11-419b-b45d-43ed1b55888b
+    content: 'Out of scope: sessionId persistence and any Claude resume — this PR only corrects per-file association.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d76da5f7-c49e-4fba-be26-0517cc57cf81:
+    id: d76da5f7-c49e-4fba-be26-0517cc57cf81
+    content: 'Depends on: nothing; independently mergeable and the prerequisite for PR3.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af2bce00-ab4f-4cb4-b031-38a52edc0b5a:
+    id: af2bce00-ab4f-4cb4-b031-38a52edc0b5a
+    content: 'Independently verifiable: two-file restore shows no bunching, single-file restore is unchanged, and a second restart does not re-bunch.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d00881ec-4cd8-4825-b3dd-4c03418edde9:
+    id: d00881ec-4cd8-4825-b3dd-4c03418edde9
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e58b9bea-e140-4d4e-a8f7-668fb6ae06e7:
+    id: e58b9bea-e140-4d4e-a8f7-668fb6ae06e7
     content: 'Tests added (TDD, red state — test code only, no feature code): src/renderer/store/terminal/tests/terminalRestorePerFileAssociation.test.ts — 11 tests + 1 it.todo. 3 fail by design against current code, encoding the fix''s contract: (1) a file switch interleaving with an in-flight PTY spawn must not move a file''s restored terminals into the now-active file (today A''s bucket ends empty, terminals follow currentFilePath to B); (2) the restore pass must never persist a layout that files one file''s terminals under another (today the per-iteration save in addTerminal re-persists A under B); (3) restoring one file must not move/duplicate/drop another file''s existing terminals (today B grows from 1 to 3). 8 guards pass: single-file restore regression, multi-file per-file counts/titles/cwds, "open A shows only A", repeated-materialize no-op, one-PTY-spawn-failure continues, empty-target and no-active-file no-ops leave other files'' pending intact, and per-file restore cap (5) independence. Notes: no tests/fixtures/ dir exists — followed the existing terminal-test convention (vi.hoisted mocks + inline useTerminalStore.setState); ran only the new file per instruction (8 pass / 3 fail / 1 todo); ESLint + tsc --noEmit clean. Accessibility is N/A at the store layer (no DOM); the UX "trust which terminals belong to which file" guarantee is encoded as the association/isolation assertions. it.todo: deterministic interleave of two overlapping restore passes deferred (post-fix exactness uncertain).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6792266b-4699-4e67-9f48-0ed0efbb0a3c:
+    id: 6792266b-4699-4e67-9f48-0ed0efbb0a3c
+    content: Verification
+    children:
+      - 1f94de25-fb90-4279-ac78-29daa4cf1ce6
+      - 44a5fca8-17e1-4353-b017-3cdfdf6e5d96
+      - 67cbad0c-e472-4e70-a024-0f679d240e73
+      - b9590507-fa6e-4438-82d9-f18670a1be96
+      - ea59ffb8-ab93-48a1-9f16-e8968cab4d73
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f94de25-fb90-4279-ac78-29daa4cf1ce6:
+    id: 1f94de25-fb90-4279-ac78-29daa4cf1ce6
+    content: Terminal store suite passes 123/123 (includes the 11 new per-file association tests); ESLint and tsc --noEmit clean on changed files.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44a5fca8-17e1-4353-b017-3cdfdf6e5d96:
+    id: 44a5fca8-17e1-4353-b017-3cdfdf6e5d96
+    content: Fix confirmed in terminalStore.ts — materializeRestoredTerminals captures targetFilePath, writes each restored terminal into that bucket, and saves once at the end of the pass (the per-iteration addTerminal save is gone for restore).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67cbad0c-e472-4e70-a024-0f679d240e73:
+    id: 67cbad0c-e472-4e70-a024-0f679d240e73
+    content: 'All five acceptance criteria are test-backed: matching per-file counts, "open A shows only A", title+cwd preserved per file, no mis-grouped re-persist on second restart, and unchanged single-file restore.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9590507-fa6e-4438-82d9-f18670a1be96:
+    id: b9590507-fa6e-4438-82d9-f18670a1be96
+    content: App init hook already calls setActiveFile before materializeRestoredTerminals in both the init and file-switch paths, so the touchpoint property holds without a code change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea59ffb8-ab93-48a1-9f16-e8968cab4d73:
+    id: ea59ffb8-ab93-48a1-9f16-e8968cab4d73
+    content: Undone / deferred
+    children:
+      - b4ef8e78-1b5f-426e-aaba-293f85e6c12b
+      - 7e71f98a-e569-494c-aed2-730a5153cce1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4ef8e78-1b5f-426e-aaba-293f85e6c12b:
+    id: b4ef8e78-1b5f-426e-aaba-293f85e6c12b
+    content: Subtask directive left unchecked — it is a scoping note ("implement only this subtask"), honored but not itself a checkable deliverable.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e71f98a-e569-494c-aed2-730a5153cce1:
+    id: 7e71f98a-e569-494c-aed2-730a5153cce1
+    content: it.todo for two overlapping concurrent restore passes remains title-only — the fix's post-loop merge+set runs synchronously so passes cannot clobber each other, but the app never drives two simultaneous materialize passes (sequential per file-switch / once on init), so a deterministic interleave was skipped as complexity for a non-triggered path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8f45af9-ef41-4e76-8eab-fde85969efef:
+    id: c8f45af9-ef41-4e76-8eab-fde85969efef
+    content: 'AI refactor: reviewed the full diff since last commit (terminalStore.ts + terminalRestorePerFileAssociation.test.ts). One convention fix applied — materializeRestoredTerminals had grown past ~50 lines and bundled the terminal-number allocation inline, so that logic was extracted to a module-level createTerminalNumberAllocator helper (matching the file''s existing getFileState/updateFileState/refreshLiveCwd helper pattern), bringing the function to a single responsibility at ~46 lines; the rationale comment was tightened to two lines. Behavior-preserving — confirmed by the existing numbering tests. No abandoned attempts or stray files (only the two intended files changed). Standard checks on changed files: terminal store suite 123/123 pass, ESLint clean, tsc --noEmit clean. Not committed.'
+    children: []
+    metadata:
+      status: completed
+  6b3d1f64-8832-4559-99f4-b8ed789e70d8:
+    id: 6b3d1f64-8832-4559-99f4-b8ed789e70d8
+    content: 'review feedback (agent: pr-review-toolkit:code-reviewer) — Verdict: APPROVE; no blockers, no should-fix items. Verified the new tests are load-bearing: stashing the terminalStore.ts change makes exactly the 3 mid-restore/isolation tests fail (A1 lands in /b.arbo''s bucket; B''s existing count goes 1→3) and they pass with the fix; full terminal + integration + persistence suite 123 pass, ESLint + tsc --noEmit clean. Correctness: targetFilePath is captured once; pendingRestore is cleared synchronously before any await (guards same-file re-entrancy via the early return); the end-of-pass re-reads get().fileStates and merges, so other files'' buckets are never clobbered; live terminals/activeTerminalId are mirrored only when currentFilePath still equals the captured target; the single end-of-pass save replaces the per-iteration save (the persistence half of the bug). Nothing addTerminal previously did is lost — terminals, activeTerminalId (= last restored), fileStates, and saveTerminalSession are all replicated at end-of-pass. Calling code (useAppInitialization.ts) sets the active file before materialize in both the init and file-switch paths, and its post-init `terminals.length === 0` check still holds. Nits only, no action required: (1) the zero-successful-spawn early return skips the save but is correct — buildTerminalSession never persists pendingRestore, so on-disk state is untouched and the pass simply retries on next restart rather than dropping data; (2) a closeFileTerminals-during-spawn "resurrection" race is theoretical, pre-existed in the old addTerminal path, and is unreachable in the normal restore flow; (3) seeding the number allocator from all pending titles + fileState.terminals is behavior-equivalent (the /^Terminal (\d+)$/ regex ignores ''Resume'') and strictly more switch-safe than the old global-terminals seed; (4) the it.todo for two overlapping passes is acceptable — same-file re-entrancy is guarded by the synchronous pendingRestore clear and the different-file case is structurally covered by the captured-target tests.'
+    children: []
+    metadata:
+      status: completed
+  76cfb936-8122-4d83-8178-9b5ba6ce098f:
+    id: 76cfb936-8122-4d83-8178-9b5ba6ce098f
+    content: |-
+      AI code-review resolution — discussed the 'review feedback' with a code-reviewer agent (SendMessage isn't available in this session, so I engaged a reviewer instance with the prior feedback plus my own reading of the code rather than continuing the original thread). Prior verdict: APPROVE, 4 nits all "no action".
+
+      MAJOR issues fixed: none — no blockers or should-fix items.
+
+      MINOR issues fixed: NIT 1 (if every PTY spawn for a file fails, its pendingRestore is cleared in memory and a later save from any source then drops that file from the persisted session, because buildTerminalSession skips empty + no-pending buckets). Added a documenting it.todo in terminalRestorePerFileAssociation.test.ts. No behavior change — see below for why it is deferred rather than fixed.
+
+      FEEDBACK skipped / disputed:
+      - Disputed the reviewer's claim that NIT 1 and NIT 2 were "newly introduced by this PR." Verified against HEAD: the old addTerminal-based materializeRestoredTerminals ALSO cleared pendingRestore synchronously before the spawn loop (so total spawn failure made zero addTerminal calls → zero saves → the identical {terminals:[], pendingRestore:undefined} drop window), and addTerminal's per-terminal getFileState re-create ALSO resurrected a concurrently-closed bucket. Both are pre-existing, not regressions of this PR. The reviewer over-attributed severity; my original "pre-existing" framing was correct.
+      - NIT 1 code fix deferred (not skipped lightly): the trigger requires EVERY PTY spawn for one file to fail (rare), and the clean fix (clear pendingRestore only on spawn success) reopens the same-file re-entrancy guard that the synchronous pre-await clear provides, so it needs in-flight tracking — a separate, out-of-scope design change. Documented via it.todo.
+      - NIT 2 (closeFileTerminals-during-spawn resurrection + latent PTY leak): no change — pre-existing and unreachable in the normal restore flow (needs a file tab closed during the sub-second spawn window).
+      - NIT 3 (allocator reseed from all pending titles + fileState.terminals): no change — verified behavior-equivalent (/^Terminal (\d+)$/ never matches 'Resume'; fileState.terminals equals the live terminals at capture because setActiveFile syncs them) and strictly more switch-safe.
+      - NIT 4 (overlapping-passes it.todo): no change — same-file re-entrancy is architecturally precluded by the synchronous clear; the different-file case is covered by the captured-target + per-save assertions.
+
+      Checks after the doc-only change: changed test file 11 pass / 2 todo, ESLint clean. No production code or behavior changed in this step. Not committed.
+    children: []
+    metadata:
+      status: completed
+  2d03a5e8-0212-4ff0-8c88-75ed2cead9b2:
+    id: 2d03a5e8-0212-4ff0-8c88-75ed2cead9b2
+    content: 'Run test pass & fix — full suite green: 5200 passed, 1 skipped, 625 todo, 0 failed across 368 files; the terminalStore change causes no cross-cutting regression. Semantic AC↔code↔test review (files changed since last commit: terminalStore.ts + terminalRestorePerFileAssociation.test.ts): all five acceptance criteria have implementing code and semantically-matching tests — AC1 per-file counts (multi-file exact-array test), AC3 title+cwd per file, AC4 "not re-persisted" (asserted over ALL saveTerminalSession calls, the cross-cutting check), AC5 single-file regression. Fixed one AC↔assertion gap: AC2 ("opening A shows only A''s; opening B shows only B''s") was asserted in the A direction only — extended the multi-file visibility test to also setActiveFile(''/b.arbo'') and assert B shows only B''s, so both directions are now explicit. No acceptance criterion lacked an implementation; no out-of-scope/orphan implementation to confirm with the user (change is narrowly the materialize fix + the createTerminalNumberAllocator extraction). Test-plan risks all have cases (concurrency via mid-spawn switch, failure via one-spawn-fails + the total-failure it.todo, empty/null no-ops, per-file cap boundary, happy paths). Changed test file 11 pass / 2 todo, ESLint clean. Not committed.'
+    children: []
+    metadata:
+      status: completed
+  bfa69573-89d9-47eb-a8e0-d8207de5c36a:
+    id: bfa69573-89d9-47eb-a8e0-d8207de5c36a
+    content: 'Documentation — no docs or changelog changes warranted, by the step''s own conventions; no files changed in this step. (1) Changelog: the feature this PR fixes — "Per-file session persistence" (terminals saved per file and restored on restart) — is in CHANGELOG.md''s "Unreleased" section, i.e. implemented after the last release, and the convention says not to add a changelog line for a bug fix to a post-release feature. (2) Docs: docs/workflow.md already documents the correct behavior — line 83 ("each [file] remembers its own panel, browser tabs, and terminals independently") and line 87 ("each file''s panel visibility, browser tabs, and terminals are restored" on restart). That is exactly what this fix delivers; the bug was reality diverging from the already-correct doc, not a behavior or capability change, so there is nothing to add, modify, or remove. Correct per-file restore is implicit/discoverable (restart → terminals reappear under their own file), so per the conventions ("if it''s implicit or discoverable and non-blocking, no need to mention it") an entry would only bloat the docs. Checked README.md, docs/workflow.md, docs/workflows.md, docs/shortcuts.md, docs/contexts.md, docs/blueprints.md, CHANGELOG.md — none describe the buggy behavior or need updating. Nothing unclear or inconsistent to warn about.'
     children: []
     metadata:
       status: completed
@@ -195888,6 +196026,4 @@ sessionRegistry:
   48b8cbac-a8ec-4e80-a0eb-b2ca52fbf746:
     cwd: /Users/brianfox/dev/Arborescent
   494b2ddb-8aed-48f6-b9c3-b2ba02fc3137:
-    cwd: /Users/brianfox/dev/Arborescent
-  10e6e61f-8f8f-4ab5-b699-67fafdc530d2:
     cwd: /Users/brianfox/dev/Arborescent
