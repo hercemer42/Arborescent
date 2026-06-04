@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-04T17:57:30.577Z'
+updated: '2026-06-04T18:48:22.184Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -92300,8 +92300,7 @@ nodes:
   ef8172e7-9f00-4495-9f4e-69b862af7dde:
     id: ef8172e7-9f00-4495-9f4e-69b862af7dde
     content: AI code review resolution
-    children:
-      - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115525,6 +115524,7 @@ nodes:
       - 2b90588b-8c43-44be-8376-a4269b6c6ee2
       - 7466cf69-5a0c-43ea-b080-1cd122743608
       - f79d4cde-f843-4412-b46d-686a4745c036
+      - 6863591d-d52d-4950-a8b7-49ab2f28e6c7
     metadata:
       status: pending
       isBlueprint: true
@@ -124631,7 +124631,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 6863591d-d52d-4950-a8b7-49ab2f28e6c7
+      - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
     metadata:
       status: pending
       isBlueprint: true
@@ -191252,6 +191252,9 @@ nodes:
       - 461e9018-55c6-4882-bcbb-4166b72cd2a0
       - aee9c881-0a05-4c3b-8620-97bb522b525f
       - 13eb88a2-8662-4f83-879c-a8ea1acd1c0b
+      - a1096354-4ef2-431e-a060-377c1d84df25
+      - 6d613ba3-0aff-4a70-96a3-ea84c1125663
+      - 6fd47cee-ae3e-49d3-95d2-3a94a5cc4cde
     metadata:
       status: completed
       expanded: false
@@ -193760,6 +193763,33 @@ nodes:
       NICE-TO-HAVE 4 — the "frontier-preferring" comment overstates: the function returns the first `completed` non-`brokenChain` node in `Object.entries` order (no tree-position ordering). Tighten the comment, or add a deterministic tie-break if two completed nodes could ever share a sessionId.
 
       CONFIRMED CORRECT: step-type fall-through (autonomous→advanceNode, checkpoint→awaiting-validation/completeWorkflow, manual→park); `durablyRecovered` bypasses only the submit gate, not the step-type switch (manual still protected by `stepType!=='manual'`); re-seed shape matches `advanceNode`'s `entry.state==='running'`+`entry.terminalTabId` (terminal live on the success path); brokenChain/status handling; conventions (why-comments, named fns, no dead code).
+    children: []
+    metadata:
+      status: pending
+  a1096354-4ef2-431e-a060-377c1d84df25:
+    id: a1096354-4ef2-431e-a060-377c1d84df25
+    content: |-
+      Review resolution — evaluated all four review-feedback findings against the real code (SendMessage unavailable in this env, so verified directly per the step's "read the actual code, don't blindly validate").
+
+      MAJOR FIXED — #1 terminal double-complete: confirmed real (`completeWorkflow` workflowExecutionActions.ts:720 deletes the run-state entry but leaves `status='completed'`+`sessionId`+the session map, so the entry-guard didn't cover the terminal path; a duplicate Stop re-ran `completeWorkflow`). Fix in workflowHookEventHandler.ts: a transient per-completion guard `recoveredCompletions` keyed by `${sessionId}:${currentStepId}`, recorded on every durable recovery (advance AND stuck) and checked first; keyed by STEP (not session/node alone) so a genuine later completion of the same node at a new step is not blocked, while a duplicate Stop on the same terminal step is. Also added a workflow-step-position guard. New test 'does not re-recover the same completion on a duplicate Stop' (two identical Stops → advanceNode called once).
+
+      MINOR FIXED — #3: added `!sessionId` early-return to `findCompletedNodeWithSessionId` for parity with `findLiveNodeWithSessionId`. #4: tightened the 'frontier-preferring' comment to accurately describe first-completed-in-iteration-order (no tree-position ordering).
+
+      SKIPPED — #2 stuck-path Continue routes to the dead terminal: confirmed real (`moveToNextStep` workflowActions.ts:138 → `continueWorkflow(nodeId, entry.terminalTabId)` with no liveness check, unlike `resolveResendTerminal`'s `assignedStillOpen` check at useNodeContextMenu.ts:275). Skipped because (a) reviewer rated it non-blocking; (b) the proper fix modifies the SHARED `moveToNextStep`/`continueWorkflow` affordance — existing code beyond this diff — and overlaps the explicitly out-of-scope resume-onto-fresh-terminal work; (c) the failure is VISIBLE (advance then a 'Failed to send to terminal — workflow stopped' error toast, workflowExecutionActions.ts:905) and recoverable via 'Resend step' (which does resolve a live terminal), not a silent loss. The stuck indicator still delivers its scoped value (visible/persistent/deep-linked — no silent drop). Belongs with the resume-prompt story.
+
+      Checks (changed/new files only): 201 tests green incl. the new test, eslint clean, `tsc` clean project-wide. Not committed (user handles git).
+    children: []
+    metadata:
+      status: pending
+  6d613ba3-0aff-4a70-96a3-ea84c1125663:
+    id: 6d613ba3-0aff-4a70-96a3-ea84c1125663
+    content: 'Run test pass & fix — final QA gate. Test pass GREEN: 1500 changed-module tests, eslint clean, `tsc` clean project-wide. AC↔implementation audit: every [x] acceptance criterion maps to semantically-matching code + a test (durable resolve → `findCompletedNodeWithSessionId`; idempotency → entry-guard + `recoveredCompletions`; transient-authoritative → `findRunningNodeOnTerminal` precedence; checkpoint/manual → step-type fall-through; stuck → `surfaceStuckStep`; drop-log → suppressed-on-resolve / still-fires-on-no-binding). No orphan implementation (all new code maps to an AC, so nothing to confirm with the user). The [-]/[ ] partials (one-click auto-recovery AC, full can''t-advance→stuck rule) are the deliberately out-of-scope resume-onto-fresh-terminal items, not missing implementation. Two coverage gaps found and closed: (1) END-TO-END integration test in `workflowExecution.test.ts` driving the REAL `handleHookEvent`→`advanceNode` so a reload-cleared node actually moves to the next step — validates the re-seed crux and the headline ''run-state cleared → Stop advances'' AC as cross-cutting behavior, beyond the handler-unit dispatch tests (the local-where-global gap); (2) handler-unit test that a step already parked awaiting-validation is not re-fired (the checkpoint no-re-loop risk, previously covered only via the running-entry guard). +2 tests (1498→1500). Not committed (user handles git).'
+    children: []
+    metadata:
+      status: pending
+  6fd47cee-ae3e-49d3-95d2-3a94a5cc4cde:
+    id: 6fd47cee-ae3e-49d3-95d2-3a94a5cc4cde
+    content: 'Documentation: added a two-sentence note to `docs/workflows.md` ("Stopping and Continuing" recovery section, after the app-restart paragraph) — a finished-but-not-advanced step now auto-recovers its advance after a restart instead of silently stalling, and a persistent notice flags+selects a step that genuinely can''t continue (terminal gone). Kept behavioral (no Stop-hook/session/advanceNode implementation detail) and did NOT over-promise the recovery action (consistent with the partial stuck-indicator scope — the notice flags+selects, it doesn''t claim a one-click auto-advance). No CHANGELOG entry: 0.1.0 shipped only basic "Execute and Collaborate workflows"; the Stop-hook/run-state advancement subsystem where this stall lives is being built across the Unreleased section (manual-step Start/Resume, rebind, restart-following, recurse, MCP), so per the convention this is a bug fix to a feature implemented after the last release → no changelog line. No new docs files or README/index change (this is a reliability fix to existing workflow execution, not a standalone concept). Existing passages remain accurate and were not contradicted: line ~93 ("a step whose Stop hook never lands stays running until you stop it") still holds since the never-arriving-Stop timer backstop is out of scope; the Stop-hook role note and the "running items are stopped on restart" line coexist with the new completed-step recovery. Not committed (user handles git).'
     children: []
     metadata:
       status: pending
