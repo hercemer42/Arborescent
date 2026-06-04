@@ -70,7 +70,7 @@ As your tree grows, use view modes to focus:
 
 - **[Blueprint](blueprints.md) mode** (`Ctrl+Shift+B`): Shows only structural branches. [Blueprints](blueprints.md) let you mark branches as part of your workflow template — export them to share with others, or import community blueprints to jumpstart new projects.
 - **Summary mode** (`Ctrl+Shift+U`): Shows only completed/abandoned branches within a date range
-- **Zoom**: Right-click any branch → **Zoom** to focus on that subtree in a new tab
+- **Zoom**: Right-click any branch → **Zoom** to focus on that subtree in a new tab. Zoom again from inside a zoom tab to drill deeper — nest as far as you like; each level opens its own tab.
 
 ## Panels
 

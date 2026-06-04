@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
 import { useNodeContextMenu } from '../useNodeContextMenu';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
@@ -6,6 +6,7 @@ import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
 import { useSpellcheckStore } from '../../../../store/spellcheck/spellcheckStore';
 import { useTerminalStore } from '../../../../store/terminal/terminalStore';
+import { useFilesStore } from '../../../../store/files/filesStore';
 import { REVISE_AFTER_DISCUSSION_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 import type { StepHistoryEntry } from '../../../../store/tree/stepHistory/stepHistory';
 
@@ -1162,6 +1163,105 @@ describe('useNodeContextMenu', () => {
         item => item.label === 'Cancel collaboration',
       );
       expect(cancelItem).toBeDefined();
+    });
+  });
+
+  describe('Zoom menu item', () => {
+    const sourceFilePath = '/path/project.arbo';
+    const zoomPath = `zoom://${sourceFilePath}#parent-node`;
+    const realOpenZoomTab = useFilesStore.getState().openZoomTab;
+    const mockOpenZoomTab = vi.fn();
+
+    afterEach(() => {
+      useFilesStore.setState({ files: [], activeFilePath: null, openZoomTab: realOpenZoomTab });
+    });
+
+    it('shows Zoom and opens a tab against the file path on a regular (non-zoom) file', async () => {
+      useFilesStore.setState({
+        files: [{ path: sourceFilePath, displayName: 'project.arbo' }],
+        activeFilePath: sourceFilePath,
+        openZoomTab: mockOpenZoomTab,
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      const zoomItem = result.current.contextMenuItems.find(item => item.label === 'Zoom');
+      expect(zoomItem).toBeDefined();
+
+      act(() => {
+        zoomItem!.onClick!();
+      });
+      expect(mockOpenZoomTab).toHaveBeenCalledWith(sourceFilePath, 'test-node', 'Test Content');
+    });
+
+    it('shows Zoom inside a zoom tab so the user can zoom within a zoom', async () => {
+      useFilesStore.setState({
+        files: [
+          { path: sourceFilePath, displayName: 'project.arbo' },
+          { path: zoomPath, displayName: 'parent', zoomSource: { sourceFilePath, zoomedNodeId: 'parent-node' } },
+        ],
+        activeFilePath: zoomPath,
+        openZoomTab: mockOpenZoomTab,
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      expect(result.current.contextMenuItems.find(item => item.label === 'Zoom')).toBeDefined();
+    });
+
+    it('opens the nested zoom against the source file path, never the zoom path', async () => {
+      useFilesStore.setState({
+        files: [
+          { path: sourceFilePath, displayName: 'project.arbo' },
+          { path: zoomPath, displayName: 'parent', zoomSource: { sourceFilePath, zoomedNodeId: 'parent-node' } },
+        ],
+        activeFilePath: zoomPath,
+        openZoomTab: mockOpenZoomTab,
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      const zoomItem = result.current.contextMenuItems.find(item => item.label === 'Zoom');
+      act(() => {
+        zoomItem!.onClick!();
+      });
+
+      expect(mockOpenZoomTab).toHaveBeenCalledWith(sourceFilePath, 'test-node', 'Test Content');
+      expect(mockOpenZoomTab).not.toHaveBeenCalledWith(
+        expect.stringContaining('zoom://'),
+        expect.anything(),
+        expect.anything(),
+      );
+    });
+
+    it('does not offer Zoom for hyperlink nodes even inside a zoom tab', async () => {
+      const hyperlinkNode: TreeNode = {
+        id: 'hyperlink-node',
+        content: 'Linked',
+        children: [],
+        metadata: { isHyperlink: true, linkedNodeId: 'test-node' },
+      };
+      store.setState({
+        nodes: { 'hyperlink-node': hyperlinkNode, 'test-node': mockNode },
+        rootNodeId: 'test-node',
+        ancestorRegistry: { 'hyperlink-node': [], 'test-node': [] },
+      });
+      useFilesStore.setState({
+        files: [
+          { path: sourceFilePath, displayName: 'project.arbo' },
+          { path: zoomPath, displayName: 'parent', zoomSource: { sourceFilePath, zoomedNodeId: 'parent-node' } },
+        ],
+        activeFilePath: zoomPath,
+        openZoomTab: mockOpenZoomTab,
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(hyperlinkNode), { wrapper });
+      await openContextMenu(result);
+
+      expect(result.current.contextMenuItems.find(item => item.label === 'Zoom')).toBeUndefined();
     });
   });
 });

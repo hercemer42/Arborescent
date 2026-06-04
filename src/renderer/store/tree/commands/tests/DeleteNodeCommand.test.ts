@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { DeleteNodeCommand } from '../DeleteNodeCommand';
 import { TreeNode } from '../../../../../shared/types';
+import { useFilesStore } from '../../../files/filesStore';
 
 describe('DeleteNodeCommand', () => {
   let nodes: Record<string, TreeNode>;
@@ -88,6 +89,27 @@ describe('DeleteNodeCommand', () => {
       expect(stateUpdate.nodes['child1']).toBeUndefined();
       expect(stateUpdate.nodes['grandchild1']).toBeUndefined();
       expect(stateUpdate.nodes['root'].children).toEqual(['child2']);
+    });
+
+    it('should close zoom tabs for the deleted node and all its descendants', () => {
+      const closeZoomTabsForNode = vi
+        .spyOn(useFilesStore.getState(), 'closeZoomTabsForNode')
+        .mockImplementation(() => {});
+
+      const cmd = new DeleteNodeCommand(
+        'child1',
+        getState,
+        setState,
+        findPreviousNode,
+        triggerAutosave
+      );
+
+      cmd.execute();
+
+      expect(closeZoomTabsForNode).toHaveBeenCalledWith('child1');
+      expect(closeZoomTabsForNode).toHaveBeenCalledWith('grandchild1');
+
+      closeZoomTabsForNode.mockRestore();
     });
 
     it('should select previous node if available', () => {

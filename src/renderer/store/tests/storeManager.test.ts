@@ -29,6 +29,23 @@ describe('storeManager', () => {
 
       expect(store1).not.toBe(store2);
     });
+
+    it('should resolve a zoom path to the same store as its source file', () => {
+      const sourceStore = storeManager.getStoreForFile('/path/file.arbo');
+      const zoomStore = storeManager.getStoreForFile('zoom:///path/file.arbo#node-1');
+
+      expect(zoomStore).toBe(sourceStore);
+    });
+
+    it('should resolve nested zoom paths of the same source to one shared store', () => {
+      const sourceStore = storeManager.getStoreForFile('/path/file.arbo');
+      const firstZoomStore = storeManager.getStoreForFile('zoom:///path/file.arbo#node-1');
+      const nestedZoomStore = storeManager.getStoreForFile('zoom:///path/file.arbo#node-1a');
+
+      expect(firstZoomStore).toBe(sourceStore);
+      expect(nestedZoomStore).toBe(sourceStore);
+      expect(storeManager.hasStore('zoom:///path/file.arbo#node-1a')).toBe(false);
+    });
   });
 
   describe('closeFile', () => {

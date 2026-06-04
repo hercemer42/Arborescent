@@ -1017,6 +1017,46 @@ describe('fileActions', () => {
         false
       );
     });
+
+    it('should restore nested zoom tabs (multiple zooms of the same source) after their source file', async () => {
+      const firstZoomPath = 'zoom:///test/file.arbo#node-1';
+      const nestedZoomPath = 'zoom:///test/file.arbo#node-1a';
+      vi.mocked(mockStorage.getSession).mockResolvedValue({
+        openFiles: ['/test/file.arbo', firstZoomPath, nestedZoomPath],
+        activeFilePath: nestedZoomPath,
+      });
+      vi.mocked(mockStorage.getTempFiles).mockResolvedValue([]);
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      state.files = [];
+      state.openFile.mockImplementation((path: string, displayName: string) => {
+        state.files.push({ path, displayName });
+      });
+      state.openZoomTab.mockImplementation((sourceFilePath: string, nodeId: string) => {
+        const zoomTabPath = `zoom://${sourceFilePath}#${nodeId}`;
+        state.files.push({ path: zoomTabPath, displayName: 'Zoom tab', zoomSource: { sourceFilePath, zoomedNodeId: nodeId } });
+      });
+
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          nodes: {
+            'node-1': { id: 'node-1', content: 'Node 1', children: ['node-1a'], metadata: {} },
+            'node-1a': { id: 'node-1a', content: 'Node 1a', children: [], metadata: {} },
+          },
+          actions: {
+            loadFromPath: vi.fn(() => Promise.resolve({ created: '', author: '' })),
+          },
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.initializeSession();
+
+      expect(state.openFile).toHaveBeenCalledWith('/test/file.arbo', 'file.arbo', false);
+      expect(state.openZoomTab).toHaveBeenCalledWith('/test/file.arbo', 'node-1', 'Node 1');
+      expect(state.openZoomTab).toHaveBeenCalledWith('/test/file.arbo', 'node-1a', 'Node 1a');
+      expect(state.setActiveFile).toHaveBeenCalledWith(nestedZoomPath);
+    });
   });
 
   describe('exportAsBlueprint', () => {

@@ -62,7 +62,6 @@ export function useNodeContextMenu(node: TreeNode) {
   const openCustomizeDialog = useCustomizeDialogStore((state) => state.open);
   const activeFile = useFilesStore((state) => state.getActiveFile());
   const openZoomTab = useFilesStore((state) => state.openZoomTab);
-  const isZoomTab = !!activeFile?.zoomSource;
 
   const buildMenuItems = useCallback(async () => {
     const state = store.getState();
@@ -126,8 +125,9 @@ export function useNodeContextMenu(node: TreeNode) {
     };
 
     const handleZoom = () => {
-      if (!activeFile || isZoomTab) return;
-      openZoomTab(activeFile.path, node.id, node.content);
+      if (!activeFile) return;
+      const sourceFilePath = activeFile.zoomSource?.sourceFilePath ?? activeFile.path;
+      openZoomTab(sourceFilePath, node.id, node.content);
     };
 
     const handleSetAppliedContext = async (contextId: string | null) => {
@@ -369,7 +369,7 @@ export function useNodeContextMenu(node: TreeNode) {
         onDelete: handleDelete,
       }),
       ...(!isExternalLink && statusMenuItem ? [statusMenuItem] : []),
-      ...(!isZoomTab && !isHyperlink && !isExternalLink ? [{
+      ...(!isHyperlink && !isExternalLink ? [{
         label: 'Zoom',
         onClick: handleZoom,
         disabled: false,
@@ -377,7 +377,7 @@ export function useNodeContextMenu(node: TreeNode) {
     ];
 
     return prependSpellItems(baseMenuItems, spellItems);
-  }, [node, store, showTerminal, handleCancel, openCustomizeDialog, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
+  }, [node, store, showTerminal, handleCancel, openCustomizeDialog, activeFile, openZoomTab, buildSpellMenuItems]);
   useEffect(() => {
     buildMenuItemsRef.current = buildMenuItems;
   }, [buildMenuItems]);

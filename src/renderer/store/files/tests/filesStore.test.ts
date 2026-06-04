@@ -229,6 +229,50 @@ describe('filesStore', () => {
     });
   });
 
+  describe('openZoomTab — nested zoom (zoom within a zoom)', () => {
+    it('keeps a nested zoom path flat and pointed at the source file', () => {
+      useFilesStore.getState().openFile('/path/file.arbo', 'file.arbo');
+      // First-level zoom.
+      useFilesStore.getState().openZoomTab('/path/file.arbo', 'node-1', 'Node 1');
+      // Zooming a deeper node from within the zoom resolves back to the source file.
+      useFilesStore.getState().openZoomTab('/path/file.arbo', 'node-1a', 'Node 1a');
+
+      const { files } = useFilesStore.getState();
+      const nested = files.find(f => f.zoomSource?.zoomedNodeId === 'node-1a');
+      expect(nested?.path).toBe('zoom:///path/file.arbo#node-1a');
+      expect(nested?.path).not.toContain('zoom://zoom://');
+      expect(nested?.zoomSource).toEqual({
+        sourceFilePath: '/path/file.arbo',
+        zoomedNodeId: 'node-1a',
+      });
+    });
+
+    it('groups nested zoom tabs with their source file in order', () => {
+      useFilesStore.getState().openFile('/path/file.arbo', 'file.arbo');
+      useFilesStore.getState().openZoomTab('/path/file.arbo', 'node-1', 'Node 1');
+      useFilesStore.getState().openZoomTab('/path/file.arbo', 'node-1a', 'Node 1a');
+
+      const { files } = useFilesStore.getState();
+      expect(files.map(f => f.path)).toEqual([
+        '/path/file.arbo',
+        'zoom:///path/file.arbo#node-1',
+        'zoom:///path/file.arbo#node-1a',
+      ]);
+    });
+
+    it('focuses the existing tab when the same nested node is zoomed again', () => {
+      useFilesStore.getState().openFile('/path/file.arbo', 'file.arbo');
+      useFilesStore.getState().openZoomTab('/path/file.arbo', 'node-1', 'Node 1');
+      useFilesStore.getState().openZoomTab('/path/file.arbo', 'node-1a', 'Node 1a');
+      useFilesStore.getState().setActiveFile('/path/file.arbo');
+      useFilesStore.getState().openZoomTab('/path/file.arbo', 'node-1a', 'Node 1a');
+
+      const { files, activeFilePath } = useFilesStore.getState();
+      expect(files.filter(f => f.zoomSource)).toHaveLength(2);
+      expect(activeFilePath).toBe('zoom:///path/file.arbo#node-1a');
+    });
+  });
+
   describe('closeZoomTabsForNode', () => {
     it('should close zoom tab when zoomed node is deleted', () => {
       useFilesStore.getState().openFile('/path/file.arbo', 'file.arbo');
