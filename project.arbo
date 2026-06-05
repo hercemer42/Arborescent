@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-05T02:09:43.698Z'
+updated: '2026-06-05T10:07:20.063Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5141,7 +5141,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -33756,7 +33756,8 @@ nodes:
   6d973cbb-3c7c-4ac4-925d-ffd5d659332c:
     id: 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
     content: Feature verification
-    children: []
+    children:
+      - 993479cb-62d6-4482-9c73-873976a9eaf9
     metadata:
       status: pending
       isBlueprint: true
@@ -83372,6 +83373,8 @@ nodes:
       - 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
       - e644f5eb-0f5d-471d-b23f-3ab955f156b4
       - 65081cc7-b677-4683-85a9-e18df2a1b320
+      - f7be1672-ae6d-4261-843f-2c0a5e2657b9
+      - 9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb
     metadata:
       status: pending
       isBlueprint: true
@@ -83646,8 +83649,7 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children:
-      - 993479cb-62d6-4482-9c73-873976a9eaf9
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115528,6 +115530,7 @@ nodes:
       - 6f0fe0b2-1aeb-4392-97c7-f8fee83d7b24
       - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
       - 5bff2b75-39f1-4910-83c7-5f3c772858bc
+      - 270acf71-da39-4d20-8cb3-fe7d8292713e
     metadata:
       status: pending
       isBlueprint: true
@@ -124634,7 +124637,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 270acf71-da39-4d20-8cb3-fe7d8292713e
+      - decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
     metadata:
       status: pending
       isBlueprint: true
@@ -158993,7 +158996,7 @@ nodes:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
     children:
-      - decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
+      - 1a845a42-fe0f-4820-a479-f43f1d81253e
     metadata:
       status: pending
       isBlueprint: true
@@ -194383,20 +194386,23 @@ nodes:
       deleted: false
       plugins: {}
       groupId: abe8b43d-0d26-4f1a-8022-48fb48a2fc45
-      sessionId: b88d6144-dfb7-4068-92d9-c1d0280ddab1
   993479cb-62d6-4482-9c73-873976a9eaf9:
     id: 993479cb-62d6-4482-9c73-873976a9eaf9
     content: PR3 - Resume every open file's Claude sessions at launch
     children:
+      - b9098ccc-5e03-490e-aa11-4f05b297c4f3
       - 8bfe82ec-784e-42e6-a0b9-3700e56f7d36
       - a996e1f7-ec07-45c8-a96e-48c4481adbc8
       - 42b6e7ec-7a64-4268-ba85-709c6cff7acc
+      - b93a5855-61b5-4c23-83b2-8d4edb8a1df9
+      - 8a9c83f1-a6fb-4fc4-a343-f43f03f79fdc
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
       groupId: abe8b43d-0d26-4f1a-8022-48fb48a2fc45
+      sessionId: b88d6144-dfb7-4068-92d9-c1d0280ddab1
   8bfe82ec-784e-42e6-a0b9-3700e56f7d36:
     id: 8bfe82ec-784e-42e6-a0b9-3700e56f7d36
     content: User story
@@ -195464,50 +195470,25 @@ nodes:
     id: decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
     content: Can't assign a node to a terminal when one was bound
     children:
-      - a20686f5-f46e-4508-9747-17e52cd22421
-      - 26f86921-6ee1-4838-9644-702d2f500a9b
+      - 2a07608b-8d5e-4220-9c2e-50d92ca46af8
+      - f41906ec-2eb2-4d5a-b097-bb5e6eb4233f
+      - 82340652-f3f2-4661-a457-a9a2cf4a151f
+      - 51a684fb-00de-48e0-a665-77c5e52e7212
+      - a0a98ce6-8e1c-4bdd-bfa5-ce527050c84f
+      - e6a5de54-3c68-43fe-b3f5-16a2b16a806b
+      - 3a6ba07f-7c10-41fc-9fee-ee6e1bbde71a
+      - bd626476-361d-44fe-981e-dee0f95afafa
+      - f11d1f16-f67c-4b1d-845f-4d46c14710eb
+      - 0acb77d7-2523-4c24-8443-a3ed1bf7a571
+      - 1baf119d-9230-4978-ad35-577b29e1824a
+      - 1cd5e36d-f14f-452e-915d-e616b16a9e7b
+      - 0ae3e6fd-e92d-4f77-9066-af21f5125214
     metadata:
-      status: pending
-  a20686f5-f46e-4508-9747-17e52cd22421:
-    id: a20686f5-f46e-4508-9747-17e52cd22421
-    content: Even if the other node has finished
-    children: []
-    metadata:
-      status: pending
-  26f86921-6ee1-4838-9644-702d2f500a9b:
-    id: 26f86921-6ee1-4838-9644-702d2f500a9b
-    content: Get the message that the terminal tab is already assigned to a running workflow node
-    children:
-      - 2aa1ce52-9228-4723-857f-73f1182d3da9
-      - 83643dd8-e744-4938-bd59-6d31d39d17ac
-      - 1acc1d8d-83bd-4f32-90b1-45695fc32900
-    metadata:
-      status: pending
-  2aa1ce52-9228-4723-857f-73f1182d3da9:
-    id: 2aa1ce52-9228-4723-857f-73f1182d3da9
-    content: But other node isn't running
-    children: []
-    metadata:
-      status: pending
-  83643dd8-e744-4938-bd59-6d31d39d17ac:
-    id: 83643dd8-e744-4938-bd59-6d31d39d17ac
-    content: This happened on a recurse/decompose node
-    children: []
-    metadata:
-      status: pending
-  1acc1d8d-83bd-4f32-90b1-45695fc32900:
-    id: 1acc1d8d-83bd-4f32-90b1-45695fc32900
-    content: The next sibling was advanced to the next step
-    children:
-      - edd33eb7-fb3d-4f2a-a411-c7e5cacd7e9e
-    metadata:
-      status: pending
-  edd33eb7-fb3d-4f2a-a411-c7e5cacd7e9e:
-    id: edd33eb7-fb3d-4f2a-a411-c7e5cacd7e9e
-    content: But couldn't be sent to the prompt
-    children: []
-    metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: d9c5d11a-22c6-48f7-9f36-c99974964c18
   d0d6560b-9734-4428-94d3-80670ebb966b:
     id: d0d6560b-9734-4428-94d3-80670ebb966b
     content: worktree
@@ -196162,6 +196143,948 @@ nodes:
     children: []
     metadata:
       status: pending
+  f7be1672-ae6d-4261-843f-2c0a5e2657b9:
+    id: f7be1672-ae6d-4261-843f-2c0a5e2657b9
+    content: And push to remote
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb:
+    id: 9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb
+    content: No need to build/uninstall/reinstall or remind me
+    children:
+      - b09d055f-6f69-47a5-ba22-84fa8dbb560c
+    metadata:
+      status: pending
+      isBlueprint: true
+  b09d055f-6f69-47a5-ba22-84fa8dbb560c:
+    id: b09d055f-6f69-47a5-ba22-84fa8dbb560c
+    content: We don't do it everytime
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  b9098ccc-5e03-490e-aa11-4f05b297c4f3:
+    id: b9098ccc-5e03-490e-aa11-4f05b297c4f3
+    content: worktree
+    children:
+      - 7abe1a9f-de1e-4b2a-83b3-07477ec1e7eb
+    metadata:
+      status: completed
+  7abe1a9f-de1e-4b2a-83b3-07477ec1e7eb:
+    id: 7abe1a9f-de1e-4b2a-83b3-07477ec1e7eb
+    content: vscode://file/Users/brianfox/dev/Arborescent-launch-resume
+    children: []
+    metadata:
+      status: completed
+  b93a5855-61b5-4c23-83b2-8d4edb8a1df9:
+    id: b93a5855-61b5-4c23-83b2-8d4edb8a1df9
+    content: |-
+      WORKTREE NOTE: PR3's "Worktree creation" step was not delivered (no worktree node existed and the workflow advanced straight to TDD). Created one as part of TDD: worktree /Users/brianfox/dev/Arborescent-launch-resume on branch feat/launch-resume-sessions, forked from master @ 90dd503 (carries PR1 4bf24f1 + PR2), fresh npm install, no node_modules symlink. Added the worktree + vscode-link nodes to match the PR2 structure.
+
+      TDD NOTE: wrote 2 test files; red state = 1 failing / 2 passing guards / 17 it.todo; eslint + tsc clean (sessionId read through a widened cast until the persisted type carries it).
+      - FAILING (drives the foundational persistence fix): src/shared/tests/schemas.test.ts — TerminalSessionSchema must preserve a per-terminal sessionId (zod currently strips it as an unknown key).
+      - PASSING GUARDS: schema still accepts entries without sessionId (backward-compat); restoreTerminalSession carries a saved entry's sessionId verbatim into pendingRestore (the verbatim copy already does this).
+      - TITLE-ONLY (src/renderer/store/terminal/tests/terminalLaunchResume.test.ts): the launch orchestration is pinned as it.todo because its seams are open architectural decisions — buildTerminalSession's cross-store read of the file's workflowSessionMap to populate sessionId; materialize-every-open-file at launch decoupled from activeContent==='terminal' (changing the existing materializeRestoredTerminals would break PR1's per-file tests, so the impl likely adds a launch-time method); resume-all driving each file's tree-store resumeSession through PR2's gate; throttled concurrency; quiet missing-session/missing-folder fallbacks (no toast, unlike PR2's manual path); background/non-blocking; idempotent re-binding; no auto-advance of resumed mid-workflow sessions. Covers concurrent/error/empty/boundary/edge/happy + a11y(quiet, no toast storm).
+    children: []
+    metadata:
+      status: pending
+  8a9c83f1-a6fb-4fc4-a343-f43f03f79fdc:
+    id: 8a9c83f1-a6fb-4fc4-a343-f43f03f79fdc
+    content: |-
+      SCOPE ESCALATION (implementation paused, no code written this run). Investigation done; the implementation is larger/more intricate than the spec's framing and one design fork shapes correctness — better served by a higher-effort/fresh pass. Re-run this step after raising reasoning effort.
+
+      VALIDATED (so the re-run is fast):
+      - sessionRegistry IS persisted in the .arbo doc (shared/types/document.ts; written via createArboFile in persistenceActions.ts:55; restored at persistenceActions.ts:134; "not reset — persistent data loaded from file" workflowExecutionActions.ts:1065). So resume cwd is available at launch from each file's restored tree store.
+      - Cross-store access = storeManager.getStoreForFile(filePath). BUT storeManager imports useTerminalStore, so terminalStore must NOT import storeManager (cycle). Use the established injection pattern (storeManager calls setFileActionsStoreAccess at module load, line 132) — add a parallel setter to inject a per-file sessionId lookup into the terminal store for buildTerminalSession.
+      - Launch orchestration belongs in useAppInitialization (already imports storeManager + terminal store) — materialize all files + background throttled resume, decoupled from the activeContent==='terminal' gate (currently gated at useAppInitialization.ts:37,60).
+
+      DESIGN FORK to resolve (spec under-specifies "resume through resumeSession"):
+      - resumeSession(nodeId) SPAWNS a new terminal (alive-detached → createNewTerminal at workflowSessionResume.ts:150). At launch the terminal is ALREADY materialized, so calling resumeSession would create a DUPLICATE. The launch path must instead resume INTO the existing terminal by reusing PR2 primitives — checkClaudeSessionExists(cwd,sessionId) + waitForShellPrompt(terminalId) + terminalWrite(claude --resume) + bindSessionTab — with QUIET fallbacks (no toasts; resumeSession toasts at workflowSessionResume.ts:120/136/141). Recommended: materialize spawns all terminals plain, then a new quiet resumeRestoredTerminal(terminalId, sessionId, cwd) reuses the primitives on the existing terminal. Confirm this approach (vs. refactoring resumeSession to a resume-into-existing core that both manual and launch paths share).
+
+      REMAINING WORK: interface+schema sessionId (turns the failing schemas.test.ts green); buildTerminalSession sessionId via injection; materialize-all (new launch method so PR1's per-file materializeRestoredTerminals tests don't break); throttled background resume-all in app-init; quiet resume-into-existing; fill the 17 it.todo in terminalLaunchResume.test.ts with real multi-store harness tests; standard checks.
+    children: []
+    metadata:
+      status: pending
+  1a845a42-fe0f-4820-a479-f43f1d81253e:
+    id: 1a845a42-fe0f-4820-a479-f43f1d81253e
+    content: Step history lists the step's own title in place of the historized node's title
+    children: []
+    metadata:
+      status: pending
+  2a07608b-8d5e-4220-9c2e-50d92ca46af8:
+    id: 2a07608b-8d5e-4220-9c2e-50d92ca46af8
+    content: worktree
+    children:
+      - f012ac5b-2dcf-4911-a729-d323d684e614
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f012ac5b-2dcf-4911-a729-d323d684e614:
+    id: f012ac5b-2dcf-4911-a729-d323d684e614
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-terminal-binding) — branch fix/terminal-binding-recurse-bail'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f41906ec-2eb2-4d5a-b097-bb5e6eb4233f:
+    id: f41906ec-2eb2-4d5a-b097-bb5e6eb4233f
+    content: Summary
+    children:
+      - 8184b444-14e9-4f1e-ac30-237cbc3da113
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8184b444-14e9-4f1e-ac30-237cbc3da113:
+    id: 8184b444-14e9-4f1e-ac30-237cbc3da113
+    content: A decomposed/recurse sibling advanced to its next step can't be sent to a terminal — it raises "Terminal tab is already assigned to a running workflow node" for a node that is no longer running, yet a phantom session binding is left on the sibling, so a later manual start resumes the original (closed) sibling session and prompts to rebind at the same time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82340652-f3f2-4661-a457-a9a2cf4a151f:
+    id: 82340652-f3f2-4661-a457-a9a2cf4a151f
+    content: Steps to reproduce
+    children:
+      - 6ee6cf63-1e2e-4cad-b960-9f61e24d0f41
+      - 7f85b4b4-e29d-4ec4-8b40-1860e9afe34d
+      - 8d08edeb-3880-4bd6-ad5e-5a255b76ca73
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ee6cf63-1e2e-4cad-b960-9f61e24d0f41:
+    id: 6ee6cf63-1e2e-4cad-b960-9f61e24d0f41
+    content: precondition / setup step
+    children:
+      - 4291f1e5-b9fe-4afa-ad54-90f9fe5248fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4291f1e5-b9fe-4afa-ad54-90f9fe5248fe:
+    id: 4291f1e5-b9fe-4afa-ad54-90f9fe5248fe
+    content: A workflow step with decomposition + recurse whose orchestrator produced two or more decomposed siblings sharing a groupId, running in one Claude session on one terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f85b4b4-e29d-4ec4-8b40-1860e9afe34d:
+    id: 7f85b4b4-e29d-4ec4-8b40-1860e9afe34d
+    content: user action
+    children:
+      - fbe81d81-2ebd-42bf-a4ec-7962f7529c7f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbe81d81-2ebd-42bf-a4ec-7962f7529c7f:
+    id: fbe81d81-2ebd-42bf-a4ec-7962f7529c7f
+    content: Let the first sibling finish its step so recurse hands off to the next sibling (dispatchRecurseStart), then later try to Start that next sibling manually
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d08edeb-3880-4bd6-ad5e-5a255b76ca73:
+    id: 8d08edeb-3880-4bd6-ad5e-5a255b76ca73
+    content: observation that exposes the bug
+    children:
+      - fb787caa-772b-4191-a86d-e9f7de0810fd
+      - 98dac861-c5b8-4935-87f0-4fbda50c923c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb787caa-772b-4191-a86d-e9f7de0810fd:
+    id: fb787caa-772b-4191-a86d-e9f7de0810fd
+    content: The next sibling is advanced to the next step but its prompt is never sent — "Terminal tab is already assigned to a running workflow node" fires though no node is running on that terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98dac861-c5b8-4935-87f0-4fbda50c923c:
+    id: 98dac861-c5b8-4935-87f0-4fbda50c923c
+    content: Starting the sibling in a fresh session instead resumes the original, already-closed sibling session AND shows "bound to another node — rebind?" in the same action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51a684fb-00de-48e0-a665-77c5e52e7212:
+    id: 51a684fb-00de-48e0-a665-77c5e52e7212
+    content: Expected behavior
+    children:
+      - d3186983-7e6d-42de-a21c-7fdae97097da
+      - 6b3b6425-de5a-48d5-bfba-e449f6e15166
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3186983-7e6d-42de-a21c-7fdae97097da:
+    id: d3186983-7e6d-42de-a21c-7fdae97097da
+    content: expected outcome on the happy path
+    children:
+      - fd0a256a-0a09-4bb6-a791-2961b9d35737
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd0a256a-0a09-4bb6-a791-2961b9d35737:
+    id: fd0a256a-0a09-4bb6-a791-2961b9d35737
+    content: After a sibling finishes, the next decomposed sibling sends cleanly on the freed terminal with no "already assigned" toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b3b6425-de5a-48d5-bfba-e449f6e15166:
+    id: 6b3b6425-de5a-48d5-bfba-e449f6e15166
+    content: expected handling of edge cases
+    children:
+      - dd465f98-354b-44c8-a404-393aa4674675
+      - fd4a6d37-6b46-4610-8105-eab2cdefabd0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd465f98-354b-44c8-a404-393aa4674675:
+    id: dd465f98-354b-44c8-a404-393aa4674675
+    content: If the recurse hand-off bails, the sibling is left with NO inherited session stamp, so a later manual Start spawns fresh (or focuses the live tab) rather than resuming a dead session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd4a6d37-6b46-4610-8105-eab2cdefabd0:
+    id: fd4a6d37-6b46-4610-8105-eab2cdefabd0
+    content: A single manual Start never both resumes a session and asks to rebind
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0a98ce6-8e1c-4bdd-bfa5-ce527050c84f:
+    id: a0a98ce6-8e1c-4bdd-bfa5-ce527050c84f
+    content: Actual behavior
+    children:
+      - 6c67ef82-e2a1-4822-9d08-e75011f75ec7
+      - 85ef1f5f-9f56-41dc-b0e8-8f961a0d4909
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c67ef82-e2a1-4822-9d08-e75011f75ec7:
+    id: 6c67ef82-e2a1-4822-9d08-e75011f75ec7
+    content: what actually happens
+    children:
+      - e3775807-84d3-4220-9941-8409952a98d8
+      - e91a9e62-1e26-4a87-bc0c-bdb132ca34d9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3775807-84d3-4220-9941-8409952a98d8:
+    id: e3775807-84d3-4220-9941-8409952a98d8
+    content: findRunningNodeOnTerminal returns the stale terminalNodeAssignments entry without checking the node is still running, so the start/continue/resend guard rejects the send
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e91a9e62-1e26-4a87-bc0c-bdb132ca34d9:
+    id: e91a9e62-1e26-4a87-bc0c-bdb132ca34d9
+    content: dispatchRecurseStart stamps the parent's sessionId onto the sibling (inheritSessionOnNode) BEFORE the guard runs; the bail does not roll it back, leaving a phantom group binding on the node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85ef1f5f-9f56-41dc-b0e8-8f961a0d4909:
+    id: 85ef1f5f-9f56-41dc-b0e8-8f961a0d4909
+    content: user-visible symptoms
+    children:
+      - d558eecd-1693-499a-bb7d-b95098827548
+      - f64c8f42-2a03-416c-8413-ab30b025eae7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d558eecd-1693-499a-bb7d-b95098827548:
+    id: d558eecd-1693-499a-bb7d-b95098827548
+    content: '"Terminal tab is already assigned to a running workflow node" toast for a finished node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f64c8f42-2a03-416c-8413-ab30b025eae7:
+    id: f64c8f42-2a03-416c-8413-ab30b025eae7
+    content: Manual start opens the original sibling's closed session while simultaneously prompting "bound to another node — rebind?"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6a5de54-3c68-43fe-b3f5-16a2b16a806b:
+    id: e6a5de54-3c68-43fe-b3f5-16a2b16a806b
+    content: Suspected cause
+    children:
+      - ee179789-9b92-4095-9119-d24e433f279e
+      - 195407d4-a0d8-4546-b3b5-1482667e9ff0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee179789-9b92-4095-9119-d24e433f279e:
+    id: ee179789-9b92-4095-9119-d24e433f279e
+    content: code path or commit implicated
+    children:
+      - 61afaded-8ec2-42c8-b48a-9aedc4e755e0
+      - ff8606c4-5087-4713-b92d-ccb2333e8d08
+      - e6511a6a-d04c-486f-acb9-d3d42794361e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61afaded-8ec2-42c8-b48a-9aedc4e755e0:
+    id: 61afaded-8ec2-42c8-b48a-9aedc4e755e0
+    content: terminalBindingResolution.ts findRunningNodeOnTerminal explicit-assignment shortcut (lines 30-31) trusts terminalNodeAssignments without re-validating workflowExecutionStates running state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff8606c4-5087-4713-b92d-ccb2333e8d08:
+    id: ff8606c4-5087-4713-b92d-ccb2333e8d08
+    content: workflowExecutionActions.ts dispatchRecurseStart inherit-before-guard, plus startWorkflowOnTerminal early-return bail (line ~319) with no session rollback and no assignment release
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6511a6a-d04c-486f-acb9-d3d42794361e:
+    id: e6511a6a-d04c-486f-acb9-d3d42794361e
+    content: Dual binding = per-node terminalNodeAssignments (terminal to node) vs metadata.sessionId inherited across siblings (group/session affinity); the two diverge on a bail
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  195407d4-a0d8-4546-b3b5-1482667e9ff0:
+    id: 195407d4-a0d8-4546-b3b5-1482667e9ff0
+    content: why the existing guard or fix does not cover this case
+    children:
+      - 5548f3fe-ff3c-4e4d-a442-1f087123225d
+      - 62bad220-06a3-4047-8c38-7584eb6ae52b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5548f3fe-ff3c-4e4d-a442-1f087123225d:
+    id: 5548f3fe-ff3c-4e4d-a442-1f087123225d
+    content: The recurse-bail rollback and running-state re-validation are specced but still it.todo in recurseZombieState.test.ts; fixes 8ba2bc0 and 4728852 closed adjacent cases only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62bad220-06a3-4047-8c38-7584eb6ae52b:
+    id: 62bad220-06a3-4047-8c38-7584eb6ae52b
+    content: decideWorkflowStartRoute resumes on ANY persisted sessionId, so the un-rolled-back phantom stamp drives a claude --resume of the closed session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a6ba07f-7c10-41fc-9fee-ee6e1bbde71a:
+    id: 3a6ba07f-7c10-41fc-9fee-ee6e1bbde71a
+    content: Affected files
+    children:
+      - 7b548960-c5f4-4ff6-90f8-cfaae0d82c56
+      - 58604a88-fd6c-4683-9d8d-551ec0f0d21f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b548960-c5f4-4ff6-90f8-cfaae0d82c56:
+    id: 7b548960-c5f4-4ff6-90f8-cfaae0d82c56
+    content: file path of primary suspect
+    children:
+      - 3aa3bc65-61e9-4abf-b79b-2fd1d5e117b8
+      - 7c651f1a-c8ac-45f9-85f8-b30274c54608
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3aa3bc65-61e9-4abf-b79b-2fd1d5e117b8:
+    id: 3aa3bc65-61e9-4abf-b79b-2fd1d5e117b8
+    content: src/renderer/store/tree/actions/terminalBindingResolution.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c651f1a-c8ac-45f9-85f8-b30274c54608:
+    id: 7c651f1a-c8ac-45f9-85f8-b30274c54608
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  58604a88-fd6c-4683-9d8d-551ec0f0d21f:
+    id: 58604a88-fd6c-4683-9d8d-551ec0f0d21f
+    content: file path of related surface
+    children:
+      - b057ba71-d5ea-45bd-9857-ab96115949e2
+      - d20cf600-4735-409e-80a0-0722f3a67651
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b057ba71-d5ea-45bd-9857-ab96115949e2:
+    id: b057ba71-d5ea-45bd-9857-ab96115949e2
+    content: src/renderer/utils/workflowStartRoute.ts (decideWorkflowStartRoute)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d20cf600-4735-409e-80a0-0722f3a67651:
+    id: d20cf600-4735-409e-80a0-0722f3a67651
+    content: src/renderer/store/tree/actions/workflowSessionResume.ts (inheritSessionOnNode)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd626476-361d-44fe-981e-dee0f95afafa:
+    id: bd626476-361d-44fe-981e-dee0f95afafa
+    content: Regression window
+    children:
+      - 5cbc0dbf-ae28-48d1-81e0-24e30aad539f
+      - 36311d49-7b6e-41c9-868f-374912629e39
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cbc0dbf-ae28-48d1-81e0-24e30aad539f:
+    id: 5cbc0dbf-ae28-48d1-81e0-24e30aad539f
+    content: last known good commit or release
+    children:
+      - cab18da0-38cd-4fc1-8200-dbe3a06b818f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cab18da0-38cd-4fc1-8200-dbe3a06b818f:
+    id: cab18da0-38cd-4fc1-8200-dbe3a06b818f
+    content: Before 2026-05-09 — prior to the authoritative terminal→node assignment map and recurse same-session inheritance
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36311d49-7b6e-41c9-868f-374912629e39:
+    id: 36311d49-7b6e-41c9-868f-374912629e39
+    content: first observed broken commit or date
+    children:
+      - f6ef535c-e6a4-4fc1-af82-923dd2c895e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6ef535c-e6a4-4fc1-af82-923dd2c895e3:
+    id: f6ef535c-e6a4-4fc1-af82-923dd2c895e3
+    content: 2219213 (2026-05-09, recurse same-session inheritance) and ffbef1b (2026-05-09, authoritative terminal→node assignment); partial fixes 8ba2bc0 (2026-05-10) and 4728852 (2026-05-16) did not close the recurse-bail path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f11d1f16-f67c-4b1d-845f-4d46c14710eb:
+    id: f11d1f16-f67c-4b1d-845f-4d46c14710eb
+    content: Severity
+    children:
+      - 350a7171-cd5d-4bb5-9d41-2a153c532bbf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  350a7171-cd5d-4bb5-9d41-2a153c532bbf:
+    id: 350a7171-cd5d-4bb5-9d41-2a153c532bbf
+    content: severity level and user impact
+    children:
+      - 5b7e48fb-c94f-424d-999c-e3aa6243c1eb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b7e48fb-c94f-424d-999c-e3aa6243c1eb:
+    id: 5b7e48fb-c94f-424d-999c-e3aa6243c1eb
+    content: High — blocks recurse/decompose continuation and can resume a closed or stale Claude session (risking work landing in the wrong session); manual rebind or fresh-start is the only workaround
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0acb77d7-2523-4c24-8443-a3ed1bf7a571:
+    id: 0acb77d7-2523-4c24-8443-a3ed1bf7a571
+    content: Notes
+    children:
+      - c8f941d2-1fdc-4c0a-8fb3-ae94513f9b7f
+      - e5d31dbd-e823-429c-bf1a-fbd61fcac1c5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8f941d2-1fdc-4c0a-8fb3-ae94513f9b7f:
+    id: c8f941d2-1fdc-4c0a-8fb3-ae94513f9b7f
+    content: adjacent issues or look-alikes to disambiguate
+    children:
+      - e0ce895c-fae4-478a-84a3-3bc30187bd8e
+      - 8e53d5ad-bdcb-43cd-ad83-66f0906df100
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0ce895c-fae4-478a-84a3-3bc30187bd8e:
+    id: e0ce895c-fae4-478a-84a3-3bc30187bd8e
+    content: Legitimate recurse hand-off rebind (mode 'recurse' is intentionally un-gated) vs this false-positive rebind on a manual start
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e53d5ad-bdcb-43cd-ad83-66f0906df100:
+    id: 8e53d5ad-bdcb-43cd-ad83-66f0906df100
+    content: Stale originNodeId "blue bar" (intentionally NOT treated as a binding) vs a live-session binding via findSessionBoundNodeForTerminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5d31dbd-e823-429c-bf1a-fbd61fcac1c5:
+    id: e5d31dbd-e823-429c-bf1a-fbd61fcac1c5
+    content: UX or telemetry gap worth fixing alongside
+    children:
+      - e122ab44-b686-4436-a13f-02779180b1fd
+      - 85332e4f-2d62-4593-84b1-68b47c6b24d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e122ab44-b686-4436-a13f-02779180b1fd:
+    id: e122ab44-b686-4436-a13f-02779180b1fd
+    content: The "already assigned to a running workflow node" toast names a running node that isn't running — should name the node and flag the assignment as stale
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85332e4f-2d62-4593-84b1-68b47c6b24d4:
+    id: 85332e4f-2d62-4593-84b1-68b47c6b24d4
+    content: dispatchRecurseStart bail should surface why recurse stopped (terminal busy / ineligible) — specced but still it.todo
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1baf119d-9230-4978-ad35-577b29e1824a:
+    id: 1baf119d-9230-4978-ad35-577b29e1824a
+    content: Technical refinement
+    children:
+      - af4b4a89-a969-4e18-92fd-604e0b86b3fa
+      - 3ad59729-272f-476c-9d99-10314d7ade21
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af4b4a89-a969-4e18-92fd-604e0b86b3fa:
+    id: af4b4a89-a969-4e18-92fd-604e0b86b3fa
+    content: Flag complications
+    children:
+      - 3d8c1bfc-b312-467c-9a43-eded8a741975
+      - b0676586-1df3-4d58-8f44-f7e910604de8
+      - c7313db8-2bb5-4b3b-87f3-484570051439
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d8c1bfc-b312-467c-9a43-eded8a741975:
+    id: 3d8c1bfc-b312-467c-9a43-eded8a741975
+    content: Edge cases or risks not already in acceptance criteria
+    children:
+      - 5e56715e-6b83-4ddf-830c-1d5065f26930
+      - df1c737e-bb09-4da5-8d16-870cb6cb98b6
+      - dd4e9ef2-2f3e-43c9-a74c-b8b20b9d2274
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e56715e-6b83-4ddf-830c-1d5065f26930:
+    id: 5e56715e-6b83-4ddf-830c-1d5065f26930
+    content: findRunningNodeOnTerminal is a shared resolver (also used by registerSession, hook routing, session capture) — tightening it to ignore stale assignments must still return the genuine running / awaiting-validation node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df1c737e-bb09-4da5-8d16-870cb6cb98b6:
+    id: df1c737e-bb09-4da5-8d16-870cb6cb98b6
+    content: inheritSessionOnNode can overwrite a sibling's own earlier sessionId, so "stamp then roll back on bail" is unsafe — only stamp after the start is confirmed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd4e9ef2-2f3e-43c9-a74c-b8b20b9d2274:
+    id: dd4e9ef2-2f3e-43c9-a74c-b8b20b9d2274
+    content: The "already assigned" guard runs in recurse mode too (before the mode check), so the legitimate parent→child hand-off must keep working once the guard stops false-positiving
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0676586-1df3-4d58-8f44-f7e910604de8:
+    id: b0676586-1df3-4d58-8f44-f7e910604de8
+    content: Anything explicitly out of scope
+    children:
+      - 80ec8ac3-d0a6-4396-9f69-85ce2e5a05d1
+      - df98933d-34d4-4bd3-8977-d7acfb4acf7c
+      - 48a36c78-5745-4a3e-8aaa-3a57e1462ef8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80ec8ac3-d0a6-4396-9f69-85ce2e5a05d1:
+    id: 80ec8ac3-d0a6-4396-9f69-85ce2e5a05d1
+    content: Main-process MCP binding-resolver unification (the second binding layer) — this fix is renderer-side only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df98933d-34d4-4bd3-8977-d7acfb4acf7c:
+    id: df98933d-34d4-4bd3-8977-d7acfb4acf7c
+    content: Reworking decideWorkflowStartRoute to broadly distrust persisted sessionIds — fix the source (no phantom stamp) rather than teaching the router to second-guess every resume
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48a36c78-5745-4a3e-8aaa-3a57e1462ef8:
+    id: 48a36c78-5745-4a3e-8aaa-3a57e1462ef8
+    content: Rebind dialog UX/copy beyond correcting the stale-node toast wording
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7313db8-2bb5-4b3b-87f3-484570051439:
+    id: c7313db8-2bb5-4b3b-87f3-484570051439
+    content: Any complexity that calls the ROI into question
+    children:
+      - fdb8de20-3ee5-4dad-abe6-628faab51a2d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdb8de20-3ee5-4dad-abe6-628faab51a2d:
+    id: fdb8de20-3ee5-4dad-abe6-628faab51a2d
+    content: Low — both changes are localized (one guard re-validation + one stamp-ordering/assignment-release) and the target behavior is already specced as it.todo in recurseZombieState.test.ts, so scope is bounded
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ad59729-272f-476c-9d99-10314d7ade21:
+    id: 3ad59729-272f-476c-9d99-10314d7ade21
+    content: Summarise the approach
+    children:
+      - 8809fb02-0852-4e0e-abd1-70513cd91ced
+      - 8af66506-aa9b-4449-8389-14bd89abe22e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8809fb02-0852-4e0e-abd1-70513cd91ced:
+    id: 8809fb02-0852-4e0e-abd1-70513cd91ced
+    content: Architecture / key concepts / where the changes land
+    children:
+      - f8d0b5d5-eda3-4aee-9038-e6aaa5a23107
+      - d82c0070-74a5-4c97-8db0-74e734f6cd5d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8d0b5d5-eda3-4aee-9038-e6aaa5a23107:
+    id: f8d0b5d5-eda3-4aee-9038-e6aaa5a23107
+    content: Make findRunningNodeOnTerminal re-validate its explicit terminalNodeAssignments entry against workflowExecutionStates and prune it when stale — removes the false "already assigned" toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d82c0070-74a5-4c97-8db0-74e734f6cd5d:
+    id: d82c0070-74a5-4c97-8db0-74e734f6cd5d
+    content: In dispatchRecurseStart, only stamp the inherited session after a confirmed start (and release the orchestrator's terminal assignment on bail) so a failed hand-off leaves no phantom session/group binding
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8af66506-aa9b-4449-8389-14bd89abe22e:
+    id: 8af66506-aa9b-4449-8389-14bd89abe22e
+    content: Call out anything non-obvious or likely to surprise the reviewer
+    children:
+      - a61421fd-d08b-405f-887a-adfed32910cf
+      - 823cd4dd-223d-4dd0-836f-10e15dd78228
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a61421fd-d08b-405f-887a-adfed32910cf:
+    id: a61421fd-d08b-405f-887a-adfed32910cf
+    content: Both symptoms (false toast + wrong-session resume) share one root cause — a bail that leaves state half-written; the fix is to make start-on-terminal all-or-nothing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  823cd4dd-223d-4dd0-836f-10e15dd78228:
+    id: 823cd4dd-223d-4dd0-836f-10e15dd78228
+    content: terminalBindingResolution reads are compile-enforced by the BINDING_AUTHORITY table (462bb20); the re-validation stays within the existing 'terminal-to-running-node' fact, so no new fact is consulted
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cd5e36d-f14f-452e-915d-e616b16a9e7b:
+    id: 1cd5e36d-f14f-452e-915d-e616b16a9e7b
+    content: Verification result
+    children:
+      - dace79e7-8cc9-47db-846c-8c713cc96503
+      - 725a0b4d-91af-4a71-a42f-bdc71fbe9d25
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dace79e7-8cc9-47db-846c-8c713cc96503:
+    id: dace79e7-8cc9-47db-846c-8c713cc96503
+    content: Acceptance criteria (Expected behavior) implemented and verified
+    children:
+      - 94a2dacf-e4ca-42bd-8b18-eebb9acb4722
+      - d87d2b44-42ba-4b94-9d52-fd4e0b8e26dc
+      - 33867002-0918-4b89-9dbe-5761edf9f9fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94a2dacf-e4ca-42bd-8b18-eebb9acb4722:
+    id: 94a2dacf-e4ca-42bd-8b18-eebb9acb4722
+    content: findRunningNodeOnTerminal re-validates the explicit assignment against live execution state — stale assignment no longer fires the false "already assigned" toast (terminalBindingResolution.test.ts, 9 unit tests green)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d87d2b44-42ba-4b94-9d52-fd4e0b8e26dc:
+    id: d87d2b44-42ba-4b94-9d52-fd4e0b8e26dc
+    content: dispatchRecurseStart stamps the inherited session only after a confirmed start and releases the orchestrator assignment on bail (finalizeRecurseSessionStamp) — no phantom stamp survives a bailed hand-off
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33867002-0918-4b89-9dbe-5761edf9f9fe:
+    id: 33867002-0918-4b89-9dbe-5761edf9f9fe
+    content: Checks green — 250 tests pass across new + regression suites, type-check 0 errors, lint 0 issues
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  725a0b4d-91af-4a71-a42f-bdc71fbe9d25:
+    id: 725a0b4d-91af-4a71-a42f-bdc71fbe9d25
+    content: Undone or deferred (with reason)
+    children:
+      - aa7de24c-85a2-4dcc-b317-e1f6aa1987a2
+      - b6cb74c0-c2b3-40d4-ac85-089c5ee55f70
+      - e1144a3f-af74-46d8-b998-21934693af74
+      - b7886776-48aa-4bb7-9d29-c2b30f972539
+      - d3d62bdc-cb27-4ed7-9a2b-0a48029a43dd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa7de24c-85a2-4dcc-b317-e1f6aa1987a2:
+    id: aa7de24c-85a2-4dcc-b317-e1f6aa1987a2
+    content: 'recurseBailPhantomSession.test.ts left as title-only it.todo — integration harness for driving a genuine recurse bail is heavy; fix #2''s happy path is covered by the existing passing recurse suite and fix #1 has full unit coverage'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6cb74c0-c2b3-40d4-ac85-089c5ee55f70:
+    id: b6cb74c0-c2b3-40d4-ac85-089c5ee55f70
+    content: '"already assigned" toast wording not changed — fix #1 stops the toast firing for a non-running node, so the described problem is resolved at the root and the copy change became unnecessary'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1144a3f-af74-46d8-b998-21934693af74:
+    id: e1144a3f-af74-46d8-b998-21934693af74
+    content: Dedicated "recurse halted (terminal busy)" toast on the focus-existing bail not added — a bail already surfaces a reason via the existing toasts; deferred as a minor UX nicety
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7886776-48aa-4bb7-9d29-c2b30f972539:
+    id: b7886776-48aa-4bb7-9d29-c2b30f972539
+    content: decideWorkflowStartRoute rework and main-process resolver unification — out of scope by design, intentionally not done
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3d62bdc-cb27-4ed7-9a2b-0a48029a43dd:
+    id: d3d62bdc-cb27-4ed7-9a2b-0a48029a43dd
+    content: Not yet committed — awaiting explicit go-ahead per project convention
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ae3e6fd-e92d-4f77-9066-af21f5125214:
+    id: 0ae3e6fd-e92d-4f77-9066-af21f5125214
+    content: review feedback
+    children:
+      - be91f9ff-46df-4d2a-9667-21e5af802725
+      - 2698ad8c-eb8d-4f26-b35b-c6e4f5695806
+      - a7bf637a-a8e3-492b-a232-e35154434183
+      - d0baa3e9-a46f-4e80-b72f-6ccfdb1b191f
+    metadata:
+      status: completed
+  be91f9ff-46df-4d2a-9667-21e5af802725:
+    id: be91f9ff-46df-4d2a-9667-21e5af802725
+    content: 'Verdict: Approved, no blocking issues. Reviewer (pr-review-toolkit:code-reviewer) traced every findRunningNodeOnTerminal caller (start/continue/resend busy-guards, registerSession, handleHookEvent, findCapturableNodeForTerminal) and confirmed the stricter "return null when stale + terminalTabId must match" semantics break none. Notably the handleHookEvent Stop path benefits: a stale assignment now correctly yields null and routes to durable recovery, which is already double-advance guarded.'
+    children: []
+    metadata:
+      status: pending
+  2698ad8c-eb8d-4f26-b35b-c6e4f5695806:
+    id: 2698ad8c-eb8d-4f26-b35b-c6e4f5695806
+    content: 'Stamp-ordering + finalizeRecurseSessionStamp verified safe: the start path (commit → launch/clear/resume) never reads nextNode.metadata.sessionId, so stamping after a confirmed start is fine; in the resume-in-new-tab branch bindSessionTab must precede the start so commit''s terminalAlreadyHasSession check takes the deferSend path; on bail the helper releases the orchestrator (parentNodeId) — already released in the common paths, so idempotent no-op — and never the next node (which got no assignment on a bail). startWorkflowOnTerminal boolean return consumed correctly by both recurse branches; the three startWorkflow callers safely ignore it.'
+    children: []
+    metadata:
+      status: pending
+  a7bf637a-a8e3-492b-a232-e35154434183:
+    id: a7bf637a-a8e3-492b-a232-e35154434183
+    content: 'Applied during review: cosmetic fix — isLiveExecutionOnTerminal state-string literals switched to single quotes to match the file''s convention (the double quotes were carried from the removed loop). Re-verified: ESLint 0 issues, 9 resolver unit tests green.'
+    children: []
+    metadata:
+      status: pending
+  d0baa3e9-a46f-4e80-b72f-6ccfdb1b191f:
+    id: d0baa3e9-a46f-4e80-b72f-6ccfdb1b191f
+    content: 'Deferred (non-blocking; reviewer agreed not required to merge): convert the two highest-value recurseBailPhantomSession.test.ts todos — (a) a bailed recurse hand-off leaves nextNodeId unstamped, (b) the bail releases the orchestrator assignment — into real assertions, now harnessable via the recurseHandoff-style setup (parent.sessionId mapped to an open terminal + a foreign running node holding terminalNodeAssignments to force the bail). Already tracked under "Undone or deferred". Checks at review time: type-check 0 errors, lint 0 issues, ~290 related tests pass (recurse/start/resume/durable-advance + the 3 changed/new test files).'
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -196264,4 +197187,10 @@ sessionRegistry:
   494b2ddb-8aed-48f6-b9c3-b2ba02fc3137:
     cwd: /Users/brianfox/dev/Arborescent
   b88d6144-dfb7-4068-92d9-c1d0280ddab1:
+    cwd: /Users/brianfox/dev/Arborescent
+  3b8b3854-aa4f-43a3-a9e9-9f349fc0fafc:
+    cwd: /Users/brianfox/dev/Arborescent
+  6f71cf89-ea7e-462b-b7ea-593ef0f25c47:
+    cwd: /Users/brianfox/dev/Arborescent
+  d9c5d11a-22c6-48f7-9f36-c99974964c18:
     cwd: /Users/brianfox/dev/Arborescent
