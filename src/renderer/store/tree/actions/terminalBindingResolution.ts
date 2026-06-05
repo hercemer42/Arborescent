@@ -23,18 +23,36 @@ export type BindingResolutionState = {
   terminalNodeAssignments?: Record<string, string>;
 };
 
+function isLiveExecutionOnTerminal(
+  entry: WorkflowExecutionEntry | undefined,
+  terminalId: string,
+): boolean {
+  return (
+    entry !== undefined &&
+    (entry.state === 'running' || entry.state === 'awaiting-validation') &&
+    entry.terminalTabId === terminalId
+  );
+}
+
+// terminalNodeAssignments is a fast-path index, not the source of truth for
+// liveness: an entry can outlive the node's running state if a node stops
+// through a path that does not release it. Re-validate against
+// workflowExecutionStates so a stale assignment never reports the terminal as
+// hosting a running node — the false "already assigned" guard rejection.
 export function findRunningNodeOnTerminal(
   get: () => BindingResolutionState,
   terminalId: string,
 ): string | null {
-  const explicit = get().terminalNodeAssignments?.[terminalId];
-  if (explicit) return explicit;
-  const { workflowExecutionStates } = get();
+  const { workflowExecutionStates, terminalNodeAssignments } = get();
+  const assignedNodeId = terminalNodeAssignments?.[terminalId];
+  if (
+    assignedNodeId &&
+    isLiveExecutionOnTerminal(workflowExecutionStates[assignedNodeId], terminalId)
+  ) {
+    return assignedNodeId;
+  }
   for (const [nodeId, entry] of Object.entries(workflowExecutionStates)) {
-    if (
-      (entry.state === "running" || entry.state === "awaiting-validation") &&
-      entry.terminalTabId === terminalId
-    ) {
+    if (isLiveExecutionOnTerminal(entry, terminalId)) {
       return nodeId;
     }
   }

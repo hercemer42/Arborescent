@@ -187,9 +187,14 @@ describe('capture gate — bookmarked origin node vs incoming session', () => {
 describe('precedence — running assignment beats origin bookmark', () => {
   it('an explicit terminalNodeAssignments entry wins over the origin bookmark gate', () => {
     useTerminalStore.setState({ terminals: [makeTerminal({ originNodeId: 'nodeA' })] });
+    // The assignment only counts while it is backed by a live execution state on
+    // the same terminal — that pairing is what beats the origin-bookmark gate.
     const state = makeState({
       nodes: { nodeA: makeNode('nodeA', { sessionId: 'other-session' }) },
       terminalNodeAssignments: { [TERMINAL]: 'nodeR' },
+      workflowExecutionStates: {
+        nodeR: { state: 'running', terminalTabId: TERMINAL } as BindingResolutionState['workflowExecutionStates'][string],
+      },
     });
 
     expect(findCapturableNodeForTerminal(() => state, TERMINAL, SESSION)).toBe('nodeR');

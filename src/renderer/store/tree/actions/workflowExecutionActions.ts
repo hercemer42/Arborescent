@@ -310,12 +310,15 @@ export const createWorkflowExecutionActions = (
     startWorkflowOnTerminal(nodeId, terminalId, "spawn");
   }
 
+  // Returns true only when the start was committed on the terminal. A bail
+  // (terminal busy) or a deferred rebind returns false so callers can avoid
+  // recording bindings for a start that did not happen.
   function startWorkflowOnTerminal(
     nodeId: string,
     terminalId: string,
     mode: "spawn" | "reattach" | "recurse",
     deferSend = false,
-  ): void {
+  ): boolean {
     const existingNodeId = findRunningNodeOnTerminal(get, terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
       useToastStore
@@ -324,7 +327,7 @@ export const createWorkflowExecutionActions = (
           "Terminal tab is already assigned to a running workflow node.",
           "warning",
         );
-      return;
+      return false;
     }
 
     // A user-initiated start onto a terminal whose live session belongs to a
@@ -335,16 +338,17 @@ export const createWorkflowExecutionActions = (
       // A rebind confirmation is already awaiting the user on this terminal;
       // ignore repeat starts so the pending preflight request is not clobbered.
       if (usePendingRebindDialogStore.getState().isPending(terminalId)) {
-        return;
+        return false;
       }
       const boundNodeId = findSessionBoundNodeForTerminal(get, terminalId);
       if (boundNodeId && boundNodeId !== nodeId) {
         requestWorkflowStartRebind(terminalId, boundNodeId, nodeId, mode);
-        return;
+        return false;
       }
     }
 
     commitWorkflowStartOnTerminal(nodeId, terminalId, mode, false, deferSend);
+    return true;
   }
 
   function requestWorkflowStartRebind(
@@ -580,19 +584,17 @@ export const createWorkflowExecutionActions = (
     });
 
     if (route.kind === 'focus-existing-tab' && parent?.sessionId) {
-      const inherited = inheritSessionOnNode(get().nodes, nextNodeId, parent.sessionId);
-      if (inherited !== get().nodes) set({ nodes: inherited });
-      startWorkflowOnTerminal(nextNodeId, route.terminalId, 'recurse');
+      const started = startWorkflowOnTerminal(nextNodeId, route.terminalId, 'recurse');
+      finalizeRecurseSessionStamp(started, nextNodeId, parent.sessionId, parentNodeId);
       return;
     }
 
     if (route.kind === 'resume-in-new-tab' && route.cwd) {
       try {
         const newTabId = await openInheritedResumeTerminal(route.sessionId, route.cwd, nextNodeId);
-        const inherited = inheritSessionOnNode(get().nodes, nextNodeId, route.sessionId);
-        if (inherited !== get().nodes) set({ nodes: inherited });
         sessionResumeManager.bindSessionTab(newTabId, route.sessionId);
-        startWorkflowOnTerminal(nextNodeId, newTabId, 'recurse', true);
+        const started = startWorkflowOnTerminal(nextNodeId, newTabId, 'recurse', true);
+        finalizeRecurseSessionStamp(started, nextNodeId, route.sessionId, parentNodeId);
         return;
       } catch (error) {
         logger.error('Failed to resume parent session for recurse — falling back to fresh', error as Error, 'WorkflowExecution');
@@ -602,6 +604,24 @@ export const createWorkflowExecutionActions = (
     }
 
     await dispatchFreshStartWithBrokenChain(nextNodeId, terminalId, parentNodeId);
+  }
+
+  // The inherited session is a binding, so it is stamped only once the start is
+  // confirmed. A bailed hand-off leaves the next node unstamped — otherwise a
+  // later manual start would route to the parent's (possibly closed) session —
+  // and releases the orchestrator's now-finished terminal assignment.
+  function finalizeRecurseSessionStamp(
+    started: boolean,
+    nextNodeId: string,
+    sessionId: string,
+    orchestratorNodeId: string,
+  ): void {
+    if (!started) {
+      releaseTerminalAssignmentForNode(orchestratorNodeId);
+      return;
+    }
+    const inherited = inheritSessionOnNode(get().nodes, nextNodeId, sessionId);
+    if (inherited !== get().nodes) set({ nodes: inherited });
   }
 
   async function dispatchFreshStartWithBrokenChain(

@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode } from '@shared/types';
 
 import { createWorkflowExecutionActions } from '../workflowExecutionActions';
+import { useTerminalStore } from '../../../terminal/terminalStore';
 
 vi.mock('../../../services/logger', () => ({
   logger: {
@@ -206,5 +207,56 @@ describe('recurse hand-off', () => {
       vi.useRealTimers();
     });
 
+  });
+
+  describe('Case A — confirmed hand-off inherits the parent session onto the next sibling', () => {
+    it('stamps the next sibling metadata.sessionId with the parent session when the recurse start commits on the live tab', () => {
+      vi.useFakeTimers();
+      // Parent (task-a) carries the session and its tab is live, so the hand-off
+      // routes focus-existing and the start commits — exercising the path where
+      // the inherited session is stamped only after a confirmed start.
+      useTerminalStore.setState({
+        terminals: [{ id: 'terminal-1' }] as unknown as ReturnType<typeof useTerminalStore.getState>['terminals'],
+        fileStates: {},
+      });
+      state.nodes['task-a'].metadata.sessionId = 'session-1';
+      placeTaskAOnRecurseStepRunning();
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(4000);
+
+      expect(state.nodes['task-b'].metadata.sessionId).toBe('session-1');
+
+      vi.useRealTimers();
+    });
+
+    it('leaves the next sibling unstamped when the start bails because another node claimed the live tab during the recurse delay', () => {
+      vi.useFakeTimers();
+      useTerminalStore.setState({
+        terminals: [{ id: 'terminal-1' }] as unknown as ReturnType<typeof useTerminalStore.getState>['terminals'],
+        fileStates: {},
+      });
+      state.nodes['task-a'].metadata.sessionId = 'session-1';
+      placeTaskAOnRecurseStepRunning();
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      // A different workflow node claims terminal-1 during the 2s hand-off delay,
+      // so the focus-existing start bails on the busy guard. The inherited session
+      // must NOT be stamped onto task-b (no phantom binding survives the bail).
+      state.workflowExecutionStates['intruder'] = { state: 'running', terminalTabId: 'terminal-1' };
+      state.terminalNodeAssignments['terminal-1'] = 'intruder';
+
+      vi.advanceTimersByTime(4000);
+
+      expect(state.nodes['task-b'].metadata.sessionId).toBeUndefined();
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('already assigned'),
+        'warning',
+      );
+
+      vi.useRealTimers();
+    });
   });
 });
