@@ -98,6 +98,11 @@ describe('startWorkflow — auto session routing (PR1)', () => {
       terminalWrite: mockTerminalWrite,
       terminalGetCwd: vi.fn().mockResolvedValue(null),
       stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
+      // Signal shell-prompt readiness so the manual resumeSession gate proceeds.
+      onTerminalData: vi.fn((_id: string, cb: (data: string) => void) => {
+        cb('\r\n$ ');
+        return vi.fn();
+      }),
     } } as unknown as Window & typeof globalThis;
 
     state = {

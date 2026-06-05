@@ -3,6 +3,7 @@ import { useTerminalStore } from '../../terminal/terminalStore';
 import { useToastStore } from '../../toast/toastStore';
 import { logger } from '../../../services/logger';
 import { focusTerminal } from '../../../services/terminalFocusRegistry';
+import { waitForShellPrompt } from '../../../services/shellPromptReadiness';
 import { getSessionLiveness } from '../../../utils/sessionLiveness';
 import { extractTaskTitle } from '../../../utils/terminalTabTitle';
 import { bindSessionInNodes } from './bindSessionToNode';
@@ -149,6 +150,17 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
       const title = resumeTabTitle(node, sessionId);
       const created = await useTerminalStore.getState().createNewTerminal(title, cwd, nodeId);
       if (!created) throw new Error('Resume terminal was not created');
+
+      // A resume command written into a shell that hasn't drawn its prompt is
+      // eaten or mangled; on timeout leave the usable plain shell untouched
+      // rather than write blindly.
+      const promptReady = await waitForShellPrompt(created.id);
+      if (!promptReady) {
+        logger.warn(`Shell prompt not ready for resume terminal ${created.id}; left a plain shell`, 'WorkflowExecution');
+        focusTerminal(created.id);
+        return;
+      }
+
       await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
       bindSessionTab(created.id, sessionId);
       focusTerminal(created.id);

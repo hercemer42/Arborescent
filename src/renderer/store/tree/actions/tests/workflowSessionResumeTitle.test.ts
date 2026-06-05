@@ -59,6 +59,11 @@ describe('resumeSession — terminal tab title is meaningful, never literal "Res
     window.electron = {
       ...window.electron,
       terminalWrite: vi.fn().mockResolvedValue(undefined),
+      // Signal shell-prompt readiness so the resume gate proceeds to the write.
+      onTerminalData: vi.fn((_id: string, cb: (data: string) => void) => {
+        cb('\r\n$ ');
+        return vi.fn();
+      }),
     } as unknown as typeof window.electron;
     state = {
       nodes: {},
