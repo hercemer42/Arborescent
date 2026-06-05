@@ -84,7 +84,7 @@ Each open file has its own panel state — open a terminal in one file, switch t
 
 Active sessions — collaborate, execute, and workflows — continue running when you switch files. When a session completes in a file you're not viewing, a notification tells you which file to check. Closing a file with an active session asks for confirmation before discarding it.
 
-Panel state persists across restarts. When you reopen Arborescent, each file's panel visibility, browser tabs, and terminals are restored. Terminal history is lost (processes can't survive a restart), but terminals reopen in the same working directory.
+Panel state persists across restarts. When you reopen Arborescent, each file's panel visibility, browser tabs, and terminals are restored — for every open file, not just the one in view. Terminal history is lost (processes can't survive a restart), but each terminal reopens in its working directory, and any terminal that was running a Claude session resumes it automatically. Resuming runs in the background, so the window is interactive immediately; a terminal whose session or folder is no longer available reopens as a plain shell.
 
 Drag the panel edge to resize. Toggle between side and bottom position with the arrow button.
 

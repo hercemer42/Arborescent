@@ -74,6 +74,7 @@ export interface WorkflowExecutionActions {
   advanceNode: (nodeId: string) => void;
   registerSession: (sessionId: string, terminalId: string, source?: string) => void;
   resumeSession: (nodeId: string) => Promise<void>;
+  resumeRestoredTerminal: (terminalId: string, sessionId: string) => Promise<void>;
   handleHookEvent: (event: HookEventPayload) => void;
   initializeExecutionState: () => void;
   handleTerminalClosed: (terminalId: string) => void;
@@ -1277,6 +1278,7 @@ export const createWorkflowExecutionActions = (
     advanceNode,
     registerSession,
     resumeSession: sessionResumeManager.resumeSession,
+    resumeRestoredTerminal: sessionResumeManager.resumeRestoredTerminal,
     handleHookEvent,
     initializeExecutionState,
     ...disruptionReactions,

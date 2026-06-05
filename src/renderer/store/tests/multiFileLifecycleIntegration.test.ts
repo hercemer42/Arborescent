@@ -20,6 +20,7 @@ vi.mock('../terminal/terminalStore', () => ({
       fileStates: {},
     }),
   },
+  setTerminalSessionResolver: vi.fn(),
 }));
 
 vi.mock('../browser/browserStore', () => ({

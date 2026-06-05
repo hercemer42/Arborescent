@@ -10,6 +10,7 @@ vi.mock('../terminal/terminalStore', () => ({
   useTerminalStore: {
     getState: () => ({ closeFileTerminals: mockCloseFileTerminals }),
   },
+  setTerminalSessionResolver: vi.fn(),
 }));
 
 vi.mock('../browser/browserStore', () => ({

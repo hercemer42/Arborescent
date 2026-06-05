@@ -5,6 +5,7 @@ import { useTerminalStore } from '../store/terminal/terminalStore';
 import { usePanelStore } from '../store/panel/panelStore';
 import { usePreferencesStore } from '../store/preferences/preferencesStore';
 import { storeManager } from '../store/storeManager';
+import { resumeAllRestoredSessions } from '../services/launchSessionResume';
 import { logger } from '../services/logger';
 
 export function useAppInitialization(onComplete: () => void) {
@@ -34,11 +35,19 @@ export function useAppInitialization(onComplete: () => void) {
 
         const activeContent = usePanelStore.getState().activeContent;
         const terminalStore = useTerminalStore.getState();
-        if (activeContent === 'terminal') {
-          await terminalStore.materializeRestoredTerminals();
-          if (useTerminalStore.getState().terminals.length === 0) {
-            await terminalStore.createNewTerminal('Terminal');
-          }
+        const activeFile = terminalStore.currentFilePath;
+        const activeFileState = activeFile ? terminalStore.fileStates[activeFile] : undefined;
+        const activeFileHasTerminals =
+          (activeFileState?.pendingRestore?.length ?? 0) > 0 || (activeFileState?.terminals.length ?? 0) > 0;
+
+        // Resume every open file's terminals and sessions in the background —
+        // independent of the active file and the terminal-panel view — so the
+        // window is interactive before the launch fan-out finishes.
+        void resumeAllRestoredSessions();
+
+        // An active terminal view with nothing to restore still gets a fresh terminal.
+        if (activeContent === 'terminal' && !activeFileHasTerminals) {
+          await terminalStore.createNewTerminal('Terminal');
         }
       })
       .catch((error) => {

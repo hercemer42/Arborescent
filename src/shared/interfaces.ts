@@ -35,6 +35,7 @@ export interface TerminalSessionEntry {
   title: string;
   cwd: string;
   originNodeId?: string;
+  sessionId?: string;
 }
 
 export interface TerminalSession {

@@ -46,6 +46,7 @@ interface TerminalState {
   closeFileTerminals: (filePath: string) => Promise<void>;
   restoreTerminalSession: () => Promise<void>;
   materializeRestoredTerminals: () => Promise<void>;
+  materializeAllRestoredTerminals: () => Promise<LaunchResumeTarget[]>;
   markTerminalProcessing: (id: string, isProcessing: boolean) => void;
   isTerminalProcessing: (id: string) => boolean;
 }
@@ -69,6 +70,28 @@ const storage = new StorageService();
 
 const MAX_RESTORED_TERMINALS_PER_FILE = 5;
 
+export interface LaunchResumeTarget {
+  filePath: string;
+  terminalId: string;
+  sessionId: string;
+}
+
+type TerminalGet = () => TerminalState;
+type TerminalSet = (
+  partial: Partial<TerminalState> | ((state: TerminalState) => Partial<TerminalState>),
+) => void;
+
+// Injected by storeManager so buildTerminalSession can persist each terminal's
+// Claude sessionId without the terminal store importing the per-file tree store
+// (which would close an import cycle).
+let resolveTerminalSessionId: (filePath: string, terminalId: string) => string | undefined = () => undefined;
+
+export function setTerminalSessionResolver(
+  resolver: (filePath: string, terminalId: string) => string | undefined,
+): void {
+  resolveTerminalSessionId = resolver;
+}
+
 async function refreshLiveCwd(terminal: TerminalInfo): Promise<string> {
   try {
     const liveCwd = await window.electron.terminalGetCwd(terminal.id);
@@ -91,6 +114,8 @@ async function buildTerminalSession(
           cwd: await refreshLiveCwd(t),
         };
         if (t.originNodeId) entry.originNodeId = t.originNodeId;
+        const sessionId = resolveTerminalSessionId(filePath, t.id);
+        if (sessionId) entry.sessionId = sessionId;
         return entry;
       }),
     );
@@ -112,6 +137,69 @@ async function saveTerminalSession(fileStates: Record<string, FileTerminalState>
   } catch (error) {
     logger.error('Failed to save terminal session', error as Error, 'TerminalStore');
   }
+}
+
+async function materializeFileTerminals(
+  get: TerminalGet,
+  set: TerminalSet,
+  targetFilePath: string,
+): Promise<LaunchResumeTarget[]> {
+  const fileState = get().fileStates[targetFilePath];
+  if (!fileState?.pendingRestore?.length) return [];
+
+  const pending = fileState.pendingRestore;
+  set({ fileStates: updateFileState(get().fileStates, targetFilePath, { pendingRestore: undefined }) });
+
+  const allocateTerminalNumber = createTerminalNumberAllocator([
+    ...fileState.terminals.map((t) => t.title),
+    ...pending.map((entry) => entry.title),
+  ]);
+
+  const restored: TerminalInfo[] = [];
+  const resumeTargets: LaunchResumeTarget[] = [];
+  for (const entry of pending) {
+    const restoredTitle = entry.title === 'Resume'
+      ? `Terminal ${allocateTerminalNumber()}`
+      : entry.title;
+    try {
+      // The saved originNodeId flows into ARBORESCENT_NODE_UUID in the restored shell so the
+      // SessionStart hook can bind whatever conversation lands in this tab back to its
+      // original node. If a different session ends up here, the rebind dialog will surface.
+      const terminalInfo = await createTerminalService(restoredTitle, undefined, undefined, entry.cwd, entry.originNodeId);
+      const info = entry.originNodeId ? { ...terminalInfo, originNodeId: entry.originNodeId } : terminalInfo;
+      restored.push(info);
+      if (entry.sessionId) {
+        resumeTargets.push({ filePath: targetFilePath, terminalId: info.id, sessionId: entry.sessionId });
+      }
+    } catch {
+      // The persisted folder may no longer exist, so the spawn fails. Fall back to a
+      // plain shell in the default cwd so the tab still restores quietly — no resume,
+      // no error toast — rather than spawning in the wrong place or vanishing.
+      try {
+        const fallback = await createTerminalService(restoredTitle, undefined, undefined, undefined, entry.originNodeId);
+        restored.push(entry.originNodeId ? { ...fallback, originNodeId: entry.originNodeId } : fallback);
+      } catch (error) {
+        logger.error('Failed to restore terminal', error as Error, 'TerminalStore');
+      }
+    }
+  }
+
+  if (restored.length === 0) return [];
+
+  const latestFileStates = get().fileStates;
+  const targetTerminals = [...getFileState(latestFileStates, targetFilePath).terminals, ...restored];
+  const activeTerminalId = restored[restored.length - 1].id;
+  const newFileStates = updateFileState(latestFileStates, targetFilePath, {
+    terminals: targetTerminals,
+    activeTerminalId,
+  });
+
+  set({
+    fileStates: newFileStates,
+    ...(get().currentFilePath === targetFilePath ? { terminals: targetTerminals, activeTerminalId } : {}),
+  });
+  void saveTerminalSession(newFileStates);
+  return resumeTargets;
 }
 
 function createTerminalNumberAllocator(existingTitles: string[]): () => number {
@@ -330,55 +418,22 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
   },
 
   materializeRestoredTerminals: async () => {
-    const { currentFilePath, fileStates } = get();
+    const { currentFilePath } = get();
     if (!currentFilePath) return;
-
     // The active file can switch while a PTY is still spawning, so bind this pass to the
     // file it started restoring rather than following the live active file.
-    const targetFilePath = currentFilePath;
+    await materializeFileTerminals(get, set, currentFilePath);
+  },
 
-    const fileState = fileStates[targetFilePath];
-    if (!fileState?.pendingRestore?.length) return;
-
-    const pending = fileState.pendingRestore;
-    set({ fileStates: updateFileState(fileStates, targetFilePath, { pendingRestore: undefined }) });
-
-    const allocateTerminalNumber = createTerminalNumberAllocator([
-      ...fileState.terminals.map((t) => t.title),
-      ...pending.map((entry) => entry.title),
-    ]);
-
-    const restored: TerminalInfo[] = [];
-    for (const entry of pending) {
-      try {
-        const restoredTitle = entry.title === 'Resume'
-          ? `Terminal ${allocateTerminalNumber()}`
-          : entry.title;
-        // The saved originNodeId flows into ARBORESCENT_NODE_UUID in the restored shell so the
-        // SessionStart hook can bind whatever conversation lands in this tab back to its
-        // original node. If a different session ends up here, the rebind dialog will surface.
-        const terminalInfo = await createTerminalService(restoredTitle, undefined, undefined, entry.cwd, entry.originNodeId);
-        restored.push(entry.originNodeId ? { ...terminalInfo, originNodeId: entry.originNodeId } : terminalInfo);
-      } catch (error) {
-        logger.error('Failed to restore terminal', error as Error, 'TerminalStore');
-      }
+  materializeAllRestoredTerminals: async () => {
+    const pendingFilePaths = Object.keys(get().fileStates).filter(
+      (filePath) => get().fileStates[filePath]?.pendingRestore?.length,
+    );
+    const resumeTargets: LaunchResumeTarget[] = [];
+    for (const filePath of pendingFilePaths) {
+      resumeTargets.push(...(await materializeFileTerminals(get, set, filePath)));
     }
-
-    if (restored.length === 0) return;
-
-    const latestFileStates = get().fileStates;
-    const targetTerminals = [...getFileState(latestFileStates, targetFilePath).terminals, ...restored];
-    const activeTerminalId = restored[restored.length - 1].id;
-    const newFileStates = updateFileState(latestFileStates, targetFilePath, {
-      terminals: targetTerminals,
-      activeTerminalId,
-    });
-
-    set({
-      fileStates: newFileStates,
-      ...(get().currentFilePath === targetFilePath ? { terminals: targetTerminals, activeTerminalId } : {}),
-    });
-    void saveTerminalSession(newFileStates);
+    return resumeTargets;
   },
 
   closeFileTerminals: async (filePath: string) => {

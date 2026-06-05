@@ -3,8 +3,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 const { mockInitializeSession, mockRestoreBrowserSession, mockRestorePanelSession,
   mockRestoreTerminalSession, mockLoadPreferences, mockSetActiveFileBrowser,
   mockSetActiveFilePanel, mockSetActiveFileTerminal, mockCreateNewTerminal,
-  mockInitializeExecutionState, filesStoreState, panelStoreState, terminalStoreState,
+  mockInitializeExecutionState, mockResumeAllRestoredSessions, filesStoreState, panelStoreState, terminalStoreState,
 } = vi.hoisted(() => {
+  const mockResumeAllRestoredSessions = vi.fn().mockResolvedValue(undefined);
   const mockInitializeSession = vi.fn().mockResolvedValue(undefined);
   const mockRestoreBrowserSession = vi.fn().mockResolvedValue(undefined);
   const mockRestorePanelSession = vi.fn().mockResolvedValue(undefined);
@@ -27,8 +28,11 @@ const { mockInitializeSession, mockRestoreBrowserSession, mockRestorePanelSessio
   };
   const terminalStoreState = {
     terminals: [] as Array<{ id: string }>,
+    currentFilePath: '/project-a.arbo' as string | null,
+    fileStates: {} as Record<string, { terminals: unknown[]; pendingRestore?: unknown[] }>,
     restoreTerminalSession: mockRestoreTerminalSession,
     materializeRestoredTerminals: vi.fn().mockResolvedValue(undefined),
+    materializeAllRestoredTerminals: vi.fn().mockResolvedValue([]),
     setActiveFile: mockSetActiveFileTerminal,
     createNewTerminal: mockCreateNewTerminal,
   };
@@ -37,9 +41,13 @@ const { mockInitializeSession, mockRestoreBrowserSession, mockRestorePanelSessio
     mockInitializeSession, mockRestoreBrowserSession, mockRestorePanelSession,
     mockRestoreTerminalSession, mockLoadPreferences, mockSetActiveFileBrowser,
     mockSetActiveFilePanel, mockSetActiveFileTerminal, mockCreateNewTerminal,
-    mockInitializeExecutionState, filesStoreState, panelStoreState, terminalStoreState,
+    mockInitializeExecutionState, mockResumeAllRestoredSessions, filesStoreState, panelStoreState, terminalStoreState,
   };
 });
+
+vi.mock('../../services/launchSessionResume', () => ({
+  resumeAllRestoredSessions: mockResumeAllRestoredSessions,
+}));
 
 vi.mock('../files/filesStore', () => {
   const useFilesStoreMock = Object.assign(
@@ -110,6 +118,8 @@ describe('session restore integration', () => {
     filesStoreState.activeFilePath = '/project-a.arbo';
     panelStoreState.activeContent = null;
     terminalStoreState.terminals = [];
+    terminalStoreState.currentFilePath = '/project-a.arbo';
+    terminalStoreState.fileStates = {};
     mockInitializeSession.mockResolvedValue(undefined);
     mockRestoreBrowserSession.mockResolvedValue(undefined);
     mockRestorePanelSession.mockResolvedValue(undefined);
@@ -154,9 +164,11 @@ describe('session restore integration', () => {
       expect(mockCreateNewTerminal).toHaveBeenCalledWith('Terminal');
     });
 
-    it('should not create a default terminal when terminals already exist from restore', async () => {
+    it('should not create a default terminal when the active file has restored terminals pending', async () => {
       panelStoreState.activeContent = 'terminal';
-      terminalStoreState.terminals = [{ id: 'restored-term-1' }];
+      terminalStoreState.fileStates = {
+        '/project-a.arbo': { terminals: [], pendingRestore: [{ title: 'T', cwd: '/a' }] },
+      };
 
       const onComplete = vi.fn();
       renderHook(() => useAppInitialization(onComplete));
@@ -191,20 +203,19 @@ describe('session restore integration', () => {
     });
   });
 
-  describe('materialize restored terminals', () => {
-    it('should call materializeRestoredTerminals when panel shows terminal', async () => {
+  describe('launch session resume', () => {
+    it('resumes all restored sessions at launch when the panel shows terminal', async () => {
       panelStoreState.activeContent = 'terminal';
-      terminalStoreState.terminals = [];
 
       const onComplete = vi.fn();
       renderHook(() => useAppInitialization(onComplete));
 
       await waitFor(() => expect(onComplete).toHaveBeenCalled());
 
-      expect(terminalStoreState.materializeRestoredTerminals).toHaveBeenCalled();
+      expect(mockResumeAllRestoredSessions).toHaveBeenCalledTimes(1);
     });
 
-    it('should not call materializeRestoredTerminals when panel is not terminal', async () => {
+    it('resumes all restored sessions at launch even when the panel is not terminal (decoupled from the active view)', async () => {
       panelStoreState.activeContent = 'browser';
 
       const onComplete = vi.fn();
@@ -212,7 +223,7 @@ describe('session restore integration', () => {
 
       await waitFor(() => expect(onComplete).toHaveBeenCalled());
 
-      expect(terminalStoreState.materializeRestoredTerminals).not.toHaveBeenCalled();
+      expect(mockResumeAllRestoredSessions).toHaveBeenCalledTimes(1);
     });
   });
 });

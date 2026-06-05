@@ -5,7 +5,8 @@ import { feedbackTreeStore } from './feedback/feedbackTreeStore';
 import { logger } from '../services/logger';
 import { parseZoomPath } from '../utils/zoomPath';
 import { useTabIndicatorStore, TabIndicatorState } from './tabIndicators/tabIndicatorStore';
-import { useTerminalStore } from './terminal/terminalStore';
+import { useTerminalStore, setTerminalSessionResolver } from './terminal/terminalStore';
+import { findSessionIdForTerminal } from '../utils/sessionTerminalLookup';
 import { useBrowserStore } from './browser/browserStore';
 import { usePanelStore } from './panel/panelStore';
 
@@ -131,3 +132,12 @@ export const storeManager = new StoreManager();
 // trip the use-before-wired guards in filesStore/feedbackTreeStore.
 setFileActionsStoreAccess(storeManager);
 feedbackTreeStore.setStoreFactory(() => storeManager.createFeedbackStore());
+
+// Let the terminal store persist each terminal's Claude sessionId at save time by
+// reverse-looking-up the file's workflowSessionMap, without importing the tree
+// store (which would close an import cycle).
+setTerminalSessionResolver((filePath, terminalId) => {
+  const sourcePath = storeManager.getZoomInfo(filePath)?.sourceFilePath ?? filePath;
+  if (!storeManager.hasStore(sourcePath)) return undefined;
+  return findSessionIdForTerminal(storeManager.getStoreForFile(sourcePath).getState().workflowSessionMap, terminalId);
+});

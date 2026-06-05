@@ -16,6 +16,7 @@ interface SessionResumeState {
 
 export interface SessionResumeManager {
   resumeSession: (nodeId: string) => Promise<void>;
+  resumeRestoredTerminal: (terminalId: string, sessionId: string) => Promise<void>;
   bindSessionTab: (terminalId: string, sessionId: string) => void;
 }
 
@@ -170,6 +171,34 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
     }
   }
 
+  // Launch-time resume into an already-materialized terminal. Reuses the manual
+  // path's primitives (on-disk probe + shell-prompt gate + binding) but stays
+  // quiet: a missing session, missing cwd, or unready prompt leaves the plain
+  // shell untouched with no toast, so restoring many files cannot raise an
+  // error storm.
+  async function resumeRestoredTerminal(terminalId: string, sessionId: string): Promise<void> {
+    if (!terminalId || !sessionId) return;
+
+    const cwd = get().sessionRegistry[sessionId]?.cwd;
+    if (!cwd) return;
+
+    const sessionExists = await checkClaudeSessionExists(cwd, sessionId);
+    if (sessionExists === false) return;
+
+    const promptReady = await waitForShellPrompt(terminalId);
+    if (!promptReady) {
+      logger.warn(`Shell prompt not ready for restored terminal ${terminalId}; left a plain shell`, 'WorkflowExecution');
+      return;
+    }
+
+    try {
+      await window.electron.terminalWrite(terminalId, `claude --resume ${sessionId}\r`);
+      bindSessionTab(terminalId, sessionId);
+    } catch (error) {
+      logger.error('Failed to resume restored session', error as Error, 'WorkflowExecution');
+    }
+  }
+
   function bindSessionTab(terminalId: string, sessionId: string): void {
     if (!terminalId || !sessionId) return;
     const { workflowSessionMap } = get();
@@ -183,5 +212,5 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
     set({ workflowSessionMap: updatedMap });
   }
 
-  return { resumeSession, bindSessionTab };
+  return { resumeSession, resumeRestoredTerminal, bindSessionTab };
 }
