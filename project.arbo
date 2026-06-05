@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-05T14:37:36.747Z'
+updated: '2026-06-05T14:56:51.652Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5141,7 +5141,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5510,7 +5510,7 @@ nodes:
       - 44b69d24-730a-4af1-95dd-7b2aface6c13
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -8784,7 +8784,7 @@ nodes:
       - bc87a3a5-29fe-4b9e-a2a1-d773468a88d5
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -33756,8 +33756,7 @@ nodes:
   6d973cbb-3c7c-4ac4-925d-ffd5d659332c:
     id: 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
     content: Feature verification
-    children:
-      - 1a845a42-fe0f-4820-a479-f43f1d81253e
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -76000,7 +75999,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: true
+      expanded: false
   b639805f-a2d3-4f38-9faa-ffc4a91b8f80:
     id: b639805f-a2d3-4f38-9faa-ffc4a91b8f80
     content: Issue resolution
@@ -92368,16 +92367,9 @@ nodes:
       expanded: false
       collaborate: true
       execute: true
-  ddbaee37-acf5-479e-bfe5-c3f242bbd122:
-    id: ddbaee37-acf5-479e-bfe5-c3f242bbd122
-    content: Say if a point isn't clear
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   524a8496-8020-4568-a517-4c6cef98df1d:
     id: 524a8496-8020-4568-a517-4c6cef98df1d
-    content: Push back if you disagree with something
+    content: Push back if you disagree
     children: []
     metadata:
       status: pending
@@ -92391,11 +92383,10 @@ nodes:
       isBlueprint: true
   664166df-8283-418b-8990-96678e3aad41:
     id: 664166df-8283-418b-8990-96678e3aad41
-    content: Discuss directly with the agent via SendMessage
+    content: Resolve the feedback
     children:
-      - ddbaee37-acf5-479e-bfe5-c3f242bbd122
-      - 524a8496-8020-4568-a517-4c6cef98df1d
       - 49ee316e-c4cb-4351-8981-ced57a41c57f
+      - 524a8496-8020-4568-a517-4c6cef98df1d
       - 234a092e-c31c-4cb0-a076-62a794ba11f7
       - dd60fab9-824f-4248-b3cf-cb80406cdc31
       - cc9c0a37-ce59-44c1-9335-d1c9fdb0a8f5
@@ -92408,7 +92399,6 @@ nodes:
     children:
       - 54f8e1ab-c1ad-43c9-b080-94596d5ffa57
       - 664166df-8283-418b-8990-96678e3aad41
-      - 7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7
       - aa65fabf-7696-4f88-9abb-88b2c9556d7a
     metadata:
       isBlueprint: true
@@ -112175,13 +112165,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7:
-    id: 7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7
-    content: Fix anything that needs to change
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   54f8e1ab-c1ad-43c9-b080-94596d5ffa57:
     id: 54f8e1ab-c1ad-43c9-b080-94596d5ffa57
     content: Read the code review feedback in the last node
@@ -115532,6 +115515,7 @@ nodes:
       - 5bff2b75-39f1-4910-83c7-5f3c772858bc
       - 270acf71-da39-4d20-8cb3-fe7d8292713e
       - decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
+      - 993479cb-62d6-4482-9c73-873976a9eaf9
     metadata:
       status: pending
       isBlueprint: true
@@ -124638,7 +124622,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 993479cb-62d6-4482-9c73-873976a9eaf9
+      - 1a845a42-fe0f-4820-a479-f43f1d81253e
     metadata:
       status: pending
       isBlueprint: true
@@ -196218,17 +196202,18 @@ nodes:
     id: 1a845a42-fe0f-4820-a479-f43f1d81253e
     content: Step history lists the step's own title in place of the historized node's title
     children:
-      - e0bba588-6785-4a62-b299-b5de33c83651
-      - b028c1e2-6fdf-4ecc-a269-494bfa3b824f
-      - ba07a34d-43d9-4a28-aac5-8e6944a952c4
-      - 4e9a1403-3ed6-4c9c-ba40-fb5199f07838
-      - 4aa96866-15ec-4bc9-9205-7ae75372e81f
-      - dabdd05b-2457-4e6e-a6c2-e86d51ab5894
-      - 816bcfa0-fdeb-472d-bbaf-6651eabbef75
-      - e617ec9b-9b5a-4dc3-87f2-15e9f82498a1
-      - 915cbf46-0e31-4644-bc7d-39d8cc9567ee
-      - 14159c99-cdbf-4da7-b230-c5b5f49a9732
-      - 90388b34-bf35-4735-8144-f85de55407b8
+      - f8d74846-124d-4cd0-8781-3f3ea9c6e995
+      - f56de24f-8759-4982-9914-b5031ef1189f
+      - fa38344a-2502-4b9d-8b84-23ded255c5e7
+      - 576ace33-d663-45d1-9b4b-7e24c0e9dfe8
+      - cf374ab2-e6d1-4714-8c23-d8cd2b181cb1
+      - 54390c2a-e533-4041-b93a-cf2f452f6ccb
+      - 3e641417-8fbb-4647-9d17-b51b9ea9c218
+      - 57768e3f-c56e-4bf4-bea9-8d4675e28811
+      - 078feed3-6b0a-4a0e-9a3b-f1237bc59d0c
+      - e450fd5c-d261-4bb5-962f-1c7c24446a1e
+      - f3b84cf2-867d-4879-ba74-1906d1235568
+      - 10621824-a416-4f9e-a3cf-36bdbb6dc940
     metadata:
       status: completed
       expanded: false
@@ -197195,369 +197180,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  b028c1e2-6fdf-4ecc-a269-494bfa3b824f:
-    id: b028c1e2-6fdf-4ecc-a269-494bfa3b824f
-    content: Summary
-    children:
-      - 14902f99-cfa2-45c6-839e-1032a378312a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14902f99-cfa2-45c6-839e-1032a378312a:
-    id: 14902f99-cfa2-45c6-839e-1032a378312a
-    content: Each Step History menu entry is labeled with the owning workflow step's title instead of the title of the content node that was actually captured at step start.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba07a34d-43d9-4a28-aac5-8e6944a952c4:
-    id: ba07a34d-43d9-4a28-aac5-8e6944a952c4
-    content: Steps to reproduce
-    children:
-      - 5a93b99a-6450-4865-8b44-aabf020e1ad7
-      - bbba2906-4a5e-402e-ae31-41c5b176754b
-      - df122caf-c6d7-4db9-a8a0-95b9cc47ab4c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a93b99a-6450-4865-8b44-aabf020e1ad7:
-    id: 5a93b99a-6450-4865-8b44-aabf020e1ad7
-    content: 'Precondition: a workflow step node whose bound content node has a different title from the step (e.g. step "Bug creation", content node "Step history bug").'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bbba2906-4a5e-402e-ae31-41c5b176754b:
-    id: bbba2906-4a5e-402e-ae31-41c5b176754b
-    content: 'User action: run the step (Start Workflow) one or more times to capture snapshots, then right-click the step node and open the Step History submenu.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  df122caf-c6d7-4db9-a8a0-95b9cc47ab4c:
-    id: df122caf-c6d7-4db9-a8a0-95b9cc47ab4c
-    content: 'Observation: every history entry is labeled with the step''s title, so all entries look identical and cannot be told apart.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e9a1403-3ed6-4c9c-ba40-fb5199f07838:
-    id: 4e9a1403-3ed6-4c9c-ba40-fb5199f07838
-    content: Expected behavior
-    children:
-      - 414b5bc6-c4a2-435e-beb6-8dc8065f4026
-      - 7dcae637-269a-4b63-8de3-ed1e5de4e560
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  414b5bc6-c4a2-435e-beb6-8dc8065f4026:
-    id: 414b5bc6-c4a2-435e-beb6-8dc8065f4026
-    content: 'Happy path: each entry''s label is the historized node''s own title (nodes[rootNodeId].content), so successive captures are distinguishable.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7dcae637-269a-4b63-8de3-ed1e5de4e560:
-    id: 7dcae637-269a-4b63-8de3-ed1e5de4e560
-    content: 'Edge cases: empty/missing node content falls back to a placeholder without throwing; long titles truncate at PARENT_LABEL_MAX_LENGTH (120).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4aa96866-15ec-4bc9-9205-7ae75372e81f:
-    id: 4aa96866-15ec-4bc9-9205-7ae75372e81f
-    content: Actual behavior
-    children:
-      - bb7dd323-2618-4482-b60b-706903eaff00
-      - 0068bcab-c004-474a-8b22-15119e949e27
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bb7dd323-2618-4482-b60b-706903eaff00:
-    id: bb7dd323-2618-4482-b60b-706903eaff00
-    content: captureStepHistoryEntry reads nodes[parentId].content — the parent, which is the owning workflow step — and stores it as parentLabel, so the label is the step title.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0068bcab-c004-474a-8b22-15119e949e27:
-    id: 0068bcab-c004-474a-8b22-15119e949e27
-    content: 'User-visible symptom: the Step History submenu lists repeated identical step titles; users can only disambiguate via the capturedAt tooltip.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dabdd05b-2457-4e6e-a6c2-e86d51ab5894:
-    id: dabdd05b-2457-4e6e-a6c2-e86d51ab5894
-    content: Suspected cause
-    children:
-      - 46cc7a4e-e655-4c8a-9f33-1dbad371b744
-      - cae4cac6-8ea7-43e4-8e24-17d9c40b6d15
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  46cc7a4e-e655-4c8a-9f33-1dbad371b744:
-    id: 46cc7a4e-e655-4c8a-9f33-1dbad371b744
-    content: src/renderer/store/tree/stepHistory/stepHistory.ts:72-73 sets parentLabel from nodes[parentId] (the step) instead of nodes[rootNodeId] (the historized node).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cae4cac6-8ea7-43e4-8e24-17d9c40b6d15:
-    id: cae4cac6-8ea7-43e4-8e24-17d9c40b6d15
-    content: 'No guard exists: the field is literally named parentLabel and faithfully captures the parent''s content; the call site (workflowExecutionActions.ts:234-237) passes the executed node''s immediate parent (the owning step) as parentId, so the wrong title is captured deterministically.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  816bcfa0-fdeb-472d-bbaf-6651eabbef75:
-    id: 816bcfa0-fdeb-472d-bbaf-6651eabbef75
-    content: Affected files
-    children:
-      - 1c05f877-a9f5-470e-a7a3-aeee2b8c0104
-      - b2a343f6-0a6a-4fae-bef4-34da0bad3d9b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c05f877-a9f5-470e-a7a3-aeee2b8c0104:
-    id: 1c05f877-a9f5-470e-a7a3-aeee2b8c0104
-    content: 'Primary suspect: src/renderer/store/tree/stepHistory/stepHistory.ts (captureStepHistoryEntry lines 66-83; StepHistoryEntry.parentLabel line 27).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b2a343f6-0a6a-4fae-bef4-34da0bad3d9b:
-    id: b2a343f6-0a6a-4fae-bef4-34da0bad3d9b
-    content: 'Related surface: src/renderer/store/tree/actions/workflowExecutionActions.ts (writeStartWorkflowSnapshot lines 229-240) and src/renderer/components/NodeContent/hooks/useWorkflowSubmenu.ts (buildStepHistoryItem renders entry.parentLabel, line 63).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e617ec9b-9b5a-4dc3-87f2-15e9f82498a1:
-    id: e617ec9b-9b5a-4dc3-87f2-15e9f82498a1
-    content: Regression window
-    children:
-      - e2181b80-9266-4877-a6cc-1415c783371f
-      - 5adff58c-178d-4168-8bc2-827735878148
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2181b80-9266-4877-a6cc-1415c783371f:
-    id: e2181b80-9266-4877-a6cc-1415c783371f
-    content: 'Last known good: the commit immediately before 37f5858 — per-step step history did not exist before that.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5adff58c-178d-4168-8bc2-827735878148:
-    id: 5adff58c-178d-4168-8bc2-827735878148
-    content: 'First observed broken: 37f5858 "feat: per-step workflow history foundation" (2026-05-25); user-visible once wired by 625103b "wire per-step workflow history capture into execution layer" (2026-05-25).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  915cbf46-0e31-4644-bc7d-39d8cc9567ee:
-    id: 915cbf46-0e31-4644-bc7d-39d8cc9567ee
-    content: Severity
-    children:
-      - 34355bad-e9a2-4f3e-806f-b6a8fac02183
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  34355bad-e9a2-4f3e-806f-b6a8fac02183:
-    id: 34355bad-e9a2-4f3e-806f-b6a8fac02183
-    content: 'Low–medium / cosmetic-functional: no data loss (the correct subtree is snapshotted under rootNodeId), but labels are unusable for distinguishing entries, undermining restore-from-history.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14159c99-cdbf-4da7-b230-c5b5f49a9732:
-    id: 14159c99-cdbf-4da7-b230-c5b5f49a9732
-    content: Notes
-    children:
-      - 23407fd3-52d3-4cf2-b2ae-d4466a31c5e9
-      - eb896438-3325-46b2-8da2-2bc1a264e0c8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  23407fd3-52d3-4cf2-b2ae-d4466a31c5e9:
-    id: 23407fd3-52d3-4cf2-b2ae-d4466a31c5e9
-    content: 'Disambiguate from a snapshot/restore defect: restoration uses entry.id and rootNodeId, which are correct — only the display label is wrong.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eb896438-3325-46b2-8da2-2bc1a264e0c8:
-    id: eb896438-3325-46b2-8da2-2bc1a264e0c8
-    content: 'UX/telemetry gap: entries share only a timestamp tooltip; consider showing capturedAt inline alongside the node title, and renaming parentLabel (e.g. nodeLabel) to reflect intent.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  90388b34-bf35-4735-8144-f85de55407b8:
-    id: 90388b34-bf35-4735-8144-f85de55407b8
-    content: Technical refinement
-    children:
-      - ee0f23a0-0825-4e77-b8fd-280414a726ee
-      - c6d1d69d-5f50-4969-8eaf-6a0c41e64665
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ee0f23a0-0825-4e77-b8fd-280414a726ee:
-    id: ee0f23a0-0825-4e77-b8fd-280414a726ee
-    content: Flag complications
-    children:
-      - ef73076c-1c4c-47ef-bc34-e530e814823b
-      - 8eb1b75d-c035-4556-bc01-8f89032118e0
-      - c450873a-9874-4249-ac7f-1b44606d8600
-      - b9c9f8fd-1f5a-4bb3-8bff-08ff6b0804fb
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef73076c-1c4c-47ef-bc34-e530e814823b:
-    id: ef73076c-1c4c-47ef-bc34-e530e814823b
-    content: 'Persistence back-compat: stepHistory (incl. parentLabel) is serialized into .arbo and round-tripped (storageServiceStepHistoryRoundTrip.test.ts), so the code fix only relabels newly-captured entries — entries already saved to disk keep the wrong step title unless migrated or relabeled on load.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8eb1b75d-c035-4556-bc01-8f89032118e0:
-    id: 8eb1b75d-c035-4556-bc01-8f89032118e0
-    content: 'Edge case: an empty historized-node title resolves to a blank label; choose a fallback (e.g. "(untitled)") so the menu entry isn''t empty.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c450873a-9874-4249-ac7f-1b44606d8600:
-    id: c450873a-9874-4249-ac7f-1b44606d8600
-    content: 'Out of scope: renaming parentLabel → nodeLabel (cosmetic) and any Step History UX upgrade like inline capturedAt — separable follow-ups; a rename additionally needs a load-time fallback so old files don''t deserialize to an undefined label.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9c9f8fd-1f5a-4bb3-8bff-08ff6b0804fb:
-    id: b9c9f8fd-1f5a-4bb3-8bff-08ff6b0804fb
-    content: 'ROI: the behavior fix is a one-line, low-risk change with strong ROI; scope only balloons if a field rename plus persisted-data migration is bundled in — keep those separate.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c6d1d69d-5f50-4969-8eaf-6a0c41e64665:
-    id: c6d1d69d-5f50-4969-8eaf-6a0c41e64665
-    content: Summarise the approach
-    children:
-      - e626ece5-1071-43f9-9d34-9f5ee219c7af
-      - b2fb395f-7252-43c2-8454-b7fc3ab4e52a
-      - ef8c9e7d-cccd-486b-ad2b-b2675e4910ea
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e626ece5-1071-43f9-9d34-9f5ee219c7af:
-    id: e626ece5-1071-43f9-9d34-9f5ee219c7af
-    content: 'Where it lands: in captureStepHistoryEntry (stepHistory.ts) source the label from the historized node (nodes[rootNodeId].content) instead of nodes[parentId].content; the renderer (useWorkflowSubmenu.ts:63) is unchanged because it already reads the stored label field, and parentId becomes a vestigial parameter at the call site.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b2fb395f-7252-43c2-8454-b7fc3ab4e52a:
-    id: b2fb395f-7252-43c2-8454-b7fc3ab4e52a
-    content: 'Non-obvious: read the title before captureRemappedSubtree mints fresh UUIDs (the original nodes map still holds it — don''t look it up in the remapped snapshot); an existing test codifies the buggy parent-title label and must be flipped first (TDD).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef8c9e7d-cccd-486b-ad2b-b2675e4910ea:
-    id: ef8c9e7d-cccd-486b-ad2b-b2675e4910ea
-    content: 'Brief: net change ≈ one label-source line plus the codifying test; field rename and persisted-data migration are optional and off this change''s critical path.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0bba588-6785-4a62-b299-b5de33c83651:
-    id: e0bba588-6785-4a62-b299-b5de33c83651
-    content: worktree
-    children:
-      - c9f516cd-fb43-4525-a2b5-8f58dcd20e00
-    metadata:
-      status: pending
-  c9f516cd-fb43-4525-a2b5-8f58dcd20e00:
-    id: c9f516cd-fb43-4525-a2b5-8f58dcd20e00
-    content: vscode://file/Users/brianfox/dev/Arborescent-step-history-title
-    children: []
-    metadata:
-      status: pending
   84011d05-5e88-491d-a522-7410c349ec4b:
     id: 84011d05-5e88-491d-a522-7410c349ec4b
     content: |-
@@ -197598,6 +197220,388 @@ nodes:
     children: []
     metadata:
       status: pending
+  f8d74846-124d-4cd0-8781-3f3ea9c6e995:
+    id: f8d74846-124d-4cd0-8781-3f3ea9c6e995
+    content: worktree
+    children:
+      - 5dac061e-e53b-4015-a534-eaede8caf5c6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dac061e-e53b-4015-a534-eaede8caf5c6:
+    id: 5dac061e-e53b-4015-a534-eaede8caf5c6
+    content: vscode://file/Users/brianfox/dev/Arborescent-step-history-title
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f56de24f-8759-4982-9914-b5031ef1189f:
+    id: f56de24f-8759-4982-9914-b5031ef1189f
+    content: Summary
+    children:
+      - 7df726da-e206-4273-89a4-a4349c49e6ac
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7df726da-e206-4273-89a4-a4349c49e6ac:
+    id: 7df726da-e206-4273-89a4-a4349c49e6ac
+    content: Each Step History menu entry is labeled with the owning workflow step's title instead of the title of the content node that was actually captured at step start.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa38344a-2502-4b9d-8b84-23ded255c5e7:
+    id: fa38344a-2502-4b9d-8b84-23ded255c5e7
+    content: Steps to reproduce
+    children:
+      - e9c675fe-d3a8-4721-8865-7598e7112e5c
+      - 1abdf8fa-8761-4dc7-9fc1-3293ac0206ae
+      - ed0a9aac-ec92-43e3-9447-579fcccb2037
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9c675fe-d3a8-4721-8865-7598e7112e5c:
+    id: e9c675fe-d3a8-4721-8865-7598e7112e5c
+    content: 'Precondition: a workflow step node whose bound content node has a different title from the step (e.g. step "Bug creation", content node "Step history bug").'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1abdf8fa-8761-4dc7-9fc1-3293ac0206ae:
+    id: 1abdf8fa-8761-4dc7-9fc1-3293ac0206ae
+    content: 'User action: run the step (Start Workflow) one or more times to capture snapshots, then right-click the step node and open the Step History submenu.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed0a9aac-ec92-43e3-9447-579fcccb2037:
+    id: ed0a9aac-ec92-43e3-9447-579fcccb2037
+    content: 'Observation: every history entry is labeled with the step''s title, so all entries look identical and cannot be told apart.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  576ace33-d663-45d1-9b4b-7e24c0e9dfe8:
+    id: 576ace33-d663-45d1-9b4b-7e24c0e9dfe8
+    content: Expected behavior
+    children:
+      - 69577a47-808b-428d-a1f4-8bed6ffaad67
+      - 9f48a4b0-bdc7-4628-a4b9-ebde69845f04
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69577a47-808b-428d-a1f4-8bed6ffaad67:
+    id: 69577a47-808b-428d-a1f4-8bed6ffaad67
+    content: 'Happy path: each entry''s label is the historized node''s own title (nodes[rootNodeId].content), so successive captures are distinguishable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f48a4b0-bdc7-4628-a4b9-ebde69845f04:
+    id: 9f48a4b0-bdc7-4628-a4b9-ebde69845f04
+    content: 'Edge cases: empty/missing node content falls back to a placeholder without throwing; long titles truncate at PARENT_LABEL_MAX_LENGTH (120).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf374ab2-e6d1-4714-8c23-d8cd2b181cb1:
+    id: cf374ab2-e6d1-4714-8c23-d8cd2b181cb1
+    content: Actual behavior
+    children:
+      - f2c9e7f3-af17-4278-9685-9a2a00b686cc
+      - b6506f98-9077-44bf-a118-1526cdcc2a79
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2c9e7f3-af17-4278-9685-9a2a00b686cc:
+    id: f2c9e7f3-af17-4278-9685-9a2a00b686cc
+    content: captureStepHistoryEntry reads nodes[parentId].content — the parent, which is the owning workflow step — and stores it as parentLabel, so the label is the step title.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6506f98-9077-44bf-a118-1526cdcc2a79:
+    id: b6506f98-9077-44bf-a118-1526cdcc2a79
+    content: 'User-visible symptom: the Step History submenu lists repeated identical step titles; users can only disambiguate via the capturedAt tooltip.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54390c2a-e533-4041-b93a-cf2f452f6ccb:
+    id: 54390c2a-e533-4041-b93a-cf2f452f6ccb
+    content: Suspected cause
+    children:
+      - 40061e1f-2e83-4eed-8288-9abd32a907f4
+      - d24aef65-9f48-4475-894c-c8fc73905f86
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40061e1f-2e83-4eed-8288-9abd32a907f4:
+    id: 40061e1f-2e83-4eed-8288-9abd32a907f4
+    content: src/renderer/store/tree/stepHistory/stepHistory.ts:72-73 sets parentLabel from nodes[parentId] (the step) instead of nodes[rootNodeId] (the historized node).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d24aef65-9f48-4475-894c-c8fc73905f86:
+    id: d24aef65-9f48-4475-894c-c8fc73905f86
+    content: 'No guard exists: the field is literally named parentLabel and faithfully captures the parent''s content; the call site (workflowExecutionActions.ts:234-237) passes the executed node''s immediate parent (the owning step) as parentId, so the wrong title is captured deterministically.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e641417-8fbb-4647-9d17-b51b9ea9c218:
+    id: 3e641417-8fbb-4647-9d17-b51b9ea9c218
+    content: Affected files
+    children:
+      - 33c76bd4-f362-4842-81c3-301de4c351f0
+      - ad04d116-2997-4a71-93c0-d453d3ce3540
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33c76bd4-f362-4842-81c3-301de4c351f0:
+    id: 33c76bd4-f362-4842-81c3-301de4c351f0
+    content: 'Primary suspect: src/renderer/store/tree/stepHistory/stepHistory.ts (captureStepHistoryEntry lines 66-83; StepHistoryEntry.parentLabel line 27).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad04d116-2997-4a71-93c0-d453d3ce3540:
+    id: ad04d116-2997-4a71-93c0-d453d3ce3540
+    content: 'Related surface: src/renderer/store/tree/actions/workflowExecutionActions.ts (writeStartWorkflowSnapshot lines 229-240) and src/renderer/components/NodeContent/hooks/useWorkflowSubmenu.ts (buildStepHistoryItem renders entry.parentLabel, line 63).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57768e3f-c56e-4bf4-bea9-8d4675e28811:
+    id: 57768e3f-c56e-4bf4-bea9-8d4675e28811
+    content: Regression window
+    children:
+      - eb1cbb3a-4d81-4f04-ae50-ae3820990e59
+      - 68e9aca9-78dd-402b-92d9-54a0f95a808d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb1cbb3a-4d81-4f04-ae50-ae3820990e59:
+    id: eb1cbb3a-4d81-4f04-ae50-ae3820990e59
+    content: 'Last known good: the commit immediately before 37f5858 — per-step step history did not exist before that.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68e9aca9-78dd-402b-92d9-54a0f95a808d:
+    id: 68e9aca9-78dd-402b-92d9-54a0f95a808d
+    content: 'First observed broken: 37f5858 "feat: per-step workflow history foundation" (2026-05-25); user-visible once wired by 625103b "wire per-step workflow history capture into execution layer" (2026-05-25).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  078feed3-6b0a-4a0e-9a3b-f1237bc59d0c:
+    id: 078feed3-6b0a-4a0e-9a3b-f1237bc59d0c
+    content: Severity
+    children:
+      - 8196c82f-a250-4943-865e-e9ec202ff1c2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8196c82f-a250-4943-865e-e9ec202ff1c2:
+    id: 8196c82f-a250-4943-865e-e9ec202ff1c2
+    content: 'Low–medium / cosmetic-functional: no data loss (the correct subtree is snapshotted under rootNodeId), but labels are unusable for distinguishing entries, undermining restore-from-history.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e450fd5c-d261-4bb5-962f-1c7c24446a1e:
+    id: e450fd5c-d261-4bb5-962f-1c7c24446a1e
+    content: Notes
+    children:
+      - 6765c7a1-406b-4e1c-8616-37cc1c8fef8c
+      - 8cd73aba-b508-4d06-bd71-1ae9f05af2aa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6765c7a1-406b-4e1c-8616-37cc1c8fef8c:
+    id: 6765c7a1-406b-4e1c-8616-37cc1c8fef8c
+    content: 'Disambiguate from a snapshot/restore defect: restoration uses entry.id and rootNodeId, which are correct — only the display label is wrong.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cd73aba-b508-4d06-bd71-1ae9f05af2aa:
+    id: 8cd73aba-b508-4d06-bd71-1ae9f05af2aa
+    content: 'UX/telemetry gap: entries share only a timestamp tooltip; consider showing capturedAt inline alongside the node title, and renaming parentLabel (e.g. nodeLabel) to reflect intent.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3b84cf2-867d-4879-ba74-1906d1235568:
+    id: f3b84cf2-867d-4879-ba74-1906d1235568
+    content: Technical refinement
+    children:
+      - cec6d760-5d63-461b-b907-d7e87aa24492
+      - 439c8e7f-49bf-40c1-81c6-d2d9acd9345d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cec6d760-5d63-461b-b907-d7e87aa24492:
+    id: cec6d760-5d63-461b-b907-d7e87aa24492
+    content: Flag complications
+    children:
+      - 47692855-32e1-4550-ba0f-b51911235ea8
+      - 1e27a3c5-a5b9-4f34-a3d2-144e2b6f5c63
+      - c3c4ccbe-b5b0-4b73-b943-60c7a31a3e15
+      - d0c218c5-2aaf-4c48-8912-0e344d3d3346
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47692855-32e1-4550-ba0f-b51911235ea8:
+    id: 47692855-32e1-4550-ba0f-b51911235ea8
+    content: 'Persistence back-compat: stepHistory (incl. parentLabel) is serialized into .arbo and round-tripped (storageServiceStepHistoryRoundTrip.test.ts), so the code fix only relabels newly-captured entries — entries already saved to disk keep the wrong step title unless migrated or relabeled on load.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e27a3c5-a5b9-4f34-a3d2-144e2b6f5c63:
+    id: 1e27a3c5-a5b9-4f34-a3d2-144e2b6f5c63
+    content: 'Edge case: an empty historized-node title resolves to a blank label; choose a fallback (e.g. "(untitled)") so the menu entry isn''t empty.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3c4ccbe-b5b0-4b73-b943-60c7a31a3e15:
+    id: c3c4ccbe-b5b0-4b73-b943-60c7a31a3e15
+    content: 'Out of scope: renaming parentLabel → nodeLabel (cosmetic) and any Step History UX upgrade like inline capturedAt — separable follow-ups; a rename additionally needs a load-time fallback so old files don''t deserialize to an undefined label.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0c218c5-2aaf-4c48-8912-0e344d3d3346:
+    id: d0c218c5-2aaf-4c48-8912-0e344d3d3346
+    content: 'ROI: the behavior fix is a one-line, low-risk change with strong ROI; scope only balloons if a field rename plus persisted-data migration is bundled in — keep those separate.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  439c8e7f-49bf-40c1-81c6-d2d9acd9345d:
+    id: 439c8e7f-49bf-40c1-81c6-d2d9acd9345d
+    content: Summarise the approach
+    children:
+      - ac602732-e3af-4377-8115-1b5fa9ca7eb8
+      - 30f56c60-0586-4041-b853-32973b61e063
+      - 95f5de3c-f381-42b8-baa1-df04d1411896
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac602732-e3af-4377-8115-1b5fa9ca7eb8:
+    id: ac602732-e3af-4377-8115-1b5fa9ca7eb8
+    content: 'Where it lands: in captureStepHistoryEntry (stepHistory.ts) source the label from the historized node (nodes[rootNodeId].content) instead of nodes[parentId].content; the renderer (useWorkflowSubmenu.ts:63) is unchanged because it already reads the stored label field, and parentId becomes a vestigial parameter at the call site.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30f56c60-0586-4041-b853-32973b61e063:
+    id: 30f56c60-0586-4041-b853-32973b61e063
+    content: 'Non-obvious: read the title before captureRemappedSubtree mints fresh UUIDs (the original nodes map still holds it — don''t look it up in the remapped snapshot); an existing test codifies the buggy parent-title label and must be flipped first (TDD).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95f5de3c-f381-42b8-baa1-df04d1411896:
+    id: 95f5de3c-f381-42b8-baa1-df04d1411896
+    content: 'Brief: net change ≈ one label-source line plus the codifying test; field rename and persisted-data migration are optional and off this change''s critical path.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10621824-a416-4f9e-a3cf-36bdbb6dc940:
+    id: 10621824-a416-4f9e-a3cf-36bdbb6dc940
+    content: review feedback
+    children:
+      - e2054dde-e2c4-479e-94ee-bc834b31069c
+    metadata:
+      status: completed
+  e2054dde-e2c4-479e-94ee-bc834b31069c:
+    id: e2054dde-e2c4-479e-94ee-bc834b31069c
+    content: 'Verdict: correct and ship-ready — no blocking or should-fix findings (reviewer: pr-review-toolkit:code-reviewer). The fix in stepHistory.ts (captureStepHistoryEntry) correctly sources parentLabel from nodes[rootNodeId].content read BEFORE captureRemappedSubtree mints fresh UUIDs (reading after would key off remapped IDs — a real bug avoided); empty/missing nodes stay guarded via `historizedNode ? truncateLabel(...) : ''''`. Two deliberate minimal-scope trade-offs confirmed acceptable: (1) parentId is now vestigial inside the fn but cannot be dropped without a signature change and is still used at the call site (workflowExecutionActions.ts:234-236) to compute position; lint-safe (no-unused-vars args:after-used). (2) the parentLabel field name is intentionally NOT renamed — stepHistory is serialized/round-tripped to .arbo (storageServiceStepHistoryRoundTrip.test.ts) so a rename needs a load-time back-compat migration; consumer useWorkflowSubmenu.ts:63 reads it unchanged. Tests pin the bug, not just the symptom: label-from-historized-node + .not.toContain parent title; two-captures-distinguishable repro; truncation@120 (200→119+''…''); empty + missing-from-map no-throw. The it.todo for the undecided empty-title placeholder string is appropriate — the path is already safe (returns '''') and the consumer renders an empty label without crashing (useWorkflowSubmenuStepHistory.test.ts:300), so it''s a product decision, not a correctness gap; do NOT pin it in this PR. Checks: 21/21 pass +1 todo, tsc --noEmit clean, eslint clean. One optional non-blocking style nit (NOT applied): the empty-content test calls captureStepHistoryEntry twice instead of capturing one result — harmless. No code changes required to merge.'
+    children: []
+    metadata:
+      status: completed
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
