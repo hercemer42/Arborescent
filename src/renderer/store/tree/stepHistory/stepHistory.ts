@@ -37,7 +37,7 @@ function truncateLabel(label: string): string {
   return `${label.slice(0, PARENT_LABEL_MAX_LENGTH - 1).trimEnd()}…`;
 }
 
-function captureRemappedSubtree(
+export function captureRemappedSubtree(
   rootNodeId: string,
   nodes: Record<string, TreeNode>,
 ): { rootNodeId: string; nodes: Record<string, TreeNode> } {

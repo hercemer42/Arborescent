@@ -1,4 +1,5 @@
 import { TreeNode } from './treeNode';
+import { PendingProposalMap } from './pendingProposal';
 
 export type TreeType = 'workspace' | 'feedback';
 
@@ -15,4 +16,5 @@ export interface ArboFile {
   rootNodeId: string;
   nodes: Record<string, TreeNode>;
   sessionRegistry?: Record<string, { cwd: string }>;
+  pendingProposals?: PendingProposalMap;
 }

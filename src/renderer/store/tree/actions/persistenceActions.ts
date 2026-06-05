@@ -1,4 +1,4 @@
-import { TreeNode, NodeStatus } from '../../../../shared/types';
+import { TreeNode, NodeStatus, PendingProposalMap } from '../../../../shared/types';
 import { logger } from '../../../services/logger';
 import { StorageService } from '../../../../shared/interfaces';
 import { updateAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
@@ -34,6 +34,7 @@ type StoreState = {
   summaryDateFrom: string | null;
   summaryDateTo: string | null;
   sessionRegistry: Record<string, { cwd: string }>;
+  pendingProposals?: PendingProposalMap;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 type StoreGetter = () => StoreState;
@@ -47,12 +48,12 @@ export const createPersistenceActions = (
   let autosaveTimeout: ReturnType<typeof setTimeout> | null = null;
 
   function loadDoc(nodes: Record<string, TreeNode>, rootNodeId: string): void {
-    set({ ...updateAncestorRegistry(rootNodeId, nodes), rootNodeId, sessionRegistry: {} });
+    set({ ...updateAncestorRegistry(rootNodeId, nodes), rootNodeId, sessionRegistry: {}, pendingProposals: {} });
   }
 
   async function performSave(path: string, fileMeta?: { created: string; author: string }): Promise<void> {
-    const { nodes, rootNodeId, isFileBlueprintFile, summaryDateFrom, summaryDateTo, sessionRegistry } = get();
-    const arboFile = createArboFile(nodes, rootNodeId, fileMeta, isFileBlueprintFile, summaryDateFrom, summaryDateTo, sessionRegistry);
+    const { nodes, rootNodeId, isFileBlueprintFile, summaryDateFrom, summaryDateTo, sessionRegistry, pendingProposals } = get();
+    const arboFile = createArboFile(nodes, rootNodeId, fileMeta, isFileBlueprintFile, summaryDateFrom, summaryDateTo, sessionRegistry, pendingProposals);
     await storage.saveDocument(path, arboFile);
   }
 
@@ -132,6 +133,7 @@ export const createPersistenceActions = (
       summaryDateFrom: null,
       summaryDateTo: null,
       sessionRegistry: data.sessionRegistry ?? {},
+      pendingProposals: data.pendingProposals ?? {},
     });
 
     // Restore collaboration state if there's collaboration metadata

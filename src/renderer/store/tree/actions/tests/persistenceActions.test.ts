@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createPersistenceActions } from '../persistenceActions';
-import type { TreeNode } from '@shared/types';
+import type { TreeNode, PendingProposalMap } from '@shared/types';
 import type { StorageService } from '@shared/interfaces';
 
 describe('persistenceActions', () => {
@@ -17,6 +17,7 @@ describe('persistenceActions', () => {
     summaryDateFrom: string | null;
     summaryDateTo: string | null;
     sessionRegistry: Record<string, { cwd: string }>;
+    pendingProposals?: PendingProposalMap;
   };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createPersistenceActions>;
@@ -116,6 +117,22 @@ describe('persistenceActions', () => {
 
       expect(state.sessionRegistry).toEqual({});
     });
+
+    it('resets pendingProposals so stale entries from a prior in-memory load do not leak', () => {
+      state.pendingProposals = {
+        'stale-node': {
+          id: 'p-stale',
+          capturedAt: '2026-01-01T00:00:00.000Z',
+          reviewedNodeId: 'stale-node',
+          rootNodeId: 'snap',
+          nodes: {},
+        },
+      };
+
+      actions.loadDocument({ 'new-root': { id: 'new-root', content: 'New', children: [], metadata: {} } }, 'new-root');
+
+      expect(state.pendingProposals).toEqual({});
+    });
   });
 
   describe('loadFromPath', () => {
@@ -186,6 +203,48 @@ describe('persistenceActions', () => {
       expect(restoreCollaborationState).toHaveBeenCalledTimes(1);
     });
 
+    it('hydrates pendingProposals from the loaded file into state', async () => {
+      const proposals: PendingProposalMap = {
+        'loaded-root': {
+          id: 'p1',
+          capturedAt: '2026-01-01T00:00:00.000Z',
+          reviewedNodeId: 'loaded-root',
+          rootNodeId: 'snap',
+          nodes: { snap: { id: 'snap', content: 'proposed', children: [], metadata: {} } },
+        },
+      };
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue({
+        format: 'Arborescent' as const,
+        version: '1.0.0',
+        created: '2025-01-01',
+        updated: '2025-01-02',
+        author: 'Test',
+        rootNodeId: 'loaded-root',
+        nodes: { 'loaded-root': { id: 'loaded-root', content: 'Loaded', children: [], metadata: {} } },
+        pendingProposals: proposals,
+      });
+
+      await actions.loadFromPath('/test/path.arbo');
+
+      expect(state.pendingProposals).toEqual(proposals);
+    });
+
+    it('defaults pendingProposals to empty when the loaded file has none', async () => {
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue({
+        format: 'Arborescent' as const,
+        version: '1.0.0',
+        created: '2025-01-01',
+        updated: '2025-01-02',
+        author: 'Test',
+        rootNodeId: 'loaded-root',
+        nodes: { 'loaded-root': { id: 'loaded-root', content: 'Loaded', children: [], metadata: {} } },
+      });
+
+      await actions.loadFromPath('/test/path.arbo');
+
+      expect(state.pendingProposals).toEqual({});
+    });
+
     it('should set activeNodeId to first child of root when root has children', async () => {
       const mockData = {
         format: 'Arborescent' as const,
@@ -237,6 +296,26 @@ describe('persistenceActions', () => {
           nodes: state.nodes,
           rootNodeId: state.rootNodeId,
         })
+      );
+    });
+
+    it('includes the current pendingProposals in the saved file', async () => {
+      vi.mocked(mockStorage.saveDocument).mockResolvedValue();
+      state.pendingProposals = {
+        reviewed: {
+          id: 'p1',
+          capturedAt: '2026-01-01T00:00:00.000Z',
+          reviewedNodeId: 'reviewed',
+          rootNodeId: 'snap',
+          nodes: { snap: { id: 'snap', content: 'proposed', children: [], metadata: {} } },
+        },
+      };
+
+      await actions.saveToPath('/test/save.arbo');
+
+      expect(mockStorage.saveDocument).toHaveBeenCalledWith(
+        '/test/save.arbo',
+        expect.objectContaining({ pendingProposals: state.pendingProposals })
       );
     });
 

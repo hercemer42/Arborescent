@@ -1,4 +1,4 @@
-import { ArboFile, TreeNode } from '../../shared/types';
+import { ArboFile, TreeNode, PendingProposalMap } from '../../shared/types';
 import { stripDroppedSessionFields } from './sessionRegistryMigrations';
 
 const RUNTIME_ONLY_FIELDS = ['transient'] as const;
@@ -60,6 +60,7 @@ export function createArboFile(
   summaryDateFrom?: string | null,
   summaryDateTo?: string | null,
   sessionRegistry?: Record<string, { cwd: string }>,
+  pendingProposals?: PendingProposalMap,
 ): ArboFile {
   const file: ArboFile = {
     format: 'Arborescent',
@@ -85,6 +86,10 @@ export function createArboFile(
 
   if (sessionRegistry && Object.keys(sessionRegistry).length > 0) {
     file.sessionRegistry = sessionRegistry;
+  }
+
+  if (pendingProposals && Object.keys(pendingProposals).length > 0) {
+    file.pendingProposals = pendingProposals;
   }
 
   return file;
