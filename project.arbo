@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-04T22:26:22.766Z'
+updated: '2026-06-05T02:09:43.698Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -83647,7 +83647,6 @@ nodes:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
     children:
-      - 270acf71-da39-4d20-8cb3-fe7d8292713e
       - 993479cb-62d6-4482-9c73-873976a9eaf9
     metadata:
       status: pending
@@ -115528,6 +115527,7 @@ nodes:
       - 6863591d-d52d-4950-a8b7-49ab2f28e6c7
       - 6f0fe0b2-1aeb-4392-97c7-f8fee83d7b24
       - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
+      - 5bff2b75-39f1-4910-83c7-5f3c772858bc
     metadata:
       status: pending
       isBlueprint: true
@@ -124634,7 +124634,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 5bff2b75-39f1-4910-83c7-5f3c772858bc
+      - 270acf71-da39-4d20-8cb3-fe7d8292713e
     metadata:
       status: pending
       isBlueprint: true
@@ -158992,7 +158992,8 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children: []
+    children:
+      - decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
     metadata:
       status: pending
       isBlueprint: true
@@ -194364,492 +194365,25 @@ nodes:
     id: 270acf71-da39-4d20-8cb3-fe7d8292713e
     content: PR2 - Gate Claude resume on shell-prompt readiness
     children:
-      - 89b2a835-d75d-497e-b830-7f05f33921e8
-      - 0d75ffa8-5ce2-40cc-b4f3-64bb478ff31e
-      - 653d1bc3-1b35-44f5-a08f-d922b1afb37c
+      - d0d6560b-9734-4428-94d3-80670ebb966b
+      - fc28d5dd-7da2-40b5-90b2-177ceb27209d
+      - 1be6e3fb-dbd3-4e64-b30b-200517851e16
+      - 54398966-1f41-42ed-8416-374dd646398b
+      - e2dc7554-e116-47a2-b5d9-574381bfd462
+      - 53575b76-9d80-4582-b5b7-e1a2104c43c9
+      - aff16564-115a-456d-b2fd-545394fe92c6
+      - da38cd99-6482-4e3e-ab3c-2633bf3655e9
+      - 73164ee8-04d0-41aa-a89f-b0dc8c63e3f9
+      - c1274d09-1870-4310-bf84-b1da49158a38
+      - 29bd538a-fa78-4578-9879-95b0f7c5dd17
+      - 548f9375-ed92-4d45-a918-86aeac1ad959
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
       groupId: abe8b43d-0d26-4f1a-8022-48fb48a2fc45
-  89b2a835-d75d-497e-b830-7f05f33921e8:
-    id: 89b2a835-d75d-497e-b830-7f05f33921e8
-    content: User story
-    children:
-      - 69e6ac03-80bf-4dee-b5b8-f16da1f177c8
-      - 9e51e22b-8980-4fd0-b880-2297f61d9d70
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  69e6ac03-80bf-4dee-b5b8-f16da1f177c8:
-    id: 69e6ac03-80bf-4dee-b5b8-f16da1f177c8
-    content: 📄 Product spec
-    children:
-      - 1122ad45-2588-44bf-bbe3-b439dd57f5d2
-      - d1cf1450-ce86-4e29-9724-a4955cd2affb
-      - 442509e5-06f2-438d-a3f1-07aec81900e1
-      - 1f2220cd-a357-45e4-9b6c-0f63fdda3f03
-      - b77e40ca-22e4-4692-9882-2f384491114d
-      - d292baff-33a0-4511-aaac-b1f9c3f39484
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1122ad45-2588-44bf-bbe3-b439dd57f5d2:
-    id: 1122ad45-2588-44bf-bbe3-b439dd57f5d2
-    content: Context
-    children:
-      - fee681ae-b5ce-457d-962d-b9d72ce4fa58
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fee681ae-b5ce-457d-962d-b9d72ce4fa58:
-    id: fee681ae-b5ce-457d-962d-b9d72ce4fa58
-    content: Restored terminals reopen as dead shells with the right title and folder but no running Claude and no resumed session, because the sessionId linking a terminal to its Claude session lives only in memory and is empty on restart, even though the on-disk session file and its cwd already persist and every open file's tree store is already loaded at launch.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d1cf1450-ce86-4e29-9724-a4955cd2affb:
-    id: d1cf1450-ce86-4e29-9724-a4955cd2affb
-    content: User
-    children:
-      - e29ee02b-213d-4727-9f88-5776012efaa3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e29ee02b-213d-4727-9f88-5776012efaa3:
-    id: e29ee02b-213d-4727-9f88-5776012efaa3
-    content: A user who works across several .arbo files with live Claude sessions and quits and relaunches Arborescent expecting the whole working set to come back.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  442509e5-06f2-438d-a3f1-07aec81900e1:
-    id: 442509e5-06f2-438d-a3f1-07aec81900e1
-    content: Current experience and why it is insufficient
-    children:
-      - ca91d4b2-192c-4342-8c55-343883454a05
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ca91d4b2-192c-4342-8c55-343883454a05:
-    id: ca91d4b2-192c-4342-8c55-343883454a05
-    content: After restart the user must manually relaunch Claude and resume each session by hand, and only the active file's terminals even spawn (and only when the terminal panel is in view), so the restored workspace is functionally empty — corrosive for a tool whose value is durable scaffolding across sessions.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1f2220cd-a357-45e4-9b6c-0f63fdda3f03:
-    id: 1f2220cd-a357-45e4-9b6c-0f63fdda3f03
-    content: Goal
-    children:
-      - 4ae33d50-e409-4a7e-a0e7-28faacd420ec
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ae33d50-e409-4a7e-a0e7-28faacd420ec:
-    id: 4ae33d50-e409-4a7e-a0e7-28faacd420ec
-    content: After restart, every open file's terminals reopen with their named Claude session already resumed, so relaunching the app restores the full set of live sessions that were running — not just the one in view.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b77e40ca-22e4-4692-9882-2f384491114d:
-    id: b77e40ca-22e4-4692-9882-2f384491114d
-    content: Business rules
-    children:
-      - 76bb6427-c8ea-46b9-a550-c5760474b5e9
-      - c27a8ef2-d131-43ed-a086-0042d030140c
-      - d2fa5034-8ff9-4ba8-82a1-c4492def2042
-      - bfd07485-c738-47eb-8dd5-a199af440eee
-      - 86e96c36-9843-468e-b803-221368535421
-      - 332b37a3-364a-4bed-924e-6f1990239214
-      - eee6f220-5004-4fd6-8e81-e4d7e66705b7
-      - c5ccbc4f-b49d-4f5b-9835-47d0b6f0e0ab
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  76bb6427-c8ea-46b9-a550-c5760474b5e9:
-    id: 76bb6427-c8ea-46b9-a550-c5760474b5e9
-    content: The Claude sessionId must be persisted per terminal so a restored terminal can be re-linked to its session without waiting for a new SessionStart event.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c27a8ef2-d131-43ed-a086-0042d030140c:
-    id: c27a8ef2-d131-43ed-a086-0042d030140c
-    content: On restart, every open file's terminals that had a live session must auto-resume that session at launch, regardless of which file or panel is currently active, so restoration reflects what was running rather than what is in view.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2fa5034-8ff9-4ba8-82a1-c4492def2042:
-    id: d2fa5034-8ff9-4ba8-82a1-c4492def2042
-    content: Writing claude --resume must wait until a terminal's shell prompt is ready, so resuming many terminals concurrently at launch cannot drop or mangle the resume command.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bfd07485-c738-47eb-8dd5-a199af440eee:
-    id: bfd07485-c738-47eb-8dd5-a199af440eee
-    content: Auto-resume must proceed only after validating that the session file exists for its cwd; a session whose file is missing, whose folder no longer exists, or that has no persisted sessionId must fall back to a plain shell with a one-click resume affordance and no automatic resume.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  86e96c36-9843-468e-b803-221368535421:
-    id: 86e96c36-9843-468e-b803-221368535421
-    content: Failure states must be quiet and inline (a plain shell or a disabled resume control), never a per-terminal error toast that produces a restart-time error storm across many files.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  332b37a3-364a-4bed-924e-6f1990239214:
-    id: 332b37a3-364a-4bed-924e-6f1990239214
-    content: Re-establishing the session-to-terminal binding must be idempotent so that pre-binding and the SessionStart that claude --resume itself fires converge on a single mapping with no duplicates.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eee6f220-5004-4fd6-8e81-e4d7e66705b7:
-    id: eee6f220-5004-4fd6-8e81-e4d7e66705b7
-    content: 'Terminals created before this feature, with no persisted sessionId, must restore as today: a plain shell in the correct folder with no resume and no error.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c5ccbc4f-b49d-4f5b-9835-47d0b6f0e0ab:
-    id: c5ccbc4f-b49d-4f5b-9835-47d0b6f0e0ab
-    content: Resuming sessions must not block the UI; the app must be interactive before every session has finished resuming.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d292baff-33a0-4511-aaac-b1f9c3f39484:
-    id: d292baff-33a0-4511-aaac-b1f9c3f39484
-    content: Acceptance criteria
-    children:
-      - ab43a33d-c3c3-4542-968c-f1cf61715506
-      - 97105eed-8022-40ce-a7df-1e0774a5e1db
-      - aaf313b3-a90d-4e9d-b195-b301b1826cbd
-      - 18084be8-caf0-4b38-8a5a-a9fa4fbf5220
-      - 42ea23f2-3737-461b-a1ad-88dd782abed8
-      - 03918234-a7b3-4c96-b4d6-a31080a35c51
-      - 565dd41e-030f-4584-9681-a2c84b0818f4
-      - f423c372-d447-4765-bccc-f8bcda37e402
-      - b7d9435a-a86e-4042-b712-8086b16f5807
-      - ea26d229-7b14-4e96-8abf-b786160b1e6c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab43a33d-c3c3-4542-968c-f1cf61715506:
-    id: ab43a33d-c3c3-4542-968c-f1cf61715506
-    content: sessionId is persisted per terminal and survives a full quit and relaunch.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  97105eed-8022-40ce-a7df-1e0774a5e1db:
-    id: 97105eed-8022-40ce-a7df-1e0774a5e1db
-    content: After restart, every open file's terminals with a valid on-disk session resume that exact session at launch, without requiring a file switch and regardless of which file is active.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aaf313b3-a90d-4e9d-b195-b301b1826cbd:
-    id: aaf313b3-a90d-4e9d-b195-b301b1826cbd
-    content: Terminals are restored and resumed even for files whose terminal panel was not the active view before restart, matching the set of sessions that were running.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  18084be8-caf0-4b38-8a5a-a9fa4fbf5220:
-    id: 18084be8-caf0-4b38-8a5a-a9fa4fbf5220
-    content: Switching to any open file after restart shows its terminals already live, with no spawn-on-switch lag.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  42ea23f2-3737-461b-a1ad-88dd782abed8:
-    id: 42ea23f2-3737-461b-a1ad-88dd782abed8
-    content: When many terminals resume concurrently at launch, each claude --resume is written only after that terminal's shell prompt is ready, with no dropped or garbled commands.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  03918234-a7b3-4c96-b4d6-a31080a35c51:
-    id: 03918234-a7b3-4c96-b4d6-a31080a35c51
-    content: A terminal whose session file is missing restores as a plain shell with the resume control unavailable and a quiet "session no longer available" indication, with no error toast.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  565dd41e-030f-4584-9681-a2c84b0818f4:
-    id: 565dd41e-030f-4584-9681-a2c84b0818f4
-    content: A terminal whose persisted folder no longer exists does not auto-resume or spawn in a wrong directory and surfaces a quiet "folder not found" state.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f423c372-d447-4765-bccc-f8bcda37e402:
-    id: f423c372-d447-4765-bccc-f8bcda37e402
-    content: A terminal with no persisted sessionId restores as a plain shell with no resume control and no error.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b7d9435a-a86e-4042-b712-8086b16f5807:
-    id: b7d9435a-a86e-4042-b712-8086b16f5807
-    content: Auto-resume and manual re-resume never create duplicate session-to-terminal bindings.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ea26d229-7b14-4e96-8abf-b786160b1e6c:
-    id: ea26d229-7b14-4e96-8abf-b786160b1e6c
-    content: The app window is interactive before all sessions finish resuming, even with many terminals across multiple files.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e51e22b-8980-4fd0-b880-2297f61d9d70:
-    id: 9e51e22b-8980-4fd0-b880-2297f61d9d70
-    content: 🔧 Implementation proposal
-    children:
-      - ce85e8db-977c-481b-849c-139ceb18d22c
-      - 2e0a6b4f-7498-4465-ac83-ea673d0d17ce
-      - 8a5397e1-c62f-44b6-9047-5a3a4eef8d92
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ce85e8db-977c-481b-849c-139ceb18d22c:
-    id: ce85e8db-977c-481b-849c-139ceb18d22c
-    content: Approach
-    children:
-      - 8358380e-4633-4f46-9215-ad23b9deeba7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8358380e-4633-4f46-9215-ad23b9deeba7:
-    id: 8358380e-4633-4f46-9215-ad23b9deeba7
-    content: Add sessionId to the persisted TerminalSessionEntry, populated in buildTerminalSession by reverse-looking-up the terminal in the in-memory workflowSessionMap at save time and carried through pendingRestore; at launch, after the per-file materialization fix, materialize every open file's restored terminals (not just the active one) and drive the existing resumeSession/bindSessionTab path for each entry whose session validates, gating each claude --resume write on a shell-prompt-readiness signal; resume cwd comes from the already-persisted sessionRegistry[sessionId].cwd, and the SessionStart that claude --resume fires re-asserts each binding idempotently.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e0a6b4f-7498-4465-ac83-ea673d0d17ce:
-    id: 2e0a6b4f-7498-4465-ac83-ea673d0d17ce
-    content: Touchpoints
-    children:
-      - 0bee2cee-818c-425b-92f0-99b60cb351e9
-      - 2344d30c-7974-4a02-8e1f-ce9fd2b545d9
-      - d7bba5a7-55b9-4387-879b-55b8814d49b8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0bee2cee-818c-425b-92f0-99b60cb351e9:
-    id: 0bee2cee-818c-425b-92f0-99b60cb351e9
-    content: 'Shell-prompt readiness: add or reuse a readiness signal for a freshly spawned PTY before writing claude --resume (terminal service / main handlers).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2344d30c-7974-4a02-8e1f-ce9fd2b545d9:
-    id: 2344d30c-7974-4a02-8e1f-ce9fd2b545d9
-    content: 'Session resume glue: reuse resumeSession, claudeSessionExists, and bindSessionTab (src/renderer/store/tree/actions/workflowSessionResume.ts).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d7bba5a7-55b9-4387-879b-55b8814d49b8:
-    id: d7bba5a7-55b9-4387-879b-55b8814d49b8
-    content: 'Tests: readiness-gated write (resume not written before the prompt is ready); timeout fallback to a plain shell.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a5397e1-c62f-44b6-9047-5a3a4eef8d92:
-    id: 8a5397e1-c62f-44b6-9047-5a3a4eef8d92
-    content: Constraints to call out
-    children:
-      - f4dfda27-074a-4250-bd21-1d7065fb68f5
-      - cd7eb876-8ef0-4239-bb9f-5c2b4ce10a7c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4dfda27-074a-4250-bd21-1d7065fb68f5:
-    id: f4dfda27-074a-4250-bd21-1d7065fb68f5
-    content: 'Shell-prompt-readiness gate is a hard requirement, not a fallback: resumeSession currently writes claude --resume immediately after spawn with no wait, and launch-time concurrency is exactly when that write races, so the gate must be built before the launch fan-out depends on it.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd7eb876-8ef0-4239-bb9f-5c2b4ce10a7c:
-    id: cd7eb876-8ef0-4239-bb9f-5c2b4ce10a7c
-    content: The readiness signal can mis-fire across different shells, custom prompts, or slow PTY starts, so it needs a timeout that falls back to a plain shell rather than hanging or sending blindly.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d75ffa8-5ce2-40cc-b4f3-64bb478ff31e:
-    id: 0d75ffa8-5ce2-40cc-b4f3-64bb478ff31e
-    content: Scope of this PR
-    children:
-      - 55eefaaf-7ef8-4939-a04a-975735ac92d0
-      - 1269c674-2bf7-4689-8de0-d3dc1a192db7
-      - 8cacd856-2d4f-4b73-8f46-a7f5abd0b3eb
-      - c9e34df3-d5a4-4e5b-935e-9f55c003df3e
-      - 63118770-3e01-48e4-9130-cf295a5d654c
-      - c08d1c32-467b-417b-8e26-d73c44a40016
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55eefaaf-7ef8-4939-a04a-975735ac92d0:
-    id: 55eefaaf-7ef8-4939-a04a-975735ac92d0
-    content: 'In scope: add a shell-prompt-readiness signal for a freshly spawned PTY and gate the existing resumeSession write of claude --resume on it, so the command is never sent into an unready shell.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1269c674-2bf7-4689-8de0-d3dc1a192db7:
-    id: 1269c674-2bf7-4689-8de0-d3dc1a192db7
-    content: 'In scope: a readiness timeout that leaves a plain shell rather than hanging or writing blindly.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8cacd856-2d4f-4b73-8f46-a7f5abd0b3eb:
-    id: 8cacd856-2d4f-4b73-8f46-a7f5abd0b3eb
-    content: 'Out of scope: launch-time resume of all files and sessionId persistence (PR3); this PR hardens the existing user-initiated resume path only.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9e34df3-d5a4-4e5b-935e-9f55c003df3e:
-    id: c9e34df3-d5a4-4e5b-935e-9f55c003df3e
-    content: 'Depends on: nothing; independently mergeable, it improves today''s single-resume path and is the prerequisite gate for PR3''s concurrent launch fan-out.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  63118770-3e01-48e4-9130-cf295a5d654c:
-    id: 63118770-3e01-48e4-9130-cf295a5d654c
-    content: 'New infrastructure: the readiness primitive is the net-new mechanism, and cross-shell prompt detection is the design cost that makes it its own PR.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c08d1c32-467b-417b-8e26-d73c44a40016:
-    id: c08d1c32-467b-417b-8e26-d73c44a40016
-    content: 'Independently verifiable: claude --resume is written only after the readiness signal fires for that terminal, a readiness timeout leaves the terminal a plain shell, and existing user-initiated resume still works.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  653d1bc3-1b35-44f5-a08f-d922b1afb37c:
-    id: 653d1bc3-1b35-44f5-a08f-d922b1afb37c
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
+      sessionId: b88d6144-dfb7-4068-92d9-c1d0280ddab1
   993479cb-62d6-4482-9c73-873976a9eaf9:
     id: 993479cb-62d6-4482-9c73-873976a9eaf9
     content: PR3 - Resume every open file's Claude sessions at launch
@@ -195926,6 +195460,708 @@ nodes:
     children: []
     metadata:
       status: completed
+  decc40e9-c4b2-4e54-8b03-3f5e203ec0fa:
+    id: decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
+    content: Can't assign a node to a terminal when one was bound
+    children:
+      - a20686f5-f46e-4508-9747-17e52cd22421
+      - 26f86921-6ee1-4838-9644-702d2f500a9b
+    metadata:
+      status: pending
+  a20686f5-f46e-4508-9747-17e52cd22421:
+    id: a20686f5-f46e-4508-9747-17e52cd22421
+    content: Even if the other node has finished
+    children: []
+    metadata:
+      status: pending
+  26f86921-6ee1-4838-9644-702d2f500a9b:
+    id: 26f86921-6ee1-4838-9644-702d2f500a9b
+    content: Get the message that the terminal tab is already assigned to a running workflow node
+    children:
+      - 2aa1ce52-9228-4723-857f-73f1182d3da9
+      - 83643dd8-e744-4938-bd59-6d31d39d17ac
+      - 1acc1d8d-83bd-4f32-90b1-45695fc32900
+    metadata:
+      status: pending
+  2aa1ce52-9228-4723-857f-73f1182d3da9:
+    id: 2aa1ce52-9228-4723-857f-73f1182d3da9
+    content: But other node isn't running
+    children: []
+    metadata:
+      status: pending
+  83643dd8-e744-4938-bd59-6d31d39d17ac:
+    id: 83643dd8-e744-4938-bd59-6d31d39d17ac
+    content: This happened on a recurse/decompose node
+    children: []
+    metadata:
+      status: pending
+  1acc1d8d-83bd-4f32-90b1-45695fc32900:
+    id: 1acc1d8d-83bd-4f32-90b1-45695fc32900
+    content: The next sibling was advanced to the next step
+    children:
+      - edd33eb7-fb3d-4f2a-a411-c7e5cacd7e9e
+    metadata:
+      status: pending
+  edd33eb7-fb3d-4f2a-a411-c7e5cacd7e9e:
+    id: edd33eb7-fb3d-4f2a-a411-c7e5cacd7e9e
+    content: But couldn't be sent to the prompt
+    children: []
+    metadata:
+      status: pending
+  d0d6560b-9734-4428-94d3-80670ebb966b:
+    id: d0d6560b-9734-4428-94d3-80670ebb966b
+    content: worktree
+    children:
+      - f80f20ad-e589-49ce-88db-6263e20e81d8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f80f20ad-e589-49ce-88db-6263e20e81d8:
+    id: f80f20ad-e589-49ce-88db-6263e20e81d8
+    content: vscode://file/Users/brianfox/dev/Arborescent-resume-readiness-gate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc28d5dd-7da2-40b5-90b2-177ceb27209d:
+    id: fc28d5dd-7da2-40b5-90b2-177ceb27209d
+    content: User story
+    children:
+      - b615b485-145d-484a-9f21-b2bcef907dcc
+      - c2f974a4-1b2a-4b9b-8c34-a7afea143a26
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b615b485-145d-484a-9f21-b2bcef907dcc:
+    id: b615b485-145d-484a-9f21-b2bcef907dcc
+    content: 📄 Product spec
+    children:
+      - 4c9909c6-cf9a-44da-be39-71e604ba56f6
+      - 09aed02e-062d-4ef3-8c1c-913c7b94e370
+      - 2b6b127c-5fe0-4dda-8cb3-6488553fb40f
+      - 1c13847e-504f-47db-8eee-eb2e218a8635
+      - c38a5ec5-130d-40a8-a8e5-9304e0c35488
+      - 7dd8f357-7786-480e-8f9c-433f265b8faa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c9909c6-cf9a-44da-be39-71e604ba56f6:
+    id: 4c9909c6-cf9a-44da-be39-71e604ba56f6
+    content: Context
+    children:
+      - c00408cb-9af2-4771-8db3-c008051d1d25
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c00408cb-9af2-4771-8db3-c008051d1d25:
+    id: c00408cb-9af2-4771-8db3-c008051d1d25
+    content: Restored terminals reopen as dead shells with the right title and folder but no running Claude and no resumed session, because the sessionId linking a terminal to its Claude session lives only in memory and is empty on restart, even though the on-disk session file and its cwd already persist and every open file's tree store is already loaded at launch.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09aed02e-062d-4ef3-8c1c-913c7b94e370:
+    id: 09aed02e-062d-4ef3-8c1c-913c7b94e370
+    content: User
+    children:
+      - 28d3bab4-1604-489b-abb7-47404c45fa5f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28d3bab4-1604-489b-abb7-47404c45fa5f:
+    id: 28d3bab4-1604-489b-abb7-47404c45fa5f
+    content: A user who works across several .arbo files with live Claude sessions and quits and relaunches Arborescent expecting the whole working set to come back.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b6b127c-5fe0-4dda-8cb3-6488553fb40f:
+    id: 2b6b127c-5fe0-4dda-8cb3-6488553fb40f
+    content: Current experience and why it is insufficient
+    children:
+      - e95723cf-d7ae-4118-9c64-5947e7a75c90
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e95723cf-d7ae-4118-9c64-5947e7a75c90:
+    id: e95723cf-d7ae-4118-9c64-5947e7a75c90
+    content: After restart the user must manually relaunch Claude and resume each session by hand, and only the active file's terminals even spawn (and only when the terminal panel is in view), so the restored workspace is functionally empty — corrosive for a tool whose value is durable scaffolding across sessions.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c13847e-504f-47db-8eee-eb2e218a8635:
+    id: 1c13847e-504f-47db-8eee-eb2e218a8635
+    content: Goal
+    children:
+      - 6026709e-fd89-4fa1-9450-69c1d2ca6425
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6026709e-fd89-4fa1-9450-69c1d2ca6425:
+    id: 6026709e-fd89-4fa1-9450-69c1d2ca6425
+    content: After restart, every open file's terminals reopen with their named Claude session already resumed, so relaunching the app restores the full set of live sessions that were running — not just the one in view.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c38a5ec5-130d-40a8-a8e5-9304e0c35488:
+    id: c38a5ec5-130d-40a8-a8e5-9304e0c35488
+    content: Business rules
+    children:
+      - 53b6b712-2698-4dd1-983e-7b13d076b3f8
+      - 5699e1af-cc31-4540-8be2-1bbe39af7a84
+      - ee82d502-d3fe-4b64-b5d2-442e2732f210
+      - 69b5e11e-2e53-404e-b763-b7ffc0e97383
+      - 72ab6604-485b-4eba-a82e-36dafd4a3481
+      - 52a60748-819d-4296-83fd-805cfcb05e54
+      - 595e5271-dc3d-4a55-94af-309eeea37673
+      - a31d0b60-1a05-42c2-819c-dcf40416f59e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53b6b712-2698-4dd1-983e-7b13d076b3f8:
+    id: 53b6b712-2698-4dd1-983e-7b13d076b3f8
+    content: The Claude sessionId must be persisted per terminal so a restored terminal can be re-linked to its session without waiting for a new SessionStart event.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5699e1af-cc31-4540-8be2-1bbe39af7a84:
+    id: 5699e1af-cc31-4540-8be2-1bbe39af7a84
+    content: On restart, every open file's terminals that had a live session must auto-resume that session at launch, regardless of which file or panel is currently active, so restoration reflects what was running rather than what is in view.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee82d502-d3fe-4b64-b5d2-442e2732f210:
+    id: ee82d502-d3fe-4b64-b5d2-442e2732f210
+    content: Writing claude --resume must wait until a terminal's shell prompt is ready, so resuming many terminals concurrently at launch cannot drop or mangle the resume command.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69b5e11e-2e53-404e-b763-b7ffc0e97383:
+    id: 69b5e11e-2e53-404e-b763-b7ffc0e97383
+    content: Auto-resume must proceed only after validating that the session file exists for its cwd; a session whose file is missing, whose folder no longer exists, or that has no persisted sessionId must fall back to a plain shell with a one-click resume affordance and no automatic resume.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72ab6604-485b-4eba-a82e-36dafd4a3481:
+    id: 72ab6604-485b-4eba-a82e-36dafd4a3481
+    content: Failure states must be quiet and inline (a plain shell or a disabled resume control), never a per-terminal error toast that produces a restart-time error storm across many files.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  52a60748-819d-4296-83fd-805cfcb05e54:
+    id: 52a60748-819d-4296-83fd-805cfcb05e54
+    content: Re-establishing the session-to-terminal binding must be idempotent so that pre-binding and the SessionStart that claude --resume itself fires converge on a single mapping with no duplicates.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  595e5271-dc3d-4a55-94af-309eeea37673:
+    id: 595e5271-dc3d-4a55-94af-309eeea37673
+    content: 'Terminals created before this feature, with no persisted sessionId, must restore as today: a plain shell in the correct folder with no resume and no error.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a31d0b60-1a05-42c2-819c-dcf40416f59e:
+    id: a31d0b60-1a05-42c2-819c-dcf40416f59e
+    content: Resuming sessions must not block the UI; the app must be interactive before every session has finished resuming.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dd8f357-7786-480e-8f9c-433f265b8faa:
+    id: 7dd8f357-7786-480e-8f9c-433f265b8faa
+    content: Acceptance criteria
+    children:
+      - 652fb208-6163-41ae-8f5b-d2a407f5a827
+      - 841f6cf7-92c6-4b31-bebd-04d2b82e2867
+      - 42c85b2c-2ce3-4553-a4d2-81ed312d9d0f
+      - e4017a66-43b1-4987-8fde-0295997cb629
+      - 1b57287d-e076-44f4-a38d-e395ca1e572d
+      - 81906850-1295-435b-95d6-84188a780859
+      - 87e77a3a-4c53-4255-a456-07d90f72760b
+      - c4126920-9cb7-46c9-9e8a-8be57a07f0e1
+      - 6821bf75-0083-40e8-8f66-fc6f54140f6c
+      - 096376f3-7477-4361-a1e5-ab20a09a5685
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  652fb208-6163-41ae-8f5b-d2a407f5a827:
+    id: 652fb208-6163-41ae-8f5b-d2a407f5a827
+    content: sessionId is persisted per terminal and survives a full quit and relaunch.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  841f6cf7-92c6-4b31-bebd-04d2b82e2867:
+    id: 841f6cf7-92c6-4b31-bebd-04d2b82e2867
+    content: After restart, every open file's terminals with a valid on-disk session resume that exact session at launch, without requiring a file switch and regardless of which file is active.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42c85b2c-2ce3-4553-a4d2-81ed312d9d0f:
+    id: 42c85b2c-2ce3-4553-a4d2-81ed312d9d0f
+    content: Terminals are restored and resumed even for files whose terminal panel was not the active view before restart, matching the set of sessions that were running.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4017a66-43b1-4987-8fde-0295997cb629:
+    id: e4017a66-43b1-4987-8fde-0295997cb629
+    content: Switching to any open file after restart shows its terminals already live, with no spawn-on-switch lag.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b57287d-e076-44f4-a38d-e395ca1e572d:
+    id: 1b57287d-e076-44f4-a38d-e395ca1e572d
+    content: When many terminals resume concurrently at launch, each claude --resume is written only after that terminal's shell prompt is ready, with no dropped or garbled commands.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81906850-1295-435b-95d6-84188a780859:
+    id: 81906850-1295-435b-95d6-84188a780859
+    content: A terminal whose session file is missing restores as a plain shell with the resume control unavailable and a quiet "session no longer available" indication, with no error toast.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87e77a3a-4c53-4255-a456-07d90f72760b:
+    id: 87e77a3a-4c53-4255-a456-07d90f72760b
+    content: A terminal whose persisted folder no longer exists does not auto-resume or spawn in a wrong directory and surfaces a quiet "folder not found" state.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4126920-9cb7-46c9-9e8a-8be57a07f0e1:
+    id: c4126920-9cb7-46c9-9e8a-8be57a07f0e1
+    content: A terminal with no persisted sessionId restores as a plain shell with no resume control and no error.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6821bf75-0083-40e8-8f66-fc6f54140f6c:
+    id: 6821bf75-0083-40e8-8f66-fc6f54140f6c
+    content: Auto-resume and manual re-resume never create duplicate session-to-terminal bindings.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  096376f3-7477-4361-a1e5-ab20a09a5685:
+    id: 096376f3-7477-4361-a1e5-ab20a09a5685
+    content: The app window is interactive before all sessions finish resuming, even with many terminals across multiple files.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2f974a4-1b2a-4b9b-8c34-a7afea143a26:
+    id: c2f974a4-1b2a-4b9b-8c34-a7afea143a26
+    content: 🔧 Implementation proposal
+    children:
+      - a0f4c12d-9c61-4ce1-8d2c-34e87251ee8b
+      - 4e313914-97a4-4ccf-8ae7-f9544592920b
+      - b8fe2b0b-2ad0-47a9-b966-edc92e887d8c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0f4c12d-9c61-4ce1-8d2c-34e87251ee8b:
+    id: a0f4c12d-9c61-4ce1-8d2c-34e87251ee8b
+    content: Approach
+    children:
+      - c33bc434-9027-42de-9835-0ba197c9c4ba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c33bc434-9027-42de-9835-0ba197c9c4ba:
+    id: c33bc434-9027-42de-9835-0ba197c9c4ba
+    content: Add sessionId to the persisted TerminalSessionEntry, populated in buildTerminalSession by reverse-looking-up the terminal in the in-memory workflowSessionMap at save time and carried through pendingRestore; at launch, after the per-file materialization fix, materialize every open file's restored terminals (not just the active one) and drive the existing resumeSession/bindSessionTab path for each entry whose session validates, gating each claude --resume write on a shell-prompt-readiness signal; resume cwd comes from the already-persisted sessionRegistry[sessionId].cwd, and the SessionStart that claude --resume fires re-asserts each binding idempotently.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e313914-97a4-4ccf-8ae7-f9544592920b:
+    id: 4e313914-97a4-4ccf-8ae7-f9544592920b
+    content: Touchpoints
+    children:
+      - 012f3456-09f7-4987-9169-f07e07cfe625
+      - e71b8daf-7002-41ca-9877-bae008e53c5b
+      - 8f426abe-4da5-4165-b0d0-f96d3a5a9328
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  012f3456-09f7-4987-9169-f07e07cfe625:
+    id: 012f3456-09f7-4987-9169-f07e07cfe625
+    content: 'Shell-prompt readiness: add or reuse a readiness signal for a freshly spawned PTY before writing claude --resume (terminal service / main handlers).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e71b8daf-7002-41ca-9877-bae008e53c5b:
+    id: e71b8daf-7002-41ca-9877-bae008e53c5b
+    content: 'Session resume glue: reuse resumeSession, claudeSessionExists, and bindSessionTab (src/renderer/store/tree/actions/workflowSessionResume.ts).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f426abe-4da5-4165-b0d0-f96d3a5a9328:
+    id: 8f426abe-4da5-4165-b0d0-f96d3a5a9328
+    content: 'Tests: readiness-gated write (resume not written before the prompt is ready); timeout fallback to a plain shell.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8fe2b0b-2ad0-47a9-b966-edc92e887d8c:
+    id: b8fe2b0b-2ad0-47a9-b966-edc92e887d8c
+    content: Constraints to call out
+    children:
+      - de9b38bc-6198-47a3-9ee6-4aa1c58e3215
+      - af9a6b5e-c366-45cb-ac66-c03b71c0e3be
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de9b38bc-6198-47a3-9ee6-4aa1c58e3215:
+    id: de9b38bc-6198-47a3-9ee6-4aa1c58e3215
+    content: 'Shell-prompt-readiness gate is a hard requirement, not a fallback: resumeSession currently writes claude --resume immediately after spawn with no wait, and launch-time concurrency is exactly when that write races, so the gate must be built before the launch fan-out depends on it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af9a6b5e-c366-45cb-ac66-c03b71c0e3be:
+    id: af9a6b5e-c366-45cb-ac66-c03b71c0e3be
+    content: The readiness signal can mis-fire across different shells, custom prompts, or slow PTY starts, so it needs a timeout that falls back to a plain shell rather than hanging or sending blindly.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1be6e3fb-dbd3-4e64-b30b-200517851e16:
+    id: 1be6e3fb-dbd3-4e64-b30b-200517851e16
+    content: Scope of this PR
+    children:
+      - 53e6509a-817c-4cec-aae8-574e7af58980
+      - 22a4ac2d-638c-445b-b58b-f012cb159f25
+      - 359f1355-1a47-4934-aa41-53499d2ae865
+      - 98626ba9-4fae-4cfc-9d96-09d9467d1424
+      - 1715020f-a891-4073-9ade-2e112f24b0c4
+      - 907d3415-8420-4957-97ea-b73d99f9589b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53e6509a-817c-4cec-aae8-574e7af58980:
+    id: 53e6509a-817c-4cec-aae8-574e7af58980
+    content: 'In scope: add a shell-prompt-readiness signal for a freshly spawned PTY and gate the existing resumeSession write of claude --resume on it, so the command is never sent into an unready shell.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22a4ac2d-638c-445b-b58b-f012cb159f25:
+    id: 22a4ac2d-638c-445b-b58b-f012cb159f25
+    content: 'In scope: a readiness timeout that leaves a plain shell rather than hanging or writing blindly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  359f1355-1a47-4934-aa41-53499d2ae865:
+    id: 359f1355-1a47-4934-aa41-53499d2ae865
+    content: 'Out of scope: launch-time resume of all files and sessionId persistence (PR3); this PR hardens the existing user-initiated resume path only.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98626ba9-4fae-4cfc-9d96-09d9467d1424:
+    id: 98626ba9-4fae-4cfc-9d96-09d9467d1424
+    content: 'Depends on: nothing; independently mergeable, it improves today''s single-resume path and is the prerequisite gate for PR3''s concurrent launch fan-out.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1715020f-a891-4073-9ade-2e112f24b0c4:
+    id: 1715020f-a891-4073-9ade-2e112f24b0c4
+    content: 'New infrastructure: the readiness primitive is the net-new mechanism, and cross-shell prompt detection is the design cost that makes it its own PR.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  907d3415-8420-4957-97ea-b73d99f9589b:
+    id: 907d3415-8420-4957-97ea-b73d99f9589b
+    content: 'Independently verifiable: claude --resume is written only after the readiness signal fires for that terminal, a readiness timeout leaves the terminal a plain shell, and existing user-initiated resume still works.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54398966-1f41-42ed-8416-374dd646398b:
+    id: 54398966-1f41-42ed-8416-374dd646398b
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2dc7554-e116-47a2-b5d9-574381bfd462:
+    id: e2dc7554-e116-47a2-b5d9-574381bfd462
+    content: 'TDD: wrote `src/renderer/store/tree/actions/tests/workflowSessionResumeReadiness.test.ts` — red state 3 failing / 1 passing / 6 it.todo; eslint + tsc clean for the file. The 3 failing tests pin the net-new gate on resumeSession''s spawn path (workflowSessionResume.ts:152): (1) gate must subscribe to the new PTY before writing and not write `claude --resume` before the prompt is ready, (2) writes exactly one `claude --resume <id>\r` + a single session binding once readiness fires, (3) a readiness timeout resolves without hanging and writes nothing. Assumption to confirm in impl: readiness is driven through `window.electron.onTerminalData` (only renderer PTY-output channel; proposal says "reuse"). Pre-existing resume coverage NOT duplicated (precheck + newTab specs). Impl-step heads-up: workflowSessionResumePrecheck.test.ts''s "proceeds with the resume" test fires no PTY output, so once the gate lands its resume-write assertion must fire readiness first or it will break.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53575b76-9d80-4582-b5b7-e1a2104c43c9:
+    id: 53575b76-9d80-4582-b5b7-e1a2104c43c9
+    content: 'IMPL: shell-prompt-readiness gate landed. New: `utils/shellPrompt.ts` (pure `isShellPromptReady` — bracketed-paste enable OR a trailing prompt terminator after ANSI strip) and `services/shellPromptReadiness.ts` (`waitForShellPrompt(terminalId, timeoutMs=10000)` over `window.electron.onTerminalData`, resolves true on ready / false on timeout, tears down the listener either way). `workflowSessionResume.ts` resumeSession now awaits the gate before writing `claude --resume`; on timeout it logs (no toast) and leaves the focused plain shell unbound. Tests: 54 passing across 7 files; eslint + tsc clean on changed files. SCOPE BOUNDARY for reviewer: only the user-initiated resumeSession write is gated (per PR2 scope). The two autonomous inline resume writes — startWorkflow resume-in-new-tab (workflowExecutionActions.ts:290) and recurse (≈:631) — are intentionally NOT gated; they duplicate resumeSession''s spawn+write and the existing :278 comment already anticipates a future readiness gate there (PR3/launch fan-out territory). Updated 4 existing resume test harnesses (precheck/title/focuses/startSession) to fire onTerminalData readiness so the gated path completes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aff16564-115a-456d-b2fd-545394fe92c6:
+    id: aff16564-115a-456d-b2fd-545394fe92c6
+    content: Verification summary — undone work is deferred to PR3, not abandoned
+    children:
+      - 285b5177-c8a9-435a-814e-88897aed1a9a
+      - 33574a53-dd8d-4f85-bb9c-34f86402c6c8
+      - 9ec312bd-669f-4a1f-bf56-d7d2be01dca6
+      - f74e03b6-9799-4bf6-bf35-4ae611028ca9
+      - d9e1a194-d726-41d4-be83-0cb4e22af356
+      - 7dfe6203-7953-429e-a5bc-531ca327101e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  285b5177-c8a9-435a-814e-88897aed1a9a:
+    id: 285b5177-c8a9-435a-814e-88897aed1a9a
+    content: sessionId persistence per terminal (TerminalSessionEntry / buildTerminalSession / pendingRestore) — explicitly out of PR2 scope, required by PR3 to re-link terminals at launch
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33574a53-dd8d-4f85-bb9c-34f86402c6c8:
+    id: 33574a53-dd8d-4f85-bb9c-34f86402c6c8
+    content: Launch-time auto-resume of every open file's terminals regardless of active view — PR3 fan-out; PR2 only hardens the user-initiated resume path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ec312bd-669f-4a1f-bf56-d7d2be01dca6:
+    id: 9ec312bd-669f-4a1f-bf56-d7d2be01dca6
+    content: Restore-time plain-shell fallbacks and resume-control UI for missing session / missing folder / no persisted sessionId — PR3 restore UX
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f74e03b6-9799-4bf6-bf35-4ae611028ca9:
+    id: f74e03b6-9799-4bf6-bf35-4ae611028ca9
+    content: Pre-binding restored terminals so it converges idempotently with the SessionStart that claude --resume fires — PR3 (no pre-binding exists yet in PR2)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9e1a194-d726-41d4-be83-0cb4e22af356:
+    id: d9e1a194-d726-41d4-be83-0cb4e22af356
+    content: Non-blocking interactivity while many sessions resume concurrently at launch — PR3; the per-terminal readiness gate primitive is in place and ready for that fan-out
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dfe6203-7953-429e-a5bc-531ca327101e:
+    id: 7dfe6203-7953-429e-a5bc-531ca327101e
+    content: The readiness wait is applied only to resumeSession; the two autonomous claude --resume write sites (startWorkflow resume-in-new-tab, recurse) remain ungated by design and are candidates for the PR3 launch work
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da38cd99-6482-4e3e-ab3c-2633bf3655e9:
+    id: da38cd99-6482-4e3e-ab3c-2633bf3655e9
+    content: 'REFACTOR PASS: reviewed full diff since last commit (2 new src + 1 edited src + 5 test files). No convention violations to fix — naming (concept-named files matching peers like terminalExecution/terminalFocusRegistry), pure-util vs side-effect-service split, why-only comments with no ticket refs, logger.warn with context tag, direct module imports (no barrel in services/ or utils/), all files/functions well under size limits. Tests cover every edited file; no empty tests, no mockReturnValueOnce in additions, no abandoned/dead code. Checks: eslint clean, tsc clean, 54 tests passing (changed/new files only). One deliberate trade-off left as-is: the new resumeSession integration test rebuilds the createSessionResumeManager harness inline, matching its siblings (precheck/title/focuses) — extracting a shared tests/fixtures resume harness would mean reworking those existing files, a cross-cutting cleanup out of scope for this focused gate PR.'
+    children: []
+    metadata:
+      status: pending
+  73164ee8-04d0-41aa-a89f-b0dc8c63e3f9:
+    id: 73164ee8-04d0-41aa-a89f-b0dc8c63e3f9
+    content: |-
+      review feedback (pr-review-toolkit:code-reviewer, full diff + calling code). VERDICT: not mergeable as-is — fix C1 + I2; rest are follow-ups. Conventions clean, contract tests solid.
+
+      CRITICAL C1 — Missed-prompt race. resumeSession (workflowSessionResume.ts:157) only subscribes (via waitForShellPrompt) AFTER createNewTerminal resolves, but PTY output is fire-and-forget with no main-side buffer/replay (terminalHandlers.ts ~40-44 wires onData→webContents.send at spawn; preload onTerminalData is a bare ipcRenderer.on). A fast shell that prints its prompt in the spawn→subscribe gap is missed → gate waits the full 10s → falls back to a plain unbound shell (silent degradation, worse on fast machines). The codebase already works around this exact race for the display listener with a SIGWINCH nudge (useTerminal.ts:140 "reprints its prompt if it landed before onTerminalData attached"). FIX (in-scope): have the gate emit the same resize nudge after subscribing to force a prompt reprint, OR buffer+replay the last N bytes per terminal id in main. Add a regression test: prompt emitted before subscribe still resumes.
+
+      IMPORTANT I2 — Sync-fire listener leak. shellPromptReadiness.ts:15-32: `unsubscribe` stays a no-op until reassigned after onTerminalData returns; if the data callback fires synchronously, settle()→unsubscribe() hits the no-op and the real listener (and is masked because timer cleanup is asymmetric) leaks. Production IPC is async so no leak today, but all 4 updated harnesses fire synchronously and pass only because they never assert teardown. FIX (in-scope): guarantee the real unsubscribe is assigned before any callback can run (or defer settle via queueMicrotask); move clearTimeout into settle so both paths clean up symmetrically. Add a gate-teardown assertion.
+
+      MINOR M4 — Scope: startWorkflow resume-in-new-tab (workflowExecutionActions.ts:288-291) and recurse (~:629-631) still write claude --resume un-gated — the same race, on the autonomous paths. Intentional PR3 deferral (the :277-278 comment anticipates it; on-disk precheck already added at :279-285). Acceptable; name the two remaining ungated writes in the PR description.
+
+      MINOR M5 — shellPrompt.ts terminator [$%#>❯]: `>` gives bonus PowerShell/cmd coverage but also matches bash PS2 continuation prompt (not reachable in fresh-shell resume). Low risk, no action.
+
+      NITs — N6: buffer (shellPromptReadiness.ts:14,27) unbounded until timeout; cap to last ~4KB. N7: DEFAULT_PROMPT_READY_TIMEOUT_MS=10000 magic, no call-site override (PR3 may want a shared value). N8: conventions clean (pure-util/side-effect-service split, why-only comments, co-located tests).
+
+      Tests: contract suite is good (no-write-before-ready, exactly-one-write + single binding, timeout→no-write, timeout→no-toast). GAPS to add with the fixes: missed-prompt regression (C1) and gate listener-teardown assertion (I2).
+    children: []
+    metadata:
+      status: pending
+  c1274d09-1870-4310-bf84-b1da49158a38:
+    id: c1274d09-1870-4310-bf84-b1da49158a38
+    content: |-
+      review resolution (discussed with code-reviewer via SendMessage; not blindly validated). Checks after fixes: eslint clean, tsc clean, 55 passing + 5 pre-existing todos across 7 files.
+
+      MAJOR FIXED:
+      - I2 (sync-fire listener leak) — ACCEPTED & FIXED. Restructured waitForShellPrompt (shellPromptReadiness.ts) to be correct-by-construction: settle() now guards `unsubscribe?.()` and clears its own timer; after onTerminalData returns, an `if (settled) unsubscribe()` removes the real listener captured post-subscription, closing the leak when readiness fires synchronously. Added a service test that fires onTerminalData synchronously and asserts the REAL returned disposer is called exactly once (the reviewer's flagged gap — assert the real disposer, not the no-op).
+
+      MINOR FIXED:
+      - N6 (unbounded buffer) — ACCEPTED & FIXED. Accumulation now capped to a 4KB trailing window (concat-then-slice keeps the tail, so a prompt terminator / split bracketed-paste marker at the end is never bisected).
+
+      SKIPPED / DOWNGRADED (with reviewer concurrence):
+      - C1 (missed-prompt race) — DOWNGRADED from critical to documented known-limitation; main-side buffering DEFERRED to PR3. Rationale (reviewer agreed): onTerminalData is ipcRenderer.on over an async channel, so the PTY's first byte is necessarily a later event-loop task than the synchronous `waitForShellPrompt` subscribe that runs immediately after createNewTerminal's invoke-response resolves; shell init (exec + rc, ~10-100ms) >> the IPC return window, so the prompt lands after the gate subscribes. Rare miss degrades gracefully via the 10s timeout → focused plain shell (the spec's designed fallback), user re-clicks Resume. PR3's launch fan-out breaks this assumption (many terminal:create resolve while main is already pumping onData for earlier terminals → a late subscriber can miss output), so main-side ring-buffer + replay belongs there.
+      - M4 (startWorkflow:288-291 / recurse:~629-631 resume writes ungated) — INTENTIONAL PR3 scope; name in PR description.
+      - M5 (`>` also matches bash PS2 continuation prompt) — SKIPPED, not reachable on a fresh resume shell.
+      - N7 (10s timeout magic constant) — DEFERRED to PR3 to share across the fan-out.
+
+      FOR THE EVENTUAL PR DESCRIPTION: (1) note C1 as a known limitation with the timing rationale above + buffer/replay deferred to PR3; (2) name the two ungated autonomous resume writes (M4).
+    children: []
+    metadata:
+      status: pending
+  29bd538a-fa78-4578-9879-95b0f7c5dd17:
+    id: 29bd538a-fa78-4578-9879-95b0f7c5dd17
+    content: |-
+      TEST PASS & AC RECONCILIATION: full suite green — 371 files passed / 20 skipped, 5232 tests passed / 1 skipped / 625 todo, 0 failures (stderr lines are expected error-path logs). No regression from the gate.
+
+      AC ↔ implementation ↔ test mapping (semantic, not just structural):
+      - AC5 "each claude --resume written only after that terminal's shell prompt is ready" — per-terminal gate implemented (resumeSession awaits waitForShellPrompt(created.id) before terminalWrite) and covered by workflowSessionResumeReadiness (no-write-before-ready, exactly-one-write) + shellPromptReadiness (per-terminal isolation, slow-start, timeout). The "many concurrently AT LAUNCH" clause is PR3 fan-out.
+      - AC9 "manual re-resume never creates duplicate bindings" — satisfied: bindSessionTab dedups; integration test asserts workflowSessionMap === single {sessionId: terminal}. "Auto-resume" half is PR3.
+      - AC1-4, AC6-8, AC10 — require sessionId persistence / launch-time auto-resume / restore-time fallback UI = explicitly PR3 per Scope ("implement only this subtask"). Deferred by design (see Verification summary), NOT PR2 gaps; not implemented here to respect scope.
+
+      No PR2-scope criterion lacks implementation. No implemented behavior lacks a spec item (timeout→plain-shell is covered by business rule/constraint/scope, not an orphan → no user confirmation needed). Test plan risks all covered (gate ordering, exactly-once, timeout fallback no-toast, async+sync teardown, per-terminal isolation, slow-start, chunk accumulation, prompt detection variants, existing-resume regression). PR2 tests assert per-terminal (local) behavior, which is correct here — the cross-cutting launch behavior is PR3, so no local-vs-global test to fix. No discrepancies found; no fixes required.
+    children: []
+    metadata:
+      status: pending
+  548f9375-ed92-4d45-a918-86aeac1ad959:
+    id: 548f9375-ed92-4d45-a918-86aeac1ad959
+    content: |-
+      DOCUMENTATION: no docs or changelog changes made — deliberate, per the doc conventions. PR2 adds no new user action/UI/workflow; it is invisible reliability hardening (gate claude --resume on shell-prompt readiness; quiet plain-shell fallback on timeout) of the EXISTING user-initiated "Resume session" action. Reasons it stays undocumented: (1) the conventions say don't document implicit/non-blocking/discoverable behavior or implementation details, and the gate is exactly that — the user clicks Resume and it just works (now more reliably); (2) CHANGELOG: "Resume session" lives in `## Unreleased`, so PR2 is a reliability fix to a feature implemented after the last release → the convention explicitly says no changelog line. No existing documented behavior changes: docs only cover WORKFLOW resume (Resume Workflow / Resend / paused steps), which PR2 doesn't touch.
+
+      HEADS-UP (for awareness, not blockers; PR3 territory):
+      - docs/workflow.md:87 documents current restart behavior ("terminals reopen in the same working directory… terminal history is lost"). PR2 keeps this true; PR3 (auto-resume sessions on restart) will need to update this line.
+      - The right-click "Resume session" action is in CHANGELOG Unreleased but has no docs/ entry (pre-existing gap). Best written once PR3 completes the resume-on-restart story, so resume is documented as one coherent user-facing feature rather than piecemeal around an internal gate.
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -196026,4 +196262,6 @@ sessionRegistry:
   48b8cbac-a8ec-4e80-a0eb-b2ca52fbf746:
     cwd: /Users/brianfox/dev/Arborescent
   494b2ddb-8aed-48f6-b9c3-b2ba02fc3137:
+    cwd: /Users/brianfox/dev/Arborescent
+  b88d6144-dfb7-4068-92d9-c1d0280ddab1:
     cwd: /Users/brianfox/dev/Arborescent
