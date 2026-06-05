@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-05T10:07:20.063Z'
+updated: '2026-06-05T14:37:36.747Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33757,7 +33757,7 @@ nodes:
     id: 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
     content: Feature verification
     children:
-      - 993479cb-62d6-4482-9c73-873976a9eaf9
+      - 1a845a42-fe0f-4820-a479-f43f1d81253e
     metadata:
       status: pending
       isBlueprint: true
@@ -115531,6 +115531,7 @@ nodes:
       - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
       - 5bff2b75-39f1-4910-83c7-5f3c772858bc
       - 270acf71-da39-4d20-8cb3-fe7d8292713e
+      - decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
     metadata:
       status: pending
       isBlueprint: true
@@ -124637,7 +124638,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
+      - 993479cb-62d6-4482-9c73-873976a9eaf9
     metadata:
       status: pending
       isBlueprint: true
@@ -158995,8 +158996,7 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children:
-      - 1a845a42-fe0f-4820-a479-f43f1d81253e
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -167130,9 +167130,10 @@ nodes:
       - 95dcd7e4-f76b-49ec-94f1-9614a8bcfdf1
       - 938775c1-a98b-4696-9b3d-1fc832394536
       - 83ebe09e-0299-4fdf-9232-469112405c42
+      - 4e69ca02-9826-49d7-8c0e-b551dbfb85ff
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   a80c2e22-12e2-4db1-a08c-15c93da80764:
     id: a80c2e22-12e2-4db1-a08c-15c93da80764
     content: For example, node trees keep getting overwriten by context blocks when Claude gets confused
@@ -194396,6 +194397,12 @@ nodes:
       - 42b6e7ec-7a64-4268-ba85-709c6cff7acc
       - b93a5855-61b5-4c23-83b2-8d4edb8a1df9
       - 8a9c83f1-a6fb-4fc4-a343-f43f03f79fdc
+      - 2ba9f92a-02f5-467f-894e-182479e03372
+      - 9878a188-28de-4c5e-86fa-d213c4b48035
+      - dc80fea8-a4aa-4cf1-bb34-16cedc00127a
+      - 93b6655b-1ae8-43ed-b160-ac6ec60c24d8
+      - 0e561513-15b2-48e1-8daa-7b7e936acfb1
+      - 84011d05-5e88-491d-a522-7410c349ec4b
     metadata:
       status: completed
       expanded: false
@@ -194618,7 +194625,7 @@ nodes:
     content: sessionId is persisted per terminal and survives a full quit and relaunch.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194627,7 +194634,7 @@ nodes:
     content: After restart, every open file's terminals with a valid on-disk session resume that exact session at launch, without requiring a file switch and regardless of which file is active.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194636,7 +194643,7 @@ nodes:
     content: Terminals are restored and resumed even for files whose terminal panel was not the active view before restart, matching the set of sessions that were running.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194645,7 +194652,7 @@ nodes:
     content: Switching to any open file after restart shows its terminals already live, with no spawn-on-switch lag.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194654,7 +194661,7 @@ nodes:
     content: When many terminals resume concurrently at launch, each claude --resume is written only after that terminal's shell prompt is ready, with no dropped or garbled commands.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194663,7 +194670,7 @@ nodes:
     content: A terminal whose session file is missing restores as a plain shell with the resume control unavailable and a quiet "session no longer available" indication, with no error toast.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194672,7 +194679,7 @@ nodes:
     content: A terminal whose persisted folder no longer exists does not auto-resume or spawn in a wrong directory and surfaces a quiet "folder not found" state.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194681,7 +194688,7 @@ nodes:
     content: A terminal with no persisted sessionId restores as a plain shell with no resume control and no error.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194690,7 +194697,7 @@ nodes:
     content: Auto-resume and manual re-resume never create duplicate session-to-terminal bindings.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -194699,7 +194706,7 @@ nodes:
     content: The app window is interactive before all sessions finish resuming, even with many terminals across multiple files.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -196210,9 +196217,24 @@ nodes:
   1a845a42-fe0f-4820-a479-f43f1d81253e:
     id: 1a845a42-fe0f-4820-a479-f43f1d81253e
     content: Step history lists the step's own title in place of the historized node's title
-    children: []
+    children:
+      - e0bba588-6785-4a62-b299-b5de33c83651
+      - b028c1e2-6fdf-4ecc-a269-494bfa3b824f
+      - ba07a34d-43d9-4a28-aac5-8e6944a952c4
+      - 4e9a1403-3ed6-4c9c-ba40-fb5199f07838
+      - 4aa96866-15ec-4bc9-9205-7ae75372e81f
+      - dabdd05b-2457-4e6e-a6c2-e86d51ab5894
+      - 816bcfa0-fdeb-472d-bbaf-6651eabbef75
+      - e617ec9b-9b5a-4dc3-87f2-15e9f82498a1
+      - 915cbf46-0e31-4644-bc7d-39d8cc9567ee
+      - 14159c99-cdbf-4da7-b230-c5b5f49a9732
+      - 90388b34-bf35-4735-8144-f85de55407b8
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: e0b10a3f-d566-4ccb-9381-d31bbd2c9adf
   2a07608b-8d5e-4220-9c2e-50d92ca46af8:
     id: 2a07608b-8d5e-4220-9c2e-50d92ca46af8
     content: worktree
@@ -197085,6 +197107,497 @@ nodes:
     children: []
     metadata:
       status: pending
+  2ba9f92a-02f5-467f-894e-182479e03372:
+    id: 2ba9f92a-02f5-467f-894e-182479e03372
+    content: |-
+      REFACTOR PASS + (recovered) IMPL SUMMARY. The implement step's IMPL note and announce_step_done were lost when the MCP session binding dropped mid-run (project_workflow_advance_stop_coupling); recording the summary here.
+
+      IMPLEMENTED (Max effort, TDD, duplication-OK per user): sessionId persisted on TerminalSessionEntry (interface + zod schema), populated in buildTerminalSession via an injected resolver (setTerminalSessionResolver) wired in storeManager using a pure findSessionIdForTerminal util — no storeManager↔terminalStore cycle; restore carries it into pendingRestore. New materializeAllRestoredTerminals() (via extracted materializeFileTerminals; materializeRestoredTerminals unchanged so PR1 tests hold) returns LaunchResumeTarget[]. New quiet resumeRestoredTerminal(terminalId,sessionId) on SessionResumeManager resumes into the already-materialized terminal reusing PR2 primitives (no toasts/focus/createNewTerminal); PR2's resumeSession untouched. mapWithConcurrency util + launchSessionResume.resumeAllRestoredSessions service (DI, throttled 4, per-target failure isolation) wired into useAppInitialization as a background void task decoupled from activeContent==='terminal'.
+
+      REFACTOR REVIEW: no convention violations to fix. Concept-named files matching peers; pure utils vs side-effect service; why-only source comments with no PR/ticket refs; terminalStore 458 lines (<500, and a shared-state store); materializeFileTerminals 54 lines but single-responsibility; direct imports (no barrels); logger.warn/error with context. Tests cover every edited file; no empty tests (all 17 TDD it.todo converted to real tests); no abandoned/dead code.
+
+      CHECKS: 197 tests pass across changed/new files + their suites (full suite was 5266/0-fail last run); eslint clean; tsc clean (full project). Not committed.
+
+      WORKFLOW GLITCH TO NOTE: the Verification step's acceptance-criteria marking did NOT happen — last turn the binding briefly landed on that collaborate step, I declined to submit blind (no prompt), and the workflow advanced to this refactor step with the spec ACs still [ ]. The later "Test pass & fix" step also reconciles ACs (as in PR2), so this likely self-corrects there; flagging in case you want to re-run Verification explicitly.
+    children: []
+    metadata:
+      status: pending
+  9878a188-28de-4c5e-86fa-d213c4b48035:
+    id: 9878a188-28de-4c5e-86fa-d213c4b48035
+    content: |-
+      review feedback (pr-review-toolkit:code-reviewer, full diff + calling code + callers). VERDICT: mergeable as-is. No CRITICAL/IMPORTANT. type-check + lint clean; full suite 378 files / 5266 tests / 0 fail.
+
+      FOUR RISK AREAS TRACED AND CLEARED:
+      - Cross-store resolver wiring (storeManager.ts:139-143): correct. Terminal fileStates are keyed by SOURCE path (setActiveFile runs resolveToSourceFilePath), so getZoomInfo returns null and hasStore(sourcePath) is always true for an open file (every open file registers its store via getStoreForFile in fileActions open()). Guard can't miss an open file; only prevents a phantom store for a stale path. The getZoomInfo branch is dead-but-defensive.
+      - sessionRegistry availability vs resume ordering: correct. open() awaits loadFromPath (sets sessionRegistry, persistenceActions.ts:134); restoreSessionFiles awaits every open(); resumeAllRestoredSessions runs only after Promise.all([initializeSession,...]) resolves — so every restored file's sessionRegistry is loaded before resumeRestoredTerminal reads it. Old files → sessionRegistry {} → missing cwd → quiet plain shell.
+      - Double-materialize/double-spawn race: safe. materializeFileTerminals clears pendingRestore synchronously before its first await; any second caller (file-switch subscription's materializeRestoredTerminals, or a second materializeAll pass) hits the empty-pendingRestore early-out. Pinned by the no-respawn-on-switch test.
+      - Launch SessionStart burst cannot auto-advance a workflow: confirmed. initializeExecutionState wipes running states + workflowSessionMap + terminalNodeAssignments before resume, so registerSession's findRunningNodeOnTerminal is null and advance (Stop-hook-driven) never fires; resumeRestoredTerminal registers no deferred send. Expected side effect: registerSession re-captures originNodeId + autosaves (correct rebind, not advance).
+
+      FOLLOW-UPS (non-blocking):
+      - MINOR (utility robustness): mapWithConcurrency (concurrency.ts:13-21) does NOT isolate a rejecting worker — a worker rejection rejects its drain and Promise.all, leaving that drain's queued items unprocessed. SAFE here because the only caller (launchSessionResume.ts:31-35) wraps every worker in try/catch, so no rejection escapes. Recommend either documenting "worker must not reject" in the util header OR adding a rejecting-worker test pinning the contract. concurrency.test.ts has no rejecting-worker case.
+      - NIT: spec-deferred per-tab "folder-not-found / session-unavailable" visible indicator is correctly absent (quiet plain-shell + logger.warn implemented; PR2's manual resumeSession toasts retained, untouched). Not a gap.
+      - NIT: launch write burst — per-file saveTerminalSession + per-registerSession autosave compound with the resume spike; modest, debounced per store, off critical path. No action.
+
+      Conventions clean (pure utils vs side-effect service; why-comments; getState in init path; co-located tests). Test quality strong — orchestration fully exercised via DI in launchSessionResume.test.ts; hook layer mocks resumeAllRestoredSessions wholesale (appropriate) and genuinely tests non-blocking with a never-resolving promise. Nothing load-bearing asserted only against a mock.
+    children: []
+    metadata:
+      status: pending
+  dc80fea8-a4aa-4cf1-bb34-16cedc00127a:
+    id: dc80fea8-a4aa-4cf1-bb34-16cedc00127a
+    content: |-
+      review resolution (discussed with code-reviewer via SendMessage; verdict was "mergeable as-is", no CRITICAL/IMPORTANT). Checks after fixes: concurrency + launchSessionResume tests 10/10 pass, eslint clean, tsc clean.
+
+      MAJOR FIXED: none (no major findings).
+
+      MINOR FIXED:
+      - mapWithConcurrency contract (concurrency.ts) — ACCEPTED & FIXED. Kept the propagate contract (error policy is the caller's; the sole caller wraps each worker in try/catch + logs, so isolating internally would drop per-target logging or need an onError param = over-engineering — reviewer agreed). The reviewer sharpened that it is NOT fail-stop: on a worker rejection the returned promise rejects with the first error BUT the other in-flight lanes keep draining detached. Documented BOTH clauses in the util header, and added a concurrency test pinning both (rejecting worker → promise rejects with that error; other lane still drains the remaining items). Also strengthened the caller test (launchSessionResume) to assert the per-failure logger.warn fires once for the failing terminalId — the user-facing "one bad terminal doesn't abort the rest or storm" property.
+
+      SKIPPED / CONFIRMED-NO-CHANGE (with reviewer concurrence + read-confirmation, not blind validation):
+      - NIT per-tab "folder-not-found / session-unavailable" visible indicator — deferred by spec. Confirmed the escape hatch is reachable: a fallback tab is a usable plain shell whose origin node retains metadata.sessionId (persisted in .arbo, unchanged by PR3), so the existing right-click→Resume (PR2 resumeSession, workflowSessionResume.ts:119) works and toasts. No silent dead end. No code change.
+      - NIT launch-time write burst (per-file save + per-registerSession autosave) — modest, debounced per store, off critical path. No change.
+      - Reviewer's pre-merge confirm items, both CLEARED by reading: (a) materializeAll is NOT fail-open — materializeFileTerminals wraps each createTerminalService in try/catch (logs + continues), so one bad file's terminal-spawn failures are caught per-terminal and cannot suppress resume for other files; resume path is isolated end-to-end. (b) useAppInitialization's void resumeAllRestoredSessions() is fire-and-forget (non-blocking), pinned by the never-resolving-promise hook test.
+    children: []
+    metadata:
+      status: pending
+  93b6655b-1ae8-43ed-b160-ac6ec60c24d8:
+    id: 93b6655b-1ae8-43ed-b160-ac6ec60c24d8
+    content: |-
+      TEST PASS & AC RECONCILIATION. Full suite green: 378 files / 5267 tests pass / 0 fail / 625 todo. (Verification step had been skipped earlier, so this step also marked the satisfied ACs.)
+
+      AC ↔ implementation (semantic) — 8 of 10 marked [x], verified against code + tests:
+      - sessionId persists + round-trips quit/relaunch — schema + buildTerminalSession resolver + restore carry-through (schemas.test + terminalLaunchResume round-trip). [x]
+      - resume-all-at-launch, no file switch, regardless of active file — materializeAllRestoredTerminals + resumeAllRestoredSessions (terminalLaunchResume + launchSessionResume). [x]
+      - resumed even when panel not the active view — decoupled from activeContent (hook test "resumes even when not terminal"). [x]
+      - switching shows terminals live, no spawn-on-switch lag — pendingRestore cleared at launch (no-respawn-on-switch test). [x]
+      - concurrent claude --resume only after prompt ready — resumeRestoredTerminal awaits PR2 waitForShellPrompt, throttled (concurrency + resumeRestoredTerminal tests). [x]
+      - no-sessionId → plain shell, no resume, no error — terminalLaunchResume plain-shell-no-target. [x]
+      - no duplicate bindings (auto + manual re-resume) — bindSessionTab idempotent (resumeRestoredTerminal idempotent-binding test). [x]
+      - window interactive before resumes finish — background void kickoff (hook never-resolving-promise test). [x]
+
+      TEST PLAN: every in-scope risk has a test (round-trip, materialize-all/decoupled, readiness-gated + throttled writes, quiet missing-session fallback, no-sessionId plain shell, idempotent rebind, non-blocking). No local-asserted-where-global-required test to fix (cross-cutting "every open file" is tested at store + orchestration + hook layers).
+
+      PAUSED FOR REVIEW (NeedsReview posted) — 2 ACs PARTIAL, left [ ]:
+      - AC6 "session file missing → plain shell, resume control unavailable, quiet 'session no longer available' indication, no toast": the SAFETY/quiet half is done + tested (resumeRestoredTerminal: claudeSessionExists false → no write, no toast, plain shell). The VISIBLE 'session no longer available' indication is NOT built.
+      - AC7 "folder no longer exists → does not auto-resume or spawn in wrong dir, surfaces a quiet 'folder not found' state": "does not spawn in a wrong directory" holds (terminalManager passes cwd straight to pty.spawn with no existence check; node-pty throws ENOENT on a missing cwd → caught per-terminal → no spawn). But there is NO "fall back to a plain shell" for a missing folder (the tab silently doesn't appear) and NO "folder not found" state surfaced.
+
+      WHY PAUSED: completing AC6/AC7 needs (a) a per-tab visible indicator (new renderer UI component + state + style) and (b) a main-process cwd-existence check + safe-cwd fallback in terminalManager — both OUTSIDE PR3's enumerated Touchpoints (interfaces / terminalStore / useAppInitialization / workflowSessionResume) and deliberately deferred by the implement + review steps. The step says "implement ACs lacking implementation," but that is a material scope expansion (UI + main process + IPC + tests). DECISION NEEDED: accept the quiet-behavior-only implementation for PR3 (these two ACs' visible-indicator + missing-folder-safe-cwd become a follow-up UI story) — OR have me expand PR3 now to build them. The business rule (a679a042 child) offers "a plain shell OR a disabled resume control" — PR3 implemented the plain-shell path for missing-session; the disabled-control/indicator path is the unbuilt alternative.
+    children: []
+    metadata:
+      status: pending
+  0e561513-15b2-48e1-8daa-7b7e936acfb1:
+    id: 0e561513-15b2-48e1-8daa-7b7e936acfb1
+    content: |-
+      AC6/AC7 RESOLVED (user decision: "ok with the quiet only implementation, it's better"). Visible per-tab indicators ("session no longer available" / "folder not found" state, disabled resume control) intentionally NOT built — quiet plain-shell fallback is the chosen design (fits the low-cognitive-load philosophy). The escape hatch remains the existing right-click→Resume (PR2 resumeSession reads node.metadata.sessionId, persisted in .arbo).
+
+      FIXED — the one genuine functional gap (business rule a679a042: missing folder "must fall back to a plain shell"): materializeFileTerminals now retries with the default cwd when the first spawn fails (e.g. the persisted folder is gone), so the tab restores as a quiet plain shell in the default cwd with NO resume target (no resume, no wrong-dir spawn, no toast) instead of vanishing. In-scope (terminalStore is a PR3 touchpoint); no UI, no main-process change. Shared by the PR1 current-file materialize path too (strict improvement; PR1 tests unaffected — they don't hit the failure path). Test added: terminalLaunchResume "falls back to a quiet plain shell with no resume target when a restored folder no longer exists".
+
+      All 10 acceptance criteria now [x]. Full suite green: 378 files / 5268 tests / 0 fail; eslint + tsc clean on changed files. Not committed.
+    children: []
+    metadata:
+      status: pending
+  b028c1e2-6fdf-4ecc-a269-494bfa3b824f:
+    id: b028c1e2-6fdf-4ecc-a269-494bfa3b824f
+    content: Summary
+    children:
+      - 14902f99-cfa2-45c6-839e-1032a378312a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14902f99-cfa2-45c6-839e-1032a378312a:
+    id: 14902f99-cfa2-45c6-839e-1032a378312a
+    content: Each Step History menu entry is labeled with the owning workflow step's title instead of the title of the content node that was actually captured at step start.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba07a34d-43d9-4a28-aac5-8e6944a952c4:
+    id: ba07a34d-43d9-4a28-aac5-8e6944a952c4
+    content: Steps to reproduce
+    children:
+      - 5a93b99a-6450-4865-8b44-aabf020e1ad7
+      - bbba2906-4a5e-402e-ae31-41c5b176754b
+      - df122caf-c6d7-4db9-a8a0-95b9cc47ab4c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a93b99a-6450-4865-8b44-aabf020e1ad7:
+    id: 5a93b99a-6450-4865-8b44-aabf020e1ad7
+    content: 'Precondition: a workflow step node whose bound content node has a different title from the step (e.g. step "Bug creation", content node "Step history bug").'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbba2906-4a5e-402e-ae31-41c5b176754b:
+    id: bbba2906-4a5e-402e-ae31-41c5b176754b
+    content: 'User action: run the step (Start Workflow) one or more times to capture snapshots, then right-click the step node and open the Step History submenu.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df122caf-c6d7-4db9-a8a0-95b9cc47ab4c:
+    id: df122caf-c6d7-4db9-a8a0-95b9cc47ab4c
+    content: 'Observation: every history entry is labeled with the step''s title, so all entries look identical and cannot be told apart.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e9a1403-3ed6-4c9c-ba40-fb5199f07838:
+    id: 4e9a1403-3ed6-4c9c-ba40-fb5199f07838
+    content: Expected behavior
+    children:
+      - 414b5bc6-c4a2-435e-beb6-8dc8065f4026
+      - 7dcae637-269a-4b63-8de3-ed1e5de4e560
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  414b5bc6-c4a2-435e-beb6-8dc8065f4026:
+    id: 414b5bc6-c4a2-435e-beb6-8dc8065f4026
+    content: 'Happy path: each entry''s label is the historized node''s own title (nodes[rootNodeId].content), so successive captures are distinguishable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dcae637-269a-4b63-8de3-ed1e5de4e560:
+    id: 7dcae637-269a-4b63-8de3-ed1e5de4e560
+    content: 'Edge cases: empty/missing node content falls back to a placeholder without throwing; long titles truncate at PARENT_LABEL_MAX_LENGTH (120).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aa96866-15ec-4bc9-9205-7ae75372e81f:
+    id: 4aa96866-15ec-4bc9-9205-7ae75372e81f
+    content: Actual behavior
+    children:
+      - bb7dd323-2618-4482-b60b-706903eaff00
+      - 0068bcab-c004-474a-8b22-15119e949e27
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb7dd323-2618-4482-b60b-706903eaff00:
+    id: bb7dd323-2618-4482-b60b-706903eaff00
+    content: captureStepHistoryEntry reads nodes[parentId].content — the parent, which is the owning workflow step — and stores it as parentLabel, so the label is the step title.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0068bcab-c004-474a-8b22-15119e949e27:
+    id: 0068bcab-c004-474a-8b22-15119e949e27
+    content: 'User-visible symptom: the Step History submenu lists repeated identical step titles; users can only disambiguate via the capturedAt tooltip.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dabdd05b-2457-4e6e-a6c2-e86d51ab5894:
+    id: dabdd05b-2457-4e6e-a6c2-e86d51ab5894
+    content: Suspected cause
+    children:
+      - 46cc7a4e-e655-4c8a-9f33-1dbad371b744
+      - cae4cac6-8ea7-43e4-8e24-17d9c40b6d15
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46cc7a4e-e655-4c8a-9f33-1dbad371b744:
+    id: 46cc7a4e-e655-4c8a-9f33-1dbad371b744
+    content: src/renderer/store/tree/stepHistory/stepHistory.ts:72-73 sets parentLabel from nodes[parentId] (the step) instead of nodes[rootNodeId] (the historized node).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cae4cac6-8ea7-43e4-8e24-17d9c40b6d15:
+    id: cae4cac6-8ea7-43e4-8e24-17d9c40b6d15
+    content: 'No guard exists: the field is literally named parentLabel and faithfully captures the parent''s content; the call site (workflowExecutionActions.ts:234-237) passes the executed node''s immediate parent (the owning step) as parentId, so the wrong title is captured deterministically.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  816bcfa0-fdeb-472d-bbaf-6651eabbef75:
+    id: 816bcfa0-fdeb-472d-bbaf-6651eabbef75
+    content: Affected files
+    children:
+      - 1c05f877-a9f5-470e-a7a3-aeee2b8c0104
+      - b2a343f6-0a6a-4fae-bef4-34da0bad3d9b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c05f877-a9f5-470e-a7a3-aeee2b8c0104:
+    id: 1c05f877-a9f5-470e-a7a3-aeee2b8c0104
+    content: 'Primary suspect: src/renderer/store/tree/stepHistory/stepHistory.ts (captureStepHistoryEntry lines 66-83; StepHistoryEntry.parentLabel line 27).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2a343f6-0a6a-4fae-bef4-34da0bad3d9b:
+    id: b2a343f6-0a6a-4fae-bef4-34da0bad3d9b
+    content: 'Related surface: src/renderer/store/tree/actions/workflowExecutionActions.ts (writeStartWorkflowSnapshot lines 229-240) and src/renderer/components/NodeContent/hooks/useWorkflowSubmenu.ts (buildStepHistoryItem renders entry.parentLabel, line 63).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e617ec9b-9b5a-4dc3-87f2-15e9f82498a1:
+    id: e617ec9b-9b5a-4dc3-87f2-15e9f82498a1
+    content: Regression window
+    children:
+      - e2181b80-9266-4877-a6cc-1415c783371f
+      - 5adff58c-178d-4168-8bc2-827735878148
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2181b80-9266-4877-a6cc-1415c783371f:
+    id: e2181b80-9266-4877-a6cc-1415c783371f
+    content: 'Last known good: the commit immediately before 37f5858 — per-step step history did not exist before that.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5adff58c-178d-4168-8bc2-827735878148:
+    id: 5adff58c-178d-4168-8bc2-827735878148
+    content: 'First observed broken: 37f5858 "feat: per-step workflow history foundation" (2026-05-25); user-visible once wired by 625103b "wire per-step workflow history capture into execution layer" (2026-05-25).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  915cbf46-0e31-4644-bc7d-39d8cc9567ee:
+    id: 915cbf46-0e31-4644-bc7d-39d8cc9567ee
+    content: Severity
+    children:
+      - 34355bad-e9a2-4f3e-806f-b6a8fac02183
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34355bad-e9a2-4f3e-806f-b6a8fac02183:
+    id: 34355bad-e9a2-4f3e-806f-b6a8fac02183
+    content: 'Low–medium / cosmetic-functional: no data loss (the correct subtree is snapshotted under rootNodeId), but labels are unusable for distinguishing entries, undermining restore-from-history.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14159c99-cdbf-4da7-b230-c5b5f49a9732:
+    id: 14159c99-cdbf-4da7-b230-c5b5f49a9732
+    content: Notes
+    children:
+      - 23407fd3-52d3-4cf2-b2ae-d4466a31c5e9
+      - eb896438-3325-46b2-8da2-2bc1a264e0c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23407fd3-52d3-4cf2-b2ae-d4466a31c5e9:
+    id: 23407fd3-52d3-4cf2-b2ae-d4466a31c5e9
+    content: 'Disambiguate from a snapshot/restore defect: restoration uses entry.id and rootNodeId, which are correct — only the display label is wrong.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb896438-3325-46b2-8da2-2bc1a264e0c8:
+    id: eb896438-3325-46b2-8da2-2bc1a264e0c8
+    content: 'UX/telemetry gap: entries share only a timestamp tooltip; consider showing capturedAt inline alongside the node title, and renaming parentLabel (e.g. nodeLabel) to reflect intent.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90388b34-bf35-4735-8144-f85de55407b8:
+    id: 90388b34-bf35-4735-8144-f85de55407b8
+    content: Technical refinement
+    children:
+      - ee0f23a0-0825-4e77-b8fd-280414a726ee
+      - c6d1d69d-5f50-4969-8eaf-6a0c41e64665
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee0f23a0-0825-4e77-b8fd-280414a726ee:
+    id: ee0f23a0-0825-4e77-b8fd-280414a726ee
+    content: Flag complications
+    children:
+      - ef73076c-1c4c-47ef-bc34-e530e814823b
+      - 8eb1b75d-c035-4556-bc01-8f89032118e0
+      - c450873a-9874-4249-ac7f-1b44606d8600
+      - b9c9f8fd-1f5a-4bb3-8bff-08ff6b0804fb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef73076c-1c4c-47ef-bc34-e530e814823b:
+    id: ef73076c-1c4c-47ef-bc34-e530e814823b
+    content: 'Persistence back-compat: stepHistory (incl. parentLabel) is serialized into .arbo and round-tripped (storageServiceStepHistoryRoundTrip.test.ts), so the code fix only relabels newly-captured entries — entries already saved to disk keep the wrong step title unless migrated or relabeled on load.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8eb1b75d-c035-4556-bc01-8f89032118e0:
+    id: 8eb1b75d-c035-4556-bc01-8f89032118e0
+    content: 'Edge case: an empty historized-node title resolves to a blank label; choose a fallback (e.g. "(untitled)") so the menu entry isn''t empty.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c450873a-9874-4249-ac7f-1b44606d8600:
+    id: c450873a-9874-4249-ac7f-1b44606d8600
+    content: 'Out of scope: renaming parentLabel → nodeLabel (cosmetic) and any Step History UX upgrade like inline capturedAt — separable follow-ups; a rename additionally needs a load-time fallback so old files don''t deserialize to an undefined label.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9c9f8fd-1f5a-4bb3-8bff-08ff6b0804fb:
+    id: b9c9f8fd-1f5a-4bb3-8bff-08ff6b0804fb
+    content: 'ROI: the behavior fix is a one-line, low-risk change with strong ROI; scope only balloons if a field rename plus persisted-data migration is bundled in — keep those separate.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6d1d69d-5f50-4969-8eaf-6a0c41e64665:
+    id: c6d1d69d-5f50-4969-8eaf-6a0c41e64665
+    content: Summarise the approach
+    children:
+      - e626ece5-1071-43f9-9d34-9f5ee219c7af
+      - b2fb395f-7252-43c2-8454-b7fc3ab4e52a
+      - ef8c9e7d-cccd-486b-ad2b-b2675e4910ea
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e626ece5-1071-43f9-9d34-9f5ee219c7af:
+    id: e626ece5-1071-43f9-9d34-9f5ee219c7af
+    content: 'Where it lands: in captureStepHistoryEntry (stepHistory.ts) source the label from the historized node (nodes[rootNodeId].content) instead of nodes[parentId].content; the renderer (useWorkflowSubmenu.ts:63) is unchanged because it already reads the stored label field, and parentId becomes a vestigial parameter at the call site.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2fb395f-7252-43c2-8454-b7fc3ab4e52a:
+    id: b2fb395f-7252-43c2-8454-b7fc3ab4e52a
+    content: 'Non-obvious: read the title before captureRemappedSubtree mints fresh UUIDs (the original nodes map still holds it — don''t look it up in the remapped snapshot); an existing test codifies the buggy parent-title label and must be flipped first (TDD).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef8c9e7d-cccd-486b-ad2b-b2675e4910ea:
+    id: ef8c9e7d-cccd-486b-ad2b-b2675e4910ea
+    content: 'Brief: net change ≈ one label-source line plus the codifying test; field rename and persisted-data migration are optional and off this change''s critical path.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0bba588-6785-4a62-b299-b5de33c83651:
+    id: e0bba588-6785-4a62-b299-b5de33c83651
+    content: worktree
+    children:
+      - c9f516cd-fb43-4525-a2b5-8f58dcd20e00
+    metadata:
+      status: pending
+  c9f516cd-fb43-4525-a2b5-8f58dcd20e00:
+    id: c9f516cd-fb43-4525-a2b5-8f58dcd20e00
+    content: vscode://file/Users/brianfox/dev/Arborescent-step-history-title
+    children: []
+    metadata:
+      status: pending
+  84011d05-5e88-491d-a522-7410c349ec4b:
+    id: 84011d05-5e88-491d-a522-7410c349ec4b
+    content: |-
+      DOCUMENTATION: PR3 is user-facing (unlike PR2), so two changes — kept brief, workflow-oriented, no implementation detail beyond the existing `claude --resume` vocabulary the docs already use.
+
+      1. UPDATED docs/workflow.md (Panels → restart paragraph): the old line said terminals "reopen in the same working directory" (plain shells). Rewrote it to state that on reopen, terminals restore for EVERY open file (not just the one in view), each reopens in its working directory, and any terminal that was running a Claude session resumes automatically; resuming runs in the background (window interactive immediately); a terminal whose session/folder is gone reopens as a plain shell. This is the "modify existing behavior the feature changes" case.
+
+      2. ADDED CHANGELOG.md Unreleased → Features (top): "Claude sessions resume automatically on relaunch" — consequential, user-visible feature (auto-resume all open files' sessions at launch, background+throttled, quiet plain-shell fallback, with the "previously dead shells you resumed by hand" contrast). It's a feature (not a bug-fix-to-unreleased), distinct from the existing manual per-node "Resumable AI sessions" / "Resume session" entries.
+
+      LEFT AS-IS: docs/workflows.md:146 ("close a tab, resume later, works across restart") describes the MANUAL node-resume of a CLOSED tab — a different scenario PR3 doesn't change (PR3 auto-resumes OPEN-at-quit terminals; a tab you closed before quitting isn't persisted and still resumes manually via right-click → Resume session). Not contradicted, so untouched. No other docs reference the old restart behavior. No inconsistencies found. (.md only — no tests/lint/tsc applicable.)
+    children: []
+    metadata:
+      status: pending
+  4e69ca02-9826-49d7-8c0e-b551dbfb85ff:
+    id: 4e69ca02-9826-49d7-8c0e-b551dbfb85ff
+    content: Can also play with the MCP and have more targeted updating rules
+    children:
+      - bc7a7e7a-f9a1-468e-9193-38c0ad5a5e53
+    metadata:
+      status: pending
+  bc7a7e7a-f9a1-468e-9193-38c0ad5a5e53:
+    id: bc7a7e7a-f9a1-468e-9193-38c0ad5a5e53
+    content: Could even potentially map on context and check
+    children:
+      - 054f1210-e5fb-4bcc-8cfb-2067238bfc61
+    metadata:
+      status: pending
+  054f1210-e5fb-4bcc-8cfb-2067238bfc61:
+    id: 054f1210-e5fb-4bcc-8cfb-2067238bfc61
+    content: If the submission matches the last context sent
+    children:
+      - 6f4e525f-4c13-4236-be0c-91b4c23ecc43
+    metadata:
+      status: pending
+  6f4e525f-4c13-4236-be0c-91b4c23ecc43:
+    id: 6f4e525f-4c13-4236-be0c-91b4c23ecc43
+    content: Refuse it with a message as such
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -197193,4 +197706,6 @@ sessionRegistry:
   6f71cf89-ea7e-462b-b7ea-593ef0f25c47:
     cwd: /Users/brianfox/dev/Arborescent
   d9c5d11a-22c6-48f7-9f36-c99974964c18:
+    cwd: /Users/brianfox/dev/Arborescent
+  e0b10a3f-d566-4ccb-9381-d31bbd2c9adf:
     cwd: /Users/brianfox/dev/Arborescent
