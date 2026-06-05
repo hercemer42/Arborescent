@@ -69,8 +69,8 @@ export function captureStepHistoryEntry(
   parentId: string,
   position: number,
 ): StepHistoryEntry {
-  const parentNode = nodes[parentId];
-  const parentLabel = parentNode ? truncateLabel(parentNode.content) : '';
+  const historizedNode = nodes[rootNodeId];
+  const parentLabel = historizedNode ? truncateLabel(historizedNode.content) : '';
   const remapped = captureRemappedSubtree(rootNodeId, nodes);
   return {
     id: uuidv4(),

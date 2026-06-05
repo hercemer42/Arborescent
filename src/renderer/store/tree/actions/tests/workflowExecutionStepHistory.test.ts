@@ -113,6 +113,14 @@ describe('workflowExecutionActions — step history capture and invalidation', (
       await actions.startWorkflow('task-a', 'terminal-1');
       expect(state.stepHistory['step-2'] ?? []).toHaveLength(0);
     });
+
+    it('labels the first entry with the executed node’s title, not the owning step’s title', async () => {
+      await actions.startWorkflow('task-a', 'terminal-1');
+      const entries = state.stepHistory['step-1'] ?? [];
+      expect(entries.length).toBeGreaterThanOrEqual(1);
+      expect(entries[0].parentLabel).toBe('Task A original');
+      expect(entries[0].parentLabel).not.toBe('Step 1');
+    });
   });
 
   describe('advanceNode (autonomous mutation)', () => {

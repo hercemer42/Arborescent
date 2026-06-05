@@ -86,14 +86,60 @@ describe('stepHistory ring buffer', () => {
       expect(entry.nodes[entry.rootNodeId]).toBeDefined();
     });
 
-    it('records the parent label at capture time', () => {
+    // parentLabel must hold the historized node's own title (the subtree rooted at
+    // rootNodeId), not the owning workflow step that is its immediate parent.
+    it('labels the entry with the historized node title, not the parent step title', () => {
       const nodes: Record<string, TreeNode> = {
-        parent: makeNode('parent', 'A long parent content', ['a']),
-        a: makeNode('a', 'A', []),
+        parent: makeNode('parent', 'Owning workflow step title', ['a']),
+        a: makeNode('a', 'Historized node title', []),
       };
       const entry = captureStepHistoryEntry('a', nodes, 'parent', 0);
-      expect(entry.parentLabel).toContain('A long parent content');
+      expect(entry.parentLabel).toContain('Historized node title');
+      expect(entry.parentLabel).not.toContain('Owning workflow step title');
     });
+
+    it('distinguishes successive captures of different nodes under the same step', () => {
+      const nodes: Record<string, TreeNode> = {
+        step: makeNode('step', 'Bug creation', ['first', 'second']),
+        first: makeNode('first', 'First content node', []),
+        second: makeNode('second', 'Second content node', []),
+      };
+      const e1 = captureStepHistoryEntry('first', nodes, 'step', 0);
+      const e2 = captureStepHistoryEntry('second', nodes, 'step', 1);
+      expect(e1.parentLabel).not.toBe(e2.parentLabel);
+      expect(e1.parentLabel).toContain('First content node');
+      expect(e2.parentLabel).toContain('Second content node');
+    });
+
+    it('truncates a long historized node title to the max label length', () => {
+      const longTitle = 'x'.repeat(200);
+      const nodes: Record<string, TreeNode> = {
+        parent: makeNode('parent', 'short step', ['a']),
+        a: makeNode('a', longTitle, []),
+      };
+      const entry = captureStepHistoryEntry('a', nodes, 'parent', 0);
+      expect(entry.parentLabel.length).toBeLessThanOrEqual(120);
+      expect(entry.parentLabel.endsWith('…')).toBe(true);
+    });
+
+    it('does not throw when the historized node content is empty', () => {
+      const nodes: Record<string, TreeNode> = {
+        parent: makeNode('parent', 'step', ['a']),
+        a: makeNode('a', '', []),
+      };
+      const entry = captureStepHistoryEntry('a', nodes, 'parent', 0);
+      expect(typeof entry.parentLabel).toBe('string');
+    });
+
+    it('does not throw when the historized node is missing from the map', () => {
+      const nodes: Record<string, TreeNode> = {
+        parent: makeNode('parent', 'step', []),
+      };
+      expect(() => captureStepHistoryEntry('missing', nodes, 'parent', 0)).not.toThrow();
+    });
+
+    // The exact placeholder string for an empty/missing title is an open product decision.
+    it.todo('falls back to a non-empty placeholder label when the historized node title is empty');
 
     it('records the current position of the captured node within its parent', () => {
       const nodes: Record<string, TreeNode> = {
