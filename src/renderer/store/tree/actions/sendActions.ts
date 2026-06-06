@@ -23,6 +23,7 @@ import { usePanelStore } from '../../panel/panelStore';
 import { usePendingRebindDialogStore } from '../../pendingRebindDialogStore';
 import { useRebindPreflightStore } from '../../rebindPreflightStore';
 import { VisualEffectsActions } from './visualEffectsActions';
+import { findSessionIdForTerminal } from './terminalBindingResolution';
 import { Command } from '../commands/Command';
 import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
 import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
@@ -183,13 +184,6 @@ function buildTerminalCollaboratePrompt(reviewContext: string, content: string, 
   const outputTarget = buildCollaborateSubmitOutputTarget(targetNodeId);
   const instructions = wrapInstructions(buildCollaborateInstructions(reviewContext, outputTarget, decomposition, isAutonomous));
   return `${instructions}\n\n${wrapContent(content)}`;
-}
-
-function findSessionIdForTerminal(workflowSessionMap: Record<string, string>, terminalId: string): string {
-  for (const [sessionId, mappedTerminalId] of Object.entries(workflowSessionMap)) {
-    if (mappedTerminalId === terminalId) return sessionId;
-  }
-  return '';
 }
 
 function notifyManualCollabResolvedForTerminal(

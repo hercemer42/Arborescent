@@ -37,6 +37,7 @@ import {
   findRunningNodeOnTerminal,
   findCapturableNodeForTerminal,
   findSessionBoundNodeForTerminal,
+  findSessionIdForTerminal,
 } from "./terminalBindingResolution";
 import { createClaudeLaunchManager } from "./workflowClaudeLaunch";
 import {
@@ -574,19 +575,29 @@ export const createWorkflowExecutionActions = (
     return true;
   }
 
+  // The next sibling normally inherits the just-finished sibling's session. But the
+  // first hand-off after a decomposition has no parent node — the orchestrator was
+  // deleted — so fall back to whichever session is bound to its terminal, keeping the
+  // child on the same live session instead of breaking the chain into a fresh one.
+  function inheritedRecurseSessionId(parentNodeId: string, terminalId: string): string | undefined {
+    const parentNode = get().nodes[parentNodeId];
+    if (parentNode) return parentNode.metadata.sessionId;
+    return findSessionIdForTerminal(get().workflowSessionMap, terminalId) || undefined;
+  }
+
   async function dispatchRecurseStart(nextNodeId: string, terminalId: string, parentNodeId: string): Promise<void> {
-    const parent = get().nodes[parentNodeId]?.metadata;
     const { workflowSessionMap, sessionRegistry } = get();
+    const sessionId = inheritedRecurseSessionId(parentNodeId, terminalId);
     const route = decideWorkflowStartRoute({
-      sessionId: parent?.sessionId,
+      sessionId,
       workflowSessionMap,
       sessionRegistry,
       openTerminalIds: new Set(useTerminalStore.getState().terminals.map((t) => t.id)),
     });
 
-    if (route.kind === 'focus-existing-tab' && parent?.sessionId) {
+    if (route.kind === 'focus-existing-tab' && sessionId) {
       const started = startWorkflowOnTerminal(nextNodeId, route.terminalId, 'recurse');
-      finalizeRecurseSessionStamp(started, nextNodeId, parent.sessionId, parentNodeId);
+      finalizeRecurseSessionStamp(started, nextNodeId, sessionId, parentNodeId);
       return;
     }
 
@@ -706,10 +717,29 @@ export const createWorkflowExecutionActions = (
     return parkedSiblingAtRecurseStep || findWaitingDecomposedSibling(recurseStepId, completedNodeId) !== null;
   }
 
-  function findWaitingDecomposedSibling(stepId: string, completedNodeId: string): string | null {
+  // After a multi-root decomposition the orchestrator node is gone, so its groupId
+  // can no longer anchor sibling selection. The decomposition outputs all share one
+  // fresh groupId — read it off the step's children so the hand-off can target them.
+  // Relies on a single active decomposition group being parked at the step: the recurse
+  // flow advances siblings out one at a time, so the first grouped child belongs to the
+  // group just produced.
+  function decomposedChildGroupId(decompositionStepId: string): string | undefined {
+    const { nodes } = get();
+    for (const childId of nodes[decompositionStepId]?.children ?? []) {
+      const groupId = nodes[childId]?.metadata.groupId;
+      if (typeof groupId === "string") return groupId;
+    }
+    return undefined;
+  }
+
+  function findWaitingDecomposedSibling(
+    stepId: string,
+    completedNodeId: string,
+    originGroupIdOverride?: string,
+  ): string | null {
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
     const decompositionStepId = findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry);
-    const originGroupId = nodes[completedNodeId]?.metadata.groupId;
+    const originGroupId = originGroupIdOverride ?? nodes[completedNodeId]?.metadata.groupId;
 
     return (
       findNextDecomposedSibling(stepId, nodes, workflowExecutionStates, completedNodeId, originGroupId)
@@ -719,12 +749,17 @@ export const createWorkflowExecutionActions = (
     );
   }
 
-  function checkRecurse(stepId: string, terminalId: string, completedNodeId: string): void {
+  function checkRecurse(
+    stepId: string,
+    terminalId: string,
+    completedNodeId: string,
+    originGroupIdOverride?: string,
+  ): void {
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
 
     const decompositionStepId = findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry);
 
-    const sibling = findWaitingDecomposedSibling(stepId, completedNodeId);
+    const sibling = findWaitingDecomposedSibling(stepId, completedNodeId, originGroupIdOverride);
 
     if (sibling) {
       // Recurse-marked and completeWorkflow paths pre-delete the orchestrator's state
@@ -1262,7 +1297,10 @@ export const createWorkflowExecutionActions = (
     advanceOrClearCollaborating(nodeId);
 
     if (decompositionStepId && entry.terminalTabId) {
-      checkRecurse(decompositionStepId, entry.terminalTabId, nodeId);
+      // The orchestrator (nodeId) was just deleted by the decomposition, so its
+      // groupId is unreadable — anchor the hand-off on the outputs' shared group.
+      const originGroupId = decomposedChildGroupId(decompositionStepId);
+      checkRecurse(decompositionStepId, entry.terminalTabId, nodeId, originGroupId);
     }
   }
 

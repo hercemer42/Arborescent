@@ -99,3 +99,15 @@ export function findSessionBoundNodeForTerminal(
   }
   return null;
 }
+
+// The session bound to a terminal, regardless of whether its owning node is still
+// live. Returns '' when no session maps to the terminal.
+export function findSessionIdForTerminal(
+  workflowSessionMap: Record<string, string>,
+  terminalId: string,
+): string {
+  for (const [sessionId, mappedTerminalId] of Object.entries(workflowSessionMap)) {
+    if (mappedTerminalId === terminalId) return sessionId;
+  }
+  return '';
+}
