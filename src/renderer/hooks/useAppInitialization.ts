@@ -65,10 +65,11 @@ export function useAppInitialization(onComplete: () => void) {
         useTerminalStore.getState().setActiveFile(state.activeFilePath);
         useBrowserStore.getState().actions.setActiveFile(state.activeFilePath);
 
-        const activeContent = usePanelStore.getState().activeContent;
-        if (activeContent === 'terminal') {
-          void useTerminalStore.getState().materializeRestoredTerminals();
-        }
+        // Materialization is owned by the launch fan-out (resumeAllRestoredSessions),
+        // which restores AND resumes every open file's terminals. Materializing here
+        // on the initial activeFilePath would race that fan-out: this path spawns
+        // plain shells and consumes the active file's pendingRestore before the
+        // resume pass can claim it, so the session silently never resumes.
       }
     });
   }, []);

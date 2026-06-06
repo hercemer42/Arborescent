@@ -188,6 +188,10 @@ export interface ElectronAPI {
   terminalResize: (id: string, cols: number, rows: number) => Promise<void>;
   terminalDestroy: (id: string) => Promise<void>;
   terminalGetCwd: (id: string) => Promise<string | null>;
+  // Returns a trailing window of the terminal's output already emitted, so a
+  // late subscriber (the launch resume) can detect a prompt drawn before it
+  // attached. onTerminalData does not replay this.
+  getTerminalRecentOutput: (id: string) => Promise<string>;
   claudeSessionExists: (cwd: string, sessionId: string) => Promise<boolean>;
   onTerminalData: (id: string, callback: (data: string) => void) => Unsubscribe;
   onTerminalExit: (id: string, callback: (exitInfo: TerminalExitInfo) => void) => Unsubscribe;

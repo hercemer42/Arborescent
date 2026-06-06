@@ -16,6 +16,18 @@ export interface TerminalInfo {
 
 const terminalDisposables: Map<string, IDisposable[]> = new Map();
 
+// A trailing window of each PTY's output, kept so a renderer that subscribes
+// after the shell already drew its prompt (the launch resume fan-out) can still
+// detect readiness — onTerminalData does not replay, so without this the prompt
+// printed during the spawn→subscribe gap is lost. Bounded to the tail because
+// only the region around the prompt matters for readiness detection.
+const OUTPUT_BUFFER_TAIL = 8192;
+const terminalOutputBuffers: Map<string, string> = new Map();
+
+function clearTerminalOutputBuffer(id: string): void {
+  terminalOutputBuffers.delete(id);
+}
+
 export function registerTerminalHandlers(
   mainWindow: Electron.BrowserWindow,
   hookEnv: Record<string, string> = {}
@@ -38,6 +50,8 @@ export function registerTerminalHandlers(
         const disposables: IDisposable[] = [];
 
         disposables.push(terminal.ptyProcess.onData((data: string) => {
+          const buffered = (terminalOutputBuffers.get(id) ?? '') + data;
+          terminalOutputBuffers.set(id, buffered.slice(-OUTPUT_BUFFER_TAIL));
           if (!mainWindow.isDestroyed()) {
             mainWindow.webContents.send(`terminal:data:${id}`, data);
           }
@@ -90,6 +104,13 @@ export function registerTerminalHandlers(
   );
 
   ipcMain.handle(
+    'terminal:get-recent-output',
+    async (_event: IpcMainInvokeEvent, id: string): Promise<string> => {
+      return terminalOutputBuffers.get(id) ?? '';
+    }
+  );
+
+  ipcMain.handle(
     'terminal:get-cwd',
     async (_event: IpcMainInvokeEvent, id: string): Promise<string | null> => {
       try {
@@ -110,6 +131,7 @@ export function registerTerminalHandlers(
           disposables.forEach(d => d.dispose());
           terminalDisposables.delete(id);
         }
+        clearTerminalOutputBuffer(id);
         TerminalManager.destroy(id);
       } catch (error) {
         logger.error(`Failed to destroy terminal ${id}`, error as Error, 'Terminal IPC');
@@ -125,6 +147,7 @@ export function disposeTerminalListeners(id: string) {
     disposables.forEach(d => d.dispose());
     terminalDisposables.delete(id);
   }
+  clearTerminalOutputBuffer(id);
 }
 
 export function cleanupTerminals() {

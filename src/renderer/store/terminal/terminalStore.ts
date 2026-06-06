@@ -17,6 +17,12 @@ export interface TerminalInfo {
   shellArgs: string[];
   pinnedToBottom: boolean;
   originNodeId?: string;
+  // The Claude session this terminal was restored to carry. initializeExecutionState
+  // wipes the live workflowSessionMap on load, so until a session re-binds this run
+  // the resolver can't see it; this preserves the persisted sessionId across the
+  // post-materialize save instead of erasing it. A live binding always takes
+  // precedence (see buildTerminalSession).
+  restoredSessionId?: string;
 }
 
 interface FileTerminalState {
@@ -114,7 +120,10 @@ async function buildTerminalSession(
           cwd: await refreshLiveCwd(t),
         };
         if (t.originNodeId) entry.originNodeId = t.originNodeId;
-        const sessionId = resolveTerminalSessionId(filePath, t.id);
+        // Prefer the live binding; fall back to the sessionId this terminal was
+        // restored with so a wiped workflowSessionMap (post-load, pre-rebind)
+        // can't silently erase a resumable session from the persisted record.
+        const sessionId = resolveTerminalSessionId(filePath, t.id) ?? t.restoredSessionId;
         if (sessionId) entry.sessionId = sessionId;
         return entry;
       }),
@@ -166,11 +175,15 @@ async function materializeFileTerminals(
       // SessionStart hook can bind whatever conversation lands in this tab back to its
       // original node. If a different session ends up here, the rebind dialog will surface.
       const terminalInfo = await createTerminalService(restoredTitle, undefined, undefined, entry.cwd, entry.originNodeId);
-      const info = entry.originNodeId ? { ...terminalInfo, originNodeId: entry.originNodeId } : terminalInfo;
-      restored.push(info);
+      let info = entry.originNodeId ? { ...terminalInfo, originNodeId: entry.originNodeId } : terminalInfo;
       if (entry.sessionId) {
+        // Carry the session forward as both a resume target (acted on now) and a
+        // durable record on the terminal (survives the workflowSessionMap wipe so
+        // the next save re-persists it even if resume hasn't re-bound yet).
+        info = { ...info, restoredSessionId: entry.sessionId };
         resumeTargets.push({ filePath: targetFilePath, terminalId: info.id, sessionId: entry.sessionId });
       }
+      restored.push(info);
     } catch {
       // The persisted folder may no longer exist, so the spawn fails. Fall back to a
       // plain shell in the default cwd so the tab still restores quietly — no resume,

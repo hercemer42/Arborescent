@@ -22,8 +22,13 @@ beforeEach(() => {
       unsubscribeSpies.set(id, unsub);
       return unsub;
     }),
+    getTerminalRecentOutput: vi.fn().mockResolvedValue(''),
   } as unknown as typeof window.electron;
 });
+
+function setRecentOutput(value: string): void {
+  (window.electron.getTerminalRecentOutput as ReturnType<typeof vi.fn>).mockResolvedValue(value);
+}
 
 describe('waitForShellPrompt', () => {
   it('subscribes to the given terminal and resolves true once its shell prompt is ready', async () => {
@@ -99,6 +104,41 @@ describe('waitForShellPrompt', () => {
     } finally {
       vi.useRealTimers();
     }
+  });
+
+  it('detects a prompt drawn before subscription via the replayed output buffer (launch timing)', async () => {
+    // The PTY printed its prompt during the spawn→subscribe gap, so onTerminalData
+    // never delivers it live — readiness must come from the replay buffer alone.
+    setRecentOutput('user@host:~/project$ ');
+
+    await expect(waitForShellPrompt('term-late')).resolves.toBe(true);
+    expect(listeners.has('term-late')).toBe(false); // subscription torn down
+  });
+
+  it('detects a bracketed-paste-ready prompt from the replay buffer with no live output', async () => {
+    setRecentOutput('\x1b[?2004h');
+
+    await expect(waitForShellPrompt('term-late')).resolves.toBe(true);
+  });
+
+  it('does not falsely signal readiness when the replay buffer holds no prompt', async () => {
+    vi.useFakeTimers();
+    try {
+      setRecentOutput('Resolving dependencies...\r\nbuilding');
+      const pending = waitForShellPrompt('term-busy', 5000);
+      await vi.advanceTimersByTimeAsync(5000);
+      await expect(pending).resolves.toBe(false);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('still resolves from live output when the replay buffer was empty', async () => {
+    setRecentOutput('');
+    const pending = waitForShellPrompt('term-1');
+
+    emit('term-1', '\r\n$ ');
+    await expect(pending).resolves.toBe(true);
   });
 
   it('gates each terminal independently — emitting on one does not resolve another', async () => {

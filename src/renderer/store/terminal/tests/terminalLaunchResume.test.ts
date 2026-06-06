@@ -183,6 +183,46 @@ describe('materializeAllRestoredTerminals — every open file at launch', () => 
   });
 });
 
+describe('durable sessionId — survives the workflowSessionMap wipe on load', () => {
+  beforeEach(() => {
+    mockGetTerminalSession.mockResolvedValue({
+      fileStates: {
+        '/a.arbo': {
+          terminals: [{ title: 'Resumable', cwd: '/a', sessionId: 'sess-a', originNodeId: 'node-a' }],
+          activeTerminalIndex: 0,
+        },
+      },
+    });
+  });
+
+  it('persists the restored sessionId on the post-materialize save even when the live resolver is empty', async () => {
+    // initializeExecutionState wipes the live workflowSessionMap on load, so the
+    // resolver sees nothing until a session re-binds. Without the durable fallback
+    // this save would erase the sessionId from the persisted record.
+    setTerminalSessionResolver(() => undefined);
+
+    await useTerminalStore.getState().restoreTerminalSession();
+    await useTerminalStore.getState().materializeAllRestoredTerminals();
+
+    await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
+    const saved = mockSaveTerminalSession.mock.calls.at(-1)![0];
+    const terminals = saved.fileStates['/a.arbo'].terminals as EntryWithSession[];
+    expect(terminals[0].sessionId).toBe('sess-a');
+  });
+
+  it('lets a live binding take precedence over the restored fallback', async () => {
+    setTerminalSessionResolver(() => 'sess-live');
+
+    await useTerminalStore.getState().restoreTerminalSession();
+    await useTerminalStore.getState().materializeAllRestoredTerminals();
+
+    await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
+    const saved = mockSaveTerminalSession.mock.calls.at(-1)![0];
+    const terminals = saved.fileStates['/a.arbo'].terminals as EntryWithSession[];
+    expect(terminals[0].sessionId).toBe('sess-live');
+  });
+});
+
 describe('restore — sessionId carry-through and per-file cap', () => {
   it('carries each restored entry sessionId verbatim into pendingRestore', async () => {
     mockGetTerminalSession.mockResolvedValue({
