@@ -69,7 +69,13 @@ export const TerminalSessionSchema = z.object({
   fileStates: z.record(z.string(), TerminalFileStateSchema),
 });
 
-const PanelContentSchema = z.enum(['terminal', 'browser', 'feedback']).nullable();
+// 'feedback' is a retired panel content type. Tolerate it in already-persisted sessions and
+// normalize it to null, so upgrading mid-review keeps the rest of the panel layout and the
+// per-file terminal/browser state instead of discarding the whole session on a parse failure.
+const PanelContentSchema = z
+  .enum(['terminal', 'browser', 'feedback'])
+  .nullable()
+  .transform((content) => (content === 'feedback' ? null : content));
 
 const PanelFileStateSchema = z.object({
   activeContent: PanelContentSchema,

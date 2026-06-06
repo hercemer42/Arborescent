@@ -24,7 +24,7 @@ vi.mock('../../store/preferences/preferencesStore', () => ({
 vi.mock('../../store/storeManager', () => ({ storeManager: { getAllStores: () => [] } }));
 
 const { panelState, terminalState } = vi.hoisted(() => ({
-  panelState: { activeContent: 'browser' as 'terminal' | 'browser' | 'feedback' | null },
+  panelState: { activeContent: 'browser' as 'terminal' | 'browser' | null },
   terminalState: {
     currentFilePath: '/a.arbo' as string | null,
     fileStates: {} as Record<string, { terminals: unknown[]; pendingRestore?: unknown[] }>,
@@ -66,7 +66,7 @@ describe('useAppInitialization — launch session resume', () => {
   });
 
   it('resumes even when the terminal panel is not the active view', async () => {
-    panelState.activeContent = 'feedback';
+    panelState.activeContent = null;
     const onComplete = vi.fn();
     renderHook(() => useAppInitialization(onComplete));
 

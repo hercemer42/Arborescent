@@ -130,7 +130,7 @@ describe('uiService (reload hotkey removed)', () => {
   });
 });
 
-describe('uiService (feedback panel)', () => {
+describe('uiService (collaborate shortcut)', () => {
   beforeEach(() => {
     const hotkeyStore = useHotkeyContextStore.getState();
     hotkeyStore.setInitialized(true);

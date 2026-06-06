@@ -49,7 +49,6 @@
 |--------|----------|
 | Toggle terminal | `` Ctrl+` `` |
 | Toggle browser | `Ctrl+B` |
-| Toggle feedback panel | `Ctrl+Shift+F` |
 | Blueprint mode | `Ctrl+Shift+B` |
 | Summary mode | `Ctrl+Shift+U` |
 

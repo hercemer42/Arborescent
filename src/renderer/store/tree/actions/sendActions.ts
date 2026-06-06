@@ -760,11 +760,7 @@ export function createSendActions(
           collaboratingNodeId: nodeId,
           decomposition: isDecompositionEnabled(nodeId, get().nodes, get().ancestorRegistry),
         });
-        const restoredState = feedbackStore.getState();
-        const restoredRootIds = restoredState.nodes?.[restoredState.rootNodeId]?.children ?? [];
-        if (restoredRootIds.length > 1) {
-          usePanelStore.getState().showFeedbackForFile(currentFilePath);
-        }
+        // The restored proposition (single-root or decomposition) is reviewed inline.
         // Clipboard monitor is managed by useFeedbackClipboard based on collaboratingNodeId state
 
         logger.info(`Restored collaboration state for node: ${nodeId}`, 'SendActions');
@@ -814,11 +810,8 @@ export function createSendActions(
         decomposition,
       });
 
-      // Single-root proposals are reviewed inline on the node; only multi-root
-      // (decomposition) output still surfaces in the side panel.
-      if (parsedContent.rootNodeIds.length > 1) {
-        usePanelStore.getState().showFeedbackForFile(currentFilePath);
-      }
+      // Both single-root and decomposition proposals are reviewed inline on the node;
+      // the side panel is never opened.
 
       // Stop clipboard monitor - we have content now
       await window.electron.stopClipboardMonitor();
@@ -864,7 +857,6 @@ export function createSendActions(
         }
 
         await cleanupFeedback(currentFilePath, tempFilePath);
-        usePanelStore.getState().closeFeedback(currentFilePath);
         window.dispatchEvent(new Event('collaboration-canceled'));
         logger.info('Collaboration cancelled', 'SendActions');
       } catch (error) {
@@ -922,7 +914,6 @@ export function createSendActions(
 
         const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;
         await cleanupFeedback(currentFilePath, tempFilePath);
-        usePanelStore.getState().closeFeedback(currentFilePath);
 
         window.dispatchEvent(new Event('collaboration-accepted'));
         logger.info('Feedback accepted and node replaced', 'SendActions');

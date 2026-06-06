@@ -145,16 +145,22 @@ describe('inline proposal review', () => {
     });
   });
 
-  describe('multi-root proposition (decomposition)', () => {
+  // PR3: decomposition is reviewed inline too (PR2 routed multi-root to the panel; that
+  // path is being retired). These assert the new behaviour and are red until PR3 lands.
+  describe('multi-root proposition (decomposition) renders inline', () => {
     beforeEach(() => seedProposition(2));
 
-    it('does not render inline; the original subtree and the gold collaborating parent remain, with no bar', () => {
-      const { container } = renderTree(makeMainStore());
-      expect(screen.getByText('Original child')).toBeTruthy();
-      expect(screen.queryByText('Story A')).toBeNull();
-      expect(screen.queryByRole('group', { name: 'Review proposed changes' })).toBeNull();
-      const reviewed = container.querySelector('[data-node-id="reviewed"]');
-      expect(reviewed?.classList.contains('collaborating')).toBe(true);
+    it('renders every proposition root inline in place of the reviewed node', () => {
+      renderTree(makeMainStore());
+      expect(screen.getByText('Story A')).toBeTruthy();
+      expect(screen.getByText('Story B')).toBeTruthy();
+      expect(screen.queryByText('Original child')).toBeNull();
+      expect(screen.queryByText('Reviewed node')).toBeNull();
+    });
+
+    it('shows the accept/cancel bar for a decomposition review and opens no panel', () => {
+      renderTree(makeMainStore());
+      expect(screen.getByRole('group', { name: 'Review proposed changes' })).toBeTruthy();
     });
   });
 

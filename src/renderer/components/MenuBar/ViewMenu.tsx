@@ -12,12 +12,10 @@ export function ViewMenu() {
     summaryModeEnabled,
     terminalOpen,
     browserOpen,
-    feedbackOpen,
     handleToggleBlueprintMode,
     handleToggleSummaryMode,
     handleToggleTerminal,
     handleToggleBrowser,
-    handleToggleFeedback,
   } = useViewMenuState();
 
   return (
@@ -48,12 +46,6 @@ export function ViewMenu() {
         shortcut={formatHotkeyForDisplay(getKeyForAction('view', 'toggleBrowser') || 'CmdOrCtrl+B')}
         checked={browserOpen}
         onClick={handleToggleBrowser}
-      />
-      <MenuItem
-        label="Review"
-        shortcut={formatHotkeyForDisplay(getKeyForAction('view', 'toggleFeedback') || 'CmdOrCtrl+Shift+F')}
-        checked={feedbackOpen}
-        onClick={handleToggleFeedback}
       />
     </Menu>
   );

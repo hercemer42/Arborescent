@@ -2,7 +2,7 @@ import { usePanelActions } from './hooks/usePanelActions';
 import './PanelActions.css';
 
 export function PanelActions() {
-  const { activeContent, collaboratingNodeId, handleTerminalToggle, handleBrowserToggle, handleFeedbackShow } = usePanelActions();
+  const { activeContent, handleTerminalToggle, handleBrowserToggle } = usePanelActions();
 
   return (
     <div className="panel-actions">
@@ -20,15 +20,6 @@ export function PanelActions() {
       >
         {'🌐'}
       </button>
-      {collaboratingNodeId && (
-        <button
-          className="panel-action-button"
-          onClick={handleFeedbackShow}
-          title="Show Feedback Panel"
-        >
-          {'📝'}
-        </button>
-      )}
     </div>
   );
 }

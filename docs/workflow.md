@@ -29,7 +29,7 @@ The applied context's state determines what the AI is asked for. The four states
 - **Collaborate & Execute** — Both. AI makes the changes AND writes back the list with status markers. The default for the built-in **Basic execution** context.
 - **Action** — The context body is the prompt; node content is omitted.
 
-Collaborate and Collaborate & Execute use the same review pipeline. The AI's proposed revision appears **inline on the branch you sent** — its subtree is shown in place, with an **Accept / Cancel** bar in a row directly above it. Accept applies the revision (undoable with `Ctrl+Z`); Cancel discards it and leaves your branch untouched. Execute and Action don't produce a review. (Decomposition — splitting one branch into several — still opens the separate Feedback panel.)
+Collaborate and Collaborate & Execute use the same review pipeline. The AI's proposed revision appears **inline on the branch you sent** — its subtree is shown in place, with an **Accept / Cancel** bar in a row directly above it. Accept applies the revision (undoable with `Ctrl+Z`); Cancel discards it and leaves your branch untouched. Execute and Action don't produce a review. Decomposition — splitting one branch into several — shows the proposed branches inline in place of the original, reviewed the same way.
 
 The review highlights what the AI changed: blue for modified branches, green for added ones, and red with strikethrough for branches the AI removed (shown where they used to sit). You can edit the proposed branches before accepting — editing a modified branch back to its original text clears its highlight. Branches the AI returned untouched keep their identity, so selection, expansion, and links to those branches survive the review.
 
@@ -74,11 +74,10 @@ As your tree grows, use view modes to focus:
 
 ## Panels
 
-Three panels support your workflow:
+Two panels support your workflow:
 
 - **Terminal** (`` Ctrl+` ``): Integrated terminal for AI tools like Claude Code
 - **Browser** (`Ctrl+B`): Built-in browser for web-based AI tools
-- **Feedback** (`Ctrl+Shift+F`): Shows decomposition reviews — single-branch reviews appear inline on the branch instead
 
 Each open file has its own panel state — open a terminal in one file, switch to another, and each remembers its own panel, browser tabs, and terminals independently. Zoom tabs share their parent file's panels.
 

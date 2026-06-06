@@ -87,7 +87,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
       <>
         <ReviewControlBar />
         <TreeStoreContext.Provider value={reviewPropositionStore}>
-          <PropositionRoot depth={depth} />
+          <PropositionRoots depth={depth} />
         </TreeStoreContext.Provider>
       </>
     );
@@ -153,14 +153,20 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
 });
 
 // Rendered inside the proposition store's context, so useStore here reads the feedback
-// tree. Renders the proposition's root (which maps to the reviewed node) and, through the
-// shared TreeNode recursion, its whole subtree — each node styled by its own change-kind
-// metadata (added / modified / removed placeholders).
-function PropositionRoot({ depth }: { depth: number }) {
+// tree. Renders every proposition root and, through the shared TreeNode recursion, their
+// subtrees — each node styled by its own change-kind metadata (added / modified / removed
+// placeholders). A single-root review has one root; decomposition has several siblings.
+function PropositionRoots({ depth }: { depth: number }) {
   const hiddenRootId = useStore((state) => state.rootNodeId);
-  const propositionRootId = useStore((state) => state.nodes[hiddenRootId]?.children?.[0]);
+  const propositionRootIds = useStore((state) => state.nodes[hiddenRootId]?.children);
 
-  if (!propositionRootId) return null;
+  if (!propositionRootIds || propositionRootIds.length === 0) return null;
 
-  return <TreeNode nodeId={propositionRootId} depth={depth} />;
+  return (
+    <>
+      {propositionRootIds.map((rootId) => (
+        <TreeNode key={rootId} nodeId={rootId} depth={depth} />
+      ))}
+    </>
+  );
 }

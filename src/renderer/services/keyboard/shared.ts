@@ -3,21 +3,7 @@ import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
 import { parseZoomPath } from '../../utils/zoomPath';
 
-let activeFeedbackStore: TreeStore | null = null;
-
-export function setActiveFeedbackStore(store: TreeStore | null): void {
-  activeFeedbackStore = store;
-}
-
-function isFocusInFeedbackPanel(): boolean {
-  return !!document.activeElement?.closest('.feedback-panel');
-}
-
 export function getActiveStore(): TreeStore | null {
-  if (isFocusInFeedbackPanel()) {
-    return activeFeedbackStore;
-  }
-
   const activeFilePath = useFilesStore.getState().activeFilePath;
   if (!activeFilePath) return null;
 

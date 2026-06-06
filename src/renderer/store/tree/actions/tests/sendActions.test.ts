@@ -3,7 +3,6 @@ import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
 import { TreeNode } from '../../../../../shared/types';
 import { logger } from '../../../../services/logger';
-import { usePanelStore } from '../../../panel/panelStore';
 import { REVISE_AFTER_DISCUSSION_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 
 vi.mock('../../../../services/logger', () => ({
@@ -1451,42 +1450,10 @@ describe('sendActions', () => {
             rootNodeId: 'feedback-root',
           }),
         });
-        const showSpy = vi
-          .spyOn(usePanelStore.getState(), 'showFeedbackForFile')
-          .mockImplementation(() => {});
-
         await actions.restoreCollaborationState();
 
         expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
         expect(mockLoadFromPath).toHaveBeenCalledWith('/tmp/feedback.arbo');
-        // A restored single-root proposition is reviewed inline — the panel must not open.
-        expect(showSpy).not.toHaveBeenCalled();
-      });
-
-      it('opens the panel when a restored proposition has multiple roots (decomposition)', async () => {
-        mockState.currentFilePath = '/test/file.arbo';
-        const nodeWithCollaboration = { ...mockState.nodes.child1, metadata: { ...mockState.nodes.child1.metadata, feedbackTempFile: '/tmp/feedback.arbo' } };
-        mockFindCollaboratingNode.mockReturnValue(['child1', nodeWithCollaboration]);
-        (window.electron.readTempFile as ReturnType<typeof vi.fn>).mockResolvedValue('file content');
-
-        mockFeedbackTreeStoreGetStoreForFile.mockReturnValue({
-          getState: () => ({
-            actions: { loadFromPath: vi.fn().mockResolvedValue(undefined) },
-            nodes: {
-              'feedback-root': { id: 'feedback-root', content: '', children: ['root-a', 'root-b'], metadata: {} },
-              'root-a': { id: 'root-a', content: 'A', children: [], metadata: {} },
-              'root-b': { id: 'root-b', content: 'B', children: [], metadata: {} },
-            },
-            rootNodeId: 'feedback-root',
-          }),
-        });
-        const showSpy = vi
-          .spyOn(usePanelStore.getState(), 'showFeedbackForFile')
-          .mockImplementation(() => {});
-
-        await actions.restoreCollaborationState();
-
-        expect(showSpy).toHaveBeenCalledWith('/test/file.arbo');
       });
 
       it('restores the decomposition flag so a reloaded decomposition accepts as multi-root', async () => {
@@ -1512,8 +1479,6 @@ describe('sendActions', () => {
             rootNodeId: 'feedback-root',
           }),
         });
-        vi.spyOn(usePanelStore.getState(), 'showFeedbackForFile').mockImplementation(() => {});
-
         await actions.restoreCollaborationState();
 
         expect(mockSet).toHaveBeenCalledWith(
@@ -1654,55 +1619,6 @@ describe('sendActions', () => {
           expect.anything()
         );
       });
-    });
-  });
-
-  describe('processIncomingFeedbackContent inline review panel suppression', () => {
-    beforeEach(() => {
-      mockState.currentFilePath = '/test/file.arbo';
-      mockState.collaboratingNodeId = 'child1';
-    });
-
-    it('does not open the feedback panel for a single-root proposition (reviewed inline)', async () => {
-      const showSpy = vi
-        .spyOn(usePanelStore.getState(), 'showFeedbackForFile')
-        .mockImplementation(() => {});
-      mockParseFeedbackContentWithReason.mockReturnValue({
-        ok: true,
-        content: {
-          nodes: { r: { id: 'r', content: 'Task', children: [], metadata: {} } },
-          rootNodeId: 'r',
-          rootNodeIds: ['r'],
-          nodeCount: 1,
-        },
-      });
-
-      await actions.processIncomingFeedbackContent('# [ ] Task', 'clipboard');
-
-      expect(showSpy).not.toHaveBeenCalled();
-    });
-
-    it('opens the feedback panel for a multi-root decomposition proposition', async () => {
-      const showSpy = vi
-        .spyOn(usePanelStore.getState(), 'showFeedbackForFile')
-        .mockImplementation(() => {});
-      mockState.decomposition = true;
-      mockParseFeedbackContentWithReason.mockReturnValue({
-        ok: true,
-        content: {
-          nodes: {
-            a: { id: 'a', content: 'Story A', children: [], metadata: {} },
-            b: { id: 'b', content: 'Story B', children: [], metadata: {} },
-          },
-          rootNodeId: 'a',
-          rootNodeIds: ['a', 'b'],
-          nodeCount: 2,
-        },
-      });
-
-      await actions.processIncomingFeedbackContent('# [ ] Story A\n# [ ] Story B', 'clipboard');
-
-      expect(showSpy).toHaveBeenCalledWith('/test/file.arbo');
     });
   });
 

@@ -182,19 +182,6 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
-  if (matchesHotkey(event, 'view', 'toggleFeedback')) {
-    event.preventDefault();
-    const { usePanelStore } = await import('../../store/panel/panelStore');
-    const panelStore = usePanelStore.getState();
-
-    if (panelStore.activeContent === 'feedback') {
-      panelStore.hidePanel();
-    } else {
-      panelStore.showFeedback();
-    }
-    return;
-  }
-
   if (matchesHotkey(event, 'view', 'toggleBlueprintMode')) {
     if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();

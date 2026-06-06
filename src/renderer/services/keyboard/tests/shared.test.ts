@@ -22,39 +22,22 @@ vi.mock('../../../store/storeManager', () => ({
 
 import {
   getActiveStore,
-  setActiveFeedbackStore,
   getEffectiveRootNodeId,
 } from '../shared';
 
 describe('keyboard shared utilities', () => {
   const mockWorkspaceStore = { getState: () => ({ activeNodeId: 'node-1' }) };
-  const mockFeedbackStore = { getState: () => ({ activeNodeId: 'feedback-1' }) };
 
   beforeEach(() => {
     vi.clearAllMocks();
     mockActiveFilePath.value = '/test/file.arbo';
     mockGetStoreForFile.mockReturnValue(mockWorkspaceStore);
-    setActiveFeedbackStore(null);
 
     // Reset DOM
     document.body.innerHTML = '';
   });
 
   describe('getActiveStore', () => {
-    it('should return feedback store when focused element is inside .feedback-panel and feedback store is set', () => {
-      setActiveFeedbackStore(mockFeedbackStore as never);
-
-      const panel = document.createElement('div');
-      panel.className = 'feedback-panel';
-      const input = document.createElement('div');
-      input.setAttribute('contenteditable', 'true');
-      panel.appendChild(input);
-      document.body.appendChild(panel);
-      input.focus();
-
-      expect(getActiveStore()).toBe(mockFeedbackStore);
-    });
-
     it('should return active file store when focused element is in the workspace', () => {
       const workspace = document.createElement('div');
       workspace.className = 'workspace';
@@ -68,7 +51,7 @@ describe('keyboard shared utilities', () => {
       expect(mockGetStoreForFile).toHaveBeenCalledWith('/test/file.arbo');
     });
 
-    it('should return active file store when focused element is outside both workspace and feedback panel', () => {
+    it('should return active file store when focused element is outside the workspace', () => {
       const orphan = document.createElement('div');
       orphan.setAttribute('contenteditable', 'true');
       document.body.appendChild(orphan);
@@ -77,25 +60,13 @@ describe('keyboard shared utilities', () => {
       expect(getActiveStore()).toBe(mockWorkspaceStore);
     });
 
-    it('should return null when no file is open and focus is not in feedback panel', () => {
+    it('should return null when no file is open', () => {
       mockActiveFilePath.value = null;
 
       const orphan = document.createElement('div');
       orphan.setAttribute('contenteditable', 'true');
       document.body.appendChild(orphan);
       orphan.focus();
-
-      expect(getActiveStore()).toBeNull();
-    });
-
-    it('should return null when feedback store is not set and focus is inside .feedback-panel', () => {
-      const panel = document.createElement('div');
-      panel.className = 'feedback-panel';
-      const input = document.createElement('div');
-      input.setAttribute('contenteditable', 'true');
-      panel.appendChild(input);
-      document.body.appendChild(panel);
-      input.focus();
 
       expect(getActiveStore()).toBeNull();
     });
@@ -137,37 +108,6 @@ describe('keyboard shared utilities', () => {
     it('should return null for a malformed zoom path without a #nodeId', () => {
       mockActiveFilePath.value = 'zoom:///test/file.arbo';
       expect(getEffectiveRootNodeId()).toBeNull();
-    });
-  });
-
-  describe('setActiveFeedbackStore', () => {
-    it('should set the feedback store reference', () => {
-      setActiveFeedbackStore(mockFeedbackStore as never);
-
-      const panel = document.createElement('div');
-      panel.className = 'feedback-panel';
-      const input = document.createElement('div');
-      input.setAttribute('contenteditable', 'true');
-      panel.appendChild(input);
-      document.body.appendChild(panel);
-      input.focus();
-
-      expect(getActiveStore()).toBe(mockFeedbackStore);
-    });
-
-    it('should clear the feedback store reference when called with null', () => {
-      setActiveFeedbackStore(mockFeedbackStore as never);
-      setActiveFeedbackStore(null);
-
-      const panel = document.createElement('div');
-      panel.className = 'feedback-panel';
-      const input = document.createElement('div');
-      input.setAttribute('contenteditable', 'true');
-      panel.appendChild(input);
-      document.body.appendChild(panel);
-      input.focus();
-
-      expect(getActiveStore()).toBeNull();
     });
   });
 

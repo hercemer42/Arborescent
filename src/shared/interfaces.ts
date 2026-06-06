@@ -46,8 +46,8 @@ export interface PanelSession {
   panelPosition: 'side' | 'bottom';
   panelHeight: number;
   panelWidth: number;
-  activeContent: 'terminal' | 'browser' | 'feedback' | null;
-  fileStates?: Record<string, { activeContent: 'terminal' | 'browser' | 'feedback' | null; previousContent: 'terminal' | 'browser' | 'feedback' | null }>;
+  activeContent: 'terminal' | 'browser' | null;
+  fileStates?: Record<string, { activeContent: 'terminal' | 'browser' | null; previousContent: 'terminal' | 'browser' | null }>;
 }
 
 export interface StorageService {

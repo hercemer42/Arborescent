@@ -43,35 +43,6 @@ describe('per-file panel state', () => {
       expect(usePanelStore.getState().activeContent).toBeNull();
     });
 
-    it('should show feedback and save previousContent only for the current file', () => {
-      usePanelStore.getState().setActiveFile('/project-a.arbo');
-      usePanelStore.getState().showTerminal();
-      usePanelStore.getState().showFeedback();
-
-      expect(usePanelStore.getState().activeContent).toBe('feedback');
-      expect(usePanelStore.getState().previousContent).toBe('terminal');
-
-      usePanelStore.getState().setActiveFile('/project-b.arbo');
-      expect(usePanelStore.getState().activeContent).toBeNull();
-      expect(usePanelStore.getState().previousContent).toBeNull();
-    });
-
-    it('should closeFeedback only for the current file', () => {
-      usePanelStore.getState().setActiveFile('/project-a.arbo');
-      usePanelStore.getState().showTerminal();
-      usePanelStore.getState().showFeedback();
-
-      usePanelStore.getState().setActiveFile('/project-b.arbo');
-      usePanelStore.getState().showBrowser();
-      usePanelStore.getState().showFeedback();
-
-      usePanelStore.getState().closeFeedback();
-      expect(usePanelStore.getState().activeContent).toBe('browser');
-
-      usePanelStore.getState().setActiveFile('/project-a.arbo');
-      expect(usePanelStore.getState().activeContent).toBe('feedback');
-    });
-
     it('should hidePanel only for the current file', () => {
       usePanelStore.getState().setActiveFile('/project-a.arbo');
       usePanelStore.getState().showTerminal();
@@ -127,14 +98,14 @@ describe('per-file panel state', () => {
       usePanelStore.getState().setActiveFile('/b.arbo');
       usePanelStore.getState().showBrowser();
       usePanelStore.getState().setActiveFile('/c.arbo');
-      usePanelStore.getState().showFeedback();
+      usePanelStore.getState().showTerminal();
 
       usePanelStore.getState().setActiveFile('/a.arbo');
       expect(usePanelStore.getState().activeContent).toBe('terminal');
       usePanelStore.getState().setActiveFile('/b.arbo');
       expect(usePanelStore.getState().activeContent).toBe('browser');
       usePanelStore.getState().setActiveFile('/c.arbo');
-      expect(usePanelStore.getState().activeContent).toBe('feedback');
+      expect(usePanelStore.getState().activeContent).toBe('terminal');
     });
 
     it('should return null activeContent when no file is active', () => {
@@ -165,13 +136,13 @@ describe('per-file panel state', () => {
 
     it('should show same panel state switching between zoom tab and parent', () => {
       usePanelStore.getState().setActiveFile('/project-a.arbo');
-      usePanelStore.getState().showFeedback();
+      usePanelStore.getState().showBrowser();
 
       usePanelStore.getState().setActiveFile('zoom:///project-a.arbo#node-1');
-      expect(usePanelStore.getState().activeContent).toBe('feedback');
+      expect(usePanelStore.getState().activeContent).toBe('browser');
 
       usePanelStore.getState().setActiveFile('/project-a.arbo');
-      expect(usePanelStore.getState().activeContent).toBe('feedback');
+      expect(usePanelStore.getState().activeContent).toBe('browser');
     });
   });
 
@@ -219,7 +190,7 @@ describe('per-file panel state', () => {
       usePanelStore.setState({
         fileStates: {
           '/a.arbo': { activeContent: 'terminal', previousContent: null },
-          '/b.arbo': { activeContent: 'feedback', previousContent: 'browser' },
+          '/b.arbo': { activeContent: 'browser', previousContent: 'terminal' },
         },
       });
 
@@ -227,8 +198,8 @@ describe('per-file panel state', () => {
       expect(usePanelStore.getState().activeContent).toBe('terminal');
 
       usePanelStore.getState().setActiveFile('/b.arbo');
-      expect(usePanelStore.getState().activeContent).toBe('feedback');
-      expect(usePanelStore.getState().previousContent).toBe('browser');
+      expect(usePanelStore.getState().activeContent).toBe('browser');
+      expect(usePanelStore.getState().previousContent).toBe('terminal');
     });
 
     it('should handle empty fileStates gracefully', () => {

@@ -78,46 +78,6 @@ describe('panel session per-file persistence', () => {
     });
   });
 
-  describe('feedback activeContent degrades gracefully on restart', () => {
-    it('should restore feedback activeContent without errors even when no collaboration state exists', async () => {
-      mockGetPanelSession.mockResolvedValue({
-        panelPosition: 'side',
-        panelHeight: 300,
-        panelWidth: 600,
-        activeContent: null,
-        fileStates: {
-          '/a.arbo': { activeContent: 'feedback', previousContent: 'terminal' },
-        },
-      });
-
-      await usePanelStore.getState().restoreSession();
-
-      // setActiveFile should load the feedback state without errors
-      // even though there's no backing collaboration data
-      usePanelStore.getState().setActiveFile('/a.arbo');
-      expect(usePanelStore.getState().activeContent).toBe('feedback');
-      expect(usePanelStore.getState().previousContent).toBe('terminal');
-    });
-
-    it('should allow closeFeedback to fall back to previousContent after restore', async () => {
-      mockGetPanelSession.mockResolvedValue({
-        panelPosition: 'side',
-        panelHeight: 300,
-        panelWidth: 600,
-        activeContent: null,
-        fileStates: {
-          '/a.arbo': { activeContent: 'feedback', previousContent: 'browser' },
-        },
-      });
-
-      await usePanelStore.getState().restoreSession();
-      usePanelStore.getState().setActiveFile('/a.arbo');
-      usePanelStore.getState().closeFeedback();
-
-      expect(usePanelStore.getState().activeContent).toBe('browser');
-    });
-  });
-
   describe('backward compatibility', () => {
     it('should handle saved session with no fileStates field', async () => {
       mockGetPanelSession.mockResolvedValue({

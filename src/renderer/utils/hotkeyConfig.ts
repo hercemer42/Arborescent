@@ -43,7 +43,6 @@ export interface HotkeyConfig {
   view: {
     toggleTerminal: string;
     toggleBrowser: string;
-    toggleFeedback: string;
     toggleBlueprintMode: string;
     toggleSummaryMode: string;
   };

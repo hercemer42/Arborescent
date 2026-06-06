@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { TerminalSessionSchema } from '../schemas';
+import { TerminalSessionSchema, PanelSessionSchema } from '../schemas';
 
 // Read sessionId through a widened view until the persisted type carries it.
 type EntryWithSession = { title: string; cwd: string; originNodeId?: string; sessionId?: string };
@@ -36,5 +36,42 @@ describe('TerminalSessionSchema — per-terminal sessionId', () => {
 
     const entry = parsed.fileStates['/a.arbo'].terminals[0] as EntryWithSession;
     expect(entry.sessionId).toBeUndefined();
+  });
+});
+
+// PR3 retired the feedback panel and dropped 'feedback' as a panel content type. A session
+// persisted by an earlier build can still carry 'feedback'; the schema must tolerate it and
+// normalize to null so the rest of the panel layout and per-file state survive the upgrade
+// rather than the whole session being discarded as a parse failure.
+describe('PanelSessionSchema — retired feedback content normalizes to null', () => {
+  it('normalizes a top-level feedback activeContent to null and keeps the layout', () => {
+    const parsed = PanelSessionSchema.parse({
+      panelPosition: 'bottom',
+      panelHeight: 420,
+      panelWidth: 700,
+      activeContent: 'feedback',
+    });
+
+    expect(parsed.activeContent).toBeNull();
+    expect(parsed.panelPosition).toBe('bottom');
+    expect(parsed.panelHeight).toBe(420);
+    expect(parsed.panelWidth).toBe(700);
+  });
+
+  it('normalizes feedback in per-file states while preserving other files', () => {
+    const parsed = PanelSessionSchema.parse({
+      panelPosition: 'side',
+      panelHeight: 300,
+      panelWidth: 600,
+      activeContent: null,
+      fileStates: {
+        '/a.arbo': { activeContent: 'feedback', previousContent: 'browser' },
+        '/b.arbo': { activeContent: 'terminal', previousContent: null },
+      },
+    });
+
+    expect(parsed.fileStates?.['/a.arbo'].activeContent).toBeNull();
+    expect(parsed.fileStates?.['/a.arbo'].previousContent).toBe('browser');
+    expect(parsed.fileStates?.['/b.arbo'].activeContent).toBe('terminal');
   });
 });

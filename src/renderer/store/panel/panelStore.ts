@@ -4,7 +4,7 @@ import { logger } from '../../services/logger';
 import { resolveToSourceFilePath } from '../../utils/zoomPath';
 
 export type PanelPosition = 'side' | 'bottom';
-export type PanelContentType = 'terminal' | 'browser' | 'feedback' | null;
+export type PanelContentType = 'terminal' | 'browser' | null;
 
 interface FilePanelState {
   activeContent: PanelContentType;
@@ -36,9 +36,6 @@ interface PanelState {
   setActiveContent: (content: PanelContentType) => void;
   showTerminal: () => void;
   showBrowser: () => void;
-  showFeedback: () => void;
-  showFeedbackForFile: (filePath: string | null) => void;
-  closeFeedback: (filePath?: string | null) => void;
   hidePanel: () => void;
   removeFileState: (filePath: string) => void;
   restoreSession: () => Promise<void>;
@@ -149,54 +146,6 @@ export const usePanelStore = create<PanelState>((set, get) => ({
       if (!state.currentFilePath) return {};
       const newFileStates = updateFileState(state.fileStates, state.currentFilePath, { activeContent: 'browser' });
       const newState = { activeContent: 'browser' as PanelContentType, fileStates: newFileStates };
-      void savePanelSession({ ...state, ...newState });
-      return newState;
-    }),
-
-  showFeedback: () => get().showFeedbackForFile(get().currentFilePath),
-
-  showFeedbackForFile: (filePath: string | null) =>
-    set((state) => {
-      const resolved = resolveToSourceFilePath(filePath);
-      if (!resolved) return {};
-      const targetFileState = getFileState(state.fileStates, resolved);
-      const newPreviousContent = targetFileState.activeContent !== 'feedback'
-        ? targetFileState.activeContent
-        : targetFileState.previousContent;
-      const newFileStates = updateFileState(state.fileStates, resolved, {
-        activeContent: 'feedback',
-        previousContent: newPreviousContent,
-      });
-      const isCurrentFile = resolved === state.currentFilePath;
-      const newState = isCurrentFile
-        ? {
-            activeContent: 'feedback' as PanelContentType,
-            previousContent: newPreviousContent,
-            fileStates: newFileStates,
-          }
-        : { fileStates: newFileStates };
-      void savePanelSession({ ...state, ...newState });
-      return newState;
-    }),
-
-  closeFeedback: (filePath?: string | null) =>
-    set((state) => {
-      const targetFilePath = filePath !== undefined ? filePath : state.currentFilePath;
-      if (!targetFilePath) return {};
-      const targetFileState = getFileState(state.fileStates, targetFilePath);
-      if (targetFileState.activeContent !== 'feedback') return {};
-      const newFileStates = updateFileState(state.fileStates, targetFilePath, {
-        activeContent: targetFileState.previousContent,
-        previousContent: null,
-      });
-      const isCurrentFile = targetFilePath === state.currentFilePath;
-      const newState = isCurrentFile
-        ? {
-            activeContent: targetFileState.previousContent,
-            previousContent: null as PanelContentType,
-            fileStates: newFileStates,
-          }
-        : { fileStates: newFileStates };
       void savePanelSession({ ...state, ...newState });
       return newState;
     }),

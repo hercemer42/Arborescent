@@ -4,8 +4,8 @@ import { useStore } from '../../../store/tree/useStore';
 import type { TreeStore } from '../../../store/tree/treeStore';
 
 // Returns the proposition store to render inline beneath a node when that node is the
-// one under review and the AI has returned a single-root proposition. Decomposition
-// (multi-root) proposals still resolve to null here and continue to use the panel.
+// one under review and the AI has returned a proposition. Both single-root reviews and
+// multi-root decomposition resolve here — decomposition renders its roots inline too.
 export function useReviewProposition(nodeId: string): TreeStore | null {
   const isReviewedNode = useStore((state) => state.collaboratingNodeId === nodeId);
   const currentFilePath = useStore((state) => state.currentFilePath);
@@ -23,7 +23,7 @@ export function useReviewProposition(nodeId: string): TreeStore | null {
 
   const { nodes, rootNodeId } = store.getState();
   const propositionRootIds = nodes[rootNodeId]?.children ?? [];
-  if (propositionRootIds.length !== 1) return null;
+  if (propositionRootIds.length === 0) return null;
 
   return store;
 }

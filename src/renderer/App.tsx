@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { ToastContainer } from "./components/ui/Toast";
+import { ClipboardReviewMonitor } from "./components/Feedback/ClipboardReviewMonitor";
 import { Workspace } from "./components/Workspace";
 import { Panel } from "./components/Panel";
 import { BottomStatusBar } from "./components/BottomStatusBar/BottomStatusBar";
@@ -76,6 +77,7 @@ export function App() {
   return (
     <div className="app">
       <ToastContainer toasts={toasts} onRemove={removeToast} />
+      <ClipboardReviewMonitor />
       <AppMenuBar />
 
       {!isInitializing && (

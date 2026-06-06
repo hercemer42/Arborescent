@@ -73,26 +73,15 @@ export function useViewMenuState() {
     }
   }, []);
 
-  const handleToggleFeedback = useCallback(() => {
-    const panelStore = usePanelStore.getState();
-    if (panelStore.activeContent === 'feedback') {
-      panelStore.hidePanel();
-    } else {
-      panelStore.showFeedback();
-    }
-  }, []);
-
   return {
     hasActiveFile: !!activeFilePath,
     blueprintModeEnabled,
     summaryModeEnabled,
     terminalOpen: activeContent === 'terminal',
     browserOpen: activeContent === 'browser',
-    feedbackOpen: activeContent === 'feedback',
     handleToggleBlueprintMode,
     handleToggleSummaryMode,
     handleToggleTerminal,
     handleToggleBrowser,
-    handleToggleFeedback,
   };
 }

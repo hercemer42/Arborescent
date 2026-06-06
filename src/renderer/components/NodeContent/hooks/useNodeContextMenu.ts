@@ -100,13 +100,6 @@ export function useNodeContextMenu(node: TreeNode) {
         await handleSendInTerminal(flags, overrideContextId);
       } else if (activeContent === 'browser') {
         await handleSendInBrowser(flags, overrideContextId);
-      } else if (activeContent === 'feedback') {
-        const hasTerminal = useTerminalStore.getState().terminals.length > 0;
-        if (hasTerminal) {
-          await handleSendInTerminal(flags, overrideContextId);
-        } else {
-          useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
-        }
       } else {
         useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
       }
