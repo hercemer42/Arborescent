@@ -936,7 +936,13 @@ export const createWorkflowExecutionActions = (
 
       if (!autonomousCollaborateInTerminal) return;
 
-      if (effectiveContextId && flags.collaborate) {
+      // Only pure-collaborate steps defer the advancing Stop: their result is
+      // applied by submit_step_output (handleAutonomousFeedback), which then
+      // advances. Collaborate+execute completes via announce_step_done (submit
+      // is refused for it) and applies edits incrementally, so it must advance
+      // on the Stop like any other autonomous step — marking it `collaborating`
+      // would deadlock it waiting for a submit that never comes.
+      if (effectiveContextId && flags.collaborate && !flags.execute) {
         setCollaboratingFlag(nodeId);
       }
 

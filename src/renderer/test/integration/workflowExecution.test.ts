@@ -53,7 +53,7 @@ type TestState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   ancestorRegistry: Record<string, string[]>;
-  workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
+  workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; collaborating?: boolean; stopReceived?: boolean }>;
   workflowSessionMap: Record<string, string>;
   sessionRegistry: Record<string, { cwd: string }>;
   terminalNodeAssignments?: Record<string, string>;
@@ -277,6 +277,75 @@ describe('Integration: Workflow Execution', () => {
         'success'
       );
       expect(state().nodes['s3'].children).toContain('task');
+    });
+  });
+
+  describe('autonomous advancement regardless of context type', () => {
+    // An autonomous step must advance on completion no matter which context
+    // type is attached. Only pure-collaborate defers the advancing Stop, because
+    // its result arrives separately via submit_step_output. Collaborate+execute
+    // completes via announce_step_done (submit is refused for it), so marking it
+    // `collaborating` would deadlock it waiting for a submit that never comes.
+    function attachContext(
+      state: TestState,
+      flags: { collaborate: boolean; execute: boolean },
+    ): void {
+      state.nodes['ctx'] = {
+        id: 'ctx',
+        content: 'Step context',
+        children: [],
+        metadata: { isContextDeclaration: true, ...flags },
+      };
+      state.nodes['task'] = {
+        ...state.nodes['task'],
+        metadata: { ...state.nodes['task'].metadata, appliedContextId: 'ctx' },
+      };
+    }
+
+    it('advances a collaborate+execute step on Stop instead of deferring', () => {
+      vi.useFakeTimers();
+      const state = () => stateRef.current;
+      attachContext(stateRef.current, { collaborate: true, execute: true });
+
+      void actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+
+      // the send happened with execute flags, but the node was NOT marked
+      // collaborating — so the advancing Stop is not deferred
+      expect(mockAutonomousCollaborate.mock.calls[0][2]).toEqual({
+        collaborate: true,
+        execute: true,
+      });
+      expect(state().workflowExecutionStates['task'].collaborating).toBeFalsy();
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(1500);
+
+      expect(state().nodes['s2'].children).toContain('task');
+      expect(state().nodes['s1'].children).not.toContain('task');
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+      vi.useRealTimers();
+    });
+
+    it('defers a pure-collaborate step on Stop, awaiting submit_step_output', () => {
+      vi.useFakeTimers();
+      const state = () => stateRef.current;
+      attachContext(stateRef.current, { collaborate: true, execute: false });
+
+      void actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+
+      expect(state().workflowExecutionStates['task'].collaborating).toBe(true);
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(1500);
+
+      // pure-collaborate result arrives via submit_step_output, not the Stop, so
+      // the node stays put and records the deferred Stop
+      expect(state().nodes['s1'].children).toContain('task');
+      expect(state().nodes['s2'].children).not.toContain('task');
+      expect(state().workflowExecutionStates['task'].stopReceived).toBe(true);
+      vi.useRealTimers();
     });
   });
 
