@@ -24,14 +24,14 @@ Right-click any branch → **Send**. The content is sent to whichever panel is c
 
 The applied context's state determines what the AI is asked for. The four states are described in detail in [Contexts](contexts.md):
 
-- **Collaborate** — Reviews and rewrites your content. Response goes to the Feedback panel.
+- **Collaborate** — Reviews and rewrites your content. The proposed revision appears inline on the branch you sent.
 - **Execute** — Makes code/file changes; reports back via the terminal.
 - **Collaborate & Execute** — Both. AI makes the changes AND writes back the list with status markers. The default for the built-in **Basic execution** context.
 - **Action** — The context body is the prompt; node content is omitted.
 
-Collaborate and Collaborate & Execute use the same feedback pipeline — the AI's response appears in the Feedback panel for you to review, then Accept or Cancel (undoable with `Ctrl+Z`). Execute and Action don't open the panel.
+Collaborate and Collaborate & Execute use the same review pipeline. The AI's proposed revision appears **inline on the branch you sent** — its subtree is shown in place, with an **Accept / Cancel** bar in a row directly above it. Accept applies the revision (undoable with `Ctrl+Z`); Cancel discards it and leaves your branch untouched. Execute and Action don't produce a review. (Decomposition — splitting one branch into several — still opens the separate Feedback panel.)
 
-The panel highlights what the AI changed: blue for modified branches, green for added ones, and red with strikethrough for branches the AI removed (shown where they used to sit). Editing a modified branch back to its original text in the panel clears its highlight. Branches the AI returned untouched keep their identity, so selection, expansion, and links to those branches survive feedback.
+The review highlights what the AI changed: blue for modified branches, green for added ones, and red with strikethrough for branches the AI removed (shown where they used to sit). You can edit the proposed branches before accepting — editing a modified branch back to its original text clears its highlight. Branches the AI returned untouched keep their identity, so selection, expansion, and links to those branches survive the review.
 
 Two built-in contexts are available when no user-defined context is applied:
 
@@ -48,7 +48,7 @@ A branch whose entire content is a single backticked snippet runs in the termina
 
 ### How it works
 
-**Terminal mode**: Instructions tell the AI to call the `submit_step_output` MCP tool with its response. Arborescent routes the submission to the Feedback panel for review. Only a workflow running an autonomous step applies its submission directly — your own sends always land in the panel, even when the target sits under an autonomous step.
+**Terminal mode**: Instructions tell the AI to call the `submit_step_output` MCP tool with its response. Arborescent shows the submission inline on the reviewed branch for you to accept or reject. Only a workflow running an autonomous step applies its submission directly — your own sends always surface for review, even when the target sits under an autonomous step.
 
 **Browser mode**: Instructions tell the AI to format its response as markdown in a code block. Copy the AI's response to your clipboard. Arborescent watches the clipboard and displays the result when it detects a compatible format.
 
@@ -78,7 +78,7 @@ Three panels support your workflow:
 
 - **Terminal** (`` Ctrl+` ``): Integrated terminal for AI tools like Claude Code
 - **Browser** (`Ctrl+B`): Built-in browser for web-based AI tools
-- **Feedback** (`Ctrl+Shift+F`): Shows AI responses during Collaborate sessions
+- **Feedback** (`Ctrl+Shift+F`): Shows decomposition reviews — single-branch reviews appear inline on the branch instead
 
 Each open file has its own panel state — open a terminal in one file, switch to another, and each remembers its own panel, browser tabs, and terminals independently. Zoom tabs share their parent file's panels.
 

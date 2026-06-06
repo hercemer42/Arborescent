@@ -759,8 +759,18 @@ export function createSendActions(
         await feedbackStore.getState().actions.loadFromPath(tempFilePath);
         feedbackTreeStore.setFilePath(currentFilePath, tempFilePath);
 
-        set({ collaboratingNodeId: nodeId });
-        usePanelStore.getState().showFeedbackForFile(currentFilePath);
+        // Re-derive the decomposition flag the same way the live send paths do — it is a
+        // transient store field, so on reload finishAccept would otherwise treat a restored
+        // multi-root decomposition as single-root and drop the extra roots.
+        set({
+          collaboratingNodeId: nodeId,
+          decomposition: isDecompositionEnabled(nodeId, get().nodes, get().ancestorRegistry),
+        });
+        const restoredState = feedbackStore.getState();
+        const restoredRootIds = restoredState.nodes?.[restoredState.rootNodeId]?.children ?? [];
+        if (restoredRootIds.length > 1) {
+          usePanelStore.getState().showFeedbackForFile(currentFilePath);
+        }
         // Clipboard monitor is managed by useFeedbackClipboard based on collaboratingNodeId state
 
         logger.info(`Restored collaboration state for node: ${nodeId}`, 'SendActions');
@@ -809,7 +819,12 @@ export function createSendActions(
         priorNodes: nodes,
         decomposition,
       });
-      usePanelStore.getState().showFeedbackForFile(currentFilePath);
+
+      // Single-root proposals are reviewed inline on the node; only multi-root
+      // (decomposition) output still surfaces in the side panel.
+      if (parsedContent.rootNodeIds.length > 1) {
+        usePanelStore.getState().showFeedbackForFile(currentFilePath);
+      }
 
       // Stop clipboard monitor - we have content now
       await window.electron.stopClipboardMonitor();

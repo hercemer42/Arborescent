@@ -12,6 +12,9 @@ import { useNodeToggle } from './hooks/useNodeToggle';
 import { useAppliedContext } from './hooks/useAppliedContexts';
 import { useNodeVisibleChildren } from '../Tree/hooks/useVisibleChildren';
 import { useHiddenSearchMatches } from './hooks/useHiddenSearchMatches';
+import { useReviewProposition } from './hooks/useReviewProposition';
+import { ReviewControlBar } from './ReviewControlBar';
+import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
 import './TreeNode.css';
 
 interface TreeNodeProps {
@@ -63,6 +66,9 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const visibleChildren = useNodeVisibleChildren(node);
   const hasChildren = visibleChildren.length > 0;
 
+  const reviewPropositionStore = useReviewProposition(nodeId);
+  const isUnderReview = reviewPropositionStore !== null;
+
   const { flashIntensity, isDeleting, nodeRef, onAnimationEnd } = useNodeEffects(nodeId);
   const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
   const { handleMouseDown, handleMouseMove, handleClick, wrappedListeners } = useNodeMouse(nodeId, listeners);
@@ -70,6 +76,21 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
 
   if (!node) {
     return null;
+  }
+
+  // Under review, the whole reviewed subtree is shown from the proposition store: the
+  // root renders with its own change-kind highlight (a modified reviewed node shows blue,
+  // editable, like any other change) rather than the live node. The gold "under review"
+  // affordance moves to the control bar above it.
+  if (isUnderReview && reviewPropositionStore) {
+    return (
+      <>
+        <ReviewControlBar />
+        <TreeStoreContext.Provider value={reviewPropositionStore}>
+          <PropositionRoot depth={depth} />
+        </TreeStoreContext.Provider>
+      </>
+    );
   }
 
   const feedbackChangeKindClass = computeFeedbackChangeKindClass(node);
@@ -130,3 +151,16 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     </>
   );
 });
+
+// Rendered inside the proposition store's context, so useStore here reads the feedback
+// tree. Renders the proposition's root (which maps to the reviewed node) and, through the
+// shared TreeNode recursion, its whole subtree — each node styled by its own change-kind
+// metadata (added / modified / removed placeholders).
+function PropositionRoot({ depth }: { depth: number }) {
+  const hiddenRootId = useStore((state) => state.rootNodeId);
+  const propositionRootId = useStore((state) => state.nodes[hiddenRootId]?.children?.[0]);
+
+  if (!propositionRootId) return null;
+
+  return <TreeNode nodeId={propositionRootId} depth={depth} />;
+}

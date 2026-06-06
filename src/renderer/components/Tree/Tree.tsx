@@ -1,11 +1,13 @@
-import { memo } from 'react';
+import { memo, useRef, useSyncExternalStore } from 'react';
 import { DndContext, DragOverlay, pointerWithin, Modifier } from '@dnd-kit/core';
 import { TreeNode } from '../TreeNode';
 import { useStore } from '../../store/tree/useStore';
+import { feedbackTreeStore } from '../../store/feedback/feedbackTreeStore';
 import { useTree } from './hooks/useTree';
 import { useTreeDragDrop } from './hooks/useTreeDragDrop';
 import { useTreeClick } from './hooks/useTreeClick';
 import { useVisibleChildren } from './hooks/useVisibleChildren';
+import { useScrollAnchor } from './hooks/useScrollAnchor';
 import './Tree.css';
 
 // Offset the drag ghost up by 6px so it doesn't obscure the drop indicator line
@@ -32,6 +34,14 @@ export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
   const { handleTreeClick } = useTreeClick();
   const visibleChildren = useVisibleChildren(displayChildren);
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const feedbackRevision = useSyncExternalStore(
+    feedbackTreeStore.subscribeToVersion.bind(feedbackTreeStore),
+    feedbackTreeStore.getVersion.bind(feedbackTreeStore),
+    () => 0,
+  );
+  useScrollAnchor(scrollContainerRef, feedbackRevision);
+
   if (!displayRootId || !displayChildren) {
     return null;
   }
@@ -43,7 +53,7 @@ export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div className={`tree ${blueprintModeEnabled ? 'blueprint-mode' : ''}`} onClick={handleTreeClick}>
+      <div ref={scrollContainerRef} className={`tree ${blueprintModeEnabled ? 'blueprint-mode' : ''}`} onClick={handleTreeClick}>
         {visibleChildren.map((childId) => (
           <TreeNode key={childId} nodeId={childId} depth={0} />
         ))}
