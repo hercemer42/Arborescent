@@ -72,7 +72,7 @@ export async function handleProposalRequest(
     });
     const result = await store
       .getState()
-      .actions.processIncomingFeedbackContent(request.request.content, 'mcp-proposal', true);
+      .actions.processIncomingFeedbackContent(request.request.content, 'mcp-proposal');
     if (!result.success) {
       restorePriorState();
       const reasonSuffix = result.reason ? ` — ${result.reason}` : '';

@@ -32,10 +32,10 @@ import {
   initializeFeedbackStore,
   extractFeedbackContent,
   cleanupFeedback,
-  findCollaboratingNode,
   ParsedFeedbackContent,
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
+import { capturePendingProposal, setPendingProposal, dropPendingProposal as dropPendingProposalFromMap } from '../pendingProposals/pendingProposals';
 import { reconcileFeedback } from '../../feedback/reconcileFeedback';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
 import { classifyTerminalSend } from '../../../utils/codeNode';
@@ -63,7 +63,7 @@ const DEFAULT_REVISE_CONTEXT = `Revise the following specification based on our 
 
 const AUTONOMOUS_INLINE_CHECKS_CLAUSE = '- If you need to run checks (build, tests, lint, type-check) or other long-running commands, run them inline in this terminal session.\n- Do not background them with `&` or watch them via poll loops — Arborescent advances the workflow when this terminal returns to the prompt.';
 
-export type ContentSource = 'clipboard' | 'file' | 'restore' | 'mcp-proposal';
+export type ContentSource = 'clipboard' | 'file' | 'mcp-proposal';
 
 const HEADING_PERSISTENCE_RULES = `- Only heading lines persist between steps; non-heading lines are discarded by the parser.
 - To preserve a value (text, URL, etc.) into later steps, capture it as its own heading line — as a child node, never as a paragraph beneath a heading.
@@ -383,7 +383,7 @@ export interface SendActions {
   collaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
   autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string, bindingSource?: AutonomousSendSource) => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
-  processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
+  processIncomingFeedbackContent: (content: string, source: ContentSource) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
   finishAccept: () => Promise<void>;
 }
@@ -422,20 +422,42 @@ export function createSendActions(
   executeCommand: (command: Command) => void,
   getAllStores?: () => { getState: () => { collaboratingNodeId: string | null; collaborationSource: string | null; currentFilePath: string | null } }[],
 ): SendActions {
-  function setFeedbackTempFile(nodeId: string, tempFilePath: string | undefined): void {
-    const nodes = get().nodes;
-    const node = nodes[nodeId];
-    if (!node) return;
+  // The editable proposition lives in the per-file feedback store; persist it into the
+  // .arbo-native pendingProposals map (no temp files) and re-capture on every edit so an
+  // edited proposition survives a restart.
+  const propositionEditUnsubscribers = new Map<string, () => void>();
 
-    set({
-      nodes: {
-        ...nodes,
-        [nodeId]: {
-          ...node,
-          metadata: { ...node.metadata, feedbackTempFile: tempFilePath },
-        },
-      },
+  function capturePropositionToPendingProposals(reviewedNodeId: string, filePath: string): void {
+    const feedbackStore = feedbackTreeStore.getStoreForFile(filePath);
+    if (!feedbackStore) return;
+    const { nodes: feedbackNodes, rootNodeId: feedbackRootId } = feedbackStore.getState();
+    if (!feedbackNodes[feedbackRootId]) return;
+    const entry = capturePendingProposal(reviewedNodeId, feedbackRootId, feedbackNodes);
+    set({ pendingProposals: setPendingProposal(get().pendingProposals ?? {}, entry) });
+    autoSave();
+  }
+
+  function dropPendingProposalEntry(reviewedNodeId: string): void {
+    set({ pendingProposals: dropPendingProposalFromMap(get().pendingProposals ?? {}, reviewedNodeId) });
+  }
+
+  function watchPropositionEdits(reviewedNodeId: string, filePath: string): void {
+    stopWatchingPropositionEdits(reviewedNodeId);
+    const feedbackStore = feedbackTreeStore.getStoreForFile(filePath);
+    if (!feedbackStore) return;
+    let lastNodes = feedbackStore.getState().nodes;
+    const unsubscribe = feedbackStore.subscribe(() => {
+      const { nodes } = feedbackStore.getState();
+      if (nodes === lastNodes) return;
+      lastNodes = nodes;
+      capturePropositionToPendingProposals(reviewedNodeId, filePath);
     });
+    propositionEditUnsubscribers.set(reviewedNodeId, unsubscribe);
+  }
+
+  function stopWatchingPropositionEdits(reviewedNodeId: string): void {
+    propositionEditUnsubscribers.get(reviewedNodeId)?.();
+    propositionEditUnsubscribers.delete(reviewedNodeId);
   }
 
   function showCollaborationInProgressError(): void {
@@ -724,59 +746,52 @@ export function createSendActions(
         return;
       }
 
-      const collaboratingNode = findCollaboratingNode(nodes);
-      if (!collaboratingNode) {
+      const proposals = Object.values(get().pendingProposals ?? {});
+      if (proposals.length === 0) {
         logger.info('No collaboration state to restore', 'SendActions');
         return;
       }
 
-      const [nodeId, node] = collaboratingNode;
-      const tempFilePath = node.metadata.feedbackTempFile as string;
-
-      // Check if temp file still exists before trying to load
-      const tempFileContent = await window.electron.readTempFile(tempFilePath);
-      if (!tempFileContent) {
-        // Temp file was cleaned up or never existed - clear stale metadata
-        logger.info(`Clearing stale feedback metadata (temp file not found): ${tempFilePath}`, 'SendActions');
-        setFeedbackTempFile(nodeId, undefined);
+      // Under the single-collaboration guard there is normally one entry; prefer the one whose
+      // reviewed node still exists so a stale orphan can never strand a live proposition.
+      const entry = proposals.find((candidate) => nodes[candidate.reviewedNodeId]);
+      if (!entry) {
+        // Every pending proposition points at a node that no longer exists — drop them all so
+        // the file opens clean.
+        proposals.forEach((orphan) => dropPendingProposalEntry(orphan.reviewedNodeId));
         autoSave();
+        logger.info('Cleared pending propositions for missing reviewed nodes', 'SendActions');
         return;
       }
+      if (proposals.length > 1) {
+        logger.warn(`Multiple pending propositions on load; restoring the one for live node ${entry.reviewedNodeId}`, 'SendActions');
+      }
+
+      const reviewedNodeId = entry.reviewedNodeId;
 
       try {
-        // Load feedback store from temp file
-        let feedbackStore = feedbackTreeStore.getStoreForFile(currentFilePath);
-        if (!feedbackStore) {
-          feedbackTreeStore.initialize(currentFilePath, {}, '');
-          feedbackStore = feedbackTreeStore.getStoreForFile(currentFilePath)!;
-        }
-        await feedbackStore.getState().actions.loadFromPath(tempFilePath);
-        feedbackTreeStore.setFilePath(currentFilePath, tempFilePath);
+        // Hydrate the editable feedback working store from the persisted pendingProposals snapshot.
+        feedbackTreeStore.initialize(currentFilePath, entry.nodes, entry.rootNodeId);
 
         // Re-derive the decomposition flag the same way the live send paths do — it is a
         // transient store field, so on reload finishAccept would otherwise treat a restored
         // multi-root decomposition as single-root and drop the extra roots.
         set({
-          collaboratingNodeId: nodeId,
-          decomposition: isDecompositionEnabled(nodeId, get().nodes, get().ancestorRegistry),
+          collaboratingNodeId: reviewedNodeId,
+          decomposition: isDecompositionEnabled(reviewedNodeId, nodes, get().ancestorRegistry),
         });
-        // The restored proposition (single-root or decomposition) is reviewed inline.
-        // Clipboard monitor is managed by useFeedbackClipboard based on collaboratingNodeId state
+        watchPropositionEdits(reviewedNodeId, currentFilePath);
 
-        logger.info(`Restored collaboration state for node: ${nodeId}`, 'SendActions');
+        logger.info(`Restored collaboration state for node: ${reviewedNodeId}`, 'SendActions');
         useToastStore.getState().addToast('Collaboration restored - Continue your previous session', 'info');
       } catch (error) {
-        // File exists but couldn't be loaded (corrupted?)
         logger.error('Failed to restore collaboration state', error as Error, 'SendActions');
-        setFeedbackTempFile(nodeId, undefined);
-        autoSave();
       }
     },
 
     processIncomingFeedbackContent: async (
       content: string,
       source: ContentSource,
-      skipSave: boolean = false
     ): Promise<ProcessFeedbackContentResult> => {
       const { collaboratingNodeId, currentFilePath, blueprintModeEnabled, nodes, ancestorRegistry } = get();
 
@@ -816,29 +831,18 @@ export function createSendActions(
       // Stop clipboard monitor - we have content now
       await window.electron.stopClipboardMonitor();
 
-      // Persist if not restoring
-      if (!skipSave) {
-        try {
-          // Create temp file and save feedback store
-          const tempFilePath = await window.electron.createTempFile(`feedback-${collaboratingNodeId}.arbo`, '');
-          feedbackTreeStore.setFilePath(currentFilePath, tempFilePath);
-          const feedbackStore = feedbackTreeStore.getStoreForFile(currentFilePath);
-          if (feedbackStore) {
-            await feedbackStore.getState().actions.saveToPath(tempFilePath);
-          }
-          setFeedbackTempFile(collaboratingNodeId, tempFilePath);
-          autoSave();
-        } catch (error) {
-          logger.error('Failed to save feedback content to temp file', error as Error, 'SendActions');
-        }
-      }
+      // Persist the proposition into the .arbo-native pendingProposals map (no temp file), then
+      // re-capture on every edit so an edited proposition survives a restart. This runs for
+      // clipboard and MCP/checkpoint proposals alike — both are reviewed inline and must survive reload.
+      capturePropositionToPendingProposals(collaboratingNodeId, currentFilePath);
+      watchPropositionEdits(collaboratingNodeId, currentFilePath);
 
       return { success: true, nodeCount: parsedContent.nodeCount };
     },
 
     finishCancel: async () => {
       try {
-        const { collaboratingNodeId, currentFilePath, nodes, collaboratingTerminalId, workflowSessionMap } = get();
+        const { collaboratingNodeId, currentFilePath, collaboratingTerminalId, workflowSessionMap } = get();
         if (!collaboratingNodeId || !currentFilePath) {
           logger.warn('No collaboration in progress to cancel', 'SendActions');
           return;
@@ -846,17 +850,12 @@ export function createSendActions(
 
         notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
 
-        const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;
+        stopWatchingPropositionEdits(collaboratingNodeId);
+        dropPendingProposalEntry(collaboratingNodeId);
+        set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
+        autoSave();
 
-        if (tempFilePath) {
-          setFeedbackTempFile(collaboratingNodeId, undefined);
-          set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
-          autoSave();
-        } else {
-          set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
-        }
-
-        await cleanupFeedback(currentFilePath, tempFilePath);
+        await cleanupFeedback(currentFilePath);
         window.dispatchEvent(new Event('collaboration-canceled'));
         logger.info('Collaboration cancelled', 'SendActions');
       } catch (error) {
@@ -866,13 +865,17 @@ export function createSendActions(
 
     finishAccept: async () => {
       try {
-        const { collaboratingNodeId, currentFilePath, nodes, collaboratingTerminalId, workflowSessionMap } = get();
+        const { collaboratingNodeId, currentFilePath, collaboratingTerminalId, workflowSessionMap } = get();
         if (!collaboratingNodeId || !currentFilePath) {
           logger.error('No collaboration in progress to accept', new Error('No active collaboration'), 'SendActions');
           return;
         }
 
         const feedbackContent = extractFeedbackContent(currentFilePath);
+        // A nullish extract (an empty or transient proposition) intentionally leaves the review
+        // OPEN: it does not resolve the collaboration or clear the MCP route, and the pending
+        // proposition + edit watch stay live so the user can keep editing or cancel. The review
+        // persists/restores like any other open review. See sendActionsManualCollabResolve.test.
         if (!feedbackContent) return;
 
         logger.info(`Accepting feedback with ${Object.keys(feedbackContent.nodes).length} nodes`, 'SendActions');
@@ -893,7 +896,10 @@ export function createSendActions(
             { persistent: true, actions: [{ label: 'OK', onClick: () => {} }] }
           );
           set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
-          await cleanupFeedback(currentFilePath, currentNodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined);
+          stopWatchingPropositionEdits(collaboratingNodeId);
+          dropPendingProposalEntry(collaboratingNodeId);
+          autoSave();
+          await cleanupFeedback(currentFilePath);
           return;
         }
 
@@ -912,8 +918,9 @@ export function createSendActions(
           new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig, precomputedIdMap)
         );
 
-        const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;
-        await cleanupFeedback(currentFilePath, tempFilePath);
+        stopWatchingPropositionEdits(collaboratingNodeId);
+        dropPendingProposalEntry(collaboratingNodeId);
+        await cleanupFeedback(currentFilePath);
 
         window.dispatchEvent(new Event('collaboration-accepted'));
         logger.info('Feedback accepted and node replaced', 'SendActions');

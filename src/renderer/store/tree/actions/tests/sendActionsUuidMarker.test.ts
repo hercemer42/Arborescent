@@ -15,11 +15,6 @@ vi.mock('../../../../services/logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
 
-vi.mock('../../../../services/feedback/feedbackTempFileService', () => ({
-  createFeedbackTempFile: vi.fn(() => Promise.resolve('/tmp/feedback-test.md')),
-  cleanupFeedbackTempFile: vi.fn(),
-}));
-
 const NODE_ROOT = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const NODE_CHILD = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
 const CONTEXT_NODE_ID = 'cccccccc-cccc-cccc-cccc-cccccccccc03';

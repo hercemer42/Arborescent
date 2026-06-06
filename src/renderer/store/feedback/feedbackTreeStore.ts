@@ -37,13 +37,6 @@ class FeedbackTreeStoreManager {
     return this.version;
   }
 
-  setFilePath(filePath: string, tempFilePath: string): void {
-    const store = this.stores.get(filePath);
-    if (store) {
-      store.getState().actions.setFilePath(tempFilePath);
-    }
-  }
-
   getStoreForFile(filePath: string): TreeStore | null {
     return this.stores.get(filePath) || null;
   }

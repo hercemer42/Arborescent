@@ -303,12 +303,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService, get
     if (!hasActiveCollaborationSession(filePath)) return true;
     const confirmed = await storage.showActiveSessionDialog(getDisplayName(filePath, false));
     if (!confirmed) return false;
-    const store = getStoreAccess().getStoreForFile(filePath);
-    const { collaboratingNodeId, nodes } = store.getState();
-    const tempFilePath = collaboratingNodeId
-      ? nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined
-      : undefined;
-    await cleanupFeedback(filePath, tempFilePath);
+    await cleanupFeedback(filePath);
     return true;
   }
 

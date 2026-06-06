@@ -3,7 +3,6 @@ import {
   parseFeedbackContent,
   parseFeedbackContentWithReason,
   initializeFeedbackStore,
-  findCollaboratingNode,
   extractFeedbackContent,
 } from '../feedbackService';
 import { TreeNode } from '../../../../shared/types';
@@ -533,28 +532,6 @@ describe('feedbackService', () => {
       const passedNodes = callArgs[1] as Record<string, TreeNode>;
       const hasPlaceholder = Object.keys(passedNodes).some((id) => id.startsWith('feedback-removed-'));
       expect(hasPlaceholder).toBe(false);
-    });
-  });
-
-  describe('findCollaboratingNode', () => {
-    it('should return null when no nodes have feedbackTempFile', () => {
-      const nodes: Record<string, TreeNode> = {
-        'node1': { id: 'node1', content: 'Test', children: [], metadata: {} },
-        'node2': { id: 'node2', content: 'Test 2', children: [], metadata: {} },
-      };
-
-      const result = findCollaboratingNode(nodes);
-      expect(result).toBeNull();
-    });
-
-    it('should return node with feedbackTempFile metadata', () => {
-      const nodes: Record<string, TreeNode> = {
-        'node1': { id: 'node1', content: 'Test', children: [], metadata: {} },
-        'node2': { id: 'node2', content: 'Test 2', children: [], metadata: { feedbackTempFile: '/tmp/feedback.arbo' } },
-      };
-
-      const result = findCollaboratingNode(nodes);
-      expect(result).toEqual(['node2', nodes['node2']]);
     });
   });
 

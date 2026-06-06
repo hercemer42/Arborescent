@@ -23,7 +23,6 @@ const mockParseFeedbackContentWithReason = vi.fn();
 const mockInitializeFeedbackStore = vi.fn();
 const mockExtractFeedbackContent = vi.fn();
 const mockCleanupFeedback = vi.fn().mockResolvedValue(undefined);
-const mockFindCollaboratingNode = vi.fn();
 
 vi.mock('../../../../services/feedback/feedbackService', () => ({
   parseFeedbackContent: (...args: unknown[]) => mockParseFeedbackContent(...args),
@@ -31,19 +30,16 @@ vi.mock('../../../../services/feedback/feedbackService', () => ({
   initializeFeedbackStore: (...args: unknown[]) => mockInitializeFeedbackStore(...args),
   extractFeedbackContent: (...args: unknown[]) => mockExtractFeedbackContent(...args),
   cleanupFeedback: (...args: unknown[]) => mockCleanupFeedback(...args),
-  findCollaboratingNode: (...args: unknown[]) => mockFindCollaboratingNode(...args),
 }));
 
 // Mock feedbackTreeStore
 const mockFeedbackTreeStoreGetStoreForFile = vi.fn();
 const mockFeedbackTreeStoreInitialize = vi.fn();
-const mockFeedbackTreeStoreSetFilePath = vi.fn();
 
 vi.mock('../../../feedback/feedbackTreeStore', () => ({
   feedbackTreeStore: {
     getStoreForFile: (...args: unknown[]) => mockFeedbackTreeStoreGetStoreForFile(...args),
     initialize: (...args: unknown[]) => mockFeedbackTreeStoreInitialize(...args),
-    setFilePath: (...args: unknown[]) => mockFeedbackTreeStoreSetFilePath(...args),
     clearFile: vi.fn(),
   },
 }));
@@ -60,6 +56,7 @@ describe('sendActions', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockFeedbackTreeStoreGetStoreForFile.mockReset();
 
     // Mock clipboard API
     mockClipboardWriteText = vi.fn().mockResolvedValue(undefined);
@@ -1380,7 +1377,6 @@ describe('sendActions', () => {
       it('should cleanup collaboration state and metadata', async () => {
         mockState.currentFilePath = '/test/file.arbo';
         mockState.collaboratingNodeId = 'child1';
-        mockState.nodes.child1.metadata.feedbackTempFile = '/tmp/feedback.arbo';
 
         await actions.finishCancel();
 
@@ -1416,44 +1412,35 @@ describe('sendActions', () => {
         await actions.finishAccept();
 
         // Should cleanup the collaboration
-        expect(mockCleanupFeedback).toHaveBeenCalledWith('/test/file.arbo', undefined);
+        expect(mockCleanupFeedback).toHaveBeenCalledWith('/test/file.arbo');
       });
     });
 
     describe('restoreCollaborationState', () => {
-      it('should NOT restore when findCollaboratingNode returns null', async () => {
+      it('does not restore when there is no pending proposition', async () => {
         mockState.currentFilePath = '/test/file.arbo';
-        mockFindCollaboratingNode.mockReturnValue(null);
+        mockState.pendingProposals = {};
 
         await actions.restoreCollaborationState();
 
-        expect(mockSet).not.toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
-        // Clipboard monitor is managed by useFeedbackClipboard, not sendActions
+        expect(logger.info).toHaveBeenCalledWith('No collaboration state to restore', 'SendActions');
+        expect(mockSet).not.toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: expect.anything() }));
       });
 
-      it('should restore collaboratingNodeId and content when temp file exists', async () => {
+      it('restores collaboratingNodeId and hydrates the feedback store from pendingProposals', async () => {
         mockState.currentFilePath = '/test/file.arbo';
-        const nodeWithCollaboration = { ...mockState.nodes.child1, metadata: { ...mockState.nodes.child1.metadata, feedbackTempFile: '/tmp/feedback.arbo' } };
-        mockFindCollaboratingNode.mockReturnValue(['child1', nodeWithCollaboration]);
+        const entryNodes = {
+          'feedback-root': { id: 'feedback-root', content: '', children: ['prop-root'], metadata: {} },
+          'prop-root': { id: 'prop-root', content: 'Child 1', children: [], metadata: {} },
+        };
+        mockState.pendingProposals = {
+          child1: { id: 'pp-1', capturedAt: 't', reviewedNodeId: 'child1', rootNodeId: 'feedback-root', nodes: entryNodes },
+        };
 
-        // Mock temp file exists
-        (window.electron.readTempFile as ReturnType<typeof vi.fn>).mockResolvedValue('file content');
-
-        const mockLoadFromPath = vi.fn().mockResolvedValue(undefined);
-        mockFeedbackTreeStoreGetStoreForFile.mockReturnValue({
-          getState: () => ({
-            actions: { loadFromPath: mockLoadFromPath },
-            nodes: {
-              'feedback-root': { id: 'feedback-root', content: '', children: ['prop-root'], metadata: {} },
-              'prop-root': { id: 'prop-root', content: 'Child 1', children: [], metadata: {} },
-            },
-            rootNodeId: 'feedback-root',
-          }),
-        });
         await actions.restoreCollaborationState();
 
         expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
-        expect(mockLoadFromPath).toHaveBeenCalledWith('/tmp/feedback.arbo');
+        expect(mockFeedbackTreeStoreInitialize).toHaveBeenCalledWith('/test/file.arbo', entryNodes, 'feedback-root');
       });
 
       it('restores the decomposition flag so a reloaded decomposition accepts as multi-root', async () => {
@@ -1465,20 +1452,16 @@ describe('sendActions', () => {
         mockState.ancestorRegistry.step = ['wf'];
         mockState.ancestorRegistry.child1 = ['wf', 'step'];
 
-        const nodeWithCollaboration = { ...mockState.nodes.child1, metadata: { ...mockState.nodes.child1.metadata, feedbackTempFile: '/tmp/feedback.arbo' } };
-        mockFindCollaboratingNode.mockReturnValue(['child1', nodeWithCollaboration]);
-        (window.electron.readTempFile as ReturnType<typeof vi.fn>).mockResolvedValue('file content');
-        mockFeedbackTreeStoreGetStoreForFile.mockReturnValue({
-          getState: () => ({
-            actions: { loadFromPath: vi.fn().mockResolvedValue(undefined) },
+        mockState.pendingProposals = {
+          child1: {
+            id: 'pp-2', capturedAt: 't', reviewedNodeId: 'child1', rootNodeId: 'feedback-root',
             nodes: {
               'feedback-root': { id: 'feedback-root', content: '', children: ['r1', 'r2'], metadata: {} },
               r1: { id: 'r1', content: '', children: [], metadata: {} },
               r2: { id: 'r2', content: '', children: [], metadata: {} },
             },
-            rootNodeId: 'feedback-root',
-          }),
-        });
+          },
+        };
         await actions.restoreCollaborationState();
 
         expect(mockSet).toHaveBeenCalledWith(
@@ -1486,18 +1469,36 @@ describe('sendActions', () => {
         );
       });
 
-      it('should not restore if no node has feedbackTempFile metadata', async () => {
+      it('prefers the entry whose reviewed node still exists and warns when more than one is pending', async () => {
         mockState.currentFilePath = '/test/file.arbo';
-        mockFindCollaboratingNode.mockReturnValue(null);
+        const liveNodes = {
+          'fb-live': { id: 'fb-live', content: '', children: ['p'], metadata: {} },
+          p: { id: 'p', content: 'Child 1', children: [], metadata: {} },
+        };
+        mockState.pendingProposals = {
+          ghost: { id: 'pp-ghost', capturedAt: 't', reviewedNodeId: 'ghost', rootNodeId: 'fb-ghost', nodes: { 'fb-ghost': { id: 'fb-ghost', content: '', children: [], metadata: {} } } },
+          child1: { id: 'pp-live', capturedAt: 't', reviewedNodeId: 'child1', rootNodeId: 'fb-live', nodes: liveNodes },
+        };
 
         await actions.restoreCollaborationState();
 
-        expect(mockSet).not.toHaveBeenCalledWith(
-          expect.objectContaining({ collaboratingNodeId: expect.anything() })
-        );
+        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
+        expect(mockFeedbackTreeStoreInitialize).toHaveBeenCalledWith('/test/file.arbo', liveNodes, 'fb-live');
+        expect(logger.warn).toHaveBeenCalledWith(expect.stringContaining('Multiple pending propositions'), 'SendActions');
       });
 
-      // Clipboard monitor is now managed by useFeedbackClipboard hook, not sendActions
+      it('drops the orphaned proposition and does not restore when its reviewed node is gone', async () => {
+        mockState.currentFilePath = '/test/file.arbo';
+        mockState.pendingProposals = {
+          ghost: { id: 'pp-g', capturedAt: 't', reviewedNodeId: 'ghost', rootNodeId: 'r', nodes: { r: { id: 'r', content: '', children: [], metadata: {} } } },
+        };
+
+        await actions.restoreCollaborationState();
+
+        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ pendingProposals: {} }));
+        expect(mockSet).not.toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: expect.anything() }));
+        expect(logger.info).toHaveBeenCalledWith('Cleared pending propositions for missing reviewed nodes', 'SendActions');
+      });
 
       it('should skip restore if currentFilePath is null', async () => {
         mockState.currentFilePath = null;
@@ -1509,6 +1510,121 @@ describe('sendActions', () => {
           'SendActions'
         );
       });
+    });
+
+    // PR4 migrates the proposition store from per-file feedbackTreeStore + temp files to the
+    // .arbo-native pendingProposals map. These pin the migration's observable outcome (temp
+    // files retired) at the window.electron boundary; the exact per-node store API is an
+    // implement-time design, so the positive-capture/hydration behaviours stay title-only.
+    describe('pendingProposals persistence migration (PR4)', () => {
+      beforeEach(() => {
+        mockState.currentFilePath = '/test/file.arbo';
+        mockState.collaboratingNodeId = 'child1';
+      });
+
+      it('does not write a feedback temp file on ingest — the proposition persists via the .arbo pendingProposals map', async () => {
+        mockParseFeedbackContentWithReason.mockReturnValue({
+          ok: true,
+          content: {
+            nodes: { 'feedback-root': { id: 'feedback-root', content: 'Task', children: [], metadata: {} } },
+            rootNodeId: 'feedback-root',
+            rootNodeIds: ['feedback-root'],
+            nodeCount: 1,
+          },
+        });
+
+        await actions.processIncomingFeedbackContent('# [ ] Task', 'clipboard');
+
+        expect(window.electron.createTempFile).not.toHaveBeenCalled();
+      });
+
+      it('hydrates a restored proposition from pendingProposals without reading any feedback temp file', async () => {
+        const entryNodes = {
+          'feedback-root': { id: 'feedback-root', content: '', children: ['prop-root'], metadata: {} },
+          'prop-root': { id: 'prop-root', content: 'Child 1', children: [], metadata: {} },
+        };
+        mockState.pendingProposals = {
+          child1: { id: 'pp-legacy', capturedAt: 't', reviewedNodeId: 'child1', rootNodeId: 'feedback-root', nodes: entryNodes },
+        };
+
+        await actions.restoreCollaborationState();
+
+        expect(mockFeedbackTreeStoreInitialize).toHaveBeenCalledWith('/test/file.arbo', entryNodes, 'feedback-root');
+        expect(window.electron.readTempFile).not.toHaveBeenCalled();
+      });
+
+      it('captures the proposition into pendingProposals keyed by the reviewed node id on ingest', async () => {
+        mockFeedbackTreeStoreGetStoreForFile.mockReturnValue({
+          getState: () => ({
+            nodes: {
+              'feedback-root': { id: 'feedback-root', content: '', children: ['p'], metadata: {} },
+              p: { id: 'p', content: 'Task', children: [], metadata: {} },
+            },
+            rootNodeId: 'feedback-root',
+          }),
+          subscribe: () => () => {},
+        });
+        mockParseFeedbackContentWithReason.mockReturnValue({
+          ok: true,
+          content: { nodes: { 'feedback-root': { id: 'feedback-root', content: 'Task', children: [], metadata: {} } }, rootNodeId: 'feedback-root', rootNodeIds: ['feedback-root'], nodeCount: 1 },
+        });
+
+        await actions.processIncomingFeedbackContent('# [ ] Task', 'clipboard');
+
+        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({
+          pendingProposals: expect.objectContaining({ child1: expect.objectContaining({ reviewedNodeId: 'child1' }) }),
+        }));
+      });
+
+      it('re-captures the proposition into pendingProposals when the feedback store changes, so an edited proposition survives restart', async () => {
+        const feedbackState = {
+          nodes: {
+            'feedback-root': { id: 'feedback-root', content: '', children: ['p'], metadata: {} },
+            p: { id: 'p', content: 'original', children: [], metadata: {} },
+          } as Record<string, TreeNode>,
+          rootNodeId: 'feedback-root',
+        };
+        let editListener: (() => void) | undefined;
+        mockFeedbackTreeStoreGetStoreForFile.mockReturnValue({
+          getState: () => feedbackState,
+          subscribe: (listener: () => void) => { editListener = listener; return () => {}; },
+        });
+        mockParseFeedbackContentWithReason.mockReturnValue({
+          ok: true,
+          content: { nodes: { 'feedback-root': { id: 'feedback-root', content: 'x', children: [], metadata: {} } }, rootNodeId: 'feedback-root', rootNodeIds: ['feedback-root'], nodeCount: 1 },
+        });
+
+        await actions.processIncomingFeedbackContent('# [ ] x', 'clipboard');
+        feedbackState.nodes = { ...feedbackState.nodes, p: { id: 'p', content: 'EDITED', children: [], metadata: {} } };
+        editListener?.();
+
+        const latestProposals = mockSet.mock.calls
+          .map((call) => call[0])
+          .reverse()
+          .find((arg): arg is Partial<TreeState> => !!arg && typeof arg === 'object' && 'pendingProposals' in arg)?.pendingProposals;
+        const entry = latestProposals?.child1;
+        const editedNode = Object.values(entry?.nodes ?? {}).find((node) => node.content === 'EDITED');
+        expect(editedNode).toBeTruthy();
+      });
+
+      it('drops the pendingProposals entry for the reviewed node on accept', async () => {
+        mockState.pendingProposals = { child1: { id: 'pp', capturedAt: 't', reviewedNodeId: 'child1', rootNodeId: 'r', nodes: { r: { id: 'r', content: '', children: [], metadata: {} } } } };
+        mockExtractFeedbackContent.mockReturnValue({ rootNodeId: 'new-c', rootNodeIds: ['new-c'], nodes: { 'new-c': { id: 'new-c', content: 'X', children: [], metadata: {} } } });
+
+        await actions.finishAccept();
+
+        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ pendingProposals: {} }));
+      });
+
+      it('drops the pendingProposals entry for the reviewed node on cancel', async () => {
+        mockState.pendingProposals = { child1: { id: 'pp', capturedAt: 't', reviewedNodeId: 'child1', rootNodeId: 'r', nodes: { r: { id: 'r', content: '', children: [], metadata: {} } } } };
+
+        await actions.finishCancel();
+
+        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ pendingProposals: {} }));
+      });
+
+      it.todo('keys propositions per reviewed node so one file can hold more than one (the PR5 concurrency enabler)');
     });
 
     describe('processIncomingFeedbackContent blueprint mode', () => {

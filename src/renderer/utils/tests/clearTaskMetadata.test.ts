@@ -18,11 +18,6 @@ describe('clearTaskMetadata', () => {
       expect(result.resolvedAt).toBeUndefined();
     });
 
-    it('removes feedbackTempFile', () => {
-      const result = clearTaskMetadata({ feedbackTempFile: '/tmp/feedback-foo.arbo' });
-      expect(result.feedbackTempFile).toBeUndefined();
-    });
-
     it('removes appliedContextId', () => {
       const result = clearTaskMetadata({ appliedContextId: 'ctx-123' });
       expect(result.appliedContextId).toBeUndefined();
@@ -42,7 +37,6 @@ describe('clearTaskMetadata', () => {
       const before: NodeMetadata = {
         status: 'completed',
         resolvedAt: '2026-04-19T10:00:00Z',
-        feedbackTempFile: '/tmp/foo.arbo',
         appliedContextId: 'ctx-1',
         appliedContextIds: ['ctx-1'],
         activeContextId: 'ctx-1',
@@ -52,7 +46,6 @@ describe('clearTaskMetadata', () => {
 
       expect(result.status).toBeUndefined();
       expect(result.resolvedAt).toBeUndefined();
-      expect(result.feedbackTempFile).toBeUndefined();
       expect(result.appliedContextId).toBeUndefined();
       expect(result.appliedContextIds).toBeUndefined();
       expect(result.activeContextId).toBeUndefined();

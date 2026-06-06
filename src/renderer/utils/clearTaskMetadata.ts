@@ -3,7 +3,6 @@ import type { NodeMetadata, TreeNode } from '@shared/types';
 const TASK_FIELDS: (keyof NodeMetadata)[] = [
   'status',
   'resolvedAt',
-  'feedbackTempFile',
   'appliedContextId',
   'appliedContextIds',
   'activeContextId',

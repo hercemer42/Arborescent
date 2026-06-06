@@ -11,7 +11,7 @@ const FILE_A = '/test/a.arbo';
 const NODE = 'node-1';
 const SESSION = 'sess-1';
 
-let processedContent: { content: string; source: string; skipSave: boolean } | null;
+let processedContent: { content: string; source: string } | null;
 let processResult: { success: boolean; reason?: string };
 let collaboratingNodeId: string | null;
 let collaborationSource: string | null;
@@ -21,8 +21,8 @@ const mockStore = {
     collaboratingNodeId,
     collaborationSource,
     actions: {
-      processIncomingFeedbackContent: vi.fn(async (content: string, source: string, skipSave: boolean) => {
-        processedContent = { content, source, skipSave };
+      processIncomingFeedbackContent: vi.fn(async (content: string, source: string) => {
+        processedContent = { content, source };
         return processResult;
       }),
     },
@@ -67,7 +67,6 @@ describe('handleProposalRequest', () => {
     expect(processedContent).toEqual({
       content: 'AI response',
       source: 'mcp-proposal',
-      skipSave: true,
     });
   });
 

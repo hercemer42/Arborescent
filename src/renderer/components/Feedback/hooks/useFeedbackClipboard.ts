@@ -24,14 +24,14 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
     () => activeFilePath ? feedbackTreeStore.hasFeedback(activeFilePath) : false,
   );
 
-  const handleClipboardFeedback = useCallback(async (content: string, source: ContentSource, skipSave: boolean = false) => {
+  const handleClipboardFeedback = useCallback(async (content: string, source: ContentSource) => {
     const entry = findActiveCollaboratingEntry();
     if (!entry) return;
 
     const ownerFilePath = entry.filePath;
     const isOwnerActive = ownerFilePath === resolveToSourceFilePath(activeFilePath);
 
-    await entry.store.getState().actions.processIncomingFeedbackContent(content, source, skipSave);
+    await entry.store.getState().actions.processIncomingFeedbackContent(content, source);
 
     if (!isOwnerActive) {
       useToastStore.getState().addToast(

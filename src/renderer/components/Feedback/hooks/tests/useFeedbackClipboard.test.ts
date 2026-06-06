@@ -77,6 +77,6 @@ describe('useFeedbackClipboard', () => {
     detected!('# [ ] proposed change');
     await Promise.resolve();
 
-    expect(processIncomingFeedbackContent).toHaveBeenCalledWith('# [ ] proposed change', 'clipboard', false);
+    expect(processIncomingFeedbackContent).toHaveBeenCalledWith('# [ ] proposed change', 'clipboard');
   });
 });

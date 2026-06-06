@@ -66,7 +66,6 @@ export interface NodeMetadata {
   externalUrl?: string;
 
   // Feedback / collaboration
-  feedbackTempFile?: string;
   feedbackBaselineKind?: 'unchanged' | 'modified' | 'added' | 'removed';
   feedbackPriorContent?: string;
 

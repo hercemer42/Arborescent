@@ -447,7 +447,7 @@ describe('fileActions', () => {
           collaboratingNodeId: 'node-1',
           nodes: {
             'node-1': {
-              id: 'node-1', content: '', children: [], metadata: { feedbackTempFile: '/tmp/feedback.arbo' },
+              id: 'node-1', content: '', children: [], metadata: {},
             },
           },
           workflowExecutionStates: {},
@@ -458,7 +458,7 @@ describe('fileActions', () => {
 
       await actions.closeFile('/test/file.arbo');
 
-      expect(vi.mocked(cleanupFeedback)).toHaveBeenCalledWith('/test/file.arbo', '/tmp/feedback.arbo');
+      expect(vi.mocked(cleanupFeedback)).toHaveBeenCalledWith('/test/file.arbo');
     });
 
     it('should not show active session dialog when no session is active', async () => {

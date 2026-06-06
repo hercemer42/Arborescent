@@ -3,7 +3,6 @@ import { parseMarkdown } from '../../utils/markdown';
 import { wrapNodesWithHiddenRoot } from '../../utils/nodeHelpers';
 import { feedbackTreeStore } from '../../store/feedback/feedbackTreeStore';
 import { reconcileFeedback } from '../../store/feedback/reconcileFeedback';
-import { deleteFeedbackTempFile } from './feedbackTempFileService';
 import { logger } from '../logger';
 
 export interface ParsedFeedbackContent {
@@ -227,19 +226,7 @@ export async function stopFeedbackMonitors(): Promise<void> {
   await window.electron.stopClipboardMonitor();
 }
 
-export async function cleanupFeedback(filePath: string, tempFilePath?: string): Promise<void> {
+export async function cleanupFeedback(filePath: string): Promise<void> {
   await stopFeedbackMonitors();
-  if (tempFilePath) {
-    await deleteFeedbackTempFile(tempFilePath);
-  }
   feedbackTreeStore.clearFile(filePath);
-}
-
-export function findCollaboratingNode(
-  nodes: Record<string, TreeNode>
-): [string, TreeNode] | null {
-  const entry = Object.entries(nodes).find(
-    ([, node]) => node.metadata.feedbackTempFile
-  );
-  return entry || null;
 }

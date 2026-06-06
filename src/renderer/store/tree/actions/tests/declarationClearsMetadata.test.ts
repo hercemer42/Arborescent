@@ -6,7 +6,7 @@ import type { TreeNode } from '@shared/types';
 
 // These tests pin the desired behavior:
 // declaring a node as a blueprint, context, or workflow strips its
-// task-state metadata (status, resolvedAt, feedbackTempFile, applied
+// task-state metadata (status, resolvedAt, applied
 // context fields) on the directly-declared node only — never on
 // descendants. Undo restores everything.
 
@@ -54,7 +54,6 @@ function makeBaseState(): TestState {
         metadata: {
           status: 'completed',
           resolvedAt: '2026-04-19T10:00:00Z',
-          feedbackTempFile: '/tmp/feedback-target.arbo',
           appliedContextId: 'some-ctx',
           appliedContextIds: ['some-ctx'],
           activeContextId: 'some-ctx',
@@ -126,7 +125,6 @@ describe('declaring a node clears its task metadata', () => {
         metadata: {
           status: 'completed',
           resolvedAt: '2026-04-19T10:00:00Z',
-          feedbackTempFile: '/tmp/feedback-sibling.arbo',
           appliedContextId: 'some-ctx',
           expanded: true,
         },
@@ -135,14 +133,13 @@ describe('declaring a node clears its task metadata', () => {
       actions = createBlueprintActions(() => state as any, setState as any, vi.fn(), executeCommand);
     });
 
-    it('clears status, resolvedAt, feedbackTempFile, appliedContextId on the directly-declared node', () => {
+    it('clears status, resolvedAt, appliedContextId on the directly-declared node', () => {
       actions.addToBlueprint('sibling');
 
       const meta = state.nodes.sibling.metadata;
       expect(meta.isBlueprint).toBe(true);
       expect(meta.status).toBeUndefined();
       expect(meta.resolvedAt).toBeUndefined();
-      expect(meta.feedbackTempFile).toBeUndefined();
       expect(meta.appliedContextId).toBeUndefined();
     });
 
@@ -209,14 +206,13 @@ describe('declaring a node clears its task metadata', () => {
       actions = createContextActions(() => state as any, setState as any, vi.fn(), executeCommand);
     });
 
-    it('clears status, resolvedAt, feedbackTempFile, appliedContextId on the target', () => {
+    it('clears status, resolvedAt, appliedContextId on the target', () => {
       actions.declareAsContext('target');
 
       const meta = state.nodes.target.metadata;
       expect(meta.isContextDeclaration).toBe(true);
       expect(meta.status).toBeUndefined();
       expect(meta.resolvedAt).toBeUndefined();
-      expect(meta.feedbackTempFile).toBeUndefined();
       expect(meta.appliedContextId).toBeUndefined();
       expect(meta.appliedContextIds).toBeUndefined();
       expect(meta.activeContextId).toBeUndefined();
@@ -259,14 +255,13 @@ describe('declaring a node clears its task metadata', () => {
       actions = createWorkflowActions(() => state as any, setState as any, vi.fn(), executeCommand);
     });
 
-    it('clears status, resolvedAt, feedbackTempFile, appliedContextId on the workflow root', () => {
+    it('clears status, resolvedAt, appliedContextId on the workflow root', () => {
       actions.declareAsWorkflow('target');
 
       const meta = state.nodes.target.metadata;
       expect(meta.isWorkflow).toBe(true);
       expect(meta.status).toBeUndefined();
       expect(meta.resolvedAt).toBeUndefined();
-      expect(meta.feedbackTempFile).toBeUndefined();
       expect(meta.appliedContextId).toBeUndefined();
     });
 
