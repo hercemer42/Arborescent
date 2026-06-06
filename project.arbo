@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-05T23:31:50.969Z'
+updated: '2026-06-06T11:25:34.287Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -72958,26 +72958,13 @@ nodes:
       - b861c616-e8ec-4cda-9244-bbc9f2e404e4
       - adc61d96-f9a2-4994-b641-7a93956e0d30
     metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
       isContextDeclaration: true
       blueprintIcon: GitMerge
       blueprintColor: '#ef4444'
-      isBlueprint: true
-      expanded: false
-      collaborate: false
-      execute: false
-  5c79a251-defe-4ef2-a9ce-30e2d89a8f35:
-    id: 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
-    content: Squash commits if there are more than one
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  b861c616-e8ec-4cda-9244-bbc9f2e404e4:
-    id: b861c616-e8ec-4cda-9244-bbc9f2e404e4
-    content: Delete the worktree and delete the local branch
-    children: []
-    metadata:
-      status: pending
       isBlueprint: true
   b050f7d8-a00a-4ff8-b137-2fd5ce499a2f:
     id: b050f7d8-a00a-4ff8-b137-2fd5ce499a2f
@@ -82151,13 +82138,6 @@ nodes:
       isBlueprint: true
       stepType: autonomous
       appliedContextId: 03a24994-0c6d-4b4a-b9ee-fa96d2de8d03
-  adc61d96-f9a2-4994-b641-7a93956e0d30:
-    id: adc61d96-f9a2-4994-b641-7a93956e0d30
-    content: Push to remote
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   fa6810f8-84ab-4ff7-9812-f89af7076a0a:
     id: fa6810f8-84ab-4ff7-9812-f89af7076a0a
     content: Fix issue with prompt endpoint not working
@@ -83337,145 +83317,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8d114679-c6a8-4aca-9870-23c63bd9af94:
-    id: 8d114679-c6a8-4aca-9870-23c63bd9af94
-    content: 'In the worktree :'
-    children:
-      - cddd46a1-3283-4d1b-bff5-7e6cc59e37cb
-      - 036fd6f9-4292-47b4-9748-45f93fbc94d9
-      - 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
-      - e644f5eb-0f5d-471d-b23f-3ab955f156b4
-      - 65081cc7-b677-4683-85a9-e18df2a1b320
-      - f7be1672-ae6d-4261-843f-2c0a5e2657b9
-      - 9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb
-    metadata:
-      status: pending
-      isBlueprint: true
-  32d421cf-2ef2-4593-a8c4-c4d38b3fa3f0:
-    id: 32d421cf-2ef2-4593-a8c4-c4d38b3fa3f0
-    content: 'In master :'
-    children:
-      - f60024dc-902b-4143-b957-8ea813fd6002
-    metadata:
-      status: pending
-      isBlueprint: true
-  f60024dc-902b-4143-b957-8ea813fd6002:
-    id: f60024dc-902b-4143-b957-8ea813fd6002
-    content: Commit project.arbo if there are changes
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  e644f5eb-0f5d-471d-b23f-3ab955f156b4:
-    id: e644f5eb-0f5d-471d-b23f-3ab955f156b4
-    content: Rebase against master and resolve any conflicts
-    children:
-      - 34cff953-6f57-4930-9159-aa5357fe823c
-      - 6b847f97-0ed8-40f1-95d9-133b096b6c94
-      - 10319edf-a0e0-40b8-b760-8203e0d0c9f3
-      - 065e547b-7269-47d4-ab6f-8b61f70fc757
-    metadata:
-      status: pending
-      isBlueprint: true
-      expanded: false
-  65081cc7-b677-4683-85a9-e18df2a1b320:
-    id: 65081cc7-b677-4683-85a9-e18df2a1b320
-    content: Then merge the worktree to master
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  036fd6f9-4292-47b4-9748-45f93fbc94d9:
-    id: 036fd6f9-4292-47b4-9748-45f93fbc94d9
-    content: Commit the work in progress
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  cddd46a1-3283-4d1b-bff5-7e6cc59e37cb:
-    id: cddd46a1-3283-4d1b-bff5-7e6cc59e37cb
-    content: If there are no changes, skip
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  6b847f97-0ed8-40f1-95d9-133b096b6c94:
-    id: 6b847f97-0ed8-40f1-95d9-133b096b6c94
-    content: If the conflict is mechanical, just silently fix
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  10319edf-a0e0-40b8-b760-8203e0d0c9f3:
-    id: 10319edf-a0e0-40b8-b760-8203e0d0c9f3
-    content: 'If fixing the conflict involves functional changes :'
-    children:
-      - b10e83ec-1c21-4124-bf23-a5e8a9e78a79
-      - c92acd1b-ce7c-482f-a0c0-31ead6eaff70
-    metadata:
-      status: pending
-      isBlueprint: true
-  b10e83ec-1c21-4124-bf23-a5e8a9e78a79:
-    id: b10e83ec-1c21-4124-bf23-a5e8a9e78a79
-    content: If it is clear from the given spec what to do, just silently fix
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  c92acd1b-ce7c-482f-a0c0-31ead6eaff70:
-    id: c92acd1b-ce7c-482f-a0c0-31ead6eaff70
-    content: If there is a functional change that is undocumented
-    children:
-      - cd3182ab-6252-4ab4-a066-9b3f9bd39e88
-      - 1e9783a6-6d82-457b-b210-788348f315b8
-    metadata:
-      status: pending
-      isBlueprint: true
-  cd3182ab-6252-4ab4-a066-9b3f9bd39e88:
-    id: cd3182ab-6252-4ab4-a066-9b3f9bd39e88
-    content: If there is a logical solution, just silently fix
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  1e9783a6-6d82-457b-b210-788348f315b8:
-    id: 1e9783a6-6d82-457b-b210-788348f315b8
-    content: If you are unsure of a desirable outcome, pause the workflow and prompt the user
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  e12553d6-0fab-4693-976d-ec3c857a3648:
-    id: e12553d6-0fab-4693-976d-ec3c857a3648
-    content: Consider this a direct instruction from the user
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  34cff953-6f57-4930-9159-aa5357fe823c:
-    id: 34cff953-6f57-4930-9159-aa5357fe823c
-    content: If master is not ahead, you can skip this
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  065e547b-7269-47d4-ab6f-8b61f70fc757:
-    id: 065e547b-7269-47d4-ab6f-8b61f70fc757
-    content: If you have rebased, rerun the standard checks
-    children:
-      - bc44744a-0134-43b3-94e2-4c811a1956a9
-    metadata:
-      status: pending
-      isBlueprint: true
-  bc44744a-0134-43b3-94e2-4c811a1956a9:
-    id: bc44744a-0134-43b3-94e2-4c811a1956a9
-    content: Standard checks
-    children: []
-    metadata:
-      status: pending
-      isHyperlink: true
-      linkedNodeId: 6ab534a2-2956-454c-9c6a-e459314e0b5c
-      isBlueprint: true
   0b325532-61be-48ea-b9c0-6223bfca0846:
     id: 0b325532-61be-48ea-b9c0-6223bfca0846
     content: User story creation
@@ -83623,7 +83464,6 @@ nodes:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
     children:
-      - c08eaeed-de53-41cc-8961-04fa0fe3245a
       - 05769bde-b9e1-4871-8651-79a4bc24e8be
       - 8f8805a8-7899-4488-ae93-dc05c46aa803
     metadata:
@@ -115467,6 +115307,8 @@ nodes:
       - decc40e9-c4b2-4e54-8b03-3f5e203ec0fa
       - 1a845a42-fe0f-4820-a479-f43f1d81253e
       - 993479cb-62d6-4482-9c73-873976a9eaf9
+      - 4c6dd14c-4d60-4581-b17a-25ec5c1e890e
+      - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
     metadata:
       status: pending
       isBlueprint: true
@@ -124573,8 +124415,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 3e48eeeb-38b6-4154-8a57-ec0bbe812ab0
-      - 4c6dd14c-4d60-4581-b17a-25ec5c1e890e
+      - c08eaeed-de53-41cc-8961-04fa0fe3245a
     metadata:
       status: pending
       isBlueprint: true
@@ -195981,28 +195822,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  f7be1672-ae6d-4261-843f-2c0a5e2657b9:
-    id: f7be1672-ae6d-4261-843f-2c0a5e2657b9
-    content: And push to remote
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb:
-    id: 9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb
-    content: No need to build/uninstall/reinstall or remind me
-    children:
-      - b09d055f-6f69-47a5-ba22-84fa8dbb560c
-    metadata:
-      status: pending
-      isBlueprint: true
-  b09d055f-6f69-47a5-ba22-84fa8dbb560c:
-    id: b09d055f-6f69-47a5-ba22-84fa8dbb560c
-    content: We don't do it everytime
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   b9098ccc-5e03-490e-aa11-4f05b297c4f3:
     id: b9098ccc-5e03-490e-aa11-4f05b297c4f3
     content: worktree
@@ -197439,7 +197258,6 @@ nodes:
       deleted: false
       plugins: {}
       groupId: 1027bd67-b77f-4e6a-ab26-39b689d126d0
-      sessionId: a3ac2ca0-274c-45f1-a222-6592c146d6f1
   997bd32a-88ae-4622-957b-f76213f303bf:
     id: 997bd32a-88ae-4622-957b-f76213f303bf
     content: Scope
@@ -198460,16 +198278,20 @@ nodes:
     id: c08eaeed-de53-41cc-8961-04fa0fe3245a
     content: PR2 - Review AI proposals inline — inline rendering, accept/cancel controls, route proposals inline
     children:
+      - 55f29660-0358-46f9-87d4-89bdb7086c9a
       - 11204281-ddf6-4f09-adbe-52f5e16128b0
       - b15db925-e939-4f8f-a90f-5a8052daae43
       - c2bb4e63-da97-40d8-ab78-ab4bdf20eb1f
       - 18ad1e31-7785-4b0d-8e32-4cda83a2003c
+      - 38b2dbc1-1423-4763-98f2-93d3a508b6e2
+      - ffeae256-28a7-49f6-b3e4-433fd9c01e79
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
       groupId: 1027bd67-b77f-4e6a-ab26-39b689d126d0
+      sessionId: a3ac2ca0-274c-45f1-a222-6592c146d6f1
   11204281-ddf6-4f09-adbe-52f5e16128b0:
     id: 11204281-ddf6-4f09-adbe-52f5e16128b0
     content: Scope
@@ -198500,7 +198322,7 @@ nodes:
     content: Compose the proposition in place of the reviewed node's original descendants at render time in Tree, and render removed nodes as strikethrough placeholders.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -198509,7 +198331,7 @@ nodes:
     content: Render an accept/cancel button bar in a row directly above the reviewed node (relocated from FeedbackTabBar); accept promotes and cancel drops via the PR1 actions; buttons only, no shortcuts.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -198518,7 +198340,7 @@ nodes:
     content: Make change-kind colors take CSS precedence over the collaborating background with a solid, non-stacked swap.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -198527,7 +198349,7 @@ nodes:
     content: Add scroll anchoring so length-changing or multi-node writes do not make the tree jump, without stealing focus.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -198536,7 +198358,7 @@ nodes:
     content: Lock a node in review against direct editing and apply the feedback panel's context-menu gating across the in-review subtree.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
@@ -198545,7 +198367,7 @@ nodes:
     content: Keep the existing single-collaboration guard (one review at a time) for now, and leave the feedback panel in place but no longer fed by proposals.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -198568,7 +198390,7 @@ nodes:
     content: A single review renders inline with added/modified/removed highlighting and an accept/cancel bar above the reviewed node, with no panel opening.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -198577,7 +198399,7 @@ nodes:
     content: Accept promotes the proposition onto the original's id and clears the highlighting; cancel drops it and leaves the untouched original; undo after accept restores the pre-accept subtree.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -198586,7 +198408,7 @@ nodes:
     content: Nodes the proposition removes show as strikethrough placeholders until resolve.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -198595,7 +198417,7 @@ nodes:
     content: Direct edits and invalid context-menu actions are blocked across the in-review subtree.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
@@ -198604,7 +198426,7 @@ nodes:
     content: The tree does not jump when a node's rendered height changes or several nodes are written.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -201229,9 +201051,16 @@ nodes:
   bf284020-c1df-4922-b89d-4f79977894b8:
     id: bf284020-c1df-4922-b89d-4f79977894b8
     content: First decomposed sibling doesn't advance after automated decomposition
-    children: []
+    children:
+      - c3b34349-651d-4a86-ada1-692470138703
+      - c1829cce-95fb-4b37-8031-255bb7b4dc38
+      - 9bf72f59-26dd-4bc2-ab59-9239d82b9747
+      - b70a2288-2e3f-489d-92d4-e1f0d2d36ab2
+      - b9d2ed5d-f409-41ba-a65d-67f7b5f90e38
+      - 26c912c2-d96c-4c73-82a6-6c5c5a27f6c2
     metadata:
       status: pending
+      sessionId: 4acd8b09-156d-41af-9446-ac0145c36602
   5f538b6f-e4cc-4bb9-8739-0759f72cc636:
     id: 5f538b6f-e4cc-4bb9-8739-0759f72cc636
     content: worktree
@@ -201275,6 +201104,402 @@ nodes:
       documentation: none added for PR1 — and why. PR1 is internal-only (pendingProposals data model + store actions + .arbo persistence), with no UI, no shortcuts, and no user-observable behavior change. Per the doc conventions (document what the user needs to use the tool, exclude implementation detail, don't add entries that aren't useful to users), there is nothing for a user to learn or do, so no docs/*.md and no CHANGELOG entry were added. The consequential, user-facing changelog + docs belong to the PR that ships the inline-review UX (PR2+), not to this foundation.
 
       Forward warning for the UX PRs (inconsistency to resolve when inline review ships): inline review REPLACES the feedback panel, so the PR that delivers it must (a) add the user-facing how-to docs, and (b) reconcile/replace existing feedback-panel material so it does not reference removed functionality — specifically docs/workflow.md (the "Feedback panel" review pipeline: Accept/Cancel, Ctrl+Z, change-kind highlighting, the Ctrl+Shift+F Feedback view) and docs/shortcuts.md if the Feedback view shortcut goes away, plus the CHANGELOG "Unreleased" entries "Feedback panel highlights changes" and "Pending proposals from Claude in the Feedback panel". Terminology to align then: existing docs say "Feedback panel"/"proposals"; this feature uses "inline review"/"proposition".
+    children: []
+    metadata:
+      status: pending
+  55f29660-0358-46f9-87d4-89bdb7086c9a:
+    id: 55f29660-0358-46f9-87d4-89bdb7086c9a
+    content: worktree
+    children:
+      - d3f98199-3e43-4c42-8419-988c832074d0
+    metadata:
+      status: pending
+  d3f98199-3e43-4c42-8419-988c832074d0:
+    id: d3f98199-3e43-4c42-8419-988c832074d0
+    content: vscode://file/Users/brianfox/dev/Arborescent-inline-review-pr2
+    children: []
+    metadata:
+      status: pending
+  e12553d6-0fab-4693-976d-ec3c857a3648:
+    id: e12553d6-0fab-4693-976d-ec3c857a3648
+    content: Consider this a direct instruction from the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  32d421cf-2ef2-4593-a8c4-c4d38b3fa3f0:
+    id: 32d421cf-2ef2-4593-a8c4-c4d38b3fa3f0
+    content: 'In master :'
+    children:
+      - f60024dc-902b-4143-b957-8ea813fd6002
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f60024dc-902b-4143-b957-8ea813fd6002:
+    id: f60024dc-902b-4143-b957-8ea813fd6002
+    content: Commit project.arbo if there are changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8d114679-c6a8-4aca-9870-23c63bd9af94:
+    id: 8d114679-c6a8-4aca-9870-23c63bd9af94
+    content: 'In the worktree :'
+    children:
+      - cddd46a1-3283-4d1b-bff5-7e6cc59e37cb
+      - 036fd6f9-4292-47b4-9748-45f93fbc94d9
+      - 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
+      - e644f5eb-0f5d-471d-b23f-3ab955f156b4
+      - 65081cc7-b677-4683-85a9-e18df2a1b320
+      - f7be1672-ae6d-4261-843f-2c0a5e2657b9
+      - 9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cddd46a1-3283-4d1b-bff5-7e6cc59e37cb:
+    id: cddd46a1-3283-4d1b-bff5-7e6cc59e37cb
+    content: If there are no changes, skip
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  036fd6f9-4292-47b4-9748-45f93fbc94d9:
+    id: 036fd6f9-4292-47b4-9748-45f93fbc94d9
+    content: Commit the work in progress
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5c79a251-defe-4ef2-a9ce-30e2d89a8f35:
+    id: 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
+    content: Squash commits if there are more than one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e644f5eb-0f5d-471d-b23f-3ab955f156b4:
+    id: e644f5eb-0f5d-471d-b23f-3ab955f156b4
+    content: Rebase against master and resolve any conflicts
+    children:
+      - f0f86cb8-09cc-4c65-8eac-ab8525c05e5f
+      - 1e4649c9-ebf4-4ac2-ab78-7cfff7a3cfe7
+      - 34cff953-6f57-4930-9159-aa5357fe823c
+      - 6b847f97-0ed8-40f1-95d9-133b096b6c94
+      - 10319edf-a0e0-40b8-b760-8203e0d0c9f3
+      - 065e547b-7269-47d4-ab6f-8b61f70fc757
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f0f86cb8-09cc-4c65-8eac-ab8525c05e5f:
+    id: f0f86cb8-09cc-4c65-8eac-ab8525c05e5f
+    content: First refresh your view of master — concurrent sessions may have advanced it since this worktree was created
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1e4649c9-ebf4-4ac2-ab78-7cfff7a3cfe7:
+    id: 1e4649c9-ebf4-4ac2-ab78-7cfff7a3cfe7
+    content: Rebase onto the current master tip, not the commit you branched from
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  34cff953-6f57-4930-9159-aa5357fe823c:
+    id: 34cff953-6f57-4930-9159-aa5357fe823c
+    content: If master is not ahead, you can skip this
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6b847f97-0ed8-40f1-95d9-133b096b6c94:
+    id: 6b847f97-0ed8-40f1-95d9-133b096b6c94
+    content: If the conflict is mechanical, just silently fix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  10319edf-a0e0-40b8-b760-8203e0d0c9f3:
+    id: 10319edf-a0e0-40b8-b760-8203e0d0c9f3
+    content: 'If fixing the conflict involves functional changes :'
+    children:
+      - b10e83ec-1c21-4124-bf23-a5e8a9e78a79
+      - c92acd1b-ce7c-482f-a0c0-31ead6eaff70
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b10e83ec-1c21-4124-bf23-a5e8a9e78a79:
+    id: b10e83ec-1c21-4124-bf23-a5e8a9e78a79
+    content: If it is clear from the given spec what to do, just silently fix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c92acd1b-ce7c-482f-a0c0-31ead6eaff70:
+    id: c92acd1b-ce7c-482f-a0c0-31ead6eaff70
+    content: If there is a functional change that is undocumented
+    children:
+      - cd3182ab-6252-4ab4-a066-9b3f9bd39e88
+      - 1e9783a6-6d82-457b-b210-788348f315b8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cd3182ab-6252-4ab4-a066-9b3f9bd39e88:
+    id: cd3182ab-6252-4ab4-a066-9b3f9bd39e88
+    content: If there is a logical solution, just silently fix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1e9783a6-6d82-457b-b210-788348f315b8:
+    id: 1e9783a6-6d82-457b-b210-788348f315b8
+    content: If you are unsure of a desirable outcome, pause the workflow and prompt the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  065e547b-7269-47d4-ab6f-8b61f70fc757:
+    id: 065e547b-7269-47d4-ab6f-8b61f70fc757
+    content: If you have rebased, rerun the standard checks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  65081cc7-b677-4683-85a9-e18df2a1b320:
+    id: 65081cc7-b677-4683-85a9-e18df2a1b320
+    content: Then merge the worktree to master
+    children:
+      - 95bc857a-8194-45c6-9d22-088b9b7ba160
+      - e350bcbd-56d9-4f5e-a0ac-1c1f8eb7fee7
+      - 3fe90baf-7f7a-4a65-a850-0fd18742b7e8
+      - 64781c28-1e31-4693-a4a0-c978850c21a5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  95bc857a-8194-45c6-9d22-088b9b7ba160:
+    id: 95bc857a-8194-45c6-9d22-088b9b7ba160
+    content: It must fast-forward — rebasing first is what makes that possible, so never force it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e350bcbd-56d9-4f5e-a0ac-1c1f8eb7fee7:
+    id: e350bcbd-56d9-4f5e-a0ac-1c1f8eb7fee7
+    content: Do not run a bare merge --ff-only without having just rebased; it is rejected the moment another session has advanced master
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3fe90baf-7f7a-4a65-a850-0fd18742b7e8:
+    id: 3fe90baf-7f7a-4a65-a850-0fd18742b7e8
+    content: If the fast-forward is rejected, master moved again during your checks — re-rebase onto the new master and retry
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  64781c28-1e31-4693-a4a0-c978850c21a5:
+    id: 64781c28-1e31-4693-a4a0-c978850c21a5
+    content: Confirm the commit is actually on master before continuing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f7be1672-ae6d-4261-843f-2c0a5e2657b9:
+    id: f7be1672-ae6d-4261-843f-2c0a5e2657b9
+    content: And push to remote
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb:
+    id: 9ef2e24e-76c2-40b6-a00d-7f9eb9b8bdbb
+    content: No need to build/uninstall/reinstall or remind me
+    children:
+      - b09d055f-6f69-47a5-ba22-84fa8dbb560c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b09d055f-6f69-47a5-ba22-84fa8dbb560c:
+    id: b09d055f-6f69-47a5-ba22-84fa8dbb560c
+    content: We don't do it everytime
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b861c616-e8ec-4cda-9244-bbc9f2e404e4:
+    id: b861c616-e8ec-4cda-9244-bbc9f2e404e4
+    content: Delete the worktree and delete the local branch
+    children:
+      - 09eac55c-ec09-4ac9-b4e8-51ea1cc4fa96
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  09eac55c-ec09-4ac9-b4e8-51ea1cc4fa96:
+    id: 09eac55c-ec09-4ac9-b4e8-51ea1cc4fa96
+    content: Only once the merge is confirmed on master — if branch -d refuses because the branch is unmerged, the merge never landed; stop and complete it first
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  adc61d96-f9a2-4994-b641-7a93956e0d30:
+    id: adc61d96-f9a2-4994-b641-7a93956e0d30
+    content: Push to remote
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c3b34349-651d-4a86-ada1-692470138703:
+    id: c3b34349-651d-4a86-ada1-692470138703
+    content: When there are decomposed steps
+    children: []
+    metadata:
+      status: pending
+  c1829cce-95fb-4b37-8031-255bb7b4dc38:
+    id: c1829cce-95fb-4b37-8031-255bb7b4dc38
+    content: And the first one passes the recurse step
+    children: []
+    metadata:
+      status: pending
+  9bf72f59-26dd-4bc2-ab59-9239d82b9747:
+    id: 9bf72f59-26dd-4bc2-ab59-9239d82b9747
+    content: Then the second one does get pushed into the next step after decomposition
+    children: []
+    metadata:
+      status: pending
+  b70a2288-2e3f-489d-92d4-e1f0d2d36ab2:
+    id: b70a2288-2e3f-489d-92d4-e1f0d2d36ab2
+    content: But its prompt is never sent
+    children: []
+    metadata:
+      status: pending
+  b9d2ed5d-f409-41ba-a65d-67f7b5f90e38:
+    id: b9d2ed5d-f409-41ba-a65d-67f7b5f90e38
+    content: And the play button doesn't appear on it
+    children: []
+    metadata:
+      status: pending
+  26c912c2-d96c-4c73-82a6-6c5c5a27f6c2:
+    id: 26c912c2-d96c-4c73-82a6-6c5c5a27f6c2
+    content: "It's possible I\_"
+    children: []
+    metadata:
+      status: pending
+  38b2dbc1-1423-4763-98f2-93d3a508b6e2:
+    id: 38b2dbc1-1423-4763-98f2-93d3a508b6e2
+    content: |-
+      PR2 implementation notes — decisions, deferrals, review outcome
+
+      DESIGN (user-approved this session): inline review = render the existing editable feedbackTreeStore proposition INLINE under the reviewed node via a nested TreeStoreContext (ISO with the feedback panel), with a relocated accept/cancel bar. The whole reviewed subtree (root + descendants) renders from the proposition store, so a modified reviewed node shows blue/editable like any other change; the gold "under review" affordance moved to the control bar. Accept/cancel reuse the existing finishAccept/finishCancel (reconcile + AcceptFeedbackCommand, undoable) driven from the inline bar. Single-root reviews suppress the side panel; multi-root decomposition still uses the panel.
+
+      DEFERRED (Scope item "route ingest into pendingProposals" left pending): chose option A — the proposition stays in the editable feedbackTreeStore and persists via its existing temp file (as today). PR1's .arbo-native pendingProposals is NOT wired in PR2; the temp-file→pendingProposals migration is a focused follow-up (entangles a cross-store mirror + restore rewrite, its own risk surface). Known wrinkle to fold into that follow-up: feedbackTempFile metadata is written to the saved .arbo, so committing mid-review leaves a dangling temp-path pointer on the reviewed node; a teammate opening it sees the original tree and the stale pointer is silently cleared on open. Pre-existing (the panel already does this), ISO, harmless — but the migration should strip feedbackTempFile on save or replace it with pendingProposals.
+
+      DROPPED by design (marked abandoned): the edit-lock and the in-review context-menu gating. Per the user's decision, the proposition is editable inline (ISO with the panel) and the original isn't shown so can't be edited — no lock needed; and no special context-menu gating (ISO). The "direct edits blocked" testable item is abandoned for the same reason.
+
+      ADVERSARIAL REVIEW (run this session): 4 findings confirmed, all resolved. (1) major data-loss — decomposition flag not restored on reload, so a restored multi-root decomposition accepted as single-root and dropped extra roots; fixed by re-deriving the flag in restoreCollaborationState via isDecompositionEnabled + regression test (pre-existing latent bug, fixed since it sat in the lines I edited). (2) major — modified reviewed-root was invisible/silently applied; closed by the gold-on-bar rework above. (3) minor — added restore-path panel-suppression tests. (4) nit — completed the restore test mock + defensive nodes?. guard.
+
+      VERIFICATION: type-check clean, lint clean, 1888 tests pass across TreeNode/Tree/Feedback/Panel/NodeContent/store-tree-actions, 0 fail. New tests: reviewControlBar (4), inlineProposalReview (single+multi root, change-kind classes, 1 scroll todo), sendActions panel-suppression + restore (5). No commit (merge step handles it).
+    children: []
+    metadata:
+      status: pending
+  ffeae256-28a7-49f6-b3e4-433fd9c01e79:
+    id: ffeae256-28a7-49f6-b3e4-433fd9c01e79
+    content: |-
+      Documentation (PR2) — done, with a transitional-state warning
+
+      PR2 is the first user-visible slice, so docs were updated to match shipped behavior (single-root AI reviews now appear inline on the branch, not in the panel):
+      - docs/workflow.md — review-flow section: revised to lead with inline review (proposed subtree shown in place + Accept/Cancel bar above the branch, change-kind highlighting, editable before accept); the "How it works / Terminal mode" line; the Panels "Feedback" bullet. Decomposition still uses the panel (noted).
+      - docs/workflows.md — Checkpoint step: "feedback panel opens" → result opens inline (single-root) or in the panel (decomposition), since checkpoint submissions flow through the same suppression path.
+      - docs/contexts.md — Collaborate state: response appears inline, not in the panel.
+      - CHANGELOG.md (Unreleased → Features): added "Review AI revisions inline on the branch".
+      - Left accurate as-is: shortcuts.md Ctrl+Shift+F (panel still exists), workflows.md autonomous-decomposition line (no panel).
+
+      WARNING — transitional state, deliberately documented lightly: PR2 leaves a hybrid UX (single-root reviews inline; decomposition + the Ctrl+Shift+F panel still present). The docs reflect this honestly but carry "decomposition still uses the panel" caveats in three places (workflow.md review section, workflow.md Feedback bullet, workflows.md Checkpoint). PR3 retires the feedback panel — at that point those caveats should be removed and the review docs simplified to "always inline", and the CHANGELOG entry's "Decomposition still uses the Feedback panel for now" clause dropped. I did NOT write a standalone inline-review doc page yet, because the coherent end-state UX (no panel, concurrent reviews) isn't reached until PR3/PR4; a dedicated page belongs there to avoid documenting then rewriting the hybrid. No commit (merge step handles it).
     children: []
     metadata:
       status: pending
@@ -201386,4 +201611,6 @@ sessionRegistry:
   e0b10a3f-d566-4ccb-9381-d31bbd2c9adf:
     cwd: /Users/brianfox/dev/Arborescent
   a3ac2ca0-274c-45f1-a222-6592c146d6f1:
+    cwd: /Users/brianfox/dev/Arborescent
+  4acd8b09-156d-41af-9446-ac0145c36602:
     cwd: /Users/brianfox/dev/Arborescent
