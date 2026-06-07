@@ -728,8 +728,11 @@ export function createSendActions(
       const preState = get();
       const previouslyBoundNodeId = findBoundNodeForTerminal(terminalId, preState.terminalNodeAssignments);
       if (previouslyBoundNodeId && previouslyBoundNodeId !== nodeId) {
+        // Confirming the preflight dialog is itself the rebind authorization, so the
+        // replayed send dispatches as an already-confirmed hand-off; this lets the
+        // post-send register-binding flip silently rather than raising a second dialog.
         queuePreflightRebind(terminalId, previouslyBoundNodeId, nodeId, async () => {
-          await runAutonomousCollaborateInTerminal(nodeId, terminalId, flags, overrideContextId, bindingSource);
+          await runAutonomousCollaborateInTerminal(nodeId, terminalId, flags, overrideContextId, 'workflow-advance');
         });
         logger.info(
           `Preflight rebind queued (autonomous): terminal ${terminalId} bound to ${previouslyBoundNodeId}, awaiting confirmation to send ${nodeId}`,

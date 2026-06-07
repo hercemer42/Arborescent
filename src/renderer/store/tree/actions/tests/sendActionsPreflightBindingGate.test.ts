@@ -6,6 +6,7 @@ import { executeInTerminal } from '../../../../services/terminalExecution';
 import { useToastStore } from '../../../toast/toastStore';
 import { usePendingRebindDialogStore } from '../../../pendingRebindDialogStore';
 import { useRebindPreflightStore } from '../../../rebindPreflightStore';
+import { extractArborescentMarkers } from '../../../../../shared/utils/arborescentMarker';
 
 vi.mock('../../../../services/logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
@@ -210,6 +211,42 @@ describe('sendActions — preflight rebind gate: do not paste before confirmatio
 
     expect(executeMock).toHaveBeenCalledTimes(1);
     expect(state.terminalNodeAssignments[TERMINAL_ID]).toBe(OTHER_NODE_ID);
+  });
+
+  it('confirmed preflight replay re-sends with bindingSource "workflow-advance" so the post-send register-binding is silently flipped (no second dialog)', async () => {
+    state.terminalNodeAssignments = { [TERMINAL_ID]: OTHER_NODE_ID };
+
+    // 'workflow-start' is the source the post-send silent-flip guard does NOT
+    // auto-confirm, so it is the case the preflight replay must upgrade.
+    await actions.autonomousCollaborateInTerminal(NODE_ID, TERMINAL_ID, undefined, undefined, 'workflow-start');
+    expect(executeMock).not.toHaveBeenCalled();
+
+    const replay = useRebindPreflightStore.getState().current?.replay;
+    expect(replay).toBeDefined();
+    await replay?.();
+
+    expect(executeMock).toHaveBeenCalledTimes(1);
+    const sentPrompt = executeMock.mock.calls[0][1] as string;
+    const { bindingNodeUuid, bindingSource } = extractArborescentMarkers(sentPrompt);
+    expect(bindingNodeUuid).toBe(NODE_ID);
+    // Confirming the preflight dialog IS the user's authorization, so the
+    // deferred send must dispatch as an already-confirmed hand-off — mirroring
+    // workflowExecutionActions' commitWorkflowStartOnTerminal(rebindPreconfirmed=true).
+    expect(bindingSource).toBe('workflow-advance');
+  });
+
+  it('confirmed preflight replay marks the rebind preconfirmed even when the original send carried no bindingSource', async () => {
+    state.terminalNodeAssignments = { [TERMINAL_ID]: OTHER_NODE_ID };
+
+    await actions.autonomousCollaborateInTerminal(NODE_ID, TERMINAL_ID);
+    expect(executeMock).not.toHaveBeenCalled();
+
+    const replay = useRebindPreflightStore.getState().current?.replay;
+    await replay?.();
+
+    expect(executeMock).toHaveBeenCalledTimes(1);
+    const { bindingSource } = extractArborescentMarkers(executeMock.mock.calls[0][1] as string);
+    expect(bindingSource).toBe('workflow-advance');
   });
 
   it('while a preflight rebind is awaiting confirmation, a second autonomous send to the same terminal is blocked', async () => {
