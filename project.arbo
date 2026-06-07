@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-07T15:04:09.115Z'
+updated: '2026-06-07T18:50:54.205Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -72959,6 +72959,8 @@ nodes:
       blueprintIcon: GitMerge
       blueprintColor: '#ef4444'
       isBlueprint: true
+      collaborate: true
+      execute: false
   b050f7d8-a00a-4ff8-b137-2fd5ce499a2f:
     id: b050f7d8-a00a-4ff8-b137-2fd5ce499a2f
     content: Install locally
@@ -80741,6 +80743,7 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - 8a287c82-30a2-4bed-8580-c3f8f5caa46b
       - 45c6e476-2eb0-469f-81f5-9babf7519cb7
       - d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
       - b801f945-dbfa-4a78-bc1d-3cd9500c1a0d
@@ -115306,7 +115309,7 @@ nodes:
       status: pending
       isBlueprint: true
       stepType: manual
-      expanded: false
+      expanded: true
       recurse: true
   71826f5f-2c98-4f60-835b-e903cb3c0736:
     id: 71826f5f-2c98-4f60-835b-e903cb3c0736
@@ -124365,7 +124368,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - b38bf6fd-7287-4398-b35b-38075ae5f576
     metadata:
       status: pending
       isBlueprint: true
@@ -158647,7 +158651,9 @@ nodes:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
     children:
-      - b38bf6fd-7287-4398-b35b-38075ae5f576
+      - bcaad6d5-cec8-4e29-83df-19ab5ea18876
+      - ec90d67b-47d7-4b77-99a6-e665e1d85f2e
+      - 5f915b0a-c4f5-4d49-a7ad-f275c60880bc
     metadata:
       status: pending
       isBlueprint: true
@@ -181566,9 +181572,16 @@ nodes:
   45c6e476-2eb0-469f-81f5-9babf7519cb7:
     id: 45c6e476-2eb0-469f-81f5-9babf7519cb7
     content: Have an update/log area for workflow step transitions instead of spamming toasts
-    children: []
+    children:
+      - 0c45a6ce-3a01-4ab8-9c89-8ecc44db6809
+      - 448cacb1-4106-4137-a8b7-dde14709d45f
+      - b0d917a9-1423-4de4-9d85-2c384ef95931
     metadata:
       status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 1cff785c-7c41-48e9-9fc9-d827dcd40be2
   df7f6320-6e4f-4596-9da8-fcc78361db26:
     id: df7f6320-6e4f-4596-9da8-fcc78361db26
     content: worktree
@@ -197096,6 +197109,7 @@ nodes:
       deleted: false
       plugins: {}
       groupId: 1027bd67-b77f-4e6a-ab26-39b689d126d0
+      sessionId: a3ac2ca0-274c-45f1-a222-6592c146d6f1
   997bd32a-88ae-4622-957b-f76213f303bf:
     id: 997bd32a-88ae-4622-957b-f76213f303bf
     content: Scope
@@ -201152,36 +201166,24 @@ nodes:
     id: b38bf6fd-7287-4398-b35b-38075ae5f576
     content: I get the rebinding message twice when binding a new node to an existing session
     children:
-      - c0db3446-07ee-4988-9079-470856c98ec4
-      - 150e641b-989a-41f8-a27b-321116c09623
-      - 909aa26d-77c6-44be-8f04-f81fd3b5b61f
-      - 8305bcf6-32f6-4ce3-adfa-517098ff6c35
+      - c1cdb46d-6ca7-4c80-bacb-8d46ec80c43d
+      - 9f1e380d-6886-4a8c-b72c-c1dc65e7c972
+      - b8d7cac4-d18b-4c89-8953-657a0d1607f9
+      - 2b55781d-5f69-4d84-acef-68a08b3cfc8b
+      - 01898f84-4a7a-4673-831a-06951e966118
+      - e72d5949-10f2-424e-9adb-41eaf9ef0f65
+      - ec4f6d31-7d26-49b0-aa34-6e3e278b3522
+      - 17a97cb6-0ae5-4127-97eb-300d79facd41
+      - e8c246c6-9005-459f-8548-c91e42729feb
+      - fbfc1910-1d60-416d-bda0-6cedee3f5430
+      - e1ab62fa-0cdd-4b13-9c3a-7046c3f8fb27
+      - 6c326661-d714-40e2-8c25-3c0ed529bdb8
     metadata:
-      status: pending
-  c0db3446-07ee-4988-9079-470856c98ec4:
-    id: c0db3446-07ee-4988-9079-470856c98ec4
-    content: Once before the prompt sends
-    children: []
-    metadata:
-      status: pending
-  150e641b-989a-41f8-a27b-321116c09623:
-    id: 150e641b-989a-41f8-a27b-321116c09623
-    content: And once after it sends
-    children: []
-    metadata:
-      status: pending
-  909aa26d-77c6-44be-8f04-f81fd3b5b61f:
-    id: 909aa26d-77c6-44be-8f04-f81fd3b5b61f
-    content: Only need to do it before it sends
-    children: []
-    metadata:
-      status: pending
-  8305bcf6-32f6-4ce3-adfa-517098ff6c35:
-    id: 8305bcf6-32f6-4ce3-adfa-517098ff6c35
-    content: Do one more reproduction to be sure I have the right repro before sending
-    children: []
-    metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: bada5144-60c2-4a6f-9a3c-ecedc1238db1
   b801f945-dbfa-4a78-bc1d-3cd9500c1a0d:
     id: b801f945-dbfa-4a78-bc1d-3cd9500c1a0d
     content: Make applied context icons clickable
@@ -203767,7 +203769,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-      sessionId: a3ac2ca0-274c-45f1-a222-6592c146d6f1
   2eb448e5-9482-4fed-8db9-2611bc896584:
     id: 2eb448e5-9482-4fed-8db9-2611bc896584
     content: Context
@@ -204322,6 +204323,1211 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  5f915b0a-c4f5-4d49-a7ad-f275c60880bc:
+    id: 5f915b0a-c4f5-4d49-a7ad-f275c60880bc
+    content: If theres a feedback in progress
+    children:
+      - 164363b7-9646-4540-adff-9a5b74551205
+      - 4c564da1-7102-445f-814f-b8b2ac9bf562
+      - a85ea34a-a86f-4fbd-b600-cc86a5ef1561
+      - c7db17d4-f7b8-48f6-9d2d-d1afee871fdd
+      - eb9d15af-6290-43ad-aaec-2be7d8c70aab
+      - d95336ff-b486-4ecb-babc-8dbdc1a20b18
+    metadata:
+      status: pending
+      expanded: false
+  164363b7-9646-4540-adff-9a5b74551205:
+    id: 164363b7-9646-4540-adff-9a5b74551205
+    content: Only the "accept/cancel" bar is golden.
+    children: []
+    metadata:
+      status: pending
+  4c564da1-7102-445f-814f-b8b2ac9bf562:
+    id: 4c564da1-7102-445f-814f-b8b2ac9bf562
+    content: I would expect the rest of the non changed nodes to be also golden
+    children: []
+    metadata:
+      status: pending
+  a85ea34a-a86f-4fbd-b600-cc86a5ef1561:
+    id: a85ea34a-a86f-4fbd-b600-cc86a5ef1561
+    content: Changed in Blue
+    children: []
+    metadata:
+      status: pending
+  c7db17d4-f7b8-48f6-9d2d-d1afee871fdd:
+    id: c7db17d4-f7b8-48f6-9d2d-d1afee871fdd
+    content: New in Green
+    children: []
+    metadata:
+      status: pending
+  eb9d15af-6290-43ad-aaec-2be7d8c70aab:
+    id: eb9d15af-6290-43ad-aaec-2be7d8c70aab
+    content: Deleted with strikethrough
+    children: []
+    metadata:
+      status: pending
+  d95336ff-b486-4ecb-babc-8dbdc1a20b18:
+    id: d95336ff-b486-4ecb-babc-8dbdc1a20b18
+    content: |-
+      So existing behavior + everything not changed/new/removed in golden
+      Actually maybe deleted in golden background too
+    children:
+      - a06207b8-9fc5-41fa-9935-e1b2da54c26a
+    metadata:
+      status: pending
+  a06207b8-9fc5-41fa-9935-e1b2da54c26a:
+    id: a06207b8-9fc5-41fa-9935-e1b2da54c26a
+    content: Ill let you decide
+    children: []
+    metadata:
+      status: pending
+  ec90d67b-47d7-4b77-99a6-e665e1d85f2e:
+    id: ec90d67b-47d7-4b77-99a6-e665e1d85f2e
+    content: If Im focused in one node
+    children:
+      - d2e956e1-3e12-437c-b02a-e27590562be8
+      - 79a88305-0e26-4c5a-9748-aa51c27dd762
+      - 322d6579-9457-4f61-8ce4-8252d6d25dfe
+      - 41630e47-3548-4e71-aeff-9c5d85632dc5
+    metadata:
+      status: pending
+  d2e956e1-3e12-437c-b02a-e27590562be8:
+    id: d2e956e1-3e12-437c-b02a-e27590562be8
+    content: Then focus on a node in review
+    children: []
+    metadata:
+      status: pending
+  79a88305-0e26-4c5a-9748-aa51c27dd762:
+    id: 79a88305-0e26-4c5a-9748-aa51c27dd762
+    content: And press the toggle shortcut
+    children: []
+    metadata:
+      status: pending
+  322d6579-9457-4f61-8ce4-8252d6d25dfe:
+    id: 322d6579-9457-4f61-8ce4-8252d6d25dfe
+    content: It toggles and refocuses the previous node
+    children: []
+    metadata:
+      status: pending
+  41630e47-3548-4e71-aeff-9c5d85632dc5:
+    id: 41630e47-3548-4e71-aeff-9c5d85632dc5
+    content: And not the one in review
+    children: []
+    metadata:
+      status: pending
+  8a287c82-30a2-4bed-8580-c3f8f5caa46b:
+    id: 8a287c82-30a2-4bed-8580-c3f8f5caa46b
+    content: Open zoom window focused on a review node once feedback arrives
+    children: []
+    metadata:
+      status: pending
+  bcaad6d5-cec8-4e29-83df-19ab5ea18876:
+    id: bcaad6d5-cec8-4e29-83df-19ab5ea18876
+    content: Can't submit feedback multiple times to a node in review
+    children:
+      - 239bb3ed-0a2c-4677-b488-90564525e1a8
+      - addf02c8-f95b-4275-b371-8fc400d2676e
+    metadata:
+      status: pending
+  239bb3ed-0a2c-4677-b488-90564525e1a8:
+    id: 239bb3ed-0a2c-4677-b488-90564525e1a8
+    content: MCP replies 'cannot give feedback, the target overlaps a review already in progress'
+    children: []
+    metadata:
+      status: pending
+  addf02c8-f95b-4275-b371-8fc400d2676e:
+    id: addf02c8-f95b-4275-b371-8fc400d2676e
+    content: "Blocks cases where we\_"
+    children: []
+    metadata:
+      status: pending
+  0c45a6ce-3a01-4ab8-9c89-8ecc44db6809:
+    id: 0c45a6ce-3a01-4ab8-9c89-8ecc44db6809
+    content: User story — Workflow activity log (route FYI transitions out of toasts)
+    children:
+      - 564ed92b-7b6d-4a22-91c1-550530ae345c
+      - b0265742-7980-4aa1-947f-285ff278c19c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  564ed92b-7b6d-4a22-91c1-550530ae345c:
+    id: 564ed92b-7b6d-4a22-91c1-550530ae345c
+    content: 📄 Product spec
+    children:
+      - 88cb35d5-24b5-45e4-ba16-71924b2f4f74
+      - 35d05467-daed-491d-8199-d12fbfdd79dd
+      - e403d89d-f78b-4dbe-86e9-7b6e8a0d9130
+      - dfe75da3-0dae-4ae7-be88-26165aa5654a
+      - 06428966-f69b-4d91-a3a4-7fcd30cd7d1f
+      - 753e9f66-9af9-4369-b69f-5516e510b745
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88cb35d5-24b5-45e4-ba16-71924b2f4f74:
+    id: 88cb35d5-24b5-45e4-ba16-71924b2f4f74
+    content: Context
+    children:
+      - 67442382-a809-4177-9331-d1f0f1073432
+      - 64ae1edb-4764-415f-a21e-0321e87e94a0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67442382-a809-4177-9331-d1f0f1073432:
+    id: 67442382-a809-4177-9331-d1f0f1073432
+    content: An autonomous workflow cycle fires 2–5 toasts; multi-node decomposition runs fire many more, stacked top-right and auto-dismissed at 5s.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64ae1edb-4764-415f-a21e-0321e87e94a0:
+    id: 64ae1edb-4764-415f-a21e-0321e87e94a0
+    content: No persistent activity or history surface exists, so once a toast expires the transition trail is gone.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  35d05467-daed-491d-8199-d12fbfdd79dd:
+    id: 35d05467-daed-491d-8199-d12fbfdd79dd
+    content: User
+    children:
+      - a176c262-278c-4f7b-a46c-e030d2e1dda9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a176c262-278c-4f7b-a46c-e030d2e1dda9:
+    id: a176c262-278c-4f7b-a46c-e030d2e1dda9
+    content: The operator driving one or more AI workflows over the tree, often working in parallel or stepping away during autonomous and decomposition runs.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e403d89d-f78b-4dbe-86e9-7b6e8a0d9130:
+    id: e403d89d-f78b-4dbe-86e9-7b6e8a0d9130
+    content: Current experience and why it is insufficient
+    children:
+      - 21126883-cce4-444d-95a6-fef4fa3b31f0
+      - 143a3b3d-87ee-47fe-9e84-ab061e50b311
+      - e609503b-e8ce-49c0-883a-5cf1a620c620
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21126883-cce4-444d-95a6-fef4fa3b31f0:
+    id: 21126883-cce4-444d-95a6-fef4fa3b31f0
+    content: FYI transition toasts (advance, waiting, auto-accepted) burst faster than 5s and scroll genuinely actionable toasts (NeedsReview, errors) off-screen before they are read.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  143a3b3d-87ee-47fe-9e84-ab061e50b311:
+    id: 143a3b3d-87ee-47fe-9e84-ab061e50b311
+    content: After stepping away the user cannot reconstruct how a node reached its current step because the history has vanished.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e609503b-e8ce-49c0-883a-5cf1a620c620:
+    id: e609503b-e8ce-49c0-883a-5cf1a620c620
+    content: 'Toasts are the wrong medium for ambient progress: ephemeral, capped, and attention-grabbing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfe75da3-0dae-4ae7-be88-26165aa5654a:
+    id: dfe75da3-0dae-4ae7-be88-26165aa5654a
+    content: Goal
+    children:
+      - 4ddf4d52-18d3-4af8-a091-3092b8b36e94
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ddf4d52-18d3-4af8-a091-3092b8b36e94:
+    id: 4ddf4d52-18d3-4af8-a091-3092b8b36e94
+    content: Reserve toasts for events that need attention by routing ambient step-transition updates to a persistent, glanceable activity log.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  06428966-f69b-4d91-a3a4-7fcd30cd7d1f:
+    id: 06428966-f69b-4d91-a3a4-7fcd30cd7d1f
+    content: Business rules
+    children:
+      - 97aafda9-74c3-4108-acfa-d04e0e132483
+      - 82260ef8-7a8e-454d-ad22-eb65a9623455
+      - 264ac480-ad1e-4ef8-8312-a27507c3d461
+      - b14a4761-275c-40f7-bb2a-13d7a6b75e90
+      - edb30300-04d6-461b-8522-f8c1e1374db1
+      - 55229701-414a-4e2c-b67b-64e0ebe0033f
+      - 4a40e61c-c13f-479f-b811-c796358e4168
+      - 8976830e-9c74-422e-9b59-4b75cc228411
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97aafda9-74c3-4108-acfa-d04e0e132483:
+    id: 97aafda9-74c3-4108-acfa-d04e0e132483
+    content: A purely informational step transition (severity info, no action buttons, not persistent) is recorded as a log entry and does not raise a toast.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82260ef8-7a8e-454d-ad22-eb65a9623455:
+    id: 82260ef8-7a8e-454d-ad22-eb65a9623455
+    content: Every event that raises a toast is also mirrored as a log entry, so the log is the complete session record and toasts are a notification layer on top.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  264ac480-ad1e-4ef8-8312-a27507c3d461:
+    id: 264ac480-ad1e-4ef8-8312-a27507c3d461
+    content: Actionable events (NeedsReview, terminal-gone, checkpoint review, first-launch hook verification) continue to raise their existing persistent toast with action buttons and desktop notification unchanged.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b14a4761-275c-40f7-bb2a-13d7a6b75e90:
+    id: b14a4761-275c-40f7-bb2a-13d7a6b75e90
+    content: Error and failure events (failed send, feedback parse error, workflows-stopped-on-restart, recurse-limit, retry exhaustion) continue to raise a toast.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  edb30300-04d6-461b-8522-f8c1e1374db1:
+    id: edb30300-04d6-461b-8522-f8c1e1374db1
+    content: The activity log is an in-memory rolling buffer bounded to a fixed cap (~100 entries); on overflow the oldest entries are evicted so memory does not grow unbounded.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55229701-414a-4e2c-b67b-64e0ebe0033f:
+    id: 55229701-414a-4e2c-b67b-64e0ebe0033f
+    content: The activity log is session-scoped and is cleared on app restart; durable history remains the responsibility of the existing disk logger.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a40e61c-c13f-479f-b811-c796358e4168:
+    id: 4a40e61c-c13f-479f-b811-c796358e4168
+    content: Each log entry records node name, target step label, event severity, and a relative timestamp, ordered newest-first.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8976830e-9c74-422e-9b59-4b75cc228411:
+    id: 8976830e-9c74-422e-9b59-4b75cc228411
+    content: Suppressing a toast must not suppress the independent desktop-notification path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  753e9f66-9af9-4369-b69f-5516e510b745:
+    id: 753e9f66-9af9-4369-b69f-5516e510b745
+    content: Acceptance criteria
+    children:
+      - 7975c885-379b-44df-9957-b562621681a7
+      - 18f25845-d4be-43ba-b34e-8bc51da6ffa6
+      - f4237c4d-af51-4c1e-988d-332196b8c1b4
+      - 09cc0e34-7f03-4bcb-adab-63761e4b2aa2
+      - 1f93d70a-f6da-48a9-b240-355ee83affa9
+      - 13710ecc-79b4-4436-8d9e-d5a7aa138df0
+      - 288c65ac-4b30-4069-9f8d-6de0c6492bbc
+      - dcffe522-9ad4-429d-aed0-2f591fdc7f86
+      - ae35cbc9-73e9-4e67-8ce1-35e83c255e3e
+      - 65377905-6cd4-4160-af37-9bf3bc1a5269
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7975c885-379b-44df-9957-b562621681a7:
+    id: 7975c885-379b-44df-9957-b562621681a7
+    content: A pure FYI transition (e.g. `Advanced "X" to Step N`) produces a log entry and no toast.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18f25845-d4be-43ba-b34e-8bc51da6ffa6:
+    id: 18f25845-d4be-43ba-b34e-8bc51da6ffa6
+    content: An actionable event (e.g. NeedsReview, terminal-gone) produces both its existing persistent toast and a log entry.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4237c4d-af51-4c1e-988d-332196b8c1b4:
+    id: f4237c4d-af51-4c1e-988d-332196b8c1b4
+    content: An error event (e.g. failed send) produces both a toast and a log entry.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09cc0e34-7f03-4bcb-adab-63761e4b2aa2:
+    id: 09cc0e34-7f03-4bcb-adab-63761e4b2aa2
+    content: During a multi-node decomposition run no FYI toast appears and every transition is listed in the log in order.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f93d70a-f6da-48a9-b240-355ee83affa9:
+    id: 1f93d70a-f6da-48a9-b240-355ee83affa9
+    content: The activity log opens from the BottomStatusBar and lists recent entries newest-first with node/step label and relative timestamp.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13710ecc-79b4-4436-8d9e-d5a7aa138df0:
+    id: 13710ecc-79b4-4436-8d9e-d5a7aa138df0
+    content: The buffer evicts the oldest entries past its cap and a long session does not grow memory unbounded.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  288c65ac-4b30-4069-9f8d-6de0c6492bbc:
+    id: 288c65ac-4b30-4069-9f8d-6de0c6492bbc
+    content: App restart clears the log (documented session-scoped behaviour, not a bug).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcffe522-9ad4-429d-aed0-2f591fdc7f86:
+    id: dcffe522-9ad4-429d-aed0-2f591fdc7f86
+    content: The log surface exposes an unread / since-last-open count and updating it does not steal focus from the tree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae35cbc9-73e9-4e67-8ce1-35e83c255e3e:
+    id: ae35cbc9-73e9-4e67-8ce1-35e83c255e3e
+    content: The panel is keyboard-openable and Esc-dismissable, uses aria-live="polite" and role="log", and does not double-announce events that also appear as toasts.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65377905-6cd4-4160-af37-9bf3bc1a5269:
+    id: 65377905-6cd4-4160-af37-9bf3bc1a5269
+    content: Rapid bursts append without layout thrash (rows keyed by stable id, fixed-height scroll region).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0265742-7980-4aa1-947f-285ff278c19c:
+    id: b0265742-7980-4aa1-947f-285ff278c19c
+    content: 🔧 Implementation proposal
+    children:
+      - b000dd23-03bf-4f0d-a5f1-28b10b2c2ecd
+      - 5dd59173-0ea3-4f1a-925c-fcd970066b2d
+      - 1e42a7a0-deaa-4232-9f48-37912c952ec7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b000dd23-03bf-4f0d-a5f1-28b10b2c2ecd:
+    id: b000dd23-03bf-4f0d-a5f1-28b10b2c2ecd
+    content: Approach
+    children:
+      - b4776df5-9c93-4165-84cd-37773fcb9dfe
+      - 91a4758e-35b2-475a-b3d4-e0b11f159aa9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4776df5-9c93-4165-84cd-37773fcb9dfe:
+    id: b4776df5-9c93-4165-84cd-37773fcb9dfe
+    content: 'Make toastStore.addToast the single classification funnel: it always appends the event to a new activityLog store and suppresses the toast when the entry is log-only, leaving the ~29 scattered workflow call sites unchanged.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91a4758e-35b2-475a-b3d4-e0b11f159aa9:
+    id: 91a4758e-35b2-475a-b3d4-e0b11f159aa9
+    content: Add a small activityLog Zustand store holding a bounded ring buffer, rendered as a read-only newest-first panel opened from the existing BottomStatusBar.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dd59173-0ea3-4f1a-925c-fcd970066b2d:
+    id: 5dd59173-0ea3-4f1a-925c-fcd970066b2d
+    content: Touchpoints
+    children:
+      - 616283ee-3d7e-4bc7-9720-05fef6d84b2c
+      - c7770c52-dc92-489a-83f0-53cf79ea28eb
+      - 588a22b1-9522-4ee5-80ea-ef79219538f4
+      - a7148541-863d-4281-8ed3-15b714e82df2
+      - d418903f-dcb1-4443-b17a-d1b29589ab94
+      - b1619376-74fb-4cdc-ad75-00600c52ae0a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  616283ee-3d7e-4bc7-9720-05fef6d84b2c:
+    id: 616283ee-3d7e-4bc7-9720-05fef6d84b2c
+    content: 'Edit — src/renderer/store/toast/toastStore.ts: classify in addToast, append to activity log, suppress toast for log-only entries.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7770c52-dc92-489a-83f0-53cf79ea28eb:
+    id: c7770c52-dc92-489a-83f0-53cf79ea28eb
+    content: 'New — src/renderer/store/activityLog/activityLogStore.ts: entry shape and ring buffer (cap ~100, slice-to-max in the setter).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  588a22b1-9522-4ee5-80ea-ef79219538f4:
+    id: 588a22b1-9522-4ee5-80ea-ef79219538f4
+    content: 'New — src/renderer/components/ui/ActivityLog/{ActivityLog.tsx, ActivityLog.css}: the read-only feed panel.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7148541-863d-4281-8ed3-15b714e82df2:
+    id: a7148541-863d-4281-8ed3-15b714e82df2
+    content: Edit — src/renderer/components/BottomStatusBar/BottomStatusBar.tsx (open-feed affordance) and src/renderer/App.tsx (mount panel near ToastContainer).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d418903f-dcb1-4443-b17a-d1b29589ab94:
+    id: d418903f-dcb1-4443-b17a-d1b29589ab94
+    content: Tests — activityLog ring-buffer cap and ordering; toastStore test asserting log-only info appends without a toast while actions/persistent still render.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1619376-74fb-4cdc-ad75-00600c52ae0a:
+    id: b1619376-74fb-4cdc-ad75-00600c52ae0a
+    content: Untouched — the ~29 workflow addToast sites, services/notification.ts, services/workflowNotification.ts (desktop path).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e42a7a0-deaa-4232-9f48-37912c952ec7:
+    id: 1e42a7a0-deaa-4232-9f48-37912c952ec7
+    content: Constraints to call out
+    children:
+      - af7812b8-e4fd-4826-9f67-3709c06804a9
+      - 4e25ea2b-84d9-446b-9211-828af3ce4aec
+      - 4eac440f-88a5-4a50-9a1e-4c87f899db1d
+      - 4c2090dc-c408-434a-ba8b-fb64fe9801b9
+      - 7edeb4dd-9984-43dd-9614-87b85ec936ac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af7812b8-e4fd-4826-9f67-3709c06804a9:
+    id: af7812b8-e4fd-4826-9f67-3709c06804a9
+    content: 'Classification is property-based: log-only iff type === ''info'' && !options.actions && !options.persistent; success/warning/error and anything actionable stay toasts. A future must-pop info event opts out by bumping severity or attaching an action — no rule change.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e25ea2b-84d9-446b-9211-828af3ce4aec:
+    id: 4e25ea2b-84d9-446b-9211-828af3ce4aec
+    content: '"Workflow complete" is severity success today, so it stays a toast under this rule; if per-node completion toasts prove spammy in decomposition runs, downgrade its classification — it is already mirrored in the log.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4eac440f-88a5-4a50-9a1e-4c87f899db1d:
+    id: 4eac440f-88a5-4a50-9a1e-4c87f899db1d
+    content: Keep the log append inside the existing preserveFocusAcross wrapper in addToast so bursts do not steal focus.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c2090dc-c408-434a-ba8b-fb64fe9801b9:
+    id: 4c2090dc-c408-434a-ba8b-fb64fe9801b9
+    content: In-memory only for v1 — design the entry shape and store setter so persistence is a later additive change, not a rewrite.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7edeb4dd-9984-43dd-9614-87b85ec936ac:
+    id: 7edeb4dd-9984-43dd-9614-87b85ec936ac
+    content: Desktop notifications (workflowNotification.ts → IPC) are independent of toasts and must remain unaffected.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  448cacb1-4106-4137-a8b7-dde14709d45f:
+    id: 448cacb1-4106-4137-a8b7-dde14709d45f
+    content: Scope decision — single shippable chunk, no split
+    children:
+      - ff70ca9d-0eeb-4786-a6e3-b2419511dd43
+      - f03a14e3-7a60-4494-9613-9a2274b46a0b
+      - 2de809b5-c50e-4448-9031-0438411c5555
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff70ca9d-0eeb-4786-a6e3-b2419511dd43:
+    id: ff70ca9d-0eeb-4786-a6e3-b2419511dd43
+    content: 'One PR: the single funnel makes "add the feed" and "suppress FYI toasts" the same change.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f03a14e3-7a60-4494-9613-9a2274b46a0b:
+    id: f03a14e3-7a60-4494-9613-9a2274b46a0b
+    content: Each half alone is a regression — feed-only adds noise, suppress-only loses feedback — so neither ships independently.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2de809b5-c50e-4448-9031-0438411c5555:
+    id: 2de809b5-c50e-4448-9031-0438411c5555
+    content: 'The change stays small and reviewable: ~30-line store, one panel + css, ~10-line classifier, one bottom-bar toggle, tests.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0d917a9-1423-4de4-9d85-2c384ef95931:
+    id: b0d917a9-1423-4de4-9d85-2c384ef95931
+    content: Challenge — UX, over-engineering, ROI
+    children:
+      - 92f8b0e9-dba1-481c-a395-11b1549ca2f2
+      - cea4e2a9-21d5-468d-9c60-4891161b7224
+      - 8d676f3b-215b-4057-9858-c318e7ee5e11
+      - 12609623-f8e0-4378-9c00-0936ae90d665
+      - d8192f9e-9421-4fd8-b8b8-240cf292455e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92f8b0e9-dba1-481c-a395-11b1549ca2f2:
+    id: 92f8b0e9-dba1-481c-a395-11b1549ca2f2
+    content: Cut per-entry read/unread tracking; a single since-last-open count is enough, full read state is gold-plating.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cea4e2a9-21d5-468d-9c60-4891161b7224:
+    id: cea4e2a9-21d5-468d-9c60-4891161b7224
+    content: 'Refuse for v1: persisted cross-restart history (disk logger already covers durability), filtering/search, log levels, export, clear/archive, virtualized infinite scroll, configurable cap.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d676f3b-215b-4057-9858-c318e7ee5e11:
+    id: 8d676f3b-215b-4057-9858-c318e7ee5e11
+    content: 'Cheapest fallback if the panel balloons in review: suppress FYI toasts and show only the latest transition inline in BottomStatusBar, deferring the history popover — but suppression must not ship without a feed.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  12609623-f8e0-4378-9c00-0936ae90d665:
+    id: 12609623-f8e0-4378-9c00-0936ae90d665
+    content: 'ROI is favourable: one chokepoint kills the spam with near-zero call-site churn; the only genuinely new surface is a small read-only panel.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8192f9e-9421-4fd8-b8b8-240cf292455e:
+    id: d8192f9e-9421-4fd8-b8b8-240cf292455e
+    content: 'Out of scope — do not add: reworking notification.ts routing, new IPC channels, or changing the desktop-notification policy.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1cdb46d-6ca7-4c80-bacb-8d46ec80c43d:
+    id: c1cdb46d-6ca7-4c80-bacb-8d46ec80c43d
+    content: worktree
+    children:
+      - 4c90c5b7-c091-47a6-924c-0bca1aad8106
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c90c5b7-c091-47a6-924c-0bca1aad8106:
+    id: 4c90c5b7-c091-47a6-924c-0bca1aad8106
+    content: '[Open in VSCode — fix/duplicate-rebind-dialog](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-duplicate-rebind-dialog)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f1e380d-6886-4a8c-b72c-c1dc65e7c972:
+    id: 9f1e380d-6886-4a8c-b72c-c1dc65e7c972
+    content: Summary
+    children:
+      - 67372a2a-ab41-4b9c-b578-5e36777aaf23
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67372a2a-ab41-4b9c-b578-5e36777aaf23:
+    id: 67372a2a-ab41-4b9c-b578-5e36777aaf23
+    content: The rebind confirmation dialog fires twice for a single new-node bind to a live terminal session — once pre-send (preflight gate) and again post-send (session register-binding) — instead of only once before sending
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8d7cac4-d18b-4c89-8953-657a0d1607f9:
+    id: b8d7cac4-d18b-4c89-8953-657a0d1607f9
+    content: Steps to reproduce
+    children:
+      - 0c5ca19f-96d7-415e-bb4e-4330037eb47f
+      - 3b0a29b1-d785-47f6-9184-404e9ffee358
+      - 740ede82-d286-411f-a833-97613dafa652
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c5ca19f-96d7-415e-bb4e-4330037eb47f:
+    id: 0c5ca19f-96d7-415e-bb4e-4330037eb47f
+    content: 'Precondition: a terminal already hosts a live Claude session bound to node A (terminalNodeAssignments maps the terminal to A)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b0a29b1-d785-47f6-9184-404e9ffee358:
+    id: 3b0a29b1-d785-47f6-9184-404e9ffee358
+    content: 'User action: trigger an autonomous send of a different node B to that same terminal (autonomousCollaborateInTerminal / workflow start on the occupied terminal)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  740ede82-d286-411f-a833-97613dafa652:
+    id: 740ede82-d286-411f-a833-97613dafa652
+    content: 'Observation: the RebindConfirmationDialog appears before the prompt is pasted; after confirming and the prompt sends, an identical RebindConfirmationDialog appears a second time'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b55781d-5f69-4d84-acef-68a08b3cfc8b:
+    id: 2b55781d-5f69-4d84-acef-68a08b3cfc8b
+    content: Expected behavior
+    children:
+      - 81f28c9c-9333-472c-8bc8-6d68ed249cdd
+      - 3d86f180-190c-4c8a-a54d-24d65c36b9e1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81f28c9c-9333-472c-8bc8-6d68ed249cdd:
+    id: 81f28c9c-9333-472c-8bc8-6d68ed249cdd
+    content: 'Happy path: exactly one rebind confirmation, shown before the prompt is sent; confirming rebinds A→B and sends once'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d86f180-190c-4c8a-a54d-24d65c36b9e1:
+    id: 3d86f180-190c-4c8a-a54d-24d65c36b9e1
+    content: 'Edge cases: cancelling the single pre-send dialog aborts the send and leaves the binding on A; workflow-advance sibling hand-offs keep flipping silently with no dialog'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01898f84-4a7a-4673-831a-06951e966118:
+    id: 01898f84-4a7a-4673-831a-06951e966118
+    content: Actual behavior
+    children:
+      - ce26d894-5b67-4ba7-88f0-ba9685aa402c
+      - 71b37ae0-5ea5-4b6c-b00f-0f4df5a81e2c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce26d894-5b67-4ba7-88f0-ba9685aa402c:
+    id: ce26d894-5b67-4ba7-88f0-ba9685aa402c
+    content: 'Two dialogs fire for one bind: the pre-send preflight dialog, then a second dialog after the prompt has already been delivered'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71b37ae0-5ea5-4b6c-b00f-0f4df5a81e2c:
+    id: 71b37ae0-5ea5-4b6c-b00f-0f4df5a81e2c
+    content: 'User-visible symptom: a redundant rebind prompt pops up post-send, after the user already confirmed and the message was sent'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e72d5949-10f2-424e-9adb-41eaf9ef0f65:
+    id: e72d5949-10f2-424e-9adb-41eaf9ef0f65
+    content: Suspected cause
+    children:
+      - 0129cabc-91ec-43ba-8367-6997c4490867
+      - a66db14d-cc43-4adb-a8f7-beb238b25bed
+      - dfd72ae6-9d13-4b08-9d41-858ad34c4194
+      - f832f5d1-b462-45a1-88f9-8a6f2994f540
+      - 17898b62-7cdc-478a-8052-c5096a125838
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0129cabc-91ec-43ba-8367-6997c4490867:
+    id: 0129cabc-91ec-43ba-8367-6997c4490867
+    content: 'One dialog is fed by two uncoordinated surfaces in useRebindConfirmation: rebindPreflightStore (pre-send) and the onRebindRequest event from the main registry (post-send)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a66db14d-cc43-4adb-a8f7-beb238b25bed:
+    id: a66db14d-cc43-4adb-a8f7-beb238b25bed
+    content: sendActions.ts queuePreflightRebind replays the send with the ORIGINAL bindingSource and never marks the rebind preconfirmed, so the post-send register-binding still classifies as rebind-needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfd72ae6-9d13-4b08-9d41-858ad34c4194:
+    id: dfd72ae6-9d13-4b08-9d41-858ad34c4194
+    content: handleRegisterBinding only auto-confirms (silent flip) when payload.source === 'workflow-advance'; the replayed send arrives as 'workflow-start' (not preconfirmed), so the post-send rebind-needed is not suppressed and raises the second dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f832f5d1-b462-45a1-88f9-8a6f2994f540:
+    id: f832f5d1-b462-45a1-88f9-8a6f2994f540
+    content: 'Contrast: the sibling workflowExecutionActions.ts preflight replay correctly calls commitWorkflowStartOnTerminal(..., rebindPreconfirmed=true) -> source ''workflow-advance'' -> silenced; sendActions.ts diverges from that contract'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17898b62-7cdc-478a-8052-c5096a125838:
+    id: 17898b62-7cdc-478a-8052-c5096a125838
+    content: 'The isRebindDialogPending send-gate does not help: finalizePreflight clears the pending flag before replay, so the post-send path sees no pending dialog to block'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec4f6d31-7d26-49b0-aa34-6e3e278b3522:
+    id: ec4f6d31-7d26-49b0-aa34-6e3e278b3522
+    content: Affected files
+    children:
+      - 4eebea44-5bb7-4ca8-a611-c747969eaaac
+      - da0511bd-feab-410a-91c1-da2a01a9d9b7
+      - 9ec54153-73c4-4f34-a543-3d374b8eed0b
+      - bb9f5484-33d1-4e71-aab8-1b3f88d507bd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4eebea44-5bb7-4ca8-a611-c747969eaaac:
+    id: 4eebea44-5bb7-4ca8-a611-c747969eaaac
+    content: 'Primary suspect: src/renderer/store/tree/actions/sendActions.ts (autonomousCollaborateInTerminal / queuePreflightRebind ~L359,L731 — replay does not upgrade bindingSource to ''workflow-advance''/preconfirmed)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da0511bd-feab-410a-91c1-da2a01a9d9b7:
+    id: da0511bd-feab-410a-91c1-da2a01a9d9b7
+    content: 'Related surface: src/main/services/hookEventDispatcher.ts (handleRegisterBinding L66 — silent flip gated only on source === ''workflow-advance'')'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ec54153-73c4-4f34-a543-3d374b8eed0b:
+    id: 9ec54153-73c4-4f34-a543-3d374b8eed0b
+    content: 'Related surface: src/renderer/store/tree/actions/workflowExecutionActions.ts (queueWorkflowStartPreflight L362-374 — the correct sibling that passes rebindPreconfirmed=true; sendActions should mirror it)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb9f5484-33d1-4e71-aab8-1b3f88d507bd:
+    id: bb9f5484-33d1-4e71-aab8-1b3f88d507bd
+    content: 'Related surface: src/renderer/components/ui/RebindConfirmationDialog/hooks/useRebindConfirmation.ts (renders the dialog from both the preflight store and the onRebindRequest event with no shared dedupe)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17a97cb6-0ae5-4127-97eb-300d79facd41:
+    id: 17a97cb6-0ae5-4127-97eb-300d79facd41
+    content: Regression window
+    children:
+      - f9471be9-caae-48b5-80ef-1d0070b3501e
+      - b017a15b-5d3a-448c-9e4b-ed267ae9c8fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9471be9-caae-48b5-80ef-1d0070b3501e:
+    id: f9471be9-caae-48b5-80ef-1d0070b3501e
+    content: 'Last known good: 3d59be3 (single post-send dialog only; workflow-advance silent flip + send gate, before the pre-send preflight gate existed)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b017a15b-5d3a-448c-9e4b-ed267ae9c8fe:
+    id: b017a15b-5d3a-448c-9e4b-ed267ae9c8fe
+    content: 'First observed broken: c92da16 (added the pre-send queuePreflightRebind in sendActions.ts whose replay omits the preconfirm upgrade, duplicating the post-send dialog); original post-send dialog introduced in 433314b'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8c246c6-9005-459f-8548-c91e42729feb:
+    id: e8c246c6-9005-459f-8548-c91e42729feb
+    content: Severity
+    children:
+      - 5d4ae4d1-b32d-4d77-ac8a-23b076d0e035
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d4ae4d1-b32d-4d77-ac8a-23b076d0e035:
+    id: 5d4ae4d1-b32d-4d77-ac8a-23b076d0e035
+    content: 'Low-to-medium: no data loss, but a confusing redundant confirmation after the send; user must dismiss a second dialog and may distrust the binding state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbfc1910-1d60-416d-bda0-6cedee3f5430:
+    id: fbfc1910-1d60-416d-bda0-6cedee3f5430
+    content: Notes
+    children:
+      - 2ad2b31c-b104-474e-bf5e-59e86904e8ea
+      - 338c5ae3-3bb2-49a7-a57a-83612753c3ae
+      - 4a46932b-a648-4770-97eb-96c513a0ade2
+      - c53eb6ed-0feb-467d-ad50-4cc48ea8dc0c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ad2b31c-b104-474e-bf5e-59e86904e8ea:
+    id: 2ad2b31c-b104-474e-bf5e-59e86904e8ea
+    content: Disambiguate from workflow-advance sibling hand-offs, which intentionally flip silently (no dialog) — not affected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  338c5ae3-3bb2-49a7-a57a-83612753c3ae:
+    id: 338c5ae3-3bb2-49a7-a57a-83612753c3ae
+    content: Disambiguate from the first-time bind path, which never reaches rebind-needed and shows no dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a46932b-a648-4770-97eb-96c513a0ade2:
+    id: 4a46932b-a648-4770-97eb-96c513a0ade2
+    content: 'UX/telemetry gap: the two surfaces log differently (''Preflight rebind queued'' vs ''register-binding rebind-needed'') — a shared correlation id per logical rebind would expose the duplicate in logs'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c53eb6ed-0feb-467d-ad50-4cc48ea8dc0c:
+    id: c53eb6ed-0feb-467d-ad50-4cc48ea8dc0c
+    content: User's pre-send observation confirmed via code-path analysis; one manual reproduction still worth running to confirm the post-send register-binding source for the failing path is not 'workflow-advance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1ab62fa-0cdd-4b13-9c3a-7046c3f8fb27:
+    id: e1ab62fa-0cdd-4b13-9c3a-7046c3f8fb27
+    content: Technical refinement
+    children:
+      - 690f4d37-7e27-42d9-84b5-71c40ad47c6b
+      - fe0d029b-f4f0-4ae6-8e98-3c171458262b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  690f4d37-7e27-42d9-84b5-71c40ad47c6b:
+    id: 690f4d37-7e27-42d9-84b5-71c40ad47c6b
+    content: Flag complications
+    children:
+      - dbbbde76-89d3-43a6-b723-375c9de48283
+      - cae9687b-aa1d-4d6c-bc6a-543cc828bbd6
+      - 96380398-2cd4-4fd8-a80b-97b84a9a57b0
+      - 5da8db97-5daa-40c4-8fac-49bf57b984f2
+      - 5dab9c47-b15e-4b84-862e-ff6cc33a9d97
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbbbde76-89d3-43a6-b723-375c9de48283:
+    id: dbbbde76-89d3-43a6-b723-375c9de48283
+    content: 'Risk: two parallel preflight implementations exist (sendActions.ts and workflowExecutionActions.ts) — confirm the failing repro actually routes through sendActions before fixing, since the workflowExecutionActions path already upgrades correctly and would point elsewhere'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cae9687b-aa1d-4d6c-bc6a-543cc828bbd6:
+    id: cae9687b-aa1d-4d6c-bc6a-543cc828bbd6
+    content: 'Edge case: the post-send silent flip is keyed per session/turn, so a genuinely different third-node rebind racing in after send would also be auto-confirmed silently — acceptable, but note the guard cannot tell "the rebind I just approved" from "a new one"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96380398-2cd4-4fd8-a80b-97b84a9a57b0:
+    id: 96380398-2cd4-4fd8-a80b-97b84a9a57b0
+    content: 'Edge case to verify: the cancel path (onPreflightCancel -> finalizePreflight, no replay) must still leave the binding on node A and clear preflight/pending state without flipping the registry'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5da8db97-5daa-40c4-8fac-49bf57b984f2:
+    id: 5da8db97-5daa-40c4-8fac-49bf57b984f2
+    content: 'Out of scope: unifying the two dialog surfaces (rebindPreflightStore + onRebindRequest) behind one source, and adding the correlation-id telemetry from Notes — minimal fix does not require either'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dab9c47-b15e-4b84-862e-ff6cc33a9d97:
+    id: 5dab9c47-b15e-4b84-862e-ff6cc33a9d97
+    content: 'ROI: the targeted fix is a one-line symmetry change mirroring an existing, tested pattern (high ROI); the deeper surface-dedupe refactor is the only part with questionable ROI — defer it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe0d029b-f4f0-4ae6-8e98-3c171458262b:
+    id: fe0d029b-f4f0-4ae6-8e98-3c171458262b
+    content: Summarise the approach
+    children:
+      - 14031b20-6ba8-4bf1-b971-53c2e29a5e8e
+      - 3add9c16-0e28-46a9-9307-b6d187062c62
+      - 6c4fdad1-f437-4fdb-bdd9-33a2f865255e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14031b20-6ba8-4bf1-b971-53c2e29a5e8e:
+    id: 14031b20-6ba8-4bf1-b971-53c2e29a5e8e
+    content: 'Land the fix in sendActions.ts autonomousCollaborateInTerminal''s preflight replay: re-send with the rebind marked preconfirmed (bindingSource ''workflow-advance'') so the existing handleRegisterBinding guard silences the post-send dialog — mirroring workflowExecutionActions.ts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3add9c16-0e28-46a9-9307-b6d187062c62:
+    id: 3add9c16-0e28-46a9-9307-b6d187062c62
+    content: 'Key concept: the post-send silent-flip guard already works; the only gap is that the autonomous replay never signals "already confirmed" — no new dialog or state machinery is needed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c4fdad1-f437-4fdb-bdd9-33a2f865255e:
+    id: 6c4fdad1-f437-4fdb-bdd9-33a2f865255e
+    content: 'Surprise to flag: two near-duplicate preflight code paths exist and only sendActions.ts is wrong, so the change is small and localized but easy to apply to the wrong path; add/extend a test mirroring the workflow-start preflight gate to lock it in'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c326661-d714-40e2-8c25-3c0ed529bdb8:
+    id: 6c326661-d714-40e2-8c25-3c0ed529bdb8
+    content: review feedback
+    children:
+      - cb857613-c407-4ddd-b395-7038db0f4e91
+      - 35cdbc5d-d7b0-4710-bf8d-416222afb095
+      - 0c7c1304-a178-4289-84ad-01d3e90a88fe
+      - ce823aad-c414-413f-9f89-48c695630db8
+      - 13f195cf-5d88-4e82-9b3a-7fa79fbc6621
+    metadata:
+      status: pending
+  cb857613-c407-4ddd-b395-7038db0f4e91:
+    id: cb857613-c407-4ddd-b395-7038db0f4e91
+    content: 'Verdict: APPROVED — fix correct and clean, no blockers, no important issues. Trace verified end-to-end: replay sends literal ''workflow-advance'' (sendActions.ts:735) → buildSendPayload/maybePrependRoutingMarker → buildArborescentMarker → hookScripts.ts (source = bindingSource preserved) → handleRegisterBinding silent-flip guard (rebind-needed && source===''workflow-advance'') suppresses the 2nd dialog. Mirrors workflowExecutionActions commitWorkflowStartOnTerminal(rebindPreconfirmed=true). 12/12 tests + type-check pass.'
+    children: []
+    metadata:
+      status: pending
+  35cdbc5d-d7b0-4710-bf8d-416222afb095:
+    id: 35cdbc5d-d7b0-4710-bf8d-416222afb095
+    content: 'Nit (no change needed, pre-existing): the autonomous replay path never writes terminalNodeAssignments, so the map still shows the OLD node bound after the rebind (test asserts OTHER_NODE_ID remains). Asymmetric with workflowExecutionActions which calls assignTerminalToNode. Harmless for this fix — the renderer''s binding-of-record for the autonomous path is the session map / register-binding flow, not terminalNodeAssignments — but a latent gap if future code trusts terminalNodeAssignments to reflect the autonomous binding.'
+    children: []
+    metadata:
+      status: pending
+  0c7c1304-a178-4289-84ad-01d3e90a88fe:
+    id: 0c7c1304-a178-4289-84ad-01d3e90a88fe
+    content: 'Nit (accepted): replay always labels source=workflow-advance in the register-binding log even when the original send was workflow-start/undefined. Semantically accurate (the rebind is user-authorized by replay time) and the silent-flip only applies to the just-confirmed session/terminal, so it cannot mask an unrelated rebind. Benign.'
+    children: []
+    metadata:
+      status: pending
+  ce823aad-c414-413f-9f89-48c695630db8:
+    id: ce823aad-c414-413f-9f89-48c695630db8
+    content: 'Tests sound: assert on the marker extracted from the executed prompt (real buildArborescentMarker round-trip, not tautological), isolated via beforeEach store clears + clearAllMocks, no empty tests; 2nd test pins the undefined-source branch. Cast executeMock.mock.calls[0][1] as string is acceptable. Coverage note (not worth adding): tests invoke replay() directly, not via onPreflightConfirm, so the real confirm ordering (finalizePreflight clears store before replay) is untested here — safe because replay closes over its args (order-independent).'
+    children: []
+    metadata:
+      status: pending
+  13f195cf-5d88-4e82-9b3a-7fa79fbc6621:
+    id: 13f195cf-5d88-4e82-9b3a-7fa79fbc6621
+    content: 'Conventions compliant: why-comment (not what), no iteration-history references, naming and scope consistent with the file, no over-engineering. No code changes requested by the review.'
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -204433,9 +205639,9 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   4acd8b09-156d-41af-9446-ac0145c36602:
     cwd: /Users/brianfox/dev/Arborescent
-  a97da93b-2b63-4fa0-b435-230f57c2898b:
-    cwd: /Users/brianfox/dev/Arborescent
   8a8e9c15-65a2-4100-8cfb-b78eec52ad8e:
     cwd: /Users/brianfox/dev/Arborescent
-  7f316e01-8dbe-4af0-9845-c75c4e006cfc:
+  bada5144-60c2-4a6f-9a3c-ecedc1238db1:
+    cwd: /Users/brianfox/dev/Arborescent
+  1cff785c-7c41-48e9-9fc9-d827dcd40be2:
     cwd: /Users/brianfox/dev/Arborescent
