@@ -31,11 +31,13 @@ import {
   parseFeedbackContentWithReason,
   initializeFeedbackStore,
   extractFeedbackContent,
-  cleanupFeedback,
+  cleanupFeedbackForNode,
   ParsedFeedbackContent,
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { capturePendingProposal, setPendingProposal, dropPendingProposal as dropPendingProposalFromMap } from '../pendingProposals/pendingProposals';
+import { addReview, removeReview, getInReviewNodeIds, hasBrowserReview, type ReviewMap, type ReviewSource } from '../reviews';
+import { isReviewOverlap } from '../../../utils/reviewOverlap';
 import { reconcileFeedback } from '../../feedback/reconcileFeedback';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
 import { classifyTerminalSend } from '../../../utils/codeNode';
@@ -378,14 +380,14 @@ export interface ProcessFeedbackContentResult {
 export interface SendActions {
   startCollaboration: (nodeId: string) => void;
   cancelCollaboration: () => void;
-  acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
+  acceptFeedback: (reviewedNodeId: string, newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
   collaborate: (nodeId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
   collaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
   autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string, bindingSource?: AutonomousSendSource) => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
-  processIncomingFeedbackContent: (content: string, source: ContentSource) => Promise<ProcessFeedbackContentResult>;
-  finishCancel: () => Promise<void>;
-  finishAccept: () => Promise<void>;
+  processIncomingFeedbackContent: (content: string, source: ContentSource, reviewedNodeId: string) => Promise<ProcessFeedbackContentResult>;
+  finishCancel: (reviewedNodeId: string) => Promise<void>;
+  finishAccept: (reviewedNodeId: string) => Promise<void>;
 }
 
 function applyBlueprintMetadataToFeedback(
@@ -420,15 +422,15 @@ export function createSendActions(
   _visualEffects: VisualEffectsActions,
   autoSave: () => void,
   executeCommand: (command: Command) => void,
-  getAllStores?: () => { getState: () => { collaboratingNodeId: string | null; collaborationSource: string | null; currentFilePath: string | null } }[],
+  getAllStores?: () => { getState: () => { reviews: ReviewMap; currentFilePath: string | null } }[],
 ): SendActions {
   // The editable proposition lives in the per-file feedback store; persist it into the
   // .arbo-native pendingProposals map (no temp files) and re-capture on every edit so an
   // edited proposition survives a restart.
   const propositionEditUnsubscribers = new Map<string, () => void>();
 
-  function capturePropositionToPendingProposals(reviewedNodeId: string, filePath: string): void {
-    const feedbackStore = feedbackTreeStore.getStoreForFile(filePath);
+  function capturePropositionToPendingProposals(reviewedNodeId: string): void {
+    const feedbackStore = feedbackTreeStore.getStoreForNode(reviewedNodeId);
     if (!feedbackStore) return;
     const { nodes: feedbackNodes, rootNodeId: feedbackRootId } = feedbackStore.getState();
     if (!feedbackNodes[feedbackRootId]) return;
@@ -441,16 +443,16 @@ export function createSendActions(
     set({ pendingProposals: dropPendingProposalFromMap(get().pendingProposals ?? {}, reviewedNodeId) });
   }
 
-  function watchPropositionEdits(reviewedNodeId: string, filePath: string): void {
+  function watchPropositionEdits(reviewedNodeId: string): void {
     stopWatchingPropositionEdits(reviewedNodeId);
-    const feedbackStore = feedbackTreeStore.getStoreForFile(filePath);
+    const feedbackStore = feedbackTreeStore.getStoreForNode(reviewedNodeId);
     if (!feedbackStore) return;
     let lastNodes = feedbackStore.getState().nodes;
     const unsubscribe = feedbackStore.subscribe(() => {
       const { nodes } = feedbackStore.getState();
       if (nodes === lastNodes) return;
       lastNodes = nodes;
-      capturePropositionToPendingProposals(reviewedNodeId, filePath);
+      capturePropositionToPendingProposals(reviewedNodeId);
     });
     propositionEditUnsubscribers.set(reviewedNodeId, unsubscribe);
   }
@@ -460,11 +462,37 @@ export function createSendActions(
     propositionEditUnsubscribers.delete(reviewedNodeId);
   }
 
-  function showCollaborationInProgressError(): void {
-    useToastStore.getState().addToast(
-      'Collaboration already in progress - Please finish or cancel the current collaboration first',
-      'error'
-    );
+  function addReviewEntry(reviewedNodeId: string, source: ReviewSource, terminalId: string | null): void {
+    set({ reviews: addReview(get().reviews, reviewedNodeId, { source, terminalId }) });
+  }
+
+  function removeReviewEntry(reviewedNodeId: string): void {
+    set({ reviews: removeReview(get().reviews, reviewedNodeId) });
+  }
+
+  function hasBrowserReviewAnywhere(): boolean {
+    if (hasBrowserReview(get().reviews)) return true;
+    return (getAllStores?.() ?? []).some((s) => hasBrowserReview(s.getState().reviews));
+  }
+
+  // A review may not nest inside or engulf another (overlap), and a browser review is exclusive:
+  // its clipboard delivery is session-less, so it can start only when nothing else is in review,
+  // and while it runs every other review start is blocked. Returns true (after a toast) when blocked.
+  function reviewStartBlocked(nodeId: string, source: ReviewSource): boolean {
+    const state = get();
+    if (isReviewOverlap(nodeId, getInReviewNodeIds(state.reviews), state.ancestorRegistry)) {
+      useToastStore.getState().addToast('Cannot review this branch — it overlaps a review already in progress.', 'error');
+      return true;
+    }
+    if (source === 'browser' && getInReviewNodeIds(state.reviews).length > 0) {
+      useToastStore.getState().addToast('Browser review can only be done if no other reviews are in progress.', 'error');
+      return true;
+    }
+    if (hasBrowserReviewAnywhere()) {
+      useToastStore.getState().addToast('A browser review is in progress — finish or cancel it before starting another review.', 'error');
+      return true;
+    }
+    return false;
   }
 
   async function runCollaborateInTerminal(
@@ -504,9 +532,8 @@ export function createSendActions(
         return;
       }
 
-      if (state.collaboratingNodeId) {
-        showCollaborationInProgressError();
-        logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
+      // reviewStartBlocked already shows the specific user-facing toast; just stop here.
+      if (reviewStartBlocked(nodeId, 'terminal')) {
         return;
       }
 
@@ -526,7 +553,7 @@ export function createSendActions(
       await executeInTerminal(terminalId, terminalInstruction);
 
       if (resolvedFlags.collaborate) {
-        set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', collaboratingTerminalId: terminalId, decomposition: effectiveDecomposition });
+        addReviewEntry(nodeId, 'terminal', terminalId);
         logger.info(`Started terminal collaboration for node: ${nodeId} (response will arrive via submit_step_output)`, 'SendActions');
       } else {
         logger.info(`Sent execute-only prompt to terminal for node: ${nodeId}`, 'SendActions');
@@ -588,28 +615,33 @@ export function createSendActions(
 
   return {
     startCollaboration: (nodeId: string) => {
-      if (get().collaboratingNodeId) {
-        showCollaborationInProgressError();
-        return;
-      }
-      set({ collaboratingNodeId: nodeId });
+      if (reviewStartBlocked(nodeId, 'terminal')) return;
+      addReviewEntry(nodeId, 'terminal', null);
     },
 
     cancelCollaboration: () => {
-      const { collaboratingTerminalId, workflowSessionMap } = get();
-      notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
-      set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
+      const { reviews, workflowSessionMap } = get();
+      // Tear each review down like finishCancel (notify its terminal, stop its edit watch, drop its
+      // pending proposition and working store) so clearing the map leaves no orphaned ghost state.
+      Object.entries(reviews).forEach(([reviewedNodeId, review]) => {
+        notifyManualCollabResolvedForTerminal(review.terminalId, workflowSessionMap);
+        stopWatchingPropositionEdits(reviewedNodeId);
+        dropPendingProposalEntry(reviewedNodeId);
+        void cleanupFeedbackForNode(reviewedNodeId);
+      });
+      set({ reviews: {} });
+      autoSave();
     },
 
-    acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
-      const { collaboratingNodeId, nodes, collaboratingTerminalId, workflowSessionMap } = get();
+    acceptFeedback: (reviewedNodeId: string, newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
+      const { reviews, nodes, workflowSessionMap } = get();
 
-      if (!collaboratingNodeId || !nodes[collaboratingNodeId]) return;
+      if (!nodes[reviewedNodeId]) return;
 
-      notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
+      notifyManualCollabResolvedForTerminal(reviews[reviewedNodeId]?.terminalId ?? null, workflowSessionMap);
 
       const reconciled = reconcileFeedback({
-        priorRootId: collaboratingNodeId,
+        priorRootId: reviewedNodeId,
         priorNodes: nodes,
         newRootId: newRootNodeId,
         newNodes: newNodesMap,
@@ -617,8 +649,9 @@ export function createSendActions(
       });
 
       executeCommand(
-        new AcceptFeedbackCommand(collaboratingNodeId, newRootNodeId, newNodesMap, get, set, autoSave, undefined, reconciled.idMap)
+        new AcceptFeedbackCommand(reviewedNodeId, newRootNodeId, newNodesMap, get, set, autoSave, undefined, reconciled.idMap)
       );
+      removeReviewEntry(reviewedNodeId);
     },
 
     collaborate: async (nodeId: string, flags?: ContextFlags, overrideContextId?: string) => {
@@ -636,7 +669,7 @@ export function createSendActions(
 
         if (effectiveContextId) {
           const blockingStore = getAllStores?.().find(
-            s => s.getState().collaboratingNodeId !== null && s.getState().collaborationSource === 'browser'
+            s => hasBrowserReview(s.getState().reviews)
           );
           if (blockingStore) {
             const blockingFilePath = blockingStore.getState().currentFilePath || '';
@@ -648,9 +681,8 @@ export function createSendActions(
             return;
           }
 
-          if (state.collaboratingNodeId) {
-            showCollaborationInProgressError();
-            logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
+          // reviewStartBlocked already shows the specific user-facing toast; just stop here.
+          if (reviewStartBlocked(nodeId, 'browser')) {
             return;
           }
         }
@@ -684,7 +716,7 @@ export function createSendActions(
         );
 
         if (resolvedFlags.collaborate) {
-          set({ collaboratingNodeId: nodeId, collaborationSource: 'browser', collaboratingTerminalId: null, decomposition: effectiveDecomposition });
+          addReviewEntry(nodeId, 'browser', null);
         }
         usePanelStore.getState().showBrowser();
 
@@ -752,57 +784,53 @@ export function createSendActions(
         return;
       }
 
-      // Under the single-collaboration guard there is normally one entry; prefer the one whose
-      // reviewed node still exists so a stale orphan can never strand a live proposition.
-      const entry = proposals.find((candidate) => nodes[candidate.reviewedNodeId]);
-      if (!entry) {
-        // Every pending proposition points at a node that no longer exists — drop them all so
-        // the file opens clean.
-        proposals.forEach((orphan) => dropPendingProposalEntry(orphan.reviewedNodeId));
-        autoSave();
+      // Each persisted proposition becomes its own restored review; drop any whose reviewed node
+      // no longer exists so the file opens clean. Restored reviews carry no live session, so they
+      // are treated as terminal (the browser/clipboard path only matters while awaiting content).
+      const orphans = proposals.filter((candidate) => !nodes[candidate.reviewedNodeId]);
+      orphans.forEach((orphan) => dropPendingProposalEntry(orphan.reviewedNodeId));
+      if (orphans.length > 0) autoSave();
+
+      const liveProposals = proposals.filter((candidate) => nodes[candidate.reviewedNodeId]);
+      if (liveProposals.length === 0) {
         logger.info('Cleared pending propositions for missing reviewed nodes', 'SendActions');
         return;
       }
-      if (proposals.length > 1) {
-        logger.warn(`Multiple pending propositions on load; restoring the one for live node ${entry.reviewedNodeId}`, 'SendActions');
+
+      const restored: ReviewMap = {};
+      for (const entry of liveProposals) {
+        const reviewedNodeId = entry.reviewedNodeId;
+        try {
+          feedbackTreeStore.initialize(reviewedNodeId, currentFilePath, entry.nodes, entry.rootNodeId);
+          restored[reviewedNodeId] = { source: 'terminal', terminalId: null };
+          watchPropositionEdits(reviewedNodeId);
+        } catch (error) {
+          logger.error(`Failed to restore review for ${reviewedNodeId}`, error as Error, 'SendActions');
+        }
       }
 
-      const reviewedNodeId = entry.reviewedNodeId;
+      if (Object.keys(restored).length === 0) return;
 
-      try {
-        // Hydrate the editable feedback working store from the persisted pendingProposals snapshot.
-        feedbackTreeStore.initialize(currentFilePath, entry.nodes, entry.rootNodeId);
-
-        // Re-derive the decomposition flag the same way the live send paths do — it is a
-        // transient store field, so on reload finishAccept would otherwise treat a restored
-        // multi-root decomposition as single-root and drop the extra roots.
-        set({
-          collaboratingNodeId: reviewedNodeId,
-          decomposition: isDecompositionEnabled(reviewedNodeId, nodes, get().ancestorRegistry),
-        });
-        watchPropositionEdits(reviewedNodeId, currentFilePath);
-
-        logger.info(`Restored collaboration state for node: ${reviewedNodeId}`, 'SendActions');
-        useToastStore.getState().addToast('Collaboration restored - Continue your previous session', 'info');
-      } catch (error) {
-        logger.error('Failed to restore collaboration state', error as Error, 'SendActions');
-      }
+      set({ reviews: { ...get().reviews, ...restored } });
+      logger.info(`Restored ${Object.keys(restored).length} review(s)`, 'SendActions');
+      useToastStore.getState().addToast('Collaboration restored - Continue your previous session', 'info');
     },
 
     processIncomingFeedbackContent: async (
       content: string,
       source: ContentSource,
+      reviewedNodeId: string,
     ): Promise<ProcessFeedbackContentResult> => {
-      const { collaboratingNodeId, currentFilePath, blueprintModeEnabled, nodes, ancestorRegistry } = get();
+      const { currentFilePath, blueprintModeEnabled, nodes, ancestorRegistry } = get();
 
-      if (!collaboratingNodeId || !currentFilePath) {
-        logger.warn(`Received ${source} content but no active collaboration or file`, 'SendActions');
-        return { success: false };
+      if (!currentFilePath || !nodes[reviewedNodeId]) {
+        logger.warn(`Received ${source} content but no file or unknown reviewed node ${reviewedNodeId}`, 'SendActions');
+        return { success: false, reason: 'the file is no longer open or the reviewed node no longer exists' };
       }
 
-      logger.info(`Processing ${source} content`, 'SendActions');
+      logger.info(`Processing ${source} content for node ${reviewedNodeId}`, 'SendActions');
 
-      const { decomposition } = get();
+      const decomposition = isDecompositionEnabled(reviewedNodeId, nodes, ancestorRegistry);
       const parseResult = parseFeedbackContentWithReason(content, decomposition);
       if (!parseResult.ok) {
         return { success: false, reason: parseResult.reason };
@@ -811,22 +839,20 @@ export function createSendActions(
 
       // Apply blueprint metadata if in blueprint mode
       if (blueprintModeEnabled) {
-        const collaboratingNode = nodes[collaboratingNodeId];
-        if (collaboratingNode) {
-          const effectiveIcon = getEffectiveBlueprintIcon(collaboratingNode, nodes, ancestorRegistry);
+        const reviewedNode = nodes[reviewedNodeId];
+        if (reviewedNode) {
+          const effectiveIcon = getEffectiveBlueprintIcon(reviewedNode, nodes, ancestorRegistry);
           parsedContent = applyBlueprintMetadataToFeedback(parsedContent, effectiveIcon);
         }
       }
 
-      // Initialize feedback store (pass blueprintModeEnabled so new nodes also get blueprint metadata)
-      initializeFeedbackStore(currentFilePath, parsedContent, blueprintModeEnabled, {
-        collaboratingNodeId,
+      // Hydrate this reviewed node's own feedback working store (keyed per node so concurrent
+      // reviews stay independent); the side panel is never opened.
+      initializeFeedbackStore(reviewedNodeId, currentFilePath, parsedContent, blueprintModeEnabled, {
+        collaboratingNodeId: reviewedNodeId,
         priorNodes: nodes,
         decomposition,
       });
-
-      // Both single-root and decomposition proposals are reviewed inline on the node;
-      // the side panel is never opened.
 
       // Stop clipboard monitor - we have content now
       await window.electron.stopClipboardMonitor();
@@ -834,44 +860,44 @@ export function createSendActions(
       // Persist the proposition into the .arbo-native pendingProposals map (no temp file), then
       // re-capture on every edit so an edited proposition survives a restart. This runs for
       // clipboard and MCP/checkpoint proposals alike — both are reviewed inline and must survive reload.
-      capturePropositionToPendingProposals(collaboratingNodeId, currentFilePath);
-      watchPropositionEdits(collaboratingNodeId, currentFilePath);
+      capturePropositionToPendingProposals(reviewedNodeId);
+      watchPropositionEdits(reviewedNodeId);
 
       return { success: true, nodeCount: parsedContent.nodeCount };
     },
 
-    finishCancel: async () => {
+    finishCancel: async (reviewedNodeId: string) => {
       try {
-        const { collaboratingNodeId, currentFilePath, collaboratingTerminalId, workflowSessionMap } = get();
-        if (!collaboratingNodeId || !currentFilePath) {
+        const { currentFilePath, reviews, workflowSessionMap } = get();
+        if (!currentFilePath) {
           logger.warn('No collaboration in progress to cancel', 'SendActions');
           return;
         }
 
-        notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
+        notifyManualCollabResolvedForTerminal(reviews[reviewedNodeId]?.terminalId ?? null, workflowSessionMap);
 
-        stopWatchingPropositionEdits(collaboratingNodeId);
-        dropPendingProposalEntry(collaboratingNodeId);
-        set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
+        stopWatchingPropositionEdits(reviewedNodeId);
+        dropPendingProposalEntry(reviewedNodeId);
+        removeReviewEntry(reviewedNodeId);
         autoSave();
 
-        await cleanupFeedback(currentFilePath);
+        await cleanupFeedbackForNode(reviewedNodeId);
         window.dispatchEvent(new Event('collaboration-canceled'));
-        logger.info('Collaboration cancelled', 'SendActions');
+        logger.info(`Collaboration cancelled for ${reviewedNodeId}`, 'SendActions');
       } catch (error) {
         logger.error('Failed to cancel collaboration', error as Error, 'SendActions');
       }
     },
 
-    finishAccept: async () => {
+    finishAccept: async (reviewedNodeId: string) => {
       try {
-        const { collaboratingNodeId, currentFilePath, collaboratingTerminalId, workflowSessionMap } = get();
-        if (!collaboratingNodeId || !currentFilePath) {
+        const { currentFilePath, reviews, workflowSessionMap } = get();
+        if (!currentFilePath) {
           logger.error('No collaboration in progress to accept', new Error('No active collaboration'), 'SendActions');
           return;
         }
 
-        const feedbackContent = extractFeedbackContent(currentFilePath);
+        const feedbackContent = extractFeedbackContent(reviewedNodeId);
         // A nullish extract (an empty or transient proposition) intentionally leaves the review
         // OPEN: it does not resolve the collaboration or clear the MCP route, and the pending
         // proposition + edit watch stay live so the user can keep editing or cancel. The review
@@ -880,14 +906,15 @@ export function createSendActions(
 
         logger.info(`Accepting feedback with ${Object.keys(feedbackContent.nodes).length} nodes`, 'SendActions');
 
-        notifyManualCollabResolvedForTerminal(collaboratingTerminalId, workflowSessionMap);
+        notifyManualCollabResolvedForTerminal(reviews[reviewedNodeId]?.terminalId ?? null, workflowSessionMap);
 
-        const { decomposition, nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
+        const { nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
+        const decomposition = isDecompositionEnabled(reviewedNodeId, currentNodes, currentRegistry);
         const rootNodeIdOrIds = decomposition && feedbackContent.rootNodeIds.length > 1
           ? feedbackContent.rootNodeIds
           : feedbackContent.rootNodeId;
 
-        const archiveConfig = getArchiveConfigForNode(collaboratingNodeId, currentNodes, currentRegistry);
+        const archiveConfig = getArchiveConfigForNode(reviewedNodeId, currentNodes, currentRegistry);
 
         if (archiveConfig && !currentNodes[archiveConfig.archiveDestinationId]) {
           useToastStore.getState().addToast(
@@ -895,11 +922,11 @@ export function createSendActions(
             'warning',
             { persistent: true, actions: [{ label: 'OK', onClick: () => {} }] }
           );
-          set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
-          stopWatchingPropositionEdits(collaboratingNodeId);
-          dropPendingProposalEntry(collaboratingNodeId);
+          stopWatchingPropositionEdits(reviewedNodeId);
+          dropPendingProposalEntry(reviewedNodeId);
+          removeReviewEntry(reviewedNodeId);
           autoSave();
-          await cleanupFeedback(currentFilePath);
+          await cleanupFeedbackForNode(reviewedNodeId);
           return;
         }
 
@@ -907,7 +934,7 @@ export function createSendActions(
         const precomputedIdMap = isMultiRoot
           ? undefined
           : reconcileFeedback({
-              priorRootId: collaboratingNodeId,
+              priorRootId: reviewedNodeId,
               priorNodes: currentNodes,
               newRootId: rootNodeIdOrIds,
               newNodes: feedbackContent.nodes,
@@ -915,12 +942,13 @@ export function createSendActions(
             }).idMap;
 
         executeCommand(
-          new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig, precomputedIdMap)
+          new AcceptFeedbackCommand(reviewedNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig, precomputedIdMap)
         );
 
-        stopWatchingPropositionEdits(collaboratingNodeId);
-        dropPendingProposalEntry(collaboratingNodeId);
-        await cleanupFeedback(currentFilePath);
+        stopWatchingPropositionEdits(reviewedNodeId);
+        dropPendingProposalEntry(reviewedNodeId);
+        removeReviewEntry(reviewedNodeId);
+        await cleanupFeedbackForNode(reviewedNodeId);
 
         window.dispatchEvent(new Event('collaboration-accepted'));
         logger.info('Feedback accepted and node replaced', 'SendActions');

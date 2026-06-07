@@ -77,6 +77,7 @@ export interface FeedbackReconcilePriorSubtree {
 }
 
 export function initializeFeedbackStore(
+  reviewedNodeId: string,
   filePath: string,
   parsedContent: ParsedFeedbackContent,
   blueprintModeEnabled: boolean = false,
@@ -93,10 +94,10 @@ export function initializeFeedbackStore(
     applyReconciliationMetadata(nodesWithHiddenRoot, parsedContent.rootNodeId, priorSubtree);
   }
 
-  feedbackTreeStore.initialize(filePath, nodesWithHiddenRoot, hiddenRootId);
+  feedbackTreeStore.initialize(reviewedNodeId, filePath, nodesWithHiddenRoot, hiddenRootId);
 
   if (blueprintModeEnabled) {
-    const store = feedbackTreeStore.getStoreForFile(filePath);
+    const store = feedbackTreeStore.getStoreForNode(reviewedNodeId);
     if (store) {
       store.setState({ blueprintModeEnabled: true });
     }
@@ -176,11 +177,13 @@ function injectRemovedPlaceholders(
 }
 
 export function extractFeedbackContent(
-  filePath: string
+  reviewedNodeId: string
 ): { rootNodeId: string; rootNodeIds: string[]; nodes: Record<string, TreeNode> } | null {
-  const feedbackStore = feedbackTreeStore.getStoreForFile(filePath);
+  const feedbackStore = feedbackTreeStore.getStoreForNode(reviewedNodeId);
   if (!feedbackStore) {
-    logger.error('No feedback store available', new Error('Feedback store not initialized'), 'FeedbackService');
+    // No store yet for this reviewed node — an empty/transient proposition. finishAccept treats a
+    // null return as "leave the review open", so this is a benign no-op, not an error (no toast).
+    logger.warn('No feedback store available — leaving review open', 'FeedbackService');
     return null;
   }
 
@@ -188,7 +191,8 @@ export function extractFeedbackContent(
   const hiddenRoot = feedbackNodes[feedbackRootNodeId];
 
   if (!hiddenRoot || hiddenRoot.children.length === 0) {
-    logger.error('Feedback store has no content', new Error('Empty feedback'), 'FeedbackService');
+    // Empty proposition — benign; finishAccept leaves the review open so the user keeps editing.
+    logger.warn('Feedback store has no content — leaving review open', 'FeedbackService');
     return null;
   }
 
@@ -226,7 +230,12 @@ export async function stopFeedbackMonitors(): Promise<void> {
   await window.electron.stopClipboardMonitor();
 }
 
-export async function cleanupFeedback(filePath: string): Promise<void> {
+export async function cleanupFeedbackForNode(reviewedNodeId: string): Promise<void> {
   await stopFeedbackMonitors();
-  feedbackTreeStore.clearFile(filePath);
+  feedbackTreeStore.clearForNode(reviewedNodeId);
+}
+
+export async function cleanupFeedbackForFile(filePath: string): Promise<void> {
+  await stopFeedbackMonitors();
+  feedbackTreeStore.clearForFile(filePath);
 }

@@ -50,11 +50,11 @@ vi.mock('../../../../utils/defaultTemplate', () => ({
 }));
 
 vi.mock('../../../../services/feedback/feedbackService', () => ({
-  cleanupFeedback: vi.fn().mockResolvedValue(undefined),
+  cleanupFeedbackForFile: vi.fn().mockResolvedValue(undefined),
 }));
 
 import { storeManager } from '../../../storeManager';
-import { cleanupFeedback } from '../../../../services/feedback/feedbackService';
+import { cleanupFeedbackForFile } from '../../../../services/feedback/feedbackService';
 import { logger } from '../../../../services/logger';
 import { createArboFile, extractBlueprintNodes } from '../../../../utils/document';
 import { createBlankDocument } from '../../../../utils/defaultTemplate';
@@ -117,7 +117,7 @@ describe('fileActions', () => {
     (storeManager.getStoreForFile as ReturnType<typeof vi.fn>).mockReturnValue({
       getState: () => ({
         fileMeta: null,
-        collaboratingNodeId: null,
+        reviews: {},
         nodes: {},
         workflowExecutionStates: {},
         actions: {
@@ -306,6 +306,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
+          reviews: {},
           workflowExecutionStates: {},
           actions: {
             saveToPath: vi.fn(() => Promise.reject(error)),
@@ -332,6 +333,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
+          reviews: {},
           workflowExecutionStates: { 'node-1': { state: 'running', terminalTabId: 'term-1' } },
           actions: {
             saveToPath: vi.fn(() => Promise.resolve()),
@@ -353,6 +355,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
+          reviews: {},
           workflowExecutionStates: { 'node-1': { state: 'running', terminalTabId: 'term-1' } },
           actions: { stopWorkflow: vi.fn() },
         }),
@@ -373,6 +376,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
+          reviews: {},
           workflowExecutionStates: { 'node-1': { state: 'running', terminalTabId: 'term-1' } },
           actions: {
             saveToPath: vi.fn(() => Promise.resolve()),
@@ -403,7 +407,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
-          collaboratingNodeId: 'node-1',
+          reviews: { 'node-1': { source: 'terminal', terminalId: null } },
           nodes: { 'node-1': { id: 'node-1', content: '', children: [], metadata: {} } },
           workflowExecutionStates: {},
           actions: { saveToPath: vi.fn(() => Promise.resolve()) },
@@ -423,7 +427,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
-          collaboratingNodeId: 'node-1',
+          reviews: { 'node-1': { source: 'terminal', terminalId: null } },
           nodes: { 'node-1': { id: 'node-1', content: '', children: [], metadata: {} } },
           workflowExecutionStates: {},
           actions: {},
@@ -444,7 +448,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
-          collaboratingNodeId: 'node-1',
+          reviews: { 'node-1': { source: 'terminal', terminalId: null } },
           nodes: {
             'node-1': {
               id: 'node-1', content: '', children: [], metadata: {},
@@ -458,7 +462,7 @@ describe('fileActions', () => {
 
       await actions.closeFile('/test/file.arbo');
 
-      expect(vi.mocked(cleanupFeedback)).toHaveBeenCalledWith('/test/file.arbo');
+      expect(vi.mocked(cleanupFeedbackForFile)).toHaveBeenCalledWith('/test/file.arbo');
     });
 
     it('should not show active session dialog when no session is active', async () => {
@@ -475,7 +479,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
-          collaboratingNodeId: null,
+          reviews: {},
           nodes,
           workflowExecutionStates: {},
           actions: {

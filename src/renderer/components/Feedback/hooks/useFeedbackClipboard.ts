@@ -2,36 +2,52 @@ import { useEffect, useCallback, useSyncExternalStore } from 'react';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 import { storeManager } from '../../../store/storeManager';
+import { getBrowserReviewNodeId, hasBrowserReview } from '../../../store/tree/reviews';
 import { useToastStore } from '../../../store/toast/toastStore';
 import { resolveToSourceFilePath } from '../../../utils/zoomPath';
 import type { ContentSource } from '../../../store/tree/actions/sendActions';
 
-function findActiveCollaboratingEntry() {
-  return storeManager
-    .getAllStoreEntries()
-    .find((entry) => entry.store.getState().collaboratingNodeId !== null);
+// The clipboard monitor is session-less, so it only ever serves the (exclusive) browser review.
+// Find the file holding it and the reviewed node its captured content belongs to.
+function findBrowserReviewEntry() {
+  for (const entry of storeManager.getAllStoreEntries()) {
+    const reviewedNodeId = getBrowserReviewNodeId(entry.store.getState().reviews);
+    if (reviewedNodeId) return { ...entry, reviewedNodeId };
+  }
+  return null;
 }
 
 function displayNameFor(filePath: string): string {
   return filePath.split('/').pop() ?? filePath;
 }
 
-export function useFeedbackClipboard(collaboratingNodeId: string | null) {
+export function useFeedbackClipboard(browserReviewNodeId: string | null) {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
 
   const hasFeedbackContent = useSyncExternalStore(
     feedbackTreeStore.subscribeToVersion.bind(feedbackTreeStore),
-    () => activeFilePath ? feedbackTreeStore.hasFeedback(activeFilePath) : false,
+    () => (browserReviewNodeId ? feedbackTreeStore.hasFeedbackForNode(browserReviewNodeId) : false),
   );
 
   const handleClipboardFeedback = useCallback(async (content: string, source: ContentSource) => {
-    const entry = findActiveCollaboratingEntry();
+    const entry = findBrowserReviewEntry();
     if (!entry) return;
 
     const ownerFilePath = entry.filePath;
     const isOwnerActive = ownerFilePath === resolveToSourceFilePath(activeFilePath);
 
-    await entry.store.getState().actions.processIncomingFeedbackContent(content, source);
+    const result = await entry.store.getState().actions.processIncomingFeedbackContent(content, source, entry.reviewedNodeId);
+
+    // The clipboard is the only review channel with no return path to carry a parse failure
+    // back (the MCP path threads result.reason into its reply), so the renderer must surface it.
+    if (!result.success) {
+      const reason = result.reason ? `: ${result.reason}` : '';
+      useToastStore.getState().addToast(
+        `Couldn't read the pasted response${reason} — copy the model's full response and try again.`,
+        'error',
+      );
+      return;
+    }
 
     if (!isOwnerActive) {
       useToastStore.getState().addToast(
@@ -50,20 +66,18 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
   }, [handleClipboardFeedback]);
 
   useEffect(() => {
-    if (collaboratingNodeId && !hasFeedbackContent) {
+    if (browserReviewNodeId && !hasFeedbackContent) {
       void window.electron.startClipboardMonitor();
     }
 
     return () => {
-      // Switching files should not interrupt a session in another file.
-      const anySessionActive = storeManager.getAllStores().some(
-        s => s.getState().collaboratingNodeId !== null
-      );
-      if (!anySessionActive) {
+      // Switching files should not interrupt a browser review awaiting content in another file.
+      const anyBrowserReview = storeManager.getAllStores().some((s) => hasBrowserReview(s.getState().reviews));
+      if (!anyBrowserReview) {
         void window.electron.stopClipboardMonitor();
       }
     };
-  }, [collaboratingNodeId, hasFeedbackContent]);
+  }, [browserReviewNodeId, hasFeedbackContent]);
 
   return hasFeedbackContent;
 }

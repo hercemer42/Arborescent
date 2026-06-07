@@ -3,7 +3,11 @@ import './ReviewControlBar.css';
 
 // Relocated from the feedback panel's tab bar: accept promotes the proposition onto the
 // reviewed node, cancel discards it. Buttons only — no keyboard shortcuts in this context.
-export function ReviewControlBar() {
+interface ReviewControlBarProps {
+  nodeId: string;
+}
+
+export function ReviewControlBar({ nodeId }: ReviewControlBarProps) {
   const { handleAccept, handleCancel } = useFeedbackActions();
 
   return (
@@ -11,14 +15,14 @@ export function ReviewControlBar() {
       <button
         type="button"
         className="review-control-button review-control-accept"
-        onClick={() => void handleAccept()}
+        onClick={() => void handleAccept(nodeId)}
       >
         Accept
       </button>
       <button
         type="button"
         className="review-control-button review-control-cancel"
-        onClick={() => void handleCancel()}
+        onClick={() => void handleCancel(nodeId)}
       >
         Cancel
       </button>

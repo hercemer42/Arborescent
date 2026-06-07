@@ -32,16 +32,17 @@ describe('useFeedbackActions', () => {
   });
 
   describe('handleCancel', () => {
-    it('should call finishCancel action', async () => {
+    it('should call finishCancel action with the reviewed node id', async () => {
       mockFinishCancel.mockResolvedValue(undefined);
 
       const { result } = renderHook(() => useFeedbackActions());
 
       await act(async () => {
-        await result.current.handleCancel();
+        await result.current.handleCancel('node-1');
       });
 
       expect(mockFinishCancel).toHaveBeenCalledTimes(1);
+      expect(mockFinishCancel).toHaveBeenCalledWith('node-1');
     });
 
     it('should handle errors when cancelling', async () => {
@@ -51,23 +52,24 @@ describe('useFeedbackActions', () => {
 
       await expect(
         act(async () => {
-          await result.current.handleCancel();
+          await result.current.handleCancel('node-1');
         })
       ).rejects.toThrow('Cancel failed');
     });
   });
 
   describe('handleAccept', () => {
-    it('should call finishAccept action', async () => {
+    it('should call finishAccept action with the reviewed node id', async () => {
       mockFinishAccept.mockResolvedValue(undefined);
 
       const { result } = renderHook(() => useFeedbackActions());
 
       await act(async () => {
-        await result.current.handleAccept();
+        await result.current.handleAccept('node-1');
       });
 
       expect(mockFinishAccept).toHaveBeenCalledTimes(1);
+      expect(mockFinishAccept).toHaveBeenCalledWith('node-1');
     });
 
     it('should not call actions if no active file path', async () => {
@@ -80,7 +82,7 @@ describe('useFeedbackActions', () => {
       const { result } = renderHook(() => useFeedbackActions());
 
       await act(async () => {
-        await result.current.handleAccept();
+        await result.current.handleAccept('node-1');
       });
 
       expect(mockFinishAccept).not.toHaveBeenCalled();
@@ -96,7 +98,7 @@ describe('useFeedbackActions', () => {
 
       await expect(
         act(async () => {
-          await result.current.handleAccept();
+          await result.current.handleAccept('node-1');
         })
       ).rejects.toThrow('Accept failed');
     });

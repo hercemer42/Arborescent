@@ -9,12 +9,13 @@ import { useTerminalStore, setTerminalSessionResolver } from './terminal/termina
 import { findSessionIdForTerminal } from '../utils/sessionTerminalLookup';
 import { useBrowserStore } from './browser/browserStore';
 import { usePanelStore } from './panel/panelStore';
+import { getInReviewNodeIds, type ReviewMap } from './tree/reviews';
 
-function computeIndicators(state: { collaboratingNodeId: string | null; workflowExecutionStates: Record<string, { state: string }> }): TabIndicatorState {
+function computeIndicators(state: { reviews: ReviewMap; workflowExecutionStates: Record<string, { state: string }> }): TabIndicatorState {
   const execEntries = Object.values(state.workflowExecutionStates);
   const workflowRunning = execEntries.some(e => e.state === 'running');
   const awaitingValidation = execEntries.some(e => e.state === 'awaiting-validation');
-  const feedbackPending = state.collaboratingNodeId !== null;
+  const feedbackPending = getInReviewNodeIds(state.reviews).length > 0;
   const actionRequired = awaitingValidation || feedbackPending;
 
   return { feedbackPending, workflowRunning, actionRequired };
@@ -52,18 +53,18 @@ class StoreManager implements StoreAccess {
   }
 
   private subscribeToIndicators(filePath: string, store: TreeStore): void {
-    let prevCollaboratingNodeId: string | null = null;
+    let prevReviews: ReviewMap | null = null;
     let prevExecStates: Record<string, { state: string }> = {};
 
     const unsubscribe = store.subscribe((state) => {
-      const collaboratingNodeId = state.collaboratingNodeId;
+      const reviews = state.reviews;
       const execStates = state.workflowExecutionStates;
 
-      if (collaboratingNodeId !== prevCollaboratingNodeId || execStates !== prevExecStates) {
-        prevCollaboratingNodeId = collaboratingNodeId;
+      if (reviews !== prevReviews || execStates !== prevExecStates) {
+        prevReviews = reviews;
         prevExecStates = execStates;
 
-        const indicators = computeIndicators({ collaboratingNodeId, workflowExecutionStates: execStates });
+        const indicators = computeIndicators({ reviews, workflowExecutionStates: execStates });
         useTabIndicatorStore.getState().updateIndicator(filePath, indicators);
       }
     });

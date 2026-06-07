@@ -42,6 +42,12 @@ Keyboard shortcuts: `Ctrl+E` (send in terminal), `Ctrl+Shift+E` (send in browser
 
 For the common "we discussed it in chat, fold the decisions back in" loop, right-click → **Revise after discussion** sends the branch with a one-shot revision prompt instead of the applied context. The branch's stored context is unchanged — it's a single send, not a state change.
 
+### Review several branches at once
+
+Reviews aren't one-at-a-time. Send a branch for review, then send another without resolving the first — each proposed revision sits inline on its own branch and is accepted or cancelled independently. Send a branch that already has a pending revision and the new one replaces it in place. A pending revision survives closing the file or restarting Arborescent, so you can leave a review open and come back to it.
+
+Reviews can't overlap: you can't send a branch while it, one of its ancestors, or one of its descendants is already under review — Arborescent blocks the send and tells you why, so resolve that review first. Concurrent reviews run in terminal mode; the browser path takes one review at a time (a pasted response carries no marker for which branch it belongs to), so start a browser review only when nothing else is under review.
+
 ### Run a Branch as a Command
 
 A branch whose entire content is a single backticked snippet runs in the terminal as a raw command rather than as markdown. Wrap a one-liner with single backticks (`` `npm install` ``) or a multi-line script with triple backticks. The branch must have no children and no context applied — both signal review or editing intent — and only single-branch selections execute. Anything else falls back to the regular markdown send.

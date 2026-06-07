@@ -1,4 +1,5 @@
 import { useActiveTreeStore } from './useActiveTreeStore';
+import { getInReviewNodeIds } from '../../../store/tree/reviews';
 
 interface EditMenuState {
   canUndo: boolean;
@@ -31,12 +32,12 @@ export function useEditMenuState(): EditMenuState {
     };
   }
 
-  const { actions, activeNodeId, multiSelectedNodeIds, collaboratingNodeId } = treeState;
+  const { actions, activeNodeId, multiSelectedNodeIds, reviews } = treeState;
 
   const canUndo = actions.canUndo();
   const canRedo = actions.canRedo();
 
-  const isCollaborating = collaboratingNodeId !== null;
+  const isCollaborating = getInReviewNodeIds(reviews).length > 0;
   const hasNodeSelected = activeNodeId !== null || multiSelectedNodeIds.size > 0;
 
   const canCut = hasNodeSelected && !isCollaborating;

@@ -12,19 +12,21 @@ vi.mock('../../../../services/terminalExecution', () => ({
 }));
 
 vi.mock('../../../../services/feedback/feedbackService', () => ({
-  parseFeedbackContent: vi.fn(),
+  parseFeedbackContentWithReason: vi.fn(),
   initializeFeedbackStore: vi.fn(),
   extractFeedbackContent: vi.fn(),
-  cleanupFeedback: vi.fn().mockResolvedValue(undefined),
-  findCollaboratingNode: vi.fn(),
+  cleanupFeedbackForNode: vi.fn().mockResolvedValue(undefined),
+  cleanupFeedbackForFile: vi.fn().mockResolvedValue(undefined),
 }));
 
 vi.mock('../../../feedback/feedbackTreeStore', () => ({
   feedbackTreeStore: {
-    getStoreForFile: vi.fn(),
+    getStoreForNode: vi.fn(),
     initialize: vi.fn(),
     setFilePath: vi.fn(),
-    clearFile: vi.fn(),
+    clearForFile: vi.fn(),
+    clearForNode: vi.fn(),
+    hasFeedbackForNode: vi.fn(),
   },
 }));
 
@@ -109,10 +111,7 @@ describe('Workflow steps preserve the original node content', () => {
       scrollToNodeId: null,
       deletingNodeIds: new Set<string>(),
       deleteAnimationCallback: null,
-      collaboratingNodeId: null,
-      collaborationSource: null,
-      collaboratingTerminalId: null,
-      decomposition: false,
+      reviews: {},
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
       blueprintModeEnabled: false,

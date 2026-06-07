@@ -12,8 +12,6 @@ function createState(nodes: Record<string, TreeNode>, rootNodeId: string, bluepr
     rootNodeId,
     ancestorRegistry: {} as Record<string, string[]>,
     blueprintModeEnabled,
-    collaboratingNodeId: null as string | null,
-    collaborationSource: null as 'browser' | 'terminal' | null,
   };
 }
 
@@ -664,127 +662,6 @@ describe('AcceptFeedbackCommand', () => {
         const firstChild = setCall.nodes[resultNode.children[0]];
         expect(firstChild?.metadata?.isHyperlink).not.toBe(true);
       }
-    });
-  });
-
-  describe('collaboration ownership', () => {
-    it('execute should clear collaboratingNodeId when the active session owns the autonomous node', () => {
-      mockState.collaboratingNodeId = 'collab-node';
-      mockState.collaborationSource = 'browser';
-
-      const newNodes = {
-        'new-root': createNode('new-root', 'Replaced', []),
-      };
-
-      const command = new AcceptFeedbackCommand(
-        'collab-node', 'new-root', newNodes,
-        getState, setState, triggerAutosave
-      );
-      command.execute();
-
-      expect(mockState.collaboratingNodeId).toBeNull();
-      expect(mockState.collaborationSource).toBeNull();
-    });
-
-    it('execute should preserve collaboratingNodeId when a manual session is active on a different node', () => {
-      mockState.collaboratingNodeId = 'sibling';
-      mockState.collaborationSource = 'browser';
-
-      const newNodes = {
-        'new-root': createNode('new-root', 'Replaced', []),
-      };
-
-      const command = new AcceptFeedbackCommand(
-        'collab-node', 'new-root', newNodes,
-        getState, setState, triggerAutosave
-      );
-      command.execute();
-
-      expect(mockState.collaboratingNodeId).toBe('sibling');
-      expect(mockState.collaborationSource).toBe('browser');
-    });
-
-    it('execute should preserve collaboratingNodeId in multi-root mode when manual session is on a different node', () => {
-      mockState.collaboratingNodeId = 'sibling';
-      mockState.collaborationSource = 'terminal';
-
-      const newNodes = {
-        'story1': createNode('story1', 'Story 1', []),
-        'story2': createNode('story2', 'Story 2', []),
-      };
-
-      const command = new AcceptFeedbackCommand(
-        'collab-node',
-        ['story1', 'story2'],
-        newNodes,
-        getState, setState, triggerAutosave
-      );
-      command.execute();
-
-      expect(mockState.collaboratingNodeId).toBe('sibling');
-      expect(mockState.collaborationSource).toBe('terminal');
-    });
-
-    it('execute should leave collaboratingNodeId untouched when no session is active', () => {
-      mockState.collaboratingNodeId = null;
-      mockState.collaborationSource = null;
-
-      const newNodes = {
-        'new-root': createNode('new-root', 'Replaced', []),
-      };
-
-      const command = new AcceptFeedbackCommand(
-        'collab-node', 'new-root', newNodes,
-        getState, setState, triggerAutosave
-      );
-      command.execute();
-
-      expect(mockState.collaboratingNodeId).toBeNull();
-      expect(mockState.collaborationSource).toBeNull();
-    });
-
-    it('undo should preserve collaboratingNodeId when a manual session has started on a different node since execute', () => {
-      const newNodes = {
-        'new-root': createNode('new-root', 'Replaced', []),
-      };
-
-      const command = new AcceptFeedbackCommand(
-        'collab-node', 'new-root', newNodes,
-        getState, setState, triggerAutosave
-      );
-      // Execute while the autonomous node owned the session.
-      mockState.collaboratingNodeId = 'collab-node';
-      mockState.collaborationSource = 'browser';
-      command.execute();
-
-      // After auto-accept finishes, a fresh manual session starts on a sibling.
-      mockState.collaboratingNodeId = 'sibling';
-      mockState.collaborationSource = 'browser';
-
-      command.undo();
-
-      expect(mockState.collaboratingNodeId).toBe('sibling');
-      expect(mockState.collaborationSource).toBe('browser');
-    });
-
-    it('undo should clear collaboratingNodeId when state still references the autonomous node', () => {
-      const newNodes = {
-        'new-root': createNode('new-root', 'Replaced', []),
-      };
-
-      const command = new AcceptFeedbackCommand(
-        'collab-node', 'new-root', newNodes,
-        getState, setState, triggerAutosave
-      );
-      command.execute();
-
-      mockState.collaboratingNodeId = 'collab-node';
-      mockState.collaborationSource = 'terminal';
-
-      command.undo();
-
-      expect(mockState.collaboratingNodeId).toBeNull();
-      expect(mockState.collaborationSource).toBeNull();
     });
   });
 

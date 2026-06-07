@@ -1,7 +1,8 @@
 import { StorageService } from '../../../../shared/interfaces';
 import type { StoreAccess } from '../../storeAccess';
+import { getInReviewNodeIds } from '../../tree/reviews';
 import { logger } from '../../../services/logger';
-import { cleanupFeedback } from '../../../services/feedback/feedbackService';
+import { cleanupFeedbackForFile } from '../../../services/feedback/feedbackService';
 import { createArboFile, extractBlueprintNodes } from '../../../utils/document';
 import { createBlankDocument } from '../../../utils/defaultTemplate';
 import { extractSessionBindings } from '../../../utils/extractSessionBindings';
@@ -296,14 +297,14 @@ export const createFileActions = (get: StoreGetter, storage: StorageService, get
   function hasActiveCollaborationSession(filePath: string): boolean {
     if (!getStoreAccess().hasStore(filePath)) return false;
     const store = getStoreAccess().getStoreForFile(filePath);
-    return store.getState().collaboratingNodeId !== null;
+    return getInReviewNodeIds(store.getState().reviews).length > 0;
   }
 
   async function terminateActiveSession(filePath: string): Promise<boolean> {
     if (!hasActiveCollaborationSession(filePath)) return true;
     const confirmed = await storage.showActiveSessionDialog(getDisplayName(filePath, false));
     if (!confirmed) return false;
-    await cleanupFeedback(filePath);
+    await cleanupFeedbackForFile(filePath);
     return true;
   }
 

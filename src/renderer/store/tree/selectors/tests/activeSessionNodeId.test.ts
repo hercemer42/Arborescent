@@ -8,9 +8,7 @@ import {
 
 const emptyState: SessionSelectorState = {
   workflowExecutionStates: {},
-  collaboratingNodeId: null,
-  collaborationSource: null,
-  collaboratingTerminalId: null,
+  reviews: {},
 };
 
 function makeNode(id: string, metadata: TreeNode['metadata'] = {}): TreeNode {
@@ -73,9 +71,7 @@ describe('selectActiveSessionNodeId', () => {
       workflowExecutionStates: {
         'node-A': { state: 'awaiting-validation', terminalTabId: 'terminal-1' },
       },
-      collaboratingNodeId: 'node-B',
-      collaborationSource: 'terminal',
-      collaboratingTerminalId: 'terminal-1',
+      reviews: { 'node-B': { source: 'terminal', terminalId: 'terminal-1' } },
     };
     expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-A');
   });
@@ -93,9 +89,7 @@ describe('selectActiveSessionNodeId', () => {
   it('returns the collaboration nodeId when its terminal is focused and source is terminal', () => {
     const state: SessionSelectorState = {
       ...emptyState,
-      collaboratingNodeId: 'node-B',
-      collaborationSource: 'terminal',
-      collaboratingTerminalId: 'terminal-1',
+      reviews: { 'node-B': { source: 'terminal', terminalId: 'terminal-1' } },
     };
     expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-B');
   });
@@ -103,9 +97,7 @@ describe('selectActiveSessionNodeId', () => {
   it('returns null for a browser-source collaboration even when a terminal is focused', () => {
     const state: SessionSelectorState = {
       ...emptyState,
-      collaboratingNodeId: 'node-B',
-      collaborationSource: 'browser',
-      collaboratingTerminalId: null,
+      reviews: { 'node-B': { source: 'browser', terminalId: null } },
     };
     expect(selectActiveSessionNodeId(state, 'terminal-1')).toBeNull();
   });
@@ -113,9 +105,7 @@ describe('selectActiveSessionNodeId', () => {
   it('returns null when a terminal collaboration is bound to a different terminal than the one focused', () => {
     const state: SessionSelectorState = {
       ...emptyState,
-      collaboratingNodeId: 'node-B',
-      collaborationSource: 'terminal',
-      collaboratingTerminalId: 'terminal-2',
+      reviews: { 'node-B': { source: 'terminal', terminalId: 'terminal-2' } },
     };
     expect(selectActiveSessionNodeId(state, 'terminal-1')).toBeNull();
   });
@@ -126,9 +116,7 @@ describe('selectActiveSessionNodeId', () => {
       workflowExecutionStates: {
         'node-A': { state: 'running', terminalTabId: 'terminal-1' },
       },
-      collaboratingNodeId: 'node-B',
-      collaborationSource: 'terminal',
-      collaboratingTerminalId: 'terminal-1',
+      reviews: { 'node-B': { source: 'terminal', terminalId: 'terminal-1' } },
     };
     expect(selectActiveSessionNodeId(state, 'terminal-1')).toBe('node-A');
   });
@@ -259,9 +247,7 @@ describe('selectActiveSessionNodeId', () => {
     it('prefers a terminal-source collaboration over session-ownership', () => {
       const state: SessionSelectorState = {
         ...emptyState,
-        collaboratingNodeId: 'node-collab',
-        collaborationSource: 'terminal',
-        collaboratingTerminalId: 'terminal-1',
+        reviews: { 'node-collab': { source: 'terminal', terminalId: 'terminal-1' } },
         workflowSessionMap: { 'sess-1': 'terminal-1' },
         nodes: { 'node-owner': makeNode('node-owner', { sessionId: 'sess-1' }) },
       };

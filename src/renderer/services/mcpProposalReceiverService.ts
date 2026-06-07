@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import { storeManager } from '../store/storeManager';
 import { logger } from './logger';
+import { addReview, hasBrowserReview, getInReviewNodeIds } from '../store/tree/reviews';
+import { isReviewOverlap } from '../utils/reviewOverlap';
 import type { ProposalRequest, ProposalResponse } from '../../shared/types/electronApi';
 import type { TreeStore } from '../store/tree/treeStore';
 
@@ -50,29 +52,35 @@ export async function handleProposalRequest(
     return { ok: false, error: `Tree store unavailable for ${filePath}` };
   }
 
-  // Snapshot prior collaboration state so we can revert if the submission
-  // can't be applied — otherwise a parse failure leaves the node stuck
-  // highlighted as "collaborating" with no feedback panel ever appearing.
   const targetStore = store;
-  const priorState = targetStore.getState();
-  const priorCollaboratingNodeId = priorState.collaboratingNodeId ?? null;
-  const priorCollaborationSource = priorState.collaborationSource ?? null;
+  const state = targetStore.getState();
 
+  // A browser review is exclusive (its clipboard delivery is session-less), so an MCP submit can't
+  // race it — refuse with a retryable message rather than opening a second concurrent review.
+  const browserReviewActive = storeManager.getAllStores().some((s) => hasBrowserReview(s.getState().reviews));
+  if (browserReviewActive) {
+    return { ok: false, error: 'cannot give feedback, browser review in progress, finish and retry' };
+  }
+
+  // A review may not nest inside or engulf another.
+  if (isReviewOverlap(request.nodeId, getInReviewNodeIds(state.reviews), state.ancestorRegistry)) {
+    return { ok: false, error: 'cannot give feedback, the target overlaps a review already in progress, finish and retry' };
+  }
+
+  // Snapshot the review map so we can revert if the submission can't be applied — otherwise a
+  // parse failure leaves the node stuck in review with no proposition ever appearing.
+  const priorReviews = state.reviews;
   const restorePriorState = (): void => {
-    targetStore.setState({
-      collaboratingNodeId: priorCollaboratingNodeId,
-      collaborationSource: priorCollaborationSource,
-    });
+    targetStore.setState({ reviews: priorReviews });
   };
 
   try {
-    store.setState({
-      collaboratingNodeId: request.nodeId,
-      collaborationSource: 'terminal',
+    targetStore.setState({
+      reviews: addReview(targetStore.getState().reviews, request.nodeId, { source: 'terminal', terminalId: null }),
     });
-    const result = await store
+    const result = await targetStore
       .getState()
-      .actions.processIncomingFeedbackContent(request.request.content, 'mcp-proposal');
+      .actions.processIncomingFeedbackContent(request.request.content, 'mcp-proposal', request.nodeId);
     if (!result.success) {
       restorePriorState();
       const reasonSuffix = result.reason ? ` — ${result.reason}` : '';

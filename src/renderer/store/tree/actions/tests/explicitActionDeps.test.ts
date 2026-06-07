@@ -6,6 +6,7 @@ import { createNodeDeletionActions, type NodeDeletionActions } from '../nodeDele
 import { notifyDeletionDisruption } from '../workflowDisruption';
 import type { TreeNode } from '@shared/types';
 import type { AncestorRegistry } from '../../../../utils/ancestry';
+import type { ReviewMap } from '../../reviews';
 
 // Contract for Story 1: factories receive their cross-slice dependencies as
 // constructor params instead of reaching through get().actions. Test state
@@ -19,7 +20,7 @@ type TestState = {
   activeNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
-  collaboratingNodeId: string | null;
+  reviews: ReviewMap;
   blueprintModeEnabled: boolean;
 };
 type Setter = (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
@@ -42,7 +43,7 @@ function makeState(): TestState {
     activeNodeId: null,
     cursorPosition: 0,
     rememberedVisualX: null,
-    collaboratingNodeId: null,
+    reviews: {},
     blueprintModeEnabled: false,
   };
 }
@@ -244,8 +245,8 @@ describe('explicit action dependencies (no actions reach-through)', () => {
       expect(state.nodes['last-child'].content).toBe('');
     });
 
-    it('still blocks deletion of the collaborating node', () => {
-      state.collaboratingNodeId = 'node-2';
+    it('still blocks deletion of a node in review', () => {
+      state.reviews = { 'node-2': { source: 'terminal', terminalId: null } };
 
       const result = actions.deleteNode('node-2');
 

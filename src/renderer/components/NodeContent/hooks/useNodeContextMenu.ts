@@ -31,6 +31,7 @@ import {
   isSelectionInContentEditable,
 } from '../../../utils/selectionUtils';
 import { copySelectionText } from '../../../services/partialTextClipboard';
+import { isNodeInReview, reviewsInSubtree } from '../../../store/tree/reviews';
 
 function copyNodeOrSelection(nodeId: string, fallback: () => unknown): void {
   if (
@@ -65,11 +66,11 @@ export function useNodeContextMenu(node: TreeNode) {
 
   const buildMenuItems = useCallback(async () => {
     const state = store.getState();
-    const { nodes, ancestorRegistry, collaboratingNodeId, contextDeclarations, actions } = state;
+    const { nodes, ancestorRegistry, contextDeclarations, actions } = state;
 
     const spellItems = buildSpellMenuItems();
 
-    const isNodeBeingCollaborated = collaboratingNodeId === node.id;
+    const isNodeBeingCollaborated = isNodeInReview(state.reviews, node.id);
 
     const handleSendInTerminal = async (flags: ContextFlags, overrideContextId?: string) => {
       const terminalId = await useTerminalStore.getState().openTerminal();
@@ -108,8 +109,13 @@ export function useNodeContextMenu(node: TreeNode) {
     const handleDelete = () => {
       const deleted = actions.deleteNode(node.id);
       if (!deleted) {
+        const deleteState = store.getState();
+        const reviewsInside = reviewsInSubtree(deleteState.reviews, node.id, deleteState.ancestorRegistry);
+        const reviewWarning = reviewsInside.length > 0
+          ? ' This subtree contains an active review, which will be discarded.'
+          : '';
         const confirmed = window.confirm(
-          'This branch has children. Deleting it will also delete all its children. Are you sure?'
+          `This branch has children. Deleting it will also delete all its children. Are you sure?${reviewWarning}`
         );
         if (confirmed) {
           actions.deleteNode(node.id, true);
@@ -255,7 +261,7 @@ export function useNodeContextMenu(node: TreeNode) {
       node: freshNode,
       nodes,
       ancestorRegistry,
-      collaboratingNodeId,
+      collaboratingNodeId: isNodeBeingCollaborated ? node.id : null,
       workflowExecutionStates: state.workflowExecutionStates,
       onMoveToNextStep: () => { actions.moveToNextStep(node.id); autoStartAfterMove(node.id); },
       onMoveToPreviousStep: () => { actions.moveToPreviousStep(node.id); autoStartAfterMove(node.id); },
@@ -339,7 +345,7 @@ export function useNodeContextMenu(node: TreeNode) {
       }] : []),
       ...(isNodeBeingCollaborated ? [{
         label: 'Cancel collaboration',
-        onClick: handleCancel,
+        onClick: () => void handleCancel(node.id),
         disabled: false,
       }] : []),
       ...(!isHyperlink && !isExternalLink && setContextSubmenuItems ? [{
@@ -382,8 +388,13 @@ export function useNodeContextMenu(node: TreeNode) {
     const handleDelete = () => {
       const deleted = actions.deleteNode(node.id);
       if (!deleted) {
+        const deleteState = store.getState();
+        const reviewsInside = reviewsInSubtree(deleteState.reviews, node.id, deleteState.ancestorRegistry);
+        const reviewWarning = reviewsInside.length > 0
+          ? ' This subtree contains an active review, which will be discarded.'
+          : '';
         const confirmed = window.confirm(
-          'This branch has children. Deleting it will also delete all its children. Are you sure?'
+          `This branch has children. Deleting it will also delete all its children. Are you sure?${reviewWarning}`
         );
         if (confirmed) {
           actions.deleteNode(node.id, true);

@@ -1,11 +1,10 @@
 import type { TreeNode } from '../../../../shared/types';
 import type { WorkflowExecutionEntry } from '../../../utils/workflowHelpers';
+import type { ReviewMap } from '../reviews';
 
 export interface SessionSelectorState {
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
-  collaboratingNodeId: string | null;
-  collaborationSource: 'browser' | 'terminal' | null;
-  collaboratingTerminalId: string | null;
+  reviews: ReviewMap;
   workflowSessionMap?: Record<string, string>;
   nodes?: Record<string, TreeNode>;
 }
@@ -19,12 +18,11 @@ export function selectActiveSessionNodeId(
   const activeStepNodeId = findActiveStepOnTerminal(state.workflowExecutionStates, activeTerminalId);
   if (activeStepNodeId) return activeStepNodeId;
 
-  if (
-    state.collaboratingNodeId &&
-    state.collaborationSource === 'terminal' &&
-    state.collaboratingTerminalId === activeTerminalId
-  ) {
-    return state.collaboratingNodeId;
+  const terminalReview = Object.entries(state.reviews).find(
+    ([, review]) => review.source === 'terminal' && review.terminalId === activeTerminalId,
+  );
+  if (terminalReview) {
+    return terminalReview[0];
   }
 
   return findNodeOwningTerminalSession(state, activeTerminalId);

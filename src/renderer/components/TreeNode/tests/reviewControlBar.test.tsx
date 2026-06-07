@@ -20,27 +20,29 @@ describe('ReviewControlBar', () => {
   });
 
   it('renders Accept and Cancel as buttons', () => {
-    render(<ReviewControlBar />);
+    render(<ReviewControlBar nodeId="node-1" />);
     expect(screen.getByRole('button', { name: 'Accept' })).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Cancel' })).toBeTruthy();
   });
 
   it('exposes the controls as a labelled group for assistive technology', () => {
-    render(<ReviewControlBar />);
+    render(<ReviewControlBar nodeId="node-1" />);
     expect(screen.getByRole('group', { name: 'Review proposed changes' })).toBeTruthy();
   });
 
   it('promotes the proposition when Accept is clicked', () => {
-    render(<ReviewControlBar />);
+    render(<ReviewControlBar nodeId="node-1" />);
     fireEvent.click(screen.getByRole('button', { name: 'Accept' }));
     expect(mockAccept).toHaveBeenCalledTimes(1);
+    expect(mockAccept).toHaveBeenCalledWith('node-1');
     expect(mockCancel).not.toHaveBeenCalled();
   });
 
   it('discards the proposition when Cancel is clicked', () => {
-    render(<ReviewControlBar />);
+    render(<ReviewControlBar nodeId="node-1" />);
     fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
     expect(mockCancel).toHaveBeenCalledTimes(1);
+    expect(mockCancel).toHaveBeenCalledWith('node-1');
     expect(mockAccept).not.toHaveBeenCalled();
   });
 });

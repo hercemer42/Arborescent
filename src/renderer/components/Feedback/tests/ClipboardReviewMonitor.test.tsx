@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, cleanup } from '@testing-library/react';
+import type { ReviewMap } from '../../../store/tree/reviews';
 
 const useFeedbackClipboardMock = vi.fn();
 vi.mock('../hooks/useFeedbackClipboard', () => ({
@@ -11,12 +12,13 @@ vi.mock('../../../store/files/filesStore', () => ({
   useFilesStore: (selector: (state: typeof filesState) => unknown) => selector(filesState),
 }));
 
-const collaborating = { value: 'node-1' as string | null };
+const browserReview: ReviewMap = { 'node-1': { source: 'browser', terminalId: null } };
+const reviews = { value: browserReview as ReviewMap };
 vi.mock('../../../store/storeManager', () => ({
   storeManager: {
     getStoreForFile: () => ({
       subscribe: () => () => {},
-      getState: () => ({ collaboratingNodeId: collaborating.value }),
+      getState: () => ({ reviews: reviews.value }),
     }),
   },
 }));
@@ -27,7 +29,7 @@ describe('ClipboardReviewMonitor', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     filesState.activeFilePath = '/a.arbo';
-    collaborating.value = 'node-1';
+    reviews.value = { 'node-1': { source: 'browser', terminalId: null } };
   });
   afterEach(cleanup);
 
@@ -37,7 +39,7 @@ describe('ClipboardReviewMonitor', () => {
   });
 
   it('passes null when no collaboration is active on the file', () => {
-    collaborating.value = null;
+    reviews.value = {};
     render(<ClipboardReviewMonitor />);
     expect(useFeedbackClipboardMock).toHaveBeenCalledWith(null);
   });

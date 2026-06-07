@@ -56,8 +56,7 @@ function makeMainStore(): TreeStore {
     rootNodeId: 'root',
     ancestorRegistry: { root: [], reviewed: ['root'], 'orig-child': ['root', 'reviewed'] },
     currentFilePath: FILE,
-    collaboratingNodeId: 'reviewed',
-    collaborationSource: 'terminal',
+    reviews: { reviewed: { source: 'terminal', terminalId: null } },
   });
   return store;
 }
@@ -69,6 +68,7 @@ function seedProposition(rootCount: 1 | 2): void {
   feedbackTreeStore.setStoreFactory(() => createTreeStore());
   if (rootCount === 1) {
     feedbackTreeStore.initialize(
+      'reviewed',
       FILE,
       {
         'feedback-root': node('feedback-root', '', ['prop-root']),
@@ -83,6 +83,7 @@ function seedProposition(rootCount: 1 | 2): void {
     );
   } else {
     feedbackTreeStore.initialize(
+      'reviewed',
       FILE,
       {
         'feedback-root': node('feedback-root', '', ['prop-a', 'prop-b']),

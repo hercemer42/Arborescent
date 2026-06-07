@@ -1,7 +1,20 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createNodeDeletionActions } from '../nodeDeletionActions';
-import type { TreeNode } from '@shared/types';
+import type { TreeNode, PendingProposalEntry, PendingProposalMap } from '@shared/types';
 import type { AncestorRegistry } from '../../../../utils/ancestry';
+import type { ReviewMap } from '../../reviews';
+import { feedbackTreeStore } from '../../../feedback/feedbackTreeStore';
+
+vi.mock('../../../feedback/feedbackTreeStore', () => ({
+  feedbackTreeStore: {
+    clearForNode: vi.fn(),
+  },
+}));
+
+const mockAddToast = vi.fn();
+vi.mock('../../../toast/toastStore', () => ({
+  useToastStore: { getState: () => ({ addToast: mockAddToast }) },
+}));
 
 describe('nodeDeletionActions', () => {
   type TestState = {
@@ -10,6 +23,8 @@ describe('nodeDeletionActions', () => {
     ancestorRegistry: AncestorRegistry;
     activeNodeId?: string | null;
     cursorPosition?: number;
+    reviews?: ReviewMap;
+    pendingProposals?: PendingProposalMap;
   };
   let state: TestState;
   let setState: (partial: Partial<TestState>) => void;
@@ -17,6 +32,9 @@ describe('nodeDeletionActions', () => {
   let mockExecuteCommand: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+    vi.mocked(feedbackTreeStore.clearForNode).mockClear();
+    mockAddToast.mockClear();
+
     mockExecuteCommand = vi.fn((command: { execute: () => void }) => {
       // Execute the command immediately in tests
       command.execute();
@@ -150,6 +168,68 @@ describe('nodeDeletionActions', () => {
       expect(state.nodes['node-1']).toBeUndefined();
       expect(state.nodes['node-3']).toBeUndefined();
       expect(state.nodes['root'].children).toEqual(['node-2']);
+    });
+
+    it('should discard a review living inside the deleted subtree', () => {
+      // node-3 (a descendant of node-1) is under review with a pending proposition. node-2 (a
+      // surviving sibling outside the deleted subtree) is ALSO under review and must be left
+      // untouched — discarding one review region affects no other pending proposition.
+      const makeProposal = (id: string, reviewedNodeId: string): PendingProposalEntry => ({
+        id,
+        capturedAt: '2026-06-07T00:00:00.000Z',
+        reviewedNodeId,
+        rootNodeId: 'proposal-root',
+        nodes: {
+          'proposal-root': {
+            id: 'proposal-root',
+            content: 'Proposed change',
+            children: [],
+            metadata: {},
+          },
+        },
+      });
+      state.reviews = {
+        'node-3': { source: 'terminal', terminalId: null },
+        'node-2': { source: 'terminal', terminalId: null },
+      };
+      state.pendingProposals = {
+        'node-3': makeProposal('proposal-1', 'node-3'),
+        'node-2': makeProposal('proposal-2', 'node-2'),
+      };
+
+      // Deleting the parent (node-1) must take its in-review descendant down with it.
+      const result = actions.deleteNode('node-1', true);
+
+      expect(result).toBe(true);
+      expect(state.nodes['node-1']).toBeUndefined();
+      expect(state.nodes['node-3']).toBeUndefined();
+      expect(state.reviews).not.toHaveProperty('node-3');
+      expect(state.pendingProposals).not.toHaveProperty('node-3');
+      expect(feedbackTreeStore.clearForNode).toHaveBeenCalledWith('node-3');
+
+      // The unrelated sibling review is unaffected.
+      expect(state.reviews).toHaveProperty('node-2');
+      expect(state.pendingProposals).toHaveProperty('node-2');
+      expect(feedbackTreeStore.clearForNode).not.toHaveBeenCalledWith('node-2');
+    });
+
+    it('should refuse to delete a node that is itself in review and warn the user', () => {
+      // The target node (not a descendant) is directly under review.
+      state.reviews = {
+        'node-2': { source: 'terminal', terminalId: null },
+      };
+
+      const result = actions.deleteNode('node-2');
+
+      expect(result).toBe(false);
+      // The node survives - no DeleteNodeCommand ran.
+      expect(state.nodes['node-2']).toBeDefined();
+      expect(mockExecuteCommand).not.toHaveBeenCalled();
+      expect(state.nodes['root'].children).toEqual(['node-1', 'node-2']);
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot delete node in collaboration - Please finish or cancel the collaboration first',
+        'error'
+      );
     });
   });
 });

@@ -1148,7 +1148,7 @@ describe('useNodeContextMenu', () => {
     });
 
     it('is disabled when the node is currently being collaborated on, and Cancel collaboration is visible', async () => {
-      store.setState({ collaboratingNodeId: 'test-node' });
+      store.setState({ reviews: { 'test-node': { source: 'terminal', terminalId: null } } });
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
       await openContextMenu(result);
@@ -1163,6 +1163,75 @@ describe('useNodeContextMenu', () => {
         item => item.label === 'Cancel collaboration',
       );
       expect(cancelItem).toBeDefined();
+    });
+  });
+
+  describe('Delete confirmation with active review in subtree', () => {
+    const parentNode: TreeNode = {
+      id: 'parent-node',
+      content: 'Parent',
+      children: ['child-node'],
+      metadata: {},
+    };
+    const childNode: TreeNode = {
+      id: 'child-node',
+      content: 'Child',
+      children: [],
+      metadata: {},
+    };
+
+    beforeEach(() => {
+      store.setState({
+        nodes: { 'parent-node': parentNode, 'child-node': childNode },
+        rootNodeId: 'parent-node',
+        ancestorRegistry: {
+          'parent-node': [],
+          'child-node': ['parent-node'],
+        },
+        reviews: {},
+      });
+    });
+
+    async function findDeleteItem(node: TreeNode) {
+      const { result } = renderHook(() => useNodeContextMenu(node), { wrapper });
+      await openContextMenu(result);
+      const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
+      const deleteItem = editMenu?.submenu?.find(item => item.label === 'Delete');
+      expect(deleteItem).toBeDefined();
+      return deleteItem!;
+    }
+
+    it('appends the active-review warning when a descendant is under review', async () => {
+      store.setState({ reviews: { 'child-node': { source: 'terminal', terminalId: null } } });
+      mockDeleteNode.mockReturnValue(false);
+      const mockConfirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+
+      const deleteItem = await findDeleteItem(parentNode);
+      act(() => {
+        deleteItem.onClick!();
+      });
+
+      expect(mockConfirm).toHaveBeenCalledWith(
+        expect.stringContaining('active review, which will be discarded'),
+      );
+
+      mockConfirm.mockRestore();
+    });
+
+    it('omits the active-review warning when no review is in the subtree', async () => {
+      mockDeleteNode.mockReturnValue(false);
+      const mockConfirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+
+      const deleteItem = await findDeleteItem(parentNode);
+      act(() => {
+        deleteItem.onClick!();
+      });
+
+      expect(mockConfirm).toHaveBeenCalledWith(
+        expect.not.stringContaining('active review, which will be discarded'),
+      );
+
+      mockConfirm.mockRestore();
     });
   });
 

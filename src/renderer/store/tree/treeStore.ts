@@ -20,6 +20,7 @@ import { createPendingProposalActions, PendingProposalActions } from './actions/
 import { HistoryManager } from './commands/HistoryManager';
 import { DisruptionActions } from './actions/workflowDisruption';
 import { StepHistoryMap } from './stepHistory/stepHistory';
+import { ReviewMap } from './reviews';
 import { StorageService } from '../../services/storageService';
 import { checkRegistryConsistency } from '../../utils/ancestry';
 
@@ -58,10 +59,7 @@ export interface TreeState {
   scrollToNodeId: string | null;
   deletingNodeIds: Set<string>;
   deleteAnimationCallback: (() => void) | null;
-  collaboratingNodeId: string | null;
-  collaborationSource: 'browser' | 'terminal' | null;
-  collaboratingTerminalId: string | null;
-  decomposition: boolean;
+  reviews: ReviewMap;
   feedbackFadingNodeIds: Set<string>;
   contextDeclarations: ContextDeclarationInfo[];
   blueprintModeEnabled: boolean;
@@ -203,10 +201,7 @@ export function createTreeStore(treeType: TreeType = 'workspace', deps?: TreeSto
       scrollToNodeId: null,
       deletingNodeIds: new Set(),
       deleteAnimationCallback: null,
-      collaboratingNodeId: null,
-      collaborationSource: null,
-      collaboratingTerminalId: null,
-      decomposition: false,
+      reviews: {},
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
       blueprintModeEnabled: false,

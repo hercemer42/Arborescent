@@ -4,6 +4,8 @@ import { useRebindConfirmation } from '../hooks/useRebindConfirmation';
 import { usePendingRebindDialogStore } from '../../../../store/pendingRebindDialogStore';
 import { storeManager } from '../../../../store/storeManager';
 import type { RebindRequestEvent } from '../../../../../shared/types/electronApi';
+import { isNodeInReview } from '../../../../store/tree/reviews';
+import type { ReviewEntry, ReviewMap } from '../../../../store/tree/reviews';
 
 type RebindRequestListener = (event: RebindRequestEvent) => void;
 type RebindCancelledListener = (sessionId: string) => void;
@@ -30,15 +32,14 @@ function captureCallbacks() {
 function makeStubStore(state: {
   nodes?: Record<string, { id: string; content: string; children: string[]; metadata: Record<string, unknown> }>;
   workflowSessionMap?: Record<string, string>;
-  collaboratingNodeId?: string | null;
+  reviews?: ReviewMap;
 }) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let internal: any = {
     nodes: state.nodes ?? {},
     workflowSessionMap: state.workflowSessionMap ?? {},
-    collaboratingNodeId: state.collaboratingNodeId ?? null,
-    collaborationSource: null,
-    collaboratingTerminalId: null,
+    reviews: state.reviews ?? {},
+    ancestorRegistry: {},
   };
   return {
     getState: () => internal,
@@ -47,6 +48,10 @@ function makeStubStore(state: {
       internal = { ...internal, ...partial };
     },
   };
+}
+
+function reviewedTerminal(terminalId: string): ReviewEntry {
+  return { source: 'terminal', terminalId };
 }
 
 const NODE_OLD = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
@@ -146,17 +151,17 @@ describe('useRebindConfirmation — per-terminal pending state on receive (US-C)
   });
 });
 
-describe('useRebindConfirmation — optimistic collaboratingNodeId cleanup on cancel (US-C)', () => {
+describe('useRebindConfirmation — optimistic review cleanup on cancel (US-C)', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     usePendingRebindDialogStore.getState().clear();
     vi.spyOn(storeManager, 'getAllStores').mockReturnValue([]);
   });
 
-  it('on cancel, if collaboratingNodeId equals the newNodeId in the rebind request, clears it on the file store that owns that node', () => {
+  it('on cancel, if the newNodeId in the rebind request is in review, removes it from reviews on the file store that owns that node', () => {
     const store = makeStubStore({
       workflowSessionMap: { 'sess-1': 'term-1' },
-      collaboratingNodeId: NODE_NEW,
+      reviews: { [NODE_NEW]: reviewedTerminal('term-1') },
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(storeManager, 'getAllStores').mockReturnValue([store as any]);
@@ -171,14 +176,14 @@ describe('useRebindConfirmation — optimistic collaboratingNodeId cleanup on ca
       if (state.pendingRequest !== null) state.onCancel();
     });
 
-    expect(store.getState().collaboratingNodeId).toBe(null);
+    expect(isNodeInReview(store.getState().reviews, NODE_NEW)).toBe(false);
   });
 
-  it('on cancel, if collaboratingNodeId is null or points elsewhere, leaves it alone', () => {
+  it('on cancel, if reviews is empty or only holds another node, leaves it alone', () => {
     const elsewhere = 'cccccccc-cccc-cccc-cccc-cccccccccc03';
     const store = makeStubStore({
       workflowSessionMap: { 'sess-1': 'term-1' },
-      collaboratingNodeId: elsewhere,
+      reviews: { [elsewhere]: reviewedTerminal('term-1') },
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(storeManager, 'getAllStores').mockReturnValue([store as any]);
@@ -193,13 +198,14 @@ describe('useRebindConfirmation — optimistic collaboratingNodeId cleanup on ca
       if (state.pendingRequest !== null) state.onCancel();
     });
 
-    expect(store.getState().collaboratingNodeId).toBe(elsewhere);
+    expect(isNodeInReview(store.getState().reviews, elsewhere)).toBe(true);
+    expect(isNodeInReview(store.getState().reviews, NODE_NEW)).toBe(false);
   });
 
-  it('on confirm, collaboratingNodeId is preserved (the new binding is now live and the optimistic state is correct)', () => {
+  it('on confirm, the review for newNodeId is preserved (the new binding is now live and the optimistic state is correct)', () => {
     const store = makeStubStore({
       workflowSessionMap: { 'sess-1': 'term-1' },
-      collaboratingNodeId: NODE_NEW,
+      reviews: { [NODE_NEW]: reviewedTerminal('term-1') },
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(storeManager, 'getAllStores').mockReturnValue([store as any]);
@@ -214,13 +220,13 @@ describe('useRebindConfirmation — optimistic collaboratingNodeId cleanup on ca
       if (state.pendingRequest !== null) state.onConfirm();
     });
 
-    expect(store.getState().collaboratingNodeId).toBe(NODE_NEW);
+    expect(isNodeInReview(store.getState().reviews, NODE_NEW)).toBe(true);
   });
 
   it('on timeout cancel, the same cleanup runs', () => {
     const store = makeStubStore({
       workflowSessionMap: { 'sess-1': 'term-1' },
-      collaboratingNodeId: NODE_NEW,
+      reviews: { [NODE_NEW]: reviewedTerminal('term-1') },
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(storeManager, 'getAllStores').mockReturnValue([store as any]);
@@ -234,6 +240,6 @@ describe('useRebindConfirmation — optimistic collaboratingNodeId cleanup on ca
       callbacks.fireRebindCancelled('sess-1');
     });
 
-    expect(store.getState().collaboratingNodeId).toBe(null);
+    expect(isNodeInReview(store.getState().reviews, NODE_NEW)).toBe(false);
   });
 });

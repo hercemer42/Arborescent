@@ -15,6 +15,7 @@ import { useHiddenSearchMatches } from './hooks/useHiddenSearchMatches';
 import { useReviewProposition } from './hooks/useReviewProposition';
 import { ReviewControlBar } from './ReviewControlBar';
 import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
+import { isNodeInReview, isReviewDescendant } from '../../store/tree/reviews';
 import './TreeNode.css';
 
 interface TreeNodeProps {
@@ -41,11 +42,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const node = useStore((state) => state.nodes[nodeId]);
   const isSelected = useStore((state) => state.activeNodeId === nodeId);
   const isMultiSelected = useStore((state) => state.multiSelectedNodeIds.has(nodeId));
-  const isCollaborating = useStore((state) => state.collaboratingNodeId === nodeId);
-  const isCollaboratingDescendant = useStore((state) => {
-    const { collaboratingNodeId, ancestorRegistry } = state;
-    return collaboratingNodeId !== null && ancestorRegistry[nodeId]?.includes(collaboratingNodeId);
-  });
+  const isCollaborating = useStore((state) => isNodeInReview(state.reviews, nodeId));
+  const isCollaboratingDescendant = useStore((state) => isReviewDescendant(state.reviews, nodeId, state.ancestorRegistry));
   const isFeedbackFading = useStore((state) => state.feedbackFadingNodeIds.has(nodeId));
   const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
   const isActiveSession = useStore(
@@ -85,7 +83,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   if (isUnderReview && reviewPropositionStore) {
     return (
       <>
-        <ReviewControlBar />
+        <ReviewControlBar nodeId={nodeId} />
         <TreeStoreContext.Provider value={reviewPropositionStore}>
           <PropositionRoots depth={depth} />
         </TreeStoreContext.Provider>

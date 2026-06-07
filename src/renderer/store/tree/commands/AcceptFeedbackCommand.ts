@@ -57,15 +57,12 @@ export class AcceptFeedbackCommand extends BaseCommand {
       rootNodeId: string;
       ancestorRegistry: Record<string, string[]>;
       blueprintModeEnabled: boolean;
-      collaboratingNodeId?: string | null;
       stepHistory?: StepHistoryMap;
     },
     private setState: (partial: {
       nodes?: Record<string, TreeNode>;
       rootNodeId?: string;
       ancestorRegistry?: Record<string, string[]>;
-      collaboratingNodeId?: string | null;
-      collaborationSource?: 'browser' | 'terminal' | null;
       feedbackFadingNodeIds?: Set<string>;
       activeNodeId?: string | null;
       stepHistory?: StepHistoryMap;
@@ -189,12 +186,6 @@ export class AcceptFeedbackCommand extends BaseCommand {
     return idMap;
   }
 
-  private collaborationClearIfOwned(state: ReturnType<typeof this.getState>): { collaboratingNodeId?: null; collaborationSource?: null } {
-    return state.collaboratingNodeId === this.collaboratingNodeId
-      ? { collaboratingNodeId: null, collaborationSource: null }
-      : {};
-  }
-
   private executeArchive(): void {
     if (!this.archiveConfig || !this.snapshot) return;
 
@@ -315,7 +306,6 @@ export class AcceptFeedbackCommand extends BaseCommand {
       nodes: nodesForState,
       ancestorRegistry: output.ancestorRegistry,
       rootNodeId: state.rootNodeId,
-      ...this.collaborationClearIfOwned(state),
       feedbackFadingNodeIds: new Set(this.createdNodeIds),
       activeNodeId: output.activeNodeId,
       ...(finalStepHistory !== undefined ? { stepHistory: finalStepHistory } : {}),
@@ -385,7 +375,6 @@ export class AcceptFeedbackCommand extends BaseCommand {
       nodes: restoredNodesMap,
       ancestorRegistry: newAncestorRegistry,
       rootNodeId: state.rootNodeId,
-      ...this.collaborationClearIfOwned(state),
       feedbackFadingNodeIds: new Set(),
       activeNodeId: this.snapshot.collaboratingNodeId,
     });

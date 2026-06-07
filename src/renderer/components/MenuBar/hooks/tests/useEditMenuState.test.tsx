@@ -42,7 +42,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: null,
+      reviews: {},
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -61,7 +61,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: null,
+      reviews: {},
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -80,7 +80,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: 'node-1',
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: null,
+      reviews: {},
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -100,7 +100,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(['node-1', 'node-2']),
-      collaboratingNodeId: null,
+      reviews: {},
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -120,7 +120,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: null,
+      reviews: {},
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -140,7 +140,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: 'node-1',
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: 'node-2', // Collaboration in progress
+      reviews: { 'node-2': { source: 'terminal', terminalId: null } }, // Review (collaboration) in progress
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -160,7 +160,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: 'node-1',
+      reviews: { 'node-1': { source: 'terminal', terminalId: null } },
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -178,7 +178,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: null,
+      reviews: {},
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -196,7 +196,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: 'node-1',
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: null,
+      reviews: {},
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -217,7 +217,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: 'node-1',
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: 'node-2',
+      reviews: { 'node-2': { source: 'terminal', terminalId: null } },
       nodes: { root: { id: 'root' }, 'node-1': { id: 'node-1' } },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
@@ -239,7 +239,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      collaboratingNodeId: null,
+      reviews: {},
       nodes: { root: { id: 'root' } }, // Only root node
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);

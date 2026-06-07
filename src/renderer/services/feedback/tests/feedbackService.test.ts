@@ -27,8 +27,9 @@ const { mockFeedbackTreeStore } = vi.hoisted(() => ({
   mockFeedbackTreeStore: {
     initialize: vi.fn(),
     setFilePath: vi.fn(),
-    getStoreForFile: vi.fn(),
-    clearFile: vi.fn(),
+    getStoreForNode: vi.fn(),
+    clearForFile: vi.fn(),
+    clearForNode: vi.fn(),
   },
 }));
 
@@ -380,7 +381,7 @@ describe('feedbackService', () => {
         nodeCount: 1,
       };
 
-      initializeFeedbackStore('/test/file.arbo', parsedContent);
+      initializeFeedbackStore('node1', '/test/file.arbo', parsedContent);
 
       expect(wrapNodesWithHiddenRoot).toHaveBeenCalledWith(
         parsedContent.nodes,
@@ -388,6 +389,7 @@ describe('feedbackService', () => {
         'feedback-root'
       );
       expect(mockFeedbackTreeStore.initialize).toHaveBeenCalledWith(
+        'node1',
         '/test/file.arbo',
         {
           'hidden-root': { id: 'hidden-root', content: '', children: ['node1'], metadata: {} },
@@ -424,14 +426,14 @@ describe('feedbackService', () => {
         'prior-removed': { id: 'prior-removed', content: 'Removed child', children: [], metadata: {} },
       };
 
-      initializeFeedbackStore('/test/file.arbo', parsedContent, false, {
+      initializeFeedbackStore('collab', '/test/file.arbo', parsedContent, false, {
         collaboratingNodeId: 'collab',
         priorNodes,
         decomposition: false,
       });
 
       const callArgs = mockFeedbackTreeStore.initialize.mock.calls[0];
-      const passedNodes = callArgs[1] as Record<string, TreeNode>;
+      const passedNodes = callArgs[2] as Record<string, TreeNode>;
 
       const placeholderId = 'feedback-removed-prior-removed';
       expect(passedNodes[placeholderId]).toBeDefined();
@@ -475,14 +477,14 @@ describe('feedbackService', () => {
           'prior-c': { id: 'prior-c', content: 'kept-c', children: [], metadata: {} },
         };
 
-        initializeFeedbackStore('/test/file.arbo', parsedContent, false, {
+        initializeFeedbackStore('collab', '/test/file.arbo', parsedContent, false, {
           collaboratingNodeId: 'collab',
           priorNodes,
           decomposition: false,
         });
 
         const callArgs = mockFeedbackTreeStore.initialize.mock.calls[0];
-        const passedNodes = callArgs[1] as Record<string, TreeNode>;
+        const passedNodes = callArgs[2] as Record<string, TreeNode>;
 
         expect(passedNodes['new-a'].metadata.feedbackBaselineKind).toBe('unchanged');
         expect(passedNodes['new-b'].metadata.feedbackBaselineKind).toBe('modified');
@@ -522,14 +524,14 @@ describe('feedbackService', () => {
         'prior-removed': { id: 'prior-removed', content: 'Will be discarded', children: [], metadata: {} },
       };
 
-      initializeFeedbackStore('/test/file.arbo', parsedContent, false, {
+      initializeFeedbackStore('collab', '/test/file.arbo', parsedContent, false, {
         collaboratingNodeId: 'collab',
         priorNodes,
         decomposition: true,
       });
 
       const callArgs = mockFeedbackTreeStore.initialize.mock.calls[0];
-      const passedNodes = callArgs[1] as Record<string, TreeNode>;
+      const passedNodes = callArgs[2] as Record<string, TreeNode>;
       const hasPlaceholder = Object.keys(passedNodes).some((id) => id.startsWith('feedback-removed-'));
       expect(hasPlaceholder).toBe(false);
     });
@@ -537,26 +539,26 @@ describe('feedbackService', () => {
 
   describe('extractFeedbackContent', () => {
     it('should return null when no feedback store', () => {
-      mockFeedbackTreeStore.getStoreForFile.mockReturnValue(null);
+      mockFeedbackTreeStore.getStoreForNode.mockReturnValue(null);
 
-      const result = extractFeedbackContent('/test/file.arbo');
+      const result = extractFeedbackContent('reviewed');
       expect(result).toBeNull();
     });
 
     it('should return null when feedback store is empty', () => {
-      mockFeedbackTreeStore.getStoreForFile.mockReturnValue({
+      mockFeedbackTreeStore.getStoreForNode.mockReturnValue({
         getState: () => ({
           nodes: { 'feedback-root': { id: 'feedback-root', children: [], content: '', metadata: {} } },
           rootNodeId: 'feedback-root',
         }),
       });
 
-      const result = extractFeedbackContent('/test/file.arbo');
+      const result = extractFeedbackContent('reviewed');
       expect(result).toBeNull();
     });
 
     it('should extract content nodes excluding hidden root', () => {
-      mockFeedbackTreeStore.getStoreForFile.mockReturnValue({
+      mockFeedbackTreeStore.getStoreForNode.mockReturnValue({
         getState: () => ({
           nodes: {
             'feedback-root': { id: 'feedback-root', children: ['content-root'], content: '', metadata: {} },
@@ -567,7 +569,7 @@ describe('feedbackService', () => {
         }),
       });
 
-      const result = extractFeedbackContent('/test/file.arbo');
+      const result = extractFeedbackContent('reviewed');
       expect(result).toEqual({
         rootNodeId: 'content-root',
         rootNodeIds: ['content-root'],
@@ -579,7 +581,7 @@ describe('feedbackService', () => {
     });
 
     it('strips removed-node placeholders from extracted nodes and from parent children arrays', () => {
-      mockFeedbackTreeStore.getStoreForFile.mockReturnValue({
+      mockFeedbackTreeStore.getStoreForNode.mockReturnValue({
         getState: () => ({
           nodes: {
             'feedback-root': { id: 'feedback-root', children: ['content-root'], content: '', metadata: {} },
@@ -601,7 +603,7 @@ describe('feedbackService', () => {
         }),
       });
 
-      const result = extractFeedbackContent('/test/file.arbo');
+      const result = extractFeedbackContent('reviewed');
       expect(result).not.toBeNull();
       expect(result!.nodes['feedback-removed-prior']).toBeUndefined();
       expect(result!.nodes['content-root'].children).toEqual(['kept']);
@@ -609,7 +611,7 @@ describe('feedbackService', () => {
     });
 
     it('should extract multiple root nodes when hidden root has multiple children', () => {
-      mockFeedbackTreeStore.getStoreForFile.mockReturnValue({
+      mockFeedbackTreeStore.getStoreForNode.mockReturnValue({
         getState: () => ({
           nodes: {
             'feedback-root': { id: 'feedback-root', children: ['story1', 'story2', 'story3'], content: '', metadata: {} },
@@ -622,7 +624,7 @@ describe('feedbackService', () => {
         }),
       });
 
-      const result = extractFeedbackContent('/test/file.arbo');
+      const result = extractFeedbackContent('reviewed');
       expect(result).not.toBeNull();
       expect(result!.rootNodeIds).toEqual(['story1', 'story2', 'story3']);
       expect(result!.nodes).not.toHaveProperty('feedback-root');

@@ -176,9 +176,7 @@ describe('TreeNode', () => {
       };
       store.setState({
         nodes: { 'collab-node': mockNode },
-        collaboratingNodeId: 'collab-node',
-        collaborationSource: 'terminal',
-        collaboratingTerminalId: 'terminal-1',
+        reviews: { 'collab-node': { source: 'terminal', terminalId: 'terminal-1' } },
       });
       useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
 

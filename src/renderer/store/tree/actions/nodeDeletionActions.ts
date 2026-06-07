@@ -13,6 +13,9 @@ import { useToastStore } from '../../toast/toastStore';
 import { captureStepDeletions, notifyDeletionDisruption, DisruptionActions } from './workflowDisruption';
 import { collectBoundSessionIds, releaseSessionBindings } from './sessionBindingCleanup';
 import { StepHistoryMap } from '../stepHistory/stepHistory';
+import { isNodeInReview, removeReview, type ReviewMap } from '../reviews';
+import { dropPendingProposal, type PendingProposalMap } from '../pendingProposals/pendingProposals';
+import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 
 export interface NodeDeletionActions {
   deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
@@ -25,7 +28,8 @@ type StoreState = {
   ancestorRegistry: Record<string, string[]>;
   activeNodeId: string | null;
   cursorPosition: number;
-  collaboratingNodeId: string | null;
+  reviews: ReviewMap;
+  pendingProposals?: PendingProposalMap;
   workflowSessionMap?: Record<string, string>;
   multiSelectedNodeIds?: Set<string>;
   stepHistory?: StepHistoryMap;
@@ -95,15 +99,29 @@ export const createNodeDeletionActions = (
     notifyDeletionDisruption(get, allDeletedIds, stepDeletions, disruption);
 
     releaseSessionBindings(releasedSessionIds, get, set);
+
+    // Any review whose node was just removed (as part of an ancestor's subtree) is discarded so no
+    // ghost review, persisted proposition, or working store outlives the node it targeted.
+    const reviewedDeleted = allDeletedIds.filter((id) => isNodeInReview(get().reviews, id));
+    if (reviewedDeleted.length > 0) {
+      let reviews = get().reviews;
+      let pending = get().pendingProposals ?? {};
+      for (const id of reviewedDeleted) {
+        reviews = removeReview(reviews, id);
+        pending = dropPendingProposal(pending, id);
+        feedbackTreeStore.clearForNode(id);
+      }
+      set({ reviews, pendingProposals: pending });
+    }
   }
 
   function deleteNode(nodeId: string, confirmed = false): boolean {
     const state = get();
-    const { nodes, rootNodeId, collaboratingNodeId } = state;
+    const { nodes, rootNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return true;
 
-    if (collaboratingNodeId === nodeId) {
+    if (isNodeInReview(state.reviews, nodeId)) {
       useToastStore.getState().addToast(
         'Cannot delete node in collaboration - Please finish or cancel the collaboration first',
         'error'

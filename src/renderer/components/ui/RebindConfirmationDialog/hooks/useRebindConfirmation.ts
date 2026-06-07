@@ -8,6 +8,7 @@ import {
 } from '../../../../store/rebindPreflightStore';
 import { extractTaskTitle } from '../../../../utils/terminalTabTitle';
 import { logger } from '../../../../services/logger';
+import { isNodeInReview, removeReview } from '../../../../store/tree/reviews';
 
 function shortenUuid(uuid: string): string {
   return uuid.length > 8 ? `${uuid.slice(0, 8)}…` : uuid;
@@ -56,12 +57,8 @@ function clearDialogPendingForSession(sessionId: string): void {
 function clearOptimisticCollaboratingNode(nodeId: string): void {
   for (const store of storeManager.getAllStores()) {
     const state = store.getState();
-    if (state.collaboratingNodeId === nodeId) {
-      store.setState({
-        collaboratingNodeId: null,
-        collaborationSource: null,
-        collaboratingTerminalId: null,
-      });
+    if (isNodeInReview(state.reviews, nodeId)) {
+      store.setState({ reviews: removeReview(state.reviews, nodeId) });
     }
   }
 }

@@ -16,6 +16,7 @@ import {
 import { getParentIdOrNull } from '../utils/parentLookup';
 import { shouldInheritBlueprint } from '../utils/nodeHelpers';
 import { createTreeNode } from '../utils/nodeConstruction';
+import { isNodeInReview } from '../store/tree/reviews';
 import { v4 as uuidv4 } from 'uuid';
 
 export function applyMutation(store: TreeStore, nodeId: string, request: MutationRequest): MutationResult {
@@ -101,7 +102,7 @@ interface StoreActionsForDelete {
 function applyDelete(store: TreeStore, nodeId: string): MutationResult {
   const state = store.getState();
   if (nodeId === state.rootNodeId) return { ok: false, error: 'Cannot delete the root node' };
-  if (nodeId === state.collaboratingNodeId) {
+  if (isNodeInReview(state.reviews, nodeId)) {
     return {
       ok: false,
       error: 'Cannot delete a node that is currently being collaborated on.',
