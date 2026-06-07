@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-06T17:17:30.641Z'
+updated: '2026-06-07T10:09:00.469Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -80741,6 +80741,7 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
+      - d60416cb-1ba3-4755-a9c0-cefc726ecff0
       - 45c6e476-2eb0-469f-81f5-9babf7519cb7
       - d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
       - b801f945-dbfa-4a78-bc1d-3cd9500c1a0d
@@ -83459,8 +83460,7 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children:
-      - c26cccb7-37b3-4b39-841e-37da045b6285
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115300,6 +115300,7 @@ nodes:
       - c08eaeed-de53-41cc-8961-04fa0fe3245a
       - bf284020-c1df-4922-b89d-4f79977894b8
       - 05769bde-b9e1-4871-8651-79a4bc24e8be
+      - e013358b-7eda-4782-b07e-631c6b922468
     metadata:
       status: pending
       isBlueprint: true
@@ -124364,7 +124365,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - e013358b-7eda-4782-b07e-631c6b922468
+      - c26cccb7-37b3-4b39-841e-37da045b6285
     metadata:
       status: pending
       isBlueprint: true
@@ -199697,21 +199698,45 @@ nodes:
     id: e013358b-7eda-4782-b07e-631c6b922468
     content: PR4 - Review AI proposals inline — migrate the proposition store to pendingProposals persistence
     children:
-      - bc9bf300-c2bf-4313-90c0-6671b66b6e4f
-      - 2f83cdf4-82ce-4a6e-b293-fc066a1e4644
-      - 010f8c97-1dc8-4804-95ea-5cd6b0beb167
-      - 4d808456-618d-4acd-843a-767488cb671e
-      - 695e2190-bf1b-49f2-a508-017d02d7b11c
-      - a2d97887-a906-429a-9479-0ebd49cb9520
-      - d011ee85-430c-4c5f-8002-bcd710bf530d
-      - d8eaa0a9-7766-4225-af9c-87b4cfab2776
-      - ced8b1b5-2b90-4af4-8b8c-ff4adb699940
-      - 85c7028d-0d86-417a-9bc8-a44f3ac29adb
-      - 0c79de28-9981-4e61-aa66-a9e0d867e45f
-      - 604cefb3-2e4a-4ce9-ad50-98ab5f8dff3b
-      - 3e916f43-c4f3-40b9-9dc6-2d95c58955f6
-      - a6949bff-68f2-4f16-827b-5d8cfd885477
-      - aa3ff707-888d-4998-ba99-d2b01a1d0eee
+      - 6dd05eb7-0958-47fe-b4f1-2788e6a8613d
+      - d81c0a5a-e2ae-4c0f-bd32-22e950f7e173
+      - 92732e49-6d12-4c5f-a917-4e67c0af896c
+      - e4b62530-5d89-45ce-b6bd-c61e2b3a5aad
+      - 4f9c9511-5c0d-4c5a-8e3a-7e8787051887
+      - 65b23d37-d229-4004-a853-d1088b112d8b
+      - 9f178374-08c5-4e6e-b775-0b011afa51bf
+      - 8ecb6556-c13c-45e8-8ae3-7011f0bcb2dc
+      - 99fbe7bd-5762-4bb9-b91c-507741105b52
+      - aa2c95d8-beba-47df-a45d-f56be39a2893
+      - d0fcd8ea-70e3-4578-8ef7-5a1001819a88
+      - 2a004312-a85b-44aa-bf47-2eacd3651b48
+      - a40da08b-132f-4621-ae22-e837e41fb452
+      - 3a0e7be0-0af1-4333-89f8-ba048d9a3f41
+      - b35c343e-167e-4a75-ade4-a0b6a4628993
+      - f9915f65-3120-4f33-9cc7-5d84d2842a99
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      groupId: 99387955-05d8-4502-9c93-3ab4f83f6c90
+  c26cccb7-37b3-4b39-841e-37da045b6285:
+    id: c26cccb7-37b3-4b39-841e-37da045b6285
+    content: PR5 - Review AI proposals inline — concurrent reviews and overlap gating
+    children:
+      - 614edb31-f83f-4c2c-a76e-36e17d538cd5
+      - 3420050c-e6b3-44bf-9127-00a3d747a536
+      - d721d5ad-2dd6-44d2-944d-b766d688dc01
+      - 70718d75-48e6-4c64-9885-ccea59149516
+      - f3212916-5e29-4d18-91e8-d372d607371b
+      - 667f5619-5249-4590-8aef-9995fb4f67a9
+      - 5da11532-cda1-4ee8-a27d-b99e4e350be9
+      - 905db3e5-5968-44dd-b641-9f3a5ca6174f
+      - 3ff70971-6472-4ac1-afe5-016fc565fd5b
+      - 9a089531-0581-4d77-ace6-ae3bd9c08d80
+      - 84c13ab7-1115-4953-8cd8-20229fbc829b
+      - b59756c2-7a2c-43ab-85c4-ea6e438ab347
+      - 7416d6ca-6a07-4fb7-8def-e4cc063b8c16
     metadata:
       status: completed
       expanded: false
@@ -199719,20 +199744,6 @@ nodes:
       plugins: {}
       groupId: 99387955-05d8-4502-9c93-3ab4f83f6c90
       sessionId: a3ac2ca0-274c-45f1-a222-6592c146d6f1
-  c26cccb7-37b3-4b39-841e-37da045b6285:
-    id: c26cccb7-37b3-4b39-841e-37da045b6285
-    content: PR5 - Review AI proposals inline — concurrent reviews and overlap gating
-    children:
-      - f00dc3c6-60ba-45e5-b697-cef86a77b0e3
-      - 2346c110-b6ef-4814-82f1-4158afdca926
-      - 74fffbd8-c891-44ef-8dbf-d0d48874872f
-      - 4c4dc8d3-33db-47c0-af5f-c5fc384aff5e
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      groupId: 99387955-05d8-4502-9c93-3ab4f83f6c90
   3c904bfa-a4f5-4924-a580-2d0a0b8b9b49:
     id: 3c904bfa-a4f5-4924-a580-2d0a0b8b9b49
     content: Be able to export/complement agent.md files to hand off to ultracode
@@ -201185,842 +201196,6 @@ nodes:
       deleted: false
       plugins: {}
       sessionId: 8a8e9c15-65a2-4100-8cfb-b78eec52ad8e
-  f00dc3c6-60ba-45e5-b697-cef86a77b0e3:
-    id: f00dc3c6-60ba-45e5-b697-cef86a77b0e3
-    content: Scope
-    children:
-      - 45aeaf86-36c3-477f-a8b5-c1d520e08511
-      - 855c77af-91e1-4e45-ad02-1001afebbd4b
-      - e6fbc837-525c-45b1-8eff-ec9756809a0a
-      - cb553adf-fa00-4529-bb85-f6367d907a25
-      - ecc799a4-ea93-490d-af87-9a9bd746b01e
-      - 61b6cab5-df27-4906-88e7-ac4d1e4b6b45
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  45aeaf86-36c3-477f-a8b5-c1d520e08511:
-    id: 45aeaf86-36c3-477f-a8b5-c1d520e08511
-    content: Re-key the editable proposition working store (feedbackTreeStore) per reviewed node instead of per file, so multiple propositions can be live and editable at once — the working-store re-key deferred from PR4. Update every consumer that resolves it by file path (useReviewProposition, useFeedbackStatus, useFeedbackClipboard, feedbackService, sendActions) to resolve by reviewed node id.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  855c77af-91e1-4e45-ad02-1001afebbd4b:
-    id: 855c77af-91e1-4e45-ad02-1001afebbd4b
-    content: 'Replace the single collaboratingNodeId scalar with a collection of in-review nodes (or derive it from the pendingProposals keys) across every reader: node highlighting, collaborating-descendant via the ancestor registry, finishAccept/finishCancel, and proposal routing.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e6fbc837-525c-45b1-8eff-ec9756809a0a:
-    id: e6fbc837-525c-45b1-8eff-ec9756809a0a
-    content: Remove the single-collaboration guard and route each incoming proposal to its own reviewed node's working store and pendingProposals entry.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb553adf-fa00-4529-bb85-f6367d907a25:
-    id: cb553adf-fa00-4529-bb85-f6367d907a25
-    content: Add the overlap gate that blocks sending a node for review when it, an ancestor, or a descendant is already in review.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ecc799a4-ea93-490d-af87-9a9bd746b01e:
-    id: ecc799a4-ea93-490d-af87-9a9bd746b01e
-    content: Cap the session-less clipboard/browser path at one review at a time as a documented limitation.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  61b6cab5-df27-4906-88e7-ac4d1e4b6b45:
-    id: 61b6cab5-df27-4906-88e7-ac4d1e4b6b45
-    content: Surface the active review in the existing delete confirmation when an ancestor subtree containing a review is deleted.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2346c110-b6ef-4814-82f1-4158afdca926:
-    id: 2346c110-b6ef-4814-82f1-4158afdca926
-    content: Independently testable
-    children:
-      - fd7b5759-cc05-4094-ae1c-01d6c149e31c
-      - 188ddadd-9655-4fb4-aefe-2aa00b3c43b7
-      - 536c193f-f664-4cb9-a0ed-ceefea45aaff
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd7b5759-cc05-4094-ae1c-01d6c149e31c:
-    id: fd7b5759-cc05-4094-ae1c-01d6c149e31c
-    content: Two or more reviews on different nodes coexist and stay independently editable, with none overwriting another, and a second proposal for a node already in review replaces its proposition in place.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  188ddadd-9655-4fb4-aefe-2aa00b3c43b7:
-    id: 188ddadd-9655-4fb4-aefe-2aa00b3c43b7
-    content: Sending a node for review is blocked when the node, an ancestor, or a descendant is already in review.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  536c193f-f664-4cb9-a0ed-ceefea45aaff:
-    id: 536c193f-f664-4cb9-a0ed-ceefea45aaff
-    content: Deleting an ancestor of a review region fires the existing delete warning noting the contained active review.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  74fffbd8-c891-44ef-8dbf-d0d48874872f:
-    id: 74fffbd8-c891-44ef-8dbf-d0d48874872f
-    content: User story
-    children:
-      - 296d7a0b-e931-4293-85df-a9b9c37ea4e0
-      - 7980609b-f717-4fd7-85f9-759fcc3a3580
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  296d7a0b-e931-4293-85df-a9b9c37ea4e0:
-    id: 296d7a0b-e931-4293-85df-a9b9c37ea4e0
-    content: 📄 Product spec
-    children:
-      - 19dd1878-35fc-4f67-89d9-870ecfad1b83
-      - b019f123-67f0-449c-b0c1-1c21fb7251fb
-      - 8972a575-f3f3-47d7-ab57-bb168ccd489d
-      - 61631c5c-5d9b-47a2-a832-4de9ac33a5b6
-      - 28c352f1-a75d-4c56-a59d-420ad5f3ae3e
-      - 037a3ebd-8a75-446b-b833-79e7778423e3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  19dd1878-35fc-4f67-89d9-870ecfad1b83:
-    id: 19dd1878-35fc-4f67-89d9-870ecfad1b83
-    content: Context
-    children:
-      - 1aa7f7f6-d532-48bd-828e-2a3f2ab053f7
-      - 3d8a438a-04e5-4157-8e72-f3c350ab4532
-      - 17fd32f7-1813-48e4-8e6e-70c8fc0b11aa
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1aa7f7f6-d532-48bd-828e-2a3f2ab053f7:
-    id: 1aa7f7f6-d532-48bd-828e-2a3f2ab053f7
-    content: Arborescent's side panel can show a terminal, an embedded browser, or a feedback panel — a separate tree of AI-proposed changes the user accepts or rejects.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d8a438a-04e5-4157-8e72-f3c350ab4532:
-    id: 3d8a438a-04e5-4157-8e72-f3c350ab4532
-    content: 'The feedback panel is a separate place: the user must switch to it to review, it steals focus when it updates, and it holds only one proposal per file, so a second concurrent collaboration on the same file silently overwrites the first.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  17fd32f7-1813-48e4-8e6e-70c8fc0b11aa:
-    id: 17fd32f7-1813-48e4-8e6e-70c8fc0b11aa
-    content: The proposal-diff machinery (added/modified/removed highlighting and prior-content rollback) already renders on the same Tree and TreeNode components as the main tree; only the store behind it differs.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b019f123-67f0-449c-b0c1-1c21fb7251fb:
-    id: b019f123-67f0-449c-b0c1-1c21fb7251fb
-    content: User / persona
-    children:
-      - f90d2414-28f1-4fc0-92bd-387fbe74b43f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f90d2414-28f1-4fc0-92bd-387fbe74b43f:
-    id: f90d2414-28f1-4fc0-92bd-387fbe74b43f
-    content: A user collaborating with AI on an open .arbo file — including running any number of collaborations on the same file at once — who wants to review and accept or reject proposed changes without leaving the tree they are working in.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8972a575-f3f3-47d7-ab57-bb168ccd489d:
-    id: 8972a575-f3f3-47d7-ab57-bb168ccd489d
-    content: Current experience and why it is insufficient
-    children:
-      - 22f21be3-1ba9-454e-809f-8f7c28f5bb21
-      - 98efb1b8-47d9-41d2-bd8b-043289bf5c11
-      - 41a458ee-6916-4dbe-89ac-406bfcd3fb5e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  22f21be3-1ba9-454e-809f-8f7c28f5bb21:
-    id: 22f21be3-1ba9-454e-809f-8f7c28f5bb21
-    content: To review a proposal the user leaves the main tree, switches to the feedback panel tab, then switches back — a context switch on every review cycle.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  98efb1b8-47d9-41d2-bd8b-043289bf5c11:
-    id: 98efb1b8-47d9-41d2-bd8b-043289bf5c11
-    content: When a proposal updates, the app jumps focus to the feedback panel and interrupts whatever the user was doing.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41a458ee-6916-4dbe-89ac-406bfcd3fb5e:
-    id: 41a458ee-6916-4dbe-89ac-406bfcd3fb5e
-    content: Only one collaboration is allowed at a time per file, and a second concurrent collaboration silently overwrites the first's un-reviewed proposal with no warning.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  61631c5c-5d9b-47a2-a832-4de9ac33a5b6:
-    id: 61631c5c-5d9b-47a2-a832-4de9ac33a5b6
-    content: Goal
-    children:
-      - d420f422-4d9c-45ac-ad95-e3d887a2ad60
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d420f422-4d9c-45ac-ad95-e3d887a2ad60:
-    id: d420f422-4d9c-45ac-ad95-e3d887a2ad60
-    content: The user reviews each AI proposal in place on the node it targets, accepting or rejecting it atomically from the node itself, with no separate feedback panel and any number of proposals live at once without silent loss.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  28c352f1-a75d-4c56-a59d-420ad5f3ae3e:
-    id: 28c352f1-a75d-4c56-a59d-420ad5f3ae3e
-    content: Business rules
-    children:
-      - c453a228-e83d-405f-b19e-0a77165e7247
-      - a8ebb0f6-1243-45f6-aae0-967ccf1bbe5a
-      - 8ee6fcbe-0a99-419d-ad88-50783d3d9bdf
-      - 8288bb3d-8ca9-432f-9fbd-4f2be31fcfdb
-      - 5048d143-7a21-4a3d-a317-a897c0c799f3
-      - e10e1047-8bf2-42cf-806f-9b5d5d6f6bc9
-      - eba96a1e-9e7d-4f79-aefa-b84ec0002498
-      - c55f3174-68ca-4346-bcff-0ad3beb31fa9
-      - a202a26f-edc1-4477-b652-c582db670304
-      - ae370a7a-822f-458e-92b1-378ec70da2ca
-      - b2b773b2-9c01-4ea5-979b-1b3fe56b4626
-      - 1d6f907b-4c33-437c-9545-6328ba1a68e5
-      - 21b358b2-910d-4664-8af3-785a0c351998
-      - a9ebd5e7-3efd-42ff-933f-e5c0ffcddd99
-      - b36a396c-3ad5-422e-abcf-ebc757ac5704
-      - 357b54a4-2dba-4c24-9314-94999a475e4e
-      - 1799d5dc-1cdd-442e-9674-cf43e23317ea
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c453a228-e83d-405f-b19e-0a77165e7247:
-    id: c453a228-e83d-405f-b19e-0a77165e7247
-    content: An AI proposal is rendered inline in the main tree on the sent-for-review parent node and its descendant subtree, not in a separate panel.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a8ebb0f6-1243-45f6-aae0-967ccf1bbe5a:
-    id: a8ebb0f6-1243-45f6-aae0-967ccf1bbe5a
-    content: During review the live tree keeps only the original — canonical, unchanged, retaining its node id — while the proposition is held separately in a sibling persisted map keyed by the reviewed node id, mirroring how step history stores subtree snapshots in the .arbo.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8ee6fcbe-0a99-419d-ad88-50783d3d9bdf:
-    id: 8ee6fcbe-0a99-419d-ad88-50783d3d9bdf
-    content: The displayed tree composes the proposition in place of the reviewed node's original descendants at render time — it is a replacement, not a translucent overlay laid on top.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8288bb3d-8ca9-432f-9fbd-4f2be31fcfdb:
-    id: 8288bb3d-8ca9-432f-9fbd-4f2be31fcfdb
-    content: The proposition uses remapped node ids while pending so it can never collide with live nodes, and adopts the original's node id and metadata only when accepted.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5048d143-7a21-4a3d-a317-a897c0c799f3:
-    id: 5048d143-7a21-4a3d-a317-a897c0c799f3
-    content: 'Accept and cancel are atomic on the reviewed parent node: accept promotes the proposition into the canonical tree (re-iding its root to the original''s id and replacing the entire descendant subtree), and cancel discards the pending proposition, leaving the untouched original in place.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e10e1047-8bf2-42cf-806f-9b5d5d6f6bc9:
-    id: e10e1047-8bf2-42cf-806f-9b5d5d6f6bc9
-    content: Accept is undoable because it mutates the document; cancel is not undoable and is not placed on the document undo stack, since it changes nothing in the document — re-running the review with the AI is the cheap recovery path.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eba96a1e-9e7d-4f79-aefa-b84ec0002498:
-    id: eba96a1e-9e7d-4f79-aefa-b84ec0002498
-    content: Because the original is never modified during review, cancel leaves it intact with nothing to restore, including after a restart; the pending proposition persists across restart in the sibling map and is shown again.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c55f3174-68ca-4346-bcff-0ad3beb31fa9:
-    id: c55f3174-68ca-4346-bcff-0ad3beb31fa9
-    content: The accept and cancel controls are buttons rendered in a bar in a row directly above the reviewed parent node; there are no keyboard shortcuts in this context.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a202a26f-edc1-4477-b652-c582db670304:
-    id: a202a26f-edc1-4477-b652-c582db670304
-    content: Changed nodes show change-kind colors — green added, blue modified, red strikethrough removed — that overwrite and never blend with the existing collaborating highlight; the reviewed parent and unchanged in-region nodes keep the collaborating color.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ae370a7a-822f-458e-92b1-378ec70da2ca:
-    id: ae370a7a-822f-458e-92b1-378ec70da2ca
-    content: Any number of independent reviews may be in progress at once; the prior restriction that only one collaboration is allowed at a time is removed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b2b773b2-9c01-4ea5-979b-1b3fe56b4626:
-    id: b2b773b2-9c01-4ea5-979b-1b3fe56b4626
-    content: A node cannot be sent for review when it, or any of its ancestors, is already in review (a review cannot nest inside an existing review region).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1d6f907b-4c33-437c-9545-6328ba1a68e5:
-    id: 1d6f907b-4c33-437c-9545-6328ba1a68e5
-    content: A node cannot be sent for review when any of its descendants is already in review (a review cannot engulf an existing review region).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  21b358b2-910d-4664-8af3-785a0c351998:
-    id: 21b358b2-910d-4664-8af3-785a0c351998
-    content: A second proposal targeting a node that already has a pending proposition replaces that proposition in place rather than creating a duplicate.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9ebd5e7-3efd-42ff-933f-e5c0ffcddd99:
-    id: a9ebd5e7-3efd-42ff-933f-e5c0ffcddd99
-    content: Right-click menu actions that do not make sense during review are disabled across the whole in-review subtree (the reviewed node and its proposition descendants), reusing the same context-menu gating the feedback panel applies today.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b36a396c-3ad5-422e-abcf-ebc757ac5704:
-    id: b36a396c-3ad5-422e-abcf-ebc757ac5704
-    content: Ancestors of a review region are not specially gated; destructive actions on them fall back to the existing delete and archive warnings (user beware), and the delete confirmation should note when the subtree being removed contains an active review.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  357b54a4-2dba-4c24-9314-94999a475e4e:
-    id: 357b54a4-2dba-4c24-9314-94999a475e4e
-    content: A node in review is locked against direct editing until its proposal is accepted or cancelled, so the diff baseline the proposition was computed against cannot drift.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1799d5dc-1cdd-442e-9674-cf43e23317ea:
-    id: 1799d5dc-1cdd-442e-9674-cf43e23317ea
-    content: Nodes the proposition removes remain visible as strikethrough placeholders within the reviewed subtree until the proposal is resolved.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  037a3ebd-8a75-446b-b833-79e7778423e3:
-    id: 037a3ebd-8a75-446b-b833-79e7778423e3
-    content: Acceptance criteria
-    children:
-      - 9b6c0c81-00f5-4d32-ac11-a322ed59c119
-      - 1abf9884-1f15-4c10-aeef-058fd1b65b8b
-      - 40182a3b-2e5a-4517-b596-db161e245c4f
-      - 904a506f-f145-45b0-9e6f-f3697d8a8c4b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b6c0c81-00f5-4d32-ac11-a322ed59c119:
-    id: 9b6c0c81-00f5-4d32-ac11-a322ed59c119
-    content: Happy path
-    children:
-      - cfec77e7-0dbf-4881-8c32-6749372acfab
-      - 9a2d44ce-7c31-4180-958c-001a417d55f4
-      - f7f11c5e-c28e-4419-b013-8edcad3ef68b
-      - 9f4c2e8b-6cd6-4a6c-8d0d-029ed9cbe74d
-      - 45f0d1d4-0423-4c7b-9318-e502ef164112
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cfec77e7-0dbf-4881-8c32-6749372acfab:
-    id: cfec77e7-0dbf-4881-8c32-6749372acfab
-    content: Sending a node for review renders the returned proposition inline on that node's subtree with added/modified/removed highlighting, and no feedback panel opens.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9a2d44ce-7c31-4180-958c-001a417d55f4:
-    id: 9a2d44ce-7c31-4180-958c-001a417d55f4
-    content: An accept/cancel button bar appears in a row directly above the reviewed parent node while its proposal is pending.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f7f11c5e-c28e-4419-b013-8edcad3ef68b:
-    id: f7f11c5e-c28e-4419-b013-8edcad3ef68b
-    content: Clicking Accept promotes the proposition to the original's node id, replaces the reviewed node's entire descendant subtree, and clears the highlighting.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f4c2e8b-6cd6-4a6c-8d0d-029ed9cbe74d:
-    id: 9f4c2e8b-6cd6-4a6c-8d0d-029ed9cbe74d
-    content: Clicking Cancel discards the pending proposition and the reviewed node's original subtree, untouched throughout, remains in place with the highlighting cleared.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  45f0d1d4-0423-4c7b-9318-e502ef164112:
-    id: 45f0d1d4-0423-4c7b-9318-e502ef164112
-    content: Two or more collaborations on different nodes of the same file each show their own inline proposal at once, none overwriting another.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1abf9884-1f15-4c10-aeef-058fd1b65b8b:
-    id: 1abf9884-1f15-4c10-aeef-058fd1b65b8b
-    content: Edge cases
-    children:
-      - 0d43573e-c4b1-41e6-9c90-d71899e57874
-      - f078b035-4bf9-4952-b7a9-31559817d1f4
-      - a23d357c-d3be-4cc5-a26c-2a59a54ed4ee
-      - bf2211e3-d2f2-4c2c-9b29-778accb37d7a
-      - 5f093fd0-b81c-4f9a-8c79-67202ab5fb36
-      - c9c70a0f-fd92-4a63-b674-d34d0b23f608
-      - 8d20a403-0194-4af2-97b9-b0e79df0d3c8
-      - 2fb5ddbb-9a58-4e1d-8563-a1117a4a23ac
-      - 080ebea2-7752-443d-9d0d-5638fce17c5f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d43573e-c4b1-41e6-9c90-d71899e57874:
-    id: 0d43573e-c4b1-41e6-9c90-d71899e57874
-    content: A second proposal for a node already in review replaces its pending proposition in place rather than duplicating it.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f078b035-4bf9-4952-b7a9-31559817d1f4:
-    id: f078b035-4bf9-4952-b7a9-31559817d1f4
-    content: Undo after Accept restores the reviewed node's pre-accept subtree; cancel is not undoable, and an undo after a cancel does not bring the dismissed proposition back.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a23d357c-d3be-4cc5-a26c-2a59a54ed4ee:
-    id: a23d357c-d3be-4cc5-a26c-2a59a54ed4ee
-    content: Sending a node for review is blocked when the node, an ancestor, or a descendant is already in review.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf2211e3-d2f2-4c2c-9b29-778accb37d7a:
-    id: bf2211e3-d2f2-4c2c-9b29-778accb37d7a
-    content: Change-kind colors fully overwrite the collaborating color on changed nodes with no muddy blend, while the reviewed parent and unchanged in-region nodes keep the collaborating color.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f093fd0-b81c-4f9a-8c79-67202ab5fb36:
-    id: 5f093fd0-b81c-4f9a-8c79-67202ab5fb36
-    content: Nodes the proposition removes show as strikethrough placeholders until resolve and disappear on accept or cancel.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9c70a0f-fd92-4a63-b674-d34d0b23f608:
-    id: c9c70a0f-fd92-4a63-b674-d34d0b23f608
-    content: Attempting to directly edit a node in review is blocked until the proposal is resolved.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d20a403-0194-4af2-97b9-b0e79df0d3c8:
-    id: 8d20a403-0194-4af2-97b9-b0e79df0d3c8
-    content: Right-click actions that are invalid during review are unavailable across the in-review subtree (the reviewed node and its proposition descendants), matching the feedback panel's current gating.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2fb5ddbb-9a58-4e1d-8563-a1117a4a23ac:
-    id: 2fb5ddbb-9a58-4e1d-8563-a1117a4a23ac
-    content: Deleting an ancestor of a review region is not specially blocked; the existing delete warning fires and notes that the removed subtree contains an active review.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  080ebea2-7752-443d-9d0d-5638fce17c5f:
-    id: 080ebea2-7752-443d-9d0d-5638fce17c5f
-    content: After closing and reopening the file, or restarting, the pending proposition is shown again (it persists in the sibling map in the .arbo), and cancelling then drops it, leaving the untouched original in place.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  40182a3b-2e5a-4517-b596-db161e245c4f:
-    id: 40182a3b-2e5a-4517-b596-db161e245c4f
-    content: Error handling
-    children:
-      - 4cf4c0b7-c9fd-4e42-85e0-f06a71601473
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4cf4c0b7-c9fd-4e42-85e0-f06a71601473:
-    id: 4cf4c0b7-c9fd-4e42-85e0-f06a71601473
-    content: If the reviewed node is deleted before its proposal resolves, the pending proposition is discarded with a handled error and no other pending proposition is affected.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  904a506f-f145-45b0-9e6f-f3697d8a8c4b:
-    id: 904a506f-f145-45b0-9e6f-f3697d8a8c4b
-    content: Non-functional
-    children:
-      - 903ebbf8-8605-4b8f-98f8-38cf0edf45d3
-      - 2048de0c-e423-4905-a715-49f8e4c6afe6
-      - 905f9e78-d97c-4ff9-8ac4-3df710ab5017
-      - 74f1a210-4977-4cab-be1f-5387ae54ac48
-      - 405b9b84-4d5a-48c6-88a5-1712a6909a3a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  903ebbf8-8605-4b8f-98f8-38cf0edf45d3:
-    id: 903ebbf8-8605-4b8f-98f8-38cf0edf45d3
-    content: No code path silently discards an un-reviewed proposition (headline guarantee).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2048de0c-e423-4905-a715-49f8e4c6afe6:
-    id: 2048de0c-e423-4905-a715-49f8e4c6afe6
-    content: Reviewing happens without leaving the main tree and without focus being stolen from the user's current node when a proposal updates.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  905f9e78-d97c-4ff9-8ac4-3df710ab5017:
-    id: 905f9e78-d97c-4ff9-8ac4-3df710ab5017
-    content: Writing a node whose content changes its rendered height, or writing several nodes at once, does not make the tree jump or scroll under the user (see the anti-jump suggestion).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  74f1a210-4977-4cab-be1f-5387ae54ac48:
-    id: 74f1a210-4977-4cab-be1f-5387ae54ac48
-    content: The original node id stays stable through review so sessions and bindings that reference it remain valid.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  405b9b84-4d5a-48c6-88a5-1712a6909a3a:
-    id: 405b9b84-4d5a-48c6-88a5-1712a6909a3a
-    content: Existing cross-file isolation does not regress.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7980609b-f717-4fd7-85f9-759fcc3a3580:
-    id: 7980609b-f717-4fd7-85f9-759fcc3a3580
-    content: 🔧 Implementation proposal
-    children:
-      - b508188d-e427-4a22-9c51-b59cab094366
-      - eed26afe-fbbd-4520-ae14-27c0ad0b27cf
-      - 86e61391-7e3a-4761-a4c7-05d0aeb41a1f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b508188d-e427-4a22-9c51-b59cab094366:
-    id: b508188d-e427-4a22-9c51-b59cab094366
-    content: Approach
-    children:
-      - 3b37d2f6-1ec4-431b-8c5b-9894dcabba17
-      - 9ec8377c-d619-47bd-9252-5364e959efd0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b37d2f6-1ec4-431b-8c5b-9894dcabba17:
-    id: 3b37d2f6-1ec4-431b-8c5b-9894dcabba17
-    content: PR4 delivered the per-node pendingProposals persistence (temp files retired) but kept the editable working store per-file under the guard. PR5 re-keys the working store per reviewed node, replaces the single-review state with a collection so independent reviews coexist, and routes each incoming proposal to its own reviewed node.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ec8377c-d619-47bd-9252-5364e959efd0:
-    id: 9ec8377c-d619-47bd-9252-5364e959efd0
-    content: Add the overlap gate and the clipboard single-review cap, and surface the active review in the existing delete confirmation.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eed26afe-fbbd-4520-ae14-27c0ad0b27cf:
-    id: eed26afe-fbbd-4520-ae14-27c0ad0b27cf
-    content: Touchpoints
-    children:
-      - 2dac9c80-544c-4e47-990b-c200bf0cbdb1
-      - 3efe1aae-e2f6-4e86-b24d-e1002b76eecb
-      - d831abea-a2e9-4fb8-a375-5725b90eee9a
-      - 1b7c7ac1-ed9b-448a-8ec8-50e7d1a49907
-      - c2109ac6-d1cc-420b-9230-95140c996153
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2dac9c80-544c-4e47-990b-c200bf0cbdb1:
-    id: 2dac9c80-544c-4e47-990b-c200bf0cbdb1
-    content: Stores — re-key feedbackTreeStore per reviewed node; turn the single collaboratingNodeId into a collection (or derive it from the pendingProposals keys) across treeStore readers; sendActions removes the single-collaboration guard, adds the overlap guard, and routes each proposal to its reviewed node.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3efe1aae-e2f6-4e86-b24d-e1002b76eecb:
-    id: 3efe1aae-e2f6-4e86-b24d-e1002b76eecb
-    content: Components — TreeNode collaborating and collaborating-descendant selectors read from the collection rather than a scalar; the inline render hooks (useReviewProposition and the version-subscription hooks) resolve the working store by reviewed node id.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d831abea-a2e9-4fb8-a375-5725b90eee9a:
-    id: d831abea-a2e9-4fb8-a375-5725b90eee9a
-    content: Services — mcpProposalReceiverService routes by reviewed node; feedbackService, useFeedbackStatus, and useFeedbackClipboard re-key by reviewed node id; the clipboard path is capped at one review at a time as a documented limitation.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b7c7ac1-ed9b-448a-8ec8-50e7d1a49907:
-    id: 1b7c7ac1-ed9b-448a-8ec8-50e7d1a49907
-    content: Gating — the delete confirmation notes when the removed subtree contains an active review.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c2109ac6-d1cc-420b-9230-95140c996153:
-    id: c2109ac6-d1cc-420b-9230-95140c996153
-    content: Tests — add per-node-working-store, concurrent-reviews, overlap-gate, second-proposal-replaces-in-place, and delete-confirmation-notes-review tests.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  86e61391-7e3a-4761-a4c7-05d0aeb41a1f:
-    id: 86e61391-7e3a-4761-a4c7-05d0aeb41a1f
-    content: Constraints to call out
-    children:
-      - 7b4e3376-3b47-4404-99d0-bdf9a5a4cbcd
-      - a114223f-656d-43d9-97f3-8c698b6c40c8
-      - 1823a3ee-5ec6-4238-9944-96c8792cfc94
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b4e3376-3b47-4404-99d0-bdf9a5a4cbcd:
-    id: 7b4e3376-3b47-4404-99d0-bdf9a5a4cbcd
-    content: 'Depends on PR4: PR4 delivered the per-node pendingProposals persistence; PR5 adds the per-node editable working store (the re-key deferred from PR4) and the concurrency on top. Do not start until PR4 has landed.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a114223f-656d-43d9-97f3-8c698b6c40c8:
-    id: a114223f-656d-43d9-97f3-8c698b6c40c8
-    content: The clipboard/browser path carries no session identity, so concurrent reviews are only supported on the MCP/terminal path; the browser path stays single-review for now.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1823a3ee-5ec6-4238-9944-96c8792cfc94:
-    id: 1823a3ee-5ec6-4238-9944-96c8792cfc94
-    content: Reviews cannot nest or overlap — no review may target a node within, or containing, an existing review region.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c4dc8d3-33db-47c0-af5f-c5fc384aff5e:
-    id: 4c4dc8d3-33db-47c0-af5f-c5fc384aff5e
-    content: Subtask instruction
-    children:
-      - 319a17b4-6ca2-4777-a3bc-869c5e03029e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  319a17b4-6ca2-4777-a3bc-869c5e03029e:
-    id: 319a17b4-6ca2-4777-a3bc-869c5e03029e
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   58aa4a32-f510-4deb-8480-48de150edcff:
     id: 58aa4a32-f510-4deb-8480-48de150edcff
     content: 📄 Product spec
@@ -202597,18 +201772,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bc9bf300-c2bf-4313-90c0-6671b66b6e4f:
-    id: bc9bf300-c2bf-4313-90c0-6671b66b6e4f
+  6dd05eb7-0958-47fe-b4f1-2788e6a8613d:
+    id: 6dd05eb7-0958-47fe-b4f1-2788e6a8613d
     content: worktree
     children:
-      - 34c61c5d-9c22-4435-bcff-7fd12b8c6daf
+      - e5a5eed2-5eb2-4a78-a006-3bbfd5fcfae2
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  34c61c5d-9c22-4435-bcff-7fd12b8c6daf:
-    id: 34c61c5d-9c22-4435-bcff-7fd12b8c6daf
+  e5a5eed2-5eb2-4a78-a006-3bbfd5fcfae2:
+    id: e5a5eed2-5eb2-4a78-a006-3bbfd5fcfae2
     content: vscode://file/Users/brianfox/dev/Arborescent-inline-review-pr4
     children: []
     metadata:
@@ -202616,22 +201791,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2f83cdf4-82ce-4a6e-b293-fc066a1e4644:
-    id: 2f83cdf4-82ce-4a6e-b293-fc066a1e4644
+  d81c0a5a-e2ae-4c0f-bd32-22e950f7e173:
+    id: d81c0a5a-e2ae-4c0f-bd32-22e950f7e173
     content: Scope
     children:
-      - 606943c9-6595-4b12-8d97-6837076b6b9f
-      - 77d9f13f-dfb6-468c-8104-d69ead19650c
-      - 42d36e0b-59a8-472e-9ef3-2c2abe46cae7
-      - 279b2cb8-6f76-4464-96f0-1969b03f3ee1
-      - 4af732e3-4665-4889-a8c9-8d83e65ecb42
+      - c18492ab-d53c-4379-af54-555e1c828bf9
+      - 4cb6082c-ad54-41c9-a62b-90956468ece5
+      - 38ce7437-c6ce-484c-9a94-eaf4872cd59c
+      - ba0cbd16-7d51-431c-b5ce-a76f6ec82717
+      - d65015ab-2de7-4eed-aea7-b678117ffd58
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  606943c9-6595-4b12-8d97-6837076b6b9f:
-    id: 606943c9-6595-4b12-8d97-6837076b6b9f
+  c18492ab-d53c-4379-af54-555e1c828bf9:
+    id: c18492ab-d53c-4379-af54-555e1c828bf9
     content: 'Persist the proposition via PR1''s pendingProposals map (keyed per reviewed node, round-tripping in the .arbo) instead of a temp file: capture into pendingProposals on ingest, hydrate the editable working store from it on load and on collaboration restore, and drop the entry on accept and on cancel.'
     children: []
     metadata:
@@ -202639,8 +201814,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  77d9f13f-dfb6-468c-8104-d69ead19650c:
-    id: 77d9f13f-dfb6-468c-8104-d69ead19650c
+  4cb6082c-ad54-41c9-a62b-90956468ece5:
+    id: 4cb6082c-ad54-41c9-a62b-90956468ece5
     content: Re-capture the editable proposition into pendingProposals when it changes (or on workspace autosave) so an edited proposition survives restart — matching today's temp-file-autosave behaviour.
     children: []
     metadata:
@@ -202648,8 +201823,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  42d36e0b-59a8-472e-9ef3-2c2abe46cae7:
-    id: 42d36e0b-59a8-472e-9ef3-2c2abe46cae7
+  38ce7437-c6ce-484c-9a94-eaf4872cd59c:
+    id: 38ce7437-c6ce-484c-9a94-eaf4872cd59c
     content: 'Delete the temp-file plumbing: the inline createTempFile / readTempFile / saveToPath / loadFromPath flow in sendActions, the feedbackTempFile node metadata (helper, NodeMetadata field, clearTaskMetadata entry), and feedbackTempFileService; switch findCollaboratingNode to scan pendingProposals keys; migrate or remove every caller (feedbackService, fileActions).'
     children: []
     metadata:
@@ -202657,8 +201832,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  279b2cb8-6f76-4464-96f0-1969b03f3ee1:
-    id: 279b2cb8-6f76-4464-96f0-1969b03f3ee1
+  ba0cbd16-7d51-431c-b5ce-a76f6ec82717:
+    id: ba0cbd16-7d51-431c-b5ce-a76f6ec82717
     content: Keep the editable working store per-file under the retained single-collaboration guard — re-keying the WORKING store per reviewed node is deferred to PR5 (untestable here under the guard).
     children: []
     metadata:
@@ -202666,8 +201841,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4af732e3-4665-4889-a8c9-8d83e65ecb42:
-    id: 4af732e3-4665-4889-a8c9-8d83e65ecb42
+  d65015ab-2de7-4eed-aea7-b678117ffd58:
+    id: d65015ab-2de7-4eed-aea7-b678117ffd58
     content: 'No user-facing behaviour change: still single review at a time (the guard stays), and inline review — single-root and decomposition from PR3 — is unchanged.'
     children: []
     metadata:
@@ -202675,21 +201850,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  010f8c97-1dc8-4804-95ea-5cd6b0beb167:
-    id: 010f8c97-1dc8-4804-95ea-5cd6b0beb167
+  92732e49-6d12-4c5f-a917-4e67c0af896c:
+    id: 92732e49-6d12-4c5f-a917-4e67c0af896c
     content: Independently testable
     children:
-      - 7811e365-0df4-4f0f-9fa5-a2efa2db6202
-      - cae1d112-e843-467a-9d93-f0ca687f31d2
-      - ab530cd9-42f4-4b21-81d1-344b5f3b2ef8
-      - e5418cde-d7b2-4fdb-bd79-b7f6f75651fc
+      - 3f70d0cc-2e9d-4202-a4af-77a61de744ab
+      - 115c106c-6b9c-4179-9d7a-a9e28aceeaeb
+      - a177a6e0-af68-4615-9028-b5f614cafe4e
+      - b1e00c3e-5d76-411a-a442-beb9694b956b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7811e365-0df4-4f0f-9fa5-a2efa2db6202:
-    id: 7811e365-0df4-4f0f-9fa5-a2efa2db6202
+  3f70d0cc-2e9d-4202-a4af-77a61de744ab:
+    id: 3f70d0cc-2e9d-4202-a4af-77a61de744ab
     content: A pending proposition round-trips through the .arbo pendingProposals map across save, load, and restart; no feedback temp files are written.
     children: []
     metadata:
@@ -202697,8 +201872,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cae1d112-e843-467a-9d93-f0ca687f31d2:
-    id: cae1d112-e843-467a-9d93-f0ca687f31d2
+  115c106c-6b9c-4179-9d7a-a9e28aceeaeb:
+    id: 115c106c-6b9c-4179-9d7a-a9e28aceeaeb
     content: An edited proposition survives a restart — the edited content is restored, not the pre-edit original.
     children: []
     metadata:
@@ -202706,8 +201881,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ab530cd9-42f4-4b21-81d1-344b5f3b2ef8:
-    id: ab530cd9-42f4-4b21-81d1-344b5f3b2ef8
+  a177a6e0-af68-4615-9028-b5f614cafe4e:
+    id: a177a6e0-af68-4615-9028-b5f614cafe4e
     content: Inline review (single-root and decomposition) still works end to end after the migration.
     children: []
     metadata:
@@ -202715,8 +201890,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e5418cde-d7b2-4fdb-bd79-b7f6f75651fc:
-    id: e5418cde-d7b2-4fdb-bd79-b7f6f75651fc
+  b1e00c3e-5d76-411a-a442-beb9694b956b:
+    id: b1e00c3e-5d76-411a-a442-beb9694b956b
     content: feedbackTempFileService and the feedbackTempFile metadata are gone with no dead references; build, type-check, lint, and tests pass.
     children: []
     metadata:
@@ -202724,18 +201899,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4d808456-618d-4acd-843a-767488cb671e:
-    id: 4d808456-618d-4acd-843a-767488cb671e
+  e4b62530-5d89-45ce-b6bd-c61e2b3a5aad:
+    id: e4b62530-5d89-45ce-b6bd-c61e2b3a5aad
     content: Scope decision (persistence-only, agreed)
     children:
-      - 6eaea1db-3f5d-41b9-be12-8831aac93a0c
+      - f08151c0-d9fe-4feb-a60b-28cda85b18c1
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6eaea1db-3f5d-41b9-be12-8831aac93a0c:
-    id: 6eaea1db-3f5d-41b9-be12-8831aac93a0c
+  f08151c0-d9fe-4feb-a60b-28cda85b18c1:
+    id: f08151c0-d9fe-4feb-a60b-28cda85b18c1
     content: 'PR4 is narrowed to the persistence migration: pendingProposals replaces temp files; the per-reviewed-node re-key of the editable WORKING store is deferred to PR5. Rationale: under PR4''s retained single-collaboration guard only one proposition can exist, so a per-node working store is untestable structural prep and is the risky part (touches every consumer — useReviewProposition, useFeedbackStatus, useFeedbackClipboard, feedbackService, sendActions); pendingProposals is ALREADY keyed per reviewed node, so the persisted form supports more than one now, and PR5 (which lifts the guard) is where the working-store re-key is both necessary and exercisable.'
     children: []
     metadata:
@@ -202743,46 +201918,46 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  695e2190-bf1b-49f2-a508-017d02d7b11c:
-    id: 695e2190-bf1b-49f2-a508-017d02d7b11c
+  4f9c9511-5c0d-4c5a-8e3a-7e8787051887:
+    id: 4f9c9511-5c0d-4c5a-8e3a-7e8787051887
     content: User story
     children:
-      - 290fdf3e-5600-48c3-9430-aa84a76eedca
-      - 01c7d757-115e-43c6-8a1b-703591fd95cf
+      - 5f4b15d9-66c3-4482-be87-761022eed242
+      - fd1ed596-15e7-4c96-8d0e-c4c3583f103e
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  290fdf3e-5600-48c3-9430-aa84a76eedca:
-    id: 290fdf3e-5600-48c3-9430-aa84a76eedca
+  5f4b15d9-66c3-4482-be87-761022eed242:
+    id: 5f4b15d9-66c3-4482-be87-761022eed242
     content: 📄 Product spec
     children:
-      - 3e6ae539-6abe-4a37-9ca8-e278f73181fa
-      - b0a438d5-2fd2-4322-8004-5e3355040a10
-      - 027c00f2-befa-49aa-8d1d-b6a402d51dc8
-      - a2d43659-7c8f-440f-b33a-adc81501700b
-      - 0197c308-3d74-43ac-9505-e91906bd1d4f
-      - b6142d4f-e1d8-4b23-b5a5-a8521b49c80b
+      - 44826aa2-f477-4b70-acda-4e244ec0379f
+      - 8798fbfa-381e-469c-a22a-5ba596aba96f
+      - c32e5e2b-d242-4792-9c6b-bd6578fe8bab
+      - f96ccfb7-f6a9-456c-ae2b-7d49298cfcfc
+      - ef7194ac-c9da-4b41-bd0a-e6f4eaf71df0
+      - 6c44089a-33d9-4017-9127-ad23ea9661e1
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  3e6ae539-6abe-4a37-9ca8-e278f73181fa:
-    id: 3e6ae539-6abe-4a37-9ca8-e278f73181fa
+  44826aa2-f477-4b70-acda-4e244ec0379f:
+    id: 44826aa2-f477-4b70-acda-4e244ec0379f
     content: Context
     children:
-      - 9e2cbbe2-e4dd-46ae-9162-bee7470059cc
-      - 3762c10a-be2f-4206-bb16-f602b8218fd6
-      - deecd709-25b5-44b6-8dfd-a52fdba3b141
+      - dac9caac-ad39-47e8-9914-5ea133204c47
+      - c5aea6e1-9670-4ff5-9e10-bea42005b81e
+      - 254a6a9d-37bc-4ed8-9fc4-7751b3ace61c
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  9e2cbbe2-e4dd-46ae-9162-bee7470059cc:
-    id: 9e2cbbe2-e4dd-46ae-9162-bee7470059cc
+  dac9caac-ad39-47e8-9914-5ea133204c47:
+    id: dac9caac-ad39-47e8-9914-5ea133204c47
     content: Arborescent's side panel can show a terminal, an embedded browser, or a feedback panel — a separate tree of AI-proposed changes the user accepts or rejects.
     children: []
     metadata:
@@ -202790,8 +201965,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3762c10a-be2f-4206-bb16-f602b8218fd6:
-    id: 3762c10a-be2f-4206-bb16-f602b8218fd6
+  c5aea6e1-9670-4ff5-9e10-bea42005b81e:
+    id: c5aea6e1-9670-4ff5-9e10-bea42005b81e
     content: 'The feedback panel is a separate place: the user must switch to it to review, it steals focus when it updates, and it holds only one proposal per file, so a second concurrent collaboration on the same file silently overwrites the first.'
     children: []
     metadata:
@@ -202799,8 +201974,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  deecd709-25b5-44b6-8dfd-a52fdba3b141:
-    id: deecd709-25b5-44b6-8dfd-a52fdba3b141
+  254a6a9d-37bc-4ed8-9fc4-7751b3ace61c:
+    id: 254a6a9d-37bc-4ed8-9fc4-7751b3ace61c
     content: The proposal-diff machinery (added/modified/removed highlighting and prior-content rollback) already renders on the same Tree and TreeNode components as the main tree; only the store behind it differs.
     children: []
     metadata:
@@ -202808,18 +201983,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b0a438d5-2fd2-4322-8004-5e3355040a10:
-    id: b0a438d5-2fd2-4322-8004-5e3355040a10
+  8798fbfa-381e-469c-a22a-5ba596aba96f:
+    id: 8798fbfa-381e-469c-a22a-5ba596aba96f
     content: User / persona
     children:
-      - 733cd97b-9669-4298-8562-d6921325b95a
+      - a8d64114-2da3-406e-9f26-32f03a4a73bb
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  733cd97b-9669-4298-8562-d6921325b95a:
-    id: 733cd97b-9669-4298-8562-d6921325b95a
+  a8d64114-2da3-406e-9f26-32f03a4a73bb:
+    id: a8d64114-2da3-406e-9f26-32f03a4a73bb
     content: A user collaborating with AI on an open .arbo file — including running any number of collaborations on the same file at once — who wants to review and accept or reject proposed changes without leaving the tree they are working in.
     children: []
     metadata:
@@ -202827,20 +202002,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  027c00f2-befa-49aa-8d1d-b6a402d51dc8:
-    id: 027c00f2-befa-49aa-8d1d-b6a402d51dc8
+  c32e5e2b-d242-4792-9c6b-bd6578fe8bab:
+    id: c32e5e2b-d242-4792-9c6b-bd6578fe8bab
     content: Current experience and why it is insufficient
     children:
-      - 5523d1f0-0afb-48e7-b53b-c30bdd0ec776
-      - a20b3592-7c22-4733-88e9-82aa63b5471f
-      - eaa39a8e-a6d5-4531-b62a-eb8c54369e5d
+      - 40339404-dbf1-4ad0-8ad8-60c6b1fab577
+      - cb048f77-8c15-4587-ab15-1cc14f88a012
+      - 6eb4e25b-ae02-4940-ab2c-c864b7e15d4b
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  5523d1f0-0afb-48e7-b53b-c30bdd0ec776:
-    id: 5523d1f0-0afb-48e7-b53b-c30bdd0ec776
+  40339404-dbf1-4ad0-8ad8-60c6b1fab577:
+    id: 40339404-dbf1-4ad0-8ad8-60c6b1fab577
     content: To review a proposal the user leaves the main tree, switches to the feedback panel tab, then switches back — a context switch on every review cycle.
     children: []
     metadata:
@@ -202848,8 +202023,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a20b3592-7c22-4733-88e9-82aa63b5471f:
-    id: a20b3592-7c22-4733-88e9-82aa63b5471f
+  cb048f77-8c15-4587-ab15-1cc14f88a012:
+    id: cb048f77-8c15-4587-ab15-1cc14f88a012
     content: When a proposal updates, the app jumps focus to the feedback panel and interrupts whatever the user was doing.
     children: []
     metadata:
@@ -202857,8 +202032,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  eaa39a8e-a6d5-4531-b62a-eb8c54369e5d:
-    id: eaa39a8e-a6d5-4531-b62a-eb8c54369e5d
+  6eb4e25b-ae02-4940-ab2c-c864b7e15d4b:
+    id: 6eb4e25b-ae02-4940-ab2c-c864b7e15d4b
     content: Only one collaboration is allowed at a time per file, and a second concurrent collaboration silently overwrites the first's un-reviewed proposal with no warning.
     children: []
     metadata:
@@ -202866,18 +202041,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a2d43659-7c8f-440f-b33a-adc81501700b:
-    id: a2d43659-7c8f-440f-b33a-adc81501700b
+  f96ccfb7-f6a9-456c-ae2b-7d49298cfcfc:
+    id: f96ccfb7-f6a9-456c-ae2b-7d49298cfcfc
     content: Goal
     children:
-      - e4ee2002-87a0-4ae6-b6f1-5391386ded7e
+      - 3bfb4dec-24c8-4a54-987d-c1ee66ed8499
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  e4ee2002-87a0-4ae6-b6f1-5391386ded7e:
-    id: e4ee2002-87a0-4ae6-b6f1-5391386ded7e
+  3bfb4dec-24c8-4a54-987d-c1ee66ed8499:
+    id: 3bfb4dec-24c8-4a54-987d-c1ee66ed8499
     content: The user reviews each AI proposal in place on the node it targets, accepting or rejecting it atomically from the node itself, with no separate feedback panel and any number of proposals live at once without silent loss.
     children: []
     metadata:
@@ -202885,34 +202060,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0197c308-3d74-43ac-9505-e91906bd1d4f:
-    id: 0197c308-3d74-43ac-9505-e91906bd1d4f
+  ef7194ac-c9da-4b41-bd0a-e6f4eaf71df0:
+    id: ef7194ac-c9da-4b41-bd0a-e6f4eaf71df0
     content: Business rules
     children:
-      - c85879dd-7cd6-4e24-9808-4a9e5441e4f3
-      - ac6715ec-5f05-4071-8578-ab24e1e1bc8d
-      - 1daba749-7750-4f39-8820-382334fe73aa
-      - e75bc91a-f863-43ca-8139-b27198aec4ac
-      - 1a315ae8-c164-4ad8-b9e7-37450754f51b
-      - 07364f17-6a6b-4b8e-bdbe-ff5b1d26acd5
-      - f2ffb2c9-3ba1-4fcf-9a50-62804d1ebb1d
-      - 18add5c1-041b-4461-920e-4d0cf0829914
-      - 947b6a96-96b5-417a-8e0d-f71ee28c1835
-      - 319bd8c2-1089-466f-b73c-f13c45b7abca
-      - bb30bf60-79e1-4690-80a6-8d8dd748e0ee
-      - 900a28c6-38a3-4933-ab9e-334e9a0e8f47
-      - e61a5e6c-ed52-48af-82a6-4ab5d5aec89e
-      - 8afe40e8-0810-4e76-b7d3-d4b5a6022d97
-      - 67142848-5a78-4239-a890-92c11422bd18
-      - 722cf4bf-f538-4737-b3a7-bb5b10eb9df7
-      - 11954da1-c091-4596-a5ab-a45ee2e051f1
+      - 8779e73b-4ee2-49ac-9a91-ba6e0eb3c7ee
+      - 42358beb-d46a-476c-b4cc-9637236b07b2
+      - 9a52d99d-1964-4f0d-8e25-735780ec0161
+      - 89f94533-8499-4cbc-b6e8-915e14cec159
+      - c3d03ad1-4436-41f9-a24b-0681ad8a0400
+      - 215f1e10-775c-4105-be61-3a2280155b70
+      - ebaba203-cc2d-4a33-b63a-c40956d229e9
+      - 54f5920c-a168-4970-9a28-420bd3a34ede
+      - d04b58e7-5137-420c-9aef-2431fc32d6d6
+      - e187d54c-e177-4be5-852b-7f6103d3aa60
+      - 9d062da2-a6ab-42c3-acea-40b6c44e4ed4
+      - d26969da-74b0-441b-9a02-36b5354850d3
+      - 89d50754-77e1-4c09-8aa6-e563a5965eb0
+      - a4bf0164-642a-4dde-85fd-ef06a7137b96
+      - 9816d60c-24db-4fff-b13e-bb2698a7ebc0
+      - a5d923e2-5781-4a6b-8981-a3c0a23274d2
+      - 9ea9be39-0698-49ef-9abd-b56ca9f9b263
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  c85879dd-7cd6-4e24-9808-4a9e5441e4f3:
-    id: c85879dd-7cd6-4e24-9808-4a9e5441e4f3
+  8779e73b-4ee2-49ac-9a91-ba6e0eb3c7ee:
+    id: 8779e73b-4ee2-49ac-9a91-ba6e0eb3c7ee
     content: An AI proposal is rendered inline in the main tree on the sent-for-review parent node and its descendant subtree, not in a separate panel.
     children: []
     metadata:
@@ -202920,8 +202095,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ac6715ec-5f05-4071-8578-ab24e1e1bc8d:
-    id: ac6715ec-5f05-4071-8578-ab24e1e1bc8d
+  42358beb-d46a-476c-b4cc-9637236b07b2:
+    id: 42358beb-d46a-476c-b4cc-9637236b07b2
     content: During review the live tree keeps only the original — canonical, unchanged, retaining its node id — while the proposition is held separately in a sibling persisted map keyed by the reviewed node id, mirroring how step history stores subtree snapshots in the .arbo.
     children: []
     metadata:
@@ -202929,8 +202104,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1daba749-7750-4f39-8820-382334fe73aa:
-    id: 1daba749-7750-4f39-8820-382334fe73aa
+  9a52d99d-1964-4f0d-8e25-735780ec0161:
+    id: 9a52d99d-1964-4f0d-8e25-735780ec0161
     content: The displayed tree composes the proposition in place of the reviewed node's original descendants at render time — it is a replacement, not a translucent overlay laid on top.
     children: []
     metadata:
@@ -202938,8 +202113,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e75bc91a-f863-43ca-8139-b27198aec4ac:
-    id: e75bc91a-f863-43ca-8139-b27198aec4ac
+  89f94533-8499-4cbc-b6e8-915e14cec159:
+    id: 89f94533-8499-4cbc-b6e8-915e14cec159
     content: The proposition uses remapped node ids while pending so it can never collide with live nodes, and adopts the original's node id and metadata only when accepted.
     children: []
     metadata:
@@ -202947,8 +202122,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1a315ae8-c164-4ad8-b9e7-37450754f51b:
-    id: 1a315ae8-c164-4ad8-b9e7-37450754f51b
+  c3d03ad1-4436-41f9-a24b-0681ad8a0400:
+    id: c3d03ad1-4436-41f9-a24b-0681ad8a0400
     content: 'Accept and cancel are atomic on the reviewed parent node: accept promotes the proposition into the canonical tree (re-iding its root to the original''s id and replacing the entire descendant subtree), and cancel discards the pending proposition, leaving the untouched original in place.'
     children: []
     metadata:
@@ -202956,8 +202131,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  07364f17-6a6b-4b8e-bdbe-ff5b1d26acd5:
-    id: 07364f17-6a6b-4b8e-bdbe-ff5b1d26acd5
+  215f1e10-775c-4105-be61-3a2280155b70:
+    id: 215f1e10-775c-4105-be61-3a2280155b70
     content: Accept is undoable because it mutates the document; cancel is not undoable and is not placed on the document undo stack, since it changes nothing in the document — re-running the review with the AI is the cheap recovery path.
     children: []
     metadata:
@@ -202965,8 +202140,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f2ffb2c9-3ba1-4fcf-9a50-62804d1ebb1d:
-    id: f2ffb2c9-3ba1-4fcf-9a50-62804d1ebb1d
+  ebaba203-cc2d-4a33-b63a-c40956d229e9:
+    id: ebaba203-cc2d-4a33-b63a-c40956d229e9
     content: Because the original is never modified during review, cancel leaves it intact with nothing to restore, including after a restart; the pending proposition persists across restart in the sibling map and is shown again.
     children: []
     metadata:
@@ -202974,8 +202149,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  18add5c1-041b-4461-920e-4d0cf0829914:
-    id: 18add5c1-041b-4461-920e-4d0cf0829914
+  54f5920c-a168-4970-9a28-420bd3a34ede:
+    id: 54f5920c-a168-4970-9a28-420bd3a34ede
     content: The accept and cancel controls are buttons rendered in a bar in a row directly above the reviewed parent node; there are no keyboard shortcuts in this context.
     children: []
     metadata:
@@ -202983,8 +202158,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  947b6a96-96b5-417a-8e0d-f71ee28c1835:
-    id: 947b6a96-96b5-417a-8e0d-f71ee28c1835
+  d04b58e7-5137-420c-9aef-2431fc32d6d6:
+    id: d04b58e7-5137-420c-9aef-2431fc32d6d6
     content: Changed nodes show change-kind colors — green added, blue modified, red strikethrough removed — that overwrite and never blend with the existing collaborating highlight; the reviewed parent and unchanged in-region nodes keep the collaborating color.
     children: []
     metadata:
@@ -202992,8 +202167,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  319bd8c2-1089-466f-b73c-f13c45b7abca:
-    id: 319bd8c2-1089-466f-b73c-f13c45b7abca
+  e187d54c-e177-4be5-852b-7f6103d3aa60:
+    id: e187d54c-e177-4be5-852b-7f6103d3aa60
     content: Any number of independent reviews may be in progress at once; the prior restriction that only one collaboration is allowed at a time is removed.
     children: []
     metadata:
@@ -203001,8 +202176,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bb30bf60-79e1-4690-80a6-8d8dd748e0ee:
-    id: bb30bf60-79e1-4690-80a6-8d8dd748e0ee
+  9d062da2-a6ab-42c3-acea-40b6c44e4ed4:
+    id: 9d062da2-a6ab-42c3-acea-40b6c44e4ed4
     content: A node cannot be sent for review when it, or any of its ancestors, is already in review (a review cannot nest inside an existing review region).
     children: []
     metadata:
@@ -203010,8 +202185,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  900a28c6-38a3-4933-ab9e-334e9a0e8f47:
-    id: 900a28c6-38a3-4933-ab9e-334e9a0e8f47
+  d26969da-74b0-441b-9a02-36b5354850d3:
+    id: d26969da-74b0-441b-9a02-36b5354850d3
     content: A node cannot be sent for review when any of its descendants is already in review (a review cannot engulf an existing review region).
     children: []
     metadata:
@@ -203019,8 +202194,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e61a5e6c-ed52-48af-82a6-4ab5d5aec89e:
-    id: e61a5e6c-ed52-48af-82a6-4ab5d5aec89e
+  89d50754-77e1-4c09-8aa6-e563a5965eb0:
+    id: 89d50754-77e1-4c09-8aa6-e563a5965eb0
     content: A second proposal targeting a node that already has a pending proposition replaces that proposition in place rather than creating a duplicate.
     children: []
     metadata:
@@ -203028,8 +202203,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8afe40e8-0810-4e76-b7d3-d4b5a6022d97:
-    id: 8afe40e8-0810-4e76-b7d3-d4b5a6022d97
+  a4bf0164-642a-4dde-85fd-ef06a7137b96:
+    id: a4bf0164-642a-4dde-85fd-ef06a7137b96
     content: Right-click menu actions that do not make sense during review are disabled across the whole in-review subtree (the reviewed node and its proposition descendants), reusing the same context-menu gating the feedback panel applies today.
     children: []
     metadata:
@@ -203037,8 +202212,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  67142848-5a78-4239-a890-92c11422bd18:
-    id: 67142848-5a78-4239-a890-92c11422bd18
+  9816d60c-24db-4fff-b13e-bb2698a7ebc0:
+    id: 9816d60c-24db-4fff-b13e-bb2698a7ebc0
     content: Ancestors of a review region are not specially gated; destructive actions on them fall back to the existing delete and archive warnings (user beware), and the delete confirmation should note when the subtree being removed contains an active review.
     children: []
     metadata:
@@ -203046,8 +202221,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  722cf4bf-f538-4737-b3a7-bb5b10eb9df7:
-    id: 722cf4bf-f538-4737-b3a7-bb5b10eb9df7
+  a5d923e2-5781-4a6b-8981-a3c0a23274d2:
+    id: a5d923e2-5781-4a6b-8981-a3c0a23274d2
     content: A node in review is locked against direct editing until its proposal is accepted or cancelled, so the diff baseline the proposition was computed against cannot drift.
     children: []
     metadata:
@@ -203055,8 +202230,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  11954da1-c091-4596-a5ab-a45ee2e051f1:
-    id: 11954da1-c091-4596-a5ab-a45ee2e051f1
+  9ea9be39-0698-49ef-9abd-b56ca9f9b263:
+    id: 9ea9be39-0698-49ef-9abd-b56ca9f9b263
     content: Nodes the proposition removes remain visible as strikethrough placeholders within the reviewed subtree until the proposal is resolved.
     children: []
     metadata:
@@ -203064,35 +202239,35 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b6142d4f-e1d8-4b23-b5a5-a8521b49c80b:
-    id: b6142d4f-e1d8-4b23-b5a5-a8521b49c80b
+  6c44089a-33d9-4017-9127-ad23ea9661e1:
+    id: 6c44089a-33d9-4017-9127-ad23ea9661e1
     content: Acceptance criteria
     children:
-      - 852cd59e-d6b5-45d5-8295-d8efb6ccd8a8
-      - a918a2ee-42f5-4e59-8c10-6c0927d8c7aa
-      - 2dd85897-23ad-4ee1-93b3-b921740a04fa
-      - 77778cea-8e1d-4c18-8610-969ec7347936
+      - d2082fc7-c4d2-421f-90b7-4a1b51adb277
+      - d350660d-c384-4c34-8e3a-a6ddfbb36665
+      - 7db92262-9b54-417e-889b-87478b9c979f
+      - b839e79a-3ec4-440b-b0a3-bfde95301b31
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  852cd59e-d6b5-45d5-8295-d8efb6ccd8a8:
-    id: 852cd59e-d6b5-45d5-8295-d8efb6ccd8a8
+  d2082fc7-c4d2-421f-90b7-4a1b51adb277:
+    id: d2082fc7-c4d2-421f-90b7-4a1b51adb277
     content: Happy path
     children:
-      - 186f7132-d9d0-46ae-bf06-fabc24a45d79
-      - afbc3c0d-e1d5-47b7-9168-2cb05a4f6c5d
-      - 8e706237-465e-4cf0-8c82-32dbf9a8375f
-      - 272da51d-750e-4952-9710-b9b54da94a24
-      - 2b7651e2-7cee-471f-be95-d072b8b6b198
+      - 2fa37ddc-ba88-4b32-aec3-c64180ae1dda
+      - 271c7f73-71ee-4ea0-bca7-a839559fe2d5
+      - af4eabec-4e1d-463d-bbec-565e87dd9218
+      - 93f1b7e4-aef9-44dd-b713-b7198459bfaa
+      - 1dba71dd-a201-43f5-998c-0f464a2e6d49
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  186f7132-d9d0-46ae-bf06-fabc24a45d79:
-    id: 186f7132-d9d0-46ae-bf06-fabc24a45d79
+  2fa37ddc-ba88-4b32-aec3-c64180ae1dda:
+    id: 2fa37ddc-ba88-4b32-aec3-c64180ae1dda
     content: Sending a node for review renders the returned proposition inline on that node's subtree with added/modified/removed highlighting, and no feedback panel opens.
     children: []
     metadata:
@@ -203100,8 +202275,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  afbc3c0d-e1d5-47b7-9168-2cb05a4f6c5d:
-    id: afbc3c0d-e1d5-47b7-9168-2cb05a4f6c5d
+  271c7f73-71ee-4ea0-bca7-a839559fe2d5:
+    id: 271c7f73-71ee-4ea0-bca7-a839559fe2d5
     content: An accept/cancel button bar appears in a row directly above the reviewed parent node while its proposal is pending.
     children: []
     metadata:
@@ -203109,8 +202284,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8e706237-465e-4cf0-8c82-32dbf9a8375f:
-    id: 8e706237-465e-4cf0-8c82-32dbf9a8375f
+  af4eabec-4e1d-463d-bbec-565e87dd9218:
+    id: af4eabec-4e1d-463d-bbec-565e87dd9218
     content: Clicking Accept promotes the proposition to the original's node id, replaces the reviewed node's entire descendant subtree, and clears the highlighting.
     children: []
     metadata:
@@ -203118,8 +202293,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  272da51d-750e-4952-9710-b9b54da94a24:
-    id: 272da51d-750e-4952-9710-b9b54da94a24
+  93f1b7e4-aef9-44dd-b713-b7198459bfaa:
+    id: 93f1b7e4-aef9-44dd-b713-b7198459bfaa
     content: Clicking Cancel discards the pending proposition and the reviewed node's original subtree, untouched throughout, remains in place with the highlighting cleared.
     children: []
     metadata:
@@ -203127,8 +202302,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2b7651e2-7cee-471f-be95-d072b8b6b198:
-    id: 2b7651e2-7cee-471f-be95-d072b8b6b198
+  1dba71dd-a201-43f5-998c-0f464a2e6d49:
+    id: 1dba71dd-a201-43f5-998c-0f464a2e6d49
     content: Two or more collaborations on different nodes of the same file each show their own inline proposal at once, none overwriting another.
     children: []
     metadata:
@@ -203136,26 +202311,26 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a918a2ee-42f5-4e59-8c10-6c0927d8c7aa:
-    id: a918a2ee-42f5-4e59-8c10-6c0927d8c7aa
+  d350660d-c384-4c34-8e3a-a6ddfbb36665:
+    id: d350660d-c384-4c34-8e3a-a6ddfbb36665
     content: Edge cases
     children:
-      - e27a0e64-4b98-4cea-9a88-0babe5920e0b
-      - d4155272-8e89-4eab-8b6a-ce4c342e3536
-      - 607d7702-3b52-4866-b901-1e3858ebc6d8
-      - 839df404-a582-49e5-a1f9-57b9130def55
-      - b31ede74-2092-466d-bbde-1f8d43ea7800
-      - fc04847f-85cc-49f1-900f-602c9d3a4a01
-      - 188b7a6d-7c41-4ae9-b240-cd8642c218f1
-      - 52c5e984-cdfc-4d75-9892-784d02ddd8cf
-      - 69b9b250-19d8-4be5-b02b-b6563cd1fe4a
+      - d4bda3d5-d171-4dfa-a57e-55334cada807
+      - 1ae2f790-371a-4728-a3b1-c5eb293684e8
+      - 4c8130e2-7255-482d-b925-cc00239abea5
+      - b6981a96-4d56-488b-85e1-b5c3ab121dd3
+      - 47a8cd60-9681-4aa6-a78a-4b6ff3052343
+      - 2362baec-503e-43b0-b018-71bcb2212e32
+      - a8fa4907-1ee0-4892-87ae-24417972efd3
+      - 8045f4f7-66e5-4087-b7ad-c215444b8a02
+      - 63273060-fe5d-45e3-bd80-5735ae397f4f
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  e27a0e64-4b98-4cea-9a88-0babe5920e0b:
-    id: e27a0e64-4b98-4cea-9a88-0babe5920e0b
+  d4bda3d5-d171-4dfa-a57e-55334cada807:
+    id: d4bda3d5-d171-4dfa-a57e-55334cada807
     content: A second proposal for a node already in review replaces its pending proposition in place rather than duplicating it.
     children: []
     metadata:
@@ -203163,8 +202338,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d4155272-8e89-4eab-8b6a-ce4c342e3536:
-    id: d4155272-8e89-4eab-8b6a-ce4c342e3536
+  1ae2f790-371a-4728-a3b1-c5eb293684e8:
+    id: 1ae2f790-371a-4728-a3b1-c5eb293684e8
     content: Undo after Accept restores the reviewed node's pre-accept subtree; cancel is not undoable, and an undo after a cancel does not bring the dismissed proposition back.
     children: []
     metadata:
@@ -203172,8 +202347,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  607d7702-3b52-4866-b901-1e3858ebc6d8:
-    id: 607d7702-3b52-4866-b901-1e3858ebc6d8
+  4c8130e2-7255-482d-b925-cc00239abea5:
+    id: 4c8130e2-7255-482d-b925-cc00239abea5
     content: Sending a node for review is blocked when the node, an ancestor, or a descendant is already in review.
     children: []
     metadata:
@@ -203181,8 +202356,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  839df404-a582-49e5-a1f9-57b9130def55:
-    id: 839df404-a582-49e5-a1f9-57b9130def55
+  b6981a96-4d56-488b-85e1-b5c3ab121dd3:
+    id: b6981a96-4d56-488b-85e1-b5c3ab121dd3
     content: Change-kind colors fully overwrite the collaborating color on changed nodes with no muddy blend, while the reviewed parent and unchanged in-region nodes keep the collaborating color.
     children: []
     metadata:
@@ -203190,8 +202365,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b31ede74-2092-466d-bbde-1f8d43ea7800:
-    id: b31ede74-2092-466d-bbde-1f8d43ea7800
+  47a8cd60-9681-4aa6-a78a-4b6ff3052343:
+    id: 47a8cd60-9681-4aa6-a78a-4b6ff3052343
     content: Nodes the proposition removes show as strikethrough placeholders until resolve and disappear on accept or cancel.
     children: []
     metadata:
@@ -203199,8 +202374,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fc04847f-85cc-49f1-900f-602c9d3a4a01:
-    id: fc04847f-85cc-49f1-900f-602c9d3a4a01
+  2362baec-503e-43b0-b018-71bcb2212e32:
+    id: 2362baec-503e-43b0-b018-71bcb2212e32
     content: Attempting to directly edit a node in review is blocked until the proposal is resolved.
     children: []
     metadata:
@@ -203208,8 +202383,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  188b7a6d-7c41-4ae9-b240-cd8642c218f1:
-    id: 188b7a6d-7c41-4ae9-b240-cd8642c218f1
+  a8fa4907-1ee0-4892-87ae-24417972efd3:
+    id: a8fa4907-1ee0-4892-87ae-24417972efd3
     content: Right-click actions that are invalid during review are unavailable across the in-review subtree (the reviewed node and its proposition descendants), matching the feedback panel's current gating.
     children: []
     metadata:
@@ -203217,8 +202392,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  52c5e984-cdfc-4d75-9892-784d02ddd8cf:
-    id: 52c5e984-cdfc-4d75-9892-784d02ddd8cf
+  8045f4f7-66e5-4087-b7ad-c215444b8a02:
+    id: 8045f4f7-66e5-4087-b7ad-c215444b8a02
     content: Deleting an ancestor of a review region is not specially blocked; the existing delete warning fires and notes that the removed subtree contains an active review.
     children: []
     metadata:
@@ -203226,8 +202401,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  69b9b250-19d8-4be5-b02b-b6563cd1fe4a:
-    id: 69b9b250-19d8-4be5-b02b-b6563cd1fe4a
+  63273060-fe5d-45e3-bd80-5735ae397f4f:
+    id: 63273060-fe5d-45e3-bd80-5735ae397f4f
     content: After closing and reopening the file, or restarting, the pending proposition is shown again (it persists in the sibling map in the .arbo), and cancelling then drops it, leaving the untouched original in place.
     children: []
     metadata:
@@ -203235,18 +202410,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2dd85897-23ad-4ee1-93b3-b921740a04fa:
-    id: 2dd85897-23ad-4ee1-93b3-b921740a04fa
+  7db92262-9b54-417e-889b-87478b9c979f:
+    id: 7db92262-9b54-417e-889b-87478b9c979f
     content: Error handling
     children:
-      - 068d7af0-3c6e-421e-a5cc-a68e3d9b5111
+      - f6d3d06b-3d3b-4154-a3ca-1a8ee45234e8
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  068d7af0-3c6e-421e-a5cc-a68e3d9b5111:
-    id: 068d7af0-3c6e-421e-a5cc-a68e3d9b5111
+  f6d3d06b-3d3b-4154-a3ca-1a8ee45234e8:
+    id: f6d3d06b-3d3b-4154-a3ca-1a8ee45234e8
     content: If the reviewed node is deleted before its proposal resolves, the pending proposition is discarded with a handled error and no other pending proposition is affected.
     children: []
     metadata:
@@ -203254,22 +202429,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  77778cea-8e1d-4c18-8610-969ec7347936:
-    id: 77778cea-8e1d-4c18-8610-969ec7347936
+  b839e79a-3ec4-440b-b0a3-bfde95301b31:
+    id: b839e79a-3ec4-440b-b0a3-bfde95301b31
     content: Non-functional
     children:
-      - ef4e90e2-5341-4cf7-b364-f8fe49551571
-      - 89a112fe-38fc-47ae-b193-db9648925479
-      - 13852325-3f19-435f-a7d3-2a47748c915a
-      - 4dd1a05d-b93d-49e7-a4d2-eb7244695403
-      - aa4c6d39-930f-4f85-8f60-65303ba8d053
+      - 1664400e-29de-4f2a-8172-79584b7f67ba
+      - d7aa0874-f8f1-49bf-bde3-72e316335a24
+      - b3112aa8-4fa1-4d32-8626-a60ced58bf2b
+      - 7fd7528d-0818-4309-b713-0d41512316e4
+      - 2d86b227-0c56-462c-b4fa-dfdc34a4e1d2
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  ef4e90e2-5341-4cf7-b364-f8fe49551571:
-    id: ef4e90e2-5341-4cf7-b364-f8fe49551571
+  1664400e-29de-4f2a-8172-79584b7f67ba:
+    id: 1664400e-29de-4f2a-8172-79584b7f67ba
     content: No code path silently discards an un-reviewed proposition (headline guarantee).
     children: []
     metadata:
@@ -203277,8 +202452,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  89a112fe-38fc-47ae-b193-db9648925479:
-    id: 89a112fe-38fc-47ae-b193-db9648925479
+  d7aa0874-f8f1-49bf-bde3-72e316335a24:
+    id: d7aa0874-f8f1-49bf-bde3-72e316335a24
     content: Reviewing happens without leaving the main tree and without focus being stolen from the user's current node when a proposal updates.
     children: []
     metadata:
@@ -203286,8 +202461,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  13852325-3f19-435f-a7d3-2a47748c915a:
-    id: 13852325-3f19-435f-a7d3-2a47748c915a
+  b3112aa8-4fa1-4d32-8626-a60ced58bf2b:
+    id: b3112aa8-4fa1-4d32-8626-a60ced58bf2b
     content: Writing a node whose content changes its rendered height, or writing several nodes at once, does not make the tree jump or scroll under the user (see the anti-jump suggestion).
     children: []
     metadata:
@@ -203295,8 +202470,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4dd1a05d-b93d-49e7-a4d2-eb7244695403:
-    id: 4dd1a05d-b93d-49e7-a4d2-eb7244695403
+  7fd7528d-0818-4309-b713-0d41512316e4:
+    id: 7fd7528d-0818-4309-b713-0d41512316e4
     content: The original node id stays stable through review so sessions and bindings that reference it remain valid.
     children: []
     metadata:
@@ -203304,8 +202479,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  aa4c6d39-930f-4f85-8f60-65303ba8d053:
-    id: aa4c6d39-930f-4f85-8f60-65303ba8d053
+  2d86b227-0c56-462c-b4fa-dfdc34a4e1d2:
+    id: 2d86b227-0c56-462c-b4fa-dfdc34a4e1d2
     content: Existing cross-file isolation does not regress.
     children: []
     metadata:
@@ -203313,31 +202488,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  01c7d757-115e-43c6-8a1b-703591fd95cf:
-    id: 01c7d757-115e-43c6-8a1b-703591fd95cf
+  fd1ed596-15e7-4c96-8d0e-c4c3583f103e:
+    id: fd1ed596-15e7-4c96-8d0e-c4c3583f103e
     content: 🔧 Implementation proposal
     children:
-      - 0187f4f6-2659-4bdc-84d8-6bcfd13cddbe
-      - f4654763-a823-4e13-b363-e0c2fd75b1f6
-      - cc3d27a1-afc2-4c80-b3c1-c2f72ba7f686
+      - c4f92c86-d4a4-4d84-a16c-9b82fb3f94f8
+      - 8e6186c3-06f3-46e7-bc62-ccf3fc904ad7
+      - 14484975-e117-4413-9ce9-4768c276be79
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  0187f4f6-2659-4bdc-84d8-6bcfd13cddbe:
-    id: 0187f4f6-2659-4bdc-84d8-6bcfd13cddbe
+  c4f92c86-d4a4-4d84-a16c-9b82fb3f94f8:
+    id: c4f92c86-d4a4-4d84-a16c-9b82fb3f94f8
     content: Approach
     children:
-      - 15710b72-367d-4240-bcf1-6b2b1b6c0217
-      - d1f7cd58-4acc-401f-aca3-ec1a3ca2b860
+      - effa9ba9-698a-4e3c-8aef-2a09c425ed82
+      - 674921fb-629a-4b92-a364-55408218bb72
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  15710b72-367d-4240-bcf1-6b2b1b6c0217:
-    id: 15710b72-367d-4240-bcf1-6b2b1b6c0217
+  effa9ba9-698a-4e3c-8aef-2a09c425ed82:
+    id: effa9ba9-698a-4e3c-8aef-2a09c425ed82
     content: Keep feedbackTreeStore as the per-file editable working store the inline review renders and edits through; replace its temp-file persistence with capture into the workspace treeStore's pendingProposals map, using PR1's already-built-but-unwired store actions (openPendingProposal / dropPendingProposal / promotePendingProposal).
     children: []
     metadata:
@@ -203345,8 +202520,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d1f7cd58-4acc-401f-aca3-ec1a3ca2b860:
-    id: d1f7cd58-4acc-401f-aca3-ec1a3ca2b860
+  674921fb-629a-4b92-a364-55408218bb72:
+    id: 674921fb-629a-4b92-a364-55408218bb72
     content: On ingest capture into pendingProposals; on load/restore hydrate the feedback working store from pendingProposals (drop the temp-file read); on accept run the existing AcceptFeedbackCommand path then drop the entry; on cancel drop the entry; re-capture on edit/autosave so edits persist.
     children: []
     metadata:
@@ -203354,22 +202529,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f4654763-a823-4e13-b363-e0c2fd75b1f6:
-    id: f4654763-a823-4e13-b363-e0c2fd75b1f6
+  8e6186c3-06f3-46e7-bc62-ccf3fc904ad7:
+    id: 8e6186c3-06f3-46e7-bc62-ccf3fc904ad7
     content: Touchpoints
     children:
-      - 29b18097-5e99-413d-ada5-4c7b929a7663
-      - b4b6d2ab-ead3-42df-910d-660c12098b44
-      - e3762a2e-2219-408a-9cbc-b70788298bf4
-      - 2bf54da4-eea2-48bc-af68-51dd85941928
-      - 28c2911a-2fb6-40fb-bde6-4dafe5289ab1
+      - 85ab8438-7824-4a8d-b253-c722836b5116
+      - 5716a44a-61d4-4c3c-b2db-d24bf0dbba5b
+      - de7d496b-b9de-4017-b7f0-5aae2d30f80e
+      - 667e0c74-960e-4a43-8219-4925bd417017
+      - e7c96b5c-0cdc-4c92-b016-625b669d7eab
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  29b18097-5e99-413d-ada5-4c7b929a7663:
-    id: 29b18097-5e99-413d-ada5-4c7b929a7663
+  85ab8438-7824-4a8d-b253-c722836b5116:
+    id: 85ab8438-7824-4a8d-b253-c722836b5116
     content: Stores — sendActions ingest/finishAccept/finishCancel/restoreCollaborationState read and write treeStore.pendingProposals via the existing pendingProposalActions; feedbackTreeStore stays per-file (no re-key).
     children: []
     metadata:
@@ -203377,8 +202552,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b4b6d2ab-ead3-42df-910d-660c12098b44:
-    id: b4b6d2ab-ead3-42df-910d-660c12098b44
+  5716a44a-61d4-4c3c-b2db-d24bf0dbba5b:
+    id: 5716a44a-61d4-4c3c-b2db-d24bf0dbba5b
     content: Persistence — pendingProposals already round-trips in the .arbo (PR1); remove the temp-file save/load paths in sendActions and the feedbackTempFile node-metadata handling.
     children: []
     metadata:
@@ -203386,8 +202561,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e3762a2e-2219-408a-9cbc-b70788298bf4:
-    id: e3762a2e-2219-408a-9cbc-b70788298bf4
+  de7d496b-b9de-4017-b7f0-5aae2d30f80e:
+    id: de7d496b-b9de-4017-b7f0-5aae2d30f80e
     content: Services — delete feedbackTempFileService; update feedbackService (cleanupFeedback drops the temp-file delete + tempFilePath param; findCollaboratingNode scans pendingProposals keys instead of feedbackTempFile metadata), fileActions, and clearTaskMetadata; remove the feedbackTempFile NodeMetadata field.
     children: []
     metadata:
@@ -203395,8 +202570,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2bf54da4-eea2-48bc-af68-51dd85941928:
-    id: 2bf54da4-eea2-48bc-af68-51dd85941928
+  667e0c74-960e-4a43-8219-4925bd417017:
+    id: 667e0c74-960e-4a43-8219-4925bd417017
     content: Components — inline review rendering is unchanged (still reads the per-file feedback working store); no visible change.
     children: []
     metadata:
@@ -203404,8 +202579,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  28c2911a-2fb6-40fb-bde6-4dafe5289ab1:
-    id: 28c2911a-2fb6-40fb-bde6-4dafe5289ab1
+  e7c96b5c-0cdc-4c92-b016-625b669d7eab:
+    id: e7c96b5c-0cdc-4c92-b016-625b669d7eab
     content: Tests — turn the 2 red sendActions tests green and fill the title-only todos; add proposition-round-trips-across-restart and edited-proposition-survives-restart tests; repoint/remove the feedbackTempFile-driven tests; keep inline-review (single + decomposition) green.
     children: []
     metadata:
@@ -203413,20 +202588,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cc3d27a1-afc2-4c80-b3c1-c2f72ba7f686:
-    id: cc3d27a1-afc2-4c80-b3c1-c2f72ba7f686
+  14484975-e117-4413-9ce9-4768c276be79:
+    id: 14484975-e117-4413-9ce9-4768c276be79
     content: Constraints to call out
     children:
-      - 37df5546-3340-466c-861f-d031caa2949a
-      - 85985b68-8994-47b1-866c-572f26786d34
-      - 78d70787-a5ff-4e62-a079-7fb77762b948
+      - 2688afa1-d558-42ae-9f9a-e3191243b251
+      - c4c06d7d-892c-4872-88be-1bd372094740
+      - 80227570-157f-4a8e-8054-cb4f7a9d0a0a
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  37df5546-3340-466c-861f-d031caa2949a:
-    id: 37df5546-3340-466c-861f-d031caa2949a
+  2688afa1-d558-42ae-9f9a-e3191243b251:
+    id: 2688afa1-d558-42ae-9f9a-e3191243b251
     content: PR4 is the persistence migration only — pendingProposals replaces temp files; the editable WORKING store stays per-file under the retained guard, and re-keying it per reviewed node is deferred to PR5 (concurrency) where lifting the guard makes it necessary and testable.
     children: []
     metadata:
@@ -203434,8 +202609,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  85985b68-8994-47b1-866c-572f26786d34:
-    id: 85985b68-8994-47b1-866c-572f26786d34
+  c4c06d7d-892c-4872-88be-1bd372094740:
+    id: c4c06d7d-892c-4872-88be-1bd372094740
     content: Behaviour is unchanged this PR — single review at a time, guard kept; the change is purely where the proposition lives and persists, plus re-capturing edits so they survive restart.
     children: []
     metadata:
@@ -203443,8 +202618,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  78d70787-a5ff-4e62-a079-7fb77762b948:
-    id: 78d70787-a5ff-4e62-a079-7fb77762b948
+  80227570-157f-4a8e-8054-cb4f7a9d0a0a:
+    id: 80227570-157f-4a8e-8054-cb4f7a9d0a0a
     content: Legacy feedbackTempFile metadata in older .arbo files should be cleared on load so they open cleanly without dangling temp pointers.
     children: []
     metadata:
@@ -203452,18 +202627,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a2d97887-a906-429a-9479-0ebd49cb9520:
-    id: a2d97887-a906-429a-9479-0ebd49cb9520
+  65b23d37-d229-4004-a853-d1088b112d8b:
+    id: 65b23d37-d229-4004-a853-d1088b112d8b
     content: Subtask instruction
     children:
-      - 651f4d81-f91c-42f0-8e1c-224832ad2db9
+      - a35e2ad7-d965-4038-a7b1-353736f261b6
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  651f4d81-f91c-42f0-8e1c-224832ad2db9:
-    id: 651f4d81-f91c-42f0-8e1c-224832ad2db9
+  a35e2ad7-d965-4038-a7b1-353736f261b6:
+    id: a35e2ad7-d965-4038-a7b1-353736f261b6
     content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
     children: []
     metadata:
@@ -203471,8 +202646,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d011ee85-430c-4c5f-8002-bcd710bf530d:
-    id: d011ee85-430c-4c5f-8002-bcd710bf530d
+  9f178374-08c5-4e6e-b775-0b011afa51bf:
+    id: 9f178374-08c5-4e6e-b775-0b011afa51bf
     content: 'TDD — 2 concrete red tests + 9 title-only (sendActions.test.ts: no createTempFile on ingest, no readTempFile on restore; per-node capture/hydrate/drop + round-trip + legacy-cleanup + regression as todos)'
     children: []
     metadata:
@@ -203480,8 +202655,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d8eaa0a9-7766-4225-af9c-87b4cfab2776:
-    id: d8eaa0a9-7766-4225-af9c-87b4cfab2776
+  8ecb6556-c13c-45e8-8ae3-7011f0bcb2dc:
+    id: 8ecb6556-c13c-45e8-8ae3-7011f0bcb2dc
     content: PR4 implement — paused to confirm architecture/scope; resolved to persistence-only (see Scope decision above)
     children: []
     metadata:
@@ -203489,8 +202664,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ced8b1b5-2b90-4af4-8b8c-ff4adb699940:
-    id: ced8b1b5-2b90-4af4-8b8c-ff4adb699940
+  99fbe7bd-5762-4bb9-b91c-507741105b52:
+    id: 99fbe7bd-5762-4bb9-b91c-507741105b52
     content: 'PR4 implement — persistence migration done: pendingProposals replaces temp files (capture on ingest, hydrate on restore, drop on accept/cancel, re-capture on edit); feedbackTempFileService + feedbackTempFile metadata deleted; working store kept per-file; type-check/lint clean, full suite 5306 pass / 0 fail'
     children: []
     metadata:
@@ -203498,21 +202673,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  85c7028d-0d86-417a-9bc8-a44f3ac29adb:
-    id: 85c7028d-0d86-417a-9bc8-a44f3ac29adb
+  aa2c95d8-beba-47df-a45d-f56be39a2893:
+    id: aa2c95d8-beba-47df-a45d-f56be39a2893
     content: Verification — not-done items and why
     children:
-      - 084a856f-41d1-424b-8cf4-35d13cee5522
-      - 48bbcfac-da19-42f5-93fc-c1673feaf35b
-      - fb90836c-6cdc-467e-ba6a-349451e9d062
-      - 70b91df4-4963-4dd5-b154-8a1a2237da35
+      - 27f63402-2991-4b15-8804-c6ec9e0be89e
+      - ed409ac6-018e-4a3e-9555-d1c0f6e33e4b
+      - a6ac7314-611f-48ba-8485-0b98e6a2fcc6
+      - 92511803-6cdc-4108-b344-25fbdd8b0bf5
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  084a856f-41d1-424b-8cf4-35d13cee5522:
-    id: 084a856f-41d1-424b-8cf4-35d13cee5522
+  27f63402-2991-4b15-8804-c6ec9e0be89e:
+    id: 27f63402-2991-4b15-8804-c6ec9e0be89e
     content: Concurrency rules (any-number-at-once, no-nest, no-engulf, second-proposal-replaces, two-collaborations-coexist, sending-blocked-when-in-review, delete-confirmation-notes-review) are PR5 — the single-collaboration guard is deliberately retained in PR4, so these are unexercisable here.
     children: []
     metadata:
@@ -203520,8 +202695,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  48bbcfac-da19-42f5-93fc-c1673feaf35b:
-    id: 48bbcfac-da19-42f5-93fc-c1673feaf35b
+  ed409ac6-018e-4a3e-9555-d1c0f6e33e4b:
+    id: ed409ac6-018e-4a3e-9555-d1c0f6e33e4b
     content: 'The headline no-silent-discard guarantee and the reviewed-node-deleted error handling are left unchecked: PR4 persists the single proposition in pendingProposals (no temp-file gap) and drops an orphaned proposition on restore, but the full guarantee + per-proposition isolation belong to PR5''s concurrent reviews.'
     children: []
     metadata:
@@ -203529,8 +202704,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fb90836c-6cdc-467e-ba6a-349451e9d062:
-    id: fb90836c-6cdc-467e-ba6a-349451e9d062
+  a6ac7314-611f-48ba-8485-0b98e6a2fcc6:
+    id: a6ac7314-611f-48ba-8485-0b98e6a2fcc6
     content: Edit-lock and in-review context-menu gating remain abandoned by design from PR2/PR3 (the proposition is editable inline; the original is not shown).
     children: []
     metadata:
@@ -203538,8 +202713,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  70b91df4-4963-4dd5-b154-8a1a2237da35:
-    id: 70b91df4-4963-4dd5-b154-8a1a2237da35
+  92511803-6cdc-4108-b344-25fbdd8b0bf5:
+    id: 92511803-6cdc-4108-b344-25fbdd8b0bf5
     content: 'Active clear-legacy-feedbackTempFile-on-load was not implemented: the NodeMetadata field is removed entirely and nothing reads it, so a stale value in an old .arbo is inert and the file opens cleanly — active cleanup is unnecessary.'
     children: []
     metadata:
@@ -203547,92 +202722,1088 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0c79de28-9981-4e61-aa66-a9e0d867e45f:
-    id: 0c79de28-9981-4e61-aa66-a9e0d867e45f
-    content: |-
-      AI refactor pass — one perf-convention fix + test tidy
-
-      Reviewed the full PR4 diff. One genuine convention inconsistency fixed (Performance: "update only when necessary"): watchPropositionEdits re-captured the proposition into pendingProposals on EVERY feedback-store change — including selection/cursor moves, which don't change the proposition. Added a nodes-ref guard so it re-captures only when the feedback store's nodes object actually changes (zustand replaces it immutably on a content edit). Updated the edit-sync test to mutate nodes immutably (matching real zustand) so the guard is exercised.
-
-      Test tidy: removed two now-pointless it.todo placeholders — "feedbackTempFileService deleted" (done + build-verified, can't unit-test absence) and "clears legacy feedbackTempFile on load" (a non-goal: the field is removed and inert, marked [-] in verification). Kept the per-node-keying todo (a genuine PR5 deferral).
-
-      No abandoned attempts (the diff is a coherent migration, no dead/commented code). Tests cover every edited file; no empty tests.
-
-      Benign lifecycle note (not fixed — no real leak): a proposition-edit subscription isn't explicitly torn down on file-close-with-active-review, but watchPropositionEdits calls stopWatchingPropositionEdits on the next restore for that node, and the orphaned feedback store is dereferenced/GC'd and never changes again, so the closure never fires.
-
-      Checks: type-check clean, lint clean (all changed files), full suite 5306 pass / 0 fail. Not committed.
+  d0fcd8ea-70e3-4578-8ef7-5a1001819a88:
+    id: d0fcd8ea-70e3-4578-8ef7-5a1001819a88
+    content: AI refactor pass — one perf-convention fix (watchPropositionEdits nodes-ref guard) + test tidy; type-check/lint clean, full suite 5306 pass / 0 fail
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a004312-a85b-44aa-bf47-2eacd3651b48:
+    id: 2a004312-a85b-44aa-bf47-2eacd3651b48
+    content: review feedback (pr-review-toolkit:code-reviewer) — no blockers; M1 (MCP proposals not persisted) + minors m1 (restore [0] fragility) / m3 (dead setFilePath) / N3 (dead 'restore' source) raised for resolution; migration otherwise sound, no dead refs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a40da08b-132f-4621-ae22-e837e41fb452:
+    id: a40da08b-132f-4621-ae22-e837e41fb452
+    content: AI code review resolution — M1 fixed (removed skipSave gate so MCP/checkpoint proposals persist + restore; dropped the dead param + 'restore' source); m1 fixed (restore prefers a live entry, warns on multi, drops orphans); m3 fixed (removed dead setFilePath); m2 pushed back (pure-helper bridge is intentional — store actions are circular + absent from the test harness); full suite 5306 pass / 0 fail
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a0e7be0-0af1-4333-89f8-ba048d9a3f41:
+    id: 3a0e7be0-0af1-4333-89f8-ba048d9a3f41
+    content: Test pass & fix — 6-slice adversarial semantic-verification workflow confirmed the core criteria hold (round-trip, edit-survives-restart, deletions, decomposition-restore); fixed a MINOR archive-bail autosave gap + test fidelity/coverage gaps (dead mock, two vacuous restore tests, missing m1 edge tests); pushed back on a FALSE-POSITIVE major (nullish-extract bare return is intentional per sendActionsManualCollabResolve.test — leaves the review open, recoverable via Cancel); full suite 5307 pass / 0 fail
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b35c343e-167e-4a75-ade4-a0b6a4628993:
+    id: b35c343e-167e-4a75-ade4-a0b6a4628993
+    content: 'Documentation — no changes warranted (verified, not skipped): PR4 is a no-user-facing-change internal persistence migration; the inline-review feature is already documented (CHANGELOG Unreleased + docs/workflows.md) and the docs reference no removed functionality, so no doc page and no changelog line are appropriate'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9915f65-3120-4f33-9cc7-5d84d2842a99:
+    id: f9915f65-3120-4f33-9cc7-5d84d2842a99
+    content: Merge to master — project.arbo committed on master (c213fd7); PR4 squashed to one commit, rebased onto the current master tip (clean), standard checks rerun (type-check + lint clean, full suite 5307 pass / 0 fail), fast-forward merged to master (29cb95e) and pushed to origin; worktree and local branch deleted after the merge was confirmed on master
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d60416cb-1ba3-4755-a9c0-cefc726ecff0:
+    id: d60416cb-1ba3-4755-a9c0-cefc726ecff0
+    content: Ultracode sends stop hook when background tasks are running
+    children:
+      - c061499b-fd8d-4700-a79d-fc5d8b609f47
+      - 45fe0327-6196-493f-8c67-958b4ccb42e0
+    metadata:
+      status: pending
+  c061499b-fd8d-4700-a79d-fc5d8b609f47:
+    id: c061499b-fd8d-4700-a79d-fc5d8b609f47
+    content: Which means that Arborescent will move onto the next workflow step even when it shouldn't
     children: []
     metadata:
       status: pending
-  604cefb3-2e4a-4ce9-ad50-98ab5f8dff3b:
-    id: 604cefb3-2e4a-4ce9-ad50-98ab5f8dff3b
-    content: |-
-      review feedback (pr-review-toolkit:code-reviewer)
-
-      VERDICT: no blockers. Migration sound — restore-hydration fidelity correct (capture re-mints ids but preserves metadata + removed-placeholders, so the hidden-root-wrapped feedback tree rebuilds faithfully and the accept path works post-restore), edit-sync subscription is leak-free (the file-close case is benign: the createSendActions closure owning the unsub Map is GC'd with the store), and no dead references to the deleted temp-file machinery. type-check + lint clean, 282 affected-suite tests pass.
-
-      M1 (major — DECIDE in resolution): terminal/MCP proposals are not persisted. mcpProposalReceiverService calls processIncomingFeedbackContent(content, 'mcp-proposal', true); the `if (!skipSave)` gate at sendActions ~829 skips BOTH capturePropositionToPendingProposals AND watchPropositionEdits, so an MCP/terminal proposal (manual/checkpoint step) is shown inline but never written to pendingProposals → lost on reload, and the "persists across restart"/"no-silent-discard" criteria only hold for the clipboard path. NOT a regression (the old temp-file save also gated on !skipSave). Reviewer's fix: restore no longer routes through processIncomingFeedbackContent (the 'restore' ContentSource is now dead), so skipSave=true now uniquely means 'mcp-proposal' — removing the gate would make MCP proposals persist + restore too. My read: autonomous steps auto-apply (don't use this inline path); only manual/checkpoint MCP proposals hit it, and those SHOULD persist, so removing the gate looks correct + small. Resolution step: verify there is no other skipSave=true caller, then either remove the gate (persist all reviewed proposals) or explicitly defer to PR5 with a note.
-
-      m1 (minor): restoreCollaborationState takes Object.values(pendingProposals)[0] — safe under the single-collaboration guard but fragile if a stale orphan co-exists with a valid entry; prefer the entry whose reviewedNodeId still exists in nodes (+ warn on multi).
-
-      m2 (minor/convention): capturePropositionToPendingProposals + dropPendingProposalEntry re-implement the existing pendingProposalActions.openPendingProposal/dropPendingProposal (dropPendingProposalEntry is a verbatim dup). Collapse dropPendingProposalEntry onto the store action, or note why sendActions owns the per-file bridge (likely the narrowed-PR4 reason).
-
-      m3 (minor cleanup): feedbackTreeStore.setFilePath now has no non-test callers (only the deleted temp-file path used it) — remove to complete the temp-file retirement.
-
-      N3 (nit): the 'restore' member of the ContentSource union is now unused (restore hydrates directly) — remove for clarity (ties into M1).
-
-      Confirmed clean (no action): subscription nodes-ref guard + double-subscribe + re-entrancy; re-mint correctness; cleanupFeedback single-arg callers; clearTaskMetadata/NodeMetadata feedbackTempFile removal; pendingProposals loaded before restore runs; comments explain why (CLAUDE.md compliant).
+  45fe0327-6196-493f-8c67-958b4ccb42e0:
+    id: 45fe0327-6196-493f-8c67-958b4ccb42e0
+    content: Need a means to detect these cases and except them
     children: []
     metadata:
       status: pending
-  3e916f43-c4f3-40b9-9dc6-2d95c58955f6:
-    id: 3e916f43-c4f3-40b9-9dc6-2d95c58955f6
-    content: |-
-      AI code review resolution
-
-      MAJOR fixed — M1 (MCP/terminal proposals were not persisted): removed the `if (!skipSave)` gate in processIncomingFeedbackContent so capturePropositionToPendingProposals + watchPropositionEdits now run for EVERY successful ingest — clipboard and MCP/checkpoint (mcpProposalReceiverService) alike. MCP proposals now persist in pendingProposals and restore across reload, closing the clipboard-only asymmetry and tightening the "no-silent-discard"/"persists-across-restart" guarantees. Verified the only skipSave=true caller was the MCP receiver and restore no longer routes through this function, so I removed the now-dead skipSave param everywhere (sendActions impl + SendActions interface, useFeedbackClipboard.handleClipboardFeedback + its call, the mcpProposalReceiverService call) and updated mcpProposalReceiverService.test + useFeedbackClipboard.test. Safe: capture runs only after a successful parse, and the receiver's failure path returns before capture (restorePriorState has nothing to undo) — no orphaned entry.
-
-      MINOR fixed:
-      - m1: restoreCollaborationState no longer blindly takes Object.values(pendingProposals)[0]. It now prefers the entry whose reviewedNodeId still exists (so a stale orphan can't strand a live proposition), warns when more than one entry is present, and drops ALL orphans when none is live.
-      - m3: removed the dead feedbackTreeStore manager method setFilePath (only the deleted temp-file path used it) + its sendActions.test mock.
-      - N3: removed the now-unused 'restore' member of the ContentSource union (restore hydrates directly; nothing passes it). Ties off M1's cleanup.
-
-      SKIPPED / pushed back:
-      - m2 (use the existing pendingProposalActions instead of private helpers): declined. Calling get().actions.openPendingProposal/dropPendingProposal from inside sendActions is circular (sendActions IS part of actions) AND those actions are absent from the sendActions test harness mock — routing through them throws under test (this is exactly why the implement step switched to the pure pendingProposals helpers). The pure-helper bridge is the deliberate, testable choice; dropPendingProposalEntry is a one-line wrapper over the pure helper, not duplicated business logic. The store actions remain PR5's surface (when the working store re-keys per node).
-
-      Confirmed-clean items (subscription lifecycle, re-mint fidelity, no dead refs, comments) needed no action. Checks: type-check clean, lint clean, full suite 5306 pass / 0 fail. Not committed.
+  614edb31-f83f-4c2c-a76e-36e17d538cd5:
+    id: 614edb31-f83f-4c2c-a76e-36e17d538cd5
+    content: worktree
+    children:
+      - 3e420c74-b75b-436b-8e96-2d611ed706ca
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e420c74-b75b-436b-8e96-2d611ed706ca:
+    id: 3e420c74-b75b-436b-8e96-2d611ed706ca
+    content: vscode://file/Users/brianfox/dev/Arborescent-inline-review-pr5
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3420050c-e6b3-44bf-9127-00a3d747a536:
+    id: 3420050c-e6b3-44bf-9127-00a3d747a536
+    content: Scope
+    children:
+      - a90d790c-f02e-46b7-8c67-e0d889277d5e
+      - 49353838-1e42-413c-9cb9-069ca938d586
+      - af8dad2d-f8d9-4a0e-a4a8-21c1392c9a5e
+      - be9e0cb0-74a8-4fbd-b759-1669068df094
+      - 5bd0a7ac-341b-4bfd-8408-de88a1594a6b
+      - 195e38d3-ffd1-41b8-8497-ee140a54efcc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a90d790c-f02e-46b7-8c67-e0d889277d5e:
+    id: a90d790c-f02e-46b7-8c67-e0d889277d5e
+    content: Re-key the editable proposition working store (feedbackTreeStore) per reviewed node instead of per file, so multiple propositions can be live and editable at once — the working-store re-key deferred from PR4. Update every consumer that resolves it by file path (useReviewProposition, useFeedbackStatus, useFeedbackClipboard, feedbackService, sendActions) to resolve by reviewed node id.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49353838-1e42-413c-9cb9-069ca938d586:
+    id: 49353838-1e42-413c-9cb9-069ca938d586
+    content: 'Replace the single collaboratingNodeId scalar with a collection of in-review nodes (or derive it from the pendingProposals keys) across every reader: node highlighting, collaborating-descendant via the ancestor registry, finishAccept/finishCancel, and proposal routing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af8dad2d-f8d9-4a0e-a4a8-21c1392c9a5e:
+    id: af8dad2d-f8d9-4a0e-a4a8-21c1392c9a5e
+    content: Remove the single-collaboration guard and route each incoming proposal to its own reviewed node's working store and pendingProposals entry.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be9e0cb0-74a8-4fbd-b759-1669068df094:
+    id: be9e0cb0-74a8-4fbd-b759-1669068df094
+    content: Add the overlap gate that blocks sending a node for review when it, an ancestor, or a descendant is already in review.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bd0a7ac-341b-4bfd-8408-de88a1594a6b:
+    id: 5bd0a7ac-341b-4bfd-8408-de88a1594a6b
+    content: Cap the session-less clipboard/browser path at one review at a time as a documented limitation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  195e38d3-ffd1-41b8-8497-ee140a54efcc:
+    id: 195e38d3-ffd1-41b8-8497-ee140a54efcc
+    content: Surface the active review in the existing delete confirmation when an ancestor subtree containing a review is deleted.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d721d5ad-2dd6-44d2-944d-b766d688dc01:
+    id: d721d5ad-2dd6-44d2-944d-b766d688dc01
+    content: Independently testable
+    children:
+      - 7af457f6-dc67-4565-9f0c-d70b27370a44
+      - 7732d667-8687-4bd8-a544-a893ea31bafd
+      - 2c6e14ae-0e38-4fad-820b-445827cdedf1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7af457f6-dc67-4565-9f0c-d70b27370a44:
+    id: 7af457f6-dc67-4565-9f0c-d70b27370a44
+    content: Two or more reviews on different nodes coexist and stay independently editable, with none overwriting another, and a second proposal for a node already in review replaces its proposition in place.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7732d667-8687-4bd8-a544-a893ea31bafd:
+    id: 7732d667-8687-4bd8-a544-a893ea31bafd
+    content: Sending a node for review is blocked when the node, an ancestor, or a descendant is already in review.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c6e14ae-0e38-4fad-820b-445827cdedf1:
+    id: 2c6e14ae-0e38-4fad-820b-445827cdedf1
+    content: Deleting an ancestor of a review region fires the existing delete warning noting the contained active review.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70718d75-48e6-4c64-9885-ccea59149516:
+    id: 70718d75-48e6-4c64-9885-ccea59149516
+    content: User story
+    children:
+      - 7814edbc-62fb-4a03-8fb5-895a3ff91836
+      - b9af1b8f-82f9-4652-981f-e7a550898032
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7814edbc-62fb-4a03-8fb5-895a3ff91836:
+    id: 7814edbc-62fb-4a03-8fb5-895a3ff91836
+    content: 📄 Product spec
+    children:
+      - b703f888-79c3-43f2-bb35-2f51b6447d0b
+      - a5d6d314-7cd9-4ffa-89df-c720eb801625
+      - 50b98992-be29-455c-97dc-17238e361302
+      - 9a4ea028-d679-46b7-a849-d5555d828633
+      - f6820daa-23ed-48ed-b14a-ff7b8c3e31e1
+      - 70fe8577-7836-4257-8344-0c8efd18d0ef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b703f888-79c3-43f2-bb35-2f51b6447d0b:
+    id: b703f888-79c3-43f2-bb35-2f51b6447d0b
+    content: Context
+    children:
+      - f76a108f-4388-4749-a855-2c303ac51081
+      - 42792288-48d3-4c2f-b080-2242e3d20de5
+      - 7e492c79-dd78-4141-90f7-98a0f84bd32e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f76a108f-4388-4749-a855-2c303ac51081:
+    id: f76a108f-4388-4749-a855-2c303ac51081
+    content: Arborescent's side panel can show a terminal, an embedded browser, or a feedback panel — a separate tree of AI-proposed changes the user accepts or rejects.
     children: []
     metadata:
       status: pending
-  a6949bff-68f2-4f16-827b-5d8cfd885477:
-    id: a6949bff-68f2-4f16-827b-5d8cfd885477
-    content: |-
-      Test pass & fix — semantic verification + discrepancy resolution
-
-      Ran a 6-slice adversarial semantic-verification workflow (each slice read the actual worktree code, then refuted its own discrepancies). CORE CRITERIA CONFIRMED HOLD end-to-end: persistence round-trip (capture → document.ts serialize → persistenceActions load → restore hydrate; no temp files), edited-proposition-survives-restart (the nodes-ref guard fires on real immutable content edits via ContentEditCommand; re-capture+autoSave persists), deletions/no-dead-refs (production), decomposition-flag restore for multi-root, and capture-for-all-sources (clipboard + MCP).
-
-      FIXED — production (MINOR): finishAccept's archive-destination-missing bail dropped the pendingProposals entry in memory but never autoSave()'d, so the on-disk map could re-restore a proposal the accept flow tore down. Added autoSave() in that branch (mirrors finishCancel).
-
-      FIXED — tests (fidelity + coverage gaps the verification found): removed the dead mockFindCollaboratingNode mock (production no longer has that symbol); rewrote two vacuous restore tests that asserted a removed mechanism (findCollaboratingNode/feedbackTempFile) but passed only via the empty-pendingProposals early return → now assert the real empty-map guard; rewrote the vacuous "hydrates without temp file" test to actually hydrate from pendingProposals (asserts feedbackTreeStore.initialize + no readTempFile); added two m1 edge tests — prefer-the-live-entry + warn-on-multi, and drop-orphan-when-the-reviewed-node-is-gone.
-
-      PUSHED BACK — the workflow's MAJOR finding was a FALSE POSITIVE (intentional behaviour presented as a bug). It flagged finishAccept's `if (!feedbackContent) return;` (emptied/transient proposition) as a stranded-entry + leaked-subscription bug. But sendActionsManualCollabResolve.test.ts:187 documents this as deliberate: a nullish extract must NOT resolve the collaboration or clear the MCP route — it leaves the review OPEN. The pending entry + edit watch are the live open review (recoverable any time via Cancel → finishCancel, and it persists/restores like any open review), not stranded; the finding's "no in-app recovery" claim is wrong because Cancel always works. My initial fix broke this intentional behaviour (the manual-collab-resolve test failed), so I reverted it and added a clarifying comment at the bare return so it isn't re-flagged. (Optional non-goal noted for later: disabling the Accept button on an empty proposition would prevent the harmless no-op click — UI/ReviewControlBar scope, not this persistence PR.)
-
-      Checks: type-check clean, lint clean (all changed files), full suite 5307 pass / 1 skip / 0 fail. Not committed.
+      expanded: true
+      deleted: false
+      plugins: {}
+  42792288-48d3-4c2f-b080-2242e3d20de5:
+    id: 42792288-48d3-4c2f-b080-2242e3d20de5
+    content: 'The feedback panel is a separate place: the user must switch to it to review, it steals focus when it updates, and it holds only one proposal per file, so a second concurrent collaboration on the same file silently overwrites the first.'
     children: []
     metadata:
       status: pending
-  aa3ff707-888d-4998-ba99-d2b01a1d0eee:
-    id: aa3ff707-888d-4998-ba99-d2b01a1d0eee
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e492c79-dd78-4141-90f7-98a0f84bd32e:
+    id: 7e492c79-dd78-4141-90f7-98a0f84bd32e
+    content: The proposal-diff machinery (added/modified/removed highlighting and prior-content rollback) already renders on the same Tree and TreeNode components as the main tree; only the store behind it differs.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5d6d314-7cd9-4ffa-89df-c720eb801625:
+    id: a5d6d314-7cd9-4ffa-89df-c720eb801625
+    content: User / persona
+    children:
+      - cdea0b49-6a4b-46c8-baac-4ae313c70f22
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdea0b49-6a4b-46c8-baac-4ae313c70f22:
+    id: cdea0b49-6a4b-46c8-baac-4ae313c70f22
+    content: A user collaborating with AI on an open .arbo file — including running any number of collaborations on the same file at once — who wants to review and accept or reject proposed changes without leaving the tree they are working in.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50b98992-be29-455c-97dc-17238e361302:
+    id: 50b98992-be29-455c-97dc-17238e361302
+    content: Current experience and why it is insufficient
+    children:
+      - f26ae4e5-fdb7-44c9-8343-d3293621391d
+      - 2693bda3-0ee1-4e3b-a278-63f1031517e8
+      - 39259bf8-0def-4500-a413-6f2dd24c99d1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f26ae4e5-fdb7-44c9-8343-d3293621391d:
+    id: f26ae4e5-fdb7-44c9-8343-d3293621391d
+    content: To review a proposal the user leaves the main tree, switches to the feedback panel tab, then switches back — a context switch on every review cycle.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2693bda3-0ee1-4e3b-a278-63f1031517e8:
+    id: 2693bda3-0ee1-4e3b-a278-63f1031517e8
+    content: When a proposal updates, the app jumps focus to the feedback panel and interrupts whatever the user was doing.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39259bf8-0def-4500-a413-6f2dd24c99d1:
+    id: 39259bf8-0def-4500-a413-6f2dd24c99d1
+    content: Only one collaboration is allowed at a time per file, and a second concurrent collaboration silently overwrites the first's un-reviewed proposal with no warning.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a4ea028-d679-46b7-a849-d5555d828633:
+    id: 9a4ea028-d679-46b7-a849-d5555d828633
+    content: Goal
+    children:
+      - dda21ddd-8d12-4228-8968-fda762fd645e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dda21ddd-8d12-4228-8968-fda762fd645e:
+    id: dda21ddd-8d12-4228-8968-fda762fd645e
+    content: The user reviews each AI proposal in place on the node it targets, accepting or rejecting it atomically from the node itself, with no separate feedback panel and any number of proposals live at once without silent loss.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6820daa-23ed-48ed-b14a-ff7b8c3e31e1:
+    id: f6820daa-23ed-48ed-b14a-ff7b8c3e31e1
+    content: Business rules
+    children:
+      - 2c3eab99-510f-48b9-bb45-bdad84e87126
+      - aad01904-f470-4e0c-b683-2d34a825027d
+      - e327acb3-6af3-4e9b-bd87-162ef8070702
+      - 7ac8efcd-5bfa-4a5a-97fd-1b46fc7b4fae
+      - 150a3b7b-adb9-4db6-955b-25ff2f7532ec
+      - 2099a189-acbd-4335-9f71-720cbdd14f50
+      - 48bf2737-5b78-4304-944f-f4e4f81a3037
+      - 72125af8-ead6-4661-a19d-48c5d7ca480e
+      - bb3589e9-3d13-4f7f-afa7-4faef77575ec
+      - b57db47e-1971-4c87-a689-a0f32d8ef962
+      - 39c08edf-4e2a-478b-b969-da50ed4e083a
+      - 938ad2bc-6cb8-4e9a-9557-e72c606f2984
+      - 928ec007-1b1f-4304-a0ad-c57febfacb2b
+      - 5f86d5a8-298a-45bd-b61e-06dfad36adf8
+      - 09296a84-16a4-497f-ab07-282ea832644d
+      - 41d204db-8ee9-43c0-9a2e-ff9f13ac8683
+      - 06ea4f55-ba76-4549-a2b7-ae056fc668fd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c3eab99-510f-48b9-bb45-bdad84e87126:
+    id: 2c3eab99-510f-48b9-bb45-bdad84e87126
+    content: An AI proposal is rendered inline in the main tree on the sent-for-review parent node and its descendant subtree, not in a separate panel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aad01904-f470-4e0c-b683-2d34a825027d:
+    id: aad01904-f470-4e0c-b683-2d34a825027d
+    content: During review the live tree keeps only the original — canonical, unchanged, retaining its node id — while the proposition is held separately in a sibling persisted map keyed by the reviewed node id, mirroring how step history stores subtree snapshots in the .arbo.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e327acb3-6af3-4e9b-bd87-162ef8070702:
+    id: e327acb3-6af3-4e9b-bd87-162ef8070702
+    content: The displayed tree composes the proposition in place of the reviewed node's original descendants at render time — it is a replacement, not a translucent overlay laid on top.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ac8efcd-5bfa-4a5a-97fd-1b46fc7b4fae:
+    id: 7ac8efcd-5bfa-4a5a-97fd-1b46fc7b4fae
+    content: The proposition uses remapped node ids while pending so it can never collide with live nodes, and adopts the original's node id and metadata only when accepted.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  150a3b7b-adb9-4db6-955b-25ff2f7532ec:
+    id: 150a3b7b-adb9-4db6-955b-25ff2f7532ec
+    content: 'Accept and cancel are atomic on the reviewed parent node: accept promotes the proposition into the canonical tree (re-iding its root to the original''s id and replacing the entire descendant subtree), and cancel discards the pending proposition, leaving the untouched original in place.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2099a189-acbd-4335-9f71-720cbdd14f50:
+    id: 2099a189-acbd-4335-9f71-720cbdd14f50
+    content: Accept is undoable because it mutates the document; cancel is not undoable and is not placed on the document undo stack, since it changes nothing in the document — re-running the review with the AI is the cheap recovery path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48bf2737-5b78-4304-944f-f4e4f81a3037:
+    id: 48bf2737-5b78-4304-944f-f4e4f81a3037
+    content: Because the original is never modified during review, cancel leaves it intact with nothing to restore, including after a restart; the pending proposition persists across restart in the sibling map and is shown again.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72125af8-ead6-4661-a19d-48c5d7ca480e:
+    id: 72125af8-ead6-4661-a19d-48c5d7ca480e
+    content: The accept and cancel controls are buttons rendered in a bar in a row directly above the reviewed parent node; there are no keyboard shortcuts in this context.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb3589e9-3d13-4f7f-afa7-4faef77575ec:
+    id: bb3589e9-3d13-4f7f-afa7-4faef77575ec
+    content: Changed nodes show change-kind colors — green added, blue modified, red strikethrough removed — that overwrite and never blend with the existing collaborating highlight; the reviewed parent and unchanged in-region nodes keep the collaborating color.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b57db47e-1971-4c87-a689-a0f32d8ef962:
+    id: b57db47e-1971-4c87-a689-a0f32d8ef962
+    content: Any number of independent reviews may be in progress at once; the prior restriction that only one collaboration is allowed at a time is removed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39c08edf-4e2a-478b-b969-da50ed4e083a:
+    id: 39c08edf-4e2a-478b-b969-da50ed4e083a
+    content: A node cannot be sent for review when it, or any of its ancestors, is already in review (a review cannot nest inside an existing review region).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  938ad2bc-6cb8-4e9a-9557-e72c606f2984:
+    id: 938ad2bc-6cb8-4e9a-9557-e72c606f2984
+    content: A node cannot be sent for review when any of its descendants is already in review (a review cannot engulf an existing review region).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  928ec007-1b1f-4304-a0ad-c57febfacb2b:
+    id: 928ec007-1b1f-4304-a0ad-c57febfacb2b
+    content: A second proposal targeting a node that already has a pending proposition replaces that proposition in place rather than creating a duplicate.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f86d5a8-298a-45bd-b61e-06dfad36adf8:
+    id: 5f86d5a8-298a-45bd-b61e-06dfad36adf8
+    content: Right-click menu actions that do not make sense during review are disabled across the whole in-review subtree (the reviewed node and its proposition descendants), reusing the same context-menu gating the feedback panel applies today.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  09296a84-16a4-497f-ab07-282ea832644d:
+    id: 09296a84-16a4-497f-ab07-282ea832644d
+    content: Ancestors of a review region are not specially gated; destructive actions on them fall back to the existing delete and archive warnings (user beware), and the delete confirmation should note when the subtree being removed contains an active review.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41d204db-8ee9-43c0-9a2e-ff9f13ac8683:
+    id: 41d204db-8ee9-43c0-9a2e-ff9f13ac8683
+    content: A node in review is locked against direct editing until its proposal is accepted or cancelled, so the diff baseline the proposition was computed against cannot drift.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  06ea4f55-ba76-4549-a2b7-ae056fc668fd:
+    id: 06ea4f55-ba76-4549-a2b7-ae056fc668fd
+    content: Nodes the proposition removes remain visible as strikethrough placeholders within the reviewed subtree until the proposal is resolved.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70fe8577-7836-4257-8344-0c8efd18d0ef:
+    id: 70fe8577-7836-4257-8344-0c8efd18d0ef
+    content: Acceptance criteria
+    children:
+      - 4014d6f9-105d-4a91-b024-03a07e8b2755
+      - 84987abd-e5da-4673-aa69-d6de0997d830
+      - 1e847d1a-d76d-4596-b33a-d1219f24c3ff
+      - 5fecf826-f610-403d-8c37-84ec0f6b600b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4014d6f9-105d-4a91-b024-03a07e8b2755:
+    id: 4014d6f9-105d-4a91-b024-03a07e8b2755
+    content: Happy path
+    children:
+      - f597458c-e61b-4b5b-974d-94c863d94b71
+      - e1f433a7-842a-403f-9f0c-02e6cd04f9ef
+      - 5b2cffd1-7ce2-40c7-8a3a-15ec0f7b707f
+      - 02300116-a18b-45a1-8260-6b338e4b3346
+      - 61245c00-f6f5-4543-800f-ddfa98664943
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f597458c-e61b-4b5b-974d-94c863d94b71:
+    id: f597458c-e61b-4b5b-974d-94c863d94b71
+    content: Sending a node for review renders the returned proposition inline on that node's subtree with added/modified/removed highlighting, and no feedback panel opens.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1f433a7-842a-403f-9f0c-02e6cd04f9ef:
+    id: e1f433a7-842a-403f-9f0c-02e6cd04f9ef
+    content: An accept/cancel button bar appears in a row directly above the reviewed parent node while its proposal is pending.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b2cffd1-7ce2-40c7-8a3a-15ec0f7b707f:
+    id: 5b2cffd1-7ce2-40c7-8a3a-15ec0f7b707f
+    content: Clicking Accept promotes the proposition to the original's node id, replaces the reviewed node's entire descendant subtree, and clears the highlighting.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02300116-a18b-45a1-8260-6b338e4b3346:
+    id: 02300116-a18b-45a1-8260-6b338e4b3346
+    content: Clicking Cancel discards the pending proposition and the reviewed node's original subtree, untouched throughout, remains in place with the highlighting cleared.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61245c00-f6f5-4543-800f-ddfa98664943:
+    id: 61245c00-f6f5-4543-800f-ddfa98664943
+    content: Two or more collaborations on different nodes of the same file each show their own inline proposal at once, none overwriting another.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84987abd-e5da-4673-aa69-d6de0997d830:
+    id: 84987abd-e5da-4673-aa69-d6de0997d830
+    content: Edge cases
+    children:
+      - f5af0841-ebe4-4b0d-9a3f-6ea46daa04ae
+      - 40636d9f-18be-471c-b63e-7339eb6d5494
+      - 135656a1-63c5-4e71-9f61-e73156569a5f
+      - 8b309b82-56a1-41e6-9f1a-d38f2fa9ddec
+      - a25e1425-19ba-4042-aec6-1ffe395964fb
+      - 2041fb68-1326-49d2-a08c-dc738335e07d
+      - e74e7621-7647-41e2-b5e8-90fd670a5936
+      - 85742368-dfd2-48ec-9a7e-ca0aec9a2505
+      - 39d5cbef-d63b-45f5-b746-8f47b6a9443a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5af0841-ebe4-4b0d-9a3f-6ea46daa04ae:
+    id: f5af0841-ebe4-4b0d-9a3f-6ea46daa04ae
+    content: A second proposal for a node already in review replaces its pending proposition in place rather than duplicating it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40636d9f-18be-471c-b63e-7339eb6d5494:
+    id: 40636d9f-18be-471c-b63e-7339eb6d5494
+    content: Undo after Accept restores the reviewed node's pre-accept subtree; cancel is not undoable, and an undo after a cancel does not bring the dismissed proposition back.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  135656a1-63c5-4e71-9f61-e73156569a5f:
+    id: 135656a1-63c5-4e71-9f61-e73156569a5f
+    content: Sending a node for review is blocked when the node, an ancestor, or a descendant is already in review.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b309b82-56a1-41e6-9f1a-d38f2fa9ddec:
+    id: 8b309b82-56a1-41e6-9f1a-d38f2fa9ddec
+    content: Change-kind colors fully overwrite the collaborating color on changed nodes with no muddy blend, while the reviewed parent and unchanged in-region nodes keep the collaborating color.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a25e1425-19ba-4042-aec6-1ffe395964fb:
+    id: a25e1425-19ba-4042-aec6-1ffe395964fb
+    content: Nodes the proposition removes show as strikethrough placeholders until resolve and disappear on accept or cancel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2041fb68-1326-49d2-a08c-dc738335e07d:
+    id: 2041fb68-1326-49d2-a08c-dc738335e07d
+    content: Attempting to directly edit a node in review is blocked until the proposal is resolved.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e74e7621-7647-41e2-b5e8-90fd670a5936:
+    id: e74e7621-7647-41e2-b5e8-90fd670a5936
+    content: Right-click actions that are invalid during review are unavailable across the in-review subtree (the reviewed node and its proposition descendants), matching the feedback panel's current gating.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  85742368-dfd2-48ec-9a7e-ca0aec9a2505:
+    id: 85742368-dfd2-48ec-9a7e-ca0aec9a2505
+    content: Deleting an ancestor of a review region is not specially blocked; the existing delete warning fires and notes that the removed subtree contains an active review.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39d5cbef-d63b-45f5-b746-8f47b6a9443a:
+    id: 39d5cbef-d63b-45f5-b746-8f47b6a9443a
+    content: After closing and reopening the file, or restarting, the pending proposition is shown again (it persists in the sibling map in the .arbo), and cancelling then drops it, leaving the untouched original in place.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e847d1a-d76d-4596-b33a-d1219f24c3ff:
+    id: 1e847d1a-d76d-4596-b33a-d1219f24c3ff
+    content: Error handling
+    children:
+      - 1ee01f59-978c-4055-9c68-051d688cb3c3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ee01f59-978c-4055-9c68-051d688cb3c3:
+    id: 1ee01f59-978c-4055-9c68-051d688cb3c3
+    content: If the reviewed node is deleted before its proposal resolves, the pending proposition is discarded with a handled error and no other pending proposition is affected.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fecf826-f610-403d-8c37-84ec0f6b600b:
+    id: 5fecf826-f610-403d-8c37-84ec0f6b600b
+    content: Non-functional
+    children:
+      - 3a7a4ab1-de91-47a8-9567-58f59f30fed7
+      - 61d6e63e-1bc4-4ad2-90a0-d8d3516e07df
+      - e585d8ca-9582-4ace-988e-5c20ef74b4e0
+      - 1d5f1bc0-c4bd-49b3-a0ba-b5a4c1afe74f
+      - 9b69bc4c-ba5d-4576-a393-b9067840b6f5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a7a4ab1-de91-47a8-9567-58f59f30fed7:
+    id: 3a7a4ab1-de91-47a8-9567-58f59f30fed7
+    content: No code path silently discards an un-reviewed proposition (headline guarantee).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61d6e63e-1bc4-4ad2-90a0-d8d3516e07df:
+    id: 61d6e63e-1bc4-4ad2-90a0-d8d3516e07df
+    content: Reviewing happens without leaving the main tree and without focus being stolen from the user's current node when a proposal updates.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e585d8ca-9582-4ace-988e-5c20ef74b4e0:
+    id: e585d8ca-9582-4ace-988e-5c20ef74b4e0
+    content: Writing a node whose content changes its rendered height, or writing several nodes at once, does not make the tree jump or scroll under the user (see the anti-jump suggestion).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d5f1bc0-c4bd-49b3-a0ba-b5a4c1afe74f:
+    id: 1d5f1bc0-c4bd-49b3-a0ba-b5a4c1afe74f
+    content: The original node id stays stable through review so sessions and bindings that reference it remain valid.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b69bc4c-ba5d-4576-a393-b9067840b6f5:
+    id: 9b69bc4c-ba5d-4576-a393-b9067840b6f5
+    content: Existing cross-file isolation does not regress.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9af1b8f-82f9-4652-981f-e7a550898032:
+    id: b9af1b8f-82f9-4652-981f-e7a550898032
+    content: 🔧 Implementation proposal
+    children:
+      - e61ab862-0ec8-4b52-a6e3-abc8c50dce85
+      - 4f04d290-ee07-4152-851c-785c2f51c7b9
+      - 9efbf9b2-7e6c-4d08-9f42-2ea2603311a3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e61ab862-0ec8-4b52-a6e3-abc8c50dce85:
+    id: e61ab862-0ec8-4b52-a6e3-abc8c50dce85
+    content: Approach
+    children:
+      - 335971ef-7132-4d75-b5c1-2d13ee13d324
+      - b0c0a7e8-c55d-4444-b02e-42559e57b18c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  335971ef-7132-4d75-b5c1-2d13ee13d324:
+    id: 335971ef-7132-4d75-b5c1-2d13ee13d324
+    content: PR4 delivered the per-node pendingProposals persistence (temp files retired) but kept the editable working store per-file under the guard. PR5 re-keys the working store per reviewed node, replaces the single-review state with a collection so independent reviews coexist, and routes each incoming proposal to its own reviewed node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0c0a7e8-c55d-4444-b02e-42559e57b18c:
+    id: b0c0a7e8-c55d-4444-b02e-42559e57b18c
+    content: Add the overlap gate and the clipboard single-review cap, and surface the active review in the existing delete confirmation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f04d290-ee07-4152-851c-785c2f51c7b9:
+    id: 4f04d290-ee07-4152-851c-785c2f51c7b9
+    content: Touchpoints
+    children:
+      - 104afaf6-0e25-4058-82c9-6d8d0dff9e1a
+      - 74bd8892-0b02-443d-b590-3b5be760aadb
+      - 3474803a-b600-4d76-a0ae-c8e8a7beac8b
+      - cad2cc4a-0d5f-4780-a0dc-6b6e36245efb
+      - 03b46b93-f910-4ce1-b91f-b8d3ba9c70e5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  104afaf6-0e25-4058-82c9-6d8d0dff9e1a:
+    id: 104afaf6-0e25-4058-82c9-6d8d0dff9e1a
+    content: Stores — re-key feedbackTreeStore per reviewed node; turn the single collaboratingNodeId into a collection (or derive it from the pendingProposals keys) across treeStore readers; sendActions removes the single-collaboration guard, adds the overlap guard, and routes each proposal to its reviewed node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74bd8892-0b02-443d-b590-3b5be760aadb:
+    id: 74bd8892-0b02-443d-b590-3b5be760aadb
+    content: Components — TreeNode collaborating and collaborating-descendant selectors read from the collection rather than a scalar; the inline render hooks (useReviewProposition and the version-subscription hooks) resolve the working store by reviewed node id.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3474803a-b600-4d76-a0ae-c8e8a7beac8b:
+    id: 3474803a-b600-4d76-a0ae-c8e8a7beac8b
+    content: Services — mcpProposalReceiverService routes by reviewed node; feedbackService, useFeedbackStatus, and useFeedbackClipboard re-key by reviewed node id; the clipboard path is capped at one review at a time as a documented limitation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cad2cc4a-0d5f-4780-a0dc-6b6e36245efb:
+    id: cad2cc4a-0d5f-4780-a0dc-6b6e36245efb
+    content: Gating — the delete confirmation notes when the removed subtree contains an active review.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03b46b93-f910-4ce1-b91f-b8d3ba9c70e5:
+    id: 03b46b93-f910-4ce1-b91f-b8d3ba9c70e5
+    content: Tests — add per-node-working-store, concurrent-reviews, overlap-gate, second-proposal-replaces-in-place, and delete-confirmation-notes-review tests.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9efbf9b2-7e6c-4d08-9f42-2ea2603311a3:
+    id: 9efbf9b2-7e6c-4d08-9f42-2ea2603311a3
+    content: Constraints to call out
+    children:
+      - 3c1a8a7d-7036-4cde-8c54-f0cc465f4f1a
+      - d595b87e-c63b-40bb-aafc-5e38367e4794
+      - de7f8382-edd7-4e9f-8fe1-4447372bc7b1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c1a8a7d-7036-4cde-8c54-f0cc465f4f1a:
+    id: 3c1a8a7d-7036-4cde-8c54-f0cc465f4f1a
+    content: 'Depends on PR4: PR4 delivered the per-node pendingProposals persistence; PR5 adds the per-node editable working store (the re-key deferred from PR4) and the concurrency on top. Do not start until PR4 has landed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d595b87e-c63b-40bb-aafc-5e38367e4794:
+    id: d595b87e-c63b-40bb-aafc-5e38367e4794
+    content: The clipboard/browser path carries no session identity, so concurrent reviews are only supported on the MCP/terminal path; the browser path stays single-review for now.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de7f8382-edd7-4e9f-8fe1-4447372bc7b1:
+    id: de7f8382-edd7-4e9f-8fe1-4447372bc7b1
+    content: Reviews cannot nest or overlap — no review may target a node within, or containing, an existing review region.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3212916-5e29-4d18-91e8-d372d607371b:
+    id: f3212916-5e29-4d18-91e8-d372d607371b
+    content: Subtask instruction
+    children:
+      - f8be53ab-9263-4a0a-87f2-0db70ad7d6b3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8be53ab-9263-4a0a-87f2-0db70ad7d6b3:
+    id: f8be53ab-9263-4a0a-87f2-0db70ad7d6b3
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  667f5619-5249-4590-8aef-9995fb4f67a9:
+    id: 667f5619-5249-4590-8aef-9995fb4f67a9
+    content: TDD — 1 concrete red test file + 16 title-only todos (reviewOverlap.test green; sendActions.test + feedbackTreeStore.test PR5 describes)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5da11532-cda1-4ee8-a27d-b99e4e350be9:
+    id: 5da11532-cda1-4ee8-a27d-b99e4e350be9
+    content: 'PR5 implement — concurrent reviews + overlap gating done: reviews map replaces the 3 scalars; per-node feedback re-key; lifecycle parameterized by reviewed node; overlap gate + browser-exclusivity replace the single-collaboration guard; MCP submit refused during a browser review; delete-confirmation note + discard-on-delete; ~30 test files migrated + concurrency/overlap/per-node/delete acceptance tests filled; type-check + lint clean, full suite 5334 pass / 0 fail'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  905db3e5-5968-44dd-b641-9f3a5ca6174f:
+    id: 905db3e5-5968-44dd-b641-9f3a5ca6174f
+    content: Verification — abandoned-by-design and notes
+    children:
+      - 881f55ac-3cb3-449a-a7ee-8c154c67ee34
+      - 6168d53b-5c98-40f1-9f31-17b596fa77ea
+      - 76a9c534-6bd8-4702-81ec-2528acfc6d5d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  881f55ac-3cb3-449a-a7ee-8c154c67ee34:
+    id: 881f55ac-3cb3-449a-a7ee-8c154c67ee34
+    content: 'Edit-lock on the node in review (business rule + edge criterion): no explicit lock was built. It''s moot by design — during review the live original is not rendered (the proposition replaces it in place), so the original can''t be directly edited and the diff baseline can''t drift; the proposition itself is intentionally editable inline. Carried over from PR2/PR3.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6168d53b-5c98-40f1-9f31-17b596fa77ea:
+    id: 6168d53b-5c98-40f1-9f31-17b596fa77ea
+    content: 'Right-click subtree gating (business rule + edge criterion): no subtree-wide context-menu gating was built. The proposition descendants render as ordinary editable nodes (the inline-edit design from PR2/PR3); the only gating is the existing per-reviewed-node context-menu handling. Carried over as abandoned.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  76a9c534-6bd8-4702-81ec-2528acfc6d5d:
+    id: 76a9c534-6bd8-4702-81ec-2528acfc6d5d
+    content: Everything else in the user story is implemented and tested end-to-end (PR2 inline render + PR3 panel retirement + PR4 pendingProposals persistence + PR5 concurrency/overlap/browser-exclusivity). Concurrency criteria left unchecked in PR4's verification are now satisfied. Descriptive product-spec framing (Context/persona/Goal) left unchecked as non-deliverables.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ff70971-6472-4ac1-afe5-016fc565fd5b:
+    id: 3ff70971-6472-4ac1-afe5-016fc565fd5b
+    content: 'AI refactor — done. Reviewed the full PR5 diff (50 files). Convention cleanups applied: (1) removed the two dead `set({ decomposition })` writes plus the now-orphaned `decomposition` scalar from TreeState + its init + 14 test mockState literals — PR5''s per-node re-derive (isDecompositionEnabled) made the transient scalar write-only dead code; (2) removed the `void filePath;` no-op params from capturePropositionToPendingProposals/watchPropositionEdits and their callers (they resolve the store by reviewed node id now, so filePath was unused); (3) removed the leftover PR4 `it.todo` (per-node keying) — now implemented and covered by the PR5 concurrency + feedbackTreeStore per-node tests. No abandoned attempts to delete: browser review was kept per the user''s decision; the 3 untracked files are the intended new reviews.ts / reviewOverlap.ts / reviewOverlap.test.ts. Tests updated for every edited file; no empty test bodies; no `any` introduced; reviews readers null-safe. Standard checks: type-check clean, lint clean on changed/new files, full suite 5334 pass / 1 skip / 0 fail. Not committed.'
+    children: []
+    metadata:
+      status: pending
+  9a089531-0581-4d77-ace6-ae3bd9c08d80:
+    id: 9a089531-0581-4d77-ace6-ae3bd9c08d80
+    content: review feedback
+    children:
+      - 5b6d682e-b258-4fb1-aa84-6374a0ccf373
+    metadata:
+      status: completed
+  5b6d682e-b258-4fb1-aa84-6374a0ccf373:
+    id: 5b6d682e-b258-4fb1-aa84-6374a0ccf373
     content: |-
-      Documentation — no changes warranted (verified, not skipped)
+      Multi-lens review (code-reviewer + silent-failure + type-design + test-coverage + comment lenses; 34 agents; every finding adversarially verified → 29 raw, 22 confirmed). Verdict: the PR5 reviews-map refactor is solid and internally consistent — null-safe readers, overlap + browser-exclusivity guards ordered before side effects, discard-on-delete tears down review+pendingProposal+feedback-store for the whole deleted subtree, capture/restore round-trip preserves the hidden-root wrapper, reviews not persisted while pendingProposals are, cross-file routing correct.
 
-      PR4 is a no-user-facing-change internal persistence migration (the proposition's storage moved from per-file temp files to the .arbo-native pendingProposals map). Surveyed the docs before concluding:
-      - The inline-review feature is ALREADY documented: CHANGELOG ## Unreleased has "Review AI revisions inline on the branch" (the Accept/Cancel flow), "Pending proposals from Claude surface inline" (MCP/checkpoint), and "Inline review highlights changes"; docs/workflows.md covers the checkpoint + decomposition inline-review flow (review in place, accept/cancel) at lines 33 and 84.
-      - Consistency verified: no doc references the removed feedback panel or temp files. The only remaining "feedback" mentions are generic ("when feedback replaces a node", "no feedback is expected", and README's "open an issue with feedback") — none are the retired panel. Nothing to remove or correct.
+      FIXED during review (all verified, full suite 5357 pass / 0 fail, type-check + lint clean):
+      - AcceptFeedbackCommand.ts: deleted dead collaborationClearIfOwned + its two no-op setState spreads + the obsolete collaboratingNodeId/collaborationSource shape-type fields (residue from the scalar→reviews migration; review clearing lives in sendActions.removeReviewEntry). Removed the now-obsolete 'collaboration ownership' describe from its test.
+      - sendActions: removed the redundant logger.error('Review start blocked', new Error, ...) after reviewStartBlocked in both runCollaborateInTerminal and collaborate (it already toasts) — was a double error-toast + error-level log of an expected, recoverable gate. The two guard tests now assert the user toast instead.
+      - useFeedbackClipboard: now surfaces a parse-failure toast (the clipboard is the only review channel with no return path for result.reason; previously a failed paste on the active owner was fully silent). Failure-path test added.
+      - Added tests: mcpProposalReceiver browser-exclusivity + overlap refusal guards (were untested); reviews.ts unit test (reviewsInSubtree, getBrowserReviewNodeId, removeReview no-op identity, null-safety); strengthened the two tautological PR5 sendActions tests to exercise production wiring.
 
-      Per the conventions this PR warrants NO doc page and NO changelog line: the storage medium is an implementation detail the user doesn't need; the feature is unreleased, so refining its internals is not a changelog-worthy line ("don't add a line for a fix to a feature implemented after the last release"); and the one observable refinement (the M1 fix makes MCP/terminal proposals persist across restart, where before they didn't) is both a fix-to-unreleased-behaviour and implicit/discoverable — surfacing it would bloat, not help.
+      DEFERRED — verified-real, none blocking; address in test-pass or a follow-up:
+      - [medium] finishAccept has no rollback if AcceptFeedbackCommand.execute() throws: the resolve/cleanup runs after executeCommand inside the same try, so a throw leaves a partially-mutated tree with the review + pending proposition + edit-watch still live (no data loss — the review stays open, not discarded). Consider resolving before mutate, or a rollback in catch.
+      - [medium] ReviewEntry permits illegal states: { source:'browser', terminalId:'x' } is constructible and two browser entries are possible; ReviewMap is written directly via setState in 2 places (mcpProposalReceiver, useRebindConfirmation) bypassing addReview/removeReview. Browser-exclusivity is enforced only by scattered runtime guards. Consider a discriminated union on source + funnel all writes through addReview.
+      - [low] cancelCollaboration (no production callers) sets reviews:{} without stopWatchingPropositionEdits/dropPendingProposalEntry/cleanupFeedbackForNode — latent ghost state if ever wired up.
+      - [low] extractFeedbackContent reaches the intentional 'empty proposition leaves review open' no-op via logger.error (default toast) → a misleading red error toast on a benign no-op.
+      - [low] MCP refusal returns opaque 'could not be applied' (no reason) for the no-file/unknown-node branch (processIncomingFeedbackContent omits a reason there).
+      - [low] restore: a per-entry feedbackTreeStore.initialize throw logs-and-continues but leaves a permanently-failing, un-actionable orphan in pendingProposals (distinct from the missing-node orphan-drop that IS handled).
+      - [low] collaborate has two overlapping browser-exclusivity guards (the getAllStores().find block + reviewStartBlocked's browser branch); only the first fires, so reviewStartBlocked's browser branch is dead for that caller, and the reviewStartBlocked comment overstates the guarantee (it checks the current file). Behavior is correct (double-guarded), but consolidate + fix the comment.
+      - [low] useFeedbackStatus reads the feedback store without subscribing to its version (pre-existing; works incidentally via the tree re-render).
+      - [nits] overlap logic split across reviews.ts (isReviewDescendant/reviewsInSubtree) and reviewOverlap.ts (isReviewOverlap over a string[]); ClipboardReviewMonitor module comment is stale (component is now browser-review-only); restore under-documents the source→'terminal' downgrade on reload.
+      - Test-coverage gaps still open (deferred, medium/low): deleteNode's direct-in-review-node block + the multi-select discard path; finishAccept's archive-destination-missing cleanup branch; cancelCollaboration's multi-review notify fan-out; restore's multi-review rebuild + per-entry init-failure + browser→terminal downgrade.
 
-      Minor observation for the user (not a blocker, not introduced by PR4): proposal-persists-across-restart is documented only for workflow CHECKPOINT items (workflows.md:118 / CHANGELOG:39); the general manual/MCP inline-review persistence isn't separately stated. It's pre-existing and implicit (a pending review just reappears on reopen), so I left it — a future feature-level doc pass (not this persistence PR) could state it once across all proposal sources if desired.
+      Design decisions confirmed respected (NOT defects): edit-lock + subtree context-menu gating intentionally omitted (original isn't rendered during review; proposition is editable inline); browser single-review limitation; nullish-extract leaves review open; restored reviews collapse to source:'terminal'.
+    children: []
+    metadata:
+      status: pending
+  84c13ab7-1115-4953-8cd8-20229fbc829b:
+    id: 84c13ab7-1115-4953-8cd8-20229fbc829b
+    content: |-
+      Review resolution — read the 'review feedback' node, evaluated each finding against the actual code (incl. calling code), accepted the justified ones and pushed back where intentional/exaggerated/low-probability. Full suite 5360 pass / 0 fail, type-check + lint clean.
+
+      MAJOR issues fixed:
+      - (review step) AcceptFeedbackCommand.ts dead code: deleted collaborationClearIfOwned + its two no-op setState spreads + obsolete collaboratingNodeId/collaborationSource shape-type fields (residue from the scalar→reviews migration) + removed the obsolete 'collaboration ownership' test describe.
+      - (review step) Untested MCP concurrency guards: added browser-exclusivity + overlap refusal tests for handleProposalRequest.
+      - cancelCollaboration ghost-state: now tears down each review (notify terminal, stopWatchingPropositionEdits, dropPendingProposalEntry, cleanupFeedbackForNode) before clearing the map + autoSaves — was leaking watchers/pending/feedback-stores.
+      - Added 3 regression tests for previously-uncovered lifecycle branches: deleteNode's direct-in-review-node block, finishAccept's archive-destination-missing cleanup branch, cancelCollaboration's multi-review teardown/notify fan-out.
+
+      MINOR issues fixed:
+      - (review step) Double error-toast + synthetic Error after reviewStartBlocked: removed the redundant logger.error at both send paths (it already toasts); guard tests assert the toast.
+      - (review step) Silent clipboard parse failure: useFeedbackClipboard now surfaces a toast with result.reason + failure-path test.
+      - extractFeedbackContent: the benign empty/transient-proposition path (finishAccept leaves the review open) now logs at warn (no toast) instead of logger.error (no more misleading red error on a no-op).
+      - MCP refusal: the no-file/unknown-node branch now returns a reason so the AI gets a diagnostic instead of opaque 'could not be applied'.
+      - useFeedbackStatus: subscribes to the feedback-store version so Waiting→In-progress updates immediately (was incidental).
+      - ClipboardReviewMonitor: corrected the stale module comment (browser-review-only now).
+      - (review step) Added a dedicated reviews.ts unit test + strengthened two tautological PR5 tests.
+
+      Feedback SKIPPED (pushed back, with reasons):
+      - finishAccept lacks rollback if AcceptFeedbackCommand.execute() throws (medium): the current order (mutate, then resolve) deliberately preserves the proposition on a failed accept; the suggested 'resolve before mutate' would silently discard it (violates the no-silent-discard headline), and a transactional command is beyond PR5. Low probability — execute throwing needs malformed state the parser/reconcile already reject.
+      - ReviewEntry discriminated union (medium, type-design): the illegal {source:'browser', terminalId:'x'} state is never constructed in practice; two-browser-entries can't be type-enforced (ReviewMap is a Record); writes already go through addReview/removeReview (the 'direct setState' is a valid snapshot-restore). Wide test churn (every {source:'browser', terminalId:null} literal) for marginal benefit.
+      - restore per-entry init-throw orphan (low): dropping a proposition whose feedback store fails to initialize risks silently losing a valid (possibly transient) proposition; keeping + logging is the safer choice under no-silent-discard. Low probability.
+      - collaborate's two browser-exclusivity guards (low): they cover mostly-different cases (browser-already-active vs terminal-active); only one message branch is unreachable, and the first guard carries a better file-named message. Kept; the comment was the real issue and is accurate.
+      - overlap logic split across reviews.ts + reviewOverlap.ts (nit): a reasonable pure-util (gate) vs map-model separation.
+      - Remaining lower-value test gaps (restore multi-review rebuild / per-entry init-failure / browser→terminal downgrade; multi-select discard path): noted for a future pass, not blocking — the core behaviors are covered.
+
+      Design decisions reaffirmed as intentional (not defects): edit-lock + subtree context-menu gating omitted; browser single-review limitation; nullish-extract leaves review open; restored reviews collapse to source:'terminal'.
+    children: []
+    metadata:
+      status: pending
+  b59756c2-7a2c-43ab-85c4-ea6e438ab347:
+    id: b59756c2-7a2c-43ab-85c4-ea6e438ab347
+    content: |-
+      Test pass — done. Ran a traceability audit (4 cluster agents tracing every acceptance criterion → implementing code → semantic test, each candidate gap adversarially verified). Result: happy-path 5/5 + the 3 PR5 independently-testable covered; edge 9/9 (incl. the 2 abandoned-by-design — edit-lock + subtree context-menu gating — confirmed sound: the original isn't rendered during review, so it can't be edited, and proposition descendants render as ordinary nodes); error + non-functional substantively covered, with the cross-cutting headline 'no code path silently discards an un-reviewed proposition' confirmed across every path (concurrent send, second-proposal-replace-in-place, ancestor-delete discard, restore orphan-drop, MCP refusal, clipboard parse-failure toast); business rules all covered. No unimplemented criteria and no confirmed code defects (the adversarial verify rejected all 6 candidate gaps as non-actionable).
+
+      Closed the two cheap, criterion-specific test gaps the audit surfaced:
+      - Cancel-not-undoable: added an assertion that finishCancel does NOT call executeCommand (the undo stack stays clean, so an undo-after-cancel cannot resurrect the dismissed proposition). Required hoisting mockExecuteCommand to describe scope.
+      - Deletion isolation ('no OTHER pending proposition is affected'): extended the discard-on-delete test to seed a second, unrelated sibling review + pendingProposal and assert it survives the ancestor-subtree delete untouched (clearForNode not called for it). This is the cross-cutting isolation the spec requires on the deletion path; it had been asserted only in the sibling finishAccept/finishCancel paths.
+
+      Not closeable by a unit test: anti-jump (the criterion's test is an it.todo). It depends on real getBoundingClientRect/scrollTop measurements that jsdom cannot provide; the implementation is present and wired to fire on every proposition appear/update, so verification is manual. Left as it.todo per the inherent jsdom limitation, not a missing implementation.
+
+      Verified: type-check clean, lint clean on changed files, full suite 5361 pass / 1 skip / 0 fail. Not committed.
+    children: []
+    metadata:
+      status: pending
+  7416d6ca-6a07-4fb7-8def-e4cc063b8c16:
+    id: 7416d6ca-6a07-4fb7-8def-e4cc063b8c16
+    content: |-
+      Documentation — done. The inline-review feature was already documented in docs/workflow.md (from PR2–PR4: the inline proposal, Accept/Cancel bar, change-kind highlighting, edit-before-accept, terminal/browser mechanics). PR5's new user-facing behavior added:
+
+      - docs/workflow.md: new "### Review several branches at once" subsection under Send Your Prompt — concurrent reviews (send another branch without resolving the first; each accepted/cancelled independently; a second proposal for a branch already under review replaces it in place; a pending revision survives closing the file or restarting), and the constraints (reviews can't overlap — can't review a branch while it/an ancestor/a descendant is already under review, the send is blocked with a reason; terminal/MCP reviews are concurrent, the browser path is one-at-a-time because a pasted response carries no branch marker). Followed the conventions: workflow-oriented ("how to review several at once"), second person, direct, ~one scroll, no tables.
+      - CHANGELOG.md: amended the existing Unreleased "Review AI revisions inline on the branch" entry to fold in the concurrency + overlap + browser-single-review capability, rather than adding a separate line — the feature is unreleased and a second entry would bloat (per the convention against redundant/unreleased-feature changelog churn).
+
+      No new doc file (concurrency is tightly coupled to the existing review workflow, not a standalone concept). No docs/shortcuts.md change (the Accept/Cancel controls are buttons with no shortcuts, by design). No stale "one review at a time" claims existed anywhere to remove. Root README left as-is (high-level overview; concurrency is a workflow detail). Nothing unclear or inconsistent surfaced.
     children: []
     metadata:
       status: pending
