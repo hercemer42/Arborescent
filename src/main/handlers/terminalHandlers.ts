@@ -1,8 +1,10 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron';
 import { TerminalManager } from '../services/terminalManager';
+import { terminalOutputBuffer } from '../services/terminalOutputBuffer';
 import { logger } from '../services/logger';
 import { IDisposable } from 'node-pty';
 import { buildTerminalEnv } from './buildTerminalEnv';
+import type { TerminalBufferedOutput } from '../../shared/types/electronApi';
 
 export { buildTerminalEnv };
 
@@ -15,18 +17,6 @@ export interface TerminalInfo {
 }
 
 const terminalDisposables: Map<string, IDisposable[]> = new Map();
-
-// A trailing window of each PTY's output, kept so a renderer that subscribes
-// after the shell already drew its prompt (the launch resume fan-out) can still
-// detect readiness — onTerminalData does not replay, so without this the prompt
-// printed during the spawn→subscribe gap is lost. Bounded to the tail because
-// only the region around the prompt matters for readiness detection.
-const OUTPUT_BUFFER_TAIL = 8192;
-const terminalOutputBuffers: Map<string, string> = new Map();
-
-function clearTerminalOutputBuffer(id: string): void {
-  terminalOutputBuffers.delete(id);
-}
 
 export function registerTerminalHandlers(
   mainWindow: Electron.BrowserWindow,
@@ -50,10 +40,9 @@ export function registerTerminalHandlers(
         const disposables: IDisposable[] = [];
 
         disposables.push(terminal.ptyProcess.onData((data: string) => {
-          const buffered = (terminalOutputBuffers.get(id) ?? '') + data;
-          terminalOutputBuffers.set(id, buffered.slice(-OUTPUT_BUFFER_TAIL));
+          const endOffset = terminalOutputBuffer.append(id, data);
           if (!mainWindow.isDestroyed()) {
-            mainWindow.webContents.send(`terminal:data:${id}`, data);
+            mainWindow.webContents.send(`terminal:data:${id}`, data, endOffset);
           }
         }));
 
@@ -106,7 +95,14 @@ export function registerTerminalHandlers(
   ipcMain.handle(
     'terminal:get-recent-output',
     async (_event: IpcMainInvokeEvent, id: string): Promise<string> => {
-      return terminalOutputBuffers.get(id) ?? '';
+      return terminalOutputBuffer.recentTail(id);
+    }
+  );
+
+  ipcMain.handle(
+    'terminal:get-buffered-output',
+    async (_event: IpcMainInvokeEvent, id: string): Promise<TerminalBufferedOutput> => {
+      return terminalOutputBuffer.read(id);
     }
   );
 
@@ -131,7 +127,7 @@ export function registerTerminalHandlers(
           disposables.forEach(d => d.dispose());
           terminalDisposables.delete(id);
         }
-        clearTerminalOutputBuffer(id);
+        terminalOutputBuffer.clear(id);
         TerminalManager.destroy(id);
       } catch (error) {
         logger.error(`Failed to destroy terminal ${id}`, error as Error, 'Terminal IPC');
@@ -147,7 +143,7 @@ export function disposeTerminalListeners(id: string) {
     disposables.forEach(d => d.dispose());
     terminalDisposables.delete(id);
   }
-  clearTerminalOutputBuffer(id);
+  terminalOutputBuffer.clear(id);
 }
 
 export function cleanupTerminals() {

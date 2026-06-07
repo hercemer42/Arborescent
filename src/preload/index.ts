@@ -61,11 +61,14 @@ const api: ElectronAPI = {
     ipcRenderer.invoke('terminal:get-cwd', id),
   getTerminalRecentOutput: (id) =>
     ipcRenderer.invoke('terminal:get-recent-output', id),
+  getTerminalBufferedOutput: (id) =>
+    ipcRenderer.invoke('terminal:get-buffered-output', id),
   claudeSessionExists: (cwd, sessionId) =>
     ipcRenderer.invoke('claude:session-exists', cwd, sessionId),
   onTerminalData: (id, callback) => {
     const channel = `terminal:data:${id}`;
-    const listener = (_event: Electron.IpcRendererEvent, data: string) => callback(data);
+    const listener = (_event: Electron.IpcRendererEvent, data: string, endOffset?: number) =>
+      callback(data, endOffset);
     ipcRenderer.on(channel, listener);
     return () => ipcRenderer.removeListener(channel, listener);
   },

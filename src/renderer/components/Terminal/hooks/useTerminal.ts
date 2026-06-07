@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Terminal as XTerm } from '@xterm/xterm';
 import { FitAddon } from '@xterm/addon-fit';
 import { LIGHT_THEME, DARK_THEME } from '../terminalThemes';
+import { clipChunkAfterWatermark } from '../terminalReplay';
 import { useTerminalKeyboard } from './useTerminalKeyboard';
 import { usePreferencesStore } from '../../../store/preferences/preferencesStore';
 import {
@@ -83,22 +84,67 @@ export function useTerminal({ id, pinnedToBottom = false, onResize }: UseTermina
         void window.electron.terminalWrite(id, data);
       });
 
-      let firstDataReceived = false;
-      const removeDataListener = window.electron.onTerminalData(id, (data) => {
+      let firstWriteDone = false;
+      const forceFirstRepaint = () => {
+        if (firstWriteDone) return;
+        firstWriteDone = true;
+        // xterm's first render after open() can miss the initial write — force a repaint.
+        requestAnimationFrame(() => {
+          if (xtermRef.current && xtermRef.current.rows > 0) {
+            xtermRef.current.refresh(0, xtermRef.current.rows - 1);
+          }
+        });
+      };
+
+      const writeOutput = (data: string) => {
+        if (!data) return;
         xterm.write(data);
         if (pinnedToBottomRef.current) {
           xterm.scrollToBottom();
         }
-        if (!firstDataReceived) {
-          firstDataReceived = true;
-          // xterm's first render after open() can miss the initial write — force a repaint.
-          requestAnimationFrame(() => {
-            if (xtermRef.current && xtermRef.current.rows > 0) {
-              xtermRef.current.refresh(0, xtermRef.current.rows - 1);
-            }
-          });
+        forceFirstRepaint();
+      };
+
+      // The shell may have drawn its prompt before this listener attached, so the
+      // missed bytes live only in the main-process buffer. Hold live chunks until
+      // that buffer is replayed, then write each live chunk with the already-shown
+      // range clipped off by its offset watermark so nothing renders twice.
+      let replayWatermark: number | null = null;
+      const pendingLive: { data: string; endOffset?: number }[] = [];
+
+      const flushPendingLive = () => {
+        const watermark = replayWatermark ?? 0;
+        for (const chunk of pendingLive.splice(0)) {
+          writeOutput(clipChunkAfterWatermark(chunk.data, chunk.endOffset, watermark));
         }
+      };
+
+      const removeDataListener = window.electron.onTerminalData(id, (data, endOffset) => {
+        if (replayWatermark === null) {
+          pendingLive.push({ data, endOffset });
+          return;
+        }
+        writeOutput(clipChunkAfterWatermark(data, endOffset, replayWatermark));
       });
+
+      const fetchBufferedOutput = window.electron.getTerminalBufferedOutput;
+      if (fetchBufferedOutput) {
+        void fetchBufferedOutput(id)
+          .then(({ data, endOffset }) => {
+            if (disposed) return;
+            writeOutput(data);
+            replayWatermark = endOffset;
+            flushPendingLive();
+          })
+          .catch(() => {
+            if (disposed) return;
+            replayWatermark = 0;
+            flushPendingLive();
+          });
+      } else {
+        replayWatermark = 0;
+        flushPendingLive();
+      }
 
       const removeExitListener = window.electron.onTerminalExit(id, ({ exitCode }) => {
         xterm.write(`\r\n\r\n[Process exited with code ${exitCode}]\r\n`);

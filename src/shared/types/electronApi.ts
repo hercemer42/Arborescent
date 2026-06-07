@@ -120,6 +120,11 @@ export interface TerminalCreateResult {
   shellArgs: string[];
 }
 
+export interface TerminalBufferedOutput {
+  data: string;
+  endOffset: number;
+}
+
 export type Unsubscribe = () => void;
 
 export interface ElectronAPI {
@@ -190,8 +195,12 @@ export interface ElectronAPI {
   // late subscriber (the launch resume) can detect a prompt drawn before it
   // attached. onTerminalData does not replay this.
   getTerminalRecentOutput: (id: string) => Promise<string>;
+  // Returns the retained output buffer plus the end offset, so a renderer that
+  // attaches after the shell drew its prompt can replay the missed bytes and
+  // dedupe the live stream against that offset watermark.
+  getTerminalBufferedOutput: (id: string) => Promise<TerminalBufferedOutput>;
   claudeSessionExists: (cwd: string, sessionId: string) => Promise<boolean>;
-  onTerminalData: (id: string, callback: (data: string) => void) => Unsubscribe;
+  onTerminalData: (id: string, callback: (data: string, endOffset?: number) => void) => Unsubscribe;
   onTerminalExit: (id: string, callback: (exitInfo: TerminalExitInfo) => void) => Unsubscribe;
 
   // Spellcheck context menu
