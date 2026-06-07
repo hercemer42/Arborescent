@@ -117,6 +117,32 @@ describe('useHyperlinkNavigation', () => {
     expect(mockFlashNode).toHaveBeenCalledWith('target-node', 'light');
   });
 
+  it('does not expand the target node\'s own subtree when navigating', () => {
+    const targetWithCollapsedChildren: TreeNode = {
+      id: 'target-node',
+      content: 'Target',
+      children: ['target-child'],
+      metadata: { expanded: false },
+    };
+    store.setState({
+      nodes: {
+        'link-node': hyperlinkNode,
+        'target-node': targetWithCollapsedChildren,
+        'target-child': { id: 'target-child', content: 'Child', children: [], metadata: {} },
+      },
+      ancestorRegistry: { 'target-node': [], 'target-child': ['target-node'] },
+    });
+
+    const { result } = renderHook(() => useHyperlinkNavigation(hyperlinkNode), { wrapper });
+
+    act(() => {
+      result.current.navigateToLinkedNode();
+    });
+
+    expect(mockToggleNode).not.toHaveBeenCalledWith('target-node');
+    expect(mockFlashNode).toHaveBeenCalledWith('target-node', 'light');
+  });
+
   it('does not flash when the linked node is missing', () => {
     const orphanLink: TreeNode = {
       id: 'orphan-link',

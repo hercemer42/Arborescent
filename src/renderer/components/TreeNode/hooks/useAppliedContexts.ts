@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
-import { BASIC_EXECUTE_CONTEXT_ID, BASIC_REVIEW_CONTEXT_ID } from '../../../utils/nodeHelpers';
+import { BASIC_EXECUTE_CONTEXT_ID, BASIC_REVIEW_CONTEXT_ID, isSyntheticContextId } from '../../../utils/nodeHelpers';
 
 export interface AppliedContext {
   icon: string | undefined;
@@ -9,6 +9,7 @@ export interface AppliedContext {
   name: string;
   collaborate: boolean;
   execute: boolean;
+  id?: string;
 }
 
 function flagsLabel(collaborate: boolean, execute: boolean): string {
@@ -56,13 +57,15 @@ export function useAppliedContext(node: TreeNode | undefined): AppliedContext | 
     if (!contextData) return undefined;
 
     const [icon, color, collaborateFlag, executeFlag, ...contentParts] = contextData.split(':');
+    const id = appliedContextId && !isSyntheticContextId(appliedContextId) ? appliedContextId : undefined;
     return {
       icon: icon || undefined,
       color: color || undefined,
       collaborate: collaborateFlag === '1',
       execute: executeFlag === '1',
       name: contentParts.join(':'),
+      id,
     };
-  }, [contextData]);
+  }, [contextData, appliedContextId]);
 }
 

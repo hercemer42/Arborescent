@@ -14,6 +14,19 @@
   z-index: 10;
 }
 
+.gutter-context-indicator.context-navigable {
+  cursor: pointer;
+}
+
+.gutter-context-indicator.context-navigable:hover {
+  background-color: var(--gray-100);
+}
+
+.gutter-context-indicator.context-navigable:focus-visible {
+  outline: 2px solid var(--sky-400);
+  outline-offset: 1px;
+}
+
 .context-applied-indicator {
   position: relative;
   display: flex;

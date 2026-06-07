@@ -46,6 +46,8 @@ Click an active context again to deselect it. When inherited, the context shows 
 
 Hover the gutter icon to see the context name and state.
 
+Click the gutter icon to jump to the context's declaration. The tree selects and scrolls to the branch where the context is defined — expanding any collapsed ancestors on the way — even when the declaration sits far up the tree or is inherited from an ancestor. Built-in contexts (Basic review, Basic execution) have no declaration branch, so their icons aren't clickable.
+
 ## Inheritance
 
 Contexts flow down the tree. When you apply a context to a branch, all descendants inherit it. A descendant can override by applying a different context — that override then applies to it and its descendants.

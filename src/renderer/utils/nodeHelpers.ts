@@ -31,7 +31,7 @@ export {
   getAppliedContextIdWithInheritance,
 };
 
-function isSyntheticContextId(id: string): boolean {
+export function isSyntheticContextId(id: string): boolean {
   return (
     id === BASIC_EXECUTE_CONTEXT_ID
     || id === BASIC_REVIEW_CONTEXT_ID

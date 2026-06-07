@@ -46,6 +46,7 @@ describe('useAppliedContext — mode field', () => {
       color: undefined,
       name: 'Build Feature',
       collaborate: true, execute: true,
+      id: 'ctx-1',
     });
   });
 
@@ -159,6 +160,31 @@ describe('useAppliedContext — mode field', () => {
       color: '#ef4444',
       name: 'Bug Fix',
       collaborate: true, execute: true,
+      id: 'ctx-1',
     });
+  });
+
+  it('does not expose a navigable id for BASIC_EXECUTE_CONTEXT_ID (synthetic, no declaration node)', () => {
+    const node = createNode('node-1', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
+
+    mockedUseStore.mockImplementation((selector) => {
+      const state = { nodes: { 'node-1': node } };
+      return selector(state as never);
+    });
+
+    const { result } = renderHook(() => useAppliedContext(node));
+    expect(result.current?.id).toBeUndefined();
+  });
+
+  it('does not expose a navigable id for BASIC_REVIEW_CONTEXT_ID (synthetic, no declaration node)', () => {
+    const node = createNode('node-1', { appliedContextId: BASIC_REVIEW_CONTEXT_ID });
+
+    mockedUseStore.mockImplementation((selector) => {
+      const state = { nodes: { 'node-1': node } };
+      return selector(state as never);
+    });
+
+    const { result } = renderHook(() => useAppliedContext(node));
+    expect(result.current?.id).toBeUndefined();
   });
 });

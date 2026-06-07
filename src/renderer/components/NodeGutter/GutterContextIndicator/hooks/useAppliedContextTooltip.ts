@@ -8,7 +8,7 @@ interface TooltipPosition {
 export function useAppliedContextTooltip() {
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition>({ top: 0, left: 0 });
-  const indicatorRef = useRef<HTMLSpanElement>(null);
+  const indicatorRef = useRef<HTMLElement>(null);
 
   const handleMouseEnter = useCallback(() => {
     if (indicatorRef.current) {

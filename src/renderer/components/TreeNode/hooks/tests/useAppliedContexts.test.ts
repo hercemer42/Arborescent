@@ -56,7 +56,22 @@ describe('useAppliedContext', () => {
     });
 
     const { result } = renderHook(() => useAppliedContext(node));
-    expect(result.current).toEqual({ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false });
+    expect(result.current).toEqual({ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false, id: 'ctx-1' });
+  });
+
+  it('should expose the declaration node id for navigation', () => {
+    const contextNode = createNode('ctx-1', { blueprintIcon: 'star' });
+    contextNode.content = 'My Context';
+    const node = createNode('node-1', { appliedContextId: 'ctx-1' });
+    const nodes = { 'node-1': node, 'ctx-1': contextNode };
+
+    mockedUseStore.mockImplementation((selector) => {
+      const state = { nodes };
+      return selector(state as never);
+    });
+
+    const { result } = renderHook(() => useAppliedContext(node));
+    expect(result.current?.id).toBe('ctx-1');
   });
 
   it('should include color when context has blueprintColor', () => {
@@ -71,7 +86,7 @@ describe('useAppliedContext', () => {
     });
 
     const { result } = renderHook(() => useAppliedContext(node));
-    expect(result.current).toEqual({ icon: 'star', color: '#ff0000', name: 'My Context', collaborate: true, execute: false });
+    expect(result.current).toEqual({ icon: 'star', color: '#ff0000', name: 'My Context', collaborate: true, execute: false, id: 'ctx-1' });
   });
 
   it('should return undefined when context node does not exist', () => {
