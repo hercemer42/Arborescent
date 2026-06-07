@@ -1,4 +1,4 @@
-import type { TreeState } from '../treeStore';
+import type { TreeState, TreeStore } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
 import {
   buildContentWithContext,
@@ -36,8 +36,8 @@ import {
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { capturePendingProposal, setPendingProposal, dropPendingProposal as dropPendingProposalFromMap } from '../pendingProposals/pendingProposals';
-import { addReview, removeReview, getInReviewNodeIds, hasBrowserReview, type ReviewMap, type ReviewSource } from '../reviews';
-import { isReviewOverlap } from '../../../utils/reviewOverlap';
+import { addReview, removeReview, getInReviewNodeIds, hasBrowserReview, isReviewOverlap, type ReviewMap, type ReviewSource } from '../reviews';
+import { basename } from '../../../utils/basename';
 import { reconcileFeedback } from '../../feedback/reconcileFeedback';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
 import { classifyTerminalSend } from '../../../utils/codeNode';
@@ -65,7 +65,7 @@ const DEFAULT_REVISE_CONTEXT = `Revise the following specification based on our 
 
 const AUTONOMOUS_INLINE_CHECKS_CLAUSE = '- If you need to run checks (build, tests, lint, type-check) or other long-running commands, run them inline in this terminal session.\n- Do not background them with `&` or watch them via poll loops — Arborescent advances the workflow when this terminal returns to the prompt.';
 
-export type ContentSource = 'clipboard' | 'file' | 'mcp-proposal';
+export type ContentSource = 'clipboard' | 'mcp-proposal';
 
 const HEADING_PERSISTENCE_RULES = `- Only heading lines persist between steps; non-heading lines are discarded by the parser.
 - To preserve a value (text, URL, etc.) into later steps, capture it as its own heading line — as a child node, never as a paragraph beneath a heading.
@@ -378,9 +378,6 @@ export interface ProcessFeedbackContentResult {
 }
 
 export interface SendActions {
-  startCollaboration: (nodeId: string) => void;
-  cancelCollaboration: () => void;
-  acceptFeedback: (reviewedNodeId: string, newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
   collaborate: (nodeId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
   collaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string) => Promise<void>;
   autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags, overrideContextId?: string, bindingSource?: AutonomousSendSource) => Promise<string>;
@@ -422,7 +419,7 @@ export function createSendActions(
   _visualEffects: VisualEffectsActions,
   autoSave: () => void,
   executeCommand: (command: Command) => void,
-  getAllStores?: () => { getState: () => { reviews: ReviewMap; currentFilePath: string | null } }[],
+  getAllStores?: () => TreeStore[],
 ): SendActions {
   // The editable proposition lives in the per-file feedback store; persist it into the
   // .arbo-native pendingProposals map (no temp files) and re-capture on every edit so an
@@ -470,6 +467,20 @@ export function createSendActions(
     set({ reviews: removeReview(get().reviews, reviewedNodeId) });
   }
 
+  // Resolve a review and clear every trace of it: notify the backing terminal's session, stop the
+  // edit watch, drop the persisted proposition, remove the review entry, and clear the working store.
+  async function tearDownReview(reviewedNodeId: string, persist: boolean): Promise<void> {
+    const { reviews, workflowSessionMap } = get();
+    notifyManualCollabResolvedForTerminal(reviews[reviewedNodeId]?.terminalId ?? null, workflowSessionMap);
+    stopWatchingPropositionEdits(reviewedNodeId);
+    dropPendingProposalEntry(reviewedNodeId);
+    removeReviewEntry(reviewedNodeId);
+    // Persist the cleared review + pending-proposition state before the cleanup IPC await, so a
+    // stopClipboardMonitor rejection can't strand the in-memory clear unsaved and resurrect it on reload.
+    if (persist) autoSave();
+    await cleanupFeedbackForNode(reviewedNodeId);
+  }
+
   function hasBrowserReviewAnywhere(): boolean {
     if (hasBrowserReview(get().reviews)) return true;
     return (getAllStores?.() ?? []).some((s) => hasBrowserReview(s.getState().reviews));
@@ -480,7 +491,7 @@ export function createSendActions(
   // and while it runs every other review start is blocked. Returns true (after a toast) when blocked.
   function reviewStartBlocked(nodeId: string, source: ReviewSource): boolean {
     const state = get();
-    if (isReviewOverlap(nodeId, getInReviewNodeIds(state.reviews), state.ancestorRegistry)) {
+    if (isReviewOverlap(state.reviews, nodeId, state.ancestorRegistry)) {
       useToastStore.getState().addToast('Cannot review this branch — it overlaps a review already in progress.', 'error');
       return true;
     }
@@ -614,46 +625,6 @@ export function createSendActions(
   }
 
   return {
-    startCollaboration: (nodeId: string) => {
-      if (reviewStartBlocked(nodeId, 'terminal')) return;
-      addReviewEntry(nodeId, 'terminal', null);
-    },
-
-    cancelCollaboration: () => {
-      const { reviews, workflowSessionMap } = get();
-      // Tear each review down like finishCancel (notify its terminal, stop its edit watch, drop its
-      // pending proposition and working store) so clearing the map leaves no orphaned ghost state.
-      Object.entries(reviews).forEach(([reviewedNodeId, review]) => {
-        notifyManualCollabResolvedForTerminal(review.terminalId, workflowSessionMap);
-        stopWatchingPropositionEdits(reviewedNodeId);
-        dropPendingProposalEntry(reviewedNodeId);
-        void cleanupFeedbackForNode(reviewedNodeId);
-      });
-      set({ reviews: {} });
-      autoSave();
-    },
-
-    acceptFeedback: (reviewedNodeId: string, newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
-      const { reviews, nodes, workflowSessionMap } = get();
-
-      if (!nodes[reviewedNodeId]) return;
-
-      notifyManualCollabResolvedForTerminal(reviews[reviewedNodeId]?.terminalId ?? null, workflowSessionMap);
-
-      const reconciled = reconcileFeedback({
-        priorRootId: reviewedNodeId,
-        priorNodes: nodes,
-        newRootId: newRootNodeId,
-        newNodes: newNodesMap,
-        mode: 'feedback',
-      });
-
-      executeCommand(
-        new AcceptFeedbackCommand(reviewedNodeId, newRootNodeId, newNodesMap, get, set, autoSave, undefined, reconciled.idMap)
-      );
-      removeReviewEntry(reviewedNodeId);
-    },
-
     collaborate: async (nodeId: string, flags?: ContextFlags, overrideContextId?: string) => {
       const state = get();
 
@@ -673,7 +644,7 @@ export function createSendActions(
           );
           if (blockingStore) {
             const blockingFilePath = blockingStore.getState().currentFilePath || '';
-            const fileName = blockingFilePath.split('/').pop() || blockingFilePath;
+            const fileName = basename(blockingFilePath);
             useToastStore.getState().addToast(
               `Browser collaboration already in progress in ${fileName}`,
               'error'
@@ -868,20 +839,14 @@ export function createSendActions(
 
     finishCancel: async (reviewedNodeId: string) => {
       try {
-        const { currentFilePath, reviews, workflowSessionMap } = get();
+        const { currentFilePath } = get();
         if (!currentFilePath) {
           logger.warn('No collaboration in progress to cancel', 'SendActions');
           return;
         }
 
-        notifyManualCollabResolvedForTerminal(reviews[reviewedNodeId]?.terminalId ?? null, workflowSessionMap);
+        await tearDownReview(reviewedNodeId, true);
 
-        stopWatchingPropositionEdits(reviewedNodeId);
-        dropPendingProposalEntry(reviewedNodeId);
-        removeReviewEntry(reviewedNodeId);
-        autoSave();
-
-        await cleanupFeedbackForNode(reviewedNodeId);
         window.dispatchEvent(new Event('collaboration-canceled'));
         logger.info(`Collaboration cancelled for ${reviewedNodeId}`, 'SendActions');
       } catch (error) {
@@ -891,7 +856,7 @@ export function createSendActions(
 
     finishAccept: async (reviewedNodeId: string) => {
       try {
-        const { currentFilePath, reviews, workflowSessionMap } = get();
+        const { currentFilePath } = get();
         if (!currentFilePath) {
           logger.error('No collaboration in progress to accept', new Error('No active collaboration'), 'SendActions');
           return;
@@ -905,8 +870,6 @@ export function createSendActions(
         if (!feedbackContent) return;
 
         logger.info(`Accepting feedback with ${Object.keys(feedbackContent.nodes).length} nodes`, 'SendActions');
-
-        notifyManualCollabResolvedForTerminal(reviews[reviewedNodeId]?.terminalId ?? null, workflowSessionMap);
 
         const { nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
         const decomposition = isDecompositionEnabled(reviewedNodeId, currentNodes, currentRegistry);
@@ -922,11 +885,7 @@ export function createSendActions(
             'warning',
             { persistent: true, actions: [{ label: 'OK', onClick: () => {} }] }
           );
-          stopWatchingPropositionEdits(reviewedNodeId);
-          dropPendingProposalEntry(reviewedNodeId);
-          removeReviewEntry(reviewedNodeId);
-          autoSave();
-          await cleanupFeedbackForNode(reviewedNodeId);
+          await tearDownReview(reviewedNodeId, true);
           return;
         }
 
@@ -945,10 +904,7 @@ export function createSendActions(
           new AcceptFeedbackCommand(reviewedNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig, precomputedIdMap)
         );
 
-        stopWatchingPropositionEdits(reviewedNodeId);
-        dropPendingProposalEntry(reviewedNodeId);
-        removeReviewEntry(reviewedNodeId);
-        await cleanupFeedbackForNode(reviewedNodeId);
+        await tearDownReview(reviewedNodeId, false);
 
         window.dispatchEvent(new Event('collaboration-accepted'));
         logger.info('Feedback accepted and node replaced', 'SendActions');

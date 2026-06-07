@@ -85,10 +85,8 @@ describe('ipcService', () => {
       expect(ipcMain.handle).toHaveBeenCalledWith('write-file', expect.any(Function));
       expect(ipcMain.handle).toHaveBeenCalledWith('show-open-dialog', expect.any(Function));
       expect(ipcMain.handle).toHaveBeenCalledWith('show-save-dialog', expect.any(Function));
-      expect(ipcMain.handle).toHaveBeenCalledWith('get-temp-dir', expect.any(Function));
       expect(ipcMain.handle).toHaveBeenCalledWith('create-temp-file', expect.any(Function));
       expect(ipcMain.handle).toHaveBeenCalledWith('delete-temp-file', expect.any(Function));
-      expect(ipcMain.handle).toHaveBeenCalledWith('list-temp-files', expect.any(Function));
       expect(ipcMain.handle).toHaveBeenCalledWith('show-unsaved-changes-dialog', expect.any(Function));
       expect(ipcMain.handle).toHaveBeenCalledWith('save-session', expect.any(Function));
       expect(ipcMain.handle).toHaveBeenCalledWith('get-session', expect.any(Function));

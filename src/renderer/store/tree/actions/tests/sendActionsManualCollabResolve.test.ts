@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
 import { TreeNode } from '../../../../../shared/types';
-import { cleanupFeedbackForNode } from '../../../../services/feedback/feedbackService';
+import { cleanupFeedbackForNode, extractFeedbackContent } from '../../../../services/feedback/feedbackService';
 
 vi.mock('../../../../services/logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
@@ -116,74 +116,6 @@ describe('sendActions — manual collab resolve trigger', () => {
     }, vi.fn(), vi.fn());
   });
 
-  describe('cancelCollaboration', () => {
-    it('fires notifyManualCollabResolved for the session backing the collaborating terminal', () => {
-      mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-1' } };
-      mockState.workflowSessionMap = { 'sess-A': 'term-1' };
-
-      actions.cancelCollaboration();
-
-      expect(notifyManualCollabResolvedMock).toHaveBeenCalledWith('sess-A');
-    });
-
-    it('does NOT fire when terminalId is null (e.g. browser-source collab)', () => {
-      mockState.reviews = { child1: { source: 'browser', terminalId: null } };
-      mockState.workflowSessionMap = { 'sess-A': 'term-1' };
-
-      actions.cancelCollaboration();
-
-      expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
-    });
-
-    it('does NOT fire when the terminal has no entry in the workflowSessionMap (foreign terminal)', () => {
-      mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-unknown' } };
-      mockState.workflowSessionMap = { 'sess-A': 'term-1' };
-
-      actions.cancelCollaboration();
-
-      expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
-    });
-
-    it('still clears all review state regardless of IPC outcome', () => {
-      mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-1' } };
-      mockState.workflowSessionMap = { 'sess-A': 'term-1' };
-
-      actions.cancelCollaboration();
-
-      expect(mockSet).toHaveBeenCalledWith({ reviews: {} });
-    });
-
-    it('tears down every terminal-backed review: notifies both terminals, empties reviews, drops each pending proposition and cleans up each node', () => {
-      const child2: TreeNode = { id: 'child2', content: 'Child 2', children: [], metadata: { plugins: {} } };
-      mockState.nodes.child2 = child2;
-      mockState.nodes.root.children = ['child1', 'child2'];
-      mockState.ancestorRegistry.child2 = ['root'];
-
-      mockState.reviews = {
-        child1: { source: 'terminal', terminalId: 'term-1' },
-        child2: { source: 'terminal', terminalId: 'term-2' },
-      };
-      mockState.workflowSessionMap = { 'sess-A': 'term-1', 'sess-B': 'term-2' };
-      mockState.pendingProposals = {
-        child1: { id: 'p1', capturedAt: 'now', reviewedNodeId: 'child1', rootNodeId: 'r1', nodes: {} },
-        child2: { id: 'p2', capturedAt: 'now', reviewedNodeId: 'child2', rootNodeId: 'r2', nodes: {} },
-      };
-
-      actions.cancelCollaboration();
-
-      expect(notifyManualCollabResolvedMock).toHaveBeenCalledWith('sess-A');
-      expect(notifyManualCollabResolvedMock).toHaveBeenCalledWith('sess-B');
-      expect(notifyManualCollabResolvedMock).toHaveBeenCalledTimes(2);
-
-      expect(mockState.reviews).toEqual({});
-
-      expect(mockState.pendingProposals).toEqual({});
-
-      expect(cleanupFeedbackForNode).toHaveBeenCalledWith('child1');
-      expect(cleanupFeedbackForNode).toHaveBeenCalledWith('child2');
-    });
-  });
-
   describe('finishCancel', () => {
     it('fires notifyManualCollabResolved for the session backing the collaborating terminal', async () => {
       mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-1' } };
@@ -193,6 +125,42 @@ describe('sendActions — manual collab resolve trigger', () => {
       await actions.finishCancel('child1');
 
       expect(notifyManualCollabResolvedMock).toHaveBeenCalledWith('sess-B');
+    });
+
+    it('does NOT fire when terminalId is null (e.g. browser-source collab)', async () => {
+      mockState.reviews = { child1: { source: 'browser', terminalId: null } };
+      mockState.currentFilePath = '/tmp/file.arbo';
+      mockState.workflowSessionMap = { 'sess-A': 'term-1' };
+
+      await actions.finishCancel('child1');
+
+      expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
+    });
+
+    it('does NOT fire when the terminal has no entry in the workflowSessionMap (foreign terminal)', async () => {
+      mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-unknown' } };
+      mockState.currentFilePath = '/tmp/file.arbo';
+      mockState.workflowSessionMap = { 'sess-A': 'term-1' };
+
+      await actions.finishCancel('child1');
+
+      expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
+    });
+
+    it('tears the review down: clears the entry, drops the pending proposition and cleans up the node', async () => {
+      mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-1' } };
+      mockState.currentFilePath = '/tmp/file.arbo';
+      mockState.workflowSessionMap = { 'sess-A': 'term-1' };
+      mockState.pendingProposals = {
+        child1: { id: 'p1', capturedAt: 'now', reviewedNodeId: 'child1', rootNodeId: 'r1', nodes: {} },
+      };
+
+      await actions.finishCancel('child1');
+
+      expect(notifyManualCollabResolvedMock).toHaveBeenCalledWith('sess-A');
+      expect(mockState.reviews).toEqual({});
+      expect(mockState.pendingProposals).toEqual({});
+      expect(cleanupFeedbackForNode).toHaveBeenCalledWith('child1');
     });
 
     it('does nothing (no IPC, no clear) when there is no active collaboration', async () => {
@@ -215,42 +183,34 @@ describe('sendActions — manual collab resolve trigger', () => {
 
       expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
     });
-  });
 
-  describe('acceptFeedback', () => {
-    it('fires notifyManualCollabResolved before the accept command executes', () => {
+    function stubProposition(): void {
+      mockState.currentFilePath = '/tmp/file.arbo';
+      vi.mocked(extractFeedbackContent).mockReturnValue({
+        rootNodeId: 'new-child1',
+        rootNodeIds: ['new-child1'],
+        nodes: { 'new-child1': { id: 'new-child1', content: 'Updated', children: [], metadata: { plugins: {} } } },
+      });
+    }
+
+    it('fires notifyManualCollabResolved for the session backing the collaborating terminal', async () => {
       mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-1' } };
       mockState.workflowSessionMap = { 'sess-C': 'term-1' };
+      stubProposition();
 
-      const newRoot: TreeNode = {
-        id: 'new-child1',
-        content: 'Updated',
-        children: [],
-        metadata: { plugins: {} },
-      };
-
-      actions.acceptFeedback('child1', 'new-child1', { 'new-child1': newRoot });
+      await actions.finishAccept('child1');
 
       expect(notifyManualCollabResolvedMock).toHaveBeenCalledWith('sess-C');
     });
 
-    it('does NOT fire when no terminal owns the review (browser-source accept)', () => {
+    it('does NOT fire when no terminal owns the review (browser-source accept)', async () => {
       mockState.reviews = { child1: { source: 'browser', terminalId: null } };
       mockState.workflowSessionMap = {};
+      stubProposition();
 
-      const newRoot: TreeNode = {
-        id: 'new-child1',
-        content: 'Updated',
-        children: [],
-        metadata: { plugins: {} },
-      };
-
-      actions.acceptFeedback('child1', 'new-child1', { 'new-child1': newRoot });
+      await actions.finishAccept('child1');
 
       expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
     });
-
-    // executeCommand is a required constructor dependency, so there is no
-    // unavailable path to guard against here.
   });
 });

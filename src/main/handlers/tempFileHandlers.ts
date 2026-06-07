@@ -9,17 +9,6 @@ function tempDir(): string {
 }
 
 export function registerTempFileHandlers(): void {
-  ipcMain.handle('get-temp-dir', async () => {
-    const dir = tempDir();
-    try {
-      await fs.mkdir(dir, { recursive: true });
-      return dir;
-    } catch (error) {
-      logger.error('Failed to create temp directory', error instanceof Error ? error : undefined, 'IPC', undefined, true);
-      throw error;
-    }
-  });
-
   ipcMain.handle('create-temp-file', async (_, fileName: string, content: string) => {
     assertBareFileName(fileName, 'create-temp-file');
     try {
@@ -43,31 +32,6 @@ export function registerTempFileHandlers(): void {
       logger.info(`Temp file deleted: ${filePath}`, 'IPC');
     } catch (error) {
       logger.error(`Failed to delete temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', undefined, false);
-    }
-  });
-
-  ipcMain.handle('list-temp-files', async () => {
-    try {
-      const dir = tempDir();
-      await fs.mkdir(dir, { recursive: true });
-      const files = await fs.readdir(dir);
-      return files.map(file => path.join(dir, file));
-    } catch (error) {
-      logger.error('Failed to list temp files', error instanceof Error ? error : undefined, 'IPC', undefined, false);
-      return [];
-    }
-  });
-
-  ipcMain.handle('read-temp-file', async (_, filePath: string) => {
-    assertNonEmptyPath(filePath, 'read-temp-file');
-    try {
-      assertInsideDir(filePath, tempDir(), 'read-temp-file');
-      const content = await fs.readFile(filePath, 'utf-8');
-      logger.info(`Temp file read: ${filePath}`, 'IPC');
-      return content;
-    } catch (error) {
-      logger.error(`Failed to read temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', undefined, false);
-      return null;
     }
   });
 

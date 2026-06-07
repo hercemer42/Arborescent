@@ -5,6 +5,7 @@ import { storeManager } from '../../../store/storeManager';
 import { getBrowserReviewNodeId, hasBrowserReview } from '../../../store/tree/reviews';
 import { useToastStore } from '../../../store/toast/toastStore';
 import { resolveToSourceFilePath } from '../../../utils/zoomPath';
+import { basename } from '../../../utils/basename';
 import type { ContentSource } from '../../../store/tree/actions/sendActions';
 
 // The clipboard monitor is session-less, so it only ever serves the (exclusive) browser review.
@@ -15,10 +16,6 @@ function findBrowserReviewEntry() {
     if (reviewedNodeId) return { ...entry, reviewedNodeId };
   }
   return null;
-}
-
-function displayNameFor(filePath: string): string {
-  return filePath.split('/').pop() ?? filePath;
 }
 
 export function useFeedbackClipboard(browserReviewNodeId: string | null) {
@@ -51,7 +48,7 @@ export function useFeedbackClipboard(browserReviewNodeId: string | null) {
 
     if (!isOwnerActive) {
       useToastStore.getState().addToast(
-        `Feedback ready in ${displayNameFor(ownerFilePath)}`,
+        `Feedback ready in ${basename(ownerFilePath)}`,
         'info',
       );
     }

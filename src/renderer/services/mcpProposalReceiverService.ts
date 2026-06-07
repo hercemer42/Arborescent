@@ -1,8 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { storeManager } from '../store/storeManager';
 import { logger } from './logger';
-import { addReview, hasBrowserReview, getInReviewNodeIds } from '../store/tree/reviews';
-import { isReviewOverlap } from '../utils/reviewOverlap';
+import { addReview, hasBrowserReview, isReviewOverlap } from '../store/tree/reviews';
 import type { ProposalRequest, ProposalResponse } from '../../shared/types/electronApi';
 import type { TreeStore } from '../store/tree/treeStore';
 
@@ -63,7 +62,7 @@ export async function handleProposalRequest(
   }
 
   // A review may not nest inside or engulf another.
-  if (isReviewOverlap(request.nodeId, getInReviewNodeIds(state.reviews), state.ancestorRegistry)) {
+  if (isReviewOverlap(state.reviews, request.nodeId, state.ancestorRegistry)) {
     return { ok: false, error: 'cannot give feedback, the target overlaps a review already in progress, finish and retry' };
   }
 

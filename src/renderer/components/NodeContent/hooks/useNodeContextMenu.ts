@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
+import { TreeStore } from '../../../store/tree/treeStore';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
@@ -32,6 +33,25 @@ import {
 } from '../../../utils/selectionUtils';
 import { copySelectionText } from '../../../services/partialTextClipboard';
 import { isNodeInReview, reviewsInSubtree } from '../../../store/tree/reviews';
+
+function makeDeleteHandler(store: TreeStore, nodeId: string): () => void {
+  return () => {
+    const { actions } = store.getState();
+    const deleted = actions.deleteNode(nodeId);
+    if (deleted) return;
+    const state = store.getState();
+    const reviewsInside = reviewsInSubtree(state.reviews, nodeId, state.ancestorRegistry);
+    const reviewWarning = reviewsInside.length > 0
+      ? ' This subtree contains an active review, which will be discarded.'
+      : '';
+    const confirmed = window.confirm(
+      `This branch has children. Deleting it will also delete all its children. Are you sure?${reviewWarning}`
+    );
+    if (confirmed) {
+      actions.deleteNode(nodeId, true);
+    }
+  };
+}
 
 function copyNodeOrSelection(nodeId: string, fallback: () => unknown): void {
   if (
@@ -106,22 +126,7 @@ export function useNodeContextMenu(node: TreeNode) {
       }
     };
 
-    const handleDelete = () => {
-      const deleted = actions.deleteNode(node.id);
-      if (!deleted) {
-        const deleteState = store.getState();
-        const reviewsInside = reviewsInSubtree(deleteState.reviews, node.id, deleteState.ancestorRegistry);
-        const reviewWarning = reviewsInside.length > 0
-          ? ' This subtree contains an active review, which will be discarded.'
-          : '';
-        const confirmed = window.confirm(
-          `This branch has children. Deleting it will also delete all its children. Are you sure?${reviewWarning}`
-        );
-        if (confirmed) {
-          actions.deleteNode(node.id, true);
-        }
-      }
-    };
+    const handleDelete = makeDeleteHandler(store, node.id);
 
     const handleZoom = () => {
       if (!activeFile) return;
@@ -385,22 +390,7 @@ export function useNodeContextMenu(node: TreeNode) {
     const { actions } = store.getState();
     const spellItems = buildSpellMenuItems();
 
-    const handleDelete = () => {
-      const deleted = actions.deleteNode(node.id);
-      if (!deleted) {
-        const deleteState = store.getState();
-        const reviewsInside = reviewsInSubtree(deleteState.reviews, node.id, deleteState.ancestorRegistry);
-        const reviewWarning = reviewsInside.length > 0
-          ? ' This subtree contains an active review, which will be discarded.'
-          : '';
-        const confirmed = window.confirm(
-          `This branch has children. Deleting it will also delete all its children. Are you sure?${reviewWarning}`
-        );
-        if (confirmed) {
-          actions.deleteNode(node.id, true);
-        }
-      }
-    };
+    const handleDelete = makeDeleteHandler(store, node.id);
 
     const editSubmenu = buildEditSubmenu({
       onSelect: () => actions.toggleNodeSelection(node.id),
@@ -438,18 +428,10 @@ export function useNodeContextMenu(node: TreeNode) {
     setContextMenu({ x: e.clientX, y: e.clientY });
   }, [node.id, store, isFeedbackTree, buildMenuItems, buildFeedbackMenuItems, captureWordAtPoint]);
 
-  const handleDelete = useCallback(() => {
-    const { actions } = store.getState();
-    const deleted = actions.deleteNode(node.id);
-    if (!deleted) {
-      const confirmed = window.confirm(
-        'This branch has children. Deleting it will also delete all its children. Are you sure?'
-      );
-      if (confirmed) {
-        actions.deleteNode(node.id, true);
-      }
-    }
-  }, [node.id, store]);
+  const handleDelete = useCallback(
+    () => makeDeleteHandler(store, node.id)(),
+    [node.id, store],
+  );
 
   const closeContextMenu = useCallback(() => {
     setContextMenu(null);

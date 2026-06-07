@@ -16,7 +16,6 @@ import { createSummaryActions, SummaryActions } from './actions/summaryActions';
 import { createWorkflowActions, WorkflowActions } from './actions/workflowActions';
 import { createWorkflowExecutionActions, WorkflowExecutionActions, WorkflowExecutionEntry } from './actions/workflowExecutionActions';
 import { createSendToWorkflowActions, SendToWorkflowActions } from './actions/sendToWorkflowActions';
-import { createPendingProposalActions, PendingProposalActions } from './actions/pendingProposalActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { DisruptionActions } from './actions/workflowDisruption';
 import { StepHistoryMap } from './stepHistory/stepHistory';
@@ -75,7 +74,7 @@ export interface TreeState {
   stepHistory?: StepHistoryMap;
   pendingProposals?: PendingProposalMap;
 
-  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & SendActions & ClipboardActions & SummaryActions & WorkflowActions & WorkflowExecutionActions & SendToWorkflowActions & PendingProposalActions;
+  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & SendActions & ClipboardActions & SummaryActions & WorkflowActions & WorkflowExecutionActions & SendToWorkflowActions;
 }
 
 const storageService = new StorageService();
@@ -241,7 +240,6 @@ export function createTreeStore(treeType: TreeType = 'workspace', deps?: TreeSto
         ...workflowActions,
         ...workflowExecutionActions,
         ...createSendToWorkflowActions(get, set, persistenceActions.autoSave, visualEffectsActions, executeCommand),
-        ...createPendingProposalActions(get, set, persistenceActions.autoSave, executeCommand),
       },
     };
   });

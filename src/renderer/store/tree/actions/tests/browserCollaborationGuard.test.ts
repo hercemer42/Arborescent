@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
-import { TreeNode } from '../../../../../shared/types';
 import type { ReviewMap } from '../../reviews';
 
 vi.mock('../../../../services/logger', () => ({
@@ -164,15 +163,17 @@ describe('browser collaboration guard across files', () => {
       );
     });
 
-    it('should clear the review on acceptFeedback', async () => {
+    it('should clear the review on finishAccept', async () => {
       mockState.reviews = { child1: { source: 'browser', terminalId: null } };
       mockState.currentFilePath = '/test.arbo';
 
-      const mockNodes: Record<string, TreeNode> = {
-        'new-root': { id: 'new-root', content: 'New', children: [], metadata: {} },
-      };
+      mockExtractFeedbackContent.mockReturnValue({
+        rootNodeId: 'new-root',
+        rootNodeIds: ['new-root'],
+        nodes: { 'new-root': { id: 'new-root', content: 'New', children: [], metadata: {} } },
+      });
 
-      actions.acceptFeedback('child1', 'new-root', mockNodes);
+      await actions.finishAccept('child1');
 
       // The action sets reviews to a map WITHOUT the reviewed node's key.
       expect(mockSet).toHaveBeenCalledWith(
@@ -181,10 +182,11 @@ describe('browser collaboration guard across files', () => {
       expect(mockState.reviews).not.toHaveProperty('child1');
     });
 
-    it('should clear all reviews on cancelCollaboration', () => {
+    it('should clear the review on finishCancel', async () => {
       mockState.reviews = { child1: { source: 'browser', terminalId: null } };
+      mockState.currentFilePath = '/test.arbo';
 
-      actions.cancelCollaboration();
+      await actions.finishCancel('child1');
 
       expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ reviews: {} }));
       expect(mockState.reviews).toEqual({});

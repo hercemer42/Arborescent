@@ -32,14 +32,10 @@ const api: ElectronAPI = {
   saveTerminalSession: (sessionData: string) =>
     ipcRenderer.invoke('save-terminal-session', sessionData),
   getTerminalSession: () => ipcRenderer.invoke('get-terminal-session'),
-  getTempDir: () => ipcRenderer.invoke('get-temp-dir'),
   createTempFile: (fileName: string, content: string) =>
     ipcRenderer.invoke('create-temp-file', fileName, content),
-  readTempFile: (filePath: string) =>
-    ipcRenderer.invoke('read-temp-file', filePath),
   deleteTempFile: (filePath: string) =>
     ipcRenderer.invoke('delete-temp-file', filePath),
-  listTempFiles: () => ipcRenderer.invoke('list-temp-files'),
   saveTempFilesMetadata: (metadata: string) =>
     ipcRenderer.invoke('save-temp-files-metadata', metadata),
   getTempFilesMetadata: () => ipcRenderer.invoke('get-temp-files-metadata'),

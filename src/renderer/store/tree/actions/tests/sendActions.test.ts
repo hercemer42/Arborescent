@@ -54,6 +54,7 @@ describe('sendActions', () => {
   let mockSet: Mock<(partial: Partial<TreeState> | ((state: TreeState) => Partial<TreeState>)) => void>;
   let actions: ReturnType<typeof createSendActions>;
   let mockExecuteCommand: Mock;
+  let mockAutoSave: Mock;
   let mockState: TreeState;
   let mockTerminalWrite: Mock;
   let mockStartClipboardMonitor: Mock;
@@ -202,60 +203,31 @@ describe('sendActions', () => {
       clearDeleteAnimation: vi.fn(),
     };
 
-    const mockAutoSave = vi.fn();
+    mockAutoSave = vi.fn();
 
     actions = createSendActions(mockGet, mockSet, mockVisualEffects, mockAutoSave, mockExecuteCommand);
   });
 
-  describe('startCollaboration', () => {
-    it('should add a review entry for the node', () => {
-      actions.startCollaboration('child1');
+  // finishAccept is the live accept path: it pulls the proposition via extractFeedbackContent and
+  // runs reconcile + AcceptFeedbackCommand. These pin the reconciliation outcome (id preservation,
+  // registry rebuild, blueprint stamping) end to end through that path.
+  describe('finishAccept feedback reconciliation', () => {
+    async function finishAcceptWith(
+      reviewedNodeId: string,
+      rootNodeId: string,
+      nodes: Record<string, TreeNode>,
+    ): Promise<void> {
+      mockState.currentFilePath = '/test/file.arbo';
+      mockExtractFeedbackContent.mockReturnValue({ rootNodeId, rootNodeIds: [rootNodeId], nodes });
+      await actions.finishAccept(reviewedNodeId);
+    }
 
-      expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({
-        reviews: expect.objectContaining({ child1: expect.objectContaining({ source: 'terminal' }) }),
-      }));
-    });
-
-    it('should not start collaboration if it overlaps a review already in progress', () => {
+    it('should replace collaborating node content while preserving ID', async () => {
       mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
 
-      actions.startCollaboration('grandchild1');
-
-      expect(mockSet).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('cancelCollaboration', () => {
-    it('should clear all reviews', () => {
-      mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
-
-      actions.cancelCollaboration();
-
-      expect(mockSet).toHaveBeenCalledWith({ reviews: {} });
-    });
-  });
-
-  describe('acceptFeedback', () => {
-    it('should replace collaborating node content while preserving ID', () => {
-      mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
-
-      const newRootNode: TreeNode = {
-        id: 'new-child1',
-        content: 'Updated Child 1',
-        children: ['new-grandchild1'],
-        metadata: { plugins: {} },
-      };
-
-      const newGrandchild: TreeNode = {
-        id: 'new-grandchild1',
-        content: 'Updated Grandchild 1',
-        children: [],
-        metadata: { plugins: {} },
-      };
-
-      actions.acceptFeedback('child1', 'new-child1', {
-        'new-child1': newRootNode,
-        'new-grandchild1': newGrandchild,
+      await finishAcceptWith('child1', 'new-child1', {
+        'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: ['new-grandchild1'], metadata: { plugins: {} } },
+        'new-grandchild1': { id: 'new-grandchild1', content: 'Updated Grandchild 1', children: [], metadata: { plugins: {} } },
       });
 
       expect(mockSet).toHaveBeenCalledWith(
@@ -276,18 +248,11 @@ describe('sendActions', () => {
       expect(setCall.nodes![grandchildId].content).toBe('Updated Grandchild 1');
     });
 
-    it('should preserve parent children since ID is retained', () => {
+    it('should preserve parent children since ID is retained', async () => {
       mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
 
-      const newRootNode: TreeNode = {
-        id: 'new-child1',
-        content: 'Updated Child 1',
-        children: [],
-        metadata: { plugins: {} },
-      };
-
-      actions.acceptFeedback('child1', 'new-child1', {
-        'new-child1': newRootNode,
+      await finishAcceptWith('child1', 'new-child1', {
+        'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: [], metadata: { plugins: {} } },
       });
 
       const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -296,26 +261,12 @@ describe('sendActions', () => {
       expect(setCall.nodes!.root.children).toContain('child2');
     });
 
-    it('should rebuild ancestor registry for new descendants', () => {
+    it('should rebuild ancestor registry for new descendants', async () => {
       mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
 
-      const newRootNode: TreeNode = {
-        id: 'new-child1',
-        content: 'Updated Child 1',
-        children: ['new-grandchild1'],
-        metadata: { plugins: {} },
-      };
-
-      const newGrandchild: TreeNode = {
-        id: 'new-grandchild1',
-        content: 'Updated Grandchild 1',
-        children: [],
-        metadata: { plugins: {} },
-      };
-
-      actions.acceptFeedback('child1', 'new-child1', {
-        'new-child1': newRootNode,
-        'new-grandchild1': newGrandchild,
+      await finishAcceptWith('child1', 'new-child1', {
+        'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: ['new-grandchild1'], metadata: { plugins: {} } },
+        'new-grandchild1': { id: 'new-grandchild1', content: 'Updated Grandchild 1', children: [], metadata: { plugins: {} } },
       });
 
       const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -327,18 +278,11 @@ describe('sendActions', () => {
       expect(setCall.ancestorRegistry!['grandchild1']).toEqual(['root', 'child1']);
     });
 
-    it('should preserve root node ID when collaborating on root', () => {
+    it('should preserve root node ID when collaborating on root', async () => {
       mockState.reviews = { root: { source: 'terminal', terminalId: null } };
 
-      const newRootNode: TreeNode = {
-        id: 'new-root',
-        content: 'New Root Content',
-        children: [],
-        metadata: { plugins: {} },
-      };
-
-      actions.acceptFeedback('root', 'new-root', {
-        'new-root': newRootNode,
+      await finishAcceptWith('root', 'new-root', {
+        'new-root': { id: 'new-root', content: 'New Root Content', children: [], metadata: { plugins: {} } },
       });
 
       const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -348,44 +292,14 @@ describe('sendActions', () => {
       expect(setCall.nodes!['root'].id).toBe('root');
     });
 
-    it('should not do anything if no collaboration in progress', () => {
-      mockState.reviews = {};
-
-      actions.acceptFeedback('nonexistent', 'new-node', {});
-
-      expect(mockSet).not.toHaveBeenCalled();
-    });
-
-    it('should not do anything if collaborating node does not exist', () => {
-      mockState.reviews = { nonexistent: { source: 'terminal', terminalId: null } };
-
-      actions.acceptFeedback('nonexistent', 'new-node', {});
-
-      expect(mockSet).not.toHaveBeenCalled();
-    });
-
     describe('blueprint mode', () => {
-      it('should mark all nodes as blueprints when blueprintModeEnabled is true', () => {
+      it('should mark all nodes as blueprints when blueprintModeEnabled is true', async () => {
         mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
         mockState.blueprintModeEnabled = true;
 
-        const newRootNode: TreeNode = {
-          id: 'new-child1',
-          content: 'Updated Child 1',
-          children: ['new-grandchild1'],
-          metadata: { plugins: {} },
-        };
-
-        const newGrandchild: TreeNode = {
-          id: 'new-grandchild1',
-          content: 'Updated Grandchild 1',
-          children: [],
-          metadata: { plugins: {} },
-        };
-
-        actions.acceptFeedback('child1', 'new-child1', {
-          'new-child1': newRootNode,
-          'new-grandchild1': newGrandchild,
+        await finishAcceptWith('child1', 'new-child1', {
+          'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: ['new-grandchild1'], metadata: { plugins: {} } },
+          'new-grandchild1': { id: 'new-grandchild1', content: 'Updated Grandchild 1', children: [], metadata: { plugins: {} } },
         });
 
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -395,21 +309,14 @@ describe('sendActions', () => {
         expect(setCall.nodes![grandchildId].metadata.isBlueprint).toBe(true);
       });
 
-      it('should inherit blueprintIcon from collaborating node when in blueprint mode', () => {
+      it('should inherit blueprintIcon from collaborating node when in blueprint mode', async () => {
         mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
         mockState.blueprintModeEnabled = true;
         mockState.nodes.child1.metadata.blueprintIcon = 'Star';
         mockState.nodes.child1.metadata.blueprintColor = '#ff0000';
 
-        const newRootNode: TreeNode = {
-          id: 'new-child1',
-          content: 'Updated Child 1',
-          children: [],
-          metadata: { plugins: {} },
-        };
-
-        actions.acceptFeedback('child1', 'new-child1', {
-          'new-child1': newRootNode,
+        await finishAcceptWith('child1', 'new-child1', {
+          'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: [], metadata: { plugins: {} } },
         });
 
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -418,21 +325,14 @@ describe('sendActions', () => {
         expect(setCall.nodes!['child1'].metadata.blueprintColor).toBe('#ff0000');
       });
 
-      it('should inherit blueprintIcon from ancestor when collaborating node has none', () => {
+      it('should inherit blueprintIcon from ancestor when collaborating node has none', async () => {
         mockState.reviews = { grandchild1: { source: 'terminal', terminalId: null } };
         mockState.blueprintModeEnabled = true;
         mockState.nodes.child1.metadata.blueprintIcon = 'Folder';
         mockState.nodes.child1.metadata.blueprintColor = '#00ff00';
 
-        const newRootNode: TreeNode = {
-          id: 'new-grandchild1',
-          content: 'Updated Grandchild 1',
-          children: [],
-          metadata: { plugins: {} },
-        };
-
-        actions.acceptFeedback('grandchild1', 'new-grandchild1', {
-          'new-grandchild1': newRootNode,
+        await finishAcceptWith('grandchild1', 'new-grandchild1', {
+          'new-grandchild1': { id: 'new-grandchild1', content: 'Updated Grandchild 1', children: [], metadata: { plugins: {} } },
         });
 
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -441,19 +341,12 @@ describe('sendActions', () => {
         expect(setCall.nodes!['grandchild1'].metadata.blueprintColor).toBe('#00ff00');
       });
 
-      it('should use default blueprint icon when no ancestor has one', () => {
+      it('should use default blueprint icon when no ancestor has one', async () => {
         mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
         mockState.blueprintModeEnabled = true;
 
-        const newRootNode: TreeNode = {
-          id: 'new-child1',
-          content: 'Updated Child 1',
-          children: [],
-          metadata: { plugins: {} },
-        };
-
-        actions.acceptFeedback('child1', 'new-child1', {
-          'new-child1': newRootNode,
+        await finishAcceptWith('child1', 'new-child1', {
+          'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: [], metadata: { plugins: {} } },
         });
 
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -461,28 +354,14 @@ describe('sendActions', () => {
         expect(setCall.nodes!['child1'].metadata.blueprintIcon).toBe('Layers2');
       });
 
-      it('should only apply blueprintIcon to root node, not descendants', () => {
+      it('should only apply blueprintIcon to root node, not descendants', async () => {
         mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
         mockState.blueprintModeEnabled = true;
         mockState.nodes.child1.metadata.blueprintIcon = 'Star';
 
-        const newRootNode: TreeNode = {
-          id: 'new-child1',
-          content: 'Updated Child 1',
-          children: ['new-grandchild1'],
-          metadata: { plugins: {} },
-        };
-
-        const newGrandchild: TreeNode = {
-          id: 'new-grandchild1',
-          content: 'Updated Grandchild 1',
-          children: [],
-          metadata: { plugins: {} },
-        };
-
-        actions.acceptFeedback('child1', 'new-child1', {
-          'new-child1': newRootNode,
-          'new-grandchild1': newGrandchild,
+        await finishAcceptWith('child1', 'new-child1', {
+          'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: ['new-grandchild1'], metadata: { plugins: {} } },
+          'new-grandchild1': { id: 'new-grandchild1', content: 'Updated Grandchild 1', children: [], metadata: { plugins: {} } },
         });
 
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -492,19 +371,12 @@ describe('sendActions', () => {
         expect(setCall.nodes![grandchildId].metadata.blueprintIcon).toBeUndefined();
       });
 
-      it('should not apply blueprint metadata when blueprintModeEnabled is false', () => {
+      it('should not apply blueprint metadata when blueprintModeEnabled is false', async () => {
         mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
         mockState.blueprintModeEnabled = false;
 
-        const newRootNode: TreeNode = {
-          id: 'new-child1',
-          content: 'Updated Child 1',
-          children: [],
-          metadata: { plugins: {} },
-        };
-
-        actions.acceptFeedback('child1', 'new-child1', {
-          'new-child1': newRootNode,
+        await finishAcceptWith('child1', 'new-child1', {
+          'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: [], metadata: { plugins: {} } },
         });
 
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -513,30 +385,16 @@ describe('sendActions', () => {
         expect(setCall.nodes!['child1'].metadata.blueprintIcon).toBeUndefined();
       });
 
-      it('should propagate isBlueprint to descendants when collaborating node is a blueprint, even without blueprintModeEnabled', () => {
+      it('should propagate isBlueprint to descendants when collaborating node is a blueprint, even without blueprintModeEnabled', async () => {
         mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
         mockState.blueprintModeEnabled = false;
         mockState.nodes.child1.metadata.isBlueprint = true;
         mockState.nodes.child1.metadata.blueprintIcon = 'BrainCog';
         mockState.nodes.child1.metadata.blueprintColor = '#14b8a6';
 
-        const newRootNode: TreeNode = {
-          id: 'new-child1',
-          content: 'Updated Child 1',
-          children: ['new-grandchild1'],
-          metadata: { plugins: {} },
-        };
-
-        const newGrandchild: TreeNode = {
-          id: 'new-grandchild1',
-          content: 'Updated Grandchild 1',
-          children: [],
-          metadata: { plugins: {} },
-        };
-
-        actions.acceptFeedback('child1', 'new-child1', {
-          'new-child1': newRootNode,
-          'new-grandchild1': newGrandchild,
+        await finishAcceptWith('child1', 'new-child1', {
+          'new-child1': { id: 'new-child1', content: 'Updated Child 1', children: ['new-grandchild1'], metadata: { plugins: {} } },
+          'new-grandchild1': { id: 'new-grandchild1', content: 'Updated Grandchild 1', children: [], metadata: { plugins: {} } },
         });
 
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
@@ -1375,19 +1233,6 @@ describe('sendActions', () => {
   });
 
   describe('collaboration persistence', () => {
-    describe('startCollaboration', () => {
-      it('should add a review entry without saving metadata', () => {
-        mockState.currentFilePath = '/test/file.arbo';
-
-        actions.startCollaboration('child1');
-
-        // Metadata is only saved when content is received via processIncomingFeedbackContent
-        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({
-          reviews: expect.objectContaining({ child1: expect.objectContaining({ source: 'terminal' }) }),
-        }));
-      });
-    });
-
     describe('finishCancel', () => {
       it('should cleanup collaboration state and metadata', async () => {
         mockState.currentFilePath = '/test/file.arbo';
@@ -1419,6 +1264,20 @@ describe('sendActions', () => {
         // Cancel changes nothing in the document, so it must not run a command (the undo stack
         // stays clean and an undo-after-cancel cannot resurrect the dismissed proposition).
         expect(mockExecuteCommand).not.toHaveBeenCalled();
+      });
+
+      it('persists the cleared state before the feedback cleanup await, so a cleanup rejection cannot strand it unsaved', async () => {
+        mockState.currentFilePath = '/test/file.arbo';
+        mockState.reviews = { child1: { source: 'terminal', terminalId: null } };
+        mockCleanupFeedbackForNode.mockImplementation(() => Promise.reject(new Error('stopClipboardMonitor failed')));
+
+        await actions.finishCancel('child1');
+
+        // autoSave must run before the (rejectable) cleanup IPC await — otherwise a cleanup failure
+        // would leave the in-memory-cleared review unpersisted and resurrect it on reload.
+        expect(mockAutoSave).toHaveBeenCalled();
+
+        mockCleanupFeedbackForNode.mockResolvedValue(undefined);
       });
     });
 
@@ -1610,21 +1469,6 @@ describe('sendActions', () => {
         await actions.processIncomingFeedbackContent('# [ ] Task', 'clipboard', 'child1');
 
         expect(window.electron.createTempFile).not.toHaveBeenCalled();
-      });
-
-      it('hydrates a restored proposition from pendingProposals without reading any feedback temp file', async () => {
-        const entryNodes = {
-          'feedback-root': { id: 'feedback-root', content: '', children: ['prop-root'], metadata: {} },
-          'prop-root': { id: 'prop-root', content: 'Child 1', children: [], metadata: {} },
-        };
-        mockState.pendingProposals = {
-          child1: { id: 'pp-legacy', capturedAt: 't', reviewedNodeId: 'child1', rootNodeId: 'feedback-root', nodes: entryNodes },
-        };
-
-        await actions.restoreCollaborationState();
-
-        expect(mockFeedbackTreeStoreInitialize).toHaveBeenCalledWith('child1', '/test/file.arbo', entryNodes, 'feedback-root');
-        expect(window.electron.readTempFile).not.toHaveBeenCalled();
       });
 
       it('captures the proposition into pendingProposals keyed by the reviewed node id on ingest', async () => {
@@ -2501,11 +2345,10 @@ describe('sendActions', () => {
     });
   });
 
-  // PR5 turns the single per-file review into per-reviewed-node concurrent reviews and adds the
-  // overlap gate. A review may not nest inside or engulf another; a browser review is exclusive.
-  // The overlap rule itself is also pinned in utils/tests/reviewOverlap.test.ts; per-node store
-  // independence is covered in feedbackTreeStore.test.
-  describe('PR5 — concurrent reviews and overlap gating', () => {
+  // Per-reviewed-node concurrent reviews with the overlap gate. A review may not nest inside or
+  // engulf another; a browser review is exclusive. The overlap rule itself is also pinned in
+  // reviews.test.ts; per-node store independence is covered in feedbackTreeStore.test.
+  describe('concurrent reviews and overlap gating', () => {
     const okParse = () => {
       mockParseFeedbackContentWithReason.mockReturnValue({
         ok: true,

@@ -296,6 +296,32 @@ describe('useNodeContextMenu', () => {
     mockConfirm.mockRestore();
   });
 
+  it('warns that a contained active review will be discarded when confirming a subtree delete', () => {
+    // test-node has an in-review child, so the delete confirmation must note the proposition loss.
+    // The returned handleDelete must use the same review-discard warning the menu builders do.
+    store.setState({
+      nodes: {
+        'test-node': { ...mockNode, children: ['child'] },
+        child: { id: 'child', content: 'Child', children: [], metadata: {} },
+      },
+      ancestorRegistry: { 'test-node': [], child: ['test-node'] },
+      reviews: { child: { source: 'terminal', terminalId: null } },
+    });
+    mockDeleteNode.mockImplementation((_id: string, confirmed?: boolean) => Boolean(confirmed));
+    const mockConfirm = vi.spyOn(window, 'confirm').mockReturnValue(false);
+
+    const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+    act(() => {
+      result.current.handleDelete();
+    });
+
+    expect(mockConfirm).toHaveBeenCalledWith(
+      expect.stringContaining('active review, which will be discarded'),
+    );
+
+    mockConfirm.mockRestore();
+  });
+
   describe('Send action', () => {
     it('should have Send as a direct menu item with mode tooltip, not a submenu', async () => {
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });

@@ -43,6 +43,20 @@ export function reviewsInSubtree(
   );
 }
 
+// A review may not nest inside, or engulf, an existing review region: a node overlaps the
+// in-review set when it is itself in review, or when any of its ancestors or descendants is.
+export function isReviewOverlap(
+  reviews: ReviewMap | undefined,
+  nodeId: string,
+  ancestorRegistry: AncestorRegistry,
+): boolean {
+  return (
+    isNodeInReview(reviews, nodeId) ||
+    isReviewDescendant(reviews, nodeId, ancestorRegistry) ||
+    reviewsInSubtree(reviews, nodeId, ancestorRegistry).length > 0
+  );
+}
+
 export function getBrowserReviewNodeId(reviews: ReviewMap | undefined): string | null {
   const entry = Object.entries(reviews ?? {}).find(([, review]) => review.source === 'browser');
   return entry ? entry[0] : null;

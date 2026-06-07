@@ -149,11 +149,8 @@ export interface ElectronAPI {
   getTerminalSession: () => Promise<string | null>;
 
   // Temp files
-  getTempDir: () => Promise<string>;
   createTempFile: (fileName: string, content: string) => Promise<string>;
-  readTempFile: (filePath: string) => Promise<string | null>;
   deleteTempFile: (filePath: string) => Promise<void>;
-  listTempFiles: () => Promise<string[]>;
   saveTempFilesMetadata: (metadata: string) => Promise<void>;
   getTempFilesMetadata: () => Promise<string | null>;
   isTempFile: (filePath: string) => Promise<boolean>;
