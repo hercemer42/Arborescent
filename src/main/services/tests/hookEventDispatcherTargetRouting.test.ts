@@ -209,7 +209,7 @@ describe('createHookEventDispatcher — register-binding interplay with markerSe
     expect(oneShot.wasMarkerSeenThisTurn('sess-1')).toBe(true);
   });
 
-  it('register-binding does NOT touch pendingTarget — binding and target are orthogonal axes', () => {
+  it('a non-workflow-transition register-binding (no source) does NOT touch pendingTarget — binding and target stay orthogonal', () => {
     oneShot.setPendingTarget('sess-1', 'existing-target');
     dispatch({
       session_id: 'sess-1',
@@ -217,6 +217,52 @@ describe('createHookEventDispatcher — register-binding interplay with markerSe
       node_uuid: 'node-a',
     });
     expect(oneShot.pendingTarget('sess-1')).toBe('existing-target');
+  });
+
+  it('a session-resume register-binding preserves pendingTarget — only an explicit workflow transition supersedes a one-shot target', () => {
+    oneShot.setPendingTarget('sess-1', 'existing-target');
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-a',
+      source: 'resume',
+    });
+    expect(oneShot.pendingTarget('sess-1')).toBe('existing-target');
+  });
+
+  it('register-binding source=workflow-start CLEARS a stale one-shot pendingTarget — an autonomous workflow send supersedes a prior manual one-shot target (regression: stale target diverted the autonomous submit to the review panel)', () => {
+    oneShot.setPendingTarget('sess-1', 'stale-manual-target');
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-a',
+      source: 'workflow-start',
+    });
+    expect(oneShot.pendingTarget('sess-1')).toBe(null);
+  });
+
+  it('register-binding source=workflow-advance CLEARS a stale one-shot pendingTarget — a workflow advance/recurse hand-off supersedes it too', () => {
+    oneShot.setPendingTarget('sess-1', 'stale-manual-target');
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-b',
+      source: 'workflow-advance',
+    });
+    expect(oneShot.pendingTarget('sess-1')).toBe(null);
+  });
+
+  it('clearing a stale pendingTarget on a workflow transition is per-session — another session keeps its one-shot target', () => {
+    oneShot.setPendingTarget('sess-1', 'sess-1-target');
+    oneShot.setPendingTarget('sess-2', 'sess-2-target');
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: 'node-a',
+      source: 'workflow-start',
+    });
+    expect(oneShot.pendingTarget('sess-1')).toBe(null);
+    expect(oneShot.pendingTarget('sess-2')).toBe('sess-2-target');
   });
 });
 

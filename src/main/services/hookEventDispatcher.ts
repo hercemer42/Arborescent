@@ -66,7 +66,18 @@ function handleRegisterBinding(payload: HookEventPayload, deps: HookEventDispatc
   if (result.kind === 'rebind-needed' && payload.source === 'workflow-advance') {
     registry.confirmRebind(payload.session_id);
   }
-  mcpServer.getOneShotTargetStore().setMarkerSeenThisTurn(payload.session_id, true);
+  const oneShot = mcpServer.getOneShotTargetStore();
+  // An autonomous workflow send (workflow-start / workflow-advance) moves this
+  // session into workflow mode, which supersedes any one-shot pendingTarget a
+  // prior manual send armed. Without this, the stale target makes resolveBinding
+  // report source='one-shot' and diverts the autonomous step's submit_step_output
+  // to the review panel instead of auto-applying. Other binding sources (e.g.
+  // session resume) keep the binding/target axes orthogonal — a one-shot target
+  // lives until the renderer resolves the manual collab.
+  if (payload.source === 'workflow-start' || payload.source === 'workflow-advance') {
+    oneShot.clearPendingTarget(payload.session_id);
+  }
+  oneShot.setMarkerSeenThisTurn(payload.session_id, true);
   logger.info(
     `register-binding ${result.kind} session=${payload.session_id} node=${payload.node_uuid} source=${payload.source ?? 'none'}`,
     'HookDispatch'
