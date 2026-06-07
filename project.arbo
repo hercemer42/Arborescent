@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-07T13:02:59.163Z'
+updated: '2026-06-07T15:04:09.115Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -80741,7 +80741,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - d60416cb-1ba3-4755-a9c0-cefc726ecff0
       - 45c6e476-2eb0-469f-81f5-9babf7519cb7
       - d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
       - b801f945-dbfa-4a78-bc1d-3cd9500c1a0d
@@ -115302,6 +115301,7 @@ nodes:
       - 05769bde-b9e1-4871-8651-79a4bc24e8be
       - e013358b-7eda-4782-b07e-631c6b922468
       - c26cccb7-37b3-4b39-841e-37da045b6285
+      - 752e1656-5886-4bc5-bd1d-02548154bc7a
     metadata:
       status: pending
       isBlueprint: true
@@ -124365,8 +124365,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 752e1656-5886-4bc5-bd1d-02548154bc7a
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -202777,26 +202776,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d60416cb-1ba3-4755-a9c0-cefc726ecff0:
-    id: d60416cb-1ba3-4755-a9c0-cefc726ecff0
-    content: Ultracode sends stop hook when background tasks are running
-    children:
-      - c061499b-fd8d-4700-a79d-fc5d8b609f47
-      - 45fe0327-6196-493f-8c67-958b4ccb42e0
-    metadata:
-      status: pending
-  c061499b-fd8d-4700-a79d-fc5d8b609f47:
-    id: c061499b-fd8d-4700-a79d-fc5d8b609f47
-    content: Which means that Arborescent will move onto the next workflow step even when it shouldn't
-    children: []
-    metadata:
-      status: pending
-  45fe0327-6196-493f-8c67-958b4ccb42e0:
-    id: 45fe0327-6196-493f-8c67-958b4ccb42e0
-    content: Need a means to detect these cases and except them
-    children: []
-    metadata:
-      status: pending
   e42f127b-6669-4bcc-93f8-78d79743ec0a:
     id: e42f127b-6669-4bcc-93f8-78d79743ec0a
     content: worktree
@@ -203767,41 +203746,42 @@ nodes:
     id: 752e1656-5886-4bc5-bd1d-02548154bc7a
     content: Inline-review coherence
     children:
-      - df6922f0-7771-448a-aa3e-b16f297c766e
-      - 5a82cefc-e828-47bf-abad-c0578b630d76
-      - 6a696c93-955d-4354-b17d-80ed3236d796
-      - 2800c650-fa26-490a-9400-c17392e77d16
-      - e34ba041-1f43-4ab9-90bf-5adb438bf8d1
-      - 9d9f6a2e-9e2a-4856-84ce-d7417ac107d5
-      - 04549752-49d1-4b04-9981-c375e5634d70
-      - d918f099-a4ce-4481-a268-24f9e30949cd
-      - 9f3e24c3-8c50-449f-a822-bffa63d371e3
-      - 87aee6c6-185c-42de-8409-4ac96a03c071
-      - 45081d9c-bdd9-45b2-b520-e7d08d9e786d
-      - 6f4e21cb-d4cd-48a8-ae4c-3223602f898f
-      - 514b898a-cd9e-4220-8a33-147ff1de7453
-      - 3d61213c-20fc-4f81-954b-883c91e25e5f
-      - 554118ba-0d9a-49fc-b12d-f20435ba9ef5
+      - 2eb448e5-9482-4fed-8db9-2611bc896584
+      - 2e696ede-f602-4ea5-a19c-cd355acfeeb3
+      - 9694fd01-e33d-4ab1-a599-ae104c9996e0
+      - eb7ea92b-8928-419f-996d-b5c0f53c249b
+      - 148d3824-4f40-4cda-bccb-19c4308a7ee4
+      - 14bf5784-a8cf-4a41-a54d-e8a4b54371d2
+      - f171ddd4-a5b5-4a86-bcd0-cfb879bb330b
+      - 768f26b5-9f88-43ef-b312-acc3595bdde2
+      - e2e43172-5f4c-4370-b4b2-adb03da9f581
+      - 5f1c6e40-00b9-43f0-a3e7-ee335d036d16
+      - d7795600-7bc6-484b-a013-fdfe33471b31
+      - 46d349d6-4c9b-47d3-93c1-def78c6fac6e
+      - afb49614-4eb0-4e60-baa4-a0382623fa1c
+      - e245003b-4621-4d85-98f5-779472328712
+      - 39f34eaa-8fe0-4bb5-8e05-3e90527e026b
+      - 5e98795a-6e3c-43a3-b42d-24f7c64c8c00
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
       sessionId: a3ac2ca0-274c-45f1-a222-6592c146d6f1
-  df6922f0-7771-448a-aa3e-b16f297c766e:
-    id: df6922f0-7771-448a-aa3e-b16f297c766e
+  2eb448e5-9482-4fed-8db9-2611bc896584:
+    id: 2eb448e5-9482-4fed-8db9-2611bc896584
     content: Context
     children:
-      - 14727ad1-225e-4d88-ac90-5d274d6b834b
-      - 18c52baa-275c-4808-b25e-8b3105958b19
-      - 8cda3d26-324e-481e-9ac5-9fa2db26b509
+      - 875459b4-8d8c-4dfd-8522-d3926cebb166
+      - 9e055c98-123c-4fd1-8d09-2b31624d3540
+      - 180cac73-bdcf-4178-95e2-65a4a3c927e6
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  14727ad1-225e-4d88-ac90-5d274d6b834b:
-    id: 14727ad1-225e-4d88-ac90-5d274d6b834b
+  875459b4-8d8c-4dfd-8522-d3926cebb166:
+    id: 875459b4-8d8c-4dfd-8522-d3926cebb166
     content: A holistic architecture-coherence review of the merged inline-review feature (PR2 inline render, PR3 panel retirement, PR4 pendingProposals persistence, PR5 concurrency/overlap) found cross-PR debt the per-PR reviews could not see; every finding is non-functional (no correctness bug, no user-facing defect). This PR pays it down without changing behavior.
     children: []
     metadata:
@@ -203809,8 +203789,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  18c52baa-275c-4808-b25e-8b3105958b19:
-    id: 18c52baa-275c-4808-b25e-8b3105958b19
+  9e055c98-123c-4fd1-8d09-2b31624d3540:
+    id: 9e055c98-123c-4fd1-8d09-2b31624d3540
     content: 'The one real hazard: two dead code paths — pendingProposalActions.promotePendingProposal and sendActions.acceptFeedback — are stale, lower-fidelity duplicates of the live finishAccept (they skip archive, multi-root, and teardown handling) and would mislead a future maintainer into wiring the wrong accept path.'
     children: []
     metadata:
@@ -203818,8 +203798,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8cda3d26-324e-481e-9ac5-9fa2db26b509:
-    id: 8cda3d26-324e-481e-9ac5-9fa2db26b509
+  180cac73-bdcf-4178-95e2-65a4a3c927e6:
+    id: 180cac73-bdcf-4178-95e2-65a4a3c927e6
     content: 'This is a refactor/cleanup PR: it removes dead code and duplication and unifies one split predicate. It adds no user-facing behavior and changes no .arbo format.'
     children: []
     metadata:
@@ -203827,147 +203807,147 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5a82cefc-e828-47bf-abad-c0578b630d76:
-    id: 5a82cefc-e828-47bf-abad-c0578b630d76
+  2e696ede-f602-4ea5-a19c-cd355acfeeb3:
+    id: 2e696ede-f602-4ea5-a19c-cd355acfeeb3
     content: Scope
     children:
-      - 53172ab4-47aa-4a8b-819a-60e537e0d826
-      - 2d1f3554-ae70-449c-a25b-f6f51e249120
-      - 5966e2b2-fc9f-4529-bafd-1b1db9fec408
-      - aba89c43-ad36-4469-b6a9-2d36188d43c3
-      - 89f45027-5cb1-424c-85b5-73a2fdb1eeaa
-      - c09bac25-9fcf-40bc-bb29-ba699146ea57
-      - 971f91ff-ee6f-4ff1-ad38-a9117e0ffa7b
-      - 76ce7243-c578-4904-a551-16f8c8852dd4
+      - ed69eff7-c091-4e89-9061-d238713ebccc
+      - 8d533398-3cab-4284-bc1d-db21805d8f6b
+      - ad5fe07f-3334-45fa-aff0-81417c9d10de
+      - 2c4bd5b8-e60e-421b-b206-05bd380e8d6f
+      - 8ef71a1a-30da-4c00-9113-b7857089c93a
+      - fbfcd018-855d-40de-8e1e-f55a529ba39d
+      - 7ee5c04a-20da-45df-955a-c1626d55e03c
+      - b675d39a-7ecc-491a-bff3-cb81ae0e5f92
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  53172ab4-47aa-4a8b-819a-60e537e0d826:
-    id: 53172ab4-47aa-4a8b-819a-60e537e0d826
-    content: Delete the dead pendingProposalActions store-action module (openPendingProposal / dropPendingProposal / promotePendingProposal) plus its test pendingProposalStoreActions.test.ts and its three treeStore wiring lines (import, the &PendingProposalActions type-union member, the spread); it has zero production callers and was superseded by PR4's inline capture/drop and finishAccept. Keep the pure pendingProposals.ts helpers — they are live (sendActions, nodeDeletionActions, persistence).
+  ed69eff7-c091-4e89-9061-d238713ebccc:
+    id: ed69eff7-c091-4e89-9061-d238713ebccc
+    content: Delete the dead pendingProposalActions store-action module (openPendingProposal / dropPendingProposal / promotePendingProposal) plus its test pendingProposalStoreActions.test.ts and its three treeStore wiring lines; superseded by PR4's inline capture/drop and finishAccept. Keep the pure pendingProposals.ts helpers (live).
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2d1f3554-ae70-449c-a25b-f6f51e249120:
-    id: 2d1f3554-ae70-449c-a25b-f6f51e249120
-    content: Delete the three unused SendActions methods startCollaboration / cancelCollaboration / acceptFeedback and their interface declarations; re-point or prune their ~32 test references (sendActions.test.ts, sendActionsManualCollabResolve.test.ts, browserCollaborationGuard.test.ts) onto the live finishAccept / finishCancel, preserving any browser-guard assertions worth keeping on the real path. The live UI uses finishAccept / finishCancel via useFeedbackActions.
+  8d533398-3cab-4284-bc1d-db21805d8f6b:
+    id: 8d533398-3cab-4284-bc1d-db21805d8f6b
+    content: Delete the three unused SendActions methods startCollaboration / cancelCollaboration / acceptFeedback and their interface declarations; re-point or prune their ~32 test references onto the live finishAccept / finishCancel.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  5966e2b2-fc9f-4529-bafd-1b1db9fec408:
-    id: 5966e2b2-fc9f-4529-bafd-1b1db9fec408
-    content: Narrow ContentSource to 'clipboard' | 'mcp-proposal' by removing the dead 'file' variant (temp-file-watch residue, no producers); keep the source parameter itself (it carries diagnostic weight in the log lines).
+  ad5fe07f-3334-45fa-aff0-81417c9d10de:
+    id: ad5fe07f-3334-45fa-aff0-81417c9d10de
+    content: Narrow ContentSource to 'clipboard' | 'mcp-proposal' by removing the dead 'file' variant; keep the source parameter.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  aba89c43-ad36-4469-b6a9-2d36188d43c3:
-    id: aba89c43-ad36-4469-b6a9-2d36188d43c3
-    content: Remove the three orphaned feedback temp-file IPC channels get-temp-dir / read-temp-file / list-temp-files across the main handler, preload bindings, electronApi types, and their mocks/assertions (test setup, ipcService.test, the sendActions tombstone test). Leave the live untitled-workspace temp APIs (createTempFile / deleteTempFile / isTempFile / saveTempFilesMetadata / getTempFilesMetadata) untouched.
+  2c4bd5b8-e60e-421b-b206-05bd380e8d6f:
+    id: 2c4bd5b8-e60e-421b-b206-05bd380e8d6f
+    content: Remove the three orphaned feedback temp-file IPC channels get-temp-dir / read-temp-file / list-temp-files across main/preload/types/mocks. Leave the live untitled-workspace temp APIs untouched.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  89f45027-5cb1-424c-85b5-73a2fdb1eeaa:
-    id: 89f45027-5cb1-424c-85b5-73a2fdb1eeaa
-    content: 'Consolidate the review-overlap predicate: move isReviewOverlap into reviews.ts expressed on the canonical ReviewMap (the composition of isNodeInReview + isReviewDescendant + the descendant-in-subtree check), delete utils/reviewOverlap.ts and fold its cases into reviews.test.ts, and drop the getInReviewNodeIds(...) array adapter at the two call sites (sendActions, mcpProposalReceiverService).'
+  8ef71a1a-30da-4c00-9113-b7857089c93a:
+    id: 8ef71a1a-30da-4c00-9113-b7857089c93a
+    content: 'Consolidate the review-overlap predicate: move isReviewOverlap into reviews.ts on the canonical ReviewMap, delete utils/reviewOverlap.ts, and drop the getInReviewNodeIds(...) adapter at the two call sites.'
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c09bac25-9fcf-40bc-bb29-ba699146ea57:
-    id: c09bac25-9fcf-40bc-bb29-ba699146ea57
-    content: Extract a single tearDownReview(reviewedNodeId) helper in createSendActions for the notify + stopWatchingPropositionEdits + dropPendingProposalEntry + removeReviewEntry + cleanupFeedbackForNode sequence repeated across finishCancel, finishAccept (the archive-abort and happy paths), and cancelCollaboration; keep autoSave at the call sites where its timing legitimately differs.
+  fbfcd018-855d-40de-8e1e-f55a529ba39d:
+    id: fbfcd018-855d-40de-8e1e-f55a529ba39d
+    content: Extract a single tearDownReview helper in createSendActions for the notify + stopWatchingPropositionEdits + dropPendingProposalEntry + removeReviewEntry + cleanupFeedbackForNode sequence; persist ordering handled via a param.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  971f91ff-ee6f-4ff1-ad38-a9117e0ffa7b:
-    id: 971f91ff-ee6f-4ff1-ad38-a9117e0ffa7b
-    content: Dedup the copy-pasted handleDelete review-discard-warning in useNodeContextMenu (byte-identical across two menu builders) into one shared handler, and fix the third, test-only copy that currently lacks the warning so the tests exercise the live delete path.
+  7ee5c04a-20da-45df-955a-c1626d55e03c:
+    id: 7ee5c04a-20da-45df-955a-c1626d55e03c
+    content: Dedup the copy-pasted handleDelete review-discard-warning in useNodeContextMenu into one shared handler, and fix the third, test-only copy that lacked the warning.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  76ce7243-c578-4904-a551-16f8c8852dd4:
-    id: 76ce7243-c578-4904-a551-16f8c8852dd4
-    content: 'Cosmetic tidy: extract a basename() util for the two split(''/'').pop() sites (sendActions, useFeedbackClipboard), and retype createSendActions'' getAllStores parameter from the hand-rolled structural literal to () => TreeStore[] to match the canonical type used everywhere else.'
+  b675d39a-7ecc-491a-bff3-cb81ae0e5f92:
+    id: b675d39a-7ecc-491a-bff3-cb81ae0e5f92
+    content: 'Cosmetic tidy: extract a basename() util for the two split(''/'').pop() sites, and retype createSendActions'' getAllStores parameter to () => TreeStore[].'
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6a696c93-955d-4354-b17d-80ed3236d796:
-    id: 6a696c93-955d-4354-b17d-80ed3236d796
+  9694fd01-e33d-4ab1-a599-ae104c9996e0:
+    id: 9694fd01-e33d-4ab1-a599-ae104c9996e0
     content: Out of scope
     children:
-      - a9356cba-58ca-4c6d-bb48-f3e3cafe1517
-      - fe3c55a9-eeed-48cd-820b-b0c010f71144
-      - 71d0aa63-2a9a-4c41-b290-7cb33fdb5b06
-      - b5024395-d0fd-445c-a7c5-dba3d9b81e20
-      - 4d949178-6c1f-4f3d-85b5-0a44945acfbc
+      - e76b88dd-1ff1-4a99-ab52-a84df4647f2a
+      - e3b6a819-8090-42e5-96e8-a536def65edc
+      - 7b2f9d79-e666-4157-b970-232169bbf70e
+      - 190f1178-5a11-4ea5-820f-8743c785934a
+      - b5520cbf-b513-4fd1-adca-91763307e45c
     metadata:
       status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  a9356cba-58ca-4c6d-bb48-f3e3cafe1517:
-    id: a9356cba-58ca-4c6d-bb48-f3e3cafe1517
-    content: 'The feedback → review/proposition rename: it spans ~36 files plus persisted .arbo metadata keys (feedbackBaselineKind, feedbackPriorContent) and would need a format migration; treat as intended legacy naming the new layer sits on.'
+  e76b88dd-1ff1-4a99-ab52-a84df4647f2a:
+    id: e76b88dd-1ff1-4a99-ab52-a84df4647f2a
+    content: 'The feedback → review/proposition rename: ~36 files + persisted .arbo metadata keys; would need a format migration; intended legacy naming.'
     children: []
     metadata:
       status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  fe3c55a9-eeed-48cd-820b-b0c010f71144:
-    id: fe3c55a9-eeed-48cd-820b-b0c010f71144
-    content: 'Merging the two browser-exclusivity guards: collaborate()''s inline pre-check emits a richer file-named toast that is contractually tested, so it is not pure dead duplication; do not drop it without first teaching reviewStartBlocked to emit the filename — left for a later pass.'
+  e3b6a819-8090-42e5-96e8-a536def65edc:
+    id: e3b6a819-8090-42e5-96e8-a536def65edc
+    content: 'Merging the two browser-exclusivity guards: collaborate()''s inline pre-check emits a contractually-tested file-named toast; left for a later pass.'
     children: []
     metadata:
       status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  71d0aa63-2a9a-4c41-b290-7cb33fdb5b06:
-    id: 71d0aa63-2a9a-4c41-b290-7cb33fdb5b06
-    content: 'Collapsing isReviewDescendant / reviewsInSubtree: they are three distinct directional predicates with distinct callers (ancestor-direction for TreeNode highlighting, descendant-direction for delete warnings), not duplicates.'
+  7b2f9d79-e666-4157-b970-232169bbf70e:
+    id: 7b2f9d79-e666-4157-b970-232169bbf70e
+    content: 'Collapsing isReviewDescendant / reviewsInSubtree: three distinct directional predicates with distinct callers, not duplicates.'
     children: []
     metadata:
       status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  b5024395-d0fd-445c-a7c5-dba3d9b81e20:
-    id: b5024395-d0fd-445c-a7c5-dba3d9b81e20
-    content: 'A ReviewEntry discriminated union on source: the illegal source/terminalId combinations are never produced (addReviewEntry is the sole constructor), so this is low-value and deferred.'
+  190f1178-5a11-4ea5-820f-8743c785934a:
+    id: 190f1178-5a11-4ea5-820f-8743c785934a
+    content: 'A ReviewEntry discriminated union on source: the illegal combinations are never produced; low-value, deferred.'
     children: []
     metadata:
       status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  4d949178-6c1f-4f3d-85b5-0a44945acfbc:
-    id: 4d949178-6c1f-4f3d-85b5-0a44945acfbc
+  b5520cbf-b513-4fd1-adca-91763307e45c:
+    id: b5520cbf-b513-4fd1-adca-91763307e45c
     content: Any change to runtime behavior, the review state model's design, or the .arbo file format.
     children: []
     metadata:
@@ -203975,71 +203955,71 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2800c650-fa26-490a-9400-c17392e77d16:
-    id: 2800c650-fa26-490a-9400-c17392e77d16
+  eb7ea92b-8928-419f-996d-b5c0f53c249b:
+    id: eb7ea92b-8928-419f-996d-b5c0f53c249b
     content: Constraints
     children:
-      - 14c8d78e-b4c6-4b1d-9f01-212a090d8b91
-      - 06fe9528-802e-45c1-aec8-58bc5ade079d
-      - b1ca96f6-cc35-498d-b76f-d1ed2610ba05
+      - b9279067-d0b9-4ef2-a90b-8de4006832ee
+      - 4120626f-bafd-4050-8c7b-5e7e2c98e416
+      - da6d9b2c-83df-43b5-b2ba-ce3268637e79
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  14c8d78e-b4c6-4b1d-9f01-212a090d8b91:
-    id: 14c8d78e-b4c6-4b1d-9f01-212a090d8b91
-    content: Behavior-preserving only — no user-facing change, no .arbo format change, no new feature behavior; existing send/review/accept/cancel/delete tests keep their expectations and only their internals are refactored.
+  b9279067-d0b9-4ef2-a90b-8de4006832ee:
+    id: b9279067-d0b9-4ef2-a90b-8de4006832ee
+    content: Behavior-preserving only — no user-facing change, no .arbo format change, no new feature behavior.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  06fe9528-802e-45c1-aec8-58bc5ade079d:
-    id: 06fe9528-802e-45c1-aec8-58bc5ade079d
-    content: 'Keep the live primitives untouched: the pendingProposals.ts pure helpers, reconcileFeedback, and captureRemappedSubtree are well-factored and load-bearing.'
+  4120626f-bafd-4050-8c7b-5e7e2c98e416:
+    id: 4120626f-bafd-4050-8c7b-5e7e2c98e416
+    content: 'Keep the live primitives untouched: pendingProposals.ts pure helpers, reconcileFeedback, captureRemappedSubtree.'
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b1ca96f6-cc35-498d-b76f-d1ed2610ba05:
-    id: b1ca96f6-cc35-498d-b76f-d1ed2610ba05
-    content: Every deletion must be confirmed zero-production-caller by grep before removal (not blind), and removing dead tests must lose no unique coverage of a live path (the live paths are covered elsewhere).
+  da6d9b2c-83df-43b5-b2ba-ce3268637e79:
+    id: da6d9b2c-83df-43b5-b2ba-ce3268637e79
+    content: Every deletion confirmed zero-production-caller by grep before removal; removing dead tests lost no unique live-path coverage.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e34ba041-1f43-4ab9-90bf-5adb438bf8d1:
-    id: e34ba041-1f43-4ab9-90bf-5adb438bf8d1
+  148d3824-4f40-4cda-bccb-19c4308a7ee4:
+    id: 148d3824-4f40-4cda-bccb-19c4308a7ee4
     content: Independently testable
     children:
-      - c9bb2b72-ac9f-4b23-81bf-f24def76e944
-      - a9883558-df11-4c51-be30-a3205af11c0f
-      - 09ba977e-c95b-447b-9068-ed9fceed5f80
-      - 358c8e9e-022e-43ab-8578-f6aa4c9c2b54
-      - 2122f913-54af-41ba-bb63-8e6f27272ea6
-      - 29762b27-68d7-455a-a133-d40aee6333c7
+      - 7579fa90-4539-4dca-8d61-bbae9c75c3cd
+      - 80958b31-623d-406f-843d-44b49e6ba1d1
+      - 5f46504d-df9c-4507-8a37-7e4687d82202
+      - 3af75a59-5148-4b1b-91e8-bb2830fd5416
+      - 774ee153-a347-465f-8669-3ebc0b887170
+      - 273a569e-4618-41bd-a346-ddd91c5d1a45
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c9bb2b72-ac9f-4b23-81bf-f24def76e944:
-    id: c9bb2b72-ac9f-4b23-81bf-f24def76e944
-    content: The full suite passes with the dead modules, methods, and tests removed, and no production caller of any removed symbol remains (grep is empty).
+  7579fa90-4539-4dca-8d61-bbae9c75c3cd:
+    id: 7579fa90-4539-4dca-8d61-bbae9c75c3cd
+    content: The full suite passes with the dead modules/methods/tests removed, and no production caller of any removed symbol remains.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a9883558-df11-4c51-be30-a3205af11c0f:
-    id: a9883558-df11-4c51-be30-a3205af11c0f
+  80958b31-623d-406f-843d-44b49e6ba1d1:
+    id: 80958b31-623d-406f-843d-44b49e6ba1d1
     content: type-check and lint are clean on the changed files.
     children: []
     metadata:
@@ -204047,212 +204027,212 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  09ba977e-c95b-447b-9068-ed9fceed5f80:
-    id: 09ba977e-c95b-447b-9068-ed9fceed5f80
-    content: isReviewOverlap's behaviour is unchanged after moving to the ReviewMap shape — the self / ancestor-in-review / descendant-in-review / unrelated / multi-review cases still hold (cases folded into reviews.test.ts).
+  5f46504d-df9c-4507-8a37-7e4687d82202:
+    id: 5f46504d-df9c-4507-8a37-7e4687d82202
+    content: isReviewOverlap's behaviour is unchanged after moving to the ReviewMap shape (cases folded into reviews.test.ts).
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  358c8e9e-022e-43ab-8578-f6aa4c9c2b54:
-    id: 358c8e9e-022e-43ab-8578-f6aa4c9c2b54
-    content: The tearDownReview helper reproduces the same per-path effects the existing dedicated tests pin for finishCancel, finishAccept, and cancelCollaboration (notify fan-out, watcher stop, pending-proposal drop, review removal, feedback-store cleanup).
+  3af75a59-5148-4b1b-91e8-bb2830fd5416:
+    id: 3af75a59-5148-4b1b-91e8-bb2830fd5416
+    content: The tearDownReview helper reproduces the same per-path effects the existing dedicated tests pin for finishCancel and finishAccept.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2122f913-54af-41ba-bb63-8e6f27272ea6:
-    id: 2122f913-54af-41ba-bb63-8e6f27272ea6
-    content: The shared delete handler is exercised by the test that previously covered the warning-less third copy, so the test now asserts the live warning path.
+  774ee153-a347-465f-8669-3ebc0b887170:
+    id: 774ee153-a347-465f-8669-3ebc0b887170
+    content: The shared delete handler is exercised by the test that previously covered the warning-less third copy.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  29762b27-68d7-455a-a133-d40aee6333c7:
-    id: 29762b27-68d7-455a-a133-d40aee6333c7
-    content: 'No behavioural diff overall: the accept/cancel/overlap/delete/persistence/restore acceptance tests from PR2–PR5 still pass unmodified in their expectations.'
+  273a569e-4618-41bd-a346-ddd91c5d1a45:
+    id: 273a569e-4618-41bd-a346-ddd91c5d1a45
+    content: 'No behavioural diff overall: the PR2–PR5 acceptance tests still pass unmodified.'
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  9d9f6a2e-9e2a-4856-84ce-d7417ac107d5:
-    id: 9d9f6a2e-9e2a-4856-84ce-d7417ac107d5
+  14bf5784-a8cf-4a41-a54d-e8a4b54371d2:
+    id: 14bf5784-a8cf-4a41-a54d-e8a4b54371d2
     content: Touchpoints
     children:
-      - f01e64ff-707f-4039-bebe-215f589d0dfa
-      - 84df141f-c2fc-472c-b958-03cff5ed4da6
-      - dd312952-ff6b-450c-aa0e-bb0e9a844171
-      - 2f9fc713-86ab-4ad5-a652-ec44a689e0d2
-      - 6d3e1a5b-6f48-4b78-93bd-559c73f74a8f
+      - 38732cb8-53a2-4025-868c-7e6ab296cf7f
+      - f8144fc5-79d2-4291-bc36-d064fa4eadf7
+      - 26ba0d2c-ab3f-431b-bea6-8b9ffd12ac2f
+      - 884a4a29-6284-4544-9f98-80f3b5976646
+      - 4c51e954-0dc9-4a5b-90df-e8a17c2a5260
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f01e64ff-707f-4039-bebe-215f589d0dfa:
-    id: f01e64ff-707f-4039-bebe-215f589d0dfa
-    content: src/renderer/store/tree/actions/pendingProposalActions.ts (delete) + actions/tests/pendingProposalStoreActions.test.ts (delete) + treeStore.ts lines 19, 78, 244 (import, type-union member, spread)
+  38732cb8-53a2-4025-868c-7e6ab296cf7f:
+    id: 38732cb8-53a2-4025-868c-7e6ab296cf7f
+    content: pendingProposalActions.ts (delete) + its test (delete) + treeStore.ts wiring
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  84df141f-c2fc-472c-b958-03cff5ed4da6:
-    id: 84df141f-c2fc-472c-b958-03cff5ed4da6
-    content: src/renderer/store/tree/actions/sendActions.ts — interface 381-383 + impls 617-655 (dead methods); line 68 (ContentSource); line 425 (getAllStores type); line 483 + mcpProposalReceiverService.ts:66 (overlap array adapter); teardown sequences ~626-630 / ~877-884 / ~925-929 / ~948-951; line ~676 (basename)
+  f8144fc5-79d2-4291-bc36-d064fa4eadf7:
+    id: f8144fc5-79d2-4291-bc36-d064fa4eadf7
+    content: sendActions.ts — dead methods, ContentSource, getAllStores type, overlap adapter, tearDownReview, basename; mcpProposalReceiverService.ts overlap call
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  dd312952-ff6b-450c-aa0e-bb0e9a844171:
-    id: dd312952-ff6b-450c-aa0e-bb0e9a844171
-    content: src/renderer/utils/reviewOverlap.ts (+ utils/tests/reviewOverlap.test.ts) → folded into src/renderer/store/tree/reviews.ts (+ tree/tests/reviews.test.ts)
+  26ba0d2c-ab3f-431b-bea6-8b9ffd12ac2f:
+    id: 26ba0d2c-ab3f-431b-bea6-8b9ffd12ac2f
+    content: utils/reviewOverlap.ts (+ test) → folded into reviews.ts (+ reviews.test.ts)
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2f9fc713-86ab-4ad5-a652-ec44a689e0d2:
-    id: 2f9fc713-86ab-4ad5-a652-ec44a689e0d2
-    content: src/main/handlers/tempFileHandlers.ts:12,49,61; src/preload/index.ts:35,38,42; src/shared/types/electronApi.ts:152,154,156; src/renderer/test/setup.ts; src/main/services/tests/ipcService.test.ts:88,91; sendActions.test.ts:1627 (tombstone)
+  884a4a29-6284-4544-9f98-80f3b5976646:
+    id: 884a4a29-6284-4544-9f98-80f3b5976646
+    content: tempFileHandlers.ts / preload/index.ts / electronApi.ts / test setup / ipcService.test.ts / sendActions.test tombstone
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6d3e1a5b-6f48-4b78-93bd-559c73f74a8f:
-    id: 6d3e1a5b-6f48-4b78-93bd-559c73f74a8f
-    content: src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts:109-124, 388-403, 441-452 (duplicated/divergent handleDelete); src/renderer/components/Feedback/hooks/useFeedbackClipboard.ts:20-21 (basename)
+  4c51e954-0dc9-4a5b-90df-e8a17c2a5260:
+    id: 4c51e954-0dc9-4a5b-90df-e8a17c2a5260
+    content: useNodeContextMenu.ts handleDelete dedup; useFeedbackClipboard.ts basename
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  04549752-49d1-4b04-9981-c375e5634d70:
-    id: 04549752-49d1-4b04-9981-c375e5634d70
+  f171ddd4-a5b5-4a86-bcd0-cfb879bb330b:
+    id: f171ddd4-a5b5-4a86-bcd0-cfb879bb330b
     content: Technical refinement
     children:
-      - 9e43d88f-8e27-4cf0-ab35-a5801a3739f4
-      - f8a6068e-d7cf-4f1e-bfef-702ff4dfe039
+      - e1794231-1796-40df-a226-e21ee2207430
+      - 64a2a891-7652-4b9d-9473-de17e695bb92
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  9e43d88f-8e27-4cf0-ab35-a5801a3739f4:
-    id: 9e43d88f-8e27-4cf0-ab35-a5801a3739f4
+  e1794231-1796-40df-a226-e21ee2207430:
+    id: e1794231-1796-40df-a226-e21ee2207430
     content: Complications and risks
     children:
-      - 053ab380-9859-41ba-af0b-4fa8788a33db
-      - 20ea9ec8-d32d-499b-97cc-4d73c60d1e05
-      - b8f43aea-b2ae-4833-b749-c173236dbe27
-      - 42cc012b-831f-4bbd-83b6-aa4e892534ec
+      - ea0397e8-a4be-451b-97ee-e92375ac3717
+      - fea74228-4e1b-4865-82f4-0e5024c8f170
+      - b7048877-ef37-4cdf-95dc-1996aba90d9f
+      - 6b6056ee-8c26-4a2d-a385-b938856ec7af
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  053ab380-9859-41ba-af0b-4fa8788a33db:
-    id: 053ab380-9859-41ba-af0b-4fa8788a33db
-    content: 'Deleting the three dead SendActions methods touches ~32 test references across three just-merged files — this is test-triage, not blind deletion: re-point browser-guard assertions onto the live collaborate / reviewStartBlocked path rather than dropping coverage.'
+  ea0397e8-a4be-451b-97ee-e92375ac3717:
+    id: ea0397e8-a4be-451b-97ee-e92375ac3717
+    content: Dead-SendActions-method deletion was test-triage across ~32 refs, re-pointing onto the live path rather than dropping coverage.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  20ea9ec8-d32d-499b-97cc-4d73c60d1e05:
-    id: 20ea9ec8-d32d-499b-97cc-4d73c60d1e05
-    content: Deleting pendingProposalActions assumes the inline path is canonical and that no future proposition UI is planned against those store actions; if such a UI is intended, drop that scope item (the inline finishAccept path would be the one to wire regardless).
+  fea74228-4e1b-4865-82f4-0e5024c8f170:
+    id: fea74228-4e1b-4865-82f4-0e5024c8f170
+    content: pendingProposalActions deletion assumes the inline path is canonical (confirmed; no forward-UI plan).
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b8f43aea-b2ae-4833-b749-c173236dbe27:
-    id: b8f43aea-b2ae-4833-b749-c173236dbe27
-    content: The isReviewOverlap consolidation must be behaviour-identical — the composed form equals the current array version (the reviewsInSubtree self-branch is already subsumed by the self term); the 7 overlap cases are the guard against drift.
+  b7048877-ef37-4cdf-95dc-1996aba90d9f:
+    id: b7048877-ef37-4cdf-95dc-1996aba90d9f
+    content: isReviewOverlap consolidation behaviour-identical — guarded by the 7 overlap cases.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  42cc012b-831f-4bbd-83b6-aa4e892534ec:
-    id: 42cc012b-831f-4bbd-83b6-aa4e892534ec
-    content: 'ROI is modest by design: non-functional cleanup on green code. Payoff is closing the duplicate-accept trap and shrinking the surface; risk is low because there are no behaviour changes, only deletions/extractions verified by the existing PR2–PR5 suite.'
+  6b6056ee-8c26-4a2d-a385-b938856ec7af:
+    id: 6b6056ee-8c26-4a2d-a385-b938856ec7af
+    content: 'ROI modest by design: non-functional cleanup on green code; risk low.'
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f8a6068e-d7cf-4f1e-bfef-702ff4dfe039:
-    id: f8a6068e-d7cf-4f1e-bfef-702ff4dfe039
+  64a2a891-7652-4b9d-9473-de17e695bb92:
+    id: 64a2a891-7652-4b9d-9473-de17e695bb92
     content: Approach
     children:
-      - 7eafbbc6-157c-4c8b-ae3e-ca0f988cdb16
-      - f808467a-6b8e-4178-b642-ba7b2ba2be44
-      - fd285725-5be3-40fc-a76c-a2159a073302
+      - ff8aa570-8d3b-44ba-9d4b-d995e6545aee
+      - 83735fac-24fa-4415-83d5-c392694ebaea
+      - 2ab4f791-0f0a-4a2b-a223-32ac69777fb5
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7eafbbc6-157c-4c8b-ae3e-ca0f988cdb16:
-    id: 7eafbbc6-157c-4c8b-ae3e-ca0f988cdb16
-    content: Pure deletions + one predicate move + two small extractions, no runtime behaviour change. Changes land mostly in store/tree (pendingProposalActions removal, reviews.ts overlap consolidation, sendActions dead-method removal + tearDownReview helper + ContentSource + getAllStores type), plus the main/preload/shared temp-file IPC and the useNodeContextMenu delete-handler dedup.
+  ff8aa570-8d3b-44ba-9d4b-d995e6545aee:
+    id: ff8aa570-8d3b-44ba-9d4b-d995e6545aee
+    content: Pure deletions + one predicate move + two small extractions, no runtime behaviour change.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f808467a-6b8e-4178-b642-ba7b2ba2be44:
-    id: f808467a-6b8e-4178-b642-ba7b2ba2be44
-    content: 'Non-obvious for the reviewer: two of the deletions (pendingProposalActions.promotePendingProposal, sendActions.acceptFeedback) are stale, lower-fidelity duplicates of the live finishAccept — removing them is the goal, and the live accept path (finishAccept via useFeedbackActions) is untouched.'
+  83735fac-24fa-4415-83d5-c392694ebaea:
+    id: 83735fac-24fa-4415-83d5-c392694ebaea
+    content: The two duplicate-accept dead paths are the point of the deletions; the live finishAccept path is untouched.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  fd285725-5be3-40fc-a76c-a2159a073302:
-    id: fd285725-5be3-40fc-a76c-a2159a073302
-    content: 'Sequencing: delete the dead SendActions methods (including cancelCollaboration) before extracting tearDownReview, so the helper is factored from the three live call sites only; grep-confirm zero callers before each removal.'
+  2ab4f791-0f0a-4a2b-a223-32ac69777fb5:
+    id: 2ab4f791-0f0a-4a2b-a223-32ac69777fb5
+    content: Sequenced dead-method deletion before the tearDownReview extraction; grep-confirmed zero callers before each removal.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d918f099-a4ce-4481-a268-24f9e30949cd:
-    id: d918f099-a4ce-4481-a268-24f9e30949cd
+  768f26b5-9f88-43ef-b312-acc3595bdde2:
+    id: 768f26b5-9f88-43ef-b312-acc3595bdde2
     content: worktree
     children:
-      - 7b362083-1772-4aeb-b3bc-d176d04ec107
+      - 8c7152da-16ac-4e9e-8924-646f7d83500e
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7b362083-1772-4aeb-b3bc-d176d04ec107:
-    id: 7b362083-1772-4aeb-b3bc-d176d04ec107
+  8c7152da-16ac-4e9e-8924-646f7d83500e:
+    id: 8c7152da-16ac-4e9e-8924-646f7d83500e
     content: vscode://file/Users/brianfox/dev/Arborescent-inline-review-coherence
     children: []
     metadata:
@@ -204260,86 +204240,88 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9f3e24c3-8c50-449f-a822-bffa63d371e3:
-    id: 9f3e24c3-8c50-449f-a822-bffa63d371e3
-    content: 'TDD — RED tests for the two genuinely new test surfaces of this behavior-preserving refactor. (1) isReviewOverlap on the canonical ReviewMap shape added to reviews.test.ts (8 cases: nothing/unrelated/sibling → false; self/ancestor/descendant → true; multi-review; undefined map) — RED now (isReviewOverlap still lives in utils/reviewOverlap.ts over a string[]); goes green when implement moves it into reviews.ts. (2) The deduped delete handler''s review-discard warning added to useNodeContextMenu.test.tsx — invokes the returned handleDelete with an in-review child and asserts window.confirm carries "active review, which will be discarded" — RED now (the returned/3rd handleDelete copy lacks the warning); goes green when implement routes all three copies through one shared handler. Everything else in scope is pure deletion or a behavior-preserving extraction (pendingProposalActions/dead SendActions/temp-file IPC removal, tearDownReview helper, ContentSource narrow, basename/type tidy) — pinned by the existing PR2–PR5 suite, no new tests warranted. Verified by running only the two changed files: both new tests RED as expected, the rest of each file green. Only test code written, no feature code.'
+  e2e43172-5f4c-4370-b4b2-adb03da9f581:
+    id: e2e43172-5f4c-4370-b4b2-adb03da9f581
+    content: TDD — RED tests for the two new test surfaces (isReviewOverlap on ReviewMap in reviews.test.ts; the deduped delete handler's review-discard warning in useNodeContextMenu.test.tsx); everything else pinned by the existing PR2–PR5 suite. Both RED as expected; only test code written.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  87aee6c6-185c-42de-8409-4ac96a03c071:
-    id: 87aee6c6-185c-42de-8409-4ac96a03c071
-    content: 'Implement — done. Behaviour-preserving cleanup across 20 files (+229 / −793), parallelized over 4 disjoint-file agents. Deleted: the dead pendingProposalActions module + its test + the three treeStore wiring lines; the three unused SendActions methods (startCollaboration / cancelCollaboration / acceptFeedback) + interface decls, with their ~32 test refs re-pointed onto finishAccept/finishCancel or pruned where redundant; utils/reviewOverlap.ts + its test (isReviewOverlap moved into reviews.ts on the ReviewMap shape, both callers de-adaptered); the three orphaned temp-file IPC channels across main/preload/types/mocks + the sendActions.test tombstone; the dead ContentSource ''file'' variant. Extracted: a tearDownReview(reviewedNodeId) helper used by finishCancel and finishAccept (archive-abort + happy paths), autoSave kept at call sites; a basename() pure util (+ basename.test.ts) replacing the two split(''/'').pop() sites; retyped createSendActions'' getAllStores to () => TreeStore[]. Deduped the three handleDelete copies into one shared handler so the returned handler now carries the review-discard warning. Both RED TDD tests (isReviewOverlap on ReviewMap, the delete warning) are green. Verified: type-check clean, lint clean on changed files, full suite 5345 pass / 0 fail; grep-confirmed zero production callers of every removed symbol. Untouched as intended: pendingProposals.ts pure helpers, reconcileFeedback, captureRemappedSubtree, the browser-exclusivity guards, and the three directional predicates. Not committed.'
+  5f1c6e40-00b9-43f0-a3e7-ee335d036d16:
+    id: 5f1c6e40-00b9-43f0-a3e7-ee335d036d16
+    content: Implement — behaviour-preserving cleanup across 20 files (+229 / −793), 4 disjoint-file agents. Deletions (pendingProposalActions, dead SendActions methods, reviewOverlap.ts, temp-file IPC, ContentSource 'file') + extractions (tearDownReview, basename, getAllStores retype, handleDelete dedup). Both RED tests green; type-check + lint clean, full suite 5345 pass / 0 fail; grep-confirmed zero callers of every removed symbol.
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  45081d9c-bdd9-45b2-b520-e7d08d9e786d:
-    id: 45081d9c-bdd9-45b2-b520-e7d08d9e786d
-    content: 'AI refactor — reviewed the cleanup diff (20 files + 2 new). No convention fixes needed: the new code follows project conventions — named helpers (makeDeleteHandler, tearDownReview, basename, isReviewOverlap), declarative naming, action-factory-internal helpers, file names match exports, and the basename contract comment matches the codebase''s existing util-comment style. No JSDoc or PR/ticket references were introduced (the few /** and PRn comments in the changed files are pre-existing — interface field docs + PR4-era test describes — not in this diff, so out of scope). The makeDeleteHandler factory cleanly converges all three handleDelete copies (including the returned useCallback) so the live path carries the review-discard warning; tearDownReview is a single named helper with autoSave kept at the call sites where timing differs. Tests updated for all edited files (basename.test.ts added, isReviewOverlap cases in reviews.test.ts, the warning test in useNodeContextMenu.test.tsx; the behavior-preserving changes are covered by the existing PR2–PR5 suite). No abandoned attempts — the deletions are clean and type-check confirms zero dangling references. Standard checks were green at the implement verification (type-check clean, lint clean on changed files, full suite 5345 pass / 0 fail) with no code changes since, so re-run skipped per the unchanged rule. Not committed.'
+  d7795600-7bc6-484b-a013-fdfe33471b31:
+    id: d7795600-7bc6-484b-a013-fdfe33471b31
+    content: AI refactor — reviewed the cleanup diff; no convention fixes needed (named helpers, declarative naming, file names match exports, no JSDoc/ticket refs introduced). Tests updated for all edited files; no abandoned attempts; standard checks green.
     children: []
     metadata:
-      status: pending
-  6f4e21cb-d4cd-48a8-ae4c-3223602f898f:
-    id: 6f4e21cb-d4cd-48a8-ae4c-3223602f898f
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46d349d6-4c9b-47d3-93c1-def78c6fac6e:
+    id: 46d349d6-4c9b-47d3-93c1-def78c6fac6e
     content: review feedback
     children:
-      - b8bde2e0-dd0d-4e31-b070-2ee8de17e26f
+      - dcdb50e7-1eba-436c-b693-e9a7819ad18c
     metadata:
       status: completed
-  b8bde2e0-dd0d-4e31-b070-2ee8de17e26f:
-    id: b8bde2e0-dd0d-4e31-b070-2ee8de17e26f
-    content: |-
-      Multi-lens review (code-reviewer + silent-failure + test-coverage; 14 agents; findings adversarially verified → 11 raw, 3 confirmed). Verdict: a clean, behavior-preserving cleanup — every deletion confirmed zero-live-caller; isReviewOverlap on the ReviewMap shape is provably equivalent to the deleted string[] version; the ~32 dead-method test re-points are sound (overlap is now exercised through the live collaborateInTerminal path, strictly stronger than the old mockSet check); full suite 5345 green.
-
-      FIXED during review: tearDownReview had reordered autoSave to run AFTER `await cleanupFeedbackForNode`, which awaits the rejectable window.electron.stopClipboardMonitor() IPC (via stopFeedbackMonitors). On master the inline finishCancel + finishAccept-archive-abort sequences called autoSave BEFORE that await; the refactor's order meant a stopClipboardMonitor rejection would skip the persist, stranding the in-memory-cleared review/pendingProposal unsaved → ghost on reload (the exact class this PR removes). Fix: moved autoSave inside tearDownReview, before the cleanup await, gated by a `persist` param — true for finishCancel + archive-abort, false for the happy path where AcceptFeedbackCommand already saved. NOTE: the two other lenses AND the adversarial verify pass dismissed this as immaterial (they overlooked that cleanupFeedbackForNode awaits a rejectable IPC); I confirmed it real by reading cleanupFeedbackForNode → stopFeedbackMonitors → `await window.electron.stopClipboardMonitor()`. Re-verified: type-check clean, lint clean, 175 teardown/lifecycle tests pass.
-
-      DEFERRED (nits, none blocking — for resolution or future):
-      - makeDeleteHandler unifies the returned handleDelete to include the review-discard warning the third copy previously lacked — a behavior delta on a DEAD path (useNodeContent never consumes the returned handleDelete), test-pinned; this is the intended dedup, inert at runtime. Leave.
-      - basename uses `|| path` where displayNameFor used `??` — differs only for empty/trailing-slash paths, unreachable for real .arbo paths. Leave.
-      - sendActionsManualCollabResolve.test.ts has two consecutive describe('finishAccept') blocks (the re-pointed acceptFeedback tests landed beside the existing finishAccept block) — cosmetic only (Vitest tolerates duplicate names, no coverage/behaviour impact); merge for clarity.
-
-      Design decisions reaffirmed as intentional (not findings): the feedback→review rename, browser-exclusivity guard merge, directional-predicate collapse, and ReviewEntry discriminated union all remain out of scope.
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcdb50e7-1eba-436c-b693-e9a7819ad18c:
+    id: dcdb50e7-1eba-436c-b693-e9a7819ad18c
+    content: 'Multi-lens review (code-reviewer + silent-failure + test-coverage; 14 agents; adversarially verified → 11 raw, 3 confirmed). Verdict: clean, behavior-preserving. Caught + fixed one real ghost-state regression (tearDownReview had reordered autoSave after the rejectable cleanup IPC; the other lenses + the verify pass missed the awaited window.electron.stopClipboardMonitor()). Deferred nits: makeDeleteHandler warning on a dead path (intended dedup), basename ||-vs-?? (unreachable for real paths), a cosmetic duplicate describe (merged in resolution).'
     children: []
     metadata:
-      status: pending
-  514b898a-cd9e-4220-8a33-147ff1de7453:
-    id: 514b898a-cd9e-4220-8a33-147ff1de7453
-    content: |-
-      Review resolution — read the 'review feedback' node, evaluated each finding against the actual code, fixed the justified ones and pushed back on the rest. Full suite 5345 pass / 0 fail, type-check + lint clean.
-
-      MAJOR issues fixed:
-      - (during the review step) tearDownReview autoSave/cleanup ordering: restored the persist-before-cleanup-await ordering so a window.electron.stopClipboardMonitor() rejection (awaited inside cleanupFeedbackForNode) can no longer skip the autoSave and strand the in-memory-cleared review/pendingProposal unsaved — the exact ghost-on-reload class this PR removes. autoSave now runs inside tearDownReview before the cleanup await, gated by a persist param (true for finishCancel + finishAccept archive-abort; false for the happy path where AcceptFeedbackCommand already saved). Notably the two other review lenses and the adversarial verify pass had dismissed this as immaterial because they overlooked the awaited IPC; confirmed real by tracing cleanupFeedbackForNode → stopFeedbackMonitors → await stopClipboardMonitor().
-
-      MINOR issues fixed:
-      - Merged the duplicate consecutive describe('finishAccept') blocks in sendActionsManualCollabResolve.test.ts into one (the re-pointed acceptFeedback tests had landed beside the pre-existing finishAccept block). Pure clarity; 8 tests pass, lint clean.
-
-      Feedback SKIPPED (pushed back, with reasons):
-      - makeDeleteHandler unifying the returned handleDelete to carry the review-discard warning: not a defect — it is the intended dedup this PR's scope called for (converge the three handleDelete copies, fix the warning-less one). The returned handler is unconsumed in production (useNodeContent never destructures it), so the delta is inert at runtime, and a new test pins it. Keep.
-      - basename's `|| path` vs displayNameFor's former `?? `: differs only for empty or trailing-slash path segments, which real .arbo paths (always ending in a filename) never produce; `||` is a sound basename fallback. Behavior-identical for real inputs. Keep.
-      - The out-of-scope design decisions (feedback→review rename, browser-exclusivity guard merge, directional-predicate collapse, ReviewEntry discriminated union) remain deferred as intended.
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  afb49614-4eb0-4e60-baa4-a0382623fa1c:
+    id: afb49614-4eb0-4e60-baa4-a0382623fa1c
+    content: Review resolution — fixed the tearDownReview persist-before-cleanup ordering (review step) + merged the duplicate describe('finishAccept') block; pushed back (with reasons) on the makeDeleteHandler dead-path delta, the basename ||/?? difference, and the out-of-scope items. Full suite green.
     children: []
     metadata:
-      status: pending
-  3d61213c-20fc-4f81-954b-883c91e25e5f:
-    id: 3d61213c-20fc-4f81-954b-883c91e25e5f
-    content: |-
-      Test pass — done. Traced the acceptance criteria (the Independently-testable items) to their implementing code and a semantic test: isReviewOverlap-on-ReviewMap cases in reviews.test.ts; tearDownReview per-path effects in the finishCancel/finishAccept tests; the shared-delete-handler warning test; the full PR2–PR5 suite as the no-behavioural-diff guard; grep-empty for every removed symbol. All criteria met; no unimplemented criterion and no implementation lacking a criterion. No local-vs-global test gaps.
-
-      One coverage gap closed: the tearDownReview persist-before-cleanup fix (made during the review step) had no regression test. Added one to sendActions.test.ts > finishCancel — it makes cleanupFeedbackForNode reject (simulating a stopClipboardMonitor IPC failure) and asserts autoSave still fired, proving the persist happens before the cleanup await. It passes with the fix and would fail if the ordering regressed. Required hoisting mockAutoSave to describe scope. Verified: type-check clean, lint clean on changed files, full suite 5346 pass / 0 fail. Not committed.
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e245003b-4621-4d85-98f5-779472328712:
+    id: e245003b-4621-4d85-98f5-779472328712
+    content: Test pass — traced every acceptance criterion to a semantic test (all met, no gaps); added a regression test pinning the tearDownReview persist-before-cleanup fix (cleanupFeedbackForNode rejects → autoSave still fired). type-check + lint clean, full suite 5346 pass / 0 fail.
     children: []
     metadata:
-      status: pending
-  554118ba-0d9a-49fc-b12d-f20435ba9ef5:
-    id: 554118ba-0d9a-49fc-b12d-f20435ba9ef5
-    content: 'Documentation — no changes needed. This is a behavior-preserving internal cleanup (dead-code removal, dedup, predicate consolidation) with zero user-facing impact and no .arbo format change, so there is nothing to document. The existing inline-review docs (docs/workflow.md review / overlap / concurrency sections) remain accurate — isReviewOverlap was consolidated internally (behavior-identical), so the documented overlap behavior is unchanged. Nothing removed was ever user-facing (it was dead code / internal IPC), so there are no stale references to scrub — grep of docs/, README.md, and CHANGELOG.md for temp-file / pendingProposalActions / the dead SendActions methods / reviewOverlap / the removed IPC channels came back empty. No changelog line: a non-functional cleanup is not a consequential user-facing feature, a "removed dead code" entry would bloat the changelog without helping the user, and the inline-review feature this touches is still unreleased. Nothing unclear or inconsistent surfaced.'
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39f34eaa-8fe0-4bb5-8e05-3e90527e026b:
+    id: 39f34eaa-8fe0-4bb5-8e05-3e90527e026b
+    content: 'Documentation — no changes needed: behavior-preserving internal cleanup, zero user-facing impact, existing docs accurate, no stale references to scrub (grep empty), no changelog line (non-functional cleanup of an unreleased feature).'
     children: []
     metadata:
-      status: pending
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e98795a-6e3c-43a3-b42d-24f7c64c8c00:
+    id: 5e98795a-6e3c-43a3-b42d-24f7c64c8c00
+    content: 'Merge to master — done: committed project.arbo on master (8df6ba5), committed the cleanup as one commit, rebased onto master, fast-forward merged to master (79786c8), pushed to origin/master. Worktree and local branch refactor/inline-review-coherence deleted. Post-rebase checks green: type-check clean, lint clean, full suite 5346 pass / 0 fail.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
