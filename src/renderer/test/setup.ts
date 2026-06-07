@@ -10,6 +10,7 @@ let toastStore: { setState?: (state: unknown) => void } | null = null;
 let panelStore: { setState?: (state: unknown) => void } | null = null;
 let browserStore: { setState?: (state: unknown) => void } | null = null;
 let stepConfigDialogStore: { setState?: (state: unknown) => void } | null = null;
+let activityLogStore: { setState?: (state: unknown) => void } | null = null;
 
 // Lazy load stores once on first use
 function getStores() {
@@ -43,6 +44,12 @@ function getStores() {
       stepConfigDialogStore = require('../store/stepConfigDialog/stepConfigDialogStore').useStepConfigDialogStore;
     } catch { stepConfigDialogStore = undefined as unknown as null; }
   }
+  if (activityLogStore === null) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      activityLogStore = require('../store/activityLog/activityLogStore').useActivityLogStore;
+    } catch { activityLogStore = undefined as unknown as null; }
+  }
 }
 
 function resetStores() {
@@ -52,6 +59,7 @@ function resetStores() {
   panelStore?.setState?.({ isOpen: false, activeContent: null });
   browserStore?.setState?.({ tabs: [], activeTabId: null });
   stepConfigDialogStore?.setState?.({ isOpen: false, nodeId: null });
+  activityLogStore?.setState?.({ entries: [] });
 }
 
 beforeEach(() => {
@@ -139,4 +147,6 @@ global.window.electron = {
   appendLog: vi.fn().mockResolvedValue(undefined),
   openLogFile: vi.fn().mockResolvedValue(undefined),
   getLogFilePath: vi.fn().mockResolvedValue(null),
+  appendActivityLog: vi.fn().mockResolvedValue(undefined),
+  readRecentActivityLog: vi.fn().mockResolvedValue([]),
 };

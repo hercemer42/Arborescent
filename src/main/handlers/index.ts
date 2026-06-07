@@ -10,6 +10,7 @@ import { registerPreferencesHandlers } from './preferencesHandlers';
 import { registerNotificationHandlers } from './notificationHandlers';
 import { registerKeepAwakeHandlers } from './keepAwakeHandlers';
 import { registerLogHandlers } from './logHandlers';
+import { registerActivityLogHandlers } from './activityLogHandlers';
 import { registerClaudeSessionHandlers } from './claudeSessionHandlers';
 
 // Note: terminal handlers (registerTerminalHandlers) are registered
@@ -28,5 +29,6 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
   registerNotificationHandlers(getMainWindow);
   registerKeepAwakeHandlers();
   registerLogHandlers();
+  registerActivityLogHandlers();
   registerClaudeSessionHandlers();
 }

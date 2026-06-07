@@ -86,7 +86,7 @@ What happens at each step depends on its type:
 
 The **step's applied context** takes precedence over the working item's own context — that's how you steer the AI differently at each phase of the workflow. If the step has no applied context (and inherits none from the workflow chain), the working item's own context applies. If neither has a context, the branch's raw content is sent without scaffolding — apply **Basic execution** (Collaborate & Execute) to get the AI to make changes and update item statuses. Manual sends (right-click → **Send**) are unaffected by step contexts and always use the working item's own context.
 
-A green flash and toast notification confirm each advancement. If the item reaches the final step and completes, the workflow ends and a completion toast appears.
+A green flash confirms each advancement. If the item reaches the final step and completes, the workflow ends and a completion toast appears.
 
 Automated advancement bypasses the undo stack — `Ctrl+Z` only reverts your own actions, never workflow output. Prior workflow output stays recoverable through each step's history (see [Step History](#step-history)).
 

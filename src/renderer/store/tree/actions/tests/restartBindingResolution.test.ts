@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode } from '@shared/types';
 import { createWorkflowExecutionActions } from '../workflowExecutionActions';
+import { useActivityLogStore } from '../../../activityLog/activityLogStore';
 import { logger } from '@/services/logger';
 import { useTerminalStore } from '../../../terminal/terminalStore';
 
@@ -157,10 +158,8 @@ describe('SessionStart resolution prefers terminal\'s persisted originNodeId', (
 
     actions.registerSession('sess-shared', 'term-X');
 
-    expect(mockAddToast).toHaveBeenCalledWith(
-      expect.stringContaining('Previously-bound node no longer exists'),
-      'info',
-    );
+    const messages = useActivityLogStore.getState().entries.map((e) => e.message);
+    expect(messages.some((m) => m.includes('Previously-bound node no longer exists'))).toBe(true);
   });
 
   it('writes originNodeId via the sessionId scan when the terminal has no originNodeId (legacy terminal, single match)', () => {

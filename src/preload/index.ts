@@ -172,6 +172,8 @@ const api: ElectronAPI = {
   appendLog: (entry) => ipcRenderer.invoke('log:append', entry),
   openLogFile: () => ipcRenderer.invoke('log:open'),
   getLogFilePath: () => ipcRenderer.invoke('log:get-path'),
+  appendActivityLog: (entry) => ipcRenderer.invoke('activity-log:append', entry),
+  readRecentActivityLog: () => ipcRenderer.invoke('activity-log:read-recent'),
 };
 
 contextBridge.exposeInMainWorld('electron', api);

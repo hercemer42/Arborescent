@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode } from '@shared/types';
 
 import { createWorkflowExecutionActions } from '../workflowExecutionActions';
+import { useActivityLogStore } from '../../../activityLog/activityLogStore';
 import { useTerminalStore } from '../../../terminal/terminalStore';
 
 vi.mock('../../../services/logger', () => ({
@@ -622,15 +623,13 @@ describe('createWorkflowExecutionActions', () => {
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
 
-    it('should show advancement toast with node name and step number', () => {
+    it('should record an advancement activity log entry with node name and step number', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
 
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('Task A'),
-        'info'
-      );
+      const messages = useActivityLogStore.getState().entries.map((e) => e.message);
+      expect(messages.some((m) => m.includes('Task A') && /Step\s*2/.test(m))).toBe(true);
     });
 
     it('should flash the node with workflow-specific intensity', () => {
@@ -1596,10 +1595,8 @@ describe('createWorkflowExecutionActions', () => {
         expect.stringContaining('Recurse limit reached'),
         'warning',
       );
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('Decomposition at final step'),
-        'info',
-      );
+      const finalStepMessages = useActivityLogStore.getState().entries.map((e) => e.message);
+      expect(finalStepMessages.some((m) => m.includes('Decomposition at final step'))).toBe(true);
 
       vi.useRealTimers();
     });

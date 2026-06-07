@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { ToastItem, ToastType } from '../../components/ui/Toast';
 import { preserveFocusAcross } from '../../services/focusPreservation';
 
-interface ToastOptions {
+export interface ToastOptions {
   actions?: Array<{ label: string; onClick: () => void }>;
   persistent?: boolean;
 }

@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode } from '@shared/types';
 
 import { createWorkflowExecutionActions } from '../workflowExecutionActions';
+import { useActivityLogStore } from '../../../activityLog/activityLogStore';
 
 vi.mock('../../../services/logger', () => ({
   logger: {
@@ -182,26 +183,23 @@ describe('workflow advancement', () => {
   });
 
   describe('advancement toast message includes step number', () => {
-    it('should include the target step number in the advancement toast', () => {
+    it('should include the target step number in the advancement activity log entry', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
 
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringMatching(/Step\s*2/),
-        'info'
-      );
+      const messages = useActivityLogStore.getState().entries.map((e) => e.message);
+      expect(messages.some((m) => /Step\s*2/.test(m))).toBe(true);
+      expect(mockAddToast).not.toHaveBeenCalled();
     });
 
-    it('should include the node name in the advancement toast', () => {
+    it('should include the node name in the advancement activity log entry', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
 
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('Task A'),
-        'info'
-      );
+      const messages = useActivityLogStore.getState().entries.map((e) => e.message);
+      expect(messages.some((m) => m.includes('Task A'))).toBe(true);
     });
 
     it('should say "Workflow complete" on completion, not "advanced to Step"', () => {
@@ -443,7 +441,7 @@ describe('workflow advancement', () => {
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should show waiting toast when advancing to a manual step', () => {
+    it('should record a waiting activity log entry when advancing to a manual step', () => {
       state.nodes['step-2'].children = ['task-a'];
       state.nodes['step-1'].children = [];
       state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
@@ -451,10 +449,8 @@ describe('workflow advancement', () => {
 
       actions.advanceNode('task-a');
 
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('waiting'),
-        'info'
-      );
+      const messages = useActivityLogStore.getState().entries.map((e) => e.message);
+      expect(messages.some((m) => m.includes('waiting'))).toBe(true);
     });
 
     it('should send content to terminal when advancing to a checkpoint step', () => {
@@ -628,14 +624,14 @@ describe('workflow advancement', () => {
       state.workflowSessionMap['session-abc'] = 'terminal-1';
     });
 
-    it('should advance on autonomous step Stop event and show toast', () => {
+    it('should advance on autonomous step Stop event and record an activity log entry', () => {
       actions.handleHookEvent({
         session_id: 'session-abc',
         hook_event_name: 'Stop',
       });
 
       expect(state.nodes['step-2'].children).toContain('task-a');
-      expect(mockAddToast).toHaveBeenCalled();
+      expect(useActivityLogStore.getState().entries.length).toBeGreaterThan(0);
       expect(mockVisualEffects.flashNode).toHaveBeenCalled();
     });
 

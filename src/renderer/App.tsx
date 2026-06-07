@@ -19,6 +19,7 @@ import { startMcpTreeReaderService } from "./services/mcpTreeReaderService";
 import { startMcpTreeMutatorService } from "./services/mcpTreeMutatorService";
 import { startMcpStepOutputApplierService } from "./services/mcpStepOutputApplierService";
 import { startMcpProposalReceiverService } from "./services/mcpProposalReceiverService";
+import { hydrateActivityLog } from "./store/activityLog/activityLogStore";
 import {
   useAppErrorHandling,
   useAppInitialization,
@@ -72,6 +73,10 @@ export function App() {
 
   useEffect(() => {
     return startMcpProposalReceiverService();
+  }, []);
+
+  useEffect(() => {
+    void hydrateActivityLog();
   }, []);
 
   return (

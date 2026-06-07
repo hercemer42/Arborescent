@@ -1,5 +1,5 @@
 import { TreeNode } from "../../../../shared/types";
-import { useToastStore } from "../../toast/toastStore";
+import { notifyWorkflow } from './workflowToast';
 import { logger } from "../../../services/logger";
 import { AncestorRegistry, moveNodeInRegistry } from "../../../utils/ancestry";
 import { findLiveNodeWithSessionId } from "../selectors/activeSessionNodeId";
@@ -149,7 +149,7 @@ export const createWorkflowExecutionActions = (
     if (pruned.length !== entries.length) {
       set({ workflowSessionMap: Object.fromEntries(pruned) });
     }
-    useToastStore.getState().addToast(
+    notifyWorkflow(
       `Resumed Claude session for "${nodeName}" did not start in time — workflow stopped. Open the terminal to confirm Claude launched, then retry.`,
       'error',
     );
@@ -171,9 +171,7 @@ export const createWorkflowExecutionActions = (
         return;
       }
       terminalStore.updateTerminal(terminalId, { originNodeId: undefined });
-      useToastStore
-        .getState()
-        .addToast('Previously-bound node no longer exists — terminal unbound', 'info');
+      notifyWorkflow('Previously-bound node no longer exists — terminal unbound', 'info');
       logger.warn(
         `Terminal ${terminalId} originNodeId ${terminal.originNodeId} no longer exists; cleared (sessionId ${sessionId})`,
         'WorkflowExecution',
@@ -279,7 +277,7 @@ export const createWorkflowExecutionActions = (
       // Abort up front if the session is gone from disk (matches the manual Resume path)
       // so we do not spawn a doomed `claude --resume` and wait out the readiness timeout.
       if ((await checkClaudeSessionExists(route.cwd, route.sessionId)) === false) {
-        useToastStore.getState().addToast(
+        notifyWorkflow(
           `Session ${shortSessionId(route.sessionId)} no longer exists on disk — cannot resume`,
           "error",
         );
@@ -301,9 +299,7 @@ export const createWorkflowExecutionActions = (
     }
 
     if (terminalId === null) {
-      useToastStore
-        .getState()
-        .addToast(
+      notifyWorkflow(
           "No terminal tab available. Open a terminal to start workflow execution.",
           "warning",
         );
@@ -323,9 +319,7 @@ export const createWorkflowExecutionActions = (
   ): boolean {
     const existingNodeId = findRunningNodeOnTerminal(get, terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
-      useToastStore
-        .getState()
-        .addToast(
+      notifyWorkflow(
           "Terminal tab is already assigned to a running workflow node.",
           "warning",
         );
@@ -390,9 +384,7 @@ export const createWorkflowExecutionActions = (
     const prefsState = usePreferencesStore.getState();
     if (!prefsState.hasLaunchedWorkflow) {
       prefsState.markWorkflowLaunched();
-      useToastStore
-        .getState()
-        .addToast(
+      notifyWorkflow(
           "First workflow launch! Please verify that Claude Code hooks are configured for automatic step advancement. See docs/workflows.md for setup instructions.",
           "info",
           { persistent: true, actions: [{ label: "OK", onClick: () => {} }] },
@@ -474,9 +466,7 @@ export const createWorkflowExecutionActions = (
     if (!entry || entry.state !== "awaiting-validation") return;
 
     if (terminalId === null) {
-      useToastStore
-        .getState()
-        .addToast(
+      notifyWorkflow(
           "No terminal tab available. Open a terminal to continue workflow execution.",
           "warning",
         );
@@ -485,9 +475,7 @@ export const createWorkflowExecutionActions = (
 
     const existingNodeId = findRunningNodeOnTerminal(get, terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
-      useToastStore
-        .getState()
-        .addToast(
+      notifyWorkflow(
           "Terminal tab is already assigned to a running workflow node.",
           "warning",
         );
@@ -516,9 +504,7 @@ export const createWorkflowExecutionActions = (
     if (!entry || entry.state !== "awaiting-validation") return;
 
     if (terminalId === null) {
-      useToastStore
-        .getState()
-        .addToast(
+      notifyWorkflow(
           "No terminal tab available. Open a terminal to resend the step.",
           "warning",
         );
@@ -527,9 +513,7 @@ export const createWorkflowExecutionActions = (
 
     const existingNodeId = findRunningNodeOnTerminal(get, terminalId);
     if (existingNodeId && existingNodeId !== nodeId) {
-      useToastStore
-        .getState()
-        .addToast(
+      notifyWorkflow(
           "Terminal tab is already assigned to a running workflow node.",
           "warning",
         );
@@ -563,9 +547,7 @@ export const createWorkflowExecutionActions = (
     const chainKey = recurseChainKey(parentNodeId, terminalId);
     const counter = recurseCounters.get(chainKey) || 0;
     if (counter >= MAX_RECURSE_ITERATIONS) {
-      useToastStore
-        .getState()
-        .addToast("Recurse limit reached — stopping automatic processing", "warning");
+      notifyWorkflow("Recurse limit reached — stopping automatic processing", "warning");
       void notifyWorkflowEvent("alert", "Recurse limit reached", "Stopping automatic processing");
       recurseCounters.delete(chainKey);
       return false;
@@ -647,9 +629,7 @@ export const createWorkflowExecutionActions = (
       return;
     }
     releaseTerminalAssignmentForNode(orchestratorNodeId);
-    useToastStore
-      .getState()
-      .addToast(
+    notifyWorkflow(
         'Recurse halted — next step could not start (terminal busy or step ineligible)',
         'warning',
       );
@@ -670,7 +650,7 @@ export const createWorkflowExecutionActions = (
       set({ nodes: updated });
       triggerAutosave?.();
     }
-    useToastStore.getState().addToast(
+    notifyWorkflow(
       'Recurse chain broken — previous session unavailable, starting a fresh one for this step',
       'warning',
     );
@@ -771,9 +751,7 @@ export const createWorkflowExecutionActions = (
       }
       if (!advanceDecomposedSiblingToNextStep(sibling)) {
         recurseCounters.delete(recurseChainKey(completedNodeId, terminalId));
-        useToastStore
-          .getState()
-          .addToast(
+        notifyWorkflow(
             "Decomposition at final step — children retained, no downstream step to run",
             "info",
           );
@@ -796,9 +774,7 @@ export const createWorkflowExecutionActions = (
   function warnRecurseWithoutDecomposition(terminalId: string): void {
     if (recurseWithoutDecompositionWarned.has(terminalId)) return;
     recurseWithoutDecompositionWarned.add(terminalId);
-    useToastStore
-      .getState()
-      .addToast("Warning, you have recursion set without decomposition", "warning");
+    notifyWorkflow("Warning, you have recursion set without decomposition", "warning");
     void notifyWorkflowEvent(
       "alert",
       "Recursion without decomposition",
@@ -829,9 +805,7 @@ export const createWorkflowExecutionActions = (
 
     const node = nodes[nodeId];
     const nodeName = node?.content || nodeId;
-    useToastStore
-      .getState()
-      .addToast(`Workflow complete for "${nodeName}"`, "success");
+    notifyWorkflow(`Workflow complete for "${nodeName}"`, "success");
     void notifyWorkflowEvent("success", "Workflow complete", nodeName);
 
     logger.info(
@@ -877,9 +851,7 @@ export const createWorkflowExecutionActions = (
         const terminalId = entry.terminalTabId;
         const nodeName = nodes[nodeId]?.content || nodeId;
         stopWorkflow(nodeId);
-        useToastStore
-          .getState()
-          .addToast(
+        notifyWorkflow(
             `"${nodeName}" halted at recurse step — handing off to next decomposed sibling`,
             "info",
           );
@@ -931,13 +903,9 @@ export const createWorkflowExecutionActions = (
 
     if (nextStepType === "manual") {
       stopWorkflow(nodeId);
-      useToastStore
-        .getState()
-        .addToast(`"${nodeName}" waiting at ${stepLabel}`, "info");
+      notifyWorkflow(`"${nodeName}" waiting at ${stepLabel}`, "info");
     } else {
-      useToastStore
-        .getState()
-        .addToast(`Advanced "${nodeName}" to ${stepLabel}`, "info");
+      notifyWorkflow(`Advanced "${nodeName}" to ${stepLabel}`, "info");
       setTimeout(
         () => clearSessionManager.maybeClearThenSend(nodeId, entry.terminalTabId),
         1000,
@@ -990,9 +958,7 @@ export const createWorkflowExecutionActions = (
           "WorkflowExecution",
         );
         stopWorkflow(nodeId);
-        useToastStore
-          .getState()
-          .addToast("Failed to send to terminal — workflow stopped", "error");
+        notifyWorkflow("Failed to send to terminal — workflow stopped", "error");
         void notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
       });
     } catch (error) {
@@ -1002,9 +968,7 @@ export const createWorkflowExecutionActions = (
         "WorkflowExecution",
       );
       stopWorkflow(nodeId);
-      useToastStore
-        .getState()
-        .addToast("Failed to send to terminal — workflow stopped", "error");
+      notifyWorkflow("Failed to send to terminal — workflow stopped", "error");
       void notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
     }
   }
@@ -1128,9 +1092,7 @@ export const createWorkflowExecutionActions = (
     });
 
     if (stoppedCount > 0) {
-      useToastStore
-        .getState()
-        .addToast(`${stoppedCount} workflow(s) stopped on restart.`, "warning");
+      notifyWorkflow(`${stoppedCount} workflow(s) stopped on restart.`, "warning");
     }
 
     logger.info(
@@ -1203,9 +1165,7 @@ export const createWorkflowExecutionActions = (
         "WorkflowExecution",
       );
       stopWorkflow(nodeId);
-      useToastStore
-        .getState()
-        .addToast("Feedback could not be parsed — workflow stopped", "error");
+      notifyWorkflow("Feedback could not be parsed — workflow stopped", "error");
       void notifyWorkflowEvent("alert", "Feedback parse error", "Feedback could not be parsed");
       return;
     }
@@ -1291,7 +1251,7 @@ export const createWorkflowExecutionActions = (
 
     lastAcceptedContentByNode.set(nodeId, content);
 
-    useToastStore.getState().addToast("Feedback auto-accepted", "info");
+    notifyWorkflow("Feedback auto-accepted", "info");
     logger.info(`Auto-accepted feedback for node ${nodeId} (${parsed.nodeCount} nodes)`, "WorkflowExecution");
 
     advanceOrClearCollaborating(nodeId);

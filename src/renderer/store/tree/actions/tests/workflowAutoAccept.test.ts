@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode } from '@shared/types';
 
 import { createWorkflowExecutionActions } from '../workflowExecutionActions';
+import { useActivityLogStore } from '../../../activityLog/activityLogStore';
 
 vi.mock('../../../services/logger', () => ({
   logger: {
@@ -444,13 +445,11 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       expect(mockParseFeedbackContent).toHaveBeenCalledWith('# Task A', false);
     });
 
-    it('should show toast notification on successful auto-accept', () => {
+    it('should record an activity log entry on successful auto-accept', () => {
       actions.handleAutonomousFeedback('task-a', '# Task A');
 
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('auto-accept'),
-        expect.any(String)
-      );
+      const messages = useActivityLogStore.getState().entries.map((e) => e.message);
+      expect(messages.some((m) => m.includes('auto-accept'))).toBe(true);
     });
 
     it('should advance the node after auto-accept when stopReceived is true', () => {

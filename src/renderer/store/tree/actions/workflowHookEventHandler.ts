@@ -8,7 +8,7 @@ import {
 } from '../../../utils/workflowHelpers';
 import type { StepType } from '../commands/SetStepTypeCommand';
 import { findCompletedNodeWithSessionId } from '../selectors/activeSessionNodeId';
-import { useToastStore } from '../../toast/toastStore';
+import { notifyWorkflow } from './workflowToast';
 import { logger } from '../../../services/logger';
 import { notifyWorkflowEvent } from '../../../services/workflowNotification';
 
@@ -126,9 +126,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
       },
     });
     revealNode(nodeId);
-    useToastStore
-      .getState()
-      .addToast(
+    notifyWorkflow(
         `"${stepName}" finished but its terminal is gone — open a terminal and continue the step.`,
         'warning',
         { persistent: true, actions: [{ label: 'Show step', onClick: () => revealNode(nodeId) }] },
@@ -191,9 +189,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
           },
         });
       }
-      useToastStore
-        .getState()
-        .addToast(
+      notifyWorkflow(
           'AI flagged questions for review — check the terminal output',
           'warning',
           {
@@ -257,9 +253,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
             },
           });
           if (!alreadyNotified) {
-            useToastStore
-              .getState()
-              .addToast(
+            notifyWorkflow(
                 'AI flagged questions for review — check the terminal output',
                 'warning',
                 {
@@ -334,9 +328,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
             currentRegistry,
           );
           const stepLabel = stepNumber !== null ? `Step ${stepNumber}` : 'Current step';
-          useToastStore
-            .getState()
-            .addToast(
+          notifyWorkflow(
               `${stepLabel} complete for "${runningNodeName}". Review the output before continuing.`,
               'info',
               { persistent: true, actions: [{ label: 'OK', onClick: () => {} }] },
@@ -346,7 +338,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
     } else if (event.hook_event_name === 'Notification') {
       stopWorkflow(runningNodeId);
       const message = event.message || 'Workflow notification received';
-      useToastStore.getState().addToast(message, 'warning');
+      notifyWorkflow(message, 'warning');
       void notifyWorkflowEvent('alert', 'Workflow notification', message);
     }
   };

@@ -11,6 +11,7 @@
  */
 
 import type { McpErrorCode } from '../utils/mcpErrorCodes';
+import type { ActivityLogEntry } from './activityLog';
 
 export interface HookEventPayload {
   session_id: string;
@@ -235,6 +236,10 @@ export interface ElectronAPI {
   appendLog: (entry: AppendLogPayload) => Promise<void>;
   openLogFile: () => Promise<void>;
   getLogFilePath: () => Promise<string | null>;
+
+  // Persistent workflow activity feed
+  appendActivityLog: (entry: ActivityLogEntry) => Promise<void>;
+  readRecentActivityLog: () => Promise<ActivityLogEntry[]>;
 }
 
 export interface AppendLogPayload {
