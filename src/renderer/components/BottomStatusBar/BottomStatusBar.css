@@ -46,3 +46,44 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.activity-recap {
+  position: relative;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  max-width: 50%;
+}
+
+.activity-recap-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  background: none;
+  border: none;
+  padding: 0 4px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.activity-recap-message {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 6px;
+  border-left: 3px solid var(--gray-300);
+}
+
+.activity-recap-unread {
+  flex-shrink: 0;
+  min-width: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background-color: var(--blue-500);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}

@@ -11,6 +11,7 @@ let panelStore: { setState?: (state: unknown) => void } | null = null;
 let browserStore: { setState?: (state: unknown) => void } | null = null;
 let stepConfigDialogStore: { setState?: (state: unknown) => void } | null = null;
 let activityLogStore: { setState?: (state: unknown) => void } | null = null;
+let activityLogViewStore: { setState?: (state: unknown) => void } | null = null;
 
 // Lazy load stores once on first use
 function getStores() {
@@ -50,6 +51,12 @@ function getStores() {
       activityLogStore = require('../store/activityLog/activityLogStore').useActivityLogStore;
     } catch { activityLogStore = undefined as unknown as null; }
   }
+  if (activityLogViewStore === null) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      activityLogViewStore = require('../store/activityLog/activityLogViewStore').useActivityLogViewStore;
+    } catch { activityLogViewStore = undefined as unknown as null; }
+  }
 }
 
 function resetStores() {
@@ -60,6 +67,7 @@ function resetStores() {
   browserStore?.setState?.({ tabs: [], activeTabId: null });
   stepConfigDialogStore?.setState?.({ isOpen: false, nodeId: null });
   activityLogStore?.setState?.({ entries: [] });
+  activityLogViewStore?.setState?.({ isPanelOpen: false, lastSeenTimestamp: 0 });
 }
 
 beforeEach(() => {

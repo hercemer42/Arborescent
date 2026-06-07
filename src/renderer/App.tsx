@@ -20,6 +20,8 @@ import { startMcpTreeMutatorService } from "./services/mcpTreeMutatorService";
 import { startMcpStepOutputApplierService } from "./services/mcpStepOutputApplierService";
 import { startMcpProposalReceiverService } from "./services/mcpProposalReceiverService";
 import { hydrateActivityLog } from "./store/activityLog/activityLogStore";
+import { useActivityLogViewStore } from "./store/activityLog/activityLogViewStore";
+import { ActivityLogPanel } from "./components/ui/ActivityLog/ActivityLogPanel";
 import {
   useAppErrorHandling,
   useAppInitialization,
@@ -39,6 +41,8 @@ export function App() {
 
   const toasts = useToastStore((state) => state.toasts);
   const removeToast = useToastStore((state) => state.removeToast);
+  const isActivityPanelOpen = useActivityLogViewStore((state) => state.isPanelOpen);
+  const closeActivityPanel = useActivityLogViewStore((state) => state.closePanel);
   const isSearchOpen = useSearchStore((state) => state.isOpen);
   const isKeyboardShortcutsOpen = useUIStore(
     (state) => state.isKeyboardShortcutsOpen,
@@ -82,6 +86,7 @@ export function App() {
   return (
     <div className="app">
       <ToastContainer toasts={toasts} onRemove={removeToast} />
+      <ActivityLogPanel isOpen={isActivityPanelOpen} onClose={closeActivityPanel} />
       <ClipboardReviewMonitor />
       <AppMenuBar />
 

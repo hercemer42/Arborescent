@@ -86,7 +86,7 @@ What happens at each step depends on its type:
 
 The **step's applied context** takes precedence over the working item's own context — that's how you steer the AI differently at each phase of the workflow. If the step has no applied context (and inherits none from the workflow chain), the working item's own context applies. If neither has a context, the branch's raw content is sent without scaffolding — apply **Basic execution** (Collaborate & Execute) to get the AI to make changes and update item statuses. Manual sends (right-click → **Send**) are unaffected by step contexts and always use the working item's own context.
 
-A green flash confirms each advancement. If the item reaches the final step and completes, the workflow ends and a completion toast appears.
+A green flash confirms each advancement, and the transition is recorded in the [activity log](#activity-log) in the status bar rather than popping a toast. If the item reaches the final step and completes, the workflow ends and a completion toast appears.
 
 Automated advancement bypasses the undo stack — `Ctrl+Z` only reverts your own actions, never workflow output. Prior workflow output stays recoverable through each step's history (see [Step History](#step-history)).
 
@@ -241,7 +241,13 @@ If any of these are missing, workflows may start but will not behave correctly. 
 
 ## Activity log
 
-When a workflow stalls or a step doesn't advance the way you expected, open the activity log to see what Arborescent received and how it routed each event. Use **Help → Open Log File** in the menu.
+Workflow step transitions — advancing, waiting at a manual step, auto-accepting feedback — no longer pop a toast. They are recorded in the activity log at the right of the status bar: the most recent transition shows inline, hovering it reveals the last five, and clicking opens a panel with the last hundred. An unread count sits next to it while transitions you haven't opened arrive. The log persists across restarts and keeps the most recent entries.
+
+Toasts stay reserved for what needs you — review requests, errors, and workflow completion still pop as before.
+
+## Diagnostic log
+
+When a workflow stalls or a step doesn't advance the way you expected, open the diagnostic log to see what Arborescent received and how it routed each event. Use **Help → Open Log File** in the menu.
 
 Each line is tagged with the workflow node it concerns when one was resolvable, so you can follow a single node's lifecycle with `grep node=<node-id>`. Dropped hooks are tagged with a reason — `no terminal mapped`, `no running node`, `invalid auth token`, or `invalid payload body` — so you can tell apart a hook that never arrived from one that arrived and was discarded.
 
