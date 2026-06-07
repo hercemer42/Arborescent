@@ -5,6 +5,7 @@ import {
   isReviewDescendant,
   reviewsInSubtree,
   isReviewOverlap,
+  overlapsOtherReview,
   getBrowserReviewNodeId,
   hasBrowserReview,
   addReview,
@@ -205,5 +206,35 @@ describe('isReviewOverlap', () => {
 
   it('is false for an undefined map', () => {
     expect(isReviewOverlap(undefined, 'b', ancestorRegistry)).toBe(false);
+  });
+});
+
+describe('overlapsOtherReview', () => {
+  it('is false when nothing is in review', () => {
+    expect(overlapsOtherReview({}, 'b', ancestorRegistry)).toBe(false);
+  });
+
+  it('is false for a node unrelated to the in-review set', () => {
+    expect(overlapsOtherReview({ b: terminalEntry() }, 'd', ancestorRegistry)).toBe(false);
+  });
+
+  it('is false when only the node itself is in review (a submit delivers to its own review, not a second one)', () => {
+    expect(overlapsOtherReview({ b: terminalEntry() }, 'b', ancestorRegistry)).toBe(false);
+  });
+
+  it('is true when an ancestor of the node is in review (no nesting)', () => {
+    expect(overlapsOtherReview({ a: terminalEntry() }, 'c', ancestorRegistry)).toBe(true);
+  });
+
+  it('is true when a strict descendant of the node is in review (no engulfing)', () => {
+    expect(overlapsOtherReview({ c: terminalEntry() }, 'a', ancestorRegistry)).toBe(true);
+  });
+
+  it('still detects a descendant overlap when the node itself is also in review (self excluded, descendant counts)', () => {
+    expect(overlapsOtherReview({ a: terminalEntry(), c: terminalEntry() }, 'a', ancestorRegistry)).toBe(true);
+  });
+
+  it('is false for an undefined map', () => {
+    expect(overlapsOtherReview(undefined, 'b', ancestorRegistry)).toBe(false);
   });
 });

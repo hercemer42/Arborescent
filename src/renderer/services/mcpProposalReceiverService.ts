@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { storeManager } from '../store/storeManager';
 import { logger } from './logger';
-import { addReview, hasBrowserReview, isReviewOverlap } from '../store/tree/reviews';
+import { addReview, hasBrowserReview, overlapsOtherReview } from '../store/tree/reviews';
 import type { ProposalRequest, ProposalResponse } from '../../shared/types/electronApi';
 import type { TreeStore } from '../store/tree/treeStore';
 
@@ -61,9 +61,11 @@ export async function handleProposalRequest(
     return { ok: false, error: 'cannot give feedback, browser review in progress, finish and retry' };
   }
 
-  // A review may not nest inside or engulf another.
-  if (isReviewOverlap(state.reviews, request.nodeId, state.ancestorRegistry)) {
-    return { ok: false, error: 'cannot give feedback, the target overlaps a review already in progress, finish and retry' };
+  // A submit delivers content to the target's own in-flight review (a collaborate send marks the
+  // node in review before the AI answers via submit_step_output), so the target being in review is
+  // not an overlap — only a DIFFERENT review it would nest inside or engulf is refused.
+  if (overlapsOtherReview(state.reviews, request.nodeId, state.ancestorRegistry)) {
+    return { ok: false, error: 'cannot give feedback, the target overlaps another review already in progress, finish and retry' };
   }
 
   // Snapshot the review map so we can revert if the submission can't be applied — otherwise a

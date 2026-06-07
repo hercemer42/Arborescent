@@ -57,6 +57,23 @@ export function isReviewOverlap(
   );
 }
 
+// Like isReviewOverlap, but the target's OWN review does not count. A submit delivers content to
+// (or replaces the proposition of) the node's own in-flight review — a collaborate send marks the
+// node in review before the AI answers via submit_step_output — so that is delivery, not a second
+// review. Only a DIFFERENT review it would nest inside (an ancestor in review) or engulf (a strict
+// descendant in review) is a real overlap. Use this to gate writes that deliver into a review;
+// use isReviewOverlap to gate starting one.
+export function overlapsOtherReview(
+  reviews: ReviewMap | undefined,
+  nodeId: string,
+  ancestorRegistry: AncestorRegistry,
+): boolean {
+  return (
+    isReviewDescendant(reviews, nodeId, ancestorRegistry) ||
+    reviewsInSubtree(reviews, nodeId, ancestorRegistry).some((reviewedId) => reviewedId !== nodeId)
+  );
+}
+
 export function getBrowserReviewNodeId(reviews: ReviewMap | undefined): string | null {
   const entry = Object.entries(reviews ?? {}).find(([, review]) => review.source === 'browser');
   return entry ? entry[0] : null;

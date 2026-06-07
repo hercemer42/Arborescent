@@ -230,13 +230,57 @@ describe('handleProposalRequest', () => {
     const result = await handleProposalRequest(makeRequest(), deps);
 
     expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.error).toMatch(/overlaps a review already in progress/);
+    if (!result.ok) expect(result.error).toMatch(/overlaps another review already in progress/);
     expect(processSpy).not.toHaveBeenCalled();
     expect(setStateSpy).not.toHaveBeenCalled();
     expect(overlapReviews).toEqual({
       [inReviewAncestor]: { source: 'terminal', terminalId: null },
     });
     expect(overlapReviews[NODE]).toBeUndefined();
+  });
+
+  it('accepts a submit to a node that is already in its OWN review — a collaborate send marks the node before the AI delivers via submit_step_output, so this is delivery, not a second review (regression: self-overlap used to refuse the awaited response)', async () => {
+    reviews = { [NODE]: { source: 'terminal', terminalId: 'term-1' } };
+
+    const deps = makeDeps(FILE_A);
+    const result = await handleProposalRequest(makeRequest(), deps);
+
+    expect(result.ok).toBe(true);
+    expect(processedArgs).toEqual({
+      content: 'AI response',
+      source: 'mcp-proposal',
+      reviewedNodeId: NODE,
+    });
+  });
+
+  it('refuses when a strict descendant of the target is in review (engulfing), even though the target itself is not', async () => {
+    const inReviewDescendant = 'descendant-1';
+    const overlapReviews: ReviewMap = {
+      [inReviewDescendant]: { source: 'terminal', terminalId: null },
+    };
+    const processSpy = vi.fn();
+    const setStateSpy = vi.fn();
+
+    const overlapStore = {
+      getState: () => ({
+        reviews: overlapReviews,
+        ancestorRegistry: { [inReviewDescendant]: [NODE] },
+        actions: { processIncomingFeedbackContent: processSpy },
+      }),
+      setState: setStateSpy,
+    };
+
+    const deps = {
+      findFileForNode: vi.fn(() => FILE_A),
+      getStoreForFile: vi.fn(() => overlapStore as never),
+    };
+
+    const result = await handleProposalRequest(makeRequest(), deps);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error).toMatch(/overlaps another review already in progress/);
+    expect(processSpy).not.toHaveBeenCalled();
+    expect(setStateSpy).not.toHaveBeenCalled();
   });
 
   it('refuses when a browser review is in progress in any open file (browser is exclusive) and does not process feedback', async () => {
