@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-07T20:32:35.876Z'
+updated: '2026-06-07T20:57:11.799Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25471,8 +25471,7 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children:
-      - 41f1f338-e84f-47c7-80f6-0d3fc444b6f3
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -27146,7 +27145,8 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children: []
+    children:
+      - ec90d67b-47d7-4b77-99a6-e665e1d85f2e
     metadata:
       status: pending
       isBlueprint: true
@@ -83463,6 +83463,7 @@ nodes:
     content: Technical decomposition
     children:
       - 9faac45f-3aaf-4d31-bf37-bc6007e17ce2
+      - b4a23c2d-a096-4a7f-9550-a6a84b9c4199
     metadata:
       status: pending
       isBlueprint: true
@@ -115306,6 +115307,7 @@ nodes:
       - c26cccb7-37b3-4b39-841e-37da045b6285
       - 752e1656-5886-4bc5-bd1d-02548154bc7a
       - b38bf6fd-7287-4398-b35b-38075ae5f576
+      - b801f945-dbfa-4a78-bc1d-3cd9500c1a0d
     metadata:
       status: pending
       isBlueprint: true
@@ -124370,7 +124372,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - b801f945-dbfa-4a78-bc1d-3cd9500c1a0d
+      - 41f1f338-e84f-47c7-80f6-0d3fc444b6f3
     metadata:
       status: pending
       isBlueprint: true
@@ -158653,7 +158655,6 @@ nodes:
     content: Bug specification
     children:
       - bcaad6d5-cec8-4e29-83df-19ab5ea18876
-      - ec90d67b-47d7-4b77-99a6-e665e1d85f2e
       - 5f915b0a-c4f5-4d49-a7ad-f275c60880bc
     metadata:
       status: pending
@@ -201176,14 +201177,14 @@ nodes:
     id: b801f945-dbfa-4a78-bc1d-3cd9500c1a0d
     content: Make applied context icons clickable
     children:
-      - c37882f6-44d5-4c4f-834f-d18249d433c2
-      - c9433969-8016-47a5-9055-f8b4dbc74626
-      - 661ab9a3-6e42-4b77-abd4-32e09a004194
-      - 1ab26873-32a5-475c-92f3-b4f4be5d22ce
-      - c0e71b07-a4c3-4427-9519-b56e74abd553
-      - 525c881d-2462-4d1f-bd6c-9ff8f871f469
-      - 75c7c290-3f5e-4e36-b5d7-db89a36a2c78
-      - 2366b9d1-8d54-47ab-bb97-2d9ddf4b80bc
+      - 9ea0f6ea-ee17-4f63-a07d-9ae6ebbc0e60
+      - 2a1ce701-9dbe-4fce-963b-3cc101ad3861
+      - ab7f14d6-700b-4ba4-9f09-8d7ca77b47f7
+      - 42e9bc4f-350e-48ac-9b4b-c53cc79cb4fd
+      - e4c1e639-7b67-4267-8981-4351cfc0923f
+      - a8757042-79f2-4238-a40f-2bf201f9b309
+      - f01c653b-c50d-474c-90f0-e9301af0308b
+      - 8fd78fcd-59d1-411e-a244-e80b114b1649
     metadata:
       status: completed
       expanded: false
@@ -203799,45 +203800,32 @@ nodes:
       status: pending
   ec90d67b-47d7-4b77-99a6-e665e1d85f2e:
     id: ec90d67b-47d7-4b77-99a6-e665e1d85f2e
-    content: If Im focused in one node
+    content: Toggling task status on a node in review targets the previously focused node instead
     children:
-      - d2e956e1-3e12-437c-b02a-e27590562be8
-      - 79a88305-0e26-4c5a-9748-aa51c27dd762
-      - 322d6579-9457-4f61-8ce4-8252d6d25dfe
-      - 41630e47-3548-4e71-aeff-9c5d85632dc5
+      - 5d0667be-830c-4cc7-8c4e-bde4840683c3
+      - 211fbbb4-3010-46aa-8be7-34578d20c6d8
+      - bb059f24-6907-4d51-962e-9ae6f61e4ab8
+      - aa362281-9182-491f-ae48-b4621ed3ff2a
+      - 7684a4d2-7548-4dc7-ba3f-f31335177365
+      - aaf25f92-8fe4-4a9a-9b62-4fd54cc1a63f
+      - 98935c63-e3a9-479c-b931-049bd76d25a6
+      - 651130ac-fab1-43e1-9fdd-946d7c180220
+      - 478d6268-6aeb-4e67-8474-be809667df08
+      - 12bbc824-c08f-40fd-845f-26fa83caee1b
+      - cc618748-9f53-4bb9-a5fe-5f8c56178408
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
       sessionId: f3818f48-8023-4166-b24b-8dcc4abfe9ae
-  d2e956e1-3e12-437c-b02a-e27590562be8:
-    id: d2e956e1-3e12-437c-b02a-e27590562be8
-    content: Then focus on a node in review
-    children: []
-    metadata:
-      status: pending
-  79a88305-0e26-4c5a-9748-aa51c27dd762:
-    id: 79a88305-0e26-4c5a-9748-aa51c27dd762
-    content: And press the toggle shortcut
-    children: []
-    metadata:
-      status: pending
-  322d6579-9457-4f61-8ce4-8252d6d25dfe:
-    id: 322d6579-9457-4f61-8ce4-8252d6d25dfe
-    content: It toggles and refocuses the previous node
-    children: []
-    metadata:
-      status: pending
-  41630e47-3548-4e71-aeff-9c5d85632dc5:
-    id: 41630e47-3548-4e71-aeff-9c5d85632dc5
-    content: And not the one in review
-    children: []
-    metadata:
-      status: pending
   8a287c82-30a2-4bed-8580-c3f8f5caa46b:
     id: 8a287c82-30a2-4bed-8580-c3f8f5caa46b
     content: Open zoom window focused on a review node once feedback arrives
     children: []
     metadata:
       status: pending
+      sessionId: 5cfce950-c705-4548-a098-831f3c6b123d
   bcaad6d5-cec8-4e29-83df-19ab5ea18876:
     id: bcaad6d5-cec8-4e29-83df-19ab5ea18876
     content: Can't submit feedback multiple times to a node in review
@@ -204378,6 +204366,11 @@ nodes:
       - e9b48da0-5395-4f43-ab1e-2652fa60dcdf
       - e7af6482-1bc8-4479-ac84-c85e38dfedeb
       - 23337bb0-8e21-4dcf-b193-01c41404f33d
+      - 73e05e15-08a7-4b18-be8a-ea2c4bbf58f0
+      - cd72a4e4-bc71-41d8-bc49-f06113478555
+      - e688b2a3-6b51-491f-9c7a-f04f4e81ed20
+      - c2d9f2d6-e740-4991-9e1e-b71e549144e7
+      - d3e6ebe6-241a-4b7a-bc18-8547491595a0
     metadata:
       status: completed
       expanded: false
@@ -205175,806 +205168,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c37882f6-44d5-4c4f-834f-d18249d433c2:
-    id: c37882f6-44d5-4c4f-834f-d18249d433c2
-    content: worktree
-    children:
-      - 54df2a87-5768-480d-a4d2-3ee15a66e2b3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  54df2a87-5768-480d-a4d2-3ee15a66e2b3:
-    id: 54df2a87-5768-480d-a4d2-3ee15a66e2b3
-    content: 'Open in VSCode: vscode://file/Users/brianfox/dev/Arborescent-clickable-context-icons'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9433969-8016-47a5-9055-f8b4dbc74626:
-    id: c9433969-8016-47a5-9055-f8b4dbc74626
-    content: 📄 Product spec
-    children:
-      - 5af6c084-37d7-477f-bcd3-97b562721b06
-      - a1c9c80b-2511-48f3-8bc9-89e7a805ac7a
-      - 5f6ce8c6-fa8c-4460-9811-e3532dbeef76
-      - 536ebcc5-210e-4b11-997f-df4e124b3ceb
-      - 422b3562-fa76-452e-ab93-bb5146b64e7c
-      - ac82c167-aad2-4245-baa4-0048c16ea22d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5af6c084-37d7-477f-bcd3-97b562721b06:
-    id: 5af6c084-37d7-477f-bcd3-97b562721b06
-    content: Context
-    children:
-      - bfbe3a4f-47ce-4f66-9cf6-a282cc88ee21
-      - bdd44294-fc2b-4379-a8e6-1b361e1bf98c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bfbe3a4f-47ce-4f66-9cf6-a282cc88ee21:
-    id: bfbe3a4f-47ce-4f66-9cf6-a282cc88ee21
-    content: A node's gutter shows an icon when a reusable context is applied to or inherited by it; a hover tooltip names the context and its mode.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bdd44294-fc2b-4379-a8e6-1b361e1bf98c:
-    id: bdd44294-fc2b-4379-a8e6-1b361e1bf98c
-    content: The context's actual definition is a separate node elsewhere in the same tree, often far from where the icon appears and frequently collapsed out of view.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1c9c80b-2511-48f3-8bc9-89e7a805ac7a:
-    id: a1c9c80b-2511-48f3-8bc9-89e7a805ac7a
-    content: User
-    children:
-      - c4177ff1-32ab-4a6a-b7e8-ea1f7ed4ee5f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4177ff1-32ab-4a6a-b7e8-ea1f7ed4ee5f:
-    id: c4177ff1-32ab-4a6a-b7e8-ea1f7ed4ee5f
-    content: A person building or reviewing a workflow tree who needs to read or edit the definition of a context that applies here, especially one declared far away and inherited down the subtree.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f6ce8c6-fa8c-4460-9811-e3532dbeef76:
-    id: 5f6ce8c6-fa8c-4460-9811-e3532dbeef76
-    content: Current experience and why it is insufficient
-    children:
-      - 46d3824d-ec84-45bb-953c-c2b091bc5a3f
-      - ebda4686-f849-47e4-b345-47eddedca39e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  46d3824d-ec84-45bb-953c-c2b091bc5a3f:
-    id: 46d3824d-ec84-45bb-953c-c2b091bc5a3f
-    content: The gutter icon is passive — it signals that a context applies and names it on hover, but offers no way to reach the definition.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ebda4686-f849-47e4-b345-47eddedca39e:
-    id: ebda4686-f849-47e4-b345-47eddedca39e
-    content: To open the context the user must recall its name, hunt through the tree, and expand whatever branches hide it — friction that grows with depth and discourages inspecting contexts.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  536ebcc5-210e-4b11-997f-df4e124b3ceb:
-    id: 536ebcc5-210e-4b11-997f-df4e124b3ceb
-    content: Goal
-    children:
-      - 8617e439-6c82-48d5-8891-b3cd30369fc3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8617e439-6c82-48d5-8891-b3cd30369fc3:
-    id: 8617e439-6c82-48d5-8891-b3cd30369fc3
-    content: Let a user reach and reveal a context's declaration in one click on its gutter icon.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  422b3562-fa76-452e-ab93-bb5146b64e7c:
-    id: 422b3562-fa76-452e-ab93-bb5146b64e7c
-    content: Business rules
-    children:
-      - 197b3f4d-62a6-4bc7-a089-0ab54928f6a8
-      - 629da27c-c784-4014-85a5-489766268aea
-      - d324becc-24f1-4cac-8570-7104a7965831
-      - f1bea199-50b6-4ab6-8857-993677ebd51b
-      - 642d4ca2-cc6a-42d4-b9a8-5791fd1e7049
-      - 68e2e708-5146-4da2-99f9-d2a5e7c8a5a5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  197b3f4d-62a6-4bc7-a089-0ab54928f6a8:
-    id: 197b3f4d-62a6-4bc7-a089-0ab54928f6a8
-    content: Clicking an applied-context icon navigates to the context's declaration node, reusing the existing internal-link jump behaviour (select, smooth-scroll into view, flash).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  629da27c-c784-4014-85a5-489766268aea:
-    id: 629da27c-c784-4014-85a5-489766268aea
-    content: When the declaration is hidden inside collapsed ancestors, navigation expands every collapsed ancestor required to bring it into view.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d324becc-24f1-4cac-8570-7104a7965831:
-    id: d324becc-24f1-4cac-8570-7104a7965831
-    content: Navigation reveals and selects the declaration but does not expand its own subtree; whether to open the declaration's children is left to the user.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1bea199-50b6-4ab6-8857-993677ebd51b:
-    id: f1bea199-50b6-4ab6-8857-993677ebd51b
-    content: When the icon represents an inherited context, the jump targets the original declaration node regardless of distance, not the clicked node or an intermediate ancestor.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  642d4ca2-cc6a-42d4-b9a8-5791fd1e7049:
-    id: 642d4ca2-cc6a-42d4-b9a8-5791fd1e7049
-    content: Built-in synthetic contexts have no declaration node, so their icons render inert — no clickable affordance, no pointer cursor — and clicking does nothing.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  68e2e708-5146-4da2-99f9-d2a5e7c8a5a5:
-    id: 68e2e708-5146-4da2-99f9-d2a5e7c8a5a5
-    content: The clickable target is the icon itself; activating it must not trigger row selection or drag on the surrounding gutter.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac82c167-aad2-4245-baa4-0048c16ea22d:
-    id: ac82c167-aad2-4245-baa4-0048c16ea22d
-    content: Acceptance criteria
-    children:
-      - caab8caa-a4f3-4668-9ce4-ec92b6f34120
-      - e545710a-36f0-4b49-b71f-ba6c1443d0c6
-      - 811ce2f6-3cd0-4768-9bd9-1e8a1429872b
-      - fc912161-b888-43d6-8ca1-e05815b97ac2
-      - 4866e07e-70ac-49ee-9707-7c83727d4e7c
-      - ac092e87-d966-4e05-a4c2-252131e3fc93
-      - 4ce121a9-76e3-435f-b670-322a5b0f6d41
-      - f045fb1e-0887-4e9f-ba45-ff3df053cf63
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  caab8caa-a4f3-4668-9ce4-ec92b6f34120:
-    id: caab8caa-a4f3-4668-9ce4-ec92b6f34120
-    content: Clicking a gutter context icon whose declaration is a visible node selects, scrolls to, and flashes that declaration node.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e545710a-36f0-4b49-b71f-ba6c1443d0c6:
-    id: e545710a-36f0-4b49-b71f-ba6c1443d0c6
-    content: Clicking when the declaration is inside collapsed ancestors expands the required ancestors, then selects, scrolls to, and flashes it.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  811ce2f6-3cd0-4768-9bd9-1e8a1429872b:
-    id: 811ce2f6-3cd0-4768-9bd9-1e8a1429872b
-    content: After navigation, the declaration node's own subtree is left in its existing expanded/collapsed state and is not auto-expanded.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc912161-b888-43d6-8ca1-e05815b97ac2:
-    id: fc912161-b888-43d6-8ca1-e05815b97ac2
-    content: Clicking the icon of an inherited context jumps to the original declaration, not the clicked node.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4866e07e-70ac-49ee-9707-7c83727d4e7c:
-    id: 4866e07e-70ac-49ee-9707-7c83727d4e7c
-    content: A navigable context icon is keyboard-focusable and activatable by Enter/Space and shows a pointer cursor on hover.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac092e87-d966-4e05-a4c2-252131e3fc93:
-    id: ac092e87-d966-4e05-a4c2-252131e3fc93
-    content: The existing context name/mode hover tooltip continues to work on both navigable and inert icons.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ce121a9-76e3-435f-b670-322a5b0f6d41:
-    id: 4ce121a9-76e3-435f-b670-322a5b0f6d41
-    content: Built-in synthetic context icons present no pointer cursor and no focusable/clickable affordance, and clicking is a no-op.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f045fb1e-0887-4e9f-ba45-ff3df053cf63:
-    id: f045fb1e-0887-4e9f-ba45-ff3df053cf63
-    content: Clicking the icon does not select the row or start a drag on the gutter.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  661ab9a3-6e42-4b77-abd4-32e09a004194:
-    id: 661ab9a3-6e42-4b77-abd4-32e09a004194
-    content: 🔧 Implementation proposal
-    children:
-      - bf2f6e2e-bce5-4fd1-8e2e-06faa06ea7fd
-      - 0a666884-7e06-4361-bdcd-53e9558623e2
-      - 4f3be3d3-cd8d-4d28-8a31-ce5df21e1a30
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf2f6e2e-bce5-4fd1-8e2e-06faa06ea7fd:
-    id: bf2f6e2e-bce5-4fd1-8e2e-06faa06ea7fd
-    content: Approach
-    children:
-      - 3053019f-6aa6-4f2a-98b7-fb55fcbf95f7
-      - 75caaf4b-2892-4c47-99e8-031277cd0c7a
-      - ad4051e8-6202-4e71-b810-f759843c34f0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3053019f-6aa6-4f2a-98b7-fb55fcbf95f7:
-    id: 3053019f-6aa6-4f2a-98b7-fb55fcbf95f7
-    content: Surface the declaration node id on the AppliedContext object in useAppliedContexts.ts, which today resolves the context node but discards its id; because the icon only renders when that node exists, every real applied context is navigable and only synthetic built-ins are inert.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  75caaf4b-2892-4c47-99e8-031277cd0c7a:
-    id: 75caaf4b-2892-4c47-99e8-031277cd0c7a
-    content: Reuse the existing hyperlink jump routine (expand collapsed ancestors → select → scroll → flash) unchanged — with subtree-expansion dropped the gutter jump is now identical to it — extracted into one shared jump-to-node implementation called by both the gutter icon and hyperlinks.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad4051e8-6202-4e71-b810-f759843c34f0:
-    id: ad4051e8-6202-4e71-b810-f759843c34f0
-    content: In GutterContextIndicator render a focusable button for real (non-synthetic) contexts and an inert span for synthetic built-ins, with the handler calling stopPropagation; the change lands entirely in the renderer (no main, preload, MCP, or .arbo changes).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0a666884-7e06-4361-bdcd-53e9558623e2:
-    id: 0a666884-7e06-4361-bdcd-53e9558623e2
-    content: Touchpoints
-    children:
-      - 35d19e32-3108-4c2a-b60f-182b65a7359e
-      - 7b6a353d-60fc-454d-ab33-5e3f657ee14f
-      - e52db492-9b83-4c51-8290-2b5c959a2a0c
-      - 042057fc-053a-4c8a-ace9-de8677d745f6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  35d19e32-3108-4c2a-b60f-182b65a7359e:
-    id: 35d19e32-3108-4c2a-b60f-182b65a7359e
-    content: 'Hook/types: useAppliedContexts.ts — add the declaration node id to AppliedContext and mark synthetic built-ins non-navigable (the existing isSyntheticContextId helper covers all three but is currently unexported — export it or mirror the two BASIC-id check the hook already does).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b6a353d-60fc-454d-ab33-5e3f657ee14f:
-    id: 7b6a353d-60fc-454d-ab33-5e3f657ee14f
-    content: 'Component: GutterContextIndicator.tsx and its co-located CSS — conditional button/span, click and Enter/Space handler, stopPropagation, pointer cursor and focus ring gated on the context being a real declaration.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e52db492-9b83-4c51-8290-2b5c959a2a0c:
-    id: e52db492-9b83-4c51-8290-2b5c959a2a0c
-    content: 'Navigation: shared jump-to-node routine extracted from useHyperlinkNavigation.ts (or a sibling store action) so there is a single jump implementation.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  042057fc-053a-4c8a-ace9-de8677d745f6:
-    id: 042057fc-053a-4c8a-ace9-de8677d745f6
-    content: 'Tests: GutterContextIndicator and the shared jump routine — a real-context click navigates (expands ancestors, selects, scrolls, flashes) without expanding the target''s subtree; synthetic built-in icons stay inert and non-clickable.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f3be3d3-cd8d-4d28-8a31-ce5df21e1a30:
-    id: 4f3be3d3-cd8d-4d28-8a31-ce5df21e1a30
-    content: Constraints to call out
-    children:
-      - 2ea51536-2d5f-48f3-ac0d-791909b6c936
-      - e243f855-b1a9-432a-9d9c-5fbc96c804f2
-      - e60cbc57-8d19-4182-874b-b62411a957a9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2ea51536-2d5f-48f3-ac0d-791909b6c936:
-    id: 2ea51536-2d5f-48f3-ac0d-791909b6c936
-    content: 'No deleted-declaration case to guard (verified in code): removing a declaration cascade-clears appliedContextId/appliedContextIds on every referencing node (RemoveContextCommand.removeAppliedContextFromAllNodes), and after a raw node delete the gutter hook returns undefined for an unresolved context so no icon renders — there is no stale icon to click.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e243f855-b1a9-432a-9d9c-5fbc96c804f2:
-    id: e243f855-b1a9-432a-9d9c-5fbc96c804f2
-    content: Gate navigability with the existing isSyntheticContextId helper rather than hardcoding ids; note it currently lives unexported in nodeHelpers/permissionGate, and the gutter only ever renders synthetic icons for the two BASIC contexts today.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e60cbc57-8d19-4182-874b-b62411a957a9:
-    id: e60cbc57-8d19-4182-874b-b62411a957a9
-    content: Expanding collapsed ancestors reuses the existing per-node toggle, consistent with hyperlink navigation; no grouped-undo work is in scope.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ab26873-32a5-475c-92f3-b4f4be5d22ce:
-    id: 1ab26873-32a5-475c-92f3-b4f4be5d22ce
-    content: Scope decision
-    children:
-      - adc2763c-abf7-443c-a38b-4f449b2b34f9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  adc2763c-abf7-443c-a38b-4f449b2b34f9:
-    id: adc2763c-abf7-443c-a38b-4f449b2b34f9
-    content: Ship as a single chunk — do not split
-    children:
-      - a472e549-5980-46e6-82ef-ca17d9fec5fc
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a472e549-5980-46e6-82ef-ca17d9fec5fc:
-    id: a472e549-5980-46e6-82ef-ca17d9fec5fc
-    content: The behaviour is one coherent user-visible capability (click icon → reveal context) whose value is only realised whole; no sub-chunk delivers standalone review value or merits an independent feature flag.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c0e71b07-a4c3-4427-9519-b56e74abd553:
-    id: c0e71b07-a4c3-4427-9519-b56e74abd553
-    content: Challenge
-    children:
-      - 154ad172-6c8b-490b-bfe9-20687fef91fe
-      - 68cba36d-211c-45cc-bf33-d60176f9d404
-      - 90fb098a-521b-4652-8eb4-fe17f6c5790d
-      - 66e2a62f-30b8-4de5-90a9-f30d210e9b45
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  154ad172-6c8b-490b-bfe9-20687fef91fe:
-    id: 154ad172-6c8b-490b-bfe9-20687fef91fe
-    content: UX
-    children:
-      - 1fd3d66b-f7b6-40e6-8312-27217464dc13
-      - 217250a0-2e3a-4086-8e54-4828f0b00e9f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1fd3d66b-f7b6-40e6-8312-27217464dc13:
-    id: 1fd3d66b-f7b6-40e6-8312-27217464dc13
-    content: Synthetic built-in icons must not present a pointer cursor or focus affordance — an icon that looks clickable but does nothing is worse than today's honestly-passive icon.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  217250a0-2e3a-4086-8e54-4828f0b00e9f:
-    id: 217250a0-2e3a-4086-8e54-4828f0b00e9f
-    content: Scope the hit target to the icon, not the 48px gutter, which also carries row-selection affordances.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  68cba36d-211c-45cc-bf33-d60176f9d404:
-    id: 68cba36d-211c-45cc-bf33-d60176f9d404
-    content: Over-engineering to avoid
-    children:
-      - d6c79f02-7e03-4fb0-9d22-af9961b2e5c1
-      - 36b0bc52-08ac-4131-92a3-aafc76abed94
-      - 1dcf7763-5b8a-4123-8a2c-8c7b9cd019a4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6c79f02-7e03-4fb0-9d22-af9961b2e5c1:
-    id: d6c79f02-7e03-4fb0-9d22-af9961b2e5c1
-    content: Reuse the existing hyperlink jump path instead of writing new tree traversal; expandCollapsedAncestors and the select/scroll/flash sequence already exist.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  36b0bc52-08ac-4131-92a3-aafc76abed94:
-    id: 36b0bc52-08ac-4131-92a3-aafc76abed94
-    content: Exclude navigation history/back button, right-click menu, inline context preview, and "highlight all nodes sharing this context".
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  1dcf7763-5b8a-4123-8a2c-8c7b9cd019a4:
-    id: 1dcf7763-5b8a-4123-8a2c-8c7b9cd019a4
-    content: Do not add a grouped-undo command for the expand toggles unless it proves annoying in practice.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  90fb098a-521b-4652-8eb4-fe17f6c5790d:
-    id: 90fb098a-521b-4652-8eb4-fe17f6c5790d
-    content: ROI
-    children:
-      - 310b94e3-3e56-4d57-b232-bdfed0333bda
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  310b94e3-3e56-4d57-b232-bdfed0333bda:
-    id: 310b94e3-3e56-4d57-b232-bdfed0333bda
-    content: Strong — removes recurring navigation friction by reusing an already-understood interaction; with subtree-expansion and dangling-handling dropped, the change is essentially "thread one id and make the icon clickable", roughly half a day including tests, with no schema or cross-process changes.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66e2a62f-30b8-4de5-90a9-f30d210e9b45:
-    id: 66e2a62f-30b8-4de5-90a9-f30d210e9b45
-    content: Out of scope
-    children:
-      - 69ccc94d-3337-400f-a9f7-ecccec4c101d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  69ccc94d-3337-400f-a9f7-ecccec4c101d:
-    id: 69ccc94d-3337-400f-a9f7-ecccec4c101d
-    content: Making built-in synthetic contexts navigable, or letting the click create or edit a context — there is no destination and it changes the feature's intent.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  525c881d-2462-4d1f-bd6c-9ff8f871f469:
-    id: 525c881d-2462-4d1f-bd6c-9ff8f871f469
-    content: Technical refinement
-    children:
-      - ea17989d-1d2f-4d8f-971a-4755e0ace125
-      - f0c9c9cb-3188-46ad-94fd-0d4761f5fecd
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ea17989d-1d2f-4d8f-971a-4755e0ace125:
-    id: ea17989d-1d2f-4d8f-971a-4755e0ace125
-    content: Flag complications
-    children:
-      - fc86424d-ea2b-41fb-879f-92093aae50ed
-      - 8b0de983-86f6-4f5b-964d-921d093e6af4
-      - 5fa90cab-3eb0-4b7a-abbc-dadfbf66ab01
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc86424d-ea2b-41fb-879f-92093aae50ed:
-    id: fc86424d-ea2b-41fb-879f-92093aae50ed
-    content: Edge cases or risks not already in the acceptance criteria
-    children:
-      - 55289625-9e79-4730-b247-310df92576b0
-      - 9386887f-e7c4-40d4-ab7a-8580d7cee961
-      - 82c77e3d-0c8d-4bfd-8044-1829920fe5f3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55289625-9e79-4730-b247-310df92576b0:
-    id: 55289625-9e79-4730-b247-310df92576b0
-    content: 'Zoom tabs: an inherited context''s declaration can live outside the currently-zoomed subtree, where it is not rendered; the jump must first switch out of the zoom tab to the main view (the hyperlink hook already does this in its preamble), otherwise reusing only the expand→select→scroll→flash tail scrolls to nothing.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9386887f-e7c4-40d4-ab7a-8580d7cee961:
-    id: 9386887f-e7c4-40d4-ab7a-8580d7cee961
-    content: The jump spans two stores — the files store (zoom / active file) and the tree store (expand / select / scroll) — so the shared routine cannot be a pure tree-store action; factor it so both the gutter icon and the hyperlink hook call the same code rather than duplicating the preamble.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  82c77e3d-0c8d-4bfd-8044-1829920fe5f3:
-    id: 82c77e3d-0c8d-4bfd-8044-1829920fe5f3
-    content: 'Blueprint mode is not a blocker (verified): declaration nodes are isBlueprint=true and remain visible both in normal mode (which shows all children) and in blueprint mode (which shows only blueprint nodes), so no view-mode toggle is needed to reach them.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b0de983-86f6-4f5b-964d-921d093e6af4:
-    id: 8b0de983-86f6-4f5b-964d-921d093e6af4
-    content: Anything explicitly out of scope
-    children:
-      - 2b0ec573-f9d5-4dfa-9555-27a655c993c9
-      - 29fbe1ac-3cbf-4f32-b5c7-46a3f7b0d46f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b0ec573-f9d5-4dfa-9555-27a655c993c9:
-    id: 2b0ec573-f9d5-4dfa-9555-27a655c993c9
-    content: The gutter renders a single icon driven by the active appliedContextId, so the click targets exactly that one context; multi-context disambiguation is not introduced.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  29fbe1ac-3cbf-4f32-b5c7-46a3f7b0d46f:
-    id: 29fbe1ac-3cbf-4f32-b5c7-46a3f7b0d46f
-    content: 'No cross-file navigation: appliedContextId is remapped or stripped to the current file on paste, so the declaration always lives in the open tree.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  5fa90cab-3eb0-4b7a-abbc-dadfbf66ab01:
-    id: 5fa90cab-3eb0-4b7a-abbc-dadfbf66ab01
-    content: Any complexity that calls the ROI into question
-    children:
-      - 5f1b6c12-7a7b-4b2a-ab7c-9d7a3519a43a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f1b6c12-7a7b-4b2a-ab7c-9d7a3519a43a:
-    id: 5f1b6c12-7a7b-4b2a-ab7c-9d7a3519a43a
-    content: None — the only addition beyond trivial reuse is the zoom-tab exit, already a couple of lines in the hyperlink hook; ROI stays strong at roughly half a day.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0c9c9cb-3188-46ad-94fd-0d4761f5fecd:
-    id: f0c9c9cb-3188-46ad-94fd-0d4761f5fecd
-    content: Summary of the approach
-    children:
-      - 5ce99e7d-1a39-43b7-92b3-1a7fba4bc148
-      - c0236f16-b709-450c-8741-9d683b813b35
-      - d32811f4-6419-4df0-849d-81ff1ffacfa2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5ce99e7d-1a39-43b7-92b3-1a7fba4bc148:
-    id: 5ce99e7d-1a39-43b7-92b3-1a7fba4bc148
-    content: Thread the already-resolved declaration node id onto AppliedContext and make GutterContextIndicator a focusable button for real contexts and an inert span for synthetic built-ins.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c0236f16-b709-450c-8741-9d683b813b35:
-    id: c0236f16-b709-450c-8741-9d683b813b35
-    content: Factor the hyperlink hook's jump — including its zoom-tab exit, not just the expand/select/scroll/flash tail — into one shared routine both the gutter icon and hyperlinks call.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d32811f4-6419-4df0-849d-81ff1ffacfa2:
-    id: d32811f4-6419-4df0-849d-81ff1ffacfa2
-    content: 'Likely to surprise the reviewer: the reuse must keep the zoom-tab preamble and the routine touches both the files and tree stores, but no view-mode handling is needed because declarations are always visible.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  75c7c290-3f5e-4e36-b5d7-db89a36a2c78:
-    id: 75c7c290-3f5e-4e36-b5d7-db89a36a2c78
-    content: Verification summary
-    children:
-      - c1459421-b363-46f1-a817-462bd7b379a1
-      - 100a7d8b-9c49-42df-8a34-3a52460e4fb8
-      - f41cfc01-fc69-439d-b38c-2546acdd68d4
-      - b1b87c93-3097-4cfa-92b0-882fc538be5b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c1459421-b363-46f1-a817-462bd7b379a1:
-    id: c1459421-b363-46f1-a817-462bd7b379a1
-    content: Implemented and verified — every business rule and acceptance criterion is satisfied; 58 tests pass across the changed files and lint and type-check are clean.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  100a7d8b-9c49-42df-8a34-3a52460e4fb8:
-    id: 100a7d8b-9c49-42df-8a34-3a52460e4fb8
-    content: Keyboard activation (Enter/Space) is implemented via a native focusable button with a focus-visible ring and pointer cursor; only its unit test is deferred (it.todo) because jsdom does not synthesise click-from-key on native buttons, so the behaviour holds in-browser but is not asserted in a unit test.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f41cfc01-fc69-439d-b38c-2546acdd68d4:
-    id: f41cfc01-fc69-439d-b38c-2546acdd68d4
-    content: 'Deliberately not done (out of scope by design): navigation history/back button, right-click menu, inline context preview, highlight-all-nodes-sharing-a-context, grouped-undo for the expand toggles, multi-context disambiguation, cross-file navigation, and making synthetic built-in icons navigable.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1b87c93-3097-4cfa-92b0-882fc538be5b:
-    id: b1b87c93-3097-4cfa-92b0-882fc538be5b
-    content: Nothing in the required scope is left undone.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2366b9d1-8d54-47ab-bb97-2d9ddf4b80bc:
-    id: 2366b9d1-8d54-47ab-bb97-2d9ddf4b80bc
-    content: review feedback
-    children:
-      - e8daebde-ac7a-4b7f-a385-dcc93f0971f8
-      - b6e8342a-5dce-4337-8061-46c413076edc
-      - 3242b70a-c802-4279-8d5f-ff0a67d1915d
-    metadata:
-      status: completed
-  e8daebde-ac7a-4b7f-a385-dcc93f0971f8:
-    id: e8daebde-ac7a-4b7f-a385-dcc93f0971f8
-    content: 'Verdict: clean. pr-review-toolkit:code-reviewer found no blocking or non-blocking issues across the full diff plus calling code (NodeGutter, TreeNode, useNodeMouse, all useHyperlinkNavigation / AppliedContext consumers). Changed-area tests 39 passing; tsc --noEmit clean; eslint clean. No code changes made.'
-    children: []
-    metadata:
-      status: pending
-  b6e8342a-5dce-4337-8061-46c413076edc:
-    id: b6e8342a-5dce-4337-8061-46c413076edc
-    content: 'Verified: (1) click isolation is doubly guarded — the icon''s onClick stopPropagation plus useNodeMouse.handleClick already skipping target.closest(''button''), and drag only starts for already-multi-selected nodes, so an icon click cannot select the row or start a drag; (2) the ref is widened to HTMLElement and the button RefObject cast is sound (the tooltip only calls getBoundingClientRect, valid on button and span); (3) the useHyperlinkNavigation refactor preserves external behaviour — external-link browser tab, the ''Linked branch not found'' toast, and the jump delegated verbatim to useNodeNavigation; (4) hooks order and deps are correct — nodes/actions/ancestorRegistry/blueprintModeEnabled are read via store.getState() inside the callback, useCallback deps are [store, activeFile, setActiveFile].'
-    children: []
-    metadata:
-      status: pending
-  3242b70a-c802-4279-8d5f-ff0a67d1915d:
-    id: 3242b70a-c802-4279-8d5f-ff0a67d1915d
-    content: 'Nits (no change required): navigateToDeclaration closure is recreated each render — harmless inside the memo component since no memo child depends on its identity; Enter/Space activation is an it.todo because jsdom cannot synthesise click-from-key, so the behaviour holds in-browser via the semantic button but is not asserted by an automated test. useNodeNavigation''s no-op on a null TreeStoreContext was judged an acceptable graceful guard (the component is always rendered within a provider in-app), not a silent failure.'
-    children: []
-    metadata:
-      status: pending
   e4b6a9d0-bceb-433a-9a61-ba99063cc7b2:
     id: e4b6a9d0-bceb-433a-9a61-ba99063cc7b2
     content: worktree — Arborescent-activity-log-pr1 (branch activity-log-pr1, forked from master)
@@ -206867,6 +206060,1681 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  73e05e15-08a7-4b18-be8a-ea2c4bbf58f0:
+    id: 73e05e15-08a7-4b18-be8a-ea2c4bbf58f0
+    content: 'AI-refactor review — corrects the earlier implementation note: only workflowExecutionActions.ts and workflowHookEventHandler.ts are actually routed through notifyWorkflow. workflowAckManager and workflowClearSession were reverted and are byte-identical to master (they use notifyWorkflowEvent for desktop alerts — never the toast funnel; the earlier grep matched that substring). No refactor changes were needed: conventions are consistent, the abandoned toastStore.classification test is deleted, the 5 peripheral workflow files are clean-reverted, and type-check + lint + the changed/new-file test suite all pass.'
+    children: []
+    metadata:
+      status: pending
+  9ea0f6ea-ee17-4f63-a07d-9ae6ebbc0e60:
+    id: 9ea0f6ea-ee17-4f63-a07d-9ae6ebbc0e60
+    content: worktree
+    children:
+      - b24fc6f1-6084-4942-8a90-705f848d7c77
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b24fc6f1-6084-4942-8a90-705f848d7c77:
+    id: b24fc6f1-6084-4942-8a90-705f848d7c77
+    content: 'Open in VSCode: vscode://file/Users/brianfox/dev/Arborescent-clickable-context-icons'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a1ce701-9dbe-4fce-963b-3cc101ad3861:
+    id: 2a1ce701-9dbe-4fce-963b-3cc101ad3861
+    content: 📄 Product spec
+    children:
+      - 5eddfe19-b071-41cc-b3ae-a0b25b800bcf
+      - 3973a006-40d7-43aa-b2aa-938bdfa1f5db
+      - 11232dfc-362f-4174-8f41-16d08814819d
+      - 24a05779-6d4c-4412-b305-10af3ca62544
+      - ada1b779-bde7-4399-a4e2-d9010492c94c
+      - cafd9393-2677-4157-8604-5d52273dca79
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5eddfe19-b071-41cc-b3ae-a0b25b800bcf:
+    id: 5eddfe19-b071-41cc-b3ae-a0b25b800bcf
+    content: Context
+    children:
+      - 33bad83a-22c9-4582-8ae6-1c178d798140
+      - 97a5ed9d-41b4-4946-a285-c209ebc9dd01
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33bad83a-22c9-4582-8ae6-1c178d798140:
+    id: 33bad83a-22c9-4582-8ae6-1c178d798140
+    content: A node's gutter shows an icon when a reusable context is applied to or inherited by it; a hover tooltip names the context and its mode.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97a5ed9d-41b4-4946-a285-c209ebc9dd01:
+    id: 97a5ed9d-41b4-4946-a285-c209ebc9dd01
+    content: The context's actual definition is a separate node elsewhere in the same tree, often far from where the icon appears and frequently collapsed out of view.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3973a006-40d7-43aa-b2aa-938bdfa1f5db:
+    id: 3973a006-40d7-43aa-b2aa-938bdfa1f5db
+    content: User
+    children:
+      - 18f23d97-7865-48a8-8bb6-c909b287bb7f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18f23d97-7865-48a8-8bb6-c909b287bb7f:
+    id: 18f23d97-7865-48a8-8bb6-c909b287bb7f
+    content: A person building or reviewing a workflow tree who needs to read or edit the definition of a context that applies here, especially one declared far away and inherited down the subtree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11232dfc-362f-4174-8f41-16d08814819d:
+    id: 11232dfc-362f-4174-8f41-16d08814819d
+    content: Current experience and why it is insufficient
+    children:
+      - d2cf4099-13fe-4f0b-9a4e-7fd077c31cb5
+      - ca697212-eee4-46f1-a2fc-0b925c39f59a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2cf4099-13fe-4f0b-9a4e-7fd077c31cb5:
+    id: d2cf4099-13fe-4f0b-9a4e-7fd077c31cb5
+    content: The gutter icon is passive — it signals that a context applies and names it on hover, but offers no way to reach the definition.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca697212-eee4-46f1-a2fc-0b925c39f59a:
+    id: ca697212-eee4-46f1-a2fc-0b925c39f59a
+    content: To open the context the user must recall its name, hunt through the tree, and expand whatever branches hide it — friction that grows with depth and discourages inspecting contexts.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24a05779-6d4c-4412-b305-10af3ca62544:
+    id: 24a05779-6d4c-4412-b305-10af3ca62544
+    content: Goal
+    children:
+      - ea53ddc4-b8f5-446b-b006-b3daa76f0298
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea53ddc4-b8f5-446b-b006-b3daa76f0298:
+    id: ea53ddc4-b8f5-446b-b006-b3daa76f0298
+    content: Let a user reach and reveal a context's declaration in one click on its gutter icon.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ada1b779-bde7-4399-a4e2-d9010492c94c:
+    id: ada1b779-bde7-4399-a4e2-d9010492c94c
+    content: Business rules
+    children:
+      - 961c67b2-3230-4a3c-bdc4-91930e430adc
+      - 7cc57b6b-d216-4da5-bf91-19b8304559aa
+      - e8813f94-95d0-43e7-a6d0-5da72c98f606
+      - 9c83c7a9-0980-4988-af60-7f6639689df1
+      - b1eaf1cd-9fc3-4cd7-83ad-0e913e9c5931
+      - cadf36f8-012a-43e7-ae8a-eb60a1e6b724
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  961c67b2-3230-4a3c-bdc4-91930e430adc:
+    id: 961c67b2-3230-4a3c-bdc4-91930e430adc
+    content: Clicking an applied-context icon navigates to the context's declaration node, reusing the existing internal-link jump behaviour (select, smooth-scroll into view, flash).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7cc57b6b-d216-4da5-bf91-19b8304559aa:
+    id: 7cc57b6b-d216-4da5-bf91-19b8304559aa
+    content: When the declaration is hidden inside collapsed ancestors, navigation expands every collapsed ancestor required to bring it into view.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8813f94-95d0-43e7-a6d0-5da72c98f606:
+    id: e8813f94-95d0-43e7-a6d0-5da72c98f606
+    content: Navigation reveals and selects the declaration but does not expand its own subtree; whether to open the declaration's children is left to the user.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c83c7a9-0980-4988-af60-7f6639689df1:
+    id: 9c83c7a9-0980-4988-af60-7f6639689df1
+    content: When the icon represents an inherited context, the jump targets the original declaration node regardless of distance, not the clicked node or an intermediate ancestor.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1eaf1cd-9fc3-4cd7-83ad-0e913e9c5931:
+    id: b1eaf1cd-9fc3-4cd7-83ad-0e913e9c5931
+    content: Built-in synthetic contexts have no declaration node, so their icons render inert — no clickable affordance, no pointer cursor — and clicking does nothing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cadf36f8-012a-43e7-ae8a-eb60a1e6b724:
+    id: cadf36f8-012a-43e7-ae8a-eb60a1e6b724
+    content: The clickable target is the icon itself; activating it must not trigger row selection or drag on the surrounding gutter.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cafd9393-2677-4157-8604-5d52273dca79:
+    id: cafd9393-2677-4157-8604-5d52273dca79
+    content: Acceptance criteria
+    children:
+      - 1ae8e5d5-048c-4a28-89c0-8983a33333bc
+      - df41d6b4-c4fe-4b75-879a-c2b121a8290c
+      - 12649466-63c4-4ae7-8c4a-4bee101ae5dd
+      - e7ae9201-cb2c-44ce-a632-4078f20b776f
+      - 1e8c178a-e55b-405f-8e7d-a6a5494f5bfa
+      - 343d1f52-3c78-4a0a-9ebf-30c2d076d49f
+      - a4a03549-aa39-46d5-b32a-756870a530b9
+      - cd68ada4-09f1-4e53-83b6-63e42e3d98dc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ae8e5d5-048c-4a28-89c0-8983a33333bc:
+    id: 1ae8e5d5-048c-4a28-89c0-8983a33333bc
+    content: Clicking a gutter context icon whose declaration is a visible node selects, scrolls to, and flashes that declaration node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df41d6b4-c4fe-4b75-879a-c2b121a8290c:
+    id: df41d6b4-c4fe-4b75-879a-c2b121a8290c
+    content: Clicking when the declaration is inside collapsed ancestors expands the required ancestors, then selects, scrolls to, and flashes it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12649466-63c4-4ae7-8c4a-4bee101ae5dd:
+    id: 12649466-63c4-4ae7-8c4a-4bee101ae5dd
+    content: After navigation, the declaration node's own subtree is left in its existing expanded/collapsed state and is not auto-expanded.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7ae9201-cb2c-44ce-a632-4078f20b776f:
+    id: e7ae9201-cb2c-44ce-a632-4078f20b776f
+    content: Clicking the icon of an inherited context jumps to the original declaration, not the clicked node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e8c178a-e55b-405f-8e7d-a6a5494f5bfa:
+    id: 1e8c178a-e55b-405f-8e7d-a6a5494f5bfa
+    content: A navigable context icon is keyboard-focusable and activatable by Enter/Space and shows a pointer cursor on hover.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  343d1f52-3c78-4a0a-9ebf-30c2d076d49f:
+    id: 343d1f52-3c78-4a0a-9ebf-30c2d076d49f
+    content: The existing context name/mode hover tooltip continues to work on both navigable and inert icons.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4a03549-aa39-46d5-b32a-756870a530b9:
+    id: a4a03549-aa39-46d5-b32a-756870a530b9
+    content: Built-in synthetic context icons present no pointer cursor and no focusable/clickable affordance, and clicking is a no-op.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd68ada4-09f1-4e53-83b6-63e42e3d98dc:
+    id: cd68ada4-09f1-4e53-83b6-63e42e3d98dc
+    content: Clicking the icon does not select the row or start a drag on the gutter.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab7f14d6-700b-4ba4-9f09-8d7ca77b47f7:
+    id: ab7f14d6-700b-4ba4-9f09-8d7ca77b47f7
+    content: 🔧 Implementation proposal
+    children:
+      - ff105a87-5ab0-4a38-b239-9c24a73c5ec4
+      - e18de518-b09b-406f-937c-f14ed601c5f0
+      - d8f9f0f8-d832-4762-b562-0e6218237598
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff105a87-5ab0-4a38-b239-9c24a73c5ec4:
+    id: ff105a87-5ab0-4a38-b239-9c24a73c5ec4
+    content: Approach
+    children:
+      - b5da898e-ef4c-4837-9c2b-6041a2417d0c
+      - da3e67ef-8773-4562-8336-692e0eedd335
+      - 8dffcd8e-f0c4-4776-b0a5-389e6837b757
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5da898e-ef4c-4837-9c2b-6041a2417d0c:
+    id: b5da898e-ef4c-4837-9c2b-6041a2417d0c
+    content: Surface the declaration node id on the AppliedContext object in useAppliedContexts.ts, which today resolves the context node but discards its id; because the icon only renders when that node exists, every real applied context is navigable and only synthetic built-ins are inert.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da3e67ef-8773-4562-8336-692e0eedd335:
+    id: da3e67ef-8773-4562-8336-692e0eedd335
+    content: Reuse the existing hyperlink jump routine (expand collapsed ancestors → select → scroll → flash) unchanged — with subtree-expansion dropped the gutter jump is now identical to it — extracted into one shared jump-to-node implementation called by both the gutter icon and hyperlinks.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8dffcd8e-f0c4-4776-b0a5-389e6837b757:
+    id: 8dffcd8e-f0c4-4776-b0a5-389e6837b757
+    content: In GutterContextIndicator render a focusable button for real (non-synthetic) contexts and an inert span for synthetic built-ins, with the handler calling stopPropagation; the change lands entirely in the renderer (no main, preload, MCP, or .arbo changes).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e18de518-b09b-406f-937c-f14ed601c5f0:
+    id: e18de518-b09b-406f-937c-f14ed601c5f0
+    content: Touchpoints
+    children:
+      - a9c3c591-00aa-4148-af9f-afaadb0725ee
+      - 0ca0f106-804d-4b5e-a141-e4d539e0acfc
+      - c32b0f6c-9b85-454a-aec6-6f8fd09f67fc
+      - 5b61ade0-8fbd-4c0c-a916-c438045e164c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9c3c591-00aa-4148-af9f-afaadb0725ee:
+    id: a9c3c591-00aa-4148-af9f-afaadb0725ee
+    content: 'Hook/types: useAppliedContexts.ts — add the declaration node id to AppliedContext and mark synthetic built-ins non-navigable (the existing isSyntheticContextId helper covers all three but is currently unexported — export it or mirror the two BASIC-id check the hook already does).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ca0f106-804d-4b5e-a141-e4d539e0acfc:
+    id: 0ca0f106-804d-4b5e-a141-e4d539e0acfc
+    content: 'Component: GutterContextIndicator.tsx and its co-located CSS — conditional button/span, click and Enter/Space handler, stopPropagation, pointer cursor and focus ring gated on the context being a real declaration.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c32b0f6c-9b85-454a-aec6-6f8fd09f67fc:
+    id: c32b0f6c-9b85-454a-aec6-6f8fd09f67fc
+    content: 'Navigation: shared jump-to-node routine extracted from useHyperlinkNavigation.ts (or a sibling store action) so there is a single jump implementation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b61ade0-8fbd-4c0c-a916-c438045e164c:
+    id: 5b61ade0-8fbd-4c0c-a916-c438045e164c
+    content: 'Tests: GutterContextIndicator and the shared jump routine — a real-context click navigates (expands ancestors, selects, scrolls, flashes) without expanding the target''s subtree; synthetic built-in icons stay inert and non-clickable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8f9f0f8-d832-4762-b562-0e6218237598:
+    id: d8f9f0f8-d832-4762-b562-0e6218237598
+    content: Constraints to call out
+    children:
+      - 45986713-884f-4b2a-8904-9a09e87b7db3
+      - 73b11056-1ad6-4206-b566-ef80916783fd
+      - c7f6a5e5-9dcb-4e1b-80b0-9c3d87788e8c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45986713-884f-4b2a-8904-9a09e87b7db3:
+    id: 45986713-884f-4b2a-8904-9a09e87b7db3
+    content: 'No deleted-declaration case to guard (verified in code): removing a declaration cascade-clears appliedContextId/appliedContextIds on every referencing node (RemoveContextCommand.removeAppliedContextFromAllNodes), and after a raw node delete the gutter hook returns undefined for an unresolved context so no icon renders — there is no stale icon to click.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73b11056-1ad6-4206-b566-ef80916783fd:
+    id: 73b11056-1ad6-4206-b566-ef80916783fd
+    content: Gate navigability with the existing isSyntheticContextId helper rather than hardcoding ids; note it currently lives unexported in nodeHelpers/permissionGate, and the gutter only ever renders synthetic icons for the two BASIC contexts today.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7f6a5e5-9dcb-4e1b-80b0-9c3d87788e8c:
+    id: c7f6a5e5-9dcb-4e1b-80b0-9c3d87788e8c
+    content: Expanding collapsed ancestors reuses the existing per-node toggle, consistent with hyperlink navigation; no grouped-undo work is in scope.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42e9bc4f-350e-48ac-9b4b-c53cc79cb4fd:
+    id: 42e9bc4f-350e-48ac-9b4b-c53cc79cb4fd
+    content: Scope decision
+    children:
+      - eec13430-fadb-499f-8964-47e490381eed
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eec13430-fadb-499f-8964-47e490381eed:
+    id: eec13430-fadb-499f-8964-47e490381eed
+    content: Ship as a single chunk — do not split
+    children:
+      - 27182598-4b57-4864-afa3-19e50d98b42c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27182598-4b57-4864-afa3-19e50d98b42c:
+    id: 27182598-4b57-4864-afa3-19e50d98b42c
+    content: The behaviour is one coherent user-visible capability (click icon → reveal context) whose value is only realised whole; no sub-chunk delivers standalone review value or merits an independent feature flag.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4c1e639-7b67-4267-8981-4351cfc0923f:
+    id: e4c1e639-7b67-4267-8981-4351cfc0923f
+    content: Challenge
+    children:
+      - 3d117ab8-ab78-42c2-9873-d3b874012d0c
+      - d74dfbb2-49cb-44e2-9412-ec4e64e450e5
+      - 96ed84ad-0bf8-4661-be9b-73210d835b5b
+      - 27ce7fb6-bb90-42ed-912c-fb46f77c1fd2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d117ab8-ab78-42c2-9873-d3b874012d0c:
+    id: 3d117ab8-ab78-42c2-9873-d3b874012d0c
+    content: UX
+    children:
+      - bec590ff-3259-4b54-ace3-324fff2fea5e
+      - 970949b3-18de-4090-ae9d-fcca3e5114fd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bec590ff-3259-4b54-ace3-324fff2fea5e:
+    id: bec590ff-3259-4b54-ace3-324fff2fea5e
+    content: Synthetic built-in icons must not present a pointer cursor or focus affordance — an icon that looks clickable but does nothing is worse than today's honestly-passive icon.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  970949b3-18de-4090-ae9d-fcca3e5114fd:
+    id: 970949b3-18de-4090-ae9d-fcca3e5114fd
+    content: Scope the hit target to the icon, not the 48px gutter, which also carries row-selection affordances.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d74dfbb2-49cb-44e2-9412-ec4e64e450e5:
+    id: d74dfbb2-49cb-44e2-9412-ec4e64e450e5
+    content: Over-engineering to avoid
+    children:
+      - fe81159c-7ec4-4dcf-bf92-d99d7365dee8
+      - dfc5ea6b-a54c-4b60-a575-b4f593dfd1ae
+      - 36498cdf-82ea-4c78-af21-5d5c186075c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe81159c-7ec4-4dcf-bf92-d99d7365dee8:
+    id: fe81159c-7ec4-4dcf-bf92-d99d7365dee8
+    content: Reuse the existing hyperlink jump path instead of writing new tree traversal; expandCollapsedAncestors and the select/scroll/flash sequence already exist.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfc5ea6b-a54c-4b60-a575-b4f593dfd1ae:
+    id: dfc5ea6b-a54c-4b60-a575-b4f593dfd1ae
+    content: Exclude navigation history/back button, right-click menu, inline context preview, and "highlight all nodes sharing this context".
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  36498cdf-82ea-4c78-af21-5d5c186075c0:
+    id: 36498cdf-82ea-4c78-af21-5d5c186075c0
+    content: Do not add a grouped-undo command for the expand toggles unless it proves annoying in practice.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  96ed84ad-0bf8-4661-be9b-73210d835b5b:
+    id: 96ed84ad-0bf8-4661-be9b-73210d835b5b
+    content: ROI
+    children:
+      - 1ba81416-7947-49e3-94f9-79bb1fc36b7c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ba81416-7947-49e3-94f9-79bb1fc36b7c:
+    id: 1ba81416-7947-49e3-94f9-79bb1fc36b7c
+    content: Strong — removes recurring navigation friction by reusing an already-understood interaction; with subtree-expansion and dangling-handling dropped, the change is essentially "thread one id and make the icon clickable", roughly half a day including tests, with no schema or cross-process changes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27ce7fb6-bb90-42ed-912c-fb46f77c1fd2:
+    id: 27ce7fb6-bb90-42ed-912c-fb46f77c1fd2
+    content: Out of scope
+    children:
+      - a7d3785e-e4da-4bdc-be43-2c1b82154c44
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7d3785e-e4da-4bdc-be43-2c1b82154c44:
+    id: a7d3785e-e4da-4bdc-be43-2c1b82154c44
+    content: Making built-in synthetic contexts navigable, or letting the click create or edit a context — there is no destination and it changes the feature's intent.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8757042-79f2-4238-a40f-2bf201f9b309:
+    id: a8757042-79f2-4238-a40f-2bf201f9b309
+    content: Technical refinement
+    children:
+      - 7ff6ac62-2ebe-44f9-90d6-d45cd021aee0
+      - 8226d7f9-cdf3-4751-b0d3-1f46e5ef3499
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ff6ac62-2ebe-44f9-90d6-d45cd021aee0:
+    id: 7ff6ac62-2ebe-44f9-90d6-d45cd021aee0
+    content: Flag complications
+    children:
+      - 39a3dc07-f8fd-44fc-90ad-e21e7a1509e4
+      - 736d6460-ac9e-4818-b98f-19942691dfb7
+      - b08736c7-f9f3-4554-abac-061f1c723323
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39a3dc07-f8fd-44fc-90ad-e21e7a1509e4:
+    id: 39a3dc07-f8fd-44fc-90ad-e21e7a1509e4
+    content: Edge cases or risks not already in the acceptance criteria
+    children:
+      - 8f644fbc-1b95-402e-87ca-9ae72e16677a
+      - b2a21c1c-bdd5-4c04-876f-ef14b9722254
+      - 2ddff2a5-9269-42ae-b24a-452fae92a64e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f644fbc-1b95-402e-87ca-9ae72e16677a:
+    id: 8f644fbc-1b95-402e-87ca-9ae72e16677a
+    content: 'Zoom tabs: an inherited context''s declaration can live outside the currently-zoomed subtree, where it is not rendered; the jump must first switch out of the zoom tab to the main view (the hyperlink hook already does this in its preamble), otherwise reusing only the expand→select→scroll→flash tail scrolls to nothing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2a21c1c-bdd5-4c04-876f-ef14b9722254:
+    id: b2a21c1c-bdd5-4c04-876f-ef14b9722254
+    content: The jump spans two stores — the files store (zoom / active file) and the tree store (expand / select / scroll) — so the shared routine cannot be a pure tree-store action; factor it so both the gutter icon and the hyperlink hook call the same code rather than duplicating the preamble.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ddff2a5-9269-42ae-b24a-452fae92a64e:
+    id: 2ddff2a5-9269-42ae-b24a-452fae92a64e
+    content: 'Blueprint mode is not a blocker (verified): declaration nodes are isBlueprint=true and remain visible both in normal mode (which shows all children) and in blueprint mode (which shows only blueprint nodes), so no view-mode toggle is needed to reach them.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  736d6460-ac9e-4818-b98f-19942691dfb7:
+    id: 736d6460-ac9e-4818-b98f-19942691dfb7
+    content: Anything explicitly out of scope
+    children:
+      - 45561cc7-e200-44ba-8b47-4faaaa51acc5
+      - 933f7932-465d-42e7-b1d3-2389a926a266
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45561cc7-e200-44ba-8b47-4faaaa51acc5:
+    id: 45561cc7-e200-44ba-8b47-4faaaa51acc5
+    content: The gutter renders a single icon driven by the active appliedContextId, so the click targets exactly that one context; multi-context disambiguation is not introduced.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  933f7932-465d-42e7-b1d3-2389a926a266:
+    id: 933f7932-465d-42e7-b1d3-2389a926a266
+    content: 'No cross-file navigation: appliedContextId is remapped or stripped to the current file on paste, so the declaration always lives in the open tree.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  b08736c7-f9f3-4554-abac-061f1c723323:
+    id: b08736c7-f9f3-4554-abac-061f1c723323
+    content: Any complexity that calls the ROI into question
+    children:
+      - 11e3948a-42d2-4b86-a6a9-1903ff875731
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11e3948a-42d2-4b86-a6a9-1903ff875731:
+    id: 11e3948a-42d2-4b86-a6a9-1903ff875731
+    content: None — the only addition beyond trivial reuse is the zoom-tab exit, already a couple of lines in the hyperlink hook; ROI stays strong at roughly half a day.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8226d7f9-cdf3-4751-b0d3-1f46e5ef3499:
+    id: 8226d7f9-cdf3-4751-b0d3-1f46e5ef3499
+    content: Summary of the approach
+    children:
+      - 556a5a77-adfe-4db6-a98d-2c22c79d3a19
+      - 89d7931c-6c66-4daa-b7f1-b08c79b2b63c
+      - f171b44f-ed91-4249-b97f-efd8d6629e82
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  556a5a77-adfe-4db6-a98d-2c22c79d3a19:
+    id: 556a5a77-adfe-4db6-a98d-2c22c79d3a19
+    content: Thread the already-resolved declaration node id onto AppliedContext and make GutterContextIndicator a focusable button for real contexts and an inert span for synthetic built-ins.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89d7931c-6c66-4daa-b7f1-b08c79b2b63c:
+    id: 89d7931c-6c66-4daa-b7f1-b08c79b2b63c
+    content: Factor the hyperlink hook's jump — including its zoom-tab exit, not just the expand/select/scroll/flash tail — into one shared routine both the gutter icon and hyperlinks call.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f171b44f-ed91-4249-b97f-efd8d6629e82:
+    id: f171b44f-ed91-4249-b97f-efd8d6629e82
+    content: 'Likely to surprise the reviewer: the reuse must keep the zoom-tab preamble and the routine touches both the files and tree stores, but no view-mode handling is needed because declarations are always visible.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f01c653b-c50d-474c-90f0-e9301af0308b:
+    id: f01c653b-c50d-474c-90f0-e9301af0308b
+    content: Verification summary
+    children:
+      - 26488e43-3452-462d-96be-548d5f8fb3c8
+      - c22c5cc3-f920-4e2a-b493-26daeca67730
+      - bd057f9c-c430-45b6-8b2e-3fd41ac9f52d
+      - 808470b9-8695-4284-9c63-d30099f59912
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26488e43-3452-462d-96be-548d5f8fb3c8:
+    id: 26488e43-3452-462d-96be-548d5f8fb3c8
+    content: Implemented and verified — every business rule and acceptance criterion is satisfied; 58 tests pass across the changed files and lint and type-check are clean.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c22c5cc3-f920-4e2a-b493-26daeca67730:
+    id: c22c5cc3-f920-4e2a-b493-26daeca67730
+    content: Keyboard activation (Enter/Space) is implemented via a native focusable button with a focus-visible ring and pointer cursor; only its unit test is deferred (it.todo) because jsdom does not synthesise click-from-key on native buttons, so the behaviour holds in-browser but is not asserted in a unit test.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd057f9c-c430-45b6-8b2e-3fd41ac9f52d:
+    id: bd057f9c-c430-45b6-8b2e-3fd41ac9f52d
+    content: 'Deliberately not done (out of scope by design): navigation history/back button, right-click menu, inline context preview, highlight-all-nodes-sharing-a-context, grouped-undo for the expand toggles, multi-context disambiguation, cross-file navigation, and making synthetic built-in icons navigable.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  808470b9-8695-4284-9c63-d30099f59912:
+    id: 808470b9-8695-4284-9c63-d30099f59912
+    content: Nothing in the required scope is left undone.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fd78fcd-59d1-411e-a244-e80b114b1649:
+    id: 8fd78fcd-59d1-411e-a244-e80b114b1649
+    content: review feedback
+    children:
+      - d7d7e637-4950-4452-82cd-ea1a4ae81618
+      - e99cc11f-6321-4162-b214-8e6ffa4b310e
+      - 28f2782b-c8fe-4324-86ff-52da54079c18
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7d7e637-4950-4452-82cd-ea1a4ae81618:
+    id: d7d7e637-4950-4452-82cd-ea1a4ae81618
+    content: 'Verdict: clean. pr-review-toolkit:code-reviewer found no blocking or non-blocking issues across the full diff plus calling code (NodeGutter, TreeNode, useNodeMouse, all useHyperlinkNavigation / AppliedContext consumers). Changed-area tests 39 passing; tsc --noEmit clean; eslint clean. No code changes made.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e99cc11f-6321-4162-b214-8e6ffa4b310e:
+    id: e99cc11f-6321-4162-b214-8e6ffa4b310e
+    content: 'Verified: (1) click isolation is doubly guarded — the icon''s onClick stopPropagation plus useNodeMouse.handleClick already skipping target.closest(''button''), and drag only starts for already-multi-selected nodes, so an icon click cannot select the row or start a drag; (2) the ref is widened to HTMLElement and the button RefObject cast is sound (the tooltip only calls getBoundingClientRect, valid on button and span); (3) the useHyperlinkNavigation refactor preserves external behaviour — external-link browser tab, the ''Linked branch not found'' toast, and the jump delegated verbatim to useNodeNavigation; (4) hooks order and deps are correct — nodes/actions/ancestorRegistry/blueprintModeEnabled are read via store.getState() inside the callback, useCallback deps are [store, activeFile, setActiveFile].'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28f2782b-c8fe-4324-86ff-52da54079c18:
+    id: 28f2782b-c8fe-4324-86ff-52da54079c18
+    content: 'Nits (no change required): navigateToDeclaration closure is recreated each render — harmless inside the memo component since no memo child depends on its identity; Enter/Space activation is an it.todo because jsdom cannot synthesise click-from-key, so the behaviour holds in-browser via the semantic button but is not asserted by an automated test. useNodeNavigation''s no-op on a null TreeStoreContext was judged an acceptable graceful guard (the component is always rendered within a provider in-app), not a silent failure.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4a23c2d-a096-4a7f-9550-a6a84b9c4199:
+    id: b4a23c2d-a096-4a7f-9550-a6a84b9c4199
+    content: Opening terminal panel is often slow
+    children:
+      - 42d9a5a6-e76f-4ab0-8983-94d44a57ed14
+      - e6dad768-5593-4b9e-87aa-294e46482201
+      - 597afc35-4e3b-4310-9cb5-2ed0ade6bdc1
+      - fbcf4726-e900-497f-995c-21827d96a236
+      - 0d7a4ddc-9d89-47c2-a6e5-2745729bc2ed
+      - 25722679-e843-4a3e-9f5e-85fe44915255
+      - 11d05dea-d097-43a4-b731-2341da5bf1c8
+      - 5baf5796-f2c7-4215-8896-f7580d1c7264
+      - 50788fae-0712-4e75-8dda-9c99aabaefc9
+      - 5d0c8543-707e-4661-91fa-98fc38a82e6f
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 6136cfed-6166-4d69-888c-26b5f08ae794
+  cd72a4e4-bc71-41d8-bc49-f06113478555:
+    id: cd72a4e4-bc71-41d8-bc49-f06113478555
+    content: 'review feedback — Agent code review (pr-review-toolkit:code-reviewer) of the full diff vs master + calling code. No Critical/Important findings; clean, well-scoped PR. Findings: (1) FIXED — activityLogFile trim ran a full O(n) rewrite on every startup read, racing concurrent appends; now gated so trimActivityFile only rewrites when raw line count > cap (mirrors logger.ts rotateIfNeeded). (2) FIXED — test isolation: migrated workflow tests didn''t reset the activityLog store between tests (setup.ts resetStores omitted it; the zustand automock reset is defeated by its own beforeEach clear); added the reset to setup.ts resetStores() centrally. (3) DEFERRED to PR2 — activityLogHandlers.isValidEntry only checks id+message, not that type ∈ severities or timestamp is a number; matters once PR2 styles by severity — tighten to match logHandlers.isValidLevel. (4) INTENTIONAL / PR2 follow-up — only 2 call sites routed (workflowExecutionActions, workflowHookEventHandler); sibling workflow events (workflowSessionResume, workflowDisruptionReactions, workflowClearSession, workflowAckManager — resume failures, "step removed", "Workflow complete for X") are NOT logged; none are info-suppressible so no toast is lost, but the feed is intentionally incomplete — PR2 should decide whether to include them. (5) TRIVIAL / accepted — ActivityLogSeverity (shared) duplicates ToastType (renderer Toast.tsx); left as-is since shared can''t import renderer. Post-fix: tsc clean, lint clean, changed/new-file tests pass (237).'
+    children: []
+    metadata:
+      status: pending
+  211fbbb4-3010-46aa-8be7-34578d20c6d8:
+    id: 211fbbb4-3010-46aa-8be7-34578d20c6d8
+    content: Summary
+    children:
+      - 7eaf8d60-ff76-4acc-97b0-b87cb89224ea
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7eaf8d60-ff76-4acc-97b0-b87cb89224ea:
+    id: 7eaf8d60-ff76-4acc-97b0-b87cb89224ea
+    content: Pressing the task-status toggle while a node in review is focused toggles and refocuses the previously focused tree node, not the node in review
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb059f24-6907-4d51-962e-9ae6f61e4ab8:
+    id: bb059f24-6907-4d51-962e-9ae6f61e4ab8
+    content: Steps to reproduce
+    children:
+      - 0882b408-c4b8-487e-819d-b4ccbf6ea8c9
+      - 705adeb1-9e7d-4986-9e82-00378297b275
+      - b2eb3638-c332-4400-98c7-3b7029abd7dd
+      - 0a68dfee-303a-4cd3-93e7-cf854ceeba21
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0882b408-c4b8-487e-819d-b4ccbf6ea8c9:
+    id: 0882b408-c4b8-487e-819d-b4ccbf6ea8c9
+    content: 'Precondition: focus a normal tree node (node A) so it is the active/editing node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  705adeb1-9e7d-4986-9e82-00378297b275:
+    id: 705adeb1-9e7d-4986-9e82-00378297b275
+    content: Then focus on a node in review (node B), a node currently under AI/workflow review
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2eb3638-c332-4400-98c7-3b7029abd7dd:
+    id: b2eb3638-c332-4400-98c7-3b7029abd7dd
+    content: And press the toggle shortcut (toggleTaskStatus, default CmdOrCtrl+K)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a68dfee-303a-4cd3-93e7-cf854ceeba21:
+    id: 0a68dfee-303a-4cd3-93e7-cf854ceeba21
+    content: Observe which node's status flips and where the focus/caret lands
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa362281-9182-491f-ae48-b4621ed3ff2a:
+    id: aa362281-9182-491f-ae48-b4621ed3ff2a
+    content: Expected behavior
+    children:
+      - 1eeca772-2486-4773-9ed0-d0489b198980
+      - 07fa12f4-5877-4312-8395-ad66e975901c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1eeca772-2486-4773-9ed0-d0489b198980:
+    id: 1eeca772-2486-4773-9ed0-d0489b198980
+    content: 'Happy path: the toggle acts on node B (the node in review) and focus/caret stays on it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07fa12f4-5877-4312-8395-ad66e975901c:
+    id: 07fa12f4-5877-4312-8395-ad66e975901c
+    content: 'Edge case: if an in-review node must not be toggled, the shortcut is a no-op with feedback and never silently mutates node A'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7684a4d2-7548-4dc7-ba3f-f31335177365:
+    id: 7684a4d2-7548-4dc7-ba3f-f31335177365
+    content: Actual behavior
+    children:
+      - 0f78ee7a-aa86-4cef-afa0-bc2dbe42943f
+      - 0d7c94a1-4fba-44fd-bd40-838620247d1f
+      - 29bc5e1b-d4ee-41be-be14-aa2f44285da3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f78ee7a-aa86-4cef-afa0-bc2dbe42943f:
+    id: 0f78ee7a-aa86-4cef-afa0-bc2dbe42943f
+    content: It toggles and refocuses the previous node (node A)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d7c94a1-4fba-44fd-bd40-838620247d1f:
+    id: 0d7c94a1-4fba-44fd-bd40-838620247d1f
+    content: And not the one in review (node B), which is never affected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29bc5e1b-d4ee-41be-be14-aa2f44285da3:
+    id: 29bc5e1b-d4ee-41be-be14-aa2f44285da3
+    content: 'User-visible symptom: the wrong node''s checkbox flips and the caret returns to node A, with no indication the reviewed node was skipped'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaf25f92-8fe4-4a9a-9b62-4fd54cc1a63f:
+    id: aaf25f92-8fe4-4a9a-9b62-4fd54cc1a63f
+    content: Suspected cause
+    children:
+      - b8bda489-a9e8-4daf-9c6e-9cb9fad5e697
+      - 57223ad3-7301-4808-bd7e-d18cb0ce738f
+      - 1b3a954c-37cb-4685-ba4b-d81eb14e834c
+      - 2ea02cea-b3e1-4466-aea7-6474177c5b30
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8bda489-a9e8-4daf-9c6e-9cb9fad5e697:
+    id: b8bda489-a9e8-4daf-9c6e-9cb9fad5e697
+    content: Editing focus resolves from the tree contentEditable via getActiveNodeElement() + activeNodeId (editingService.ts handleEditingShortcuts) and is not updated when a node is focused on the review surface
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57223ad3-7301-4808-bd7e-d18cb0ce738f:
+    id: 57223ad3-7301-4808-bd7e-d18cb0ce738f
+    content: toggleTaskStatus handler calls toggleStatus(activeNodeId) (editingService.ts:161-165 to nodeActions.ts:94), so the stale previous activeNodeId (node A) is the one toggled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b3a954c-37cb-4685-ba4b-d81eb14e834c:
+    id: 1b3a954c-37cb-4685-ba4b-d81eb14e834c
+    content: ToggleStatusCommand.execute() never reselects, so the caret/focus stays on node A (ToggleStatusCommand.ts:22-60)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ea02cea-b3e1-4466-aea7-6474177c5b30:
+    id: 2ea02cea-b3e1-4466-aea7-6474177c5b30
+    content: 'Why existing guards miss it: review state lives in the separate reviews map (reviews.ts) and is not reconciled with activeNodeId, so focusing a reviewed node does not make it the active/editing node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98935c63-e3a9-479c-b931-049bd76d25a6:
+    id: 98935c63-e3a9-479c-b931-049bd76d25a6
+    content: Affected files
+    children:
+      - 229dd007-c48b-47ed-8bff-a3bcb8c7490f
+      - acd8e18d-9a06-4832-8f3b-65b4becd83cd
+      - 1deeaae3-aa18-4888-8106-c050c21d9664
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  229dd007-c48b-47ed-8bff-a3bcb8c7490f:
+    id: 229dd007-c48b-47ed-8bff-a3bcb8c7490f
+    content: 'Primary suspect: src/renderer/services/keyboard/editingService.ts (toggleTaskStatus resolves the stale active node)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acd8e18d-9a06-4832-8f3b-65b4becd83cd:
+    id: acd8e18d-9a06-4832-8f3b-65b4becd83cd
+    content: 'Related surface: src/renderer/store/tree/actions/nodeActions.ts (toggleStatus, selectNode) and src/renderer/store/tree/commands/ToggleStatusCommand.ts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1deeaae3-aa18-4888-8106-c050c21d9664:
+    id: 1deeaae3-aa18-4888-8106-c050c21d9664
+    content: 'Related surface: src/renderer/store/tree/reviews.ts and treeStore.ts (review map vs activeNodeId not reconciled)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  651130ac-fab1-43e1-9fdd-946d7c180220:
+    id: 651130ac-fab1-43e1-9fdd-946d7c180220
+    content: Regression window
+    children:
+      - 53753da4-2c52-467a-9548-899a696f5113
+      - 5f9f38ad-6717-4f42-adfa-a7ee4eee53fb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53753da4-2c52-467a-9548-899a696f5113:
+    id: 53753da4-2c52-467a-9548-899a696f5113
+    content: 'Last known good: before inline review existed (pre-3b35ec2 "review AI proposals inline on the node"), when no tree node could be in review'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f9f38ad-6717-4f42-adfa-a7ee4eee53fb:
+    id: 5f9f38ad-6717-4f42-adfa-a7ee4eee53fb
+    content: 'First observed broken: inline/concurrent review era, 591eb64 "review AI proposals concurrently with overlap gating" plus predecessors 3b35ec2 and 3df052e'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  478d6268-6aeb-4e67-8474-be809667df08:
+    id: 478d6268-6aeb-4e67-8474-be809667df08
+    content: Severity
+    children:
+      - e159cb21-5104-414c-915c-b0a0f0e615a0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e159cb21-5104-414c-915c-b0a0f0e615a0:
+    id: e159cb21-5104-414c-915c-b0a0f0e615a0
+    content: 'Medium: silently mutates the wrong node''s status (easy to miss) and misplaces focus during review; trigger is narrow and a workaround exists (click the reviewed node directly)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12bbc824-c08f-40fd-845f-26fa83caee1b:
+    id: 12bbc824-c08f-40fd-845f-26fa83caee1b
+    content: Notes
+    children:
+      - f8faf10c-c76f-477b-a471-d4948f8dfe82
+      - e99284ab-2135-42c9-ae17-85d190029502
+      - 026aab3a-eddb-4183-870e-08f587e24bae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8faf10c-c76f-477b-a471-d4948f8dfe82:
+    id: f8faf10c-c76f-477b-a471-d4948f8dfe82
+    content: Disambiguate from prior focus fixes 6032206 "toast notifications stealing focus" and 7841ebf "preserve user focus on workflow auto-advance", which are a different mechanism
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e99284ab-2135-42c9-ae17-85d190029502:
+    id: e99284ab-2135-42c9-ae17-85d190029502
+    content: 'Look-alike to rule out: there is no focus-toggle / previous-focus feature; the toggle shortcut here is toggleTaskStatus (CmdOrCtrl+K), not a focus switcher'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  026aab3a-eddb-4183-870e-08f587e24bae:
+    id: 026aab3a-eddb-4183-870e-08f587e24bae
+    content: 'UX/telemetry gap: focusing an in-review node should set it as the active node (or the toggle should redirect or no-op with feedback) so status edits cannot land on the wrong node unnoticed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc618748-9f53-4bb9-a5fe-5f8c56178408:
+    id: cc618748-9f53-4bb9-a5fe-5f8c56178408
+    content: Technical refinement
+    children:
+      - 5ec32cc4-b98d-480d-ae54-b8da04579657
+      - c8a8ccdf-90a2-422b-8356-c5a20283c4b0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ec32cc4-b98d-480d-ae54-b8da04579657:
+    id: 5ec32cc4-b98d-480d-ae54-b8da04579657
+    content: Flag complications
+    children:
+      - 7e0efe1e-72cd-4e7d-a879-fe765efb54e1
+      - bb036d86-1ff3-451d-9cda-80c46d46c47f
+      - 823c61a2-69ce-4199-9e36-16b7afa875bd
+      - 22c50308-88a3-4468-9c52-739fa7956114
+      - dc8e8c0d-5854-4b4b-bf90-b1e314572487
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e0efe1e-72cd-4e7d-a879-fe765efb54e1:
+    id: 7e0efe1e-72cd-4e7d-a879-fe765efb54e1
+    content: 'Not toggle-specific: an in-review node renders its proposition inline from a separate feedbackTreeStore under a nested TreeStoreContext, but the keyboard layer resolves the active store globally per file, so every tree edit hotkey (Enter/split, Delete, expand/collapse, status toggle) can silently act on the previously focused node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb036d86-1ff3-451d-9cda-80c46d46c47f:
+    id: bb036d86-1ff3-451d-9cda-80c46d46c47f
+    content: 'Ambiguous target: proposition nodes live in a transient feedback store and are diff content, so toggling their status may be meaningless; a no-op with feedback may be more correct than retargeting the toggle onto them'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  823c61a2-69ce-4199-9e36-16b7afa875bd:
+    id: 823c61a2-69ce-4199-9e36-16b7afa875bd
+    content: 'Broad blast radius: the active-store / active-node resolution is shared by navigation and editing hotkeys alike, so any change there is regression-prone and must be gated narrowly to review focus'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22c50308-88a3-4468-9c52-739fa7956114:
+    id: 22c50308-88a3-4468-9c52-739fa7956114
+    content: 'Out of scope: redesigning the feedback-vs-main store boundary or promoting the proposition sub-tree into the main tree; and there is still no focus-toggle / previous-focus feature to add'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc8e8c0d-5854-4b4b-bf90-b1e314572487:
+    id: dc8e8c0d-5854-4b4b-bf90-b1e314572487
+    content: 'ROI: full per-context keyboard resolution touches shared.ts plus all hotkey services, whereas a narrow guard that gates or redirects tree edit hotkeys while focus is inside a proposition likely removes the user-visible harm far more cheaply; confirm the intended scope before building the broad version'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8a8ccdf-90a2-422b-8356-c5a20283c4b0:
+    id: c8a8ccdf-90a2-422b-8356-c5a20283c4b0
+    content: Summarise the approach
+    children:
+      - faee8622-5a79-4e1d-8547-ed27384eb708
+      - 871114f4-67e9-44b1-8ec5-7e87616c5c96
+      - 3120e5ed-70ca-474f-931d-cc05161e34fa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  faee8622-5a79-4e1d-8547-ed27384eb708:
+    id: faee8622-5a79-4e1d-8547-ed27384eb708
+    content: 'Where it lands: in-review nodes render their AI proposition inline from a separate per-node feedbackTreeStore under a nested TreeStoreContext (TreeNode.tsx, useReviewProposition); the keyboard layer (shared.ts getActiveStore / getActiveNodeElement, editingService.ts) resolves the active store globally per file and is blind to that nested store, so it targets the main store''s activeNodeId'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  871114f4-67e9-44b1-8ec5-7e87616c5c96:
+    id: 871114f4-67e9-44b1-8ec5-7e87616c5c96
+    content: 'Fix direction: make the keyboard layer aware when focus sits inside a proposition sub-tree and either operate on that store or gate the tree edit hotkeys with feedback, so edits cannot silently land on the previously focused node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3120e5ed-70ca-474f-931d-cc05161e34fa:
+    id: 3120e5ed-70ca-474f-931d-cc05161e34fa
+    content: 'Reviewer surprise: the reported toggle is one symptom of this shared resolution path, so verify the fix against the other tree edit hotkeys and decide whether acting on a proposition node is meaningful or should be a deliberate no-op'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e688b2a3-6b51-491f-9c7a-f04f4e81ed20:
+    id: e688b2a3-6b51-491f-9c7a-f04f4e81ed20
+    content: 'review resolution — re-examined each finding against the actual code + calling code (not blindly validated). MAJOR fixed: none — the review found no Critical/Important issues. MINOR fixed (applied in the review step; fixes stand): (1) activity-log file trim no longer does an unconditional O(n) rewrite on startup read — gated on raw-line-count > cap, closing the low-probability read/write race with concurrent appends (mirrors logger.ts size-gate); (2) central test isolation — activityLog store now reset in setup.ts resetStores() so it clears per test. SKIPPED / pushed back: (a) isValidEntry severity+timestamp validation — DEFERRED with pushback: the suggested append-side tightening is misdirected — the renderer only ever sends createEntry-built (valid) entries, so the genuine exposure is a corrupt/hand-edited FILE returning a bad `type` on the READ path (readRecentActivityEntries shape-validates nothing beyond JSON.parse), which has ZERO PR1 impact because no PR1 code consumes entry.type (only a test does); belongs in PR2 where severity drives styling, validated on read/hydrate. (b) Sibling workflow events not logged — INTENTIONAL (reviewer''s own high-confidence note); none are info-suppressible so no toast is lost; PR2 decides whether to include them. (c) Duplicate ActivityLogSeverity/ToastType union — TRIVIAL, left as-is (shared cannot import the renderer Toast type). No new code changes were needed beyond the two minor fixes; tsc + lint + changed/new-file tests remain green.'
+    children: []
+    metadata:
+      status: pending
+  c2d9f2d6-e740-4991-9e1e-b71e549144e7:
+    id: c2d9f2d6-e740-4991-9e1e-b71e549144e7
+    content: 'test pass & fix — cross-checked all 7 PR1 acceptance criteria against implementation and tests (semantic, not just structural). Mapping: (1) FYI→log+no-toast = notifyWorkflow.isLogOnly + workflowToast/workflowAdvancement tests; (2) actionable/error→toast+log = notifyWorkflow non-log-only branch + workflowToast tests; (3) non-workflow info unaffected = plain addToast path (toastStore unchanged); (4) decomposition no-toast+ordered = workflowToast burst test; (5) JSONL in userData + restart rehydrate = activityLogFile + activityLogStore.hydrate tests; (6) append-only + trim-on-load bounded = activityLogFile append/trim + store-eviction tests; (7) desktop path unchanged = notifyWorkflow never touches workflowNotification + existing notification-wiring tests. One gap hardened: criterion (3) was only architecturally implied, so added a boundary test in workflowToast.test.ts asserting a plain addToast stays visible AND is not added to the activity log (locks the cross-cutting "suppression/logging is scoped to notifyWorkflow" guarantee). "Never project.arbo" and "desktop unchanged when suppressed" hold by construction (path hardcoded to userData/logs; notifyWorkflow has no workflowNotification reference). No implementation exists without a matching criterion — nothing to confirm with the user. Post: tsc clean, lint clean, changed/new-file tests 245 pass.'
+    children: []
+    metadata:
+      status: pending
+  5d0667be-830c-4cc7-8c4e-bde4840683c3:
+    id: 5d0667be-830c-4cc7-8c4e-bde4840683c3
+    content: worktree
+    children:
+      - 46aa14eb-db31-4265-84c1-f33b757efd8f
+    metadata:
+      status: pending
+  46aa14eb-db31-4265-84c1-f33b757efd8f:
+    id: 46aa14eb-db31-4265-84c1-f33b757efd8f
+    content: vscode://file/Users/brianfox/dev/Arborescent-review-focus-hotkey
+    children: []
+    metadata:
+      status: pending
+  d3e6ebe6-241a-4b7a-bc18-8547491595a0:
+    id: d3e6ebe6-241a-4b7a-bc18-8547491595a0
+    content: 'documentation — PR1 is data-layer-only with no user-facing UI (the activity-log feed isn''t viewable until PR2), so there is no new feature page to write and no changelog line yet (the consequential, user-visible feature is the PR2 surface; per "add a changelog line if consequential / don''t bloat docs", defer it to PR2). The only docs change needed: corrected docs/workflows.md:89 — advancement no longer raises a toast (now suppressed/logged), so the line now reads "A green flash confirms each advancement" (green flash + completion toast both still true). All other toast references in the docs are warning/error/success events that are NOT suppressed (disruption :110, recurse :65, resume/chain-broken :148/:156), so they stay accurate. WARNINGS to surface: (1) Naming collision — docs/workflows.md:242 already has an "Activity log" section that means the DIAGNOSTIC prose log file (Help → Open Log File); the new feature is also called "activity log" (the workflow-transition feed). PR2 must disambiguate (rename one, e.g. "diagnostic/hook log" vs "activity feed"). (2) Between PR1 and PR2 the advancement/waiting/auto-accept toasts are gone with only the green flash as confirmation and no viewable feed — a temporary UX gap if PR1 ships in a release before PR2.'
+    children: []
+    metadata:
+      status: pending
+  42d9a5a6-e76f-4ab0-8983-94d44a57ed14:
+    id: 42d9a5a6-e76f-4ab0-8983-94d44a57ed14
+    content: Summary
+    children:
+      - 2e63b29a-24dd-428f-ad05-9547a38408b8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e63b29a-24dd-428f-ad05-9547a38408b8:
+    id: 2e63b29a-24dd-428f-ad05-9547a38408b8
+    content: Opening the terminal panel frequently shows a blank pane with no cursor or prompt and can take 30+ seconds to become usable, because the initial shell output is lost and xterm init stalls until a later layout event.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6dad768-5593-4b9e-87aa-294e46482201:
+    id: e6dad768-5593-4b9e-87aa-294e46482201
+    content: Steps to reproduce
+    children:
+      - ab44eccf-690f-41a9-9372-9f5a58b896a6
+      - 9a6a3679-77c8-4d48-8bf9-f20b09470ea8
+      - 34efc95f-8d7c-4203-aef1-3d995ba6eccf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab44eccf-690f-41a9-9372-9f5a58b896a6:
+    id: ab44eccf-690f-41a9-9372-9f5a58b896a6
+    content: 'Precondition: app running with at least one file open and the terminal panel closed or on a non-active tab, so its container is display:none / zero-size.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a6a3679-77c8-4d48-8bf9-f20b09470ea8:
+    id: 9a6a3679-77c8-4d48-8bf9-f20b09470ea8
+    content: 'User action: open the terminal panel (or switch to a terminal tab / open a new terminal) from a state where the panel container had no dimensions.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34efc95f-8d7c-4203-aef1-3d995ba6eccf:
+    id: 34efc95f-8d7c-4203-aef1-3d995ba6eccf
+    content: 'Observation: the terminal pane renders empty with no cursor and no shell prompt, and only becomes usable after the window/panel is resized or many seconds pass.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  597afc35-4e3b-4310-9cb5-2ed0ade6bdc1:
+    id: 597afc35-4e3b-4310-9cb5-2ed0ade6bdc1
+    content: Expected behavior
+    children:
+      - ea4ae377-5740-4f95-b20a-d1255d25ed30
+      - 543440f6-2f6f-4ff4-961f-570f3f3f8194
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea4ae377-5740-4f95-b20a-d1255d25ed30:
+    id: ea4ae377-5740-4f95-b20a-d1255d25ed30
+    content: 'Happy path: the terminal mounts immediately with a visible cursor and the shell prompt printed within a fraction of a second of opening.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  543440f6-2f6f-4ff4-961f-570f3f3f8194:
+    id: 543440f6-2f6f-4ff4-961f-570f3f3f8194
+    content: 'Edge cases: opening while the container is display:none or zero-size should still render the prompt as soon as the panel gains dimensions, and any shell output emitted before the renderer attached should be replayed rather than dropped.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbcf4726-e900-497f-995c-21827d96a236:
+    id: fbcf4726-e900-497f-995c-21827d96a236
+    content: Actual behavior
+    children:
+      - fc4f98c4-3c4d-4bce-be8d-3ee9956f5a87
+      - 9e7cc48b-9895-4e7e-9596-05139b3d5b7b
+      - 601bbcab-2231-4c77-a6bf-8484c0126fdf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc4f98c4-3c4d-4bce-be8d-3ee9956f5a87:
+    id: fc4f98c4-3c4d-4bce-be8d-3ee9956f5a87
+    content: 'What happens: xterm init is gated on non-zero container dimensions and defers behind a ResizeObserver retry, while the onTerminalData listener attaches only after xterm.open(), so the shell''s initial prompt (already buffered in the main process) is never written to the terminal.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e7cc48b-9895-4e7e-9596-05139b3d5b7b:
+    id: 9e7cc48b-9895-4e7e-9596-05139b3d5b7b
+    content: 'User-visible symptom: terminal opens but the screen is blank with no cursor.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  601bbcab-2231-4c77-a6bf-8484c0126fdf:
+    id: 601bbcab-2231-4c77-a6bf-8484c0126fdf
+    content: 'User-visible symptom: opening sometimes takes 30 seconds or more before the terminal becomes usable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d7a4ddc-9d89-47c2-a6e5-2745729bc2ed:
+    id: 0d7a4ddc-9d89-47c2-a6e5-2745729bc2ed
+    content: Suspected cause
+    children:
+      - 71692e56-787b-4452-8731-b464efc99933
+      - f45a7d6f-a619-4da7-b17d-f84d627cf6c6
+      - fdb21de0-9c68-44b5-a25d-01a79c6565a3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71692e56-787b-4452-8731-b464efc99933:
+    id: 71692e56-787b-4452-8731-b464efc99933
+    content: 'Code path: useTerminal.ts tryInit() bails when getBoundingClientRect() is zero (lines 162-163) and relies on a ResizeObserver retry (lines 206-209), so when the container size settles without a later resize event the terminal never mounts until an external layout change.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f45a7d6f-a619-4da7-b17d-f84d627cf6c6:
+    id: f45a7d6f-a619-4da7-b17d-f84d627cf6c6
+    content: 'Code path: the onTerminalData listener is wired after xterm.open() (useTerminal.ts lines 87-101) and the main-process output ring buffer is replayed only on launch-resume, so the prompt emitted between PTY spawn and listener attach is dropped on a normal open.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdb21de0-9c68-44b5-a25d-01a79c6565a3:
+    id: fdb21de0-9c68-44b5-a25d-01a79c6565a3
+    content: 'Why existing guards do not cover it: the SIGWINCH double-resize nudge (useTerminal.ts lines 141-147) only reprints if the shell voluntarily redraws on resize, and the retry observer has no timeout, fallback, or loading/error state to recover when no further resize fires.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25722679-e843-4a3e-9f5e-85fe44915255:
+    id: 25722679-e843-4a3e-9f5e-85fe44915255
+    content: Affected files
+    children:
+      - 98c4bee1-eb01-43c3-8239-3f4244a5dbdd
+      - 07668ea2-2fe0-4cc0-9f39-3876e8ef28c6
+      - 3c78a958-6a62-441a-9e34-bdcdc7930ab9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98c4bee1-eb01-43c3-8239-3f4244a5dbdd:
+    id: 98c4bee1-eb01-43c3-8239-3f4244a5dbdd
+    content: 'Primary suspect: src/renderer/components/Terminal/hooks/useTerminal.ts (dimension-gated init, retry observer, post-open data listener).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07668ea2-2fe0-4cc0-9f39-3876e8ef28c6:
+    id: 07668ea2-2fe0-4cc0-9f39-3876e8ef28c6
+    content: 'Related surface: src/main/handlers/terminalHandlers.ts (terminal:create handler and output ring buffer that is not replayed on a normal open).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c78a958-6a62-441a-9e34-bdcdc7930ab9:
+    id: 3c78a958-6a62-441a-9e34-bdcdc7930ab9
+    content: 'Related surface: src/renderer/components/Terminal/TerminalPanel.tsx and src/renderer/components/ui/ResizablePanel/ResizablePanel.tsx (display:none wrappers that cause the zero-dimension mount).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11d05dea-d097-43a4-b731-2341da5bf1c8:
+    id: 11d05dea-d097-43a4-b731-2341da5bf1c8
+    content: Regression window
+    children:
+      - 3d496103-6f2d-4686-b1ea-6777b5f2d1d9
+      - c2f332bf-4c8b-4979-b6a0-f45217a7ffd0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d496103-6f2d-4686-b1ea-6777b5f2d1d9:
+    id: 3d496103-6f2d-4686-b1ea-6777b5f2d1d9
+    content: 'Last known good: predates the blank-terminal fix series; the symptom class has recurred across df2ddf1 "try to fix terminal rendering issue" and b3dcccc "fix issue with blank terminal after file switch".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2f332bf-4c8b-4979-b6a0-f45217a7ffd0:
+    id: c2f332bf-4c8b-4979-b6a0-f45217a7ffd0
+    content: 'First observed broken / current shape: persists after a15f422 "fix blank terminal on tab, file, and app-open switches" and the c9c586c consolidation refactor (audit #13); observed on master as of 2026-06-07.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5baf5796-f2c7-4215-8896-f7580d1c7264:
+    id: 5baf5796-f2c7-4215-8896-f7580d1c7264
+    content: Severity
+    children:
+      - 18acf6a0-c4d8-4e05-9fee-8811a3a20e16
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18acf6a0-c4d8-4e05-9fee-8811a3a20e16:
+    id: 18acf6a0-c4d8-4e05-9fee-8811a3a20e16
+    content: 'Severity medium-to-high: a core feature is intermittently unusable for tens of seconds with no feedback, undermining the AI-collaboration workflow that depends on the terminal.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50788fae-0712-4e75-8dda-9c99aabaefc9:
+    id: 50788fae-0712-4e75-8dda-9c99aabaefc9
+    content: Notes
+    children:
+      - 3daf888c-d760-4955-9823-df3ddecdd898
+      - ed8d6be1-25de-46c0-83c9-d199df4dfaf7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3daf888c-d760-4955-9823-df3ddecdd898:
+    id: 3daf888c-d760-4955-9823-df3ddecdd898
+    content: 'Disambiguation: distinguish this open-time blank/slow case from the already-fixed "blank on tab/file switch" repaint bug (wasHiddenRef path, useTerminal.ts lines 116-130), which handles display:none->block repaint, not lost initial output.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed8d6be1-25de-46c0-83c9-d199df4dfaf7:
+    id: ed8d6be1-25de-46c0-83c9-d199df4dfaf7
+    content: 'UX/telemetry gap: add a loading/error state plus a timeout fallback for terminal init, and instrument time-from-open-to-first-render so 30s stalls become measurable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d0c8543-707e-4661-91fa-98fc38a82e6f:
+    id: 5d0c8543-707e-4661-91fa-98fc38a82e6f
+    content: Technical refinement
+    children:
+      - 9001276b-a53c-49e9-9280-0c79ee58b238
+      - 6810ae76-a031-4363-bf5d-fb126e5ed797
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9001276b-a53c-49e9-9280-0c79ee58b238:
+    id: 9001276b-a53c-49e9-9280-0c79ee58b238
+    content: Flag complications
+    children:
+      - 0cd3b182-2d42-46e1-bb55-e5136169ef8e
+      - 04929847-d3be-4ab7-bd65-ba27b70efdac
+      - 07efbb6a-840b-4a75-994a-3ad660a30312
+      - c18a4726-537b-463f-b1e9-9664985ecab9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cd3b182-2d42-46e1-bb55-e5136169ef8e:
+    id: 0cd3b182-2d42-46e1-bb55-e5136169ef8e
+    content: 'Edge case/risk: replaying buffered output on open can double-print the prompt and may replay a tail sliced mid-escape-sequence, so the fix needs an offset/watermark handshake and byte-safe replay rather than a naive dump.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04929847-d3be-4ab7-bd65-ba27b70efdac:
+    id: 04929847-d3be-4ab7-bd65-ba27b70efdac
+    content: 'Edge case/risk: any timeout or fallback added beside the ResizeObserver must be idempotent so xterm init cannot run twice and leak a duplicate instance.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07efbb6a-840b-4a75-994a-3ad660a30312:
+    id: 07efbb6a-840b-4a75-994a-3ad660a30312
+    content: 'Out of scope: not reworking the display:none panel-visibility architecture or the PTY spawn / shell-selection path; the panel wrappers and spawn flow stay as-is.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c18a4726-537b-463f-b1e9-9664985ecab9:
+    id: c18a4726-537b-463f-b1e9-9664985ecab9
+    content: 'ROI: the 30s stall is intermittent and not deterministically reproducible, so the time-from-open-to-first-render instrumentation is a prerequisite for verifying any fix, not an optional add-on.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6810ae76-a031-4363-bf5d-fb126e5ed797:
+    id: 6810ae76-a031-4363-bf5d-fb126e5ed797
+    content: Summarise the approach
+    children:
+      - 1d297866-fa85-4454-9db9-2edcdcaf8789
+      - de13ef87-2b90-4cf9-8678-fd0a8f9d64bb
+      - 1ee1e90c-4be6-4cb9-8064-c362b713613f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d297866-fa85-4454-9db9-2edcdcaf8789:
+    id: 1d297866-fa85-4454-9db9-2edcdcaf8789
+    content: Replay the pre-attach PTY output on a normal open via an offset handshake (terminalHandlers.ts + the onTerminalData wiring in useTerminal.ts) so the lost initial prompt is written exactly once.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de13ef87-2b90-4cf9-8678-fd0a8f9d64bb:
+    id: de13ef87-2b90-4cf9-8678-fd0a8f9d64bb
+    content: 'Make xterm init unstallable in useTerminal.ts: idempotent init driven by both the retry observer and a bounded fallback, with a visible loading/error state instead of a silent blank pane.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ee1e90c-4be6-4cb9-8064-c362b713613f:
+    id: 1ee1e90c-4be6-4cb9-8064-c362b713613f
+    content: 'Non-obvious: the naive "just replay the buffer" fix is wrong — without a watermark it duplicates the prompt, and the 8 KB ring-buffer tail corrupts xterm if it cuts an escape sequence.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -206986,3 +207854,680 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   f3818f48-8023-4166-b24b-8dcc4abfe9ae:
     cwd: /Users/brianfox/dev/Arborescent
+  6136cfed-6166-4d69-888c-26b5f08ae794:
+    cwd: /Users/brianfox/dev/Arborescent
+  5cfce950-c705-4548-a098-831f3c6b123d:
+    cwd: /Users/brianfox/dev/Arborescent
+pendingProposals:
+  8a287c82-30a2-4bed-8580-c3f8f5caa46b:
+    id: 1b21c542-0b63-4481-81e2-7661f2cc060f
+    capturedAt: '2026-06-07T20:56:00.251Z'
+    reviewedNodeId: 8a287c82-30a2-4bed-8580-c3f8f5caa46b
+    rootNodeId: bd897d72-ffe1-4f9a-916c-576587710d79
+    nodes:
+      bd897d72-ffe1-4f9a-916c-576587710d79:
+        id: bd897d72-ffe1-4f9a-916c-576587710d79
+        content: ''
+        children:
+          - b3d34106-8c1c-4fb6-bebe-eb3047debe81
+        metadata: {}
+      b3d34106-8c1c-4fb6-bebe-eb3047debe81:
+        id: b3d34106-8c1c-4fb6-bebe-eb3047debe81
+        content: Open zoom window focused on a review node once feedback arrives
+        children:
+          - 0a38bff1-66bb-4957-ac58-3be5d3519962
+          - 5a8563b4-a34a-436e-a3ff-38ff4cffd0eb
+          - b0e58e80-15f2-4c29-8105-1fd5a06eb9cf
+          - 6891d2f4-9c4f-45ab-af66-95a9b604d0c2
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: unchanged
+          feedbackPriorContent: Open zoom window focused on a review node once feedback arrives
+      0a38bff1-66bb-4957-ac58-3be5d3519962:
+        id: 0a38bff1-66bb-4957-ac58-3be5d3519962
+        content: 📄 Product spec
+        children:
+          - 8f63dfd6-8fe1-4051-893e-cc0b83de6758
+          - 6fa58e11-2e71-41b3-8924-2edd1adf44af
+          - b575fba5-f7a8-486f-902c-7a0d19b787bb
+          - c46104a2-0ba3-468d-ac8d-50fd0c34bf40
+          - 824b310c-77ba-422a-bfd3-9f656e1ae612
+          - f695e579-7ad5-4bb9-ac80-f366ecdb250b
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      8f63dfd6-8fe1-4051-893e-cc0b83de6758:
+        id: 8f63dfd6-8fe1-4051-893e-cc0b83de6758
+        content: Context
+        children:
+          - 2aa0e1f6-4322-4f03-816b-110a953d753b
+          - e0cb1efc-9afe-4634-9fea-54fba28131b3
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      2aa0e1f6-4322-4f03-816b-110a953d753b:
+        id: 2aa0e1f6-4322-4f03-816b-110a953d753b
+        content: Arborescent's manual (non-autonomous) review flow marks a node "collaborating" and shows a transient toast when AI feedback arrives, but does not bring the user to the node.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      e0cb1efc-9afe-4634-9fea-54fba28131b3:
+        id: e0cb1efc-9afe-4634-9fea-54fba28131b3
+        content: 'A zoom view already exists (right-click → Zoom): it isolates a node''s subtree in its own zoom:// tab via openZoomTab, sharing the source file''s store.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      6fa58e11-2e71-41b3-8924-2edd1adf44af:
+        id: 6fa58e11-2e71-41b3-8924-2edd1adf44af
+        content: User
+        children:
+          - 166afe03-b8e4-424f-94dd-38ee9cbeda89
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      166afe03-b8e4-424f-94dd-38ee9cbeda89:
+        id: 166afe03-b8e4-424f-94dd-38ee9cbeda89
+        content: A user collaborating with AI through Arborescent's manual review flow, who reviews a proposal before accepting, often working in large or deeply nested trees.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      b575fba5-f7a8-486f-902c-7a0d19b787bb:
+        id: b575fba5-f7a8-486f-902c-7a0d19b787bb
+        content: Current experience and why it is insufficient
+        children:
+          - dc052f4a-ca53-4aaf-86b9-7753616a7803
+          - 1f1e73b0-888f-42dc-895d-a0df99d16750
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      dc052f4a-ca53-4aaf-86b9-7753616a7803:
+        id: dc052f4a-ca53-4aaf-86b9-7753616a7803
+        content: When feedback lands, the only cues are a "collaborating" highlight and a transient toast; in a large tree, or after switching tabs or files, the review is easy to miss and slow to locate.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      1f1e73b0-888f-42dc-895d-a0df99d16750:
+        id: 1f1e73b0-888f-42dc-895d-a0df99d16750
+        content: Nothing actively brings the user to the exact node that now needs review.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      c46104a2-0ba3-468d-ac8d-50fd0c34bf40:
+        id: c46104a2-0ba3-468d-ac8d-50fd0c34bf40
+        content: Goal
+        children:
+          - 4d34c7ab-de12-4b6d-aa2b-e4b6413dbe91
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      4d34c7ab-de12-4b6d-aa2b-e4b6413dbe91:
+        id: 4d34c7ab-de12-4b6d-aa2b-e4b6413dbe91
+        content: When AI feedback arrives for a manually-reviewed node, automatically open and focus a zoom tab on that node so the user lands directly on the review.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      824b310c-77ba-422a-bfd3-9f656e1ae612:
+        id: 824b310c-77ba-422a-bfd3-9f656e1ae612
+        content: Business rules
+        children:
+          - 8cf66dbb-578d-4ee0-a277-fd66a549c650
+          - 56157362-f3e3-484c-96ff-b8ceb9010ada
+          - 88a159fc-c798-457f-b495-820dd5ca67b5
+          - 7a45f93a-df10-46af-b21d-52c51539c27a
+          - 7ef2ef30-3fae-425e-86a4-e949cbc07a6e
+          - f217f2ae-19a7-4c3c-ba04-4d59d7bf2b2f
+          - e76f9725-d4dc-4811-89e0-dcca70f032bd
+          - a2065fa2-4c21-4d4e-b4ab-18e20f4d2cc5
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      8cf66dbb-578d-4ee0-a277-fd66a549c650:
+        id: 8cf66dbb-578d-4ee0-a277-fd66a549c650
+        content: When feedback arrives on the manual (non-autonomous) review path, the system opens and switches to a zoom tab focused on the reviewed node.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      56157362-f3e3-484c-96ff-b8ceb9010ada:
+        id: 56157362-f3e3-484c-96ff-b8ceb9010ada
+        content: The zoom tab reuses the existing in-app zoom:// tab mechanism scoped to the source file, not a new operating-system window.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      88a159fc-c798-457f-b495-820dd5ca67b5:
+        id: 88a159fc-c798-457f-b495-820dd5ca67b5
+        content: Autonomous (auto-accepted) feedback does not open a zoom tab, because it is applied without user review and already scrolls and flashes the node.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      7a45f93a-df10-46af-b21d-52c51539c27a:
+        id: 7a45f93a-df10-46af-b21d-52c51539c27a
+        content: If a zoom tab focused on that node already exists, the system activates the existing tab instead of opening a duplicate.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      7ef2ef30-3fae-425e-86a4-e949cbc07a6e:
+        id: 7ef2ef30-3fae-425e-86a4-e949cbc07a6e
+        content: When several reviews arrive, the system opens at most one zoom tab per review node and never stacks duplicate tabs for the same node.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      f217f2ae-19a7-4c3c-ba04-4d59d7bf2b2f:
+        id: f217f2ae-19a7-4c3c-ba04-4d59d7bf2b2f
+        content: The review control bar and proposed-change rendering must be fully usable inside the zoom view, with Accept and Cancel behaving identically to the main view.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      e76f9725-d4dc-4811-89e0-dcca70f032bd:
+        id: e76f9725-d4dc-4811-89e0-dcca70f032bd
+        content: Accepting or cancelling the review closes the auto-opened zoom tab so no stale tab points at a node that has been replaced or removed.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      a2065fa2-4c21-4d4e-b4ab-18e20f4d2cc5:
+        id: a2065fa2-4c21-4d4e-b4ab-18e20f4d2cc5
+        content: Hyperlink/external-link nodes and feedback-only trees are not valid zoom targets; if such a node receives feedback, the system falls back to the existing toast and scroll behaviour.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      f695e579-7ad5-4bb9-ac80-f366ecdb250b:
+        id: f695e579-7ad5-4bb9-ac80-f366ecdb250b
+        content: Acceptance criteria
+        children:
+          - cf83f253-d7ea-4bf9-8de9-a6d7f839be6e
+          - 254c84c0-354d-4caf-af75-97deb83b2d4f
+          - 6a3d15b1-cd5a-452e-982d-c07ed4653095
+          - 8c91e3bc-f39a-46eb-9458-346fd514ce57
+          - 98949a2b-a354-4c3c-b0c7-3059d0d99d83
+          - e815d53b-5d96-47d3-9428-d860ad668ae4
+          - f03be1d3-49cc-46a0-8199-94b16db86277
+          - 048d3bf8-d0d6-456e-9bc8-5739c32b5021
+          - 3ddcec2f-027d-40b4-bc98-78d484121a21
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      cf83f253-d7ea-4bf9-8de9-a6d7f839be6e:
+        id: cf83f253-d7ea-4bf9-8de9-a6d7f839be6e
+        content: When non-autonomous feedback arrives for a reviewed node, a zoom tab focused on that node opens using the existing zoom:// mechanism.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      254c84c0-354d-4caf-af75-97deb83b2d4f:
+        id: 254c84c0-354d-4caf-af75-97deb83b2d4f
+        content: The opened zoom tab shows the review node as its root with the collaborating state and the review control bar visible.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      6a3d15b1-cd5a-452e-982d-c07ed4653095:
+        id: 6a3d15b1-cd5a-452e-982d-c07ed4653095
+        content: Accept and Cancel performed inside the zoom view produce the same result as performing them from the main tree.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      8c91e3bc-f39a-46eb-9458-346fd514ce57:
+        id: 8c91e3bc-f39a-46eb-9458-346fd514ce57
+        content: Autonomous (auto-accepted) feedback does not open a zoom tab.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      98949a2b-a354-4c3c-b0c7-3059d0d99d83:
+        id: 98949a2b-a354-4c3c-b0c7-3059d0d99d83
+        content: If a zoom tab for that node already exists, no duplicate opens and the existing tab is activated.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      e815d53b-5d96-47d3-9428-d860ad668ae4:
+        id: e815d53b-5d96-47d3-9428-d860ad668ae4
+        content: When feedback arrives while the user is in a different file or tab, the user is switched to the newly opened zoom tab focused on the review node.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      f03be1d3-49cc-46a0-8199-94b16db86277:
+        id: f03be1d3-49cc-46a0-8199-94b16db86277
+        content: Accepting or cancelling the review removes the auto-opened zoom tab, leaving no stale zoom view.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      048d3bf8-d0d6-456e-9bc8-5739c32b5021:
+        id: 048d3bf8-d0d6-456e-9bc8-5739c32b5021
+        content: Hyperlink/external-link and feedback-tree nodes do not trigger auto-zoom and retain the existing toast/scroll behaviour.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      3ddcec2f-027d-40b4-bc98-78d484121a21:
+        id: 3ddcec2f-027d-40b4-bc98-78d484121a21
+        content: Opening the zoom tab adds no perceptible delay to feedback arrival and does not block the apply/proposal pipeline.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      5a8563b4-a34a-436e-a3ff-38ff4cffd0eb:
+        id: 5a8563b4-a34a-436e-a3ff-38ff4cffd0eb
+        content: 🔧 Implementation proposal
+        children:
+          - 303945b6-1ffb-49aa-8be3-0460af45ee33
+          - 74737de4-0c47-49f6-af35-9bffaab4d34e
+          - dd39c637-a4dd-4d14-835c-096f2f889bf9
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      303945b6-1ffb-49aa-8be3-0460af45ee33:
+        id: 303945b6-1ffb-49aa-8be3-0460af45ee33
+        content: Approach
+        children:
+          - 2a75718c-85cb-4d62-9583-e3d633ccd19e
+          - 528514a9-015b-4f0e-ab0f-bbeee8fc90f6
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      2a75718c-85cb-4d62-9583-e3d633ccd19e:
+        id: 2a75718c-85cb-4d62-9583-e3d633ccd19e
+        content: Reuse the existing in-app zoom tab (zoom:// + openZoomTab) rather than building a new Electron BrowserWindow, and hook into the non-autonomous feedback-arrival path to open it.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      528514a9-015b-4f0e-ab0f-bbeee8fc90f6:
+        id: 528514a9-015b-4f0e-ab0f-bbeee8fc90f6
+        content: In the proposal receiver, immediately after the review is registered, open or activate a zoom tab focused on the reviewed node within its source file.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      74737de4-0c47-49f6-af35-9bffaab4d34e:
+        id: 74737de4-0c47-49f6-af35-9bffaab4d34e
+        content: Touchpoints
+        children:
+          - 6f4e5bf5-7a24-44c0-9ac0-1247c1a1e6a5
+          - ac2ba7c8-db89-4cf4-932f-b49bdf1d9c9e
+          - 6d4d8274-56fd-48b9-ac81-a74671fdc2fb
+          - 747d31fc-894d-4c55-a7a4-68d27b320d2a
+          - f9759bba-357c-4bbc-8191-8d2de58e0522
+          - c895ec29-ff6c-42ed-9dbb-2a2205df7000
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      6f4e5bf5-7a24-44c0-9ac0-1247c1a1e6a5:
+        id: 6f4e5bf5-7a24-44c0-9ac0-1247c1a1e6a5
+        content: 'Renderer service: mcpProposalReceiverService.ts (handleProposalRequest, just after addReview) as the trigger point.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      ac2ba7c8-db89-4cf4-932f-b49bdf1d9c9e:
+        id: ac2ba7c8-db89-4cf4-932f-b49bdf1d9c9e
+        content: 'Files store: filesStore.ts (openZoomTab, closeZoomTabsForNode, plus an "activate existing zoom tab if present" path).'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      6d4d8274-56fd-48b9-ac81-a74671fdc2fb:
+        id: 6d4d8274-56fd-48b9-ac81-a74671fdc2fb
+        content: 'Reviews state: reviews.ts (read the just-arrived review''s nodeId and source) — read-only.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      747d31fc-894d-4c55-a7a4-68d27b320d2a:
+        id: 747d31fc-894d-4c55-a7a4-68d27b320d2a
+        content: 'Tree/Workspace: Tree.tsx (zoomedNodeId path) and TreeNode collaborating rendering — verify ReviewControlBar and proposal rendering work when the review node is the zoom root.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      f9759bba-357c-4bbc-8191-8d2de58e0522:
+        id: f9759bba-357c-4bbc-8191-8d2de58e0522
+        content: 'Accept/Cancel cleanup: AcceptFeedbackCommand / finishAccept / finishCancel to close the auto-opened zoom tab.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      c895ec29-ff6c-42ed-9dbb-2a2205df7000:
+        id: c895ec29-ff6c-42ed-9dbb-2a2205df7000
+        content: 'Tests: unit tests for open/dedup/cleanup logic and an integration test for arrival → zoom → accept/cancel.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      dd39c637-a4dd-4d14-835c-096f2f889bf9:
+        id: dd39c637-a4dd-4d14-835c-096f2f889bf9
+        content: Constraints to call out
+        children:
+          - 1db7124e-c668-4dce-9047-8905df845053
+          - 1faa1e58-7c16-4406-9f8a-6baee41c26db
+          - c480c066-bb7e-49f5-9f5c-af9494cb2dc5
+          - 7b15b2a9-569f-423e-a6f1-dd45a76f270d
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      1db7124e-c668-4dce-9047-8905df845053:
+        id: 1db7124e-c668-4dce-9047-8905df845053
+        content: '"Window" in the title means the existing zoom TAB, not a new OS window; a real BrowserWindow adds window lifecycle and store-sync cost without added value.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      1faa1e58-7c16-4406-9f8a-6baee41c26db:
+        id: 1faa1e58-7c16-4406-9f8a-6baee41c26db
+        content: Accept replaces the reviewed node with a new feedback root (new node id), so a zoom tab keyed on the old node id must be cleaned up to avoid a stale view.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      c480c066-bb7e-49f5-9f5c-af9494cb2dc5:
+        id: c480c066-bb7e-49f5-9f5c-af9494cb2dc5
+        content: Concurrent reviews (PR5 reviews-map) must not stack tabs; cap to one zoom tab per review node.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      7b15b2a9-569f-423e-a6f1-dd45a76f270d:
+        id: 7b15b2a9-569f-423e-a6f1-dd45a76f270d
+        content: Only the manual/non-autonomous path is in scope; the autonomous auto-accept path must be left untouched.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      b0e58e80-15f2-4c29-8105-1fd5a06eb9cf:
+        id: b0e58e80-15f2-4c29-8105-1fd5a06eb9cf
+        content: Chunking decision
+        children:
+          - 4a278488-3a8d-4341-bdea-c60eda4b5712
+          - ada36d76-34a0-453e-ba53-cf71457206b9
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      4a278488-3a8d-4341-bdea-c60eda4b5712:
+        id: 4a278488-3a8d-4341-bdea-c60eda4b5712
+        content: 'Ship as a single chunk: the feature is small and coherent, and both the zoom mechanism and the feedback-arrival hook already exist, so splitting delivers no tangible benefit.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      ada36d76-34a0-453e-ba53-cf71457206b9:
+        id: ada36d76-34a0-453e-ba53-cf71457206b9
+        content: Optionally mergeable behind a feature flag if the focus-switching behaviour needs PM or design validation before becoming default-on.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      6891d2f4-9c4f-45ab-af66-95a9b604d0c2:
+        id: 6891d2f4-9c4f-45ab-af66-95a9b604d0c2
+        content: Challenges and recommendations
+        children:
+          - 931c3dd9-f5f2-458a-85e0-a6f5643d7192
+          - 48b38361-fbfe-4e02-ab7f-71c3a84baf8a
+          - f86fc498-babb-4b8c-8c1b-ae9f5391e84f
+          - 732cb8a7-700b-42f3-8fbc-ecf48eefe414
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      931c3dd9-f5f2-458a-85e0-a6f5643d7192:
+        id: 931c3dd9-f5f2-458a-85e0-a6f5643d7192
+        content: UX
+        children:
+          - 9352323c-81c1-41c5-be70-3d06023c0c0a
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      9352323c-81c1-41c5-be70-3d06023c0c0a:
+        id: 9352323c-81c1-41c5-be70-3d06023c0c0a
+        content: Auto-switching the zoom tab mid-edit can steal focus; recommend suppressing the switch (open in background) while the user is actively typing in another node, or gating default-on behind a simple setting.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      48b38361-fbfe-4e02-ab7f-71c3a84baf8a:
+        id: 48b38361-fbfe-4e02-ab7f-71c3a84baf8a
+        content: Over-engineering
+        children:
+          - 86a1eb62-103b-4236-984e-20a1dc391b5a
+          - 19288e2d-7f5c-490f-a121-72b48f2d66d5
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      86a1eb62-103b-4236-984e-20a1dc391b5a:
+        id: 86a1eb62-103b-4236-984e-20a1dc391b5a
+        content: Do not build a literal new Electron window — reuse openZoomTab; a separate window adds management, sync, and lifecycle cost for no benefit.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      19288e2d-7f5c-490f-a121-72b48f2d66d5:
+        id: 19288e2d-7f5c-490f-a121-72b48f2d66d5
+        content: Do not build a per-review queue or manager — existing closeZoomTabsForNode plus a simple "already open?" check is sufficient for dedup.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      f86fc498-babb-4b8c-8c1b-ae9f5391e84f:
+        id: f86fc498-babb-4b8c-8c1b-ae9f5391e84f
+        content: ROI
+        children:
+          - b73a1678-f3af-4042-a701-63f511f70200
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      b73a1678-f3af-4042-a701-63f511f70200:
+        id: b73a1678-f3af-4042-a701-63f511f70200
+        content: 'Good ROI: both the zoom mechanism and the arrival hook exist, so net work is wiring plus guardrails plus tests — high attention-directing value for low complexity.'
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      732cb8a7-700b-42f3-8fbc-ecf48eefe414:
+        id: 732cb8a7-700b-42f3-8fbc-ecf48eefe414
+        content: Scope guard
+        children:
+          - 918b6a6c-8579-44ae-9284-f72c781099c9
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
+      918b6a6c-8579-44ae-9284-f72c781099c9:
+        id: 918b6a6c-8579-44ae-9284-f72c781099c9
+        content: Keep the autonomous path untouched and do not extend this to terminal or browser auto-navigation beyond the zoom tab.
+        children: []
+        metadata:
+          status: pending
+          expanded: true
+          deleted: false
+          plugins: {}
+          feedbackBaselineKind: added
