@@ -1,10 +1,11 @@
 import { describe, it, expect, afterEach, vi } from 'vitest';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, within, act } from '@testing-library/react';
 import type { TreeNode as TreeNodeType } from '@shared/types';
 import { Tree } from '../Tree';
 import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore, type TreeStore } from '../../../store/tree/treeStore';
 import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
+import { useReviewCollapseStore } from '../../../store/reviewCollapse/reviewCollapseStore';
 
 // Tree renders TreeNode subtrees; stub the heavy interaction hooks so we exercise the
 // zoom + review render path without @dnd-kit / plugin machinery. Mirrors the
@@ -141,6 +142,7 @@ function renderZoomed(store: TreeStore, zoomedNodeId?: string) {
 afterEach(() => {
   cleanup();
   feedbackTreeStore.clearAll();
+  useReviewCollapseStore.setState({ byReview: {} });
 });
 
 describe('zoom on a node under review', () => {
@@ -226,5 +228,62 @@ describe('zoom that must not change behaviour', () => {
   it('renders nothing without throwing when the zoom target node does not exist', () => {
     const { container } = renderZoomed(makeMainStore(), 'missing-node');
     expect(container.firstChild).toBeNull();
+  });
+});
+
+// Per-view collapse: a zoom view rooted on the reviewed node always renders the suggestion
+// expanded with all descendants, independent of the reviewed node's collapsed state in the
+// main view. (Combined with the main-view tests, this proves the two views coexist.)
+describe('per-view collapse — zoom view', () => {
+  function collapseReviewed(store: TreeStore): TreeStore {
+    const s = store.getState();
+    store.setState({
+      nodes: {
+        ...s.nodes,
+        reviewed: { ...s.nodes.reviewed, metadata: { ...s.nodes.reviewed.metadata, expanded: false } },
+      },
+    });
+    return store;
+  }
+
+  it('renders the zoomed suggestion expanded with all descendants even when the reviewed node was collapsed', () => {
+    seedProposition(1);
+    renderZoomed(collapseReviewed(makeMainStore()), 'reviewed');
+    expect(screen.getByText('Reviewed node (revised)')).toBeTruthy();
+    expect(screen.getByText('Added child')).toBeTruthy();
+  });
+
+  it('renders every decomposition root in a zoom even when the reviewed node was collapsed', () => {
+    seedProposition(2);
+    renderZoomed(collapseReviewed(makeMainStore()), 'reviewed');
+    expect(screen.getByText('Story A')).toBeTruthy();
+    expect(screen.getByText('Story B')).toBeTruthy();
+  });
+
+  // Cross-cutting independence: the same review rendered in both views at once, and a
+  // per-view toggle that moves only the toggled view. (Store-level key independence and
+  // accept/cancel teardown are covered by store/reviewCollapse/tests/reviewCollapseStore.test.ts.)
+  it('renders one review collapsed in the main view and expanded in the zoom view at once, and a per-view toggle moves only that view', () => {
+    seedProposition(1);
+    const store = collapseReviewed(makeMainStore());
+
+    const main = render(
+      <TreeStoreContext.Provider value={store}><Tree /></TreeStoreContext.Provider>,
+    );
+    const zoom = render(
+      <TreeStoreContext.Provider value={store}><Tree zoomedNodeId="reviewed" /></TreeStoreContext.Provider>,
+    );
+
+    // Collapsed in main (mirrors the reviewed node) yet expanded in zoom — from one shared store.
+    expect(within(main.container).queryByText('Added child')).toBeNull();
+    expect(within(zoom.container).queryByText('Added child')).not.toBeNull();
+
+    // Expanding the main view's proposition must not touch the zoom view.
+    act(() => {
+      useReviewCollapseStore.getState().setExpanded('reviewed', 'main', 'prop-root', true);
+    });
+
+    expect(within(main.container).queryByText('Added child')).not.toBeNull();
+    expect(within(zoom.container).queryByText('Added child')).not.toBeNull();
   });
 });

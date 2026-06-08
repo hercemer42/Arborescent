@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import type { TreeNode as TreeNodeType } from '../../../shared/types';
 import { NodeContent } from '../NodeContent';
 import { NodeGutter } from '../NodeGutter/NodeGutter';
@@ -13,6 +13,7 @@ import { useAppliedContext } from './hooks/useAppliedContexts';
 import { useNodeVisibleChildren } from '../Tree/hooks/useVisibleChildren';
 import { useHiddenSearchMatches } from './hooks/useHiddenSearchMatches';
 import { useReviewProposition } from './hooks/useReviewProposition';
+import { useReviewCollapse, type ReviewCollapseBinding } from './hooks/useReviewCollapse';
 import { ReviewControlBar } from './ReviewControlBar';
 import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
 import { isNodeInReview, isReviewDescendant } from '../../store/tree/reviews';
@@ -21,6 +22,12 @@ import './TreeNode.css';
 interface TreeNodeProps {
   nodeId: string;
   depth?: number;
+  // Set by Tree when this node is a zoom root that is itself under review, so its
+  // proposition always renders expanded regardless of the live node's collapsed state.
+  isReviewZoomRoot?: boolean;
+  // Set when this node is a proposition root, binding its collapse state to the per-view
+  // review store instead of the shared feedback node's metadata.
+  reviewCollapseBinding?: ReviewCollapseBinding;
 }
 
 function computeFeedbackChangeKindClass(node: TreeNodeType | undefined): string | undefined {
@@ -38,7 +45,7 @@ function computeFeedbackChangeKindClass(node: TreeNodeType | undefined): string 
   return node && node.content === priorContent ? undefined : 'feedback-changekind-modified';
 }
 
-export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
+export const TreeNode = memo(function TreeNode({ nodeId, depth = 0, isReviewZoomRoot = false, reviewCollapseBinding }: TreeNodeProps) {
   const node = useStore((state) => state.nodes[nodeId]);
   const isSelected = useStore((state) => state.activeNodeId === nodeId);
   const isMultiSelected = useStore((state) => state.multiSelectedNodeIds.has(nodeId));
@@ -53,7 +60,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
 
   const appliedContext = useAppliedContext(node);
 
-  const expanded = node?.metadata.expanded ?? true;
+  const reviewCollapse = useReviewCollapse(reviewCollapseBinding, nodeId);
+  const expanded = reviewCollapse ? reviewCollapse.expanded : (node?.metadata.expanded ?? true);
   const isCollapsed = !expanded;
 
   // Check for hidden search matches in collapsed descendants
@@ -67,10 +75,19 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const reviewPropositionStore = useReviewProposition(nodeId);
   const isUnderReview = reviewPropositionStore !== null;
 
+  // Handed to this reviewed node's proposition roots so they seed their per-view collapse
+  // from here: zoom always expands, the main view mirrors this live node's collapsed state.
+  const reviewBinding = useMemo<ReviewCollapseBinding>(() => ({
+    view: isReviewZoomRoot ? 'zoom' : 'main',
+    seedExpanded: isReviewZoomRoot ? true : expanded,
+    reviewedNodeId: nodeId,
+  }), [isReviewZoomRoot, expanded, nodeId]);
+
   const { flashIntensity, isDeleting, nodeRef, onAnimationEnd } = useNodeEffects(nodeId);
   const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
   const { handleMouseDown, handleMouseMove, handleClick, wrappedListeners } = useNodeMouse(nodeId, listeners);
-  const handleToggle = useNodeToggle(nodeId, expanded, contentLength);
+  const nodeToggle = useNodeToggle(nodeId, expanded, contentLength);
+  const handleToggle = reviewCollapse ? reviewCollapse.handleToggle : nodeToggle;
 
   if (!node) {
     return null;
@@ -86,7 +103,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
         <ReviewControlBar nodeId={nodeId} />
         <TreeStoreContext.Provider value={reviewPropositionStore}>
           <div className="review-proposition-region" data-review-proposition={nodeId}>
-            <PropositionRoots depth={depth} />
+            <PropositionRoots depth={depth} reviewCollapseBinding={reviewBinding} />
           </div>
         </TreeStoreContext.Provider>
       </>
@@ -156,7 +173,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
 // tree. Renders every proposition root and, through the shared TreeNode recursion, their
 // subtrees — each node styled by its own change-kind metadata (added / modified / removed
 // placeholders). A single-root review has one root; decomposition has several siblings.
-function PropositionRoots({ depth }: { depth: number }) {
+function PropositionRoots({ depth, reviewCollapseBinding }: { depth: number; reviewCollapseBinding: ReviewCollapseBinding }) {
   const hiddenRootId = useStore((state) => state.rootNodeId);
   const propositionRootIds = useStore((state) => state.nodes[hiddenRootId]?.children);
 
@@ -165,7 +182,7 @@ function PropositionRoots({ depth }: { depth: number }) {
   return (
     <>
       {propositionRootIds.map((rootId) => (
-        <TreeNode key={rootId} nodeId={rootId} depth={depth} />
+        <TreeNode key={rootId} nodeId={rootId} depth={depth} reviewCollapseBinding={reviewCollapseBinding} />
       ))}
     </>
   );

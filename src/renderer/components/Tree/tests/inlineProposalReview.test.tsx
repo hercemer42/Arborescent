@@ -232,3 +232,98 @@ describe('inline proposal review', () => {
   // no layout, so the no-jump behavior is verified manually in the running app.
   it.todo('keeps the topmost visible node fixed when a proposition appears above the viewport');
 });
+
+// Per-view collapse: in the main view a suggestion mirrors the reviewed node's collapsed
+// state, so reviewing a collapsed node no longer explodes its proposed subtree inline.
+describe('per-view collapse — main view', () => {
+  afterEach(() => {
+    cleanup();
+    feedbackTreeStore.clearAll();
+  });
+
+  // The live reviewed node is collapsed; the main view seeds the proposition root's
+  // expansion from this flag rather than from the feedback node's metadata.expanded.
+  function collapsedReviewedStore(): TreeStore {
+    const store = makeMainStore();
+    const s = store.getState();
+    store.setState({
+      nodes: {
+        ...s.nodes,
+        reviewed: { ...s.nodes.reviewed, metadata: { ...s.nodes.reviewed.metadata, expanded: false } },
+      },
+    });
+    return store;
+  }
+
+  describe('single-root proposition', () => {
+    beforeEach(() => seedProposition(1));
+
+    it('renders the proposition collapsed — root visible, descendants hidden — when the reviewed node was collapsed', () => {
+      renderTree(collapsedReviewedStore());
+      expect(screen.getByText('Reviewed node (revised)')).toBeTruthy();
+      expect(screen.queryByText('Added child')).toBeNull();
+    });
+
+    it('renders the proposition expanded with descendants when the reviewed node was expanded', () => {
+      renderTree(makeMainStore());
+      expect(screen.getByText('Reviewed node (revised)')).toBeTruthy();
+      expect(screen.getByText('Added child')).toBeTruthy();
+    });
+
+    it('keeps the control bar and the collapsed-parent / change-kind affordance on a collapsed suggestion', () => {
+      const { container } = renderTree(collapsedReviewedStore());
+      expect(screen.getByRole('group', { name: 'Review proposed changes' })).toBeTruthy();
+      const propRoot = container.querySelector('[data-node-id="prop-root"]');
+      expect(propRoot?.classList.contains('collapsed-parent')).toBe(true);
+      expect(propRoot?.classList.contains('feedback-changekind-modified')).toBe(true);
+    });
+  });
+
+  describe('reviewed leaf with no live children', () => {
+    beforeEach(() => seedProposition(1));
+
+    it('renders the proposition and control bar without error when the reviewed node had no live children', () => {
+      const store = makeMainStore();
+      const s = store.getState();
+      store.setState({
+        nodes: { ...s.nodes, reviewed: { ...s.nodes.reviewed, children: [] } },
+        ancestorRegistry: { root: [], reviewed: ['root'] },
+      });
+      renderTree(store);
+      expect(screen.getByText('Reviewed node (revised)')).toBeTruthy();
+      expect(screen.getByRole('group', { name: 'Review proposed changes' })).toBeTruthy();
+    });
+  });
+
+  describe('multi-root decomposition', () => {
+    // seedProposition(2)'s roots are leaves, so collapse has no visible effect; give each
+    // root a child to exercise per-root collapse in the main view.
+    function seedDecompositionWithChildren(): void {
+      feedbackTreeStore.setStoreFactory(() => createTreeStore());
+      feedbackTreeStore.initialize(
+        'reviewed',
+        FILE,
+        {
+          'feedback-root': node('feedback-root', '', ['prop-a', 'prop-b']),
+          'prop-a': node('prop-a', 'Story A', ['a-child']),
+          'a-child': node('a-child', 'A child'),
+          'prop-b': node('prop-b', 'Story B', ['b-child']),
+          'b-child': node('b-child', 'B child'),
+        },
+        'feedback-root',
+      );
+    }
+
+    beforeEach(() => seedDecompositionWithChildren());
+
+    it('renders each decomposition root collapsed in the main view when the reviewed node was collapsed', () => {
+      const { container } = renderTree(collapsedReviewedStore());
+      expect(screen.getByText('Story A')).toBeTruthy();
+      expect(screen.getByText('Story B')).toBeTruthy();
+      expect(screen.queryByText('A child')).toBeNull();
+      expect(screen.queryByText('B child')).toBeNull();
+      expect(container.querySelector('[data-node-id="prop-a"]')?.classList.contains('collapsed-parent')).toBe(true);
+      expect(container.querySelector('[data-node-id="prop-b"]')?.classList.contains('collapsed-parent')).toBe(true);
+    });
+  });
+});

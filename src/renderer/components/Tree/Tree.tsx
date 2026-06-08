@@ -63,7 +63,7 @@ export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
     >
       <div ref={scrollContainerRef} className={`tree ${blueprintModeEnabled ? 'blueprint-mode' : ''}`} onClick={handleTreeClick}>
         {zoomRootUnderReview ? (
-          <TreeNode nodeId={displayRootId} depth={0} />
+          <TreeNode nodeId={displayRootId} depth={0} isReviewZoomRoot />
         ) : (
           visibleChildren.map((childId) => (
             <TreeNode key={childId} nodeId={childId} depth={0} />

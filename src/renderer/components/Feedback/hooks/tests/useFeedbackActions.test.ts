@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useFeedbackActions } from '../useFeedbackActions';
+import { useReviewCollapseStore, selectReviewCollapseExpanded } from '../../../../store/reviewCollapse/reviewCollapseStore';
 
 const mockFinishCancel = vi.fn();
 const mockFinishAccept = vi.fn();
@@ -29,6 +30,7 @@ vi.mock('../../../../store/storeManager', () => ({
 describe('useFeedbackActions', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    useReviewCollapseStore.setState({ byReview: {} });
   });
 
   describe('handleCancel', () => {
@@ -55,6 +57,19 @@ describe('useFeedbackActions', () => {
           await result.current.handleCancel('node-1');
         })
       ).rejects.toThrow('Cancel failed');
+    });
+
+    it('clears the per-view collapse state for the review after cancelling', async () => {
+      mockFinishCancel.mockResolvedValue(undefined);
+      useReviewCollapseStore.getState().setExpanded('node-1', 'main', 'prop-root', false);
+
+      const { result } = renderHook(() => useFeedbackActions());
+
+      await act(async () => {
+        await result.current.handleCancel('node-1');
+      });
+
+      expect(selectReviewCollapseExpanded(useReviewCollapseStore.getState(), 'node-1', 'main', 'prop-root')).toBeUndefined();
     });
   });
 
@@ -101,6 +116,19 @@ describe('useFeedbackActions', () => {
           await result.current.handleAccept('node-1');
         })
       ).rejects.toThrow('Accept failed');
+    });
+
+    it('clears the per-view collapse state for the review after accepting', async () => {
+      mockFinishAccept.mockResolvedValue(undefined);
+      useReviewCollapseStore.getState().setExpanded('node-1', 'zoom', 'prop-root', true);
+
+      const { result } = renderHook(() => useFeedbackActions());
+
+      await act(async () => {
+        await result.current.handleAccept('node-1');
+      });
+
+      expect(selectReviewCollapseExpanded(useReviewCollapseStore.getState(), 'node-1', 'zoom', 'prop-root')).toBeUndefined();
     });
   });
 });
