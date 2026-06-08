@@ -372,6 +372,59 @@ describe('Integration: Workflow Execution', () => {
     });
   });
 
+  describe('manual last step completion', () => {
+    it('completes the workflow when a manual last step finishes, instead of leaving it paused', () => {
+      const state = () => stateRef.current;
+
+      // Park the task on the final step (s3, manual) and start it running there,
+      // as if the user resumed the last manual step directly.
+      stateRef.current.nodes['s1'].children = [];
+      stateRef.current.nodes['s3'].children = ['task'];
+      stateRef.current.ancestorRegistry['task'] = ['root', 'wf', 's3'];
+
+      void actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      // No next step exists, so the manual step must complete and free the terminal
+      // — not sit in awaiting-validation, which keeps the terminal "busy" and blocks
+      // assigning a sibling node into the same window.
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('Workflow complete'),
+        'success'
+      );
+    });
+
+    it('still pauses a manual step that is not the last step', () => {
+      const state = () => stateRef.current;
+
+      // s2 is manual and has a following step (s3), so finishing it must still
+      // pause for the user rather than complete — only the no-next-step case changes.
+      stateRef.current.nodes['s2'].metadata.stepType = 'manual';
+      stateRef.current.nodes['s1'].children = [];
+      stateRef.current.nodes['s2'].children = ['task'];
+      stateRef.current.ancestorRegistry['task'] = ['root', 'wf', 's2'];
+
+      void actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      expect(state().workflowExecutionStates['task'].state).toBe('awaiting-validation');
+      expect(state().nodes['s2'].children).toContain('task');
+      expect(mockAddToast).not.toHaveBeenCalledWith(
+        expect.stringContaining('Workflow complete'),
+        'success'
+      );
+    });
+
+    it.todo('completes a manual last step that is a decomposed leaf and hands off to the next decomposed sibling via checkRecurse');
+  });
+
   describe('Stop completion gate — interrupt mid-task then unrelated turn', () => {
     it('autonomous step stays in flight when Stop arrives with explicit_submit_seen=false and advances on a subsequent explicit submit', () => {
       const state = () => stateRef.current;

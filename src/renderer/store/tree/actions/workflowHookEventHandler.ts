@@ -282,24 +282,31 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
           advanceNode(runningNodeId);
         }
       } else if (stepType === 'manual') {
-        const { workflowExecutionStates: currentStates } = get();
-        const currentEntry = currentStates[runningNodeId];
-        if (currentEntry && currentEntry.state === 'running') {
-          set({
-            workflowExecutionStates: {
-              ...currentStates,
-              [runningNodeId]: {
-                ...currentEntry,
-                state: 'awaiting-validation',
+        const { nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
+        const hasNextStep = !!findNextStepTarget(runningNodeId, currentNodes, currentRegistry);
+
+        if (!hasNextStep) {
+          completeWorkflow(runningNodeId);
+        } else {
+          const { workflowExecutionStates: currentStates } = get();
+          const currentEntry = currentStates[runningNodeId];
+          if (currentEntry && currentEntry.state === 'running') {
+            set({
+              workflowExecutionStates: {
+                ...currentStates,
+                [runningNodeId]: {
+                  ...currentEntry,
+                  state: 'awaiting-validation',
+                },
               },
-            },
-          });
+            });
+          }
+          logger.info(
+            `Hook Stop on manual step ${position.currentStepId} — pausing for user to advance`,
+            'WorkflowExecution',
+            { nodeId: runningNodeId },
+          );
         }
-        logger.info(
-          `Hook Stop on manual step ${position.currentStepId} — pausing for user to advance`,
-          'WorkflowExecution',
-          { nodeId: runningNodeId },
-        );
       } else if (stepType === 'checkpoint') {
         const { nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
         const hasNextStep = !!findNextStepTarget(runningNodeId, currentNodes, currentRegistry);
