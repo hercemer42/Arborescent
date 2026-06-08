@@ -8,6 +8,7 @@ vi.mock('../hooks/useTerminal', () => ({
     terminalRef: { current: null },
     xtermRef: { current: null },
     fitAddonRef: { current: null },
+    status: 'ready',
   })),
 }));
 

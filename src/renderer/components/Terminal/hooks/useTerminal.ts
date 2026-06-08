@@ -5,10 +5,20 @@ import { LIGHT_THEME, DARK_THEME } from '../terminalThemes';
 import { clipChunkAfterWatermark } from '../terminalReplay';
 import { useTerminalKeyboard } from './useTerminalKeyboard';
 import { usePreferencesStore } from '../../../store/preferences/preferencesStore';
+import { logger } from '../../../services/logger';
 import {
   registerTerminalFocus,
   unregisterTerminalFocus,
 } from '../../../services/terminalFocusRegistry';
+
+export type TerminalInitStatus = 'loading' | 'ready' | 'error';
+
+// The ResizeObserver does not always deliver a callback when the container gains
+// size (intermittent on display:none -> block), which would leave the pane blank
+// indefinitely. Poll init as well, and after a deadline surface an error if the
+// pane is visible but still unmounted.
+const INIT_POLL_INTERVAL_MS = 120;
+const INIT_DEADLINE_MS = 8000;
 
 interface UseTerminalOptions {
   id: string;
@@ -39,6 +49,7 @@ export function useTerminal({ id, pinnedToBottom = false, onResize }: UseTermina
   const wasHiddenRef = useRef(false);
   const onResizeRef = useRef(onResize);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [status, setStatus] = useState<TerminalInitStatus>('loading');
   const theme = usePreferencesStore((state) => state.theme);
 
   // Keep refs in sync with props without re-triggering the mount effect.
@@ -78,6 +89,9 @@ export function useTerminal({ id, pinnedToBottom = false, onResize }: UseTermina
     let disposed = false;
     const disposers: (() => void)[] = [];
     let retryObserver: ResizeObserver | null = null;
+    let initPollTimer: ReturnType<typeof setTimeout> | null = null;
+    let errored = false;
+    const openedAt = performance.now();
 
     const wireRuntimeHandlers = (xterm: XTerm, fitAddon: FitAddon, container: HTMLDivElement) => {
       xterm.onData((data) => {
@@ -203,30 +217,48 @@ export function useTerminal({ id, pinnedToBottom = false, onResize }: UseTermina
       );
     };
 
-    const tryInit = () => {
-      if (disposed || xtermRef.current || !terminalRef.current) return;
-      const rect = terminalRef.current.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) return;
-
-      const xterm = new XTerm({
-        cursorBlink: true,
-        fontSize: 14,
-        fontFamily: 'Menlo, Monaco, "Courier New", monospace',
-        theme: theme === 'dark' ? DARK_THEME : LIGHT_THEME,
-      });
-
-      const fitAddon = new FitAddon();
-      xterm.loadAddon(fitAddon);
-      xterm.open(terminalRef.current);
-      fitAddon.fit();
-
-      xtermRef.current = xterm;
-      fitAddonRef.current = fitAddon;
-
+    const stopInitWatchers = () => {
       if (retryObserver) {
         retryObserver.disconnect();
         retryObserver = null;
       }
+      if (initPollTimer !== null) {
+        clearTimeout(initPollTimer);
+        initPollTimer = null;
+      }
+    };
+
+    const tryInit = () => {
+      if (disposed || errored || xtermRef.current || !terminalRef.current) return;
+      const rect = terminalRef.current.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+
+      let xterm: XTerm;
+      let fitAddon: FitAddon;
+      try {
+        xterm = new XTerm({
+          cursorBlink: true,
+          fontSize: 14,
+          fontFamily: 'Menlo, Monaco, "Courier New", monospace',
+          theme: theme === 'dark' ? DARK_THEME : LIGHT_THEME,
+        });
+
+        fitAddon = new FitAddon();
+        xterm.loadAddon(fitAddon);
+        xterm.open(terminalRef.current);
+        fitAddon.fit();
+      } catch (error) {
+        errored = true;
+        stopInitWatchers();
+        setStatus('error');
+        logger.error(`Terminal ${id} failed to initialise`, error as Error, 'Terminal', false);
+        return;
+      }
+
+      xtermRef.current = xterm;
+      fitAddonRef.current = fitAddon;
+
+      stopInitWatchers();
 
       wireRuntimeHandlers(xterm, fitAddon, terminalRef.current);
 
@@ -244,19 +276,44 @@ export function useTerminal({ id, pinnedToBottom = false, onResize }: UseTermina
         xterm.scrollToBottom();
       }
 
+      setStatus('ready');
+      logger.debug(`Terminal ${id} first render in ${Math.round(performance.now() - openedAt)}ms`, 'Terminal');
       setIsInitialized(true);
     };
 
     tryInit();
 
-    if (!xtermRef.current) {
+    if (!xtermRef.current && !errored) {
       retryObserver = new ResizeObserver(tryInit);
       retryObserver.observe(terminalRef.current);
+
+      const pollInit = () => {
+        initPollTimer = null;
+        if (disposed || errored || xtermRef.current) return;
+        tryInit();
+        if (disposed || errored || xtermRef.current) return;
+        if (performance.now() - openedAt >= INIT_DEADLINE_MS) {
+          // The pane has had a real size but still has not mounted — surface it
+          // instead of staying blank. A pane that is merely still hidden keeps
+          // waiting on the ResizeObserver rather than erroring.
+          const rect = terminalRef.current?.getBoundingClientRect();
+          if (rect && rect.width > 0 && rect.height > 0) {
+            errored = true;
+            stopInitWatchers();
+            setStatus('error');
+            logger.error(`Terminal ${id} did not render within ${INIT_DEADLINE_MS}ms`, undefined, 'Terminal', false);
+          }
+          return;
+        }
+        initPollTimer = setTimeout(pollInit, INIT_POLL_INTERVAL_MS);
+      };
+      initPollTimer = setTimeout(pollInit, INIT_POLL_INTERVAL_MS);
     }
 
     return () => {
       disposed = true;
       if (retryObserver) retryObserver.disconnect();
+      if (initPollTimer !== null) clearTimeout(initPollTimer);
       for (const dispose of disposers) {
         try {
           dispose();
@@ -281,5 +338,5 @@ export function useTerminal({ id, pinnedToBottom = false, onResize }: UseTermina
     }
   }, [theme]);
 
-  return { terminalRef, xtermRef, fitAddonRef };
+  return { terminalRef, xtermRef, fitAddonRef, status };
 }

@@ -9,7 +9,20 @@ interface TerminalProps {
 }
 
 export function Terminal({ id, pinnedToBottom = false, onResize }: TerminalProps) {
-  const { terminalRef } = useTerminal({ id, pinnedToBottom, onResize });
+  const { terminalRef, status } = useTerminal({ id, pinnedToBottom, onResize });
 
-  return <div ref={terminalRef} className="terminal-container" />;
+  return (
+    <div className="terminal-root">
+      <div ref={terminalRef} className="terminal-container" />
+      {status !== 'ready' && (
+        <div
+          className={status === 'error' ? 'terminal-status terminal-status--error' : 'terminal-status'}
+          role={status === 'error' ? 'alert' : 'status'}
+          aria-live={status === 'error' ? 'assertive' : 'polite'}
+        >
+          {status === 'error' ? 'Terminal failed to start' : 'Starting terminal…'}
+        </div>
+      )}
+    </div>
+  );
 }
