@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T12:25:59.397Z'
+updated: '2026-06-08T13:23:33.951Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23708,8 +23708,7 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children:
-      - 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -124374,7 +124373,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
     metadata:
       status: pending
       isBlueprint: true
@@ -206316,12 +206316,15 @@ nodes:
     id: 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
     content: Unpause workflow — flip a paused step back to play so its completion advances
     children:
-      - e1d95264-dbfe-4422-b3a4-b7fd32477b55
-      - 303019e8-e2d2-45e4-ac2e-d8847ec9f6ba
-      - d6100561-7cca-4e9b-bb90-5efda7783278
-      - e3030cf6-7748-4f82-b9cd-e9df4c9210f1
+      - f6434ca4-5eda-48e5-a20d-271d20b35a41
+      - e755678b-9e7b-4bb1-bdb1-580268cbb5e2
+      - 5e6d82e6-3b67-4542-bbed-6263e2967a6c
+      - 4b397dd7-f03f-42ff-bc4e-3bead9063ab4
+      - 840a7802-5784-472b-8adf-1cb92cb8f3ad
+      - 8df11b0c-bd72-4a67-8845-db5ee517c8d3
+      - 2399cade-61e0-4473-8893-dba3b3d411c2
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -210259,35 +210262,54 @@ nodes:
     children: []
     metadata:
       status: pending
-  e1d95264-dbfe-4422-b3a4-b7fd32477b55:
-    id: e1d95264-dbfe-4422-b3a4-b7fd32477b55
+  f6434ca4-5eda-48e5-a20d-271d20b35a41:
+    id: f6434ca4-5eda-48e5-a20d-271d20b35a41
+    content: worktree
+    children:
+      - 7b05d907-fd71-4402-9b1b-c08a4ecbc1cd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b05d907-fd71-4402-9b1b-c08a4ecbc1cd:
+    id: 7b05d907-fd71-4402-9b1b-c08a4ecbc1cd
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/unpause-workflow) — branch feat/unpause-workflow'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e755678b-9e7b-4bb1-bdb1-580268cbb5e2:
+    id: e755678b-9e7b-4bb1-bdb1-580268cbb5e2
     content: 📄 Product spec
     children:
-      - 9152d26d-c0d1-4648-98e4-03e8cebf33da
-      - 11208edb-a356-40ff-902a-e7bf7837e764
-      - 45ed8738-83ca-4367-87c3-deb387fe8227
-      - eaa62039-330d-4fd1-9c5b-bcb351eb12d7
-      - fd692d65-cb55-403b-ba90-538b22480522
-      - 2d8bc97e-8d56-41e7-8fb3-9a163457e5be
+      - b3c6a4d6-84f5-41e2-8575-86ba0f462b80
+      - 0336b60b-2875-4ce8-a407-c370954517c1
+      - 8dda7fbe-4c33-48c9-9567-0ec069654c25
+      - c74257ca-5e19-4e1e-b943-45df028f8606
+      - 5d0c72d0-1ef9-483b-89ea-a87c63336ae2
+      - 8f5c290e-abd3-443d-a76d-06f99e848294
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  9152d26d-c0d1-4648-98e4-03e8cebf33da:
-    id: 9152d26d-c0d1-4648-98e4-03e8cebf33da
+  b3c6a4d6-84f5-41e2-8575-86ba0f462b80:
+    id: b3c6a4d6-84f5-41e2-8575-86ba0f462b80
     content: Context
     children:
-      - bfb99360-9553-4c6a-ad42-043dd0b6ee42
-      - 5997c30c-5b4d-4a4b-9059-64737e62fe7b
-      - 1969b189-bd47-434f-a607-3d17e64eb303
+      - d1b6133b-932a-4b3b-964e-36ed818a184f
+      - 0143c303-4bef-4e17-b9d8-4238306e17d7
+      - e4bc3135-4c45-4494-af51-6ca65af226af
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  bfb99360-9553-4c6a-ad42-043dd0b6ee42:
-    id: bfb99360-9553-4c6a-ad42-043dd0b6ee42
+  d1b6133b-932a-4b3b-964e-36ed818a184f:
+    id: d1b6133b-932a-4b3b-964e-36ed818a184f
     content: A workflow step pauses (run-state 'awaiting-validation', shown as the gray Pause glyph) when the AI stops mid-step — e.g. to ask the user a question.
     children: []
     metadata:
@@ -210295,8 +210317,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5997c30c-5b4d-4a4b-9059-64737e62fe7b:
-    id: 5997c30c-5b4d-4a4b-9059-64737e62fe7b
+  0143c303-4bef-4e17-b9d8-4238306e17d7:
+    id: 0143c303-4bef-4e17-b9d8-4238306e17d7
     content: Advancement to the next step only fires when a step finishes while in the running/'play' state; advanceNode bails unless state === 'running', so a completion that arrives while paused is a silent no-op and the workflow stalls.
     children: []
     metadata:
@@ -210304,8 +210326,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1969b189-bd47-434f-a607-3d17e64eb303:
-    id: 1969b189-bd47-434f-a607-3d17e64eb303
+  e4bc3135-4c45-4494-af51-6ca65af226af:
+    id: e4bc3135-4c45-4494-af51-6ca65af226af
     content: Answering the AI's question does not clear the pause (the UserPromptSubmit hook is a no-op for run-state), so the step stays paused even as the AI keeps working and finishes.
     children: []
     metadata:
@@ -210313,18 +210335,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  11208edb-a356-40ff-902a-e7bf7837e764:
-    id: 11208edb-a356-40ff-902a-e7bf7837e764
+  0336b60b-2875-4ce8-a407-c370954517c1:
+    id: 0336b60b-2875-4ce8-a407-c370954517c1
     content: User
     children:
-      - a12a04b1-bfad-4ab2-bfee-1d67ab7a3a7a
+      - d0596341-444a-487e-bd97-b3c31249b946
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  a12a04b1-bfad-4ab2-bfee-1d67ab7a3a7a:
-    id: a12a04b1-bfad-4ab2-bfee-1d67ab7a3a7a
+  d0596341-444a-487e-bd97-b3c31249b946:
+    id: d0596341-444a-487e-bd97-b3c31249b946
     content: A user running a workflow whose step paused to ask a question — they answer, the AI continues and completes the step, but it never advances because the step is still paused.
     children: []
     metadata:
@@ -210332,19 +210354,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  45ed8738-83ca-4367-87c3-deb387fe8227:
-    id: 45ed8738-83ca-4367-87c3-deb387fe8227
+  8dda7fbe-4c33-48c9-9567-0ec069654c25:
+    id: 8dda7fbe-4c33-48c9-9567-0ec069654c25
     content: Current experience and why it is insufficient
     children:
-      - 54b63c79-af7e-4aff-b000-42af2496a224
-      - 820cbf92-8d9a-4699-86e5-4f59f59d6003
+      - bf96cfef-bc3e-47f6-8581-055bab254dbd
+      - 654eb999-bde0-44b1-9c8c-4e5f3697c992
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  54b63c79-af7e-4aff-b000-42af2496a224:
-    id: 54b63c79-af7e-4aff-b000-42af2496a224
+  bf96cfef-bc3e-47f6-8581-055bab254dbd:
+    id: bf96cfef-bc3e-47f6-8581-055bab254dbd
     content: After answering, there is no way to return the step to play and walk away; the completed step silently fails to advance.
     children: []
     metadata:
@@ -210352,8 +210374,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  820cbf92-8d9a-4699-86e5-4f59f59d6003:
-    id: 820cbf92-8d9a-4699-86e5-4f59f59d6003
+  654eb999-bde0-44b1-9c8c-4e5f3697c992:
+    id: 654eb999-bde0-44b1-9c8c-4e5f3697c992
     content: 'The only existing controls are wrong for this: Continue advances immediately (skips the AI''s remaining work if clicked before it finishes) and Re-send re-sends the prompt; neither is "just let it finish and then go."'
     children: []
     metadata:
@@ -210361,18 +210383,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  eaa62039-330d-4fd1-9c5b-bcb351eb12d7:
-    id: eaa62039-330d-4fd1-9c5b-bcb351eb12d7
+  c74257ca-5e19-4e1e-b943-45df028f8606:
+    id: c74257ca-5e19-4e1e-b943-45df028f8606
     content: Goal
     children:
-      - b0a8db40-46ed-4fc8-b63c-0d0326957c58
+      - bcf9e2cc-9882-45e4-a671-621b689f4779
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  b0a8db40-46ed-4fc8-b63c-0d0326957c58:
-    id: b0a8db40-46ed-4fc8-b63c-0d0326957c58
+  bcf9e2cc-9882-45e4-a671-621b689f4779:
+    id: bcf9e2cc-9882-45e4-a671-621b689f4779
     content: Let the user flip a paused step back to play in one action so that, when the current prompt finishes, the workflow advances to the next step on its own.
     children: []
     metadata:
@@ -210380,257 +210402,257 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fd692d65-cb55-403b-ba90-538b22480522:
-    id: fd692d65-cb55-403b-ba90-538b22480522
+  5d0c72d0-1ef9-483b-89ea-a87c63336ae2:
+    id: 5d0c72d0-1ef9-483b-89ea-a87c63336ae2
     content: Business rules
     children:
-      - 750bdd09-b0d7-43c3-a209-8d82b1aee753
-      - 5da32165-559d-49de-839e-ad483e2906df
-      - 67a47554-45ed-45fe-9189-863e164a4174
-      - beb8cafe-13da-49ba-a989-19be22b2b1ab
-      - 6ca5bc69-6157-430f-972f-e74026d23b37
-      - 2787309f-d68e-4621-a60f-7579a1007c58
+      - 94d555dc-dd7a-4f2f-a0ab-649ee6e42cd8
+      - 87525271-4cb6-43b5-bd7c-248c1abca858
+      - a1429996-9182-4ce0-a4a4-118e2f282d9e
+      - 6c014ab1-07c5-4dfc-ab59-7d96c61ca958
+      - 8ca052d8-28a8-418e-8ca2-e9f3ff2b0df6
+      - 6fd03c6f-1012-4bcc-89af-654b1107f45e
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  750bdd09-b0d7-43c3-a209-8d82b1aee753:
-    id: 750bdd09-b0d7-43c3-a209-8d82b1aee753
+  94d555dc-dd7a-4f2f-a0ab-649ee6e42cd8:
+    id: 94d555dc-dd7a-4f2f-a0ab-649ee6e42cd8
     content: 1. Unpause sets the step's run-state from 'awaiting-validation' to 'running' ('play') and does nothing else — no prompt resend, no immediate advance, no tree change.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  5da32165-559d-49de-839e-ad483e2906df:
-    id: 5da32165-559d-49de-839e-ad483e2906df
+  87525271-4cb6-43b5-bd7c-248c1abca858:
+    id: 87525271-4cb6-43b5-bd7c-248c1abca858
     content: 2. Unpause is offered only on a step currently in 'awaiting-validation' (paused) and is absent on running, non-paused, or non-workflow nodes.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  67a47554-45ed-45fe-9189-863e164a4174:
-    id: 67a47554-45ed-45fe-9189-863e164a4174
+  a1429996-9182-4ce0-a4a4-118e2f282d9e:
+    id: a1429996-9182-4ce0-a4a4-118e2f282d9e
     content: '3. After unpausing, advancement is left entirely to the existing completion path: when the current prompt finishes while the step is running, the workflow advances to the next step.'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  beb8cafe-13da-49ba-a989-19be22b2b1ab:
-    id: beb8cafe-13da-49ba-a989-19be22b2b1ab
+  6c014ab1-07c5-4dfc-ab59-7d96c61ca958:
+    id: 6c014ab1-07c5-4dfc-ab59-7d96c61ca958
     content: 4. Unpausing when no prompt is in progress is a user-beware no-op for advancement — the feature does not detect or advance an already-finished step; the user finishes the conversation or stops/restarts the step.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6ca5bc69-6157-430f-972f-e74026d23b37:
-    id: 6ca5bc69-6157-430f-972f-e74026d23b37
+  8ca052d8-28a8-418e-8ca2-e9f3ff2b0df6:
+    id: 8ca052d8-28a8-418e-8ca2-e9f3ff2b0df6
     content: 5. Unpause never resends the step prompt and never advances the step at click time.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2787309f-d68e-4621-a60f-7579a1007c58:
-    id: 2787309f-d68e-4621-a60f-7579a1007c58
+  6fd03c6f-1012-4bcc-89af-654b1107f45e:
+    id: 6fd03c6f-1012-4bcc-89af-654b1107f45e
     content: 6. If invoked on a node not in 'awaiting-validation' (e.g. a state race), unpause is a guarded no-op that changes nothing and raises no error.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2d8bc97e-8d56-41e7-8fb3-9a163457e5be:
-    id: 2d8bc97e-8d56-41e7-8fb3-9a163457e5be
+  8f5c290e-abd3-443d-a76d-06f99e848294:
+    id: 8f5c290e-abd3-443d-a76d-06f99e848294
     content: Acceptance criteria
     children:
-      - dec8bade-52dd-4d48-b3af-315cd20765fb
-      - 05d9cb16-9f3f-4042-ade5-63696e2dbe05
-      - d4ca331f-a755-400a-a6a4-297785065dc3
-      - 59681d11-2d82-4457-9fbd-1a8d7a2d3f4f
-      - 3e1c1d70-ed3e-483d-9cbf-f4fce071a9fc
-      - 1a41836a-57fd-4318-9219-b9f9020e3b8d
+      - a47231b0-29b3-4d1e-bcaa-d348eed0cc36
+      - 37704eb7-383d-4cce-aae1-5ea7e53f437f
+      - 1f3e4f6a-a1a4-4679-9ff9-5974e8b614ac
+      - 7da4ec02-9021-4fbf-8bb9-23cf34b4198a
+      - e6a364c4-c368-442c-b3e5-4ad599063e4d
+      - fcf11955-2e08-441a-ad6b-459cbb5f1339
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  dec8bade-52dd-4d48-b3af-315cd20765fb:
-    id: dec8bade-52dd-4d48-b3af-315cd20765fb
+  a47231b0-29b3-4d1e-bcaa-d348eed0cc36:
+    id: a47231b0-29b3-4d1e-bcaa-d348eed0cc36
     content: Given a paused step with a prompt in progress, unpausing sets it to running and the workflow advances when that prompt finishes.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  05d9cb16-9f3f-4042-ade5-63696e2dbe05:
-    id: 05d9cb16-9f3f-4042-ade5-63696e2dbe05
+  37704eb7-383d-4cce-aae1-5ea7e53f437f:
+    id: 37704eb7-383d-4cce-aae1-5ea7e53f437f
     content: Unpause writes only the run-state ('running'); no prompt text is sent to the terminal (zero tokens) and no advance happens at click time.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d4ca331f-a755-400a-a6a4-297785065dc3:
-    id: d4ca331f-a755-400a-a6a4-297785065dc3
+  1f3e4f6a-a1a4-4679-9ff9-5974e8b614ac:
+    id: 1f3e4f6a-a1a4-4679-9ff9-5974e8b614ac
     content: The unpause control appears only when the step is paused; it is absent on running, non-paused, or non-workflow nodes.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  59681d11-2d82-4457-9fbd-1a8d7a2d3f4f:
-    id: 59681d11-2d82-4457-9fbd-1a8d7a2d3f4f
+  7da4ec02-9021-4fbf-8bb9-23cf34b4198a:
+    id: 7da4ec02-9021-4fbf-8bb9-23cf34b4198a
     content: Unpausing a step with no prompt in progress does not advance it — behaviour is left to the user, with no silent advance or resend.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3e1c1d70-ed3e-483d-9cbf-f4fce071a9fc:
-    id: 3e1c1d70-ed3e-483d-9cbf-f4fce071a9fc
+  e6a364c4-c368-442c-b3e5-4ad599063e4d:
+    id: e6a364c4-c368-442c-b3e5-4ad599063e4d
     content: Invoking unpause on a node that is not in 'awaiting-validation' is a guarded no-op — no state change and no error.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  1a41836a-57fd-4318-9219-b9f9020e3b8d:
-    id: 1a41836a-57fd-4318-9219-b9f9020e3b8d
+  fcf11955-2e08-441a-ad6b-459cbb5f1339:
+    id: fcf11955-2e08-441a-ad6b-459cbb5f1339
     content: The control is keyboard-reachable and labelled distinctly from Continue and Re-send.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  303019e8-e2d2-45e4-ac2e-d8847ec9f6ba:
-    id: 303019e8-e2d2-45e4-ac2e-d8847ec9f6ba
+  5e6d82e6-3b67-4542-bbed-6263e2967a6c:
+    id: 5e6d82e6-3b67-4542-bbed-6263e2967a6c
     content: 🔧 Implementation proposal
     children:
-      - 4c8136c3-a291-41f6-b244-a33ee0229538
-      - 49e92ae9-195a-4e78-8781-df3a9ec4c962
-      - a2366432-ed03-4df0-b1bf-b7c076402361
+      - 000113f4-76bf-435a-8e82-158e1dc9ba91
+      - 3079c8e6-4321-497a-9c50-f93c9bc863d1
+      - c288fb3e-c32d-42df-92e6-75d9d7cd4c01
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  4c8136c3-a291-41f6-b244-a33ee0229538:
-    id: 4c8136c3-a291-41f6-b244-a33ee0229538
+  000113f4-76bf-435a-8e82-158e1dc9ba91:
+    id: 000113f4-76bf-435a-8e82-158e1dc9ba91
     content: Approach
     children:
-      - ba5c54aa-71e4-4cc4-aabd-842d0deb088e
-      - 28d81220-a2fc-4ab0-9aa1-77178cf3275d
+      - 9883b4d9-0a93-4e1f-8a5d-8f4946ec715b
+      - 67cc3853-eea0-47af-a2d9-5982ea8c0649
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  ba5c54aa-71e4-4cc4-aabd-842d0deb088e:
-    id: ba5c54aa-71e4-4cc4-aabd-842d0deb088e
+  9883b4d9-0a93-4e1f-8a5d-8f4946ec715b:
+    id: 9883b4d9-0a93-4e1f-8a5d-8f4946ec715b
     content: Add a single-purpose store action unpauseWorkflow(nodeId) that, when the entry is 'awaiting-validation', sets its state to 'running' and returns — no other side effects.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  28d81220-a2fc-4ab0-9aa1-77178cf3275d:
-    id: 28d81220-a2fc-4ab0-9aa1-77178cf3275d
+  67cc3853-eea0-47af-a2d9-5982ea8c0649:
+    id: 67cc3853-eea0-47af-a2d9-5982ea8c0649
     content: Surface it on the paused-state UI by making the existing awaiting-validation Pause glyph clickable (mirror of the running Play glyph's click-to-stop). No change to advanceNode or the Stop handler — the existing running + completion path already advances.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  49e92ae9-195a-4e78-8781-df3a9ec4c962:
-    id: 49e92ae9-195a-4e78-8781-df3a9ec4c962
+  3079c8e6-4321-497a-9c50-f93c9bc863d1:
+    id: 3079c8e6-4321-497a-9c50-f93c9bc863d1
     content: Touchpoints
     children:
-      - 23a0ea43-7ad9-4ec9-aac5-ea6227270316
-      - d983a16b-665d-4d3f-81da-07a14506363b
-      - c38e9e79-88e5-404c-ac32-e5d25059ae7e
-      - 3bbf4a49-3a00-453f-9901-763227f7972b
-      - 1e495c24-106f-4c9f-828e-cd63c97e884b
+      - 41c998cb-6173-4b1d-b024-222cd7f3c3b6
+      - 6f302720-f058-4629-9793-a229d4072a4b
+      - 16401452-8473-470d-b5bd-e38d05f2043b
+      - 24a75866-42c2-4d6c-9089-557dd2113ed0
+      - d987f107-2f00-41dd-acc6-e9e26058498f
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  23a0ea43-7ad9-4ec9-aac5-ea6227270316:
-    id: 23a0ea43-7ad9-4ec9-aac5-ea6227270316
+  41c998cb-6173-4b1d-b024-222cd7f3c3b6:
+    id: 41c998cb-6173-4b1d-b024-222cd7f3c3b6
     content: Store action — workflowExecutionActions.ts (new unpauseWorkflow; flip state only, guard on state === 'awaiting-validation').
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d983a16b-665d-4d3f-81da-07a14506363b:
-    id: d983a16b-665d-4d3f-81da-07a14506363b
+  6f302720-f058-4629-9793-a229d4072a4b:
+    id: 6f302720-f058-4629-9793-a229d4072a4b
     content: Store wiring — treeStore.ts (add unpauseWorkflow to the actions interface and bind it).
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c38e9e79-88e5-404c-ac32-e5d25059ae7e:
-    id: c38e9e79-88e5-404c-ac32-e5d25059ae7e
+  16401452-8473-470d-b5bd-e38d05f2043b:
+    id: 16401452-8473-470d-b5bd-e38d05f2043b
     content: UI — StatusArea.tsx (make the Pause glyph clickable → unpause); optionally an "Unpause workflow" context-menu item in useWorkflowSubmenu.ts / useNodeContextMenu.ts.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3bbf4a49-3a00-453f-9901-763227f7972b:
-    id: 3bbf4a49-3a00-453f-9901-763227f7972b
+  24a75866-42c2-4d6c-9089-557dd2113ed0:
+    id: 24a75866-42c2-4d6c-9089-557dd2113ed0
     content: Activity log — notifyWorkflow() in workflowToast.ts (optional single "Workflow unpaused" entry).
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  1e495c24-106f-4c9f-828e-cd63c97e884b:
-    id: 1e495c24-106f-4c9f-828e-cd63c97e884b
+  d987f107-2f00-41dd-acc6-e9e26058498f:
+    id: d987f107-2f00-41dd-acc6-e9e26058498f
     content: 'Tests — co-located: unpause flips ''awaiting-validation'' → ''running'', does NOT call sendContentToTerminal or advanceNode; a subsequent completion Stop advances; no-op when not paused.'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a2366432-ed03-4df0-b1bf-b7c076402361:
-    id: a2366432-ed03-4df0-b1bf-b7c076402361
+  c288fb3e-c32d-42df-92e6-75d9d7cd4c01:
+    id: c288fb3e-c32d-42df-92e6-75d9d7cd4c01
     content: Constraints to call out
     children:
-      - c8c11927-adf3-4378-a73b-7250d61af4ff
-      - 50380bbb-0959-4308-959e-2f0a26f95aa8
+      - 2c44a59e-8a9b-4b7e-bf38-dcb893a5c643
+      - efc06993-9b55-4572-86c6-f65d95853f3f
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  c8c11927-adf3-4378-a73b-7250d61af4ff:
-    id: c8c11927-adf3-4378-a73b-7250d61af4ff
+  2c44a59e-8a9b-4b7e-bf38-dcb893a5c643:
+    id: 2c44a59e-8a9b-4b7e-bf38-dcb893a5c643
     content: The name "Unpause" (paired with the Play/Pause glyphs) avoids the existing "Resume Workflow" → resend collision, so no rename is required.
     children: []
     metadata:
@@ -210638,8 +210660,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  50380bbb-0959-4308-959e-2f0a26f95aa8:
-    id: 50380bbb-0959-4308-959e-2f0a26f95aa8
+  efc06993-9b55-4572-86c6-f65d95853f3f:
+    id: efc06993-9b55-4572-86c6-f65d95853f3f
     content: Scope is play/autonomous-style steps that advance on completion; manual/checkpoint steps re-pause on completion by design, so unpause will not carry them past validation — intended, not a gap.
     children: []
     metadata:
@@ -210647,18 +210669,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d6100561-7cca-4e9b-bb90-5efda7783278:
-    id: d6100561-7cca-4e9b-bb90-5efda7783278
+  4b397dd7-f03f-42ff-bc4e-3bead9063ab4:
+    id: 4b397dd7-f03f-42ff-bc4e-3bead9063ab4
     content: Chunking decision
     children:
-      - 148e090a-61a2-4e94-948c-1607d9542d45
+      - f5b7f8d3-6020-4f0c-8275-156f6072ddcb
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  148e090a-61a2-4e94-948c-1607d9542d45:
-    id: 148e090a-61a2-4e94-948c-1607d9542d45
+  f5b7f8d3-6020-4f0c-8275-156f6072ddcb:
+    id: f5b7f8d3-6020-4f0c-8275-156f6072ddcb
     content: One chunk — a single run-state flip plus one UI affordance; there is nothing coherent to split and no flag-gated sub-value to realise.
     children: []
     metadata:
@@ -210666,31 +210688,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e3030cf6-7748-4f82-b9cd-e9df4c9210f1:
-    id: e3030cf6-7748-4f82-b9cd-e9df4c9210f1
+  840a7802-5784-472b-8adf-1cb92cb8f3ad:
+    id: 840a7802-5784-472b-8adf-1cb92cb8f3ad
     content: Challenges / pushback
     children:
-      - 1b71d36a-6886-408c-a0d7-48efa8bc059c
-      - d2447c5f-30a9-4d15-a3a3-9642261816b7
-      - 38bb4b04-0dff-4385-a0bb-052cb2ae1d78
+      - 48c1ef2e-fb7c-4e04-a200-c45959a1be03
+      - 5ee2da1e-d3e9-439f-b64d-ac0c54af52a9
+      - e027e20a-fe20-47ff-8154-d24c1282fd17
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  1b71d36a-6886-408c-a0d7-48efa8bc059c:
-    id: 1b71d36a-6886-408c-a0d7-48efa8bc059c
+  48c1ef2e-fb7c-4e04-a200-c45959a1be03:
+    id: 48c1ef2e-fb7c-4e04-a200-c45959a1be03
     content: UX
     children:
-      - 6341373a-b21e-472e-bd3b-88026e5b3cb7
-      - f25c8dc3-02ba-4ff4-a0e3-509b14902922
+      - 66911f69-6a0a-456e-b3a0-87b1d3815b3d
+      - d12b2935-a164-4611-b9dc-17baaae2e092
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  6341373a-b21e-472e-bd3b-88026e5b3cb7:
-    id: 6341373a-b21e-472e-bd3b-88026e5b3cb7
+  66911f69-6a0a-456e-b3a0-87b1d3815b3d:
+    id: 66911f69-6a0a-456e-b3a0-87b1d3815b3d
     content: Reuse the existing Pause glyph as the click target (Pause → Play) for discoverability and symmetry with the running glyph, rather than introducing a separate control.
     children: []
     metadata:
@@ -210698,8 +210720,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f25c8dc3-02ba-4ff4-a0e3-509b14902922:
-    id: f25c8dc3-02ba-4ff4-a0e3-509b14902922
+  d12b2935-a164-4611-b9dc-17baaae2e092:
+    id: d12b2935-a164-4611-b9dc-17baaae2e092
     content: Naming it "Unpause" (not another "resume") keeps the paused-node menu free of two opposite-meaning look-alikes.
     children: []
     metadata:
@@ -210707,18 +210729,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d2447c5f-30a9-4d15-a3a3-9642261816b7:
-    id: d2447c5f-30a9-4d15-a3a3-9642261816b7
+  5ee2da1e-d3e9-439f-b64d-ac0c54af52a9:
+    id: 5ee2da1e-d3e9-439f-b64d-ac0c54af52a9
     content: Over-engineering
     children:
-      - 0e944818-36ae-4db0-94df-643ab5f9e133
+      - 4e87e40b-7cca-4dc9-b84e-72913d4fbc51
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  0e944818-36ae-4db0-94df-643ab5f9e133:
-    id: 0e944818-36ae-4db0-94df-643ab5f9e133
+  4e87e40b-7cca-4dc9-b84e-72913d4fbc51:
+    id: 4e87e40b-7cca-4dc9-b84e-72913d4fbc51
     content: Explicitly NOT building detect-already-completed-and-advance, auto-flip-on-answer, or any resend — the running + completion path already advances; these were scoped out deliberately.
     children: []
     metadata:
@@ -210726,18 +210748,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  38bb4b04-0dff-4385-a0bb-052cb2ae1d78:
-    id: 38bb4b04-0dff-4385-a0bb-052cb2ae1d78
+  e027e20a-fe20-47ff-8154-d24c1282fd17:
+    id: e027e20a-fe20-47ff-8154-d24c1282fd17
     content: ROI
     children:
-      - 3d526642-2d9e-4915-8b9b-3271f0efa8b9
+      - 0ab46d41-1c95-40f2-8e5e-5532f1dd8da0
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  3d526642-2d9e-4915-8b9b-3271f0efa8b9:
-    id: 3d526642-2d9e-4915-8b9b-3271f0efa8b9
+  0ab46d41-1c95-40f2-8e5e-5532f1dd8da0:
+    id: 0ab46d41-1c95-40f2-8e5e-5532f1dd8da0
     content: Very high — a one-field state change removes a silent stall; the payoff is "clear the pause once after answering and walk away" instead of babysitting to click Continue at completion.
     children: []
     metadata:
@@ -210745,6 +210767,136 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  8df11b0c-bd72-4a67-8845-db5ee517c8d3:
+    id: 8df11b0c-bd72-4a67-8845-db5ee517c8d3
+    content: Technical refinement
+    children:
+      - f7c994a5-d1e8-4f5e-be36-92f7c995184b
+      - fff99649-b71f-45c4-9e8d-8ec10a8ce7e4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7c994a5-d1e8-4f5e-be36-92f7c995184b:
+    id: f7c994a5-d1e8-4f5e-be36-92f7c995184b
+    content: Complications
+    children:
+      - 4f0e4faf-3990-4541-ab99-b59213cf74d9
+      - 6eb079f7-828c-4711-818a-c7a83fc34a4d
+      - 2d0a471b-d5eb-4adb-8b87-6ce432c84eaf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f0e4faf-3990-4541-ab99-b59213cf74d9:
+    id: 4f0e4faf-3990-4541-ab99-b59213cf74d9
+    content: '"Flip state only" is likely insufficient — a step typically reaches ''awaiting-validation'' via the needsReview transition, so the entry still carries its review flags (needsReview / needsReviewNotified); the next (completion) Stop re-reads those and re-pauses instead of advancing. Unpause must return a CLEAN running entry (clear those flags), not merely set state; verify against the exact condition the Stop handler uses to decide pause-vs-advance.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6eb079f7-828c-4711-818a-c7a83fc34a4d:
+    id: 6eb079f7-828c-4711-818a-c7a83fc34a4d
+    content: 'The helped path is narrower than the framing suggests: a plain autonomous question-stop is already gated and never pauses, while manual/checkpoint steps re-pause on completion by design — so the only case unpause actually carries to the next step is an autonomous step paused via NeedsReview. Confirm the stalls users hit follow that path before building.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d0a471b-d5eb-4adb-8b87-6ce432c84eaf:
+    id: 2d0a471b-d5eb-4adb-8b87-6ce432c84eaf
+    content: ROI is high for the autonomous/NeedsReview pause but drops toward zero if the real-world stalls are on manual/checkpoint steps, which would need a different fix (distinguishing a mid-step question-pause from an end-of-step validation-pause). Validate the actual pause path first.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fff99649-b71f-45c4-9e8d-8ec10a8ce7e4:
+    id: fff99649-b71f-45c4-9e8d-8ec10a8ce7e4
+    content: Approach summary
+    children:
+      - 6ac7e1bb-1527-4bfd-8ff7-9082662f9c0b
+      - 155f8c24-ce95-4aba-b7ef-106f93eefd3f
+      - 5149981d-2b42-4e38-85d0-71acdae4e824
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ac7e1bb-1527-4bfd-8ff7-9082662f9c0b:
+    id: 6ac7e1bb-1527-4bfd-8ff7-9082662f9c0b
+    content: One small store action returns the paused run-state entry to a clean running ('play') entry; no change to advanceNode or the Stop handler — the existing running + completion path performs the advance.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  155f8c24-ce95-4aba-b7ef-106f93eefd3f:
+    id: 155f8c24-ce95-4aba-b7ef-106f93eefd3f
+    content: Surfaced by making the existing awaiting-validation Pause glyph clickable (mirror of the running Play glyph's click-to-stop) in StatusArea; no new control.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5149981d-2b42-4e38-85d0-71acdae4e824:
+    id: 5149981d-2b42-4e38-85d0-71acdae4e824
+    content: 'Reviewer watch-out: correctness hinges on the entry coming back clean (review flags reset). If only state is changed, the completion Stop re-pauses and the feature silently does nothing.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2399cade-61e0-4473-8893-dba3b3d411c2:
+    id: 2399cade-61e0-4473-8893-dba3b3d411c2
+    content: review feedback
+    children:
+      - fb12929e-3f69-4296-86f2-41d0a3a9b354
+      - 1a1dd55f-6114-45c6-9e23-8fe966d0bb82
+      - 546a3a9d-cd49-47e5-9388-9e8f6c05810e
+      - eeabf7d7-b613-4894-93c9-b703e95b94a6
+      - 03bb6812-c5d5-4cff-b3aa-b0e77a7c70a7
+    metadata:
+      status: pending
+  fb12929e-3f69-4296-86f2-41d0a3a9b354:
+    id: fb12929e-3f69-4296-86f2-41d0a3a9b354
+    content: 'Verdict: no blockers. Clean, well-scoped change. Subagent re-ran the two affected suites (131 pass / 0 fail), type-check clean, lint clean.'
+    children: []
+    metadata:
+      status: pending
+  1a1dd55f-6114-45c6-9e23-8fe966d0bb82:
+    id: 1a1dd55f-6114-45c6-9e23-8fe966d0bb82
+    content: 'Correctness verified against consumers (findRunningNodeOnTerminal, Stop handler, advanceNode): unpauseWorkflow rebuilds a clean { state:''running'', terminalTabId } entry, dropping needsReview/needsReviewNotified/etc.; with needsReview cleared the autonomous Stop falls through to advanceNode instead of re-pausing. Not re-calling assignTerminalToNode is correct — awaiting-validation never releases the terminal assignment.'
+    children: []
+    metadata:
+      status: pending
+  546a3a9d-cd49-47e5-9388-9e8f6c05810e:
+    id: 546a3a9d-cd49-47e5-9388-9e8f6c05810e
+    content: 'UI: span→button mirrors the running Play button (stopPropagation + handler); CSS mirrors the .running reset on the shared base; both render branches (blueprint + checkbox) are threaded; no layout/propagation/accessibility regression; native button gives keyboard activation and a distinct aria-label.'
+    children: []
+    metadata:
+      status: pending
+  eeabf7d7-b613-4894-93c9-b703e95b94a6:
+    id: eeabf7d7-b613-4894-93c9-b703e95b94a6
+    content: 'Accepted edge case (nice-to-have, NOT fixed): a node parked in awaiting-validation with a DEAD terminal (surfaceStuckStep durable-recovery park) also shows the clickable Pause glyph; clicking Unpause flips it to running on a dead terminalTabId with no liveness check, bypassing the continueWorkflow/resumeSession affordances. Left unguarded deliberately — covered by business rule 4 (no live prompt = user-beware; recovery via stop/restart) and the explicit minimal-scope directive. Add a terminal-liveness guard before the flip if this proves to bite.'
+    children: []
+    metadata:
+      status: pending
+  03bb6812-c5d5-4cff-b3aa-b0e77a7c70a7:
+    id: 03bb6812-c5d5-4cff-b3aa-b0e77a7c70a7
+    content: 'Nit (no action): .paused:hover uses var(--amber-600), not theme-defined (falls back to #d97706), consistent with the pre-existing .running:hover/--green-600; resting --amber-500/--green-500 are theme-defined.'
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
