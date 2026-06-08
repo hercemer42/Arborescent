@@ -1,5 +1,7 @@
 # Workflows
 
+> **Prerequisite:** automated workflows require **Claude Code**. Hook-driven step advancement, the MCP tree tools, **Clear AI session**, and session resume all run through Claude Code and its hooks (see [Hook Setup](#hook-setup)). Basic send, contexts, and inline review work with any terminal or browser AI — see [Core Workflow](workflow.md).
+
 Organize sequential steps by declaring a blueprint branch as a workflow.
 
 ## Declaring a Workflow
@@ -94,7 +96,7 @@ If the terminal fails to accept content, the workflow stops automatically and sh
 
 While at least one autonomous workflow is running, Arborescent prevents the system from suspending so background AI work isn't interrupted by sleep. The block is released as soon as the last workflow finishes, errors, or is stopped. The display can still sleep — only system suspension is blocked.
 
-For automated advancement to work, you need to configure your AI tool to send hook events back to Arborescent. See [Hook Setup](#hook-setup) below.
+For automated advancement to work, you need to configure Claude Code to send hook events back to Arborescent. See [Hook Setup](#hook-setup) below.
 
 ## Stopping and Continuing
 
@@ -197,7 +199,7 @@ Removing a workflow that contains nested workflows strips workflow status from a
 
 ## Hook Setup
 
-Workflow automation requires your AI tool to notify Arborescent when it finishes processing. Arborescent runs a local HTTP server that receives these notifications.
+Workflow automation requires Claude Code to notify Arborescent when it finishes processing. Arborescent runs a local HTTP server that receives these notifications.
 
 When you open a terminal tab, Arborescent injects three environment variables:
 

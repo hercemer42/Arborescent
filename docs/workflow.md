@@ -16,7 +16,7 @@ Right-click any branch → **Apply context** to choose from the grouped context 
 
 ## Log In to Your AI
 
-Before sending prompts, open the Terminal panel (`` Ctrl+` ``) or Browser panel (`Ctrl+B`) and log into your preferred AI.
+Before sending prompts, open the Terminal panel (`` Ctrl+` ``) or Browser panel (`Ctrl+B`) and log into your preferred AI. Sending, contexts, and inline review work with any terminal or browser AI; [automated workflows](workflows.md) — autonomous steps, hook-driven advancement, and the MCP tree tools — require Claude Code.
 
 ## Send Your Prompt
 
