@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T08:01:35.226Z'
+updated: '2026-06-08T11:32:24.908Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8712,7 +8712,7 @@ nodes:
       blueprintIcon: CheckSquare
       blueprintColor: '#22c55e'
       isBlueprint: true
-      expanded: true
+      expanded: false
   ce9cfecb-f289-494b-8ff2-482e4b29d193:
     id: ce9cfecb-f289-494b-8ff2-482e4b29d193
     content: All the automated tests related to the changes are updated and passing
@@ -8784,7 +8784,7 @@ nodes:
       - bc87a3a5-29fe-4b9e-a2a1-d773468a88d5
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -115315,7 +115315,7 @@ nodes:
       status: pending
       isBlueprint: true
       stepType: manual
-      expanded: false
+      expanded: true
       recurse: true
   71826f5f-2c98-4f60-835b-e903cb3c0736:
     id: 71826f5f-2c98-4f60-835b-e903cb3c0736
@@ -158656,6 +158656,7 @@ nodes:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
     children:
+      - 792d9572-0f59-40f1-9bc3-48fbd89919b5
       - 2ac36efd-cd11-4888-a4d7-648dce571747
       - 33a8eefd-293a-41d0-b814-cf04175f41f7
       - 5f915b0a-c4f5-4d49-a7ad-f275c60880bc
@@ -210260,6 +210261,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  792d9572-0f59-40f1-9bc3-48fbd89919b5:
+    id: 792d9572-0f59-40f1-9bc3-48fbd89919b5
+    content: Gold background doesn't apply to tree of node in review
+    children:
+      - 9aff9e2c-7128-40ef-ab21-5d31543477b9
+    metadata:
+      status: pending
+  9aff9e2c-7128-40ef-ab21-5d31543477b9:
+    id: 9aff9e2c-7128-40ef-ab21-5d31543477b9
+    content: ''
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -210387,42 +210401,42 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
 pendingProposals:
   3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3:
-    id: 0cfe0c4b-3c5a-40b5-bdde-49b224734dfd
-    capturedAt: '2026-06-08T07:28:19.331Z'
+    id: a00cfb56-36e8-4367-bdc0-22b9b545dd72
+    capturedAt: '2026-06-08T11:29:23.537Z'
     reviewedNodeId: 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
-    rootNodeId: 84997690-f520-4b52-889d-8647225f902f
+    rootNodeId: 1bbd838d-0f64-4f6f-9a65-0c6d9b2fe65a
     nodes:
-      84997690-f520-4b52-889d-8647225f902f:
-        id: 84997690-f520-4b52-889d-8647225f902f
+      1bbd838d-0f64-4f6f-9a65-0c6d9b2fe65a:
+        id: 1bbd838d-0f64-4f6f-9a65-0c6d9b2fe65a
         content: ''
         children:
-          - 2723bd09-ba82-45cb-9c8e-1cc02e9ccc64
+          - 6e9c30e3-0ca7-4220-ab48-94e9369ccc0b
         metadata: {}
-      2723bd09-ba82-45cb-9c8e-1cc02e9ccc64:
-        id: 2723bd09-ba82-45cb-9c8e-1cc02e9ccc64
+      6e9c30e3-0ca7-4220-ab48-94e9369ccc0b:
+        id: 6e9c30e3-0ca7-4220-ab48-94e9369ccc0b
         content: Resume workflow — re-arm a stalled step so the next submit advances (no resend)
         children:
-          - d8366d57-f913-4f78-b05f-0b86d5e40f9d
-          - 7b0bb65f-d578-49d0-8556-c408e2605cc6
-          - a6def6e1-7df1-41f4-ac77-4542690f6702
-          - bd575b7a-1813-4c1f-a913-1b75212aaa94
+          - 665e83f3-64af-4001-85c7-bf93753fdb03
+          - 95092f68-8ae1-4916-b8b1-b73705e97453
+          - eb7c7830-cd09-4eb5-8f54-f5a51a6565a8
+          - e751ad71-e8e7-440c-a997-4713d04fb31e
         metadata:
           status: pending
-          expanded: false
+          expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: modified
           feedbackPriorContent: Need a 'Resume workflow' that resumes a paused workflow
-      d8366d57-f913-4f78-b05f-0b86d5e40f9d:
-        id: d8366d57-f913-4f78-b05f-0b86d5e40f9d
+      665e83f3-64af-4001-85c7-bf93753fdb03:
+        id: 665e83f3-64af-4001-85c7-bf93753fdb03
         content: 📄 Product spec
         children:
-          - 73943dea-6bb3-458f-8518-d0c8328e1659
-          - 828d5e44-7b0b-4234-a30e-988672359424
-          - 7879aff4-dba0-4d34-bc96-51d3bcf60215
-          - 315c5ab8-266b-4c15-a604-f654eb5aa9ad
-          - c30f8a83-1823-4fd6-9ad3-8bfee1363d93
-          - 35bf4e32-d5f2-4636-a90d-26114aeda4fb
+          - 494aea45-35dc-4e44-98ca-d0319985f3a5
+          - bc8afd1a-beb1-43da-ad27-8e95d520ac8d
+          - 8fbf4a79-6913-4d8d-98b4-094b4d0da0d3
+          - 50f0f2b8-b61d-4864-ae98-d81bb1342fc1
+          - 5f4ce3c8-1047-4829-b0bc-aabddb9ee3aa
+          - 421bb56c-2e78-4c8a-8ff3-e3021789b856
         metadata:
           status: pending
           expanded: true
@@ -210430,21 +210444,21 @@ pendingProposals:
           plugins: {}
           feedbackBaselineKind: modified
           feedbackPriorContent: It does not send it to the next step or resend the prompt
-      73943dea-6bb3-458f-8518-d0c8328e1659:
-        id: 73943dea-6bb3-458f-8518-d0c8328e1659
+      494aea45-35dc-4e44-98ca-d0319985f3a5:
+        id: 494aea45-35dc-4e44-98ca-d0319985f3a5
         content: Context
         children:
-          - f15e4658-f637-4976-97e5-0a22ac30f1d2
-          - 5ef60c4e-cfeb-452a-b585-af18412b4c40
-          - 8a426843-20b5-4329-99d0-2e4a9a6f7a6b
+          - af7dd5e0-259b-4223-b695-86dae8588c61
+          - 15a54c3d-fb51-4878-8766-cc9cd6653b38
+          - eb97ed47-3375-4ce9-b5e8-7598f2738cbc
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      f15e4658-f637-4976-97e5-0a22ac30f1d2:
-        id: f15e4658-f637-4976-97e5-0a22ac30f1d2
+      af7dd5e0-259b-4223-b695-86dae8588c61:
+        id: af7dd5e0-259b-4223-b695-86dae8588c61
         content: Workflow steps advance only when a Claude Stop hook fires AND a transient in-memory run-state entry binds the node to its terminal.
         children: []
         metadata:
@@ -210453,8 +210467,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      5ef60c4e-cfeb-452a-b585-af18412b4c40:
-        id: 5ef60c4e-cfeb-452a-b585-af18412b4c40
+      15a54c3d-fb51-4878-8766-cc9cd6653b38:
+        id: 15a54c3d-fb51-4878-8766-cc9cd6653b38
         content: That run-state is wiped on app reload/restart (only 'awaiting-validation' survives), so a step whose terminal and session are still alive can lose its binding and stall.
         children: []
         metadata:
@@ -210463,8 +210477,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      8a426843-20b5-4329-99d0-2e4a9a6f7a6b:
-        id: 8a426843-20b5-4329-99d0-2e4a9a6f7a6b
+      eb97ed47-3375-4ce9-b5e8-7598f2738cbc:
+        id: eb97ed47-3375-4ce9-b5e8-7598f2738cbc
         content: 'On the next submit the Stop is logged as "Stop dropped: no running node" and nothing advances; automatic recovery only fires with a persisted sessionId + ''completed'' status + an alive bound terminal, leaving the other cases stuck.'
         children: []
         metadata:
@@ -210473,19 +210487,19 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      828d5e44-7b0b-4234-a30e-988672359424:
-        id: 828d5e44-7b0b-4234-a30e-988672359424
+      bc8afd1a-beb1-43da-ad27-8e95d520ac8d:
+        id: bc8afd1a-beb1-43da-ad27-8e95d520ac8d
         content: User
         children:
-          - 0b5a82c9-f911-40df-95c4-6a39331892db
+          - 2cab820e-5ed2-4320-9b16-1955baa7f7b1
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      0b5a82c9-f911-40df-95c4-6a39331892db:
-        id: 0b5a82c9-f911-40df-95c4-6a39331892db
+      2cab820e-5ed2-4320-9b16-1955baa7f7b1:
+        id: 2cab820e-5ed2-4320-9b16-1955baa7f7b1
         content: A user running a long multi-step AI workflow who reloads or restarts the app (or otherwise loses run-state) mid-run while the terminal and Claude session remain alive.
         children: []
         metadata:
@@ -210494,21 +210508,21 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      7879aff4-dba0-4d34-bc96-51d3bcf60215:
-        id: 7879aff4-dba0-4d34-bc96-51d3bcf60215
+      8fbf4a79-6913-4d8d-98b4-094b4d0da0d3:
+        id: 8fbf4a79-6913-4d8d-98b4-094b4d0da0d3
         content: Current experience and why it is insufficient
         children:
-          - 8b41d99f-6c6c-4a55-89ce-d6f25f7c3a3d
-          - ca3c95b4-5e88-45b7-bfa8-f5f2bf2e9dab
-          - 250ed323-6714-49a5-98bb-6aa76bbcade5
+          - da7b8d3b-fc65-4d11-ae7c-5bcae5482dfb
+          - a96e9eea-b78a-4bdc-9fef-9be3229a7232
+          - 7f1b2c76-73a2-4285-bb70-5aafe002ef37
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      8b41d99f-6c6c-4a55-89ce-d6f25f7c3a3d:
-        id: 8b41d99f-6c6c-4a55-89ce-d6f25f7c3a3d
+      da7b8d3b-fc65-4d11-ae7c-5bcae5482dfb:
+        id: da7b8d3b-fc65-4d11-ae7c-5bcae5482dfb
         content: The stall is silent — no error is surfaced, only an internal log line the user never sees.
         children: []
         metadata:
@@ -210517,8 +210531,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      ca3c95b4-5e88-45b7-bfa8-f5f2bf2e9dab:
-        id: ca3c95b4-5e88-45b7-bfa8-f5f2bf2e9dab
+      a96e9eea-b78a-4bdc-9fef-9be3229a7232:
+        id: a96e9eea-b78a-4bdc-9fef-9be3229a7232
         content: 'Every existing recovery is wrong for this case: the current "Resume Workflow" item re-sends the prompt (tokens + overwrite risk), continueWorkflow advances immediately (skips the in-flight step), and "Resume session" spawns claude --resume (only correct when the session is dead).'
         children: []
         metadata:
@@ -210527,8 +210541,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      250ed323-6714-49a5-98bb-6aa76bbcade5:
-        id: 250ed323-6714-49a5-98bb-6aa76bbcade5
+      7f1b2c76-73a2-4285-bb70-5aafe002ef37:
+        id: 7f1b2c76-73a2-4285-bb70-5aafe002ef37
         content: There is no cheap, correct way to re-arm a still-alive workflow so it simply continues from where it was.
         children: []
         metadata:
@@ -210537,19 +210551,19 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      315c5ab8-266b-4c15-a604-f654eb5aa9ad:
-        id: 315c5ab8-266b-4c15-a604-f654eb5aa9ad
+      50f0f2b8-b61d-4864-ae98-d81bb1342fc1:
+        id: 50f0f2b8-b61d-4864-ae98-d81bb1342fc1
         content: Goal
         children:
-          - 4bc20adb-12ff-4295-abfc-6ab1647ce707
+          - 2c89f5b5-bd39-4e30-b75a-7d4126b00d12
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      4bc20adb-12ff-4295-abfc-6ab1647ce707:
-        id: 4bc20adb-12ff-4295-abfc-6ab1647ce707
+      2c89f5b5-bd39-4e30-b75a-7d4126b00d12:
+        id: 2c89f5b5-bd39-4e30-b75a-7d4126b00d12
         content: Let a user re-arm a stalled-but-alive workflow step in one action so the next time Claude submits the workflow advances, with no prompt resend and no token cost.
         children: []
         metadata:
@@ -210558,29 +210572,29 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      c30f8a83-1823-4fd6-9ad3-8bfee1363d93:
-        id: c30f8a83-1823-4fd6-9ad3-8bfee1363d93
+      5f4ce3c8-1047-4829-b0bc-aabddb9ee3aa:
+        id: 5f4ce3c8-1047-4829-b0bc-aabddb9ee3aa
         content: Business rules
         children:
-          - 230a6b57-73c1-477a-b211-4a10faf6dde7
-          - b493a75a-4223-4ab9-86bc-da81d2ec4464
-          - 255f2772-a8c0-44db-b88d-2fea3c7fe12b
-          - 02219668-708f-4303-b145-9ff87c5346a5
-          - 4a33b935-0733-4a5b-b298-2eac6a6ed54d
-          - fc7c0bf3-6f7b-4a53-8d7a-eb746f9f78a9
-          - ad3b6186-5a63-426f-9495-f06122a6dfe6
-          - fd912a76-f0b4-407b-b561-4a8d6e0193bc
-          - 4edfbc91-279a-476e-a47d-dbac4aecd77c
-          - 58978330-e394-4047-9baa-3a059c1befd8
-          - f839a6d0-8928-4e73-9b55-7660b4335988
+          - b5edba16-7d98-4c63-bdd3-cd23c631b9c8
+          - ec6a77a8-5682-47da-9814-a0cc9c00c9ca
+          - 759cf4f9-47e9-4ba3-baee-2d1417d5ffd0
+          - e89c8d69-6202-4c33-9fe2-9bec82894c75
+          - 516f3bae-7f1a-4745-b92c-adb5e1a8f0be
+          - 9470d5c8-856d-4683-8d6c-1100fc5a47e8
+          - bcbe416e-5178-4a9c-b702-11cac2040630
+          - 9cab57e2-b79b-44fd-859d-790129335085
+          - a781bef9-8371-4b4e-a8aa-133396901222
+          - 18acec26-bf02-4f11-8e64-dc45fc33ec1f
+          - 0a9de864-8fe3-4fd3-98bb-e1adc3db3186
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      230a6b57-73c1-477a-b211-4a10faf6dde7:
-        id: 230a6b57-73c1-477a-b211-4a10faf6dde7
+      b5edba16-7d98-4c63-bdd3-cd23c631b9c8:
+        id: b5edba16-7d98-4c63-bdd3-cd23c631b9c8
         content: 1. The action re-establishes the transient run-state for the target node bound to its alive terminal, without sending or re-sending any prompt and without advancing the step.
         children: []
         metadata:
@@ -210589,8 +210603,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      b493a75a-4223-4ab9-86bc-da81d2ec4464:
-        id: b493a75a-4223-4ab9-86bc-da81d2ec4464
+      ec6a77a8-5682-47da-9814-a0cc9c00c9ca:
+        id: ec6a77a8-5682-47da-9814-a0cc9c00c9ca
         content: 2. The action resolves the terminal to bind from the node's persisted session (the same durable binding automatic recovery uses) rather than trusting terminal assignments that may have been wiped.
         children: []
         metadata:
@@ -210599,8 +210613,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      255f2772-a8c0-44db-b88d-2fea3c7fe12b:
-        id: 255f2772-a8c0-44db-b88d-2fea3c7fe12b
+      759cf4f9-47e9-4ba3-baee-2d1417d5ffd0:
+        id: 759cf4f9-47e9-4ba3-baee-2d1417d5ffd0
         content: 3. The action is offered only on a workflow step that is orphaned — a workflow status with no live run-state entry — and is hidden on non-workflow nodes.
         children: []
         metadata:
@@ -210609,8 +210623,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      02219668-708f-4303-b145-9ff87c5346a5:
-        id: 02219668-708f-4303-b145-9ff87c5346a5
+      e89c8d69-6202-4c33-9fe2-9bec82894c75:
+        id: e89c8d69-6202-4c33-9fe2-9bec82894c75
         content: 4. The action does not apply to a node already 'running' (nothing to re-arm) or 'awaiting-validation' (a manual step intentionally waiting for the user).
         children: []
         metadata:
@@ -210619,8 +210633,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      4a33b935-0733-4a5b-b298-2eac6a6ed54d:
-        id: 4a33b935-0733-4a5b-b298-2eac6a6ed54d
+      516f3bae-7f1a-4745-b92c-adb5e1a8f0be:
+        id: 516f3bae-7f1a-4745-b92c-adb5e1a8f0be
         content: 5. If no alive terminal/session can be resolved for the node, the action is unavailable and "Resume session" remains the path for the dead/detached case.
         children: []
         metadata:
@@ -210629,8 +210643,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      fc7c0bf3-6f7b-4a53-8d7a-eb746f9f78a9:
-        id: fc7c0bf3-6f7b-4a53-8d7a-eb746f9f78a9
+      9470d5c8-856d-4683-8d6c-1100fc5a47e8:
+        id: 9470d5c8-856d-4683-8d6c-1100fc5a47e8
         content: 6. If the resolved terminal is already running a different workflow node, the action refuses with a visible reason rather than silently stealing the terminal.
         children: []
         metadata:
@@ -210639,8 +210653,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      ad3b6186-5a63-426f-9495-f06122a6dfe6:
-        id: ad3b6186-5a63-426f-9495-f06122a6dfe6
+      bcbe416e-5178-4a9c-b702-11cac2040630:
+        id: bcbe416e-5178-4a9c-b702-11cac2040630
         content: 7. Re-arming one node never disturbs the run-state or terminal binding of any other concurrently running node.
         children: []
         metadata:
@@ -210649,8 +210663,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      fd912a76-f0b4-407b-b561-4a8d6e0193bc:
-        id: fd912a76-f0b4-407b-b561-4a8d6e0193bc
+      9cab57e2-b79b-44fd-859d-790129335085:
+        id: 9cab57e2-b79b-44fd-859d-790129335085
         content: 8. After re-arming, the next Stop hook advances the workflow identically to a normal run (same advancement, validation, and activity-log behaviour).
         children: []
         metadata:
@@ -210659,8 +210673,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      4edfbc91-279a-476e-a47d-dbac4aecd77c:
-        id: 4edfbc91-279a-476e-a47d-dbac4aecd77c
+      a781bef9-8371-4b4e-a8aa-133396901222:
+        id: a781bef9-8371-4b4e-a8aa-133396901222
         content: 9. Re-arming is idempotent — invoking it twice is a no-op, never a duplicate or competing run-state.
         children: []
         metadata:
@@ -210669,8 +210683,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      58978330-e394-4047-9baa-3a059c1befd8:
-        id: 58978330-e394-4047-9baa-3a059c1befd8
+      18acec26-bf02-4f11-8e64-dc45fc33ec1f:
+        id: 18acec26-bf02-4f11-8e64-dc45fc33ec1f
         content: 10. Re-arming incurs zero AI token cost and emits one activity-log entry so the stall→fixed transition is observable.
         children: []
         metadata:
@@ -210679,8 +210693,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      f839a6d0-8928-4e73-9b55-7660b4335988:
-        id: f839a6d0-8928-4e73-9b55-7660b4335988
+      0a9de864-8fe3-4fd3-98bb-e1adc3db3186:
+        id: 0a9de864-8fe3-4fd3-98bb-e1adc3db3186
         content: 11. The action is labelled "Resume workflow"; the existing resend item is renamed "Re-send step" so the two opposite behaviours never share a label.
         children: []
         metadata:
@@ -210689,28 +210703,28 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      35bf4e32-d5f2-4636-a90d-26114aeda4fb:
-        id: 35bf4e32-d5f2-4636-a90d-26114aeda4fb
+      421bb56c-2e78-4c8a-8ff3-e3021789b856:
+        id: 421bb56c-2e78-4c8a-8ff3-e3021789b856
         content: Acceptance criteria
         children:
-          - 538c70a7-b768-43fe-8013-31e527ff7709
-          - 6406b8bb-f0be-4962-8b6f-e04f4d7c6039
-          - 0487a71c-79e3-47e7-936d-0844d559210b
-          - 1e0e6098-7f4e-4f26-b2ea-9539db65f233
-          - 8f91762a-b36d-48bf-a162-a505a8147726
-          - 7d1f2f6a-4eb8-44cf-9e2d-25955eab8ca9
-          - c91299da-9622-420e-a6a2-beba5c28931b
-          - 4bf1db48-ebde-44f1-bbc1-df4ae2430b4f
-          - bc6ae709-4831-4f5f-82b4-afde33fd32b2
-          - dfb7f69c-4b1c-4266-96eb-b31a71fcc69f
+          - 92cb6d52-452c-4ef9-ac17-db6027fb0f97
+          - 1844f234-a487-48fd-93d3-6ea9eae2079d
+          - 1124a1cb-8560-454c-8608-45f6cd8880f7
+          - f065da3d-8404-429b-8c5d-2480cf731883
+          - ddcc8082-a260-42f5-b7bf-a0d5656fcaa4
+          - d384dfb6-be77-466d-8e54-1ceab83d11fb
+          - 2df88295-a07b-457e-89b4-5d6a5fff00d9
+          - 42805200-edb8-4288-be5d-db9cbc295529
+          - af477c26-ad27-4380-861b-22b4f7b07531
+          - a2b52005-5dbf-48fa-97a7-2d56065c0cc2
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      538c70a7-b768-43fe-8013-31e527ff7709:
-        id: 538c70a7-b768-43fe-8013-31e527ff7709
+      92cb6d52-452c-4ef9-ac17-db6027fb0f97:
+        id: 92cb6d52-452c-4ef9-ac17-db6027fb0f97
         content: Given an orphaned workflow step (run-state lost post-reload) whose terminal and session are alive, invoking Resume workflow re-arms run-state and the next Claude Stop advances the workflow.
         children: []
         metadata:
@@ -210719,8 +210733,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      6406b8bb-f0be-4962-8b6f-e04f4d7c6039:
-        id: 6406b8bb-f0be-4962-8b6f-e04f4d7c6039
+      1844f234-a487-48fd-93d3-6ea9eae2079d:
+        id: 1844f234-a487-48fd-93d3-6ea9eae2079d
         content: No prompt text is written to the terminal during resume (verified via terminal output/IPC; zero tokens sent).
         children: []
         metadata:
@@ -210729,8 +210743,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      0487a71c-79e3-47e7-936d-0844d559210b:
-        id: 0487a71c-79e3-47e7-936d-0844d559210b
+      1124a1cb-8560-454c-8608-45f6cd8880f7:
+        id: 1124a1cb-8560-454c-8608-45f6cd8880f7
         content: Advancement after resume is identical to a normal run — next step entered, validation honoured, activity log records the transition.
         children: []
         metadata:
@@ -210739,8 +210753,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      1e0e6098-7f4e-4f26-b2ea-9539db65f233:
-        id: 1e0e6098-7f4e-4f26-b2ea-9539db65f233
+      f065da3d-8404-429b-8c5d-2480cf731883:
+        id: f065da3d-8404-429b-8c5d-2480cf731883
         content: Resume workflow is hidden on non-workflow nodes and on nodes already 'running' or 'awaiting-validation'.
         children: []
         metadata:
@@ -210749,8 +210763,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      8f91762a-b36d-48bf-a162-a505a8147726:
-        id: 8f91762a-b36d-48bf-a162-a505a8147726
+      ddcc8082-a260-42f5-b7bf-a0d5656fcaa4:
+        id: ddcc8082-a260-42f5-b7bf-a0d5656fcaa4
         content: Resume workflow is unavailable when no alive terminal/session resolves for the node.
         children: []
         metadata:
@@ -210759,8 +210773,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      7d1f2f6a-4eb8-44cf-9e2d-25955eab8ca9:
-        id: 7d1f2f6a-4eb8-44cf-9e2d-25955eab8ca9
+      d384dfb6-be77-466d-8e54-1ceab83d11fb:
+        id: d384dfb6-be77-466d-8e54-1ceab83d11fb
         content: Resuming node A does not alter the run-state or terminal binding of a concurrently running node B.
         children: []
         metadata:
@@ -210769,8 +210783,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      c91299da-9622-420e-a6a2-beba5c28931b:
-        id: c91299da-9622-420e-a6a2-beba5c28931b
+      2df88295-a07b-457e-89b4-5d6a5fff00d9:
+        id: 2df88295-a07b-457e-89b4-5d6a5fff00d9
         content: Resume refuses when the resolved terminal already runs a different workflow node, surfacing a reason instead of a silent drop.
         children: []
         metadata:
@@ -210779,8 +210793,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      4bf1db48-ebde-44f1-bbc1-df4ae2430b4f:
-        id: 4bf1db48-ebde-44f1-bbc1-df4ae2430b4f
+      42805200-edb8-4288-be5d-db9cbc295529:
+        id: 42805200-edb8-4288-be5d-db9cbc295529
         content: Invoking Resume twice in a row is idempotent (no duplicate or competing run-state).
         children: []
         metadata:
@@ -210789,8 +210803,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      bc6ae709-4831-4f5f-82b4-afde33fd32b2:
-        id: bc6ae709-4831-4f5f-82b4-afde33fd32b2
+      af477c26-ad27-4380-861b-22b4f7b07531:
+        id: af477c26-ad27-4380-861b-22b4f7b07531
         content: The control is keyboard-reachable and screen-reader labelled, distinct from "Re-send step" and "Resume session".
         children: []
         metadata:
@@ -210799,8 +210813,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      dfb7f69c-4b1c-4266-96eb-b31a71fcc69f:
-        id: dfb7f69c-4b1c-4266-96eb-b31a71fcc69f
+      a2b52005-5dbf-48fa-97a7-2d56065c0cc2:
+        id: a2b52005-5dbf-48fa-97a7-2d56065c0cc2
         content: After the rename, exactly one "Resume workflow" and one "Re-send step" exist in the menu — no duplicate labels.
         children: []
         metadata:
@@ -210809,13 +210823,13 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      7b0bb65f-d578-49d0-8556-c408e2605cc6:
-        id: 7b0bb65f-d578-49d0-8556-c408e2605cc6
+      95092f68-8ae1-4916-b8b1-b73705e97453:
+        id: 95092f68-8ae1-4916-b8b1-b73705e97453
         content: 🔧 Implementation proposal
         children:
-          - 5de3fbdd-f2cc-4180-8ec1-6c11804fc20b
-          - 38343b3e-ac90-4b9e-92cd-32cc051628f2
-          - 1ed218b9-4383-4a70-a1d4-5210baf459d8
+          - bcbca48e-cc83-43e4-a4c6-f8a2ce3d5432
+          - f5ce2486-27c4-4357-95c1-b574af47d563
+          - f0929fe7-d89a-41ea-9871-e9a81bab76d2
         metadata:
           status: pending
           expanded: true
@@ -210823,12 +210837,12 @@ pendingProposals:
           plugins: {}
           feedbackBaselineKind: modified
           feedbackPriorContent: It just makes it so when claude submits
-      5de3fbdd-f2cc-4180-8ec1-6c11804fc20b:
-        id: 5de3fbdd-f2cc-4180-8ec1-6c11804fc20b
+      bcbca48e-cc83-43e4-a4c6-f8a2ce3d5432:
+        id: bcbca48e-cc83-43e4-a4c6-f8a2ce3d5432
         content: Approach
         children:
-          - a9f0f238-aacb-495b-b0ea-7eff5065bee9
-          - 4dd6b832-4021-4edf-887c-3a00aedcb26b
+          - 88a66cc0-7c34-40c5-987f-80b0b18d1846
+          - 67ad4136-e39d-4b43-91cc-d97995ee0182
         metadata:
           status: pending
           expanded: true
@@ -210836,8 +210850,8 @@ pendingProposals:
           plugins: {}
           feedbackBaselineKind: modified
           feedbackPriorContent: It goes to the next step
-      a9f0f238-aacb-495b-b0ea-7eff5065bee9:
-        id: a9f0f238-aacb-495b-b0ea-7eff5065bee9
+      88a66cc0-7c34-40c5-987f-80b0b18d1846:
+        id: 88a66cc0-7c34-40c5-987f-80b0b18d1846
         content: Add a store action resumeWorkflow(nodeId) that re-creates the run-state entry and re-binds the terminal assignment, then starts keep-awake — startWorkflow minus the sendContentToTerminal call, and without advanceNode.
         children: []
         metadata:
@@ -210846,8 +210860,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      4dd6b832-4021-4edf-887c-3a00aedcb26b:
-        id: 4dd6b832-4021-4edf-887c-3a00aedcb26b
+      67ad4136-e39d-4b43-91cc-d97995ee0182:
+        id: 67ad4136-e39d-4b43-91cc-d97995ee0182
         content: Resolve the terminal internally from the node's persisted session so the guard lives in one place; reuse the entry-synthesis already inside recoverCompletedStepFromDurableBinding (extract a shared armRunStateForNode helper) so a manually-resumed entry matches exactly what the next Stop resolver keys on.
         children: []
         metadata:
@@ -210856,24 +210870,24 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      38343b3e-ac90-4b9e-92cd-32cc051628f2:
-        id: 38343b3e-ac90-4b9e-92cd-32cc051628f2
+      f5ce2486-27c4-4357-95c1-b574af47d563:
+        id: f5ce2486-27c4-4357-95c1-b574af47d563
         content: Touchpoints
         children:
-          - 3c165875-55c3-40c4-80f4-56156b4e5d91
-          - fb86ff0e-6ba3-46b3-a15e-14c826db392f
-          - 93ae1847-095e-4f6a-a7ed-497ff1c7e99c
-          - 18233302-93c3-43d3-a175-73f3e664b764
-          - 10daf0ef-c734-4169-af61-f7d5eac6213d
-          - 152c40bc-19f6-40b2-90f0-931fba8829a9
+          - 9405de03-a51a-4f89-907f-d21adb5fa6cc
+          - deb8c2cf-7d38-4309-a516-de8fbb003d53
+          - 9fa35fba-8e17-4b83-aae0-c45518853a53
+          - 42a5951e-4d75-49ff-b1ea-69bd5ced1ad8
+          - d9c7d695-3a41-4ec9-ad22-25d6158e62a8
+          - 8aa34b01-3e0b-4346-a78b-c54667882995
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      3c165875-55c3-40c4-80f4-56156b4e5d91:
-        id: 3c165875-55c3-40c4-80f4-56156b4e5d91
+      9405de03-a51a-4f89-907f-d21adb5fa6cc:
+        id: 9405de03-a51a-4f89-907f-d21adb5fa6cc
         content: Store action interface + impl — workflowExecutionActions.ts (new resumeWorkflow; factor shared run-state arming out of startWorkflow / recoverCompletedStepFromDurableBinding).
         children: []
         metadata:
@@ -210882,8 +210896,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      fb86ff0e-6ba3-46b3-a15e-14c826db392f:
-        id: fb86ff0e-6ba3-46b3-a15e-14c826db392f
+      deb8c2cf-7d38-4309-a516-de8fbb003d53:
+        id: deb8c2cf-7d38-4309-a516-de8fbb003d53
         content: Store wiring — treeStore.ts (add resumeWorkflow to the actions interface and bind it).
         children: []
         metadata:
@@ -210892,8 +210906,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      93ae1847-095e-4f6a-a7ed-497ff1c7e99c:
-        id: 93ae1847-095e-4f6a-a7ed-497ff1c7e99c
+      9fa35fba-8e17-4b83-aae0-c45518853a53:
+        id: 9fa35fba-8e17-4b83-aae0-c45518853a53
         content: Binding resolver — terminalBindingResolution.ts (verify the synthesized entry satisfies findRunningNodeOnTerminal; align rather than fork).
         children: []
         metadata:
@@ -210902,8 +210916,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      18233302-93c3-43d3-a175-73f3e664b764:
-        id: 18233302-93c3-43d3-a175-73f3e664b764
+      42a5951e-4d75-49ff-b1ea-69bd5ced1ad8:
+        id: 42a5951e-4d75-49ff-b1ea-69bd5ced1ad8
         content: UI — useWorkflowSubmenu.ts and useNodeContextMenu.ts (gate "Resume workflow" on the orphaned state; rename the existing resend item to "Re-send step").
         children: []
         metadata:
@@ -210912,8 +210926,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      10daf0ef-c734-4169-af61-f7d5eac6213d:
-        id: 10daf0ef-c734-4169-af61-f7d5eac6213d
+      d9c7d695-3a41-4ec9-ad22-25d6158e62a8:
+        id: d9c7d695-3a41-4ec9-ad22-25d6158e62a8
         content: Activity log — notifyWorkflow() in workflowToast.ts (emit a "Workflow resumed" entry).
         children: []
         metadata:
@@ -210922,8 +210936,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      152c40bc-19f6-40b2-90f0-931fba8829a9:
-        id: 152c40bc-19f6-40b2-90f0-931fba8829a9
+      8aa34b01-3e0b-4346-a78b-c54667882995:
+        id: 8aa34b01-3e0b-4346-a78b-c54667882995
         content: Tests — co-located action test (resume creates 'running', does NOT call sendContentToTerminal or advanceNode, re-binds the assignment, and a subsequent Stop advances) plus menu visibility/gating tests.
         children: []
         metadata:
@@ -210932,21 +210946,21 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      1ed218b9-4383-4a70-a1d4-5210baf459d8:
-        id: 1ed218b9-4383-4a70-a1d4-5210baf459d8
+      f0929fe7-d89a-41ea-9871-e9a81bab76d2:
+        id: f0929fe7-d89a-41ea-9871-e9a81bab76d2
         content: Constraints to call out
         children:
-          - 9607f9f6-c25c-4bb4-97e8-cd17735ee1fe
-          - 79e10f50-b39f-4aee-bfc3-fd16484fe485
-          - c96d55bf-4a53-4ae8-b7f1-f72f95af4329
+          - 9dc6ead7-6d37-4723-a6a9-eaf6e15bde37
+          - e248200c-13fc-4a29-b07f-e13bf56daff5
+          - 3a286935-0d61-4c40-8731-5e715f3917a2
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      9607f9f6-c25c-4bb4-97e8-cd17735ee1fe:
-        id: 9607f9f6-c25c-4bb4-97e8-cd17735ee1fe
+      9dc6ead7-6d37-4723-a6a9-eaf6e15bde37:
+        id: 9dc6ead7-6d37-4723-a6a9-eaf6e15bde37
         content: The synthesized entry must restore everything the Stop resolver keys on (incl. any session-map link), not just state + terminalTabId, or the next Stop is dropped again.
         children: []
         metadata:
@@ -210955,8 +210969,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      79e10f50-b39f-4aee-bfc3-fd16484fe485:
-        id: 79e10f50-b39f-4aee-bfc3-fd16484fe485
+      e248200c-13fc-4a29-b07f-e13bf56daff5:
+        id: e248200c-13fc-4a29-b07f-e13bf56daff5
         content: Keep automatic recovery conservative — do not broaden recoverCompletedStepFromDurableBinding to auto-arm on uncertain bindings; the manual action exists precisely so a human asserts node + terminal before re-arming.
         children: []
         metadata:
@@ -210965,8 +210979,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      c96d55bf-4a53-4ae8-b7f1-f72f95af4329:
-        id: c96d55bf-4a53-4ae8-b7f1-f72f95af4329
+      3a286935-0d61-4c40-8731-5e715f3917a2:
+        id: 3a286935-0d61-4c40-8731-5e715f3917a2
         content: This is a safety net, not the root-cause fix for the announce_step_done / Stop-coupling stall; the coupling fix is separate work and must not be folded in here.
         children: []
         metadata:
@@ -210975,21 +210989,21 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      a6def6e1-7df1-41f4-ac77-4542690f6702:
-        id: a6def6e1-7df1-41f4-ac77-4542690f6702
+      eb7c7830-cd09-4eb5-8f54-f5a51a6565a8:
+        id: eb7c7830-cd09-4eb5-8f54-f5a51a6565a8
         content: Chunking decision
         children:
-          - 650f8455-ffba-4525-89d1-5c890974d5ae
-          - fc757da9-c47b-4efa-bea0-0dd2866eff17
-          - 975c0781-44d1-4ce0-bf6d-6aaaa4451553
+          - 3a8ade34-cb03-48f0-8f5c-a6ef8992379c
+          - 50180b6a-77b2-4607-a354-f0bd5c8a3df0
+          - b181eb27-4d0a-48d9-8a8e-63c4703d1bda
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      650f8455-ffba-4525-89d1-5c890974d5ae:
-        id: 650f8455-ffba-4525-89d1-5c890974d5ae
+      3a8ade34-cb03-48f0-8f5c-a6ef8992379c:
+        id: 3a8ade34-cb03-48f0-8f5c-a6ef8992379c
         content: One chunk — the action, its single menu entry, the rename of the colliding item, and the activity-log line are one coherent behaviour and are mutually meaningless apart (the action without the rename leaves two "Resume Workflow"s; the rename without the action is no-op churn).
         children: []
         metadata:
@@ -210998,8 +211012,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      fc757da9-c47b-4efa-bea0-0dd2866eff17:
-        id: fc757da9-c47b-4efa-bea0-0dd2866eff17
+      50180b6a-77b2-4607-a354-f0bd5c8a3df0:
+        id: 50180b6a-77b2-4607-a354-f0bd5c8a3df0
         content: No data-layer/UI split — the data change is a few-line run-state write and would be untestable end-to-end on its own.
         children: []
         metadata:
@@ -211008,8 +211022,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      975c0781-44d1-4ce0-bf6d-6aaaa4451553:
-        id: 975c0781-44d1-4ce0-bf6d-6aaaa4451553
+      b181eb27-4d0a-48d9-8a8e-63c4703d1bda:
+        id: b181eb27-4d0a-48d9-8a8e-63c4703d1bda
         content: StatusArea overlay affordance is kept out of v1 — the context-menu item is sufficient.
         children: []
         metadata:
@@ -211018,33 +211032,33 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      bd575b7a-1813-4c1f-a913-1b75212aaa94:
-        id: bd575b7a-1813-4c1f-a913-1b75212aaa94
+      e751ad71-e8e7-440c-a997-4713d04fb31e:
+        id: e751ad71-e8e7-440c-a997-4713d04fb31e
         content: Challenges / pushback
         children:
-          - f49bc719-be14-44b2-89a7-7705e024720c
-          - 638b492c-8efa-4471-942c-c5eceb07f426
-          - b854a4b6-27a9-41d0-b57b-08ec230100a5
+          - b1d16037-0a6a-4698-a605-e744748efad7
+          - 21f3e270-28a6-479d-bd05-dc3be7e40e0e
+          - c459e3ae-11b4-4971-848a-f192e337c8db
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      f49bc719-be14-44b2-89a7-7705e024720c:
-        id: f49bc719-be14-44b2-89a7-7705e024720c
+      b1d16037-0a6a-4698-a605-e744748efad7:
+        id: b1d16037-0a6a-4698-a605-e744748efad7
         content: UX
         children:
-          - b9a4e28f-2120-4026-be5a-54e4a510ffe2
-          - 1ef52200-740e-4178-89a2-889e186283ae
+          - 44fe25ae-a737-4bf6-8dec-68fa081bc032
+          - af8c7449-5910-48c7-b482-78f7d23dd0d6
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      b9a4e28f-2120-4026-be5a-54e4a510ffe2:
-        id: b9a4e28f-2120-4026-be5a-54e4a510ffe2
+      44fe25ae-a737-4bf6-8dec-68fa081bc032:
+        id: 44fe25ae-a737-4bf6-8dec-68fa081bc032
         content: Three "resume" verbs now coexist (Resume workflow / Re-send step / Resume session) — keep the copy clearly distinct; renaming the mislabeled resend item is required, not optional.
         children: []
         metadata:
@@ -211053,8 +211067,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      1ef52200-740e-4178-89a2-889e186283ae:
-        id: 1ef52200-740e-4178-89a2-889e186283ae
+      af8c7449-5910-48c7-b482-78f7d23dd0d6:
+        id: af8c7449-5910-48c7-b482-78f7d23dd0d6
         content: A context-menu-only escape hatch for a silent stall is low-discoverability; a passive stalled-state signal would help but is out of scope for this story.
         children: []
         metadata:
@@ -211063,20 +211077,20 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      638b492c-8efa-4471-942c-c5eceb07f426:
-        id: 638b492c-8efa-4471-942c-c5eceb07f426
+      21f3e270-28a6-479d-bd05-dc3be7e40e0e:
+        id: 21f3e270-28a6-479d-bd05-dc3be7e40e0e
         content: Over-engineering
         children:
-          - 8a55c079-6c68-4a8f-b2dc-5d49a453a07e
-          - 06ff4985-4381-4d87-b4bf-aceb65e5f61a
+          - 80516eeb-1a53-459e-9f25-95653e0bd428
+          - 1015a37a-abc7-408a-8e87-f19a86d7bcc4
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      8a55c079-6c68-4a8f-b2dc-5d49a453a07e:
-        id: 8a55c079-6c68-4a8f-b2dc-5d49a453a07e
+      80516eeb-1a53-459e-9f25-95653e0bd428:
+        id: 80516eeb-1a53-459e-9f25-95653e0bd428
         content: Do not build a generic run-state recovery framework or a new persisted status; reuse the existing arming helper and the 'running' state.
         children: []
         metadata:
@@ -211085,8 +211099,8 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      06ff4985-4381-4d87-b4bf-aceb65e5f61a:
-        id: 06ff4985-4381-4d87-b4bf-aceb65e5f61a
+      1015a37a-abc7-408a-8e87-f19a86d7bcc4:
+        id: 1015a37a-abc7-408a-8e87-f19a86d7bcc4
         content: Reject the lazy auto-synthesize-on-"Stop dropped" alternative — it removes user control and re-arms on uncertain bindings, risking advancing the wrong node.
         children: []
         metadata:
@@ -211095,19 +211109,19 @@ pendingProposals:
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      b854a4b6-27a9-41d0-b57b-08ec230100a5:
-        id: b854a4b6-27a9-41d0-b57b-08ec230100a5
+      c459e3ae-11b4-4971-848a-f192e337c8db:
+        id: c459e3ae-11b4-4971-848a-f192e337c8db
         content: ROI
         children:
-          - 93f2c293-5265-476a-9cde-6a6c24aef7e8
+          - 30f25954-e36a-4eae-8325-337e76cdea7f
         metadata:
           status: pending
           expanded: true
           deleted: false
           plugins: {}
           feedbackBaselineKind: added
-      93f2c293-5265-476a-9cde-6a6c24aef7e8:
-        id: 93f2c293-5265-476a-9cde-6a6c24aef7e8
+      30f25954-e36a-4eae-8325-337e76cdea7f:
+        id: 30f25954-e36a-4eae-8325-337e76cdea7f
         content: High — a few-line transient-map write plus one gated menu item removes a silent-stall failure mode at zero token cost; complexity added is minimal.
         children: []
         metadata:
