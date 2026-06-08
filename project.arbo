@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T13:23:33.951Z'
+updated: '2026-06-08T16:19:13.844Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -92076,7 +92076,9 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children: []
+    children:
+      - 33a8eefd-293a-41d0-b814-cf04175f41f7
+      - 295a855e-2604-45e2-949f-fe58807690ca
     metadata:
       status: pending
       isBlueprint: true
@@ -115310,6 +115312,7 @@ nodes:
       - ec90d67b-47d7-4b77-99a6-e665e1d85f2e
       - 8a287c82-30a2-4bed-8580-c3f8f5caa46b
       - d5699f9e-8a44-4f3e-935e-f97bb4876d83
+      - 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
     metadata:
       status: pending
       isBlueprint: true
@@ -124374,7 +124377,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
+      - 792d9572-0f59-40f1-9bc3-48fbd89919b5
     metadata:
       status: pending
       isBlueprint: true
@@ -158656,9 +158659,7 @@ nodes:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
     children:
-      - 792d9572-0f59-40f1-9bc3-48fbd89919b5
       - 2ac36efd-cd11-4888-a4d7-648dce571747
-      - 33a8eefd-293a-41d0-b814-cf04175f41f7
       - 5f915b0a-c4f5-4d49-a7ad-f275c60880bc
     metadata:
       status: pending
@@ -206222,7 +206223,7 @@ nodes:
       - 02ba5f0a-64a6-4afb-995b-b5f2bb6affed
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   3dce8341-afa3-454b-b0c0-ccf47833e6a5:
     id: 3dce8341-afa3-454b-b0c0-ccf47833e6a5
     content: The sessions get mixed up
@@ -206246,83 +206247,35 @@ nodes:
     id: 33a8eefd-293a-41d0-b814-cf04175f41f7
     content: Often trying to play a sibling node in the same window as a decomposed step
     children:
-      - e285e71f-f29d-4b4b-9059-1c1bceea660a
+      - 70283e2c-0de6-471f-b7d7-9cb2f5667b1b
+      - dd62ad07-42ec-42a7-8696-7b6012db842e
+      - 7d978ba2-700a-4877-9326-3a547b07f87c
+      - 6e46adc5-7aa0-4742-9057-89591359ead5
+      - ebd29625-e42d-4763-9728-3f0df4bfd8fe
+      - cdf85c5b-3cdc-4ffb-8cf2-656875e730b6
+      - 7361e511-2f5e-4a20-8dfd-02c11bb6a2b8
+      - 32158aab-f5a7-400a-b0fc-ba1e230f933d
+      - 5f50fbb0-d63d-4631-81c7-e86b176b4c9a
+      - b955e70a-c3a2-4002-979f-234f2d66084d
+      - a4bbfe20-36de-4775-a619-c2e4fdcd869c
+      - 0f9b9ef9-93e1-4704-80ca-1e998772eb52
     metadata:
-      status: pending
+      status: completed
       expanded: false
-  e285e71f-f29d-4b4b-9059-1c1bceea660a:
-    id: e285e71f-f29d-4b4b-9059-1c1bceea660a
-    content: We get a message saying that there is already a workflow step in progress
-    children:
-      - 60062979-0651-40d0-b365-31dd884d9425
-      - 88c47a20-b30e-4a23-b9e2-d2d3812611bd
-      - 5e121d90-72a6-4da9-b4cf-b6043df3b45d
-      - ca41dd41-227b-4135-957c-7e0f7e6f15aa
-      - 2e83fe3f-ba2b-40c3-b755-47e33ff8f225
-      - 2710c4a5-485e-4866-b447-4ea5d2a66a2a
-    metadata:
-      status: pending
-  60062979-0651-40d0-b365-31dd884d9425:
-    id: 60062979-0651-40d0-b365-31dd884d9425
-    content: Even though no prompt is processing
-    children: []
-    metadata:
-      status: pending
-  88c47a20-b30e-4a23-b9e2-d2d3812611bd:
-    id: 88c47a20-b30e-4a23-b9e2-d2d3812611bd
-    content: Checking at the end of the workflow, the step is on pause
-    children: []
-    metadata:
-      status: pending
-  5e121d90-72a6-4da9-b4cf-b6043df3b45d:
-    id: 5e121d90-72a6-4da9-b4cf-b6043df3b45d
-    content: The end of the work flow is 'manual'
-    children: []
-    metadata:
-      status: pending
-  ca41dd41-227b-4135-957c-7e0f7e6f15aa:
-    id: ca41dd41-227b-4135-957c-7e0f7e6f15aa
-    content: Unpausing the step allows assigning the next sibling to the session
-    children: []
-    metadata:
-      status: pending
-  2e83fe3f-ba2b-40c3-b755-47e33ff8f225:
-    id: 2e83fe3f-ba2b-40c3-b755-47e33ff8f225
-    content: I guess the detection for workflow ending is broken
-    children: []
-    metadata:
-      status: pending
-  2710c4a5-485e-4866-b447-4ea5d2a66a2a:
-    id: 2710c4a5-485e-4866-b447-4ea5d2a66a2a
-    content: When a workflow is on the last step, if that step is manual, it should not be paused
-    children:
-      - 5a405f0e-283f-4ad8-8786-ac889808bfa1
-      - 35efeee3-46a5-4a1b-be01-b6fe400ead9b
-    metadata:
-      status: pending
-  5a405f0e-283f-4ad8-8786-ac889808bfa1:
-    id: 5a405f0e-283f-4ad8-8786-ac889808bfa1
-    content: If it it automatic it should complete
-    children: []
-    metadata:
-      status: pending
-  35efeee3-46a5-4a1b-be01-b6fe400ead9b:
-    id: 35efeee3-46a5-4a1b-be01-b6fe400ead9b
-    content: If it is checkpoint it should complete and pause
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
+      sessionId: 5794766b-1834-4c0b-980c-a39568f2987d
   3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3:
     id: 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
     content: Unpause workflow — flip a paused step back to play so its completion advances
     children:
-      - f6434ca4-5eda-48e5-a20d-271d20b35a41
-      - e755678b-9e7b-4bb1-bdb1-580268cbb5e2
-      - 5e6d82e6-3b67-4542-bbed-6263e2967a6c
-      - 4b397dd7-f03f-42ff-bc4e-3bead9063ab4
-      - 840a7802-5784-472b-8adf-1cb92cb8f3ad
-      - 8df11b0c-bd72-4a67-8845-db5ee517c8d3
-      - 2399cade-61e0-4473-8893-dba3b3d411c2
+      - b26b30a5-6901-4539-8d0b-85c841aee74c
+      - 800f72c2-35bd-43d6-83db-8d95a4158480
+      - f70fc2a3-5a15-4e43-ae32-690b5f951c24
+      - 5cd0a5f6-1507-4264-91c4-d7f09d94fd07
+      - ce749a1c-0381-43cb-a50f-847ffa6038c0
+      - 0fd56523-9d9e-40aa-9fdb-3ae93f1282c9
+      - d07b641f-795d-4f4e-8fae-96e2ab7a5e3f
     metadata:
       status: completed
       expanded: false
@@ -210253,63 +210206,74 @@ nodes:
     id: 792d9572-0f59-40f1-9bc3-48fbd89919b5
     content: Gold background doesn't apply to tree of node in review
     children:
-      - 9aff9e2c-7128-40ef-ab21-5d31543477b9
+      - a0841201-3e64-4193-9b17-aa2e0b06048d
+      - cb16692b-2549-43bf-88db-1a82da0c0a15
+      - 431ae314-b4b7-4451-9f8a-2a7dc0d21515
+      - 9a59b291-ac84-4b8c-ab37-d00788038b82
+      - d6f7c260-ded0-4ae7-9b68-f6bc8237a948
+      - 1cc418b4-d007-44d7-b62f-b402fcd241f8
+      - fe8f7c13-d237-4ed7-abc9-d940f5b2df09
+      - 5a87eb01-c028-49ba-aea5-4b5c17792f0d
+      - 8384fbcf-b956-4aae-907e-c2bab2abe716
+      - ea81784b-d0a5-4f38-8866-48090fadcb26
+      - 964fa827-e912-4677-b415-1b6cfbe0832a
+      - 61352668-06cc-461f-baa5-fe6e1fec9b16
+      - a6a1fba1-6887-4e50-bce5-2115f7ce3691
+      - 7373e3eb-f71f-413d-97f8-945081934fb8
     metadata:
-      status: pending
-  9aff9e2c-7128-40ef-ab21-5d31543477b9:
-    id: 9aff9e2c-7128-40ef-ab21-5d31543477b9
-    content: ''
-    children: []
-    metadata:
-      status: pending
-  f6434ca4-5eda-48e5-a20d-271d20b35a41:
-    id: f6434ca4-5eda-48e5-a20d-271d20b35a41
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 47f232dc-cd4a-45c5-94db-81320b519788
+  b26b30a5-6901-4539-8d0b-85c841aee74c:
+    id: b26b30a5-6901-4539-8d0b-85c841aee74c
     content: worktree
     children:
-      - 7b05d907-fd71-4402-9b1b-c08a4ecbc1cd
+      - e6aa8124-957a-496f-8a92-ed9d63435c8f
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7b05d907-fd71-4402-9b1b-c08a4ecbc1cd:
-    id: 7b05d907-fd71-4402-9b1b-c08a4ecbc1cd
+  e6aa8124-957a-496f-8a92-ed9d63435c8f:
+    id: e6aa8124-957a-496f-8a92-ed9d63435c8f
     content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/unpause-workflow) — branch feat/unpause-workflow'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e755678b-9e7b-4bb1-bdb1-580268cbb5e2:
-    id: e755678b-9e7b-4bb1-bdb1-580268cbb5e2
+  800f72c2-35bd-43d6-83db-8d95a4158480:
+    id: 800f72c2-35bd-43d6-83db-8d95a4158480
     content: 📄 Product spec
     children:
-      - b3c6a4d6-84f5-41e2-8575-86ba0f462b80
-      - 0336b60b-2875-4ce8-a407-c370954517c1
-      - 8dda7fbe-4c33-48c9-9567-0ec069654c25
-      - c74257ca-5e19-4e1e-b943-45df028f8606
-      - 5d0c72d0-1ef9-483b-89ea-a87c63336ae2
-      - 8f5c290e-abd3-443d-a76d-06f99e848294
+      - dcd7c5e5-0729-42f0-9a02-0866e95e9063
+      - 4826c871-1813-4a86-b225-1e315cdd8eb5
+      - e3a86da1-b75a-4446-971d-02a3871f6a6b
+      - 315f5458-e687-4215-869d-99998e22049b
+      - 346445a2-9460-41af-b6fc-5c14a55b4ade
+      - afcee290-3bd3-4258-93de-6f6ecf2bfdee
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  b3c6a4d6-84f5-41e2-8575-86ba0f462b80:
-    id: b3c6a4d6-84f5-41e2-8575-86ba0f462b80
+  dcd7c5e5-0729-42f0-9a02-0866e95e9063:
+    id: dcd7c5e5-0729-42f0-9a02-0866e95e9063
     content: Context
     children:
-      - d1b6133b-932a-4b3b-964e-36ed818a184f
-      - 0143c303-4bef-4e17-b9d8-4238306e17d7
-      - e4bc3135-4c45-4494-af51-6ca65af226af
+      - 52ff86ac-8116-442a-9084-e574a00f351e
+      - e8c34926-419e-4f22-9021-876fedae3368
+      - 4dcfa1ad-9d2f-41e5-b863-9b8815c2de60
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  d1b6133b-932a-4b3b-964e-36ed818a184f:
-    id: d1b6133b-932a-4b3b-964e-36ed818a184f
+  52ff86ac-8116-442a-9084-e574a00f351e:
+    id: 52ff86ac-8116-442a-9084-e574a00f351e
     content: A workflow step pauses (run-state 'awaiting-validation', shown as the gray Pause glyph) when the AI stops mid-step — e.g. to ask the user a question.
     children: []
     metadata:
@@ -210317,8 +210281,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0143c303-4bef-4e17-b9d8-4238306e17d7:
-    id: 0143c303-4bef-4e17-b9d8-4238306e17d7
+  e8c34926-419e-4f22-9021-876fedae3368:
+    id: e8c34926-419e-4f22-9021-876fedae3368
     content: Advancement to the next step only fires when a step finishes while in the running/'play' state; advanceNode bails unless state === 'running', so a completion that arrives while paused is a silent no-op and the workflow stalls.
     children: []
     metadata:
@@ -210326,8 +210290,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e4bc3135-4c45-4494-af51-6ca65af226af:
-    id: e4bc3135-4c45-4494-af51-6ca65af226af
+  4dcfa1ad-9d2f-41e5-b863-9b8815c2de60:
+    id: 4dcfa1ad-9d2f-41e5-b863-9b8815c2de60
     content: Answering the AI's question does not clear the pause (the UserPromptSubmit hook is a no-op for run-state), so the step stays paused even as the AI keeps working and finishes.
     children: []
     metadata:
@@ -210335,18 +210299,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0336b60b-2875-4ce8-a407-c370954517c1:
-    id: 0336b60b-2875-4ce8-a407-c370954517c1
+  4826c871-1813-4a86-b225-1e315cdd8eb5:
+    id: 4826c871-1813-4a86-b225-1e315cdd8eb5
     content: User
     children:
-      - d0596341-444a-487e-bd97-b3c31249b946
+      - 073d5d74-96f8-4f01-9d46-a8ed9c94c3a3
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  d0596341-444a-487e-bd97-b3c31249b946:
-    id: d0596341-444a-487e-bd97-b3c31249b946
+  073d5d74-96f8-4f01-9d46-a8ed9c94c3a3:
+    id: 073d5d74-96f8-4f01-9d46-a8ed9c94c3a3
     content: A user running a workflow whose step paused to ask a question — they answer, the AI continues and completes the step, but it never advances because the step is still paused.
     children: []
     metadata:
@@ -210354,19 +210318,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8dda7fbe-4c33-48c9-9567-0ec069654c25:
-    id: 8dda7fbe-4c33-48c9-9567-0ec069654c25
+  e3a86da1-b75a-4446-971d-02a3871f6a6b:
+    id: e3a86da1-b75a-4446-971d-02a3871f6a6b
     content: Current experience and why it is insufficient
     children:
-      - bf96cfef-bc3e-47f6-8581-055bab254dbd
-      - 654eb999-bde0-44b1-9c8c-4e5f3697c992
+      - cbc88327-5b43-4086-8f18-86748522fc1a
+      - 3dbab72d-99a1-4971-b767-ba8986a00abb
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  bf96cfef-bc3e-47f6-8581-055bab254dbd:
-    id: bf96cfef-bc3e-47f6-8581-055bab254dbd
+  cbc88327-5b43-4086-8f18-86748522fc1a:
+    id: cbc88327-5b43-4086-8f18-86748522fc1a
     content: After answering, there is no way to return the step to play and walk away; the completed step silently fails to advance.
     children: []
     metadata:
@@ -210374,8 +210338,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  654eb999-bde0-44b1-9c8c-4e5f3697c992:
-    id: 654eb999-bde0-44b1-9c8c-4e5f3697c992
+  3dbab72d-99a1-4971-b767-ba8986a00abb:
+    id: 3dbab72d-99a1-4971-b767-ba8986a00abb
     content: 'The only existing controls are wrong for this: Continue advances immediately (skips the AI''s remaining work if clicked before it finishes) and Re-send re-sends the prompt; neither is "just let it finish and then go."'
     children: []
     metadata:
@@ -210383,18 +210347,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c74257ca-5e19-4e1e-b943-45df028f8606:
-    id: c74257ca-5e19-4e1e-b943-45df028f8606
+  315f5458-e687-4215-869d-99998e22049b:
+    id: 315f5458-e687-4215-869d-99998e22049b
     content: Goal
     children:
-      - bcf9e2cc-9882-45e4-a671-621b689f4779
+      - ba65f81a-4f80-4436-967f-31d3bd3dc2bf
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  bcf9e2cc-9882-45e4-a671-621b689f4779:
-    id: bcf9e2cc-9882-45e4-a671-621b689f4779
+  ba65f81a-4f80-4436-967f-31d3bd3dc2bf:
+    id: ba65f81a-4f80-4436-967f-31d3bd3dc2bf
     content: Let the user flip a paused step back to play in one action so that, when the current prompt finishes, the workflow advances to the next step on its own.
     children: []
     metadata:
@@ -210402,23 +210366,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5d0c72d0-1ef9-483b-89ea-a87c63336ae2:
-    id: 5d0c72d0-1ef9-483b-89ea-a87c63336ae2
+  346445a2-9460-41af-b6fc-5c14a55b4ade:
+    id: 346445a2-9460-41af-b6fc-5c14a55b4ade
     content: Business rules
     children:
-      - 94d555dc-dd7a-4f2f-a0ab-649ee6e42cd8
-      - 87525271-4cb6-43b5-bd7c-248c1abca858
-      - a1429996-9182-4ce0-a4a4-118e2f282d9e
-      - 6c014ab1-07c5-4dfc-ab59-7d96c61ca958
-      - 8ca052d8-28a8-418e-8ca2-e9f3ff2b0df6
-      - 6fd03c6f-1012-4bcc-89af-654b1107f45e
+      - 0d078308-36a7-498c-b43f-508dd763a358
+      - 5b080784-9e4c-4fef-89e6-344db1830fc2
+      - 9cc4f785-acdb-45fd-844f-cf11761be61b
+      - 7882338c-6b85-475a-8449-1df2d81aa115
+      - 91854a55-ab42-4ae3-95fa-3f16b561428d
+      - 47d37cec-064f-4c4c-9497-eb7860a83301
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  94d555dc-dd7a-4f2f-a0ab-649ee6e42cd8:
-    id: 94d555dc-dd7a-4f2f-a0ab-649ee6e42cd8
+  0d078308-36a7-498c-b43f-508dd763a358:
+    id: 0d078308-36a7-498c-b43f-508dd763a358
     content: 1. Unpause sets the step's run-state from 'awaiting-validation' to 'running' ('play') and does nothing else — no prompt resend, no immediate advance, no tree change.
     children: []
     metadata:
@@ -210426,8 +210390,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  87525271-4cb6-43b5-bd7c-248c1abca858:
-    id: 87525271-4cb6-43b5-bd7c-248c1abca858
+  5b080784-9e4c-4fef-89e6-344db1830fc2:
+    id: 5b080784-9e4c-4fef-89e6-344db1830fc2
     content: 2. Unpause is offered only on a step currently in 'awaiting-validation' (paused) and is absent on running, non-paused, or non-workflow nodes.
     children: []
     metadata:
@@ -210435,8 +210399,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a1429996-9182-4ce0-a4a4-118e2f282d9e:
-    id: a1429996-9182-4ce0-a4a4-118e2f282d9e
+  9cc4f785-acdb-45fd-844f-cf11761be61b:
+    id: 9cc4f785-acdb-45fd-844f-cf11761be61b
     content: '3. After unpausing, advancement is left entirely to the existing completion path: when the current prompt finishes while the step is running, the workflow advances to the next step.'
     children: []
     metadata:
@@ -210444,8 +210408,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6c014ab1-07c5-4dfc-ab59-7d96c61ca958:
-    id: 6c014ab1-07c5-4dfc-ab59-7d96c61ca958
+  7882338c-6b85-475a-8449-1df2d81aa115:
+    id: 7882338c-6b85-475a-8449-1df2d81aa115
     content: 4. Unpausing when no prompt is in progress is a user-beware no-op for advancement — the feature does not detect or advance an already-finished step; the user finishes the conversation or stops/restarts the step.
     children: []
     metadata:
@@ -210453,8 +210417,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8ca052d8-28a8-418e-8ca2-e9f3ff2b0df6:
-    id: 8ca052d8-28a8-418e-8ca2-e9f3ff2b0df6
+  91854a55-ab42-4ae3-95fa-3f16b561428d:
+    id: 91854a55-ab42-4ae3-95fa-3f16b561428d
     content: 5. Unpause never resends the step prompt and never advances the step at click time.
     children: []
     metadata:
@@ -210462,8 +210426,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6fd03c6f-1012-4bcc-89af-654b1107f45e:
-    id: 6fd03c6f-1012-4bcc-89af-654b1107f45e
+  47d37cec-064f-4c4c-9497-eb7860a83301:
+    id: 47d37cec-064f-4c4c-9497-eb7860a83301
     content: 6. If invoked on a node not in 'awaiting-validation' (e.g. a state race), unpause is a guarded no-op that changes nothing and raises no error.
     children: []
     metadata:
@@ -210471,23 +210435,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8f5c290e-abd3-443d-a76d-06f99e848294:
-    id: 8f5c290e-abd3-443d-a76d-06f99e848294
+  afcee290-3bd3-4258-93de-6f6ecf2bfdee:
+    id: afcee290-3bd3-4258-93de-6f6ecf2bfdee
     content: Acceptance criteria
     children:
-      - a47231b0-29b3-4d1e-bcaa-d348eed0cc36
-      - 37704eb7-383d-4cce-aae1-5ea7e53f437f
-      - 1f3e4f6a-a1a4-4679-9ff9-5974e8b614ac
-      - 7da4ec02-9021-4fbf-8bb9-23cf34b4198a
-      - e6a364c4-c368-442c-b3e5-4ad599063e4d
-      - fcf11955-2e08-441a-ad6b-459cbb5f1339
+      - 63b5a185-561c-4a36-b167-f9b28418ca49
+      - f77c103e-8e00-4f23-a3af-9c08f3722811
+      - fa78b9a0-aba1-49cc-acf2-a73491900b51
+      - 6a2063f9-236f-4b5c-89c3-cc5934a1ee05
+      - f0e13b2d-143b-4454-b9a9-d3606e270cf2
+      - 899bcde2-fe34-4a4a-b416-c59cc2c2c2cf
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  a47231b0-29b3-4d1e-bcaa-d348eed0cc36:
-    id: a47231b0-29b3-4d1e-bcaa-d348eed0cc36
+  63b5a185-561c-4a36-b167-f9b28418ca49:
+    id: 63b5a185-561c-4a36-b167-f9b28418ca49
     content: Given a paused step with a prompt in progress, unpausing sets it to running and the workflow advances when that prompt finishes.
     children: []
     metadata:
@@ -210495,8 +210459,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  37704eb7-383d-4cce-aae1-5ea7e53f437f:
-    id: 37704eb7-383d-4cce-aae1-5ea7e53f437f
+  f77c103e-8e00-4f23-a3af-9c08f3722811:
+    id: f77c103e-8e00-4f23-a3af-9c08f3722811
     content: Unpause writes only the run-state ('running'); no prompt text is sent to the terminal (zero tokens) and no advance happens at click time.
     children: []
     metadata:
@@ -210504,8 +210468,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1f3e4f6a-a1a4-4679-9ff9-5974e8b614ac:
-    id: 1f3e4f6a-a1a4-4679-9ff9-5974e8b614ac
+  fa78b9a0-aba1-49cc-acf2-a73491900b51:
+    id: fa78b9a0-aba1-49cc-acf2-a73491900b51
     content: The unpause control appears only when the step is paused; it is absent on running, non-paused, or non-workflow nodes.
     children: []
     metadata:
@@ -210513,8 +210477,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7da4ec02-9021-4fbf-8bb9-23cf34b4198a:
-    id: 7da4ec02-9021-4fbf-8bb9-23cf34b4198a
+  6a2063f9-236f-4b5c-89c3-cc5934a1ee05:
+    id: 6a2063f9-236f-4b5c-89c3-cc5934a1ee05
     content: Unpausing a step with no prompt in progress does not advance it — behaviour is left to the user, with no silent advance or resend.
     children: []
     metadata:
@@ -210522,8 +210486,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e6a364c4-c368-442c-b3e5-4ad599063e4d:
-    id: e6a364c4-c368-442c-b3e5-4ad599063e4d
+  f0e13b2d-143b-4454-b9a9-d3606e270cf2:
+    id: f0e13b2d-143b-4454-b9a9-d3606e270cf2
     content: Invoking unpause on a node that is not in 'awaiting-validation' is a guarded no-op — no state change and no error.
     children: []
     metadata:
@@ -210531,8 +210495,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fcf11955-2e08-441a-ad6b-459cbb5f1339:
-    id: fcf11955-2e08-441a-ad6b-459cbb5f1339
+  899bcde2-fe34-4a4a-b416-c59cc2c2c2cf:
+    id: 899bcde2-fe34-4a4a-b416-c59cc2c2c2cf
     content: The control is keyboard-reachable and labelled distinctly from Continue and Re-send.
     children: []
     metadata:
@@ -210540,31 +210504,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5e6d82e6-3b67-4542-bbed-6263e2967a6c:
-    id: 5e6d82e6-3b67-4542-bbed-6263e2967a6c
+  f70fc2a3-5a15-4e43-ae32-690b5f951c24:
+    id: f70fc2a3-5a15-4e43-ae32-690b5f951c24
     content: 🔧 Implementation proposal
     children:
-      - 000113f4-76bf-435a-8e82-158e1dc9ba91
-      - 3079c8e6-4321-497a-9c50-f93c9bc863d1
-      - c288fb3e-c32d-42df-92e6-75d9d7cd4c01
+      - 55b52a8c-26b0-415d-9e7e-7ff9a7120766
+      - 2719c9ae-17bb-4126-9273-802487fa65c1
+      - 593cfe0d-72fb-4dbd-9fce-78c0f031e716
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  000113f4-76bf-435a-8e82-158e1dc9ba91:
-    id: 000113f4-76bf-435a-8e82-158e1dc9ba91
+  55b52a8c-26b0-415d-9e7e-7ff9a7120766:
+    id: 55b52a8c-26b0-415d-9e7e-7ff9a7120766
     content: Approach
     children:
-      - 9883b4d9-0a93-4e1f-8a5d-8f4946ec715b
-      - 67cc3853-eea0-47af-a2d9-5982ea8c0649
+      - 113f8a02-caff-4544-bc41-a1202592b4db
+      - aa62fb57-c902-4bb9-b475-65055251ddd0
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  9883b4d9-0a93-4e1f-8a5d-8f4946ec715b:
-    id: 9883b4d9-0a93-4e1f-8a5d-8f4946ec715b
+  113f8a02-caff-4544-bc41-a1202592b4db:
+    id: 113f8a02-caff-4544-bc41-a1202592b4db
     content: Add a single-purpose store action unpauseWorkflow(nodeId) that, when the entry is 'awaiting-validation', sets its state to 'running' and returns — no other side effects.
     children: []
     metadata:
@@ -210572,8 +210536,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  67cc3853-eea0-47af-a2d9-5982ea8c0649:
-    id: 67cc3853-eea0-47af-a2d9-5982ea8c0649
+  aa62fb57-c902-4bb9-b475-65055251ddd0:
+    id: aa62fb57-c902-4bb9-b475-65055251ddd0
     content: Surface it on the paused-state UI by making the existing awaiting-validation Pause glyph clickable (mirror of the running Play glyph's click-to-stop). No change to advanceNode or the Stop handler — the existing running + completion path already advances.
     children: []
     metadata:
@@ -210581,22 +210545,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3079c8e6-4321-497a-9c50-f93c9bc863d1:
-    id: 3079c8e6-4321-497a-9c50-f93c9bc863d1
+  2719c9ae-17bb-4126-9273-802487fa65c1:
+    id: 2719c9ae-17bb-4126-9273-802487fa65c1
     content: Touchpoints
     children:
-      - 41c998cb-6173-4b1d-b024-222cd7f3c3b6
-      - 6f302720-f058-4629-9793-a229d4072a4b
-      - 16401452-8473-470d-b5bd-e38d05f2043b
-      - 24a75866-42c2-4d6c-9089-557dd2113ed0
-      - d987f107-2f00-41dd-acc6-e9e26058498f
+      - ac3df453-8a7f-4836-828e-012a69218eb1
+      - b9c46cfd-1cc5-4aeb-a6f5-03d3bf85b581
+      - 48112179-f811-440b-9440-6e6e7f07320e
+      - aed17e63-90b9-4980-8a0d-e4990e957062
+      - cabbbd83-6eb2-4c76-819f-c668e86afcfd
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  41c998cb-6173-4b1d-b024-222cd7f3c3b6:
-    id: 41c998cb-6173-4b1d-b024-222cd7f3c3b6
+  ac3df453-8a7f-4836-828e-012a69218eb1:
+    id: ac3df453-8a7f-4836-828e-012a69218eb1
     content: Store action — workflowExecutionActions.ts (new unpauseWorkflow; flip state only, guard on state === 'awaiting-validation').
     children: []
     metadata:
@@ -210604,8 +210568,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6f302720-f058-4629-9793-a229d4072a4b:
-    id: 6f302720-f058-4629-9793-a229d4072a4b
+  b9c46cfd-1cc5-4aeb-a6f5-03d3bf85b581:
+    id: b9c46cfd-1cc5-4aeb-a6f5-03d3bf85b581
     content: Store wiring — treeStore.ts (add unpauseWorkflow to the actions interface and bind it).
     children: []
     metadata:
@@ -210613,8 +210577,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  16401452-8473-470d-b5bd-e38d05f2043b:
-    id: 16401452-8473-470d-b5bd-e38d05f2043b
+  48112179-f811-440b-9440-6e6e7f07320e:
+    id: 48112179-f811-440b-9440-6e6e7f07320e
     content: UI — StatusArea.tsx (make the Pause glyph clickable → unpause); optionally an "Unpause workflow" context-menu item in useWorkflowSubmenu.ts / useNodeContextMenu.ts.
     children: []
     metadata:
@@ -210622,8 +210586,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  24a75866-42c2-4d6c-9089-557dd2113ed0:
-    id: 24a75866-42c2-4d6c-9089-557dd2113ed0
+  aed17e63-90b9-4980-8a0d-e4990e957062:
+    id: aed17e63-90b9-4980-8a0d-e4990e957062
     content: Activity log — notifyWorkflow() in workflowToast.ts (optional single "Workflow unpaused" entry).
     children: []
     metadata:
@@ -210631,8 +210595,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d987f107-2f00-41dd-acc6-e9e26058498f:
-    id: d987f107-2f00-41dd-acc6-e9e26058498f
+  cabbbd83-6eb2-4c76-819f-c668e86afcfd:
+    id: cabbbd83-6eb2-4c76-819f-c668e86afcfd
     content: 'Tests — co-located: unpause flips ''awaiting-validation'' → ''running'', does NOT call sendContentToTerminal or advanceNode; a subsequent completion Stop advances; no-op when not paused.'
     children: []
     metadata:
@@ -210640,19 +210604,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c288fb3e-c32d-42df-92e6-75d9d7cd4c01:
-    id: c288fb3e-c32d-42df-92e6-75d9d7cd4c01
+  593cfe0d-72fb-4dbd-9fce-78c0f031e716:
+    id: 593cfe0d-72fb-4dbd-9fce-78c0f031e716
     content: Constraints to call out
     children:
-      - 2c44a59e-8a9b-4b7e-bf38-dcb893a5c643
-      - efc06993-9b55-4572-86c6-f65d95853f3f
+      - 794add19-eb06-4127-b36e-5da26931173f
+      - 143babd6-ae0a-4b4b-9031-6d6b1c9262c4
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  2c44a59e-8a9b-4b7e-bf38-dcb893a5c643:
-    id: 2c44a59e-8a9b-4b7e-bf38-dcb893a5c643
+  794add19-eb06-4127-b36e-5da26931173f:
+    id: 794add19-eb06-4127-b36e-5da26931173f
     content: The name "Unpause" (paired with the Play/Pause glyphs) avoids the existing "Resume Workflow" → resend collision, so no rename is required.
     children: []
     metadata:
@@ -210660,8 +210624,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  efc06993-9b55-4572-86c6-f65d95853f3f:
-    id: efc06993-9b55-4572-86c6-f65d95853f3f
+  143babd6-ae0a-4b4b-9031-6d6b1c9262c4:
+    id: 143babd6-ae0a-4b4b-9031-6d6b1c9262c4
     content: Scope is play/autonomous-style steps that advance on completion; manual/checkpoint steps re-pause on completion by design, so unpause will not carry them past validation — intended, not a gap.
     children: []
     metadata:
@@ -210669,18 +210633,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4b397dd7-f03f-42ff-bc4e-3bead9063ab4:
-    id: 4b397dd7-f03f-42ff-bc4e-3bead9063ab4
+  5cd0a5f6-1507-4264-91c4-d7f09d94fd07:
+    id: 5cd0a5f6-1507-4264-91c4-d7f09d94fd07
     content: Chunking decision
     children:
-      - f5b7f8d3-6020-4f0c-8275-156f6072ddcb
+      - 47158481-af43-4d71-859f-a23ab229ff7f
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  f5b7f8d3-6020-4f0c-8275-156f6072ddcb:
-    id: f5b7f8d3-6020-4f0c-8275-156f6072ddcb
+  47158481-af43-4d71-859f-a23ab229ff7f:
+    id: 47158481-af43-4d71-859f-a23ab229ff7f
     content: One chunk — a single run-state flip plus one UI affordance; there is nothing coherent to split and no flag-gated sub-value to realise.
     children: []
     metadata:
@@ -210688,31 +210652,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  840a7802-5784-472b-8adf-1cb92cb8f3ad:
-    id: 840a7802-5784-472b-8adf-1cb92cb8f3ad
+  ce749a1c-0381-43cb-a50f-847ffa6038c0:
+    id: ce749a1c-0381-43cb-a50f-847ffa6038c0
     content: Challenges / pushback
     children:
-      - 48c1ef2e-fb7c-4e04-a200-c45959a1be03
-      - 5ee2da1e-d3e9-439f-b64d-ac0c54af52a9
-      - e027e20a-fe20-47ff-8154-d24c1282fd17
+      - 139f6c3d-bd2d-4407-a6d3-965ca3277d02
+      - 4918caca-6d19-49bd-b83f-4b6f49a57e59
+      - 22f5f395-4dbe-4f43-ba3d-4de8a61552d4
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  48c1ef2e-fb7c-4e04-a200-c45959a1be03:
-    id: 48c1ef2e-fb7c-4e04-a200-c45959a1be03
+  139f6c3d-bd2d-4407-a6d3-965ca3277d02:
+    id: 139f6c3d-bd2d-4407-a6d3-965ca3277d02
     content: UX
     children:
-      - 66911f69-6a0a-456e-b3a0-87b1d3815b3d
-      - d12b2935-a164-4611-b9dc-17baaae2e092
+      - 75b70bc1-0496-482b-a029-f49b93953521
+      - 642ebddd-bd3a-40c6-93c9-02f0597fb43f
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  66911f69-6a0a-456e-b3a0-87b1d3815b3d:
-    id: 66911f69-6a0a-456e-b3a0-87b1d3815b3d
+  75b70bc1-0496-482b-a029-f49b93953521:
+    id: 75b70bc1-0496-482b-a029-f49b93953521
     content: Reuse the existing Pause glyph as the click target (Pause → Play) for discoverability and symmetry with the running glyph, rather than introducing a separate control.
     children: []
     metadata:
@@ -210720,8 +210684,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d12b2935-a164-4611-b9dc-17baaae2e092:
-    id: d12b2935-a164-4611-b9dc-17baaae2e092
+  642ebddd-bd3a-40c6-93c9-02f0597fb43f:
+    id: 642ebddd-bd3a-40c6-93c9-02f0597fb43f
     content: Naming it "Unpause" (not another "resume") keeps the paused-node menu free of two opposite-meaning look-alikes.
     children: []
     metadata:
@@ -210729,18 +210693,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5ee2da1e-d3e9-439f-b64d-ac0c54af52a9:
-    id: 5ee2da1e-d3e9-439f-b64d-ac0c54af52a9
+  4918caca-6d19-49bd-b83f-4b6f49a57e59:
+    id: 4918caca-6d19-49bd-b83f-4b6f49a57e59
     content: Over-engineering
     children:
-      - 4e87e40b-7cca-4dc9-b84e-72913d4fbc51
+      - 9905dcc6-224c-4403-afea-d9a6ffd2924a
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  4e87e40b-7cca-4dc9-b84e-72913d4fbc51:
-    id: 4e87e40b-7cca-4dc9-b84e-72913d4fbc51
+  9905dcc6-224c-4403-afea-d9a6ffd2924a:
+    id: 9905dcc6-224c-4403-afea-d9a6ffd2924a
     content: Explicitly NOT building detect-already-completed-and-advance, auto-flip-on-answer, or any resend — the running + completion path already advances; these were scoped out deliberately.
     children: []
     metadata:
@@ -210748,18 +210712,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e027e20a-fe20-47ff-8154-d24c1282fd17:
-    id: e027e20a-fe20-47ff-8154-d24c1282fd17
+  22f5f395-4dbe-4f43-ba3d-4de8a61552d4:
+    id: 22f5f395-4dbe-4f43-ba3d-4de8a61552d4
     content: ROI
     children:
-      - 0ab46d41-1c95-40f2-8e5e-5532f1dd8da0
+      - d1fb4d1a-0510-496e-95ee-0e92eac3589c
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  0ab46d41-1c95-40f2-8e5e-5532f1dd8da0:
-    id: 0ab46d41-1c95-40f2-8e5e-5532f1dd8da0
+  d1fb4d1a-0510-496e-95ee-0e92eac3589c:
+    id: d1fb4d1a-0510-496e-95ee-0e92eac3589c
     content: Very high — a one-field state change removes a silent stall; the payoff is "clear the pause once after answering and walk away" instead of babysitting to click Continue at completion.
     children: []
     metadata:
@@ -210767,31 +210731,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8df11b0c-bd72-4a67-8845-db5ee517c8d3:
-    id: 8df11b0c-bd72-4a67-8845-db5ee517c8d3
+  0fd56523-9d9e-40aa-9fdb-3ae93f1282c9:
+    id: 0fd56523-9d9e-40aa-9fdb-3ae93f1282c9
     content: Technical refinement
     children:
-      - f7c994a5-d1e8-4f5e-be36-92f7c995184b
-      - fff99649-b71f-45c4-9e8d-8ec10a8ce7e4
+      - 109d140a-c554-4bb9-b980-d8292072a858
+      - f4ddf5aa-2c2b-4dc9-bf1f-d9106a86b9ff
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  f7c994a5-d1e8-4f5e-be36-92f7c995184b:
-    id: f7c994a5-d1e8-4f5e-be36-92f7c995184b
+  109d140a-c554-4bb9-b980-d8292072a858:
+    id: 109d140a-c554-4bb9-b980-d8292072a858
     content: Complications
     children:
-      - 4f0e4faf-3990-4541-ab99-b59213cf74d9
-      - 6eb079f7-828c-4711-818a-c7a83fc34a4d
-      - 2d0a471b-d5eb-4adb-8b87-6ce432c84eaf
+      - 1f8cb39a-8a4c-4b62-b3a2-27d06cebce18
+      - b14403f4-eb23-439e-9f87-3b6a9bedfef5
+      - 71df4a1b-77f8-4229-b982-8dc95656054a
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  4f0e4faf-3990-4541-ab99-b59213cf74d9:
-    id: 4f0e4faf-3990-4541-ab99-b59213cf74d9
+  1f8cb39a-8a4c-4b62-b3a2-27d06cebce18:
+    id: 1f8cb39a-8a4c-4b62-b3a2-27d06cebce18
     content: '"Flip state only" is likely insufficient — a step typically reaches ''awaiting-validation'' via the needsReview transition, so the entry still carries its review flags (needsReview / needsReviewNotified); the next (completion) Stop re-reads those and re-pauses instead of advancing. Unpause must return a CLEAN running entry (clear those flags), not merely set state; verify against the exact condition the Stop handler uses to decide pause-vs-advance.'
     children: []
     metadata:
@@ -210799,8 +210763,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6eb079f7-828c-4711-818a-c7a83fc34a4d:
-    id: 6eb079f7-828c-4711-818a-c7a83fc34a4d
+  b14403f4-eb23-439e-9f87-3b6a9bedfef5:
+    id: b14403f4-eb23-439e-9f87-3b6a9bedfef5
     content: 'The helped path is narrower than the framing suggests: a plain autonomous question-stop is already gated and never pauses, while manual/checkpoint steps re-pause on completion by design — so the only case unpause actually carries to the next step is an autonomous step paused via NeedsReview. Confirm the stalls users hit follow that path before building.'
     children: []
     metadata:
@@ -210808,8 +210772,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2d0a471b-d5eb-4adb-8b87-6ce432c84eaf:
-    id: 2d0a471b-d5eb-4adb-8b87-6ce432c84eaf
+  71df4a1b-77f8-4229-b982-8dc95656054a:
+    id: 71df4a1b-77f8-4229-b982-8dc95656054a
     content: ROI is high for the autonomous/NeedsReview pause but drops toward zero if the real-world stalls are on manual/checkpoint steps, which would need a different fix (distinguishing a mid-step question-pause from an end-of-step validation-pause). Validate the actual pause path first.
     children: []
     metadata:
@@ -210817,20 +210781,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fff99649-b71f-45c4-9e8d-8ec10a8ce7e4:
-    id: fff99649-b71f-45c4-9e8d-8ec10a8ce7e4
+  f4ddf5aa-2c2b-4dc9-bf1f-d9106a86b9ff:
+    id: f4ddf5aa-2c2b-4dc9-bf1f-d9106a86b9ff
     content: Approach summary
     children:
-      - 6ac7e1bb-1527-4bfd-8ff7-9082662f9c0b
-      - 155f8c24-ce95-4aba-b7ef-106f93eefd3f
-      - 5149981d-2b42-4e38-85d0-71acdae4e824
+      - 9ad517f6-4405-4b5b-99aa-bc0c75eda32e
+      - 8c2a3981-15ec-4bbc-8e4e-d47629d194fe
+      - dcdb9823-06a6-4eec-bdab-c7f540095ad1
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  6ac7e1bb-1527-4bfd-8ff7-9082662f9c0b:
-    id: 6ac7e1bb-1527-4bfd-8ff7-9082662f9c0b
+  9ad517f6-4405-4b5b-99aa-bc0c75eda32e:
+    id: 9ad517f6-4405-4b5b-99aa-bc0c75eda32e
     content: One small store action returns the paused run-state entry to a clean running ('play') entry; no change to advanceNode or the Stop handler — the existing running + completion path performs the advance.
     children: []
     metadata:
@@ -210838,8 +210802,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  155f8c24-ce95-4aba-b7ef-106f93eefd3f:
-    id: 155f8c24-ce95-4aba-b7ef-106f93eefd3f
+  8c2a3981-15ec-4bbc-8e4e-d47629d194fe:
+    id: 8c2a3981-15ec-4bbc-8e4e-d47629d194fe
     content: Surfaced by making the existing awaiting-validation Pause glyph clickable (mirror of the running Play glyph's click-to-stop) in StatusArea; no new control.
     children: []
     metadata:
@@ -210847,8 +210811,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5149981d-2b42-4e38-85d0-71acdae4e824:
-    id: 5149981d-2b42-4e38-85d0-71acdae4e824
+  dcdb9823-06a6-4eec-bdab-c7f540095ad1:
+    id: dcdb9823-06a6-4eec-bdab-c7f540095ad1
     content: 'Reviewer watch-out: correctness hinges on the entry coming back clean (review flags reset). If only state is changed, the completion Stop re-pauses and the feature silently does nothing.'
     children: []
     metadata:
@@ -210856,47 +210820,1529 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2399cade-61e0-4473-8893-dba3b3d411c2:
-    id: 2399cade-61e0-4473-8893-dba3b3d411c2
+  d07b641f-795d-4f4e-8fae-96e2ab7a5e3f:
+    id: d07b641f-795d-4f4e-8fae-96e2ab7a5e3f
     content: review feedback
     children:
-      - fb12929e-3f69-4296-86f2-41d0a3a9b354
-      - 1a1dd55f-6114-45c6-9e23-8fe966d0bb82
-      - 546a3a9d-cd49-47e5-9388-9e8f6c05810e
-      - eeabf7d7-b613-4894-93c9-b703e95b94a6
-      - 03bb6812-c5d5-4cff-b3aa-b0e77a7c70a7
+      - fd29c1f1-2d29-460f-ab25-61d7fb5ac2c0
+      - 3ccb24bc-a910-4a63-8d8d-2a3f9874dbe0
+      - 5e76f8cc-8758-49e6-925e-4a448ff04aec
+      - c93c6288-b718-4c98-a813-c0de4668c42c
+      - 41ecb0a3-c104-48df-8612-2dfb211cf67c
     metadata:
       status: pending
-  fb12929e-3f69-4296-86f2-41d0a3a9b354:
-    id: fb12929e-3f69-4296-86f2-41d0a3a9b354
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd29c1f1-2d29-460f-ab25-61d7fb5ac2c0:
+    id: fd29c1f1-2d29-460f-ab25-61d7fb5ac2c0
     content: 'Verdict: no blockers. Clean, well-scoped change. Subagent re-ran the two affected suites (131 pass / 0 fail), type-check clean, lint clean.'
     children: []
     metadata:
       status: pending
-  1a1dd55f-6114-45c6-9e23-8fe966d0bb82:
-    id: 1a1dd55f-6114-45c6-9e23-8fe966d0bb82
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ccb24bc-a910-4a63-8d8d-2a3f9874dbe0:
+    id: 3ccb24bc-a910-4a63-8d8d-2a3f9874dbe0
     content: 'Correctness verified against consumers (findRunningNodeOnTerminal, Stop handler, advanceNode): unpauseWorkflow rebuilds a clean { state:''running'', terminalTabId } entry, dropping needsReview/needsReviewNotified/etc.; with needsReview cleared the autonomous Stop falls through to advanceNode instead of re-pausing. Not re-calling assignTerminalToNode is correct — awaiting-validation never releases the terminal assignment.'
     children: []
     metadata:
       status: pending
-  546a3a9d-cd49-47e5-9388-9e8f6c05810e:
-    id: 546a3a9d-cd49-47e5-9388-9e8f6c05810e
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e76f8cc-8758-49e6-925e-4a448ff04aec:
+    id: 5e76f8cc-8758-49e6-925e-4a448ff04aec
     content: 'UI: span→button mirrors the running Play button (stopPropagation + handler); CSS mirrors the .running reset on the shared base; both render branches (blueprint + checkbox) are threaded; no layout/propagation/accessibility regression; native button gives keyboard activation and a distinct aria-label.'
     children: []
     metadata:
       status: pending
-  eeabf7d7-b613-4894-93c9-b703e95b94a6:
-    id: eeabf7d7-b613-4894-93c9-b703e95b94a6
+      expanded: true
+      deleted: false
+      plugins: {}
+  c93c6288-b718-4c98-a813-c0de4668c42c:
+    id: c93c6288-b718-4c98-a813-c0de4668c42c
     content: 'Accepted edge case (nice-to-have, NOT fixed): a node parked in awaiting-validation with a DEAD terminal (surfaceStuckStep durable-recovery park) also shows the clickable Pause glyph; clicking Unpause flips it to running on a dead terminalTabId with no liveness check, bypassing the continueWorkflow/resumeSession affordances. Left unguarded deliberately — covered by business rule 4 (no live prompt = user-beware; recovery via stop/restart) and the explicit minimal-scope directive. Add a terminal-liveness guard before the flip if this proves to bite.'
     children: []
     metadata:
       status: pending
-  03bb6812-c5d5-4cff-b3aa-b0e77a7c70a7:
-    id: 03bb6812-c5d5-4cff-b3aa-b0e77a7c70a7
+      expanded: true
+      deleted: false
+      plugins: {}
+  41ecb0a3-c104-48df-8612-2dfb211cf67c:
+    id: 41ecb0a3-c104-48df-8612-2dfb211cf67c
     content: 'Nit (no action): .paused:hover uses var(--amber-600), not theme-defined (falls back to #d97706), consistent with the pre-existing .running:hover/--green-600; resting --amber-500/--green-500 are theme-defined.'
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  295a855e-2604-45e2-949f-fe58807690ca:
+    id: 295a855e-2604-45e2-949f-fe58807690ca
+    content: Zoom on node in review not working
+    children:
+      - 31037cdf-a53b-42fb-b957-d57992bbcd8d
+      - 7b01dbe1-6c76-49d8-991c-0c741f2601e1
+      - 0439d40b-c2b5-464f-9b58-e4806c34512b
+      - 19e251ff-28bc-4d99-a457-dbf1885b3070
+      - 82f48215-7705-48b9-adac-d3b2854cc4cb
+      - b23c308e-d314-4580-b27f-370ce4ea2a0e
+      - 7ee1025b-bb97-4dc7-b0ae-0bb3fb476778
+      - 39c7584e-c18c-4e93-bfce-4615f8d19e08
+      - d5794a15-4af5-4978-a528-dc573a92c620
+      - 58d2eb98-3e6b-4714-a9b4-b852ddeb96f9
+      - 174a437e-6ab2-4c42-b4f7-67db486c1f21
+      - f0710037-ce0a-4c7a-9266-39a9082b6b97
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: e2c83f79-8871-40bc-965c-47187d0fd8df
+  a0841201-3e64-4193-9b17-aa2e0b06048d:
+    id: a0841201-3e64-4193-9b17-aa2e0b06048d
+    content: worktree
+    children:
+      - ea734601-b0f8-4e4d-abf9-5bdd7def80d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea734601-b0f8-4e4d-abf9-5bdd7def80d5:
+    id: ea734601-b0f8-4e4d-abf9-5bdd7def80d5
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/review-gold-background)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb16692b-2549-43bf-88db-1a82da0c0a15:
+    id: cb16692b-2549-43bf-88db-1a82da0c0a15
+    content: Summary
+    children:
+      - b2809fae-5018-4658-9323-62c554caaf59
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2809fae-5018-4658-9323-62c554caaf59:
+    id: b2809fae-5018-4658-9323-62c554caaf59
+    content: The gold "under review" backdrop only paints the accept/cancel control bar, not the reviewed subtree below it, so the review block is not visually encapsulated as one unit.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  431ae314-b4b7-4451-9f8a-2a7dc0d21515:
+    id: 431ae314-b4b7-4451-9f8a-2a7dc0d21515
+    content: Steps to reproduce
+    children:
+      - 43a4c1cc-75ba-4cba-8ccb-91cceaf82891
+      - a88b964a-3c21-48b8-89c5-fa3be69ce97d
+      - db81cf67-b4ee-48eb-b1e5-c09daa8f557f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43a4c1cc-75ba-4cba-8ccb-91cceaf82891:
+    id: 43a4c1cc-75ba-4cba-8ccb-91cceaf82891
+    content: 'Precondition: a node has an inline AI review proposition attached (isUnderReview) with a mix of added, modified, and unchanged/context lines.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a88b964a-3c21-48b8-89c5-fa3be69ce97d:
+    id: a88b964a-3c21-48b8-89c5-fa3be69ce97d
+    content: 'User action: open the tree so the reviewed node renders its ReviewControlBar plus the proposition region beneath it.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db81cf67-b4ee-48eb-b1e5-c09daa8f557f:
+    id: db81cf67-b4ee-48eb-b1e5-c09daa8f557f
+    content: 'Observation: only the accept/cancel control bar shows the gold tint; the unchanged context lines of the subtree render on the default tree background.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a59b291-ac84-4b8c-ab37-d00788038b82:
+    id: 9a59b291-ac84-4b8c-ab37-d00788038b82
+    content: Expected behavior
+    children:
+      - 30ea8d45-ac38-4551-98bd-992257b29bca
+      - 50e00da3-d37f-4de9-9a60-83e374357f5f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30ea8d45-ac38-4551-98bd-992257b29bca:
+    id: 30ea8d45-ac38-4551-98bd-992257b29bca
+    content: 'Happy path: gold spans the whole review block — control bar plus every line of the reviewed subtree — so it reads as one encapsulated region, like the old feedback panel.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50e00da3-d37f-4de9-9a60-83e374357f5f:
+    id: 50e00da3-d37f-4de9-9a60-83e374357f5f
+    content: 'Edge cases: lines marked added (green) or modified (blue) keep their change-kind highlight; only the non-green/non-blue lines pick up the gold backdrop.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6f7c260-ded0-4ae7-9b68-f6bc8237a948:
+    id: d6f7c260-ded0-4ae7-9b68-f6bc8237a948
+    content: Actual behavior
+    children:
+      - eda4f4c7-7f56-4e76-ae9c-f5d2c4b87f02
+      - 256e9475-cb2d-427e-b329-bbd1c9114eea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eda4f4c7-7f56-4e76-ae9c-f5d2c4b87f02:
+    id: eda4f4c7-7f56-4e76-ae9c-f5d2c4b87f02
+    content: Gold (rgba(255,152,0,0.15) + gold rgb(255,193,7) borders) is confined to .review-control-bar.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  256e9475-cb2d-427e-b329-bbd1c9114eea:
+    id: 256e9475-cb2d-427e-b329-bbd1c9114eea
+    content: 'User-visible symptom: unchanged lines in the reviewed subtree look identical to normal tree rows, so the boundary/scope of the review is ambiguous.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cc418b4-d007-44d7-b62f-b402fcd241f8:
+    id: 1cc418b4-d007-44d7-b62f-b402fcd241f8
+    content: Suspected cause
+    children:
+      - 0d54b71e-c9fa-47b6-9760-7e8fd05f4b3b
+      - 31993e84-2652-4ba1-80fb-ae140dd65546
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d54b71e-c9fa-47b6-9760-7e8fd05f4b3b:
+    id: 0d54b71e-c9fa-47b6-9760-7e8fd05f4b3b
+    content: '.review-proposition-region uses `display: contents` and paints no background, so the subtree inherits the default tree backdrop instead of a gold one.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31993e84-2652-4ba1-80fb-ae140dd65546:
+    id: 31993e84-2652-4ba1-80fb-ae140dd65546
+    content: The only gold lives on .review-control-bar; the TreeNode.tsx comment notes the gold affordance was intentionally "moved to the control bar above it," dropping the whole-panel gold the old feedback panel had.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe8f7c13-d237-4ed7-abc9-d940f5b2df09:
+    id: fe8f7c13-d237-4ed7-abc9-d940f5b2df09
+    content: Affected files
+    children:
+      - 008d1d5f-a003-4f10-92be-bff385c6ae5b
+      - 59aad8be-2037-4bea-960a-df6953a376bf
+      - 386653ff-a175-450b-be82-a850f88c30cd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  008d1d5f-a003-4f10-92be-bff385c6ae5b:
+    id: 008d1d5f-a003-4f10-92be-bff385c6ae5b
+    content: src/renderer/components/TreeNode/ReviewControlBar.css — gold currently scoped to .review-control-bar only.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59aad8be-2037-4bea-960a-df6953a376bf:
+    id: 59aad8be-2037-4bea-960a-df6953a376bf
+    content: 'src/renderer/components/TreeNode/TreeNode.css — .review-proposition-region (display: contents) and the change-kind green/blue rules.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  386653ff-a175-450b-be82-a850f88c30cd:
+    id: 386653ff-a175-450b-be82-a850f88c30cd
+    content: src/renderer/components/TreeNode/TreeNode.tsx — isUnderReview branch rendering the control bar + proposition region.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a87eb01-c028-49ba-aea5-4b5c17792f0d:
+    id: 5a87eb01-c028-49ba-aea5-4b5c17792f0d
+    content: Regression window
+    children:
+      - f138f0a5-7460-4306-9468-23de6ada4ba2
+      - 5fdda4e1-2526-4aaa-8401-737c84db6d29
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f138f0a5-7460-4306-9468-23de6ada4ba2:
+    id: f138f0a5-7460-4306-9468-23de6ada4ba2
+    content: 'Last known good: the prior side feedback panel, which tinted the entire panel gold.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fdda4e1-2526-4aaa-8401-737c84db6d29:
+    id: 5fdda4e1-2526-4aaa-8401-737c84db6d29
+    content: 'First observed broken: 3b35ec2 "feat: review AI proposals inline on the node", which replaced the panel with the inline control-bar-only gold.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8384fbcf-b956-4aae-907e-c2bab2abe716:
+    id: 8384fbcf-b956-4aae-907e-c2bab2abe716
+    content: Severity
+    children:
+      - 3c33465b-0cdf-4c79-84e2-4b85f5fb5bdc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c33465b-0cdf-4c79-84e2-4b85f5fb5bdc:
+    id: 3c33465b-0cdf-4c79-84e2-4b85f5fb5bdc
+    content: Low — cosmetic/affordance clarity; no data loss or functional break, but weakens the visual boundary of an in-review block.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea81784b-d0a5-4f38-8866-48090fadcb26:
+    id: ea81784b-d0a5-4f38-8866-48090fadcb26
+    content: Notes
+    children:
+      - ae383c62-9adc-4bcc-a87e-1e4d96857aef
+      - 61efb3e2-e67c-4b9f-92ac-62164ff7cf2c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae383c62-9adc-4bcc-a87e-1e4d96857aef:
+    id: ae383c62-9adc-4bcc-a87e-1e4d96857aef
+    content: 'display: contents on .review-proposition-region means the background must move to a real wrapping element (or per-row), not the region itself — backgrounding the wrong element will break tree indentation/layout.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61efb3e2-e67c-4b9f-92ac-62164ff7cf2c:
+    id: 61efb3e2-e67c-4b9f-92ac-62164ff7cf2c
+    content: Verify gold layering against .selected / hover and change-kind highlights so it sits behind them rather than overriding them.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  964fa827-e912-4677-b415-1b6cfbe0832a:
+    id: 964fa827-e912-4677-b415-1b6cfbe0832a
+    content: Technical refinement
+    children:
+      - d05b3c2f-047b-4ce1-b201-39a354cbcf10
+      - a547823b-1329-41a4-aae7-ee8e42e389b3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d05b3c2f-047b-4ce1-b201-39a354cbcf10:
+    id: d05b3c2f-047b-4ce1-b201-39a354cbcf10
+    content: Flag complications
+    children:
+      - 6e0c92da-ffa8-4d83-8fce-30f619769a51
+      - 0569fc01-969c-4114-99d8-ecd2d538eb0c
+      - 7dcb3842-9885-4f65-b0c4-1a07fb245ab1
+      - a4feb58a-4573-4445-bbce-9712dc721281
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e0c92da-ffa8-4d83-8fce-30f619769a51:
+    id: 6e0c92da-ffa8-4d83-8fce-30f619769a51
+    content: 'Edge case/risk: a per-row gold base and the `.feedback-changekind-*` (green/blue) rules share CSS specificity, so green/blue must win by source order or a specificity bump — otherwise the unchanged-row gold can mask the change colors.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0569fc01-969c-4114-99d8-ecd2d538eb0c:
+    id: 0569fc01-969c-4114-99d8-ecd2d538eb0c
+    content: 'Edge case/risk: selection, hover, and active-session affordances inside the reviewed subtree (`.selected` border, `.active-session` inset shadow) must stay visible over the gold, the same way they already coexist with `.collaborating`.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dcb3842-9885-4f65-b0c4-1a07fb245ab1:
+    id: 7dcb3842-9885-4f65-b0c4-1a07fb245ab1
+    content: 'Out of scope: the control bar''s existing gold (unchanged) and re-architecting `.review-proposition-region` away from `display: contents`.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4feb58a-4573-4445-bbce-9712dc721281:
+    id: a4feb58a-4573-4445-bbce-9712dc721281
+    content: 'ROI: low cost — an identical gold already exists on `.collaborating` / `.collaborating-descendant`, so this extends an established pattern rather than inventing one; ROI is clearly positive.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a547823b-1329-41a4-aae7-ee8e42e389b3:
+    id: a547823b-1329-41a4-aae7-ee8e42e389b3
+    content: Summarise the approach
+    children:
+      - 8abecde3-8aaa-4de0-b5d4-887f513a6924
+      - edb6ede0-fe3a-428e-a97a-47f4fcd8e325
+      - be176e77-434d-41e6-9d33-e7de86d8b0fd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8abecde3-8aaa-4de0-b5d4-887f513a6924:
+    id: 8abecde3-8aaa-4de0-b5d4-887f513a6924
+    content: 'Reuse the existing collaboration gold (`.collaborating` already uses the same rgba(255,152,0,0.15) + rgb(255,193,7)): add a CSS base that paints every reviewed row inside `.review-proposition-region` gold, letting added/modified backgrounds layer over it so only unchanged rows show gold.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  edb6ede0-fe3a-428e-a97a-47f4fcd8e325:
+    id: edb6ede0-fe3a-428e-a97a-47f4fcd8e325
+    content: 'Pure CSS, no layout change: `display: contents` drops the region''s box but not its DOM ancestry, so a descendant selector reaches the rows directly and `.review-proposition-region` keeps `display: contents` (indentation untouched) — the earlier "needs a wrapper element" worry does not apply.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be176e77-434d-41e6-9d33-e7de86d8b0fd:
+    id: be176e77-434d-41e6-9d33-e7de86d8b0fd
+    content: 'Reviewer note: rows are full-width flex, so per-row gold reads as one contiguous band; the only real watch-item is the green/blue-vs-gold layering called out above.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61352668-06cc-461f-baa5-fe6e1fec9b16:
+    id: 61352668-06cc-461f-baa5-fe6e1fec9b16
+    content: Verification summary
+    children:
+      - e7d8a377-becf-4781-a4c7-64f7081a8345
+      - e949ef9c-6810-4d40-b417-6b7d0490a973
+      - 04271a01-dff8-49d6-a28b-e057b93f9bbc
+      - 7870239c-3966-4c02-8adf-6889ec00b69a
+      - a101c433-fabc-4051-89e3-1eae96704e99
+      - ad386719-dcd3-4cb4-a660-8a77535d6d28
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7d8a377-becf-4781-a4c7-64f7081a8345:
+    id: e7d8a377-becf-4781-a4c7-64f7081a8345
+    content: Implemented — a `:not(added):not(modified):not(removed)` rule in TreeNode.css paints uncoloured reviewed rows gold, so the control bar + proposition read as one block; green/blue/red diff rows keep their colour. Pure CSS, no TSX change; structural tests pass (26/26).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e949ef9c-6810-4d40-b417-6b7d0490a973:
+    id: e949ef9c-6810-4d40-b417-6b7d0490a973
+    content: Pending — visual in-app confirmation of the gold band is not yet done; jsdom cannot assert CSS paint, so it is covered by it.todo placeholders and manual verification.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04271a01-dff8-49d6-a28b-e057b93f9bbc:
+    id: 04271a01-dff8-49d6-a28b-e057b93f9bbc
+    content: Layering resolved — the `:not()` scoping means gold never overlaps the change-kind colours, and selection/active-session use borders/shadow (not background), so they stay visible over the gold.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7870239c-3966-4c02-8adf-6889ec00b69a:
+    id: 7870239c-3966-4c02-8adf-6889ec00b69a
+    content: 'Out of scope by design — control bar gold left unchanged; `.review-proposition-region` not re-architected away from `display: contents`.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a101c433-fabc-4051-89e3-1eae96704e99:
+    id: a101c433-fabc-4051-89e3-1eae96704e99
+    content: Marginal, skipped — a multi-selected or collapsed-parent unchanged row inside a review is overridden by the gold (its lower-specificity teal/blue background loses); unlikely interaction, low value relative to complexity.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad386719-dcd3-4cb4-a660-8a77535d6d28:
+    id: ad386719-dcd3-4cb4-a660-8a77535d6d28
+    content: Note — of the three predicted Affected files, only TreeNode.css was changed; ReviewControlBar.css and TreeNode.tsx were not touched.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6a1fba1-6887-4e50-bce5-2115f7ce3691:
+    id: a6a1fba1-6887-4e50-bce5-2115f7ce3691
+    content: review feedback
+    children:
+      - df0ff2e5-2520-4deb-99da-7c6cbd61b71a
+      - 3d52fe5f-2561-44f4-920c-587a947232d0
+      - 14c4e7da-ce0f-4dca-9c1c-f9b858a94f5d
+      - 4687f8b6-fc42-46d3-b0c2-1cea67ecb053
+      - 5c693f01-b1b2-4fa5-9200-3a7cbe5a0019
+    metadata:
+      status: pending
+  df0ff2e5-2520-4deb-99da-7c6cbd61b71a:
+    id: df0ff2e5-2520-4deb-99da-7c6cbd61b71a
+    content: 'Verdict: Sound — approved, no blocking or should-fix issues. Reviewed by pr-review-toolkit:code-reviewer against the worktree diff since e16859a plus calling code (TreeNode.tsx isUnderReview branch, computeFeedbackChangeKindClass, ReviewControlBar.css).'
+    children: []
+    metadata:
+      status: pending
+  3d52fe5f-2561-44f4-920c-587a947232d0:
+    id: 3d52fe5f-2561-44f4-920c-587a947232d0
+    content: 'CSS correctness confirmed: `display: contents` removes the region''s box but not its DOM ancestry, so the `.review-proposition-region .tree-node-wrapper` descendant selector still matches every reviewed row. The `:not(added):not(modified):not(removed)` chain means gold never matches diff-coloured rows, so green/blue/red are preserved with no specificity conflict.'
+    children: []
+    metadata:
+      status: pending
+  14c4e7da-ce0f-4dca-9c1c-f9b858a94f5d:
+    id: 14c4e7da-ce0f-4dca-9c1c-f9b858a94f5d
+    content: 'Accepted trade-off: the new rule (0,5,0) does win over `.multi-selected` (teal) and `.collapsed-parent` (blue) backgrounds on an unchanged reviewed row, so gold shows instead. Reviewer agreed this is marginal — multi-select/collapse inside a transient read-only proposition is low-probability — and a reasonable skip, not worth guarding.'
+    children: []
+    metadata:
+      status: pending
+  4687f8b6-fc42-46d3-b0c2-1cea67ecb053:
+    id: 4687f8b6-fc42-46d3-b0c2-1cea67ecb053
+    content: 'Affordances intact: `.selected` (borders), `.active-session` (inset box-shadow), and hover set no background, so they remain visible layered over the gold backdrop.'
+    children: []
+    metadata:
+      status: pending
+  5c693f01-b1b2-4fa5-9200-3a7cbe5a0019:
+    id: 5c693f01-b1b2-4fa5-9200-3a7cbe5a0019
+    content: 'Tests & conventions: two real structural tests pin the CSS preconditions (context row carries no change-kind class; all reviewed rows are DOM descendants of the region). Painted-pixel behaviour is `it.todo` because jsdom does not evaluate stylesheets — consistent with the existing scroll-anchor todo; no empty/vacuous tests. Plain CSS, why-comment, and fixture reuse all good. Gold literal rgba(255,152,0,0.15) is duplicated but matches 3 existing usages (.collaborating, .feedback-fading, ReviewControlBar.css); optional non-blocking follow-up is tokenizing it into a globals.css custom property (out of scope here).'
+    children: []
+    metadata:
+      status: pending
+  7373e3eb-f71f-413d-97f8-945081934fb8:
+    id: 7373e3eb-f71f-413d-97f8-945081934fb8
+    content: review resolution
+    children:
+      - ccb4d3c7-acfd-4d09-b424-cbf5bf45c3af
+      - 73274754-250a-4646-8871-90f8686860eb
+      - f7e61f51-c904-4620-a8eb-a38c346d193c
+    metadata:
+      status: pending
+  ccb4d3c7-acfd-4d09-b424-cbf5bf45c3af:
+    id: ccb4d3c7-acfd-4d09-b424-cbf5bf45c3af
+    content: 'Major issues fixed: none — the review found no blocking issues. The fix''s correctness (display:contents + descendant selector; :not() excluding change-kind colours) was independently confirmed against the actual code, not just accepted on the reviewer''s word.'
+    children: []
+    metadata:
+      status: pending
+  73274754-250a-4646-8871-90f8686860eb:
+    id: 73274754-250a-4646-8871-90f8686860eb
+    content: 'Minor issues fixed: none — no should-fix findings. The diff was approved as-is; no code changes were needed in this step.'
+    children: []
+    metadata:
+      status: pending
+  f7e61f51-c904-4620-a8eb-a38c346d193c:
+    id: f7e61f51-c904-4620-a8eb-a38c346d193c
+    content: 'Feedback skipped (both optional nits, with justification): (1) Tokenize the gold literal into a globals.css custom property — skipped as out of scope. Confirmed the literal rgba(255,152,0,0.15) appears 5x (ReviewControlBar.css, .collaborating, .feedback-fading, a keyframe, the new rule); converting only the new rule would make it the lone inconsistent one, and converting all 5 is a separate refactor of pre-existing rules unchanged since last commit. Reviewer agreed it is out of scope. (2) Pre-existing PR-reference comments in the test file — skipped; not part of this diff, reviewer explicitly said no action on the new lines.'
+    children: []
+    metadata:
+      status: pending
+  70283e2c-0de6-471f-b7d7-9cb2f5667b1b:
+    id: 70283e2c-0de6-471f-b7d7-9cb2f5667b1b
+    content: worktree
+    children:
+      - 4a70435d-8469-498c-9b53-c18b830f6b20
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a70435d-8469-498c-9b53-c18b830f6b20:
+    id: 4a70435d-8469-498c-9b53-c18b830f6b20
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-worktrees/manual-last-step-completes)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd62ad07-42ec-42a7-8696-7b6012db842e:
+    id: dd62ad07-42ec-42a7-8696-7b6012db842e
+    content: Summary
+    children:
+      - bde6e83d-7fbe-4881-92ee-2f8c1f6f39e6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bde6e83d-7fbe-4881-92ee-2f8c1f6f39e6:
+    id: bde6e83d-7fbe-4881-92ee-2f8c1f6f39e6
+    content: When a workflow's last step is type "manual", that step is left paused (awaiting-validation) instead of completing, so the terminal stays bound and assigning a sibling node into the same window is rejected with "already assigned to a running workflow node" even though nothing is processing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d978ba2-700a-4877-9326-3a547b07f87c:
+    id: 7d978ba2-700a-4877-9326-3a547b07f87c
+    content: Steps to reproduce
+    children:
+      - b7e51431-d75a-4558-9568-621682f0e9a2
+      - 41b58958-5d92-4fdd-850d-2b69a13ba90e
+      - c526c372-ee9b-4290-a0cf-8546aeb13069
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7e51431-d75a-4558-9568-621682f0e9a2:
+    id: b7e51431-d75a-4558-9568-621682f0e9a2
+    content: 'Precondition: a workflow / decomposition whose final step is type "manual", run down to that last step in a terminal tab'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41b58958-5d92-4fdd-850d-2b69a13ba90e:
+    id: 41b58958-5d92-4fdd-850d-2b69a13ba90e
+    content: 'User action: after the last (manual) step''s prompt finishes, try to play / assign a sibling node into the same terminal window'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c526c372-ee9b-4290-a0cf-8546aeb13069:
+    id: c526c372-ee9b-4290-a0cf-8546aeb13069
+    content: 'Observation: assignment is rejected with the running-node warning though no prompt is processing; inspecting the step shows it paused (awaiting-validation), and manually unpausing it then allows the sibling to be assigned'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e46adc5-7aa0-4742-9057-89591359ead5:
+    id: 6e46adc5-7aa0-4742-9057-89591359ead5
+    content: Expected behavior
+    children:
+      - 092d72b0-bc9e-4ac2-acff-7c5b15d110e2
+      - 5f9f15d4-5f73-429d-9f54-2c81aebe2a10
+      - ed6b5fa1-7a40-43fb-8399-675dfa39332a
+      - 690fd0e0-01bf-4d2d-8a27-b9970700c4ff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  092d72b0-bc9e-4ac2-acff-7c5b15d110e2:
+    id: 092d72b0-bc9e-4ac2-acff-7c5b15d110e2
+    content: 'Happy path: a "manual" last step should NOT be left paused — it should complete and free the terminal so a sibling can be assigned immediately'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f9f15d4-5f73-429d-9f54-2c81aebe2a10:
+    id: 5f9f15d4-5f73-429d-9f54-2c81aebe2a10
+    content: 'Edge case — last step "autonomous": should complete (already correct: advanceNode calls completeWorkflow when there is no next step)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed6b5fa1-7a40-43fb-8399-675dfa39332a:
+    id: ed6b5fa1-7a40-43fb-8399-675dfa39332a
+    content: 'Edge case — last step "checkpoint": should complete (user states "complete and pause" — see Notes for the discrepancy to confirm)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  690fd0e0-01bf-4d2d-8a27-b9970700c4ff:
+    id: 690fd0e0-01bf-4d2d-8a27-b9970700c4ff
+    content: 'Edge case — non-last "manual" step: should still pause to await the user; only the no-next-step case changes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebd29625-e42d-4763-9728-3f0df4bfd8fe:
+    id: ebd29625-e42d-4763-9728-3f0df4bfd8fe
+    content: Actual behavior
+    children:
+      - 2f6d077c-f5fe-437e-90b9-e3b9913e421b
+      - 13b9412e-801c-45b7-bd31-5507c6fa3995
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f6d077c-f5fe-437e-90b9-e3b9913e421b:
+    id: 2f6d077c-f5fe-437e-90b9-e3b9913e421b
+    content: The manual-step Stop handler unconditionally transitions a running step to "awaiting-validation" regardless of whether a next step exists
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13b9412e-801c-45b7-bd31-5507c6fa3995:
+    id: 13b9412e-801c-45b7-bd31-5507c6fa3995
+    content: 'User-visible: terminal appears busy, the warning "Terminal tab is already assigned to a running workflow node." fires, and the sibling cannot be played until the user manually clicks the pause glyph to unpause'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdf85c5b-3cdc-4ffb-8cf2-656875e730b6:
+    id: cdf85c5b-3cdc-4ffb-8cf2-656875e730b6
+    content: Suspected cause
+    children:
+      - 73b81a1f-6941-449a-bf19-90f8fa95093c
+      - 2d6bd77d-91ee-459e-95ca-c303cf40a1cc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73b81a1f-6941-449a-bf19-90f8fa95093c:
+    id: 73b81a1f-6941-449a-bf19-90f8fa95093c
+    content: 'Code path: workflowHookEventHandler.ts manual branch (~lines 284-302) pauses with no hasNextStep guard, whereas the checkpoint branch (~303-336) and autonomous advanceNode both call completeWorkflow when findNextStepTarget returns null'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d6bd77d-91ee-459e-95ca-c303cf40a1cc:
+    id: 2d6bd77d-91ee-459e-95ca-c303cf40a1cc
+    content: 'Why existing guards miss it: awaiting-validation counts as "live" in isLiveExecutionOnTerminal, so findRunningNodeOnTerminal still reports the paused last step as occupying the terminal; commit e16859a only added a manual unpause affordance, it did not add the missing last-step completion check'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7361e511-2f5e-4a20-8dfd-02c11bb6a2b8:
+    id: 7361e511-2f5e-4a20-8dfd-02c11bb6a2b8
+    content: Affected files
+    children:
+      - 238361cb-b67f-4944-8eda-7f4375f0601f
+      - 167f6f50-8579-447e-ab4d-561473d38940
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  238361cb-b67f-4944-8eda-7f4375f0601f:
+    id: 238361cb-b67f-4944-8eda-7f4375f0601f
+    content: 'Primary suspect: src/renderer/store/tree/actions/workflowHookEventHandler.ts (manual branch ~284-302)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  167f6f50-8579-447e-ab4d-561473d38940:
+    id: 167f6f50-8579-447e-ab4d-561473d38940
+    content: 'Related surface: src/renderer/store/tree/actions/terminalBindingResolution.ts (isLiveExecutionOnTerminal / findRunningNodeOnTerminal) and src/renderer/store/tree/actions/workflowExecutionActions.ts (startWorkflowOnTerminal warning, advanceNode, unpauseWorkflow)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32158aab-f5a7-400a-b0fc-ba1e230f933d:
+    id: 32158aab-f5a7-400a-b0fc-ba1e230f933d
+    content: Regression window
+    children:
+      - 721d9dfa-2757-4e40-a781-db54013da095
+      - c47fa18b-0f54-4dbd-994e-f40032f681fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  721d9dfa-2757-4e40-a781-db54013da095:
+    id: 721d9dfa-2757-4e40-a781-db54013da095
+    content: 'Last known good: f5c815c (2026-05-28), the commit immediately before the manual-pause branch was introduced'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c47fa18b-0f54-4dbd-994e-f40032f681fe:
+    id: c47fa18b-0f54-4dbd-994e-f40032f681fe
+    content: 'First observed broken: ff1af92 "feat: bind-aware Start/Resume workflow actions for manual steps" (2026-05-28), which added the unconditional manual pause'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f50fbb0-d63d-4631-81c7-e86b176b4c9a:
+    id: 5f50fbb0-d63d-4631-81c7-e86b176b4c9a
+    content: Severity
+    children:
+      - 949f6572-fc01-484b-a3fa-73c78b344d76
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  949f6572-fc01-484b-a3fa-73c78b344d76:
+    id: 949f6572-fc01-484b-a3fa-73c78b344d76
+    content: Medium — workflow-completion UX bug, no data loss; user is blocked from assigning siblings until they manually unpause (workaround via the e16859a pause glyph)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b955e70a-c3a2-4002-979f-234f2d66084d:
+    id: b955e70a-c3a2-4002-979f-234f2d66084d
+    content: Notes
+    children:
+      - cdc18ff6-df92-4323-b288-6138ee396aff
+      - 5bc6582d-86a0-4d12-bb8b-58f63b486271
+      - f5972f4d-48df-4141-a099-5becdd4b35ca
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdc18ff6-df92-4323-b288-6138ee396aff:
+    id: cdc18ff6-df92-4323-b288-6138ee396aff
+    content: 'Disambiguate from the separate Stop/advance-coupling stall ("Stop dropped: no running node") on reload/restart — that one is reattach/run-state driven; this is a missing last-step branch in the handler'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bc6582d-86a0-4d12-bb8b-58f63b486271:
+    id: 5bc6582d-86a0-4d12-bb8b-58f63b486271
+    content: Checkpoint last step currently calls completeWorkflow with no pause/notification, but the report expects "complete and pause" — confirm intended behavior before fixing, so the fix makes all three end-types consistent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5972f4d-48df-4141-a099-5becdd4b35ca:
+    id: f5972f4d-48df-4141-a099-5becdd4b35ca
+    content: 'UX/telemetry gap: a paused terminal gives no inline affordance explaining why a sibling can''t be assigned beyond the warning toast — consider surfacing "step paused — unpause to free terminal"'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4bbfe20-36de-4775-a619-c2e4fdcd869c:
+    id: a4bbfe20-36de-4775-a619-c2e4fdcd869c
+    content: Technical refinement
+    children:
+      - 90ac3357-c130-448b-ad30-d40d946e2286
+      - 8d850126-f6b5-4b7d-af4a-e1b6e24e84af
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90ac3357-c130-448b-ad30-d40d946e2286:
+    id: 90ac3357-c130-448b-ad30-d40d946e2286
+    content: Flag complications
+    children:
+      - 0ad0035c-b98c-4d88-8342-4978d88a75c5
+      - 59573e3d-8103-41aa-b1c4-709ee6b54ce7
+      - 66955602-a1a3-47e1-a75f-85b743566405
+      - aa027efc-b709-4323-8857-347bf316cdd0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ad0035c-b98c-4d88-8342-4978d88a75c5:
+    id: 0ad0035c-b98c-4d88-8342-4978d88a75c5
+    content: 'Edge/risk: a manual last step that is a decomposed leaf must still hand off to the next sibling — completeWorkflow already calls checkRecurse, so the path is covered, but it warrants a recurse-scenario test'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59573e3d-8103-41aa-b1c4-709ee6b54ce7:
+    id: 59573e3d-8103-41aa-b1c4-709ee6b54ce7
+    content: 'Adjacent decision: checkpoint last step completes silently today while the report expects "complete and pause"; settle the desired end-type matrix separately — it does not block the manual fix'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66955602-a1a3-47e1-a75f-85b743566405:
+    id: 66955602-a1a3-47e1-a75f-85b743566405
+    content: 'Out of scope: the separate "Stop dropped: no running node" reattach stall, an inline paused-terminal UX affordance, and any redefinition of isLiveExecutionOnTerminal (unnecessary — completion frees the binding)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa027efc-b709-4323-8857-347bf316cdd0:
+    id: aa027efc-b709-4323-8857-347bf316cdd0
+    content: 'ROI: clearly positive — completeWorkflow already deletes the execution entry, releases the terminal assignment, and runs checkRecurse, so the fix adds no new plumbing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d850126-f6b5-4b7d-af4a-e1b6e24e84af:
+    id: 8d850126-f6b5-4b7d-af4a-e1b6e24e84af
+    content: Summarise the approach
+    children:
+      - 09ede53c-81f1-483e-8ee1-6d0e4571acf2
+      - 52b8128a-e98f-4f1e-9f1b-18328350e44b
+      - b5dcfd36-b6dd-4e08-a592-a013ed4a3a8f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09ede53c-81f1-483e-8ee1-6d0e4571acf2:
+    id: 09ede53c-81f1-483e-8ee1-6d0e4571acf2
+    content: 'Mirror the checkpoint guard in the manual branch of workflowHookEventHandler.ts (~284-302): when findNextStepTarget returns null, call completeWorkflow(runningNodeId) instead of setting awaiting-validation; otherwise keep pausing as today'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52b8128a-e98f-4f1e-9f1b-18328350e44b:
+    id: 52b8128a-e98f-4f1e-9f1b-18328350e44b
+    content: No change to terminalBindingResolution or the live-state definition — completeWorkflow already frees the terminal binding, so a sibling can be assigned immediately
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5dcfd36-b6dd-4e08-a592-a013ed4a3a8f:
+    id: b5dcfd36-b6dd-4e08-a592-a013ed4a3a8f
+    content: 'Non-obvious: this makes manual''s last-step path identical to checkpoint''s/autonomous''s, and completeWorkflow''s existing checkRecurse call preserves decomposed-sibling handoff'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f9b9ef9-93e1-4704-80ca-1e998772eb52:
+    id: 0f9b9ef9-93e1-4704-80ca-1e998772eb52
+    content: Verification
+    children:
+      - 00e442d7-7818-46e1-b9e7-a62ef1a42295
+      - 8ce62d23-c6bd-4458-8458-da8ed3412eb6
+      - b7f1f9f4-1148-43b3-af31-e281f38d6234
+      - 76cccd65-ce25-4384-9335-965289b71b52
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00e442d7-7818-46e1-b9e7-a62ef1a42295:
+    id: 00e442d7-7818-46e1-b9e7-a62ef1a42295
+    content: Implemented & verified — manual branch now mirrors checkpoint's hasNextStep guard (completeWorkflow when no next step, else pause); workflowExecution.test.ts passes 27/0, ESLint and tsc --noEmit clean on changed files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ce62d23-c6bd-4458-8458-da8ed3412eb6:
+    id: 8ce62d23-c6bd-4458-8458-da8ed3412eb6
+    content: 'Undone — checkpoint "complete and pause": deferred pending a user decision on the end-type matrix; checkpoint already completes, the pause/notify gap does not block this fix'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7f1f9f4-1148-43b3-af31-e281f38d6234:
+    id: b7f1f9f4-1148-43b3-af31-e281f38d6234
+    content: 'Undone — inline paused-terminal UX affordance: scoped out of this fix; not rejected, just not part of this story'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  76cccd65-ce25-4384-9335-965289b71b52:
+    id: 76cccd65-ce25-4384-9335-965289b71b52
+    content: 'Test gap — decomposed-leaf manual-last-step recurse handoff: behavior covered by completeWorkflow''s existing checkRecurse, but the explicit regression test is left as an it.todo (needs the decomposition harness)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31037cdf-a53b-42fb-b957-d57992bbcd8d:
+    id: 31037cdf-a53b-42fb-b957-d57992bbcd8d
+    content: worktree
+    children:
+      - fcab4588-d409-4b44-9e9c-e7e8aeead48c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fcab4588-d409-4b44-9e9c-e7e8aeead48c:
+    id: fcab4588-d409-4b44-9e9c-e7e8aeead48c
+    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/zoom-review-node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b01dbe1-6c76-49d8-991c-0c741f2601e1:
+    id: 7b01dbe1-6c76-49d8-991c-0c741f2601e1
+    content: Summary
+    children:
+      - 3fb1ba32-67f7-447e-a784-4c5da5606873
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fb1ba32-67f7-447e-a784-4c5da5606873:
+    id: 3fb1ba32-67f7-447e-a784-4c5da5606873
+    content: Zooming into a node that is under review renders its live contents (children only, no root row, no proposition) and omits the accept/cancel controls, so the review proposal is invisible and unactionable from a zoom tab.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0439d40b-c2b5-464f-9b58-e4806c34512b:
+    id: 0439d40b-c2b5-464f-9b58-e4806c34512b
+    content: Steps to reproduce
+    children:
+      - 14b8c2ce-402b-4a5f-9476-b743ffc3e98e
+      - 1d0ab745-a1f7-49aa-a561-f513039f4e45
+      - f2906b29-4390-420c-bc20-f22c6e8d4594
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14b8c2ce-402b-4a5f-9476-b743ffc3e98e:
+    id: 14b8c2ce-402b-4a5f-9476-b743ffc3e98e
+    content: 'Precondition: a node is under review with a pending proposition, so inline it shows ReviewControlBar plus the proposition subtree on the node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d0ab745-a1f7-49aa-a561-f513039f4e45:
+    id: 1d0ab745-a1f7-49aa-a561-f513039f4e45
+    content: 'User action: zoom into that under-review node to open it as the zoom-tab root (zoom://sourceFilePath#nodeId).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2906b29-4390-420c-bc20-f22c6e8d4594:
+    id: f2906b29-4390-420c-bc20-f22c6e8d4594
+    content: 'Observation: the zoom tab shows the node''s live children with no reviewed-root row, no proposition diff, and no accept/cancel buttons.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19e251ff-28bc-4d99-a457-dbf1885b3070:
+    id: 19e251ff-28bc-4d99-a457-dbf1885b3070
+    content: Expected behavior
+    children:
+      - 5c2ca4bd-d3d8-49cd-838b-fa58d7cf986b
+      - c1c437f1-2a91-43a3-be1a-ebf0d3ffb43b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c2ca4bd-d3d8-49cd-838b-fa58d7cf986b:
+    id: 5c2ca4bd-d3d8-49cd-838b-fa58d7cf986b
+    content: 'Happy path: a zoomed under-review node shows the review proposition (proposed subtree with per-node change-kind highlighting) plus the accept/cancel control bar, identical to inline review in the main tree.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1c437f1-2a91-43a3-be1a-ebf0d3ffb43b:
+    id: c1c437f1-2a91-43a3-be1a-ebf0d3ffb43b
+    content: 'Edge cases: multi-root decomposition propositions show all proposition roots; accept/cancel from the zoom tab resolves the review and updates the node; zooming a not-under-review node is unaffected.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82f48215-7705-48b9-adac-d3b2854cc4cb:
+    id: 82f48215-7705-48b9-adac-d3b2854cc4cb
+    content: Actual behavior
+    children:
+      - ba096c32-7bee-410b-8589-6e0f4e0ba25d
+      - 958b06fa-adae-45be-aec9-ace1a3174802
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba096c32-7bee-410b-8589-6e0f4e0ba25d:
+    id: ba096c32-7bee-410b-8589-6e0f4e0ba25d
+    content: 'What happens: Tree renders only the children of the zoom root (displayRootId) and never renders the root node itself, so the under-review root''s TreeNode review branch never executes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  958b06fa-adae-45be-aec9-ace1a3174802:
+    id: 958b06fa-adae-45be-aec9-ace1a3174802
+    content: User-visible symptoms
+    children:
+      - eb5d6bbe-7d6c-41c0-8d4c-6ea56aff05eb
+      - 2fe2c2b1-d7ad-45a8-951b-42e4d4f4c4f4
+      - fb91e55f-b21e-45ac-8840-9d778e7e0569
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb5d6bbe-7d6c-41c0-8d4c-6ea56aff05eb:
+    id: eb5d6bbe-7d6c-41c0-8d4c-6ea56aff05eb
+    content: It zooms on current contents, not the review proposal.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fe2c2b1-d7ad-45a8-951b-42e4d4f4c4f4:
+    id: 2fe2c2b1-d7ad-45a8-951b-42e4d4f4c4f4
+    content: It doesn't show the parent/root node, just the children.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb91e55f-b21e-45ac-8840-9d778e7e0569:
+    id: fb91e55f-b21e-45ac-8840-9d778e7e0569
+    content: It doesn't show the accept/cancel buttons.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b23c308e-d314-4580-b27f-370ce4ea2a0e:
+    id: b23c308e-d314-4580-b27f-370ce4ea2a0e
+    content: Suspected cause
+    children:
+      - de122c00-82a1-468f-8fc0-34ddc83902c3
+      - 2454b096-7038-416a-a644-824dc1131549
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de122c00-82a1-468f-8fc0-34ddc83902c3:
+    id: de122c00-82a1-468f-8fc0-34ddc83902c3
+    content: 'Code path: Tree.tsx maps visibleChildren of displayRootId to TreeNode (Tree.tsx:27-30, 57-59) and never renders displayRootId itself; the proposition and ReviewControlBar live in the TreeNode review branch (TreeNode.tsx:83-94), reached only when the under-review node is itself rendered as a TreeNode.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2454b096-7038-416a-a644-824dc1131549:
+    id: 2454b096-7038-416a-a644-824dc1131549
+    content: 'Why the existing guard misses it: isUnderReview/useReviewProposition is evaluated per-TreeNode, but the zoom root is never instantiated as a TreeNode (only its children are), so the check never runs for it — the inline-review path assumes a reviewed node always has a parent that renders it, which zoom (parentless view root) violates.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ee1025b-bb97-4dc7-b0ae-0bb3fb476778:
+    id: 7ee1025b-bb97-4dc7-b0ae-0bb3fb476778
+    content: Affected files
+    children:
+      - d0b68e5a-ab16-42fb-8a65-1c15f962e694
+      - 3d92aec7-0f57-4d45-9c73-5e1f8760a878
+      - 66328744-791c-4fde-b86a-84320ca29f4c
+      - ea1a74d3-7fde-4dc7-ba4d-d0a018a35d60
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0b68e5a-ab16-42fb-8a65-1c15f962e694:
+    id: d0b68e5a-ab16-42fb-8a65-1c15f962e694
+    content: 'Primary: src/renderer/components/Tree/Tree.tsx (children-only render of displayRootId, lines 27-30 and 57-59)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d92aec7-0f57-4d45-9c73-5e1f8760a878:
+    id: 3d92aec7-0f57-4d45-9c73-5e1f8760a878
+    content: 'Related: src/renderer/components/TreeNode/TreeNode.tsx (review branch lines 83-94; PropositionRoots lines 159-172)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66328744-791c-4fde-b86a-84320ca29f4c:
+    id: 66328744-791c-4fde-b86a-84320ca29f4c
+    content: 'Related: src/renderer/components/TreeNode/ReviewControlBar.tsx (controls rendered by the reviewed node itself, not its parent)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea1a74d3-7fde-4dc7-ba4d-d0a018a35d60:
+    id: ea1a74d3-7fde-4dc7-ba4d-d0a018a35d60
+    content: 'Related: src/renderer/components/TreeNode/hooks/useReviewProposition.ts (per-node isUnderReview gate)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39c7584e-c18c-4e93-bfce-4615f8d19e08:
+    id: 39c7584e-c18c-4e93-bfce-4615f8d19e08
+    content: Regression window
+    children:
+      - 3c990b71-0068-46b6-badc-0a9973a55ef1
+      - ca8e6d2b-390e-44a2-b90c-7d3abb7ba058
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c990b71-0068-46b6-badc-0a9973a55ef1:
+    id: 3c990b71-0068-46b6-badc-0a9973a55ef1
+    content: 'Last known good: before inline review — zoom (shipped 41cc79e, 2025-12-06) worked for normal nodes, and reviews lived in the separate feedback panel, so zooming a reviewed node never needed to show a proposition.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca8e6d2b-390e-44a2-b90c-7d3abb7ba058:
+    id: ca8e6d2b-390e-44a2-b90c-7d3abb7ba058
+    content: 'First observed broken: 3b35ec2 "review AI proposals inline on the node" (2026-06-06) added the inline TreeNode review branch that zoom bypasses; fully exposed by 3df052e "retire the feedback panel" (2026-06-06), after which the proposition exists only inline.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5794a15-4af5-4978-a528-dc573a92c620:
+    id: d5794a15-4af5-4978-a528-dc573a92c620
+    content: Severity
+    children:
+      - 6249a8e1-d2b1-4481-a19c-eedd4ce69cd5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6249a8e1-d2b1-4481-a19c-eedd4ce69cd5:
+    id: 6249a8e1-d2b1-4481-a19c-eedd4ce69cd5
+    content: 'Medium-High: viewing/accepting/rejecting a proposal is impossible from a zoom tab; a user who zooms into a reviewed node sees only stale live content and is blocked on that review until they un-zoom. No data loss.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  58d2eb98-3e6b-4714-a9b4-b852ddeb96f9:
+    id: 58d2eb98-3e6b-4714-a9b4-b852ddeb96f9
+    content: Notes
+    children:
+      - e0dbd4ef-fb69-4367-a9cd-d31d5fa370d0
+      - 8f85e59c-afe0-43a7-96c6-b1532b3a2dfc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0dbd4ef-fb69-4367-a9cd-d31d5fa370d0:
+    id: e0dbd4ef-fb69-4367-a9cd-d31d5fa370d0
+    content: 'Disambiguate from: the separate Stop/advance "completed step stalls" bug and from overlap-gating review-exclusivity — this is purely a render-path gap, not a review-state bug; also distinct from a review descendant (collaborating-descendant) vs the review root.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f85e59c-afe0-43a7-96c6-b1532b3a2dfc:
+    id: 8f85e59c-afe0-43a7-96c6-b1532b3a2dfc
+    content: 'UX/telemetry gap: no placeholder tells the user a zoomed node is under review but unrendered; candidate fix is to render the zoom root itself as a TreeNode so zoom and review share one render path, and/or show a banner when the zoomed node has an active review.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  174a437e-6ab2-4c42-b4f7-67db486c1f21:
+    id: 174a437e-6ab2-4c42-b4f7-67db486c1f21
+    content: Technical refinement
+    children:
+      - e355e4d5-df5d-4242-9040-bac0eae49bae
+      - 25d1e90a-27ee-4913-9556-38a4373d7bee
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e355e4d5-df5d-4242-9040-bac0eae49bae:
+    id: e355e4d5-df5d-4242-9040-bac0eae49bae
+    content: Flag complications
+    children:
+      - ed5a0388-ca6b-4b4e-923d-833d47ec5597
+      - c998f80f-3eb4-4b35-b0f4-c3d8fc663b6a
+      - a1129d77-65c1-4df5-8dff-e44b09ea96d6
+      - 11842cec-5a32-4cf7-96f1-ecc2b3acb468
+      - c8308b24-ba69-42c0-be56-d9f70530f725
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed5a0388-ca6b-4b4e-923d-833d47ec5597:
+    id: ed5a0388-ca6b-4b4e-923d-833d47ec5597
+    content: 'Must gate on review state: only a real zoom root may render as a node — the normal hidden synthetic root must stay children-only, or it renders an empty/garbage row.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c998f80f-3eb4-4b35-b0f4-c3d8fc663b6a:
+    id: c998f80f-3eb4-4b35-b0f4-c3d8fc663b6a
+    content: Tree keys rendering off the zoom root's live children (displayChildren / visibleChildren) and early-returns null when they are absent (Tree.tsx:45); the reviewed root must render from its proposition store regardless of live children, or a reviewed leaf still shows nothing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1129d77-65c1-4df5-8dff-e44b09ea96d6:
+    id: a1129d77-65c1-4df5-8dff-e44b09ea96d6
+    content: 'Post-action behaviour needs defining: accept/cancel from the zoom tab resolves the review and may restructure or remove the zoomed node, leaving zoomedNodeId dangling — needs a graceful fallback (un-zoom or empty state).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11842cec-5a32-4cf7-96f1-ecc2b3acb468:
+    id: 11842cec-5a32-4cf7-96f1-ecc2b3acb468
+    content: 'Out of scope: showing the node''s own row for normal (not-under-review) zoom — that is existing zoom design, not this bug.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8308b24-ba69-42c0-be56-d9f70530f725:
+    id: c8308b24-ba69-42c0-be56-d9f70530f725
+    content: 'Scope bound: only "zoom root IS the review root" is broken; zooming an ancestor of a reviewed descendant already renders the review correctly via normal TreeNode recursion.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25d1e90a-27ee-4913-9556-38a4373d7bee:
+    id: 25d1e90a-27ee-4913-9556-38a4373d7bee
+    content: Summarise the approach
+    children:
+      - 66032c08-62c7-452e-a637-860d37a4a38b
+      - 6abe16b1-5d2a-4591-8a08-2b7c930dbe2e
+      - 28beae65-3ad9-405e-bbb8-889a6f6f7cbc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66032c08-62c7-452e-a637-860d37a4a38b:
+    id: 66032c08-62c7-452e-a637-860d37a4a38b
+    content: In Tree.tsx, when zoomedNodeId is itself under review, render it as a single TreeNode at depth 0 so the existing review branch (ReviewControlBar + PropositionRoots, TreeNode.tsx:83-94) fires; otherwise keep today's children-only render.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6abe16b1-5d2a-4591-8a08-2b7c930dbe2e:
+    id: 6abe16b1-5d2a-4591-8a08-2b7c930dbe2e
+    content: Converge zoom and inline review on the one existing per-node review path rather than duplicating proposition/control rendering in the zoom view — small surface, contained to Tree plus a reviews-state read.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28beae65-3ad9-405e-bbb8-889a6f6f7cbc:
+    id: 28beae65-3ad9-405e-bbb8-889a6f6f7cbc
+    content: 'Surprise to watch: the children-only render and the !displayChildren early-return are load-bearing for the hidden root and review-adds-children cases; both must survive, and post-accept zoom-target handling is the main behavioural decision.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0710037-ce0a-4c7a-9266-39a9082b6b97:
+    id: f0710037-ce0a-4c7a-9266-39a9082b6b97
+    content: Verification
+    children:
+      - 62b3f659-92e6-4045-9409-525d66b5f0ef
+      - 9fe1a210-6d15-4b3c-8ce5-96f84dcd4a56
+      - b21c61b2-d044-4e07-9457-d5797996fd11
+      - 9ae3d083-90f6-42a8-8aae-ead41b5d036b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62b3f659-92e6-4045-9409-525d66b5f0ef:
+    id: 62b3f659-92e6-4045-9409-525d66b5f0ef
+    content: 'Implemented and verified: zoom into an under-review root now renders the proposition (single-root and multi-root decomposition) plus the accept/cancel control bar; a reviewed leaf with no live children still renders; not-under-review zoom and a dangling zoom target are unchanged/safe.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fe1a210-6d15-4b3c-8ce5-96f84dcd4a56:
+    id: 9fe1a210-6d15-4b3c-8ce5-96f84dcd4a56
+    content: Fix is gated on review state and confined to Tree.tsx (one reviews-state selector plus a render branch), so the hidden synthetic root and normal zoom keep their children-only render.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b21c61b2-d044-4e07-9457-d5797996fd11:
+    id: b21c61b2-d044-4e07-9457-d5797996fd11
+    content: 'Checks (run after implementation, no changes since): Tree-scoped suites 58 passed / 2 todo, ESLint clean and no TypeScript errors on the changed/new files.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ae3d083-90f6-42a8-8aae-ead41b5d036b:
+    id: 9ae3d083-90f6-42a8-8aae-ead41b5d036b
+    content: 'Deferred: richer post-accept/cancel zoom-tab coherence (auto-unzoom or showing refreshed content when a review removes the zoomed node) — a graceful empty-state fallback already exists and is covered by a test; the UX choice between un-zoom vs empty state is still an open design decision in the spec, left as an it.todo and out of this PR''s scope.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -211021,4 +212467,10 @@ sessionRegistry:
   5cfce950-c705-4548-a098-831f3c6b123d:
     cwd: /Users/brianfox/dev/Arborescent
   cc8701c8-8338-44ac-8bb5-ad91658b7efe:
+    cwd: /Users/brianfox/dev/Arborescent
+  47f232dc-cd4a-45c5-94db-81320b519788:
+    cwd: /Users/brianfox/dev/Arborescent
+  e2c83f79-8871-40bc-965c-47187d0fd8df:
+    cwd: /Users/brianfox/dev/Arborescent
+  5794766b-1834-4c0b-980c-a39568f2987d:
     cwd: /Users/brianfox/dev/Arborescent
