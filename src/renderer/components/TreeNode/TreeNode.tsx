@@ -85,7 +85,9 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
       <>
         <ReviewControlBar nodeId={nodeId} />
         <TreeStoreContext.Provider value={reviewPropositionStore}>
-          <PropositionRoots depth={depth} />
+          <div className="review-proposition-region" data-review-proposition={nodeId}>
+            <PropositionRoots depth={depth} />
+          </div>
         </TreeStoreContext.Provider>
       </>
     );

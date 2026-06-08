@@ -1,4 +1,4 @@
-import { getActiveStore, getActiveNodeElement, scrollToActiveNode, getEffectiveRootNodeId } from './shared';
+import { getFocusedStore, getFocusedNodeElement, scrollToActiveNode, getEffectiveRootNodeId } from './shared';
 import {
   isAtFirstLine,
   isAtLastLine,
@@ -18,7 +18,7 @@ function navigateCrossNode(
   element: HTMLElement | null,
   targetX: number
 ): void {
-  const activeStore = getActiveStore();
+  const activeStore = getFocusedStore();
   if (!activeStore) return;
 
   lastNavigationTime = Date.now();
@@ -104,10 +104,10 @@ function handleVerticalNavigation(direction: 'up' | 'down', event: KeyboardEvent
   const now = Date.now();
   if (now - lastNavigationTime < NAVIGATION_THROTTLE_MS) return;
 
-  const activeStore = getActiveStore();
+  const activeStore = getFocusedStore();
   if (!activeStore) return;
 
-  const element = getActiveNodeElement();
+  const element = getFocusedNodeElement();
   const store = activeStore.getState();
   const currentX = element ? getCurrentCursorX() : 0;
   const targetX = store.rememberedVisualX ?? currentX;
@@ -139,8 +139,8 @@ function handleVerticalNavigation(direction: 'up' | 'down', event: KeyboardEvent
 }
 
 function handleHorizontalNavigation(direction: 'left' | 'right', event: KeyboardEvent): void {
-  const element = getActiveNodeElement();
-  const activeStore = getActiveStore();
+  const element = getFocusedNodeElement();
+  const activeStore = getFocusedStore();
   if (!element || !activeStore) return;
 
   const selection = window.getSelection();
@@ -171,8 +171,8 @@ function handleHorizontalNavigation(direction: 'left' | 'right', event: Keyboard
 }
 
 function handleLineNavigation(event: KeyboardEvent): void {
-  const element = getActiveNodeElement();
-  const activeStore = getActiveStore();
+  const element = getFocusedNodeElement();
+  const activeStore = getFocusedStore();
   if (!element || !activeStore) return;
 
   const store = activeStore.getState();
@@ -209,7 +209,7 @@ function handleLineNavigation(event: KeyboardEvent): void {
 }
 
 function isActiveLinkNode(): boolean {
-  const activeStore = getActiveStore();
+  const activeStore = getFocusedStore();
   if (!activeStore) return false;
 
   const store = activeStore.getState();
@@ -225,7 +225,7 @@ function isActiveLinkNode(): boolean {
 function handleLinkNodeNavigation(direction: 'up' | 'down' | 'left' | 'right', event: KeyboardEvent): void {
   event.preventDefault();
 
-  const activeStore = getActiveStore();
+  const activeStore = getFocusedStore();
   if (!activeStore) return;
 
   const store = activeStore.getState();
@@ -247,10 +247,10 @@ function handleKeyDown(event: KeyboardEvent): void {
     return;
   }
 
-  const element = getActiveNodeElement();
+  const element = getFocusedNodeElement();
   if (!element) return;
 
-  const activeStore = getActiveStore();
+  const activeStore = getFocusedStore();
 
   if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
     if (event.shiftKey) {

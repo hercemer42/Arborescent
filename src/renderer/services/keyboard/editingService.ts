@@ -1,4 +1,4 @@
-import { getActiveStore, getActiveNodeElement } from './shared';
+import { getActiveStore, getKeyboardEditTarget, type KeyboardEditTarget } from './shared';
 import { getCursorPosition } from '../cursorService';
 import { matchesHotkey } from '../../utils/hotkeyConfig';
 import { convertToContentEditable, convertFromContentEditable } from '../../utils/contentConversion';
@@ -76,14 +76,10 @@ function handleDeleteNode(store: StoreState, activeNodeId: string): void {
   }
 }
 
-function handleEditingShortcuts(event: KeyboardEvent): void {
-  const activeStore = getActiveStore();
-  const element = getActiveNodeElement();
-  if (!element || !activeStore) return;
-
-  const store = activeStore.getState();
-  const activeNodeId = store.activeNodeId;
-  if (!activeNodeId) return;
+function handleEditingShortcuts(event: KeyboardEvent, target: KeyboardEditTarget): void {
+  const store = target.store.getState();
+  const activeNodeId = target.nodeId;
+  const element = target.element;
 
   const activeNode = store.nodes[activeNodeId];
   if (!activeNode) return;
@@ -176,10 +172,12 @@ function handleKeyDown(event: KeyboardEvent): void {
     return;
   }
 
-  const element = getActiveNodeElement();
-  if (!element) return;
+  // Resolves to the focused node's own store — the main tree, or an in-review proposition's
+  // separate feedback store when focus sits inside one. Null when there is no editable target.
+  const target = getKeyboardEditTarget();
+  if (!target) return;
 
-  handleEditingShortcuts(event);
+  handleEditingShortcuts(event, target);
 }
 
 export function initializeEditingService(target: HTMLElement | Window = window): () => void {

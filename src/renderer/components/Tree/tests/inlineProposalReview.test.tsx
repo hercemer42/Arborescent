@@ -144,6 +144,13 @@ describe('inline proposal review', () => {
       const removed = container.querySelector('[data-node-id="removed"]');
       expect(removed?.classList.contains('feedback-changekind-removed')).toBe(true);
     });
+
+    it('marks the proposition region with the reviewed node id so keyboard focus resolves to its store', () => {
+      const { container } = renderTree(makeMainStore());
+      const region = container.querySelector('[data-review-proposition]');
+      expect(region?.getAttribute('data-review-proposition')).toBe('reviewed');
+      expect(region?.querySelector('[data-node-id="prop-root"]')).toBeTruthy();
+    });
   });
 
   // PR3: decomposition is reviewed inline too (PR2 routed multi-root to the panel; that
