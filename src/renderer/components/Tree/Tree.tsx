@@ -2,6 +2,7 @@ import { memo, useRef, useSyncExternalStore } from 'react';
 import { DndContext, DragOverlay, pointerWithin, Modifier } from '@dnd-kit/core';
 import { TreeNode } from '../TreeNode';
 import { useStore } from '../../store/tree/useStore';
+import { isNodeInReview } from '../../store/tree/reviews';
 import { feedbackTreeStore } from '../../store/feedback/feedbackTreeStore';
 import { useTree } from './hooks/useTree';
 import { useTreeDragDrop } from './hooks/useTreeDragDrop';
@@ -29,6 +30,13 @@ export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
   // Only subscribe to the specific node's children, not the entire nodes object
   const displayChildren = useStore((state) => state.nodes[displayRootId]?.children);
 
+  // A zoom root that is itself under review must render as its own TreeNode: the inline
+  // review branch (proposition subtree + accept/cancel controls) lives on the node, and a
+  // zoom view otherwise renders only the root's children, dropping the whole proposal.
+  const zoomRootUnderReview = useStore(
+    (state) => !!zoomedNodeId && isNodeInReview(state.reviews, zoomedNodeId),
+  );
+
   useTree();
   const { sensors, activeId, draggedNodeIds, draggedNodeDepth, dropAnimation, handleDragStart, handleDragEnd } = useTreeDragDrop();
   const { handleTreeClick } = useTreeClick();
@@ -42,7 +50,7 @@ export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
   );
   useScrollAnchor(scrollContainerRef, feedbackRevision);
 
-  if (!displayRootId || !displayChildren) {
+  if (!displayRootId || (!displayChildren && !zoomRootUnderReview)) {
     return null;
   }
 
@@ -54,9 +62,13 @@ export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
       onDragEnd={handleDragEnd}
     >
       <div ref={scrollContainerRef} className={`tree ${blueprintModeEnabled ? 'blueprint-mode' : ''}`} onClick={handleTreeClick}>
-        {visibleChildren.map((childId) => (
-          <TreeNode key={childId} nodeId={childId} depth={0} />
-        ))}
+        {zoomRootUnderReview ? (
+          <TreeNode nodeId={displayRootId} depth={0} />
+        ) : (
+          visibleChildren.map((childId) => (
+            <TreeNode key={childId} nodeId={childId} depth={0} />
+          ))
+        )}
       </div>
       <DragOverlay dropAnimation={dropAnimation} modifiers={[ghostOffsetModifier]}>
         {activeId ? (
