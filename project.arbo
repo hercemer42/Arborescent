@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T20:09:34.349Z'
+updated: '2026-06-08T20:35:36.465Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -630,51 +630,6 @@ nodes:
       - 0dd5351f-535e-4860-ad32-e7f08eb8987e
     metadata:
       status: completed
-  65b74e0f-88fe-41c6-9910-8bac806adc6f:
-    id: 65b74e0f-88fe-41c6-9910-8bac806adc6f
-    content: Plugins
-    children:
-      - 06850f75-804b-4452-ad03-837f0d233abb
-      - febab53e-cebd-44d6-8d7d-431f0710e791
-      - c3f48047-7df6-4080-8c3b-1e114e81964f
-    metadata:
-      status: pending
-      expanded: false
-  febab53e-cebd-44d6-8d7d-431f0710e791:
-    id: febab53e-cebd-44d6-8d7d-431f0710e791
-    content: Implement webview-based UI system for plugin sidebars/panels (VS Code pattern)
-    children:
-      - 399423a9-df74-4d84-8e8f-b8bbd857fae8
-      - fcf2d6d2-f85e-4dc7-ae73-4583c09db89b
-      - af7f87dc-c418-4ee3-8cf8-9dc608fd3edd
-      - 4c0d427f-5c21-425c-84a1-6f4afe0bec5d
-      - d55ed1aa-2605-4f6f-802e-384582cd7d0b
-    metadata:
-      status: pending
-  399423a9-df74-4d84-8e8f-b8bbd857fae8:
-    id: 399423a9-df74-4d84-8e8f-b8bbd857fae8
-    content: Design webview container component - isolated iframe with sandboxing, similar to VS Code webviews
-    children: []
-    metadata:
-      status: pending
-  fcf2d6d2-f85e-4dc7-ae73-4583c09db89b:
-    id: fcf2d6d2-f85e-4dc7-ae73-4583c09db89b
-    content: Implement message passing system - postMessage API between plugin webview and main app
-    children: []
-    metadata:
-      status: pending
-  af7f87dc-c418-4ee3-8cf8-9dc608fd3edd:
-    id: af7f87dc-c418-4ee3-8cf8-9dc608fd3edd
-    content: Add provideSidebarPanels extension point - plugins return { id, title, icon, htmlContent }
-    children: []
-    metadata:
-      status: pending
-  4c0d427f-5c21-425c-84a1-6f4afe0bec5d:
-    id: 4c0d427f-5c21-425c-84a1-6f4afe0bec5d
-    content: Integrate webview panels into sidebar - render plugin-provided HTML in isolated containers
-    children: []
-    metadata:
-      status: pending
   0dd5351f-535e-4860-ad32-e7f08eb8987e:
     id: 0dd5351f-535e-4860-ad32-e7f08eb8987e
     content: Replace open invokeIPC() with typed API methods - Current PluginContext exposes entire IPC layer via invokeIPC(channel, ...args), allowing plugins to call ANY internal IPC channel. Replace with typed API surface (getProjectPath(), showNotification(), etc.) to restrict plugin access to approved APIs only.
@@ -695,38 +650,6 @@ nodes:
     metadata:
       status: completed
       expanded: true
-  c3f48047-7df6-4080-8c3b-1e114e81964f:
-    id: c3f48047-7df6-4080-8c3b-1e114e81964f
-    content: Recovery
-    children:
-      - c6168d15-0beb-47bf-9b7b-80dac62a3495
-    metadata:
-      status: pending
-  c6168d15-0beb-47bf-9b7b-80dac62a3495:
-    id: c6168d15-0beb-47bf-9b7b-80dac62a3495
-    content: Auto restart
-    children: []
-    metadata:
-      status: pending
-  d55ed1aa-2605-4f6f-802e-384582cd7d0b:
-    id: d55ed1aa-2605-4f6f-802e-384582cd7d0b
-    content: Enable/disable
-    children: []
-    metadata:
-      status: pending
-  06850f75-804b-4452-ad03-837f0d233abb:
-    id: 06850f75-804b-4452-ad03-837f0d233abb
-    content: Third party plugins
-    children:
-      - 19a90e4b-61aa-4f1c-b0f0-9282975318d3
-    metadata:
-      status: pending
-  19a90e4b-61aa-4f1c-b0f0-9282975318d3:
-    id: 19a90e4b-61aa-4f1c-b0f0-9282975318d3
-    content: Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.
-    children: []
-    metadata:
-      status: pending
   58950aa3-50be-457f-a089-232d02c19831:
     id: 58950aa3-50be-457f-a089-232d02c19831
     content: We watch claude from vite.main.config but we should have something that can watch code changes in all plugins without naming them
@@ -751,12 +674,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  5288b678-63dc-4672-b1b3-8e2b540c04de:
-    id: 5288b678-63dc-4672-b1b3-8e2b540c04de
-    content: Markdown editor
-    children: []
-    metadata:
-      status: pending
   9073d866-ea02-4f85-a338-e821fa89e35d:
     id: 9073d866-ea02-4f85-a338-e821fa89e35d
     content: Types file naming not consistent with main project, should have a 'types' folder
@@ -17162,49 +17079,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-13T12:58:23.088Z'
-  48749574-3d80-42ad-819c-35269903a60b:
-    id: 48749574-3d80-42ad-819c-35269903a60b
-    content: Direct integrations
-    children:
-      - 65b74e0f-88fe-41c6-9910-8bac806adc6f
-      - 8f2669c5-20ac-4eca-9d54-9af14ce438a4
-      - 5e8df60a-b79a-45a9-aba4-d836b4e71368
-      - edc85252-da4d-45f1-97e3-b3a9ae4e3350
-      - b5b471b7-2b97-42c1-b94f-5f1b87003ccf
-    metadata:
-      status: pending
-      expanded: false
-  8f2669c5-20ac-4eca-9d54-9af14ce438a4:
-    id: 8f2669c5-20ac-4eca-9d54-9af14ce438a4
-    content: Claude
-    children: []
-    metadata:
-      status: pending
-  5e8df60a-b79a-45a9-aba4-d836b4e71368:
-    id: 5e8df60a-b79a-45a9-aba4-d836b4e71368
-    content: Copilot
-    children: []
-    metadata:
-      status: pending
-  edc85252-da4d-45f1-97e3-b3a9ae4e3350:
-    id: edc85252-da4d-45f1-97e3-b3a9ae4e3350
-    content: Gemini
-    children: []
-    metadata:
-      status: pending
-  b5b471b7-2b97-42c1-b94f-5f1b87003ccf:
-    id: b5b471b7-2b97-42c1-b94f-5f1b87003ccf
-    content: Collaborate over API
-    children:
-      - 8489fb71-057c-48c6-8b71-1488f437ab1a
-    metadata:
-      status: pending
-  8489fb71-057c-48c6-8b71-1488f437ab1a:
-    id: 8489fb71-057c-48c6-8b71-1488f437ab1a
-    content: Write results to feedback panel
-    children: []
-    metadata:
-      status: pending
   3ccb2029-faee-4da4-ad66-211f77277afa:
     id: 3ccb2029-faee-4da4-ad66-211f77277afa
     content: HTML links should open in browser panel and not call system default browser
@@ -25656,7 +25530,7 @@ nodes:
       isBlueprint: true
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
       expanded: true
-      stepType: checkpoint
+      stepType: autonomous
       recurse: false
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
     id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
@@ -80694,34 +80568,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  65ddf628-02ba-452f-9aa2-db85abaad45c:
-    id: 65ddf628-02ba-452f-9aa2-db85abaad45c
-    content: Could have report formats for certain tasks
-    children:
-      - 09d4bda5-313a-4092-ac77-a72b7978e7a9
-      - 3261eb98-7260-445f-b6b1-e8940c08767b
-    metadata:
-      status: pending
-      expanded: false
-  09d4bda5-313a-4092-ac77-a72b7978e7a9:
-    id: 09d4bda5-313a-4092-ac77-a72b7978e7a9
-    content: For instance like code review or critiquing a code review
-    children: []
-    metadata:
-      status: pending
-  3261eb98-7260-445f-b6b1-e8940c08767b:
-    id: 3261eb98-7260-445f-b6b1-e8940c08767b
-    content: Can have the output in the terminal, or in the node
-    children:
-      - 65080fdc-0839-4b58-baee-23299bf012c8
-    metadata:
-      status: pending
-  65080fdc-0839-4b58-baee-23299bf012c8:
-    id: 65080fdc-0839-4b58-baee-23299bf012c8
-    content: Or in markdown if we include that feature
-    children: []
-    metadata:
-      status: pending
   8d28e3e5-89a8-4f1a-b517-35491070acbe:
     id: 8d28e3e5-89a8-4f1a-b517-35491070acbe
     content: Reconcile and highlight changes inside the feedback panel
@@ -80743,7 +80589,8 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
-    children: []
+    children:
+      - e42650cb-1e13-407a-bc01-b4dd89ac0515
     metadata:
       status: pending
       expanded: true
@@ -87072,28 +86919,6 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
-  407133fd-9a05-4618-8ecd-1979dc073c4c:
-    id: 407133fd-9a05-4618-8ecd-1979dc073c4c
-    content: '''Revise after discussion'' could be in the right click context menu'
-    children:
-      - ea8e9814-aaf2-455d-ab1e-6fa79ca92937
-      - 33d7a477-1104-4500-b923-e28a55784b52
-      - 98962f4c-90af-48a3-bd07-71b389211b31
-    metadata:
-      status: pending
-      expanded: false
-  33d7a477-1104-4500-b923-e28a55784b52:
-    id: 33d7a477-1104-4500-b923-e28a55784b52
-    content: It's frequently used - also could assign a hotkey
-    children: []
-    metadata:
-      status: pending
-  98962f4c-90af-48a3-bd07-71b389211b31:
-    id: 98962f4c-90af-48a3-bd07-71b389211b31
-    content: Would imply it becomes a built-in context
-    children: []
-    metadata:
-      status: pending
   dd00d6f2-ae2a-4bd8-8919-303bfd92f6fc:
     id: dd00d6f2-ae2a-4bd8-8919-303bfd92f6fc
     content: Do NOT leave any references to the PRD ticket in the comments
@@ -89052,41 +88877,6 @@ nodes:
     metadata:
       status: pending
       expanded: true
-  1fb08d66-e49f-4bbe-ba21-acd2e04a5d73:
-    id: 1fb08d66-e49f-4bbe-ba21-acd2e04a5d73
-    content: Would be cool if we can send a command for claude to switch to different effort levels depending on the task
-    children: []
-    metadata:
-      status: pending
-  cc864513-b72b-4d9a-bfab-eabaa8d675ca:
-    id: cc864513-b72b-4d9a-bfab-eabaa8d675ca
-    content: For example, committing & pushing don't need xhigh
-    children: []
-    metadata:
-      status: pending
-  8a00eeae-3f10-43bf-8c0a-b046ff2d565a:
-    id: 8a00eeae-3f10-43bf-8c0a-b046ff2d565a
-    content: Not sure it's worth the effort though because it'll also depend on the user story
-    children: []
-    metadata:
-      status: pending
-  1830402b-5cbf-4bb5-bfd9-b728bef1d020:
-    id: 1830402b-5cbf-4bb5-bfd9-b728bef1d020
-    content: Or we can get it to gauge the effort required depending on the job complexity and get it to ping an API that gets Arborescent to send an effort switch to the terminal
-    children: []
-    metadata:
-      status: pending
-  bfdf4f7e-06c7-4d79-a42f-c0ecf536e0c4:
-    id: bfdf4f7e-06c7-4d79-a42f-c0ecf536e0c4
-    content: Associate effort with a context
-    children:
-      - 1fb08d66-e49f-4bbe-ba21-acd2e04a5d73
-      - cc864513-b72b-4d9a-bfab-eabaa8d675ca
-      - 8a00eeae-3f10-43bf-8c0a-b046ff2d565a
-      - 1830402b-5cbf-4bb5-bfd9-b728bef1d020
-    metadata:
-      status: pending
-      expanded: false
   aefa6362-0e1b-4e7f-81db-1ccc856bb2f0:
     id: aefa6362-0e1b-4e7f-81db-1ccc856bb2f0
     content: Backlog
@@ -89101,11 +88891,6 @@ nodes:
       - c5a7860c-e6ba-40ed-99c3-c0f2883e516c
       - e31a700c-3788-44b5-a878-3f3f2ca942c4
       - 1e783002-84bd-4595-abbc-db715f941a18
-      - 5288b678-63dc-4672-b1b3-8e2b540c04de
-      - d0da6881-00bd-405b-8dbf-1603876d5450
-      - 407133fd-9a05-4618-8ecd-1979dc073c4c
-      - bfdf4f7e-06c7-4d79-a42f-c0ecf536e0c4
-      - 65ddf628-02ba-452f-9aa2-db85abaad45c
       - 27b498ae-d712-4c06-a93b-0bb45ca1bf14
       - 83ae5dd9-1678-4c57-8e9c-74a7e6aeb6cf
       - 4ae82328-4e6b-45cf-8106-7530b7f209a4
@@ -89116,7 +88901,6 @@ nodes:
       - 962ac208-be21-40da-b8a0-144b60005793
       - 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
       - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
-      - 48749574-3d80-42ad-819c-35269903a60b
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
     metadata:
       status: pending
@@ -92076,8 +91860,7 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children:
-      - f0cf3961-182f-47f9-8b90-3004bbe6fdf2
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -96275,21 +96058,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ea8e9814-aaf2-455d-ab1e-6fa79ca92937:
-    id: ea8e9814-aaf2-455d-ab1e-6fa79ca92937
-    content: "Currently it's just a context that says :\_"
-    children:
-      - 06ef75cc-a21f-40e2-b5bd-151c30d3457e
-    metadata:
-      status: pending
-  06ef75cc-a21f-40e2-b5bd-151c30d3457e:
-    id: 06ef75cc-a21f-40e2-b5bd-151c30d3457e
-    content: Revise after discussion
-    children: []
-    metadata:
-      status: pending
-      isHyperlink: true
-      linkedNodeId: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
   1bf140f0-ec8e-4e18-bad5-bfa99b255d0b:
     id: 1bf140f0-ec8e-4e18-bad5-bfa99b255d0b
     content: PR1 - Resumable AI sessions per workflow step (foundation + manual resume)
@@ -100398,12 +100166,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  d0da6881-00bd-405b-8dbf-1603876d5450:
-    id: d0da6881-00bd-405b-8dbf-1603876d5450
-    content: Feedback mechanism should use a hook instead of a file
-    children: []
-    metadata:
-      status: pending
   f77205f2-e73d-40a8-a993-33d1db64fd56:
     id: f77205f2-e73d-40a8-a993-33d1db64fd56
     content: Subtask scope
@@ -124382,7 +124144,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - f0cf3961-182f-47f9-8b90-3004bbe6fdf2
     metadata:
       status: pending
       isBlueprint: true
@@ -206152,7 +205915,7 @@ nodes:
       plugins: {}
   2ac36efd-cd11-4888-a4d7-648dce571747:
     id: 2ac36efd-cd11-4888-a4d7-648dce571747
-    content: If there are 2 nodes that get dectomposed
+    content: If there are 2 nodes that get decomposed
     children:
       - 3dce8341-afa3-454b-b0c0-ccf47833e6a5
       - 02ba5f0a-64a6-4afb-995b-b5f2bb6affed
@@ -213139,6 +212902,7 @@ nodes:
       - 44f4d9db-d5ab-40b9-b43d-7781752a24bb
       - 24e75479-766e-4910-ac86-d6b04e1b7ee1
       - c29b39f9-5562-49ae-995c-ff98b976a8b2
+      - d7f124d6-8dea-4484-b53b-3fe6a3cd54ec
     metadata:
       status: completed
       expanded: false
@@ -213844,6 +213608,108 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  d7f124d6-8dea-4484-b53b-3fe6a3cd54ec:
+    id: d7f124d6-8dea-4484-b53b-3fe6a3cd54ec
+    content: review feedback
+    children:
+      - 5b2db10e-a8af-499f-bb96-310a0d32224d
+    metadata:
+      status: completed
+  5b2db10e-a8af-499f-bb96-310a0d32224d:
+    id: 5b2db10e-a8af-499f-bb96-310a0d32224d
+    content: |-
+      code-reviewer agent verdict: APPROVE — no blocking or should-fix issues; no changes required. Fix is correct, minimal, and matches the autonomous sibling pattern.
+
+      Correctness (verified): executeCommand runs AcceptFeedbackCommand synchronously (historyManager → command.execute → setState), so get().nodes at sendActions.ts:918 is the settled tree — placing the resync after executeCommand is correct. resyncBoundTerminalTitles (the by-map variant) is the right choice over per-node syncBoundTerminalTitles: the multi-root accept migrates originNodeId to output.activeNodeId before setState, so a per-node call keyed on the deleted reviewedNodeId would miss it; the single-root reconcile reuses the prior node id so originNodeId stays valid there. Ordering before tearDownReview and the collaboration-accepted event is sound (resync only reads nodes and writes terminal-store titles); the try/catch logs rather than swallows any resync throw.
+
+      Edge cases all handled by the helper: empty/whitespace new root → extractTaskTitle returns '' → early return keeps prior title; terminal with no originNodeId → skipped; unchanged title → no redundant updateTerminal; nullish-extract open-review path returns before executeCommand so no resync (correct).
+
+      Conventions: why-comment matches workflowExecutionActions.ts:1266-1267 verbatim, no PRD/story refs; tsc --noEmit and eslint clean on both changed files.
+
+      Tests (terminalTitleOnManualAccept.test.ts, 7 passing): drive the real finishAccept against the real terminal store; only executeCommand is stubbed to settle the tree in place — a reasonable unit boundary that is NOT testing the mock (assertions read titles the production resync actually wrote). Proper beforeEach isolation, no mockReturnValueOnce, no empty tests, as-unknown-as confined to test seams.
+
+      Non-blocking nit (agent recommends NOT adding for a 5-line fix): multi-root originNodeId migration isn't directly pinned through finishAccept here — it is covered by AcceptFeedbackCommand's own tests and the autonomous path locks the same contract.
+    children: []
+    metadata:
+      status: pending
+  e42650cb-1e13-407a-bc01-b4dd89ac0515:
+    id: e42650cb-1e13-407a-bc01-b4dd89ac0515
+    content: Improve the log area
+    children:
+      - dbfe439d-fe0b-4064-8a2f-bb78781874d4
+      - f2672c85-1e4e-4fd4-bc48-408927afabed
+      - 2d76331d-744b-4ba4-ab6e-e854d179ab10
+    metadata:
+      status: pending
+      sessionId: 9fab1371-ceec-42cf-b0cc-c071381f1d06
+      expanded: false
+  dbfe439d-fe0b-4064-8a2f-bb78781874d4:
+    id: dbfe439d-fe0b-4064-8a2f-bb78781874d4
+    content: When hovering over a log entry in either the popup 5 entries
+    children:
+      - 36abbe58-3cf7-4185-8cb6-8b5367ecd173
+    metadata:
+      status: pending
+  36abbe58-3cf7-4185-8cb6-8b5367ecd173:
+    id: 36abbe58-3cf7-4185-8cb6-8b5367ecd173
+    content: Or the sidebar 100 entries
+    children:
+      - 66ff468f-7177-4d61-97d3-662ebad32d44
+    metadata:
+      status: pending
+  66ff468f-7177-4d61-97d3-662ebad32d44:
+    id: 66ff468f-7177-4d61-97d3-662ebad32d44
+    content: Show the full text in the tooltip
+    children: []
+    metadata:
+      status: pending
+  f2672c85-1e4e-4fd4-bc48-408927afabed:
+    id: f2672c85-1e4e-4fd4-bc48-408927afabed
+    content: When clicking on the logbar, item in the popup, or item in the sidebar
+    children:
+      - dbffe8f9-266e-4041-977a-dd5e1e939e75
+    metadata:
+      status: pending
+  dbffe8f9-266e-4041-977a-dd5e1e939e75:
+    id: dbffe8f9-266e-4041-977a-dd5e1e939e75
+    content: Focus the session in question
+    children:
+      - d93b8e3e-d4fb-43c6-b1b1-f80244710397
+    metadata:
+      status: pending
+  d93b8e3e-d4fb-43c6-b1b1-f80244710397:
+    id: d93b8e3e-d4fb-43c6-b1b1-f80244710397
+    content: Assuming it is open
+    children:
+      - 5c7e3b65-def4-447a-9314-08dfe7f20dfd
+    metadata:
+      status: pending
+  5c7e3b65-def4-447a-9314-08dfe7f20dfd:
+    id: 5c7e3b65-def4-447a-9314-08dfe7f20dfd
+    content: Otherwise no-op
+    children: []
+    metadata:
+      status: pending
+  2d76331d-744b-4ba4-ab6e-e854d179ab10:
+    id: 2d76331d-744b-4ba4-ab6e-e854d179ab10
+    content: When clicking a second time on the logbar
+    children:
+      - c5414c76-50ac-421a-aa04-1969af75d44d
+      - 35f97ee7-59aa-4818-a160-816210a88d2f
+    metadata:
+      status: pending
+  c5414c76-50ac-421a-aa04-1969af75d44d:
+    id: c5414c76-50ac-421a-aa04-1969af75d44d
+    content: If the log side panel is open
+    children: []
+    metadata:
+      status: pending
+  35f97ee7-59aa-4818-a160-816210a88d2f:
+    id: 35f97ee7-59aa-4818-a160-816210a88d2f
+    content: Close it
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -213984,4 +213850,6 @@ sessionRegistry:
   4358a0b1-d48a-41a7-9ad4-10ccc4875710:
     cwd: /Users/brianfox/dev/Arborescent
   d643983e-c321-4def-a764-b04f653e056c:
+    cwd: /Users/brianfox/dev/Arborescent
+  9fab1371-ceec-42cf-b0cc-c071381f1d06:
     cwd: /Users/brianfox/dev/Arborescent
