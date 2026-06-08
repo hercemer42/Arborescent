@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T22:12:55.337Z'
+updated: '2026-06-08T22:24:54.325Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25482,9 +25482,7 @@ nodes:
   fbf20e91-d852-4406-9815-952fa7727f33:
     id: fbf20e91-d852-4406-9815-952fa7727f33
     content: Test pass & issue resolution
-    children:
-      - e1732034-2d5c-4e37-8968-50c66adb0f15
-      - 8815fcb6-7c6d-47c8-89a1-ad11bbf5c607
+    children: []
     metadata:
       status: pending
       appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -27015,7 +27013,8 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children: []
+    children:
+      - 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
     metadata:
       status: pending
       isBlueprint: true
@@ -83300,8 +83299,7 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children:
-      - 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115076,6 +115074,7 @@ nodes:
       - 33a8eefd-293a-41d0-b814-cf04175f41f7
       - 295a855e-2604-45e2-949f-fe58807690ca
       - f0cf3961-182f-47f9-8b90-3004bbe6fdf2
+      - 23800d87-7099-4bd1-906c-10e9c8c53628
     metadata:
       status: pending
       isBlueprint: true
@@ -124084,7 +124083,8 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 23800d87-7099-4bd1-906c-10e9c8c53628
+      - e1732034-2d5c-4e37-8968-50c66adb0f15
+      - 8815fcb6-7c6d-47c8-89a1-ad11bbf5c607
     metadata:
       status: pending
       isBlueprint: true
@@ -213735,12 +213735,26 @@ nodes:
     id: 23800d87-7099-4bd1-906c-10e9c8c53628
     content: PR1 - Reveal full log text on hover, and toggle the panel from the logbar
     children:
-      - 82772632-8ca6-4ab4-be16-b27ab166ec5b
-      - 2a925ebc-f49b-4a52-8854-c5dfc3574d2a
-      - 217c40d7-0f2f-4cea-b41a-a3d7afc1097b
-      - 26d95cbd-89bb-4132-98a8-ec82396189f0
-      - 3ac010f0-4573-4916-88dc-d42d860b28bc
-      - 83e2def2-a777-466e-afdb-2ceff26ac6b7
+      - f75203fa-249d-4a50-b98b-8f8053ecdf28
+      - 45b50b0f-bcfd-4fc5-9457-6ca87eaa9ee0
+      - 7162f80c-2f28-4d61-9104-587619b42474
+      - 76217f0d-5c60-4bac-a0a2-797930d163fe
+      - 18b66e88-5c1c-453c-8879-a9087271f7c7
+      - 2d310243-e937-4768-88fb-9a61896eba48
+      - 0e97e04c-063c-43bd-82e8-db31772cdf44
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      groupId: e1f75372-6a1d-4f6b-a13e-ba695344f2a0
+  6ef66962-9d47-4ac8-bd57-9141c5c9c53d:
+    id: 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
+    content: PR2 - Jump from a side-panel log entry to the session that produced it
+    children:
+      - 629a3a99-a5c8-40b8-a8d3-255557b6f788
+      - bcdee7d5-94d1-40d0-ae16-6c60816d080b
+      - e5f6f138-b75b-4334-b455-6954dc0cf80a
     metadata:
       status: completed
       expanded: false
@@ -213748,18 +213762,6 @@ nodes:
       plugins: {}
       groupId: e1f75372-6a1d-4f6b-a13e-ba695344f2a0
       sessionId: 9fab1371-ceec-42cf-b0cc-c071381f1d06
-  6ef66962-9d47-4ac8-bd57-9141c5c9c53d:
-    id: 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
-    content: PR2 - Jump from a side-panel log entry to the session that produced it
-    children:
-      - bcdee7d5-94d1-40d0-ae16-6c60816d080b
-      - e5f6f138-b75b-4334-b455-6954dc0cf80a
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      groupId: e1f75372-6a1d-4f6b-a13e-ba695344f2a0
   bcdee7d5-94d1-40d0-ae16-6c60816d080b:
     id: bcdee7d5-94d1-40d0-ae16-6c60816d080b
     content: User story
@@ -214246,488 +214248,14 @@ nodes:
       - ffdb037a-e21e-45a7-a07d-dbf33eff31d8
       - 082acd32-63e5-494c-ad65-30aac66e0b5a
       - f894dd50-5293-4562-a7e5-65d0af611887
+      - 9c2f7f39-d213-456a-93c8-54ecb267efbf
+      - bf6a388a-ca7f-4450-bed7-9dd4f4451a12
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
       sessionId: 4c45dfd8-2cb2-41f0-830d-483e7cc49204
-  82772632-8ca6-4ab4-be16-b27ab166ec5b:
-    id: 82772632-8ca6-4ab4-be16-b27ab166ec5b
-    content: 'worktree: /Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr1-hover-toggle (branch feature/log-area-pr1-hover-toggle, forked from master a93b259)'
-    children:
-      - 994ee267-d6f9-4402-ab19-a62879c3e6a9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  994ee267-d6f9-4402-ab19-a62879c3e6a9:
-    id: 994ee267-d6f9-4402-ab19-a62879c3e6a9
-    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr1-hover-toggle
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a925ebc-f49b-4a52-8854-c5dfc3574d2a:
-    id: 2a925ebc-f49b-4a52-8854-c5dfc3574d2a
-    content: User story
-    children:
-      - 94f7e31b-d8c7-470d-a28c-762da45ce286
-      - 31ea4e9f-7422-4e7a-984e-e95f3e57617d
-      - 7bed6a80-67ab-4d61-adbe-0b32838179bf
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  94f7e31b-d8c7-470d-a28c-762da45ce286:
-    id: 94f7e31b-d8c7-470d-a28c-762da45ce286
-    content: 📄 Product spec
-    children:
-      - e10e2e40-bdd0-4570-b383-99e20dd098a1
-      - 213c93e0-9356-4c54-9035-3de9e7e5e91d
-      - b6668219-4050-4fa0-804f-9915c50ab460
-      - 39ab7ff2-a5cb-4b37-a0c0-c97e3a7e0781
-      - d302a03a-33eb-4009-99db-50670f21070b
-      - cfaeaa33-a425-4181-bca8-23aff7e43a69
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e10e2e40-bdd0-4570-b383-99e20dd098a1:
-    id: e10e2e40-bdd0-4570-b383-99e20dd098a1
-    content: Context
-    children:
-      - 6fa9ab8f-65d5-4ad9-bd65-15ecc7f7058c
-      - f6423908-e0a6-4e44-9c3b-4451c1fc6fb7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6fa9ab8f-65d5-4ad9-bd65-15ecc7f7058c:
-    id: 6fa9ab8f-65d5-4ad9-bd65-15ecc7f7058c
-    content: 'The activity log surfaces app/workflow events in three places: a status-bar logbar (latest entry), a hover popover (last 5), and a side panel (up to 100).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f6423908-e0a6-4e44-9c3b-4451c1fc6fb7:
-    id: f6423908-e0a6-4e44-9c3b-4451c1fc6fb7
-    content: Entries are single-line, and the logbar only ever opens the panel — it never closes it.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  213c93e0-9356-4c54-9035-3de9e7e5e91d:
-    id: 213c93e0-9356-4c54-9035-3de9e7e5e91d
-    content: User
-    children:
-      - 12b873a5-336f-4787-ad41-d8f0177d500c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  12b873a5-336f-4787-ad41-d8f0177d500c:
-    id: 12b873a5-336f-4787-ad41-d8f0177d500c
-    content: A developer running workflows in Arborescent who scans the activity log to track progress and triage events.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6668219-4050-4fa0-804f-9915c50ab460:
-    id: b6668219-4050-4fa0-804f-9915c50ab460
-    content: Current experience and why it is insufficient
-    children:
-      - b73731e4-9858-4d1a-bcea-37786091533f
-      - 9eb92674-25a5-4d41-879d-c3c0aac35f54
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b73731e4-9858-4d1a-bcea-37786091533f:
-    id: b73731e4-9858-4d1a-bcea-37786091533f
-    content: Long messages are truncated in the narrow logbar and popover, with no way to read the full text short of opening the panel.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9eb92674-25a5-4d41-879d-c3c0aac35f54:
-    id: 9eb92674-25a5-4d41-879d-c3c0aac35f54
-    content: The logbar opens the panel but a second click does nothing, so dismissing it requires the separate close button — an inconsistent toggle.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  39ab7ff2-a5cb-4b37-a0c0-c97e3a7e0781:
-    id: 39ab7ff2-a5cb-4b37-a0c0-c97e3a7e0781
-    content: Goal
-    children:
-      - f8d7f629-1ba2-433b-a60e-648be819900d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f8d7f629-1ba2-433b-a60e-648be819900d:
-    id: f8d7f629-1ba2-433b-a60e-648be819900d
-    content: Let users read any log message in full on hover and open or close the panel with the same logbar control.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d302a03a-33eb-4009-99db-50670f21070b:
-    id: d302a03a-33eb-4009-99db-50670f21070b
-    content: Business rules
-    children:
-      - 806ec4b8-67b6-4b83-abe5-9d5b78e59692
-      - de291c05-50dd-47b4-9226-55f4af69b670
-      - eb37a96d-6c67-48ce-82d1-f5438207fdab
-      - 3e8f3983-fd9c-435c-980e-b349c45b5c37
-      - b1f2d7d8-b85f-4dca-a010-06ac3a323e02
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  806ec4b8-67b6-4b83-abe5-9d5b78e59692:
-    id: 806ec4b8-67b6-4b83-abe5-9d5b78e59692
-    content: Hovering any log entry in the popover or the side panel reveals that entry's full message text.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de291c05-50dd-47b4-9226-55f4af69b670:
-    id: de291c05-50dd-47b4-9226-55f4af69b670
-    content: The tooltip shows the exact message string with no truncation or reformatting.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eb37a96d-6c67-48ce-82d1-f5438207fdab:
-    id: eb37a96d-6c67-48ce-82d1-f5438207fdab
-    content: Clicking the logbar while the panel is closed opens it; clicking it again while open closes it.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e8f3983-fd9c-435c-980e-b349c45b5c37:
-    id: 3e8f3983-fd9c-435c-980e-b349c45b5c37
-    content: The panel's existing close button and Escape key continue to close the panel.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1f2d7d8-b85f-4dca-a010-06ac3a323e02:
-    id: b1f2d7d8-b85f-4dca-a010-06ac3a323e02
-    content: This story introduces no data-model or persistence change.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cfaeaa33-a425-4181-bca8-23aff7e43a69:
-    id: cfaeaa33-a425-4181-bca8-23aff7e43a69
-    content: Acceptance criteria
-    children:
-      - e5732483-1751-4887-a0c4-916f3dc13bae
-      - f66be2f6-2023-408a-b248-12b3451f16ba
-      - 445e38e5-217b-48d4-9b63-fff371b43db1
-      - dd4b6d42-3609-4dbd-a44c-4dd3c209ebf1
-      - e9217156-5068-47eb-9f79-b2737de8f105
-      - 8a56e4a7-e2b6-4a84-bd91-7249b5f52457
-      - 59ab6dc3-d7c2-41b6-9a73-fb8251ed62da
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5732483-1751-4887-a0c4-916f3dc13bae:
-    id: e5732483-1751-4887-a0c4-916f3dc13bae
-    content: Hovering an entry in the popover shows its full message as a tooltip.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f66be2f6-2023-408a-b248-12b3451f16ba:
-    id: f66be2f6-2023-408a-b248-12b3451f16ba
-    content: Hovering an entry in the side panel shows its full message as a tooltip.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  445e38e5-217b-48d4-9b63-fff371b43db1:
-    id: 445e38e5-217b-48d4-9b63-fff371b43db1
-    content: A message longer than its container is fully readable via the tooltip.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd4b6d42-3609-4dbd-a44c-4dd3c209ebf1:
-    id: dd4b6d42-3609-4dbd-a44c-4dd3c209ebf1
-    content: Clicking the logbar when the panel is closed opens the panel.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e9217156-5068-47eb-9f79-b2737de8f105:
-    id: e9217156-5068-47eb-9f79-b2737de8f105
-    content: Clicking the logbar again when the panel is open closes the panel.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a56e4a7-e2b6-4a84-bd91-7249b5f52457:
-    id: 8a56e4a7-e2b6-4a84-bd91-7249b5f52457
-    content: The close button and Escape still close the panel after the toggle change.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  59ab6dc3-d7c2-41b6-9a73-fb8251ed62da:
-    id: 59ab6dc3-d7c2-41b6-9a73-fb8251ed62da
-    content: Unread-count behaviour on open is unchanged by the toggle.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  31ea4e9f-7422-4e7a-984e-e95f3e57617d:
-    id: 31ea4e9f-7422-4e7a-984e-e95f3e57617d
-    content: 🔧 Implementation proposal
-    children:
-      - 0eb52d5a-4597-4879-aa27-0186be1b7469
-      - 1416103d-9264-4eea-be8f-6d7b22b6cfc7
-      - 41a1f2e2-e1e2-41f6-a7ce-9b5ccf803931
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0eb52d5a-4597-4879-aa27-0186be1b7469:
-    id: 0eb52d5a-4597-4879-aa27-0186be1b7469
-    content: Approach
-    children:
-      - cac1c0e7-feb8-47de-b408-f0f13f747109
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cac1c0e7-feb8-47de-b408-f0f13f747109:
-    id: cac1c0e7-feb8-47de-b408-f0f13f747109
-    content: Add a native title attribute to the shared entry renderer so both popover and panel gain tooltips from one change, and convert the logbar handler from openPanel to a new togglePanel action on the view store.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1416103d-9264-4eea-be8f-6d7b22b6cfc7:
-    id: 1416103d-9264-4eea-be8f-6d7b22b6cfc7
-    content: Touchpoints
-    children:
-      - f474a29c-f513-4ad1-a7f9-f290871172aa
-      - 69cb92dd-fdfe-4758-bec4-1e53a7e24920
-      - 32e3eb5f-1327-490f-ac8c-5e877512bee1
-      - da609887-b54a-4435-9ea8-281acf028a88
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f474a29c-f513-4ad1-a7f9-f290871172aa:
-    id: f474a29c-f513-4ad1-a7f9-f290871172aa
-    content: ActivityLogEntries.tsx — add title={entry.message} on the message span (covers both popover and panel).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  69cb92dd-fdfe-4758-bec4-1e53a7e24920:
-    id: 69cb92dd-fdfe-4758-bec4-1e53a7e24920
-    content: activityLogViewStore.ts — add togglePanel() alongside openPanel / closePanel.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  32e3eb5f-1327-490f-ac8c-5e877512bee1:
-    id: 32e3eb5f-1327-490f-ac8c-5e877512bee1
-    content: BottomStatusBar.tsx (ActivityRecap) — wire the logbar onClick to togglePanel.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  da609887-b54a-4435-9ea8-281acf028a88:
-    id: da609887-b54a-4435-9ea8-281acf028a88
-    content: Tests — view-store toggle unit test, and an entry-render test asserting the title attribute.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  41a1f2e2-e1e2-41f6-a7ce-9b5ccf803931:
-    id: 41a1f2e2-e1e2-41f6-a7ce-9b5ccf803931
-    content: Constraints to call out
-    children:
-      - 63e5040b-c1f4-4d43-92b8-fa1764f005b1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  63e5040b-c1f4-4d43-92b8-fa1764f005b1:
-    id: 63e5040b-c1f4-4d43-92b8-fa1764f005b1
-    content: Keep the popover's hover-to-preview behaviour distinct from the click-to-toggle, so hovering the logbar still previews without toggling the panel.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7bed6a80-67ab-4d61-adbe-0b32838179bf:
-    id: 7bed6a80-67ab-4d61-adbe-0b32838179bf
-    content: Technical refinement
-    children:
-      - e3abe2f8-2695-404f-ab9d-6b1d05c75512
-      - 377dd53a-41aa-42dc-8cc7-cc1e8501a9b4
-      - 13befeb6-db45-4045-91c9-c9cfd9b498c9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e3abe2f8-2695-404f-ab9d-6b1d05c75512:
-    id: e3abe2f8-2695-404f-ab9d-6b1d05c75512
-    content: togglePanel must preserve the mark-seen side effect that openPanel performs today (reset unread on the open branch only); a naive boolean flip silently regresses the unread badge.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  377dd53a-41aa-42dc-8cc7-cc1e8501a9b4:
-    id: 377dd53a-41aa-42dc-8cc7-cc1e8501a9b4
-    content: The panel close button and Escape already work in existing code — those acceptance criteria are regression guards, not new work.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  13befeb6-db45-4045-91c9-c9cfd9b498c9:
-    id: 13befeb6-db45-4045-91c9-c9cfd9b498c9
-    content: Renderer-only change; no data-model or persistence change, and no custom tooltip component (native title is sufficient).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  217c40d7-0f2f-4cea-b41a-a3d7afc1097b:
-    id: 217c40d7-0f2f-4cea-b41a-a3d7afc1097b
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  26d95cbd-89bb-4132-98a8-ec82396189f0:
-    id: 26d95cbd-89bb-4132-98a8-ec82396189f0
-    content: Verification summary
-    children:
-      - 341d4ebd-8705-4964-b85b-8850fb3ae764
-      - 7aaca281-f055-4a33-be38-1ce9c6ea7fcb
-      - 439067a4-233e-4bf1-a601-69f685126870
-      - 90c9f83f-f021-4be5-a0a3-f3af5ccf087e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  341d4ebd-8705-4964-b85b-8850fb3ae764:
-    id: 341d4ebd-8705-4964-b85b-8850fb3ae764
-    content: All seven acceptance criteria implemented and verified — 37 targeted tests pass, ESLint clean, type-check clean.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7aaca281-f055-4a33-be38-1ce9c6ea7fcb:
-    id: 7aaca281-f055-4a33-be38-1ce9c6ea7fcb
-    content: All implementation touchpoints landed — title attribute on the shared ActivityLogEntries (covers popover and panel), togglePanel on the view store delegating to openPanel/closePanel so mark-seen is preserved, and the logbar wired to togglePanel.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  439067a4-233e-4bf1-a601-69f685126870:
-    id: 439067a4-233e-4bf1-a601-69f685126870
-    content: No data-model or persistence change; the close button and Escape still close the panel (regression-guarded).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  90c9f83f-f021-4be5-a0a3-f3af5ccf087e:
-    id: 90c9f83f-f021-4be5-a0a3-f3af5ccf087e
-    content: Not done, out of scope — aria-expanded on the logbar toggle was not added (it maps to no acceptance criterion); the accessible-name verb was changed from "Open" to "Toggle" as the minimal accessible-name fix for the new behaviour.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   2c35412a-a5ff-453e-907b-425918abc9fe:
     id: 2c35412a-a5ff-453e-907b-425918abc9fe
     content: worktree
@@ -215554,7 +215082,7 @@ nodes:
       - f186bba7-abdf-433d-83cb-b2537bf33b1e
       - d30ea56f-5acf-499c-8c6a-c72439eee420
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -215584,7 +215112,7 @@ nodes:
       - 9e688341-5e62-49ce-9189-bc03b5e0cc1b
       - 7da6772c-0e09-49a8-8d7d-70de7d111341
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -215602,7 +215130,7 @@ nodes:
     content: If N is the final step, children are created and left terminal with no further step scheduled — no re-fire and no loop.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -216089,7 +215617,7 @@ nodes:
     content: Final-step decomposition edge case (children created and left terminal with no re-fire or loop when N is the final step) is pre-existing behavior the ack guard does not touch and was not re-verified in this fix; its integration tests remain it.todo in decomposedChildrenAutoAdvance.test.ts.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -216138,40 +215666,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3ac010f0-4573-4916-88dc-d42d860b28bc:
-    id: 3ac010f0-4573-4916-88dc-d42d860b28bc
-    content: review feedback
-    children:
-      - bb2d48a8-62c9-42d1-89b3-55c1e214c327
-      - 661afac4-2a81-4f8b-a762-0e020029206e
-      - 4bcfe425-2659-4e77-9095-bd721039a748
-      - d3a3a618-bab0-4188-bd3b-1146a0193f6b
-    metadata:
-      status: pending
-  bb2d48a8-62c9-42d1-89b3-55c1e214c327:
-    id: bb2d48a8-62c9-42d1-89b3-55c1e214c327
-    content: 'Verdict: ship it — no blockers or should-fix items. Reviewer independently re-ran type-check, lint, and the 37 tests in the worktree, all clean.'
-    children: []
-    metadata:
-      status: pending
-  661afac4-2a81-4f8b-a762-0e020029206e:
-    id: 661afac4-2a81-4f8b-a762-0e020029206e
-    content: Correctness confirmed — togglePanel delegates to openPanel/closePanel, so open marks-seen and close leaves lastSeenTimestamp untouched; App.tsx close paths (X button, Escape, closePanel) never re-mark; no consumer relied on the old openPanel return from useActivityRecap.
-    children: []
-    metadata:
-      status: pending
-  4bcfe425-2659-4e77-9095-bd721039a748:
-    id: 4bcfe425-2659-4e77-9095-bd721039a748
-    content: 'Nit (a11y, deferred): the logbar toggle button has no aria-expanded although the codebase uses that convention for expandable controls (MenuBar/Menu.tsx). Adding it requires ActivityRecap to also select isPanelOpen (panel open-state lives in App.tsx, sibling to the button); the ''Open''→''Toggle'' label is the interim. Low impact — decide whether to add it or accept the documented deferral.'
-    children: []
-    metadata:
-      status: pending
-  d3a3a618-bab0-4188-bd3b-1146a0193f6b:
-    id: d3a3a618-bab0-4188-bd3b-1146a0193f6b
-    content: 'Nit (tests, accept as-is): the title-tooltip assertion is duplicated across ActivityLogEntries/Popover/Panel tests. Harmless light integration guards that the shared renderer is wired in; trim only if single-responsibility tests are preferred.'
-    children: []
-    metadata:
-      status: pending
   b57d7fbe-91eb-47af-a154-7be303ca50a1:
     id: b57d7fbe-91eb-47af-a154-7be303ca50a1
     content: review feedback
@@ -216203,33 +215697,6 @@ nodes:
   8a6f202a-61a6-43f5-b3b5-f0b7fe6579ac:
     id: 8a6f202a-61a6-43f5-b3b5-f0b7fe6579ac
     content: Confirmed non-issues — two zoom tabs of the same node is moot (zoom tab path is zoom://<file>#<nodeId>, so a node has at most one zoom tab, making the single 'zoom' key sufficient); useVisibleChildren does not read metadata.expanded so it needed no rerouting; hidden-search-match counting on proposition roots was intentionally left on metadata as a minor non-AC edge. No blocker or major-severity correctness bug was found in the changed code or its callers.
-    children: []
-    metadata:
-      status: pending
-  83e2def2-a777-466e-afdb-2ceff26ac6b7:
-    id: 83e2def2-a777-466e-afdb-2ceff26ac6b7
-    content: review resolution
-    children:
-      - fb69c5d9-3013-4a21-856b-66e3341943b6
-      - 607b9c2c-1ba0-4b7c-8990-85e2eb8852b9
-      - ae3c490c-8c57-45d7-aa71-4d2685e74641
-    metadata:
-      status: pending
-  fb69c5d9-3013-4a21-856b-66e3341943b6:
-    id: fb69c5d9-3013-4a21-856b-66e3341943b6
-    content: 'Major issues fixed: none — the review verdict was ship-it with no blockers or should-fix items.'
-    children: []
-    metadata:
-      status: pending
-  607b9c2c-1ba0-4b7c-8990-85e2eb8852b9:
-    id: 607b9c2c-1ba0-4b7c-8990-85e2eb8852b9
-    content: 'Minor issue fixed: added aria-expanded to the logbar toggle button. Verified the convention is real (grep found aria-expanded={isOpen} in MenuBar/Menu.tsx:30 and MenuSubmenu.tsx:29), threaded isPanelOpen through useActivityRecap, set aria-expanded={isPanelOpen} on the button, and added a test asserting it flips false→true on click. 38 tests pass, ESLint clean, type-check clean.'
-    children: []
-    metadata:
-      status: pending
-  ae3c490c-8c57-45d7-aa71-4d2685e74641:
-    id: ae3c490c-8c57-45d7-aa71-4d2685e74641
-    content: 'Feedback skipped (pushed back): the duplicated title-tooltip assertion across ActivityLogEntries/Popover/Panel tests. Intentional — the popover and panel copies are integration guards that map to the two separate acceptance criteria (tooltip on popover, tooltip on panel) while ActivityLogEntries covers the shared renderer''s edge cases. The reviewer itself rated it accept-as-is; trimming would lose per-surface coverage for no real gain.'
     children: []
     metadata:
       status: pending
@@ -216325,6 +215792,624 @@ nodes:
   fef0495b-8651-438f-8e9d-c273ad4266f1:
     id: fef0495b-8651-438f-8e9d-c273ad4266f1
     content: 'Feedback skipped (accepted as known/benign): (1) the early-Stop 2s-window it.todo — low probability (requires a Stop inside the recurse window) and benign (Stop dropped, no double-advance or corruption); explicitly scoped out in Technical refinement + Verification, left as a title-only it.todo. (2) The reviewer''s positive confirmations (guard placement/invariant, CLAUDE.md conventions, test adequacy) require no action. No code changes; checks not re-run since nothing changed (last run: 1595 passed, type-check + lint clean).'
+    children: []
+    metadata:
+      status: pending
+  9c2f7f39-d213-456a-93c8-54ecb267efbf:
+    id: 9c2f7f39-d213-456a-93c8-54ecb267efbf
+    content: 'Test pass & fix: AC3 (final-step decomposition) mapped to its pre-existing implementation (advanceDecomposedSiblingToNextStep returns false at the final step → checkRecurse retains children, schedules nothing) and confirmed unaffected by the ack guard; closed its coverage gap with a new integration test asserting both children stay parked at the final step with no execution entry, no downstream prompt, and the orchestrator''s Stop does not bind/advance/loop. All three acceptance criteria now implemented + tested. Discrepancy noted (not fixed): the pre-existing it.todo "no toast or error is raised when final-step decomposition completes" over-specifies beyond AC3 — the code intentionally shows a benign info toast ("Decomposition at final step — children retained"), and AC3 only requires no re-fire/loop, so that it.todo should not be implemented as written. Checks: type-check clean, lint clean on changed files, 163 passed / 38 todo across the Stop-related + changed suites.'
+    children: []
+    metadata:
+      status: pending
+  f75203fa-249d-4a50-b98b-8f8053ecdf28:
+    id: f75203fa-249d-4a50-b98b-8f8053ecdf28
+    content: 'worktree: /Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr1-hover-toggle (branch feature/log-area-pr1-hover-toggle, forked from master a93b259)'
+    children:
+      - ac581097-a1b4-4667-8ab9-f0def9a09e4d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac581097-a1b4-4667-8ab9-f0def9a09e4d:
+    id: ac581097-a1b4-4667-8ab9-f0def9a09e4d
+    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr1-hover-toggle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45b50b0f-bcfd-4fc5-9457-6ca87eaa9ee0:
+    id: 45b50b0f-bcfd-4fc5-9457-6ca87eaa9ee0
+    content: User story
+    children:
+      - 090ee0ad-411a-4774-b6b7-06eeb73197ad
+      - 46895abc-4a0b-491f-a7e6-fb2a72d8bda3
+      - 238d8ce0-9c3b-45b1-9ac9-12c0ec7a9c3b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  090ee0ad-411a-4774-b6b7-06eeb73197ad:
+    id: 090ee0ad-411a-4774-b6b7-06eeb73197ad
+    content: 📄 Product spec
+    children:
+      - 23c4f17d-1ce4-4af0-b236-3ca8d86079f5
+      - da84cbdf-d09a-41f6-b349-9480edd73db6
+      - 5b21d69b-81a9-4afa-a585-71a3d38f1288
+      - 2ab6727e-f0b6-4b79-947b-c6e28496aee9
+      - ae803ffd-bf54-421d-8cf4-90a8a45923e0
+      - 8f1057d2-1a08-45fe-90f2-09e551d577d4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23c4f17d-1ce4-4af0-b236-3ca8d86079f5:
+    id: 23c4f17d-1ce4-4af0-b236-3ca8d86079f5
+    content: Context
+    children:
+      - f4ac0978-8fa5-46b9-8e8e-9bfe4b7362f8
+      - 28b3b332-3eda-494a-bfe8-ee1937b588eb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4ac0978-8fa5-46b9-8e8e-9bfe4b7362f8:
+    id: f4ac0978-8fa5-46b9-8e8e-9bfe4b7362f8
+    content: 'The activity log surfaces app/workflow events in three places: a status-bar logbar (latest entry), a hover popover (last 5), and a side panel (up to 100).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28b3b332-3eda-494a-bfe8-ee1937b588eb:
+    id: 28b3b332-3eda-494a-bfe8-ee1937b588eb
+    content: Entries are single-line, and the logbar only ever opens the panel — it never closes it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da84cbdf-d09a-41f6-b349-9480edd73db6:
+    id: da84cbdf-d09a-41f6-b349-9480edd73db6
+    content: User
+    children:
+      - 076ccc41-a06a-4c6b-974a-c11ac838e135
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  076ccc41-a06a-4c6b-974a-c11ac838e135:
+    id: 076ccc41-a06a-4c6b-974a-c11ac838e135
+    content: A developer running workflows in Arborescent who scans the activity log to track progress and triage events.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b21d69b-81a9-4afa-a585-71a3d38f1288:
+    id: 5b21d69b-81a9-4afa-a585-71a3d38f1288
+    content: Current experience and why it is insufficient
+    children:
+      - 476e5c95-75ec-4dd1-aa29-a56fb9620f51
+      - dd7254ac-10a5-4c32-ab8d-5d55ac8a2216
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  476e5c95-75ec-4dd1-aa29-a56fb9620f51:
+    id: 476e5c95-75ec-4dd1-aa29-a56fb9620f51
+    content: Long messages are truncated in the narrow logbar and popover, with no way to read the full text short of opening the panel.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd7254ac-10a5-4c32-ab8d-5d55ac8a2216:
+    id: dd7254ac-10a5-4c32-ab8d-5d55ac8a2216
+    content: The logbar opens the panel but a second click does nothing, so dismissing it requires the separate close button — an inconsistent toggle.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ab6727e-f0b6-4b79-947b-c6e28496aee9:
+    id: 2ab6727e-f0b6-4b79-947b-c6e28496aee9
+    content: Goal
+    children:
+      - fb067a38-76aa-413a-b2c1-78d4b20fc70d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb067a38-76aa-413a-b2c1-78d4b20fc70d:
+    id: fb067a38-76aa-413a-b2c1-78d4b20fc70d
+    content: Let users read any log message in full on hover and open or close the panel with the same logbar control.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae803ffd-bf54-421d-8cf4-90a8a45923e0:
+    id: ae803ffd-bf54-421d-8cf4-90a8a45923e0
+    content: Business rules
+    children:
+      - dd7e5eb0-627a-4f31-b498-fc3fa493cef1
+      - 79dce43f-4ad3-4ec9-87b8-8874322b3aa6
+      - 3a484f0e-4411-42bd-b27d-ef2ba0cd1d13
+      - 596c09cf-4eb5-42ce-9bc8-04d3e967086f
+      - e5e505ee-2fee-409d-b6cb-fdce2115a511
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd7e5eb0-627a-4f31-b498-fc3fa493cef1:
+    id: dd7e5eb0-627a-4f31-b498-fc3fa493cef1
+    content: Hovering any log entry in the popover or the side panel reveals that entry's full message text.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79dce43f-4ad3-4ec9-87b8-8874322b3aa6:
+    id: 79dce43f-4ad3-4ec9-87b8-8874322b3aa6
+    content: The tooltip shows the exact message string with no truncation or reformatting.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a484f0e-4411-42bd-b27d-ef2ba0cd1d13:
+    id: 3a484f0e-4411-42bd-b27d-ef2ba0cd1d13
+    content: Clicking the logbar while the panel is closed opens it; clicking it again while open closes it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  596c09cf-4eb5-42ce-9bc8-04d3e967086f:
+    id: 596c09cf-4eb5-42ce-9bc8-04d3e967086f
+    content: The panel's existing close button and Escape key continue to close the panel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5e505ee-2fee-409d-b6cb-fdce2115a511:
+    id: e5e505ee-2fee-409d-b6cb-fdce2115a511
+    content: This story introduces no data-model or persistence change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f1057d2-1a08-45fe-90f2-09e551d577d4:
+    id: 8f1057d2-1a08-45fe-90f2-09e551d577d4
+    content: Acceptance criteria
+    children:
+      - 30264c47-e52c-48ca-9761-7643edcfde96
+      - 055c52df-ff30-400d-bee2-2d42f5801e09
+      - d3de7035-6507-40b7-b020-a450c65f48b7
+      - f4691773-4bd6-45d7-a624-83883e9843bd
+      - 2a16c77e-6e9f-47e7-8fb7-9ce0db6f1c76
+      - e721db84-b9a5-4cfd-8d16-d9ed7b908d13
+      - 6f03c217-894b-4e3e-9d60-23dc23c24ae0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30264c47-e52c-48ca-9761-7643edcfde96:
+    id: 30264c47-e52c-48ca-9761-7643edcfde96
+    content: Hovering an entry in the popover shows its full message as a tooltip.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  055c52df-ff30-400d-bee2-2d42f5801e09:
+    id: 055c52df-ff30-400d-bee2-2d42f5801e09
+    content: Hovering an entry in the side panel shows its full message as a tooltip.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3de7035-6507-40b7-b020-a450c65f48b7:
+    id: d3de7035-6507-40b7-b020-a450c65f48b7
+    content: A message longer than its container is fully readable via the tooltip.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4691773-4bd6-45d7-a624-83883e9843bd:
+    id: f4691773-4bd6-45d7-a624-83883e9843bd
+    content: Clicking the logbar when the panel is closed opens the panel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a16c77e-6e9f-47e7-8fb7-9ce0db6f1c76:
+    id: 2a16c77e-6e9f-47e7-8fb7-9ce0db6f1c76
+    content: Clicking the logbar again when the panel is open closes the panel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e721db84-b9a5-4cfd-8d16-d9ed7b908d13:
+    id: e721db84-b9a5-4cfd-8d16-d9ed7b908d13
+    content: The close button and Escape still close the panel after the toggle change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f03c217-894b-4e3e-9d60-23dc23c24ae0:
+    id: 6f03c217-894b-4e3e-9d60-23dc23c24ae0
+    content: Unread-count behaviour on open is unchanged by the toggle.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46895abc-4a0b-491f-a7e6-fb2a72d8bda3:
+    id: 46895abc-4a0b-491f-a7e6-fb2a72d8bda3
+    content: 🔧 Implementation proposal
+    children:
+      - 08b4f096-1469-4565-93a9-741681f88fb3
+      - f037bcb9-c803-4284-931d-13e07cb634c0
+      - bd3cdfa6-ab5b-4675-830d-4dc5e6ca16fa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08b4f096-1469-4565-93a9-741681f88fb3:
+    id: 08b4f096-1469-4565-93a9-741681f88fb3
+    content: Approach
+    children:
+      - 5f39aea6-0f38-426b-aea9-ad3b4c3d8440
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f39aea6-0f38-426b-aea9-ad3b4c3d8440:
+    id: 5f39aea6-0f38-426b-aea9-ad3b4c3d8440
+    content: Add a native title attribute to the shared entry renderer so both popover and panel gain tooltips from one change, and convert the logbar handler from openPanel to a new togglePanel action on the view store.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f037bcb9-c803-4284-931d-13e07cb634c0:
+    id: f037bcb9-c803-4284-931d-13e07cb634c0
+    content: Touchpoints
+    children:
+      - 819a002d-c3a0-4e2d-9e54-5464f22b61d3
+      - 53ba2954-556e-4207-98dd-10e60c9e0243
+      - 07e3b17d-fa92-4904-b417-996aadd2e051
+      - d92532c0-6005-4b19-a9d8-eb941f0c0959
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  819a002d-c3a0-4e2d-9e54-5464f22b61d3:
+    id: 819a002d-c3a0-4e2d-9e54-5464f22b61d3
+    content: ActivityLogEntries.tsx — add title={entry.message} on the message span (covers both popover and panel).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53ba2954-556e-4207-98dd-10e60c9e0243:
+    id: 53ba2954-556e-4207-98dd-10e60c9e0243
+    content: activityLogViewStore.ts — add togglePanel() alongside openPanel / closePanel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07e3b17d-fa92-4904-b417-996aadd2e051:
+    id: 07e3b17d-fa92-4904-b417-996aadd2e051
+    content: BottomStatusBar.tsx (ActivityRecap) — wire the logbar onClick to togglePanel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d92532c0-6005-4b19-a9d8-eb941f0c0959:
+    id: d92532c0-6005-4b19-a9d8-eb941f0c0959
+    content: Tests — view-store toggle unit test, and an entry-render test asserting the title attribute.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd3cdfa6-ab5b-4675-830d-4dc5e6ca16fa:
+    id: bd3cdfa6-ab5b-4675-830d-4dc5e6ca16fa
+    content: Constraints to call out
+    children:
+      - 57c525f7-fbac-47d5-bf73-ec19994b7d82
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57c525f7-fbac-47d5-bf73-ec19994b7d82:
+    id: 57c525f7-fbac-47d5-bf73-ec19994b7d82
+    content: Keep the popover's hover-to-preview behaviour distinct from the click-to-toggle, so hovering the logbar still previews without toggling the panel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  238d8ce0-9c3b-45b1-9ac9-12c0ec7a9c3b:
+    id: 238d8ce0-9c3b-45b1-9ac9-12c0ec7a9c3b
+    content: Technical refinement
+    children:
+      - 148e5358-d1f3-4faa-892a-49345283d7be
+      - 650329dd-b2b2-412f-85f4-58a7b5565bdd
+      - 82a7edd2-aa1d-4224-9e45-edff563248f5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  148e5358-d1f3-4faa-892a-49345283d7be:
+    id: 148e5358-d1f3-4faa-892a-49345283d7be
+    content: togglePanel must preserve the mark-seen side effect that openPanel performs today (reset unread on the open branch only); a naive boolean flip silently regresses the unread badge.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  650329dd-b2b2-412f-85f4-58a7b5565bdd:
+    id: 650329dd-b2b2-412f-85f4-58a7b5565bdd
+    content: The panel close button and Escape already work in existing code — those acceptance criteria are regression guards, not new work.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82a7edd2-aa1d-4224-9e45-edff563248f5:
+    id: 82a7edd2-aa1d-4224-9e45-edff563248f5
+    content: Renderer-only change; no data-model or persistence change, and no custom tooltip component (native title is sufficient).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7162f80c-2f28-4d61-9104-587619b42474:
+    id: 7162f80c-2f28-4d61-9104-587619b42474
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76217f0d-5c60-4bac-a0a2-797930d163fe:
+    id: 76217f0d-5c60-4bac-a0a2-797930d163fe
+    content: Verification summary
+    children:
+      - ed041543-f62b-405b-b9eb-5ac14a47e3a7
+      - 4b5298bc-4205-431c-a058-4cccd09ad0cf
+      - 5e22b0c9-b89b-4d10-8e4f-454c2c2c31c1
+      - cba65f85-68fd-4923-88b0-5ea683abc271
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed041543-f62b-405b-b9eb-5ac14a47e3a7:
+    id: ed041543-f62b-405b-b9eb-5ac14a47e3a7
+    content: All seven acceptance criteria implemented and verified — 37 targeted tests pass, ESLint clean, type-check clean.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b5298bc-4205-431c-a058-4cccd09ad0cf:
+    id: 4b5298bc-4205-431c-a058-4cccd09ad0cf
+    content: All implementation touchpoints landed — title attribute on the shared ActivityLogEntries (covers popover and panel), togglePanel on the view store delegating to openPanel/closePanel so mark-seen is preserved, and the logbar wired to togglePanel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e22b0c9-b89b-4d10-8e4f-454c2c2c31c1:
+    id: 5e22b0c9-b89b-4d10-8e4f-454c2c2c31c1
+    content: No data-model or persistence change; the close button and Escape still close the panel (regression-guarded).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cba65f85-68fd-4923-88b0-5ea683abc271:
+    id: cba65f85-68fd-4923-88b0-5ea683abc271
+    content: Not done, out of scope — aria-expanded on the logbar toggle was not added (it maps to no acceptance criterion); the accessible-name verb was changed from "Open" to "Toggle" as the minimal accessible-name fix for the new behaviour.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18b66e88-5c1c-453c-8879-a9087271f7c7:
+    id: 18b66e88-5c1c-453c-8879-a9087271f7c7
+    content: review feedback
+    children:
+      - 0a57769d-7950-4efb-9fa9-b2b38a9d0d91
+      - 1cd661cf-075f-4bac-86e3-b2ff68fce2c4
+      - 6f7b0f8b-4f22-4f88-b3b4-d789ca5d38e7
+      - 548a0ffe-f1d4-4cde-b403-e9f74e9e78ee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a57769d-7950-4efb-9fa9-b2b38a9d0d91:
+    id: 0a57769d-7950-4efb-9fa9-b2b38a9d0d91
+    content: 'Verdict: ship it — no blockers or should-fix items. Reviewer independently re-ran type-check, lint, and the 37 tests in the worktree, all clean.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cd661cf-075f-4bac-86e3-b2ff68fce2c4:
+    id: 1cd661cf-075f-4bac-86e3-b2ff68fce2c4
+    content: Correctness confirmed — togglePanel delegates to openPanel/closePanel, so open marks-seen and close leaves lastSeenTimestamp untouched; App.tsx close paths (X button, Escape, closePanel) never re-mark; no consumer relied on the old openPanel return from useActivityRecap.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f7b0f8b-4f22-4f88-b3b4-d789ca5d38e7:
+    id: 6f7b0f8b-4f22-4f88-b3b4-d789ca5d38e7
+    content: 'Nit (a11y, deferred): the logbar toggle button has no aria-expanded although the codebase uses that convention for expandable controls (MenuBar/Menu.tsx). Adding it requires ActivityRecap to also select isPanelOpen (panel open-state lives in App.tsx, sibling to the button); the ''Open''→''Toggle'' label is the interim. Low impact — decide whether to add it or accept the documented deferral.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  548a0ffe-f1d4-4cde-b403-e9f74e9e78ee:
+    id: 548a0ffe-f1d4-4cde-b403-e9f74e9e78ee
+    content: 'Nit (tests, accept as-is): the title-tooltip assertion is duplicated across ActivityLogEntries/Popover/Panel tests. Harmless light integration guards that the shared renderer is wired in; trim only if single-responsibility tests are preferred.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d310243-e937-4768-88fb-9a61896eba48:
+    id: 2d310243-e937-4768-88fb-9a61896eba48
+    content: review resolution
+    children:
+      - 4e0320e2-80b4-4cad-b56f-c45647870df4
+      - f44bc544-3ef3-44bc-9556-6143f4277e27
+      - 7e7b3f54-d3c0-418b-b3a2-e0311b9b9ba2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e0320e2-80b4-4cad-b56f-c45647870df4:
+    id: 4e0320e2-80b4-4cad-b56f-c45647870df4
+    content: 'Major issues fixed: none — the review verdict was ship-it with no blockers or should-fix items.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f44bc544-3ef3-44bc-9556-6143f4277e27:
+    id: f44bc544-3ef3-44bc-9556-6143f4277e27
+    content: 'Minor issue fixed: added aria-expanded to the logbar toggle button. Verified the convention is real (grep found aria-expanded={isOpen} in MenuBar/Menu.tsx:30 and MenuSubmenu.tsx:29), threaded isPanelOpen through useActivityRecap, set aria-expanded={isPanelOpen} on the button, and added a test asserting it flips false→true on click. 38 tests pass, ESLint clean, type-check clean.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e7b3f54-d3c0-418b-b3a2-e0311b9b9ba2:
+    id: 7e7b3f54-d3c0-418b-b3a2-e0311b9b9ba2
+    content: 'Feedback skipped (pushed back): the duplicated title-tooltip assertion across ActivityLogEntries/Popover/Panel tests. Intentional — the popover and panel copies are integration guards that map to the two separate acceptance criteria (tooltip on popover, tooltip on panel) while ActivityLogEntries covers the shared renderer''s edge cases. The reviewer itself rated it accept-as-is; trimming would lose per-surface coverage for no real gain.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e97e04c-063c-43bd-82e8-db31772cdf44:
+    id: 0e97e04c-063c-43bd-82e8-db31772cdf44
+    content: merge
+    children:
+      - 8cdff3ba-3218-40f1-9d6a-d82f2cbeed25
+      - b59d6e27-e12a-4fc6-bc9d-4542edec8a47
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cdff3ba-3218-40f1-9d6a-d82f2cbeed25:
+    id: 8cdff3ba-3218-40f1-9d6a-d82f2cbeed25
+    content: Merged to master as 0470514 via fast-forward; project.arbo committed separately on master as 90fa6d8, feature rebased onto it before the merge.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b59d6e27-e12a-4fc6-bc9d-4542edec8a47:
+    id: b59d6e27-e12a-4fc6-bc9d-4542edec8a47
+    content: Pushed master to origin (a93b259..0470514); worktree and local branch feature/log-area-pr1-hover-toggle deleted after the merge was confirmed on master.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf6a388a-ca7f-4450-bed7-9dd4f4451a12:
+    id: bf6a388a-ca7f-4450-bed7-9dd4f4451a12
+    content: 'Documentation: no changes made (intentional). This is an internal bug fix, not a feature — the ack-pending guard restores the already-documented behavior (docs/workflows.md "Recurse" / "Decomposition + Recurse" already state siblings run in order, one step per pass, pausing at the recurse step). No new setting/command/concept, so nothing to add and no doc was made inaccurate. No CHANGELOG file exists, and per the rules a bug fix to an unreleased feature (the decomposition auto-advance hand-off series e532b73/4ecbcc1/bf851be/4728852) gets no changelog line. No inconsistencies to warn about.'
+    children: []
+    metadata:
+      status: pending
+  629a3a99-a5c8-40b8-a8d3-255557b6f788:
+    id: 629a3a99-a5c8-40b8-a8d3-255557b6f788
+    content: 'worktree: /Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session (branch feature/log-area-pr2-jump-to-session, forked from master 0470514)'
+    children:
+      - 677702cf-862c-4ffc-95bb-78d878d575c8
+    metadata:
+      status: pending
+  677702cf-862c-4ffc-95bb-78d878d575c8:
+    id: 677702cf-862c-4ffc-95bb-78d878d575c8
+    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session
     children: []
     metadata:
       status: pending
