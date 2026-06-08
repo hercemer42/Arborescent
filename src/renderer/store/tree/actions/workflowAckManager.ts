@@ -9,6 +9,7 @@ export interface AckRetryManager {
   clearPendingAck(nodeId: string): void;
   consumePendingAck(nodeId: string): void;
   registerPendingAck(nodeId: string, terminalId: string): void;
+  isAckPending(nodeId: string): boolean;
   clearAll(): void;
 }
 
@@ -88,6 +89,13 @@ export function createAckRetryManager(deps: AckRetryManagerDeps): AckRetryManage
     void notifyWorkflowEvent('alert', 'Workflow delivery failed', `"${nodeName}" could not be delivered`);
   }
 
+  // A node is ack-pending only while its delivered prompt awaits its
+  // UserPromptSubmit. A pre-consumed ack lives in preconsumedAcks, never
+  // pendingAcks, so it correctly reports not-pending.
+  function isAckPending(nodeId: string): boolean {
+    return pendingAcks.has(nodeId);
+  }
+
   function clearAll(): void {
     for (const nodeId of Array.from(pendingAcks.keys())) {
       clearPendingAck(nodeId);
@@ -99,6 +107,7 @@ export function createAckRetryManager(deps: AckRetryManagerDeps): AckRetryManage
     clearPendingAck,
     consumePendingAck,
     registerPendingAck,
+    isAckPending,
     clearAll,
   };
 }

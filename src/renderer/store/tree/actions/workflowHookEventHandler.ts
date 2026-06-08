@@ -35,6 +35,7 @@ export interface HookEventHandlerDeps {
   set: (partial: { workflowExecutionStates?: Record<string, WorkflowExecutionEntry> }) => void;
   findRunningNodeOnTerminal: (terminalId: string) => string | null;
   consumePendingAck: (nodeId: string) => void;
+  isAckPending: (nodeId: string) => boolean;
   advanceNode: (nodeId: string) => void;
   completeWorkflow: (nodeId: string) => void;
   stopWorkflow: (nodeId: string) => void;
@@ -54,6 +55,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
     set,
     findRunningNodeOnTerminal,
     consumePendingAck,
+    isAckPending,
     advanceNode,
     completeWorkflow,
     stopWorkflow,
@@ -237,6 +239,22 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
       }
 
       if (stepType === 'autonomous') {
+        // A node whose just-sent prompt is still in flight (ack registered, no
+        // UserPromptSubmit yet) cannot have produced this Stop — it belongs to a
+        // prior turn whose work was bound to this terminal mid-turn (e.g. a
+        // decomposition hand-off that promoted this child). Advancing here would
+        // skip the step's real work. Let the node's own Stop, after its ack is
+        // consumed, do the advance. WARN so the mis-credit is visible in the
+        // persisted log rather than only at INFO.
+        if (isAckPending(runningNodeId)) {
+          logger.warn(
+            `Hook Stop not advanced: node ${runningNodeId} step ${position.currentStepId} prompt still in flight (ack pending) — Stop attributed to a prior turn`,
+            'WorkflowExecution',
+            { nodeId: runningNodeId },
+          );
+          return;
+        }
+
         const { workflowExecutionStates: execStates } = get();
         const execEntry = execStates[runningNodeId];
         if (execEntry?.needsReview) {

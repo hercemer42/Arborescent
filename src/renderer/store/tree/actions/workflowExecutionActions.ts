@@ -1068,6 +1068,7 @@ export const createWorkflowExecutionActions = (
     set,
     findRunningNodeOnTerminal: (terminalId) => findRunningNodeOnTerminal(get, terminalId),
     consumePendingAck: ackManager.consumePendingAck,
+    isAckPending: ackManager.isAckPending,
     advanceNode,
     completeWorkflow,
     stopWorkflow,

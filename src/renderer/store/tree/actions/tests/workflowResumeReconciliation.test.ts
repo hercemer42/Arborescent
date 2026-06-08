@@ -181,6 +181,14 @@ describe('Resume reconciliation and ack-retry hardening', () => {
     it('Stop with unknown session_id but known terminal_id is routed to the running node, advancing the workflow', async () => {
       await primeRunningStep();
 
+      // The resumed run's UserPromptSubmit consumes the pending ack before its
+      // Stop, matching the production ordering the advance guard relies on.
+      actions.handleHookEvent({
+        session_id: 'sess-not-yet-registered',
+        hook_event_name: 'UserPromptSubmit',
+        terminal_id: 'terminal-1',
+      });
+
       actions.handleHookEvent({
         session_id: 'sess-not-yet-registered',
         hook_event_name: 'Stop',
