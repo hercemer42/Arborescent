@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { storeManager } from '../store/storeManager';
+import { useFilesStore } from '../store/files/filesStore';
 import { logger } from './logger';
 import { addReview, hasBrowserReview, overlapsOtherReview } from '../store/tree/reviews';
 import type { ProposalRequest, ProposalResponse } from '../../shared/types/electronApi';
@@ -12,6 +13,7 @@ export type HandleProposalResult =
 export interface HandleProposalDeps {
   findFileForNode: (nodeId: string) => string | null;
   getStoreForFile: (filePath: string) => TreeStore | null;
+  openReviewZoom?: (sourceFilePath: string, nodeId: string, nodeContent: string) => void;
 }
 
 const SUBMIT_STEP_OUTPUT_GUIDANCE =
@@ -30,11 +32,18 @@ function defaultGetStoreForFile(filePath: string): TreeStore | null {
   return storeManager.getStoreForFile(filePath);
 }
 
+// Surface the reviewed node in a zoom tab without stealing focus, so a pending review is
+// discoverable from the tab bar even when the user is elsewhere in the tree.
+function defaultOpenReviewZoom(sourceFilePath: string, nodeId: string, nodeContent: string): void {
+  useFilesStore.getState().openZoomTab(sourceFilePath, nodeId, nodeContent, { background: true });
+}
+
 export async function handleProposalRequest(
   request: ProposalRequest,
   deps: HandleProposalDeps = {
     findFileForNode: defaultFindFileForNode,
     getStoreForFile: defaultGetStoreForFile,
+    openReviewZoom: defaultOpenReviewZoom,
   },
 ): Promise<HandleProposalResult> {
   const filePath = deps.findFileForNode(request.nodeId);
@@ -90,6 +99,8 @@ export async function handleProposalRequest(
         error: `Submitted content could not be applied${reasonSuffix}`,
       };
     }
+    const reviewedContent = targetStore.getState().nodes?.[request.nodeId]?.content ?? '';
+    deps.openReviewZoom?.(filePath, request.nodeId, reviewedContent);
     return { ok: true, proposalId: uuidv4() };
   } catch (error) {
     restorePriorState();

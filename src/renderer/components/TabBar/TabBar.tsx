@@ -18,6 +18,7 @@ function resolveIndicator(filePath: string, indicators: Record<string, { feedbac
 export const TabBar = memo(function TabBar() {
   const files = useFilesStore((state) => state.files);
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
+  const reviewPendingNodeIds = useFilesStore((state) => state.reviewPendingNodeIds);
   const setActiveFile = useFilesStore((state) => state.setActiveFile);
   const closeFile = useFilesStore((state) => state.actions.closeFile);
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
@@ -32,7 +33,8 @@ export const TabBar = memo(function TabBar() {
     <div className="tab-bar">
       <div className="tab-bar-tabs">
         {files.map((file, index) => {
-          const { displayName, isZoomTab, fullName, isLastInGroup, hasZoomToRight } = getTabProps(file, files[index + 1]);
+          const reviewPending = !!file.zoomSource && reviewPendingNodeIds.has(file.zoomSource.zoomedNodeId);
+          const { displayName, isZoomTab, fullName, isLastInGroup, hasZoomToRight, isReviewPending } = getTabProps(file, files[index + 1], reviewPending);
 
           return (
             <Tab
@@ -45,6 +47,7 @@ export const TabBar = memo(function TabBar() {
               isZoomTab={isZoomTab}
               isLastInGroup={isLastInGroup}
               hasZoomToRight={hasZoomToRight}
+              isReviewPending={isReviewPending}
               indicator={resolveIndicator(file.path, indicators)}
               onClick={() => setActiveFile(file.path)}
               onClose={() => closeFile(file.path)}

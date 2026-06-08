@@ -6,13 +6,14 @@ export interface TabProps {
   fullName: string | undefined;
   isLastInGroup: boolean;
   hasZoomToRight: boolean;
+  isReviewPending: boolean;
 }
 
 function stripArboExtension(name: string): string {
   return name.endsWith('.arbo') ? name.slice(0, -5) : name;
 }
 
-export function getTabProps(file: File, nextFile: File | undefined): TabProps {
+export function getTabProps(file: File, nextFile: File | undefined, isReviewPending = false): TabProps {
   const isZoomTab = !!file.zoomSource;
   const displayName = stripArboExtension(file.displayName);
 
@@ -27,5 +28,5 @@ export function getTabProps(file: File, nextFile: File | undefined): TabProps {
 
   const hasZoomToRight = !isZoomTab && nextFile?.zoomSource?.sourceFilePath === file.path;
 
-  return { displayName, isZoomTab, fullName, isLastInGroup, hasZoomToRight };
+  return { displayName, isZoomTab, fullName, isLastInGroup, hasZoomToRight, isReviewPending: isReviewPending && isZoomTab };
 }

@@ -20,6 +20,7 @@ import {
 } from '../../../../shared/utils/arborescentMarker';
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
+import { useFilesStore } from '../../files/filesStore';
 import { usePendingRebindDialogStore } from '../../pendingRebindDialogStore';
 import { useRebindPreflightStore } from '../../rebindPreflightStore';
 import { VisualEffectsActions } from './visualEffectsActions';
@@ -475,6 +476,10 @@ export function createSendActions(
     stopWatchingPropositionEdits(reviewedNodeId);
     dropPendingProposalEntry(reviewedNodeId);
     removeReviewEntry(reviewedNodeId);
+    // Close any background review zoom tab for this node. When the resolution happened inside that
+    // zoom tab, this also returns focus to the source file's main tree; from the main tree it is a
+    // no-op on focus. The node id is the pre-accept id the zoom tab was keyed on.
+    useFilesStore.getState().closeZoomTabsForNode(reviewedNodeId);
     // Persist the cleared review + pending-proposition state before the cleanup IPC await, so a
     // stopClipboardMonitor rejection can't strand the in-memory clear unsaved and resurrect it on reload.
     if (persist) autoSave();

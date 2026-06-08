@@ -191,4 +191,22 @@ describe('Tab', () => {
       expect(handleClose).toHaveBeenCalledOnce();
     });
   });
+
+  describe('review-pending highlight', () => {
+    it('applies the review-pending class when pending and not active', () => {
+      render(
+        <Tab displayName="Node 1" isActive={false} isZoomTab isReviewPending onClick={vi.fn()} onClose={vi.fn()} />,
+      );
+
+      expect(screen.getByText('Node 1').closest('.tab')).toHaveClass('review-pending');
+    });
+
+    it('does not apply the review-pending class while the tab is active', () => {
+      render(
+        <Tab displayName="Node 1" isActive={true} isZoomTab isReviewPending onClick={vi.fn()} onClose={vi.fn()} />,
+      );
+
+      expect(screen.getByText('Node 1').closest('.tab')).not.toHaveClass('review-pending');
+    });
+  });
 });

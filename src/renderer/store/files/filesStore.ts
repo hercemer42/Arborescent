@@ -29,20 +29,55 @@ export interface File {
   zoomSource?: ZoomSource;
 }
 
+export interface OpenZoomTabOptions {
+  background?: boolean;
+}
+
 interface FilesState {
   files: File[];
   activeFilePath: string | null;
+  // Zoomed review nodes whose tab should show the "review feedback pending" highlight. Transient
+  // (never persisted) so a reload cannot strand a highlight; entries are added when a background
+  // review zoom opens and removed once that tab is focused or its review is resolved/closed.
+  reviewPendingNodeIds: Set<string>;
 
   openFile: (path: string, displayName: string, isTemporary?: boolean) => void;
   closeFile: (path: string) => void;
   setActiveFile: (path: string) => void;
   closeActiveFile: () => void;
   markAsSaved: (oldPath: string, newPath: string, newDisplayName: string) => void;
-  openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string) => void;
+  openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string, options?: OpenZoomTabOptions) => void;
   closeZoomTabsForNode: (nodeId: string) => void;
   getActiveFile: () => File | null;
 
   actions: FileActions;
+}
+
+function withoutPendingNode(pending: Set<string>, nodeId: string): Set<string> {
+  if (!pending.has(nodeId)) return pending;
+  const next = new Set(pending);
+  next.delete(nodeId);
+  return next;
+}
+
+function withPendingNode(pending: Set<string>, nodeId: string): Set<string> {
+  if (pending.has(nodeId)) return pending;
+  const next = new Set(pending);
+  next.add(nodeId);
+  return next;
+}
+
+// Zoom tabs sit immediately after their source file and stay grouped together, so a new zoom is
+// inserted after the source's existing zoom tabs (or at the end when the source file is not open).
+function computeZoomInsertIndex(files: File[], sourceFilePath: string): number {
+  const sourceIndex = files.findIndex(f => f.path === sourceFilePath);
+  if (sourceIndex === -1) return files.length;
+
+  let insertIndex = sourceIndex + 1;
+  while (insertIndex < files.length && files[insertIndex].zoomSource?.sourceFilePath === sourceFilePath) {
+    insertIndex++;
+  }
+  return insertIndex;
 }
 
 const storageService = new StorageService();
@@ -61,6 +96,7 @@ async function persistSession(files: File[], activeFilePath: string | null): Pro
 export const useFilesStore = create<FilesState>((set, get) => ({
   files: [],
   activeFilePath: null,
+  reviewPendingNodeIds: new Set<string>(),
 
   openFile: (path: string, displayName: string, isTemporary?: boolean) => {
     const { files } = get();
@@ -81,7 +117,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
   },
 
   closeFile: (path: string) => {
-    const { files, activeFilePath } = get();
+    const { files, activeFilePath, reviewPendingNodeIds } = get();
     const newFiles = files.filter(f => f.path !== path);
 
     let newActiveFilePath = activeFilePath;
@@ -95,16 +131,28 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       }
     }
 
+    const closedZoomNodeId = files.find(f => f.path === path)?.zoomSource?.zoomedNodeId;
+
     set({
       files: newFiles,
       activeFilePath: newActiveFilePath,
+      reviewPendingNodeIds: closedZoomNodeId
+        ? withoutPendingNode(reviewPendingNodeIds, closedZoomNodeId)
+        : reviewPendingNodeIds,
     });
     const newState = get();
     void persistSession(newState.files, newState.activeFilePath);
   },
 
   setActiveFile: (path: string) => {
-    set({ activeFilePath: path });
+    const { files, reviewPendingNodeIds } = get();
+    const focusedZoomNodeId = files.find(f => f.path === path)?.zoomSource?.zoomedNodeId;
+    set({
+      activeFilePath: path,
+      reviewPendingNodeIds: focusedZoomNodeId
+        ? withoutPendingNode(reviewPendingNodeIds, focusedZoomNodeId)
+        : reviewPendingNodeIds,
+    });
     const newState = get();
     void persistSession(newState.files, newState.activeFilePath);
   },
@@ -132,14 +180,23 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     void persistSession(newState.files, newState.activeFilePath);
   },
 
-  openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string) => {
-    const { files } = get();
+  openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string, options?: OpenZoomTabOptions) => {
+    const background = options?.background ?? false;
+    const { files, activeFilePath, reviewPendingNodeIds } = get();
 
     const existingZoom = files.find(
       f => f.zoomSource?.sourceFilePath === sourceFilePath && f.zoomSource?.zoomedNodeId === nodeId
     );
 
     if (existingZoom) {
+      if (background) {
+        // Highlight the existing tab as pending rather than stealing focus — unless the user is
+        // already looking at it, in which case there is nothing to direct them to.
+        if (existingZoom.path !== activeFilePath) {
+          set({ reviewPendingNodeIds: withPendingNode(reviewPendingNodeIds, nodeId) });
+        }
+        return;
+      }
       set({ activeFilePath: existingZoom.path });
       const newState = get();
       void persistSession(newState.files, newState.activeFilePath);
@@ -156,18 +213,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       zoomSource: { sourceFilePath, zoomedNodeId: nodeId },
     };
 
-    const sourceIndex = files.findIndex(f => f.path === sourceFilePath);
-    let insertIndex: number;
-
-    if (sourceIndex === -1) {
-      insertIndex = files.length;
-    } else {
-      insertIndex = sourceIndex + 1;
-      while (insertIndex < files.length && files[insertIndex].zoomSource?.sourceFilePath === sourceFilePath) {
-        insertIndex++;
-      }
-    }
-
+    const insertIndex = computeZoomInsertIndex(files, sourceFilePath);
     const newFiles = [
       ...files.slice(0, insertIndex),
       newZoomTab,
@@ -176,17 +222,26 @@ export const useFilesStore = create<FilesState>((set, get) => ({
 
     set({
       files: newFiles,
-      activeFilePath: zoomPath,
+      activeFilePath: background ? activeFilePath : zoomPath,
+      reviewPendingNodeIds: background
+        ? withPendingNode(reviewPendingNodeIds, nodeId)
+        : reviewPendingNodeIds,
     });
     const newState = get();
     void persistSession(newState.files, newState.activeFilePath);
   },
 
   closeZoomTabsForNode: (nodeId: string) => {
-    const { files, activeFilePath } = get();
+    const { files, activeFilePath, reviewPendingNodeIds } = get();
     const zoomTabsToClose = files.filter(f => f.zoomSource?.zoomedNodeId === nodeId);
 
-    if (zoomTabsToClose.length === 0) return;
+    if (zoomTabsToClose.length === 0) {
+      // No tab to close, but a pending highlight may still be armed (e.g. the tab was closed
+      // manually first) — clear it so a resolved review never leaves a dangling highlight.
+      const cleared = withoutPendingNode(reviewPendingNodeIds, nodeId);
+      if (cleared !== reviewPendingNodeIds) set({ reviewPendingNodeIds: cleared });
+      return;
+    }
 
     const newFiles = files.filter(f => f.zoomSource?.zoomedNodeId !== nodeId);
 
@@ -204,6 +259,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     set({
       files: newFiles,
       activeFilePath: newActiveFilePath,
+      reviewPendingNodeIds: withoutPendingNode(reviewPendingNodeIds, nodeId),
     });
     const newState = get();
     void persistSession(newState.files, newState.activeFilePath);

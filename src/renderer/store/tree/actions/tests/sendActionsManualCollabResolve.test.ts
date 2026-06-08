@@ -3,6 +3,7 @@ import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
 import { TreeNode } from '../../../../../shared/types';
 import { cleanupFeedbackForNode, extractFeedbackContent } from '../../../../services/feedback/feedbackService';
+import { useFilesStore } from '../../../files/filesStore';
 
 vi.mock('../../../../services/logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
@@ -51,6 +52,7 @@ describe('sendActions — manual collab resolve trigger', () => {
         createTempFile: vi.fn().mockResolvedValue('/tmp/feedback.md'),
         readTempFile: vi.fn().mockResolvedValue(null),
         notifyManualCollabResolved: notifyManualCollabResolvedMock,
+        saveSession: vi.fn().mockResolvedValue(undefined),
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
@@ -125,6 +127,39 @@ describe('sendActions — manual collab resolve trigger', () => {
       await actions.finishCancel('child1');
 
       expect(notifyManualCollabResolvedMock).toHaveBeenCalledWith('sess-B');
+    });
+
+    it('resolving from the main tree closes the background zoom tab, clears its highlight, and keeps focus in the main tree', async () => {
+      mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-1' } };
+      mockState.currentFilePath = '/tmp/file.arbo';
+
+      useFilesStore.setState({ files: [], activeFilePath: null, reviewPendingNodeIds: new Set() });
+      useFilesStore.getState().openFile('/tmp/file.arbo', 'file.arbo');
+      useFilesStore.getState().openZoomTab('/tmp/file.arbo', 'child1', 'Child 1', { background: true });
+      // Background open leaves focus on the source file (the user is resolving from the main tree).
+
+      await actions.finishCancel('child1');
+
+      const filesState = useFilesStore.getState();
+      expect(filesState.files.some((f) => f.zoomSource?.zoomedNodeId === 'child1')).toBe(false);
+      expect(filesState.reviewPendingNodeIds.has('child1')).toBe(false);
+      expect(filesState.activeFilePath).toBe('/tmp/file.arbo');
+    });
+
+    it('resolving from inside the zoom tab closes it and returns focus to the source main tree', async () => {
+      mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-1' } };
+      mockState.currentFilePath = '/tmp/file.arbo';
+
+      useFilesStore.setState({ files: [], activeFilePath: null, reviewPendingNodeIds: new Set() });
+      useFilesStore.getState().openFile('/tmp/file.arbo', 'file.arbo');
+      useFilesStore.getState().openZoomTab('/tmp/file.arbo', 'child1', 'Child 1'); // foreground: the zoom tab is active
+      expect(useFilesStore.getState().activeFilePath).toBe('zoom:///tmp/file.arbo#child1');
+
+      await actions.finishCancel('child1');
+
+      const filesState = useFilesStore.getState();
+      expect(filesState.files.some((f) => f.zoomSource?.zoomedNodeId === 'child1')).toBe(false);
+      expect(filesState.activeFilePath).toBe('/tmp/file.arbo');
     });
 
     it('does NOT fire when terminalId is null (e.g. browser-source collab)', async () => {
@@ -211,6 +246,21 @@ describe('sendActions — manual collab resolve trigger', () => {
       await actions.finishAccept('child1');
 
       expect(notifyManualCollabResolvedMock).not.toHaveBeenCalled();
+    });
+
+    it('closes the background review zoom tab keyed on the pre-accept node id, even though accept mints a new node id', async () => {
+      mockState.reviews = { child1: { source: 'terminal', terminalId: 'term-1' } };
+      stubProposition(); // proposition root is 'new-child1' — a different id from the reviewed 'child1'
+
+      useFilesStore.setState({ files: [], activeFilePath: null, reviewPendingNodeIds: new Set() });
+      useFilesStore.getState().openFile('/tmp/file.arbo', 'file.arbo');
+      useFilesStore.getState().openZoomTab('/tmp/file.arbo', 'child1', 'Child 1', { background: true });
+
+      await actions.finishAccept('child1');
+
+      const filesState = useFilesStore.getState();
+      expect(filesState.files.some((f) => f.zoomSource?.zoomedNodeId === 'child1')).toBe(false);
+      expect(filesState.reviewPendingNodeIds.has('child1')).toBe(false);
     });
   });
 });

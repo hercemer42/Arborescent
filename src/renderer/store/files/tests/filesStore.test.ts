@@ -6,6 +6,7 @@ describe('filesStore', () => {
     useFilesStore.setState({
       files: [],
       activeFilePath: null,
+      reviewPendingNodeIds: new Set(),
     });
   });
 

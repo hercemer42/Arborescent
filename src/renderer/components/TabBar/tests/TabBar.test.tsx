@@ -38,6 +38,7 @@ describe('TabBar', () => {
     useFilesStore.setState({
       files: [],
       activeFilePath: null,
+      reviewPendingNodeIds: new Set(),
     });
     vi.clearAllMocks();
   });
@@ -115,6 +116,25 @@ describe('TabBar', () => {
 
     expect(storeManager.closeFile).toHaveBeenCalledWith('/path/file1.arbo');
     expect(useFilesStore.getState().files).toHaveLength(0);
+  });
+
+  it('marks a background review zoom tab as review-pending when its node is pending and the tab is not active', () => {
+    useFilesStore.setState({
+      files: [
+        { path: '/path/file1.arbo', displayName: 'file1.arbo' },
+        {
+          path: 'zoom:///path/file1.arbo#node-1',
+          displayName: 'Node 1',
+          zoomSource: { sourceFilePath: '/path/file1.arbo', zoomedNodeId: 'node-1' },
+        },
+      ],
+      activeFilePath: '/path/file1.arbo',
+      reviewPendingNodeIds: new Set(['node-1']),
+    });
+
+    renderWithProvider(<TabBar />);
+
+    expect(screen.getByText('Node 1').closest('.tab')).toHaveClass('review-pending');
   });
 
   it('should show full file path as tooltip on hover', () => {
