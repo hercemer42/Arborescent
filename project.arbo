@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T11:32:24.908Z'
+updated: '2026-06-08T12:25:59.397Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23708,7 +23708,8 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children: []
+    children:
+      - 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
     metadata:
       status: pending
       isBlueprint: true
@@ -80743,7 +80744,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
       - d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
     metadata:
       status: pending
@@ -115315,7 +115315,7 @@ nodes:
       status: pending
       isBlueprint: true
       stepType: manual
-      expanded: true
+      expanded: false
       recurse: true
   71826f5f-2c98-4f60-835b-e903cb3c0736:
     id: 71826f5f-2c98-4f60-835b-e903cb3c0736
@@ -206314,33 +206314,18 @@ nodes:
       status: pending
   3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3:
     id: 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
-    content: Need a 'Resume workflow' that resumes a paused workflow
+    content: Unpause workflow — flip a paused step back to play so its completion advances
     children:
       - e1d95264-dbfe-4422-b3a4-b7fd32477b55
       - 303019e8-e2d2-45e4-ac2e-d8847ec9f6ba
+      - d6100561-7cca-4e9b-bb90-5efda7783278
+      - e3030cf6-7748-4f82-b9cd-e9df4c9210f1
     metadata:
       status: pending
       expanded: false
+      deleted: false
+      plugins: {}
       sessionId: cc8701c8-8338-44ac-8bb5-ad91658b7efe
-  e1d95264-dbfe-4422-b3a4-b7fd32477b55:
-    id: e1d95264-dbfe-4422-b3a4-b7fd32477b55
-    content: It does not send it to the next step or resend the prompt
-    children: []
-    metadata:
-      status: pending
-  303019e8-e2d2-45e4-ac2e-d8847ec9f6ba:
-    id: 303019e8-e2d2-45e4-ac2e-d8847ec9f6ba
-    content: It just makes it so when claude submits
-    children:
-      - 4c8136c3-a291-41f6-b244-a33ee0229538
-    metadata:
-      status: pending
-  4c8136c3-a291-41f6-b244-a33ee0229538:
-    id: 4c8136c3-a291-41f6-b244-a33ee0229538
-    content: It goes to the next step
-    children: []
-    metadata:
-      status: pending
   637f17ec-508c-4bb0-9d21-f30bb3cf85b4:
     id: 637f17ec-508c-4bb0-9d21-f30bb3cf85b4
     content: worktree — Arborescent-activity-log-pr2 (branch activity-log-pr2, forked from master aa4bb0f incl. PR1)
@@ -210274,6 +210259,492 @@ nodes:
     children: []
     metadata:
       status: pending
+  e1d95264-dbfe-4422-b3a4-b7fd32477b55:
+    id: e1d95264-dbfe-4422-b3a4-b7fd32477b55
+    content: 📄 Product spec
+    children:
+      - 9152d26d-c0d1-4648-98e4-03e8cebf33da
+      - 11208edb-a356-40ff-902a-e7bf7837e764
+      - 45ed8738-83ca-4367-87c3-deb387fe8227
+      - eaa62039-330d-4fd1-9c5b-bcb351eb12d7
+      - fd692d65-cb55-403b-ba90-538b22480522
+      - 2d8bc97e-8d56-41e7-8fb3-9a163457e5be
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9152d26d-c0d1-4648-98e4-03e8cebf33da:
+    id: 9152d26d-c0d1-4648-98e4-03e8cebf33da
+    content: Context
+    children:
+      - bfb99360-9553-4c6a-ad42-043dd0b6ee42
+      - 5997c30c-5b4d-4a4b-9059-64737e62fe7b
+      - 1969b189-bd47-434f-a607-3d17e64eb303
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfb99360-9553-4c6a-ad42-043dd0b6ee42:
+    id: bfb99360-9553-4c6a-ad42-043dd0b6ee42
+    content: A workflow step pauses (run-state 'awaiting-validation', shown as the gray Pause glyph) when the AI stops mid-step — e.g. to ask the user a question.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5997c30c-5b4d-4a4b-9059-64737e62fe7b:
+    id: 5997c30c-5b4d-4a4b-9059-64737e62fe7b
+    content: Advancement to the next step only fires when a step finishes while in the running/'play' state; advanceNode bails unless state === 'running', so a completion that arrives while paused is a silent no-op and the workflow stalls.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1969b189-bd47-434f-a607-3d17e64eb303:
+    id: 1969b189-bd47-434f-a607-3d17e64eb303
+    content: Answering the AI's question does not clear the pause (the UserPromptSubmit hook is a no-op for run-state), so the step stays paused even as the AI keeps working and finishes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11208edb-a356-40ff-902a-e7bf7837e764:
+    id: 11208edb-a356-40ff-902a-e7bf7837e764
+    content: User
+    children:
+      - a12a04b1-bfad-4ab2-bfee-1d67ab7a3a7a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a12a04b1-bfad-4ab2-bfee-1d67ab7a3a7a:
+    id: a12a04b1-bfad-4ab2-bfee-1d67ab7a3a7a
+    content: A user running a workflow whose step paused to ask a question — they answer, the AI continues and completes the step, but it never advances because the step is still paused.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45ed8738-83ca-4367-87c3-deb387fe8227:
+    id: 45ed8738-83ca-4367-87c3-deb387fe8227
+    content: Current experience and why it is insufficient
+    children:
+      - 54b63c79-af7e-4aff-b000-42af2496a224
+      - 820cbf92-8d9a-4699-86e5-4f59f59d6003
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54b63c79-af7e-4aff-b000-42af2496a224:
+    id: 54b63c79-af7e-4aff-b000-42af2496a224
+    content: After answering, there is no way to return the step to play and walk away; the completed step silently fails to advance.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  820cbf92-8d9a-4699-86e5-4f59f59d6003:
+    id: 820cbf92-8d9a-4699-86e5-4f59f59d6003
+    content: 'The only existing controls are wrong for this: Continue advances immediately (skips the AI''s remaining work if clicked before it finishes) and Re-send re-sends the prompt; neither is "just let it finish and then go."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eaa62039-330d-4fd1-9c5b-bcb351eb12d7:
+    id: eaa62039-330d-4fd1-9c5b-bcb351eb12d7
+    content: Goal
+    children:
+      - b0a8db40-46ed-4fc8-b63c-0d0326957c58
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0a8db40-46ed-4fc8-b63c-0d0326957c58:
+    id: b0a8db40-46ed-4fc8-b63c-0d0326957c58
+    content: Let the user flip a paused step back to play in one action so that, when the current prompt finishes, the workflow advances to the next step on its own.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd692d65-cb55-403b-ba90-538b22480522:
+    id: fd692d65-cb55-403b-ba90-538b22480522
+    content: Business rules
+    children:
+      - 750bdd09-b0d7-43c3-a209-8d82b1aee753
+      - 5da32165-559d-49de-839e-ad483e2906df
+      - 67a47554-45ed-45fe-9189-863e164a4174
+      - beb8cafe-13da-49ba-a989-19be22b2b1ab
+      - 6ca5bc69-6157-430f-972f-e74026d23b37
+      - 2787309f-d68e-4621-a60f-7579a1007c58
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  750bdd09-b0d7-43c3-a209-8d82b1aee753:
+    id: 750bdd09-b0d7-43c3-a209-8d82b1aee753
+    content: 1. Unpause sets the step's run-state from 'awaiting-validation' to 'running' ('play') and does nothing else — no prompt resend, no immediate advance, no tree change.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5da32165-559d-49de-839e-ad483e2906df:
+    id: 5da32165-559d-49de-839e-ad483e2906df
+    content: 2. Unpause is offered only on a step currently in 'awaiting-validation' (paused) and is absent on running, non-paused, or non-workflow nodes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67a47554-45ed-45fe-9189-863e164a4174:
+    id: 67a47554-45ed-45fe-9189-863e164a4174
+    content: '3. After unpausing, advancement is left entirely to the existing completion path: when the current prompt finishes while the step is running, the workflow advances to the next step.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  beb8cafe-13da-49ba-a989-19be22b2b1ab:
+    id: beb8cafe-13da-49ba-a989-19be22b2b1ab
+    content: 4. Unpausing when no prompt is in progress is a user-beware no-op for advancement — the feature does not detect or advance an already-finished step; the user finishes the conversation or stops/restarts the step.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ca5bc69-6157-430f-972f-e74026d23b37:
+    id: 6ca5bc69-6157-430f-972f-e74026d23b37
+    content: 5. Unpause never resends the step prompt and never advances the step at click time.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2787309f-d68e-4621-a60f-7579a1007c58:
+    id: 2787309f-d68e-4621-a60f-7579a1007c58
+    content: 6. If invoked on a node not in 'awaiting-validation' (e.g. a state race), unpause is a guarded no-op that changes nothing and raises no error.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d8bc97e-8d56-41e7-8fb3-9a163457e5be:
+    id: 2d8bc97e-8d56-41e7-8fb3-9a163457e5be
+    content: Acceptance criteria
+    children:
+      - dec8bade-52dd-4d48-b3af-315cd20765fb
+      - 05d9cb16-9f3f-4042-ade5-63696e2dbe05
+      - d4ca331f-a755-400a-a6a4-297785065dc3
+      - 59681d11-2d82-4457-9fbd-1a8d7a2d3f4f
+      - 3e1c1d70-ed3e-483d-9cbf-f4fce071a9fc
+      - 1a41836a-57fd-4318-9219-b9f9020e3b8d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dec8bade-52dd-4d48-b3af-315cd20765fb:
+    id: dec8bade-52dd-4d48-b3af-315cd20765fb
+    content: Given a paused step with a prompt in progress, unpausing sets it to running and the workflow advances when that prompt finishes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05d9cb16-9f3f-4042-ade5-63696e2dbe05:
+    id: 05d9cb16-9f3f-4042-ade5-63696e2dbe05
+    content: Unpause writes only the run-state ('running'); no prompt text is sent to the terminal (zero tokens) and no advance happens at click time.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4ca331f-a755-400a-a6a4-297785065dc3:
+    id: d4ca331f-a755-400a-a6a4-297785065dc3
+    content: The unpause control appears only when the step is paused; it is absent on running, non-paused, or non-workflow nodes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59681d11-2d82-4457-9fbd-1a8d7a2d3f4f:
+    id: 59681d11-2d82-4457-9fbd-1a8d7a2d3f4f
+    content: Unpausing a step with no prompt in progress does not advance it — behaviour is left to the user, with no silent advance or resend.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e1c1d70-ed3e-483d-9cbf-f4fce071a9fc:
+    id: 3e1c1d70-ed3e-483d-9cbf-f4fce071a9fc
+    content: Invoking unpause on a node that is not in 'awaiting-validation' is a guarded no-op — no state change and no error.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a41836a-57fd-4318-9219-b9f9020e3b8d:
+    id: 1a41836a-57fd-4318-9219-b9f9020e3b8d
+    content: The control is keyboard-reachable and labelled distinctly from Continue and Re-send.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  303019e8-e2d2-45e4-ac2e-d8847ec9f6ba:
+    id: 303019e8-e2d2-45e4-ac2e-d8847ec9f6ba
+    content: 🔧 Implementation proposal
+    children:
+      - 4c8136c3-a291-41f6-b244-a33ee0229538
+      - 49e92ae9-195a-4e78-8781-df3a9ec4c962
+      - a2366432-ed03-4df0-b1bf-b7c076402361
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c8136c3-a291-41f6-b244-a33ee0229538:
+    id: 4c8136c3-a291-41f6-b244-a33ee0229538
+    content: Approach
+    children:
+      - ba5c54aa-71e4-4cc4-aabd-842d0deb088e
+      - 28d81220-a2fc-4ab0-9aa1-77178cf3275d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba5c54aa-71e4-4cc4-aabd-842d0deb088e:
+    id: ba5c54aa-71e4-4cc4-aabd-842d0deb088e
+    content: Add a single-purpose store action unpauseWorkflow(nodeId) that, when the entry is 'awaiting-validation', sets its state to 'running' and returns — no other side effects.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28d81220-a2fc-4ab0-9aa1-77178cf3275d:
+    id: 28d81220-a2fc-4ab0-9aa1-77178cf3275d
+    content: Surface it on the paused-state UI by making the existing awaiting-validation Pause glyph clickable (mirror of the running Play glyph's click-to-stop). No change to advanceNode or the Stop handler — the existing running + completion path already advances.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  49e92ae9-195a-4e78-8781-df3a9ec4c962:
+    id: 49e92ae9-195a-4e78-8781-df3a9ec4c962
+    content: Touchpoints
+    children:
+      - 23a0ea43-7ad9-4ec9-aac5-ea6227270316
+      - d983a16b-665d-4d3f-81da-07a14506363b
+      - c38e9e79-88e5-404c-ac32-e5d25059ae7e
+      - 3bbf4a49-3a00-453f-9901-763227f7972b
+      - 1e495c24-106f-4c9f-828e-cd63c97e884b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23a0ea43-7ad9-4ec9-aac5-ea6227270316:
+    id: 23a0ea43-7ad9-4ec9-aac5-ea6227270316
+    content: Store action — workflowExecutionActions.ts (new unpauseWorkflow; flip state only, guard on state === 'awaiting-validation').
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d983a16b-665d-4d3f-81da-07a14506363b:
+    id: d983a16b-665d-4d3f-81da-07a14506363b
+    content: Store wiring — treeStore.ts (add unpauseWorkflow to the actions interface and bind it).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c38e9e79-88e5-404c-ac32-e5d25059ae7e:
+    id: c38e9e79-88e5-404c-ac32-e5d25059ae7e
+    content: UI — StatusArea.tsx (make the Pause glyph clickable → unpause); optionally an "Unpause workflow" context-menu item in useWorkflowSubmenu.ts / useNodeContextMenu.ts.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bbf4a49-3a00-453f-9901-763227f7972b:
+    id: 3bbf4a49-3a00-453f-9901-763227f7972b
+    content: Activity log — notifyWorkflow() in workflowToast.ts (optional single "Workflow unpaused" entry).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e495c24-106f-4c9f-828e-cd63c97e884b:
+    id: 1e495c24-106f-4c9f-828e-cd63c97e884b
+    content: 'Tests — co-located: unpause flips ''awaiting-validation'' → ''running'', does NOT call sendContentToTerminal or advanceNode; a subsequent completion Stop advances; no-op when not paused.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2366432-ed03-4df0-b1bf-b7c076402361:
+    id: a2366432-ed03-4df0-b1bf-b7c076402361
+    content: Constraints to call out
+    children:
+      - c8c11927-adf3-4378-a73b-7250d61af4ff
+      - 50380bbb-0959-4308-959e-2f0a26f95aa8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8c11927-adf3-4378-a73b-7250d61af4ff:
+    id: c8c11927-adf3-4378-a73b-7250d61af4ff
+    content: The name "Unpause" (paired with the Play/Pause glyphs) avoids the existing "Resume Workflow" → resend collision, so no rename is required.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50380bbb-0959-4308-959e-2f0a26f95aa8:
+    id: 50380bbb-0959-4308-959e-2f0a26f95aa8
+    content: Scope is play/autonomous-style steps that advance on completion; manual/checkpoint steps re-pause on completion by design, so unpause will not carry them past validation — intended, not a gap.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6100561-7cca-4e9b-bb90-5efda7783278:
+    id: d6100561-7cca-4e9b-bb90-5efda7783278
+    content: Chunking decision
+    children:
+      - 148e090a-61a2-4e94-948c-1607d9542d45
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  148e090a-61a2-4e94-948c-1607d9542d45:
+    id: 148e090a-61a2-4e94-948c-1607d9542d45
+    content: One chunk — a single run-state flip plus one UI affordance; there is nothing coherent to split and no flag-gated sub-value to realise.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3030cf6-7748-4f82-b9cd-e9df4c9210f1:
+    id: e3030cf6-7748-4f82-b9cd-e9df4c9210f1
+    content: Challenges / pushback
+    children:
+      - 1b71d36a-6886-408c-a0d7-48efa8bc059c
+      - d2447c5f-30a9-4d15-a3a3-9642261816b7
+      - 38bb4b04-0dff-4385-a0bb-052cb2ae1d78
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b71d36a-6886-408c-a0d7-48efa8bc059c:
+    id: 1b71d36a-6886-408c-a0d7-48efa8bc059c
+    content: UX
+    children:
+      - 6341373a-b21e-472e-bd3b-88026e5b3cb7
+      - f25c8dc3-02ba-4ff4-a0e3-509b14902922
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6341373a-b21e-472e-bd3b-88026e5b3cb7:
+    id: 6341373a-b21e-472e-bd3b-88026e5b3cb7
+    content: Reuse the existing Pause glyph as the click target (Pause → Play) for discoverability and symmetry with the running glyph, rather than introducing a separate control.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f25c8dc3-02ba-4ff4-a0e3-509b14902922:
+    id: f25c8dc3-02ba-4ff4-a0e3-509b14902922
+    content: Naming it "Unpause" (not another "resume") keeps the paused-node menu free of two opposite-meaning look-alikes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2447c5f-30a9-4d15-a3a3-9642261816b7:
+    id: d2447c5f-30a9-4d15-a3a3-9642261816b7
+    content: Over-engineering
+    children:
+      - 0e944818-36ae-4db0-94df-643ab5f9e133
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e944818-36ae-4db0-94df-643ab5f9e133:
+    id: 0e944818-36ae-4db0-94df-643ab5f9e133
+    content: Explicitly NOT building detect-already-completed-and-advance, auto-flip-on-answer, or any resend — the running + completion path already advances; these were scoped out deliberately.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  38bb4b04-0dff-4385-a0bb-052cb2ae1d78:
+    id: 38bb4b04-0dff-4385-a0bb-052cb2ae1d78
+    content: ROI
+    children:
+      - 3d526642-2d9e-4915-8b9b-3271f0efa8b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d526642-2d9e-4915-8b9b-3271f0efa8b9:
+    id: 3d526642-2d9e-4915-8b9b-3271f0efa8b9
+    content: Very high — a one-field state change removes a silent stall; the payoff is "clear the pause once after answering and walk away" instead of babysitting to click Continue at completion.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -210399,734 +210870,3 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   cc8701c8-8338-44ac-8bb5-ad91658b7efe:
     cwd: /Users/brianfox/dev/Arborescent
-pendingProposals:
-  3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3:
-    id: a00cfb56-36e8-4367-bdc0-22b9b545dd72
-    capturedAt: '2026-06-08T11:29:23.537Z'
-    reviewedNodeId: 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
-    rootNodeId: 1bbd838d-0f64-4f6f-9a65-0c6d9b2fe65a
-    nodes:
-      1bbd838d-0f64-4f6f-9a65-0c6d9b2fe65a:
-        id: 1bbd838d-0f64-4f6f-9a65-0c6d9b2fe65a
-        content: ''
-        children:
-          - 6e9c30e3-0ca7-4220-ab48-94e9369ccc0b
-        metadata: {}
-      6e9c30e3-0ca7-4220-ab48-94e9369ccc0b:
-        id: 6e9c30e3-0ca7-4220-ab48-94e9369ccc0b
-        content: Resume workflow — re-arm a stalled step so the next submit advances (no resend)
-        children:
-          - 665e83f3-64af-4001-85c7-bf93753fdb03
-          - 95092f68-8ae1-4916-b8b1-b73705e97453
-          - eb7c7830-cd09-4eb5-8f54-f5a51a6565a8
-          - e751ad71-e8e7-440c-a997-4713d04fb31e
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: modified
-          feedbackPriorContent: Need a 'Resume workflow' that resumes a paused workflow
-      665e83f3-64af-4001-85c7-bf93753fdb03:
-        id: 665e83f3-64af-4001-85c7-bf93753fdb03
-        content: 📄 Product spec
-        children:
-          - 494aea45-35dc-4e44-98ca-d0319985f3a5
-          - bc8afd1a-beb1-43da-ad27-8e95d520ac8d
-          - 8fbf4a79-6913-4d8d-98b4-094b4d0da0d3
-          - 50f0f2b8-b61d-4864-ae98-d81bb1342fc1
-          - 5f4ce3c8-1047-4829-b0bc-aabddb9ee3aa
-          - 421bb56c-2e78-4c8a-8ff3-e3021789b856
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: modified
-          feedbackPriorContent: It does not send it to the next step or resend the prompt
-      494aea45-35dc-4e44-98ca-d0319985f3a5:
-        id: 494aea45-35dc-4e44-98ca-d0319985f3a5
-        content: Context
-        children:
-          - af7dd5e0-259b-4223-b695-86dae8588c61
-          - 15a54c3d-fb51-4878-8766-cc9cd6653b38
-          - eb97ed47-3375-4ce9-b5e8-7598f2738cbc
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      af7dd5e0-259b-4223-b695-86dae8588c61:
-        id: af7dd5e0-259b-4223-b695-86dae8588c61
-        content: Workflow steps advance only when a Claude Stop hook fires AND a transient in-memory run-state entry binds the node to its terminal.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      15a54c3d-fb51-4878-8766-cc9cd6653b38:
-        id: 15a54c3d-fb51-4878-8766-cc9cd6653b38
-        content: That run-state is wiped on app reload/restart (only 'awaiting-validation' survives), so a step whose terminal and session are still alive can lose its binding and stall.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      eb97ed47-3375-4ce9-b5e8-7598f2738cbc:
-        id: eb97ed47-3375-4ce9-b5e8-7598f2738cbc
-        content: 'On the next submit the Stop is logged as "Stop dropped: no running node" and nothing advances; automatic recovery only fires with a persisted sessionId + ''completed'' status + an alive bound terminal, leaving the other cases stuck.'
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      bc8afd1a-beb1-43da-ad27-8e95d520ac8d:
-        id: bc8afd1a-beb1-43da-ad27-8e95d520ac8d
-        content: User
-        children:
-          - 2cab820e-5ed2-4320-9b16-1955baa7f7b1
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      2cab820e-5ed2-4320-9b16-1955baa7f7b1:
-        id: 2cab820e-5ed2-4320-9b16-1955baa7f7b1
-        content: A user running a long multi-step AI workflow who reloads or restarts the app (or otherwise loses run-state) mid-run while the terminal and Claude session remain alive.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      8fbf4a79-6913-4d8d-98b4-094b4d0da0d3:
-        id: 8fbf4a79-6913-4d8d-98b4-094b4d0da0d3
-        content: Current experience and why it is insufficient
-        children:
-          - da7b8d3b-fc65-4d11-ae7c-5bcae5482dfb
-          - a96e9eea-b78a-4bdc-9fef-9be3229a7232
-          - 7f1b2c76-73a2-4285-bb70-5aafe002ef37
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      da7b8d3b-fc65-4d11-ae7c-5bcae5482dfb:
-        id: da7b8d3b-fc65-4d11-ae7c-5bcae5482dfb
-        content: The stall is silent — no error is surfaced, only an internal log line the user never sees.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      a96e9eea-b78a-4bdc-9fef-9be3229a7232:
-        id: a96e9eea-b78a-4bdc-9fef-9be3229a7232
-        content: 'Every existing recovery is wrong for this case: the current "Resume Workflow" item re-sends the prompt (tokens + overwrite risk), continueWorkflow advances immediately (skips the in-flight step), and "Resume session" spawns claude --resume (only correct when the session is dead).'
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      7f1b2c76-73a2-4285-bb70-5aafe002ef37:
-        id: 7f1b2c76-73a2-4285-bb70-5aafe002ef37
-        content: There is no cheap, correct way to re-arm a still-alive workflow so it simply continues from where it was.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      50f0f2b8-b61d-4864-ae98-d81bb1342fc1:
-        id: 50f0f2b8-b61d-4864-ae98-d81bb1342fc1
-        content: Goal
-        children:
-          - 2c89f5b5-bd39-4e30-b75a-7d4126b00d12
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      2c89f5b5-bd39-4e30-b75a-7d4126b00d12:
-        id: 2c89f5b5-bd39-4e30-b75a-7d4126b00d12
-        content: Let a user re-arm a stalled-but-alive workflow step in one action so the next time Claude submits the workflow advances, with no prompt resend and no token cost.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      5f4ce3c8-1047-4829-b0bc-aabddb9ee3aa:
-        id: 5f4ce3c8-1047-4829-b0bc-aabddb9ee3aa
-        content: Business rules
-        children:
-          - b5edba16-7d98-4c63-bdd3-cd23c631b9c8
-          - ec6a77a8-5682-47da-9814-a0cc9c00c9ca
-          - 759cf4f9-47e9-4ba3-baee-2d1417d5ffd0
-          - e89c8d69-6202-4c33-9fe2-9bec82894c75
-          - 516f3bae-7f1a-4745-b92c-adb5e1a8f0be
-          - 9470d5c8-856d-4683-8d6c-1100fc5a47e8
-          - bcbe416e-5178-4a9c-b702-11cac2040630
-          - 9cab57e2-b79b-44fd-859d-790129335085
-          - a781bef9-8371-4b4e-a8aa-133396901222
-          - 18acec26-bf02-4f11-8e64-dc45fc33ec1f
-          - 0a9de864-8fe3-4fd3-98bb-e1adc3db3186
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      b5edba16-7d98-4c63-bdd3-cd23c631b9c8:
-        id: b5edba16-7d98-4c63-bdd3-cd23c631b9c8
-        content: 1. The action re-establishes the transient run-state for the target node bound to its alive terminal, without sending or re-sending any prompt and without advancing the step.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      ec6a77a8-5682-47da-9814-a0cc9c00c9ca:
-        id: ec6a77a8-5682-47da-9814-a0cc9c00c9ca
-        content: 2. The action resolves the terminal to bind from the node's persisted session (the same durable binding automatic recovery uses) rather than trusting terminal assignments that may have been wiped.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      759cf4f9-47e9-4ba3-baee-2d1417d5ffd0:
-        id: 759cf4f9-47e9-4ba3-baee-2d1417d5ffd0
-        content: 3. The action is offered only on a workflow step that is orphaned — a workflow status with no live run-state entry — and is hidden on non-workflow nodes.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      e89c8d69-6202-4c33-9fe2-9bec82894c75:
-        id: e89c8d69-6202-4c33-9fe2-9bec82894c75
-        content: 4. The action does not apply to a node already 'running' (nothing to re-arm) or 'awaiting-validation' (a manual step intentionally waiting for the user).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      516f3bae-7f1a-4745-b92c-adb5e1a8f0be:
-        id: 516f3bae-7f1a-4745-b92c-adb5e1a8f0be
-        content: 5. If no alive terminal/session can be resolved for the node, the action is unavailable and "Resume session" remains the path for the dead/detached case.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      9470d5c8-856d-4683-8d6c-1100fc5a47e8:
-        id: 9470d5c8-856d-4683-8d6c-1100fc5a47e8
-        content: 6. If the resolved terminal is already running a different workflow node, the action refuses with a visible reason rather than silently stealing the terminal.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      bcbe416e-5178-4a9c-b702-11cac2040630:
-        id: bcbe416e-5178-4a9c-b702-11cac2040630
-        content: 7. Re-arming one node never disturbs the run-state or terminal binding of any other concurrently running node.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      9cab57e2-b79b-44fd-859d-790129335085:
-        id: 9cab57e2-b79b-44fd-859d-790129335085
-        content: 8. After re-arming, the next Stop hook advances the workflow identically to a normal run (same advancement, validation, and activity-log behaviour).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      a781bef9-8371-4b4e-a8aa-133396901222:
-        id: a781bef9-8371-4b4e-a8aa-133396901222
-        content: 9. Re-arming is idempotent — invoking it twice is a no-op, never a duplicate or competing run-state.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      18acec26-bf02-4f11-8e64-dc45fc33ec1f:
-        id: 18acec26-bf02-4f11-8e64-dc45fc33ec1f
-        content: 10. Re-arming incurs zero AI token cost and emits one activity-log entry so the stall→fixed transition is observable.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      0a9de864-8fe3-4fd3-98bb-e1adc3db3186:
-        id: 0a9de864-8fe3-4fd3-98bb-e1adc3db3186
-        content: 11. The action is labelled "Resume workflow"; the existing resend item is renamed "Re-send step" so the two opposite behaviours never share a label.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      421bb56c-2e78-4c8a-8ff3-e3021789b856:
-        id: 421bb56c-2e78-4c8a-8ff3-e3021789b856
-        content: Acceptance criteria
-        children:
-          - 92cb6d52-452c-4ef9-ac17-db6027fb0f97
-          - 1844f234-a487-48fd-93d3-6ea9eae2079d
-          - 1124a1cb-8560-454c-8608-45f6cd8880f7
-          - f065da3d-8404-429b-8c5d-2480cf731883
-          - ddcc8082-a260-42f5-b7bf-a0d5656fcaa4
-          - d384dfb6-be77-466d-8e54-1ceab83d11fb
-          - 2df88295-a07b-457e-89b4-5d6a5fff00d9
-          - 42805200-edb8-4288-be5d-db9cbc295529
-          - af477c26-ad27-4380-861b-22b4f7b07531
-          - a2b52005-5dbf-48fa-97a7-2d56065c0cc2
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      92cb6d52-452c-4ef9-ac17-db6027fb0f97:
-        id: 92cb6d52-452c-4ef9-ac17-db6027fb0f97
-        content: Given an orphaned workflow step (run-state lost post-reload) whose terminal and session are alive, invoking Resume workflow re-arms run-state and the next Claude Stop advances the workflow.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      1844f234-a487-48fd-93d3-6ea9eae2079d:
-        id: 1844f234-a487-48fd-93d3-6ea9eae2079d
-        content: No prompt text is written to the terminal during resume (verified via terminal output/IPC; zero tokens sent).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      1124a1cb-8560-454c-8608-45f6cd8880f7:
-        id: 1124a1cb-8560-454c-8608-45f6cd8880f7
-        content: Advancement after resume is identical to a normal run — next step entered, validation honoured, activity log records the transition.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      f065da3d-8404-429b-8c5d-2480cf731883:
-        id: f065da3d-8404-429b-8c5d-2480cf731883
-        content: Resume workflow is hidden on non-workflow nodes and on nodes already 'running' or 'awaiting-validation'.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      ddcc8082-a260-42f5-b7bf-a0d5656fcaa4:
-        id: ddcc8082-a260-42f5-b7bf-a0d5656fcaa4
-        content: Resume workflow is unavailable when no alive terminal/session resolves for the node.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      d384dfb6-be77-466d-8e54-1ceab83d11fb:
-        id: d384dfb6-be77-466d-8e54-1ceab83d11fb
-        content: Resuming node A does not alter the run-state or terminal binding of a concurrently running node B.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      2df88295-a07b-457e-89b4-5d6a5fff00d9:
-        id: 2df88295-a07b-457e-89b4-5d6a5fff00d9
-        content: Resume refuses when the resolved terminal already runs a different workflow node, surfacing a reason instead of a silent drop.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      42805200-edb8-4288-be5d-db9cbc295529:
-        id: 42805200-edb8-4288-be5d-db9cbc295529
-        content: Invoking Resume twice in a row is idempotent (no duplicate or competing run-state).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      af477c26-ad27-4380-861b-22b4f7b07531:
-        id: af477c26-ad27-4380-861b-22b4f7b07531
-        content: The control is keyboard-reachable and screen-reader labelled, distinct from "Re-send step" and "Resume session".
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      a2b52005-5dbf-48fa-97a7-2d56065c0cc2:
-        id: a2b52005-5dbf-48fa-97a7-2d56065c0cc2
-        content: After the rename, exactly one "Resume workflow" and one "Re-send step" exist in the menu — no duplicate labels.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      95092f68-8ae1-4916-b8b1-b73705e97453:
-        id: 95092f68-8ae1-4916-b8b1-b73705e97453
-        content: 🔧 Implementation proposal
-        children:
-          - bcbca48e-cc83-43e4-a4c6-f8a2ce3d5432
-          - f5ce2486-27c4-4357-95c1-b574af47d563
-          - f0929fe7-d89a-41ea-9871-e9a81bab76d2
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: modified
-          feedbackPriorContent: It just makes it so when claude submits
-      bcbca48e-cc83-43e4-a4c6-f8a2ce3d5432:
-        id: bcbca48e-cc83-43e4-a4c6-f8a2ce3d5432
-        content: Approach
-        children:
-          - 88a66cc0-7c34-40c5-987f-80b0b18d1846
-          - 67ad4136-e39d-4b43-91cc-d97995ee0182
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: modified
-          feedbackPriorContent: It goes to the next step
-      88a66cc0-7c34-40c5-987f-80b0b18d1846:
-        id: 88a66cc0-7c34-40c5-987f-80b0b18d1846
-        content: Add a store action resumeWorkflow(nodeId) that re-creates the run-state entry and re-binds the terminal assignment, then starts keep-awake — startWorkflow minus the sendContentToTerminal call, and without advanceNode.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      67ad4136-e39d-4b43-91cc-d97995ee0182:
-        id: 67ad4136-e39d-4b43-91cc-d97995ee0182
-        content: Resolve the terminal internally from the node's persisted session so the guard lives in one place; reuse the entry-synthesis already inside recoverCompletedStepFromDurableBinding (extract a shared armRunStateForNode helper) so a manually-resumed entry matches exactly what the next Stop resolver keys on.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      f5ce2486-27c4-4357-95c1-b574af47d563:
-        id: f5ce2486-27c4-4357-95c1-b574af47d563
-        content: Touchpoints
-        children:
-          - 9405de03-a51a-4f89-907f-d21adb5fa6cc
-          - deb8c2cf-7d38-4309-a516-de8fbb003d53
-          - 9fa35fba-8e17-4b83-aae0-c45518853a53
-          - 42a5951e-4d75-49ff-b1ea-69bd5ced1ad8
-          - d9c7d695-3a41-4ec9-ad22-25d6158e62a8
-          - 8aa34b01-3e0b-4346-a78b-c54667882995
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      9405de03-a51a-4f89-907f-d21adb5fa6cc:
-        id: 9405de03-a51a-4f89-907f-d21adb5fa6cc
-        content: Store action interface + impl — workflowExecutionActions.ts (new resumeWorkflow; factor shared run-state arming out of startWorkflow / recoverCompletedStepFromDurableBinding).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      deb8c2cf-7d38-4309-a516-de8fbb003d53:
-        id: deb8c2cf-7d38-4309-a516-de8fbb003d53
-        content: Store wiring — treeStore.ts (add resumeWorkflow to the actions interface and bind it).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      9fa35fba-8e17-4b83-aae0-c45518853a53:
-        id: 9fa35fba-8e17-4b83-aae0-c45518853a53
-        content: Binding resolver — terminalBindingResolution.ts (verify the synthesized entry satisfies findRunningNodeOnTerminal; align rather than fork).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      42a5951e-4d75-49ff-b1ea-69bd5ced1ad8:
-        id: 42a5951e-4d75-49ff-b1ea-69bd5ced1ad8
-        content: UI — useWorkflowSubmenu.ts and useNodeContextMenu.ts (gate "Resume workflow" on the orphaned state; rename the existing resend item to "Re-send step").
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      d9c7d695-3a41-4ec9-ad22-25d6158e62a8:
-        id: d9c7d695-3a41-4ec9-ad22-25d6158e62a8
-        content: Activity log — notifyWorkflow() in workflowToast.ts (emit a "Workflow resumed" entry).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      8aa34b01-3e0b-4346-a78b-c54667882995:
-        id: 8aa34b01-3e0b-4346-a78b-c54667882995
-        content: Tests — co-located action test (resume creates 'running', does NOT call sendContentToTerminal or advanceNode, re-binds the assignment, and a subsequent Stop advances) plus menu visibility/gating tests.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      f0929fe7-d89a-41ea-9871-e9a81bab76d2:
-        id: f0929fe7-d89a-41ea-9871-e9a81bab76d2
-        content: Constraints to call out
-        children:
-          - 9dc6ead7-6d37-4723-a6a9-eaf6e15bde37
-          - e248200c-13fc-4a29-b07f-e13bf56daff5
-          - 3a286935-0d61-4c40-8731-5e715f3917a2
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      9dc6ead7-6d37-4723-a6a9-eaf6e15bde37:
-        id: 9dc6ead7-6d37-4723-a6a9-eaf6e15bde37
-        content: The synthesized entry must restore everything the Stop resolver keys on (incl. any session-map link), not just state + terminalTabId, or the next Stop is dropped again.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      e248200c-13fc-4a29-b07f-e13bf56daff5:
-        id: e248200c-13fc-4a29-b07f-e13bf56daff5
-        content: Keep automatic recovery conservative — do not broaden recoverCompletedStepFromDurableBinding to auto-arm on uncertain bindings; the manual action exists precisely so a human asserts node + terminal before re-arming.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      3a286935-0d61-4c40-8731-5e715f3917a2:
-        id: 3a286935-0d61-4c40-8731-5e715f3917a2
-        content: This is a safety net, not the root-cause fix for the announce_step_done / Stop-coupling stall; the coupling fix is separate work and must not be folded in here.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      eb7c7830-cd09-4eb5-8f54-f5a51a6565a8:
-        id: eb7c7830-cd09-4eb5-8f54-f5a51a6565a8
-        content: Chunking decision
-        children:
-          - 3a8ade34-cb03-48f0-8f5c-a6ef8992379c
-          - 50180b6a-77b2-4607-a354-f0bd5c8a3df0
-          - b181eb27-4d0a-48d9-8a8e-63c4703d1bda
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      3a8ade34-cb03-48f0-8f5c-a6ef8992379c:
-        id: 3a8ade34-cb03-48f0-8f5c-a6ef8992379c
-        content: One chunk — the action, its single menu entry, the rename of the colliding item, and the activity-log line are one coherent behaviour and are mutually meaningless apart (the action without the rename leaves two "Resume Workflow"s; the rename without the action is no-op churn).
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      50180b6a-77b2-4607-a354-f0bd5c8a3df0:
-        id: 50180b6a-77b2-4607-a354-f0bd5c8a3df0
-        content: No data-layer/UI split — the data change is a few-line run-state write and would be untestable end-to-end on its own.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      b181eb27-4d0a-48d9-8a8e-63c4703d1bda:
-        id: b181eb27-4d0a-48d9-8a8e-63c4703d1bda
-        content: StatusArea overlay affordance is kept out of v1 — the context-menu item is sufficient.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      e751ad71-e8e7-440c-a997-4713d04fb31e:
-        id: e751ad71-e8e7-440c-a997-4713d04fb31e
-        content: Challenges / pushback
-        children:
-          - b1d16037-0a6a-4698-a605-e744748efad7
-          - 21f3e270-28a6-479d-bd05-dc3be7e40e0e
-          - c459e3ae-11b4-4971-848a-f192e337c8db
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      b1d16037-0a6a-4698-a605-e744748efad7:
-        id: b1d16037-0a6a-4698-a605-e744748efad7
-        content: UX
-        children:
-          - 44fe25ae-a737-4bf6-8dec-68fa081bc032
-          - af8c7449-5910-48c7-b482-78f7d23dd0d6
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      44fe25ae-a737-4bf6-8dec-68fa081bc032:
-        id: 44fe25ae-a737-4bf6-8dec-68fa081bc032
-        content: Three "resume" verbs now coexist (Resume workflow / Re-send step / Resume session) — keep the copy clearly distinct; renaming the mislabeled resend item is required, not optional.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      af8c7449-5910-48c7-b482-78f7d23dd0d6:
-        id: af8c7449-5910-48c7-b482-78f7d23dd0d6
-        content: A context-menu-only escape hatch for a silent stall is low-discoverability; a passive stalled-state signal would help but is out of scope for this story.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      21f3e270-28a6-479d-bd05-dc3be7e40e0e:
-        id: 21f3e270-28a6-479d-bd05-dc3be7e40e0e
-        content: Over-engineering
-        children:
-          - 80516eeb-1a53-459e-9f25-95653e0bd428
-          - 1015a37a-abc7-408a-8e87-f19a86d7bcc4
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      80516eeb-1a53-459e-9f25-95653e0bd428:
-        id: 80516eeb-1a53-459e-9f25-95653e0bd428
-        content: Do not build a generic run-state recovery framework or a new persisted status; reuse the existing arming helper and the 'running' state.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      1015a37a-abc7-408a-8e87-f19a86d7bcc4:
-        id: 1015a37a-abc7-408a-8e87-f19a86d7bcc4
-        content: Reject the lazy auto-synthesize-on-"Stop dropped" alternative — it removes user control and re-arms on uncertain bindings, risking advancing the wrong node.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      c459e3ae-11b4-4971-848a-f192e337c8db:
-        id: c459e3ae-11b4-4971-848a-f192e337c8db
-        content: ROI
-        children:
-          - 30f25954-e36a-4eae-8325-337e76cdea7f
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
-      30f25954-e36a-4eae-8325-337e76cdea7f:
-        id: 30f25954-e36a-4eae-8325-337e76cdea7f
-        content: High — a few-line transient-map write plus one gated menu item removes a silent-stall failure mode at zero token cost; complexity added is minimal.
-        children: []
-        metadata:
-          status: pending
-          expanded: true
-          deleted: false
-          plugins: {}
-          feedbackBaselineKind: added
