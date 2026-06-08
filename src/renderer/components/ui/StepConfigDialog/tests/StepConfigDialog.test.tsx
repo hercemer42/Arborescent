@@ -207,7 +207,11 @@ describe('StepConfigDialog', () => {
     });
   });
 
-  describe('archive settings', () => {
+  // TODO(archive): Archive section disabled 2026-06-08 in StepConfigDialog. These
+  // tests assert the section renders within the dialog, so they're skipped while it's
+  // off. Restore alongside the <ArchiveSection> render, or delete with the feature.
+  // (ArchiveSection.test.tsx still covers the component in isolation.)
+  describe.skip('archive settings', () => {
     it('should render archive destination input', () => {
       render(<StepConfigDialog {...defaultProps} />);
 

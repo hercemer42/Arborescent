@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T18:08:14.755Z'
+updated: '2026-06-08T20:09:34.349Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -585,7 +585,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -5509,7 +5509,7 @@ nodes:
       - 44b69d24-730a-4af1-95dd-7b2aface6c13
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -8752,6 +8752,7 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
+      - 2ac36efd-cd11-4888-a4d7-648dce571747
       - 5cc686fc-7651-4d83-9ccf-78a29d1dff13
       - e9d700c8-784f-4b3f-9099-7be9ab864158
     metadata:
@@ -25655,7 +25656,7 @@ nodes:
       isBlueprint: true
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
       expanded: true
-      stepType: autonomous
+      stepType: checkpoint
       recurse: false
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
     id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
@@ -75957,7 +75958,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   b639805f-a2d3-4f38-9faa-ffc4a91b8f80:
     id: b639805f-a2d3-4f38-9faa-ffc4a91b8f80
     content: Issue resolution
@@ -80742,8 +80743,7 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
-    children:
-      - d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -83420,7 +83420,7 @@ nodes:
       - e2a5edaf-6da0-4567-94c9-e13d252d38d9
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: false
@@ -92076,7 +92076,8 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children: []
+    children:
+      - f0cf3961-182f-47f9-8b90-3004bbe6fdf2
     metadata:
       status: pending
       isBlueprint: true
@@ -113686,18 +113687,21 @@ nodes:
       plugins: {}
   d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b:
     id: d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
-    content: Make Claude specific, remove references to other AIs in documentation
+    content: Clarify in docs that automated workflow features require Claude Code
     children:
-      - c11d295d-dba8-435a-97aa-e3809786cb4b
+      - 37e3455e-0cdd-4a0a-a452-ebda66f450be
+      - 42f6c4f7-af31-4710-8f6e-831410d461fd
+      - 669b9a1f-6ef8-4030-bdeb-20fabc5500d0
+      - c1db4c3c-da16-41e0-b21a-b2a0ba859589
+      - 9085c7d2-d3f3-4c88-b4af-b1bf3e383d71
+      - 844e1217-ce9e-4d8a-a36d-37be57d82744
+      - 51830906-6274-4044-80f4-ecaaeb164342
     metadata:
-      status: pending
-      expanded: true
-  c11d295d-dba8-435a-97aa-e3809786cb4b:
-    id: c11d295d-dba8-435a-97aa-e3809786cb4b
-    content: Or at least say - advanced features only work with Opus 4.7+
-    children: []
-    metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 0cf07bb6-49d4-4ae2-9750-6b55a16a8b3b
   766b98f4-e90c-4a09-ad58-b2b5713269cc:
     id: 766b98f4-e90c-4a09-ad58-b2b5713269cc
     content: worktree
@@ -114320,7 +114324,7 @@ nodes:
       - fd115145-cc1b-40db-a416-9941335b13a3
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   d022f7da-e919-469e-b242-a6e120f95f09:
     id: d022f7da-e919-469e-b242-a6e120f95f09
     content: Create a context at the end that analyses the session and suggests improvements that may have been made in the context or instructions sent or other methods that might have improved it.
@@ -115198,6 +115202,7 @@ nodes:
     id: b3dc5362-ca81-4cbe-8558-2800fa41354f
     content: Done
     children:
+      - d8aaa1d2-b8ba-4a94-9f47-42b71fa1fc4b
       - 1db14268-e2ed-40ae-81a7-e04377d4dcdc
       - 2545f974-a79e-471f-b0ef-eea0d2bdae22
       - 0344bb2e-2b99-4bfb-8019-85d233fd50b7
@@ -142255,7 +142260,6 @@ nodes:
     content: OSS positioning and sustainability
     children:
       - 76c9fff6-b438-4ff1-99e4-014d8377ea04
-      - 170867ec-4a7a-40b5-8840-9f2e37af81f1
       - 6ab8d238-384e-4bcf-867d-2e16257196e5
       - 609fe396-3485-43d3-a8ee-6f38221df928
       - 30df13ec-8db8-4877-9fb2-7988bcc8c047
@@ -142269,15 +142273,6 @@ nodes:
   76c9fff6-b438-4ff1-99e4-014d8377ea04:
     id: 76c9fff6-b438-4ff1-99e4-014d8377ea04
     content: Format standardisation as moat — `.arbo`, context format, workflow schema documented and stable; canonical implementation is more durable than feature moat
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  170867ec-4a7a-40b5-8840-9f2e37af81f1:
-    id: 170867ec-4a7a-40b5-8840-9f2e37af81f1
-    content: Compliance / regulated-industry niche positioning — auditable architecture, validation gates, replayable workflows, explainable AI use; the niche where the architecture's value is most legible and competition is weakest
     children: []
     metadata:
       status: pending
@@ -158658,9 +158653,7 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children:
-      - 2ac36efd-cd11-4888-a4d7-648dce571747
-      - 5f915b0a-c4f5-4d49-a7ad-f275c60880bc
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -203745,64 +203738,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5f915b0a-c4f5-4d49-a7ad-f275c60880bc:
-    id: 5f915b0a-c4f5-4d49-a7ad-f275c60880bc
-    content: If theres a feedback in progress
-    children:
-      - 164363b7-9646-4540-adff-9a5b74551205
-      - 4c564da1-7102-445f-814f-b8b2ac9bf562
-      - a85ea34a-a86f-4fbd-b600-cc86a5ef1561
-      - c7db17d4-f7b8-48f6-9d2d-d1afee871fdd
-      - eb9d15af-6290-43ad-aaec-2be7d8c70aab
-      - d95336ff-b486-4ecb-babc-8dbdc1a20b18
-    metadata:
-      status: pending
-      expanded: false
-  164363b7-9646-4540-adff-9a5b74551205:
-    id: 164363b7-9646-4540-adff-9a5b74551205
-    content: Only the "accept/cancel" bar is golden.
-    children: []
-    metadata:
-      status: pending
-  4c564da1-7102-445f-814f-b8b2ac9bf562:
-    id: 4c564da1-7102-445f-814f-b8b2ac9bf562
-    content: I would expect the rest of the non changed nodes to be also golden
-    children: []
-    metadata:
-      status: pending
-  a85ea34a-a86f-4fbd-b600-cc86a5ef1561:
-    id: a85ea34a-a86f-4fbd-b600-cc86a5ef1561
-    content: Changed in Blue
-    children: []
-    metadata:
-      status: pending
-  c7db17d4-f7b8-48f6-9d2d-d1afee871fdd:
-    id: c7db17d4-f7b8-48f6-9d2d-d1afee871fdd
-    content: New in Green
-    children: []
-    metadata:
-      status: pending
-  eb9d15af-6290-43ad-aaec-2be7d8c70aab:
-    id: eb9d15af-6290-43ad-aaec-2be7d8c70aab
-    content: Deleted with strikethrough
-    children: []
-    metadata:
-      status: pending
-  d95336ff-b486-4ecb-babc-8dbdc1a20b18:
-    id: d95336ff-b486-4ecb-babc-8dbdc1a20b18
-    content: |-
-      So existing behavior + everything not changed/new/removed in golden
-      Actually maybe deleted in golden background too
-    children:
-      - a06207b8-9fc5-41fa-9935-e1b2da54c26a
-    metadata:
-      status: pending
-  a06207b8-9fc5-41fa-9935-e1b2da54c26a:
-    id: a06207b8-9fc5-41fa-9935-e1b2da54c26a
-    content: Ill let you decide
-    children: []
-    metadata:
-      status: pending
   ec90d67b-47d7-4b77-99a6-e665e1d85f2e:
     id: ec90d67b-47d7-4b77-99a6-e665e1d85f2e
     content: Toggling task status on a node in review targets the previously focused node instead
@@ -206217,13 +206152,16 @@ nodes:
       plugins: {}
   2ac36efd-cd11-4888-a4d7-648dce571747:
     id: 2ac36efd-cd11-4888-a4d7-648dce571747
-    content: If there are 2 nodes that get decomposed
+    content: If there are 2 nodes that get dectomposed
     children:
       - 3dce8341-afa3-454b-b0c0-ccf47833e6a5
       - 02ba5f0a-64a6-4afb-995b-b5f2bb6affed
+      - 8e3f952a-54c6-4050-bc48-3986a12e433b
+      - ab6461ac-6fd2-4975-a89f-d3b44f2710c8
     metadata:
       status: pending
-      expanded: true
+      expanded: false
+      sessionId: 3ec863af-f0f6-4440-ae9b-136c89526216
   3dce8341-afa3-454b-b0c0-ccf47833e6a5:
     id: 3dce8341-afa3-454b-b0c0-ccf47833e6a5
     content: The sessions get mixed up
@@ -212553,6 +212491,1359 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  8e3f952a-54c6-4050-bc48-3986a12e433b:
+    id: 8e3f952a-54c6-4050-bc48-3986a12e433b
+    content: I've only repoduced this once
+    children:
+      - 1b0bf19a-09f6-4984-b34e-9e8e507b19bf
+    metadata:
+      status: pending
+  1b0bf19a-09f6-4984-b34e-9e8e507b19bf:
+    id: 1b0bf19a-09f6-4984-b34e-9e8e507b19bf
+    content: So unless you've found an obvious mechanism
+    children:
+      - 7557a548-7567-4618-b3db-435c50609756
+    metadata:
+      status: pending
+  7557a548-7567-4618-b3db-435c50609756:
+    id: 7557a548-7567-4618-b3db-435c50609756
+    content: Let me know and we'll defer until we have a second repro
+    children: []
+    metadata:
+      status: pending
+  ab6461ac-6fd2-4975-a89f-d3b44f2710c8:
+    id: ab6461ac-6fd2-4975-a89f-d3b44f2710c8
+    content: Wait for a second reproduction
+    children: []
+    metadata:
+      status: pending
+  37e3455e-0cdd-4a0a-a452-ebda66f450be:
+    id: 37e3455e-0cdd-4a0a-a452-ebda66f450be
+    content: worktree
+    children:
+      - 131711f5-e26f-468a-b94b-6e08f54a6197
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  131711f5-e26f-468a-b94b-6e08f54a6197:
+    id: 131711f5-e26f-468a-b94b-6e08f54a6197
+    content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/docs-claude-code-requirement) — branch `docs/claude-code-requirement`, forked from master @289b8b5'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42f6c4f7-af31-4710-8f6e-831410d461fd:
+    id: 42f6c4f7-af31-4710-8f6e-831410d461fd
+    content: 📄 Product spec
+    children:
+      - d860945b-2890-432b-8b8b-d695effb76ed
+      - 982f4e82-6317-476f-a774-db8dffaff468
+      - 2df85c3f-1fb6-4935-9949-74d2e4e55b75
+      - 6eb88b2b-209c-4894-822f-c8c026fb700e
+      - 5c0bc4a3-253a-4d4b-a197-09f7b70b3651
+      - 64c3bdf2-8128-47e4-a7e0-34b8f90a7d17
+      - a8f3b7d6-efa8-471d-94aa-25c8de819181
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d860945b-2890-432b-8b8b-d695effb76ed:
+    id: d860945b-2890-432b-8b8b-d695effb76ed
+    content: Context
+    children:
+      - 14f2cbf8-51c9-4e6e-a4f8-a67b4387289d
+      - c67c3e2a-10d6-4442-aa32-31d0bda4b3e4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14f2cbf8-51c9-4e6e-a4f8-a67b4387289d:
+    id: 14f2cbf8-51c9-4e6e-a4f8-a67b4387289d
+    content: Arborescent documents basic features (send-to-terminal, send-to-browser, contexts, inline review) with generic "the AI" language, while advanced/automated features (autonomous and checkpoint workflow steps, hook-driven step advancement, MCP tools like submit_step_output, session resume, reasoning-effort escalation) are driven specifically by Claude Code.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c67c3e2a-10d6-4442-aa32-31d0bda4b3e4:
+    id: c67c3e2a-10d6-4442-aa32-31d0bda4b3e4
+    content: An audit found NO references to any other AI provider anywhere in docs or code (no GPT/OpenAI/Gemini/etc.), so there is nothing to "remove" — the original ask rests on a false premise.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  982f4e82-6317-476f-a774-db8dffaff468:
+    id: 982f4e82-6317-476f-a774-db8dffaff468
+    content: User / persona
+    children:
+      - 86bb19f8-0c58-4730-ab3f-42d6a8ab7f8f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86bb19f8-0c58-4730-ab3f-42d6a8ab7f8f:
+    id: 86bb19f8-0c58-4730-ab3f-42d6a8ab7f8f
+    content: A new-to-intermediate Arborescent user who succeeds with basic sends and is now reaching for autonomous/automated workflows.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2df85c3f-1fb6-4935-9949-74d2e4e55b75:
+    id: 2df85c3f-1fb6-4935-9949-74d2e4e55b75
+    content: Current experience and why it is insufficient
+    children:
+      - cfb18e7b-3303-4c78-8791-cdaf1f374713
+      - d732646d-d73b-4d92-8c02-5d78af35f4c2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfb18e7b-3303-4c78-8791-cdaf1f374713:
+    id: cfb18e7b-3303-4c78-8791-cdaf1f374713
+    content: The generic "the AI" voice spans both tiers, so users assume autonomous workflows work with whatever AI they wired up for basic sends.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d732646d-d73b-4d92-8c02-5d78af35f4c2:
+    id: d732646d-d73b-4d92-8c02-5d78af35f4c2
+    content: Without Claude Code's hooks the Stop event never fires, the step never advances, and the failure is silent — the docs never drew the line, so the user has no signpost.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6eb88b2b-209c-4894-822f-c8c026fb700e:
+    id: 6eb88b2b-209c-4894-822f-c8c026fb700e
+    content: Goal
+    children:
+      - 59fb0d4e-1dd9-41af-8628-146a83f0eb4b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59fb0d4e-1dd9-41af-8628-146a83f0eb4b:
+    id: 59fb0d4e-1dd9-41af-8628-146a83f0eb4b
+    content: Make docs and in-app copy state clearly that automated workflow features require Claude Code, while keeping basic send/context/review described as working with any terminal or browser AI.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c0bc4a3-253a-4d4b-a197-09f7b70b3651:
+    id: 5c0bc4a3-253a-4d4b-a197-09f7b70b3651
+    content: Business rules
+    children:
+      - 6e09a90b-adf0-4ca4-a766-f0fc145a5b50
+      - 6689c69b-b2bd-49ea-a6c6-db5b62207e10
+      - d66940c4-c417-4272-ac5c-3f6dbea95929
+      - 30fe1e34-5340-402c-9af6-e406c9707d76
+      - fefd9a19-170f-4d6f-8a1c-ae788fd1d462
+      - 5915a143-d057-43c8-a9f0-36ffdfef1e92
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e09a90b-adf0-4ca4-a766-f0fc145a5b50:
+    id: 6e09a90b-adf0-4ca4-a766-f0fc145a5b50
+    content: Basic features (manual send-to-terminal, send-to-browser, contexts, inline review/decomposition, blueprints) are described as working with any AI reached via a terminal or browser.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6689c69b-b2bd-49ea-a6c6-db5b62207e10:
+    id: 6689c69b-b2bd-49ea-a6c6-db5b62207e10
+    content: Advanced/automated features (autonomous and checkpoint step automation, hook-driven advancement, MCP tools, session clear/resume, reasoning-effort escalation) are described as requiring Claude Code.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d66940c4-c417-4272-ac5c-3f6dbea95929:
+    id: d66940c4-c417-4272-ac5c-3f6dbea95929
+    content: The Claude Code requirement is stated once as a prerequisite in the advanced doc (docs/workflows.md) and cross-linked from a basic doc, not sprinkled as a qualifier on every string.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30fe1e34-5340-402c-9af6-e406c9707d76:
+    id: 30fe1e34-5340-402c-9af6-e406c9707d76
+    content: No model version number (e.g. "Opus 4.7+") is written into docs or strings; the stated dependency is the Claude Code runtime, not a model floor.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fefd9a19-170f-4d6f-8a1c-ae788fd1d462:
+    id: fefd9a19-170f-4d6f-8a1c-ae788fd1d462
+    content: No competitor AI names are introduced, and none are removed because there are none.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5915a143-d057-43c8-a9f0-36ffdfef1e92:
+    id: 5915a143-d057-43c8-a9f0-36ffdfef1e92
+    content: Prompt text sent to the model (sendActions.ts) is not changed; this is a copy/docs change only.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64c3bdf2-8128-47e4-a7e0-34b8f90a7d17:
+    id: 64c3bdf2-8128-47e4-a7e0-34b8f90a7d17
+    content: Acceptance criteria
+    children:
+      - d3f2100c-1d01-4575-a798-fdd166647ada
+      - 984dc503-3724-4518-9752-4403883e9813
+      - 55185b5d-3b31-47cc-922b-3900f032f5df
+      - 2e9d8633-126c-4ae0-8970-7cf43ae168b9
+      - 2980da70-d308-4f93-a877-b090f8673646
+      - 00cae0cb-6f75-454b-813d-e8ee12681b3b
+      - 93529045-b745-471c-8ddf-f0710dc953d5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3f2100c-1d01-4575-a798-fdd166647ada:
+    id: d3f2100c-1d01-4575-a798-fdd166647ada
+    content: docs/workflows.md opens with a one-line prerequisite stating that automated advancement, hooks, MCP tools, and session resume require Claude Code, linking to the Hook Setup section.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  984dc503-3724-4518-9752-4403883e9813:
+    id: 984dc503-3724-4518-9752-4403883e9813
+    content: 'A basic-feature doc (docs/workflow.md) carries one sentence: basic sends/contexts/review work with any terminal/browser AI; automated workflows require Claude Code (cross-linked to workflows.md).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55185b5d-3b31-47cc-922b-3900f032f5df:
+    id: 55185b5d-3b31-47cc-922b-3900f032f5df
+    content: Generic "the AI" language is retained in basic-feature docs as an explicit non-goal of deletion.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e9d8633-126c-4ae0-8970-7cf43ae168b9:
+    id: 2e9d8633-126c-4ae0-8970-7cf43ae168b9
+    content: No doc or string contains a hardcoded model version number.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2980da70-d308-4f93-a877-b090f8673646:
+    id: 2980da70-d308-4f93-a877-b090f8673646
+    content: Advanced-doc lines that currently say generic "your AI tool" in the hook/prerequisite context are made Claude-Code-specific; basic-doc generic language is left unchanged.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00cae0cb-6f75-454b-813d-e8ee12681b3b:
+    id: 00cae0cb-6f75-454b-813d-e8ee12681b3b
+    content: All existing string-assertion tests stay green; any in-app string that is edited has its asserting test updated in the same change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93529045-b745-471c-8ddf-f0710dc953d5:
+    id: 93529045-b745-471c-8ddf-f0710dc953d5
+    content: A grep for other-AI provider names across docs/ and src/ still returns zero, guarding against accidentally introducing then "removing" names.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8f3b7d6-efa8-471d-94aa-25c8de819181:
+    id: a8f3b7d6-efa8-471d-94aa-25c8de819181
+    content: Non-functional
+    children:
+      - 7ed54db5-0818-43f2-985e-1f25d6de8632
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ed54db5-0818-43f2-985e-1f25d6de8632:
+    id: 7ed54db5-0818-43f2-985e-1f25d6de8632
+    content: No runtime, performance, or accessibility impact; documentation/copy only, with no UI label churn unless its test is updated alongside.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  669b9a1f-6ef8-4030-bdeb-20fabc5500d0:
+    id: 669b9a1f-6ef8-4030-bdeb-20fabc5500d0
+    content: 🔧 Implementation proposal
+    children:
+      - 60ed022c-242e-4ab2-83cf-ecff67e1828c
+      - fd866c04-921e-4b48-8f4a-1658000b18ad
+      - d6eff58b-739e-4195-8dee-88c897b24ab5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60ed022c-242e-4ab2-83cf-ecff67e1828c:
+    id: 60ed022c-242e-4ab2-83cf-ecff67e1828c
+    content: Approach
+    children:
+      - 3d37456f-781a-45a2-b8ea-730e352aa4e0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d37456f-781a-45a2-b8ea-730e352aa4e0:
+    id: 3d37456f-781a-45a2-b8ea-730e352aa4e0
+    content: 'Pure copy/documentation change with no code logic: make the existing basic-vs-advanced boundary explicit via one prerequisite banner in docs/workflows.md as the single source of truth, plus one cross-link sentence in the basic doc.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd866c04-921e-4b48-8f4a-1658000b18ad:
+    id: fd866c04-921e-4b48-8f4a-1658000b18ad
+    content: Touchpoints
+    children:
+      - 1029a5c9-f821-492d-bd05-b2aa4f1e0dcc
+      - c2c268b1-ee09-4398-bddf-f537a7317a36
+      - de1fb1a7-7aa4-45fa-80a0-ad0708489760
+      - 3a65e2f2-bcd2-4381-b454-49bae99ace30
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1029a5c9-f821-492d-bd05-b2aa4f1e0dcc:
+    id: 1029a5c9-f821-492d-bd05-b2aa4f1e0dcc
+    content: docs/workflows.md — add the prerequisite banner (SSOT for the Claude Code requirement) and tighten the few generic "your AI tool" lines in the hook/prerequisite section.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2c268b1-ee09-4398-bddf-f537a7317a36:
+    id: c2c268b1-ee09-4398-bddf-f537a7317a36
+    content: docs/workflow.md — add one cross-link sentence drawing the tier boundary.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de1fb1a7-7aa4-45fa-80a0-ad0708489760:
+    id: de1fb1a7-7aa4-45fa-80a0-ad0708489760
+    content: docs/contexts.md, docs/blueprints.md, docs/README.md — leave generic; touch only if they promise automation generically.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a65e2f2-bcd2-4381-b454-49bae99ace30:
+    id: 3a65e2f2-bcd2-4381-b454-49bae99ace30
+    content: Tests — only if an in-app string is edited (e.g. ClearAiSessionToggle.test.tsx, toastActionButtons.test.ts); update assertions in lockstep.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6eff58b-739e-4195-8dee-88c897b24ab5:
+    id: d6eff58b-739e-4195-8dee-88c897b24ab5
+    content: Constraints to call out
+    children:
+      - cc9538de-4fa4-402e-bb61-e0cc49fea88d
+      - 2da0ccaa-f596-4c24-95c2-990cabd65434
+      - 0bd27b3b-4754-41f5-9701-47133fb2f8d0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc9538de-4fa4-402e-bb61-e0cc49fea88d:
+    id: cc9538de-4fa4-402e-bb61-e0cc49fea88d
+    content: sendActions.ts:207 is prompt text sent to the model, not UI copy — leave it generic and untouched, since changing it alters model input.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2da0ccaa-f596-4c24-95c2-990cabd65434:
+    id: 2da0ccaa-f596-4c24-95c2-990cabd65434
+    content: Do not mass-replace "the AI" → "Claude" in basic docs; those features are genuinely tool-agnostic and flattening them would make the docs lie.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bd27b3b-4754-41f5-9701-47133fb2f8d0:
+    id: 0bd27b3b-4754-41f5-9701-47133fb2f8d0
+    content: Several in-app strings already correctly say "Claude Code" (RebindConfirmationDialog, workflowExecutionActions) — verify consistency rather than re-editing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1db4c3c-da16-41e0-b21a-b2a0ba859589:
+    id: c1db4c3c-da16-41e0-b21a-b2a0ba859589
+    content: Scope decision — one story, one chunk
+    children:
+      - 827fd34c-57f9-4282-8387-0dbbf992da20
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  827fd34c-57f9-4282-8387-0dbbf992da20:
+    id: 827fd34c-57f9-4282-8387-0dbbf992da20
+    content: 'Keep as a single story: it is one coherent boundary-policy decision and a small diff (a few markdown files, optional string). Splitting docs from in-app strings would create two PRs that must land together with no independent review or complexity benefit.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9085c7d2-d3f3-4c88-b4af-b1bf3e383d71:
+    id: 9085c7d2-d3f3-4c88-b4af-b1bf3e383d71
+    content: Challenges and pushback
+    children:
+      - 519b4965-4224-4ee3-8d72-bb84ee4dd30c
+      - 2f05c0d7-3f34-4edf-a277-bcd3651e053f
+      - 3b035ffd-1d55-4df0-83bf-9401ef43eb27
+      - 777d3405-c29c-48a7-9bc2-245d99c16d08
+      - 04b7921e-2060-4b6c-ae87-1557374dc8c5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  519b4965-4224-4ee3-8d72-bb84ee4dd30c:
+    id: 519b4965-4224-4ee3-8d72-bb84ee4dd30c
+    content: 'False premise: "remove references to other AIs" is a no-op — the audit confirms zero competitor references in docs or code; reframe the ticket as ADDING a tier boundary, not deleting anything.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f05c0d7-3f34-4edf-a277-bcd3651e053f:
+    id: 2f05c0d7-3f34-4edf-a277-bcd3651e053f
+    content: 'Reject "Opus 4.7+": it is factually wrong (MCP/agentic workflows run across capable Claude models, not an Opus-4.7 floor) and rot-prone (the latest is already Opus 4.8); state "requires Claude Code" instead of any version.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b035ffd-1d55-4df0-83bf-9401ef43eb27:
+    id: 3b035ffd-1d55-4df0-83bf-9401ef43eb27
+    content: 'Avoid over-engineering: no compatibility matrix, supported-models settings UI, or runtime version check — a one-line doc prerequisite suffices.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  777d3405-c29c-48a7-9bc2-245d99c16d08:
+    id: 777d3405-c29c-48a7-9bc2-245d99c16d08
+    content: 'Out of scope: renaming the "Clear AI session" label to insert "Claude" is cosmetic, churns existing tests, and is low ROI; if clarified at all, do it in help text, not the tested label.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  04b7921e-2060-4b6c-ae87-1557374dc8c5:
+    id: 04b7921e-2060-4b6c-ae87-1557374dc8c5
+    content: 'ROI: the tier-boundary clarification is high-value and low-cost; the "remove other AIs" part is zero-value; the "Opus 4.7+" part is negative ROI and should be dropped.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  844e1217-ce9e-4d8a-a36d-37be57d82744:
+    id: 844e1217-ce9e-4d8a-a36d-37be57d82744
+    content: Technical refinement
+    children:
+      - 0fa261fb-9876-4d86-9c5a-e46872226ac9
+      - 95ba101e-2d63-4432-b8a0-69e82d2c8f3a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fa261fb-9876-4d86-9c5a-e46872226ac9:
+    id: 0fa261fb-9876-4d86-9c5a-e46872226ac9
+    content: Complications and risks
+    children:
+      - 9c300b09-8ae2-40d0-98b4-941613ea8378
+      - 6218d32d-27de-40fb-a4d3-a622b287c242
+      - 28ca712f-0515-4ace-a628-f5472552c116
+      - 3af1a21e-05b5-447c-b5f2-d03a37788617
+      - 10c2458c-8175-435b-90d9-8e5131e720d0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c300b09-8ae2-40d0-98b4-941613ea8378:
+    id: 9c300b09-8ae2-40d0-98b4-941613ea8378
+    content: The zero-result regression grep must target competitor names only — a naive grep for "anthropic" hits the legitimate anthropicApiKey config token (hookInstaller.test.ts, claudeMcpConfigInstaller.test.ts) and would false-positive the guard.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6218d32d-27de-40fb-a4d3-a622b287c242:
+    id: 6218d32d-27de-40fb-a4d3-a622b287c242
+    content: docs/workflow.md and docs/workflows.md are different files one letter apart — the cross-link is an easy footgun; verify it resolves to the intended advanced doc.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28ca712f-0515-4ace-a628-f5472552c116:
+    id: 28ca712f-0515-4ace-a628-f5472552c116
+    content: CHANGELOG.md already carries Claude-specific lines but is append-only history — do not retro-edit it; it is out of scope for this boundary pass.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3af1a21e-05b5-447c-b5f2-d03a37788617:
+    id: 3af1a21e-05b5-447c-b5f2-d03a37788617
+    content: First-launch copy (workflowExecutionActions.ts:389) already points users to docs/workflows.md for hook setup — keep that section reachable so the existing pointer does not break.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10c2458c-8175-435b-90d9-8e5131e720d0:
+    id: 10c2458c-8175-435b-90d9-8e5131e720d0
+    content: 'ROI caveat: the net actionable change is ~2-3 markdown lines; the highest-value deliverable is the reframe (false premise, version-stamp rejected), so size this as a doc tweak, not a feature.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95ba101e-2d63-4432-b8a0-69e82d2c8f3a:
+    id: 95ba101e-2d63-4432-b8a0-69e82d2c8f3a
+    content: Approach summary
+    children:
+      - a645a9c5-e7e8-4241-b146-2b02f5e4b26b
+      - cefa61cd-7b85-4516-b4f0-97b8ed10238d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a645a9c5-e7e8-4241-b146-2b02f5e4b26b:
+    id: a645a9c5-e7e8-4241-b146-2b02f5e4b26b
+    content: 'Pure docs/copy change: one prerequisite banner in docs/workflows.md as the single source of truth, plus one cross-link sentence in docs/workflow.md — no code logic and no new UI surfaces.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cefa61cd-7b85-4516-b4f0-97b8ed10238d:
+    id: cefa61cd-7b85-4516-b4f0-97b8ed10238d
+    content: 'Non-obvious for the reviewer: scope the regression grep to competitor names rather than "anthropic", get the workflow.md vs workflows.md link right, and leave CHANGELOG history and the sendActions.ts prompt text untouched.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51830906-6274-4044-80f4-ecaaeb164342:
+    id: 51830906-6274-4044-80f4-ecaaeb164342
+    content: review feedback
+    children:
+      - fbf1da3b-9e54-43f0-bd3d-edd861eb0ff4
+    metadata:
+      status: pending
+  fbf1da3b-9e54-43f0-bd3d-edd861eb0ff4:
+    id: fbf1da3b-9e54-43f0-bd3d-edd861eb0ff4
+    content: 'Reviewer: pr-review-toolkit:code-reviewer on branch docs/claude-code-requirement. Diff since last commit: docs/workflow.md (one cross-link sentence in "Log In to Your AI"), docs/workflows.md (top prerequisite banner + two "your AI tool"→"Claude Code" tightenings at the automated-advancement line and Hook Setup intro), and new guard test src/renderer/utils/tests/docsClaudeCodeBoundary.test.ts (content invariants modeled on nodeIdsAreUuids.test.ts). Verdict: clean — no blockers, no should-fix. Verified: the #hook-setup anchor resolves to "## Hook Setup"; workflow.md↔workflows.md links point the right directions; COMPETITOR/VERSION_FLOOR regexes are sound (853 files scanned, only the test file''s own regex self-excluded); "the AI" retained in 8 places in workflow.md; tightening the Hook Setup intro to "Claude Code" creates no contradiction with the remaining "### Claude Code" subheading or the behavioral "the AI" prose. Three nits raised; two addressed in this step: (1) dropped VERSION_FLOOR''s over-broad bare-number branch, keeping the model-anchored pattern that still catches "Opus 4.7+"/"Claude 4.8"; (2) removed AC#-prefix story artifacts from the test describe titles. One left by design: the AC7 guard scans all of src/ for competitor names — intentionally broad. Post-fix checks all green: ESLint clean, tsc --noEmit clean, guard test 6/6. Nothing committed; ready for the merge step.'
+    children: []
+    metadata:
+      status: pending
+  f0cf3961-182f-47f9-8b90-3004bbe6fdf2:
+    id: f0cf3961-182f-47f9-8b90-3004bbe6fdf2
+    content: Terminal titles don't always change when the bound node name does
+    children:
+      - 59d2dc61-7be1-4d02-95c5-0975b96f9fdb
+      - 8911b20f-d941-4257-849c-38ad07b0faf2
+      - 61a6580c-d717-4f4c-8681-57752f657328
+      - 69b15e0a-0214-46bc-ac9b-7c65df72b643
+      - 8344880c-2c7d-4741-9748-c74559e00314
+      - 8d08aba7-0842-4383-a432-25538fdedc3d
+      - 1677b87d-f501-4ee8-ba72-d20b75d2db5e
+      - 6a082fce-4085-4685-b8c6-27e828b3f8e2
+      - 44f4d9db-d5ab-40b9-b43d-7781752a24bb
+      - 24e75479-766e-4910-ac86-d6b04e1b7ee1
+      - c29b39f9-5562-49ae-995c-ff98b976a8b2
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 51664017-f43c-48f9-b78c-9925a1cce3d9
+  59d2dc61-7be1-4d02-95c5-0975b96f9fdb:
+    id: 59d2dc61-7be1-4d02-95c5-0975b96f9fdb
+    content: worktree
+    children:
+      - 62dce533-47ac-4a3a-b4dd-a01b03f80a46
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62dce533-47ac-4a3a-b4dd-a01b03f80a46:
+    id: 62dce533-47ac-4a3a-b4dd-a01b03f80a46
+    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-terminal-title-manual-accept-resync
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8911b20f-d941-4257-849c-38ad07b0faf2:
+    id: 8911b20f-d941-4257-849c-38ad07b0faf2
+    content: Summary
+    children:
+      - 1b71cd93-5b9e-4ad4-86d3-c08c16de5e23
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b71cd93-5b9e-4ad4-86d3-c08c16de5e23:
+    id: 1b71cd93-5b9e-4ad4-86d3-c08c16de5e23
+    content: A terminal tab bound to a node keeps a stale title after the bound node's root line changes via the manual "accept" review path, because finishAccept runs AcceptFeedbackCommand without the resyncBoundTerminalTitles call the autonomous path already has
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61a6580c-d717-4f4c-8681-57752f657328:
+    id: 61a6580c-d717-4f4c-8681-57752f657328
+    content: Steps to reproduce
+    children:
+      - 3c4b21e5-ecc5-4312-a022-968fea96fbe6
+      - fdd01805-a9ca-470e-bf1a-afd9b273065c
+      - 0365b39b-9928-49b1-9a75-a43f785e62aa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c4b21e5-ecc5-4312-a022-968fea96fbe6:
+    id: 3c4b21e5-ecc5-4312-a022-968fea96fbe6
+    content: Precondition / setup
+    children:
+      - 49f480c1-1f80-4ca7-9612-a6d160219a8d
+      - 8f566cd2-cc11-478a-a193-51820a7c880a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49f480c1-1f80-4ca7-9612-a6d160219a8d:
+    id: 49f480c1-1f80-4ca7-9612-a6d160219a8d
+    content: Send a node to a terminal so the terminal's originNodeId is bound to that node and its tab title is derived from the node's first line
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f566cd2-cc11-478a-a193-51820a7c880a:
+    id: 8f566cd2-cc11-478a-a193-51820a7c880a
+    content: Start a review/collaboration on that bound node so an inline diff proposition is pending
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdd01805-a9ca-470e-bf1a-afd9b273065c:
+    id: fdd01805-a9ca-470e-bf1a-afd9b273065c
+    content: User action
+    children:
+      - 22297d87-0769-4962-bd50-31875fd3264e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22297d87-0769-4962-bd50-31875fd3264e:
+    id: 22297d87-0769-4962-bd50-31875fd3264e
+    content: In the proposition, change the bound node's root (first) line, then click "accept" to apply the review manually (not autonomous auto-accept)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0365b39b-9928-49b1-9a75-a43f785e62aa:
+    id: 0365b39b-9928-49b1-9a75-a43f785e62aa
+    content: Observation that exposes the bug
+    children:
+      - c7b627f5-1d45-469b-af1f-37af95cf5367
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7b627f5-1d45-469b-af1f-37af95cf5367:
+    id: c7b627f5-1d45-469b-af1f-37af95cf5367
+    content: The accepted tree shows the new first line, but the terminal tab title still shows the old name
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69b15e0a-0214-46bc-ac9b-7c65df72b643:
+    id: 69b15e0a-0214-46bc-ac9b-7c65df72b643
+    content: Expected behavior
+    children:
+      - 8fd77a8c-0cf5-4122-a1cb-78480808c23b
+      - e1301da7-1fbf-4839-bca6-9a9df936e96e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fd77a8c-0cf5-4122-a1cb-78480808c23b:
+    id: 8fd77a8c-0cf5-4122-a1cb-78480808c23b
+    content: 'Happy path: title updates as soon as any change is made to the bound node''s root line'
+    children:
+      - bf1be7d9-7172-498e-bf2e-bad01ffb66a9
+      - 94bc8de2-8667-41c6-9fd5-697f0bac695e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf1be7d9-7172-498e-bf2e-bad01ffb66a9:
+    id: bf1be7d9-7172-498e-bf2e-bad01ffb66a9
+    content: 'On rename: as soon as the bound node''s root line is edited/blurred after focus, if it changed, update the bound terminal tab title to match'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94bc8de2-8667-41c6-9fd5-697f0bac695e:
+    id: 94bc8de2-8667-41c6-9fd5-697f0bac695e
+    content: 'On review applied: when feedback is applied — autonomously OR by clicking "accept" — if the root line changed, update the terminal title'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1301da7-1fbf-4839-bca6-9a9df936e96e:
+    id: e1301da7-1fbf-4839-bca6-9a9df936e96e
+    content: Edge cases
+    children:
+      - f5a8954a-ca56-4048-bb81-81d565fb9ede
+      - d09f9665-1f6e-4d47-947c-e229bb96dfb4
+      - eca133b4-2a42-45c6-a570-5a5f6bb18026
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5a8954a-ca56-4048-bb81-81d565fb9ede:
+    id: f5a8954a-ca56-4048-bb81-81d565fb9ede
+    content: If the new root line is empty or whitespace-only, do not rename — keep the prior terminal title
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d09f9665-1f6e-4d47-947c-e229bb96dfb4:
+    id: d09f9665-1f6e-4d47-947c-e229bb96dfb4
+    content: 'On bound-node deletion: do nothing — leave the terminal as-is so the user can close it or rebind it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eca133b4-2a42-45c6-a570-5a5f6bb18026:
+    id: eca133b4-2a42-45c6-a570-5a5f6bb18026
+    content: Deliberately do not cover undo of a deletion; the "do nothing" choice sidesteps the undo/rebind complexity
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8344880c-2c7d-4741-9748-c74559e00314:
+    id: 8344880c-2c7d-4741-9748-c74559e00314
+    content: Actual behavior
+    children:
+      - 76b39eda-ecde-44d1-b39e-a462389b65cf
+      - 50594d60-c3a5-4503-ad94-d557ba39e67e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76b39eda-ecde-44d1-b39e-a462389b65cf:
+    id: 76b39eda-ecde-44d1-b39e-a462389b65cf
+    content: What actually happens
+    children:
+      - a2d2910d-32a4-494c-926b-c0220c019017
+      - aaa488d3-57b1-4370-9278-d6edff9ade62
+      - a2248739-69c2-442c-9657-f80836cfad0f
+      - f97feeb3-7e97-4bae-829e-5541c1dd0efa
+      - 9a0c1b62-77de-4931-ba26-9c2fbe21e59e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2d2910d-32a4-494c-926b-c0220c019017:
+    id: a2d2910d-32a4-494c-926b-c0220c019017
+    content: Live rename via useNodeEditing.handleInput → updateContent → syncBoundTerminalTitles fires on each input, so renames DO sync
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaa488d3-57b1-4370-9278-d6edff9ade62:
+    id: aaa488d3-57b1-4370-9278-d6edff9ade62
+    content: 'Autonomous feedback accept resyncs titles: handleAutonomousFeedback calls resyncBoundTerminalTitles after the command'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2248739-69c2-442c-9657-f80836cfad0f:
+    id: a2248739-69c2-442c-9657-f80836cfad0f
+    content: Manual "accept" (finishAccept) executes the same AcceptFeedbackCommand but never calls resyncBoundTerminalTitles, so the title goes stale
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f97feeb3-7e97-4bae-829e-5541c1dd0efa:
+    id: f97feeb3-7e97-4bae-829e-5541c1dd0efa
+    content: An empty/whitespace root line correctly keeps the prior title — both sync paths early-return on an empty extractTaskTitle, which already matches the desired behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a0c1b62-77de-4931-ba26-9c2fbe21e59e:
+    id: 9a0c1b62-77de-4931-ba26-9c2fbe21e59e
+    content: Deleting a bound node already does nothing to the terminal (matches the expected edge case) but leaves a dangling originNodeId
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50594d60-c3a5-4503-ad94-d557ba39e67e:
+    id: 50594d60-c3a5-4503-ad94-d557ba39e67e
+    content: User-visible symptoms
+    children:
+      - 08d573ac-35e1-4136-9304-a790492f62c2
+      - dd714fc9-6b26-4eee-a49a-6b32aaed2739
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08d573ac-35e1-4136-9304-a790492f62c2:
+    id: 08d573ac-35e1-4136-9304-a790492f62c2
+    content: After clicking "accept" on a review that renamed the root, the tab keeps the old name until an unrelated edit or a reload re-derives it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd714fc9-6b26-4eee-a49a-6b32aaed2739:
+    id: dd714fc9-6b26-4eee-a49a-6b32aaed2739
+    content: With several bound terminals open, the stale label points the user at the wrong tab
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d08aba7-0842-4383-a432-25538fdedc3d:
+    id: 8d08aba7-0842-4383-a432-25538fdedc3d
+    content: Suspected cause
+    children:
+      - a483e3e6-7606-4324-b170-4d5a025c0c87
+      - 4466f8ad-2d82-4894-a35f-422fa3ef2796
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a483e3e6-7606-4324-b170-4d5a025c0c87:
+    id: a483e3e6-7606-4324-b170-4d5a025c0c87
+    content: Code path implicated
+    children:
+      - dcfdc04c-983d-4e6d-bca0-08ceddaaf9f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcfdc04c-983d-4e6d-bca0-08ceddaaf9f5:
+    id: dcfdc04c-983d-4e6d-bca0-08ceddaaf9f5
+    content: sendActions.ts finishAccept executes AcceptFeedbackCommand (~line 911) with no follow-up resyncBoundTerminalTitles, unlike workflowExecutionActions.ts:1268
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4466f8ad-2d82-4894-a35f-422fa3ef2796:
+    id: 4466f8ad-2d82-4894-a35f-422fa3ef2796
+    content: Why the existing fix does not cover this case
+    children:
+      - 0076a847-2a75-40d6-a255-ba8a1f6e8a55
+      - d11eda82-5474-429d-9f2f-673336b57f38
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0076a847-2a75-40d6-a255-ba8a1f6e8a55:
+    id: 0076a847-2a75-40d6-a255-ba8a1f6e8a55
+    content: The resync helper was wired into the programmatic/autonomous write paths in f2da8ff but the manual finishAccept path was missed, creating an autonomous-vs-manual asymmetry
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d11eda82-5474-429d-9f2f-673336b57f38:
+    id: d11eda82-5474-429d-9f2f-673336b57f38
+    content: syncBoundTerminalTitles matches only terminals whose originNodeId equals the edited nodeId, and AcceptFeedbackCommand can migrate originNodeId, which is exactly why the post-accept path needs the resync-by-map variant
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1677b87d-f501-4ee8-ba72-d20b75d2db5e:
+    id: 1677b87d-f501-4ee8-ba72-d20b75d2db5e
+    content: Affected files
+    children:
+      - 06a161f5-d64c-47bb-929e-2216ab53f528
+      - b7a9ece8-f41f-4719-809f-fd7a047c69a9
+      - 1b62b782-ef06-4fa1-a167-03b3610b2502
+      - 80e1fb1c-24ca-4e83-a5b2-188abbf3d361
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06a161f5-d64c-47bb-929e-2216ab53f528:
+    id: 06a161f5-d64c-47bb-929e-2216ab53f528
+    content: 'Primary suspect: src/renderer/store/tree/actions/sendActions.ts (finishAccept, ~line 865-915)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7a9ece8-f41f-4719-809f-fd7a047c69a9:
+    id: b7a9ece8-f41f-4719-809f-fd7a047c69a9
+    content: 'Related surface: src/renderer/store/terminal/syncBoundTerminalTitles.ts (sync + resync helpers; empty-title guard, which is correct as-is)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b62b782-ef06-4fa1-a167-03b3610b2502:
+    id: 1b62b782-ef06-4fa1-a167-03b3610b2502
+    content: 'Related surface: src/renderer/store/tree/actions/workflowExecutionActions.ts:1268 (the autonomous path that already resyncs — the asymmetry reference)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80e1fb1c-24ca-4e83-a5b2-188abbf3d361:
+    id: 80e1fb1c-24ca-4e83-a5b2-188abbf3d361
+    content: 'Related surface: src/renderer/store/tree/actions/nodeDeletionActions.ts (no binding/title cleanup on delete — confirms the "do nothing" behavior)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a082fce-4085-4685-b8c6-27e828b3f8e2:
+    id: 6a082fce-4085-4685-b8c6-27e828b3f8e2
+    content: Regression window
+    children:
+      - 1bdfe14b-6a24-48c0-9b58-00629f2cc855
+      - 99c089bf-416f-4f29-a994-aceb1ae434f2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bdfe14b-6a24-48c0-9b58-00629f2cc855:
+    id: 1bdfe14b-6a24-48c0-9b58-00629f2cc855
+    content: 'Last known good: the rename path is not regressed — renames have synced since 01b92bf (feat: sync bound terminal tab title with root-node renames, 2026-05-23)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99c089bf-416f-4f29-a994-aceb1ae434f2:
+    id: 99c089bf-416f-4f29-a994-aceb1ae434f2
+    content: 'First observed broken: the manual-accept gap exists since the resync helper landed only on autonomous/programmatic paths in f2da8ff (2026-06-03); still present at HEAD 0f551f3 (2026-06-08)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44f4d9db-d5ab-40b9-b43d-7781752a24bb:
+    id: 44f4d9db-d5ab-40b9-b43d-7781752a24bb
+    content: Severity
+    children:
+      - b0e86fe2-053f-42dc-8d6c-c128c23b908c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0e86fe2-053f-42dc-8d6c-c128c23b908c:
+    id: b0e86fe2-053f-42dc-8d6c-c128c23b908c
+    content: 'Low-to-medium cosmetic/UX: stale tab label causes wrong-terminal confusion when multiple bound terminals are open; no data loss, and it self-heals on the next edit or a reload'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24e75479-766e-4910-ac86-d6b04e1b7ee1:
+    id: 24e75479-766e-4910-ac86-d6b04e1b7ee1
+    content: Notes
+    children:
+      - 6080481f-5d0c-48a7-9150-a4cf99f76496
+      - a52aca1f-33ce-49fb-83bb-266fd44f407d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6080481f-5d0c-48a7-9150-a4cf99f76496:
+    id: 6080481f-5d0c-48a7-9150-a4cf99f76496
+    content: Adjacent look-alikes to disambiguate
+    children:
+      - d676f7c6-1e4c-4abd-b70d-5791a41294d6
+      - 8a57780c-3034-4b53-878d-59b31f6dc4f3
+      - ccf3ba2a-eec2-40b7-ba13-c383099e50b1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d676f7c6-1e4c-4abd-b70d-5791a41294d6:
+    id: d676f7c6-1e4c-4abd-b70d-5791a41294d6
+    content: Not the undo/redo of ContentEditCommand path, which is explicitly out of scope here
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a57780c-3034-4b53-878d-59b31f6dc4f3:
+    id: 8a57780c-3034-4b53-878d-59b31f6dc4f3
+    content: Not the live-typing rename path, which works
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccf3ba2a-eec2-40b7-ba13-c383099e50b1:
+    id: ccf3ba2a-eec2-40b7-ba13-c383099e50b1
+    content: Distinguish from a node deleted out from under a terminal (dangling originNodeId) — that is by-design "do nothing"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a52aca1f-33ce-49fb-83bb-266fd44f407d:
+    id: a52aca1f-33ce-49fb-83bb-266fd44f407d
+    content: UX / telemetry gap worth fixing alongside
+    children:
+      - a03489fa-081d-4133-a68e-4dba2c54e2fc
+      - 6eef952f-d797-487c-a36c-a9f70eab5289
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a03489fa-081d-4133-a68e-4dba2c54e2fc:
+    id: a03489fa-081d-4133-a68e-4dba2c54e2fc
+    content: Empty/whitespace root line keeps the prior title (no rename) — settled; the existing early-return guard already satisfies this, so no change needed there
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6eef952f-d797-487c-a36c-a9f70eab5289:
+    id: 6eef952f-d797-487c-a36c-a9f70eab5289
+    content: Consider one shared post-AcceptFeedbackCommand resync call used by both finishAccept and handleAutonomousFeedback to prevent future drift
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c29b39f9-5562-49ae-995c-ff98b976a8b2:
+    id: c29b39f9-5562-49ae-995c-ff98b976a8b2
+    content: Technical refinement
+    children:
+      - 61daf751-8d4d-43d7-8b84-4c7c6747c658
+      - 79814184-9495-4d68-bc5f-ea92cecc6993
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61daf751-8d4d-43d7-8b84-4c7c6747c658:
+    id: 61daf751-8d4d-43d7-8b84-4c7c6747c658
+    content: Flag complications
+    children:
+      - ef882e84-f321-43e4-b310-42b8549358d0
+      - 50697229-a521-4f39-8a2c-7666f3fb1bfa
+      - 3ee42ce7-039f-41eb-b874-e6efd50e10dd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef882e84-f321-43e4-b310-42b8549358d0:
+    id: ef882e84-f321-43e4-b310-42b8549358d0
+    content: Edge cases / risks not already in acceptance criteria
+    children:
+      - 03a3ee4e-0cef-4336-887e-e79d4333a7c5
+      - 7c3b00c4-c5ee-4679-a238-d0061c59dfe6
+      - 2c565528-412b-434a-8696-3b53b4b5f42b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03a3ee4e-0cef-4336-887e-e79d4333a7c5:
+    id: 03a3ee4e-0cef-4336-887e-e79d4333a7c5
+    content: AcceptFeedbackCommand can remap node ids (reconcileFeedback idMap) and can be multi-root, so the fix must re-derive titles from the settled nodes map, not sync a single nodeId
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c3b00c4-c5ee-4679-a238-d0061c59dfe6:
+    id: 7c3b00c4-c5ee-4679-a238-d0061c59dfe6
+    content: The resync must run after executeCommand has settled the tree; reading nodes before the command would just re-apply the stale title
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c565528-412b-434a-8696-3b53b4b5f42b:
+    id: 2c565528-412b-434a-8696-3b53b4b5f42b
+    content: Empty/whitespace new root line must still keep the prior title — the existing early-return guard already enforces this, so the fix must not bypass it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50697229-a521-4f39-8a2c-7666f3fb1bfa:
+    id: 50697229-a521-4f39-8a2c-7666f3fb1bfa
+    content: Out of scope
+    children:
+      - 946feec5-21f7-41a7-a168-295e3a0a011d
+      - 4718c36c-a0d6-4291-987b-c8c23c351ab1
+      - f00566ba-6203-49fc-a7cf-4d750f9373c0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  946feec5-21f7-41a7-a168-295e3a0a011d:
+    id: 946feec5-21f7-41a7-a168-295e3a0a011d
+    content: Undo/redo title sync (ContentEditCommand) — a separate path, not touched here
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4718c36c-a0d6-4291-987b-c8c23c351ab1:
+    id: 4718c36c-a0d6-4291-987b-c8c23c351ab1
+    content: Deletion cleanup of the dangling originNodeId — "do nothing" is the intended behavior
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f00566ba-6203-49fc-a7cf-4d750f9373c0:
+    id: f00566ba-6203-49fc-a7cf-4d750f9373c0
+    content: The empty-root-line behavior — already correct, no change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ee42ce7-039f-41eb-b874-e6efd50e10dd:
+    id: 3ee42ce7-039f-41eb-b874-e6efd50e10dd
+    content: Complexity / ROI
+    children:
+      - ea37e2e1-8e77-428a-8580-116d62a06a5e
+      - 6338d52e-c343-4231-90de-52a12ece21fb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea37e2e1-8e77-428a-8580-116d62a06a5e:
+    id: ea37e2e1-8e77-428a-8580-116d62a06a5e
+    content: Core fix is a one-line resync call mirroring workflowExecutionActions.ts:1268 — low risk, high ROI
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6338d52e-c343-4231-90de-52a12ece21fb:
+    id: 6338d52e-c343-4231-90de-52a12ece21fb
+    content: The optional shared-helper consolidation is the only added churn; skip it if it adds indirection for little gain
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79814184-9495-4d68-bc5f-ea92cecc6993:
+    id: 79814184-9495-4d68-bc5f-ea92cecc6993
+    content: Approach summary
+    children:
+      - b021cd06-1d0d-4594-a137-5edc4a6cab82
+      - f3326549-b52d-4b46-98b2-5878536daaf0
+      - 2d9f3295-3f30-4073-89ec-dc64c68dbd98
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b021cd06-1d0d-4594-a137-5edc4a6cab82:
+    id: b021cd06-1d0d-4594-a137-5edc4a6cab82
+    content: Add resyncBoundTerminalTitles(get().nodes) in finishAccept right after executeCommand(AcceptFeedbackCommand…), closing the manual-vs-autonomous asymmetry
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3326549-b52d-4b46-98b2-5878536daaf0:
+    id: f3326549-b52d-4b46-98b2-5878536daaf0
+    content: Use the resync-by-map variant (not per-node syncBoundTerminalTitles) because the accept can migrate originNodeId and may be multi-root, so every bound terminal is re-derived from the settled tree
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d9f3295-3f30-4073-89ec-dc64c68dbd98:
+    id: 2d9f3295-3f30-4073-89ec-dc64c68dbd98
+    content: Optionally factor a shared "accept feedback then resync titles" step so finishAccept and handleAutonomousFeedback cannot drift apart again
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -212683,4 +213974,14 @@ sessionRegistry:
   e2c83f79-8871-40bc-965c-47187d0fd8df:
     cwd: /Users/brianfox/dev/Arborescent
   5794766b-1834-4c0b-980c-a39568f2987d:
+    cwd: /Users/brianfox/dev/Arborescent
+  3ec863af-f0f6-4440-ae9b-136c89526216:
+    cwd: /Users/brianfox/dev/Arborescent
+  0cf07bb6-49d4-4ae2-9750-6b55a16a8b3b:
+    cwd: /Users/brianfox/dev/Arborescent
+  51664017-f43c-48f9-b78c-9925a1cce3d9:
+    cwd: /Users/brianfox/dev/Arborescent
+  4358a0b1-d48a-41a7-9ad4-10ccc4875710:
+    cwd: /Users/brianfox/dev/Arborescent
+  d643983e-c321-4def-a764-b04f653e056c:
     cwd: /Users/brianfox/dev/Arborescent

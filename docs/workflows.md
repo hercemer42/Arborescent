@@ -34,20 +34,6 @@ Decomposition works best when the applied context is a decomposition task — fo
 
 Decomposition works with all step types. On autonomous steps, the multiple nodes are created directly without a review step; on checkpoint or manual steps the proposed branches appear inline for you to accept or cancel first. Undo (`Ctrl+Z`) restores the original node.
 
-## Archiving
-
-When feedback replaces a node, the original content is lost. To preserve it, configure **Archive input to** in the step configuration dialog. Set it to a destination node where originals should be collected.
-
-When a step with archiving processes an item, the original node is moved to the top of the archive destination before the replacement is created. Both the archived original and each replacement get a collapsible child node containing hyperlinks to each other — click these to navigate between the source and its output.
-
-Configure the link names in the step dialog to describe the relationship. For example, set the archive-side name to "Output" and the replacement-side name to "Source." These names become the titles of the collapsible link containers.
-
-Enable **Resolve linked content when sending** if you want the AI to see the archived original's content alongside the replacement when the replacement is sent in a subsequent step. This is off by default — the links are navigational only.
-
-If the archive destination has been deleted when a step tries to archive, the workflow pauses with a warning. Reconfigure the destination and run the step again.
-
-The entire archive-and-replace operation is undoable with `Ctrl+Z`.
-
 ## Clear AI session
 
 Enable **Clear AI session** in the step configuration dialog when you want the step to run against a fresh AI session — no context from prior turns. Useful for reducing accumulated context on long chains, isolating a step, or enforcing a predictable starting state.

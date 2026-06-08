@@ -2,7 +2,12 @@ import type { StepType } from '../../../store/tree/commands/SetStepTypeCommand';
 import { Modal } from '../Modal';
 import { StepTypeSelector } from './StepTypeSelector';
 import { StepOptionsSection } from './StepOptionsSection';
-import { ArchiveSection } from './ArchiveSection';
+// TODO(archive): Archive UI disabled 2026-06-08. Either restore it (uncomment
+// this import and the <ArchiveSection> render below) or delete the archive
+// feature entirely (ArchiveSection, useArchiveHyperlinkPaste, getArchiveConfigForNode,
+// AcceptFeedbackCommand's archive path, and the archive* NodeMetadata fields).
+// The underlying command/store machinery is left intact and dormant for now.
+// import { ArchiveSection } from './ArchiveSection';
 import './StepConfigDialog.css';
 
 export interface ArchiveSettings {
@@ -34,13 +39,14 @@ export function StepConfigDialog({
   decomposition = false,
   recurse = false,
   clearSession = false,
-  archiveSettings = {},
-  currentFilePath = null,
+  // TODO(archive): archiveSettings / currentFilePath / onArchiveSettingsChange
+  // remain on the props interface (and are still passed by the container) so
+  // restoring the archive section is a one-line uncomment. They're intentionally
+  // not destructured while the section is disabled.
   onStepTypeChange,
   onDecompositionChange,
   onRecurseChange,
   onClearSessionChange,
-  onArchiveSettingsChange,
   onClose,
 }: StepConfigDialogProps) {
   const effectiveStepType = currentStepType || 'manual';
@@ -60,12 +66,13 @@ export function StepConfigDialog({
           onRecurseChange={(v) => onRecurseChange(nodeId, v)}
           onClearSessionChange={(v) => onClearSessionChange(nodeId, v)}
         />
+        {/* TODO(archive): Archive section disabled 2026-06-08 — restore or delete (see import note above).
         <ArchiveSection
           stepType={effectiveStepType}
           archiveSettings={archiveSettings}
           currentFilePath={currentFilePath}
           onChange={(settings) => onArchiveSettingsChange(nodeId, settings)}
-        />
+        /> */}
       </div>
     </Modal>
   );
