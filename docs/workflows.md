@@ -233,7 +233,7 @@ If any of these are missing, workflows may start but will not behave correctly. 
 
 ## Activity log
 
-Workflow step transitions — advancing, waiting at a manual step, auto-accepting feedback — no longer pop a toast. They are recorded in the activity log at the right of the status bar: the most recent transition shows inline, hovering it reveals the last five, and clicking opens a panel with the last hundred. An unread count sits next to it while transitions you haven't opened arrive. The log persists across restarts and keeps the most recent entries.
+Workflow step transitions — advancing, waiting at a manual step, auto-accepting feedback — no longer pop a toast. They are recorded in the activity log at the right of the status bar: the most recent transition shows inline, hovering it reveals the last five, and clicking opens a panel with the last hundred — click it again to close the panel. Hover any entry, in the preview or the panel, to read its full message. An unread count sits next to it while transitions you haven't opened arrive. The log persists across restarts and keeps the most recent entries.
 
 Toasts stay reserved for what needs you — review requests, errors, and workflow completion still pop as before.
 

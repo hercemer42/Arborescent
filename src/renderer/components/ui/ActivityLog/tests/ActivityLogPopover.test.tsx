@@ -38,4 +38,15 @@ describe('ActivityLogPopover', () => {
     render(<ActivityLogPopover />);
     expect(screen.queryByText(/^entry-\d+$/)).not.toBeInTheDocument();
   });
+
+  it('exposes each entry full message as a title tooltip', () => {
+    seed([makeEntry(1), makeEntry(2)]);
+    const { container } = render(<ActivityLogPopover />);
+
+    const messages = container.querySelectorAll('.activity-log-entry-message');
+    expect(messages).toHaveLength(2);
+    messages.forEach((el) => {
+      expect(el).toHaveAttribute('title', el.textContent);
+    });
+  });
 });

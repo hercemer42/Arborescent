@@ -6,6 +6,7 @@ interface ActivityLogViewState {
   lastSeenTimestamp: number;
   openPanel: () => void;
   closePanel: () => void;
+  togglePanel: () => void;
 }
 
 function latestEntryTimestamp(): number {
@@ -13,10 +14,18 @@ function latestEntryTimestamp(): number {
   return entries.length > 0 ? entries[entries.length - 1].timestamp : 0;
 }
 
-export const useActivityLogViewStore = create<ActivityLogViewState>((set) => ({
+export const useActivityLogViewStore = create<ActivityLogViewState>((set, get) => ({
   isPanelOpen: false,
   lastSeenTimestamp: 0,
 
   openPanel: () => set({ isPanelOpen: true, lastSeenTimestamp: latestEntryTimestamp() }),
   closePanel: () => set({ isPanelOpen: false }),
+  togglePanel: () => {
+    const { isPanelOpen, openPanel, closePanel } = get();
+    if (isPanelOpen) {
+      closePanel();
+    } else {
+      openPanel();
+    }
+  },
 }));

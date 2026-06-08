@@ -75,4 +75,24 @@ describe('ActivityLogPanel', () => {
     expect(screen.getByRole('log')).toHaveAttribute('aria-live', 'polite');
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
   });
+
+  it('exposes each entry full message as a title tooltip', () => {
+    seed([makeEntry(1), makeEntry(2)]);
+    const { container } = render(<ActivityLogPanel isOpen onClose={vi.fn()} />);
+
+    const messages = container.querySelectorAll('.activity-log-entry-message');
+    expect(messages).toHaveLength(2);
+    messages.forEach((el) => {
+      expect(el).toHaveAttribute('title', el.textContent);
+    });
+  });
+
+  it('calls onClose when the close button is clicked (regression guard for the toggle change)', () => {
+    const onClose = vi.fn();
+    seed([makeEntry(1)]);
+    render(<ActivityLogPanel isOpen onClose={onClose} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /close activity log/i }));
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
 });

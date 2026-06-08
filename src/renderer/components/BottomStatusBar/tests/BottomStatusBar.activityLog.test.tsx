@@ -121,4 +121,47 @@ describe('BottomStatusBar — activity log recap', () => {
 
     treeNode.remove();
   });
+
+  it('closes the panel when the recap is clicked a second time', () => {
+    useActivityLogStore.setState({ entries: [makeEntry(1)] });
+    render(<BottomStatusBar />);
+    const button = screen.getByRole('button');
+
+    fireEvent.click(button);
+    expect(useActivityLogViewStore.getState().isPanelOpen).toBe(true);
+    fireEvent.click(button);
+    expect(useActivityLogViewStore.getState().isPanelOpen).toBe(false);
+  });
+
+  it('toggles the panel open and closed across repeated recap clicks', () => {
+    useActivityLogStore.setState({ entries: [makeEntry(1)] });
+    render(<BottomStatusBar />);
+    const button = screen.getByRole('button');
+
+    fireEvent.click(button);
+    expect(useActivityLogViewStore.getState().isPanelOpen).toBe(true);
+    fireEvent.click(button);
+    expect(useActivityLogViewStore.getState().isPanelOpen).toBe(false);
+    fireEvent.click(button);
+    expect(useActivityLogViewStore.getState().isPanelOpen).toBe(true);
+  });
+
+  it('clears the unread badge when a recap click opens the panel', () => {
+    useActivityLogStore.setState({ entries: [makeEntry(1), makeEntry(2), makeEntry(3)] });
+    render(<BottomStatusBar />);
+    expect(screen.getByText('3')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button'));
+    expect(screen.queryByText('3')).not.toBeInTheDocument();
+  });
+
+  it('reflects the panel open state via aria-expanded', () => {
+    useActivityLogStore.setState({ entries: [makeEntry(1)] });
+    render(<BottomStatusBar />);
+    const button = screen.getByRole('button');
+
+    expect(button).toHaveAttribute('aria-expanded', 'false');
+    fireEvent.click(button);
+    expect(button).toHaveAttribute('aria-expanded', 'true');
+  });
 });

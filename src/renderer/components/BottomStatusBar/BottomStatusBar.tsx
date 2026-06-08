@@ -32,12 +32,12 @@ const STATUS_CLASS_MAP: Record<StatusType, string> = {
 };
 
 function ActivityRecap() {
-  const { latestEntry, unreadCount, openPanel } = useActivityRecap();
+  const { latestEntry, unreadCount, isPanelOpen, togglePanel } = useActivityRecap();
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
 
   if (!latestEntry) return null;
 
-  const label = unreadCount > 0 ? `Open activity log, ${unreadCount} unread` : 'Open activity log';
+  const label = unreadCount > 0 ? `Toggle activity log, ${unreadCount} unread` : 'Toggle activity log';
   const showPreview = () => setIsPreviewVisible(true);
   const hidePreview = () => setIsPreviewVisible(false);
 
@@ -50,7 +50,7 @@ function ActivityRecap() {
       onBlur={hidePreview}
     >
       {isPreviewVisible && <ActivityLogPopover />}
-      <button type="button" className="activity-recap-button" onClick={openPanel} aria-label={label}>
+      <button type="button" className="activity-recap-button" onClick={togglePanel} aria-expanded={isPanelOpen} aria-label={label}>
         <span className={`activity-recap-message activity-log-entry--${latestEntry.type}`}>
           {latestEntry.message}
         </span>

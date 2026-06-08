@@ -12,7 +12,7 @@ export function ActivityLogEntries({ entries }: ActivityLogEntriesProps) {
     <ul className="activity-log-list">
       {newestFirst.map((entry) => (
         <li key={entry.id} className={`activity-log-entry activity-log-entry--${entry.type}`}>
-          <span className="activity-log-entry-message">{entry.message}</span>
+          <span className="activity-log-entry-message" title={entry.message}>{entry.message}</span>
           <time className="activity-log-entry-time">{formatRelativeTime(entry.timestamp)}</time>
         </li>
       ))}
