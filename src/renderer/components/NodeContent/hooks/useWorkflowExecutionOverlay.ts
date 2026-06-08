@@ -6,6 +6,7 @@ import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 export interface WorkflowExecutionOverlay {
   executionState: 'running' | 'awaiting-validation' | null;
   stopWorkflow: () => void;
+  unpauseWorkflow: () => void;
 }
 
 export function useWorkflowExecutionOverlay(node: TreeNode): WorkflowExecutionOverlay {
@@ -18,5 +19,9 @@ export function useWorkflowExecutionOverlay(node: TreeNode): WorkflowExecutionOv
     store.getState().actions.stopWorkflow(node.id);
   }, [store, node.id]);
 
-  return { executionState, stopWorkflow };
+  const unpauseWorkflow = useCallback(() => {
+    store.getState().actions.unpauseWorkflow(node.id);
+  }, [store, node.id]);
+
+  return { executionState, stopWorkflow, unpauseWorkflow };
 }

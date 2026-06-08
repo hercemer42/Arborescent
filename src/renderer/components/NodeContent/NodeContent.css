@@ -336,6 +336,14 @@
 
 .workflow-execution-overlay.paused {
   color: var(--amber-500, #f59e0b);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.workflow-execution-overlay.paused:hover {
+  color: var(--amber-600, #d97706);
 }
 
 @keyframes pulse {

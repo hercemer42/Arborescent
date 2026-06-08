@@ -70,6 +70,7 @@ export interface WorkflowExecutionActions {
   startWorkflow: (nodeId: string, terminalId: string | null) => Promise<void>;
   stopWorkflow: (nodeId: string) => void;
   continueWorkflow: (nodeId: string, terminalId: string | null) => void;
+  unpauseWorkflow: (nodeId: string) => void;
   resendStep: (nodeId: string, terminalId: string | null) => void;
   completeWorkflow: (nodeId: string) => void;
   advanceNode: (nodeId: string) => void;
@@ -532,6 +533,28 @@ export const createWorkflowExecutionActions = (
 
     logger.info(
       `Resending step for node ${nodeId} on terminal ${terminalId}`,
+      "WorkflowExecution",
+    );
+  }
+
+  function unpauseWorkflow(nodeId: string): void {
+    const { workflowExecutionStates } = get();
+    const entry = workflowExecutionStates[nodeId];
+    if (!entry || entry.state !== "awaiting-validation") return;
+
+    // Return a clean running entry rather than spreading the old one: the review
+    // flags that drove the pause must be dropped, or the next completion Stop
+    // re-reads them and re-pauses instead of advancing. The existing terminal
+    // binding is preserved so the in-flight prompt's completion advances as normal.
+    set({
+      workflowExecutionStates: {
+        ...workflowExecutionStates,
+        [nodeId]: { state: "running", terminalTabId: entry.terminalTabId },
+      },
+    });
+
+    logger.info(
+      `Unpausing workflow execution for node ${nodeId} on terminal ${entry.terminalTabId}`,
       "WorkflowExecution",
     );
   }
@@ -1277,6 +1300,7 @@ export const createWorkflowExecutionActions = (
     startWorkflow,
     stopWorkflow,
     continueWorkflow,
+    unpauseWorkflow,
     resendStep,
     completeWorkflow,
     advanceNode,

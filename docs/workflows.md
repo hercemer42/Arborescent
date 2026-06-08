@@ -111,7 +111,11 @@ A toast notification tells you what happened. Reordering the item within the sam
 
 Deleting a running item stops its workflow immediately and releases the terminal.
 
-A paused step (awaiting validation) offers two distinct actions. **Resend step** re-sends the current step on the same terminal without advancing — pick this when the AI asked you a question and you've edited the step content with your answer. **Next step** advances to the next workflow step and resumes execution there if that step is autonomous or checkpoint. Manual paused steps follow the same pattern, except the re-send action is labelled **Resume Workflow**.
+A paused step (awaiting validation) shows an amber pause glyph in its gutter and offers three actions:
+
+- **Unpause** — click the pause glyph to flip the step back to play. Nothing is re-sent and the step doesn't advance yet; when the current prompt finishes, the workflow advances on its own. Use this when the AI paused to ask a question, you answered it directly in the terminal, and you want the step to finish and carry on — answer once and walk away instead of waiting to click anything at the end. This only carries a step forward where completion already advances it (an autonomous step); a manual or checkpoint step re-pauses at the end for your validation by design, so use **Next step** to move those on.
+- **Resend step** — right-click to re-send the current step on the same terminal without advancing. Pick this when you answered by editing the step content instead. On a manual step this action is labelled **Resume Workflow**.
+- **Next step** — right-click to advance to the next workflow step and resume execution there if that step is autonomous or checkpoint.
 
 When an autonomous step pauses because the AI judged the task had outgrown the reasoning effort it was started with, the fix isn't in the content: raise Claude Code's reasoning effort (or switch to a more capable model), then **Resend step**.
 

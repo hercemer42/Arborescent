@@ -13,9 +13,10 @@ export type StepType = 'manual' | 'checkpoint' | 'autonomous';
 interface WorkflowOverlayProps {
   executionState: ExecutionState;
   onStop: () => void;
+  onUnpause: () => void;
 }
 
-function WorkflowOverlay({ executionState, onStop }: WorkflowOverlayProps) {
+function WorkflowOverlay({ executionState, onStop, onUnpause }: WorkflowOverlayProps) {
   if (executionState === 'running') {
     return (
       <button
@@ -33,13 +34,17 @@ function WorkflowOverlay({ executionState, onStop }: WorkflowOverlayProps) {
   }
   if (executionState === 'awaiting-validation') {
     return (
-      <span
+      <button
         className="workflow-execution-overlay paused"
-        title="Awaiting validation"
-        aria-label="Workflow awaiting validation"
+        title="Paused — click to unpause"
+        aria-label="Unpause workflow"
+        onClick={(e) => {
+          e.stopPropagation();
+          onUnpause();
+        }}
       >
         <Pause size={16} fill="currentColor" />
-      </span>
+      </button>
     );
   }
   return null;
@@ -83,6 +88,7 @@ interface StatusAreaProps {
   onContextIconClick: (e: MouseEvent) => void;
   onToggleStatus: (nodeId: string) => void;
   onStopWorkflow: () => void;
+  onUnpauseWorkflow: () => void;
 }
 
 /**
@@ -113,6 +119,7 @@ export function StatusArea({
   onContextIconClick,
   onToggleStatus,
   onStopWorkflow,
+  onUnpauseWorkflow,
 }: StatusAreaProps) {
   if (isLink) {
     const title = isExternalLink
@@ -192,7 +199,7 @@ export function StatusArea({
             {stepNumber}
           </span>
         )}
-        <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} />
+        <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} onUnpause={onUnpauseWorkflow} />
         <BrokenChainIndicator broken={node.metadata.brokenChain === true} />
       </span>
     );
@@ -204,7 +211,7 @@ export function StatusArea({
         status={node.metadata.status as NodeStatus | undefined}
         onToggle={() => onToggleStatus(node.id)}
       />
-      <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} />
+      <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} onUnpause={onUnpauseWorkflow} />
       <BrokenChainIndicator broken={node.metadata.brokenChain === true} />
     </span>
   );

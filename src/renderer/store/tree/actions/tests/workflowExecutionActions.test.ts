@@ -533,6 +533,110 @@ describe('createWorkflowExecutionActions', () => {
     });
   });
 
+  describe('unpauseWorkflow', () => {
+    it('flips an awaiting-validation step back to running, preserving the terminal binding', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.unpauseWorkflow('task-a');
+
+      expect(state.workflowExecutionStates['task-a']).toEqual({
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      });
+    });
+
+    it('returns a clean running entry, clearing the review flags that drove the pause', () => {
+      // A step usually reaches awaiting-validation via the needsReview transition;
+      // leaving the flag set makes the next completion Stop re-pause instead of advance.
+      state.workflowExecutionStates['task-a'] = {
+        state: 'awaiting-validation',
+        terminalTabId: 'terminal-1',
+        needsReview: true,
+      };
+
+      actions.unpauseWorkflow('task-a');
+
+      expect(state.workflowExecutionStates['task-a']).toEqual({
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      });
+    });
+
+    it('does not advance the node to the next step', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.unpauseWorkflow('task-a');
+
+      expect(state.nodes['step-1'].children).toContain('task-a');
+      expect(state.nodes['step-2'].children).not.toContain('task-a');
+    });
+
+    it('does not resend the prompt', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.unpauseWorkflow('task-a');
+
+      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
+    });
+
+    it('is a no-op when the node is already running', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+      const previous = state.workflowExecutionStates['task-a'];
+
+      actions.unpauseWorkflow('task-a');
+
+      expect(state.workflowExecutionStates['task-a']).toEqual(previous);
+      expect(state.nodes['step-1'].children).toContain('task-a');
+    });
+
+    it('is a guarded no-op (no throw, no state) when the node has no execution state', () => {
+      expect(() => actions.unpauseWorkflow('task-a')).not.toThrow();
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+    });
+
+    it('does not disturb another concurrently running node', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+      state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-2' };
+
+      actions.unpauseWorkflow('task-a');
+
+      expect(state.workflowExecutionStates['task-c']).toEqual({
+        state: 'running',
+        terminalTabId: 'terminal-2',
+      });
+    });
+
+    it('is idempotent when invoked twice in a row', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.unpauseWorkflow('task-a');
+      actions.unpauseWorkflow('task-a');
+
+      expect(state.workflowExecutionStates['task-a']).toEqual({
+        state: 'running',
+        terminalTabId: 'terminal-1',
+      });
+      expect(state.nodes['step-1'].children).toContain('task-a');
+      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
+    });
+
+    it('after unpause, the next completion Stop advances the node to the next step', () => {
+      // task-a is in step-1 (autonomous), paused via the needsReview transition.
+      // If unpause left needsReview set, the Stop would re-pause instead of advance.
+      state.workflowExecutionStates['task-a'] = {
+        state: 'awaiting-validation',
+        terminalTabId: 'terminal-1',
+        needsReview: true,
+      };
+      state.workflowSessionMap['session-abc'] = 'terminal-1';
+
+      actions.unpauseWorkflow('task-a');
+      actions.handleHookEvent({ session_id: 'session-abc', hook_event_name: 'Stop' });
+
+      expect(state.nodes['step-2'].children).toContain('task-a');
+    });
+  });
+
   describe('completeWorkflow', () => {
     it('should clear execution state entirely', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
