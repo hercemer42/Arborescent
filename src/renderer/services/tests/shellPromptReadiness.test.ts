@@ -121,54 +121,12 @@ describe('waitForShellPrompt', () => {
     await expect(waitForShellPrompt('term-late')).resolves.toBe(true);
   });
 
-  it('treats settled output as ready even without a recognised prompt marker', async () => {
-    // A slow or custom prompt may draw something we don't pattern-match; once the
-    // shell stops emitting it is nonetheless idle and ready for input.
+  it('does not falsely signal readiness when the replay buffer holds no prompt', async () => {
     vi.useFakeTimers();
     try {
-      setRecentOutput('~/project on  main [!?]');
-      const pending = waitForShellPrompt('term-custom', 30000);
-      await vi.advanceTimersByTimeAsync(1500);
-      await expect(pending).resolves.toBe(true);
-    } finally {
-      vi.useRealTimers();
-    }
-  });
-
-  it('keeps waiting while output is still streaming, then settles once it goes quiet', async () => {
-    vi.useFakeTimers();
-    try {
-      let resolved: boolean | null = null;
-      const pending = waitForShellPrompt('term-stream', 30000).then((value) => {
-        resolved = value;
-        return value;
-      });
-
-      // Chunks closer together than the quiet window keep resetting it.
-      emit('term-stream', 'compiling module 1\r\n');
-      await vi.advanceTimersByTimeAsync(700);
-      emit('term-stream', 'compiling module 2\r\n');
-      await vi.advanceTimersByTimeAsync(700);
-      expect(resolved).toBeNull();
-
-      // Output stops — the shell has settled.
-      await vi.advanceTimersByTimeAsync(1000);
-      await expect(pending).resolves.toBe(true);
-      expect(resolved).toBe(true);
-    } finally {
-      vi.useRealTimers();
-    }
-  });
-
-  it('resolves false when output never settles within the timeout', async () => {
-    vi.useFakeTimers();
-    try {
-      const pending = waitForShellPrompt('term-noisy', 5000);
-      // A chunk every 800ms keeps resetting the 1000ms quiet window past the timeout.
-      for (let elapsed = 0; elapsed < 5000; elapsed += 800) {
-        emit('term-noisy', 'still working...\r\n');
-        await vi.advanceTimersByTimeAsync(800);
-      }
+      setRecentOutput('Resolving dependencies...\r\nbuilding');
+      const pending = waitForShellPrompt('term-busy', 5000);
+      await vi.advanceTimersByTimeAsync(5000);
       await expect(pending).resolves.toBe(false);
     } finally {
       vi.useRealTimers();
