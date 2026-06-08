@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T16:54:11.266Z'
+updated: '2026-06-08T18:08:14.755Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -83420,7 +83420,7 @@ nodes:
       - e2a5edaf-6da0-4567-94c9-e13d252d38d9
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: false
@@ -115313,6 +115313,7 @@ nodes:
       - 3d9ecfdb-b46e-41d6-84b4-8522ba8d12b3
       - 792d9572-0f59-40f1-9bc3-48fbd89919b5
       - 33a8eefd-293a-41d0-b814-cf04175f41f7
+      - 295a855e-2604-45e2-949f-fe58807690ca
     metadata:
       status: pending
       isBlueprint: true
@@ -124376,8 +124377,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 295a855e-2604-45e2-949f-fe58807690ca
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -174055,7 +174055,7 @@ nodes:
       isBlueprint: true
   64ff36d6-ef8d-4864-b871-c47d7f23b563:
     id: 64ff36d6-ef8d-4864-b871-c47d7f23b563
-    content: Build arborescent
+    content: Build arborescent against main branch
     children:
       - 9602ca5c-1278-480e-8209-1d7c6882246c
     metadata:
@@ -210886,504 +210886,27 @@ nodes:
     id: 295a855e-2604-45e2-949f-fe58807690ca
     content: Zoom on node in review not working
     children:
-      - 31037cdf-a53b-42fb-b957-d57992bbcd8d
-      - 7b01dbe1-6c76-49d8-991c-0c741f2601e1
-      - 0439d40b-c2b5-464f-9b58-e4806c34512b
-      - 19e251ff-28bc-4d99-a457-dbf1885b3070
-      - 82f48215-7705-48b9-adac-d3b2854cc4cb
-      - b23c308e-d314-4580-b27f-370ce4ea2a0e
-      - 7ee1025b-bb97-4dc7-b0ae-0bb3fb476778
-      - 39c7584e-c18c-4e93-bfce-4615f8d19e08
-      - d5794a15-4af5-4978-a528-dc573a92c620
-      - 58d2eb98-3e6b-4714-a9b4-b852ddeb96f9
-      - 174a437e-6ab2-4c42-b4f7-67db486c1f21
-      - f0710037-ce0a-4c7a-9266-39a9082b6b97
-      - b2f2e528-d191-4d28-a7b4-46abc0dc5f9a
-      - 7c78a6b3-76e8-486f-a177-1f429b5968ef
+      - 2e20cb07-641b-49ca-8c31-1de40a0f717c
+      - 977ac19e-c5c5-4bc8-a945-f0ecf64e6707
+      - 66107f71-0de9-41bc-a82c-1c29d962c007
+      - 4065c2c7-0e07-4b91-9ff0-0d9bbcbef7d6
+      - 37958e70-f173-459e-9e32-e43f7729a68c
+      - c5757711-ab0b-4cfa-bb88-d542d1579258
+      - 022aef17-288e-439a-b4cc-94cbef383c1b
+      - cc69f9ec-fb32-45a3-acc4-c94207135dbb
+      - 71e81532-9a0a-40db-8025-d49f9780e081
+      - cf1a0723-6078-441e-bf74-bf61a7a1e6ea
+      - 52eca82d-f3ad-44ad-abb4-01a98b2cc443
+      - 3c34f789-90b6-418a-bca7-d6ce1b14edd5
+      - 15ef4648-706c-4abd-969f-f3342199b871
+      - 3cf66d47-7275-4111-8271-4306e5a0f8c4
+      - ce7dacc4-62ee-47f2-8bbb-9006657e9421
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
       sessionId: e2c83f79-8871-40bc-965c-47187d0fd8df
-  31037cdf-a53b-42fb-b957-d57992bbcd8d:
-    id: 31037cdf-a53b-42fb-b957-d57992bbcd8d
-    content: worktree
-    children:
-      - fcab4588-d409-4b44-9e9c-e7e8aeead48c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fcab4588-d409-4b44-9e9c-e7e8aeead48c:
-    id: fcab4588-d409-4b44-9e9c-e7e8aeead48c
-    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/zoom-review-node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b01dbe1-6c76-49d8-991c-0c741f2601e1:
-    id: 7b01dbe1-6c76-49d8-991c-0c741f2601e1
-    content: Summary
-    children:
-      - 3fb1ba32-67f7-447e-a784-4c5da5606873
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3fb1ba32-67f7-447e-a784-4c5da5606873:
-    id: 3fb1ba32-67f7-447e-a784-4c5da5606873
-    content: Zooming into a node that is under review renders its live contents (children only, no root row, no proposition) and omits the accept/cancel controls, so the review proposal is invisible and unactionable from a zoom tab.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0439d40b-c2b5-464f-9b58-e4806c34512b:
-    id: 0439d40b-c2b5-464f-9b58-e4806c34512b
-    content: Steps to reproduce
-    children:
-      - 14b8c2ce-402b-4a5f-9476-b743ffc3e98e
-      - 1d0ab745-a1f7-49aa-a561-f513039f4e45
-      - f2906b29-4390-420c-bc20-f22c6e8d4594
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14b8c2ce-402b-4a5f-9476-b743ffc3e98e:
-    id: 14b8c2ce-402b-4a5f-9476-b743ffc3e98e
-    content: 'Precondition: a node is under review with a pending proposition, so inline it shows ReviewControlBar plus the proposition subtree on the node.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1d0ab745-a1f7-49aa-a561-f513039f4e45:
-    id: 1d0ab745-a1f7-49aa-a561-f513039f4e45
-    content: 'User action: zoom into that under-review node to open it as the zoom-tab root (zoom://sourceFilePath#nodeId).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f2906b29-4390-420c-bc20-f22c6e8d4594:
-    id: f2906b29-4390-420c-bc20-f22c6e8d4594
-    content: 'Observation: the zoom tab shows the node''s live children with no reviewed-root row, no proposition diff, and no accept/cancel buttons.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  19e251ff-28bc-4d99-a457-dbf1885b3070:
-    id: 19e251ff-28bc-4d99-a457-dbf1885b3070
-    content: Expected behavior
-    children:
-      - 5c2ca4bd-d3d8-49cd-838b-fa58d7cf986b
-      - c1c437f1-2a91-43a3-be1a-ebf0d3ffb43b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5c2ca4bd-d3d8-49cd-838b-fa58d7cf986b:
-    id: 5c2ca4bd-d3d8-49cd-838b-fa58d7cf986b
-    content: 'Happy path: a zoomed under-review node shows the review proposition (proposed subtree with per-node change-kind highlighting) plus the accept/cancel control bar, identical to inline review in the main tree.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c1c437f1-2a91-43a3-be1a-ebf0d3ffb43b:
-    id: c1c437f1-2a91-43a3-be1a-ebf0d3ffb43b
-    content: 'Edge cases: multi-root decomposition propositions show all proposition roots; accept/cancel from the zoom tab resolves the review and updates the node; zooming a not-under-review node is unaffected.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  82f48215-7705-48b9-adac-d3b2854cc4cb:
-    id: 82f48215-7705-48b9-adac-d3b2854cc4cb
-    content: Actual behavior
-    children:
-      - ba096c32-7bee-410b-8589-6e0f4e0ba25d
-      - 958b06fa-adae-45be-aec9-ace1a3174802
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba096c32-7bee-410b-8589-6e0f4e0ba25d:
-    id: ba096c32-7bee-410b-8589-6e0f4e0ba25d
-    content: 'What happens: Tree renders only the children of the zoom root (displayRootId) and never renders the root node itself, so the under-review root''s TreeNode review branch never executes.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  958b06fa-adae-45be-aec9-ace1a3174802:
-    id: 958b06fa-adae-45be-aec9-ace1a3174802
-    content: User-visible symptoms
-    children:
-      - eb5d6bbe-7d6c-41c0-8d4c-6ea56aff05eb
-      - 2fe2c2b1-d7ad-45a8-951b-42e4d4f4c4f4
-      - fb91e55f-b21e-45ac-8840-9d778e7e0569
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eb5d6bbe-7d6c-41c0-8d4c-6ea56aff05eb:
-    id: eb5d6bbe-7d6c-41c0-8d4c-6ea56aff05eb
-    content: It zooms on current contents, not the review proposal.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2fe2c2b1-d7ad-45a8-951b-42e4d4f4c4f4:
-    id: 2fe2c2b1-d7ad-45a8-951b-42e4d4f4c4f4
-    content: It doesn't show the parent/root node, just the children.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fb91e55f-b21e-45ac-8840-9d778e7e0569:
-    id: fb91e55f-b21e-45ac-8840-9d778e7e0569
-    content: It doesn't show the accept/cancel buttons.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b23c308e-d314-4580-b27f-370ce4ea2a0e:
-    id: b23c308e-d314-4580-b27f-370ce4ea2a0e
-    content: Suspected cause
-    children:
-      - de122c00-82a1-468f-8fc0-34ddc83902c3
-      - 2454b096-7038-416a-a644-824dc1131549
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de122c00-82a1-468f-8fc0-34ddc83902c3:
-    id: de122c00-82a1-468f-8fc0-34ddc83902c3
-    content: 'Code path: Tree.tsx maps visibleChildren of displayRootId to TreeNode (Tree.tsx:27-30, 57-59) and never renders displayRootId itself; the proposition and ReviewControlBar live in the TreeNode review branch (TreeNode.tsx:83-94), reached only when the under-review node is itself rendered as a TreeNode.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2454b096-7038-416a-a644-824dc1131549:
-    id: 2454b096-7038-416a-a644-824dc1131549
-    content: 'Why the existing guard misses it: isUnderReview/useReviewProposition is evaluated per-TreeNode, but the zoom root is never instantiated as a TreeNode (only its children are), so the check never runs for it — the inline-review path assumes a reviewed node always has a parent that renders it, which zoom (parentless view root) violates.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ee1025b-bb97-4dc7-b0ae-0bb3fb476778:
-    id: 7ee1025b-bb97-4dc7-b0ae-0bb3fb476778
-    content: Affected files
-    children:
-      - d0b68e5a-ab16-42fb-8a65-1c15f962e694
-      - 3d92aec7-0f57-4d45-9c73-5e1f8760a878
-      - 66328744-791c-4fde-b86a-84320ca29f4c
-      - ea1a74d3-7fde-4dc7-ba4d-d0a018a35d60
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d0b68e5a-ab16-42fb-8a65-1c15f962e694:
-    id: d0b68e5a-ab16-42fb-8a65-1c15f962e694
-    content: 'Primary: src/renderer/components/Tree/Tree.tsx (children-only render of displayRootId, lines 27-30 and 57-59)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d92aec7-0f57-4d45-9c73-5e1f8760a878:
-    id: 3d92aec7-0f57-4d45-9c73-5e1f8760a878
-    content: 'Related: src/renderer/components/TreeNode/TreeNode.tsx (review branch lines 83-94; PropositionRoots lines 159-172)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  66328744-791c-4fde-b86a-84320ca29f4c:
-    id: 66328744-791c-4fde-b86a-84320ca29f4c
-    content: 'Related: src/renderer/components/TreeNode/ReviewControlBar.tsx (controls rendered by the reviewed node itself, not its parent)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ea1a74d3-7fde-4dc7-ba4d-d0a018a35d60:
-    id: ea1a74d3-7fde-4dc7-ba4d-d0a018a35d60
-    content: 'Related: src/renderer/components/TreeNode/hooks/useReviewProposition.ts (per-node isUnderReview gate)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  39c7584e-c18c-4e93-bfce-4615f8d19e08:
-    id: 39c7584e-c18c-4e93-bfce-4615f8d19e08
-    content: Regression window
-    children:
-      - 3c990b71-0068-46b6-badc-0a9973a55ef1
-      - ca8e6d2b-390e-44a2-b90c-7d3abb7ba058
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c990b71-0068-46b6-badc-0a9973a55ef1:
-    id: 3c990b71-0068-46b6-badc-0a9973a55ef1
-    content: 'Last known good: before inline review — zoom (shipped 41cc79e, 2025-12-06) worked for normal nodes, and reviews lived in the separate feedback panel, so zooming a reviewed node never needed to show a proposition.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ca8e6d2b-390e-44a2-b90c-7d3abb7ba058:
-    id: ca8e6d2b-390e-44a2-b90c-7d3abb7ba058
-    content: 'First observed broken: 3b35ec2 "review AI proposals inline on the node" (2026-06-06) added the inline TreeNode review branch that zoom bypasses; fully exposed by 3df052e "retire the feedback panel" (2026-06-06), after which the proposition exists only inline.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d5794a15-4af5-4978-a528-dc573a92c620:
-    id: d5794a15-4af5-4978-a528-dc573a92c620
-    content: Severity
-    children:
-      - 6249a8e1-d2b1-4481-a19c-eedd4ce69cd5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6249a8e1-d2b1-4481-a19c-eedd4ce69cd5:
-    id: 6249a8e1-d2b1-4481-a19c-eedd4ce69cd5
-    content: 'Medium-High: viewing/accepting/rejecting a proposal is impossible from a zoom tab; a user who zooms into a reviewed node sees only stale live content and is blocked on that review until they un-zoom. No data loss.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  58d2eb98-3e6b-4714-a9b4-b852ddeb96f9:
-    id: 58d2eb98-3e6b-4714-a9b4-b852ddeb96f9
-    content: Notes
-    children:
-      - e0dbd4ef-fb69-4367-a9cd-d31d5fa370d0
-      - 8f85e59c-afe0-43a7-96c6-b1532b3a2dfc
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0dbd4ef-fb69-4367-a9cd-d31d5fa370d0:
-    id: e0dbd4ef-fb69-4367-a9cd-d31d5fa370d0
-    content: 'Disambiguate from: the separate Stop/advance "completed step stalls" bug and from overlap-gating review-exclusivity — this is purely a render-path gap, not a review-state bug; also distinct from a review descendant (collaborating-descendant) vs the review root.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f85e59c-afe0-43a7-96c6-b1532b3a2dfc:
-    id: 8f85e59c-afe0-43a7-96c6-b1532b3a2dfc
-    content: 'UX/telemetry gap: no placeholder tells the user a zoomed node is under review but unrendered; candidate fix is to render the zoom root itself as a TreeNode so zoom and review share one render path, and/or show a banner when the zoomed node has an active review.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  174a437e-6ab2-4c42-b4f7-67db486c1f21:
-    id: 174a437e-6ab2-4c42-b4f7-67db486c1f21
-    content: Technical refinement
-    children:
-      - e355e4d5-df5d-4242-9040-bac0eae49bae
-      - 25d1e90a-27ee-4913-9556-38a4373d7bee
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e355e4d5-df5d-4242-9040-bac0eae49bae:
-    id: e355e4d5-df5d-4242-9040-bac0eae49bae
-    content: Flag complications
-    children:
-      - ed5a0388-ca6b-4b4e-923d-833d47ec5597
-      - c998f80f-3eb4-4b35-b0f4-c3d8fc663b6a
-      - a1129d77-65c1-4df5-8dff-e44b09ea96d6
-      - 11842cec-5a32-4cf7-96f1-ecc2b3acb468
-      - c8308b24-ba69-42c0-be56-d9f70530f725
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed5a0388-ca6b-4b4e-923d-833d47ec5597:
-    id: ed5a0388-ca6b-4b4e-923d-833d47ec5597
-    content: 'Must gate on review state: only a real zoom root may render as a node — the normal hidden synthetic root must stay children-only, or it renders an empty/garbage row.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c998f80f-3eb4-4b35-b0f4-c3d8fc663b6a:
-    id: c998f80f-3eb4-4b35-b0f4-c3d8fc663b6a
-    content: Tree keys rendering off the zoom root's live children (displayChildren / visibleChildren) and early-returns null when they are absent (Tree.tsx:45); the reviewed root must render from its proposition store regardless of live children, or a reviewed leaf still shows nothing.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1129d77-65c1-4df5-8dff-e44b09ea96d6:
-    id: a1129d77-65c1-4df5-8dff-e44b09ea96d6
-    content: 'Post-action behaviour needs defining: accept/cancel from the zoom tab resolves the review and may restructure or remove the zoomed node, leaving zoomedNodeId dangling — needs a graceful fallback (un-zoom or empty state).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  11842cec-5a32-4cf7-96f1-ecc2b3acb468:
-    id: 11842cec-5a32-4cf7-96f1-ecc2b3acb468
-    content: 'Out of scope: showing the node''s own row for normal (not-under-review) zoom — that is existing zoom design, not this bug.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8308b24-ba69-42c0-be56-d9f70530f725:
-    id: c8308b24-ba69-42c0-be56-d9f70530f725
-    content: 'Scope bound: only "zoom root IS the review root" is broken; zooming an ancestor of a reviewed descendant already renders the review correctly via normal TreeNode recursion.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  25d1e90a-27ee-4913-9556-38a4373d7bee:
-    id: 25d1e90a-27ee-4913-9556-38a4373d7bee
-    content: Summarise the approach
-    children:
-      - 66032c08-62c7-452e-a637-860d37a4a38b
-      - 6abe16b1-5d2a-4591-8a08-2b7c930dbe2e
-      - 28beae65-3ad9-405e-bbb8-889a6f6f7cbc
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  66032c08-62c7-452e-a637-860d37a4a38b:
-    id: 66032c08-62c7-452e-a637-860d37a4a38b
-    content: In Tree.tsx, when zoomedNodeId is itself under review, render it as a single TreeNode at depth 0 so the existing review branch (ReviewControlBar + PropositionRoots, TreeNode.tsx:83-94) fires; otherwise keep today's children-only render.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6abe16b1-5d2a-4591-8a08-2b7c930dbe2e:
-    id: 6abe16b1-5d2a-4591-8a08-2b7c930dbe2e
-    content: Converge zoom and inline review on the one existing per-node review path rather than duplicating proposition/control rendering in the zoom view — small surface, contained to Tree plus a reviews-state read.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  28beae65-3ad9-405e-bbb8-889a6f6f7cbc:
-    id: 28beae65-3ad9-405e-bbb8-889a6f6f7cbc
-    content: 'Surprise to watch: the children-only render and the !displayChildren early-return are load-bearing for the hidden root and review-adds-children cases; both must survive, and post-accept zoom-target handling is the main behavioural decision.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0710037-ce0a-4c7a-9266-39a9082b6b97:
-    id: f0710037-ce0a-4c7a-9266-39a9082b6b97
-    content: Verification
-    children:
-      - 62b3f659-92e6-4045-9409-525d66b5f0ef
-      - 9fe1a210-6d15-4b3c-8ce5-96f84dcd4a56
-      - b21c61b2-d044-4e07-9457-d5797996fd11
-      - 9ae3d083-90f6-42a8-8aae-ead41b5d036b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  62b3f659-92e6-4045-9409-525d66b5f0ef:
-    id: 62b3f659-92e6-4045-9409-525d66b5f0ef
-    content: 'Implemented and verified: zoom into an under-review root now renders the proposition (single-root and multi-root decomposition) plus the accept/cancel control bar; a reviewed leaf with no live children still renders; not-under-review zoom and a dangling zoom target are unchanged/safe.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9fe1a210-6d15-4b3c-8ce5-96f84dcd4a56:
-    id: 9fe1a210-6d15-4b3c-8ce5-96f84dcd4a56
-    content: Fix is gated on review state and confined to Tree.tsx (one reviews-state selector plus a render branch), so the hidden synthetic root and normal zoom keep their children-only render.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b21c61b2-d044-4e07-9457-d5797996fd11:
-    id: b21c61b2-d044-4e07-9457-d5797996fd11
-    content: 'Checks (run after implementation, no changes since): Tree-scoped suites 58 passed / 2 todo, ESLint clean and no TypeScript errors on the changed/new files.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ae3d083-90f6-42a8-8aae-ead41b5d036b:
-    id: 9ae3d083-90f6-42a8-8aae-ead41b5d036b
-    content: 'Deferred: richer post-accept/cancel zoom-tab coherence (auto-unzoom or showing refreshed content when a review removes the zoomed node) — a graceful empty-state fallback already exists and is covered by a test; the UX choice between un-zoom vs empty state is still an open design decision in the spec, left as an it.todo and out of this PR''s scope.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
   956f933b-4a2c-4f2f-a6bc-e31dc961fa31:
     id: 956f933b-4a2c-4f2f-a6bc-e31dc961fa31
     content: worktree
@@ -211969,33 +211492,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b2f2e528-d191-4d28-a7b4-46abc0dc5f9a:
-    id: b2f2e528-d191-4d28-a7b4-46abc0dc5f9a
-    content: review feedback
-    children:
-      - a9427466-aa7a-464e-b52b-9d242e184bc9
-      - e4f74999-e99b-44eb-85fe-2163f7b7a504
-      - 25533d1d-6649-4b22-8274-01e182ccd3be
-    metadata:
-      status: completed
-  a9427466-aa7a-464e-b52b-9d242e184bc9:
-    id: a9427466-aa7a-464e-b52b-9d242e184bc9
-    content: 'Verdict: clean — no blocking or important issues. Reviewer (pr-review-toolkit:code-reviewer) independently re-ran the Tree suites (17 passed), tsc --noEmit clean, and eslint clean on the changed files.'
-    children: []
-    metadata:
-      status: completed
-  e4f74999-e99b-44eb-85fe-2163f7b7a504:
-    id: e4f74999-e99b-44eb-85fe-2163f7b7a504
-    content: 'Correctness confirmed across all paths: the zoomed reviewed root renders the proposition + accept/cancel bar via TreeNode''s review branch; the hidden synthetic root and normal not-under-review zoom keep children-only rendering; zooming an ancestor of a reviewed descendant still works via normal recursion; the loosened !displayChildren early-return is safe — a node that is a reviews key but missing from nodes hits TreeNode''s own !node guard and renders empty without throwing. Hooks order unchanged; new selector returns a primitive boolean matching the isCollaborating/isSelected convention.'
-    children: []
-    metadata:
-      status: completed
-  25533d1d-6649-4b22-8274-01e182ccd3be:
-    id: 25533d1d-6649-4b22-8274-01e182ccd3be
-    content: 'One nit, fixed in this step: a curly apostrophe (U+2019) in a zoomReview test title was normalized to a straight ASCII apostrophe for grep-ability and consistency with the sibling inlineProposalReview suite. No other changes requested; tests re-run green (7 passed | 1 todo).'
-    children: []
-    metadata:
-      status: completed
   905a7379-f858-43f5-bbc5-9f2575eeff11:
     id: 905a7379-f858-43f5-bbc5-9f2575eeff11
     content: worktree
@@ -212492,12 +211988,571 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7c78a6b3-76e8-486f-a177-1f429b5968ef:
-    id: 7c78a6b3-76e8-486f-a177-1f429b5968ef
+  2e20cb07-641b-49ca-8c31-1de40a0f717c:
+    id: 2e20cb07-641b-49ca-8c31-1de40a0f717c
+    content: worktree
+    children:
+      - aa431d6e-008b-4eae-9f59-a3aaf0da103b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa431d6e-008b-4eae-9f59-a3aaf0da103b:
+    id: aa431d6e-008b-4eae-9f59-a3aaf0da103b
+    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/zoom-review-node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  977ac19e-c5c5-4bc8-a945-f0ecf64e6707:
+    id: 977ac19e-c5c5-4bc8-a945-f0ecf64e6707
+    content: Summary
+    children:
+      - 1eb98a7e-92cd-4e9b-966d-fc630563d82c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1eb98a7e-92cd-4e9b-966d-fc630563d82c:
+    id: 1eb98a7e-92cd-4e9b-966d-fc630563d82c
+    content: Zooming into a node that is under review renders its live contents (children only, no root row, no proposition) and omits the accept/cancel controls, so the review proposal is invisible and unactionable from a zoom tab.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66107f71-0de9-41bc-a82c-1c29d962c007:
+    id: 66107f71-0de9-41bc-a82c-1c29d962c007
+    content: Steps to reproduce
+    children:
+      - d5563126-9526-49a0-be77-f11f42476dd4
+      - 1fa845ab-e003-4fc4-8013-c1cadaabd7b2
+      - 43245d2b-8f78-4ccf-99b2-99b80acbfa42
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5563126-9526-49a0-be77-f11f42476dd4:
+    id: d5563126-9526-49a0-be77-f11f42476dd4
+    content: 'Precondition: a node is under review with a pending proposition, so inline it shows ReviewControlBar plus the proposition subtree on the node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fa845ab-e003-4fc4-8013-c1cadaabd7b2:
+    id: 1fa845ab-e003-4fc4-8013-c1cadaabd7b2
+    content: 'User action: zoom into that under-review node to open it as the zoom-tab root (zoom://sourceFilePath#nodeId).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43245d2b-8f78-4ccf-99b2-99b80acbfa42:
+    id: 43245d2b-8f78-4ccf-99b2-99b80acbfa42
+    content: 'Observation: the zoom tab shows the node''s live children with no reviewed-root row, no proposition diff, and no accept/cancel buttons.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4065c2c7-0e07-4b91-9ff0-0d9bbcbef7d6:
+    id: 4065c2c7-0e07-4b91-9ff0-0d9bbcbef7d6
+    content: Expected behavior
+    children:
+      - 02b4d3e9-1080-45d7-a1c2-03ee6ab13ada
+      - 098d485c-865a-4e06-9953-cac91c9f3524
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02b4d3e9-1080-45d7-a1c2-03ee6ab13ada:
+    id: 02b4d3e9-1080-45d7-a1c2-03ee6ab13ada
+    content: 'Happy path: a zoomed under-review node shows the review proposition (proposed subtree with per-node change-kind highlighting) plus the accept/cancel control bar, identical to inline review in the main tree.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  098d485c-865a-4e06-9953-cac91c9f3524:
+    id: 098d485c-865a-4e06-9953-cac91c9f3524
+    content: 'Edge cases: multi-root decomposition propositions show all proposition roots; accept/cancel from the zoom tab resolves the review and updates the node; zooming a not-under-review node is unaffected.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  37958e70-f173-459e-9e32-e43f7729a68c:
+    id: 37958e70-f173-459e-9e32-e43f7729a68c
+    content: Actual behavior
+    children:
+      - ed52f42c-2853-4eed-9800-04940a118ef8
+      - 3e0ce3e2-89a9-4610-ae9b-47453cd7af29
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed52f42c-2853-4eed-9800-04940a118ef8:
+    id: ed52f42c-2853-4eed-9800-04940a118ef8
+    content: 'What happens: Tree renders only the children of the zoom root (displayRootId) and never renders the root node itself, so the under-review root''s TreeNode review branch never executes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e0ce3e2-89a9-4610-ae9b-47453cd7af29:
+    id: 3e0ce3e2-89a9-4610-ae9b-47453cd7af29
+    content: User-visible symptoms
+    children:
+      - 3c4a1fcc-df56-4c74-a1b1-7fb3fb93a9ed
+      - 0433c789-5797-40df-afb1-281de177337f
+      - 562faffb-f3c1-440e-b4fb-390b34d414ee
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c4a1fcc-df56-4c74-a1b1-7fb3fb93a9ed:
+    id: 3c4a1fcc-df56-4c74-a1b1-7fb3fb93a9ed
+    content: It zooms on current contents, not the review proposal.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0433c789-5797-40df-afb1-281de177337f:
+    id: 0433c789-5797-40df-afb1-281de177337f
+    content: It doesn't show the parent/root node, just the children.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  562faffb-f3c1-440e-b4fb-390b34d414ee:
+    id: 562faffb-f3c1-440e-b4fb-390b34d414ee
+    content: It doesn't show the accept/cancel buttons.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5757711-ab0b-4cfa-bb88-d542d1579258:
+    id: c5757711-ab0b-4cfa-bb88-d542d1579258
+    content: Suspected cause
+    children:
+      - 223f8fba-355d-4247-9141-c1808066fcd7
+      - 0434eaab-7a50-449b-a2ce-e725f2fb7f3c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  223f8fba-355d-4247-9141-c1808066fcd7:
+    id: 223f8fba-355d-4247-9141-c1808066fcd7
+    content: 'Code path: Tree.tsx maps visibleChildren of displayRootId to TreeNode (Tree.tsx:27-30, 57-59) and never renders displayRootId itself; the proposition and ReviewControlBar live in the TreeNode review branch (TreeNode.tsx:83-94), reached only when the under-review node is itself rendered as a TreeNode.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0434eaab-7a50-449b-a2ce-e725f2fb7f3c:
+    id: 0434eaab-7a50-449b-a2ce-e725f2fb7f3c
+    content: 'Why the existing guard misses it: isUnderReview/useReviewProposition is evaluated per-TreeNode, but the zoom root is never instantiated as a TreeNode (only its children are), so the check never runs for it — the inline-review path assumes a reviewed node always has a parent that renders it, which zoom (parentless view root) violates.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  022aef17-288e-439a-b4cc-94cbef383c1b:
+    id: 022aef17-288e-439a-b4cc-94cbef383c1b
+    content: Affected files
+    children:
+      - 20166eb5-c4a3-445b-9fa6-4ba1fbf6700c
+      - 60d20bbc-a0ad-477b-b9e4-f3f33f8c415f
+      - bc1055d9-e143-463b-95d3-318a4ef98142
+      - 7c7b51d2-216f-4918-97fb-7f8527313994
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20166eb5-c4a3-445b-9fa6-4ba1fbf6700c:
+    id: 20166eb5-c4a3-445b-9fa6-4ba1fbf6700c
+    content: 'Primary: src/renderer/components/Tree/Tree.tsx (children-only render of displayRootId, lines 27-30 and 57-59)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60d20bbc-a0ad-477b-b9e4-f3f33f8c415f:
+    id: 60d20bbc-a0ad-477b-b9e4-f3f33f8c415f
+    content: 'Related: src/renderer/components/TreeNode/TreeNode.tsx (review branch lines 83-94; PropositionRoots lines 159-172)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc1055d9-e143-463b-95d3-318a4ef98142:
+    id: bc1055d9-e143-463b-95d3-318a4ef98142
+    content: 'Related: src/renderer/components/TreeNode/ReviewControlBar.tsx (controls rendered by the reviewed node itself, not its parent)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c7b51d2-216f-4918-97fb-7f8527313994:
+    id: 7c7b51d2-216f-4918-97fb-7f8527313994
+    content: 'Related: src/renderer/components/TreeNode/hooks/useReviewProposition.ts (per-node isUnderReview gate)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc69f9ec-fb32-45a3-acc4-c94207135dbb:
+    id: cc69f9ec-fb32-45a3-acc4-c94207135dbb
+    content: Regression window
+    children:
+      - fdf48aab-969d-49b7-bed0-135f5c280794
+      - 52b8c53e-561c-46ce-8d05-1b5d262e9479
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdf48aab-969d-49b7-bed0-135f5c280794:
+    id: fdf48aab-969d-49b7-bed0-135f5c280794
+    content: 'Last known good: before inline review — zoom (shipped 41cc79e, 2025-12-06) worked for normal nodes, and reviews lived in the separate feedback panel, so zooming a reviewed node never needed to show a proposition.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52b8c53e-561c-46ce-8d05-1b5d262e9479:
+    id: 52b8c53e-561c-46ce-8d05-1b5d262e9479
+    content: 'First observed broken: 3b35ec2 "review AI proposals inline on the node" (2026-06-06) added the inline TreeNode review branch that zoom bypasses; fully exposed by 3df052e "retire the feedback panel" (2026-06-06), after which the proposition exists only inline.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71e81532-9a0a-40db-8025-d49f9780e081:
+    id: 71e81532-9a0a-40db-8025-d49f9780e081
+    content: Severity
+    children:
+      - f4effc9d-82eb-4e5a-b921-f5863369f273
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4effc9d-82eb-4e5a-b921-f5863369f273:
+    id: f4effc9d-82eb-4e5a-b921-f5863369f273
+    content: 'Medium-High: viewing/accepting/rejecting a proposal is impossible from a zoom tab; a user who zooms into a reviewed node sees only stale live content and is blocked on that review until they un-zoom. No data loss.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf1a0723-6078-441e-bf74-bf61a7a1e6ea:
+    id: cf1a0723-6078-441e-bf74-bf61a7a1e6ea
+    content: Notes
+    children:
+      - 319ec689-2d3f-401f-b068-2d7802b0c05a
+      - 5c667f9c-9892-4ce1-97a8-3907bafef9da
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  319ec689-2d3f-401f-b068-2d7802b0c05a:
+    id: 319ec689-2d3f-401f-b068-2d7802b0c05a
+    content: 'Disambiguate from: the separate Stop/advance "completed step stalls" bug and from overlap-gating review-exclusivity — this is purely a render-path gap, not a review-state bug; also distinct from a review descendant (collaborating-descendant) vs the review root.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c667f9c-9892-4ce1-97a8-3907bafef9da:
+    id: 5c667f9c-9892-4ce1-97a8-3907bafef9da
+    content: 'UX/telemetry gap: no placeholder tells the user a zoomed node is under review but unrendered; candidate fix is to render the zoom root itself as a TreeNode so zoom and review share one render path, and/or show a banner when the zoomed node has an active review.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52eca82d-f3ad-44ad-abb4-01a98b2cc443:
+    id: 52eca82d-f3ad-44ad-abb4-01a98b2cc443
+    content: Technical refinement
+    children:
+      - e9e10065-3251-4750-818c-99373487b812
+      - 59224d14-e89f-4ef8-a5c3-929f14bdc879
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9e10065-3251-4750-818c-99373487b812:
+    id: e9e10065-3251-4750-818c-99373487b812
+    content: Flag complications
+    children:
+      - 3ce603b6-7607-422e-8692-881270ae40e6
+      - c4b17187-5aeb-4692-aa73-11652fade83f
+      - 62338ca4-b48c-4c9e-bc03-07df9bf9a419
+      - f70eea05-97b5-4da0-80ea-5db72da5be73
+      - 272bc787-f30f-4716-8bcd-1de4c3e40fad
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ce603b6-7607-422e-8692-881270ae40e6:
+    id: 3ce603b6-7607-422e-8692-881270ae40e6
+    content: 'Must gate on review state: only a real zoom root may render as a node — the normal hidden synthetic root must stay children-only, or it renders an empty/garbage row.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4b17187-5aeb-4692-aa73-11652fade83f:
+    id: c4b17187-5aeb-4692-aa73-11652fade83f
+    content: Tree keys rendering off the zoom root's live children (displayChildren / visibleChildren) and early-returns null when they are absent (Tree.tsx:45); the reviewed root must render from its proposition store regardless of live children, or a reviewed leaf still shows nothing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62338ca4-b48c-4c9e-bc03-07df9bf9a419:
+    id: 62338ca4-b48c-4c9e-bc03-07df9bf9a419
+    content: 'Post-action behaviour needs defining: accept/cancel from the zoom tab resolves the review and may restructure or remove the zoomed node, leaving zoomedNodeId dangling — needs a graceful fallback (un-zoom or empty state).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f70eea05-97b5-4da0-80ea-5db72da5be73:
+    id: f70eea05-97b5-4da0-80ea-5db72da5be73
+    content: 'Out of scope: showing the node''s own row for normal (not-under-review) zoom — that is existing zoom design, not this bug.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  272bc787-f30f-4716-8bcd-1de4c3e40fad:
+    id: 272bc787-f30f-4716-8bcd-1de4c3e40fad
+    content: 'Scope bound: only "zoom root IS the review root" is broken; zooming an ancestor of a reviewed descendant already renders the review correctly via normal TreeNode recursion.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59224d14-e89f-4ef8-a5c3-929f14bdc879:
+    id: 59224d14-e89f-4ef8-a5c3-929f14bdc879
+    content: Summarise the approach
+    children:
+      - fdd75341-37b0-41ad-b179-c09fcdb068c5
+      - 05167daa-96ab-4b53-886c-2ee181d2ce61
+      - 1ed6dada-4022-4990-9801-2b2fd3a9964b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdd75341-37b0-41ad-b179-c09fcdb068c5:
+    id: fdd75341-37b0-41ad-b179-c09fcdb068c5
+    content: In Tree.tsx, when zoomedNodeId is itself under review, render it as a single TreeNode at depth 0 so the existing review branch (ReviewControlBar + PropositionRoots, TreeNode.tsx:83-94) fires; otherwise keep today's children-only render.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05167daa-96ab-4b53-886c-2ee181d2ce61:
+    id: 05167daa-96ab-4b53-886c-2ee181d2ce61
+    content: Converge zoom and inline review on the one existing per-node review path rather than duplicating proposition/control rendering in the zoom view — small surface, contained to Tree plus a reviews-state read.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ed6dada-4022-4990-9801-2b2fd3a9964b:
+    id: 1ed6dada-4022-4990-9801-2b2fd3a9964b
+    content: 'Surprise to watch: the children-only render and the !displayChildren early-return are load-bearing for the hidden root and review-adds-children cases; both must survive, and post-accept zoom-target handling is the main behavioural decision.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c34f789-90b6-418a-bca7-d6ce1b14edd5:
+    id: 3c34f789-90b6-418a-bca7-d6ce1b14edd5
+    content: Verification
+    children:
+      - 5c5dc861-72d0-41ea-a374-452624bef339
+      - 4c1b3351-0007-479c-99ef-4593b54929ea
+      - 577c2c42-98ea-4c29-9070-3f1a523565f0
+      - b934d120-e76d-45a4-8a08-f5dd2c5d3d06
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c5dc861-72d0-41ea-a374-452624bef339:
+    id: 5c5dc861-72d0-41ea-a374-452624bef339
+    content: 'Implemented and verified: zoom into an under-review root now renders the proposition (single-root and multi-root decomposition) plus the accept/cancel control bar; a reviewed leaf with no live children still renders; not-under-review zoom and a dangling zoom target are unchanged/safe.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c1b3351-0007-479c-99ef-4593b54929ea:
+    id: 4c1b3351-0007-479c-99ef-4593b54929ea
+    content: Fix is gated on review state and confined to Tree.tsx (one reviews-state selector plus a render branch), so the hidden synthetic root and normal zoom keep their children-only render.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  577c2c42-98ea-4c29-9070-3f1a523565f0:
+    id: 577c2c42-98ea-4c29-9070-3f1a523565f0
+    content: 'Checks (run after implementation, no changes since): Tree-scoped suites 58 passed / 2 todo, ESLint clean and no TypeScript errors on the changed/new files.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b934d120-e76d-45a4-8a08-f5dd2c5d3d06:
+    id: b934d120-e76d-45a4-8a08-f5dd2c5d3d06
+    content: 'Deferred: richer post-accept/cancel zoom-tab coherence (auto-unzoom or showing refreshed content when a review removes the zoomed node) — a graceful empty-state fallback already exists and is covered by a test; the UX choice between un-zoom vs empty state is still an open design decision in the spec, left as an it.todo and out of this PR''s scope.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  15ef4648-706c-4abd-969f-f3342199b871:
+    id: 15ef4648-706c-4abd-969f-f3342199b871
+    content: review feedback
+    children:
+      - 3837eb64-97d4-4e19-92aa-43c840f18f20
+      - 5407a247-d06e-4a9f-87a3-b3bc25ba6ab6
+      - d8f29fdb-6a79-430e-9151-d41bc0766465
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3837eb64-97d4-4e19-92aa-43c840f18f20:
+    id: 3837eb64-97d4-4e19-92aa-43c840f18f20
+    content: 'Verdict: clean — no blocking or important issues. Reviewer (pr-review-toolkit:code-reviewer) independently re-ran the Tree suites (17 passed), tsc --noEmit clean, and eslint clean on the changed files.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5407a247-d06e-4a9f-87a3-b3bc25ba6ab6:
+    id: 5407a247-d06e-4a9f-87a3-b3bc25ba6ab6
+    content: 'Correctness confirmed across all paths: the zoomed reviewed root renders the proposition + accept/cancel bar via TreeNode''s review branch; the hidden synthetic root and normal not-under-review zoom keep children-only rendering; zooming an ancestor of a reviewed descendant still works via normal recursion; the loosened !displayChildren early-return is safe — a node that is a reviews key but missing from nodes hits TreeNode''s own !node guard and renders empty without throwing. Hooks order unchanged; new selector returns a primitive boolean matching the isCollaborating/isSelected convention.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8f29fdb-6a79-430e-9151-d41bc0766465:
+    id: d8f29fdb-6a79-430e-9151-d41bc0766465
+    content: 'One nit, fixed in this step: a curly apostrophe (U+2019) in a zoomReview test title was normalized to a straight ASCII apostrophe for grep-ability and consistency with the sibling inlineProposalReview suite. No other changes requested; tests re-run green (7 passed | 1 todo).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cf66d47-7275-4111-8271-4306e5a0f8c4:
+    id: 3cf66d47-7275-4111-8271-4306e5a0f8c4
     content: 'documentation note: no doc or changelog changes made. This is a bug fix to the inline-review feature, which is in CHANGELOG "Unreleased" (post-v0.2.0, the last tag), so no changelog line per the rule. Both the changelog "Review AI revisions inline" entry and docs/workflow.md:49 already describe the zoom-tab review flow accurately ("Accept and Cancel work there exactly as on the main tree; resolving from the zoom tab closes it and returns you to the main tree") — this fix just delivers the previously-broken rendering piece, so the docs are now true rather than aspirational. Warning/inconsistency: the earlier "deferred post-accept zoom-tab coherence" framing (zoomReview it.todo + Verification [-]) is outdated — resolving a review already closes its zoom tab via closeZoomTabsForNode(reviewedNodeId) in finishAccept/finishCancel (sendActions.ts:482), store-tested in filesStoreReviewZoom.test.ts. So the post-accept behaviour is defined and covered at the store layer, not an open design question; the it.todo could be retired or converted to a thin render-level assertion in a follow-up.'
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce7dacc4-62ee-47f2-8bbb-9006657e9421:
+    id: ce7dacc4-62ee-47f2-8bbb-9006657e9421
+    content: Merged to master
+    children:
+      - f017fbe8-051a-4411-9792-6387ca5cff56
+      - 6ff92fd6-09e1-46f9-88a5-2898cec67e10
+      - 2e1608ff-30ed-4bd6-a076-e77d20278e47
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f017fbe8-051a-4411-9792-6387ca5cff56:
+    id: f017fbe8-051a-4411-9792-6387ca5cff56
+    content: 'Commit ce49f45 "fix: show the review proposition and controls when zooming a reviewed node" fast-forwarded onto master and pushed to origin/master.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ff92fd6-09e1-46f9-88a5-2898cec67e10:
+    id: 6ff92fd6-09e1-46f9-88a5-2898cec67e10
+    content: Master had advanced from the fork (e16859a) to b8830d1; rebased cleanly onto the new tip (no conflicts — concurrent changes touched inlineProposalReview.test.tsx / TreeNode.css, not the changed files) and re-ran checks green (5546 passed, tsc + eslint clean).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e1608ff-30ed-4bd6-a076-e77d20278e47:
+    id: 2e1608ff-30ed-4bd6-a076-e77d20278e47
+    content: project.arbo committed on master (18401ba); worktree and local branch fix/zoom-review-node deleted after the merge was confirmed; local and origin master in sync.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
