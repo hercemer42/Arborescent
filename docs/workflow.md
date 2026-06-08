@@ -31,7 +31,7 @@ The applied context's state determines what the AI is asked for. The four states
 
 Collaborate and Collaborate & Execute use the same review pipeline. The AI's proposed revision appears **inline on the branch you sent** — its subtree is shown in place, with an **Accept / Cancel** bar in a row directly above it. Accept applies the revision (undoable with `Ctrl+Z`); Cancel discards it and leaves your branch untouched. Execute and Action don't produce a review. Decomposition — splitting one branch into several — shows the proposed branches inline in place of the original, reviewed the same way.
 
-The review highlights what the AI changed: blue for modified branches, green for added ones, and red with strikethrough for branches the AI removed (shown where they used to sit). You can edit the proposed branches before accepting — editing a modified branch back to its original text clears its highlight. Branches the AI returned untouched keep their identity, so selection, expansion, and links to those branches survive the review.
+A gold backdrop spans the whole review block — the Accept / Cancel bar and every branch beneath it — so the review reads as one unit. Within it, the highlights show what the AI changed: blue for modified branches, green for added ones, and red with strikethrough for branches the AI removed (shown where they used to sit). You can edit the proposed branches before accepting — editing a modified branch back to its original text clears its highlight. Branches the AI returned untouched keep their identity, so selection, expansion, and links to those branches survive the review.
 
 Two built-in contexts are available when no user-defined context is applied:
 

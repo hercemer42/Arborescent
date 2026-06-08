@@ -196,3 +196,10 @@
 .review-proposition-region {
   display: contents;
 }
+
+/* Uncoloured reviewed rows get the review gold so the control bar and the whole
+   proposition read as one encapsulated block; added/modified/removed rows keep
+   their diff colour. */
+.review-proposition-region .tree-node-wrapper:not(.feedback-changekind-added):not(.feedback-changekind-modified):not(.feedback-changekind-removed) {
+  background-color: rgba(255, 152, 0, 0.15);
+}

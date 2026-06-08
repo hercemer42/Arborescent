@@ -95,6 +95,27 @@ function seedProposition(rootCount: 1 | 2): void {
   }
 }
 
+// A single-root proposition that also carries an unchanged context row (no
+// feedbackBaselineKind → no change-kind class). That untouched row is the one the
+// gold review backdrop covers: it is neither added (green) nor modified (blue).
+function seedPropositionWithContext(): void {
+  feedbackTreeStore.setStoreFactory(() => createTreeStore());
+  feedbackTreeStore.initialize(
+    'reviewed',
+    FILE,
+    {
+      'feedback-root': node('feedback-root', '', ['prop-root']),
+      'prop-root': node('prop-root', 'Reviewed node (revised)', ['added', 'context'], {
+        feedbackBaselineKind: 'modified',
+        feedbackPriorContent: 'Reviewed node',
+      }),
+      added: node('added', 'Added child', [], { feedbackBaselineKind: 'added' }),
+      context: node('context', 'Unchanged context child', []),
+    },
+    'feedback-root',
+  );
+}
+
 function renderTree(store: TreeStore) {
   return render(
     <TreeStoreContext.Provider value={store}>
@@ -170,6 +191,41 @@ describe('inline proposal review', () => {
       renderTree(makeMainStore());
       expect(screen.getByRole('group', { name: 'Review proposed changes' })).toBeTruthy();
     });
+  });
+
+  // Uncoloured context rows in a proposition carry the gold review backdrop so the
+  // control bar and the whole subtree read as one region, while added/modified rows
+  // keep their change-kind colour. The structural assertions below cover the contract
+  // the gold CSS depends on; the gold paint itself comes from stylesheet rules jsdom
+  // does not evaluate, so those cases are title-only (as with the scroll-anchor todo below).
+  describe('gold review backdrop encapsulation', () => {
+    beforeEach(() => seedPropositionWithContext());
+
+    it('leaves an unchanged context row free of every change-kind class so the gold backdrop can target it', () => {
+      const { container } = renderTree(makeMainStore());
+      const context = container.querySelector('[data-node-id="context"]');
+      expect(context).toBeTruthy();
+      expect(context?.classList.contains('feedback-changekind-added')).toBe(false);
+      expect(context?.classList.contains('feedback-changekind-modified')).toBe(false);
+      expect(context?.classList.contains('feedback-changekind-removed')).toBe(false);
+    });
+
+    it('renders changed and unchanged reviewed rows alike inside the proposition region a descendant selector can reach', () => {
+      const { container } = renderTree(makeMainStore());
+      const region = container.querySelector('[data-review-proposition="reviewed"]');
+      expect(region).toBeTruthy();
+      expect(region?.querySelector('[data-node-id="prop-root"]')).toBeTruthy();
+      expect(region?.querySelector('[data-node-id="added"]')).toBeTruthy();
+      expect(region?.querySelector('[data-node-id="context"]')).toBeTruthy();
+    });
+
+    // jsdom does not apply stylesheet rules, so a CSS-painted background cannot be read
+    // back via getComputedStyle. These capture the intended behavior; verified in-app.
+    it.todo('paints the gold review backdrop on every reviewed row, not only the control bar');
+    it.todo('keeps the gold backdrop off added (green) and modified (blue) rows so change-kind colors win');
+    it.todo('renders the control bar plus the whole reviewed subtree as one contiguous gold-encapsulated block');
+    it.todo('keeps selection, hover, and active-session affordances visible over the gold backdrop');
+    it.todo('still encapsulates a root-only proposition (no context rows) in gold');
   });
 
   // Scroll anchoring (useScrollAnchor) corrects scrollTop from measured layout; jsdom has
