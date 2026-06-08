@@ -27,6 +27,7 @@ import { VisualEffectsActions } from './visualEffectsActions';
 import { findSessionIdForTerminal } from './terminalBindingResolution';
 import { Command } from '../commands/Command';
 import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
+import { resyncBoundTerminalTitles } from '../../terminal/syncBoundTerminalTitles';
 import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
 import {
   parseFeedbackContentWithReason,
@@ -911,6 +912,10 @@ export function createSendActions(
         executeCommand(
           new AcceptFeedbackCommand(reviewedNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig, precomputedIdMap)
         );
+
+        // The command rewrites the bound subtree (and may migrate originNodeId),
+        // so re-derive every bound terminal title from the settled tree.
+        resyncBoundTerminalTitles(get().nodes);
 
         await tearDownReview(reviewedNodeId, false);
 
