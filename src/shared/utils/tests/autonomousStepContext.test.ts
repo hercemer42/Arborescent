@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import type { TreeNode } from '../../types';
-import { getAutonomousStepContext, resolveParentStepType } from '../autonomousStepContext';
+import {
+  getAutonomousStepContext,
+  resolveParentStepType,
+  isAutonomousNodeNotInPlay,
+} from '../autonomousStepContext';
 
 // Unified gate predicate shared between gate 1 (server: mcpSubmitOutputTool),
 // gate 2 (renderer: applyStepOutput), and gate 3 (renderer:
@@ -104,6 +108,35 @@ describe('getAutonomousStepContext — unified gate predicate', () => {
     const snapshot = JSON.stringify(state);
     getAutonomousStepContext(BOUND, state);
     expect(JSON.stringify(state)).toBe(snapshot);
+  });
+});
+
+describe('isAutonomousNodeNotInPlay — a stopped autonomous subject has no execution entry', () => {
+  it('is true when the parent is an autonomous step but the workflowExecutionStates entry is missing (the state stopWorkflow leaves behind)', () => {
+    const state = makeState({ workflowExecutionStates: {} });
+    expect(isAutonomousNodeNotInPlay(BOUND, state)).toBe(true);
+  });
+
+  it('is false when the autonomous subject still has a running entry (in play)', () => {
+    const state = makeState({ workflowExecutionStates: { [BOUND]: { state: 'running' } } });
+    expect(isAutonomousNodeNotInPlay(BOUND, state)).toBe(false);
+  });
+
+  it('is false when the autonomous subject is awaiting-validation — the workflow still owns it', () => {
+    const state = makeState({ workflowExecutionStates: { [BOUND]: { state: 'awaiting-validation' } } });
+    expect(isAutonomousNodeNotInPlay(BOUND, state)).toBe(false);
+  });
+
+  it('is false for a non-autonomous subject regardless of execution state — only autonomous steps are gated', () => {
+    const state = makeState({
+      nodes: {
+        [ROOT]: makeNode(ROOT),
+        [STEP]: makeNode(STEP, { stepType: 'manual' }),
+        [BOUND]: makeNode(BOUND),
+      },
+      workflowExecutionStates: {},
+    });
+    expect(isAutonomousNodeNotInPlay(BOUND, state)).toBe(false);
   });
 });
 

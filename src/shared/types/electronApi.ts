@@ -58,7 +58,7 @@ export type MutationRequest =
   | { kind: 'move'; newParentId: string; position?: number }
   | { kind: 'set-metadata'; key: string; value: unknown };
 
-export type MutationResult = { ok: true } | { ok: false; error: string };
+export type MutationResult = { ok: true } | { ok: false; error: string; code?: McpErrorCode };
 
 export interface TreeMutateRequest {
   requestId: string;

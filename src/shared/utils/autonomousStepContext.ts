@@ -67,3 +67,13 @@ export function getAutonomousStepContext<TExecState = unknown>(
 
   return { stepId, execState };
 }
+
+// A node is "not in play" when it sits under an autonomous step but carries no
+// workflowExecutionStates entry — the state stopWorkflow leaves behind when the
+// user stops a run mid-flight. Completing or applying to such a node would
+// advance a workflow the user already stopped, so write handlers refuse it.
+// Nodes outside an autonomous step are never gated here; a running or
+// awaiting-validation entry counts as in play.
+export function isAutonomousNodeNotInPlay(nodeId: string, state: FullState): boolean {
+  return isStructurallyAutonomous(nodeId, state) && getAutonomousStepContext(nodeId, state) === null;
+}

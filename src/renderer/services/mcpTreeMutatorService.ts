@@ -17,6 +17,8 @@ import { getParentIdOrNull } from '../utils/parentLookup';
 import { shouldInheritBlueprint } from '../utils/nodeHelpers';
 import { createTreeNode } from '../utils/nodeConstruction';
 import { isNodeInReview } from '../store/tree/reviews';
+import { isAutonomousNodeNotInPlay } from '../../shared/utils/autonomousStepContext';
+import { MCP_ERROR_CODES } from '../../shared/utils/mcpErrorCodes';
 import { v4 as uuidv4 } from 'uuid';
 
 export function applyMutation(store: TreeStore, nodeId: string, request: MutationRequest): MutationResult {
@@ -85,6 +87,13 @@ function applyMarkComplete(
   nodeId: string,
   status: 'completed' | 'abandoned',
 ): MutationResult {
+  if (isAutonomousNodeNotInPlay(nodeId, store.getState())) {
+    return {
+      ok: false,
+      error: `Node ${nodeId} is not in play — its workflow run was stopped, so the step cannot be completed and the workflow will not advance`,
+      code: MCP_ERROR_CODES.writeNodeNotRunning,
+    };
+  }
   return updateNode(store, nodeId, (node) => ({
     ...node,
     metadata: { ...node.metadata, status },

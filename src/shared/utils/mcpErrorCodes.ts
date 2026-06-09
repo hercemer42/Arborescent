@@ -17,6 +17,7 @@ export const MCP_ERROR_CODES = {
   writeMissingToken: 'write/missing-token',
   writeOutsideBoundSubtree: 'write/outside-bound-subtree',
   writeManualStep: 'write/manual-step',
+  writeNodeNotRunning: 'write/node-not-running',
   writeUpstreamFailure: 'write/upstream-failure',
   applierNodeNotFound: 'applier/node-not-found',
   applierHandlerUnavailable: 'applier/workflow-handler-unavailable',
@@ -50,6 +51,8 @@ export const MCP_ERROR_MESSAGES: Record<McpErrorCode, string> = {
     'The node_id does not resolve to a node within the bound subtree.',
   'write/manual-step':
     'The tool is only valid on autonomous or checkpoint workflow steps; manual steps are resolved through the user interface.',
+  'write/node-not-running':
+    'The node is not in an active workflow run — its run was stopped, so the completion was refused and the workflow did not advance.',
   'write/upstream-failure':
     'A downstream apply, mutation, or proposal failed without a more specific code.',
   'applier/node-not-found':

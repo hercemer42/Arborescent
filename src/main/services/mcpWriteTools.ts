@@ -1,7 +1,7 @@
 import { SessionBindingRegistry } from './sessionBindingRegistry';
 import { resolveBinding } from './bindingResolution';
 import { TreeReader, TreeReadState, ToolResult, treeReadFailure, codedErr } from './mcpReadTools';
-import { MCP_ERROR_CODES } from '../../shared/utils/mcpErrorCodes';
+import { MCP_ERROR_CODES, McpErrorCode } from '../../shared/utils/mcpErrorCodes';
 import { ProposalSubmitter } from './mcpProposalBridge';
 import { OneShotTargetStore } from './oneShotTargetStore';
 import {
@@ -23,7 +23,7 @@ export type MutationRequest =
   | { kind: 'move'; newParentId: string; position?: number }
   | { kind: 'set-metadata'; key: string; value: unknown };
 
-export type MutationResult = { ok: true } | { ok: false; error: string };
+export type MutationResult = { ok: true } | { ok: false; error: string; code?: McpErrorCode };
 
 export interface TreeMutator {
   mutate(sessionId: string, boundNodeId: string, request: MutationRequest): Promise<MutationResult>;
@@ -153,7 +153,7 @@ async function executeMutation(
 
   const result = await deps.treeMutator.mutate(sessionId, mutationNodeId, request);
   if (!result.ok) {
-    return codedErr(result.error, MCP_ERROR_CODES.writeUpstreamFailure);
+    return codedErr(result.error, result.code ?? MCP_ERROR_CODES.writeUpstreamFailure);
   }
   return ok({ applied: true });
 }
@@ -196,7 +196,7 @@ async function executeAnnounceStepDone(
 
   const result = await deps.treeMutator.mutate(sessionId, boundNodeId, { kind: 'mark-complete', status: 'completed' });
   if (!result.ok) {
-    return codedErr(result.error, MCP_ERROR_CODES.writeUpstreamFailure);
+    return codedErr(result.error, result.code ?? MCP_ERROR_CODES.writeUpstreamFailure);
   }
 
   deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);

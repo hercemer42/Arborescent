@@ -224,6 +224,15 @@ describe('applyStepOutput — gate 1+2 alignment (fail-fast on routing divergenc
     }
   });
 
+  it('phrases the refusal as "not in play" so a submit after the run was stopped reads as a stopped-run rejection, not an internal error', () => {
+    const { store } = makeFakeStore({});
+    const result = applyStepOutput(store as never, BOUND, 'late content');
+    expect(result.ok).toBe(false);
+    if (result.ok === false) {
+      expect(result.error.toLowerCase()).toContain('not in play');
+    }
+  });
+
   it('logs a structured warning when the gate-1+2 disagreement is detected so the gap stays observable in real sessions', async () => {
     const { logger } = await import('../logger');
     const warnMock = vi.mocked(logger.warn);

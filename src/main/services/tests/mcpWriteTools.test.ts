@@ -13,6 +13,7 @@ import {
 } from '../mcpWriteTools';
 import { TreeReadState, TreeReadResult } from '../mcpReadTools';
 import { TreeNode } from '../../../shared/types';
+import { MCP_ERROR_CODES } from '../../../shared/utils/mcpErrorCodes';
 
 function okRead(state: TreeReadState): TreeReadResult {
   return { kind: 'ok', state };
@@ -826,5 +827,61 @@ describe('createWriteTools — announceStepDone on a checkpoint: mode and contex
     expect(noContext.content[0].text).toMatch(/no context is applied/i);
     expect(noContext.content[0].text).not.toMatch(/collaborate/i);
     expect(wrongMode.content[0].text).toMatch(/collaborate/i);
+  });
+});
+
+// When the user stops a run mid-prompt, the renderer mutator refuses the
+// completion with a write/node-not-running code (it is the only layer that can
+// see workflowExecutionStates). The write tools must surface that exact code to
+// the MCP client rather than collapsing it into the generic upstream-failure
+// code, and must not mark the turn as having seen an explicit submit.
+describe('createWriteTools — a stopped node\'s mutator refusal surfaces as write/node-not-running', () => {
+  function codeOf(result: unknown): string | undefined {
+    return (result as { structuredContent?: { code?: string } }).structuredContent?.code;
+  }
+
+  function stoppedMutator() {
+    return vi.fn(async () => ({
+      ok: false as const,
+      error: 'Node is not in play — its workflow run was stopped, so the step cannot be completed',
+      code: MCP_ERROR_CODES.writeNodeNotRunning,
+    }));
+  }
+
+  it('announceStepDone surfaces write/node-not-running and does NOT set explicit_submit_seen', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    made.mutator.mutate = stoppedMutator();
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(codeOf(result)).toBe('write/node-not-running');
+    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+  });
+
+  it('markStepComplete surfaces write/node-not-running', async () => {
+    const made = makeDeps({ collaborate: true, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    made.mutator.mutate = stoppedMutator();
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.markStepComplete({ sessionId: 'sess-1', status: 'completed' });
+
+    expect(result.isError).toBe(true);
+    expect(codeOf(result)).toBe('write/node-not-running');
+  });
+
+  it('a codeless mutator failure still falls back to write/upstream-failure (no regression)', async () => {
+    const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
+    made.registry.register('sess-1', BOUND);
+    made.mutator.mutate = vi.fn(async () => ({ ok: false as const, error: 'some downstream failure' }));
+    const tools = createWriteTools(made.deps);
+
+    const result = await tools.announceStepDone({ sessionId: 'sess-1' });
+
+    expect(result.isError).toBe(true);
+    expect(codeOf(result)).toBe('write/upstream-failure');
   });
 });

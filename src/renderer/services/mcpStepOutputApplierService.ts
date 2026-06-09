@@ -66,7 +66,7 @@ export function applyStepOutput(
     );
     return {
       ok: false,
-      error: `Routing gate disagreement for node ${nodeId} — autonomous step has no execution context`,
+      error: `Node ${nodeId} is not in play — the apply was routed as autonomous but the renderer has no execution context (its run was stopped or never started), so the workflow will not advance`,
       code: MCP_ERROR_CODES.applierRoutingDisagreement,
     };
   }
