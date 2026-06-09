@@ -1,4 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import successSoundUrl from '../../sounds/success.wav';
+import alertSoundUrl from '../../sounds/alert.wav';
 
 const { mockIsWindowFocused, mockShowNotification } = vi.hoisted(() => ({
   mockIsWindowFocused: vi.fn().mockResolvedValue(false),
@@ -192,6 +194,40 @@ describe('workflowNotification', () => {
         'Step timeout',
         'Task B is taking longer than expected'
       );
+    });
+  });
+
+  // Regression: notification sounds were silent because playSound built a bare
+  // runtime path ('./sounds/<file>.wav') that the bundler never emitted, so the
+  // file was absent from the build and Audio.play() always rejected. The fix is
+  // to source the URL from a Vite asset import; these assert that the URL handed
+  // to Audio is the bundler-resolved one, not the unbundled relative literal.
+  describe('bundled sound assets', () => {
+    it('should play the success sound from the bundler-resolved asset URL, not an unbundled relative path', async () => {
+      const { notifyWorkflowEvent } = await import('../workflowNotification');
+      await notifyWorkflowEvent('success', 'Complete', 'Done');
+
+      expect(lastAudioSrc).toBe(successSoundUrl);
+      expect(lastAudioSrc).not.toMatch(/^\.\/sounds\//);
+    });
+
+    it('should play the alert sound from the bundler-resolved asset URL, not an unbundled relative path', async () => {
+      const { notifyWorkflowEvent } = await import('../workflowNotification');
+      await notifyWorkflowEvent('alert', 'Error', 'Failed');
+
+      expect(lastAudioSrc).toBe(alertSoundUrl);
+      expect(lastAudioSrc).not.toMatch(/^\.\/sounds\//);
+    });
+  });
+
+  describe('repeated interactions', () => {
+    it('should play a fresh sound for each successive notification event', async () => {
+      const { notifyWorkflowEvent } = await import('../workflowNotification');
+      await notifyWorkflowEvent('success', 'One', 'a');
+      await notifyWorkflowEvent('alert', 'Two', 'b');
+      await notifyWorkflowEvent('success', 'Three', 'c');
+
+      expect(mockAudioPlay).toHaveBeenCalledTimes(3);
     });
   });
 });

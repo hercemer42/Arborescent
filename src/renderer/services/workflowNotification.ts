@@ -1,5 +1,7 @@
 import { usePreferencesStore } from '../store/preferences/preferencesStore';
 import { logger } from './logger';
+import successSoundUrl from '../sounds/success.wav';
+import alertSoundUrl from '../sounds/alert.wav';
 
 export type NotificationEventType = 'success' | 'alert';
 
@@ -30,13 +32,13 @@ export async function notifyWorkflowEvent(type: NotificationEventType, title: st
 }
 
 function playSound(type: NotificationEventType): void {
-  const soundFile = type === 'success' ? 'success.wav' : 'alert.wav';
+  const soundUrl = type === 'success' ? successSoundUrl : alertSoundUrl;
   try {
-    const audio = new Audio(`./sounds/${soundFile}`);
+    const audio = new Audio(soundUrl);
     audio.play().catch((error) => {
-      logger.warn(`Failed to play ${soundFile}: ${(error as Error).message}`, 'WorkflowNotification');
+      logger.warn(`Failed to play ${type} sound: ${(error as Error).message}`, 'WorkflowNotification');
     });
   } catch (error) {
-    logger.warn(`Failed to create audio for ${soundFile}: ${(error as Error).message}`, 'WorkflowNotification');
+    logger.warn(`Failed to create audio for ${type} sound: ${(error as Error).message}`, 'WorkflowNotification');
   }
 }
