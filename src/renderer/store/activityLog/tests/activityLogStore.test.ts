@@ -62,6 +62,16 @@ describe('activityLogStore', () => {
       useActivityLogStore.getState().addEntry('', 'info', 'workflow');
       expect(useActivityLogStore.getState().entries).toHaveLength(1);
     });
+
+    it('stores an optional originating sessionId on the entry', () => {
+      useActivityLogStore.getState().addEntry('Advanced "Task" to Step 2', 'info', 'workflow', 'session-1');
+      expect(useActivityLogStore.getState().entries[0].sessionId).toBe('session-1');
+    });
+
+    it('leaves sessionId undefined when none is supplied (backward-compatible entries)', () => {
+      useActivityLogStore.getState().addEntry('no target', 'info', 'workflow');
+      expect(useActivityLogStore.getState().entries[0].sessionId).toBeUndefined();
+    });
   });
 
   describe('bounded buffer', () => {

@@ -8,8 +8,8 @@ function isLogOnly(type: ToastType, options?: ToastOptions): boolean {
   return type === 'info' && !options?.actions && !options?.persistent;
 }
 
-export function notifyWorkflow(message: string, type: ToastType, options?: ToastOptions): void {
-  useActivityLogStore.getState().addEntry(message, type, WORKFLOW_SOURCE);
+export function notifyWorkflow(message: string, type: ToastType, options?: ToastOptions, sessionId?: string): void {
+  useActivityLogStore.getState().addEntry(message, type, WORKFLOW_SOURCE, sessionId);
 
   if (isLogOnly(type, options)) return;
 

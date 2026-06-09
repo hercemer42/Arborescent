@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import { useActivityLogStore } from '../../../store/activityLog/activityLogStore';
+import { useCallback, useEffect } from 'react';
+import { useActivityLogStore, type ActivityLogEntry } from '../../../store/activityLog/activityLogStore';
 import { ActivityLogEntries } from './ActivityLogEntries';
+import { focusLogSession } from './focusLogSession';
 import './ActivityLog.css';
 
 interface ActivityLogPanelProps {
@@ -10,6 +11,10 @@ interface ActivityLogPanelProps {
 
 export function ActivityLogPanel({ isOpen, onClose }: ActivityLogPanelProps) {
   const entries = useActivityLogStore((state) => state.entries);
+
+  const activateEntry = useCallback((entry: ActivityLogEntry) => {
+    if (entry.sessionId && focusLogSession(entry.sessionId)) onClose();
+  }, [onClose]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -39,7 +44,7 @@ export function ActivityLogPanel({ isOpen, onClose }: ActivityLogPanelProps) {
         {entries.length === 0 ? (
           <p className="activity-log-empty">No activity yet</p>
         ) : (
-          <ActivityLogEntries entries={entries} />
+          <ActivityLogEntries entries={entries} interactive onActivateEntry={activateEntry} />
         )}
       </div>
     </aside>

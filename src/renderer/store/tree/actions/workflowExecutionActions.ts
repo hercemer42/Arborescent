@@ -828,7 +828,7 @@ export const createWorkflowExecutionActions = (
 
     const node = nodes[nodeId];
     const nodeName = node?.content || nodeId;
-    notifyWorkflow(`Workflow complete for "${nodeName}"`, "success");
+    notifyWorkflow(`Workflow complete for "${nodeName}"`, "success", undefined, node?.metadata.sessionId);
     void notifyWorkflowEvent("success", "Workflow complete", nodeName);
 
     logger.info(
@@ -926,9 +926,9 @@ export const createWorkflowExecutionActions = (
 
     if (nextStepType === "manual") {
       stopWorkflow(nodeId);
-      notifyWorkflow(`"${nodeName}" waiting at ${stepLabel}`, "info");
+      notifyWorkflow(`"${nodeName}" waiting at ${stepLabel}`, "info", undefined, node?.metadata.sessionId);
     } else {
-      notifyWorkflow(`Advanced "${nodeName}" to ${stepLabel}`, "info");
+      notifyWorkflow(`Advanced "${nodeName}" to ${stepLabel}`, "info", undefined, node?.metadata.sessionId);
       setTimeout(
         () => clearSessionManager.maybeClearThenSend(nodeId, entry.terminalTabId),
         1000,

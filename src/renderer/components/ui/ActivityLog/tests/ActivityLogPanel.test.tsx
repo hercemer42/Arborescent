@@ -1,10 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ActivityLogPanel } from '../ActivityLogPanel';
+import { focusLogSession } from '../focusLogSession';
 import {
   useActivityLogStore,
   type ActivityLogEntry,
 } from '../../../../store/activityLog/activityLogStore';
+
+vi.mock('../focusLogSession', () => ({ focusLogSession: vi.fn() }));
 
 const makeEntry = (i: number, type: ActivityLogEntry['type'] = 'info'): ActivityLogEntry => ({
   id: `id-${i}`,
@@ -17,7 +20,10 @@ const makeEntry = (i: number, type: ActivityLogEntry['type'] = 'info'): Activity
 const seed = (entries: ActivityLogEntry[]) => useActivityLogStore.setState({ entries });
 
 describe('ActivityLogPanel', () => {
-  beforeEach(() => seed([]));
+  beforeEach(() => {
+    seed([]);
+    vi.mocked(focusLogSession).mockClear();
+  });
 
   it('renders nothing when closed', () => {
     const { container } = render(<ActivityLogPanel isOpen={false} onClose={vi.fn()} />);
@@ -94,5 +100,41 @@ describe('ActivityLogPanel', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /close activity log/i }));
     expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders a targeted entry as an interactive control inside the panel', () => {
+    seed([{ ...makeEntry(1), sessionId: 'session-1' }]);
+    render(<ActivityLogPanel isOpen onClose={vi.fn()} />);
+
+    expect(screen.getByRole('button', { name: /entry-1/ })).toBeInTheDocument();
+  });
+
+  it('renders a non-targeted entry with no interactive control (only the close button)', () => {
+    seed([makeEntry(2)]);
+    render(<ActivityLogPanel isOpen onClose={vi.fn()} />);
+
+    expect(screen.queryByRole('button', { name: /entry-2/ })).not.toBeInTheDocument();
+  });
+
+  it('focuses the originating session and closes the panel when a targeted entry is clicked', () => {
+    vi.mocked(focusLogSession).mockReturnValue(true);
+    const onClose = vi.fn();
+    seed([{ ...makeEntry(1), sessionId: 'session-1' }]);
+    render(<ActivityLogPanel isOpen onClose={onClose} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /entry-1/ }));
+    expect(focusLogSession).toHaveBeenCalledWith('session-1');
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('leaves the panel open when activation is a no-op (session not open)', () => {
+    vi.mocked(focusLogSession).mockReturnValue(false);
+    const onClose = vi.fn();
+    seed([{ ...makeEntry(1), sessionId: 'session-1' }]);
+    render(<ActivityLogPanel isOpen onClose={onClose} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /entry-1/ }));
+    expect(focusLogSession).toHaveBeenCalledWith('session-1');
+    expect(onClose).not.toHaveBeenCalled();
   });
 });

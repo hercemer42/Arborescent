@@ -67,4 +67,15 @@ describe('notifyWorkflow', () => {
     expect(useToastStore.getState().toasts).toHaveLength(1);
     expect(useActivityLogStore.getState().entries).toHaveLength(0);
   });
+
+  it('stamps an originating sessionId onto the logged entry when one is supplied', () => {
+    notifyWorkflow('Advanced "Task" to Step 2', 'info', undefined, 'session-1');
+
+    expect(useActivityLogStore.getState().entries[0].sessionId).toBe('session-1');
+  });
+
+  // Call-site wiring (which of the 20+ notifyWorkflow sites derive a session, and from
+  // where) is settled at implementation — only the transitions fired on a bound node
+  // can carry one.
+  it.todo('a step-transition fired from advanceNode carries the running node\'s sessionId');
 });

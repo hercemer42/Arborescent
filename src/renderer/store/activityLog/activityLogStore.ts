@@ -14,25 +14,26 @@ export type { ActivityLogEntry };
 
 interface ActivityLogState {
   entries: ActivityLogEntry[];
-  addEntry: (message: string, type: ToastType, source?: string) => void;
+  addEntry: (message: string, type: ToastType, source?: string, sessionId?: string) => void;
   hydrate: (entries: ActivityLogEntry[]) => void;
 }
 
-function createEntry(message: string, type: ToastType, source?: string): ActivityLogEntry {
+function createEntry(message: string, type: ToastType, source?: string, sessionId?: string): ActivityLogEntry {
   return {
     id: `${Date.now()}-${Math.random()}`,
     message,
     type,
     source,
     timestamp: Date.now(),
+    sessionId,
   };
 }
 
 export const useActivityLogStore = create<ActivityLogState>((set) => ({
   entries: [],
 
-  addEntry: (message, type, source) => {
-    const entry = createEntry(message, type, source);
+  addEntry: (message, type, source, sessionId) => {
+    const entry = createEntry(message, type, source, sessionId);
     set((state) => ({ entries: [...state.entries, entry].slice(-MAX_ACTIVITY_ENTRIES) }));
     persistActivityEntry(entry);
   },

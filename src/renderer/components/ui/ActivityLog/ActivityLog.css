@@ -90,6 +90,27 @@
   white-space: nowrap;
 }
 
+.activity-log-entry-action {
+  min-width: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.activity-log-entry-action:hover {
+  text-decoration: underline;
+}
+
+.activity-log-entry-action:focus-visible {
+  outline: 1px solid var(--blue-500);
+  outline-offset: 1px;
+}
+
 .activity-log-entry-time {
   flex-shrink: 0;
   font-size: 11px;

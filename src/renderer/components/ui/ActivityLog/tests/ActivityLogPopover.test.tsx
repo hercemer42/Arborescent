@@ -49,4 +49,11 @@ describe('ActivityLogPopover', () => {
       expect(el).toHaveAttribute('title', el.textContent);
     });
   });
+
+  it('renders no interactive control even for a targeted entry (popover is not a focus trigger)', () => {
+    seed([{ ...makeEntry(1), sessionId: 'session-1' }]);
+    render(<ActivityLogPopover />);
+
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+  });
 });
