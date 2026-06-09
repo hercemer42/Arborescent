@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-09T15:27:50.428Z'
+updated: '2026-06-09T19:17:20.287Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -585,7 +585,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -18880,7 +18880,7 @@ nodes:
       status: pending
   550cf0db-6b43-43d9-8d43-7956b3fdc2d8:
     id: 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
-    content: Add shortcut for zoom mode
+    content: Add keyboard shortcut for zoom mode
     children:
       - c9f17b1d-ae80-4f28-bb4f-787e68111c4b
       - aa5c742c-e812-491c-8f1b-32e27d69cbf0
@@ -115079,6 +115079,7 @@ nodes:
       - 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
       - 5d52678f-7038-48ca-b6fc-d6270c5d3578
       - 46d82a92-e697-49c2-af85-3d2d3638108a
+      - c550a6d0-e6a9-42a4-a783-bfc83bc8e73f
     metadata:
       status: pending
       isBlueprint: true
@@ -124087,7 +124088,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - c550a6d0-e6a9-42a4-a783-bfc83bc8e73f
+      - 7ead8f16-4d57-4894-a15b-e58540418314
     metadata:
       status: pending
       isBlueprint: true
@@ -134814,10 +134815,8 @@ nodes:
     id: 1cfc188d-85a2-4343-86e9-08387b5b1906
     content: Meta features
     children:
-      - 5354a2da-5656-4bfa-8504-a289df173f5e
       - f32c4a05-bbea-4351-9b35-137969c79c6f
       - 330bcfd9-a72e-4b65-a4a7-4ff1549d046d
-      - 040479d8-bbb3-46fe-a873-a17107eb4cc0
       - eb07aab7-8025-4e5d-9870-a75bd527080e
       - be564923-85bd-4b28-8438-baf19e8209a0
       - f5e010e7-d00c-4baf-9b49-13d07c816e98
@@ -134825,7 +134824,7 @@ nodes:
       - 45f1a5a0-dae3-4080-97ed-b8e324b79a64
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   0bc1a277-e16d-48c7-8116-74627a91935a:
@@ -141046,55 +141045,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5354a2da-5656-4bfa-8504-a289df173f5e:
-    id: 5354a2da-5656-4bfa-8504-a289df173f5e
-    content: MCP, historization, database
-    children:
-      - e6026305-a3b6-428a-9884-7272e3ade182
-      - c4e8934e-ea80-401a-83b4-74b60eb7c71a
-      - d2db2f1c-8b42-49ea-baa9-e77e8d5ccfb7
-      - 13953905-1845-495d-a838-3d3874500a0c
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  e6026305-a3b6-428a-9884-7272e3ade182:
-    id: e6026305-a3b6-428a-9884-7272e3ade182
-    content: MCP-only content access (in progress) — read and write tree state via MCP instead of re-sending CONTENT each step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4e8934e-ea80-401a-83b4-74b60eb7c71a:
-    id: c4e8934e-ea80-401a-83b4-74b60eb7c71a
-    content: Content historization with on-demand history queries — keeps superseded decisions out of the main view, queryable when needed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2db2f1c-8b42-49ea-baa9-e77e8d5ccfb7:
-    id: d2db2f1c-8b42-49ea-baa9-e77e8d5ccfb7
-    content: Content versioning for pinning and rollback — refinements create new versions, in-flight runs stay pinned
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  13953905-1845-495d-a838-3d3874500a0c:
-    id: 13953905-1845-495d-a838-3d3874500a0c
-    content: Local database for history, queue, and indexing — `.arbo` stays canonical, DB as derived index
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   f32c4a05-bbea-4351-9b35-137969c79c6f:
     id: f32c4a05-bbea-4351-9b35-137969c79c6f
     content: Workflow and prompt design
@@ -141257,595 +141207,6 @@ nodes:
   83c0c4f2-d4d1-4d97-9f77-c407155e1048:
     id: 83c0c4f2-d4d1-4d97-9f77-c407155e1048
     content: Privacy-first contribution pipeline — opt-in raw sharing, pattern extraction without raw bodies, or differential-privacy-style aggregation; design before contribution flow exists
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  040479d8-bbb3-46fe-a873-a17107eb4cc0:
-    id: 040479d8-bbb3-46fe-a873-a17107eb4cc0
-    content: Content model evolution
-    children:
-      - 8ab71234-b295-4cd8-8ef2-f796985b84a2
-      - 8b8a34cb-2320-42eb-9e3f-a35ee2d53375
-      - 79326895-a330-4b3c-888b-016e614648ab
-      - c50c3315-62cd-4e14-b5c8-577af9e9434b
-      - dc45ded6-0d9d-427e-af97-0b42b6a41c50
-      - eaddede8-a703-4755-b2c3-8b8ec1f9daa9
-      - 73f0fcec-dad0-4583-bbce-f956bb7eda0f
-      - 97e2c222-fba3-4e52-a2b2-98c13ae6d064
-      - 60f07b62-1ed8-4108-8b01-9962c933b2ca
-      - 68b1d1d4-a50c-4470-b8c4-9ddc21446db2
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  8ab71234-b295-4cd8-8ef2-f796985b84a2:
-    id: 8ab71234-b295-4cd8-8ef2-f796985b84a2
-    content: Task-list opt-in and done/total aggregation (Chunk 1)
-    children:
-      - 41b981a8-0b45-4f91-b279-374c2406841e
-      - a983b473-4279-4b94-94b8-0734056c503e
-      - d6618c8d-2b14-4379-bb88-b2bd7e69d595
-      - 0d43c312-3bc5-4265-bea1-0a719428d96e
-      - 6ed8f2e1-5e0e-4de4-a572-d7e28ca881d9
-      - b58e807f-5ccc-49ca-9d48-8ebd9a78f9e3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41b981a8-0b45-4f91-b279-374c2406841e:
-    id: 41b981a8-0b45-4f91-b279-374c2406841e
-    content: Nodes are not task lists by default — `isTaskList` boolean in metadata, defaults false on new nodes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a983b473-4279-4b94-94b8-0734056c503e:
-    id: a983b473-4279-4b94-94b8-0734056c503e
-    content: 'Migration: existing `.arbo` files auto-flag all nodes as task lists so current behaviour is preserved'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6618c8d-2b14-4379-bb88-b2bd7e69d595:
-    id: d6618c8d-2b14-4379-bb88-b2bd7e69d595
-    content: Non-task nodes show no checkbox or status marker UI — plain content
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d43c312-3bc5-4265-bea1-0a719428d96e:
-    id: 0d43c312-3bc5-4265-bea1-0a719428d96e
-    content: Right-click "Mark as task list" action flips the flag and propagates visually to descendants
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ed8f2e1-5e0e-4de4-a572-d7e28ca881d9:
-    id: 6ed8f2e1-5e0e-4de4-a572-d7e28ca881d9
-    content: Every node displays a done/total count derived from its task descendants; leaves are 0/1 or 1/1, non-task content shows no count
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b58e807f-5ccc-49ca-9d48-8ebd9a78f9e3:
-    id: b58e807f-5ccc-49ca-9d48-8ebd9a78f9e3
-    content: 'Out of scope: per-node custom progress logic, due dates, assignees'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b8a34cb-2320-42eb-9e3f-a35ee2d53375:
-    id: 8b8a34cb-2320-42eb-9e3f-a35ee2d53375
-    content: Node type primitive (Chunk 4)
-    children:
-      - 6b47cac0-ab69-42c6-b4f4-69219fcef532
-      - d117bc89-4790-4519-b0bb-c3cbab8b44fa
-      - c8d2b278-926e-4363-afd5-1d356c1d6cc1
-      - edb6febe-d62a-43ed-9c86-2cf47e2bcc5f
-      - fb12cb5e-bb23-4c71-b987-8af358a439b8
-      - 9a6938f8-d9f1-418e-8942-a7e7d05c1862
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6b47cac0-ab69-42c6-b4f4-69219fcef532:
-    id: 6b47cac0-ab69-42c6-b4f4-69219fcef532
-    content: Introduce `type` field on every node; existing nodes default to type `tree`; all current behaviour derives from type `tree`
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d117bc89-4790-4519-b0bb-c3cbab8b44fa:
-    id: d117bc89-4790-4519-b0bb-c3cbab8b44fa
-    content: Node shape becomes id, type, metadata, children, type-specific payload
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8d2b278-926e-4363-afd5-1d356c1d6cc1:
-    id: c8d2b278-926e-4363-afd5-1d356c1d6cc1
-    content: Type-agnostic operations (move, rename, zoom, blueprint, context, workflow) work identically across types
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  edb6febe-d62a-43ed-9c86-2cf47e2bcc5f:
-    id: edb6febe-d62a-43ed-9c86-2cf47e2bcc5f
-    content: Type-specific operations live inside the node's editor pane
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fb12cb5e-bb23-4c71-b987-8af358a439b8:
-    id: fb12cb5e-bb23-4c71-b987-8af358a439b8
-    content: No user-visible changes in this chunk — lays track for what comes next
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9a6938f8-d9f1-418e-8942-a7e7d05c1862:
-    id: 9a6938f8-d9f1-418e-8942-a7e7d05c1862
-    content: 'Out of scope: multiple types per node, type inheritance, dynamic type-switching'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  79326895-a330-4b3c-888b-016e614648ab:
-    id: 79326895-a330-4b3c-888b-016e614648ab
-    content: Markdown node type (Chunk 5)
-    children:
-      - b4f26c73-db5d-41b7-97df-4ae24492ff93
-      - 994196cb-b457-47f6-9078-b65d38265308
-      - e708f8e3-49b9-4e6c-9760-a19703c497ab
-      - 9b77d2f8-381d-4504-b801-bfffd8b41644
-      - c2b2ad2b-9b96-49dd-9ad3-1210f13c4ca0
-      - 0bd6f9c2-1940-4f10-8561-4b56c4dcbafb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4f26c73-db5d-41b7-97df-4ae24492ff93:
-    id: b4f26c73-db5d-41b7-97df-4ae24492ff93
-    content: Typed node with no children, opens a pane with a markdown editor
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  994196cb-b457-47f6-9078-b65d38265308:
-    id: 994196cb-b457-47f6-9078-b65d38265308
-    content: CodeMirror 6 as the editor — syntax highlighting, keymaps, small footprint, MIT
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e708f8e3-49b9-4e6c-9760-a19703c497ab:
-    id: e708f8e3-49b9-4e6c-9760-a19703c497ab
-    content: '"New markdown node" action in the right-click menu creates a typed node'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b77d2f8-381d-4504-b801-bfffd8b41644:
-    id: 9b77d2f8-381d-4504-b801-bfffd8b41644
-    content: Markdown content is the node's payload; AI prompt-building renders it as-is, no wrapping
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c2b2ad2b-9b96-49dd-9ad3-1210f13c4ca0:
-    id: c2b2ad2b-9b96-49dd-9ad3-1210f13c4ca0
-    content: Read-only preview mode toggle if low cost, defer otherwise
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0bd6f9c2-1940-4f10-8561-4b56c4dcbafb:
-    id: 0bd6f9c2-1940-4f10-8561-4b56c4dcbafb
-    content: 'Out of scope: rich-text WYSIWYG, embedded media, collaborative editing'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c50c3315-62cd-4e14-b5c8-577af9e9434b:
-    id: c50c3315-62cd-4e14-b5c8-577af9e9434b
-    content: Database node type (Chunk 9)
-    children:
-      - 1669bc72-3582-4dd9-80c5-551c17b61b89
-      - d1b727d9-aeb1-4c8e-aa93-1e46d4cb4510
-      - 07814d24-dd7e-4d05-bfcf-e5c37146f846
-      - bab079dd-5dbf-43a3-af97-775c8ddfad70
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1669bc72-3582-4dd9-80c5-551c17b61b89:
-    id: 1669bc72-3582-4dd9-80c5-551c17b61b89
-    content: Typed node whose children are rows with typed attributes, rendered as a sortable/filterable table
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d1b727d9-aeb1-4c8e-aa93-1e46d4cb4510:
-    id: d1b727d9-aeb1-4c8e-aa93-1e46d4cb4510
-    content: 'v1 scope: columns as union of attributes across rows, inline edit for text columns only, sort and filter on any column'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  07814d24-dd7e-4d05-bfcf-e5c37146f846:
-    id: 07814d24-dd7e-4d05-bfcf-e5c37146f846
-    content: 'Out of scope for v1: formulas, relations, rollups, multiple views, grouping — these are where database mode becomes a 3-month feature'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bab079dd-5dbf-43a3-af97-775c8ddfad70:
-    id: bab079dd-5dbf-43a3-af97-775c8ddfad70
-    content: Designed against real Linear data (Chunk 8) rather than in the abstract
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc45ded6-0d9d-427e-af97-0b42b6a41c50:
-    id: dc45ded6-0d9d-427e-af97-0b42b6a41c50
-    content: File decomposition — `.arbo` as master index (Chunk 6)
-    children:
-      - 37f53411-1b7d-4382-8f94-ec74f8753170
-      - fb85d654-a5d0-433f-8b5e-b47d53530368
-      - 44a0f89b-56e7-4765-a978-2418b4d9af99
-      - 35091334-e317-4438-965a-a5a945c5c460
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  37f53411-1b7d-4382-8f94-ec74f8753170:
-    id: 37f53411-1b7d-4382-8f94-ec74f8753170
-    content: 'Design spike first (~2-3 days): pin the layout and cross-file reference model before any implementation'
-    children:
-      - ba73b47d-f8cf-4eb5-a2e0-9ae86e79febc
-      - 717de4e9-58f0-48d7-a7df-1295f6da7d6f
-      - 99bac252-9de9-4c31-8490-98a54852f6b3
-      - 3ba2b79e-bfc8-4729-81cc-a6a8fe437362
-      - e0ad3e95-2755-4020-9fdb-8c2fe7c04d5d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba73b47d-f8cf-4eb5-a2e0-9ae86e79febc:
-    id: ba73b47d-f8cf-4eb5-a2e0-9ae86e79febc
-    content: Each node type gets its natural serialization home — tree/task-list → `.arbo`, markdown → `.md`, context → `.context.arbo` or similar, blueprint → directory, database → rows file, external-cache → `.cache.json`
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  717de4e9-58f0-48d7-a7df-1295f6da7d6f:
-    id: 717de4e9-58f0-48d7-a7df-1295f6da7d6f
-    content: Stable node ids that survive file rename and move
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  99bac252-9de9-4c31-8490-98a54852f6b3:
-    id: 99bac252-9de9-4c31-8490-98a54852f6b3
-    content: Cross-file references by id, resolved via a project manifest or equivalent
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ba2b79e-bfc8-4729-81cc-a6a8fe437362:
-    id: 3ba2b79e-bfc8-4729-81cc-a6a8fe437362
-    content: Load/save semantics — lazy vs eager traversal on "open project", pick one and document
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0ad3e95-2755-4020-9fdb-8c2fe7c04d5d:
-    id: e0ad3e95-2755-4020-9fdb-8c2fe7c04d5d
-    content: Workflow execution state location — per-file or project-level
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fb85d654-a5d0-433f-8b5e-b47d53530368:
-    id: fb85d654-a5d0-433f-8b5e-b47d53530368
-    content: Implementation only after the spike is accepted
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  44a0f89b-56e7-4765-a978-2418b4d9af99:
-    id: 44a0f89b-56e7-4765-a978-2418b4d9af99
-    content: 'Migration: single `.arbo` files load unchanged as a virtual project with no child files'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  35091334-e317-4438-965a-a5a945c5c460:
-    id: 35091334-e317-4438-965a-a5a945c5c460
-    content: 'Out of scope for v1: multi-user concurrent editing, conflict resolution on shared disk, real-time sync'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eaddede8-a703-4755-b2c3-8b8ec1f9daa9:
-    id: eaddede8-a703-4755-b2c3-8b8ec1f9daa9
-    content: Claude Skills format alignment for contexts — interop with the Skills ecosystem, distribution channel, no format invention tax
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  73f0fcec-dad0-4583-bbce-f956bb7eda0f:
-    id: 73f0fcec-dad0-4583-bbce-f956bb7eda0f
-    content: External data source freshness semantics — live-read vs snapshot-at-reference-time chosen explicitly per reference; Arborescent never owns the external content, agent fetches on demand and browser panel renders for humans
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  97e2c222-fba3-4e52-a2b2-98c13ae6d064:
-    id: 97e2c222-fba3-4e52-a2b2-98c13ae6d064
-    content: Read-only external MCP integration framework (Chunk 7)
-    children:
-      - 2b9523b6-9d8f-4948-8f7f-8ab8038a6b25
-      - a40f8a23-7ac9-4aed-bea8-c9a422b4c45a
-      - e5196227-5b5e-4cd7-bda0-b5d41187a224
-      - 22fa8942-ce67-453f-92be-4b29a8a5562f
-      - ce62ce4a-57f8-4d75-9c22-29f7ec428657
-      - 8e7888f7-a5fe-4c44-901d-4a310014e842
-      - 917a95eb-ff74-4e00-8ca8-658323754500
-      - ef1ccb8e-f0a3-4fb0-b6b5-24bbcbdbef70
-      - aaaa0690-7083-4593-8b80-10b05543d3a0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b9523b6-9d8f-4948-8f7f-8ab8038a6b25:
-    id: 2b9523b6-9d8f-4948-8f7f-8ab8038a6b25
-    content: Generic adapter for reading lists and items from external MCP sources, rendered as nodes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a40f8a23-7ac9-4aed-bea8-c9a422b4c45a:
-    id: a40f8a23-7ac9-4aed-bea8-c9a422b4c45a
-    content: 'Adapter interface: `list()`, `get(item-id)`, `refresh()`, auth-config; no write methods'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5196227-5b5e-4cd7-bda0-b5d41187a224:
-    id: e5196227-5b5e-4cd7-bda0-b5d41187a224
-    content: Imported items become external-typed nodes with metadata including `externalUrl` and `sourceAdapter`
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  22fa8942-ce67-453f-92be-4b29a8a5562f:
-    id: 22fa8942-ce67-453f-92be-4b29a8a5562f
-    content: User-triggered refresh (button or auto-on-focus); no real-time sync
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ce62ce4a-57f8-4d75-9c22-29f7ec428657:
-    id: ce62ce4a-57f8-4d75-9c22-29f7ec428657
-    content: Caching so reopening a file doesn't thrash the API
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e7888f7-a5fe-4c44-901d-4a310014e842:
-    id: 8e7888f7-a5fe-4c44-901d-4a310014e842
-    content: Click-through opens `externalUrl` in the browser panel — the native UI is the editor
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  917a95eb-ff74-4e00-8ca8-658323754500:
-    id: 917a95eb-ff74-4e00-8ca8-658323754500
-    content: Writes go through Claude in the terminal panel using its own MCP access, never through Arborescent directly
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef1ccb8e-f0a3-4fb0-b6b5-24bbcbdbef70:
-    id: ef1ccb8e-f0a3-4fb0-b6b5-24bbcbdbef70
-    content: 'Auth: OAuth for tools that need it, API key for simpler ones, handled per-adapter'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aaaa0690-7083-4593-8b80-10b05543d3a0:
-    id: aaaa0690-7083-4593-8b80-10b05543d3a0
-    content: 'Out of scope: bi-directional sync, offline edits, conflict resolution, write APIs'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  60f07b62-1ed8-4108-8b01-9962c933b2ca:
-    id: 60f07b62-1ed8-4108-8b01-9962c933b2ca
-    content: First external integration — Linear (Chunk 8)
-    children:
-      - f52cc938-a420-4843-91ae-535eded2140f
-      - 450320ac-a484-4d23-9a8e-f1a8b8ed1ad0
-      - efaa1b2c-69ac-4c7c-9647-5bbc309dc02e
-      - 552ceaf5-25b1-4f52-b485-39d7c6241c69
-      - 64e482f0-9c68-4b95-9cfc-b6a264014b5c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f52cc938-a420-4843-91ae-535eded2140f:
-    id: f52cc938-a420-4843-91ae-535eded2140f
-    content: Reference implementation of the adapter interface
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  450320ac-a484-4d23-9a8e-f1a8b8ed1ad0:
-    id: 450320ac-a484-4d23-9a8e-f1a8b8ed1ad0
-    content: LIST and GET only — teams, projects, issues
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  efaa1b2c-69ac-4c7c-9647-5bbc309dc02e:
-    id: efaa1b2c-69ac-4c7c-9647-5bbc309dc02e
-    content: Each issue imported as an external-typed node with its Linear URL as `externalUrl`
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  552ceaf5-25b1-4f52-b485-39d7c6241c69:
-    id: 552ceaf5-25b1-4f52-b485-39d7c6241c69
-    content: Refresh brings in new/updated issues
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  64e482f0-9c68-4b95-9cfc-b6a264014b5c:
-    id: 64e482f0-9c68-4b95-9cfc-b6a264014b5c
-    content: Used to discover and fix adapter-interface gaps before going wider
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  68b1d1d4-a50c-4470-b8c4-9ddc21446db2:
-    id: 68b1d1d4-a50c-4470-b8c4-9ddc21446db2
-    content: Additional external integrations (Chunk 10)
-    children:
-      - cb19a2f7-292e-4dcb-881e-b47021537eea
-      - 5fb8b28c-38b8-46fe-98f7-d1226ed5a371
-      - fd18532e-9dd2-4d7f-8555-466bb1b1ff71
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb19a2f7-292e-4dcb-881e-b47021537eea:
-    id: cb19a2f7-292e-4dcb-881e-b47021537eea
-    content: Notion (pages, databases)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5fb8b28c-38b8-46fe-98f7-d1226ed5a371:
-    id: 5fb8b28c-38b8-46fe-98f7-d1226ed5a371
-    content: Other tools as user demand emerges
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd18532e-9dd2-4d7f-8555-466bb1b1ff71:
-    id: fd18532e-9dd2-4d7f-8555-466bb1b1ff71
-    content: Each new integration reuses the framework from Chunk 7 with minimal new code; if not, the framework needs refinement
     children: []
     metadata:
       status: pending
@@ -212859,6 +212220,7 @@ nodes:
       - 575dc4ef-d2de-4c37-882f-27e9016b1d3c
     metadata:
       status: pending
+      expanded: false
   575dc4ef-d2de-4c37-882f-27e9016b1d3c:
     id: 575dc4ef-d2de-4c37-882f-27e9016b1d3c
     content: If a step is paused
@@ -217418,466 +216780,31 @@ nodes:
     id: c550a6d0-e6a9-42a4-a783-bfc83bc8e73f
     content: Node proceeds to next workflow step even if it is stopped
     children:
-      - 978e0130-bb68-4501-bfca-2a75d9a61800
-      - 86a9e66f-9f55-42a2-9c94-5b90ce6b9a1a
-      - a3930738-c732-4197-877b-cd84a628bac9
-      - 63becb59-6689-4807-8e9c-598ef7ee60a2
-      - f59e95df-7c93-488b-8e5b-5001edff22a3
-      - e2383d52-d6dc-45e2-bdd5-588f7c8b715b
-      - 7019b824-ed98-4410-b26b-6fc391c0b210
-      - 4e853f98-6ebf-4103-88de-ec2125430d8e
-      - acf15ce4-183f-40b5-ac65-b0eb1d23e70a
-      - 57544f80-dc53-42b1-ba88-e87f362f3187
-      - 7a8662f5-efbc-44c5-9748-8be6117ac47f
-      - dd03ad61-715d-40da-b609-da9534e93612
-      - 13e07cf2-4d95-46e6-86f3-45e15342de58
-      - 9bf9645f-bea4-4933-b3a0-4fa1f9f76c05
-      - c4436ad5-dfc8-4dba-b47b-b4e964e4f120
-      - 877f6cf6-703b-4dbb-8c51-dcd738554599
-      - db7e9186-59ac-4e64-9c4d-9ac45772c876
-      - 4b1ed925-4e20-42e6-8046-3ba7c1005f68
+      - f84449e6-7740-45b1-a761-7f446eea478a
+      - fda6da33-663c-4d4d-9881-64bd6e21619b
+      - 14d607c6-1bd7-4d39-9c60-0b1f0098fcf3
+      - aafcab81-d0ab-4752-be00-c1594ca13ff3
+      - 8587189f-cf4a-4a46-8dc4-e176b5fe707a
+      - 8f8a9bb0-4e89-4242-a2cc-d45f4bddaab8
+      - dc6c427b-1289-408a-bed2-0ae9fa15372d
+      - 5372e179-007e-4dec-a0a2-6d30254fd305
+      - 85830729-c85a-450c-9525-aaf979ad6420
+      - 6acd1f3b-1f54-4233-b3df-3b78a0b3bbe6
+      - 3b232d92-63de-4e3d-981f-2520854e7f52
+      - 4752dc09-e095-4868-b8b4-cf2dd0918acb
+      - d9dc41dd-86b4-4365-9ed5-de5aab4f63cd
+      - eff6edbd-becf-4cf9-a8c6-a4c1eba998c2
+      - a1e0ed5e-2b24-4157-aea4-0152841e16dc
+      - f8815d8d-2e73-4f34-bc48-b707f1a2aa81
+      - 0331f624-eeec-4c90-8146-f6201c0e68c4
+      - 80e0747c-4ca5-415b-bf6b-dce9ac063afa
+      - 6d5fe23c-48f7-43d2-a0ad-dd017f8aa7e0
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
       sessionId: 0609884b-89d3-4fc5-8735-e3034c7f6bdb
-  978e0130-bb68-4501-bfca-2a75d9a61800:
-    id: 978e0130-bb68-4501-bfca-2a75d9a61800
-    content: worktree — fix/stopped-node-submit-guard at ~/dev/Arborescent-worktrees/fix-stopped-node-submit-guard
-    children:
-      - 04bf5e01-147a-4efe-9fd1-6da2d28bf9a2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  04bf5e01-147a-4efe-9fd1-6da2d28bf9a2:
-    id: 04bf5e01-147a-4efe-9fd1-6da2d28bf9a2
-    content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-stopped-node-submit-guard)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  86a9e66f-9f55-42a2-9c94-5b90ce6b9a1a:
-    id: 86a9e66f-9f55-42a2-9c94-5b90ce6b9a1a
-    content: Summary
-    children:
-      - f5b28589-bdf4-41dd-96c2-cb62494c8865
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f5b28589-bdf4-41dd-96c2-cb62494c8865:
-    id: f5b28589-bdf4-41dd-96c2-cb62494c8865
-    content: After a workflow is stopped mid-prompt, the AI's later submit_step_output/announce_step_done call still advances the workflow because the MCP server never verifies the bound node is still in play
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a3930738-c732-4197-877b-cd84a628bac9:
-    id: a3930738-c732-4197-877b-cd84a628bac9
-    content: Steps to reproduce
-    children:
-      - 6c623cd3-35f7-44ce-908a-6279d23270bc
-      - 60f311ad-fa7a-4191-bca2-d0de9e398d6e
-      - dd581721-fd0e-40de-b8b8-b49f62f562b5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c623cd3-35f7-44ce-908a-6279d23270bc:
-    id: 6c623cd3-35f7-44ce-908a-6279d23270bc
-    content: 'Precondition: a workflow step is running on a terminal and its prompt has been dispatched while the AI is still processing it'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  60f311ad-fa7a-4191-bca2-d0de9e398d6e:
-    id: 60f311ad-fa7a-4191-bca2-d0de9e398d6e
-    content: 'User action: the user stops the workflow (stopWorkflow) while the prompt is still processing, which deletes the node''s entry from workflowExecutionStates'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd581721-fd0e-40de-b8b8-b49f62f562b5:
-    id: dd581721-fd0e-40de-b8b8-b49f62f562b5
-    content: 'Observation: when the prompt finishes, the AI calls submit_step_output (origin "explicit") or announce_step_done and Arborescent accepts the write and advances to the next step instead of rejecting it'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  63becb59-6689-4807-8e9c-598ef7ee60a2:
-    id: 63becb59-6689-4807-8e9c-598ef7ee60a2
-    content: Expected behavior
-    children:
-      - 0f6b9534-d455-4176-8041-873954e2ffcc
-      - 12923ff9-76a6-48d2-a9a5-21b06d83c9c5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f6b9534-d455-4176-8041-873954e2ffcc:
-    id: 0f6b9534-d455-4176-8041-873954e2ffcc
-    content: 'Happy path: a submit/announce against a node that is no longer running is rejected with a clear "node is not in play" message and the workflow does not advance'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  12923ff9-76a6-48d2-a9a5-21b06d83c9c5:
-    id: 12923ff9-76a6-48d2-a9a5-21b06d83c9c5
-    content: 'Edge cases: the Stop hook''s own safety-net submit is already rejected (origin "safety-net"); an explicit submit arriving after a stop should be treated the same way — no advance and no content write'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f59e95df-7c93-488b-8e5b-5001edff22a3:
-    id: f59e95df-7c93-488b-8e5b-5001edff22a3
-    content: Actual behavior
-    children:
-      - dc21b626-b5dc-4954-a623-5318c414b0ed
-      - 53a75b66-c634-47dc-8aea-b55d033cefba
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc21b626-b5dc-4954-a623-5318c414b0ed:
-    id: dc21b626-b5dc-4954-a623-5318c414b0ed
-    content: submitStepOutput runs binding/mode/structure checks then calls applier.apply with no run-state guard, so the content is applied and the workflow advances
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  53a75b66-c634-47dc-8aea-b55d033cefba:
-    id: 53a75b66-c634-47dc-8aea-b55d033cefba
-    content: 'User-visible symptom: a workflow the user explicitly stopped resumes and advances on its own, the stopped step''s output is committed, and the next step''s prompt can fire'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2383d52-d6dc-45e2-bdd5-588f7c8b715b:
-    id: e2383d52-d6dc-45e2-bdd5-588f7c8b715b
-    content: Suspected cause
-    children:
-      - ace01e05-b3ed-4e54-a1ac-f7ea0da42917
-      - 856766a8-e3de-4216-baab-7169c03000d7
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ace01e05-b3ed-4e54-a1ac-f7ea0da42917:
-    id: ace01e05-b3ed-4e54-a1ac-f7ea0da42917
-    content: 'Code path: src/main/services/mcpSubmitOutputTool.ts submitStepOutput — binding/mode/structure checks then applier.apply (~line 160) with no check against running state'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  856766a8-e3de-4216-baab-7169c03000d7:
-    id: 856766a8-e3de-4216-baab-7169c03000d7
-    content: 'Why the existing guard does not cover it: run-state ("running"/"awaiting-validation") lives only in the renderer''s workflowExecutionStates, while the MCP server''s TreeReadState carries only nodes/rootNodeId/ancestorRegistry — so the main process cannot see that stopWorkflow already deleted the node''s run-state entry'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7019b824-ed98-4410-b26b-6fc391c0b210:
-    id: 7019b824-ed98-4410-b26b-6fc391c0b210
-    content: Affected files
-    children:
-      - 350e486b-0d19-424d-88a5-53ac0c3f87d2
-      - bbf16cfe-a8eb-491e-91c6-f2e79be46beb
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  350e486b-0d19-424d-88a5-53ac0c3f87d2:
-    id: 350e486b-0d19-424d-88a5-53ac0c3f87d2
-    content: 'Primary suspect: src/main/services/mcpSubmitOutputTool.ts (submitStepOutput — missing run-state guard before applier.apply)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bbf16cfe-a8eb-491e-91c6-f2e79be46beb:
-    id: bbf16cfe-a8eb-491e-91c6-f2e79be46beb
-    content: 'Related surface: src/main/services/mcpWriteTools.ts (executeAnnounceStepDone / mark_step_complete share the missing check), src/renderer/services/mcpStepOutputApplierService.ts (applyStepOutput applies without checking workflowExecutionStates), src/renderer/store/tree/actions/workflowExecutionActions.ts (stopWorkflow deletes the run-state entry ~line 447; handleAutonomousFeedback already early-exits when the entry is missing)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e853f98-6ebf-4103-88de-ec2125430d8e:
-    id: 4e853f98-6ebf-4103-88de-ec2125430d8e
-    content: Regression window
-    children:
-      - abc61076-8823-4313-8302-4c25d02accc8
-      - 9da71f6c-c3e1-4684-911f-540f387f42d0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  abc61076-8823-4313-8302-4c25d02accc8:
-    id: abc61076-8823-4313-8302-4c25d02accc8
-    content: 'Last known good commit/release: not yet bisected — the run-state guard appears to have never existed on the MCP submit path'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  9da71f6c-c3e1-4684-911f-540f387f42d0:
-    id: 9da71f6c-c3e1-4684-911f-540f387f42d0
-    content: 'First observed broken: reported 2026-06-09; present since autonomous submit_step_output gained main-process binding resolution'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  acf15ce4-183f-40b5-ac65-b0eb1d23e70a:
-    id: acf15ce4-183f-40b5-ac65-b0eb1d23e70a
-    content: Severity
-    children:
-      - 04fb15e5-93af-41a6-8720-4c2e989bfc02
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  04fb15e5-93af-41a6-8720-4c2e989bfc02:
-    id: 04fb15e5-93af-41a6-8720-4c2e989bfc02
-    content: Medium-high — violates an explicit user Stop, commits unwanted output, and can auto-advance/auto-send the next step; a loss-of-control and data-integrity issue rather than a crash
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  57544f80-dc53-42b1-ba88-e87f362f3187:
-    id: 57544f80-dc53-42b1-ba88-e87f362f3187
-    content: Notes
-    children:
-      - b9f8edde-28c7-4f77-bee9-5c9221f3849c
-      - 168180d3-54a5-486d-be5d-4e348b8e0307
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9f8edde-28c7-4f77-bee9-5c9221f3849c:
-    id: b9f8edde-28c7-4f77-bee9-5c9221f3849c
-    content: 'Disambiguate from look-alikes: distinct from the "Stop dropped: no running node" stall (completed steps failing to advance on reload) and from the decomposition double-advance — those are missing or duplicate advances, whereas this is an advance that should have been blocked'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  168180d3-54a5-486d-be5d-4e348b8e0307:
-    id: 168180d3-54a5-486d-be5d-4e348b8e0307
-    content: 'UX/telemetry gap: no Activity-log entry distinguishes "advanced after stop" from a normal advance; a rejected post-stop submit should emit a notifyWorkflow entry so the user can see the stop was honored'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a8662f5-efbc-44c5-9748-8be6117ac47f:
-    id: 7a8662f5-efbc-44c5-9748-8be6117ac47f
-    content: Technical refinement
-    children:
-      - dc8b7526-0d38-4abe-93de-93bd0b05f9fc
-      - c2f67019-4fad-4f6a-9f03-c9689762e8bf
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc8b7526-0d38-4abe-93de-93bd0b05f9fc:
-    id: dc8b7526-0d38-4abe-93de-93bd0b05f9fc
-    content: Flag complications
-    children:
-      - f8325e6c-71a5-4503-a6a6-e272165a7d17
-      - cdffee2a-4f31-4ceb-baa2-5647aed28d2f
-      - b204ba02-e2a5-4fd0-a9e4-f53484969c61
-      - eb464d1e-e0d3-4ab1-948c-197b0528c167
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f8325e6c-71a5-4503-a6a6-e272165a7d17:
-    id: f8325e6c-71a5-4503-a6a6-e272165a7d17
-    content: 'Edge case/risk: "in play" must count both running AND awaiting-validation entries — reject only when NO workflowExecutionStates entry exists (the state stopWorkflow leaves behind), or legitimate manual-collab and mid-review submits get wrongly refused'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cdffee2a-4f31-4ceb-baa2-5647aed28d2f:
-    id: cdffee2a-4f31-4ceb-baa2-5647aed28d2f
-    content: 'Risk: the same missing check exists on announce_step_done and mark_step_complete — guarding only submit_step_output leaves two open holes, so the guard must cover all three write paths'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b204ba02-e2a5-4fd0-a9e4-f53484969c61:
-    id: b204ba02-e2a5-4fd0-a9e4-f53484969c61
-    content: 'Out of scope: the inverse "Stop dropped: no running node" reload-stall and the decomposition double-advance are different failure modes and are not addressed here'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eb464d1e-e0d3-4ab1-948c-197b0528c167:
-    id: eb464d1e-e0d3-4ab1-948c-197b0528c167
-    content: 'ROI: contained — run-state already exists in the renderer, so the only real cost is plumbing a rejection result back through the applier IPC boundary; worth it to honor an explicit user Stop'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c2f67019-4fad-4f6a-9f03-c9689762e8bf:
-    id: c2f67019-4fad-4f6a-9f03-c9689762e8bf
-    content: Summarise the approach
-    children:
-      - 4ef4926e-7c44-4f08-86c8-c8d0baa1e99a
-      - 433a3792-a72a-4c9e-b00e-e3a760a36edf
-      - b475ddfd-5405-4281-8ba4-640918e71ddb
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ef4926e-7c44-4f08-86c8-c8d0baa1e99a:
-    id: 4ef4926e-7c44-4f08-86c8-c8d0baa1e99a
-    content: The guard cannot be a one-liner in the main process — the MCP server has zero visibility into workflowExecutionStates (the root cause), so the check lives in the renderer applier (mcpStepOutputApplierService) and returns a structured "not-in-play" result that the main-process handlers translate into a coded MCP error, rather than duplicating run-state into TreeReadState
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  433a3792-a72a-4c9e-b00e-e3a760a36edf:
-    id: 433a3792-a72a-4c9e-b00e-e3a760a36edf
-    content: Apply the identical guard across submit_step_output, announce_step_done, and mark_step_complete so all three honor a stop; "in play" = an entry exists in workflowExecutionStates (running or awaiting-validation)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b475ddfd-5405-4281-8ba4-640918e71ddb:
-    id: b475ddfd-5405-4281-8ba4-640918e71ddb
-    content: Surface the refusal via a notifyWorkflow / Activity-log entry so the user can see the stop was honored — closes the telemetry gap called out in Notes
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd03ad61-715d-40da-b609-da9534e93612:
-    id: dd03ad61-715d-40da-b609-da9534e93612
-    content: 'TDD finding (for implementation): the genuinely-uncovered advance path is announce_step_done / mark_step_complete → treeMutator.mutate → renderer mcpTreeMutatorService.applyMutation (applyMarkComplete), which writes status=completed with NO run-state check. submit_step_output already refuses a stopped autonomous node via applier/routing-disagreement (functionally no advance, but a misleading message). So land the run-state guard in the renderer write handlers — applyMutation (mark-complete) and applyStepOutput (clearer not-in-play signal) — keyed on isStructurallyAutonomous(node) && no workflowExecutionStates entry; the main-process WriteTools/SubmitOutputTool just surface the renderer''s coded rejection. Failing specs at src/renderer/services/tests/mcpTreeMutatorRunStateGuard.test.ts (4 red guard specs + green regression pins + title-only specs for the uncertain code/notify/cross-path bits).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  13e07cf2-4d95-46e6-86f3-45e15342de58:
-    id: 13e07cf2-4d95-46e6-86f3-45e15342de58
-    content: 'Implementation done (fix/stopped-node-submit-guard): run-state guard added. (1) Shared helper isAutonomousNodeNotInPlay in src/shared/utils/autonomousStepContext.ts (structurally autonomous + no workflowExecutionStates entry; running/awaiting-validation still in play). (2) src/renderer/services/mcpTreeMutatorService.ts applyMarkComplete refuses with new code write/node-not-running — closes the real announce_step_done / mark_step_complete advance path. (3) MutationResult (shared electronApi + local mcpWriteTools) widened with optional code; executeMutation/executeAnnounceStepDone surface result.code ?? writeUpstreamFailure. (4) New code write/node-not-running + message in mcpErrorCodes.ts. (5) Submit/applier message reworded to read as "not in play" (code stays applier/routing-disagreement — already refused). Tests: mcpTreeMutatorRunStateGuard.test.ts (guard), mcpWriteTools.test.ts (code propagation), autonomousStepContext.test.ts (helper) — all green; type-check + lint clean. DEFERRED (out of scope, noted as title-only specs): notifyWorkflow/Activity-log surfacing of the refusal; a dedicated submit-path code (kept routing-disagreement to preserve the published applier contract); the undefined-workflowExecutionStates-map invalid-state edge.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9bf9645f-bea4-4933-b3a0-4fa1f9f76c05:
-    id: 9bf9645f-bea4-4933-b3a0-4fa1f9f76c05
-    content: Verification summary
-    children:
-      - 52ef5adf-3df8-44ad-833b-cfa1c3b08966
-      - 90730633-cbb0-4064-b15e-f85aead0a2ee
-      - 51cb1d28-559c-4bf2-9dd8-967bdd664f1f
-      - 0d34c633-4b1e-480d-8ecf-6b7aae7ac4c9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  52ef5adf-3df8-44ad-833b-cfa1c3b08966:
-    id: 52ef5adf-3df8-44ad-833b-cfa1c3b08966
-    content: Core guard implemented and verified — announce_step_done / mark_step_complete now refuse a stopped (not-in-play) node with code write/node-not-running and do not advance; submit_step_output already refused (message reworded). All touched test files green (225), type-check + lint clean
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  90730633-cbb0-4064-b15e-f85aead0a2ee:
-    id: 90730633-cbb0-4064-b15e-f85aead0a2ee
-    content: 'Undone: notifyWorkflow / Activity-log surfacing of the post-stop refusal — deferred as UX polish out of scope for this PR; the workflow already visibly fails to advance, and firing a user notification from the deep MCP write-handler is a new cross-layer side effect best decided separately'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  51cb1d28-559c-4bf2-9dd8-967bdd664f1f:
-    id: 51cb1d28-559c-4bf2-9dd8-967bdd664f1f
-    content: 'Undone: a dedicated submit-path not-in-play error code — submit already refuses via applier/routing-disagreement (message reworded to read as "not in play"); the code was kept to preserve the published, additive-only applier error-code contract'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d34c633-4b1e-480d-8ecf-6b7aae7ac4c9:
-    id: 0d34c633-4b1e-480d-8ecf-6b7aae7ac4c9
-    content: 'Undone: the undefined-workflowExecutionStates-map edge — an invalid store state that does not occur in production, left unhandled to avoid masking a real invariant violation'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
   33d2be81-1a1e-4f6c-aa50-dbfcbc15181d:
     id: 33d2be81-1a1e-4f6c-aa50-dbfcbc15181d
     content: worktree
@@ -218389,27 +217316,1005 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c4436ad5-dfc8-4dba-b47b-b4e964e4f120:
-    id: c4436ad5-dfc8-4dba-b47b-b4e964e4f120
+  f84449e6-7740-45b1-a761-7f446eea478a:
+    id: f84449e6-7740-45b1-a761-7f446eea478a
+    content: worktree — fix/stopped-node-submit-guard at ~/dev/Arborescent-worktrees/fix-stopped-node-submit-guard
+    children:
+      - 03daf3ef-5006-442c-b5f4-1c5e8cd80ab7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03daf3ef-5006-442c-b5f4-1c5e8cd80ab7:
+    id: 03daf3ef-5006-442c-b5f4-1c5e8cd80ab7
+    content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-stopped-node-submit-guard)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  fda6da33-663c-4d4d-9881-64bd6e21619b:
+    id: fda6da33-663c-4d4d-9881-64bd6e21619b
+    content: Summary
+    children:
+      - e2d87fc9-379c-442f-bead-56869c32d95b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2d87fc9-379c-442f-bead-56869c32d95b:
+    id: e2d87fc9-379c-442f-bead-56869c32d95b
+    content: After a workflow is stopped mid-prompt, the AI's later submit_step_output/announce_step_done call still advances the workflow because the MCP server never verifies the bound node is still in play
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14d607c6-1bd7-4d39-9c60-0b1f0098fcf3:
+    id: 14d607c6-1bd7-4d39-9c60-0b1f0098fcf3
+    content: Steps to reproduce
+    children:
+      - 640b588a-8822-492e-9645-c8261655fea9
+      - ae2dd5af-8d0f-4501-bf2e-a770614433df
+      - 7709e8be-7e76-46c7-ad8c-9c586cfccdd4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  640b588a-8822-492e-9645-c8261655fea9:
+    id: 640b588a-8822-492e-9645-c8261655fea9
+    content: 'Precondition: a workflow step is running on a terminal and its prompt has been dispatched while the AI is still processing it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae2dd5af-8d0f-4501-bf2e-a770614433df:
+    id: ae2dd5af-8d0f-4501-bf2e-a770614433df
+    content: 'User action: the user stops the workflow (stopWorkflow) while the prompt is still processing, which deletes the node''s entry from workflowExecutionStates'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7709e8be-7e76-46c7-ad8c-9c586cfccdd4:
+    id: 7709e8be-7e76-46c7-ad8c-9c586cfccdd4
+    content: 'Observation: when the prompt finishes, the AI calls submit_step_output (origin "explicit") or announce_step_done and Arborescent accepts the write and advances to the next step instead of rejecting it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aafcab81-d0ab-4752-be00-c1594ca13ff3:
+    id: aafcab81-d0ab-4752-be00-c1594ca13ff3
+    content: Expected behavior
+    children:
+      - bf037d12-0f2e-46d7-bbb9-1629dfec186c
+      - 9a6abc11-7d0c-493b-b279-dffdc710b088
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf037d12-0f2e-46d7-bbb9-1629dfec186c:
+    id: bf037d12-0f2e-46d7-bbb9-1629dfec186c
+    content: 'Happy path: a submit/announce against a node that is no longer running is rejected with a clear "node is not in play" message and the workflow does not advance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a6abc11-7d0c-493b-b279-dffdc710b088:
+    id: 9a6abc11-7d0c-493b-b279-dffdc710b088
+    content: 'Edge cases: the Stop hook''s own safety-net submit is already rejected (origin "safety-net"); an explicit submit arriving after a stop should be treated the same way — no advance and no content write'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8587189f-cf4a-4a46-8dc4-e176b5fe707a:
+    id: 8587189f-cf4a-4a46-8dc4-e176b5fe707a
+    content: Actual behavior
+    children:
+      - 3dffd593-66b1-44b5-8cc0-ce9f7b29d5e9
+      - 64e1ac9f-0481-4f57-b2c0-043448e906af
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dffd593-66b1-44b5-8cc0-ce9f7b29d5e9:
+    id: 3dffd593-66b1-44b5-8cc0-ce9f7b29d5e9
+    content: submitStepOutput runs binding/mode/structure checks then calls applier.apply with no run-state guard, so the content is applied and the workflow advances
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64e1ac9f-0481-4f57-b2c0-043448e906af:
+    id: 64e1ac9f-0481-4f57-b2c0-043448e906af
+    content: 'User-visible symptom: a workflow the user explicitly stopped resumes and advances on its own, the stopped step''s output is committed, and the next step''s prompt can fire'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f8a9bb0-4e89-4242-a2cc-d45f4bddaab8:
+    id: 8f8a9bb0-4e89-4242-a2cc-d45f4bddaab8
+    content: Suspected cause
+    children:
+      - 0daccdbc-2578-4ab8-a57c-71649fe98cee
+      - da53a18a-c62b-4085-8f75-f252bbff1e90
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0daccdbc-2578-4ab8-a57c-71649fe98cee:
+    id: 0daccdbc-2578-4ab8-a57c-71649fe98cee
+    content: 'Code path: src/main/services/mcpSubmitOutputTool.ts submitStepOutput — binding/mode/structure checks then applier.apply (~line 160) with no check against running state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da53a18a-c62b-4085-8f75-f252bbff1e90:
+    id: da53a18a-c62b-4085-8f75-f252bbff1e90
+    content: 'Why the existing guard does not cover it: run-state ("running"/"awaiting-validation") lives only in the renderer''s workflowExecutionStates, while the MCP server''s TreeReadState carries only nodes/rootNodeId/ancestorRegistry — so the main process cannot see that stopWorkflow already deleted the node''s run-state entry'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc6c427b-1289-408a-bed2-0ae9fa15372d:
+    id: dc6c427b-1289-408a-bed2-0ae9fa15372d
+    content: Affected files
+    children:
+      - 1cdb9441-8b56-4a23-ad68-0c8d7d8f7e5d
+      - 71aec7da-0a94-48d7-bd7b-dec687e95556
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cdb9441-8b56-4a23-ad68-0c8d7d8f7e5d:
+    id: 1cdb9441-8b56-4a23-ad68-0c8d7d8f7e5d
+    content: 'Primary suspect: src/main/services/mcpSubmitOutputTool.ts (submitStepOutput — missing run-state guard before applier.apply)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71aec7da-0a94-48d7-bd7b-dec687e95556:
+    id: 71aec7da-0a94-48d7-bd7b-dec687e95556
+    content: 'Related surface: src/main/services/mcpWriteTools.ts (executeAnnounceStepDone / mark_step_complete share the missing check), src/renderer/services/mcpStepOutputApplierService.ts (applyStepOutput applies without checking workflowExecutionStates), src/renderer/store/tree/actions/workflowExecutionActions.ts (stopWorkflow deletes the run-state entry ~line 447; handleAutonomousFeedback already early-exits when the entry is missing)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5372e179-007e-4dec-a0a2-6d30254fd305:
+    id: 5372e179-007e-4dec-a0a2-6d30254fd305
+    content: Regression window
+    children:
+      - 49dba42f-f09b-45f5-9110-1c1249ef4e26
+      - 521a60f0-24f9-461f-81cc-d57ee13cdec2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49dba42f-f09b-45f5-9110-1c1249ef4e26:
+    id: 49dba42f-f09b-45f5-9110-1c1249ef4e26
+    content: 'Last known good commit/release: not yet bisected — the run-state guard appears to have never existed on the MCP submit path'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  521a60f0-24f9-461f-81cc-d57ee13cdec2:
+    id: 521a60f0-24f9-461f-81cc-d57ee13cdec2
+    content: 'First observed broken: reported 2026-06-09; present since autonomous submit_step_output gained main-process binding resolution'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85830729-c85a-450c-9525-aaf979ad6420:
+    id: 85830729-c85a-450c-9525-aaf979ad6420
+    content: Severity
+    children:
+      - 721e614d-44d8-46ee-a2e2-54fac46655a1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  721e614d-44d8-46ee-a2e2-54fac46655a1:
+    id: 721e614d-44d8-46ee-a2e2-54fac46655a1
+    content: Medium-high — violates an explicit user Stop, commits unwanted output, and can auto-advance/auto-send the next step; a loss-of-control and data-integrity issue rather than a crash
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6acd1f3b-1f54-4233-b3df-3b78a0b3bbe6:
+    id: 6acd1f3b-1f54-4233-b3df-3b78a0b3bbe6
+    content: Notes
+    children:
+      - 82c483a8-aa8f-4847-8a86-f11bab9d2b3f
+      - c5441522-03d8-4979-b2d4-19df81eb8bfc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82c483a8-aa8f-4847-8a86-f11bab9d2b3f:
+    id: 82c483a8-aa8f-4847-8a86-f11bab9d2b3f
+    content: 'Disambiguate from look-alikes: distinct from the "Stop dropped: no running node" stall (completed steps failing to advance on reload) and from the decomposition double-advance — those are missing or duplicate advances, whereas this is an advance that should have been blocked'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5441522-03d8-4979-b2d4-19df81eb8bfc:
+    id: c5441522-03d8-4979-b2d4-19df81eb8bfc
+    content: 'UX/telemetry gap: no Activity-log entry distinguishes "advanced after stop" from a normal advance; a rejected post-stop submit should emit a notifyWorkflow entry so the user can see the stop was honored'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b232d92-63de-4e3d-981f-2520854e7f52:
+    id: 3b232d92-63de-4e3d-981f-2520854e7f52
+    content: Technical refinement
+    children:
+      - 083ff467-2792-4a3a-a70d-a899c8bdff83
+      - d1a2d40b-af2c-419c-a28d-360255cc3a0e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  083ff467-2792-4a3a-a70d-a899c8bdff83:
+    id: 083ff467-2792-4a3a-a70d-a899c8bdff83
+    content: Flag complications
+    children:
+      - 215dcaa2-e659-4f4f-8129-7b857034cdd1
+      - bde0e0c0-21cb-4c9b-8795-9c880a3755e8
+      - 907a621e-c848-47c3-a0df-945d84c4eea0
+      - 9f229ca3-0166-41ec-9f00-cd0ea0ecbeec
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  215dcaa2-e659-4f4f-8129-7b857034cdd1:
+    id: 215dcaa2-e659-4f4f-8129-7b857034cdd1
+    content: 'Edge case/risk: "in play" must count both running AND awaiting-validation entries — reject only when NO workflowExecutionStates entry exists (the state stopWorkflow leaves behind), or legitimate manual-collab and mid-review submits get wrongly refused'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bde0e0c0-21cb-4c9b-8795-9c880a3755e8:
+    id: bde0e0c0-21cb-4c9b-8795-9c880a3755e8
+    content: 'Risk: the same missing check exists on announce_step_done and mark_step_complete — guarding only submit_step_output leaves two open holes, so the guard must cover all three write paths'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  907a621e-c848-47c3-a0df-945d84c4eea0:
+    id: 907a621e-c848-47c3-a0df-945d84c4eea0
+    content: 'Out of scope: the inverse "Stop dropped: no running node" reload-stall and the decomposition double-advance are different failure modes and are not addressed here'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f229ca3-0166-41ec-9f00-cd0ea0ecbeec:
+    id: 9f229ca3-0166-41ec-9f00-cd0ea0ecbeec
+    content: 'ROI: contained — run-state already exists in the renderer, so the only real cost is plumbing a rejection result back through the applier IPC boundary; worth it to honor an explicit user Stop'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1a2d40b-af2c-419c-a28d-360255cc3a0e:
+    id: d1a2d40b-af2c-419c-a28d-360255cc3a0e
+    content: Summarise the approach
+    children:
+      - 28e0cf3c-5a7e-4792-9820-79c35fe43d44
+      - 15d60d7b-646d-413b-9242-530551a3c64c
+      - c136b780-12de-433c-b8bc-c900179866db
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28e0cf3c-5a7e-4792-9820-79c35fe43d44:
+    id: 28e0cf3c-5a7e-4792-9820-79c35fe43d44
+    content: The guard cannot be a one-liner in the main process — the MCP server has zero visibility into workflowExecutionStates (the root cause), so the check lives in the renderer applier (mcpStepOutputApplierService) and returns a structured "not-in-play" result that the main-process handlers translate into a coded MCP error, rather than duplicating run-state into TreeReadState
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15d60d7b-646d-413b-9242-530551a3c64c:
+    id: 15d60d7b-646d-413b-9242-530551a3c64c
+    content: Apply the identical guard across submit_step_output, announce_step_done, and mark_step_complete so all three honor a stop; "in play" = an entry exists in workflowExecutionStates (running or awaiting-validation)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c136b780-12de-433c-b8bc-c900179866db:
+    id: c136b780-12de-433c-b8bc-c900179866db
+    content: Surface the refusal via a notifyWorkflow / Activity-log entry so the user can see the stop was honored — closes the telemetry gap called out in Notes
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4752dc09-e095-4868-b8b4-cf2dd0918acb:
+    id: 4752dc09-e095-4868-b8b4-cf2dd0918acb
+    content: 'TDD finding (for implementation): the genuinely-uncovered advance path is announce_step_done / mark_step_complete → treeMutator.mutate → renderer mcpTreeMutatorService.applyMutation (applyMarkComplete), which writes status=completed with NO run-state check. submit_step_output already refuses a stopped autonomous node via applier/routing-disagreement (functionally no advance, but a misleading message). So land the run-state guard in the renderer write handlers — applyMutation (mark-complete) and applyStepOutput (clearer not-in-play signal) — keyed on isStructurallyAutonomous(node) && no workflowExecutionStates entry; the main-process WriteTools/SubmitOutputTool just surface the renderer''s coded rejection. Failing specs at src/renderer/services/tests/mcpTreeMutatorRunStateGuard.test.ts (4 red guard specs + green regression pins + title-only specs for the uncertain code/notify/cross-path bits).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9dc41dd-86b4-4365-9ed5-de5aab4f63cd:
+    id: d9dc41dd-86b4-4365-9ed5-de5aab4f63cd
+    content: 'Implementation done (fix/stopped-node-submit-guard): run-state guard added. (1) Shared helper isAutonomousNodeNotInPlay in src/shared/utils/autonomousStepContext.ts (structurally autonomous + no workflowExecutionStates entry; running/awaiting-validation still in play). (2) src/renderer/services/mcpTreeMutatorService.ts applyMarkComplete refuses with new code write/node-not-running — closes the real announce_step_done / mark_step_complete advance path. (3) MutationResult (shared electronApi + local mcpWriteTools) widened with optional code; executeMutation/executeAnnounceStepDone surface result.code ?? writeUpstreamFailure. (4) New code write/node-not-running + message in mcpErrorCodes.ts. (5) Submit/applier message reworded to read as "not in play" (code stays applier/routing-disagreement — already refused). Tests: mcpTreeMutatorRunStateGuard.test.ts (guard), mcpWriteTools.test.ts (code propagation), autonomousStepContext.test.ts (helper) — all green; type-check + lint clean. DEFERRED (out of scope, noted as title-only specs): notifyWorkflow/Activity-log surfacing of the refusal; a dedicated submit-path code (kept routing-disagreement to preserve the published applier contract); the undefined-workflowExecutionStates-map invalid-state edge.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eff6edbd-becf-4cf9-a8c6-a4c1eba998c2:
+    id: eff6edbd-becf-4cf9-a8c6-a4c1eba998c2
+    content: Verification summary
+    children:
+      - 66a27a31-58a9-499f-aa99-3d6eb2e79719
+      - c0e9f3ca-065d-4dce-a713-ff76dbc8cf0b
+      - 1254d11a-c18a-4837-a537-732454bb256a
+      - b4ea4ad9-415a-405f-8a86-467cb9bdc5da
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66a27a31-58a9-499f-aa99-3d6eb2e79719:
+    id: 66a27a31-58a9-499f-aa99-3d6eb2e79719
+    content: Core guard implemented and verified — announce_step_done / mark_step_complete now refuse a stopped (not-in-play) node with code write/node-not-running and do not advance; submit_step_output already refused (message reworded). All touched test files green (225), type-check + lint clean
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0e9f3ca-065d-4dce-a713-ff76dbc8cf0b:
+    id: c0e9f3ca-065d-4dce-a713-ff76dbc8cf0b
+    content: 'Undone: notifyWorkflow / Activity-log surfacing of the post-stop refusal — deferred as UX polish out of scope for this PR; the workflow already visibly fails to advance, and firing a user notification from the deep MCP write-handler is a new cross-layer side effect best decided separately'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1254d11a-c18a-4837-a537-732454bb256a:
+    id: 1254d11a-c18a-4837-a537-732454bb256a
+    content: 'Undone: a dedicated submit-path not-in-play error code — submit already refuses via applier/routing-disagreement (message reworded to read as "not in play"); the code was kept to preserve the published, additive-only applier error-code contract'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4ea4ad9-415a-405f-8a86-467cb9bdc5da:
+    id: b4ea4ad9-415a-405f-8a86-467cb9bdc5da
+    content: 'Undone: the undefined-workflowExecutionStates-map edge — an invalid store state that does not occur in production, left unhandled to avoid masking a real invariant violation'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1e0ed5e-2b24-4157-aea4-0152841e16dc:
+    id: a1e0ed5e-2b24-4157-aea4-0152841e16dc
     content: 'review feedback (pr-review-toolkit:code-reviewer): PASS — no blockers, should-fixes, or nits; approved as-is, no code changes made. Reviewed the full diff + calling code. Verified: (1) Guard keying correct — applyMarkComplete evaluates isAutonomousNodeNotInPlay against the mutation TARGET; announce_step_done and default mark_step_complete target the subject (structurally autonomous → guarded), while mark_step_complete with an explicit node_id on a CONTENT sub-item is NOT guarded — correct, since sub-item check-offs don''t advance the workflow and stopWorkflow only deletes the subject''s run-state entry. No harmful advance path left unguarded; no legitimate in-run write wrongly blocked. (2) Only mark-complete is routed through the guard; add-child/append/set-content/delete/move/set-metadata untouched (regression-pinned by the append-on-running test). (3) In-play detection complete — WorkflowExecutionEntry state union is exactly running|awaiting-validation; both count as in-play, absence is the only not-in-play signal. (4) The code field survives the IPC round-trip end-to-end (renderer applyMutation → preload → main.ts → mcpTreeMutatorBridge → executeMutation/executeAnnounceStepDone surface result.code ?? writeUpstreamFailure via codedErr → structuredContent.code). (5) Null-safety fine: short-circuit on isStructurallyAutonomous before touching workflowExecutionStates; renderer store always inits workflowExecutionStates:{}. (6) Tests meaningful, not false-green — the markStepComplete test runs in both-mode where mark-complete legitimately reaches the mutator (not refused upstream); the codeless-fallback test pins write/upstream-failure; setExplicitSubmitSeenThisTurn not-called pins that a stopped announce doesn''t mark the turn submitted. Suites: 121 pass / 0 fail across the 3 affected test files; type-check + lint clean. Conventions hold (why-not-what comments, declarative naming, additive error-code contract). Noted, no action: the applier/routing-disagreement branch keeps its code while its message now reads "not in play" — intentional (code-is-the-contract; applier and mutator seams keep distinct codes).'
     children: []
     metadata:
       status: completed
-  877f6cf6-703b-4dbb-8c51-dcd738554599:
-    id: 877f6cf6-703b-4dbb-8c51-dcd738554599
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8815d8d-2e73-4f34-bc48-b707f1a2aa81:
+    id: f8815d8d-2e73-4f34-bc48-b707f1a2aa81
     content: 'review resolution: the code review returned PASS with zero actionable findings, so no code changes were required. Major issues fixed: none. Minor issues fixed: none. Feedback skipped / pushed back: none actionable. I re-checked the verdict against the code rather than rubber-stamping it — the reviewer''s single "noted, no action" item (the applier/routing-disagreement branch keeps its stable code while its message now reads "not in play") is intentional and correct: clients branch on the code, and the applier vs mutator seams legitimately keep distinct codes per the code-is-the-contract policy in mcpErrorCodes.ts, so I concur and made no change. No intentional-behaviour-presented-as-issue, exaggerated-severity, or low-probability findings to discount — the review raised none.'
     children: []
     metadata:
-      status: pending
-  db7e9186-59ac-4e64-9c4d-9ac45772c876:
-    id: db7e9186-59ac-4e64-9c4d-9ac45772c876
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0331f624-eeec-4c90-8146-f6201c0e68c4:
+    id: 0331f624-eeec-4c90-8146-f6201c0e68c4
     content: 'test pass result: both acceptance criteria verified semantically against the implementation and confirmed met. AC1 (reject a not-in-play node with a clear "not in play" message; workflow does not advance): announce_step_done / mark_step_complete refuse via applyMarkComplete (write/node-not-running; status stays pending → no completion → no advance; setExplicitSubmitSeenThisTurn not called); submit_step_output refuses via applyStepOutput. AC2 (safety-net submit already a no-op; explicit post-stop submit refused, no content write, no advance): confirmed. One coverage discrepancy found and fixed: AC1''s "clear not-in-play message" was unasserted on the submit/applier path (only /gate|routing|autonomous/ was pinned) — added a test in src/renderer/services/tests/mcpStepOutputApplierService.test.ts asserting the refusal message contains "not in play". No acceptance criterion lacks an implementation; no implementation exceeds the criteria. Full suite green (5635 passed / 0 failed / 8 skipped), type-check + lint clean.'
     children: []
     metadata:
-      status: pending
-  4b1ed925-4e20-42e6-8046-3ba7c1005f68:
-    id: 4b1ed925-4e20-42e6-8046-3ba7c1005f68
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80e0747c-4ca5-415b-bf6b-dce9ac063afa:
+    id: 80e0747c-4ca5-415b-bf6b-dce9ac063afa
     content: 'documentation: no docs or changelog changes — intentional. (1) No changelog line: the autonomous-workflow / MCP-submit / Stop machinery this fix touches is entirely in CHANGELOG.md''s "Unreleased" section, so per the convention "no changelog line for a bug fix to a feature implemented after the last release" (last release v0.2.0). (2) No new docs: docs/workflows.md "Stopping and Continuing" (line 89) already states Stop clears the execution state; the fix simply makes that documented behavior reliable across the MCP write path. The "not in play" refusal is an AI-facing MCP error, not user-facing — nothing new for the user to learn or do, so adding an entry would be bloat (conventions: skip implicit/expected behavior that just works). (3) No inconsistency found: line 89 is consistent with the fix, and line 112 already documents the inverse look-alike (the reload-stall recovery), so both directions are covered. Reinforces the "predictable, stable behavior" philosophy. Nothing unclear to warn about.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d5fe23c-48f7-43d2-a0ad-dd017f8aa7e0:
+    id: 6d5fe23c-48f7-43d2-a0ad-dd017f8aa7e0
+    content: Merge to master
+    children:
+      - 3638ebd8-be79-481b-b509-b7aa88585b1d
+      - cdc6431f-1f8d-4417-a696-0bbce8cc5aee
+      - 75515de3-693a-4b9b-872e-ca75454ff545
+      - 834ff986-4d77-4042-816b-7a87c6e11fb9
+      - db6ea007-061c-42a3-bab5-33ae16964f40
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3638ebd8-be79-481b-b509-b7aa88585b1d:
+    id: 3638ebd8-be79-481b-b509-b7aa88585b1d
+    content: 'project.arbo committed on master (chore: update project.arbo workflow tree state, 52bf5be)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdc6431f-1f8d-4417-a696-0bbce8cc5aee:
+    id: cdc6431f-1f8d-4417-a696-0bbce8cc5aee
+    content: Fix committed as a single commit (no squash needed) and rebased onto the current master tip — master had advanced 8bf881a → 52bf5be under a concurrent session, so the rebase targeted the live tip, not the branch point; rebase was clean (no conflicts)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75515de3-693a-4b9b-872e-ca75454ff545:
+    id: 75515de3-693a-4b9b-872e-ca75454ff545
+    content: 'Post-rebase standard checks green: type-check + lint clean, 178 touched-file tests pass'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  834ff986-4d77-4042-816b-7a87c6e11fb9:
+    id: 834ff986-4d77-4042-816b-7a87c6e11fb9
+    content: Fast-forward merged to master as fd34ca6, confirmed on master, and pushed to origin/master
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db6ea007-061c-42a3-bab5-33ae16964f40:
+    id: db6ea007-061c-42a3-bab5-33ae16964f40
+    content: Worktree removed and local branch fix/stopped-node-submit-guard deleted (only after the merge was confirmed on master; branch -d succeeded, proving it was merged); no remote fix branch existed so master push satisfies the final push-to-remote
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ead8f16-4d57-4894-a15b-e58540418314:
+    id: 7ead8f16-4d57-4894-a15b-e58540418314
+    content: Arborescent notification sounds don't play
+    children:
+      - 8cc9b6f9-de1f-40c6-983d-9b78ead53ecd
+      - 5ab58438-c58a-4c28-9819-9eda2053a90f
+      - 597749bd-ab8d-4e5f-a818-d5ff8f854503
+      - 94e0d1d1-a82b-4ecd-a888-ca2c44ec1a31
+      - 1fdf07c0-567d-4e13-9886-2709a6069a44
+      - fd453cbf-32b3-43f2-8a1a-987a16e64c7e
+      - 270444a8-1c6f-42fd-8ab1-a9706bc843d2
+      - 1cd92ca5-60c9-4512-af33-6e26b66be8e3
+      - ca9e791b-0f6d-4c47-afb1-9339a659b6c2
+      - 906ff4e6-6ceb-42f5-98d8-b24f2f631e0f
+      - f0b7c2ed-0390-44f2-ac19-8542602296e7
+      - 70ca1783-3774-4eea-a6ff-bafb0a150d4e
+      - 31ce9cee-b5c3-48a6-96c1-3aef351b48b1
+      - f5488097-c16f-44ca-96f4-98c17a51665c
+      - b09d4439-b8b7-4a16-9d91-b40f1d987a0c
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 094f56ca-d507-44f5-b8b8-8c0d601e2bd0
+  8cc9b6f9-de1f-40c6-983d-9b78ead53ecd:
+    id: 8cc9b6f9-de1f-40c6-983d-9b78ead53ecd
+    content: worktree
+    children:
+      - 0c6ed913-f8c2-472b-9de0-ff1fe7421908
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c6ed913-f8c2-472b-9de0-ff1fe7421908:
+    id: 0c6ed913-f8c2-472b-9de0-ff1fe7421908
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-notification-sounds)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ab58438-c58a-4c28-9819-9eda2053a90f:
+    id: 5ab58438-c58a-4c28-9819-9eda2053a90f
+    content: Summary
+    children:
+      - e785e51f-301d-4db7-b4a3-0896ea9a13c0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e785e51f-301d-4db7-b4a3-0896ea9a13c0:
+    id: e785e51f-301d-4db7-b4a3-0896ea9a13c0
+    content: Notification sounds never play because the wav assets are absent from the built renderer, so every Audio.play() call rejects and is swallowed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  597749bd-ab8d-4e5f-a818-d5ff8f854503:
+    id: 597749bd-ab8d-4e5f-a818-d5ff8f854503
+    content: Steps to reproduce
+    children:
+      - b00b0445-3ee9-4815-95b5-7594aa6416b3
+      - b46d9d4f-326e-48fd-a15d-8a23efd52086
+      - 55f561bf-92ec-4dc9-b81a-a765200823e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b00b0445-3ee9-4815-95b5-7594aa6416b3:
+    id: b00b0445-3ee9-4815-95b5-7594aa6416b3
+    content: 'Precondition: notificationSounds preference is on and the Arborescent window is unfocused (sounds are suppressed by the focus gate while focused).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b46d9d4f-326e-48fd-a15d-8a23efd52086:
+    id: b46d9d4f-326e-48fd-a15d-8a23efd52086
+    content: 'User action: trigger any workflow notification event (e.g. let a workflow complete, or have the AI raise a NeedsReview) with the app window in the background.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55f561bf-92ec-4dc9-b81a-a765200823e3:
+    id: 55f561bf-92ec-4dc9-b81a-a765200823e3
+    content: 'Observation: the desktop notification appears but no sound plays; the diagnostic log shows "Failed to play success.wav/alert.wav".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94e0d1d1-a82b-4ecd-a888-ca2c44ec1a31:
+    id: 94e0d1d1-a82b-4ecd-a888-ca2c44ec1a31
+    content: Expected behavior
+    children:
+      - c3bfd8c9-27f4-4ab2-bdd4-07eb93cf8d86
+      - f706f4ee-f232-4d1d-a842-70c40769804a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3bfd8c9-27f4-4ab2-bdd4-07eb93cf8d86:
+    id: c3bfd8c9-27f4-4ab2-bdd4-07eb93cf8d86
+    content: 'Happy path: success.wav plays on "Workflow complete"; alert.wav plays on the 11 alert-type events, when unfocused and notificationSounds is on.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f706f4ee-f232-4d1d-a842-70c40769804a:
+    id: f706f4ee-f232-4d1d-a842-70c40769804a
+    content: 'Edge cases: a missing audio asset or a blocked play() should surface a detectable signal, not be swallowed as a debug-level warning.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fdf07c0-567d-4e13-9886-2709a6069a44:
+    id: 1fdf07c0-567d-4e13-9886-2709a6069a44
+    content: Actual behavior
+    children:
+      - aa127c58-a3f7-44b0-948f-13316c8f4c85
+      - 1002c907-0f01-434e-a7b4-aef30a7cb732
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa127c58-a3f7-44b0-948f-13316c8f4c85:
+    id: aa127c58-a3f7-44b0-948f-13316c8f4c85
+    content: new Audio('./sounds/<file>.wav') resolves to a non-existent path, so the load fails and audio.play() rejects.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1002c907-0f01-434e-a7b4-aef30a7cb732:
+    id: 1002c907-0f01-434e-a7b4-aef30a7cb732
+    content: 'User-visible symptom: complete silence on every notification in both dev and the packaged app; only a logger.warn is emitted, so there is no visible error.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd453cbf-32b3-43f2-8a1a-987a16e64c7e:
+    id: fd453cbf-32b3-43f2-8a1a-987a16e64c7e
+    content: Suspected cause
+    children:
+      - e8192666-8256-4d7a-a393-1da68c3857ba
+      - ad7fb281-3a83-4670-aa96-ae137e38feb8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8192666-8256-4d7a-a393-1da68c3857ba:
+    id: e8192666-8256-4d7a-a393-1da68c3857ba
+    content: 'Code path: workflowNotification.ts:35 references the wav as a bare runtime string (''./sounds/${soundFile}''), which Vite''s bundler never sees as a dependency and therefore never emits.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad7fb281-3a83-4670-aa96-ae137e38feb8:
+    id: ad7fb281-3a83-4670-aa96-ae137e38feb8
+    content: 'Why existing handling doesn''t cover it: no public/ dir and no forge/vite copy step for src/renderer/sounds, so the assets are emitted neither as hashed imports nor as static files — verified 0 .wav files in .vite/renderer and in out/.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  270444a8-1c6f-42fd-8ab1-a9706bc843d2:
+    id: 270444a8-1c6f-42fd-8ab1-a9706bc843d2
+    content: Affected files
+    children:
+      - 7377044a-e496-45e1-86e5-c16576422a85
+      - ac5b651e-b367-4b8b-a63e-c33d27ba9937
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7377044a-e496-45e1-86e5-c16576422a85:
+    id: 7377044a-e496-45e1-86e5-c16576422a85
+    content: 'Primary suspect: src/renderer/services/workflowNotification.ts (playSound builds ''./sounds/<file>.wav'' at runtime, lines 32-41).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac5b651e-b367-4b8b-a63e-c33d27ba9937:
+    id: ac5b651e-b367-4b8b-a63e-c33d27ba9937
+    content: 'Related surface: vite.renderer.config.ts (no publicDir / asset handling) and src/renderer/sounds/{success,alert}.wav (source assets never copied to output).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cd92ca5-60c9-4512-af33-6e26b66be8e3:
+    id: 1cd92ca5-60c9-4512-af33-6e26b66be8e3
+    content: Regression window
+    children:
+      - 65fc192c-235e-4f9d-81f9-e7843d8b3094
+      - 7b0728b5-d1cc-4847-9465-fd7cfce8b945
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65fc192c-235e-4f9d-81f9-e7843d8b3094:
+    id: 65fc192c-235e-4f9d-81f9-e7843d8b3094
+    content: 'Last known good: none — sounds have never worked; broken since first introduced.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b0728b5-d1cc-4847-9465-fd7cfce8b945:
+    id: 7b0728b5-d1cc-4847-9465-fd7cfce8b945
+    content: 'First observed broken: commit 02d2a05 "add notifications, fix some tests", which added both src/renderer/sounds/ and the runtime-string Audio reference.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca9e791b-0f6d-4c47-afb1-9339a659b6c2:
+    id: ca9e791b-0f6d-4c47-afb1-9339a659b6c2
+    content: Severity
+    children:
+      - ab194d7a-25bb-4544-bef6-880e76ffd09f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab194d7a-25bb-4544-bef6-880e76ffd09f:
+    id: ab194d7a-25bb-4544-bef6-880e76ffd09f
+    content: Low — non-critical audio cue only; visual desktop notifications (native IPC path) are unaffected, so there is no functional or data impact.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  906ff4e6-6ceb-42f5-98d8-b24f2f631e0f:
+    id: 906ff4e6-6ceb-42f5-98d8-b24f2f631e0f
+    content: Notes
+    children:
+      - 1cfc5e02-49f5-429b-be50-474ad9378b48
+      - f4698509-4b6d-4fdd-bcd7-b0279b3ee5ad
+      - ea96d9f9-b8b8-4d25-b43e-78c8428861b1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cfc5e02-49f5-429b-be50-474ad9378b48:
+    id: 1cfc5e02-49f5-429b-be50-474ad9378b48
+    content: 'Disambiguation: the focus gate (workflowNotification.ts:10) and the notificationSounds preference also produce silence — confirm the window is unfocused and the pref is on before attributing silence to this bug.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4698509-4b6d-4fdd-bcd7-b0279b3ee5ad:
+    id: f4698509-4b6d-4fdd-bcd7-b0279b3ee5ad
+    content: 'Look-alike: a global Claude Code Stop hook (afplay Glass.aiff) was firing a system chime mistakable for an Arborescent sound; it was removed 2026-06-09, so remaining silence is this bug.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea96d9f9-b8b8-4d25-b43e-78c8428861b1:
+    id: ea96d9f9-b8b8-4d25-b43e-78c8428861b1
+    content: 'UX/telemetry gap: the play() rejection is swallowed as a logger.warn, so the broken state was undetectable — worth surfacing a one-time diagnostic when an expected sound asset fails to load.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0b7c2ed-0390-44f2-ac19-8542602296e7:
+    id: f0b7c2ed-0390-44f2-ac19-8542602296e7
+    content: Proposed fix
+    children:
+      - d3f2a9fb-3165-44aa-bfef-3f9f507b5f53
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3f2a9fb-3165-44aa-bfef-3f9f507b5f53:
+    id: d3f2a9fb-3165-44aa-bfef-3f9f507b5f53
+    content: Import the wavs as Vite assets (import successUrl from '../sounds/success.wav') and pass the resolved URL to Audio, or add a public/ dir / copy step so './sounds/*.wav' exists in the output; then verify a .wav lands in both .vite/renderer and out/.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70ca1783-3774-4eea-a6ff-bafb0a150d4e:
+    id: 70ca1783-3774-4eea-a6ff-bafb0a150d4e
+    content: Technical refinement
+    children:
+      - 3db0eee7-6612-44ff-a641-a552f06bd7c4
+      - 87b75480-1e9a-4ca7-86fe-61b22a8ffb26
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3db0eee7-6612-44ff-a641-a552f06bd7c4:
+    id: 3db0eee7-6612-44ff-a641-a552f06bd7c4
+    content: Flag complications
+    children:
+      - fbdf490c-0d05-411d-9e7d-80b085d94d77
+      - d629d769-c1f3-4225-b72b-1ba441782d5f
+      - 0f696d9c-30aa-4210-a801-b17ae5b3c502
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbdf490c-0d05-411d-9e7d-80b085d94d77:
+    id: fbdf490c-0d05-411d-9e7d-80b085d94d77
+    content: 'Edge case / risk: the bundled asset URL must resolve under the packaged app''s file:// base — low risk, since the JS/CSS bundles already load correctly (the renderer base is already relative), but the build verification must confirm a .wav now lands in both .vite/renderer and out/.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d629d769-c1f3-4225-b72b-1ba441782d5f:
+    id: d629d769-c1f3-4225-b72b-1ba441782d5f
+    content: 'Out of scope: the quiet master level of the wav files, the focus-gate and notificationSounds preference semantics, and the native desktop-notification IPC path (which is unaffected).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f696d9c-30aa-4210-a801-b17ae5b3c502:
+    id: 0f696d9c-30aa-4210-a801-b17ae5b3c502
+    content: 'ROI: a few-line change in one file with no config change expected — clearly positive; the only thing that could inflate it is the renderer base turning out non-relative, which is quickly verifiable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87b75480-1e9a-4ca7-86fe-61b22a8ffb26:
+    id: 87b75480-1e9a-4ca7-86fe-61b22a8ffb26
+    content: Summarise the approach
+    children:
+      - b3965f07-41e8-4194-8d30-32a55c6fc9ea
+      - 65242254-1a6f-4265-83cb-dda8b33353e1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3965f07-41e8-4194-8d30-32a55c6fc9ea:
+    id: b3965f07-41e8-4194-8d30-32a55c6fc9ea
+    content: 'Architecture / where it lands: replace the runtime string path with Vite asset imports in workflowNotification.ts (import both wavs, pass the resolved URLs to new Audio) so the bundler emits and fingerprints them; no Vite/Forge config change needed given the relative renderer base.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65242254-1a6f-4265-83cb-dda8b33353e1:
+    id: 65242254-1a6f-4265-83cb-dda8b33353e1
+    content: 'Non-obvious for the reviewer: verify by unfocusing the window (the focus gate suppresses sound while focused) and by confirming a .wav appears in .vite/renderer and out/ post-build; consider escalating the swallowed logger.warn so a future missing-asset regression is detectable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31ce9cee-b5c3-48a6-96c1-3aef351b48b1:
+    id: 31ce9cee-b5c3-48a6-96c1-3aef351b48b1
+    content: Verification summary
+    children:
+      - 7a432455-008b-41a1-be08-2ef861f76683
+      - c4fe10d9-f051-4f4b-9b57-937de3552ee6
+      - 93dc962f-1316-486b-941c-2aa6d3423a00
+      - 6a1c5b20-d403-4df2-ab8e-6675c7e8d366
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a432455-008b-41a1-be08-2ef861f76683:
+    id: 7a432455-008b-41a1-be08-2ef861f76683
+    content: 'Implemented and verified: workflowNotification.ts now imports the wavs as Vite assets; the build emits success-*.wav and alert-*.wav into both .vite/renderer and the packaged .app; the built JS references them via new URL(asset, import.meta.url) so they resolve next to the JS bundle under file://.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4fe10d9-f051-4f4b-9b57-937de3552ee6:
+    id: c4fe10d9-f051-4f4b-9b57-937de3552ee6
+    content: 'Checks pass on changed files only: 17/17 unit tests (incl. 2 new regression tests that were red pre-fix), lint clean, type-check clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93dc962f-1316-486b-941c-2aa6d3423a00:
+    id: 93dc962f-1316-486b-941c-2aa6d3423a00
+    content: 'Not done — logger.warn escalation: surfacing a louder one-time diagnostic on sound-load failure was declined; the existing warn already appears in the diagnostic log so the failure is detectable, making escalation marginal and out of scope for this fix.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a1c5b20-d403-4df2-ab8e-6675c7e8d366:
+    id: 6a1c5b20-d403-4df2-ab8e-6675c7e8d366
+    content: 'Correctly scoped out and untouched: quiet wav master level, focus-gate / notificationSounds preference semantics, and the native desktop-notification IPC path.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5488097-c16f-44ca-96f4-98c17a51665c:
+    id: f5488097-c16f-44ca-96f4-98c17a51665c
+    content: review feedback
+    children:
+      - 4c67acd1-7df5-4cf8-bc50-6ab473dfa0cf
+    metadata:
+      status: completed
+  4c67acd1-7df5-4cf8-bc50-6ab473dfa0cf:
+    id: 4c67acd1-7df5-4cf8-bc50-6ab473dfa0cf
+    content: 'pr-review-toolkit:code-reviewer verdict: approve-with-nits — no blockers, no should-fixes. Fix is correct, minimal, and caller-compatible: notifyWorkflowEvent keeps its (type, title, body) signature; only playSound''s URL source changed, so all 9 call sites (workflowExecutionActions, workflowHookEventHandler, workflowClearSession, workflowAckManager) are unaffected. Reviewer independently reproduced fail-before/pass-after: the old ''./sounds/success.wav'' literal fails the two ''bundled sound assets'' tests; the Vite-resolved ''/src/renderer/sounds/success.wav'' passes — so the regression is genuinely guarded. Addressed during this review: aligned the 3 new test titles to the file''s ''should …'' convention (17/17 still green). Not actioned, with reason: (1) reviewer''s ''*.wav has no ambient type decl'' nit is moot — root vite-env.d.ts already has /// <reference types="vite/client" /> and tsc --noEmit is clean; (2) the ''repeated interactions'' test is intentional behavioral coverage for the checklist, not a regression guard, so it stays. Build proof already on record: npm run package emits success-*.wav and alert-*.wav into .vite/renderer and the packaged .app, referenced via new URL(asset, import.meta.url) (file:// safe). No outstanding action items.'
+    children: []
+    metadata:
+      status: completed
+  b09d4439-b8b7-4a16-9d91-b40f1d987a0c:
+    id: b09d4439-b8b7-4a16-9d91-b40f1d987a0c
+    content: 'documentation: no changes made (with rationale + a warning). Rationale: the changelog''s Unreleased section already lists "Desktop notifications and sounds" (CHANGELOG.md:54 — audio alerts for completion/errors/NeedsReview/timeouts, toggles under File → Preferences). This is a bug fix to that still-unreleased feature, so per the convention it gets no separate changelog line, and the existing entry already describes the now-working behavior, so no edit. No docs/ prose added either: sounds are an auxiliary, discoverable, non-blocking cue tied to an existing preference — a dedicated section would bloat and over-focus on feature detail. WARNING / inconsistency for the user: (1) that changelog entry has advertised working "audio alerts" for the entire v0.2.0 dev cycle while sounds never actually played (broken since 02d2a05) — now true after this fix. (2) git tags v0.1.1 and v0.2.0 exist, but CHANGELOG.md only has "0.1.0 - Initial Release" + "Unreleased" — release sections for 0.1.1/0.2.0 were never cut, so the changelog''s notion of "last release" is 0.1.0. Pre-existing; not addressed here.'
     children: []
     metadata:
       status: pending
@@ -218568,3 +218473,7 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   0609884b-89d3-4fc5-8735-e3034c7f6bdb:
     cwd: /Users/brianfox/dev/Arborescent
+  094f56ca-d507-44f5-b8b8-8c0d601e2bd0:
+    cwd: /Users/brianfox/dev/Arborescent
+  ebca2702-73db-4b3b-9743-db8fbace3678:
+    cwd: /Users/brianfox/dev/forestadmin
