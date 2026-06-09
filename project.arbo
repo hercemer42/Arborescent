@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-09T07:51:00.353Z'
+updated: '2026-06-09T11:56:10.815Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -115076,6 +115076,7 @@ nodes:
       - 23800d87-7099-4bd1-906c-10e9c8c53628
       - 8815fcb6-7c6d-47c8-89a1-ad11bbf5c607
       - e1732034-2d5c-4e37-8968-50c66adb0f15
+      - 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
     metadata:
       status: pending
       isBlueprint: true
@@ -124084,7 +124085,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
+      - 5d52678f-7038-48ca-b6fc-d6270c5d3578
     metadata:
       status: pending
       isBlueprint: true
@@ -158357,7 +158358,6 @@ nodes:
     content: Bug specification
     children:
       - 46d82a92-e697-49c2-af85-3d2d3638108a
-      - 5d52678f-7038-48ca-b6fc-d6270c5d3578
     metadata:
       status: pending
       isBlueprint: true
@@ -213754,14 +213754,15 @@ nodes:
     id: 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
     content: PR2 - Jump from a side-panel log entry to the session that produced it
     children:
-      - a7565e5a-c07d-4bac-836b-bd58e681e77d
-      - 8b87abd6-9c14-46d8-b6f2-719560c44463
-      - 2638a4f4-fb9e-4884-b5e0-f1139f36f8dc
-      - 15d5e1da-28c5-4839-9f9f-700c65398572
-      - 51df45d8-432b-4d31-87a1-2a4fbb6744ee
-      - 7648563a-e03a-46b2-b575-9b612b5980c8
-      - 361b9c1b-3c94-4a2e-b153-2e8b98e1e065
-      - 2eb513b9-950f-4c1e-8ecd-bf7819b6d65f
+      - 37e51f36-0403-47ac-a1f1-1b631d136c23
+      - 2ee9f4c3-aff1-418b-bd9d-c4591249f818
+      - 0df47d4b-e023-49b1-93c9-b7c62a77cf83
+      - dc272330-741c-4539-a4c3-3c4f0a6252c4
+      - 4800a587-52ed-4819-a5f4-e6f9b42a0f20
+      - 959352d4-11fe-4426-b188-df2475925703
+      - 71962292-fcbf-4a23-8705-0cd8c3b7c2d0
+      - 9966eeab-0762-4f06-9450-2c40543e376c
+      - d539fc2b-e909-48d4-87fe-876a1f562746
     metadata:
       status: completed
       expanded: false
@@ -216066,628 +216067,25 @@ nodes:
     id: 5d52678f-7038-48ca-b6fc-d6270c5d3578
     content: When autoplaying the next sibling in a decomposed series
     children:
-      - a5da3803-399e-4e23-b282-b60e0d363980
-      - bece938d-5a47-4167-85d1-5fce722c9803
+      - fa6afbca-7f61-47db-bea0-922058b0cefb
+      - 684560d4-d442-4a47-a7ee-83fda62baf10
+      - 1ec34e4b-74e8-4972-9981-601ef4a82b6a
+      - dfb09e49-e749-4c24-bc4a-066f98731238
+      - 86ff8851-6210-498c-ad88-bb1c61a60cd2
+      - 8c7e459a-70d0-40a0-abc3-5b2f1e32e864
+      - 702ffb6a-591d-405c-9a66-99aaa4b20f95
+      - 27e3e02f-9682-4792-ad02-4ffe3e72192e
+      - 09a4772f-a732-451b-a2a1-9793fc1d7c6f
+      - 4a1fb08f-3803-4eaf-a153-410f32ca795d
+      - bd68554a-85e5-4919-aa97-09d9de5ac370
+      - a31014cf-e782-43e8-9bf8-b7da664af89d
+      - 5ab2bbee-8f47-4918-8444-ef42bd43b41e
     metadata:
-      status: pending
+      status: completed
       expanded: false
-  a5da3803-399e-4e23-b282-b60e0d363980:
-    id: a5da3803-399e-4e23-b282-b60e0d363980
-    content: It advances to the next step as normal and sends the prompt but asks for a rebind
-    children: []
-    metadata:
-      status: pending
-  bece938d-5a47-4167-85d1-5fce722c9803:
-    id: bece938d-5a47-4167-85d1-5fce722c9803
-    content: Not accepting the rebind means
-    children:
-      - 11121ac4-d8da-4f7d-8794-a3c347b5d7ea
-      - 2038141a-4d85-44ac-811e-a99703f53c54
-    metadata:
-      status: pending
-  11121ac4-d8da-4f7d-8794-a3c347b5d7ea:
-    id: 11121ac4-d8da-4f7d-8794-a3c347b5d7ea
-    content: Once it finishes it advances to the next step
-    children: []
-    metadata:
-      status: pending
-  2038141a-4d85-44ac-811e-a99703f53c54:
-    id: 2038141a-4d85-44ac-811e-a99703f53c54
-    content: But does not play the prompt
-    children: []
-    metadata:
-      status: pending
-  a7565e5a-c07d-4bac-836b-bd58e681e77d:
-    id: a7565e5a-c07d-4bac-836b-bd58e681e77d
-    content: 'worktree: /Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session (branch feature/log-area-pr2-jump-to-session, forked from master 0470514)'
-    children:
-      - f45cded3-efab-4c27-a161-30a1634f20b8
-    metadata:
-      status: completed
-      expanded: true
       deleted: false
       plugins: {}
-  f45cded3-efab-4c27-a161-30a1634f20b8:
-    id: f45cded3-efab-4c27-a161-30a1634f20b8
-    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b87abd6-9c14-46d8-b6f2-719560c44463:
-    id: 8b87abd6-9c14-46d8-b6f2-719560c44463
-    content: User story
-    children:
-      - 5c9b49de-88b5-4e28-a24d-74009fa2b08c
-      - 29a7f437-a67f-49fd-9980-2e3e9f1350cd
-      - b8d4de7c-3559-45c4-b5b6-b6697b3b9b21
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5c9b49de-88b5-4e28-a24d-74009fa2b08c:
-    id: 5c9b49de-88b5-4e28-a24d-74009fa2b08c
-    content: 📄 Product spec
-    children:
-      - 09230450-e18a-4cf5-8f07-2d5655d13d22
-      - a914b6f2-3e72-4ed8-96e8-dd97066f8516
-      - 3cbceac6-a35d-4933-af93-5c89dfd8f07f
-      - be95f0b4-bdb3-43a5-925c-0e1f1d00240d
-      - 4efafa44-6a74-41c1-8de0-cddf95730e11
-      - bb921d48-fa3b-4ce4-a1dc-ce174579176c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09230450-e18a-4cf5-8f07-2d5655d13d22:
-    id: 09230450-e18a-4cf5-8f07-2d5655d13d22
-    content: Context
-    children:
-      - 84d54b08-be07-49fa-8918-8468e3990777
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  84d54b08-be07-49fa-8918-8468e3990777:
-    id: 84d54b08-be07-49fa-8918-8468e3990777
-    content: Log entries are message + type + source + timestamp with no link back to the terminal session that produced them, so users cannot navigate from an event to its origin.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a914b6f2-3e72-4ed8-96e8-dd97066f8516:
-    id: a914b6f2-3e72-4ed8-96e8-dd97066f8516
-    content: User
-    children:
-      - c6a54da3-8b67-46e6-9613-3f54808fd32f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c6a54da3-8b67-46e6-9613-3f54808fd32f:
-    id: c6a54da3-8b67-46e6-9613-3f54808fd32f
-    content: A developer triaging a workflow event who wants to jump straight to the terminal session where it happened.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3cbceac6-a35d-4933-af93-5c89dfd8f07f:
-    id: 3cbceac6-a35d-4933-af93-5c89dfd8f07f
-    content: Current experience and why it is insufficient
-    children:
-      - f720be41-9f07-47f8-a018-078bab690791
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f720be41-9f07-47f8-a018-078bab690791:
-    id: f720be41-9f07-47f8-a018-078bab690791
-    content: Entries are non-interactive list items; acting on an error or status means manually hunting for the right file tab and terminal.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  be95f0b4-bdb3-43a5-925c-0e1f1d00240d:
-    id: be95f0b4-bdb3-43a5-925c-0e1f1d00240d
-    content: Goal
-    children:
-      - bd6b9f21-a4b7-4efd-9ef9-604e482675e6
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bd6b9f21-a4b7-4efd-9ef9-604e482675e6:
-    id: bd6b9f21-a4b7-4efd-9ef9-604e482675e6
-    content: Clicking a side-panel log entry brings the originating session's file tab and terminal to the foreground when it is still open.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4efafa44-6a74-41c1-8de0-cddf95730e11:
-    id: 4efafa44-6a74-41c1-8de0-cddf95730e11
-    content: Business rules
-    children:
-      - a0ccc934-9600-44cf-b951-87d484e8e0f6
-      - 7f1d6e5f-a13e-4e6a-9327-4bb80721f91b
-      - 8e0d42dd-ed09-4426-93bd-f0353e5d769f
-      - 77ee83d9-5f60-4566-b196-2ae24091c958
-      - b514fb28-8221-4b06-bb1d-00d9c12e9a4c
-      - 3d591ff1-3901-4fef-ba6d-6552e2689d0a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a0ccc934-9600-44cf-b951-87d484e8e0f6:
-    id: a0ccc934-9600-44cf-b951-87d484e8e0f6
-    content: Clicking an entry in the side panel focuses the file tab and terminal of the session that produced it.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f1d6e5f-a13e-4e6a-9327-4bb80721f91b:
-    id: 7f1d6e5f-a13e-4e6a-9327-4bb80721f91b
-    content: Focus-on-click is limited to the side panel; popover entries are not focus triggers and remain non-interactive (hover tooltip only).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e0d42dd-ed09-4426-93bd-f0353e5d769f:
-    id: 8e0d42dd-ed09-4426-93bd-f0353e5d769f
-    content: Focusing requires the originating file to be open and the terminal to still exist; otherwise the click is a no-op.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  77ee83d9-5f60-4566-b196-2ae24091c958:
-    id: 77ee83d9-5f60-4566-b196-2ae24091c958
-    content: Side-panel entries with no captured session reference — non-workflow entries and entries persisted before this change — are not clickable and offer no affordance.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b514fb28-8221-4b06-bb1d-00d9c12e9a4c:
-    id: b514fb28-8221-4b06-bb1d-00d9c12e9a4c
-    content: Only clickable side-panel entries show a pointer cursor and interactive affordance; non-clickable entries look and behave exactly as before.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d591ff1-3901-4fef-ba6d-6552e2689d0a:
-    id: 3d591ff1-3901-4fef-ba6d-6552e2689d0a
-    content: The logbar is not a focus trigger; it only toggles the panel (see PR1).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bb921d48-fa3b-4ce4-a1dc-ce174579176c:
-    id: bb921d48-fa3b-4ce4-a1dc-ce174579176c
-    content: Acceptance criteria
-    children:
-      - 2442f6fe-dc75-4c7a-bc2a-c2b8fcc4ef7f
-      - 50466145-f35f-4503-b92c-8bc30eca3910
-      - 89e65604-d556-4cd7-9535-9304b916a30e
-      - aa260392-2a98-4e38-bb97-ff46e93541c5
-      - fb8fc1f2-038f-46ce-84c3-08c3a8e7022f
-      - 83146e5c-3b76-4f9a-99b7-7a87b93173c6
-      - 299da3bb-8633-4bdc-90f1-95bf8672d619
-      - cb838e02-dcc9-456e-aad3-db9ecfb0a05a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2442f6fe-dc75-4c7a-bc2a-c2b8fcc4ef7f:
-    id: 2442f6fe-dc75-4c7a-bc2a-c2b8fcc4ef7f
-    content: Clicking a side-panel workflow entry whose originating file and terminal are open switches the active tab to that file and activates that terminal.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  50466145-f35f-4503-b92c-8bc30eca3910:
-    id: 50466145-f35f-4503-b92c-8bc30eca3910
-    content: Clicking a side-panel entry whose originating file is closed is a no-op with no error and no tab change.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  89e65604-d556-4cd7-9535-9304b916a30e:
-    id: 89e65604-d556-4cd7-9535-9304b916a30e
-    content: Clicking a side-panel entry whose terminal no longer exists is a no-op.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa260392-2a98-4e38-bb97-ff46e93541c5:
-    id: aa260392-2a98-4e38-bb97-ff46e93541c5
-    content: Popover entries are not clickable and produce no focus action.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fb8fc1f2-038f-46ce-84c3-08c3a8e7022f:
-    id: fb8fc1f2-038f-46ce-84c3-08c3a8e7022f
-    content: Side-panel entries without a session reference are not focusable and show no pointer affordance.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  83146e5c-3b76-4f9a-99b7-7a87b93173c6:
-    id: 83146e5c-3b76-4f9a-99b7-7a87b93173c6
-    content: Entries persisted before this change load without error and are non-clickable.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  299da3bb-8633-4bdc-90f1-95bf8672d619:
-    id: 299da3bb-8633-4bdc-90f1-95bf8672d619
-    content: Clickable side-panel entries are keyboard-focusable and activate on Enter and Space.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb838e02-dcc9-456e-aad3-db9ecfb0a05a:
-    id: cb838e02-dcc9-456e-aad3-db9ecfb0a05a
-    content: Clickable side-panel entries expose an accessible role and label for screen readers.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  29a7f437-a67f-49fd-9980-2e3e9f1350cd:
-    id: 29a7f437-a67f-49fd-9980-2e3e9f1350cd
-    content: 🔧 Implementation proposal
-    children:
-      - e1cd09e6-1ea1-4273-b70a-7596df1e4d07
-      - 7619e772-f4df-4561-bf48-e6ab2193916c
-      - 558d32b3-2022-4087-9ab6-757656335b1d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e1cd09e6-1ea1-4273-b70a-7596df1e4d07:
-    id: e1cd09e6-1ea1-4273-b70a-7596df1e4d07
-    content: Approach
-    children:
-      - 2b569b09-5f37-434b-816f-4e9046f54508
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b569b09-5f37-434b-816f-4e9046f54508:
-    id: 2b569b09-5f37-434b-816f-4e9046f54508
-    content: Extend ActivityLogEntry with an optional session target captured at creation, thread it through the notifyWorkflow funnel at its two call sites, and gate clickability behind an interactive flag on the shared renderer so only the side panel resolves the target to existing actions (setActiveFile + setActiveTerminal) under an open-session check — reusing existing routing rather than building new.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7619e772-f4df-4561-bf48-e6ab2193916c:
-    id: 7619e772-f4df-4561-bf48-e6ab2193916c
-    content: Touchpoints
-    children:
-      - aa879a9d-f897-4ba8-b52a-061186dc88a1
-      - a235de06-236e-4c97-a9f9-35bb16cd2864
-      - e2633ab2-f9df-45f6-add8-1edbf18c5a26
-      - 58e39147-c935-45eb-b855-3cb7b78154bd
-      - d13e46ad-5ea7-42e8-86f3-29af8a10b7f9
-      - 7902976e-f1ef-4387-ab96-e9af8a1cfe9d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa879a9d-f897-4ba8-b52a-061186dc88a1:
-    id: aa879a9d-f897-4ba8-b52a-061186dc88a1
-    content: shared/types/activityLog.ts — add an optional target (durable sessionId) to ActivityLogEntry.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a235de06-236e-4c97-a9f9-35bb16cd2864:
-    id: a235de06-236e-4c97-a9f9-35bb16cd2864
-    content: activityLogStore.ts (createEntry / addEntry) and notifyWorkflow — accept and store the optional target.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2633ab2-f9df-45f6-add8-1edbf18c5a26:
-    id: e2633ab2-f9df-45f6-add8-1edbf18c5a26
-    content: workflowExecutionActions.ts and workflowHookEventHandler — pass the originating session at the two funnel call sites.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  58e39147-c935-45eb-b855-3cb7b78154bd:
-    id: 58e39147-c935-45eb-b855-3cb7b78154bd
-    content: ActivityLogEntries.tsx — add an interactive prop; the panel passes it true and renders entries-with-a-target as clickable with keyboard support and role, the popover passes it false; onClick resolves and focuses.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d13e46ad-5ea7-42e8-86f3-29af8a10b7f9:
-    id: d13e46ad-5ea7-42e8-86f3-29af8a10b7f9
-    content: A focus helper over filesStore.setActiveFile + terminalStore.setActiveTerminal, with the open-check via workflowSessionMap / fileStates terminals (or decideWorkflowStartRoute).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7902976e-f1ef-4387-ab96-e9af8a1cfe9d:
-    id: 7902976e-f1ef-4387-ab96-e9af8a1cfe9d
-    content: Tests — target capture at the funnel, focus-when-open from the panel, no-op when closed or missing, popover entries non-interactive, and non-clickable when no target.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  558d32b3-2022-4087-9ab6-757656335b1d:
-    id: 558d32b3-2022-4087-9ab6-757656335b1d
-    content: Constraints to call out
-    children:
-      - 9707b956-a903-41c4-ac6a-6235eb43ae55
-      - 7abe1e5a-577c-4c98-8edc-2e14f68632c1
-      - cee6d99b-afc0-4cd1-af9a-5a2c5d33b62c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9707b956-a903-41c4-ac6a-6235eb43ae55:
-    id: 9707b956-a903-41c4-ac6a-6235eb43ae55
-    content: Persisted-entry backward compatibility — the new field is optional, so old entries hydrate as non-clickable with no migration.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7abe1e5a-577c-4c98-8edc-2e14f68632c1:
-    id: 7abe1e5a-577c-4c98-8edc-2e14f68632c1
-    content: Terminals are per-file, so resolution must recover the file path from the session at click time, not from a snapshot.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cee6d99b-afc0-4cd1-af9a-5a2c5d33b62c:
-    id: cee6d99b-afc0-4cd1-af9a-5a2c5d33b62c
-    content: '"Session" here is the workflow terminal session bound to the node, so only workflow-sourced entries can populate a target.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b8d4de7c-3559-45c4-b5b6-b6697b3b9b21:
-    id: b8d4de7c-3559-45c4-b5b6-b6697b3b9b21
-    content: Technical refinement
-    children:
-      - 1dc787f4-998d-444d-90c0-3a62364a3a4c
-      - 5202965d-1500-456b-b973-fe17594dcf67
-      - e30029fe-920b-43c6-95ad-9d101324a8e6
-      - 9a120dba-3e89-46d9-b255-4e6aef983da6
-      - eeef819a-0ab1-4aaa-a491-01f8ea664385
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1dc787f4-998d-444d-90c0-3a62364a3a4c:
-    id: 1dc787f4-998d-444d-90c0-3a62364a3a4c
-    content: Anchor on the durable sessionId and resolve file+terminal at click time; terminalIds are regenerated when a session resumes in a new tab, so a snapshotted terminalId/filePath goes stale and becomes a false no-op.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5202965d-1500-456b-b973-fe17594dcf67:
-    id: 5202965d-1500-456b-b973-fe17594dcf67
-    content: '"Focus" must never resume, spawn, or reopen a closed session or file — it is strictly a no-op when nothing is open.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e30029fe-920b-43c6-95ad-9d101324a8e6:
-    id: e30029fe-920b-43c6-95ad-9d101324a8e6
-    content: Side-panel entries become interactive inside a role="log" / aria-live region; use a real button or role+tabindex+keydown so the live region and keyboard activation stay correct.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9a120dba-3e89-46d9-b255-4e6aef983da6:
-    id: 9a120dba-3e89-46d9-b255-4e6aef983da6
-    content: Out of scope — no backfill of targets onto existing/persisted entries, no focus from the popover or logbar, no auto-resume or terminal-spawn on click, no change to the 5 / 100 entry counts.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eeef819a-0ab1-4aaa-a491-01f8ea664385:
-    id: eeef819a-0ab1-4aaa-a491-01f8ea664385
-    content: ROI caveat — payoff requires an entry to be both targeted and its session still open at click time (most entries are non-workflow and sessions close, never surviving a restart), so this PR sensibly lands after PR1 once demand is confirmed.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2638a4f4-fb9e-4884-b5e0-f1139f36f8dc:
-    id: 2638a4f4-fb9e-4884-b5e0-f1139f36f8dc
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  15d5e1da-28c5-4839-9f9f-700c65398572:
-    id: 15d5e1da-28c5-4839-9f9f-700c65398572
-    content: implementation summary
-    children:
-      - 3a6c1540-6f18-4017-9cfd-aa6286436904
-      - 3499ee08-6c90-41bb-bf78-b0222c12b628
-      - e758bfc7-ac51-4849-8e76-91b5a87dd81e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a6c1540-6f18-4017-9cfd-aa6286436904:
-    id: 3a6c1540-6f18-4017-9cfd-aa6286436904
-    content: 'Implemented: optional sessionId on ActivityLogEntry (shared type + store createEntry/addEntry, persisted whole so backward-compatible); notifyWorkflow threads an optional sessionId to addEntry; advanceNode (both transitions) and completeWorkflow pass the running node''s metadata.sessionId. ActivityLogEntries gained interactive + onActivateEntry — a targeted entry renders as a native button (role+focusable+Enter/Space) only when interactive; popover stays non-interactive, untargeted entries stay plain spans. focusLogSession helper resolves sessionId→{filePath,terminalId} by scanning storeManager.getAllStoreEntries() workflowSessionMaps, verifies the terminal still exists in terminalStore.fileStates, then setActiveFile + setActiveTerminal; strict no-op when not bound/open (never resumes). Panel wires interactive + onActivateEntry; CSS adds a button-reset .activity-log-entry-action.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3499ee08-6c90-41bb-bf78-b0222c12b628:
-    id: 3499ee08-6c90-41bb-bf78-b0222c12b628
-    content: 'Checks: 52 tests pass across 6 files (store sessionId, notifyWorkflow threading, ActivityLogEntries interactivity, panel render+click→focus, popover non-interactive, focusLogSession open/no-op/terminal-gone/unknown), ESLint clean, type-check clean. All 8 acceptance criteria covered; the one remaining it.todo is an advanceNode call-site integration test left pending (threading is unit-tested at notifyWorkflow; a full workflowExecutionActions harness is disproportionate here).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e758bfc7-ac51-4849-8e76-91b5a87dd81e:
-    id: e758bfc7-ac51-4849-8e76-91b5a87dd81e
-    content: 'Scope/decisions: kept to the spec — no popover/logbar focus, no auto-resume/spawn, no entry-count changes, no migration (optional field). Capture wired at the high-value node-bound transitions (advanceNode + completeWorkflow) rather than all 20+ notifyWorkflow sites; the rest log with no sessionId and stay correctly non-clickable. Per-file tree-store architecture (workflowSessionMap is per-file under storeManager) meant resolution scans open stores — the store holding the binding also identifies the file tab, so no separate session→file lookup needed.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  51df45d8-432b-4d31-87a1-2a4fbb6744ee:
-    id: 51df45d8-432b-4d31-87a1-2a4fbb6744ee
-    content: verification summary
-    children:
-      - 97555b08-f645-40c2-8dc6-a208aaaa3794
-      - eb9a7548-8c28-46a3-98fc-7a758e9b0cb4
-      - 7f83a8a2-b04a-4528-9fbd-5a6d2ebd1770
-      - 659309f1-cc50-4ebe-89eb-f465dd6e8515
-      - e5eada90-848f-4421-b53c-2d6687035b2d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  97555b08-f645-40c2-8dc6-a208aaaa3794:
-    id: 97555b08-f645-40c2-8dc6-a208aaaa3794
-    content: All 8 acceptance criteria implemented and verified against the code — 52 tests pass, ESLint and type-check clean.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eb9a7548-8c28-46a3-98fc-7a758e9b0cb4:
-    id: eb9a7548-8c28-46a3-98fc-7a758e9b0cb4
-    content: All 6 business rules, all 3 constraints, and all 5 technical-refinement items are satisfied; worktree present.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f83a8a2-b04a-4528-9fbd-5a6d2ebd1770:
-    id: 7f83a8a2-b04a-4528-9fbd-5a6d2ebd1770
-    content: 'Partial touchpoint (left unchecked): of "workflowExecutionActions.ts and workflowHookEventHandler", only workflowExecutionActions was wired (advanceNode + completeWorkflow). workflowHookEventHandler''s notifyWorkflow calls (review-requested, stuck-step) were intentionally not given a sessionId — they are alert events the user handles differently, not the canonical "jump to the session" transitions. Defensible scope call, but flagged here rather than marked done since the named file was untouched; reviewer may decide whether review-request entries should also be focusable.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  659309f1-cc50-4ebe-89eb-f465dd6e8515:
-    id: 659309f1-cc50-4ebe-89eb-f465dd6e8515
-    content: 'Pending, not undone: one advanceNode call-site integration test remains an it.todo — sessionId threading is unit-tested at notifyWorkflow, and a full workflowExecutionActions harness for a one-arg pass-through is disproportionate.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5eada90-848f-4421-b53c-2d6687035b2d:
-    id: e5eada90-848f-4421-b53c-2d6687035b2d
-    content: Nothing in scope was abandoned; the only deliberate omission is the workflowHookEventHandler capture above.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7648563a-e03a-46b2-b575-9b612b5980c8:
-    id: 7648563a-e03a-46b2-b575-9b612b5980c8
-    content: 'refactor: no changes needed — diff is convention-consistent, all edited files have tests, no stray/abandoned code. Re-ran checks: 52 tests pass, ESLint clean, type-check clean. NOTE for merge step: master has advanced past the fork point 0470514 (concurrent session landed reviewCollapse removal, workflowAckManager changes, and decomposedChildrenAutoAdvance.test removal — likely the decomposition double-advance fix). This worktree is still based on 0470514 and self-consistent; rebase onto the new master tip and re-run checks before the fast-forward merge.'
-    children: []
-    metadata:
-      status: pending
+      sessionId: 9d70acf7-6b45-42fb-aea2-da93505f7fc3
   46d82a92-e697-49c2-af85-3d2d3638108a:
     id: 46d82a92-e697-49c2-af85-3d2d3638108a
     content: File tabs change size when focusing
@@ -216709,74 +216107,1289 @@ nodes:
     children: []
     metadata:
       status: pending
-  361b9c1b-3c94-4a2e-b153-2e8b98e1e065:
-    id: 361b9c1b-3c94-4a2e-b153-2e8b98e1e065
-    content: review feedback
+  37e51f36-0403-47ac-a1f1-1b631d136c23:
+    id: 37e51f36-0403-47ac-a1f1-1b631d136c23
+    content: 'worktree: /Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session (branch feature/log-area-pr2-jump-to-session, forked from master 0470514)'
     children:
-      - 87e3efb7-717d-4300-987e-8cfbc5d4a782
-      - feb0e605-3505-4271-831e-421c9691a299
-      - 377903a8-a219-4643-8439-a7b070e80a80
-      - 7c991ea5-5ef3-47af-8a7d-3e5fbc1257c8
-      - 3fb2ff4d-0b7d-40a8-b39e-b480594a2dc5
+      - 10db3304-3b71-488e-a7da-d7802157f52a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10db3304-3b71-488e-a7da-d7802157f52a:
+    id: 10db3304-3b71-488e-a7da-d7802157f52a
+    content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ee9f4c3-aff1-418b-bd9d-c4591249f818:
+    id: 2ee9f4c3-aff1-418b-bd9d-c4591249f818
+    content: User story
+    children:
+      - 3e22f40d-f03b-4e79-94e5-825680a5f04f
+      - ca88ca29-82b4-42aa-9550-fb715d5ae912
+      - 826ea877-2273-4a84-b226-47a5d0e01726
     metadata:
       status: pending
-  87e3efb7-717d-4300-987e-8cfbc5d4a782:
-    id: 87e3efb7-717d-4300-987e-8cfbc5d4a782
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e22f40d-f03b-4e79-94e5-825680a5f04f:
+    id: 3e22f40d-f03b-4e79-94e5-825680a5f04f
+    content: 📄 Product spec
+    children:
+      - 16b1fe3c-4aff-44a9-b3fa-8a0f52edeab6
+      - 5682f68a-352b-476a-8fad-d777169ae71d
+      - 3331a907-0746-4ca5-92cd-603faadce404
+      - e21695cc-0155-4652-af5b-dd3894622b8a
+      - 529092fb-e85b-4c6e-9e22-60dd9db4b7f1
+      - 1e18efdc-1bde-4a3e-bddd-1c4d228153b4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16b1fe3c-4aff-44a9-b3fa-8a0f52edeab6:
+    id: 16b1fe3c-4aff-44a9-b3fa-8a0f52edeab6
+    content: Context
+    children:
+      - af2475d2-fc17-4ae9-afbb-eb11df48f24a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af2475d2-fc17-4ae9-afbb-eb11df48f24a:
+    id: af2475d2-fc17-4ae9-afbb-eb11df48f24a
+    content: Log entries are message + type + source + timestamp with no link back to the terminal session that produced them, so users cannot navigate from an event to its origin.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5682f68a-352b-476a-8fad-d777169ae71d:
+    id: 5682f68a-352b-476a-8fad-d777169ae71d
+    content: User
+    children:
+      - f37a2703-3c89-41c5-91b4-d0177b4b1391
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f37a2703-3c89-41c5-91b4-d0177b4b1391:
+    id: f37a2703-3c89-41c5-91b4-d0177b4b1391
+    content: A developer triaging a workflow event who wants to jump straight to the terminal session where it happened.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3331a907-0746-4ca5-92cd-603faadce404:
+    id: 3331a907-0746-4ca5-92cd-603faadce404
+    content: Current experience and why it is insufficient
+    children:
+      - 8c81bd65-9ffb-428e-96bf-874654c8e8df
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c81bd65-9ffb-428e-96bf-874654c8e8df:
+    id: 8c81bd65-9ffb-428e-96bf-874654c8e8df
+    content: Entries are non-interactive list items; acting on an error or status means manually hunting for the right file tab and terminal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e21695cc-0155-4652-af5b-dd3894622b8a:
+    id: e21695cc-0155-4652-af5b-dd3894622b8a
+    content: Goal
+    children:
+      - be4e9ab4-3ae2-4f82-a7d0-8a6514f5e5a0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be4e9ab4-3ae2-4f82-a7d0-8a6514f5e5a0:
+    id: be4e9ab4-3ae2-4f82-a7d0-8a6514f5e5a0
+    content: Clicking a side-panel log entry brings the originating session's file tab and terminal to the foreground when it is still open.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  529092fb-e85b-4c6e-9e22-60dd9db4b7f1:
+    id: 529092fb-e85b-4c6e-9e22-60dd9db4b7f1
+    content: Business rules
+    children:
+      - bb4cd9a1-66b7-4564-832c-98880868c413
+      - e7a61e0c-cf6a-4af5-b927-819b42dafa5b
+      - 4ed797c2-6380-4730-92bd-1b15194e098c
+      - df6e6f6e-a7d4-4f2d-9b4b-544b180fb243
+      - 7696ec10-9e53-4ffc-9a81-92dd0238dcde
+      - ea9c1c3e-aedb-4b39-b6ea-38917dacdc9c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb4cd9a1-66b7-4564-832c-98880868c413:
+    id: bb4cd9a1-66b7-4564-832c-98880868c413
+    content: Clicking an entry in the side panel focuses the file tab and terminal of the session that produced it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7a61e0c-cf6a-4af5-b927-819b42dafa5b:
+    id: e7a61e0c-cf6a-4af5-b927-819b42dafa5b
+    content: Focus-on-click is limited to the side panel; popover entries are not focus triggers and remain non-interactive (hover tooltip only).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ed797c2-6380-4730-92bd-1b15194e098c:
+    id: 4ed797c2-6380-4730-92bd-1b15194e098c
+    content: Focusing requires the originating file to be open and the terminal to still exist; otherwise the click is a no-op.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df6e6f6e-a7d4-4f2d-9b4b-544b180fb243:
+    id: df6e6f6e-a7d4-4f2d-9b4b-544b180fb243
+    content: Side-panel entries with no captured session reference — non-workflow entries and entries persisted before this change — are not clickable and offer no affordance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7696ec10-9e53-4ffc-9a81-92dd0238dcde:
+    id: 7696ec10-9e53-4ffc-9a81-92dd0238dcde
+    content: Only clickable side-panel entries show a pointer cursor and interactive affordance; non-clickable entries look and behave exactly as before.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea9c1c3e-aedb-4b39-b6ea-38917dacdc9c:
+    id: ea9c1c3e-aedb-4b39-b6ea-38917dacdc9c
+    content: The logbar is not a focus trigger; it only toggles the panel (see PR1).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e18efdc-1bde-4a3e-bddd-1c4d228153b4:
+    id: 1e18efdc-1bde-4a3e-bddd-1c4d228153b4
+    content: Acceptance criteria
+    children:
+      - de5d2a01-5694-45c6-bd64-80a5e98cf7f0
+      - 77aed43d-3beb-4213-8021-57ac548cbfab
+      - 025b49c8-1bd0-4e94-94c8-caf496bbda2b
+      - b40291fa-e770-44d8-92bf-fc4f09a6b0b1
+      - 193521d8-9b8a-42cf-8026-b6e3047983cc
+      - d2180443-5902-4ee4-a65b-7e99edb96776
+      - 6ebbe894-fd5c-44f6-b2a6-37f2f0d1623b
+      - e02688e9-7532-48a9-b87b-6b0e566e020a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  de5d2a01-5694-45c6-bd64-80a5e98cf7f0:
+    id: de5d2a01-5694-45c6-bd64-80a5e98cf7f0
+    content: Clicking a side-panel workflow entry whose originating file and terminal are open switches the active tab to that file and activates that terminal.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77aed43d-3beb-4213-8021-57ac548cbfab:
+    id: 77aed43d-3beb-4213-8021-57ac548cbfab
+    content: Clicking a side-panel entry whose originating file is closed is a no-op with no error and no tab change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  025b49c8-1bd0-4e94-94c8-caf496bbda2b:
+    id: 025b49c8-1bd0-4e94-94c8-caf496bbda2b
+    content: Clicking a side-panel entry whose terminal no longer exists is a no-op.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b40291fa-e770-44d8-92bf-fc4f09a6b0b1:
+    id: b40291fa-e770-44d8-92bf-fc4f09a6b0b1
+    content: Popover entries are not clickable and produce no focus action.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  193521d8-9b8a-42cf-8026-b6e3047983cc:
+    id: 193521d8-9b8a-42cf-8026-b6e3047983cc
+    content: Side-panel entries without a session reference are not focusable and show no pointer affordance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2180443-5902-4ee4-a65b-7e99edb96776:
+    id: d2180443-5902-4ee4-a65b-7e99edb96776
+    content: Entries persisted before this change load without error and are non-clickable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ebbe894-fd5c-44f6-b2a6-37f2f0d1623b:
+    id: 6ebbe894-fd5c-44f6-b2a6-37f2f0d1623b
+    content: Clickable side-panel entries are keyboard-focusable and activate on Enter and Space.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e02688e9-7532-48a9-b87b-6b0e566e020a:
+    id: e02688e9-7532-48a9-b87b-6b0e566e020a
+    content: Clickable side-panel entries expose an accessible role and label for screen readers.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca88ca29-82b4-42aa-9550-fb715d5ae912:
+    id: ca88ca29-82b4-42aa-9550-fb715d5ae912
+    content: 🔧 Implementation proposal
+    children:
+      - 60e98e6c-7efa-4180-a838-978a1d55a658
+      - b8216339-baca-4c15-8e2d-b28b3a318cd4
+      - b51505a0-0fb9-4533-a0e6-fab6f8c27830
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60e98e6c-7efa-4180-a838-978a1d55a658:
+    id: 60e98e6c-7efa-4180-a838-978a1d55a658
+    content: Approach
+    children:
+      - efe49783-9778-4c70-a134-f79efe84d0f4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efe49783-9778-4c70-a134-f79efe84d0f4:
+    id: efe49783-9778-4c70-a134-f79efe84d0f4
+    content: Extend ActivityLogEntry with an optional session target captured at creation, thread it through the notifyWorkflow funnel at its two call sites, and gate clickability behind an interactive flag on the shared renderer so only the side panel resolves the target to existing actions (setActiveFile + setActiveTerminal) under an open-session check — reusing existing routing rather than building new.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8216339-baca-4c15-8e2d-b28b3a318cd4:
+    id: b8216339-baca-4c15-8e2d-b28b3a318cd4
+    content: Touchpoints
+    children:
+      - 04fe3378-0720-4f62-a9cd-d312c0f329d6
+      - 60e35abe-e7c4-49d4-afd5-d1200cb6c503
+      - 15588b02-6100-4791-ad70-3ec65eae7379
+      - 963415ac-d53f-471f-bee1-7d50fcf9d0a0
+      - c5ad1fd5-dc61-49d0-a8fb-b289e166281e
+      - a48ab3bf-28fb-465e-9a38-3ce41bf9947c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04fe3378-0720-4f62-a9cd-d312c0f329d6:
+    id: 04fe3378-0720-4f62-a9cd-d312c0f329d6
+    content: shared/types/activityLog.ts — add an optional target (durable sessionId) to ActivityLogEntry.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60e35abe-e7c4-49d4-afd5-d1200cb6c503:
+    id: 60e35abe-e7c4-49d4-afd5-d1200cb6c503
+    content: activityLogStore.ts (createEntry / addEntry) and notifyWorkflow — accept and store the optional target.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15588b02-6100-4791-ad70-3ec65eae7379:
+    id: 15588b02-6100-4791-ad70-3ec65eae7379
+    content: workflowExecutionActions.ts and workflowHookEventHandler — pass the originating session at the two funnel call sites.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  963415ac-d53f-471f-bee1-7d50fcf9d0a0:
+    id: 963415ac-d53f-471f-bee1-7d50fcf9d0a0
+    content: ActivityLogEntries.tsx — add an interactive prop; the panel passes it true and renders entries-with-a-target as clickable with keyboard support and role, the popover passes it false; onClick resolves and focuses.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5ad1fd5-dc61-49d0-a8fb-b289e166281e:
+    id: c5ad1fd5-dc61-49d0-a8fb-b289e166281e
+    content: A focus helper over filesStore.setActiveFile + terminalStore.setActiveTerminal, with the open-check via workflowSessionMap / fileStates terminals (or decideWorkflowStartRoute).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a48ab3bf-28fb-465e-9a38-3ce41bf9947c:
+    id: a48ab3bf-28fb-465e-9a38-3ce41bf9947c
+    content: Tests — target capture at the funnel, focus-when-open from the panel, no-op when closed or missing, popover entries non-interactive, and non-clickable when no target.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b51505a0-0fb9-4533-a0e6-fab6f8c27830:
+    id: b51505a0-0fb9-4533-a0e6-fab6f8c27830
+    content: Constraints to call out
+    children:
+      - 3bc2d588-cf02-4de8-872f-ed2d3a9fdeeb
+      - 872d608c-3f99-4112-aead-0d27f4631023
+      - 8cfb63da-90a8-4a84-9de7-10593aceaaae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bc2d588-cf02-4de8-872f-ed2d3a9fdeeb:
+    id: 3bc2d588-cf02-4de8-872f-ed2d3a9fdeeb
+    content: Persisted-entry backward compatibility — the new field is optional, so old entries hydrate as non-clickable with no migration.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  872d608c-3f99-4112-aead-0d27f4631023:
+    id: 872d608c-3f99-4112-aead-0d27f4631023
+    content: Terminals are per-file, so resolution must recover the file path from the session at click time, not from a snapshot.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cfb63da-90a8-4a84-9de7-10593aceaaae:
+    id: 8cfb63da-90a8-4a84-9de7-10593aceaaae
+    content: '"Session" here is the workflow terminal session bound to the node, so only workflow-sourced entries can populate a target.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  826ea877-2273-4a84-b226-47a5d0e01726:
+    id: 826ea877-2273-4a84-b226-47a5d0e01726
+    content: Technical refinement
+    children:
+      - 08f2ff78-b5f4-47f2-8cc4-0d7630f2763d
+      - f43ac4cb-3179-4723-9ec0-a687b78991d2
+      - 2811109c-a285-4117-b3c0-e69afdd2ee40
+      - d74d78ae-a96b-48e6-b433-1fe16b2502d8
+      - 1d51f31c-2cfd-4352-b80f-067664b4dbce
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08f2ff78-b5f4-47f2-8cc4-0d7630f2763d:
+    id: 08f2ff78-b5f4-47f2-8cc4-0d7630f2763d
+    content: Anchor on the durable sessionId and resolve file+terminal at click time; terminalIds are regenerated when a session resumes in a new tab, so a snapshotted terminalId/filePath goes stale and becomes a false no-op.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f43ac4cb-3179-4723-9ec0-a687b78991d2:
+    id: f43ac4cb-3179-4723-9ec0-a687b78991d2
+    content: '"Focus" must never resume, spawn, or reopen a closed session or file — it is strictly a no-op when nothing is open.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2811109c-a285-4117-b3c0-e69afdd2ee40:
+    id: 2811109c-a285-4117-b3c0-e69afdd2ee40
+    content: Side-panel entries become interactive inside a role="log" / aria-live region; use a real button or role+tabindex+keydown so the live region and keyboard activation stay correct.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d74d78ae-a96b-48e6-b433-1fe16b2502d8:
+    id: d74d78ae-a96b-48e6-b433-1fe16b2502d8
+    content: Out of scope — no backfill of targets onto existing/persisted entries, no focus from the popover or logbar, no auto-resume or terminal-spawn on click, no change to the 5 / 100 entry counts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d51f31c-2cfd-4352-b80f-067664b4dbce:
+    id: 1d51f31c-2cfd-4352-b80f-067664b4dbce
+    content: ROI caveat — payoff requires an entry to be both targeted and its session still open at click time (most entries are non-workflow and sessions close, never surviving a restart), so this PR sensibly lands after PR1 once demand is confirmed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0df47d4b-e023-49b1-93c9-b7c62a77cf83:
+    id: 0df47d4b-e023-49b1-93c9-b7c62a77cf83
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc272330-741c-4539-a4c3-3c4f0a6252c4:
+    id: dc272330-741c-4539-a4c3-3c4f0a6252c4
+    content: implementation summary
+    children:
+      - b11f834e-2ba4-480c-a37b-35dbbb52afda
+      - 2403eef6-7df9-4c73-9476-2f45f9042a6b
+      - cf571370-70c0-48ed-91f4-19bacd74ca06
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b11f834e-2ba4-480c-a37b-35dbbb52afda:
+    id: b11f834e-2ba4-480c-a37b-35dbbb52afda
+    content: 'Implemented: optional sessionId on ActivityLogEntry (shared type + store createEntry/addEntry, persisted whole so backward-compatible); notifyWorkflow threads an optional sessionId to addEntry; advanceNode (both transitions) and completeWorkflow pass the running node''s metadata.sessionId. ActivityLogEntries gained interactive + onActivateEntry — a targeted entry renders as a native button (role+focusable+Enter/Space) only when interactive; popover stays non-interactive, untargeted entries stay plain spans. focusLogSession helper resolves sessionId→{filePath,terminalId} by scanning storeManager.getAllStoreEntries() workflowSessionMaps, verifies the terminal still exists in terminalStore.fileStates, then setActiveFile + setActiveTerminal; strict no-op when not bound/open (never resumes). Panel wires interactive + onActivateEntry; CSS adds a button-reset .activity-log-entry-action.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2403eef6-7df9-4c73-9476-2f45f9042a6b:
+    id: 2403eef6-7df9-4c73-9476-2f45f9042a6b
+    content: 'Checks: 52 tests pass across 6 files (store sessionId, notifyWorkflow threading, ActivityLogEntries interactivity, panel render+click→focus, popover non-interactive, focusLogSession open/no-op/terminal-gone/unknown), ESLint clean, type-check clean. All 8 acceptance criteria covered; the one remaining it.todo is an advanceNode call-site integration test left pending (threading is unit-tested at notifyWorkflow; a full workflowExecutionActions harness is disproportionate here).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf571370-70c0-48ed-91f4-19bacd74ca06:
+    id: cf571370-70c0-48ed-91f4-19bacd74ca06
+    content: 'Scope/decisions: kept to the spec — no popover/logbar focus, no auto-resume/spawn, no entry-count changes, no migration (optional field). Capture wired at the high-value node-bound transitions (advanceNode + completeWorkflow) rather than all 20+ notifyWorkflow sites; the rest log with no sessionId and stay correctly non-clickable. Per-file tree-store architecture (workflowSessionMap is per-file under storeManager) meant resolution scans open stores — the store holding the binding also identifies the file tab, so no separate session→file lookup needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4800a587-52ed-4819-a5f4-e6f9b42a0f20:
+    id: 4800a587-52ed-4819-a5f4-e6f9b42a0f20
+    content: verification summary
+    children:
+      - 57fd0bf8-5e1a-4deb-afc9-5d1e426e35ed
+      - 4b82e07f-f6c4-439e-bdbf-fd57aedec0a8
+      - 9fbc8d4c-1808-4470-bc12-872c7cd7883e
+      - 850d23e5-dcdf-4a56-be4c-c1eded0675c1
+      - 903a8128-c5ca-4a29-8531-dc4dc182ca81
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57fd0bf8-5e1a-4deb-afc9-5d1e426e35ed:
+    id: 57fd0bf8-5e1a-4deb-afc9-5d1e426e35ed
+    content: All 8 acceptance criteria implemented and verified against the code — 52 tests pass, ESLint and type-check clean.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b82e07f-f6c4-439e-bdbf-fd57aedec0a8:
+    id: 4b82e07f-f6c4-439e-bdbf-fd57aedec0a8
+    content: All 6 business rules, all 3 constraints, and all 5 technical-refinement items are satisfied; worktree present.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fbc8d4c-1808-4470-bc12-872c7cd7883e:
+    id: 9fbc8d4c-1808-4470-bc12-872c7cd7883e
+    content: 'Partial touchpoint (left unchecked): of "workflowExecutionActions.ts and workflowHookEventHandler", only workflowExecutionActions was wired (advanceNode + completeWorkflow). workflowHookEventHandler''s notifyWorkflow calls (review-requested, stuck-step) were intentionally not given a sessionId — they are alert events the user handles differently, not the canonical "jump to the session" transitions. Defensible scope call, but flagged here rather than marked done since the named file was untouched; reviewer may decide whether review-request entries should also be focusable.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  850d23e5-dcdf-4a56-be4c-c1eded0675c1:
+    id: 850d23e5-dcdf-4a56-be4c-c1eded0675c1
+    content: 'Pending, not undone: one advanceNode call-site integration test remains an it.todo — sessionId threading is unit-tested at notifyWorkflow, and a full workflowExecutionActions harness for a one-arg pass-through is disproportionate.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  903a8128-c5ca-4a29-8531-dc4dc182ca81:
+    id: 903a8128-c5ca-4a29-8531-dc4dc182ca81
+    content: Nothing in scope was abandoned; the only deliberate omission is the workflowHookEventHandler capture above.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  959352d4-11fe-4426-b188-df2475925703:
+    id: 959352d4-11fe-4426-b188-df2475925703
+    content: 'refactor: no changes needed — diff is convention-consistent, all edited files have tests, no stray/abandoned code. Re-ran checks: 52 tests pass, ESLint clean, type-check clean. NOTE for merge step: master has advanced past the fork point 0470514 (concurrent session landed reviewCollapse removal, workflowAckManager changes, and decomposedChildrenAutoAdvance.test removal — likely the decomposition double-advance fix). This worktree is still based on 0470514 and self-consistent; rebase onto the new master tip and re-run checks before the fast-forward merge.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  71962292-fcbf-4a23-8705-0cd8c3b7c2d0:
+    id: 71962292-fcbf-4a23-8705-0cd8c3b7c2d0
+    content: review feedback
+    children:
+      - 322e0448-5243-48db-bad5-6a63320a99a1
+      - 7063a560-3064-402f-acde-ec5f81508e75
+      - 8a5848ee-3fb3-4189-a95d-ed03e6cf0a13
+      - f4f4166c-c7ac-4e33-88da-fb4fbaa56e44
+      - 84710f97-6ba4-4cb7-bb92-bf42201055f2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  322e0448-5243-48db-bad5-6a63320a99a1:
+    id: 322e0448-5243-48db-bad5-6a63320a99a1
     content: 'Verdict: ship it — no blockers, no should-fix. Reviewer independently re-ran type-check, lint, and the affected suites (60 passing), and checked the calling code (App.tsx, popover, advanceNode/completeWorkflow node source).'
     children: []
     metadata:
       status: pending
-  feb0e605-3505-4271-831e-421c9691a299:
-    id: feb0e605-3505-4271-831e-421c9691a299
+      expanded: true
+      deleted: false
+      plugins: {}
+  7063a560-3064-402f-acde-ec5f81508e75:
+    id: 7063a560-3064-402f-acde-ec5f81508e75
     content: 'Correctness confirmed by the reviewer: the setActiveFile→setActiveTerminal ordering is safe because the filesStore→terminalStore cascade (useAppInitialization subscription) is synchronous inside zustand set(), so currentFilePath is updated before setActiveTerminal runs — the same path TabBar clicks use. metadata.sessionId is the correct durable key into workflowSessionMap (reverse lookup at click time survives resume). storeManager and terminalStore.fileStates share the source-path key, so resolution is consistent. Backward-compat and popover-non-interactive locked in by tests.'
     children: []
     metadata:
       status: pending
-  377903a8-a219-4643-8439-a7b070e80a80:
-    id: 377903a8-a219-4643-8439-a7b070e80a80
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a5848ee-3fb3-4189-a95d-ed03e6cf0a13:
+    id: 8a5848ee-3fb3-4189-a95d-ed03e6cf0a13
     content: 'Nit 1 (a11y, product call): interactive buttons live inside the panel''s role="log"/aria-live="polite" region; AT may announce appended entries that contain actionable controls. Minor (polite only announces additions; no auto-focus). Strict fix = wrap only the announced text in the live region, separate from the interactive list. Decide in resolution.'
     children: []
     metadata:
       status: pending
-  7c991ea5-5ef3-47af-8a7d-3e5fbc1257c8:
-    id: 7c991ea5-5ef3-47af-8a7d-3e5fbc1257c8
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4f4166c-c7ac-4e33-88da-fb4fbaa56e44:
+    id: f4f4166c-c7ac-4e33-88da-fb4fbaa56e44
     content: 'Nit 2 (UX, product call): clicking an entry focuses the session but leaves the panel open (activateEntry calls only focusLogSession, not onClose). Reviewer flags it as a conscious choice — keep-open lets the user keep scanning; jump-and-close would also call onClose. Decide intended behavior in resolution.'
     children: []
     metadata:
       status: pending
-  3fb2ff4d-0b7d-40a8-b39e-b480594a2dc5:
-    id: 3fb2ff4d-0b7d-40a8-b39e-b480594a2dc5
+      expanded: true
+      deleted: false
+      plugins: {}
+  84710f97-6ba4-4cb7-bb92-bf42201055f2:
+    id: 84710f97-6ba4-4cb7-bb92-bf42201055f2
     content: 'Nit 3 (tests, accept): the advanceNode call-site integration it.todo is acceptable — threading is unit-tested at notifyWorkflow and the call sites run under the existing workflowExecutionActions suite. Reviewer fine to leave it.'
     children: []
     metadata:
       status: pending
-  2eb513b9-950f-4c1e-8ecd-bf7819b6d65f:
-    id: 2eb513b9-950f-4c1e-8ecd-bf7819b6d65f
+      expanded: true
+      deleted: false
+      plugins: {}
+  9966eeab-0762-4f06-9450-2c40543e376c:
+    id: 9966eeab-0762-4f06-9450-2c40543e376c
     content: review resolution
     children:
-      - 7b0bfc7b-79b9-4c1c-bb89-75a953d47f1d
-      - cc5b2bec-2584-442f-a93d-6bc1ab1ef582
-      - 8e5fc3ff-ef64-4e4a-b7ff-9dcf6e89ea50
+      - 9471eac7-a30e-4fd1-accd-fa9848009bf4
+      - fe8ddde1-e41f-4940-a989-408028909dfa
+      - dec55015-aeac-4953-b9a0-e3b87343c12e
     metadata:
       status: pending
-  7b0bfc7b-79b9-4c1c-bb89-75a953d47f1d:
-    id: 7b0bfc7b-79b9-4c1c-bb89-75a953d47f1d
+      expanded: true
+      deleted: false
+      plugins: {}
+  9471eac7-a30e-4fd1-accd-fa9848009bf4:
+    id: 9471eac7-a30e-4fd1-accd-fa9848009bf4
     content: 'Major issues fixed: none — review verdict was ship-it with no blockers or should-fix.'
     children: []
     metadata:
       status: pending
-  cc5b2bec-2584-442f-a93d-6bc1ab1ef582:
-    id: cc5b2bec-2584-442f-a93d-6bc1ab1ef582
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe8ddde1-e41f-4940-a989-408028909dfa:
+    id: fe8ddde1-e41f-4940-a989-408028909dfa
     content: 'Minor issue fixed (Nit 2, jump-and-close): activating a side-panel entry now closes the panel, but only on a successful focus. focusLogSession now returns boolean (true when it focused, false on no-op); ActivityLogPanel''s activateEntry calls onClose only when it returns true — so a dead/closed-session click stays a true no-op (panel stays open, no confusing vanish). Aligns with the spec goal of bringing the session "to the foreground" (the panel is a fixed right-side overlay over the workspace). Added a panel test for no-op-stays-open and return-value assertions in focusLogSession.test. 53 tests pass, ESLint + type-check clean.'
     children: []
     metadata:
       status: pending
-  8e5fc3ff-ef64-4e4a-b7ff-9dcf6e89ea50:
-    id: 8e5fc3ff-ef64-4e4a-b7ff-9dcf6e89ea50
+      expanded: true
+      deleted: false
+      plugins: {}
+  dec55015-aeac-4953-b9a0-e3b87343c12e:
+    id: dec55015-aeac-4953-b9a0-e3b87343c12e
     content: 'Feedback skipped (pushed back): Nit 1 (interactive buttons in the role=log/aria-live region). The technical-refinement spec explicitly sanctioned "use a real button" in this region, which is what shipped; aria-live=polite only announces appended text with no auto-focus, so the practical impact is negligible (announcing "button" on a new entry is arguably helpful). The strict fix — separating the announced text from the interactive list — is a real restructure for marginal gain the spec did not request. Left as-is. Nit 3 (advanceNode it.todo) accepted as-is per the reviewer — no action.'
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d539fc2b-e909-48d4-87fe-876a1f562746:
+    id: d539fc2b-e909-48d4-87fe-876a1f562746
+    content: merge
+    children:
+      - 0d209a7d-b174-466d-8b24-b629f9b711fe
+      - af099249-7966-4718-9e19-b24750786fde
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d209a7d-b174-466d-8b24-b629f9b711fe:
+    id: 0d209a7d-b174-466d-8b24-b629f9b711fe
+    content: Merged to master as 90fdbf4 via fast-forward; project.arbo committed separately on master as 48bf7ac. Feature rebased cleanly onto the advanced master tip (7e2fb72, which already includes the decomposition double-advance fix 04fdefb) — master's +1 line to workflowExecutionActions did not conflict with the notify-site edits; re-ran checks post-rebase (53 tests pass, ESLint + type-check clean).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af099249-7966-4718-9e19-b24750786fde:
+    id: af099249-7966-4718-9e19-b24750786fde
+    content: Pushed master to origin (7e2fb72..90fdbf4); worktree and local branch feature/log-area-pr2-jump-to-session deleted after the merge was confirmed on master.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa6afbca-7f61-47db-bea0-922058b0cefb:
+    id: fa6afbca-7f61-47db-bea0-922058b0cefb
+    content: worktree
+    children:
+      - 46a24db0-947b-47a0-8dc1-b2befb9d708d
+      - bef47788-04b3-459a-afbf-8c52293dd6a2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46a24db0-947b-47a0-8dc1-b2befb9d708d:
+    id: 46a24db0-947b-47a0-8dc1-b2befb9d708d
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-rebind-dialog-orphaned-on-autoconfirm)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bef47788-04b3-459a-afbf-8c52293dd6a2:
+    id: bef47788-04b3-459a-afbf-8c52293dd6a2
+    content: branch `fix/rebind-dialog-orphaned-on-autoconfirm` — forked from master @ 90fdbf4; deps installed from scratch (not symlinked)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  684560d4-d442-4a47-a7ee-83fda62baf10:
+    id: 684560d4-d442-4a47-a7ee-83fda62baf10
+    content: Summary
+    children:
+      - 0ef6b49b-d9de-4ac7-b5af-633d3b86de0a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ef6b49b-d9de-4ac7-b5af-633d3b86de0a:
+    id: 0ef6b49b-d9de-4ac7-b5af-633d3b86de0a
+    content: 'During autoplay of a decomposed series, a session rebind-confirmation dialog is shown for a sibling/hand-off node and then orphaned: the server auto-confirms the rebind but never tells the renderer to dismiss the dialog, so the pending dialog blocks every further autonomous send on that terminal and autoplay stalls.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ec34e4b-74e8-4972-9981-601ef4a82b6a:
+    id: 1ec34e4b-74e8-4972-9981-601ef4a82b6a
+    content: Steps to reproduce
+    children:
+      - 65df6406-b0f5-4a3b-a2c4-55d201fad086
+      - 3e93d558-63cb-4465-954c-7bfbc01da809
+      - 153f143c-68a8-4346-aa80-64708ab9b1f6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65df6406-b0f5-4a3b-a2c4-55d201fad086:
+    id: 65df6406-b0f5-4a3b-a2c4-55d201fad086
+    content: 'Precondition: a node decomposed into a sibling series (e.g. PR1, PR2) running autonomously; each sibling/child reuses (inherits) the prior node''s session via the decomposition+recurse hand-off'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e93d558-63cb-4465-954c-7bfbc01da809:
+    id: 3e93d558-63cb-4465-954c-7bfbc01da809
+    content: 'Action: start autoplay and let the series hand off from one sibling/child to the next — the hand-off send carries bindingSource ''workflow-advance'''
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  153f143c-68a8-4346-aa80-64708ab9b1f6:
+    id: 153f143c-68a8-4346-aa80-64708ab9b1f6
+    content: 'Observation: a rebind-confirmation dialog appears for the hand-off node and sits unconfirmed; the terminal is marked rebind-pending; the next autonomous send is blocked (''Send blocked: rebind dialog pending on terminal …'') and autoplay stalls until the dialog is manually clicked'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfb09e49-e749-4c24-bc4a-066f98731238:
+    id: dfb09e49-e749-4c24-bc4a-066f98731238
+    content: Expected behavior
+    children:
+      - cab5a1dc-b579-4249-bc1c-4241b785a96b
+      - 1867b564-2696-4d37-b3af-95b706e91ed2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cab5a1dc-b579-4249-bc1c-4241b785a96b:
+    id: cab5a1dc-b579-4249-bc1c-4241b785a96b
+    content: 'Happy path: a ''workflow-advance'' (sibling/recurse) hand-off auto-binds the session to the new node silently — no dialog ever shown — and autoplay continues autonomously through every node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1867b564-2696-4d37-b3af-95b706e91ed2:
+    id: 1867b564-2696-4d37-b3af-95b706e91ed2
+    content: 'Edge case: a rebind dialog should still be shown for non-workflow rebinds (workflow-start, resume, compact) where the user genuinely needs to confirm the binding move'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86ff8851-6210-498c-ad88-bb1c61a60cd2:
+    id: 86ff8851-6210-498c-ad88-bb1c61a60cd2
+    content: Actual behavior
+    children:
+      - 1ebf84e4-c21d-499b-84e9-f6604ec17f49
+      - 448c31cd-f79a-4928-831e-ecfee3380cdc
+      - 8a205fe0-1ff4-4c88-990e-f0fd8e240c38
+      - 034c19e6-1f68-4ea3-9038-9171d3586fb5
+      - 5369559c-5bba-4481-86ed-bbbd59bde1fc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ebf84e4-c21d-499b-84e9-f6604ec17f49:
+    id: 1ebf84e4-c21d-499b-84e9-f6604ec17f49
+    content: register() emits the rebind-request to the renderer synchronously for every rebind-needed, regardless of source, before the dispatcher decides whether to auto-confirm
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  448c31cd-f79a-4928-831e-ecfee3380cdc:
+    id: 448c31cd-f79a-4928-831e-ecfee3380cdc
+    content: For source='workflow-advance' the dispatcher auto-confirms server-side via registry.confirmRebind(), which flips the binding map but does NOT notify the renderer to cancel/dismiss the already-shown dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a205fe0-1ff4-4c88-990e-f0fd8e240c38:
+    id: 8a205fe0-1ff4-4c88-990e-f0fd8e240c38
+    content: The renderer dialog is orphaned — the user never confirmed it, so it is never dismissed and the terminal stays rebind-pending
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  034c19e6-1f68-4ea3-9038-9171d3586fb5:
+    id: 034c19e6-1f68-4ea3-9038-9171d3586fb5
+    content: isRebindDialogPending then blocks the next autonomous send on that terminal, so the next prompt never dispatches and autoplay stalls mid-series
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5369559c-5bba-4481-86ed-bbbd59bde1fc:
+    id: 5369559c-5bba-4481-86ed-bbbd59bde1fc
+    content: 'The bridge''s safety timeout cannot rescue it: confirmRebind already deleted the pending entry, so cancelRebind returns false and the timeout skips notifyRendererCancelled — the dialog hangs until clicked'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c7e459a-70d0-40a0-abc3-5b2f1e32e864:
+    id: 8c7e459a-70d0-40a0-abc3-5b2f1e32e864
+    content: Confirmed cause
+    children:
+      - e64390aa-b819-43d3-9158-b1a01b0d47fe
+      - ce0ee358-ab19-4a8a-80fe-77cc4405bbba
+      - 91e68b1b-da4a-49b1-a389-5df0e7380d1e
+      - 416eccad-1ac7-4991-9eb4-0697dcedc97a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e64390aa-b819-43d3-9158-b1a01b0d47fe:
+    id: e64390aa-b819-43d3-9158-b1a01b0d47fe
+    content: The rebind dialog is emitted to the renderer synchronously inside SessionBindingRegistry.register() for every rebind-needed, independent of bindingSource
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce0ee358-ab19-4a8a-80fe-77cc4405bbba:
+    id: ce0ee358-ab19-4a8a-80fe-77cc4405bbba
+    content: workflow-advance rebinds are auto-confirmed server-side only (hookEventDispatcher.handleRegisterBinding → registry.confirmRebind), bypassing the IPC bridge, so the renderer is never sent a rebind-cancelled and the dialog is left orphaned
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91e68b1b-da4a-49b1-a389-5df0e7380d1e:
+    id: 91e68b1b-da4a-49b1-a389-5df0e7380d1e
+    content: While that orphaned dialog is pending, isRebindDialogPending gates the autoplay send path — this is the stall; it is NOT a decline and NOT the renderer 'preflight' rebind (the preflight gate never fired)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  416eccad-1ac7-4991-9eb4-0697dcedc97a:
+    id: 416eccad-1ac7-4991-9eb4-0697dcedc97a
+    content: 'Earlier guess — a recurse-node ''drift'' flag, or a missing same-series predicate in the autoplay layer — disproven: the silent sibling auto-bind already exists by design; the gate only fires because the dialog emit is not suppressed/cancelled on auto-confirm'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  702ffb6a-591d-405c-9a66-99aaa4b20f95:
+    id: 702ffb6a-591d-405c-9a66-99aaa4b20f95
+    content: Proposed fix direction
+    children:
+      - 97b10120-c99f-4ae9-9056-f72492594837
+      - 126a9527-a35c-4ed7-b27c-1d55232f85b6
+      - 349ffa88-6694-4562-af91-02dce5d3f91a
+      - 86769d0d-038f-4e6e-8471-a91a3a5f7442
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97b10120-c99f-4ae9-9056-f72492594837:
+    id: 97b10120-c99f-4ae9-9056-f72492594837
+    content: 'Suppress the dialog emission for rebinds that will be auto-confirmed: add an autoConfirm path to SessionBindingRegistry.register() that flips the binding and skips emitRebindRequest when the rebind is a workflow-advance hand-off'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  126a9527-a35c-4ed7-b27c-1d55232f85b6:
+    id: 126a9527-a35c-4ed7-b27c-1d55232f85b6
+    content: Update hookEventDispatcher.handleRegisterBinding to pass autoConfirm = (source === 'workflow-advance') and drop the now-redundant direct confirmRebind call
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  349ffa88-6694-4562-af91-02dce5d3f91a:
+    id: 349ffa88-6694-4562-af91-02dce5d3f91a
+    content: Keep the dialog for non-auto-confirm rebinds (workflow-start, resume, compact) so genuine binding moves still require confirmation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86769d0d-038f-4e6e-8471-a91a3a5f7442:
+    id: 86769d0d-038f-4e6e-8471-a91a3a5f7442
+    content: 'Optional hardening: make the bridge timeout call notifyRendererCancelled even when cancelRebind finds nothing pending, so any future orphaned dialog self-heals'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  27e3e02f-9682-4792-ad02-4ffe3e72192e:
+    id: 27e3e02f-9682-4792-ad02-4ffe3e72192e
+    content: Affected files
+    children:
+      - b0b42701-c105-450a-b978-de46a23a2c36
+      - 1c51112d-ea5c-47a9-af3f-d241b036766f
+      - 0551c09e-8764-4d49-8ec1-0ab3dfd21042
+      - d22e30c3-0a39-441f-987a-a724bd1b2acd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0b42701-c105-450a-b978-de46a23a2c36:
+    id: b0b42701-c105-450a-b978-de46a23a2c36
+    content: src/main/services/sessionBindingRegistry.ts — register() emits the rebind request unconditionally (line ~40); primary site of the fix
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c51112d-ea5c-47a9-af3f-d241b036766f:
+    id: 1c51112d-ea5c-47a9-af3f-d241b036766f
+    content: src/main/services/hookEventDispatcher.ts — handleRegisterBinding auto-confirms workflow-advance via confirmRebind (line ~67), bypassing the renderer notification
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0551c09e-8764-4d49-8ec1-0ab3dfd21042:
+    id: 0551c09e-8764-4d49-8ec1-0ab3dfd21042
+    content: src/main/services/rebindIpcBridge.ts — timeout path skips notifyRendererCancelled when pending is already cleared (lines ~41-45); secondary hardening
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d22e30c3-0a39-441f-987a-a724bd1b2acd:
+    id: d22e30c3-0a39-441f-987a-a724bd1b2acd
+    content: src/renderer/components/ui/RebindConfirmationDialog/hooks/useRebindConfirmation.ts and src/renderer/store/tree/actions/sendActions.ts — renderer shows the dialog, marks the terminal pending, and blocks sends via isRebindDialogPending (sendActions ~728)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09a4772f-a732-451b-a2a1-9793fc1d7c6f:
+    id: 09a4772f-a732-451b-a2a1-9793fc1d7c6f
+    content: Regression window
+    children:
+      - 8b3254c6-a677-4ee7-99f9-34e18f359b7d
+      - a66ab5c0-d4fd-4c0e-81a0-3f6bd8b25bdd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b3254c6-a677-4ee7-99f9-34e18f359b7d:
+    id: 8b3254c6-a677-4ee7-99f9-34e18f359b7d
+    content: Not yet bisected to a specific commit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a66ab5c0-d4fd-4c0e-81a0-3f6bd8b25bdd:
+    id: a66ab5c0-d4fd-4c0e-81a0-3f6bd8b25bdd
+    content: Inherent to the workflow-advance auto-confirm design (silent sibling rebind) colliding with the synchronous unconditional emit in register() — not an accidental recent regression
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a1fb08f-3803-4eaf-a153-410f32ca795d:
+    id: 4a1fb08f-3803-4eaf-a153-410f32ca795d
+    content: Severity
+    children:
+      - 508bd9a6-7f91-4cce-b060-6414d1419559
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  508bd9a6-7f91-4cce-b060-6414d1419559:
+    id: 508bd9a6-7f91-4cce-b060-6414d1419559
+    content: 'Medium-High: autoplay stalls mid-series on multi-sibling/decomposed runs, blocking autonomous progress until the orphaned rebind dialog is manually clicked; observed repeatedly in the diagnostic log'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd68554a-85e5-4919-aa97-09d9de5ac370:
+    id: bd68554a-85e5-4919-aa97-09d9de5ac370
+    content: Notes
+    children:
+      - 1cf660dd-75e7-41c2-b0b9-d8b5f85de735
+      - 933b42eb-9a10-423f-abec-856c366aadda
+      - 234d1c06-51df-4643-9930-3312c24da194
+      - 34001412-5d6e-46b8-8f11-06c0de705ecc
+      - 01269a06-f844-478e-91ef-fd306445f27e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cf660dd-75e7-41c2-b0b9-d8b5f85de735:
+    id: 1cf660dd-75e7-41c2-b0b9-d8b5f85de735
+    content: 'Diagnostic-log evidence: ''register-binding rebind-needed … source=workflow-advance'' followed minutes later by ''Send blocked: rebind dialog pending on terminal …'' on the same terminal (e.g. session 9fab1371 on 2026-06-08)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  933b42eb-9a10-423f-abec-856c366aadda:
+    id: 933b42eb-9a10-423f-abec-856c366aadda
+    content: Confirmed on a multi-terminal decomposed run (several sibling sessions/terminals in parallel), matching the PR1/PR2 scenario
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  234d1c06-51df-4643-9930-3312c24da194:
+    id: 234d1c06-51df-4643-9930-3312c24da194
+    content: The renderer 'preflight' rebind gate (terminalNodeAssignments mismatch) was NOT involved — 'Preflight rebind queued' never appears in the log; the culprit is the Layer-1 session rebind
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34001412-5d6e-46b8-8f11-06c0de705ecc:
+    id: 34001412-5d6e-46b8-8f11-06c0de705ecc
+    content: Disambiguate from a decline-handling bug — the user never declined; the dialog should never have been shown for an auto-confirmed sibling hand-off
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01269a06-f844-478e-91ef-fd306445f27e:
+    id: 01269a06-f844-478e-91ef-fd306445f27e
+    content: 'UX/telemetry gap: the rebind dialog gives no indication it is gating autoplay — but per the fix it should not appear for auto-confirmed hand-offs at all'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a31014cf-e782-43e8-9bf8-b7da664af89d:
+    id: a31014cf-e782-43e8-9bf8-b7da664af89d
+    content: Technical refinement
+    children:
+      - 67cd4ecd-2847-480a-b5be-11f36d811142
+      - 5507a14c-eb2a-4a0a-8272-650683a76e13
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67cd4ecd-2847-480a-b5be-11f36d811142:
+    id: 67cd4ecd-2847-480a-b5be-11f36d811142
+    content: Flag complications
+    children:
+      - dd8a81ed-36b2-4cb9-a78a-dd866f9f7fc4
+      - 9850431f-38cc-4d05-8f79-bb801427a1d5
+      - 139d5cf7-3c3b-4282-99f9-3ce498018dd7
+      - c413add6-094e-4fe5-8f0c-84406c314e57
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd8a81ed-36b2-4cb9-a78a-dd866f9f7fc4:
+    id: dd8a81ed-36b2-4cb9-a78a-dd866f9f7fc4
+    content: The rebind dialog is the intentional binding-move guard for genuine rebinds (workflow-start, resume, compact); the fix must only suppress it for source='workflow-advance', not remove it, or genuine binding moves stop being confirmed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9850431f-38cc-4d05-8f79-bb801427a1d5:
+    id: 9850431f-38cc-4d05-8f79-bb801427a1d5
+    content: No new 'same-series sibling' predicate is needed in the autoplay layer — the silent sibling rebind already exists via the workflow-advance auto-confirm; the defect is purely that the dialog emit is not suppressed/cancelled on that path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  139d5cf7-3c3b-4282-99f9-3ce498018dd7:
+    id: 139d5cf7-3c3b-4282-99f9-3ce498018dd7
+    content: 'Out of scope: decline-handling, the renderer preflight gate, broad rebind-UX redesign, and any forestadmin-repo change — the fix lands in the Arborescent main-process binding layer'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c413add6-094e-4fe5-8f0c-84406c314e57:
+    id: c413add6-094e-4fe5-8f0c-84406c314e57
+    content: 'ROI: high — small, localized change (one registry method + one dispatcher branch) that removes a recurring autoplay stall'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5507a14c-eb2a-4a0a-8272-650683a76e13:
+    id: 5507a14c-eb2a-4a0a-8272-650683a76e13
+    content: Summarise the approach
+    children:
+      - 9ccc925e-2098-4671-8425-085b4830358d
+      - 6ec68672-5bec-4599-864a-c2574f593b48
+      - e7389091-e40d-42d1-89ef-f8ea8dcbb57e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ccc925e-2098-4671-8425-085b4830358d:
+    id: 9ccc925e-2098-4671-8425-085b4830358d
+    content: Add an autoConfirm path to SessionBindingRegistry.register() that flips the binding and skips the dialog emit, and have hookEventDispatcher pass autoConfirm for workflow-advance — so sibling hand-offs never raise a dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ec68672-5bec-4599-864a-c2574f593b48:
+    id: 6ec68672-5bec-4599-864a-c2574f593b48
+    content: Root trigger is the unconditional synchronous emit in register() colliding with a server-only auto-confirm; fix it at the emit decision, not in the autoplay/recurse traversal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7389091-e40d-42d1-89ef-f8ea8dcbb57e:
+    id: e7389091-e40d-42d1-89ef-f8ea8dcbb57e
+    content: 'Non-obvious: keep the suppression scoped to workflow-advance so non-workflow rebinds still gate; optionally harden the bridge timeout so any orphaned dialog self-heals'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ab2bbee-8f47-4918-8444-ef42bd43b41e:
+    id: 5ab2bbee-8f47-4918-8444-ef42bd43b41e
+    content: review feedback
+    children:
+      - 5506eb4b-ff04-4d65-91ea-144bb293d6f7
+      - 727ecd64-2f3d-443c-b20a-0b08a93924d7
+      - 2ef8d5af-d7da-4eb9-a772-b77ee01cddf4
+      - 8cb3cc99-47f9-4234-be24-eeeb5ad96282
+    metadata:
+      status: completed
+  5506eb4b-ff04-4d65-91ea-144bb293d6f7:
+    id: 5506eb4b-ff04-4d65-91ea-144bb293d6f7
+    content: 'Verdict: no blocking issues. pr-review-toolkit:code-reviewer reviewed the full diff vs master plus calling code; fix is correct and convention-consistent. Tests (46) pass, type-check and lint clean.'
+    children: []
+    metadata:
+      status: completed
+  727ecd64-2f3d-443c-b20a-0b08a93924d7:
+    id: 727ecd64-2f3d-443c-b20a-0b08a93924d7
+    content: 'Equivalence verified: dropping the dispatcher''s post-register confirmRebind() is byte-equivalent to register(autoConfirm) for workflow-advance — registry end-state identical (binding set, pending cleared); the clearPendingTarget / setMarkerSeenThisTurn blocks and the result.kind-based log line are unchanged. Bonus: the new path no longer arms an orphaned bridge timeout timer.'
+    children: []
+    metadata:
+      status: completed
+  2ef8d5af-d7da-4eb9-a772-b77ee01cddf4:
+    id: 2ef8d5af-d7da-4eb9-a772-b77ee01cddf4
+    content: 'Caller/scope safety: autoConfirm path returns kind ''rebind-needed'' (accurate for logging); the only kind-branching caller is seedBindingsIpcBridge, which never passes autoConfirm, so seeding/file-open conflict dialogs are unchanged. confirmRebind behavior unchanged after the applyBinding extraction (still used by rebindIpcBridge on real renderer decisions). Renderer: no emit → no dialog → isRebindDialogPending stays false → autoplay no longer stalls.'
+    children: []
+    metadata:
+      status: completed
+  8cb3cc99-47f9-4234-be24-eeeb5ad96282:
+    id: 8cb3cc99-47f9-4234-be24-eeeb5ad96282
+    content: 'Nits: (1) FIXED — a stale comment in hookEventDispatcherSilentRebind.test.ts still described the old ''workflow-advance → confirmRebind()'' routing; updated to ''register(autoConfirm) applies the binding silently''. (2) LEFT (pre-existing, out of scope) — a ''(US-C)'' story-tag in a pre-existing describe title in the same file.'
+    children: []
+    metadata:
+      status: completed
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -216923,4 +217536,8 @@ sessionRegistry:
   12451877-7601-40d0-83cf-0b3887d2d87a:
     cwd: /Users/brianfox/dev/Arborescent
   4c45dfd8-2cb2-41f0-830d-483e7cc49204:
+    cwd: /Users/brianfox/dev/Arborescent
+  1ab60102-8295-4dfa-8cf8-f7cee6353e2e:
+    cwd: /Users/brianfox/dev/forestadmin
+  9d70acf7-6b45-42fb-aea2-da93505f7fc3:
     cwd: /Users/brianfox/dev/Arborescent
