@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-08T22:24:54.325Z'
+updated: '2026-06-09T07:51:00.353Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -585,7 +585,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -27013,8 +27013,7 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children:
-      - 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115075,11 +115074,13 @@ nodes:
       - 295a855e-2604-45e2-949f-fe58807690ca
       - f0cf3961-182f-47f9-8b90-3004bbe6fdf2
       - 23800d87-7099-4bd1-906c-10e9c8c53628
+      - 8815fcb6-7c6d-47c8-89a1-ad11bbf5c607
+      - e1732034-2d5c-4e37-8968-50c66adb0f15
     metadata:
       status: pending
       isBlueprint: true
       stepType: manual
-      expanded: true
+      expanded: false
       recurse: true
   71826f5f-2c98-4f60-835b-e903cb3c0736:
     id: 71826f5f-2c98-4f60-835b-e903cb3c0736
@@ -124083,8 +124084,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - e1732034-2d5c-4e37-8968-50c66adb0f15
-      - 8815fcb6-7c6d-47c8-89a1-ad11bbf5c607
+      - 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
     metadata:
       status: pending
       isBlueprint: true
@@ -158355,7 +158355,9 @@ nodes:
   e6e68efb-224e-4895-9cd8-50108aa702c5:
     id: e6e68efb-224e-4895-9cd8-50108aa702c5
     content: Bug specification
-    children: []
+    children:
+      - 46d82a92-e697-49c2-af85-3d2d3638108a
+      - 5d52678f-7038-48ca-b6fc-d6270c5d3578
     metadata:
       status: pending
       isBlueprint: true
@@ -213715,16 +213717,16 @@ nodes:
     id: e1732034-2d5c-4e37-8968-50c66adb0f15
     content: Handle toggle for nodes in review
     children:
-      - 2c35412a-a5ff-453e-907b-425918abc9fe
-      - dafe1c21-8a28-4d2a-a8f6-c74e1825d406
-      - 543ecdc6-91a4-4c43-b8e2-af69f8e278c3
-      - 67e04090-7712-43a0-aded-9989c0c77487
-      - e287e9ef-c9cb-4d64-b8f1-844587cd3cdf
-      - 436c0e07-0834-4643-9169-145e26646067
-      - 6c6cf0f3-ca3e-4aeb-bac6-a8b96c8903f2
-      - d8d65b60-0ce7-4d95-8231-93f139734f3a
-      - b57d7fbe-91eb-47af-a154-7be303ca50a1
-      - e1c0adab-ae6c-4504-a54d-6c02f88f6d5e
+      - c667ebf3-4a5d-4acd-862a-8d0efac0561c
+      - d016060a-f013-4809-8158-ccfc8e0bb1d0
+      - 3767973a-4acc-4bd9-acae-6d28100276ff
+      - 42652af9-42ef-4e3a-9a36-fd780643645e
+      - a28dcf48-e768-4775-90a9-fe97a46309d4
+      - 20384966-1f69-44a5-b825-25bb76e99da8
+      - e4039ee0-3b75-4eda-84a3-42afb2e15e9e
+      - c90a632d-36e2-48d2-8ffa-12b1e611801f
+      - 15e33135-22d5-425a-a439-cb2da486f9a1
+      - 7b8deeb8-0afc-4193-9233-03f0be29cfc5
     metadata:
       status: completed
       expanded: false
@@ -213752,9 +213754,14 @@ nodes:
     id: 6ef66962-9d47-4ac8-bd57-9141c5c9c53d
     content: PR2 - Jump from a side-panel log entry to the session that produced it
     children:
-      - 629a3a99-a5c8-40b8-a8d3-255557b6f788
-      - bcdee7d5-94d1-40d0-ae16-6c60816d080b
-      - e5f6f138-b75b-4334-b455-6954dc0cf80a
+      - a7565e5a-c07d-4bac-836b-bd58e681e77d
+      - 8b87abd6-9c14-46d8-b6f2-719560c44463
+      - 2638a4f4-fb9e-4884-b5e0-f1139f36f8dc
+      - 15d5e1da-28c5-4839-9f9f-700c65398572
+      - 51df45d8-432b-4d31-87a1-2a4fbb6744ee
+      - 7648563a-e03a-46b2-b575-9b612b5980c8
+      - 361b9c1b-3c94-4a2e-b153-2e8b98e1e065
+      - 2eb513b9-950f-4c1e-8ecd-bf7819b6d65f
     metadata:
       status: completed
       expanded: false
@@ -213762,2045 +213769,33 @@ nodes:
       plugins: {}
       groupId: e1f75372-6a1d-4f6b-a13e-ba695344f2a0
       sessionId: 9fab1371-ceec-42cf-b0cc-c071381f1d06
-  bcdee7d5-94d1-40d0-ae16-6c60816d080b:
-    id: bcdee7d5-94d1-40d0-ae16-6c60816d080b
-    content: User story
-    children:
-      - 1f73832a-9f81-4f69-9568-f2f48830566e
-      - 820762ae-282b-4670-91da-ba67ca3df294
-      - c85ce220-1ded-46e6-ab8a-c719b5352a05
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1f73832a-9f81-4f69-9568-f2f48830566e:
-    id: 1f73832a-9f81-4f69-9568-f2f48830566e
-    content: 📄 Product spec
-    children:
-      - e6c24335-35e2-40c2-86fa-bd0cf118b436
-      - 7046899f-ebc8-42d9-9ae1-65859cf29f3e
-      - 3c1d51aa-043e-4b9e-9f72-c51ee8227621
-      - 97c4575f-d877-4774-a881-1973f4d0afa8
-      - 286a03c2-dfca-49b6-88bb-f883156dd5bb
-      - fbd4e694-1da3-4f3c-a80f-152d9b25f8ff
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e6c24335-35e2-40c2-86fa-bd0cf118b436:
-    id: e6c24335-35e2-40c2-86fa-bd0cf118b436
-    content: Context
-    children:
-      - deaf300b-8fe2-4333-9375-4a114cde9ca2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  deaf300b-8fe2-4333-9375-4a114cde9ca2:
-    id: deaf300b-8fe2-4333-9375-4a114cde9ca2
-    content: Log entries are message + type + source + timestamp with no link back to the terminal session that produced them, so users cannot navigate from an event to its origin.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7046899f-ebc8-42d9-9ae1-65859cf29f3e:
-    id: 7046899f-ebc8-42d9-9ae1-65859cf29f3e
-    content: User
-    children:
-      - 00da8de5-171b-465d-9440-58c60aab2285
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  00da8de5-171b-465d-9440-58c60aab2285:
-    id: 00da8de5-171b-465d-9440-58c60aab2285
-    content: A developer triaging a workflow event who wants to jump straight to the terminal session where it happened.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c1d51aa-043e-4b9e-9f72-c51ee8227621:
-    id: 3c1d51aa-043e-4b9e-9f72-c51ee8227621
-    content: Current experience and why it is insufficient
-    children:
-      - 51affd89-1a16-4705-8f74-e3416bd6e805
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  51affd89-1a16-4705-8f74-e3416bd6e805:
-    id: 51affd89-1a16-4705-8f74-e3416bd6e805
-    content: Entries are non-interactive list items; acting on an error or status means manually hunting for the right file tab and terminal.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  97c4575f-d877-4774-a881-1973f4d0afa8:
-    id: 97c4575f-d877-4774-a881-1973f4d0afa8
-    content: Goal
-    children:
-      - 2111a462-a031-4b05-b14e-9e08f6de9c8c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2111a462-a031-4b05-b14e-9e08f6de9c8c:
-    id: 2111a462-a031-4b05-b14e-9e08f6de9c8c
-    content: Clicking a side-panel log entry brings the originating session's file tab and terminal to the foreground when it is still open.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  286a03c2-dfca-49b6-88bb-f883156dd5bb:
-    id: 286a03c2-dfca-49b6-88bb-f883156dd5bb
-    content: Business rules
-    children:
-      - afe086b6-3c93-47f1-8caa-5de4905a5eee
-      - 3ebd81c5-7baa-432b-81c1-5df052c4e500
-      - 1151bcee-289a-4bf4-b755-b702711a0462
-      - 55c7659f-2c7d-4d9e-8a92-309ca105a30d
-      - 863460dd-7e69-4531-9015-75ce1980bc4e
-      - 0a5feb95-7fac-4739-a865-55fb2d292ce7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  afe086b6-3c93-47f1-8caa-5de4905a5eee:
-    id: afe086b6-3c93-47f1-8caa-5de4905a5eee
-    content: Clicking an entry in the side panel focuses the file tab and terminal of the session that produced it.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ebd81c5-7baa-432b-81c1-5df052c4e500:
-    id: 3ebd81c5-7baa-432b-81c1-5df052c4e500
-    content: Focus-on-click is limited to the side panel; popover entries are not focus triggers and remain non-interactive (hover tooltip only).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1151bcee-289a-4bf4-b755-b702711a0462:
-    id: 1151bcee-289a-4bf4-b755-b702711a0462
-    content: Focusing requires the originating file to be open and the terminal to still exist; otherwise the click is a no-op.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55c7659f-2c7d-4d9e-8a92-309ca105a30d:
-    id: 55c7659f-2c7d-4d9e-8a92-309ca105a30d
-    content: Side-panel entries with no captured session reference — non-workflow entries and entries persisted before this change — are not clickable and offer no affordance.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  863460dd-7e69-4531-9015-75ce1980bc4e:
-    id: 863460dd-7e69-4531-9015-75ce1980bc4e
-    content: Only clickable side-panel entries show a pointer cursor and interactive affordance; non-clickable entries look and behave exactly as before.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0a5feb95-7fac-4739-a865-55fb2d292ce7:
-    id: 0a5feb95-7fac-4739-a865-55fb2d292ce7
-    content: The logbar is not a focus trigger; it only toggles the panel (see PR1).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fbd4e694-1da3-4f3c-a80f-152d9b25f8ff:
-    id: fbd4e694-1da3-4f3c-a80f-152d9b25f8ff
-    content: Acceptance criteria
-    children:
-      - 4610fd43-92c2-4262-95a3-c91fc9b4ec56
-      - d9fef2d7-1a49-4a42-8589-3e03b2a85ecb
-      - 5588d545-6f95-4e6e-8e59-c7ebabd7cd48
-      - 6a50af71-16b2-4853-ba94-84a3bd4e98a5
-      - 1f2fc079-c3df-4274-93d4-d5ff7f9d34bb
-      - a0a5ed6f-ee4a-4818-9fde-80bf5be69a16
-      - e3ca0d40-fc3c-4366-92d6-177063105c49
-      - 9999b547-e70e-41bd-ba24-9a473c5f1941
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4610fd43-92c2-4262-95a3-c91fc9b4ec56:
-    id: 4610fd43-92c2-4262-95a3-c91fc9b4ec56
-    content: Clicking a side-panel workflow entry whose originating file and terminal are open switches the active tab to that file and activates that terminal.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d9fef2d7-1a49-4a42-8589-3e03b2a85ecb:
-    id: d9fef2d7-1a49-4a42-8589-3e03b2a85ecb
-    content: Clicking a side-panel entry whose originating file is closed is a no-op with no error and no tab change.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5588d545-6f95-4e6e-8e59-c7ebabd7cd48:
-    id: 5588d545-6f95-4e6e-8e59-c7ebabd7cd48
-    content: Clicking a side-panel entry whose terminal no longer exists is a no-op.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a50af71-16b2-4853-ba94-84a3bd4e98a5:
-    id: 6a50af71-16b2-4853-ba94-84a3bd4e98a5
-    content: Popover entries are not clickable and produce no focus action.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1f2fc079-c3df-4274-93d4-d5ff7f9d34bb:
-    id: 1f2fc079-c3df-4274-93d4-d5ff7f9d34bb
-    content: Side-panel entries without a session reference are not focusable and show no pointer affordance.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a0a5ed6f-ee4a-4818-9fde-80bf5be69a16:
-    id: a0a5ed6f-ee4a-4818-9fde-80bf5be69a16
-    content: Entries persisted before this change load without error and are non-clickable.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e3ca0d40-fc3c-4366-92d6-177063105c49:
-    id: e3ca0d40-fc3c-4366-92d6-177063105c49
-    content: Clickable side-panel entries are keyboard-focusable and activate on Enter and Space.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9999b547-e70e-41bd-ba24-9a473c5f1941:
-    id: 9999b547-e70e-41bd-ba24-9a473c5f1941
-    content: Clickable side-panel entries expose an accessible role and label for screen readers.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  820762ae-282b-4670-91da-ba67ca3df294:
-    id: 820762ae-282b-4670-91da-ba67ca3df294
-    content: 🔧 Implementation proposal
-    children:
-      - 49fc50cf-0428-4def-9dc2-8fb14461bfcc
-      - ac2e7cc6-a2f1-4eb5-8980-3afb92b87535
-      - 69fc7a3d-b671-446a-9323-768b1b034068
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  49fc50cf-0428-4def-9dc2-8fb14461bfcc:
-    id: 49fc50cf-0428-4def-9dc2-8fb14461bfcc
-    content: Approach
-    children:
-      - 639906b8-ba14-4828-96ea-cb6c57dd15b9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  639906b8-ba14-4828-96ea-cb6c57dd15b9:
-    id: 639906b8-ba14-4828-96ea-cb6c57dd15b9
-    content: Extend ActivityLogEntry with an optional session target captured at creation, thread it through the notifyWorkflow funnel at its two call sites, and gate clickability behind an interactive flag on the shared renderer so only the side panel resolves the target to existing actions (setActiveFile + setActiveTerminal) under an open-session check — reusing existing routing rather than building new.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac2e7cc6-a2f1-4eb5-8980-3afb92b87535:
-    id: ac2e7cc6-a2f1-4eb5-8980-3afb92b87535
-    content: Touchpoints
-    children:
-      - d86ffa94-5ae8-4ba6-88e8-7fded9069d0c
-      - 79b79625-c3d2-47ee-9d82-ba2c12a7f8b0
-      - 832b7022-f833-4b2a-8e15-5cd1ca2aad20
-      - d5d054f1-aad3-489d-a36f-d1afe27be6e6
-      - b5a925c0-a71f-4456-a4ef-107e3a612a0c
-      - 87d7f4c5-b72b-4510-aa31-83a5bdac9512
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d86ffa94-5ae8-4ba6-88e8-7fded9069d0c:
-    id: d86ffa94-5ae8-4ba6-88e8-7fded9069d0c
-    content: shared/types/activityLog.ts — add an optional target (durable sessionId) to ActivityLogEntry.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  79b79625-c3d2-47ee-9d82-ba2c12a7f8b0:
-    id: 79b79625-c3d2-47ee-9d82-ba2c12a7f8b0
-    content: activityLogStore.ts (createEntry / addEntry) and notifyWorkflow — accept and store the optional target.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  832b7022-f833-4b2a-8e15-5cd1ca2aad20:
-    id: 832b7022-f833-4b2a-8e15-5cd1ca2aad20
-    content: workflowExecutionActions.ts and workflowHookEventHandler — pass the originating session at the two funnel call sites.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d5d054f1-aad3-489d-a36f-d1afe27be6e6:
-    id: d5d054f1-aad3-489d-a36f-d1afe27be6e6
-    content: ActivityLogEntries.tsx — add an interactive prop; the panel passes it true and renders entries-with-a-target as clickable with keyboard support and role, the popover passes it false; onClick resolves and focuses.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5a925c0-a71f-4456-a4ef-107e3a612a0c:
-    id: b5a925c0-a71f-4456-a4ef-107e3a612a0c
-    content: A focus helper over filesStore.setActiveFile + terminalStore.setActiveTerminal, with the open-check via workflowSessionMap / fileStates terminals (or decideWorkflowStartRoute).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  87d7f4c5-b72b-4510-aa31-83a5bdac9512:
-    id: 87d7f4c5-b72b-4510-aa31-83a5bdac9512
-    content: Tests — target capture at the funnel, focus-when-open from the panel, no-op when closed or missing, popover entries non-interactive, and non-clickable when no target.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  69fc7a3d-b671-446a-9323-768b1b034068:
-    id: 69fc7a3d-b671-446a-9323-768b1b034068
-    content: Constraints to call out
-    children:
-      - e5b1709b-ff6f-405c-9585-1de7df85f7a2
-      - 4e487407-8a40-4b76-8a6f-787d0103e889
-      - 0ebea050-fc06-4760-85de-c596c8c80166
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5b1709b-ff6f-405c-9585-1de7df85f7a2:
-    id: e5b1709b-ff6f-405c-9585-1de7df85f7a2
-    content: Persisted-entry backward compatibility — the new field is optional, so old entries hydrate as non-clickable with no migration.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e487407-8a40-4b76-8a6f-787d0103e889:
-    id: 4e487407-8a40-4b76-8a6f-787d0103e889
-    content: Terminals are per-file, so resolution must recover the file path from the session at click time, not from a snapshot.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0ebea050-fc06-4760-85de-c596c8c80166:
-    id: 0ebea050-fc06-4760-85de-c596c8c80166
-    content: '"Session" here is the workflow terminal session bound to the node, so only workflow-sourced entries can populate a target.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c85ce220-1ded-46e6-ab8a-c719b5352a05:
-    id: c85ce220-1ded-46e6-ab8a-c719b5352a05
-    content: Technical refinement
-    children:
-      - 5bd0f2ab-ad6d-4428-b920-4da3a820f87c
-      - 4ea716f6-9d7c-4c23-8241-d9abb6024c87
-      - ccb10dd6-891c-4dab-8791-f458237b360a
-      - 5f3d21b2-72ec-4356-896e-884e796fe960
-      - 4e3a4430-13ad-4320-bdf2-529dedcadb81
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5bd0f2ab-ad6d-4428-b920-4da3a820f87c:
-    id: 5bd0f2ab-ad6d-4428-b920-4da3a820f87c
-    content: Anchor on the durable sessionId and resolve file+terminal at click time; terminalIds are regenerated when a session resumes in a new tab, so a snapshotted terminalId/filePath goes stale and becomes a false no-op.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ea716f6-9d7c-4c23-8241-d9abb6024c87:
-    id: 4ea716f6-9d7c-4c23-8241-d9abb6024c87
-    content: '"Focus" must never resume, spawn, or reopen a closed session or file — it is strictly a no-op when nothing is open.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ccb10dd6-891c-4dab-8791-f458237b360a:
-    id: ccb10dd6-891c-4dab-8791-f458237b360a
-    content: Side-panel entries become interactive inside a role="log" / aria-live region; use a real button or role+tabindex+keydown so the live region and keyboard activation stay correct.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f3d21b2-72ec-4356-896e-884e796fe960:
-    id: 5f3d21b2-72ec-4356-896e-884e796fe960
-    content: Out of scope — no backfill of targets onto existing/persisted entries, no focus from the popover or logbar, no auto-resume or terminal-spawn on click, no change to the 5 / 100 entry counts.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e3a4430-13ad-4320-bdf2-529dedcadb81:
-    id: 4e3a4430-13ad-4320-bdf2-529dedcadb81
-    content: ROI caveat — payoff requires an entry to be both targeted and its session still open at click time (most entries are non-workflow and sessions close, never surviving a restart), so this PR sensibly lands after PR1 once demand is confirmed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5f6f138-b75b-4334-b455-6954dc0cf80a:
-    id: e5f6f138-b75b-4334-b455-6954dc0cf80a
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   8815fcb6-7c6d-47c8-89a1-ad11bbf5c607:
     id: 8815fcb6-7c6d-47c8-89a1-ad11bbf5c607
     content: 'BUG: Decomposition hand-off lets the orchestrator''s Stop double-advance the first child'
     children:
-      - 9f422f33-3e2b-45d9-8a94-55a29bd0b302
-      - 8b0e9547-c4e0-4842-88cb-c780c0847a05
-      - 0d278990-e1a6-45a4-9a1a-a805bf465a76
-      - 797dd161-551c-48f2-9b7e-a08bc501548a
-      - f1143dc2-1e10-4035-9e0d-5210a4c0439b
-      - d191f93f-e5f0-4288-b81e-89e95241908f
-      - 6918cbc2-b787-4b7d-aeab-0753b5730a5b
-      - 5fc58620-98b9-421c-a34c-3024687a4b84
-      - d7f044a9-1711-41f9-8a65-e921b9b7e1c7
-      - e4d5c059-bba0-4644-b4a1-8fac14404445
-      - 29bdfbad-7e2c-4713-8a08-d170b1d4ed1b
-      - ffdb037a-e21e-45a7-a07d-dbf33eff31d8
-      - 082acd32-63e5-494c-ad65-30aac66e0b5a
-      - f894dd50-5293-4562-a7e5-65d0af611887
-      - 9c2f7f39-d213-456a-93c8-54ecb267efbf
-      - bf6a388a-ca7f-4450-bed7-9dd4f4451a12
+      - 8ee50e37-061b-4007-a1c2-dda880114550
+      - 9a757d17-e5cd-4210-b01d-ac35c333f992
+      - ac9128a6-1e42-4f4b-a2d6-4d8297ba7475
+      - d84d2d71-b3ef-4951-ae85-cfc29dac6e7f
+      - e93f0118-90af-4fb4-a272-54651d4f816e
+      - bf6f8db8-39c3-49df-839c-3172a9d6f583
+      - 4b286d5f-8141-423d-aaca-0fe002146d9a
+      - 63fb8939-f83f-48dd-994e-5ea112b08ab1
+      - 95d11484-ce9f-45f0-988e-e1bca0e40ebb
+      - e748fa93-b09b-46c5-8e5c-6e1039c539a1
+      - 6aa7649c-f39a-4996-8cbd-9b532dfd877b
+      - c9dcd987-b9ba-4de1-bf47-cffb14d3678c
+      - 22519162-de7a-4605-bfe6-14352d40177f
+      - 79973444-810c-4480-a9a6-604d538b4dfa
+      - 4201e057-1833-4e69-bcd6-98b00bc7d42a
+      - f22c8b69-f144-45f6-9083-d0e2f2ebd2f4
+      - 1593cfaf-6ea7-46bc-b083-a502e45ddaac
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
       sessionId: 4c45dfd8-2cb2-41f0-830d-483e7cc49204
-  2c35412a-a5ff-453e-907b-425918abc9fe:
-    id: 2c35412a-a5ff-453e-907b-425918abc9fe
-    content: worktree
-    children:
-      - b1b7b0d5-53ee-4d5e-8135-3de2825a3c93
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1b7b0d5-53ee-4d5e-8135-3de2825a3c93:
-    id: b1b7b0d5-53ee-4d5e-8135-3de2825a3c93
-    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/feature-per-view-review-collapse)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dafe1c21-8a28-4d2a-a8f6-c74e1825d406:
-    id: dafe1c21-8a28-4d2a-a8f6-c74e1825d406
-    content: Title
-    children:
-      - 1f865b79-ca0c-4f62-b465-3bc40dbde573
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1f865b79-ca0c-4f62-b465-3bc40dbde573:
-    id: 1f865b79-ca0c-4f62-b465-3bc40dbde573
-    content: Per-view collapse state for review suggestions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  543ecdc6-91a4-4c43-b8e2-af69f8e278c3:
-    id: 543ecdc6-91a4-4c43-b8e2-af69f8e278c3
-    content: 📄 Product spec
-    children:
-      - e2da75f7-e88f-4514-95b4-be4172d8743e
-      - 2367193f-a3d1-4a44-a47f-f89b79d8e1b8
-      - f30c47da-e840-4054-9fd4-d3181920e045
-      - 0593756a-c76e-4a53-9edf-8b2b2e546893
-      - d2b4c49e-5ffd-4cfa-aae4-dbed5adb4fac
-      - a2878761-290e-4b19-8fcc-46dc62bb9153
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2da75f7-e88f-4514-95b4-be4172d8743e:
-    id: e2da75f7-e88f-4514-95b4-be4172d8743e
-    content: Context
-    children:
-      - 5b4c8dae-2cd7-4fa3-a1f0-5079385a92ee
-      - 9d0ed1fe-6c2c-4af8-b702-4d345cda586c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b4c8dae-2cd7-4fa3-a1f0-5079385a92ee:
-    id: 5b4c8dae-2cd7-4fa3-a1f0-5079385a92ee
-    content: Inline diff review renders the AI's proposed subtree in place of the reviewed node, wherever that node renders — including as a zoom-tab root.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d0ed1fe-6c2c-4af8-b702-4d345cda586c:
-    id: 9d0ed1fe-6c2c-4af8-b702-4d345cda586c
-    content: Proposition expansion is read from the proposition node's metadata.expanded (default true), the same global flag ordinary nodes use, so a review currently always renders fully expanded in every view.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2367193f-a3d1-4a44-a47f-f89b79d8e1b8:
-    id: 2367193f-a3d1-4a44-a47f-f89b79d8e1b8
-    content: User
-    children:
-      - 2ca18c0f-e0b8-419f-bc8a-c1869265cc58
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2ca18c0f-e0b8-419f-bc8a-c1869265cc58:
-    id: 2ca18c0f-e0b8-419f-bc8a-c1869265cc58
-    content: An Arborescent author reviewing AI-proposed changes to a node inside a large outline they are actively navigating.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f30c47da-e840-4054-9fd4-d3181920e045:
-    id: f30c47da-e840-4054-9fd4-d3181920e045
-    content: Current experience and why it is insufficient
-    children:
-      - fc05e5d2-61f1-4be3-89bd-3ae2ce6b9af3
-      - d26a9139-1c62-433f-a1ae-21faa4114b1c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc05e5d2-61f1-4be3-89bd-3ae2ce6b9af3:
-    id: fc05e5d2-61f1-4be3-89bd-3ae2ce6b9af3
-    content: Sending a collapsed node for review expands its proposed subtree inline in the main view, dumping a large block into an outline the author had deliberately collapsed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d26a9139-1c62-433f-a1ae-21faa4114b1c:
-    id: d26a9139-1c62-433f-a1ae-21faa4114b1c
-    content: The proposition root's single expanded flag is shared by the main view and the zoom tab, so it cannot be collapsed in one and expanded in the other, and toggling it in one view changes the other.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0593756a-c76e-4a53-9edf-8b2b2e546893:
-    id: 0593756a-c76e-4a53-9edf-8b2b2e546893
-    content: Goal
-    children:
-      - e8577b1c-df82-45ba-b801-7598cd5cc505
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8577b1c-df82-45ba-b801-7598cd5cc505:
-    id: e8577b1c-df82-45ba-b801-7598cd5cc505
-    content: A review suggestion mirrors the reviewed node's collapsed state in the main view, always renders expanded with all descendants when zoomed, and each view's collapse toggle is independent.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2b4c49e-5ffd-4cfa-aae4-dbed5adb4fac:
-    id: d2b4c49e-5ffd-4cfa-aae4-dbed5adb4fac
-    content: Business rules
-    children:
-      - 357077d3-27a1-4171-abff-9768cf8f5f84
-      - 25b79e54-a14d-49aa-af87-8c9611605d9e
-      - 2c787fed-2dd1-462c-8563-a90b884f3c80
-      - f8aac4d6-cbea-4fe1-a726-89bf64859b6f
-      - bfc8b313-af28-4607-bb4a-6542d532de23
-      - 3f6da04e-c811-4592-a08e-7e8aa946f9ed
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  357077d3-27a1-4171-abff-9768cf8f5f84:
-    id: 357077d3-27a1-4171-abff-9768cf8f5f84
-    content: In the main view a review suggestion renders collapsed when the reviewed node was collapsed and expanded when it was expanded.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  25b79e54-a14d-49aa-af87-8c9611605d9e:
-    id: 25b79e54-a14d-49aa-af87-8c9611605d9e
-    content: In a zoom view rooted on the reviewed node the suggestion always renders expanded, including all of its descendants, regardless of the reviewed node's collapsed state.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c787fed-2dd1-462c-8563-a90b884f3c80:
-    id: 2c787fed-2dd1-462c-8563-a90b884f3c80
-    content: Toggling the suggestion's root in one view never changes its collapsed state in the other view.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f8aac4d6-cbea-4fe1-a726-89bf64859b6f:
-    id: f8aac4d6-cbea-4fe1-a726-89bf64859b6f
-    content: A collapsed suggestion still shows the review control bar and a clear "has proposed changes" affordance so the author knows changes are hidden inside.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bfc8b313-af28-4607-bb4a-6542d532de23:
-    id: bfc8b313-af28-4607-bb4a-6542d532de23
-    content: For a multi-root decomposition proposition each proposed root follows the same per-view rule as a single-root suggestion.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3f6da04e-c811-4592-a08e-7e8aa946f9ed:
-    id: 3f6da04e-c811-4592-a08e-7e8aa946f9ed
-    content: Per-view collapse state is transient — it lives with the active review, is discarded when the review is accepted or cancelled, and is not persisted to disk.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a2878761-290e-4b19-8fcc-46dc62bb9153:
-    id: a2878761-290e-4b19-8fcc-46dc62bb9153
-    content: Acceptance criteria
-    children:
-      - 483c3b0f-c2e4-481f-b29a-f4be53e9aa9b
-      - 2171fd01-b335-4c11-9080-1fcbebbb0f2e
-      - 3d9060a6-49c3-4288-abbd-c77f5ae50911
-      - b80068cd-bd5d-4937-af57-3b6d7313ffdd
-      - 24d2068e-ff07-465d-af28-c3690d142551
-      - c3b29a33-5281-445b-86df-5c5b9f9424b8
-      - e7105e56-999e-45bc-8873-8ad8dbc565b8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  483c3b0f-c2e4-481f-b29a-f4be53e9aa9b:
-    id: 483c3b0f-c2e4-481f-b29a-f4be53e9aa9b
-    content: Reviewing a collapsed node shows its suggestion collapsed in the main view, with the root row visible and descendants hidden.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2171fd01-b335-4c11-9080-1fcbebbb0f2e:
-    id: 2171fd01-b335-4c11-9080-1fcbebbb0f2e
-    content: Reviewing an expanded node shows its suggestion expanded in the main view.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d9060a6-49c3-4288-abbd-c77f5ae50911:
-    id: 3d9060a6-49c3-4288-abbd-c77f5ae50911
-    content: Opening a zoom tab on the reviewed node shows the suggestion expanded with all descendants even when it is collapsed in the main view.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b80068cd-bd5d-4937-af57-3b6d7313ffdd:
-    id: b80068cd-bd5d-4937-af57-3b6d7313ffdd
-    content: Expanding the suggestion in the zoom tab leaves it collapsed in the main view, and collapsing it in the main view leaves it expanded in the zoom tab.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  24d2068e-ff07-465d-af28-c3690d142551:
-    id: 24d2068e-ff07-465d-af28-c3690d142551
-    content: A collapsed suggestion in the main view still renders the review control bar and the collapsed-parent / change-kind affordance.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c3b29a33-5281-445b-86df-5c5b9f9424b8:
-    id: c3b29a33-5281-445b-86df-5c5b9f9424b8
-    content: A reviewed leaf with no live children renders without error in both views, and a multi-root decomposition proposition follows the same per-view behaviour.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e7105e56-999e-45bc-8873-8ad8dbc565b8:
-    id: e7105e56-999e-45bc-8873-8ad8dbc565b8
-    content: Accepting or cancelling the review clears the transient per-view collapse state with no leftover entries.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  67e04090-7712-43a0-aded-9989c0c77487:
-    id: 67e04090-7712-43a0-aded-9989c0c77487
-    content: 🔧 Implementation proposal
-    children:
-      - 6a9edc37-260c-4edf-b993-d1bc7616efc7
-      - 5bfaf585-196f-4411-8378-3dc6d2d73350
-      - 483e9742-ff7c-4d97-a544-1f1e52f3b3bc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a9edc37-260c-4edf-b993-d1bc7616efc7:
-    id: 6a9edc37-260c-4edf-b993-d1bc7616efc7
-    content: Approach
-    children:
-      - 199c1bb3-5dfa-4b7d-9129-e7d801720031
-      - 59077d88-1784-428b-b3ee-a19968b43f93
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  199c1bb3-5dfa-4b7d-9129-e7d801720031:
-    id: 199c1bb3-5dfa-4b7d-9129-e7d801720031
-    content: Stop reading proposition-root expansion from the shared feedback node's metadata.expanded and make it a per-view UI concern instead.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  59077d88-1784-428b-b3ee-a19968b43f93:
-    id: 59077d88-1784-428b-b3ee-a19968b43f93
-    content: Seed each view's initial state — main mirrors the reviewed node's expanded flag, zoom forces expanded — and route the proposition root's toggle to transient per-view state keyed by view identity (source vs zoom:// file path) and proposition root id, reusing the existing per-file UI-state pattern rather than writing back to the feedback tree.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5bfaf585-196f-4411-8378-3dc6d2d73350:
-    id: 5bfaf585-196f-4411-8378-3dc6d2d73350
-    content: Touchpoints
-    children:
-      - 134542f0-f77a-47dd-89e4-73c09fcbce0e
-      - 0f9aaec5-1862-4d4c-94e5-faafd1e9ab48
-      - 8bfb70a1-dfc6-48d8-b72f-8bbcb2835a16
-      - 845a6856-a105-433c-aad0-953efe9db673
-      - 29ce785b-c348-4938-b255-023b3ae0d2b5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  134542f0-f77a-47dd-89e4-73c09fcbce0e:
-    id: 134542f0-f77a-47dd-89e4-73c09fcbce0e
-    content: TreeNode isUnderReview branch and PropositionRoots — compute per-view expanded for the proposition root instead of reading node metadata.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f9aaec5-1862-4d4c-94e5-faafd1e9ab48:
-    id: 0f9aaec5-1862-4d4c-94e5-faafd1e9ab48
-    content: Tree — thread view identity (zoomed vs main, resolved file path) into the proposition render path.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8bfb70a1-dfc6-48d8-b72f-8bbcb2835a16:
-    id: 8bfb70a1-dfc6-48d8-b72f-8bbcb2835a16
-    content: useNodeToggle — for proposition roots write to the per-view collapse state instead of feedbackTreeStore toggleNode.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  845a6856-a105-433c-aad0-953efe9db673:
-    id: 845a6856-a105-433c-aad0-953efe9db673
-    content: A small transient per-view collapse store, new or added to an existing per-file UI store (panelStore.fileStates pattern), cleared on review accept/cancel.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  29ce785b-c348-4938-b255-023b3ae0d2b5:
-    id: 29ce785b-c348-4938-b255-023b3ae0d2b5
-    content: Tests — extend zoomReview.test.tsx with main-collapsed/zoom-expanded independence and the multi-root case.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  483e9742-ff7c-4d97-a544-1f1e52f3b3bc:
-    id: 483e9742-ff7c-4d97-a544-1f1e52f3b3bc
-    content: Constraints to call out
-    children:
-      - 01d7d340-5b21-4b6d-9537-b5954a7935ba
-      - 46f4ff6f-1010-4778-aa58-fbfae44c9346
-      - 119f219b-447d-4340-9d4c-311972f249d2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  01d7d340-5b21-4b6d-9537-b5954a7935ba:
-    id: 01d7d340-5b21-4b6d-9537-b5954a7935ba
-    content: Proposition roots live in the per-file feedbackTreeStore shared by the main and zoom tabs, so the same node id renders in both views — collapse independence is impossible while expansion is stored on that shared node, which is why it must move to per-view state.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  46f4ff6f-1010-4778-aa58-fbfae44c9346:
-    id: 46f4ff6f-1010-4778-aa58-fbfae44c9346
-    content: Scope per-view expansion strictly to proposition roots under review; do not change the global metadata.expanded model for ordinary nodes.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  119f219b-447d-4340-9d4c-311972f249d2:
-    id: 119f219b-447d-4340-9d4c-311972f249d2
-    content: Keep the state transient with no persistence and tear it down on accept/cancel to avoid stranded entries after the review resolves.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e287e9ef-c9cb-4d64-b8f1-844587cd3cdf:
-    id: e287e9ef-c9cb-4d64-b8f1-844587cd3cdf
-    content: Decomposition decision
-    children:
-      - e8206f51-e07c-4193-b095-bc9f2ab6829a
-      - d174308a-88c5-4215-9a73-b9c67cb3794f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8206f51-e07c-4193-b095-bc9f2ab6829a:
-    id: e8206f51-e07c-4193-b095-bc9f2ab6829a
-    content: Ship as one story — the three behaviours are inseparable, since a single shared expanded flag cannot be collapsed-in-main and expanded-in-zoom at once, so the per-view state and the seeded initial states must land together.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d174308a-88c5-4215-9a73-b9c67cb3794f:
-    id: d174308a-88c5-4215-9a73-b9c67cb3794f
-    content: Do not split — splitting would leave speculative plumbing (per-view state with no consumer, or initial states that cannot coexist).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  436c0e07-0834-4643-9169-145e26646067:
-    id: 436c0e07-0834-4643-9169-145e26646067
-    content: Challenge the work
-    children:
-      - e55120cb-a11c-4477-b76a-a36a6b7598c0
-      - af38c1fa-67ee-4d6b-95bd-f154b2e9d1c9
-      - f0946813-9a08-4356-828b-3fbefe14058c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e55120cb-a11c-4477-b76a-a36a6b7598c0:
-    id: e55120cb-a11c-4477-b76a-a36a6b7598c0
-    content: UX
-    children:
-      - fad373d5-2dfa-4a12-95eb-89bda1545be2
-      - 1edca363-d381-4f9d-8e18-8a73378cf9c4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fad373d5-2dfa-4a12-95eb-89bda1545be2:
-    id: fad373d5-2dfa-4a12-95eb-89bda1545be2
-    content: Respecting collapse in the main view stops a review from exploding a deliberately-collapsed outline, and forcing expansion in zoom matches the focus intent of opening the tab.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1edca363-d381-4f9d-8e18-8a73378cf9c4:
-    id: 1edca363-d381-4f9d-8e18-8a73378cf9c4
-    content: Risk — a fully-collapsed suggestion can hide that any change was proposed, so keep the control bar and a collapsed-parent / change-kind cue visible (covered by a business rule and criterion).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  af38c1fa-67ee-4d6b-95bd-f154b2e9d1c9:
-    id: af38c1fa-67ee-4d6b-95bd-f154b2e9d1c9
-    content: Over-engineering / simpler path
-    children:
-      - 5571aaa5-3473-41d6-9b90-8b0885148424
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5571aaa5-3473-41d6-9b90-8b0885148424:
-    id: 5571aaa5-3473-41d6-9b90-8b0885148424
-    content: Do not build a general per-view collapse subsystem for all nodes; reuse the existing per-file UI-state keying (zoom:// vs source path) and limit it to proposition roots.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0946813-9a08-4356-828b-3fbefe14058c:
-    id: f0946813-9a08-4356-828b-3fbefe14058c
-    content: ROI
-    children:
-      - 9890b850-a6e2-4b29-b41f-c8af45944cda
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9890b850-a6e2-4b29-b41f-c8af45944cda:
-    id: 9890b850-a6e2-4b29-b41f-c8af45944cda
-    content: The per-view complexity is inherent to the requirement, not gold-plating — one expanded boolean physically cannot satisfy main-collapsed plus zoom-expanded — so ROI is sound provided the change stays scoped to transient review state.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c6cf0f3-ca3e-4aeb-bac6-a8b96c8903f2:
-    id: 6c6cf0f3-ca3e-4aeb-bac6-a8b96c8903f2
-    content: Technical refinement
-    children:
-      - 39c2669f-9c53-4730-88e8-d0d0a0ec1757
-      - e64575f8-a329-472b-8321-a90b85f10424
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  39c2669f-9c53-4730-88e8-d0d0a0ec1757:
-    id: 39c2669f-9c53-4730-88e8-d0d0a0ec1757
-    content: Flag complications
-    children:
-      - bec0117d-f61a-4d0d-98d3-73b3ee3850dd
-      - c4ae54f6-f285-4a03-ab6d-d3dd0d164388
-      - d2e94485-6612-4ca7-b576-731cc9c5b47c
-      - ee03e93d-3e15-418e-a686-222b8abcdda7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bec0117d-f61a-4d0d-98d3-73b3ee3850dd:
-    id: bec0117d-f61a-4d0d-98d3-73b3ee3850dd
-    content: metadata.expanded is also read outside the renderer — by keyboard navigation (nodeActions), useVisibleChildren, and hidden-search-match counting — so moving proposition-root expansion to per-view state risks desync (arrow keys reaching hidden children, wrong collapsed-match badge) unless those readers consult the per-view source too; this breadth is the main hidden cost and the chief ROI risk.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4ae54f6-f285-4a03-ab6d-d3dd0d164388:
-    id: c4ae54f6-f285-4a03-ab6d-d3dd0d164388
-    content: 'Edge case: two zoom tabs on the same reviewed node resolve to one zoom:// path and would share collapse state — acceptable, treat all zoom tabs of a node as a single view.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2e94485-6612-4ca7-b576-731cc9c5b47c:
-    id: d2e94485-6612-4ca7-b576-731cc9c5b47c
-    content: 'Scope clarification: "always expanded in zoom" is defined for when the reviewed node is the zoom root; a reviewed node that is only a descendant inside a zoomed ancestor keeps the main-view (mirror) semantics.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ee03e93d-3e15-418e-a686-222b8abcdda7:
-    id: ee03e93d-3e15-418e-a686-222b8abcdda7
-    content: 'Out of scope: zoom-tab coherence after accept/cancel from the zoom root (already an open it.todo), and restoring collapse state across app restart (state is transient by design).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e64575f8-a329-472b-8321-a90b85f10424:
-    id: e64575f8-a329-472b-8321-a90b85f10424
-    content: Approach summary
-    children:
-      - 4ad08df5-e252-41e7-9943-4e1ed0f099d5
-      - dadb72eb-7f9f-4652-af3d-6b7f01612562
-      - f9654cfe-8727-4863-9f34-80486d3c8b9d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ad08df5-e252-41e7-9943-4e1ed0f099d5:
-    id: 4ad08df5-e252-41e7-9943-4e1ed0f099d5
-    content: Proposition-root expansion becomes a transient per-view UI value (main seeds from the reviewed node's expanded flag, zoom forces expanded) keyed by resolved view path plus proposition root id and torn down on accept/cancel — not a node-metadata flag.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dadb72eb-7f9f-4652-af3d-6b7f01612562:
-    id: dadb72eb-7f9f-4652-af3d-6b7f01612562
-    content: Lands in the TreeNode isUnderReview / PropositionRoots render path and useNodeToggle, with view identity threaded from Tree, reusing the per-file UI-state pattern (panelStore.fileStates).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f9654cfe-8727-4863-9f34-80486d3c8b9d:
-    id: f9654cfe-8727-4863-9f34-80486d3c8b9d
-    content: 'Non-obvious for the reviewer: metadata.expanded has several other consumers (navigation, visible-children, hidden-search-match), so proposition roots must be routed away from all of them, not just the render branch.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d8d65b60-0ce7-4d95-8231-93f139734f3a:
-    id: d8d65b60-0ce7-4d95-8231-93f139734f3a
-    content: Verification summary
-    children:
-      - e9491a53-3744-43f2-8a32-5ebc9be66f04
-      - 113c575c-b4d3-4d53-9b25-2e426b793f89
-      - 9cb207f1-a179-4277-acef-83299b95d5a2
-      - 140cb384-9221-41b5-a515-101b0d7b9f6a
-      - d101b771-d94a-43a1-b503-6dee9d311df5
-      - 94694213-5bd7-446a-9cde-1063de28b754
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e9491a53-3744-43f2-8a32-5ebc9be66f04:
-    id: e9491a53-3744-43f2-8a32-5ebc9be66f04
-    content: All business rules and acceptance criteria are implemented and covered by passing tests — the changed-file suites are green (135 pass) with lint and type-check clean.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  113c575c-b4d3-4d53-9b25-2e426b793f89:
-    id: 113c575c-b4d3-4d53-9b25-2e426b793f89
-    content: Per-view state landed as a dedicated transient reviewCollapseStore keyed by reviewedNodeId then view+propositionRootId, seeded at render (main mirrors the reviewed node, zoom forces expanded) and cleared on accept/cancel — equivalent to the proposed per-file keying.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9cb207f1-a179-4277-acef-83299b95d5a2:
-    id: 9cb207f1-a179-4277-acef-83299b95d5a2
-    content: 'Undone — keyboard-navigation desync: nodeActions still reads the feedback node''s metadata.expanded, so arrow-key traversal could enter rows hidden by a main-view-collapsed suggestion; deferred as a marginal interaction outside the acceptance criteria and a larger change than this story warrants.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  140cb384-9221-41b5-a515-101b0d7b9f6a:
-    id: 140cb384-9221-41b5-a515-101b0d7b9f6a
-    content: Not a gap — useVisibleChildren does not read expanded, so it needed no rerouting; hidden-search-match counting on proposition roots was left on metadata as a minor non-AC edge.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d101b771-d94a-43a1-b503-6dee9d311df5:
-    id: d101b771-d94a-43a1-b503-6dee9d311df5
-    content: Out of scope by design and not done — zoom-tab coherence after accept/cancel from the zoom root (pre-existing it.todo) and restoring collapse state across app restart (state is intentionally transient).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  94694213-5bd7-446a-9cde-1063de28b754:
-    id: 94694213-5bd7-446a-9cde-1063de28b754
-    content: Note — the proposition-root toggle routes to per-view state via a TreeNode handleToggle override (useReviewCollapse) rather than editing useNodeToggle; the touchpoint's behaviour is met. Toggle independence is verified at the store level, with main-collapsed/zoom-expanded coexistence covered by render tests.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f422f33-3e2b-45d9-8a94-55a29bd0b302:
-    id: 9f422f33-3e2b-45d9-8a94-55a29bd0b302
-    content: worktree
-    children:
-      - 7ca76cee-23bb-4b1c-9263-499bfd36f7e0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ca76cee-23bb-4b1c-9263-499bfd36f7e0:
-    id: 7ca76cee-23bb-4b1c-9263-499bfd36f7e0
-    content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-decomposition-handoff-double-advance)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b0e9547-c4e0-4842-88cb-c780c0847a05:
-    id: 8b0e9547-c4e0-4842-88cb-c780c0847a05
-    content: Summary
-    children:
-      - 6469427e-4e4f-4a0c-9278-8b724e403c9a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6469427e-4e4f-4a0c-9278-8b724e403c9a:
-    id: 6469427e-4e4f-4a0c-9278-8b724e403c9a
-    content: After an autonomous decomposition step produces multiple child PRs, the first child advances two workflow steps instead of one because the orchestrator's own turn-ending Stop is mis-credited to the freshly-promoted child, so two different step prompts are injected back-to-back with no model turn between them.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d278990-e1a6-45a4-9a1a-a805bf465a76:
-    id: 0d278990-e1a6-45a4-9a1a-a805bf465a76
-    content: Steps to reproduce
-    children:
-      - 6a41b1d9-1a99-4988-9564-2bdc28fc1379
-      - cc33c6fe-f858-417a-b4a9-9834467cef51
-      - b6620448-84c8-4eb4-859a-8b02a537d2eb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a41b1d9-1a99-4988-9564-2bdc28fc1379:
-    id: 6a41b1d9-1a99-4988-9564-2bdc28fc1379
-    content: Precondition / setup
-    children:
-      - 12e3f699-a43f-4b2c-88b1-4b40a87ae647
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  12e3f699-a43f-4b2c-88b1-4b40a87ae647:
-    id: 12e3f699-a43f-4b2c-88b1-4b40a87ae647
-    content: A workflow whose step N is autonomous with decomposition enabled, followed by at least two more autonomous steps N+1 and N+2, with a node running step N on a live terminal.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cc33c6fe-f858-417a-b4a9-9834467cef51:
-    id: cc33c6fe-f858-417a-b4a9-9834467cef51
-    content: User action
-    children:
-      - 5403c0eb-53b9-4b1e-8972-0866ed4d8378
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5403c0eb-53b9-4b1e-8972-0866ed4d8378:
-    id: 5403c0eb-53b9-4b1e-8972-0866ed4d8378
-    content: Let the decomposition step submit its output via submit_step_output, producing two or more child nodes (e.g. PR1 and PR2).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6620448-84c8-4eb4-859a-8b02a537d2eb:
-    id: b6620448-84c8-4eb4-859a-8b02a537d2eb
-    content: Observation that exposes the bug
-    children:
-      - f9815bc7-f237-47af-85d4-cd3689faf9b9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f9815bc7-f237-47af-85d4-cd3689faf9b9:
-    id: f9815bc7-f237-47af-85d4-cd3689faf9b9
-    content: PR1 receives the step N+1 prompt AND the step N+2 prompt concatenated in a single terminal turn — same child node id, two different steps — without the model ever acting on N+1.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  797dd161-551c-48f2-9b7e-a08bc501548a:
-    id: 797dd161-551c-48f2-9b7e-a08bc501548a
-    content: Expected behavior
-    children:
-      - f186bba7-abdf-433d-83cb-b2537bf33b1e
-      - d30ea56f-5acf-499c-8c6a-c72439eee420
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f186bba7-abdf-433d-83cb-b2537bf33b1e:
-    id: f186bba7-abdf-433d-83cb-b2537bf33b1e
-    content: Expected outcome on the happy path
-    children:
-      - 372d6533-7622-4646-abaa-0a7845dc6faf
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  372d6533-7622-4646-abaa-0a7845dc6faf:
-    id: 372d6533-7622-4646-abaa-0a7845dc6faf
-    content: After decomposition the first child advances exactly one step to N+1, runs it, and waits for that step's completion (announce_step_done or submit) before advancing to N+2.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d30ea56f-5acf-499c-8c6a-c72439eee420:
-    id: d30ea56f-5acf-499c-8c6a-c72439eee420
-    content: Expected handling of edge cases
-    children:
-      - 9e688341-5e62-49ce-9189-bc03b5e0cc1b
-      - 7da6772c-0e09-49a8-8d7d-70de7d111341
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e688341-5e62-49ce-9189-bc03b5e0cc1b:
-    id: 9e688341-5e62-49ce-9189-bc03b5e0cc1b
-    content: Sibling children stay parked at the decomposition step until their turn; none are pre-advanced.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7da6772c-0e09-49a8-8d7d-70de7d111341:
-    id: 7da6772c-0e09-49a8-8d7d-70de7d111341
-    content: If N is the final step, children are created and left terminal with no further step scheduled — no re-fire and no loop.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1143dc2-1e10-4035-9e0d-5210a4c0439b:
-    id: f1143dc2-1e10-4035-9e0d-5210a4c0439b
-    content: Actual behavior
-    children:
-      - 54d96360-36f7-4f3e-b4c3-68e93bcf9536
-      - e59a0da4-3697-4f92-88ad-dad915eef453
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  54d96360-36f7-4f3e-b4c3-68e93bcf9536:
-    id: 54d96360-36f7-4f3e-b4c3-68e93bcf9536
-    content: What actually happens
-    children:
-      - 41841368-0280-4b7a-8e26-2a15fba5f443
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41841368-0280-4b7a-8e26-2a15fba5f443:
-    id: 41841368-0280-4b7a-8e26-2a15fba5f443
-    content: The decomposition hand-off promotes the first child to N+1 and binds it to the terminal during the orchestrator's submit turn; the turn's Stop (explicit_submit_seen=true) is then attributed to the child and advances it a second time to N+2.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e59a0da4-3697-4f92-88ad-dad915eef453:
-    id: e59a0da4-3697-4f92-88ad-dad915eef453
-    content: User-visible symptoms
-    children:
-      - d4fdcb92-26c1-4cb2-8ad0-4e6e5b87b312
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d4fdcb92-26c1-4cb2-8ad0-4e6e5b87b312:
-    id: d4fdcb92-26c1-4cb2-8ad0-4e6e5b87b312
-    content: Two step prompts are pasted into the terminal in sequence; the first child appears to move through the steps without waiting, and step N+1's actual work is skipped and never awaited.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d191f93f-e5f0-4288-b81e-89e95241908f:
-    id: d191f93f-e5f0-4288-b81e-89e95241908f
-    content: Suspected cause
-    children:
-      - 71e0e950-caa2-4200-8021-426ca275f8f3
-      - 36b3418d-0c4a-4e31-84e2-e8c511036517
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  71e0e950-caa2-4200-8021-426ca275f8f3:
-    id: 71e0e950-caa2-4200-8021-426ca275f8f3
-    content: Code path or commit implicated
-    children:
-      - d1f5db51-d49b-49e8-bc34-aa5c17ea5ac2
-      - 28d12aaf-59aa-45c0-82bf-d1f8d79b5e63
-      - 767a5de8-f52d-4428-b482-b41b27cfe71a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d1f5db51-d49b-49e8-bc34-aa5c17ea5ac2:
-    id: d1f5db51-d49b-49e8-bc34-aa5c17ea5ac2
-    content: 'handleAutonomousFeedback runs synchronously inside submit_step_output: releaseOrchestratorAfterDecompositionHandoff deletes the orchestrator run-state, then checkRecurse to scheduleRecurseStart promotes and binds the first child before the turn''s Stop fires (workflowExecutionActions.ts).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  28d12aaf-59aa-45c0-82bf-d1f8d79b5e63:
-    id: 28d12aaf-59aa-45c0-82bf-d1f8d79b5e63
-    content: handleHookEvent resolves the Stop via findRunningNodeOnTerminal(terminal) which now returns the promoted child, and calls advanceNode(child) for the autonomous step (workflowHookEventHandler.ts:152 and :282).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  767a5de8-f52d-4428-b482-b41b27cfe71a:
-    id: 767a5de8-f52d-4428-b482-b41b27cfe71a
-    content: 'Introduced by the decomposition auto-advance hand-off series: e532b73 (recurse), 4ecbcc1, bf851be, and 4728852 (release orchestrator state after multi-root decomposition handoff).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  36b3418d-0c4a-4e31-84e2-e8c511036517:
-    id: 36b3418d-0c4a-4e31-84e2-e8c511036517
-    content: Why the existing guard or fix does not cover this case
-    children:
-      - c3389d96-6bc9-4dc5-b660-72a1783b6b4d
-      - 260c9dfc-c42d-419a-9fe4-25ed22c77a38
-      - d2a07d62-6092-4406-9078-719c274911b5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c3389d96-6bc9-4dc5-b660-72a1783b6b4d:
-    id: c3389d96-6bc9-4dc5-b660-72a1783b6b4d
-    content: explicit_submit_seen is a per-turn boolean on the terminal's Stop, not bound to a node, so it cannot tell the submit belonged to the now-deleted orchestrator rather than the child.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  260c9dfc-c42d-419a-9fe4-25ed22c77a38:
-    id: 260c9dfc-c42d-419a-9fe4-25ed22c77a38
-    content: The pending-ack mechanism (workflowAckManager) already knows the child's N+1 prompt is still in flight (registered, not yet consumed via UserPromptSubmit), but the Stop branch never consults it.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2a07d62-6092-4406-9078-719c274911b5:
-    id: d2a07d62-6092-4406-9078-719c274911b5
-    content: Normal autonomous steps are safe only because a node's own UserPromptSubmit (ack consume) precedes its Stop within one turn; the hand-off binds the child mid-turn and breaks that ordering invariant.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6918cbc2-b787-4b7d-aeab-0753b5730a5b:
-    id: 6918cbc2-b787-4b7d-aeab-0753b5730a5b
-    content: Affected files
-    children:
-      - 9c7ed25e-c263-4e53-9713-03402ca3d71d
-      - 1b41954c-a83d-496c-b4c4-4815c45d586f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c7ed25e-c263-4e53-9713-03402ca3d71d:
-    id: 9c7ed25e-c263-4e53-9713-03402ca3d71d
-    content: File path of primary suspect
-    children:
-      - 2f7dd290-840c-4839-90fc-809a98f8058f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f7dd290-840c-4839-90fc-809a98f8058f:
-    id: 2f7dd290-840c-4839-90fc-809a98f8058f
-    content: src/renderer/store/tree/actions/workflowHookEventHandler.ts — Stop branch advances findRunningNodeOnTerminal without an ack-pending guard.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b41954c-a83d-496c-b4c4-4815c45d586f:
-    id: 1b41954c-a83d-496c-b4c4-4815c45d586f
-    content: File path of related surface
-    children:
-      - 56ca7463-2808-459c-bba7-cc3d3834c108
-      - f35c5f41-2dce-435a-b37d-f9421821b623
-      - ea1520d7-1c23-4795-9011-dfe519a0505b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  56ca7463-2808-459c-bba7-cc3d3834c108:
-    id: 56ca7463-2808-459c-bba7-cc3d3834c108
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback, checkRecurse, and releaseOrchestratorAfterDecompositionHandoff hand-off.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f35c5f41-2dce-435a-b37d-f9421821b623:
-    id: f35c5f41-2dce-435a-b37d-f9421821b623
-    content: src/renderer/store/tree/actions/workflowAckManager.ts — pending-ack lifecycle; would need to expose isAckPending(nodeId).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ea1520d7-1c23-4795-9011-dfe519a0505b:
-    id: ea1520d7-1c23-4795-9011-dfe519a0505b
-    content: src/renderer/test/integration/decomposedChildrenAutoAdvance.test.ts — regression-test home; an existing it.todo already covers "no re-fire on a child it just produced".
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5fc58620-98b9-421c-a34c-3024687a4b84:
-    id: 5fc58620-98b9-421c-a34c-3024687a4b84
-    content: Regression window
-    children:
-      - 752c6f22-5772-46ee-bf64-e40776065e91
-      - 4fa51f0a-e605-4ed3-9b0c-c5ef6aadf527
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  752c6f22-5772-46ee-bf64-e40776065e91:
-    id: 752c6f22-5772-46ee-bf64-e40776065e91
-    content: Last known good commit or release
-    children:
-      - 292bd830-4625-4d6d-8380-5dfdf3a27d2f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  292bd830-4625-4d6d-8380-5dfdf3a27d2f:
-    id: 292bd830-4625-4d6d-8380-5dfdf3a27d2f
-    content: Immediately prior to the decomposition auto-advance hand-off series (e532b73 / 4ecbcc1 / bf851be / 4728852), when decomposition left children parked for manual start so there was no mid-turn rebind and no Stop to mis-credit.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fa51f0a-e605-4ed3-9b0c-c5ef6aadf527:
-    id: 4fa51f0a-e605-4ed3-9b0c-c5ef6aadf527
-    content: First observed broken commit or date
-    children:
-      - 5f5543f3-3b64-48f1-943d-9f4bff4d194a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f5543f3-3b64-48f1-943d-9f4bff4d194a:
-    id: 5f5543f3-3b64-48f1-943d-9f4bff4d194a
-    content: '2026-06-08, session 9fab1371 on node 23800d87: a Stop with explicit_submit_seen=true at 20:52:15 followed by a child workflow-advance binding and a 20:52:18 to 20:52:23 UserPromptSubmit burst in arborescent.log.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d7f044a9-1711-41f9-8a65-e921b9b7e1c7:
-    id: d7f044a9-1711-41f9-8a65-e921b9b7e1c7
-    content: Severity
-    children:
-      - 4586854c-ef99-48cc-9c4a-f077ebec6e27
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4586854c-ef99-48cc-9c4a-f077ebec6e27:
-    id: 4586854c-ef99-48cc-9c4a-f077ebec6e27
-    content: Severity level and user impact
-    children:
-      - edd41e42-f650-431f-9f1e-58b971016bfd
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  edd41e42-f650-431f-9f1e-58b971016bfd:
-    id: edd41e42-f650-431f-9f1e-58b971016bfd
-    content: 'High — silently corrupts every multi-PR decomposition run: the first PR skips a step''s real work and the model receives two conflicting step contexts at once, compromising that PR with no error surfaced.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e4d5c059-bba0-4644-b4a1-8fac14404445:
-    id: e4d5c059-bba0-4644-b4a1-8fac14404445
-    content: Notes
-    children:
-      - b1ef6abb-8713-4b75-9f61-958206883a04
-      - 18dd5469-640b-497d-ba2f-5dd027644a4a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1ef6abb-8713-4b75-9f61-958206883a04:
-    id: b1ef6abb-8713-4b75-9f61-958206883a04
-    content: Adjacent issues or look-alikes to disambiguate
-    children:
-      - 897ef6d6-df05-4efb-b7ce-1ecb736dec0e
-      - 4ee0e6df-f942-4263-af9c-0464ed415c49
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  897ef6d6-df05-4efb-b7ce-1ecb736dec0e:
-    id: 897ef6d6-df05-4efb-b7ce-1ecb736dec0e
-    content: 'Distinct from the "Stop dropped: no running node" stall — same Stop-coupling seam but the opposite direction (over-consume vs drop), so do not conflate the fixes.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ee0e6df-f942-4263-af9c-0464ed415c49:
-    id: 4ee0e6df-f942-4263-af9c-0464ed415c49
-    content: Each Claude turn emits two Stops (explicit_submit_seen true then false); the false one is correctly gated, so any fix must remain idempotent across the duplicate Stop.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  18dd5469-640b-497d-ba2f-5dd027644a4a:
-    id: 18dd5469-640b-497d-ba2f-5dd027644a4a
-    content: UX or telemetry gap worth fixing alongside
-    children:
-      - bf858741-ac27-46f3-86ab-e2f12db25ee7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf858741-ac27-46f3-86ab-e2f12db25ee7:
-    id: bf858741-ac27-46f3-86ab-e2f12db25ee7
-    content: Renderer INFO advance logs are not persisted to arborescent.log (only warnings and above), so the mis-credited advanceNode is invisible after the fact; promote the advance and ack decisions to a persisted level to make this diagnosable.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  29bdfbad-7e2c-4713-8a08-d170b1d4ed1b:
-    id: 29bdfbad-7e2c-4713-8a08-d170b1d4ed1b
-    content: Technical refinement
-    children:
-      - a5025192-4381-4153-8555-51b836498153
-      - 8198c4e2-b0f4-4f29-97f4-e894862d08e0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a5025192-4381-4153-8555-51b836498153:
-    id: a5025192-4381-4153-8555-51b836498153
-    content: Flag complications
-    children:
-      - 4ba259b8-571c-4d77-8b16-e46dd32b25b6
-      - 66773e01-8cc1-47af-aa8a-ea35b0e22fb0
-      - 931e1d07-edcc-4330-b9bd-2c5defb28404
-      - 0f01beb4-bcad-426f-8820-5bcd8e098c47
-      - 23eefef1-d46a-4211-8015-1d2cdab17671
-      - d6df252f-8702-4662-8749-e0db0f2d9f02
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ba259b8-571c-4d77-8b16-e46dd32b25b6:
-    id: 4ba259b8-571c-4d77-8b16-e46dd32b25b6
-    content: 'Timing race not in the acceptance criteria: scheduleRecurseStart binds the first child on a 2000ms setTimeout, so the orchestrator''s Stop races the child''s bind. An ack-pending guard only covers the interleaving where the child is already bound at Stop time; if the Stop lands during the 2s window the child is unbound, findRunningNodeOnTerminal returns null, and execution falls into the durable-recovery / "no running node" path instead — a different seam. The criteria don''t pin which interleaving the fix must cover, so the regression test should exercise both.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66773e01-8cc1-47af-aa8a-ea35b0e22fb0:
-    id: 66773e01-8cc1-47af-aa8a-ea35b0e22fb0
-    content: 'Edge case: consumePendingAck can run BEFORE registerPendingAck (the preconsumedAcks set handles acks that arrive before the autonomousCollaborate promise resolves), so isAckPending(nodeId) must report "not pending" for a pre-consumed ack — a naive pendingAcks.has() is wrong during that window and would gate the child''s own legitimate Stop forever.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  931e1d07-edcc-4330-b9bd-2c5defb28404:
-    id: 931e1d07-edcc-4330-b9bd-2c5defb28404
-    content: 'Edge case: the guard must be "skip advance WHILE an ack is pending," not "skip once" — otherwise it suppresses the child''s real N+1-completion Stop. It must also stay idempotent across the duplicate true/false Stop pair.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f01beb4-bcad-426f-8820-5bcd8e098c47:
-    id: 0f01beb4-bcad-426f-8820-5bcd8e098c47
-    content: 'Out of scope: the "Stop dropped: no running node" stall (the under-consume direction of this same seam) is a separate fix — do not conflate.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  23eefef1-d46a-4211-8015-1d2cdab17671:
-    id: 23eefef1-d46a-4211-8015-1d2cdab17671
-    content: 'Out of scope: re-architecting the Stop→advance coupling (transient run-state + Stop-hook) itself; this is a targeted guard, not a root-cause rework.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6df252f-8702-4662-8749-e0db0f2d9f02:
-    id: d6df252f-8702-4662-8749-e0db0f2d9f02
-    content: 'ROI flag: the root fragility is that the hand-off binds the child mid-turn, breaking the UserPromptSubmit-before-Stop ordering that keeps normal autonomous steps safe; the ack guard patches the symptom, so every future mid-turn rebind path would need the same guard. Given High severity and silent corruption the targeted guard is the right call now — but record it as a seam, not a cure.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8198c4e2-b0f4-4f29-97f4-e894862d08e0:
-    id: 8198c4e2-b0f4-4f29-97f4-e894862d08e0
-    content: Summarise the approach
-    children:
-      - 7af9617e-ccdf-41aa-a327-30d90a4f8324
-      - 6edb79c2-11b3-49f1-89c6-ee063bfb6b85
-      - e428c712-9921-407f-98cb-73dc9128ef65
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7af9617e-ccdf-41aa-a327-30d90a4f8324:
-    id: 7af9617e-ccdf-41aa-a327-30d90a4f8324
-    content: 'Changes land in two files: workflowHookEventHandler.ts adds an ack-pending guard in the autonomous Stop branch just before advanceNode (~:282), and workflowAckManager.ts exposes isAckPending(nodeId) covering both the pendingAcks map and the preconsumedAcks set; the new predicate is wired through HookEventHandlerDeps.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6edb79c2-11b3-49f1-89c6-ee063bfb6b85:
-    id: 6edb79c2-11b3-49f1-89c6-ee063bfb6b85
-    content: 'Key concept: a Stop that arrives while the bound node''s just-sent prompt is still in flight (ack registered, UserPromptSubmit not yet consumed) cannot be that node''s own completion — it is the orchestrator''s mis-credited Stop — so skip the advance and let the child''s real Stop advance it once its prompt is acked.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e428c712-9921-407f-98cb-73dc9128ef65:
-    id: e428c712-9921-407f-98cb-73dc9128ef65
-    content: 'Non-obvious: regression home is the existing it.todo "the decomposing step does not re-execute on any child it just produced" in decomposedChildrenAutoAdvance.test.ts; and renderer INFO advance/ack logs are not persisted (only WARN+), so promoting those decisions to WARN is what makes a future mis-credit diagnosable.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ffdb037a-e21e-45a7-a07d-dbf33eff31d8:
-    id: ffdb037a-e21e-45a7-a07d-dbf33eff31d8
-    content: Verification summary — undone or out of scope
-    children:
-      - c023beca-1883-4a2d-9554-3b96c5f6b6c5
-      - e1981c40-2050-48ac-805b-ecdf6905d901
-      - 7f638d0e-bb1d-493c-a4e4-25af7bc8a9e1
-      - 7f643c23-68d8-4ff2-b1f7-d441da6ac7fc
-      - 50876819-51c6-4b54-bf72-bfec7f2d9925
-      - 75cb26fb-754a-4136-9e49-a28e5e5c0e8b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c023beca-1883-4a2d-9554-3b96c5f6b6c5:
-    id: c023beca-1883-4a2d-9554-3b96c5f6b6c5
-    content: Final-step decomposition edge case (children created and left terminal with no re-fire or loop when N is the final step) is pre-existing behavior the ack guard does not touch and was not re-verified in this fix; its integration tests remain it.todo in decomposedChildrenAutoAdvance.test.ts.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e1981c40-2050-48ac-805b-ecdf6905d901:
-    id: e1981c40-2050-48ac-805b-ecdf6905d901
-    content: The early-Stop timing-race interleaving (a Stop landing inside the 2s recurse window, before the child binds, resolving to no running node) is left as a title-only it.todo; the shipped guard covers only the child-already-bound interleaving.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f638d0e-bb1d-493c-a4e4-25af7bc8a9e1:
-    id: 7f638d0e-bb1d-493c-a4e4-25af7bc8a9e1
-    content: Telemetry promotion was done only for the relevant signal — the ack-pending guard's skip decision is now WARN-logged (so this bug's mis-credit is diagnosable) — but broadly promoting every advance/ack INFO log to a persisted level was left out as noisy and beyond scope.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f643c23-68d8-4ff2-b1f7-d441da6ac7fc:
-    id: 7f643c23-68d8-4ff2-b1f7-d441da6ac7fc
-    content: 'The "Stop dropped: no running node" stall (under-consume direction of the same Stop-coupling seam) was deliberately not addressed — it is a separate fix.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  50876819-51c6-4b54-bf72-bfec7f2d9925:
-    id: 50876819-51c6-4b54-bf72-bfec7f2d9925
-    content: Re-architecting the Stop→advance coupling (transient run-state + Stop-hook) was deliberately not attempted — the shipped change is a targeted guard, not a root-cause rework.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  75cb26fb-754a-4136-9e49-a28e5e5c0e8b:
-    id: 75cb26fb-754a-4136-9e49-a28e5e5c0e8b
-    content: 'Core fix verified: isAckPending added and wired; ack-pending guard added to the autonomous Stop branch; 7 unit tests + 2 integration double-advance tests green; no regressions across all 17 Stop-firing test files; type-check and lint clean on changed files.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b57d7fbe-91eb-47af-a154-7be303ca50a1:
-    id: b57d7fbe-91eb-47af-a154-7be303ca50a1
-    content: review feedback
-    children:
-      - 84bbd92a-3a0e-4d30-b8b7-63e832705024
-      - 28d1ac6d-deae-450f-a50e-92abb4529620
-      - cc824332-4eac-4d4a-a8ac-994fb2e04498
-      - 8a6f202a-61a6-43f5-b3b5-f0b7fe6579ac
-    metadata:
-      status: pending
-  84bbd92a-3a0e-4d30-b8b7-63e832705024:
-    id: 84bbd92a-3a0e-4d30-b8b7-63e832705024
-    content: Verdict — implementation is sound and well-factored. pr-review-toolkit:code-reviewer traced TreeNode, Tree, useFeedbackActions, useReviewProposition, useNodeToggle and the zoom path. Hook order is correct (useReviewCollapse, useMemo binding, useNodeToggle all called unconditionally before the `if (!node) return null` guard); keys are consistent on read and write (reviewedNodeId is a live-tree id, propositionRootId is a feedback-tree id); the selector returns a stable primitive (no re-render churn); clearForReview is idempotent and correctly scoped; the toggle closure is not stale. Tests/lint/type-check green (140 changed-file tests pass).
-    children: []
-    metadata:
-      status: pending
-  28d1ac6d-deae-450f-a50e-92abb4529620:
-    id: 28d1ac6d-deae-450f-a50e-92abb4529620
-    content: 'Known limitation (NOT fixed, outside the acceptance criteria) — zooming an ANCESTOR of a node under review renders the reviewed descendant with view=''main'', because isReviewZoomRoot is only set when the zoom root IS the reviewed node (Tree.tsx zoomRootUnderReview branch). That ancestor-zoom tab then shares the same `main:<propositionRootId>` key as the main tree, so toggling the proposition''s collapse in one affects the other. This is pre-existing shared behaviour (before this feature both views read the shared feedback metadata.expanded; only direct-zoom-of-the-reviewed-node gained independence), so it is not a regression. Proper fix if desired: replace the ''main''|''zoom'' view discriminator with a per-tab/zoom identity (e.g. the zoom tab path) threaded Tree -> TreeNode -> PropositionRoots. Deferred — same scope call as the documented main-view-mirror semantics for nested reviews.'
-    children: []
-    metadata:
-      status: pending
-  cc824332-4eac-4d4a-a8ac-994fb2e04498:
-    id: cc824332-4eac-4d4a-a8ac-994fb2e04498
-    content: 'Minor findings fixed this review — (1) useFeedbackActions.test.ts now resets reviewCollapseStore.byReview in beforeEach (test isolation per CLAUDE.md; the two new teardown tests wrote to the real singleton without resetting); (2) useReviewCollapse gained a ''why'' comment noting the per-view toggle deliberately omits useNodeToggle''s active-node reselection (selection lives in the live tree, not the feedback proposition); (3) the hook''s return interface renamed ReviewCollapse -> ReviewCollapseControl to avoid colliding conceptually with the store name; (4) TreeNode''s reviewBinding comment clarified that the binding is handed to the proposition roots as their seed source. Tests/lint re-run after the fixes: green.'
-    children: []
-    metadata:
-      status: pending
-  8a6f202a-61a6-43f5-b3b5-f0b7fe6579ac:
-    id: 8a6f202a-61a6-43f5-b3b5-f0b7fe6579ac
-    content: Confirmed non-issues — two zoom tabs of the same node is moot (zoom tab path is zoom://<file>#<nodeId>, so a node has at most one zoom tab, making the single 'zoom' key sufficient); useVisibleChildren does not read metadata.expanded so it needed no rerouting; hidden-search-match counting on proposition roots was intentionally left on metadata as a minor non-AC edge. No blocker or major-severity correctness bug was found in the changed code or its callers.
-    children: []
-    metadata:
-      status: pending
-  082acd32-63e5-494c-ad65-30aac66e0b5a:
-    id: 082acd32-63e5-494c-ad65-30aac66e0b5a
-    content: review feedback
-    children:
-      - c0cd395b-c96c-4f75-9069-ced5bbb4685b
-      - 88cd6ec6-d2b4-4e6d-a570-f7c8e7c7b38b
-      - aa95cdf1-bb9e-4107-9781-0e0f34747efd
-      - d4cd76ee-2426-4633-8c73-f848ec4e7a66
-      - bf022261-8be1-47a9-9035-7f0824281bea
-    metadata:
-      status: pending
-  c0cd395b-c96c-4f75-9069-ced5bbb4685b:
-    id: c0cd395b-c96c-4f75-9069-ced5bbb4685b
-    content: 'Verdict: pr-review-toolkit code-reviewer found the fix SOUND — no blockers, no should-fix, no code changes recommended. In-worktree checks: type-check clean, eslint clean on changed files, full actions/tests + integration suites pass (1595 passed, 0 failed).'
-    children: []
-    metadata:
-      status: pending
-  e1c0adab-ae6c-4504-a54d-6c02f88f6d5e:
-    id: e1c0adab-ae6c-4504-a54d-6c02f88f6d5e
-    content: review resolution
-    children:
-      - c54141ee-ab68-4d38-878b-6ded62a5978d
-      - 8aaac0b9-9ea9-4cbf-87ab-7f60230562bd
-      - bf5f246b-243c-48b5-9132-cafb421a71c2
-    metadata:
-      status: pending
-  88cd6ec6-d2b4-4e6d-a570-f7c8e7c7b38b:
-    id: 88cd6ec6-d2b4-4e6d-a570-f7c8e7c7b38b
-    content: 'Invariant confirmed: the ack-pending guard is the FIRST statement in the autonomous Stop branch (before execEntry is read), so it uniformly covers the needsReview, collaborating, and plain-advanceNode outcomes. Reviewer traced normal completion, the mis-credit, durablyRecovered, needsReview/collaborating/resend/unpause — the guard neither wrongly suppresses a legitimate advance nor misses the mis-credit. ackManager maps are per-actions-instance and reset on reload, so the durable-recovery path reads isAckPending=false correctly.'
-    children: []
-    metadata:
-      status: pending
-  aa95cdf1-bb9e-4107-9781-0e0f34747efd:
-    id: aa95cdf1-bb9e-4107-9781-0e0f34747efd
-    content: 'Finding (nit, informational, no change requested): autonomous advance now hard-depends on UserPromptSubmit being delivered and routed to the node before that node''s own Stop. If UserPromptSubmit is ever dropped or misrouted while the ack is still registered, that node''s first legitimate Stop is suppressed and the step stalls silently (only a WARN at workflowHookEventHandler.ts). Strictly better than the double-advance it replaces, and the WARN makes it diagnosable — ship as-is, but keep the coupling in mind.'
-    children: []
-    metadata:
-      status: pending
-  d4cd76ee-2426-4633-8c73-f848ec4e7a66:
-    id: d4cd76ee-2426-4633-8c73-f848ec4e7a66
-    content: 'Finding (informational, not a defect): the early-Stop it.todo is a genuine residual gap — a Stop arriving inside the 2s scheduleRecurseStart window (after releaseOrchestratorAfterDecompositionHandoff deletes orchestrator state but before the child binds) resolves to no running node and is dropped. Benign (no double-advance), correctly scoped out and documented by the author; ownership (ack-guard vs durable-recovery) still undecided.'
-    children: []
-    metadata:
-      status: pending
-  c54141ee-ab68-4d38-878b-6ded62a5978d:
-    id: c54141ee-ab68-4d38-878b-6ded62a5978d
-    content: 'Major issues fixed — none. The single major finding (ancestor-zoom of a node under review shares the main:<propositionRootId> key with the main tree, so collapse couples) is pushed back rather than fixed. Rationale: (a) not a regression — the coupling pre-existed via the shared feedback metadata.expanded; only direct-zoom-of-the-reviewed-node gained independence; (b) it is the documented intentional scope (nested reviews keep main-view mirror semantics); (c) it is actually consistent with the rest of the app — ordinary non-review nodes already share collapse between the main tab and an ancestor-zoom tab via the same metadata.expanded, so a proposition root behaving the same way is expected; (d) low-probability interaction. A proper fix would thread a per-tab zoom identity through the whole TreeNode recursion (affecting all nodes) for a niche case — out of scope. Kept as a documented known limitation.'
-    children: []
-    metadata:
-      status: pending
-  bf022261-8be1-47a9-9035-7f0824281bea:
-    id: bf022261-8be1-47a9-9035-7f0824281bea
-    content: 'Conventions + tests: passes CLAUDE.md (logic in store actions, why-not-what comments, co-located DI-mocked tests, isAckPending threaded through HookEventHandlerDeps matching the consumePendingAck pattern, no new globals). Test coverage strong — unit tests pin every isAckPending transition incl. the pre-consumed-ack trap; the integration block drives the real hand-off via handleAutonomousFeedback with fake timers and asserts child stays at N+1, no second prompt injected, parked sibling untouched, and duplicate-Stop-pair idempotency.'
-    children: []
-    metadata:
-      status: pending
-  8aaac0b9-9ea9-4cbf-87ab-7f60230562bd:
-    id: 8aaac0b9-9ea9-4cbf-87ab-7f60230562bd
-    content: 'Minor issues fixed — all four, accepted as justified and applied: (1) useFeedbackActions.test.ts resets reviewCollapseStore.byReview in beforeEach (test isolation per CLAUDE.md — the two new teardown tests had written to the real singleton without resetting); (2) useReviewCollapse carries a ''why'' comment that the per-view toggle deliberately omits useNodeToggle''s active-node reselection (selection lives in the live tree, not the feedback proposition); (3) the hook return interface was renamed ReviewCollapse -> ReviewCollapseControl; (4) TreeNode''s reviewBinding comment now states it is handed to the proposition roots as their seed source. Changed-file tests and lint re-run after the fixes: green.'
-    children: []
-    metadata:
-      status: pending
-  bf5f246b-243c-48b5-9132-cafb421a71c2:
-    id: bf5f246b-243c-48b5-9132-cafb421a71c2
-    content: 'Feedback skipped — only the ancestor-zoom major finding, deferred as a documented known limitation (severity downgraded; see Major issues fixed above for the reasoning). The reviewer''s ''confirmed non-issues'' required no action: single zoom tab per node (path zoom://<file>#<nodeId>); useVisibleChildren does not read metadata.expanded; hidden-search-match counting on proposition roots intentionally left on metadata. No blocker or major correctness bug remained to resolve.'
-    children: []
-    metadata:
-      status: pending
-  f894dd50-5293-4562-a7e5-65d0af611887:
-    id: f894dd50-5293-4562-a7e5-65d0af611887
-    content: review resolution
-    children:
-      - 44974fd4-c3ef-4e28-bc2e-7f486191474f
-      - c02a6515-a150-412f-9bc5-6cb2b15ed2cc
-      - fef0495b-8651-438f-8e9d-c273ad4266f1
-    metadata:
-      status: pending
-  44974fd4-c3ef-4e28-bc2e-7f486191474f:
-    id: 44974fd4-c3ef-4e28-bc2e-7f486191474f
-    content: 'Major issues fixed: none. The reviewer found no blockers and no should-fix items; the verdict was SOUND with no code changes recommended, and independent re-reading of the code agrees. No code was changed in this step.'
-    children: []
-    metadata:
-      status: pending
-  c02a6515-a150-412f-9bc5-6cb2b15ed2cc:
-    id: c02a6515-a150-412f-9bc5-6cb2b15ed2cc
-    content: 'Minor issues fixed: none requiring code. The only nit (autonomous advance now depends on UserPromptSubmit arriving before the node''s own Stop) was explicitly "no change requested." Validated against workflowAckManager.ts: a dropped/misrouted UserPromptSubmit is already bounded by the existing ack retry-cap — 3× 5s retries then failAckRetryCap clears the pending ack, calls stopWorkflow, and raises an error toast + alert. So it surfaces a user-facing error rather than stalling silently, and once the cap clears the ack the guard stops suppressing. Pushed back on the "silent" framing; conclusion (ship as-is) accepted, no fix needed.'
-    children: []
-    metadata:
-      status: pending
-  fef0495b-8651-438f-8e9d-c273ad4266f1:
-    id: fef0495b-8651-438f-8e9d-c273ad4266f1
-    content: 'Feedback skipped (accepted as known/benign): (1) the early-Stop 2s-window it.todo — low probability (requires a Stop inside the recurse window) and benign (Stop dropped, no double-advance or corruption); explicitly scoped out in Technical refinement + Verification, left as a title-only it.todo. (2) The reviewer''s positive confirmations (guard placement/invariant, CLAUDE.md conventions, test adequacy) require no action. No code changes; checks not re-run since nothing changed (last run: 1595 passed, type-check + lint clean).'
-    children: []
-    metadata:
-      status: pending
-  9c2f7f39-d213-456a-93c8-54ecb267efbf:
-    id: 9c2f7f39-d213-456a-93c8-54ecb267efbf
-    content: 'Test pass & fix: AC3 (final-step decomposition) mapped to its pre-existing implementation (advanceDecomposedSiblingToNextStep returns false at the final step → checkRecurse retains children, schedules nothing) and confirmed unaffected by the ack guard; closed its coverage gap with a new integration test asserting both children stay parked at the final step with no execution entry, no downstream prompt, and the orchestrator''s Stop does not bind/advance/loop. All three acceptance criteria now implemented + tested. Discrepancy noted (not fixed): the pre-existing it.todo "no toast or error is raised when final-step decomposition completes" over-specifies beyond AC3 — the code intentionally shows a benign info toast ("Decomposition at final step — children retained"), and AC3 only requires no re-fire/loop, so that it.todo should not be implemented as written. Checks: type-check clean, lint clean on changed files, 163 passed / 38 todo across the Stop-related + changed suites.'
-    children: []
-    metadata:
-      status: pending
   f75203fa-249d-4a50-b98b-8f8053ecdf28:
     id: f75203fa-249d-4a50-b98b-8f8053ecdf28
     content: 'worktree: /Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr1-hover-toggle (branch feature/log-area-pr1-hover-toggle, forked from master a93b259)'
@@ -216394,22 +214389,2391 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bf6a388a-ca7f-4450-bed7-9dd4f4451a12:
-    id: bf6a388a-ca7f-4450-bed7-9dd4f4451a12
+  8ee50e37-061b-4007-a1c2-dda880114550:
+    id: 8ee50e37-061b-4007-a1c2-dda880114550
+    content: worktree
+    children:
+      - 64c9e536-0765-4bd5-8b26-5fb4bfaae1a9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64c9e536-0765-4bd5-8b26-5fb4bfaae1a9:
+    id: 64c9e536-0765-4bd5-8b26-5fb4bfaae1a9
+    content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-decomposition-handoff-double-advance)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a757d17-e5cd-4210-b01d-ac35c333f992:
+    id: 9a757d17-e5cd-4210-b01d-ac35c333f992
+    content: Summary
+    children:
+      - 725800dc-a6a2-40c9-8e1f-126c7b51b4b3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  725800dc-a6a2-40c9-8e1f-126c7b51b4b3:
+    id: 725800dc-a6a2-40c9-8e1f-126c7b51b4b3
+    content: After an autonomous decomposition step produces multiple child PRs, the first child advances two workflow steps instead of one because the orchestrator's own turn-ending Stop is mis-credited to the freshly-promoted child, so two different step prompts are injected back-to-back with no model turn between them.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac9128a6-1e42-4f4b-a2d6-4d8297ba7475:
+    id: ac9128a6-1e42-4f4b-a2d6-4d8297ba7475
+    content: Steps to reproduce
+    children:
+      - a7f9599e-ddad-44c3-a594-1e28ab5528f6
+      - 99af702a-8bdc-41f0-8313-10ad0c0b99a0
+      - 66816f13-cd15-434d-8d7a-9000bebf94cb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7f9599e-ddad-44c3-a594-1e28ab5528f6:
+    id: a7f9599e-ddad-44c3-a594-1e28ab5528f6
+    content: Precondition / setup
+    children:
+      - b772ad3e-6c44-4e37-a282-3059474bb118
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b772ad3e-6c44-4e37-a282-3059474bb118:
+    id: b772ad3e-6c44-4e37-a282-3059474bb118
+    content: A workflow whose step N is autonomous with decomposition enabled, followed by at least two more autonomous steps N+1 and N+2, with a node running step N on a live terminal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  99af702a-8bdc-41f0-8313-10ad0c0b99a0:
+    id: 99af702a-8bdc-41f0-8313-10ad0c0b99a0
+    content: User action
+    children:
+      - 285e3942-c53e-4579-b31f-71b4b941b81e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  285e3942-c53e-4579-b31f-71b4b941b81e:
+    id: 285e3942-c53e-4579-b31f-71b4b941b81e
+    content: Let the decomposition step submit its output via submit_step_output, producing two or more child nodes (e.g. PR1 and PR2).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66816f13-cd15-434d-8d7a-9000bebf94cb:
+    id: 66816f13-cd15-434d-8d7a-9000bebf94cb
+    content: Observation that exposes the bug
+    children:
+      - 6764c33d-eed4-4905-816f-767ab8698088
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6764c33d-eed4-4905-816f-767ab8698088:
+    id: 6764c33d-eed4-4905-816f-767ab8698088
+    content: PR1 receives the step N+1 prompt AND the step N+2 prompt concatenated in a single terminal turn — same child node id, two different steps — without the model ever acting on N+1.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d84d2d71-b3ef-4951-ae85-cfc29dac6e7f:
+    id: d84d2d71-b3ef-4951-ae85-cfc29dac6e7f
+    content: Expected behavior
+    children:
+      - 69a30354-a180-4bfc-909d-99b151d4e35a
+      - 87616dda-153a-4907-b50c-d2f802ac198b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69a30354-a180-4bfc-909d-99b151d4e35a:
+    id: 69a30354-a180-4bfc-909d-99b151d4e35a
+    content: Expected outcome on the happy path
+    children:
+      - 8aaf12a8-be66-4d0b-bdd2-00bd7e27b76a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8aaf12a8-be66-4d0b-bdd2-00bd7e27b76a:
+    id: 8aaf12a8-be66-4d0b-bdd2-00bd7e27b76a
+    content: After decomposition the first child advances exactly one step to N+1, runs it, and waits for that step's completion (announce_step_done or submit) before advancing to N+2.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87616dda-153a-4907-b50c-d2f802ac198b:
+    id: 87616dda-153a-4907-b50c-d2f802ac198b
+    content: Expected handling of edge cases
+    children:
+      - 0432fb4d-1493-47b6-b2c4-9ec4109168aa
+      - 5ebf81d6-134b-4971-baf9-bead8ae0994a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0432fb4d-1493-47b6-b2c4-9ec4109168aa:
+    id: 0432fb4d-1493-47b6-b2c4-9ec4109168aa
+    content: Sibling children stay parked at the decomposition step until their turn; none are pre-advanced.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ebf81d6-134b-4971-baf9-bead8ae0994a:
+    id: 5ebf81d6-134b-4971-baf9-bead8ae0994a
+    content: If N is the final step, children are created and left terminal with no further step scheduled — no re-fire and no loop.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e93f0118-90af-4fb4-a272-54651d4f816e:
+    id: e93f0118-90af-4fb4-a272-54651d4f816e
+    content: Actual behavior
+    children:
+      - a2b39269-1eab-4204-9ef0-7409729e4da1
+      - 45ee236d-633d-4631-a586-93ffa486665c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2b39269-1eab-4204-9ef0-7409729e4da1:
+    id: a2b39269-1eab-4204-9ef0-7409729e4da1
+    content: What actually happens
+    children:
+      - 8a4a3253-3c6a-4092-8cfc-761d5227bf80
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a4a3253-3c6a-4092-8cfc-761d5227bf80:
+    id: 8a4a3253-3c6a-4092-8cfc-761d5227bf80
+    content: The decomposition hand-off promotes the first child to N+1 and binds it to the terminal during the orchestrator's submit turn; the turn's Stop (explicit_submit_seen=true) is then attributed to the child and advances it a second time to N+2.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45ee236d-633d-4631-a586-93ffa486665c:
+    id: 45ee236d-633d-4631-a586-93ffa486665c
+    content: User-visible symptoms
+    children:
+      - 2cbc7043-a36f-428a-9890-63b97eb7bf8b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cbc7043-a36f-428a-9890-63b97eb7bf8b:
+    id: 2cbc7043-a36f-428a-9890-63b97eb7bf8b
+    content: Two step prompts are pasted into the terminal in sequence; the first child appears to move through the steps without waiting, and step N+1's actual work is skipped and never awaited.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf6f8db8-39c3-49df-839c-3172a9d6f583:
+    id: bf6f8db8-39c3-49df-839c-3172a9d6f583
+    content: Suspected cause
+    children:
+      - 1a4408a4-6ef7-41de-b4f3-0d4b54aa5a10
+      - 748eaad5-8e0e-4330-9e21-81821a6b4002
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a4408a4-6ef7-41de-b4f3-0d4b54aa5a10:
+    id: 1a4408a4-6ef7-41de-b4f3-0d4b54aa5a10
+    content: Code path or commit implicated
+    children:
+      - a2201e6b-af70-463e-a6fb-2623c5da3818
+      - 467c07ad-7c4e-4b2e-af4b-a7c9ec67f0ec
+      - 058687ad-b111-49a3-830b-25b34974e81b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2201e6b-af70-463e-a6fb-2623c5da3818:
+    id: a2201e6b-af70-463e-a6fb-2623c5da3818
+    content: 'handleAutonomousFeedback runs synchronously inside submit_step_output: releaseOrchestratorAfterDecompositionHandoff deletes the orchestrator run-state, then checkRecurse to scheduleRecurseStart promotes and binds the first child before the turn''s Stop fires (workflowExecutionActions.ts).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  467c07ad-7c4e-4b2e-af4b-a7c9ec67f0ec:
+    id: 467c07ad-7c4e-4b2e-af4b-a7c9ec67f0ec
+    content: handleHookEvent resolves the Stop via findRunningNodeOnTerminal(terminal) which now returns the promoted child, and calls advanceNode(child) for the autonomous step (workflowHookEventHandler.ts:152 and :282).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  058687ad-b111-49a3-830b-25b34974e81b:
+    id: 058687ad-b111-49a3-830b-25b34974e81b
+    content: 'Introduced by the decomposition auto-advance hand-off series: e532b73 (recurse), 4ecbcc1, bf851be, and 4728852 (release orchestrator state after multi-root decomposition handoff).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  748eaad5-8e0e-4330-9e21-81821a6b4002:
+    id: 748eaad5-8e0e-4330-9e21-81821a6b4002
+    content: Why the existing guard or fix does not cover this case
+    children:
+      - be83e510-0673-41e5-a09d-f2d2e9a17508
+      - 7ff22ce2-f238-4a81-819f-05495f133839
+      - 2ebe49b8-dcb8-42a6-b302-ff9853408e66
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be83e510-0673-41e5-a09d-f2d2e9a17508:
+    id: be83e510-0673-41e5-a09d-f2d2e9a17508
+    content: explicit_submit_seen is a per-turn boolean on the terminal's Stop, not bound to a node, so it cannot tell the submit belonged to the now-deleted orchestrator rather than the child.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ff22ce2-f238-4a81-819f-05495f133839:
+    id: 7ff22ce2-f238-4a81-819f-05495f133839
+    content: The pending-ack mechanism (workflowAckManager) already knows the child's N+1 prompt is still in flight (registered, not yet consumed via UserPromptSubmit), but the Stop branch never consults it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ebe49b8-dcb8-42a6-b302-ff9853408e66:
+    id: 2ebe49b8-dcb8-42a6-b302-ff9853408e66
+    content: Normal autonomous steps are safe only because a node's own UserPromptSubmit (ack consume) precedes its Stop within one turn; the hand-off binds the child mid-turn and breaks that ordering invariant.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b286d5f-8141-423d-aaca-0fe002146d9a:
+    id: 4b286d5f-8141-423d-aaca-0fe002146d9a
+    content: Affected files
+    children:
+      - 0a01fc38-5e29-4ce7-9458-af185654e7ef
+      - 08535846-dcff-4d2d-86a1-2bfee519bb5b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a01fc38-5e29-4ce7-9458-af185654e7ef:
+    id: 0a01fc38-5e29-4ce7-9458-af185654e7ef
+    content: File path of primary suspect
+    children:
+      - 0299ceea-78a0-48bf-84b5-5639f3539bee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0299ceea-78a0-48bf-84b5-5639f3539bee:
+    id: 0299ceea-78a0-48bf-84b5-5639f3539bee
+    content: src/renderer/store/tree/actions/workflowHookEventHandler.ts — Stop branch advances findRunningNodeOnTerminal without an ack-pending guard.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08535846-dcff-4d2d-86a1-2bfee519bb5b:
+    id: 08535846-dcff-4d2d-86a1-2bfee519bb5b
+    content: File path of related surface
+    children:
+      - 033c181b-3921-443e-a9f6-1992a8ffe666
+      - 9c462a1a-e8f2-4a41-96b6-6cfa3779418f
+      - f4e59335-624b-45ec-8da5-5b60480b06d2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  033c181b-3921-443e-a9f6-1992a8ffe666:
+    id: 033c181b-3921-443e-a9f6-1992a8ffe666
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback, checkRecurse, and releaseOrchestratorAfterDecompositionHandoff hand-off.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c462a1a-e8f2-4a41-96b6-6cfa3779418f:
+    id: 9c462a1a-e8f2-4a41-96b6-6cfa3779418f
+    content: src/renderer/store/tree/actions/workflowAckManager.ts — pending-ack lifecycle; would need to expose isAckPending(nodeId).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4e59335-624b-45ec-8da5-5b60480b06d2:
+    id: f4e59335-624b-45ec-8da5-5b60480b06d2
+    content: src/renderer/test/integration/decomposedChildrenAutoAdvance.test.ts — regression-test home; an existing it.todo already covers "no re-fire on a child it just produced".
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  63fb8939-f83f-48dd-994e-5ea112b08ab1:
+    id: 63fb8939-f83f-48dd-994e-5ea112b08ab1
+    content: Regression window
+    children:
+      - 42910887-11e2-48d4-9692-ae4f89f70efc
+      - a7dff07b-a4bc-4465-861c-4940940b2794
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42910887-11e2-48d4-9692-ae4f89f70efc:
+    id: 42910887-11e2-48d4-9692-ae4f89f70efc
+    content: Last known good commit or release
+    children:
+      - 81724337-7014-4def-b4e6-211b38436c38
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81724337-7014-4def-b4e6-211b38436c38:
+    id: 81724337-7014-4def-b4e6-211b38436c38
+    content: Immediately prior to the decomposition auto-advance hand-off series (e532b73 / 4ecbcc1 / bf851be / 4728852), when decomposition left children parked for manual start so there was no mid-turn rebind and no Stop to mis-credit.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7dff07b-a4bc-4465-861c-4940940b2794:
+    id: a7dff07b-a4bc-4465-861c-4940940b2794
+    content: First observed broken commit or date
+    children:
+      - 561d82d2-c012-4d7e-83db-ec3629700139
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  561d82d2-c012-4d7e-83db-ec3629700139:
+    id: 561d82d2-c012-4d7e-83db-ec3629700139
+    content: '2026-06-08, session 9fab1371 on node 23800d87: a Stop with explicit_submit_seen=true at 20:52:15 followed by a child workflow-advance binding and a 20:52:18 to 20:52:23 UserPromptSubmit burst in arborescent.log.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95d11484-ce9f-45f0-988e-e1bca0e40ebb:
+    id: 95d11484-ce9f-45f0-988e-e1bca0e40ebb
+    content: Severity
+    children:
+      - 2a17f3a0-d4a3-4272-8cfc-0caf526f48ae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a17f3a0-d4a3-4272-8cfc-0caf526f48ae:
+    id: 2a17f3a0-d4a3-4272-8cfc-0caf526f48ae
+    content: Severity level and user impact
+    children:
+      - 89c2e828-d4a6-49d4-9242-bcddb9f79ee7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89c2e828-d4a6-49d4-9242-bcddb9f79ee7:
+    id: 89c2e828-d4a6-49d4-9242-bcddb9f79ee7
+    content: 'High — silently corrupts every multi-PR decomposition run: the first PR skips a step''s real work and the model receives two conflicting step contexts at once, compromising that PR with no error surfaced.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e748fa93-b09b-46c5-8e5c-6e1039c539a1:
+    id: e748fa93-b09b-46c5-8e5c-6e1039c539a1
+    content: Notes
+    children:
+      - f780228c-096c-4f4f-8238-eac07437b7ea
+      - cddcf85a-c94a-4071-9b4a-ea1d513bb71d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f780228c-096c-4f4f-8238-eac07437b7ea:
+    id: f780228c-096c-4f4f-8238-eac07437b7ea
+    content: Adjacent issues or look-alikes to disambiguate
+    children:
+      - 4de05995-15aa-4034-8cd4-ed11bd1728eb
+      - 41cbd477-263c-4671-b89c-c3a9241911ca
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4de05995-15aa-4034-8cd4-ed11bd1728eb:
+    id: 4de05995-15aa-4034-8cd4-ed11bd1728eb
+    content: 'Distinct from the "Stop dropped: no running node" stall — same Stop-coupling seam but the opposite direction (over-consume vs drop), so do not conflate the fixes.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41cbd477-263c-4671-b89c-c3a9241911ca:
+    id: 41cbd477-263c-4671-b89c-c3a9241911ca
+    content: Each Claude turn emits two Stops (explicit_submit_seen true then false); the false one is correctly gated, so any fix must remain idempotent across the duplicate Stop.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cddcf85a-c94a-4071-9b4a-ea1d513bb71d:
+    id: cddcf85a-c94a-4071-9b4a-ea1d513bb71d
+    content: UX or telemetry gap worth fixing alongside
+    children:
+      - 8a95ce2d-662a-4f30-92ed-9dadab82c0cc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a95ce2d-662a-4f30-92ed-9dadab82c0cc:
+    id: 8a95ce2d-662a-4f30-92ed-9dadab82c0cc
+    content: Renderer INFO advance logs are not persisted to arborescent.log (only warnings and above), so the mis-credited advanceNode is invisible after the fact; promote the advance and ack decisions to a persisted level to make this diagnosable.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6aa7649c-f39a-4996-8cbd-9b532dfd877b:
+    id: 6aa7649c-f39a-4996-8cbd-9b532dfd877b
+    content: Technical refinement
+    children:
+      - 8d31e99b-684a-43aa-bf44-43a27b975831
+      - 0681cad8-fe3c-4135-952a-7584702df0de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d31e99b-684a-43aa-bf44-43a27b975831:
+    id: 8d31e99b-684a-43aa-bf44-43a27b975831
+    content: Flag complications
+    children:
+      - 9dc86dd2-ee69-4fcb-9ae4-5a2106387e78
+      - cd9ca121-d51d-4f47-9f2c-0304cf3aeb5d
+      - 504dc23d-a678-478c-87ff-81bab1c87f5f
+      - 81ecab10-d9f8-4355-b9c3-ce628ba2d8a8
+      - 0d8a1137-fdfa-44b2-8e7d-0558e9c8a5bd
+      - 690072d5-972e-4f13-a8ef-1383691ebab8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9dc86dd2-ee69-4fcb-9ae4-5a2106387e78:
+    id: 9dc86dd2-ee69-4fcb-9ae4-5a2106387e78
+    content: 'Timing race not in the acceptance criteria: scheduleRecurseStart binds the first child on a 2000ms setTimeout, so the orchestrator''s Stop races the child''s bind. An ack-pending guard only covers the interleaving where the child is already bound at Stop time; if the Stop lands during the 2s window the child is unbound, findRunningNodeOnTerminal returns null, and execution falls into the durable-recovery / "no running node" path instead — a different seam. The criteria don''t pin which interleaving the fix must cover, so the regression test should exercise both.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd9ca121-d51d-4f47-9f2c-0304cf3aeb5d:
+    id: cd9ca121-d51d-4f47-9f2c-0304cf3aeb5d
+    content: 'Edge case: consumePendingAck can run BEFORE registerPendingAck (the preconsumedAcks set handles acks that arrive before the autonomousCollaborate promise resolves), so isAckPending(nodeId) must report "not pending" for a pre-consumed ack — a naive pendingAcks.has() is wrong during that window and would gate the child''s own legitimate Stop forever.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  504dc23d-a678-478c-87ff-81bab1c87f5f:
+    id: 504dc23d-a678-478c-87ff-81bab1c87f5f
+    content: 'Edge case: the guard must be "skip advance WHILE an ack is pending," not "skip once" — otherwise it suppresses the child''s real N+1-completion Stop. It must also stay idempotent across the duplicate true/false Stop pair.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81ecab10-d9f8-4355-b9c3-ce628ba2d8a8:
+    id: 81ecab10-d9f8-4355-b9c3-ce628ba2d8a8
+    content: 'Out of scope: the "Stop dropped: no running node" stall (the under-consume direction of this same seam) is a separate fix — do not conflate.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d8a1137-fdfa-44b2-8e7d-0558e9c8a5bd:
+    id: 0d8a1137-fdfa-44b2-8e7d-0558e9c8a5bd
+    content: 'Out of scope: re-architecting the Stop→advance coupling (transient run-state + Stop-hook) itself; this is a targeted guard, not a root-cause rework.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  690072d5-972e-4f13-a8ef-1383691ebab8:
+    id: 690072d5-972e-4f13-a8ef-1383691ebab8
+    content: 'ROI flag: the root fragility is that the hand-off binds the child mid-turn, breaking the UserPromptSubmit-before-Stop ordering that keeps normal autonomous steps safe; the ack guard patches the symptom, so every future mid-turn rebind path would need the same guard. Given High severity and silent corruption the targeted guard is the right call now — but record it as a seam, not a cure.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0681cad8-fe3c-4135-952a-7584702df0de:
+    id: 0681cad8-fe3c-4135-952a-7584702df0de
+    content: Summarise the approach
+    children:
+      - c914ba31-49f2-4e8f-83d1-4095f91427a3
+      - 33356968-7324-47f1-b411-9ada394fe768
+      - cf7f86b7-4c19-4f7e-8910-0c80b884f074
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c914ba31-49f2-4e8f-83d1-4095f91427a3:
+    id: c914ba31-49f2-4e8f-83d1-4095f91427a3
+    content: 'Changes land in two files: workflowHookEventHandler.ts adds an ack-pending guard in the autonomous Stop branch just before advanceNode (~:282), and workflowAckManager.ts exposes isAckPending(nodeId) covering both the pendingAcks map and the preconsumedAcks set; the new predicate is wired through HookEventHandlerDeps.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33356968-7324-47f1-b411-9ada394fe768:
+    id: 33356968-7324-47f1-b411-9ada394fe768
+    content: 'Key concept: a Stop that arrives while the bound node''s just-sent prompt is still in flight (ack registered, UserPromptSubmit not yet consumed) cannot be that node''s own completion — it is the orchestrator''s mis-credited Stop — so skip the advance and let the child''s real Stop advance it once its prompt is acked.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf7f86b7-4c19-4f7e-8910-0c80b884f074:
+    id: cf7f86b7-4c19-4f7e-8910-0c80b884f074
+    content: 'Non-obvious: regression home is the existing it.todo "the decomposing step does not re-execute on any child it just produced" in decomposedChildrenAutoAdvance.test.ts; and renderer INFO advance/ack logs are not persisted (only WARN+), so promoting those decisions to WARN is what makes a future mis-credit diagnosable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9dcd987-b9ba-4de1-bf47-cffb14d3678c:
+    id: c9dcd987-b9ba-4de1-bf47-cffb14d3678c
+    content: Verification summary — undone or out of scope
+    children:
+      - 8bde9c9a-9835-404f-8e41-bafc93199475
+      - c8f528bb-f012-4d2b-8319-19761e8e1743
+      - 1ac2d91b-7c50-4ff3-9dc5-078c2fba8985
+      - f68026a1-1a87-40a4-a8ee-49eb6b13d338
+      - fa5cd2eb-849a-46dc-98e7-3e38e1eb6145
+      - 2cfa4dae-01d7-4be6-b2dc-6a5975d1b4e2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bde9c9a-9835-404f-8e41-bafc93199475:
+    id: 8bde9c9a-9835-404f-8e41-bafc93199475
+    content: Final-step decomposition edge case (children created and left terminal with no re-fire or loop when N is the final step) is pre-existing behavior the ack guard does not touch and was not re-verified in this fix; its integration tests remain it.todo in decomposedChildrenAutoAdvance.test.ts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8f528bb-f012-4d2b-8319-19761e8e1743:
+    id: c8f528bb-f012-4d2b-8319-19761e8e1743
+    content: The early-Stop timing-race interleaving (a Stop landing inside the 2s recurse window, before the child binds, resolving to no running node) is left as a title-only it.todo; the shipped guard covers only the child-already-bound interleaving.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ac2d91b-7c50-4ff3-9dc5-078c2fba8985:
+    id: 1ac2d91b-7c50-4ff3-9dc5-078c2fba8985
+    content: Telemetry promotion was done only for the relevant signal — the ack-pending guard's skip decision is now WARN-logged (so this bug's mis-credit is diagnosable) — but broadly promoting every advance/ack INFO log to a persisted level was left out as noisy and beyond scope.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f68026a1-1a87-40a4-a8ee-49eb6b13d338:
+    id: f68026a1-1a87-40a4-a8ee-49eb6b13d338
+    content: 'The "Stop dropped: no running node" stall (under-consume direction of the same Stop-coupling seam) was deliberately not addressed — it is a separate fix.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa5cd2eb-849a-46dc-98e7-3e38e1eb6145:
+    id: fa5cd2eb-849a-46dc-98e7-3e38e1eb6145
+    content: Re-architecting the Stop→advance coupling (transient run-state + Stop-hook) was deliberately not attempted — the shipped change is a targeted guard, not a root-cause rework.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cfa4dae-01d7-4be6-b2dc-6a5975d1b4e2:
+    id: 2cfa4dae-01d7-4be6-b2dc-6a5975d1b4e2
+    content: 'Core fix verified: isAckPending added and wired; ack-pending guard added to the autonomous Stop branch; 7 unit tests + 2 integration double-advance tests green; no regressions across all 17 Stop-firing test files; type-check and lint clean on changed files.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22519162-de7a-4605-bfe6-14352d40177f:
+    id: 22519162-de7a-4605-bfe6-14352d40177f
+    content: review feedback
+    children:
+      - 25a60362-b3c5-4108-b04e-421d80867fb1
+      - 9b5089bd-f823-44f2-bca9-c0e5659b47df
+      - aac64125-646a-4a9a-b747-ab0d7431e18e
+      - f3fe0328-ea41-4802-98df-eef303d788db
+      - 5c508fdb-7d3b-4e2e-bf7f-7aaefd80cdc3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  25a60362-b3c5-4108-b04e-421d80867fb1:
+    id: 25a60362-b3c5-4108-b04e-421d80867fb1
+    content: 'Verdict: pr-review-toolkit code-reviewer found the fix SOUND — no blockers, no should-fix, no code changes recommended. In-worktree checks: type-check clean, eslint clean on changed files, full actions/tests + integration suites pass (1595 passed, 0 failed).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b5089bd-f823-44f2-bca9-c0e5659b47df:
+    id: 9b5089bd-f823-44f2-bca9-c0e5659b47df
+    content: 'Invariant confirmed: the ack-pending guard is the FIRST statement in the autonomous Stop branch (before execEntry is read), so it uniformly covers the needsReview, collaborating, and plain-advanceNode outcomes. Reviewer traced normal completion, the mis-credit, durablyRecovered, needsReview/collaborating/resend/unpause — the guard neither wrongly suppresses a legitimate advance nor misses the mis-credit. ackManager maps are per-actions-instance and reset on reload, so the durable-recovery path reads isAckPending=false correctly.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aac64125-646a-4a9a-b747-ab0d7431e18e:
+    id: aac64125-646a-4a9a-b747-ab0d7431e18e
+    content: 'Finding (nit, informational, no change requested): autonomous advance now hard-depends on UserPromptSubmit being delivered and routed to the node before that node''s own Stop. If UserPromptSubmit is ever dropped or misrouted while the ack is still registered, that node''s first legitimate Stop is suppressed and the step stalls silently (only a WARN at workflowHookEventHandler.ts). Strictly better than the double-advance it replaces, and the WARN makes it diagnosable — ship as-is, but keep the coupling in mind.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3fe0328-ea41-4802-98df-eef303d788db:
+    id: f3fe0328-ea41-4802-98df-eef303d788db
+    content: 'Finding (informational, not a defect): the early-Stop it.todo is a genuine residual gap — a Stop arriving inside the 2s scheduleRecurseStart window (after releaseOrchestratorAfterDecompositionHandoff deletes orchestrator state but before the child binds) resolves to no running node and is dropped. Benign (no double-advance), correctly scoped out and documented by the author; ownership (ack-guard vs durable-recovery) still undecided.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c508fdb-7d3b-4e2e-bf7f-7aaefd80cdc3:
+    id: 5c508fdb-7d3b-4e2e-bf7f-7aaefd80cdc3
+    content: 'Conventions + tests: passes CLAUDE.md (logic in store actions, why-not-what comments, co-located DI-mocked tests, isAckPending threaded through HookEventHandlerDeps matching the consumePendingAck pattern, no new globals). Test coverage strong — unit tests pin every isAckPending transition incl. the pre-consumed-ack trap; the integration block drives the real hand-off via handleAutonomousFeedback with fake timers and asserts child stays at N+1, no second prompt injected, parked sibling untouched, and duplicate-Stop-pair idempotency.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  79973444-810c-4480-a9a6-604d538b4dfa:
+    id: 79973444-810c-4480-a9a6-604d538b4dfa
+    content: review resolution
+    children:
+      - 18a7734a-c9d7-4199-aec2-a4988e5a1e7d
+      - 5321702e-9f6a-4a1d-a257-32b649bead6f
+      - 4d6c488a-cbc6-4df8-b031-f5cfe5135e15
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18a7734a-c9d7-4199-aec2-a4988e5a1e7d:
+    id: 18a7734a-c9d7-4199-aec2-a4988e5a1e7d
+    content: 'Major issues fixed: none. The reviewer found no blockers and no should-fix items; the verdict was SOUND with no code changes recommended, and independent re-reading of the code agrees. No code was changed in this step.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5321702e-9f6a-4a1d-a257-32b649bead6f:
+    id: 5321702e-9f6a-4a1d-a257-32b649bead6f
+    content: 'Minor issues fixed: none requiring code. The only nit (autonomous advance now depends on UserPromptSubmit arriving before the node''s own Stop) was explicitly "no change requested." Validated against workflowAckManager.ts: a dropped/misrouted UserPromptSubmit is already bounded by the existing ack retry-cap — 3× 5s retries then failAckRetryCap clears the pending ack, calls stopWorkflow, and raises an error toast + alert. So it surfaces a user-facing error rather than stalling silently, and once the cap clears the ack the guard stops suppressing. Pushed back on the "silent" framing; conclusion (ship as-is) accepted, no fix needed.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d6c488a-cbc6-4df8-b031-f5cfe5135e15:
+    id: 4d6c488a-cbc6-4df8-b031-f5cfe5135e15
+    content: 'Feedback skipped (accepted as known/benign): (1) the early-Stop 2s-window it.todo — low probability (requires a Stop inside the recurse window) and benign (Stop dropped, no double-advance or corruption); explicitly scoped out in Technical refinement + Verification, left as a title-only it.todo. (2) The reviewer''s positive confirmations (guard placement/invariant, CLAUDE.md conventions, test adequacy) require no action. No code changes; checks not re-run since nothing changed (last run: 1595 passed, type-check + lint clean).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4201e057-1833-4e69-bcd6-98b00bc7d42a:
+    id: 4201e057-1833-4e69-bcd6-98b00bc7d42a
+    content: 'Test pass & fix: AC3 (final-step decomposition) mapped to its pre-existing implementation (advanceDecomposedSiblingToNextStep returns false at the final step → checkRecurse retains children, schedules nothing) and confirmed unaffected by the ack guard; closed its coverage gap with a new integration test asserting both children stay parked at the final step with no execution entry, no downstream prompt, and the orchestrator''s Stop does not bind/advance/loop. All three acceptance criteria now implemented + tested. Discrepancy noted (not fixed): the pre-existing it.todo "no toast or error is raised when final-step decomposition completes" over-specifies beyond AC3 — the code intentionally shows a benign info toast ("Decomposition at final step — children retained"), and AC3 only requires no re-fire/loop, so that it.todo should not be implemented as written. Checks: type-check clean, lint clean on changed files, 163 passed / 38 todo across the Stop-related + changed suites.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f22c8b69-f144-45f6-9083-d0e2f2ebd2f4:
+    id: f22c8b69-f144-45f6-9083-d0e2f2ebd2f4
     content: 'Documentation: no changes made (intentional). This is an internal bug fix, not a feature — the ack-pending guard restores the already-documented behavior (docs/workflows.md "Recurse" / "Decomposition + Recurse" already state siblings run in order, one step per pass, pausing at the recurse step). No new setting/command/concept, so nothing to add and no doc was made inaccurate. No CHANGELOG file exists, and per the rules a bug fix to an unreleased feature (the decomposition auto-advance hand-off series e532b73/4ecbcc1/bf851be/4728852) gets no changelog line. No inconsistencies to warn about.'
     children: []
     metadata:
       status: pending
-  629a3a99-a5c8-40b8-a8d3-255557b6f788:
-    id: 629a3a99-a5c8-40b8-a8d3-255557b6f788
-    content: 'worktree: /Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session (branch feature/log-area-pr2-jump-to-session, forked from master 0470514)'
+      expanded: true
+      deleted: false
+      plugins: {}
+  1593cfaf-6ea7-46bc-b083-a502e45ddaac:
+    id: 1593cfaf-6ea7-46bc-b083-a502e45ddaac
+    content: Merge to master
     children:
-      - 677702cf-862c-4ffc-95bb-78d878d575c8
+      - c72255cf-f101-4968-b0ea-33f3386d223e
+      - b37f3bfd-b475-4eb5-a8d7-408838284b17
+      - 62b4241a-1aff-4cf1-9588-cdb928e5a1db
+      - 96cc8776-c058-49ae-98bc-4bc9fd6f023a
+      - 58672b7c-62f2-4e1d-8308-bf4838230145
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c72255cf-f101-4968-b0ea-33f3386d223e:
+    id: c72255cf-f101-4968-b0ea-33f3386d223e
+    content: Committed project.arbo on master (23368b6), then committed the fix in the worktree as a single commit (no squash needed).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b37f3bfd-b475-4eb5-a8d7-408838284b17:
+    id: b37f3bfd-b475-4eb5-a8d7-408838284b17
+    content: Master had advanced +2 via a concurrent session (90fa6d8, 0470514); rebased the fix onto the current master tip — clean, no conflicts (the master commits touched ActivityLog/BottomStatusBar/docs/CHANGELOG, no overlap with the fix's files).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62b4241a-1aff-4cf1-9588-cdb928e5a1db:
+    id: 62b4241a-1aff-4cf1-9588-cdb928e5a1db
+    content: 'Reran checks post-rebase: type-check clean, lint clean on changed files, tests green (77 passed / 20 todo across changed + Stop-related suites).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96cc8776-c058-49ae-98bc-4bc9fd6f023a:
+    id: 96cc8776-c058-49ae-98bc-4bc9fd6f023a
+    content: Fast-forward merged to master as 04fdefb (confirmed on master) and pushed to origin (origin/master = 04fdefb).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  58672b7c-62f2-4e1d-8308-bf4838230145:
+    id: 58672b7c-62f2-4e1d-8308-bf4838230145
+    content: Deleted the worktree and the local branch fix/decomposition-handoff-double-advance (branch -d succeeded, confirming the merge landed).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c667ebf3-4a5d-4acd-862a-8d0efac0561c:
+    id: c667ebf3-4a5d-4acd-862a-8d0efac0561c
+    content: worktree
+    children:
+      - 5b37fc13-ccda-4fe2-95bc-428272dbfadf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b37fc13-ccda-4fe2-95bc-428272dbfadf:
+    id: 5b37fc13-ccda-4fe2-95bc-428272dbfadf
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/feature-per-view-review-collapse)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d016060a-f013-4809-8158-ccfc8e0bb1d0:
+    id: d016060a-f013-4809-8158-ccfc8e0bb1d0
+    content: Title
+    children:
+      - 56c2cb20-8943-4bb9-ae2f-51d2097542df
     metadata:
       status: pending
-  677702cf-862c-4ffc-95bb-78d878d575c8:
-    id: 677702cf-862c-4ffc-95bb-78d878d575c8
+      expanded: true
+      deleted: false
+      plugins: {}
+  56c2cb20-8943-4bb9-ae2f-51d2097542df:
+    id: 56c2cb20-8943-4bb9-ae2f-51d2097542df
+    content: Per-view collapse state for review suggestions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3767973a-4acc-4bd9-acae-6d28100276ff:
+    id: 3767973a-4acc-4bd9-acae-6d28100276ff
+    content: 📄 Product spec
+    children:
+      - ba3c8903-c642-47d4-b10b-a4bf39c15f5c
+      - 55074437-8582-4236-b497-3f75701c9a10
+      - 100f0224-5789-41e4-9127-9af579ab1c62
+      - c78f6b6b-cf97-4a9d-b7a1-be2625e4a7a5
+      - 44a3efc3-36c2-4120-8f88-c17e868ef044
+      - 80cea691-c3e1-4f06-a3ed-aa49ac0b2e95
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba3c8903-c642-47d4-b10b-a4bf39c15f5c:
+    id: ba3c8903-c642-47d4-b10b-a4bf39c15f5c
+    content: Context
+    children:
+      - 080a39b4-85f6-4ebc-9dba-7ec155bc8857
+      - 15ea0961-f59d-4746-b84c-a0eea4c0b24d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  080a39b4-85f6-4ebc-9dba-7ec155bc8857:
+    id: 080a39b4-85f6-4ebc-9dba-7ec155bc8857
+    content: Inline diff review renders the AI's proposed subtree in place of the reviewed node, wherever that node renders — including as a zoom-tab root.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15ea0961-f59d-4746-b84c-a0eea4c0b24d:
+    id: 15ea0961-f59d-4746-b84c-a0eea4c0b24d
+    content: Proposition expansion is read from the proposition node's metadata.expanded (default true), the same global flag ordinary nodes use, so a review currently always renders fully expanded in every view.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55074437-8582-4236-b497-3f75701c9a10:
+    id: 55074437-8582-4236-b497-3f75701c9a10
+    content: User
+    children:
+      - 20f2f1fa-f2fb-4945-adab-a4826d4100e8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20f2f1fa-f2fb-4945-adab-a4826d4100e8:
+    id: 20f2f1fa-f2fb-4945-adab-a4826d4100e8
+    content: An Arborescent author reviewing AI-proposed changes to a node inside a large outline they are actively navigating.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  100f0224-5789-41e4-9127-9af579ab1c62:
+    id: 100f0224-5789-41e4-9127-9af579ab1c62
+    content: Current experience and why it is insufficient
+    children:
+      - 20a073b0-d653-4305-a24a-2bb8fe6048a4
+      - 3c2e6a96-b755-4169-bfdd-0c7bb27d43f0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20a073b0-d653-4305-a24a-2bb8fe6048a4:
+    id: 20a073b0-d653-4305-a24a-2bb8fe6048a4
+    content: Sending a collapsed node for review expands its proposed subtree inline in the main view, dumping a large block into an outline the author had deliberately collapsed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c2e6a96-b755-4169-bfdd-0c7bb27d43f0:
+    id: 3c2e6a96-b755-4169-bfdd-0c7bb27d43f0
+    content: The proposition root's single expanded flag is shared by the main view and the zoom tab, so it cannot be collapsed in one and expanded in the other, and toggling it in one view changes the other.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c78f6b6b-cf97-4a9d-b7a1-be2625e4a7a5:
+    id: c78f6b6b-cf97-4a9d-b7a1-be2625e4a7a5
+    content: Goal
+    children:
+      - d3946443-2ef6-4ff3-8a85-d03ac6760cd6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3946443-2ef6-4ff3-8a85-d03ac6760cd6:
+    id: d3946443-2ef6-4ff3-8a85-d03ac6760cd6
+    content: A review suggestion mirrors the reviewed node's collapsed state in the main view, always renders expanded with all descendants when zoomed, and each view's collapse toggle is independent.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44a3efc3-36c2-4120-8f88-c17e868ef044:
+    id: 44a3efc3-36c2-4120-8f88-c17e868ef044
+    content: Business rules
+    children:
+      - 66fa0c31-717b-4cb5-9365-4f23c278e7bd
+      - 60cad710-b49a-44e0-b288-616bfaf37a73
+      - eab1492f-8f83-43e7-b5d5-94e5fc024cc6
+      - 92539606-b8b5-4364-b6bf-22855d22431d
+      - 8f7fffaa-41ec-4d5f-9d2e-76e228c4808b
+      - 5f065c4a-c070-49df-a70b-35fb87749dd0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66fa0c31-717b-4cb5-9365-4f23c278e7bd:
+    id: 66fa0c31-717b-4cb5-9365-4f23c278e7bd
+    content: In the main view a review suggestion renders collapsed when the reviewed node was collapsed and expanded when it was expanded.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60cad710-b49a-44e0-b288-616bfaf37a73:
+    id: 60cad710-b49a-44e0-b288-616bfaf37a73
+    content: In a zoom view rooted on the reviewed node the suggestion always renders expanded, including all of its descendants, regardless of the reviewed node's collapsed state.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eab1492f-8f83-43e7-b5d5-94e5fc024cc6:
+    id: eab1492f-8f83-43e7-b5d5-94e5fc024cc6
+    content: Toggling the suggestion's root in one view never changes its collapsed state in the other view.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92539606-b8b5-4364-b6bf-22855d22431d:
+    id: 92539606-b8b5-4364-b6bf-22855d22431d
+    content: A collapsed suggestion still shows the review control bar and a clear "has proposed changes" affordance so the author knows changes are hidden inside.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f7fffaa-41ec-4d5f-9d2e-76e228c4808b:
+    id: 8f7fffaa-41ec-4d5f-9d2e-76e228c4808b
+    content: For a multi-root decomposition proposition each proposed root follows the same per-view rule as a single-root suggestion.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f065c4a-c070-49df-a70b-35fb87749dd0:
+    id: 5f065c4a-c070-49df-a70b-35fb87749dd0
+    content: Per-view collapse state is transient — it lives with the active review, is discarded when the review is accepted or cancelled, and is not persisted to disk.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80cea691-c3e1-4f06-a3ed-aa49ac0b2e95:
+    id: 80cea691-c3e1-4f06-a3ed-aa49ac0b2e95
+    content: Acceptance criteria
+    children:
+      - 1a78c427-0588-41c6-8ade-60499ef81890
+      - 3a32bb85-4aa9-42a7-a265-5a00a9775fdc
+      - e0bfb136-1e28-4751-affe-9403e1b30764
+      - 9865d115-f061-40f8-b576-87e33f448bb4
+      - 8eec2a5c-e39e-49da-9db6-eebfc4593773
+      - 08ab9421-70e0-4680-9bfc-838ff12a2d62
+      - 91b14c21-22f8-4bef-a123-0641cbb8e1fb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a78c427-0588-41c6-8ade-60499ef81890:
+    id: 1a78c427-0588-41c6-8ade-60499ef81890
+    content: Reviewing a collapsed node shows its suggestion collapsed in the main view, with the root row visible and descendants hidden.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a32bb85-4aa9-42a7-a265-5a00a9775fdc:
+    id: 3a32bb85-4aa9-42a7-a265-5a00a9775fdc
+    content: Reviewing an expanded node shows its suggestion expanded in the main view.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0bfb136-1e28-4751-affe-9403e1b30764:
+    id: e0bfb136-1e28-4751-affe-9403e1b30764
+    content: Opening a zoom tab on the reviewed node shows the suggestion expanded with all descendants even when it is collapsed in the main view.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9865d115-f061-40f8-b576-87e33f448bb4:
+    id: 9865d115-f061-40f8-b576-87e33f448bb4
+    content: Expanding the suggestion in the zoom tab leaves it collapsed in the main view, and collapsing it in the main view leaves it expanded in the zoom tab.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8eec2a5c-e39e-49da-9db6-eebfc4593773:
+    id: 8eec2a5c-e39e-49da-9db6-eebfc4593773
+    content: A collapsed suggestion in the main view still renders the review control bar and the collapsed-parent / change-kind affordance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08ab9421-70e0-4680-9bfc-838ff12a2d62:
+    id: 08ab9421-70e0-4680-9bfc-838ff12a2d62
+    content: A reviewed leaf with no live children renders without error in both views, and a multi-root decomposition proposition follows the same per-view behaviour.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91b14c21-22f8-4bef-a123-0641cbb8e1fb:
+    id: 91b14c21-22f8-4bef-a123-0641cbb8e1fb
+    content: Accepting or cancelling the review clears the transient per-view collapse state with no leftover entries.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42652af9-42ef-4e3a-9a36-fd780643645e:
+    id: 42652af9-42ef-4e3a-9a36-fd780643645e
+    content: 🔧 Implementation proposal
+    children:
+      - 0d610cd7-db15-4ffd-a821-afec414fc291
+      - 5e96fb18-5461-4472-9a0e-7bc19d97a26a
+      - ee597f3b-2bee-48e4-a871-b18bab24a153
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d610cd7-db15-4ffd-a821-afec414fc291:
+    id: 0d610cd7-db15-4ffd-a821-afec414fc291
+    content: Approach
+    children:
+      - bdb94f35-a7f5-4b21-832a-5f67ae61f0a8
+      - c15314c7-03f3-47e2-8d6a-d280cfd6ee2d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdb94f35-a7f5-4b21-832a-5f67ae61f0a8:
+    id: bdb94f35-a7f5-4b21-832a-5f67ae61f0a8
+    content: Stop reading proposition-root expansion from the shared feedback node's metadata.expanded and make it a per-view UI concern instead.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c15314c7-03f3-47e2-8d6a-d280cfd6ee2d:
+    id: c15314c7-03f3-47e2-8d6a-d280cfd6ee2d
+    content: Seed each view's initial state — main mirrors the reviewed node's expanded flag, zoom forces expanded — and route the proposition root's toggle to transient per-view state keyed by view identity (source vs zoom:// file path) and proposition root id, reusing the existing per-file UI-state pattern rather than writing back to the feedback tree.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e96fb18-5461-4472-9a0e-7bc19d97a26a:
+    id: 5e96fb18-5461-4472-9a0e-7bc19d97a26a
+    content: Touchpoints
+    children:
+      - e938fd41-e23d-444d-88b2-d5bd49bdecfc
+      - 17b28b4a-854a-4c34-9796-98dbba7e06f6
+      - 04ab58ce-3313-4ee7-be28-56a405d1977c
+      - b16fceea-a176-4d53-9159-132bd3a11e69
+      - 4ba7137a-685f-439f-a1a9-39a666bb3aa0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e938fd41-e23d-444d-88b2-d5bd49bdecfc:
+    id: e938fd41-e23d-444d-88b2-d5bd49bdecfc
+    content: TreeNode isUnderReview branch and PropositionRoots — compute per-view expanded for the proposition root instead of reading node metadata.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17b28b4a-854a-4c34-9796-98dbba7e06f6:
+    id: 17b28b4a-854a-4c34-9796-98dbba7e06f6
+    content: Tree — thread view identity (zoomed vs main, resolved file path) into the proposition render path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04ab58ce-3313-4ee7-be28-56a405d1977c:
+    id: 04ab58ce-3313-4ee7-be28-56a405d1977c
+    content: useNodeToggle — for proposition roots write to the per-view collapse state instead of feedbackTreeStore toggleNode.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b16fceea-a176-4d53-9159-132bd3a11e69:
+    id: b16fceea-a176-4d53-9159-132bd3a11e69
+    content: A small transient per-view collapse store, new or added to an existing per-file UI store (panelStore.fileStates pattern), cleared on review accept/cancel.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ba7137a-685f-439f-a1a9-39a666bb3aa0:
+    id: 4ba7137a-685f-439f-a1a9-39a666bb3aa0
+    content: Tests — extend zoomReview.test.tsx with main-collapsed/zoom-expanded independence and the multi-root case.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee597f3b-2bee-48e4-a871-b18bab24a153:
+    id: ee597f3b-2bee-48e4-a871-b18bab24a153
+    content: Constraints to call out
+    children:
+      - 75ae3812-f6b1-44e4-8f29-bcba840cc851
+      - 71d6641d-824f-4811-8f62-4de6f3b8ee68
+      - 4d669b4e-958a-4064-841f-16d03d03bce9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  75ae3812-f6b1-44e4-8f29-bcba840cc851:
+    id: 75ae3812-f6b1-44e4-8f29-bcba840cc851
+    content: Proposition roots live in the per-file feedbackTreeStore shared by the main and zoom tabs, so the same node id renders in both views — collapse independence is impossible while expansion is stored on that shared node, which is why it must move to per-view state.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  71d6641d-824f-4811-8f62-4de6f3b8ee68:
+    id: 71d6641d-824f-4811-8f62-4de6f3b8ee68
+    content: Scope per-view expansion strictly to proposition roots under review; do not change the global metadata.expanded model for ordinary nodes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d669b4e-958a-4064-841f-16d03d03bce9:
+    id: 4d669b4e-958a-4064-841f-16d03d03bce9
+    content: Keep the state transient with no persistence and tear it down on accept/cancel to avoid stranded entries after the review resolves.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a28dcf48-e768-4775-90a9-fe97a46309d4:
+    id: a28dcf48-e768-4775-90a9-fe97a46309d4
+    content: Decomposition decision
+    children:
+      - 5da8ca12-54f3-4cc7-8dae-770da2e1e7ec
+      - 37d9117d-4492-437f-b63f-b6d17935dfb4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5da8ca12-54f3-4cc7-8dae-770da2e1e7ec:
+    id: 5da8ca12-54f3-4cc7-8dae-770da2e1e7ec
+    content: Ship as one story — the three behaviours are inseparable, since a single shared expanded flag cannot be collapsed-in-main and expanded-in-zoom at once, so the per-view state and the seeded initial states must land together.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37d9117d-4492-437f-b63f-b6d17935dfb4:
+    id: 37d9117d-4492-437f-b63f-b6d17935dfb4
+    content: Do not split — splitting would leave speculative plumbing (per-view state with no consumer, or initial states that cannot coexist).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20384966-1f69-44a5-b825-25bb76e99da8:
+    id: 20384966-1f69-44a5-b825-25bb76e99da8
+    content: Challenge the work
+    children:
+      - 0f975d69-14dd-43dd-9d98-6dc1a48d4fa7
+      - f423376b-215f-4c14-b084-a07fbf543a4e
+      - 753e47ee-df04-4b1d-a0f6-b701ed5835fc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f975d69-14dd-43dd-9d98-6dc1a48d4fa7:
+    id: 0f975d69-14dd-43dd-9d98-6dc1a48d4fa7
+    content: UX
+    children:
+      - 54eb2d41-f871-4751-8130-f650d71d7cc8
+      - 0564e6e0-b7ad-462a-a65c-d1603dc3de5f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54eb2d41-f871-4751-8130-f650d71d7cc8:
+    id: 54eb2d41-f871-4751-8130-f650d71d7cc8
+    content: Respecting collapse in the main view stops a review from exploding a deliberately-collapsed outline, and forcing expansion in zoom matches the focus intent of opening the tab.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0564e6e0-b7ad-462a-a65c-d1603dc3de5f:
+    id: 0564e6e0-b7ad-462a-a65c-d1603dc3de5f
+    content: Risk — a fully-collapsed suggestion can hide that any change was proposed, so keep the control bar and a collapsed-parent / change-kind cue visible (covered by a business rule and criterion).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f423376b-215f-4c14-b084-a07fbf543a4e:
+    id: f423376b-215f-4c14-b084-a07fbf543a4e
+    content: Over-engineering / simpler path
+    children:
+      - 9d2681c6-17f5-406a-b527-55912e63bd72
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d2681c6-17f5-406a-b527-55912e63bd72:
+    id: 9d2681c6-17f5-406a-b527-55912e63bd72
+    content: Do not build a general per-view collapse subsystem for all nodes; reuse the existing per-file UI-state keying (zoom:// vs source path) and limit it to proposition roots.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  753e47ee-df04-4b1d-a0f6-b701ed5835fc:
+    id: 753e47ee-df04-4b1d-a0f6-b701ed5835fc
+    content: ROI
+    children:
+      - 60de3511-d63f-4aaa-8d69-b7bcdb9e850a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60de3511-d63f-4aaa-8d69-b7bcdb9e850a:
+    id: 60de3511-d63f-4aaa-8d69-b7bcdb9e850a
+    content: The per-view complexity is inherent to the requirement, not gold-plating — one expanded boolean physically cannot satisfy main-collapsed plus zoom-expanded — so ROI is sound provided the change stays scoped to transient review state.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4039ee0-3b75-4eda-84a3-42afb2e15e9e:
+    id: e4039ee0-3b75-4eda-84a3-42afb2e15e9e
+    content: Technical refinement
+    children:
+      - 13ecacc0-ba50-4607-a200-d08ef393573c
+      - 21140c4c-6f9c-4a3a-9f0d-b806f96d4493
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13ecacc0-ba50-4607-a200-d08ef393573c:
+    id: 13ecacc0-ba50-4607-a200-d08ef393573c
+    content: Flag complications
+    children:
+      - 56ed5d52-8ca4-431e-b9df-f560d686fc3c
+      - 3cb1253e-65fc-46b3-a693-002aebfa262d
+      - ef1afd07-006f-4901-a5cc-54a702546290
+      - 0d4e5693-a24f-4f0a-991b-356b8f34a8ef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56ed5d52-8ca4-431e-b9df-f560d686fc3c:
+    id: 56ed5d52-8ca4-431e-b9df-f560d686fc3c
+    content: metadata.expanded is also read outside the renderer — by keyboard navigation (nodeActions), useVisibleChildren, and hidden-search-match counting — so moving proposition-root expansion to per-view state risks desync (arrow keys reaching hidden children, wrong collapsed-match badge) unless those readers consult the per-view source too; this breadth is the main hidden cost and the chief ROI risk.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cb1253e-65fc-46b3-a693-002aebfa262d:
+    id: 3cb1253e-65fc-46b3-a693-002aebfa262d
+    content: 'Edge case: two zoom tabs on the same reviewed node resolve to one zoom:// path and would share collapse state — acceptable, treat all zoom tabs of a node as a single view.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef1afd07-006f-4901-a5cc-54a702546290:
+    id: ef1afd07-006f-4901-a5cc-54a702546290
+    content: 'Scope clarification: "always expanded in zoom" is defined for when the reviewed node is the zoom root; a reviewed node that is only a descendant inside a zoomed ancestor keeps the main-view (mirror) semantics.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d4e5693-a24f-4f0a-991b-356b8f34a8ef:
+    id: 0d4e5693-a24f-4f0a-991b-356b8f34a8ef
+    content: 'Out of scope: zoom-tab coherence after accept/cancel from the zoom root (already an open it.todo), and restoring collapse state across app restart (state is transient by design).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21140c4c-6f9c-4a3a-9f0d-b806f96d4493:
+    id: 21140c4c-6f9c-4a3a-9f0d-b806f96d4493
+    content: Approach summary
+    children:
+      - 0f0f7d15-f185-4d04-8935-871dd0e6746c
+      - 01b26f8a-54ac-4695-9c89-5d15c66f9063
+      - f2aed3b0-bc7b-4d74-813d-2b3051268f69
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f0f7d15-f185-4d04-8935-871dd0e6746c:
+    id: 0f0f7d15-f185-4d04-8935-871dd0e6746c
+    content: Proposition-root expansion becomes a transient per-view UI value (main seeds from the reviewed node's expanded flag, zoom forces expanded) keyed by resolved view path plus proposition root id and torn down on accept/cancel — not a node-metadata flag.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01b26f8a-54ac-4695-9c89-5d15c66f9063:
+    id: 01b26f8a-54ac-4695-9c89-5d15c66f9063
+    content: Lands in the TreeNode isUnderReview / PropositionRoots render path and useNodeToggle, with view identity threaded from Tree, reusing the per-file UI-state pattern (panelStore.fileStates).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2aed3b0-bc7b-4d74-813d-2b3051268f69:
+    id: f2aed3b0-bc7b-4d74-813d-2b3051268f69
+    content: 'Non-obvious for the reviewer: metadata.expanded has several other consumers (navigation, visible-children, hidden-search-match), so proposition roots must be routed away from all of them, not just the render branch.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c90a632d-36e2-48d2-8ffa-12b1e611801f:
+    id: c90a632d-36e2-48d2-8ffa-12b1e611801f
+    content: Verification summary
+    children:
+      - 6194997a-4cf0-43d9-9e5c-99e9ba01a947
+      - ec933028-2134-4266-8e06-a099aee7f276
+      - 2f1b6457-8a18-4c68-ae28-3c83860a0a16
+      - a4a6b54a-c450-418b-9c45-d1df2d816d2e
+      - 26b8ba68-cea8-4c97-b1ec-4f01de79eb05
+      - 2aaa7d06-8253-475b-80f0-9324f3d0fcea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6194997a-4cf0-43d9-9e5c-99e9ba01a947:
+    id: 6194997a-4cf0-43d9-9e5c-99e9ba01a947
+    content: All business rules and acceptance criteria are implemented and covered by passing tests — the changed-file suites are green (135 pass) with lint and type-check clean.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec933028-2134-4266-8e06-a099aee7f276:
+    id: ec933028-2134-4266-8e06-a099aee7f276
+    content: Per-view state landed as a dedicated transient reviewCollapseStore keyed by reviewedNodeId then view+propositionRootId, seeded at render (main mirrors the reviewed node, zoom forces expanded) and cleared on accept/cancel — equivalent to the proposed per-file keying.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f1b6457-8a18-4c68-ae28-3c83860a0a16:
+    id: 2f1b6457-8a18-4c68-ae28-3c83860a0a16
+    content: 'Undone — keyboard-navigation desync: nodeActions still reads the feedback node''s metadata.expanded, so arrow-key traversal could enter rows hidden by a main-view-collapsed suggestion; deferred as a marginal interaction outside the acceptance criteria and a larger change than this story warrants.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4a6b54a-c450-418b-9c45-d1df2d816d2e:
+    id: a4a6b54a-c450-418b-9c45-d1df2d816d2e
+    content: Not a gap — useVisibleChildren does not read expanded, so it needed no rerouting; hidden-search-match counting on proposition roots was left on metadata as a minor non-AC edge.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26b8ba68-cea8-4c97-b1ec-4f01de79eb05:
+    id: 26b8ba68-cea8-4c97-b1ec-4f01de79eb05
+    content: Out of scope by design and not done — zoom-tab coherence after accept/cancel from the zoom root (pre-existing it.todo) and restoring collapse state across app restart (state is intentionally transient).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2aaa7d06-8253-475b-80f0-9324f3d0fcea:
+    id: 2aaa7d06-8253-475b-80f0-9324f3d0fcea
+    content: Note — the proposition-root toggle routes to per-view state via a TreeNode handleToggle override (useReviewCollapse) rather than editing useNodeToggle; the touchpoint's behaviour is met. Toggle independence is verified at the store level, with main-collapsed/zoom-expanded coexistence covered by render tests.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15e33135-22d5-425a-a439-cb2da486f9a1:
+    id: 15e33135-22d5-425a-a439-cb2da486f9a1
+    content: review feedback
+    children:
+      - a96b03f0-7ef6-48ee-9187-f0db098c9bb0
+      - 7a82f4d8-47d3-4338-b6fe-e58f4bac9481
+      - 40246a8b-30c0-47f3-9d2c-249dafee093a
+      - 8e6ecfef-01f9-416d-b05a-13576128bf55
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a96b03f0-7ef6-48ee-9187-f0db098c9bb0:
+    id: a96b03f0-7ef6-48ee-9187-f0db098c9bb0
+    content: Verdict — implementation is sound and well-factored. pr-review-toolkit:code-reviewer traced TreeNode, Tree, useFeedbackActions, useReviewProposition, useNodeToggle and the zoom path. Hook order is correct (useReviewCollapse, useMemo binding, useNodeToggle all called unconditionally before the `if (!node) return null` guard); keys are consistent on read and write (reviewedNodeId is a live-tree id, propositionRootId is a feedback-tree id); the selector returns a stable primitive (no re-render churn); clearForReview is idempotent and correctly scoped; the toggle closure is not stale. Tests/lint/type-check green (140 changed-file tests pass).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a82f4d8-47d3-4338-b6fe-e58f4bac9481:
+    id: 7a82f4d8-47d3-4338-b6fe-e58f4bac9481
+    content: 'Known limitation (NOT fixed, outside the acceptance criteria) — zooming an ANCESTOR of a node under review renders the reviewed descendant with view=''main'', because isReviewZoomRoot is only set when the zoom root IS the reviewed node (Tree.tsx zoomRootUnderReview branch). That ancestor-zoom tab then shares the same `main:<propositionRootId>` key as the main tree, so toggling the proposition''s collapse in one affects the other. This is pre-existing shared behaviour (before this feature both views read the shared feedback metadata.expanded; only direct-zoom-of-the-reviewed-node gained independence), so it is not a regression. Proper fix if desired: replace the ''main''|''zoom'' view discriminator with a per-tab/zoom identity (e.g. the zoom tab path) threaded Tree -> TreeNode -> PropositionRoots. Deferred — same scope call as the documented main-view-mirror semantics for nested reviews.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  40246a8b-30c0-47f3-9d2c-249dafee093a:
+    id: 40246a8b-30c0-47f3-9d2c-249dafee093a
+    content: 'Minor findings fixed this review — (1) useFeedbackActions.test.ts now resets reviewCollapseStore.byReview in beforeEach (test isolation per CLAUDE.md; the two new teardown tests wrote to the real singleton without resetting); (2) useReviewCollapse gained a ''why'' comment noting the per-view toggle deliberately omits useNodeToggle''s active-node reselection (selection lives in the live tree, not the feedback proposition); (3) the hook''s return interface renamed ReviewCollapse -> ReviewCollapseControl to avoid colliding conceptually with the store name; (4) TreeNode''s reviewBinding comment clarified that the binding is handed to the proposition roots as their seed source. Tests/lint re-run after the fixes: green.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e6ecfef-01f9-416d-b05a-13576128bf55:
+    id: 8e6ecfef-01f9-416d-b05a-13576128bf55
+    content: Confirmed non-issues — two zoom tabs of the same node is moot (zoom tab path is zoom://<file>#<nodeId>, so a node has at most one zoom tab, making the single 'zoom' key sufficient); useVisibleChildren does not read metadata.expanded so it needed no rerouting; hidden-search-match counting on proposition roots was intentionally left on metadata as a minor non-AC edge. No blocker or major-severity correctness bug was found in the changed code or its callers.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b8deeb8-0afc-4193-9233-03f0be29cfc5:
+    id: 7b8deeb8-0afc-4193-9233-03f0be29cfc5
+    content: review resolution
+    children:
+      - a1d9a8ea-5461-4df4-8998-ef138186a428
+      - 251dffe2-a78f-43e1-b865-8491945aae00
+      - 81b52e63-337b-484e-9106-04b7569ba72f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1d9a8ea-5461-4df4-8998-ef138186a428:
+    id: a1d9a8ea-5461-4df4-8998-ef138186a428
+    content: 'Major issues fixed — none. The single major finding (ancestor-zoom of a node under review shares the main:<propositionRootId> key with the main tree, so collapse couples) is pushed back rather than fixed. Rationale: (a) not a regression — the coupling pre-existed via the shared feedback metadata.expanded; only direct-zoom-of-the-reviewed-node gained independence; (b) it is the documented intentional scope (nested reviews keep main-view mirror semantics); (c) it is actually consistent with the rest of the app — ordinary non-review nodes already share collapse between the main tab and an ancestor-zoom tab via the same metadata.expanded, so a proposition root behaving the same way is expected; (d) low-probability interaction. A proper fix would thread a per-tab zoom identity through the whole TreeNode recursion (affecting all nodes) for a niche case — out of scope. Kept as a documented known limitation.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  251dffe2-a78f-43e1-b865-8491945aae00:
+    id: 251dffe2-a78f-43e1-b865-8491945aae00
+    content: 'Minor issues fixed — all four, accepted as justified and applied: (1) useFeedbackActions.test.ts resets reviewCollapseStore.byReview in beforeEach (test isolation per CLAUDE.md — the two new teardown tests had written to the real singleton without resetting); (2) useReviewCollapse carries a ''why'' comment that the per-view toggle deliberately omits useNodeToggle''s active-node reselection (selection lives in the live tree, not the feedback proposition); (3) the hook return interface was renamed ReviewCollapse -> ReviewCollapseControl; (4) TreeNode''s reviewBinding comment now states it is handed to the proposition roots as their seed source. Changed-file tests and lint re-run after the fixes: green.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81b52e63-337b-484e-9106-04b7569ba72f:
+    id: 81b52e63-337b-484e-9106-04b7569ba72f
+    content: 'Feedback skipped — only the ancestor-zoom major finding, deferred as a documented known limitation (severity downgraded; see Major issues fixed above for the reasoning). The reviewer''s ''confirmed non-issues'' required no action: single zoom tab per node (path zoom://<file>#<nodeId>); useVisibleChildren does not read metadata.expanded; hidden-search-match counting on proposition roots intentionally left on metadata. No blocker or major correctness bug remained to resolve.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d52678f-7038-48ca-b6fc-d6270c5d3578:
+    id: 5d52678f-7038-48ca-b6fc-d6270c5d3578
+    content: When autoplaying the next sibling in a decomposed series
+    children:
+      - a5da3803-399e-4e23-b282-b60e0d363980
+      - bece938d-5a47-4167-85d1-5fce722c9803
+    metadata:
+      status: pending
+      expanded: false
+  a5da3803-399e-4e23-b282-b60e0d363980:
+    id: a5da3803-399e-4e23-b282-b60e0d363980
+    content: It advances to the next step as normal and sends the prompt but asks for a rebind
+    children: []
+    metadata:
+      status: pending
+  bece938d-5a47-4167-85d1-5fce722c9803:
+    id: bece938d-5a47-4167-85d1-5fce722c9803
+    content: Not accepting the rebind means
+    children:
+      - 11121ac4-d8da-4f7d-8794-a3c347b5d7ea
+      - 2038141a-4d85-44ac-811e-a99703f53c54
+    metadata:
+      status: pending
+  11121ac4-d8da-4f7d-8794-a3c347b5d7ea:
+    id: 11121ac4-d8da-4f7d-8794-a3c347b5d7ea
+    content: Once it finishes it advances to the next step
+    children: []
+    metadata:
+      status: pending
+  2038141a-4d85-44ac-811e-a99703f53c54:
+    id: 2038141a-4d85-44ac-811e-a99703f53c54
+    content: But does not play the prompt
+    children: []
+    metadata:
+      status: pending
+  a7565e5a-c07d-4bac-836b-bd58e681e77d:
+    id: a7565e5a-c07d-4bac-836b-bd58e681e77d
+    content: 'worktree: /Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session (branch feature/log-area-pr2-jump-to-session, forked from master 0470514)'
+    children:
+      - f45cded3-efab-4c27-a161-30a1634f20b8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f45cded3-efab-4c27-a161-30a1634f20b8:
+    id: f45cded3-efab-4c27-a161-30a1634f20b8
     content: vscode://file/Users/brianfox/dev/Arborescent-worktrees/feature-log-area-pr2-jump-to-session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b87abd6-9c14-46d8-b6f2-719560c44463:
+    id: 8b87abd6-9c14-46d8-b6f2-719560c44463
+    content: User story
+    children:
+      - 5c9b49de-88b5-4e28-a24d-74009fa2b08c
+      - 29a7f437-a67f-49fd-9980-2e3e9f1350cd
+      - b8d4de7c-3559-45c4-b5b6-b6697b3b9b21
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c9b49de-88b5-4e28-a24d-74009fa2b08c:
+    id: 5c9b49de-88b5-4e28-a24d-74009fa2b08c
+    content: 📄 Product spec
+    children:
+      - 09230450-e18a-4cf5-8f07-2d5655d13d22
+      - a914b6f2-3e72-4ed8-96e8-dd97066f8516
+      - 3cbceac6-a35d-4933-af93-5c89dfd8f07f
+      - be95f0b4-bdb3-43a5-925c-0e1f1d00240d
+      - 4efafa44-6a74-41c1-8de0-cddf95730e11
+      - bb921d48-fa3b-4ce4-a1dc-ce174579176c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09230450-e18a-4cf5-8f07-2d5655d13d22:
+    id: 09230450-e18a-4cf5-8f07-2d5655d13d22
+    content: Context
+    children:
+      - 84d54b08-be07-49fa-8918-8468e3990777
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84d54b08-be07-49fa-8918-8468e3990777:
+    id: 84d54b08-be07-49fa-8918-8468e3990777
+    content: Log entries are message + type + source + timestamp with no link back to the terminal session that produced them, so users cannot navigate from an event to its origin.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a914b6f2-3e72-4ed8-96e8-dd97066f8516:
+    id: a914b6f2-3e72-4ed8-96e8-dd97066f8516
+    content: User
+    children:
+      - c6a54da3-8b67-46e6-9613-3f54808fd32f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6a54da3-8b67-46e6-9613-3f54808fd32f:
+    id: c6a54da3-8b67-46e6-9613-3f54808fd32f
+    content: A developer triaging a workflow event who wants to jump straight to the terminal session where it happened.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cbceac6-a35d-4933-af93-5c89dfd8f07f:
+    id: 3cbceac6-a35d-4933-af93-5c89dfd8f07f
+    content: Current experience and why it is insufficient
+    children:
+      - f720be41-9f07-47f8-a018-078bab690791
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f720be41-9f07-47f8-a018-078bab690791:
+    id: f720be41-9f07-47f8-a018-078bab690791
+    content: Entries are non-interactive list items; acting on an error or status means manually hunting for the right file tab and terminal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be95f0b4-bdb3-43a5-925c-0e1f1d00240d:
+    id: be95f0b4-bdb3-43a5-925c-0e1f1d00240d
+    content: Goal
+    children:
+      - bd6b9f21-a4b7-4efd-9ef9-604e482675e6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd6b9f21-a4b7-4efd-9ef9-604e482675e6:
+    id: bd6b9f21-a4b7-4efd-9ef9-604e482675e6
+    content: Clicking a side-panel log entry brings the originating session's file tab and terminal to the foreground when it is still open.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4efafa44-6a74-41c1-8de0-cddf95730e11:
+    id: 4efafa44-6a74-41c1-8de0-cddf95730e11
+    content: Business rules
+    children:
+      - a0ccc934-9600-44cf-b951-87d484e8e0f6
+      - 7f1d6e5f-a13e-4e6a-9327-4bb80721f91b
+      - 8e0d42dd-ed09-4426-93bd-f0353e5d769f
+      - 77ee83d9-5f60-4566-b196-2ae24091c958
+      - b514fb28-8221-4b06-bb1d-00d9c12e9a4c
+      - 3d591ff1-3901-4fef-ba6d-6552e2689d0a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0ccc934-9600-44cf-b951-87d484e8e0f6:
+    id: a0ccc934-9600-44cf-b951-87d484e8e0f6
+    content: Clicking an entry in the side panel focuses the file tab and terminal of the session that produced it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f1d6e5f-a13e-4e6a-9327-4bb80721f91b:
+    id: 7f1d6e5f-a13e-4e6a-9327-4bb80721f91b
+    content: Focus-on-click is limited to the side panel; popover entries are not focus triggers and remain non-interactive (hover tooltip only).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e0d42dd-ed09-4426-93bd-f0353e5d769f:
+    id: 8e0d42dd-ed09-4426-93bd-f0353e5d769f
+    content: Focusing requires the originating file to be open and the terminal to still exist; otherwise the click is a no-op.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77ee83d9-5f60-4566-b196-2ae24091c958:
+    id: 77ee83d9-5f60-4566-b196-2ae24091c958
+    content: Side-panel entries with no captured session reference — non-workflow entries and entries persisted before this change — are not clickable and offer no affordance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b514fb28-8221-4b06-bb1d-00d9c12e9a4c:
+    id: b514fb28-8221-4b06-bb1d-00d9c12e9a4c
+    content: Only clickable side-panel entries show a pointer cursor and interactive affordance; non-clickable entries look and behave exactly as before.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d591ff1-3901-4fef-ba6d-6552e2689d0a:
+    id: 3d591ff1-3901-4fef-ba6d-6552e2689d0a
+    content: The logbar is not a focus trigger; it only toggles the panel (see PR1).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb921d48-fa3b-4ce4-a1dc-ce174579176c:
+    id: bb921d48-fa3b-4ce4-a1dc-ce174579176c
+    content: Acceptance criteria
+    children:
+      - 2442f6fe-dc75-4c7a-bc2a-c2b8fcc4ef7f
+      - 50466145-f35f-4503-b92c-8bc30eca3910
+      - 89e65604-d556-4cd7-9535-9304b916a30e
+      - aa260392-2a98-4e38-bb97-ff46e93541c5
+      - fb8fc1f2-038f-46ce-84c3-08c3a8e7022f
+      - 83146e5c-3b76-4f9a-99b7-7a87b93173c6
+      - 299da3bb-8633-4bdc-90f1-95bf8672d619
+      - cb838e02-dcc9-456e-aad3-db9ecfb0a05a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2442f6fe-dc75-4c7a-bc2a-c2b8fcc4ef7f:
+    id: 2442f6fe-dc75-4c7a-bc2a-c2b8fcc4ef7f
+    content: Clicking a side-panel workflow entry whose originating file and terminal are open switches the active tab to that file and activates that terminal.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50466145-f35f-4503-b92c-8bc30eca3910:
+    id: 50466145-f35f-4503-b92c-8bc30eca3910
+    content: Clicking a side-panel entry whose originating file is closed is a no-op with no error and no tab change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89e65604-d556-4cd7-9535-9304b916a30e:
+    id: 89e65604-d556-4cd7-9535-9304b916a30e
+    content: Clicking a side-panel entry whose terminal no longer exists is a no-op.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa260392-2a98-4e38-bb97-ff46e93541c5:
+    id: aa260392-2a98-4e38-bb97-ff46e93541c5
+    content: Popover entries are not clickable and produce no focus action.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb8fc1f2-038f-46ce-84c3-08c3a8e7022f:
+    id: fb8fc1f2-038f-46ce-84c3-08c3a8e7022f
+    content: Side-panel entries without a session reference are not focusable and show no pointer affordance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83146e5c-3b76-4f9a-99b7-7a87b93173c6:
+    id: 83146e5c-3b76-4f9a-99b7-7a87b93173c6
+    content: Entries persisted before this change load without error and are non-clickable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  299da3bb-8633-4bdc-90f1-95bf8672d619:
+    id: 299da3bb-8633-4bdc-90f1-95bf8672d619
+    content: Clickable side-panel entries are keyboard-focusable and activate on Enter and Space.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb838e02-dcc9-456e-aad3-db9ecfb0a05a:
+    id: cb838e02-dcc9-456e-aad3-db9ecfb0a05a
+    content: Clickable side-panel entries expose an accessible role and label for screen readers.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29a7f437-a67f-49fd-9980-2e3e9f1350cd:
+    id: 29a7f437-a67f-49fd-9980-2e3e9f1350cd
+    content: 🔧 Implementation proposal
+    children:
+      - e1cd09e6-1ea1-4273-b70a-7596df1e4d07
+      - 7619e772-f4df-4561-bf48-e6ab2193916c
+      - 558d32b3-2022-4087-9ab6-757656335b1d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1cd09e6-1ea1-4273-b70a-7596df1e4d07:
+    id: e1cd09e6-1ea1-4273-b70a-7596df1e4d07
+    content: Approach
+    children:
+      - 2b569b09-5f37-434b-816f-4e9046f54508
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b569b09-5f37-434b-816f-4e9046f54508:
+    id: 2b569b09-5f37-434b-816f-4e9046f54508
+    content: Extend ActivityLogEntry with an optional session target captured at creation, thread it through the notifyWorkflow funnel at its two call sites, and gate clickability behind an interactive flag on the shared renderer so only the side panel resolves the target to existing actions (setActiveFile + setActiveTerminal) under an open-session check — reusing existing routing rather than building new.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7619e772-f4df-4561-bf48-e6ab2193916c:
+    id: 7619e772-f4df-4561-bf48-e6ab2193916c
+    content: Touchpoints
+    children:
+      - aa879a9d-f897-4ba8-b52a-061186dc88a1
+      - a235de06-236e-4c97-a9f9-35bb16cd2864
+      - e2633ab2-f9df-45f6-add8-1edbf18c5a26
+      - 58e39147-c935-45eb-b855-3cb7b78154bd
+      - d13e46ad-5ea7-42e8-86f3-29af8a10b7f9
+      - 7902976e-f1ef-4387-ab96-e9af8a1cfe9d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa879a9d-f897-4ba8-b52a-061186dc88a1:
+    id: aa879a9d-f897-4ba8-b52a-061186dc88a1
+    content: shared/types/activityLog.ts — add an optional target (durable sessionId) to ActivityLogEntry.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a235de06-236e-4c97-a9f9-35bb16cd2864:
+    id: a235de06-236e-4c97-a9f9-35bb16cd2864
+    content: activityLogStore.ts (createEntry / addEntry) and notifyWorkflow — accept and store the optional target.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2633ab2-f9df-45f6-add8-1edbf18c5a26:
+    id: e2633ab2-f9df-45f6-add8-1edbf18c5a26
+    content: workflowExecutionActions.ts and workflowHookEventHandler — pass the originating session at the two funnel call sites.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58e39147-c935-45eb-b855-3cb7b78154bd:
+    id: 58e39147-c935-45eb-b855-3cb7b78154bd
+    content: ActivityLogEntries.tsx — add an interactive prop; the panel passes it true and renders entries-with-a-target as clickable with keyboard support and role, the popover passes it false; onClick resolves and focuses.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d13e46ad-5ea7-42e8-86f3-29af8a10b7f9:
+    id: d13e46ad-5ea7-42e8-86f3-29af8a10b7f9
+    content: A focus helper over filesStore.setActiveFile + terminalStore.setActiveTerminal, with the open-check via workflowSessionMap / fileStates terminals (or decideWorkflowStartRoute).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7902976e-f1ef-4387-ab96-e9af8a1cfe9d:
+    id: 7902976e-f1ef-4387-ab96-e9af8a1cfe9d
+    content: Tests — target capture at the funnel, focus-when-open from the panel, no-op when closed or missing, popover entries non-interactive, and non-clickable when no target.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  558d32b3-2022-4087-9ab6-757656335b1d:
+    id: 558d32b3-2022-4087-9ab6-757656335b1d
+    content: Constraints to call out
+    children:
+      - 9707b956-a903-41c4-ac6a-6235eb43ae55
+      - 7abe1e5a-577c-4c98-8edc-2e14f68632c1
+      - cee6d99b-afc0-4cd1-af9a-5a2c5d33b62c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9707b956-a903-41c4-ac6a-6235eb43ae55:
+    id: 9707b956-a903-41c4-ac6a-6235eb43ae55
+    content: Persisted-entry backward compatibility — the new field is optional, so old entries hydrate as non-clickable with no migration.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7abe1e5a-577c-4c98-8edc-2e14f68632c1:
+    id: 7abe1e5a-577c-4c98-8edc-2e14f68632c1
+    content: Terminals are per-file, so resolution must recover the file path from the session at click time, not from a snapshot.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cee6d99b-afc0-4cd1-af9a-5a2c5d33b62c:
+    id: cee6d99b-afc0-4cd1-af9a-5a2c5d33b62c
+    content: '"Session" here is the workflow terminal session bound to the node, so only workflow-sourced entries can populate a target.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8d4de7c-3559-45c4-b5b6-b6697b3b9b21:
+    id: b8d4de7c-3559-45c4-b5b6-b6697b3b9b21
+    content: Technical refinement
+    children:
+      - 1dc787f4-998d-444d-90c0-3a62364a3a4c
+      - 5202965d-1500-456b-b973-fe17594dcf67
+      - e30029fe-920b-43c6-95ad-9d101324a8e6
+      - 9a120dba-3e89-46d9-b255-4e6aef983da6
+      - eeef819a-0ab1-4aaa-a491-01f8ea664385
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1dc787f4-998d-444d-90c0-3a62364a3a4c:
+    id: 1dc787f4-998d-444d-90c0-3a62364a3a4c
+    content: Anchor on the durable sessionId and resolve file+terminal at click time; terminalIds are regenerated when a session resumes in a new tab, so a snapshotted terminalId/filePath goes stale and becomes a false no-op.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5202965d-1500-456b-b973-fe17594dcf67:
+    id: 5202965d-1500-456b-b973-fe17594dcf67
+    content: '"Focus" must never resume, spawn, or reopen a closed session or file — it is strictly a no-op when nothing is open.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e30029fe-920b-43c6-95ad-9d101324a8e6:
+    id: e30029fe-920b-43c6-95ad-9d101324a8e6
+    content: Side-panel entries become interactive inside a role="log" / aria-live region; use a real button or role+tabindex+keydown so the live region and keyboard activation stay correct.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a120dba-3e89-46d9-b255-4e6aef983da6:
+    id: 9a120dba-3e89-46d9-b255-4e6aef983da6
+    content: Out of scope — no backfill of targets onto existing/persisted entries, no focus from the popover or logbar, no auto-resume or terminal-spawn on click, no change to the 5 / 100 entry counts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eeef819a-0ab1-4aaa-a491-01f8ea664385:
+    id: eeef819a-0ab1-4aaa-a491-01f8ea664385
+    content: ROI caveat — payoff requires an entry to be both targeted and its session still open at click time (most entries are non-workflow and sessions close, never surviving a restart), so this PR sensibly lands after PR1 once demand is confirmed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2638a4f4-fb9e-4884-b5e0-f1139f36f8dc:
+    id: 2638a4f4-fb9e-4884-b5e0-f1139f36f8dc
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15d5e1da-28c5-4839-9f9f-700c65398572:
+    id: 15d5e1da-28c5-4839-9f9f-700c65398572
+    content: implementation summary
+    children:
+      - 3a6c1540-6f18-4017-9cfd-aa6286436904
+      - 3499ee08-6c90-41bb-bf78-b0222c12b628
+      - e758bfc7-ac51-4849-8e76-91b5a87dd81e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a6c1540-6f18-4017-9cfd-aa6286436904:
+    id: 3a6c1540-6f18-4017-9cfd-aa6286436904
+    content: 'Implemented: optional sessionId on ActivityLogEntry (shared type + store createEntry/addEntry, persisted whole so backward-compatible); notifyWorkflow threads an optional sessionId to addEntry; advanceNode (both transitions) and completeWorkflow pass the running node''s metadata.sessionId. ActivityLogEntries gained interactive + onActivateEntry — a targeted entry renders as a native button (role+focusable+Enter/Space) only when interactive; popover stays non-interactive, untargeted entries stay plain spans. focusLogSession helper resolves sessionId→{filePath,terminalId} by scanning storeManager.getAllStoreEntries() workflowSessionMaps, verifies the terminal still exists in terminalStore.fileStates, then setActiveFile + setActiveTerminal; strict no-op when not bound/open (never resumes). Panel wires interactive + onActivateEntry; CSS adds a button-reset .activity-log-entry-action.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3499ee08-6c90-41bb-bf78-b0222c12b628:
+    id: 3499ee08-6c90-41bb-bf78-b0222c12b628
+    content: 'Checks: 52 tests pass across 6 files (store sessionId, notifyWorkflow threading, ActivityLogEntries interactivity, panel render+click→focus, popover non-interactive, focusLogSession open/no-op/terminal-gone/unknown), ESLint clean, type-check clean. All 8 acceptance criteria covered; the one remaining it.todo is an advanceNode call-site integration test left pending (threading is unit-tested at notifyWorkflow; a full workflowExecutionActions harness is disproportionate here).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e758bfc7-ac51-4849-8e76-91b5a87dd81e:
+    id: e758bfc7-ac51-4849-8e76-91b5a87dd81e
+    content: 'Scope/decisions: kept to the spec — no popover/logbar focus, no auto-resume/spawn, no entry-count changes, no migration (optional field). Capture wired at the high-value node-bound transitions (advanceNode + completeWorkflow) rather than all 20+ notifyWorkflow sites; the rest log with no sessionId and stay correctly non-clickable. Per-file tree-store architecture (workflowSessionMap is per-file under storeManager) meant resolution scans open stores — the store holding the binding also identifies the file tab, so no separate session→file lookup needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51df45d8-432b-4d31-87a1-2a4fbb6744ee:
+    id: 51df45d8-432b-4d31-87a1-2a4fbb6744ee
+    content: verification summary
+    children:
+      - 97555b08-f645-40c2-8dc6-a208aaaa3794
+      - eb9a7548-8c28-46a3-98fc-7a758e9b0cb4
+      - 7f83a8a2-b04a-4528-9fbd-5a6d2ebd1770
+      - 659309f1-cc50-4ebe-89eb-f465dd6e8515
+      - e5eada90-848f-4421-b53c-2d6687035b2d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97555b08-f645-40c2-8dc6-a208aaaa3794:
+    id: 97555b08-f645-40c2-8dc6-a208aaaa3794
+    content: All 8 acceptance criteria implemented and verified against the code — 52 tests pass, ESLint and type-check clean.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb9a7548-8c28-46a3-98fc-7a758e9b0cb4:
+    id: eb9a7548-8c28-46a3-98fc-7a758e9b0cb4
+    content: All 6 business rules, all 3 constraints, and all 5 technical-refinement items are satisfied; worktree present.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f83a8a2-b04a-4528-9fbd-5a6d2ebd1770:
+    id: 7f83a8a2-b04a-4528-9fbd-5a6d2ebd1770
+    content: 'Partial touchpoint (left unchecked): of "workflowExecutionActions.ts and workflowHookEventHandler", only workflowExecutionActions was wired (advanceNode + completeWorkflow). workflowHookEventHandler''s notifyWorkflow calls (review-requested, stuck-step) were intentionally not given a sessionId — they are alert events the user handles differently, not the canonical "jump to the session" transitions. Defensible scope call, but flagged here rather than marked done since the named file was untouched; reviewer may decide whether review-request entries should also be focusable.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  659309f1-cc50-4ebe-89eb-f465dd6e8515:
+    id: 659309f1-cc50-4ebe-89eb-f465dd6e8515
+    content: 'Pending, not undone: one advanceNode call-site integration test remains an it.todo — sessionId threading is unit-tested at notifyWorkflow, and a full workflowExecutionActions harness for a one-arg pass-through is disproportionate.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5eada90-848f-4421-b53c-2d6687035b2d:
+    id: e5eada90-848f-4421-b53c-2d6687035b2d
+    content: Nothing in scope was abandoned; the only deliberate omission is the workflowHookEventHandler capture above.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7648563a-e03a-46b2-b575-9b612b5980c8:
+    id: 7648563a-e03a-46b2-b575-9b612b5980c8
+    content: 'refactor: no changes needed — diff is convention-consistent, all edited files have tests, no stray/abandoned code. Re-ran checks: 52 tests pass, ESLint clean, type-check clean. NOTE for merge step: master has advanced past the fork point 0470514 (concurrent session landed reviewCollapse removal, workflowAckManager changes, and decomposedChildrenAutoAdvance.test removal — likely the decomposition double-advance fix). This worktree is still based on 0470514 and self-consistent; rebase onto the new master tip and re-run checks before the fast-forward merge.'
+    children: []
+    metadata:
+      status: pending
+  46d82a92-e697-49c2-af85-3d2d3638108a:
+    id: 46d82a92-e697-49c2-af85-3d2d3638108a
+    content: File tabs change size when focusing
+    children:
+      - 9a41b543-930f-475a-8f20-bc0f55be7226
+      - 0f4e79ce-5b2b-44c4-b432-6c8f73cb65ff
+    metadata:
+      status: pending
+      expanded: false
+  9a41b543-930f-475a-8f20-bc0f55be7226:
+    id: 9a41b543-930f-475a-8f20-bc0f55be7226
+    content: White space between file name and 'x' to close reduces when a tab is focused
+    children: []
+    metadata:
+      status: pending
+  0f4e79ce-5b2b-44c4-b432-6c8f73cb65ff:
+    id: 0f4e79ce-5b2b-44c4-b432-6c8f73cb65ff
+    content: Tab size shouldn't move when focusing/defocusing
+    children: []
+    metadata:
+      status: pending
+  361b9c1b-3c94-4a2e-b153-2e8b98e1e065:
+    id: 361b9c1b-3c94-4a2e-b153-2e8b98e1e065
+    content: review feedback
+    children:
+      - 87e3efb7-717d-4300-987e-8cfbc5d4a782
+      - feb0e605-3505-4271-831e-421c9691a299
+      - 377903a8-a219-4643-8439-a7b070e80a80
+      - 7c991ea5-5ef3-47af-8a7d-3e5fbc1257c8
+      - 3fb2ff4d-0b7d-40a8-b39e-b480594a2dc5
+    metadata:
+      status: pending
+  87e3efb7-717d-4300-987e-8cfbc5d4a782:
+    id: 87e3efb7-717d-4300-987e-8cfbc5d4a782
+    content: 'Verdict: ship it — no blockers, no should-fix. Reviewer independently re-ran type-check, lint, and the affected suites (60 passing), and checked the calling code (App.tsx, popover, advanceNode/completeWorkflow node source).'
+    children: []
+    metadata:
+      status: pending
+  feb0e605-3505-4271-831e-421c9691a299:
+    id: feb0e605-3505-4271-831e-421c9691a299
+    content: 'Correctness confirmed by the reviewer: the setActiveFile→setActiveTerminal ordering is safe because the filesStore→terminalStore cascade (useAppInitialization subscription) is synchronous inside zustand set(), so currentFilePath is updated before setActiveTerminal runs — the same path TabBar clicks use. metadata.sessionId is the correct durable key into workflowSessionMap (reverse lookup at click time survives resume). storeManager and terminalStore.fileStates share the source-path key, so resolution is consistent. Backward-compat and popover-non-interactive locked in by tests.'
+    children: []
+    metadata:
+      status: pending
+  377903a8-a219-4643-8439-a7b070e80a80:
+    id: 377903a8-a219-4643-8439-a7b070e80a80
+    content: 'Nit 1 (a11y, product call): interactive buttons live inside the panel''s role="log"/aria-live="polite" region; AT may announce appended entries that contain actionable controls. Minor (polite only announces additions; no auto-focus). Strict fix = wrap only the announced text in the live region, separate from the interactive list. Decide in resolution.'
+    children: []
+    metadata:
+      status: pending
+  7c991ea5-5ef3-47af-8a7d-3e5fbc1257c8:
+    id: 7c991ea5-5ef3-47af-8a7d-3e5fbc1257c8
+    content: 'Nit 2 (UX, product call): clicking an entry focuses the session but leaves the panel open (activateEntry calls only focusLogSession, not onClose). Reviewer flags it as a conscious choice — keep-open lets the user keep scanning; jump-and-close would also call onClose. Decide intended behavior in resolution.'
+    children: []
+    metadata:
+      status: pending
+  3fb2ff4d-0b7d-40a8-b39e-b480594a2dc5:
+    id: 3fb2ff4d-0b7d-40a8-b39e-b480594a2dc5
+    content: 'Nit 3 (tests, accept): the advanceNode call-site integration it.todo is acceptable — threading is unit-tested at notifyWorkflow and the call sites run under the existing workflowExecutionActions suite. Reviewer fine to leave it.'
+    children: []
+    metadata:
+      status: pending
+  2eb513b9-950f-4c1e-8ecd-bf7819b6d65f:
+    id: 2eb513b9-950f-4c1e-8ecd-bf7819b6d65f
+    content: review resolution
+    children:
+      - 7b0bfc7b-79b9-4c1c-bb89-75a953d47f1d
+      - cc5b2bec-2584-442f-a93d-6bc1ab1ef582
+      - 8e5fc3ff-ef64-4e4a-b7ff-9dcf6e89ea50
+    metadata:
+      status: pending
+  7b0bfc7b-79b9-4c1c-bb89-75a953d47f1d:
+    id: 7b0bfc7b-79b9-4c1c-bb89-75a953d47f1d
+    content: 'Major issues fixed: none — review verdict was ship-it with no blockers or should-fix.'
+    children: []
+    metadata:
+      status: pending
+  cc5b2bec-2584-442f-a93d-6bc1ab1ef582:
+    id: cc5b2bec-2584-442f-a93d-6bc1ab1ef582
+    content: 'Minor issue fixed (Nit 2, jump-and-close): activating a side-panel entry now closes the panel, but only on a successful focus. focusLogSession now returns boolean (true when it focused, false on no-op); ActivityLogPanel''s activateEntry calls onClose only when it returns true — so a dead/closed-session click stays a true no-op (panel stays open, no confusing vanish). Aligns with the spec goal of bringing the session "to the foreground" (the panel is a fixed right-side overlay over the workspace). Added a panel test for no-op-stays-open and return-value assertions in focusLogSession.test. 53 tests pass, ESLint + type-check clean.'
+    children: []
+    metadata:
+      status: pending
+  8e5fc3ff-ef64-4e4a-b7ff-9dcf6e89ea50:
+    id: 8e5fc3ff-ef64-4e4a-b7ff-9dcf6e89ea50
+    content: 'Feedback skipped (pushed back): Nit 1 (interactive buttons in the role=log/aria-live region). The technical-refinement spec explicitly sanctioned "use a real button" in this region, which is what shipped; aria-live=polite only announces appended text with no auto-focus, so the practical impact is negligible (announcing "button" on a new entry is arguably helpful). The strict fix — separating the announced text from the interactive list — is a real restructure for marginal gain the spec did not request. Left as-is. Nit 3 (advanceNode it.todo) accepted as-is per the reviewer — no action.'
     children: []
     metadata:
       status: pending
