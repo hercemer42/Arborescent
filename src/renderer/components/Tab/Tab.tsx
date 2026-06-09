@@ -58,7 +58,6 @@ export const Tab = memo(function Tab({
     !isActive && isReviewPending && 'review-pending',
   ].filter(Boolean).join(' ');
 
-  const showIndicator = !isActive && indicator;
   const baseTitle = fullName || displayName;
   const title = !isActive && isReviewPending ? `${baseTitle} — review feedback pending` : baseTitle;
 
@@ -71,11 +70,12 @@ export const Tab = memo(function Tab({
       {isZoomTab && <span className="tab-zoom-icon">🔍</span>}
       {isSummaryMode && <ClipboardCheck size={12} className="tab-summary-icon" />}
       <span className="tab-name">{displayName}</span>
-      {showIndicator && (
+      {indicator && (
         <span
           className={`tab-indicator tab-indicator-${indicator}`}
           title={INDICATOR_TITLES[indicator]}
           aria-label={INDICATOR_TITLES[indicator]}
+          aria-hidden={isActive || undefined}
         />
       )}
       <button

@@ -58,6 +58,7 @@
 
 ### Bug fixes
 
+- **File tabs keep their size when focused** — a tab carrying a status indicator dot (action required, feedback pending, or workflow running) used to resize and nudge its neighbours the moment you clicked it. A tab now holds the same width and spacing whether or not it's focused; only its colour changes.
 - **Terminal opens reliably instead of blank** — opening a terminal (or switching to its tab) no longer intermittently shows an empty pane with no cursor, or one that takes tens of seconds to become usable. The shell's first prompt — drawn before the view attached — is now replayed on open, init no longer stalls waiting for a resize event that never fires, and the pane shows a brief loading state (and a clear error if it genuinely can't start) instead of a silent blank.
 
 - **Decomposed/recurse siblings hand off cleanly after one finishes** — starting the next sibling could raise a false "Terminal tab is already assigned to a running workflow node" for a node that had already finished, and starting it in a fresh session instead resumed the previous sibling's closed session while prompting to rebind. The terminal-busy check now ignores a finished node's leftover assignment, and a hand-off that can't start leaves no stale session binding behind — so the next sibling sends on the freed terminal (or starts fresh) without the spurious toast or rebind prompt.

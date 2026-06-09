@@ -25,9 +25,12 @@ describe('Tab indicator rendering', () => {
     expect(screen.getByTitle('Action required')).toBeDefined();
   });
 
-  it('should NOT render indicator dot when tab is active', () => {
-    render(<Tab {...defaultProps} isActive={true} indicator="actionRequired" />);
-    expect(screen.queryByTitle('Action required')).toBeNull();
+  it('keeps the indicator element mounted when the tab is active so its slot is reserved', () => {
+    // The dot used to be conditionally mounted on !isActive, so focusing a tab unmounted it
+    // and shrank the content-sized tab. The element must stay mounted in both focus states;
+    // whether it is visually shown when active is a separate styling concern.
+    const { container } = render(<Tab {...defaultProps} isActive={true} indicator="actionRequired" />);
+    expect(container.querySelector('.tab-indicator')).not.toBeNull();
   });
 
   it('should not render indicator when indicator is null', () => {
