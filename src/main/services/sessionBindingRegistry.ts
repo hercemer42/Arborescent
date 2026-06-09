@@ -16,7 +16,7 @@ export class SessionBindingRegistry {
   private pendingRebinds = new Map<string, string>();
   private rebindListeners = new Set<RebindListener>();
 
-  register(sessionId: string, nodeId: string): RegisterResult | null {
+  register(sessionId: string, nodeId: string, autoConfirm = false): RegisterResult | null {
     if (!sessionId || !nodeId) {
       return null;
     }
@@ -31,6 +31,14 @@ export class SessionBindingRegistry {
     if (existing === nodeId) {
       this.pendingRebinds.delete(sessionId);
       return { kind: 'no-op', sessionId, nodeId };
+    }
+
+    // An authorized hand-off applies the new binding without surfacing a
+    // confirmation dialog. Emitting the rebind request here would orphan a
+    // dialog the renderer is never told to dismiss, stalling autoplay.
+    if (autoConfirm) {
+      this.applyBinding(sessionId, nodeId);
+      return { kind: 'rebind-needed', sessionId, previousNodeId: existing, newNodeId: nodeId };
     }
 
     const previousPending = this.pendingRebinds.get(sessionId);
@@ -51,9 +59,13 @@ export class SessionBindingRegistry {
   confirmRebind(sessionId: string): boolean {
     const pending = this.pendingRebinds.get(sessionId);
     if (pending === undefined) return false;
-    this.bindings.set(sessionId, pending);
-    this.pendingRebinds.delete(sessionId);
+    this.applyBinding(sessionId, pending);
     return true;
+  }
+
+  private applyBinding(sessionId: string, nodeId: string): void {
+    this.bindings.set(sessionId, nodeId);
+    this.pendingRebinds.delete(sessionId);
   }
 
   cancelRebind(sessionId: string): boolean {

@@ -26,12 +26,12 @@ function makeFakeMcpServer(): {
 const NODE_A = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaa01';
 const NODE_B = 'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbb02';
 
-describe('createHookEventDispatcher — silent rebind on workflow-advance source (US-C)', () => {
+describe('createHookEventDispatcher — silent rebind on workflow-advance source', () => {
   // The hook script forwards the source token from the binding marker into the
   // register-binding payload. The dispatcher routes the rebind-needed case
   // based on that source:
-  //   workflow-advance → call confirmRebind() automatically (silent hand-off
-  //                      between decomposed siblings during recurse)
+  //   workflow-advance → register(autoConfirm) applies the binding silently
+  //                      (hand-off between decomposed siblings during recurse)
   //   workflow-start   → leave pending so the rebind dialog can fire
   //   anything else / missing → leave pending (legacy behavior)
   let registry: SessionBindingRegistry;
@@ -158,5 +158,95 @@ describe('createHookEventDispatcher — silent rebind on workflow-advance source
     });
 
     expect(server.getOneShotTargetStore().wasMarkerSeenThisTurn('sess-1')).toBe(true);
+  });
+});
+
+describe('createHookEventDispatcher — workflow-advance rebind does not surface the renderer dialog (orphaned-dialog bug)', () => {
+  // Regression for the autoplay stall. register() emits the rebind-request to
+  // the renderer synchronously for EVERY rebind-needed, and the dispatcher then
+  // auto-confirms a workflow-advance rebind server-side. Pre-fix the renderer
+  // dialog was emitted-and-orphaned (the confirm never cancelled it), and
+  // isRebindDialogPending then blocked the next autonomous send — autoplay
+  // stalled mid-series. A silent sibling hand-off must reach the renderer with
+  // NO rebind-request at all, while still flipping the binding. Non-advance
+  // rebinds (workflow-start, resume, compact) MUST still surface the dialog.
+  let registry: SessionBindingRegistry;
+  let server: ArborescentMcpServer;
+  let dispatch: ReturnType<typeof createHookEventDispatcher>;
+  let rebindListener: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    const made = makeFakeMcpServer();
+    server = made.server;
+    registry = made.registry;
+    rebindListener = vi.fn();
+    registry.onRebindRequest(rebindListener);
+    dispatch = createHookEventDispatcher({
+      getMcpServer: () => server,
+      forwardToRenderer: vi.fn(),
+    });
+  });
+
+  it('does NOT emit a rebind-request to the renderer on a workflow-advance hand-off, yet still flips the binding', () => {
+    registry.register('sess-1', NODE_A);
+    rebindListener.mockClear();
+
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: NODE_B,
+      source: 'workflow-advance',
+    });
+
+    expect(rebindListener).not.toHaveBeenCalled();
+    expect(registry.lookup('sess-1')).toBe(NODE_B);
+    expect(registry.pendingRebind('sess-1')).toBe(null);
+  });
+
+  it('DOES emit a rebind-request on a workflow-start rebind so the confirmation dialog fires', () => {
+    registry.register('sess-1', NODE_A);
+    rebindListener.mockClear();
+
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: NODE_B,
+      source: 'workflow-start',
+    });
+
+    expect(rebindListener).toHaveBeenCalledTimes(1);
+    expect(rebindListener).toHaveBeenCalledWith({
+      sessionId: 'sess-1',
+      previousNodeId: NODE_A,
+      newNodeId: NODE_B,
+    });
+  });
+
+  it('DOES emit a rebind-request on a resume rebind (a genuine binding move stays gated)', () => {
+    registry.register('sess-1', NODE_A);
+    rebindListener.mockClear();
+
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: NODE_B,
+      source: 'resume',
+    });
+
+    expect(rebindListener).toHaveBeenCalledTimes(1);
+  });
+
+  it('DOES emit a rebind-request on a compact rebind (a genuine binding move stays gated)', () => {
+    registry.register('sess-1', NODE_A);
+    rebindListener.mockClear();
+
+    dispatch({
+      session_id: 'sess-1',
+      hook_event_name: 'register-binding',
+      node_uuid: NODE_B,
+      source: 'compact',
+    });
+
+    expect(rebindListener).toHaveBeenCalledTimes(1);
   });
 });

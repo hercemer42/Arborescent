@@ -94,6 +94,66 @@ describe('SessionBindingRegistry — rebind event emission', () => {
   it.todo('subscribing to rebind events after emission has already happened does not redeliver — events fire forward only');
 });
 
+describe('SessionBindingRegistry — autoConfirm rebind (silent sibling hand-off)', () => {
+  // autoConfirm applies an authorized workflow-advance hand-off immediately and
+  // WITHOUT emitting a rebind-request, so no renderer dialog is ever raised.
+  let registry: SessionBindingRegistry;
+  let listener: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    registry = new SessionBindingRegistry();
+    listener = vi.fn();
+    registry.onRebindRequest(listener);
+  });
+
+  it('autoConfirm=true on a rebind applies the new binding immediately and leaves nothing pending', () => {
+    registry.register('sess-1', 'node-a');
+    listener.mockClear();
+
+    registry.register('sess-1', 'node-b', true);
+
+    expect(registry.lookup('sess-1')).toBe('node-b');
+    expect(registry.pendingRebind('sess-1')).toBe(null);
+  });
+
+  it('autoConfirm=true on a rebind does NOT emit a rebind-request event', () => {
+    registry.register('sess-1', 'node-a');
+    listener.mockClear();
+
+    registry.register('sess-1', 'node-b', true);
+
+    expect(listener).not.toHaveBeenCalled();
+  });
+
+  it('autoConfirm=false (the default) on a rebind still emits and leaves the rebind pending', () => {
+    registry.register('sess-1', 'node-a');
+    listener.mockClear();
+
+    registry.register('sess-1', 'node-b', false);
+
+    expect(listener).toHaveBeenCalledTimes(1);
+    expect(registry.lookup('sess-1')).toBe('node-a');
+    expect(registry.pendingRebind('sess-1')).toBe('node-b');
+  });
+
+  it('autoConfirm=true on a first-time bind is a normal set — stores the binding and emits nothing', () => {
+    registry.register('sess-1', 'node-a', true);
+
+    expect(registry.lookup('sess-1')).toBe('node-a');
+    expect(listener).not.toHaveBeenCalled();
+  });
+
+  it('autoConfirm=true re-registering the already-bound node is a no-op — no emit', () => {
+    registry.register('sess-1', 'node-a');
+    listener.mockClear();
+
+    registry.register('sess-1', 'node-a', true);
+
+    expect(registry.lookup('sess-1')).toBe('node-a');
+    expect(listener).not.toHaveBeenCalled();
+  });
+});
+
 describe('SessionBindingRegistry — rebind apply / cancel', () => {
   let registry: SessionBindingRegistry;
 

@@ -54,17 +54,15 @@ function handleRegisterBinding(payload: HookEventPayload, deps: HookEventDispatc
     return;
   }
   const registry = mcpServer.getBindingRegistry();
-  const result = registry.register(payload.session_id, payload.node_uuid);
+  // Sibling iteration via decomposition+recurse: each hand-off lands a fresh
+  // working-node UUID on a session already bound to the prior sibling. The
+  // workflow is the user's authority for that hand-off, so the registry applies
+  // the rebind silently instead of surfacing (and orphaning) a confirmation dialog.
+  const autoConfirm = payload.source === 'workflow-advance';
+  const result = registry.register(payload.session_id, payload.node_uuid, autoConfirm);
   if (!result) {
     logger.warn('register-binding rejected: empty session_id or node_uuid', 'HookDispatch');
     return;
-  }
-  // Sibling iteration via decomposition+recurse: each hand-off lands a fresh
-  // working-node UUID on a session already bound to the prior sibling. The
-  // workflow is the user's authority for that hand-off, so we silently flip
-  // the binding instead of surfacing the rebind confirmation dialog.
-  if (result.kind === 'rebind-needed' && payload.source === 'workflow-advance') {
-    registry.confirmRebind(payload.session_id);
   }
   const oneShot = mcpServer.getOneShotTargetStore();
   // An autonomous workflow send (workflow-start / workflow-advance) moves this
