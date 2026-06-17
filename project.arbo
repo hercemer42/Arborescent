@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-17T13:28:18.037Z'
+updated: '2026-06-17T13:33:57.718Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25518,8 +25518,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - 7d9b536d-bc51-4bd3-9d42-7ca9d77bb7ce
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -115085,6 +115084,7 @@ nodes:
       - 46d82a92-e697-49c2-af85-3d2d3638108a
       - c550a6d0-e6a9-42a4-a783-bfc83bc8e73f
       - 7ead8f16-4d57-4894-a15b-e58540418314
+      - 9a80a524-f237-4ae3-9741-95517d377e11
     metadata:
       status: pending
       isBlueprint: true
@@ -124093,7 +124093,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 9a80a524-f237-4ae3-9741-95517d377e11
+      - 7d9b536d-bc51-4bd3-9d42-7ca9d77bb7ce
     metadata:
       status: pending
       isBlueprint: true
@@ -218357,19 +218357,20 @@ nodes:
     id: 9a80a524-f237-4ae3-9741-95517d377e11
     content: If a bound node is playing, but we interrupt Claude
     children:
-      - 0a28acaf-71ba-414c-8a3b-530a0fc65d99
-      - 5b553860-e0ea-4805-bb48-9d478a1377c4
-      - 1cc8570a-4133-40c9-93e2-e33f4d88ad1d
-      - 8c5b9e37-4625-4a93-b42b-927eb260c164
-      - c73239a6-09fc-4e78-8361-2a48733ab8b3
-      - a34c914f-d4c5-4caa-8b19-d477a5feefe2
-      - 2a1c6cca-206b-4c1d-9c20-367f87f621ae
-      - aaae88b9-a009-42c4-b856-d6c06ed4c57f
-      - adf29cd2-74db-4265-8978-1c561599f264
-      - e8a81710-dfe2-4297-8496-4c6c60791c65
-      - dcdefe38-d9a3-415c-aefc-14e70ae53636
-      - 245803ae-aef4-4778-8be8-1af5b6bbd48b
-      - 4b1007f9-47cc-4272-a2ba-84a7932972c9
+      - 2c222b13-7588-4954-931e-2413229f394a
+      - b6eea882-6b12-4d3e-9772-a4894841fdae
+      - 0d8b038f-835e-488f-96b2-4b858dfd0887
+      - 8e3c544d-d8ea-47ed-9df9-03f011bee2a6
+      - 89c5718c-92e8-4b6b-83b4-0a713ddf3d7e
+      - fe40e15e-3129-4fed-bf26-1914a0283791
+      - 22bec2c8-683d-4296-be9f-219e257cf393
+      - e9fb2c9e-7f0a-44a0-bcb8-6d6fa48cde3c
+      - 73aeed0d-0e8a-4292-bfd8-d377f86d184a
+      - 0f78f168-3555-4abd-8c3a-40f5012f5fb7
+      - e0392dd8-3ae1-4383-9c86-444ddb2043d9
+      - a7a94817-e867-47fa-a5a5-4f7346c57988
+      - 827f34fa-8dc4-4c12-82da-60ff5bc6b037
+      - ee7af3ec-d895-4bf0-af80-5ef7d91c1625
     metadata:
       status: completed
       expanded: false
@@ -219319,484 +219320,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  0a28acaf-71ba-414c-8a3b-530a0fc65d99:
-    id: 0a28acaf-71ba-414c-8a3b-530a0fc65d99
-    content: worktree
-    children:
-      - 4ea78799-e16a-413c-859d-834ca8eb34f1
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ea78799-e16a-413c-859d-834ca8eb34f1:
-    id: 4ea78799-e16a-413c-859d-834ca8eb34f1
-    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-stop-hook-node-scoped-advance) — branch `fix/stop-hook-node-scoped-advance` forked from `master` at `/Users/brianfox/dev/Arborescent-worktrees/fix-stop-hook-node-scoped-advance`'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b553860-e0ea-4805-bb48-9d478a1377c4:
-    id: 5b553860-e0ea-4805-bb48-9d478a1377c4
-    content: Summary
-    children:
-      - a574799c-199a-4a06-a53f-a40a3d7e4944
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a574799c-199a-4a06-a53f-a40a3d7e4944:
-    id: a574799c-199a-4a06-a53f-a40a3d7e4944
-    content: An unrelated terminal Stop hook (from a manual send/revise on a different node) is mis-credited to the bound running node and advances it a step it never finished.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1cc8570a-4133-40c9-93e2-e33f4d88ad1d:
-    id: 1cc8570a-4133-40c9-93e2-e33f4d88ad1d
-    content: Steps to reproduce
-    children:
-      - 895f6515-20d7-479b-af75-75a4c6cf45f7
-      - c5c2907c-cc82-40b7-9ec9-11a75907bc61
-      - 0561f112-d26e-41fc-b2cf-589bea1d0aec
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  895f6515-20d7-479b-af75-75a4c6cf45f7:
-    id: 895f6515-20d7-479b-af75-75a4c6cf45f7
-    content: 'Precondition: a workflow node is bound and running on a terminal (state ''running'' in workflowExecutionStates), mid-step with Claude active.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c5c2907c-cc82-40b7-9ec9-11a75907bc61:
-    id: c5c2907c-cc82-40b7-9ec9-11a75907bc61
-    content: 'User action: interrupt Claude on that terminal, then manually send or revise content targeting a DIFFERENT node on the same terminal and let that turn finish.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0561f112-d26e-41fc-b2cf-589bea1d0aec:
-    id: 0561f112-d26e-41fc-b2cf-589bea1d0aec
-    content: 'Observation: when the manual turn''s Stop hook fires, the original bound node advances to its next workflow step (its next-step prompt is sent) without the bound node''s own work having completed.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8c5b9e37-4625-4a93-b42b-927eb260c164:
-    id: 8c5b9e37-4625-4a93-b42b-927eb260c164
-    content: Expected behavior
-    children:
-      - 2504c857-2f83-4f99-a731-af0601a9db50
-      - c212a830-c9f8-4c97-8604-040941529764
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2504c857-2f83-4f99-a731-af0601a9db50:
-    id: 2504c857-2f83-4f99-a731-af0601a9db50
-    content: 'Happy path: a manual send/revise on another node does not advance the bound node; only the bound node''s own completion signal advances it.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c212a830-c9f8-4c97-8604-040941529764:
-    id: c212a830-c9f8-4c97-8604-040941529764
-    content: 'Edge cases: multiple Stop hooks during one interruption (e.g. several clarifying questions) must not each advance the bound node, and interrupting Claude should pause the bound node rather than leave it to advance on the next unrelated Stop.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c73239a6-09fc-4e78-8361-2a48733ab8b3:
-    id: c73239a6-09fc-4e78-8361-2a48733ab8b3
-    content: Actual behavior
-    children:
-      - 685e6500-d403-45d8-b879-343d530ed776
-      - 5c97593e-c171-41fc-82c1-29f7bc6ce234
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  685e6500-d403-45d8-b879-343d530ed776:
-    id: 685e6500-d403-45d8-b879-343d530ed776
-    content: The bound node advances one step per unrelated Stop; with multiple Stop hooks it can over-advance, and two step prompts can paste into the terminal at once.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5c97593e-c171-41fc-82c1-29f7bc6ce234:
-    id: 5c97593e-c171-41fc-82c1-29f7bc6ce234
-    content: 'User-visible symptoms: the workflow silently jumps a step, the bound node''s next-step prompt appears prematurely, and content lands out of sequence requiring a manual rewind.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a34c914f-d4c5-4caa-8b19-d477a5feefe2:
-    id: a34c914f-d4c5-4caa-8b19-d477a5feefe2
-    content: Suspected cause
-    children:
-      - 1d3c6084-bb33-4b2e-9832-211f7383f6ae
-      - 82a55e40-6f20-4195-a028-314d6a93bc4e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1d3c6084-bb33-4b2e-9832-211f7383f6ae:
-    id: 1d3c6084-bb33-4b2e-9832-211f7383f6ae
-    content: findRunningNodeOnTerminal (src/renderer/store/tree/actions/terminalBindingResolution.ts:42-60) resolves a Stop purely by terminal and returns the bound node; a manual send/revise (sendActions.ts) never registers in workflowExecutionStates, so the bound node is the only candidate the resolver sees for that terminal.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  82a55e40-6f20-4195-a028-314d6a93bc4e:
-    id: 82a55e40-6f20-4195-a028-314d6a93bc4e
-    content: The explicit_submit_seen gate (src/renderer/store/tree/actions/workflowHookEventHandler.ts:232-239) does not cover this because the flag is session/turn-global (src/main/services/oneShotTargetStore.ts) and the manual send's own submit_step_output sets it (src/main/services/mcpSubmitOutputTool.ts:131), so the gate reads true and permits the bound node's advance.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a1c6cca-206b-4c1d-9c20-367f87f621ae:
-    id: 2a1c6cca-206b-4c1d-9c20-367f87f621ae
-    content: Affected files
-    children:
-      - 57757364-fcff-489e-8306-61088ed75820
-      - 33d34743-a3f8-40a3-95ef-e5c79915a8f2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  57757364-fcff-489e-8306-61088ed75820:
-    id: 57757364-fcff-489e-8306-61088ed75820
-    content: src/renderer/store/tree/actions/workflowHookEventHandler.ts — Stop-event advance routing (primary suspect).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  33d34743-a3f8-40a3-95ef-e5c79915a8f2:
-    id: 33d34743-a3f8-40a3-95ef-e5c79915a8f2
-    content: 'Related surfaces: terminalBindingResolution.ts (findRunningNodeOnTerminal), src/main/services/oneShotTargetStore.ts (session-global explicit_submit_seen), src/renderer/store/tree/actions/sendActions.ts (manual send omits run-state registration).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  aaae88b9-a009-42c4-b856-d6c06ed4c57f:
-    id: aaae88b9-a009-42c4-b856-d6c06ed4c57f
-    content: Regression window
-    children:
-      - d84b6f58-beff-410f-803c-d82e762ff1d5
-      - b4c041f8-6945-4483-8e6b-7679af84b658
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d84b6f58-beff-410f-803c-d82e762ff1d5:
-    id: d84b6f58-beff-410f-803c-d82e762ff1d5
-    content: 'Last known good: unknown — the defect is inherent to the Stop-hook + transient run-state advancement design, not a single regressing commit.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4c041f8-6945-4483-8e6b-7679af84b658:
-    id: b4c041f8-6945-4483-8e6b-7679af84b658
-    content: 'First observed: surfaced via a manual send/revise on a second node during a bound run; sibling of the already-noted decomposition hand-off double-advance.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  adf29cd2-74db-4265-8978-1c561599f264:
-    id: adf29cd2-74db-4265-8978-1c561599f264
-    content: Severity
-    children:
-      - 31cfa707-edeb-450b-944a-70925eb12f5d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  31cfa707-edeb-450b-944a-70925eb12f5d:
-    id: 31cfa707-edeb-450b-944a-70925eb12f5d
-    content: Medium-High — silent workflow desync (step skipped / premature prompt); no data loss, but requires manual recovery and erodes trust in autonomous advancement.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8a81710-dfe2-4297-8496-4c6c60791c65:
-    id: e8a81710-dfe2-4297-8496-4c6c60791c65
-    content: Notes
-    children:
-      - fd185c1f-2672-481a-980d-6e510d3ae27e
-      - e0011b37-9b5c-4cf3-b60b-8f05afbc558a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd185c1f-2672-481a-980d-6e510d3ae27e:
-    id: fd185c1f-2672-481a-980d-6e510d3ae27e
-    content: 'Disambiguate from the decomposition hand-off double-advance (same findRunningNodeOnTerminal mis-credit family, different trigger) and from the "Stop dropped: no running node" stall (that loses run-state; this one over-advances).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0011b37-9b5c-4cf3-b60b-8f05afbc558a:
-    id: e0011b37-9b5c-4cf3-b60b-8f05afbc558a
-    content: 'UX/telemetry gap: there is no pause-on-interrupt hook today and no signal when a Stop is credited to a node that did not itself submit this turn — a log/pause candidate, and per-node (not session-global) submit tracking would close the gate hole.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dcdefe38-d9a3-415c-aefc-14e70ae53636:
-    id: dcdefe38-d9a3-415c-aefc-14e70ae53636
-    content: Technical refinement
-    children:
-      - ccc200fa-b5de-4c6a-8fd9-3978bb693cfe
-      - 3bee5954-a7b4-4b3b-a636-29c55741f8e6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ccc200fa-b5de-4c6a-8fd9-3978bb693cfe:
-    id: ccc200fa-b5de-4c6a-8fd9-3978bb693cfe
-    content: Flag complications
-    children:
-      - f1434af3-f5fb-46fa-ad61-c16aa2a8bb44
-      - a76d6792-4e65-4cb5-bdf8-7d162619310e
-      - 813be29c-2fea-45ab-a28f-53567e9137f4
-      - cc84d6e1-d91b-4cac-8cb0-8cf4d56bea69
-      - da9e88b2-d339-4b0b-a350-cffa8db18b24
-      - 18c03fe7-79e5-41e7-b1e8-4510e70b472b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1434af3-f5fb-46fa-ad61-c16aa2a8bb44:
-    id: f1434af3-f5fb-46fa-ad61-c16aa2a8bb44
-    content: 'Stop-before-intent is a latency race, not a logical one (the completion call always lands mid-turn, before turn-end); handle it with a short bounded retry on Stop, and on timeout leave the node running/awaiting-validation rather than dropping or advancing — this also absorbs today''s "Stop dropped: no running node" stall.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  a76d6792-4e65-4cb5-bdf8-7d162619310e:
-    id: a76d6792-4e65-4cb5-bdf8-7d162619310e
-    content: If Claude hangs after declaring done but no Stop ever fires, the node sits visibly running with the intent pending until the user stops it; this is benign (honest state, cleared on teardown) and is intentionally given no separate timeout.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  813be29c-2fea-45ab-a28f-53567e9137f4:
-    id: 813be29c-2fea-45ab-a28f-53567e9137f4
-    content: The "announced-then-interrupted" case (node declares done, then user interrupts and sends elsewhere) will still advance the declared node on the terminal's next Stop; parked as rare and acceptable.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  cc84d6e1-d91b-4cac-8cb0-8cf4d56bea69:
-    id: cc84d6e1-d91b-4cac-8cb0-8cf4d56bea69
-    content: 'Open question deferred: whether an ESC interrupt fires a Stop at all is unverified against Claude Code''s hook contract — the fix is correct either way (no intent, no advance), but the pause-on-interrupt UX depends on the answer.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  da9e88b2-d339-4b0b-a350-cffa8db18b24:
-    id: da9e88b2-d339-4b0b-a350-cffa8db18b24
-    content: 'Out of scope: the decomposition hand-off double-advance (sibling bug, different trigger), the pause-on-interrupt UX (brown-pause-on-ESC), and revise-mid-run replace-in-place are not addressed here.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  18c03fe7-79e5-41e7-b1e8-4510e70b472b:
-    id: 18c03fe7-79e5-41e7-b1e8-4510e70b472b
-    content: ROI is favorable — the change is a net reduction in machinery (drop the safety-net auto-submit, one flag on the existing entry, no TTL); the only genuinely new logic is the Stop retry/timeout rendezvous, which replaces existing stall handling.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3bee5954-a7b4-4b3b-a636-29c55741f8e6:
-    id: 3bee5954-a7b4-4b3b-a636-29c55741f8e6
-    content: Summarise the approach in 2-3 bullets
-    children:
-      - 9362ecae-a391-4570-b3b0-b5636a9d0398
-      - 28735b7a-4f64-44ec-a14f-6d41399dec57
-      - c2a7db9e-1dd5-49d1-87dd-c5331a314b4d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9362ecae-a391-4570-b3b0-b5636a9d0398:
-    id: 9362ecae-a391-4570-b3b0-b5636a9d0398
-    content: 'Move node identity off the Stop hook''s terminal guess and onto the explicit completion call: announce_step_done/submit_step_output (which already carry target_node_id) set a node-scoped doneDeclared flag on the workflowExecutionStates entry, replacing the session-global explicit_submit_seen; the Stop hook becomes a pure terminal-ready edge that advances only the node whose entry holds a pending flag — no flag, no advance.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  28735b7a-4f64-44ec-a14f-6d41399dec57:
-    id: 28735b7a-4f64-44ec-a14f-6d41399dec57
-    content: 'Non-obvious: advancing inside the MCP call is impossible because the terminal isn''t free until the turn ends (after the tool returns), so the Stop edge is still needed — but only as a readiness signal, not as the node resolver; the flag lives on the entry, so entry teardown on stop/finish garbage-collects it (no TTL).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c2a7db9e-1dd5-49d1-87dd-c5331a314b4d:
-    id: c2a7db9e-1dd5-49d1-87dd-c5331a314b4d
-    content: 'Likely to surprise the reviewer: the safety-net Stop auto-submit is removed, not kept — under this model "turn ended with no declaration" must advance nothing, so the old safety net would be actively wrong; changes land in workflowHookEventHandler.ts, workflowExecutionActions.ts, the MCP completion tools, and oneShotTargetStore.ts.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  245803ae-aef4-4778-8be8-1af5b6bbd48b:
-    id: 245803ae-aef4-4778-8be8-1af5b6bbd48b
-    content: Verification summary
-    children:
-      - b40a77ae-1cee-4958-a8c7-c4f9a52fdb1e
-      - e52ba418-4094-41d0-a1b6-bd840f18d64a
-      - 41ce3ae1-631d-4e78-a675-42c400f2b4fb
-      - 42bbb4ea-a71e-4cb4-8b05-b5677bf02ba6
-      - 909bf34c-28ac-499e-9824-48440f472b0a
-      - 7a9fd192-e038-489c-88cc-6c00fc79a619
-      - adcc891e-3efe-494e-b1a7-49ed1427a7d5
-      - dc4edcb9-dc43-4024-b2c2-3099f4c59d6c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b40a77ae-1cee-4958-a8c7-c4f9a52fdb1e:
-    id: b40a77ae-1cee-4958-a8c7-c4f9a52fdb1e
-    content: 'Core fix verified implemented and green: the Stop advance is node-scoped — a manual send/revise on another node no longer advances the bound node, and repeated declaration-less Stops never advance; affected tests pass, type-check and lint clean.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e52ba418-4094-41d0-a1b6-bd840f18d64a:
-    id: e52ba418-4094-41d0-a1b6-bd840f18d64a
-    content: Deviation — declaration is carried on the Stop event (declared_node_id, tracked per-session in oneShotTargetStore), NOT stored as a flag on the workflowExecutionStates entry; the approach bullets are implemented in substance but via this event-carried mechanism.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41ce3ae1-631d-4e78-a675-42c400f2b4fb:
-    id: 41ce3ae1-631d-4e78-a675-42c400f2b4fb
-    content: 'Not built (chosen out) — the Stop-before-declaration retry/timeout rendezvous: unnecessary because the declaration rides on the Stop event, so there is no Stop-vs-declaration race to reconcile.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  42bbb4ea-a71e-4cb4-8b05-b5677bf02ba6:
-    id: 42bbb4ea-a71e-4cb4-8b05-b5677bf02ba6
-    content: Not built (chosen out) — no TTL and no entry-teardown GC; the declaration is cleared at the turn boundary by the dispatcher (register-target / post-forward) instead.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  909bf34c-28ac-499e-9824-48440f472b0a:
-    id: 909bf34c-28ac-499e-9824-48440f472b0a
-    content: Behavior change vs the parked prediction — in the announced-then-interrupted case a later same-session manual send overwrites the declaration, so the declared node stalls (stays running) rather than advancing; still within the "rare and acceptable" envelope and safer than a wrong advance.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a9fd192-e038-489c-88cc-6c00fc79a619:
-    id: 7a9fd192-e038-489c-88cc-6c00fc79a619
-    content: Actual file set — workflowHookEventHandler.ts, hookEventDispatcher.ts, hookServer.ts, oneShotTargetStore.ts, mcpWriteTools.ts, mcpSubmitOutputTool.ts; workflowExecutionActions.ts was NOT touched (the entry-flag approach would have).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  adcc891e-3efe-494e-b1a7-49ed1427a7d5:
-    id: adcc891e-3efe-494e-b1a7-49ed1427a7d5
-    content: Deferred / out of scope — decomposition double-advance, pause-on-interrupt UX, the unresolved "does ESC fire a Stop" question, and revise-mid-run replace-in-place.
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc4edcb9-dc43-4024-b2c2-3099f4c59d6c:
-    id: dc4edcb9-dc43-4024-b2c2-3099f4c59d6c
-    content: Still open — regression window "last known good" remains undetermined; inherent to the Stop-hook advancement design, not a single regressing commit.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   68f70e6d-e338-422b-8812-893e2bdcfe7a:
     id: 68f70e6d-e338-422b-8812-893e2bdcfe7a
     content: worktree — feat/start-workflow-new-session (~/dev/Arborescent-worktrees/start-workflow-new-session)
@@ -220699,46 +220222,558 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4b1007f9-47cc-4272-a2ba-84a7932972c9:
-    id: 4b1007f9-47cc-4272-a2ba-84a7932972c9
-    content: review feedback
-    children:
-      - 7d1d13e7-5e6a-4f03-95cc-da759f3ba500
-      - b2c88cc8-6d67-4d5d-908f-9dff1c8a6774
-      - d9bfba9c-4bb4-400c-9a6c-633f0131b623
-      - 70da5f53-8f1b-4795-86c6-2ef0df0b7a2a
-    metadata:
-      status: completed
-  7d1d13e7-5e6a-4f03-95cc-da759f3ba500:
-    id: 7d1d13e7-5e6a-4f03-95cc-da759f3ba500
-    content: 'Verdict: approved — core node-scoped Stop-advance fix is sound and runtime-correct (type-check, lint, affected tests all green). One should-fix (non-blocking, type-contract only) and minor doc nits below.'
-    children: []
-    metadata:
-      status: pending
-  b2c88cc8-6d67-4d5d-908f-9dff1c8a6774:
-    id: b2c88cc8-6d67-4d5d-908f-9dff1c8a6774
-    content: 'Should-fix (type contract): the IPC payload type omits the new field. Add `declared_node_id?: string | null` to electronApi.HookEventPayload (src/shared/types/electronApi.ts) and to the inline `data` type in src/preload/index.ts onHookEvent (~L121). Runtime is correct (Electron structured-clone carries the field main→renderer), but at the type level the renderer sees declared_node_id as always-undefined (the permissive branch), so a future refactor that rebuilds the renderer event from the declared shape would silently disable the gate in production with no test failure. workflowHookEventHandler.HookEventPayload already has the field; only the shared IPC contract lags.'
-    children: []
-    metadata:
-      status: completed
-  d9bfba9c-4bb4-400c-9a6c-633f0131b623:
-    id: d9bfba9c-4bb4-400c-9a6c-633f0131b623
-    content: 'Nit (docs): stale boolean-"flag" prose in src/main/services/tests/mcpSubmitOutputTool.test.ts (~L465-467, 506, 518-521) — assertions are correct (doneDeclarationNode) but comments still say "raise the flag"; reword to the node-scoped declaration model so the rationale matches the data model.'
-    children: []
-    metadata:
-      status: completed
-  70da5f53-8f1b-4795-86c6-2ef0df0b7a2a:
-    id: 70da5f53-8f1b-4795-86c6-2ef0df0b7a2a
-    content: 'Confirmed sound (no action): tri-state gate correct (undefined=permissive non-dispatcher caller, null=dispatcher saw no declaration → gate, string=advance only that node); main.ts:308 is the sole renderer hook-event send and always routes through the dispatcher''s attachDeclaredNode; all renamed oneShotTargetStore call sites updated and mcpServer Pick<> deps satisfied; durable-recovery bypass is correct (completed status is the node-scoped proof, recoveredCompletions guards double-advance); collaborating/stopReceived + checkpoint + manual branches unchanged (gate exempts manual, sits before them); one-declaration-per-session Map is correct (per-turn, consumed by that turn''s Stop or reset on register-target) and the decomposition hand-off is better-defended now. Test coverage for the new behavior is strong.'
-    children: []
-    metadata:
-      status: pending
   0b7cb389-d98e-4d99-a12a-0f45640f8eb3:
     id: 0b7cb389-d98e-4d99-a12a-0f45640f8eb3
     content: 'review feedback (pr-review-toolkit:code-reviewer) — VERDICT: no blockers, ship-ready. The four hard cases are correct: (1) race guard in dispatchRecurseStart reads workflowExecutionStates at timer-fire and bails with releaseTerminalAssignmentForNode + return — no double-start, no spurious session re-stamp (asserted in recurseHandoff.test.ts: sessionId stays undefined); (2) startWorkflowInNewSession checks isEligibleForExecution before the metadata delete, so a bailed start never strips binding+group; (3) confirmation gated on decideWorkflowStartRoute(currentSessionId).kind !== ''spawn-fresh'' — a pure decomposed sibling (groupId, no session) starts silently, a live/resumable session prompts, and the dialog copy is accurate because it only fires when a sessionId exists; (4) detach = delete groupId → findNextDecomposedSibling skips it (undefined !== originGroupId); the all-ungrouped edge is guarded in hasDecomposedSiblings (originGroupId !== undefined). Conventions followed: template-only component, logic in store/hook, store under store/, plain-CSS custom properties, tests in tests/ subdirs, no empty/skipped tests. Verified during review: type-check + lint clean, 80 feature tests pass. Nits — (a) handler recomputed freshNode.metadata.sessionId instead of the in-scope sessionId local: FIXED; (b) dead CSS fallback var(--blue-500, var(--amber-500)) (--blue-500 is always defined): FIXED to var(--blue-500); (c) pendingNewSessionStartStore duplicates the pendingTerminalCloseStore single-slot shape — left as-is, intentional mirror of the established pattern, consolidating would be premature abstraction; (d) no single end-to-end test for a node with BOTH a live session AND a groupId through menu→confirm→action — deferred (each piece is covered individually), should-consider not should-fix.'
     children: []
     metadata:
       status: pending
+  2c222b13-7588-4954-931e-2413229f394a:
+    id: 2c222b13-7588-4954-931e-2413229f394a
+    content: worktree
+    children:
+      - dfd724d8-eb7e-49fe-a17d-a7988e8399eb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfd724d8-eb7e-49fe-a17d-a7988e8399eb:
+    id: dfd724d8-eb7e-49fe-a17d-a7988e8399eb
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-stop-hook-node-scoped-advance) — branch `fix/stop-hook-node-scoped-advance` forked from `master` at `/Users/brianfox/dev/Arborescent-worktrees/fix-stop-hook-node-scoped-advance`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6eea882-6b12-4d3e-9772-a4894841fdae:
+    id: b6eea882-6b12-4d3e-9772-a4894841fdae
+    content: Summary
+    children:
+      - 05860a79-773f-482e-af57-4424dba5afb6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05860a79-773f-482e-af57-4424dba5afb6:
+    id: 05860a79-773f-482e-af57-4424dba5afb6
+    content: An unrelated terminal Stop hook (from a manual send/revise on a different node) is mis-credited to the bound running node and advances it a step it never finished.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d8b038f-835e-488f-96b2-4b858dfd0887:
+    id: 0d8b038f-835e-488f-96b2-4b858dfd0887
+    content: Steps to reproduce
+    children:
+      - 3327d4b5-cbf5-4509-902c-c331a2595c25
+      - fef8da72-6b87-43dc-9806-c0a430e7d80f
+      - 4da58d0a-1bfc-4720-9536-4a34cb32a857
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3327d4b5-cbf5-4509-902c-c331a2595c25:
+    id: 3327d4b5-cbf5-4509-902c-c331a2595c25
+    content: 'Precondition: a workflow node is bound and running on a terminal (state ''running'' in workflowExecutionStates), mid-step with Claude active.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fef8da72-6b87-43dc-9806-c0a430e7d80f:
+    id: fef8da72-6b87-43dc-9806-c0a430e7d80f
+    content: 'User action: interrupt Claude on that terminal, then manually send or revise content targeting a DIFFERENT node on the same terminal and let that turn finish.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4da58d0a-1bfc-4720-9536-4a34cb32a857:
+    id: 4da58d0a-1bfc-4720-9536-4a34cb32a857
+    content: 'Observation: when the manual turn''s Stop hook fires, the original bound node advances to its next workflow step (its next-step prompt is sent) without the bound node''s own work having completed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e3c544d-d8ea-47ed-9df9-03f011bee2a6:
+    id: 8e3c544d-d8ea-47ed-9df9-03f011bee2a6
+    content: Expected behavior
+    children:
+      - 7a8a5283-cefd-476c-9e9d-7cf0a334f598
+      - bca7d1c1-73ac-4658-81e2-c2b1ee2984c3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a8a5283-cefd-476c-9e9d-7cf0a334f598:
+    id: 7a8a5283-cefd-476c-9e9d-7cf0a334f598
+    content: 'Happy path: a manual send/revise on another node does not advance the bound node; only the bound node''s own completion signal advances it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bca7d1c1-73ac-4658-81e2-c2b1ee2984c3:
+    id: bca7d1c1-73ac-4658-81e2-c2b1ee2984c3
+    content: 'Edge cases: multiple Stop hooks during one interruption (e.g. several clarifying questions) must not each advance the bound node, and interrupting Claude should pause the bound node rather than leave it to advance on the next unrelated Stop.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89c5718c-92e8-4b6b-83b4-0a713ddf3d7e:
+    id: 89c5718c-92e8-4b6b-83b4-0a713ddf3d7e
+    content: Actual behavior
+    children:
+      - b3c24698-96b7-497b-8d76-45e5dbdf2c8d
+      - eafdb8b2-04b8-4df6-821a-c9879f041743
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3c24698-96b7-497b-8d76-45e5dbdf2c8d:
+    id: b3c24698-96b7-497b-8d76-45e5dbdf2c8d
+    content: The bound node advances one step per unrelated Stop; with multiple Stop hooks it can over-advance, and two step prompts can paste into the terminal at once.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eafdb8b2-04b8-4df6-821a-c9879f041743:
+    id: eafdb8b2-04b8-4df6-821a-c9879f041743
+    content: 'User-visible symptoms: the workflow silently jumps a step, the bound node''s next-step prompt appears prematurely, and content lands out of sequence requiring a manual rewind.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe40e15e-3129-4fed-bf26-1914a0283791:
+    id: fe40e15e-3129-4fed-bf26-1914a0283791
+    content: Suspected cause
+    children:
+      - 50ed7813-5256-47ed-a2bc-4d971cc293b6
+      - fc07f776-bde0-47e5-b3d0-cc8a267f67ab
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50ed7813-5256-47ed-a2bc-4d971cc293b6:
+    id: 50ed7813-5256-47ed-a2bc-4d971cc293b6
+    content: findRunningNodeOnTerminal (src/renderer/store/tree/actions/terminalBindingResolution.ts:42-60) resolves a Stop purely by terminal and returns the bound node; a manual send/revise (sendActions.ts) never registers in workflowExecutionStates, so the bound node is the only candidate the resolver sees for that terminal.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc07f776-bde0-47e5-b3d0-cc8a267f67ab:
+    id: fc07f776-bde0-47e5-b3d0-cc8a267f67ab
+    content: The explicit_submit_seen gate (src/renderer/store/tree/actions/workflowHookEventHandler.ts:232-239) does not cover this because the flag is session/turn-global (src/main/services/oneShotTargetStore.ts) and the manual send's own submit_step_output sets it (src/main/services/mcpSubmitOutputTool.ts:131), so the gate reads true and permits the bound node's advance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22bec2c8-683d-4296-be9f-219e257cf393:
+    id: 22bec2c8-683d-4296-be9f-219e257cf393
+    content: Affected files
+    children:
+      - 5e1eb90b-dec9-4256-b60c-a8fe8527d3ba
+      - 306c4b26-2556-470a-9233-6f7ce86550ff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e1eb90b-dec9-4256-b60c-a8fe8527d3ba:
+    id: 5e1eb90b-dec9-4256-b60c-a8fe8527d3ba
+    content: src/renderer/store/tree/actions/workflowHookEventHandler.ts — Stop-event advance routing (primary suspect).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  306c4b26-2556-470a-9233-6f7ce86550ff:
+    id: 306c4b26-2556-470a-9233-6f7ce86550ff
+    content: 'Related surfaces: terminalBindingResolution.ts (findRunningNodeOnTerminal), src/main/services/oneShotTargetStore.ts (session-global explicit_submit_seen), src/renderer/store/tree/actions/sendActions.ts (manual send omits run-state registration).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9fb2c9e-7f0a-44a0-bcb8-6d6fa48cde3c:
+    id: e9fb2c9e-7f0a-44a0-bcb8-6d6fa48cde3c
+    content: Regression window
+    children:
+      - 2b7259ea-101e-4c5e-984d-2e2bc013bd4d
+      - 9efe5438-954d-439b-8add-a1819e210104
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b7259ea-101e-4c5e-984d-2e2bc013bd4d:
+    id: 2b7259ea-101e-4c5e-984d-2e2bc013bd4d
+    content: 'Last known good: unknown — the defect is inherent to the Stop-hook + transient run-state advancement design, not a single regressing commit.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9efe5438-954d-439b-8add-a1819e210104:
+    id: 9efe5438-954d-439b-8add-a1819e210104
+    content: 'First observed: surfaced via a manual send/revise on a second node during a bound run; sibling of the already-noted decomposition hand-off double-advance.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73aeed0d-0e8a-4292-bfd8-d377f86d184a:
+    id: 73aeed0d-0e8a-4292-bfd8-d377f86d184a
+    content: Severity
+    children:
+      - 0ef5b1df-12d5-4ae8-b014-14591f679b55
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ef5b1df-12d5-4ae8-b014-14591f679b55:
+    id: 0ef5b1df-12d5-4ae8-b014-14591f679b55
+    content: Medium-High — silent workflow desync (step skipped / premature prompt); no data loss, but requires manual recovery and erodes trust in autonomous advancement.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f78f168-3555-4abd-8c3a-40f5012f5fb7:
+    id: 0f78f168-3555-4abd-8c3a-40f5012f5fb7
+    content: Notes
+    children:
+      - a0ddd507-5fee-4bb4-bbf1-53a7728bdd28
+      - 6922d4a8-e1ee-42d2-a886-5d0a33d735cf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0ddd507-5fee-4bb4-bbf1-53a7728bdd28:
+    id: a0ddd507-5fee-4bb4-bbf1-53a7728bdd28
+    content: 'Disambiguate from the decomposition hand-off double-advance (same findRunningNodeOnTerminal mis-credit family, different trigger) and from the "Stop dropped: no running node" stall (that loses run-state; this one over-advances).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6922d4a8-e1ee-42d2-a886-5d0a33d735cf:
+    id: 6922d4a8-e1ee-42d2-a886-5d0a33d735cf
+    content: 'UX/telemetry gap: there is no pause-on-interrupt hook today and no signal when a Stop is credited to a node that did not itself submit this turn — a log/pause candidate, and per-node (not session-global) submit tracking would close the gate hole.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0392dd8-3ae1-4383-9c86-444ddb2043d9:
+    id: e0392dd8-3ae1-4383-9c86-444ddb2043d9
+    content: Technical refinement
+    children:
+      - a4538473-0c9a-42b2-8982-5246343b7302
+      - d9dc5e77-1f47-4fe2-bad2-f66c7025debc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4538473-0c9a-42b2-8982-5246343b7302:
+    id: a4538473-0c9a-42b2-8982-5246343b7302
+    content: Flag complications
+    children:
+      - 1785e193-61db-45e3-9789-e6db4b51b36f
+      - d93ad90e-fbde-464f-8fef-908382a7edca
+      - 86538336-869b-4e40-9bc7-a17863ad2b03
+      - 6cfe756f-af2c-436f-8b16-e457f6c388de
+      - fc78ab7f-9810-47b5-a28d-d3e40c5027ac
+      - 4861f030-e176-4da5-ab50-51b236544a4f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1785e193-61db-45e3-9789-e6db4b51b36f:
+    id: 1785e193-61db-45e3-9789-e6db4b51b36f
+    content: 'Stop-before-intent is a latency race, not a logical one (the completion call always lands mid-turn, before turn-end); handle it with a short bounded retry on Stop, and on timeout leave the node running/awaiting-validation rather than dropping or advancing — this also absorbs today''s "Stop dropped: no running node" stall.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d93ad90e-fbde-464f-8fef-908382a7edca:
+    id: d93ad90e-fbde-464f-8fef-908382a7edca
+    content: If Claude hangs after declaring done but no Stop ever fires, the node sits visibly running with the intent pending until the user stops it; this is benign (honest state, cleared on teardown) and is intentionally given no separate timeout.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86538336-869b-4e40-9bc7-a17863ad2b03:
+    id: 86538336-869b-4e40-9bc7-a17863ad2b03
+    content: The "announced-then-interrupted" case (node declares done, then user interrupts and sends elsewhere) will still advance the declared node on the terminal's next Stop; parked as rare and acceptable.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cfe756f-af2c-436f-8b16-e457f6c388de:
+    id: 6cfe756f-af2c-436f-8b16-e457f6c388de
+    content: 'Open question deferred: whether an ESC interrupt fires a Stop at all is unverified against Claude Code''s hook contract — the fix is correct either way (no intent, no advance), but the pause-on-interrupt UX depends on the answer.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc78ab7f-9810-47b5-a28d-d3e40c5027ac:
+    id: fc78ab7f-9810-47b5-a28d-d3e40c5027ac
+    content: 'Out of scope: the decomposition hand-off double-advance (sibling bug, different trigger), the pause-on-interrupt UX (brown-pause-on-ESC), and revise-mid-run replace-in-place are not addressed here.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4861f030-e176-4da5-ab50-51b236544a4f:
+    id: 4861f030-e176-4da5-ab50-51b236544a4f
+    content: ROI is favorable — the change is a net reduction in machinery (drop the safety-net auto-submit, one flag on the existing entry, no TTL); the only genuinely new logic is the Stop retry/timeout rendezvous, which replaces existing stall handling.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9dc5e77-1f47-4fe2-bad2-f66c7025debc:
+    id: d9dc5e77-1f47-4fe2-bad2-f66c7025debc
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - f4e7caf4-0372-4be6-9f1c-9ff64b093c50
+      - ff5d90f1-acc0-45d3-856e-7f52466849f7
+      - de253f51-4ae1-437b-a8da-47f3076e34ad
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4e7caf4-0372-4be6-9f1c-9ff64b093c50:
+    id: f4e7caf4-0372-4be6-9f1c-9ff64b093c50
+    content: 'Move node identity off the Stop hook''s terminal guess and onto the explicit completion call: announce_step_done/submit_step_output (which already carry target_node_id) set a node-scoped doneDeclared flag on the workflowExecutionStates entry, replacing the session-global explicit_submit_seen; the Stop hook becomes a pure terminal-ready edge that advances only the node whose entry holds a pending flag — no flag, no advance.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff5d90f1-acc0-45d3-856e-7f52466849f7:
+    id: ff5d90f1-acc0-45d3-856e-7f52466849f7
+    content: 'Non-obvious: advancing inside the MCP call is impossible because the terminal isn''t free until the turn ends (after the tool returns), so the Stop edge is still needed — but only as a readiness signal, not as the node resolver; the flag lives on the entry, so entry teardown on stop/finish garbage-collects it (no TTL).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de253f51-4ae1-437b-a8da-47f3076e34ad:
+    id: de253f51-4ae1-437b-a8da-47f3076e34ad
+    content: 'Likely to surprise the reviewer: the safety-net Stop auto-submit is removed, not kept — under this model "turn ended with no declaration" must advance nothing, so the old safety net would be actively wrong; changes land in workflowHookEventHandler.ts, workflowExecutionActions.ts, the MCP completion tools, and oneShotTargetStore.ts.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7a94817-e867-47fa-a5a5-4f7346c57988:
+    id: a7a94817-e867-47fa-a5a5-4f7346c57988
+    content: Verification summary
+    children:
+      - 3a6d0a79-0457-4db6-966f-5918f6c07113
+      - 66c2f7ea-550f-44f1-9699-b26b3169b1d1
+      - bfd3746f-2567-4baf-b830-5aefa7503ee8
+      - abc591a1-81c6-4276-977f-bb97713fa78b
+      - 4aac2b9b-799e-46bd-a103-5b63c09764c8
+      - faeb46d9-d9fd-49ea-bd70-0045ab6d57f3
+      - 02565942-2677-4169-9597-8875d16fe439
+      - df443769-6a8f-47c5-b3d3-df49110321eb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a6d0a79-0457-4db6-966f-5918f6c07113:
+    id: 3a6d0a79-0457-4db6-966f-5918f6c07113
+    content: 'Core fix verified implemented and green: the Stop advance is node-scoped — a manual send/revise on another node no longer advances the bound node, and repeated declaration-less Stops never advance; affected tests pass, type-check and lint clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66c2f7ea-550f-44f1-9699-b26b3169b1d1:
+    id: 66c2f7ea-550f-44f1-9699-b26b3169b1d1
+    content: Deviation — declaration is carried on the Stop event (declared_node_id, tracked per-session in oneShotTargetStore), NOT stored as a flag on the workflowExecutionStates entry; the approach bullets are implemented in substance but via this event-carried mechanism.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfd3746f-2567-4baf-b830-5aefa7503ee8:
+    id: bfd3746f-2567-4baf-b830-5aefa7503ee8
+    content: 'Not built (chosen out) — the Stop-before-declaration retry/timeout rendezvous: unnecessary because the declaration rides on the Stop event, so there is no Stop-vs-declaration race to reconcile.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abc591a1-81c6-4276-977f-bb97713fa78b:
+    id: abc591a1-81c6-4276-977f-bb97713fa78b
+    content: Not built (chosen out) — no TTL and no entry-teardown GC; the declaration is cleared at the turn boundary by the dispatcher (register-target / post-forward) instead.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aac2b9b-799e-46bd-a103-5b63c09764c8:
+    id: 4aac2b9b-799e-46bd-a103-5b63c09764c8
+    content: Behavior change vs the parked prediction — in the announced-then-interrupted case a later same-session manual send overwrites the declaration, so the declared node stalls (stays running) rather than advancing; still within the "rare and acceptable" envelope and safer than a wrong advance.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  faeb46d9-d9fd-49ea-bd70-0045ab6d57f3:
+    id: faeb46d9-d9fd-49ea-bd70-0045ab6d57f3
+    content: Actual file set — workflowHookEventHandler.ts, hookEventDispatcher.ts, hookServer.ts, oneShotTargetStore.ts, mcpWriteTools.ts, mcpSubmitOutputTool.ts; workflowExecutionActions.ts was NOT touched (the entry-flag approach would have).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  02565942-2677-4169-9597-8875d16fe439:
+    id: 02565942-2677-4169-9597-8875d16fe439
+    content: Deferred / out of scope — decomposition double-advance, pause-on-interrupt UX, the unresolved "does ESC fire a Stop" question, and revise-mid-run replace-in-place.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  df443769-6a8f-47c5-b3d3-df49110321eb:
+    id: df443769-6a8f-47c5-b3d3-df49110321eb
+    content: Still open — regression window "last known good" remains undetermined; inherent to the Stop-hook advancement design, not a single regressing commit.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  827f34fa-8dc4-4c12-82da-60ff5bc6b037:
+    id: 827f34fa-8dc4-4c12-82da-60ff5bc6b037
+    content: review feedback
+    children:
+      - df55ba58-65df-4c3e-9883-0427ddfa3015
+      - d517e5e8-bebc-4267-8cac-4d27c40e5035
+      - 526964c5-22dc-4782-ba75-85e85d8f6375
+      - cab59f9f-244c-4e01-80d2-bb6fbf4036ad
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df55ba58-65df-4c3e-9883-0427ddfa3015:
+    id: df55ba58-65df-4c3e-9883-0427ddfa3015
+    content: 'Verdict: approved — core node-scoped Stop-advance fix is sound and runtime-correct (type-check, lint, affected tests all green). One should-fix (non-blocking, type-contract only) and minor doc nits below.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d517e5e8-bebc-4267-8cac-4d27c40e5035:
+    id: d517e5e8-bebc-4267-8cac-4d27c40e5035
+    content: 'Should-fix (type contract): the IPC payload type omits the new field. Add `declared_node_id?: string | null` to electronApi.HookEventPayload (src/shared/types/electronApi.ts) and to the inline `data` type in src/preload/index.ts onHookEvent (~L121). Runtime is correct (Electron structured-clone carries the field main→renderer), but at the type level the renderer sees declared_node_id as always-undefined (the permissive branch), so a future refactor that rebuilds the renderer event from the declared shape would silently disable the gate in production with no test failure. workflowHookEventHandler.HookEventPayload already has the field; only the shared IPC contract lags.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  526964c5-22dc-4782-ba75-85e85d8f6375:
+    id: 526964c5-22dc-4782-ba75-85e85d8f6375
+    content: 'Nit (docs): stale boolean-"flag" prose in src/main/services/tests/mcpSubmitOutputTool.test.ts (~L465-467, 506, 518-521) — assertions are correct (doneDeclarationNode) but comments still say "raise the flag"; reword to the node-scoped declaration model so the rationale matches the data model.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cab59f9f-244c-4e01-80d2-bb6fbf4036ad:
+    id: cab59f9f-244c-4e01-80d2-bb6fbf4036ad
+    content: 'Confirmed sound (no action): tri-state gate correct (undefined=permissive non-dispatcher caller, null=dispatcher saw no declaration → gate, string=advance only that node); main.ts:308 is the sole renderer hook-event send and always routes through the dispatcher''s attachDeclaredNode; all renamed oneShotTargetStore call sites updated and mcpServer Pick<> deps satisfied; durable-recovery bypass is correct (completed status is the node-scoped proof, recoveredCompletions guards double-advance); collaborating/stopReceived + checkpoint + manual branches unchanged (gate exempts manual, sits before them); one-declaration-per-session Map is correct (per-turn, consumed by that turn''s Stop or reset on register-target) and the decomposition hand-off is better-defended now. Test coverage for the new behavior is strong.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee7af3ec-d895-4bf0-af80-5ef7d91c1625:
+    id: ee7af3ec-d895-4bf0-af80-5ef7d91c1625
+    content: Merged to master
+    children:
+      - d6cfa585-a1a4-4ec7-bf0f-8e7bff256665
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6cfa585-a1a4-4ec7-bf0f-8e7bff256665:
+    id: d6cfa585-a1a4-4ec7-bf0f-8e7bff256665
+    content: Fix landed as a single commit, fast-forward merged to master as 03871fb (project.arbo snapshot 03abad0 beneath it), pushed to origin/master; standard checks re-run green after rebase; worktree and local branch fix/stop-hook-node-scoped-advance deleted.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
