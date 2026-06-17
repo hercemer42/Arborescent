@@ -86,19 +86,19 @@ describe('OneShotTargetStore — markManualCollabResolved API', () => {
     expect(store.pendingTarget('sess-1')).toBe('node-a');
   });
 
-  it('markManualCollabResolved does not touch markerSeenThisTurn or explicitSubmitSeenThisTurn — only the routing pin', () => {
+  it('markManualCollabResolved does not touch markerSeenThisTurn or the done-declaration — only the routing pin', () => {
     // Resolution is about the route, not about per-turn gating signals.
     // The Stop-hook gates remain independent so a turn ending after a
-    // resolved collab still surfaces its true explicit_submit_seen value.
+    // resolved collab still surfaces its true done-declaration.
     store.setPendingTarget('sess-1', 'node-a');
     store.setMarkerSeenThisTurn('sess-1', true);
-    store.setExplicitSubmitSeenThisTurn('sess-1', true);
+    store.recordDoneDeclaration('sess-1', 'node-a');
 
     store.markManualCollabResolved('sess-1');
 
     expect(store.pendingTarget('sess-1')).toBe(null);
     expect(store.wasMarkerSeenThisTurn('sess-1')).toBe(true);
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+    expect(store.doneDeclarationNode('sess-1')).toBe('node-a');
   });
 
   it('a subsequent setPendingTarget after markManualCollabResolved re-arms the route normally', () => {
@@ -177,82 +177,89 @@ describe('OneShotTargetStore — markerSeenThisTurn lifecycle', () => {
   });
 });
 
-describe('OneShotTargetStore — explicitSubmitSeenThisTurn lifecycle', () => {
-  // The explicit-submit flag is the positive completion signal for the
-  // Stop-hook gate. The flag is set by submit_step_output(origin=explicit)
-  // and read by the Stop-hook handler to decide whether the Stop event
-  // should advance the step. Without an explicit submit this turn, Stop
-  // must be a no-op even on autonomous steps.
+describe('OneShotTargetStore — doneDeclaration lifecycle', () => {
+  // The done-declaration is the node-scoped positive completion signal for the
+  // Stop-hook gate. It is recorded by submit_step_output(origin=explicit) and
+  // announce_step_done with the node that declared done, and read by the
+  // dispatcher to thread declared_node_id onto the Stop event. Without a
+  // declaration for the bound node this turn, Stop must not advance the step.
   let store: OneShotTargetStore;
 
   beforeEach(() => {
     store = new OneShotTargetStore();
   });
 
-  it('defaults to false when no explicit submit has been seen for the session', () => {
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+  it('defaults to null when no node has declared done for the session', () => {
+    expect(store.doneDeclarationNode('sess-1')).toBeNull();
   });
 
-  it('setExplicitSubmitSeenThisTurn(true) flips the flag observable to the Stop-hook gate', () => {
-    store.setExplicitSubmitSeenThisTurn('sess-1', true);
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+  it('recordDoneDeclaration names the node observable to the Stop-hook gate', () => {
+    store.recordDoneDeclaration('sess-1', 'node-a');
+    expect(store.doneDeclarationNode('sess-1')).toBe('node-a');
   });
 
-  it('setExplicitSubmitSeenThisTurn(false) explicitly clears the flag without touching pendingTarget or markerSeen', () => {
+  it('a second declaration in the same turn overwrites the first — the latest declared node wins', () => {
+    store.recordDoneDeclaration('sess-1', 'node-a');
+    store.recordDoneDeclaration('sess-1', 'node-b');
+    expect(store.doneDeclarationNode('sess-1')).toBe('node-b');
+  });
+
+  it('clearDoneDeclaration drops the declaration without touching pendingTarget or markerSeen', () => {
     store.setPendingTarget('sess-1', 'node-a');
     store.setMarkerSeenThisTurn('sess-1', true);
-    store.setExplicitSubmitSeenThisTurn('sess-1', true);
-    store.setExplicitSubmitSeenThisTurn('sess-1', false);
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    store.recordDoneDeclaration('sess-1', 'node-a');
+    store.clearDoneDeclaration('sess-1');
+    expect(store.doneDeclarationNode('sess-1')).toBeNull();
     expect(store.pendingTarget('sess-1')).toBe('node-a');
     expect(store.wasMarkerSeenThisTurn('sess-1')).toBe(true);
   });
 
-  it('explicitSubmitSeenThisTurn is per-session — flagging one session does not affect another', () => {
-    store.setExplicitSubmitSeenThisTurn('sess-1', true);
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-2')).toBe(false);
+  it('doneDeclaration is per-session — declaring one session does not affect another', () => {
+    store.recordDoneDeclaration('sess-1', 'node-a');
+    expect(store.doneDeclarationNode('sess-2')).toBeNull();
   });
 
-  it('explicitSubmitSeen is independent of markerSeen — setting one does not implicitly set the other', () => {
+  it('doneDeclaration is independent of markerSeen — setting one does not implicitly set the other', () => {
     // markerSeen tracks "the prompt this turn carried an Arborescent marker"
-    // (set by hookEventDispatcher at UserPromptSubmit). explicitSubmitSeen
-    // tracks "the AI called submit_step_output explicitly this turn" (set
-    // by mcpSubmitOutputTool). They serve different gates and must not
-    // bleed into each other.
+    // (set by hookEventDispatcher at UserPromptSubmit). doneDeclaration tracks
+    // "the AI declared a node done this turn" (set by mcpSubmitOutputTool /
+    // announce_step_done). They serve different gates and must not bleed.
     store.setMarkerSeenThisTurn('sess-1', true);
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(store.doneDeclarationNode('sess-1')).toBeNull();
 
-    store.setExplicitSubmitSeenThisTurn('sess-2', true);
+    store.recordDoneDeclaration('sess-2', 'node-a');
     expect(store.wasMarkerSeenThisTurn('sess-2')).toBe(false);
   });
 
-  it('resetSession clears explicitSubmitSeen alongside pendingTarget and markerSeen', () => {
+  it('resetSession clears the done-declaration alongside pendingTarget and markerSeen', () => {
     store.setPendingTarget('sess-1', 'node-a');
     store.setMarkerSeenThisTurn('sess-1', true);
-    store.setExplicitSubmitSeenThisTurn('sess-1', true);
+    store.recordDoneDeclaration('sess-1', 'node-a');
     store.resetSession('sess-1');
     expect(store.pendingTarget('sess-1')).toBe(null);
     expect(store.wasMarkerSeenThisTurn('sess-1')).toBe(false);
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(store.doneDeclarationNode('sess-1')).toBeNull();
   });
 
-  it('resetSession does not affect explicitSubmitSeen on other sessions', () => {
-    store.setExplicitSubmitSeenThisTurn('sess-1', true);
-    store.setExplicitSubmitSeenThisTurn('sess-2', true);
+  it('resetSession does not affect the done-declaration on other sessions', () => {
+    store.recordDoneDeclaration('sess-1', 'node-a');
+    store.recordDoneDeclaration('sess-2', 'node-b');
     store.resetSession('sess-1');
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-2')).toBe(true);
+    expect(store.doneDeclarationNode('sess-2')).toBe('node-b');
   });
 
-  it('clear() drops explicitSubmitSeen state for all sessions', () => {
-    store.setExplicitSubmitSeenThisTurn('sess-1', true);
-    store.setExplicitSubmitSeenThisTurn('sess-2', true);
+  it('clear() drops done-declaration state for all sessions', () => {
+    store.recordDoneDeclaration('sess-1', 'node-a');
+    store.recordDoneDeclaration('sess-2', 'node-b');
     store.clear();
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
-    expect(store.wasExplicitSubmitSeenThisTurn('sess-2')).toBe(false);
+    expect(store.doneDeclarationNode('sess-1')).toBeNull();
+    expect(store.doneDeclarationNode('sess-2')).toBeNull();
   });
 
-  it('empty sessionId is treated defensively — set is a no-op, lookup returns false', () => {
-    store.setExplicitSubmitSeenThisTurn('', true);
-    expect(store.wasExplicitSubmitSeenThisTurn('')).toBe(false);
+  it('empty sessionId or nodeId is treated defensively — record is a no-op, lookup returns null', () => {
+    store.recordDoneDeclaration('', 'node-a');
+    expect(store.doneDeclarationNode('')).toBeNull();
+    store.recordDoneDeclaration('sess-1', '');
+    expect(store.doneDeclarationNode('sess-1')).toBeNull();
   });
 });

@@ -264,12 +264,12 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
   });
 
-  describe('Stop hook completion gate (explicit-submit required)', () => {
+  describe('Stop hook completion gate (node-scoped declaration required)', () => {
     beforeEach(() => {
       state.workflowSessionMap = { 'session-1': 'terminal-1' };
     });
 
-    it('does NOT advance an autonomous step when Stop arrives with explicit_submit_seen=false', () => {
+    it('does NOT advance an autonomous step when Stop arrives with no declaration this turn', () => {
       state.workflowExecutionStates['task-a'] = {
         state: 'running',
         terminalTabId: 'terminal-1',
@@ -278,14 +278,14 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: false,
+        declared_node_id: null,
       });
 
       expect(state.nodes['step-1'].children).toContain('task-a');
       expect(state.nodes['step-2'].children).not.toContain('task-a');
     });
 
-    it('does NOT set stopReceived on a collaborating autonomous step when Stop arrives with explicit_submit_seen=false', () => {
+    it('does NOT set stopReceived on a collaborating autonomous step when Stop arrives with no declaration this turn', () => {
       state.workflowExecutionStates['task-a'] = {
         state: 'running',
         terminalTabId: 'terminal-1',
@@ -295,14 +295,14 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: false,
+        declared_node_id: null,
       });
 
       expect(state.workflowExecutionStates['task-a'].stopReceived).toBeFalsy();
       expect(state.nodes['step-1'].children).toContain('task-a');
     });
 
-    it('does NOT transition a checkpoint step to awaiting-validation or raise the step-complete toast when Stop arrives with explicit_submit_seen=false', () => {
+    it('does NOT transition a checkpoint step to awaiting-validation or raise the step-complete toast when Stop arrives with no declaration this turn', () => {
       state.nodes['step-1'].metadata.stepType = 'checkpoint';
       state.workflowExecutionStates['task-a'] = {
         state: 'running',
@@ -313,14 +313,14 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: false,
+        declared_node_id: null,
       });
 
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
       expect(mockAddToast).not.toHaveBeenCalled();
     });
 
-    it('advances an autonomous step when Stop arrives with explicit_submit_seen=true (happy path)', () => {
+    it('advances an autonomous step when Stop arrives with a declaration this turn (happy path)', () => {
       state.workflowExecutionStates['task-a'] = {
         state: 'running',
         terminalTabId: 'terminal-1',
@@ -329,13 +329,12 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: true,
       });
 
       expect(state.nodes['step-2'].children).toContain('task-a');
     });
 
-    it('manual steps pause at awaiting-validation regardless of explicit_submit_seen — user drives advancement', () => {
+    it('manual steps pause at awaiting-validation regardless of the done-declaration — user drives advancement', () => {
       state.nodes['step-1'].metadata.stepType = 'manual';
       state.workflowExecutionStates['task-a'] = {
         state: 'running',
@@ -345,7 +344,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: false,
+        declared_node_id: null,
       });
 
       expect(state.nodes['step-1'].children).toContain('task-a');
@@ -353,7 +352,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       expect(state.workflowExecutionStates['task-a'].terminalTabId).toBe('terminal-1');
     });
 
-    it('absent explicit_submit_seen is treated as permissive (backward-compat for callers that do not set the gate)', () => {
+    it('absent the done-declaration is treated as permissive (backward-compat for callers that do not set the gate)', () => {
       state.workflowExecutionStates['task-a'] = {
         state: 'running',
         terminalTabId: 'terminal-1',

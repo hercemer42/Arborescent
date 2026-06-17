@@ -162,7 +162,6 @@ describe('Integration: Workflow Execution', () => {
           session_id: 'session-1',
           hook_event_name: 'Stop',
           terminal_id: 'term-1',
-          explicit_submit_seen: true,
         });
         vi.advanceTimersByTime(1500);
 
@@ -214,7 +213,6 @@ describe('Integration: Workflow Execution', () => {
           session_id: 'session-1',
           hook_event_name: 'Stop',
           terminal_id: 'term-1',
-          explicit_submit_seen: true,
         });
         vi.advanceTimersByTime(1500);
 
@@ -426,7 +424,7 @@ describe('Integration: Workflow Execution', () => {
   });
 
   describe('Stop completion gate — interrupt mid-task then unrelated turn', () => {
-    it('autonomous step stays in flight when Stop arrives with explicit_submit_seen=false and advances on a subsequent explicit submit', () => {
+    it('autonomous step stays in flight when Stop arrives with no declaration this turn and advances on a subsequent explicit submit', () => {
       const state = () => stateRef.current;
 
       void actions.startWorkflow('task', 'term-1');
@@ -435,7 +433,7 @@ describe('Integration: Workflow Execution', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: false,
+        declared_node_id: null,
       });
 
       expect(state().nodes['s1'].children).toContain('task');
@@ -445,14 +443,13 @@ describe('Integration: Workflow Execution', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: true,
       });
 
       expect(state().nodes['s2'].children).toContain('task');
       expect(state().workflowExecutionStates['task'].state).toBe('running');
     });
 
-    it('checkpoint step does not raise step-complete toast when Stop arrives with explicit_submit_seen=false', () => {
+    it('checkpoint step does not raise step-complete toast when Stop arrives with no declaration this turn', () => {
       const state = () => stateRef.current;
 
       state().nodes['s2'].metadata.stepType = 'checkpoint';
@@ -463,7 +460,6 @@ describe('Integration: Workflow Execution', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: true,
       });
       expect(state().nodes['s2'].children).toContain('task');
       mockAddToast.mockClear();
@@ -471,7 +467,7 @@ describe('Integration: Workflow Execution', () => {
       actions.handleHookEvent({
         session_id: 'session-1',
         hook_event_name: 'Stop',
-        explicit_submit_seen: false,
+        declared_node_id: null,
       });
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');

@@ -427,8 +427,8 @@ describe('createSubmitOutputTool — mode-gated on automatic steps (pure collabo
   });
 });
 
-describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook completion gate)', () => {
-  // The explicit-submit flag is the positive completion signal for the
+describe('createSubmitOutputTool — done-declaration (Stop-hook completion gate)', () => {
+  // The done-declaration is the positive completion signal for the
   // Stop-hook gate: when set, the Stop hook is allowed to advance the
   // bound autonomous step; when clear, Stop is a no-op even on autonomous
   // steps. The flag is per-session, scoped to the current turn, and is
@@ -436,17 +436,17 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
   // raise it, since they fire on every assistant turn boundary regardless
   // of whether the AI actually intended completion.
 
-  it('explicit-origin submit on an autonomous step sets explicitSubmitSeenThisTurn for the session', async () => {
+  it('explicit-origin submit on an autonomous step sets the done-declaration for the session', async () => {
     const made = makeDeps('autonomous');
     made.registry.register('sess-1', BOUND);
     const tool = createSubmitOutputTool(made.deps);
 
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBeNull();
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'auto' });
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBe(BOUND);
   });
 
-  it('explicit-origin submit on a non-automatic step (proposal route) sets explicitSubmitSeenThisTurn', async () => {
+  it('explicit-origin submit on a non-automatic step (proposal route) sets the done-declaration', async () => {
     // The AI's explicit submit is meaningful even on manual/checkpoint
     // steps: it signals "the AI has produced its turn output for the user
     // to review." The Stop-hook gate uses this to decide whether the
@@ -457,68 +457,68 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
     const tool = createSubmitOutputTool(made.deps);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'manual response' });
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBe(BOUND);
   });
 
-  it('safety-net-origin submit does NOT set explicitSubmitSeenThisTurn (autonomous)', async () => {
+  it('safety-net-origin submit does NOT set the done-declaration (autonomous)', async () => {
     // Safety-net submissions are the Stop hook auto-submit; they fire on
-    // every turn regardless of intent. Letting them raise the flag would
-    // make the gate self-defeating — the very Stop event we want to gate
-    // would always find the flag set.
+    // every turn regardless of intent. Letting them record a declaration
+    // would make the gate self-defeating — the very Stop event we want to
+    // gate would always find a matching declaration.
     const made = makeDeps('autonomous');
     made.registry.register('sess-1', BOUND);
     made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
     const tool = createSubmitOutputTool(made.deps);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'auto', origin: 'safety-net' });
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBeNull();
   });
 
-  it('safety-net-origin submit does NOT set explicitSubmitSeenThisTurn on a non-automatic step (no-op path)', async () => {
+  it('safety-net-origin submit does NOT set the done-declaration on a non-automatic step (no-op path)', async () => {
     const made = makeDeps('manual');
     made.registry.register('sess-1', BOUND);
     made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
     const tool = createSubmitOutputTool(made.deps);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x', origin: 'safety-net' });
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBeNull();
   });
 
-  it('unbound session does NOT set explicitSubmitSeenThisTurn — no completion can be claimed without a binding', async () => {
+  it('unbound session does NOT set the done-declaration — no completion can be claimed without a binding', async () => {
     const made = makeDeps('autonomous');
     // do NOT register sess-1
     const tool = createSubmitOutputTool(made.deps);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'orphan' });
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBeNull();
   });
 
-  it('safety-net early no-op (no markerSeenThisTurn) does NOT set explicitSubmitSeenThisTurn', async () => {
+  it('safety-net early no-op (no markerSeenThisTurn) does NOT set the done-declaration', async () => {
     const made = makeDeps('autonomous');
     made.registry.register('sess-1', BOUND);
     // markerSeenThisTurn intentionally NOT set
     const tool = createSubmitOutputTool(made.deps);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x', origin: 'safety-net' });
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBeNull();
   });
 
-  it('flag is set per-session — sess-1 explicit submit does not leak to sess-2', async () => {
+  it('the declaration is per-session — sess-1 explicit submit does not leak to sess-2', async () => {
     const made = makeDeps('autonomous');
     made.registry.register('sess-1', BOUND);
     made.registry.register('sess-2', BOUND);
     const tool = createSubmitOutputTool(made.deps);
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-2')).toBe(false);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBe(BOUND);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-2')).toBeNull();
   });
 
-  it('a failed applier.apply leaves explicitSubmitSeenThisTurn unset so the next Stop is correctly gated', async () => {
+  it('a failed applier.apply leaves the done-declaration unset so the next Stop is correctly gated', async () => {
     // Completion requires both AI intent AND content successfully landing.
     // A failed apply means the content never reached the bound node, so the
-    // turn must NOT raise the gate — otherwise the Stop would advance the
-    // step on stale content, reintroducing the original bug class.
+    // turn must NOT record a declaration — otherwise the Stop would advance
+    // the step on stale content, reintroducing the original bug class.
     const made = makeDeps('autonomous');
     made.registry.register('sess-1', BOUND);
     (made.applier.apply as ReturnType<typeof vi.fn>).mockImplementation(async () => ({
@@ -529,10 +529,10 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBeNull();
   });
 
-  it('a failed proposal also leaves explicitSubmitSeenThisTurn unset', async () => {
+  it('a failed proposal also leaves the done-declaration unset', async () => {
     const made = makeDeps('manual');
     made.registry.register('sess-1', BOUND);
     made.oneShotTargetStore.setMarkerSeenThisTurn('sess-1', true);
@@ -544,7 +544,7 @@ describe('createSubmitOutputTool — explicit-submit gate flag (Stop-hook comple
 
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: BOUND, content: 'x' });
 
-    expect(made.oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(made.oneShotTargetStore.doneDeclarationNode('sess-1')).toBeNull();
   });
 });
 

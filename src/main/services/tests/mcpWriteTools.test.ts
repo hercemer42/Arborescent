@@ -75,7 +75,7 @@ function makeDeps(setup: SetupArgs) {
     submit: vi.fn(async () => ({ ok: true as const, proposalId: `prop-${nextProposalId++}` })),
   };
   const oneShotTargetStore = {
-    setExplicitSubmitSeenThisTurn: vi.fn(),
+    recordDoneDeclaration: vi.fn(),
   };
   return {
     registry,
@@ -427,7 +427,7 @@ describe('createWriteTools — error propagation', () => {
     const registry = new SessionBindingRegistry();
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const oneShotTargetStore = { recordDoneDeclaration: vi.fn() };
     const tools = createWriteTools({
       bindingRegistry: registry,
       treeReader: { readState: async (): Promise<TreeReadResult> => ({ kind: 'not-ready' }) },
@@ -466,7 +466,7 @@ describe('createWriteTools — mode authority: no applied context blocks every t
     };
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const oneShotTargetStore = { recordDoneDeclaration: vi.fn() };
     tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
   });
 
@@ -507,7 +507,7 @@ describe('createWriteTools — server-side authority is live (no caching)', () =
     };
     const mutator: TreeMutator = { mutate: vi.fn(async () => ({ ok: true as const })) };
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const oneShotTargetStore = { recordDoneDeclaration: vi.fn() };
     const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
     registry.register('sess-1', BOUND);
 
@@ -603,7 +603,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     };
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const oneShotTargetStore = { recordDoneDeclaration: vi.fn() };
     const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
 
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
@@ -648,7 +648,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     expect(result.content[0].text).toContain('step already completed');
   });
 
-  it('announceStepDone sets explicit_submit_seen on the OneShotTargetStore after a successful mutation so the Stop-hook gate lets the workflow advance', async () => {
+  it('announceStepDone sets the done-declaration on the OneShotTargetStore after a successful mutation so the Stop-hook gate lets the workflow advance', async () => {
     const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
     made.registry.register('sess-1', BOUND);
     const tools = createWriteTools(made.deps);
@@ -656,10 +656,10 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
     expect(result.isError).toBeFalsy();
-    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).toHaveBeenCalledWith('sess-1', true);
+    expect(made.oneShotTargetStore.recordDoneDeclaration).toHaveBeenCalledWith("sess-1", BOUND);
   });
 
-  it('announceStepDone does NOT set explicit_submit_seen when the mutator fails (the workflow should stay in-flight on failure)', async () => {
+  it('announceStepDone does NOT set the done-declaration when the mutator fails (the workflow should stay in-flight on failure)', async () => {
     const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
     made.registry.register('sess-1', BOUND);
     made.mutator.mutate = vi.fn(async () => ({ ok: false as const, error: 'mutator boom' }));
@@ -668,20 +668,20 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
 
     expect(result.isError).toBe(true);
-    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+    expect(made.oneShotTargetStore.recordDoneDeclaration).not.toHaveBeenCalled();
   });
 
-  it('announceStepDone does NOT set explicit_submit_seen when the authority check rejects (collaborate-mode)', async () => {
+  it('announceStepDone does NOT set the done-declaration when the authority check rejects (collaborate-mode)', async () => {
     const made = makeDeps({ collaborate: true, execute: false, stepType: 'autonomous' });
     made.registry.register('sess-1', BOUND);
     const tools = createWriteTools(made.deps);
 
     await tools.announceStepDone({ sessionId: 'sess-1' });
 
-    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+    expect(made.oneShotTargetStore.recordDoneDeclaration).not.toHaveBeenCalled();
   });
 
-  it('announceStepDone is REJECTED on a manual step in execute-only mode and does NOT mutate or set explicit_submit_seen', async () => {
+  it('announceStepDone is REJECTED on a manual step in execute-only mode and does NOT mutate or set the done-declaration', async () => {
     const made = makeDeps({ collaborate: false, execute: true, stepType: 'manual' });
     made.registry.register('sess-1', BOUND);
     const tools = createWriteTools(made.deps);
@@ -691,7 +691,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     expect(result.isError).toBe(true);
     expect(result.content[0].text).toMatch(/autonomous/i);
     expect(made.mutator.mutate).not.toHaveBeenCalled();
-    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+    expect(made.oneShotTargetStore.recordDoneDeclaration).not.toHaveBeenCalled();
   });
 
   it('announceStepDone is ACCEPTED on a checkpoint step in action-mode and issues a mark-complete (the checkpoint then pauses for validation via the Stop handler)', async () => {
@@ -706,7 +706,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
       kind: 'mark-complete',
       status: 'completed',
     } satisfies MutationRequest);
-    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).toHaveBeenCalledWith('sess-1', true);
+    expect(made.oneShotTargetStore.recordDoneDeclaration).toHaveBeenCalledWith("sess-1", BOUND);
     expect(made.proposalSubmitter.submit).not.toHaveBeenCalled();
   });
 
@@ -732,7 +732,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
     };
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const oneShotTargetStore = { recordDoneDeclaration: vi.fn() };
     const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
 
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
@@ -742,7 +742,7 @@ describe('createWriteTools — announceStepDone (inverse authority gate for acti
       kind: 'mark-complete',
       status: 'completed',
     } satisfies MutationRequest);
-    expect(oneShotTargetStore.setExplicitSubmitSeenThisTurn).toHaveBeenCalledWith('sess-1', true);
+    expect(oneShotTargetStore.recordDoneDeclaration).toHaveBeenCalledWith("sess-1", BOUND);
   });
 });
 
@@ -777,7 +777,7 @@ describe('createWriteTools — announceStepDone on a checkpoint: mode and contex
     };
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const oneShotTargetStore = { recordDoneDeclaration: vi.fn() };
     const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
 
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
@@ -815,7 +815,7 @@ describe('createWriteTools — announceStepDone on a checkpoint: mode and contex
     };
     registry.register('sess-1', BOUND);
     const proposalSubmitter = { submit: vi.fn(async () => ({ ok: true as const, proposalId: 'p' })) };
-    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const oneShotTargetStore = { recordDoneDeclaration: vi.fn() };
     const noContextTools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
 
     const noContext = await noContextTools.announceStepDone({ sessionId: 'sess-1' });
@@ -848,7 +848,7 @@ describe('createWriteTools — a stopped node\'s mutator refusal surfaces as wri
     }));
   }
 
-  it('announceStepDone surfaces write/node-not-running and does NOT set explicit_submit_seen', async () => {
+  it('announceStepDone surfaces write/node-not-running and does NOT set the done-declaration', async () => {
     const made = makeDeps({ collaborate: false, execute: true, stepType: 'autonomous' });
     made.registry.register('sess-1', BOUND);
     made.mutator.mutate = stoppedMutator();
@@ -858,7 +858,7 @@ describe('createWriteTools — a stopped node\'s mutator refusal surfaces as wri
 
     expect(result.isError).toBe(true);
     expect(codeOf(result)).toBe('write/node-not-running');
-    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).not.toHaveBeenCalled();
+    expect(made.oneShotTargetStore.recordDoneDeclaration).not.toHaveBeenCalled();
   });
 
   it('markStepComplete surfaces write/node-not-running', async () => {

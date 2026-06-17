@@ -118,7 +118,7 @@ const api: ElectronAPI = {
   startKeepAwake: () => ipcRenderer.invoke('keep-awake:start'),
   stopKeepAwake: () => ipcRenderer.invoke('keep-awake:stop'),
   onHookEvent: (callback) => {
-    const listener = (_event: Electron.IpcRendererEvent, data: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string; source?: string }) => callback(data);
+    const listener = (_event: Electron.IpcRendererEvent, data: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string; source?: string; declared_node_id?: string | null }) => callback(data);
     ipcRenderer.on('hook-event', listener);
     return () => ipcRenderer.removeListener('hook-event', listener);
   },

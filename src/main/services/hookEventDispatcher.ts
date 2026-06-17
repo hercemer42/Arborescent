@@ -18,29 +18,32 @@ export function createHookEventDispatcher(deps: HookEventDispatcherDeps) {
       return;
     }
     if (payload.hook_event_name === 'Stop') {
-      deps.forwardToRenderer(attachExplicitSubmitSeen(payload, deps));
+      deps.forwardToRenderer(attachDeclaredNode(payload, deps));
       return;
     }
     deps.forwardToRenderer(payload);
   };
 }
 
-function attachExplicitSubmitSeen(
+function attachDeclaredNode(
   payload: HookEventPayload,
   deps: HookEventDispatcherDeps,
 ): HookEventPayload {
   const mcpServer = deps.getMcpServer();
   if (!mcpServer) return payload;
   const oneShot = mcpServer.getOneShotTargetStore();
-  const seen = oneShot.wasExplicitSubmitSeenThisTurn(payload.session_id);
-  // Clear before forwarding so a downstream throw cannot leave the flag armed
-  // for a phantom second Stop in the same turn.
-  oneShot.setExplicitSubmitSeenThisTurn(payload.session_id, false);
+  const declaredNode = oneShot.doneDeclarationNode(payload.session_id);
+  // Clear before forwarding so a downstream throw cannot leave the declaration
+  // armed for a phantom second Stop in the same turn.
+  oneShot.clearDoneDeclaration(payload.session_id);
   logger.info(
-    `Stop forwarded session=${payload.session_id} explicit_submit_seen=${seen}`,
+    `Stop forwarded session=${payload.session_id} declared_node_id=${declaredNode ?? 'none'}`,
     'HookDispatch',
   );
-  return { ...payload, explicit_submit_seen: seen };
+  // Always set the field (null when no node declared done this turn) so the
+  // renderer can distinguish "dispatcher saw no declaration" (gate) from a
+  // non-dispatcher caller where the field is absent (permissive).
+  return { ...payload, declared_node_id: declaredNode };
 }
 
 function handleRegisterBinding(payload: HookEventPayload, deps: HookEventDispatcherDeps): void {
@@ -109,9 +112,9 @@ function handleRegisterTarget(payload: HookEventPayload, deps: HookEventDispatch
   }
   const markerSeen = Boolean(payload.marker_seen_this_turn);
   oneShot.setMarkerSeenThisTurn(payload.session_id, markerSeen);
-  // Turn boundary: the explicit-submit flag is per-turn and must reset so
-  // the previous turn's completion does not leak into the new turn's Stop.
-  oneShot.setExplicitSubmitSeenThisTurn(payload.session_id, false);
+  // Turn boundary: the done-declaration is per-turn and must reset so the
+  // previous turn's completion does not leak into the new turn's Stop.
+  oneShot.clearDoneDeclaration(payload.session_id);
   logger.info(
     `register-target session=${payload.session_id} target=${payload.target_node_uuid ?? 'none'} markerSeen=${markerSeen}`,
     'HookDispatch'

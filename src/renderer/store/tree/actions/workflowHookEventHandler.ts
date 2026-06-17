@@ -25,9 +25,12 @@ export interface HookEventPayload {
   message?: string;
   terminal_id?: string;
   source?: string;
-  // Completion gate: false means no explicit submit_step_output happened
-  // this turn and the bound step must not advance. Absent is permissive.
-  explicit_submit_seen?: boolean;
+  // Node-scoped completion gate: the id of the node that declared done this
+  // turn. A Stop advances only the node whose id matches — a submit for another
+  // node on the same terminal (a manual send/revise) must not advance the bound
+  // node. null means the dispatcher saw no declaration this turn (gate); absent
+  // means a non-dispatcher caller (tests / no MCP server) and is permissive.
+  declared_node_id?: string | null;
 }
 
 export interface HookEventHandlerDeps {
@@ -217,21 +220,26 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
 
       const stepNode = nodes[position.currentStepId];
       const stepType: StepType = (stepNode?.metadata.stepType as StepType) || 'manual';
-      // Production routes every Stop through hookEventDispatcher, which sets
-      // explicit_submit_seen from the store. Absent means a non-dispatcher
-      // caller (tests, fallback when no MCP server) and is treated as
-      // permissive — any new Stop path must keep that invariant or set the
-      // flag explicitly.
-      const explicitSubmitSeen = event.explicit_submit_seen !== false;
+      // The declaration (announce_step_done / submit_step_output) names the node
+      // it completed; the dispatcher threads that id onto the Stop event. A Stop
+      // advances only the node that declared done this turn — a submit for
+      // another node on the same terminal (a manual send/revise) leaves this
+      // node in flight, and a turn that stopped without any declaration (a
+      // clarifying question) does not advance. Production routes every Stop
+      // through the dispatcher, which always sets the field (null when nothing
+      // was declared); an absent field is a non-dispatcher caller (tests / no
+      // MCP server) and stays permissive.
+      const declaredNode = event.declared_node_id;
+      const declaredForThisNode = declaredNode === undefined ? true : declaredNode === runningNodeId;
       logger.info(
-        `Hook Stop at step ${position.currentStepId} (type=${stepType}) explicit_submit_seen=${explicitSubmitSeen} for node ${runningNodeId}`,
+        `Hook Stop at step ${position.currentStepId} (type=${stepType}) declared_node_id=${declaredNode ?? 'none'} for node ${runningNodeId}`,
         'WorkflowExecution',
         { nodeId: runningNodeId },
       );
 
-      if (!explicitSubmitSeen && !durablyRecovered && stepType !== 'manual') {
+      if (!declaredForThisNode && !durablyRecovered && stepType !== 'manual') {
         logger.info(
-          `Hook Stop gated: no explicit submit this turn — bound step ${position.currentStepId} remains in flight`,
+          `Hook Stop gated: node ${runningNodeId} did not declare done this turn — bound step ${position.currentStepId} remains in flight`,
           'WorkflowExecution',
           { nodeId: runningNodeId },
         );

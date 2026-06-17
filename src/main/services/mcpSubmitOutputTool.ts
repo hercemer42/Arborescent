@@ -128,7 +128,7 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
           request: { kind: 'submit-step-output', content },
         });
         if (!proposal.ok) return codedErr(proposal.error, MCP_ERROR_CODES.writeUpstreamFailure);
-        deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);
+        deps.oneShotTargetStore.recordDoneDeclaration(sessionId, boundNodeId);
         logger.info(`submit_step_output session=${sessionId} origin=explicit applied=false proposed=true node=${boundNodeId}`, 'McpSubmit');
         return ok({ applied: false, proposed: true, proposalId: proposal.proposalId });
       }
@@ -162,7 +162,7 @@ export function createSubmitOutputTool(deps: SubmitOutputToolDeps): SubmitOutput
         return codedErr(result.error, result.code ?? MCP_ERROR_CODES.writeUpstreamFailure);
       }
 
-      deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);
+      deps.oneShotTargetStore.recordDoneDeclaration(sessionId, boundNodeId);
       logger.info(`submit_step_output session=${sessionId} origin=explicit applied=true node=${boundNodeId}`, 'McpSubmit');
       return ok({ applied: true });
     },

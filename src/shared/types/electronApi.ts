@@ -19,6 +19,10 @@ export interface HookEventPayload {
   terminal_id?: string;
   message?: string;
   source?: string;
+  // Attached by the main-process dispatcher on Stop events: the node that
+  // declared done this turn (null when none). The renderer advances only the
+  // matching node. Absent on non-Stop events and non-dispatcher paths.
+  declared_node_id?: string | null;
 }
 
 export interface RebindRequestEvent {

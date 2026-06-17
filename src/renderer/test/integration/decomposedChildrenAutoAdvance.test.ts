@@ -337,7 +337,7 @@ describe('integration — mis-credited orchestrator Stop does not double-advance
 
       // The orchestrator's own turn-ending Stop (explicit submit happened this turn)
       // arrives on the same terminal, now bound to task-a.
-      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
       await vi.advanceTimersByTimeAsync(1500);
 
       // task-a must stay at step-2 awaiting its real work — not advanced to step-3.
@@ -356,15 +356,15 @@ describe('integration — mis-credited orchestrator Stop does not double-advance
     }
   });
 
-  it('stays idempotent across the turn\'s duplicate Stop pair (explicit_submit_seen true then false)', async () => {
+  it('stays idempotent across the turn\'s duplicate Stop pair (a declaration then none)', async () => {
     vi.useFakeTimers();
     try {
       actions.handleAutonomousFeedback('orchestrator', '# decompose\n## Task A\n## Task B');
       await vi.advanceTimersByTimeAsync(2500);
       const sendsAfterHandoff = mockAutonomousCollaborate.mock.calls.filter((c) => c[0] === 'task-a').length;
 
-      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
-      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: false });
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop', declared_node_id: null });
       await vi.advanceTimersByTimeAsync(1500);
 
       expect(state.nodes['step-2'].children).toContain('task-a');
@@ -494,7 +494,7 @@ describe('integration — final-step decomposition retains children with no re-f
 
       // The orchestrator's own Stop on the (now unbound) terminal must not bind or
       // advance a child — no re-fire, no loop.
-      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
       await vi.advanceTimersByTimeAsync(2500);
 
       expect(state.nodes['step-1'].children).toEqual(expect.arrayContaining(['task-a', 'task-b']));

@@ -198,14 +198,14 @@ describe('createSubmitOutputTool — one-shot send onto an autonomous target rou
     );
   });
 
-  it('the diverted route marks explicitSubmitSeenThisTurn so the turn counts as completed', async () => {
+  it('the diverted route marks the done-declaration so the turn counts as completed', async () => {
     const { tool, oneShotTargetStore } = makeTool({
       boundStepType: 'manual',
       targetStepType: 'autonomous',
       pendingTargetNodeId: TARGET,
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
-    expect(oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(true);
+    expect(oneShotTargetStore.doneDeclarationNode('sess-1')).toBe(TARGET);
   });
 });
 
@@ -222,7 +222,7 @@ describe('createSubmitOutputTool — refusal fallback on the diverted route (US3
     expect(applier.apply).not.toHaveBeenCalled();
   });
 
-  it('a proposalSubmitter failure on the diverted route does not mark explicitSubmitSeenThisTurn (the turn did not complete)', async () => {
+  it('a proposalSubmitter failure on the diverted route does not mark the done-declaration (the turn did not complete)', async () => {
     const { tool, oneShotTargetStore } = makeTool({
       boundStepType: 'manual',
       targetStepType: 'autonomous',
@@ -230,7 +230,7 @@ describe('createSubmitOutputTool — refusal fallback on the diverted route (US3
       proposalResult: { ok: false, error: 'proposal channel unavailable' },
     });
     await tool.submitStepOutput({ sessionId: 'sess-1', targetNodeId: TARGET, content: 'x' });
-    expect(oneShotTargetStore.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(oneShotTargetStore.doneDeclarationNode('sess-1')).toBeNull();
   });
 
   // Story 1's error-code vocabulary is not on this branch yet; the exact code

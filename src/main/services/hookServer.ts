@@ -14,10 +14,12 @@ export type HookEventPayload = {
   node_uuid?: string;
   target_node_uuid?: string;
   marker_seen_this_turn?: boolean;
-  // Completion gate on outgoing Stop events: only true permits the renderer
-  // to advance the bound step. Absent means the dispatcher did not compute
-  // the gate and the renderer treats it as permissive.
-  explicit_submit_seen?: boolean;
+  // Node-scoped completion gate on outgoing Stop events: the id of the node
+  // that declared done this turn (announce_step_done / submit_step_output). The
+  // renderer advances only the node whose id matches. null means the dispatcher
+  // saw no declaration this turn (gate); absent means a non-dispatcher caller
+  // and is treated as permissive.
+  declared_node_id?: string | null;
 };
 
 type HookEventCallback = (payload: HookEventPayload) => void;

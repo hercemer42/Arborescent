@@ -138,7 +138,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).toHaveBeenCalledWith('task-a');
     });
@@ -155,7 +155,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null) }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       const warns = loggerMocks.warn.mock.calls.map((c) => String(c[0]));
       expect(warns.some((m) => /no running node/i.test(m))).toBe(false);
@@ -178,7 +178,6 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         session_id: 'session-1',
         hook_event_name: 'Stop',
         terminal_id: 'terminal-1',
-        explicit_submit_seen: true,
       });
 
       expect(advanceNode).toHaveBeenCalledWith('task-a');
@@ -198,7 +197,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), set, advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(set).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -224,7 +223,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode, revealNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).toHaveBeenCalledWith('task-a'); // readiness-gated path, not a direct paste
       expect(revealNode).not.toHaveBeenCalled();
@@ -246,7 +245,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).not.toHaveBeenCalled();
     });
@@ -261,7 +260,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null) }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       const warns = loggerMocks.warn.mock.calls.map((c) => String(c[0]));
       expect(warns.some((m) => /no running node/i.test(m))).toBe(true);
@@ -286,7 +285,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => 'task-a'), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).toHaveBeenCalledWith('task-a');
       expect(advanceNode).not.toHaveBeenCalledWith('task-b');
@@ -307,14 +306,14 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => 'task-a'), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).toHaveBeenCalledWith('task-a');
     });
   });
 
   describe('idempotency (derived from tree state)', () => {
-    it('a duplicate Stop in the same turn (explicit_submit_seen=false) does not advance', () => {
+    it('a duplicate Stop in the same turn (no declaration this turn) does not advance', () => {
       const tree = buildTree();
       markCompletedAndBound(tree);
       const advanceNode = vi.fn();
@@ -330,7 +329,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => 'task-a'), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: false });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop', declared_node_id: null });
 
       expect(advanceNode).not.toHaveBeenCalled();
     });
@@ -354,7 +353,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).not.toHaveBeenCalled();
     });
@@ -377,8 +376,8 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).toHaveBeenCalledTimes(1);
     });
@@ -400,7 +399,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).not.toHaveBeenCalled();
     });
@@ -421,7 +420,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).not.toHaveBeenCalled();
     });
@@ -440,7 +439,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).not.toHaveBeenCalled();
       const toastMessages = toastMocks.addToast.mock.calls.map((c) => String(c[0]));
@@ -464,7 +463,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         makeDeps(state, { findRunningNodeOnTerminal: vi.fn(() => null), advanceNode }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).toHaveBeenCalledWith('task-b');
       expect(advanceNode).not.toHaveBeenCalledWith('task-a');
@@ -491,7 +490,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(advanceNode).not.toHaveBeenCalled();
       expect(revealNode).toHaveBeenCalledWith('task-a'); // deep-links the stalled node
@@ -525,7 +524,7 @@ describe('durable session→node advance fallback (handleHookEvent)', () => {
         }),
       );
 
-      handler({ session_id: 'session-1', hook_event_name: 'Stop', explicit_submit_seen: true });
+      handler({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(set).toHaveBeenCalledWith(
         expect.objectContaining({

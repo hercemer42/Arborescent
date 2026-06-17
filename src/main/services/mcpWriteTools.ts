@@ -34,7 +34,7 @@ export interface WriteToolsDeps {
   treeReader: TreeReader;
   treeMutator: TreeMutator;
   proposalSubmitter: ProposalSubmitter;
-  oneShotTargetStore: Pick<OneShotTargetStore, 'setExplicitSubmitSeenThisTurn'>;
+  oneShotTargetStore: Pick<OneShotTargetStore, 'recordDoneDeclaration'>;
 }
 
 export interface WriteTools {
@@ -199,7 +199,7 @@ async function executeAnnounceStepDone(
     return codedErr(result.error, result.code ?? MCP_ERROR_CODES.writeUpstreamFailure);
   }
 
-  deps.oneShotTargetStore.setExplicitSubmitSeenThisTurn(sessionId, true);
+  deps.oneShotTargetStore.recordDoneDeclaration(sessionId, boundNodeId);
   return ok({ applied: true });
 }
 

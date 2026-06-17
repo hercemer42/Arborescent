@@ -286,7 +286,7 @@ describe('createHookEventDispatcher — session-terminal-mapping forwarding from
   });
 });
 
-describe('createHookEventDispatcher — Stop forwarding attaches the explicit-submit gate', () => {
+describe('createHookEventDispatcher — Stop forwarding attaches the node-scoped done-declaration', () => {
   let oneShot: OneShotTargetStore;
   let server: ArborescentMcpServer;
   let forwardToRenderer: ReturnType<typeof vi.fn>;
@@ -303,35 +303,35 @@ describe('createHookEventDispatcher — Stop forwarding attaches the explicit-su
     });
   });
 
-  it('Stop forwards explicit_submit_seen=true when an explicit submit happened this turn', () => {
-    oneShot.setExplicitSubmitSeenThisTurn('sess-1', true);
+  it('Stop forwards declared_node_id with the node that declared done this turn', () => {
+    oneShot.recordDoneDeclaration('sess-1', 'node-a');
 
     dispatch({ session_id: 'sess-1', hook_event_name: 'Stop' });
 
     expect(forwardToRenderer).toHaveBeenCalledWith(
-      expect.objectContaining({ hook_event_name: 'Stop', explicit_submit_seen: true }),
+      expect.objectContaining({ hook_event_name: 'Stop', declared_node_id: 'node-a' }),
     );
   });
 
-  it('Stop forwards explicit_submit_seen=false when no explicit submit happened this turn', () => {
+  it('Stop forwards declared_node_id=null when no node declared done this turn', () => {
     dispatch({ session_id: 'sess-1', hook_event_name: 'Stop' });
 
     expect(forwardToRenderer).toHaveBeenCalledWith(
-      expect.objectContaining({ hook_event_name: 'Stop', explicit_submit_seen: false }),
+      expect.objectContaining({ hook_event_name: 'Stop', declared_node_id: null }),
     );
   });
 
-  it('non-Stop events do NOT receive an explicit_submit_seen attachment', () => {
-    oneShot.setExplicitSubmitSeenThisTurn('sess-1', true);
+  it('non-Stop events do NOT receive a declared_node_id attachment', () => {
+    oneShot.recordDoneDeclaration('sess-1', 'node-a');
 
     dispatch({ session_id: 'sess-1', hook_event_name: 'UserPromptSubmit' });
 
     const forwarded = forwardToRenderer.mock.calls[0][0] as HookEventPayload;
     expect(forwarded.hook_event_name).toBe('UserPromptSubmit');
-    expect(forwarded.explicit_submit_seen).toBeUndefined();
+    expect(forwarded.declared_node_id).toBeUndefined();
   });
 
-  it('Stop forwarding without an MCP server falls back to the payload unchanged', () => {
+  it('Stop forwarding without an MCP server falls back to the payload unchanged (no declared_node_id, permissive)', () => {
     const fallback = createHookEventDispatcher({
       getMcpServer: () => null,
       forwardToRenderer,
@@ -341,11 +341,11 @@ describe('createHookEventDispatcher — Stop forwarding attaches the explicit-su
 
     const forwarded = forwardToRenderer.mock.calls[0][0] as HookEventPayload;
     expect(forwarded.hook_event_name).toBe('Stop');
-    expect(forwarded.explicit_submit_seen).toBeUndefined();
+    expect(forwarded.declared_node_id).toBeUndefined();
   });
 
-  it('register-target resets explicit_submit_seen so the previous turn does not leak into the next Stop', () => {
-    oneShot.setExplicitSubmitSeenThisTurn('sess-1', true);
+  it('register-target resets the done-declaration so the previous turn does not leak into the next Stop', () => {
+    oneShot.recordDoneDeclaration('sess-1', 'node-a');
 
     dispatch({
       session_id: 'sess-1',
@@ -354,19 +354,19 @@ describe('createHookEventDispatcher — Stop forwarding attaches the explicit-su
       marker_seen_this_turn: true,
     });
 
-    expect(oneShot.wasExplicitSubmitSeenThisTurn('sess-1')).toBe(false);
+    expect(oneShot.doneDeclarationNode('sess-1')).toBeNull();
   });
 
-  it('two Stops in one turn do not double-advance — the flag is cleared after the first Stop forwarding', () => {
-    oneShot.setExplicitSubmitSeenThisTurn('sess-1', true);
+  it('two Stops in one turn do not double-advance — the declaration is cleared after the first Stop forwarding', () => {
+    oneShot.recordDoneDeclaration('sess-1', 'node-a');
 
     dispatch({ session_id: 'sess-1', hook_event_name: 'Stop' });
     dispatch({ session_id: 'sess-1', hook_event_name: 'Stop' });
 
     const firstForward = forwardToRenderer.mock.calls[0][0] as HookEventPayload;
     const secondForward = forwardToRenderer.mock.calls[1][0] as HookEventPayload;
-    expect(firstForward.explicit_submit_seen).toBe(true);
-    expect(secondForward.explicit_submit_seen).toBe(false);
+    expect(firstForward.declared_node_id).toBe('node-a');
+    expect(secondForward.declared_node_id).toBeNull();
   });
 });
 

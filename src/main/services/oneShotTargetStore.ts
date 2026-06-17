@@ -1,7 +1,7 @@
 export class OneShotTargetStore {
   private pendingTargets = new Map<string, string>();
   private markerSeen = new Set<string>();
-  private explicitSubmitSeen = new Set<string>();
+  private doneDeclarations = new Map<string, string>();
 
   setPendingTarget(sessionId: string, nodeId: string): void {
     if (!sessionId || !nodeId) return;
@@ -36,30 +36,31 @@ export class OneShotTargetStore {
     return this.markerSeen.has(sessionId);
   }
 
-  setExplicitSubmitSeenThisTurn(sessionId: string, value: boolean): void {
-    if (!sessionId) return;
-    if (value) {
-      this.explicitSubmitSeen.add(sessionId);
-    } else {
-      this.explicitSubmitSeen.delete(sessionId);
-    }
+  recordDoneDeclaration(sessionId: string, nodeId: string): void {
+    if (!sessionId || !nodeId) return;
+    this.doneDeclarations.set(sessionId, nodeId);
   }
 
-  wasExplicitSubmitSeenThisTurn(sessionId: string): boolean {
-    if (!sessionId) return false;
-    return this.explicitSubmitSeen.has(sessionId);
+  clearDoneDeclaration(sessionId: string): void {
+    if (!sessionId) return;
+    this.doneDeclarations.delete(sessionId);
+  }
+
+  doneDeclarationNode(sessionId: string): string | null {
+    if (!sessionId) return null;
+    return this.doneDeclarations.get(sessionId) ?? null;
   }
 
   resetSession(sessionId: string): void {
     if (!sessionId) return;
     this.pendingTargets.delete(sessionId);
     this.markerSeen.delete(sessionId);
-    this.explicitSubmitSeen.delete(sessionId);
+    this.doneDeclarations.delete(sessionId);
   }
 
   clear(): void {
     this.pendingTargets.clear();
     this.markerSeen.clear();
-    this.explicitSubmitSeen.clear();
+    this.doneDeclarations.clear();
   }
 }

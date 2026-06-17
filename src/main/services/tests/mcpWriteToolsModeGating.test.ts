@@ -83,7 +83,7 @@ function makeDeps(setup: SetupArgs) {
     submit: vi.fn(async () => ({ ok: true as const, proposalId: `prop-${nextProposalId++}` })),
   };
   const oneShotTargetStore = {
-    setExplicitSubmitSeenThisTurn: vi.fn(),
+    recordDoneDeclaration: vi.fn(),
   };
   return {
     registry,
@@ -103,7 +103,7 @@ describe('announce_step_done — permitted on collaborate & execute (the gate na
     const result = await tools.announceStepDone({ sessionId: 'sess-1' });
     expect(result.isError).toBeFalsy();
     expect(made.mutator.mutate).toHaveBeenCalledWith('sess-1', BOUND, { kind: 'mark-complete', status: 'completed' });
-    expect(made.oneShotTargetStore.setExplicitSubmitSeenThisTurn).toHaveBeenCalledWith('sess-1', true);
+    expect(made.oneShotTargetStore.recordDoneDeclaration).toHaveBeenCalledWith("sess-1", BOUND);
   });
 
   it('both-mode checkpoint step: announce succeeds (the Stop handler owns the pause-for-validation routing)', async () => {
@@ -257,7 +257,7 @@ describe('gating is live per call — a step-type edit between calls changes the
       readState: vi.fn(async (): Promise<TreeReadResult> =>
         okRead(makeState({ collaborate: true, execute: true, stepType }))),
     };
-    const oneShotTargetStore = { setExplicitSubmitSeenThisTurn: vi.fn() };
+    const oneShotTargetStore = { recordDoneDeclaration: vi.fn() };
     const tools = createWriteTools({ bindingRegistry: registry, treeReader, treeMutator: mutator, proposalSubmitter, oneShotTargetStore });
     registry.register('sess-1', BOUND);
 
