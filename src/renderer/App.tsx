@@ -10,6 +10,7 @@ import { CustomizeDialogContainer } from "./components/ui/CustomizeDialog/Custom
 import { KeyboardShortcutsDialog } from "./components/KeyboardShortcuts";
 import { RebindConfirmationContainer } from "./components/ui/RebindConfirmationDialog";
 import { TerminalCloseConfirmationContainer } from "./components/ui/TerminalCloseConfirmationDialog";
+import { NewSessionStartConfirmationContainer } from "./components/ui/NewSessionStartConfirmationDialog";
 import { useToastStore } from "./store/toast/toastStore";
 import { usePanelStore } from "./store/panel/panelStore";
 import { useSearchStore } from "./store/search/searchStore";
@@ -114,6 +115,7 @@ export function App() {
       />
       <RebindConfirmationContainer />
       <TerminalCloseConfirmationContainer />
+      <NewSessionStartConfirmationContainer />
     </div>
   );
 }

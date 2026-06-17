@@ -7,6 +7,7 @@ import type { TreeNode } from '@shared/types';
 import { useSpellcheckStore } from '../../../../store/spellcheck/spellcheckStore';
 import { useTerminalStore } from '../../../../store/terminal/terminalStore';
 import { useFilesStore } from '../../../../store/files/filesStore';
+import { usePendingNewSessionStartStore } from '../../../../store/pendingNewSessionStartStore';
 import { REVISE_AFTER_DISCUSSION_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 import type { StepHistoryEntry } from '../../../../store/tree/stepHistory/stepHistory';
 
@@ -1357,6 +1358,93 @@ describe('useNodeContextMenu', () => {
       await openContextMenu(result);
 
       expect(result.current.contextMenuItems.find(item => item.label === 'Zoom')).toBeUndefined();
+    });
+  });
+
+  describe('Start workflow in new session', () => {
+    const NEW_SESSION_LABEL = 'Start workflow in new session';
+
+    function setupWorkflowTask(taskMeta: Record<string, unknown>, startSpy = vi.fn()): TreeNode {
+      const task: TreeNode = { id: 'wf-task', content: 'Task', children: [], metadata: taskMeta };
+      store.setState({
+        nodes: {
+          'wf-root': { id: 'wf-root', content: 'WF', children: ['wf-step'], metadata: { isWorkflow: true } },
+          'wf-step': { id: 'wf-step', content: 'Step', children: ['wf-task'], metadata: { stepType: 'autonomous' } },
+          'wf-task': task,
+        },
+        rootNodeId: 'wf-root',
+        ancestorRegistry: { 'wf-root': [], 'wf-step': ['wf-root'], 'wf-task': ['wf-root', 'wf-step'] },
+        workflowExecutionStates: {},
+        workflowSessionMap: {},
+        sessionRegistry: {},
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        actions: { ...store.getState().actions, startWorkflowInNewSession: startSpy } as any,
+      });
+      return task;
+    }
+
+    beforeEach(() => {
+      usePendingNewSessionStartStore.setState({ current: null });
+    });
+
+    it('offers the action on a bound node', async () => {
+      const task = setupWorkflowTask({ sessionId: 's1' });
+      const { result } = renderHook(() => useNodeContextMenu(task), { wrapper });
+      await openContextMenu(result);
+      expect(result.current.contextMenuItems.find(item => item.label === NEW_SESSION_LABEL)).toBeDefined();
+    });
+
+    it('offers the action on a decomposed sibling', async () => {
+      const task = setupWorkflowTask({ groupId: 'g1' });
+      const { result } = renderHook(() => useNodeContextMenu(task), { wrapper });
+      await openContextMenu(result);
+      expect(result.current.contextMenuItems.find(item => item.label === NEW_SESSION_LABEL)).toBeDefined();
+    });
+
+    it('hides the action on an unbound, ungrouped node', async () => {
+      const task = setupWorkflowTask({});
+      const { result } = renderHook(() => useNodeContextMenu(task), { wrapper });
+      await openContextMenu(result);
+      expect(result.current.contextMenuItems.find(item => item.label === NEW_SESSION_LABEL)).toBeUndefined();
+    });
+
+    it('requests a confirmation dialog when the node has a live session to abandon', async () => {
+      const startSpy = vi.fn();
+      const task = setupWorkflowTask({ sessionId: 's1' }, startSpy);
+      store.setState({ workflowSessionMap: { s1: 'term1' } });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      useTerminalStore.setState({ terminals: [{ id: 'term1' }] } as any);
+
+      const { result } = renderHook(() => useNodeContextMenu(task), { wrapper });
+      await openContextMenu(result);
+
+      const item = result.current.contextMenuItems.find(menuItem => menuItem.label === NEW_SESSION_LABEL);
+      act(() => { item?.onClick?.(); });
+
+      expect(usePendingNewSessionStartStore.getState().current?.nodeId).toBe('wf-task');
+      expect(startSpy).not.toHaveBeenCalled();
+
+      // Cancelling clears the dialog and changes nothing.
+      const pending = usePendingNewSessionStartStore.getState().current;
+      act(() => pending?.onCancel());
+      expect(usePendingNewSessionStartStore.getState().current).toBeNull();
+      expect(startSpy).not.toHaveBeenCalled();
+    });
+
+    it('starts directly without a dialog when the node would already spawn fresh', async () => {
+      const startSpy = vi.fn();
+      const task = setupWorkflowTask({ groupId: 'g1' }, startSpy);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      useTerminalStore.setState({ terminals: [], openTerminal: vi.fn().mockResolvedValue('term-x') } as any);
+
+      const { result } = renderHook(() => useNodeContextMenu(task), { wrapper });
+      await openContextMenu(result);
+
+      const item = result.current.contextMenuItems.find(menuItem => menuItem.label === NEW_SESSION_LABEL);
+      act(() => { item?.onClick?.(); });
+
+      expect(usePendingNewSessionStartStore.getState().current).toBeNull();
+      await waitFor(() => expect(startSpy).toHaveBeenCalledWith('wf-task', 'term-x'));
     });
   });
 });

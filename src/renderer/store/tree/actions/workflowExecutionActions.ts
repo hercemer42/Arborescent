@@ -68,6 +68,7 @@ export type { WorkflowExecutionEntry };
 
 export interface WorkflowExecutionActions {
   startWorkflow: (nodeId: string, terminalId: string | null) => Promise<void>;
+  startWorkflowInNewSession: (nodeId: string, terminalId: string | null) => Promise<void>;
   stopWorkflow: (nodeId: string) => void;
   continueWorkflow: (nodeId: string, terminalId: string | null) => void;
   unpauseWorkflow: (nodeId: string) => void;
@@ -307,6 +308,28 @@ export const createWorkflowExecutionActions = (
       return;
     }
     startWorkflowOnTerminal(nodeId, terminalId, "spawn");
+  }
+
+  async function startWorkflowInNewSession(nodeId: string, terminalId: string | null): Promise<void> {
+    const { nodes, ancestorRegistry, workflowExecutionStates } = get();
+    // Eligibility is checked before any mutation: a bailed start must not leave the
+    // node stripped of its binding and group yet not running.
+    if (!isEligibleForExecution(nodeId, nodes, ancestorRegistry, workflowExecutionStates)) return;
+
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    // Clearing sessionId forces decideWorkflowStartRoute to spawn-fresh; dropping
+    // groupId detaches a decomposed sibling so recurse hands off to the next one.
+    if (node.metadata.sessionId !== undefined || node.metadata.groupId !== undefined) {
+      const metadata = { ...node.metadata };
+      delete metadata.sessionId;
+      delete metadata.groupId;
+      set({ nodes: { ...nodes, [nodeId]: { ...node, metadata } } });
+      triggerAutosave?.();
+    }
+
+    await startWorkflow(nodeId, terminalId);
   }
 
   // Returns true only when the start was committed on the terminal. A bail
@@ -591,6 +614,13 @@ export const createWorkflowExecutionActions = (
   }
 
   async function dispatchRecurseStart(nextNodeId: string, terminalId: string, parentNodeId: string): Promise<void> {
+    // The hand-off target was chosen 2s ago. If the user took it over in the meantime
+    // (Start workflow in new session detaches and starts it on its own session), do not
+    // start it again or re-stamp the shared session onto it.
+    if (get().workflowExecutionStates[nextNodeId]) {
+      releaseTerminalAssignmentForNode(parentNodeId);
+      return;
+    }
     const { workflowSessionMap, sessionRegistry } = get();
     const sessionId = inheritedRecurseSessionId(parentNodeId, terminalId);
     const route = decideWorkflowStartRoute({
@@ -1299,6 +1329,7 @@ export const createWorkflowExecutionActions = (
 
   return {
     startWorkflow,
+    startWorkflowInNewSession,
     stopWorkflow,
     continueWorkflow,
     unpauseWorkflow,

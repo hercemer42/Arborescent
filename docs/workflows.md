@@ -52,7 +52,7 @@ After a node completes a recurse-enabled step, the system finds the next waiting
 
 Recurse only pauses items that have decomposition siblings to coordinate. An item that was never decomposed passes through an automated recurse step like any other step. Set recurse on a workflow that has no decomposition step and nothing happens — a warning toast tells you to pair recurse with decomposition somewhere in the workflow. The step settings dialog flags the dependency in the description text under each option.
 
-Stopping the workflow mid-recurse leaves all unprocessed siblings in their current steps. Nothing is lost. You can start them individually later or restart the workflow.
+Stopping the workflow mid-recurse leaves all unprocessed siblings in their current steps. Nothing is lost. You can start them individually later — each in its own session if you want (see [Starting in a new session](#starting-in-a-new-session)) — or restart the workflow.
 
 A safety limit of 50 sequential recurse iterations per terminal prevents runaway loops. If reached, recursion stops and a warning appears.
 
@@ -83,6 +83,14 @@ If the terminal fails to accept content, the workflow stops automatically and sh
 While at least one autonomous workflow is running, Arborescent prevents the system from suspending so background AI work isn't interrupted by sleep. The block is released as soon as the last workflow finishes, errors, or is stopped. The display can still sleep — only system suspension is blocked.
 
 For automated advancement to work, you need to configure Claude Code to send hook events back to Arborescent. See [Hook Setup](#hook-setup) below.
+
+## Starting in a New Session
+
+**Start Workflow** normally reuses whatever session a node is already tied to — it focuses the live terminal or resumes the detached session, and spawns a fresh one only when the node has never run. When you want a clean slate, right-click → **Start workflow in new session**: the node starts on a brand-new Claude session and is rebound to it, so later plain **Start Workflow** runs follow the new session. If the node has a session you've been working in, Arborescent asks before disconnecting it; a node that hasn't run yet starts straight away.
+
+This is also how you fan a decomposition out across sessions. Recurse runs a batch of siblings serially on one shared session — to peel one off, say a user story you want worked in its own context or a PR for a different part of the stack, start it in a new session. That sibling drops out of the recurse group and runs on its own while the rest of the batch keeps auto-playing on the shared session. Repeat for each sibling you want independent.
+
+The action appears only on a node that has a session or belongs to a decomposition batch; anywhere else it would do exactly what plain Start Workflow already does.
 
 ## Stopping and Continuing
 

@@ -259,4 +259,26 @@ describe('recurse hand-off', () => {
       vi.useRealTimers();
     });
   });
+
+  describe('Race — the user takes over the next sibling during the 2s hand-off delay', () => {
+    it('skips the deferred hand-off (no re-start, no re-stamp) when the next sibling is already executing', () => {
+      vi.useFakeTimers();
+      state.nodes['task-a'].metadata.sessionId = 'session-1';
+      placeTaskAOnRecurseStepRunning();
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      // Start workflow in new session on task-b during the delay: it is now running on
+      // its own terminal and detached from the group.
+      state.workflowExecutionStates['task-b'] = { state: 'running', terminalTabId: 'terminal-9' };
+      delete state.nodes['task-b'].metadata.groupId;
+
+      vi.advanceTimersByTime(4000);
+
+      expect(state.workflowExecutionStates['task-b']).toEqual({ state: 'running', terminalTabId: 'terminal-9' });
+      expect(state.nodes['task-b'].metadata.sessionId).toBeUndefined();
+
+      vi.useRealTimers();
+    });
+  });
 });

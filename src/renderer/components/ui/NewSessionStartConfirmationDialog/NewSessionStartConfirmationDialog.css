@@ -1,0 +1,43 @@
+.new-session-start-confirmation-body {
+  padding: 1rem 1.25rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.new-session-start-confirmation-body p {
+  margin: 0;
+  color: var(--gray-600);
+}
+
+.new-session-start-confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.new-session-start-confirmation-cancel,
+.new-session-start-confirmation-confirm {
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-600);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.new-session-start-confirmation-confirm {
+  background: var(--blue-500);
+  color: var(--white);
+  border-color: var(--blue-500);
+}
+
+.new-session-start-confirmation-cancel:hover {
+  background: var(--gray-100);
+}
+
+.new-session-start-confirmation-confirm:hover {
+  filter: brightness(0.9);
+}

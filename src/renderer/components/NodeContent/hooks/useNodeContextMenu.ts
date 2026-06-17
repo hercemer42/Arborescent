@@ -16,7 +16,9 @@ import { buildSendToWorkflowSubmenu } from './useSendToWorkflowSubmenu';
 import { buildEditSubmenu, prependSpellItems } from './menuBuilders/editSubmenu';
 import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
-import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
+import { getWorkflowStepPosition, isEligibleForExecution } from '../../../utils/workflowHelpers';
+import { decideWorkflowStartRoute } from '../../../utils/workflowStartRoute';
+import { usePendingNewSessionStartStore } from '../../../store/pendingNewSessionStartStore';
 import { RestoreStepHistoryCommand } from '../../../store/tree/commands/RestoreStepHistoryCommand';
 import { getSessionLiveness } from '../../../utils/sessionLiveness';
 import { useToastStore } from '../../../store/toast/toastStore';
@@ -322,12 +324,46 @@ export function useNodeContextMenu(node: TreeNode) {
       }
     };
 
+    const isDecomposedSibling = typeof freshNode.metadata.groupId === 'string' && freshNode.metadata.groupId.length > 0;
+    const isBoundToSession = typeof sessionId === 'string' && sessionId.length > 0;
+    const showStartInNewSession =
+      (isBoundToSession || isDecomposedSibling)
+      && isEligibleForExecution(freshNode.id, nodes, ancestorRegistry, state.workflowExecutionStates);
+
+    const handleStartInNewSession = () => {
+      const runFresh = async () => {
+        const tid = await getTerminalId();
+        await actions.startWorkflowInNewSession(node.id, tid);
+      };
+      const route = decideWorkflowStartRoute({
+        sessionId,
+        workflowSessionMap: state.workflowSessionMap,
+        sessionRegistry: state.sessionRegistry,
+        openTerminalIds: new Set(useTerminalStore.getState().terminals.map((t) => t.id)),
+      });
+      // Only a live or resumable binding is worth warning about; an unplayed node
+      // already routes to a fresh session, so start it without a dialog.
+      if (route.kind === 'spawn-fresh') {
+        void runFresh();
+        return;
+      }
+      usePendingNewSessionStartStore.getState().request({
+        nodeId: node.id,
+        onConfirm: () => {
+          usePendingNewSessionStartStore.getState().clear();
+          void runFresh();
+        },
+        onCancel: () => usePendingNewSessionStartStore.getState().clear(),
+      });
+    };
+
     const baseMenuItems: ContextMenuItem[] = [
       ...combineExecutionAndNavigationItems(
         workflowExecutionItems,
         workflowNavigationItems,
         showResumeSession ? { label: 'Resume session', onClick: handleResumeSession } : null,
       ),
+      ...(showStartInNewSession ? [{ label: 'Start workflow in new session', onClick: handleStartInNewSession }] : []),
       ...(isExternalLink && externalUrl ? [{
         label: 'Open in external browser',
         onClick: () => {
