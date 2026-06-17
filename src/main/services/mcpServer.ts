@@ -111,7 +111,7 @@ export class ArborescentMcpServer {
       'add_child_node',
       {
         title: 'Add a child node',
-        description: 'Adds a new child node under the given parent. Only allowed on automatic steps in collaborate or collaborate+execute mode.',
+        description: 'Adds a new child node under the given parent. Call it once per item — it may be called repeatedly to add several sibling nodes. Only allowed on automatic steps in collaborate or collaborate+execute mode.',
         inputSchema: {
           ...sessionIdSchema,
           parent_id: z.string().min(1).describe('UUID of the parent node'),

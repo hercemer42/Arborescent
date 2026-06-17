@@ -48,7 +48,7 @@ export const DEFAULT_EXECUTE_CONTEXT = `You are executing a coding task. Please:
 - Implement the listed tasks by making changes directly in the codebase
 - Mark each completed item [x] and each failed item [-] in the returned list
 - Skip items already marked [x]
-- If the task is ambiguous or has blocking issues, summarize the issues in your terminal output and record them as a child node in the returned list
+- If the task is ambiguous or has blocking issues, summarize the issues in your terminal output and record each one as its own child node in the returned list
 
 `;
 
@@ -181,7 +181,7 @@ function buildBothOutputTarget(isAutonomous: boolean): string {
 - Mark each completed item by calling mark_step_complete with your session_id, the item's node_id, and status "completed"; mark failed items with status "abandoned"
 - Skip items already marked [x]
 - Do NOT rewrite, reorganize, retitle existing items — only change statuses
-- If issues were encountered, record them once by calling add_child_node with the bound step as parent_id${announceLine}`;
+- If issues were encountered, record each one as its own child node under the bound step (call add_child_node once per issue — more than once when there are several), not a single node holding all of them${announceLine}`;
 }
 
 function buildTerminalCollaboratePrompt(reviewContext: string, content: string, decomposition: boolean = false, isAutonomous: boolean = false, targetNodeId: string = ''): string {

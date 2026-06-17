@@ -178,4 +178,25 @@ describe('sendActions — collaborate & execute prompt broadcasts the incrementa
     expect(sent).toContain('announce_step_done');
     expect(sent).not.toContain('submit_step_output');
   });
+
+  // Issue-recording guidance must steer toward a separate node per distinct
+  // issue, not one node holding all of them (which reads as a wall of prose).
+  // The exact copy is not pinned, so the positive assertion matches tolerantly
+  // (plural nodes, a "separate/own/new node", or per-issue phrasing) rather
+  // than a fixed string.
+  it('both-mode prompt no longer tells Claude to record all issues in a single node', async () => {
+    const sent = await sentPrompt({ collaborate: true, execute: true });
+    expect(sent).not.toMatch(/record them once/i);
+  });
+
+  it('both-mode prompt invites a separate node per distinct issue', async () => {
+    const sent = await sentPrompt({ collaborate: true, execute: true });
+    expect(sent).toMatch(
+      /\bnodes\b|(?:separate|own|individual|distinct|new)\s+(?:child\s+)?node\b|\b(?:per|for each)\b[\s\S]{0,20}\bissue|\beach\s+issue\b/i,
+    );
+  });
+
+  // The phrasing for the explicit "may be called more than once" clause is not
+  // settled, so this facet stays title-only rather than pinning a string.
+  it.todo('both-mode prompt states add_child_node may be called more than once (one call per issue)');
 });

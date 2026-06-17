@@ -6,7 +6,7 @@ Contexts are reusable instructions for AI that you can apply anywhere in the tre
 
 - **Collaborate** — The AI reviews your content and writes back tree updates as one revised list. The proposed revision appears inline on the branch you sent, for you to accept or reject.
 - **Execute** — The AI makes code or file changes in the codebase and reports back via the terminal. No tree updates expected.
-- **Collaborate & Execute** — Both. The AI makes the changes and checks items off in the tree as it completes them — `[x]` for done, `[-]` for failed — recording any issues as a new child item. You watch progress land item by item instead of receiving one rewritten list at the end. This is the state of the built-in **Basic execution** context.
+- **Collaborate & Execute** — Both. The AI makes the changes and checks items off in the tree as it completes them — `[x]` for done, `[-]` for failed — recording each issue it hits as its own child item. You watch progress land item by item instead of receiving one rewritten list at the end. This is the state of the built-in **Basic execution** context.
 - **Action** — The AI follows the context body as a standalone instruction. Nothing else is added to the prompt — no scaffolding, not even the branch's content. Useful when the context itself IS the prompt.
 
 The state also decides which tree edits the AI may make during a run. Collaborate puts everything in the single written-back list; Collaborate & Execute permits additions and check-offs but never rewrites, deletions, or moves; Execute and Action permit no tree edits at all. An AI that reaches for the wrong channel gets a refusal naming the right one, so a misconfigured step fails loudly instead of silently rewriting your tree.

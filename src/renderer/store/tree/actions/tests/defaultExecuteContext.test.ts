@@ -15,4 +15,13 @@ describe('DEFAULT_EXECUTE_CONTEXT', () => {
     expect(DEFAULT_EXECUTE_CONTEXT).not.toMatch(/review/i);
     expect(DEFAULT_EXECUTE_CONTEXT).not.toMatch(/suggest improvements/i);
   });
+
+  // Encountered issues should be recorded as a separate node per issue, not
+  // collapsed into one. Copy is not pinned, so the positive match is tolerant.
+  it('records encountered issues as a node per issue rather than a single child node', () => {
+    expect(DEFAULT_EXECUTE_CONTEXT).not.toMatch(/record them as a child node/i);
+    expect(DEFAULT_EXECUTE_CONTEXT).toMatch(
+      /\bnodes\b|(?:separate|own|individual|distinct|new)\s+(?:child\s+)?node\b|\b(?:per|for each)\b[\s\S]{0,20}\bissue|\beach\s+issue\b/i,
+    );
+  });
 });
