@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-06-09T19:17:20.287Z'
+updated: '2026-06-17T13:28:18.037Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -585,7 +585,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -5419,7 +5419,7 @@ nodes:
       - 44b69d24-730a-4af1-95dd-7b2aface6c13
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -14323,7 +14323,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children: []
+    children:
+      - 27ca88df-5f7e-4cd8-b9ca-1f55e4effcbf
     metadata:
       status: completed
       expanded: true
@@ -25517,7 +25518,8 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children: []
+    children:
+      - 7d9b536d-bc51-4bd3-9d42-7ca9d77bb7ce
     metadata:
       status: pending
       isBlueprint: true
@@ -75825,7 +75827,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: true
+      expanded: false
   b639805f-a2d3-4f38-9faa-ffc4a91b8f80:
     id: b639805f-a2d3-4f38-9faa-ffc4a91b8f80
     content: Issue resolution
@@ -80582,7 +80584,8 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
-    children: []
+    children:
+      - fdeee32d-7083-4973-923f-36b475f6c542
     metadata:
       status: pending
       expanded: true
@@ -88895,7 +88898,7 @@ nodes:
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   042ee811-0108-4574-9a4c-2a7909572178:
     id: 042ee811-0108-4574-9a4c-2a7909572178
     content: Refactor right click menu
@@ -91851,7 +91854,8 @@ nodes:
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
-    children: []
+    children:
+      - 0680a364-7227-4e19-8a0c-ad3551e7750b
     metadata:
       status: pending
       isBlueprint: true
@@ -115080,6 +115084,7 @@ nodes:
       - 5d52678f-7038-48ca-b6fc-d6270c5d3578
       - 46d82a92-e697-49c2-af85-3d2d3638108a
       - c550a6d0-e6a9-42a4-a783-bfc83bc8e73f
+      - 7ead8f16-4d57-4894-a15b-e58540418314
     metadata:
       status: pending
       isBlueprint: true
@@ -124088,7 +124093,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 7ead8f16-4d57-4894-a15b-e58540418314
+      - 9a80a524-f237-4ae3-9741-95517d377e11
     metadata:
       status: pending
       isBlueprint: true
@@ -134824,7 +134829,7 @@ nodes:
       - 45f1a5a0-dae3-4080-97ed-b8e324b79a64
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   0bc1a277-e16d-48c7-8116-74627a91935a:
@@ -173114,8 +173119,9 @@ nodes:
       isBlueprint: true
   64ff36d6-ef8d-4864-b871-c47d7f23b563:
     id: 64ff36d6-ef8d-4864-b871-c47d7f23b563
-    content: Build arborescent against main branch
+    content: Build arborescent against main branch (not worktree)
     children:
+      - 2bacf50d-7216-4b47-9f57-da1f009cd401
       - 9602ca5c-1278-480e-8209-1d7c6882246c
     metadata:
       status: pending
@@ -215506,7 +215512,7 @@ nodes:
       - 826ea877-2273-4a84-b226-47a5d0e01726
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   3e22f40d-f03b-4e79-94e5-825680a5f04f:
@@ -215974,7 +215980,7 @@ nodes:
       - cf571370-70c0-48ed-91f4-19bacd74ca06
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   b11f834e-2ba4-480c-a37b-35dbbb52afda:
@@ -217851,39 +217857,40 @@ nodes:
     id: 7ead8f16-4d57-4894-a15b-e58540418314
     content: Arborescent notification sounds don't play
     children:
-      - 8cc9b6f9-de1f-40c6-983d-9b78ead53ecd
-      - 5ab58438-c58a-4c28-9819-9eda2053a90f
-      - 597749bd-ab8d-4e5f-a818-d5ff8f854503
-      - 94e0d1d1-a82b-4ecd-a888-ca2c44ec1a31
-      - 1fdf07c0-567d-4e13-9886-2709a6069a44
-      - fd453cbf-32b3-43f2-8a1a-987a16e64c7e
-      - 270444a8-1c6f-42fd-8ab1-a9706bc843d2
-      - 1cd92ca5-60c9-4512-af33-6e26b66be8e3
-      - ca9e791b-0f6d-4c47-afb1-9339a659b6c2
-      - 906ff4e6-6ceb-42f5-98d8-b24f2f631e0f
-      - f0b7c2ed-0390-44f2-ac19-8542602296e7
-      - 70ca1783-3774-4eea-a6ff-bafb0a150d4e
-      - 31ce9cee-b5c3-48a6-96c1-3aef351b48b1
-      - f5488097-c16f-44ca-96f4-98c17a51665c
-      - b09d4439-b8b7-4a16-9d91-b40f1d987a0c
+      - c77b92e7-b2fb-4631-9611-ebe81fc68608
+      - 8310f599-82fa-4188-b3e0-a1f43d517668
+      - 0b134df8-af76-493d-a92b-40f16b019516
+      - caac4ecc-b0b8-4116-9708-d5bd82fb2350
+      - 69c1c280-cdaf-40ef-af62-ad772f6a20a8
+      - cf4c9a5f-3f09-4611-828a-0886a54f5e87
+      - e7683faf-b11b-47a2-b4b1-82873cc8cbf8
+      - 4c5d73d1-ac88-4bb5-baaf-a58b303152a6
+      - 6c004d99-a567-47bc-9c91-3cf7866d1346
+      - 63b85a95-1da4-4020-a914-98712042ab41
+      - 7a7f73c0-4bbc-44c2-845f-48a10d5906f9
+      - dc39dba2-e8cd-4b1a-b717-e79d3f01f907
+      - db67ad45-edab-4caa-aa32-4031113e6dc7
+      - 4480d8e1-61a7-4392-a037-486c0a97848f
+      - b0072b7e-cd54-4f9d-8d19-8ee50fe0f893
+      - 1e7a1208-cd04-45a4-b92d-ca77bf7a1ac9
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
       sessionId: 094f56ca-d507-44f5-b8b8-8c0d601e2bd0
-  8cc9b6f9-de1f-40c6-983d-9b78ead53ecd:
-    id: 8cc9b6f9-de1f-40c6-983d-9b78ead53ecd
+  c77b92e7-b2fb-4631-9611-ebe81fc68608:
+    id: c77b92e7-b2fb-4631-9611-ebe81fc68608
     content: worktree
     children:
-      - 0c6ed913-f8c2-472b-9de0-ff1fe7421908
+      - 2b460679-49f9-4e55-9ba8-16b867315016
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  0c6ed913-f8c2-472b-9de0-ff1fe7421908:
-    id: 0c6ed913-f8c2-472b-9de0-ff1fe7421908
+  2b460679-49f9-4e55-9ba8-16b867315016:
+    id: 2b460679-49f9-4e55-9ba8-16b867315016
     content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-notification-sounds)'
     children: []
     metadata:
@@ -217891,18 +217898,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5ab58438-c58a-4c28-9819-9eda2053a90f:
-    id: 5ab58438-c58a-4c28-9819-9eda2053a90f
+  8310f599-82fa-4188-b3e0-a1f43d517668:
+    id: 8310f599-82fa-4188-b3e0-a1f43d517668
     content: Summary
     children:
-      - e785e51f-301d-4db7-b4a3-0896ea9a13c0
+      - ba94e80e-0125-44ad-9575-daa49b1fbbff
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e785e51f-301d-4db7-b4a3-0896ea9a13c0:
-    id: e785e51f-301d-4db7-b4a3-0896ea9a13c0
+  ba94e80e-0125-44ad-9575-daa49b1fbbff:
+    id: ba94e80e-0125-44ad-9575-daa49b1fbbff
     content: Notification sounds never play because the wav assets are absent from the built renderer, so every Audio.play() call rejects and is swallowed.
     children: []
     metadata:
@@ -217910,20 +217917,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  597749bd-ab8d-4e5f-a818-d5ff8f854503:
-    id: 597749bd-ab8d-4e5f-a818-d5ff8f854503
+  0b134df8-af76-493d-a92b-40f16b019516:
+    id: 0b134df8-af76-493d-a92b-40f16b019516
     content: Steps to reproduce
     children:
-      - b00b0445-3ee9-4815-95b5-7594aa6416b3
-      - b46d9d4f-326e-48fd-a15d-8a23efd52086
-      - 55f561bf-92ec-4dc9-b81a-a765200823e3
+      - 53a4aee8-981a-4a77-abbd-a67b6d15ba39
+      - a1900c5a-d3d6-4290-9fbe-788d1ca3c0be
+      - 98710d42-0607-41c0-91fa-1a6cec92527b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b00b0445-3ee9-4815-95b5-7594aa6416b3:
-    id: b00b0445-3ee9-4815-95b5-7594aa6416b3
+  53a4aee8-981a-4a77-abbd-a67b6d15ba39:
+    id: 53a4aee8-981a-4a77-abbd-a67b6d15ba39
     content: 'Precondition: notificationSounds preference is on and the Arborescent window is unfocused (sounds are suppressed by the focus gate while focused).'
     children: []
     metadata:
@@ -217931,8 +217938,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b46d9d4f-326e-48fd-a15d-8a23efd52086:
-    id: b46d9d4f-326e-48fd-a15d-8a23efd52086
+  a1900c5a-d3d6-4290-9fbe-788d1ca3c0be:
+    id: a1900c5a-d3d6-4290-9fbe-788d1ca3c0be
     content: 'User action: trigger any workflow notification event (e.g. let a workflow complete, or have the AI raise a NeedsReview) with the app window in the background.'
     children: []
     metadata:
@@ -217940,8 +217947,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  55f561bf-92ec-4dc9-b81a-a765200823e3:
-    id: 55f561bf-92ec-4dc9-b81a-a765200823e3
+  98710d42-0607-41c0-91fa-1a6cec92527b:
+    id: 98710d42-0607-41c0-91fa-1a6cec92527b
     content: 'Observation: the desktop notification appears but no sound plays; the diagnostic log shows "Failed to play success.wav/alert.wav".'
     children: []
     metadata:
@@ -217949,19 +217956,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  94e0d1d1-a82b-4ecd-a888-ca2c44ec1a31:
-    id: 94e0d1d1-a82b-4ecd-a888-ca2c44ec1a31
+  caac4ecc-b0b8-4116-9708-d5bd82fb2350:
+    id: caac4ecc-b0b8-4116-9708-d5bd82fb2350
     content: Expected behavior
     children:
-      - c3bfd8c9-27f4-4ab2-bdd4-07eb93cf8d86
-      - f706f4ee-f232-4d1d-a842-70c40769804a
+      - 87328d87-4113-45a3-ad2d-21aed3f474cc
+      - 9662a11c-ba46-4ba0-9416-ebbd2a1b43d6
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c3bfd8c9-27f4-4ab2-bdd4-07eb93cf8d86:
-    id: c3bfd8c9-27f4-4ab2-bdd4-07eb93cf8d86
+  87328d87-4113-45a3-ad2d-21aed3f474cc:
+    id: 87328d87-4113-45a3-ad2d-21aed3f474cc
     content: 'Happy path: success.wav plays on "Workflow complete"; alert.wav plays on the 11 alert-type events, when unfocused and notificationSounds is on.'
     children: []
     metadata:
@@ -217969,8 +217976,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f706f4ee-f232-4d1d-a842-70c40769804a:
-    id: f706f4ee-f232-4d1d-a842-70c40769804a
+  9662a11c-ba46-4ba0-9416-ebbd2a1b43d6:
+    id: 9662a11c-ba46-4ba0-9416-ebbd2a1b43d6
     content: 'Edge cases: a missing audio asset or a blocked play() should surface a detectable signal, not be swallowed as a debug-level warning.'
     children: []
     metadata:
@@ -217978,19 +217985,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1fdf07c0-567d-4e13-9886-2709a6069a44:
-    id: 1fdf07c0-567d-4e13-9886-2709a6069a44
+  69c1c280-cdaf-40ef-af62-ad772f6a20a8:
+    id: 69c1c280-cdaf-40ef-af62-ad772f6a20a8
     content: Actual behavior
     children:
-      - aa127c58-a3f7-44b0-948f-13316c8f4c85
-      - 1002c907-0f01-434e-a7b4-aef30a7cb732
+      - 6f943cbe-2666-4572-a506-7ff8a1f34938
+      - 1bc0a715-8c8d-40d1-8164-ed92fdf8a5d8
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  aa127c58-a3f7-44b0-948f-13316c8f4c85:
-    id: aa127c58-a3f7-44b0-948f-13316c8f4c85
+  6f943cbe-2666-4572-a506-7ff8a1f34938:
+    id: 6f943cbe-2666-4572-a506-7ff8a1f34938
     content: new Audio('./sounds/<file>.wav') resolves to a non-existent path, so the load fails and audio.play() rejects.
     children: []
     metadata:
@@ -217998,8 +218005,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1002c907-0f01-434e-a7b4-aef30a7cb732:
-    id: 1002c907-0f01-434e-a7b4-aef30a7cb732
+  1bc0a715-8c8d-40d1-8164-ed92fdf8a5d8:
+    id: 1bc0a715-8c8d-40d1-8164-ed92fdf8a5d8
     content: 'User-visible symptom: complete silence on every notification in both dev and the packaged app; only a logger.warn is emitted, so there is no visible error.'
     children: []
     metadata:
@@ -218007,19 +218014,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fd453cbf-32b3-43f2-8a1a-987a16e64c7e:
-    id: fd453cbf-32b3-43f2-8a1a-987a16e64c7e
+  cf4c9a5f-3f09-4611-828a-0886a54f5e87:
+    id: cf4c9a5f-3f09-4611-828a-0886a54f5e87
     content: Suspected cause
     children:
-      - e8192666-8256-4d7a-a393-1da68c3857ba
-      - ad7fb281-3a83-4670-aa96-ae137e38feb8
+      - 0676da3f-5280-450b-bc10-7597073e4da6
+      - e6988174-c708-4157-861a-017ccae66c9b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e8192666-8256-4d7a-a393-1da68c3857ba:
-    id: e8192666-8256-4d7a-a393-1da68c3857ba
+  0676da3f-5280-450b-bc10-7597073e4da6:
+    id: 0676da3f-5280-450b-bc10-7597073e4da6
     content: 'Code path: workflowNotification.ts:35 references the wav as a bare runtime string (''./sounds/${soundFile}''), which Vite''s bundler never sees as a dependency and therefore never emits.'
     children: []
     metadata:
@@ -218027,8 +218034,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ad7fb281-3a83-4670-aa96-ae137e38feb8:
-    id: ad7fb281-3a83-4670-aa96-ae137e38feb8
+  e6988174-c708-4157-861a-017ccae66c9b:
+    id: e6988174-c708-4157-861a-017ccae66c9b
     content: 'Why existing handling doesn''t cover it: no public/ dir and no forge/vite copy step for src/renderer/sounds, so the assets are emitted neither as hashed imports nor as static files — verified 0 .wav files in .vite/renderer and in out/.'
     children: []
     metadata:
@@ -218036,19 +218043,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  270444a8-1c6f-42fd-8ab1-a9706bc843d2:
-    id: 270444a8-1c6f-42fd-8ab1-a9706bc843d2
+  e7683faf-b11b-47a2-b4b1-82873cc8cbf8:
+    id: e7683faf-b11b-47a2-b4b1-82873cc8cbf8
     content: Affected files
     children:
-      - 7377044a-e496-45e1-86e5-c16576422a85
-      - ac5b651e-b367-4b8b-a63e-c33d27ba9937
+      - 7a48f174-bbe7-44a1-8679-fe6c4b2c6efe
+      - 9dacf469-e1c4-4b81-a172-e435afb8055a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7377044a-e496-45e1-86e5-c16576422a85:
-    id: 7377044a-e496-45e1-86e5-c16576422a85
+  7a48f174-bbe7-44a1-8679-fe6c4b2c6efe:
+    id: 7a48f174-bbe7-44a1-8679-fe6c4b2c6efe
     content: 'Primary suspect: src/renderer/services/workflowNotification.ts (playSound builds ''./sounds/<file>.wav'' at runtime, lines 32-41).'
     children: []
     metadata:
@@ -218056,8 +218063,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ac5b651e-b367-4b8b-a63e-c33d27ba9937:
-    id: ac5b651e-b367-4b8b-a63e-c33d27ba9937
+  9dacf469-e1c4-4b81-a172-e435afb8055a:
+    id: 9dacf469-e1c4-4b81-a172-e435afb8055a
     content: 'Related surface: vite.renderer.config.ts (no publicDir / asset handling) and src/renderer/sounds/{success,alert}.wav (source assets never copied to output).'
     children: []
     metadata:
@@ -218065,19 +218072,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1cd92ca5-60c9-4512-af33-6e26b66be8e3:
-    id: 1cd92ca5-60c9-4512-af33-6e26b66be8e3
+  4c5d73d1-ac88-4bb5-baaf-a58b303152a6:
+    id: 4c5d73d1-ac88-4bb5-baaf-a58b303152a6
     content: Regression window
     children:
-      - 65fc192c-235e-4f9d-81f9-e7843d8b3094
-      - 7b0728b5-d1cc-4847-9465-fd7cfce8b945
+      - 3a59ad52-c109-45dc-afbb-6a6f4ab5ad49
+      - 82e1491c-c962-47c3-ac22-1674006fd61a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  65fc192c-235e-4f9d-81f9-e7843d8b3094:
-    id: 65fc192c-235e-4f9d-81f9-e7843d8b3094
+  3a59ad52-c109-45dc-afbb-6a6f4ab5ad49:
+    id: 3a59ad52-c109-45dc-afbb-6a6f4ab5ad49
     content: 'Last known good: none — sounds have never worked; broken since first introduced.'
     children: []
     metadata:
@@ -218085,8 +218092,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7b0728b5-d1cc-4847-9465-fd7cfce8b945:
-    id: 7b0728b5-d1cc-4847-9465-fd7cfce8b945
+  82e1491c-c962-47c3-ac22-1674006fd61a:
+    id: 82e1491c-c962-47c3-ac22-1674006fd61a
     content: 'First observed broken: commit 02d2a05 "add notifications, fix some tests", which added both src/renderer/sounds/ and the runtime-string Audio reference.'
     children: []
     metadata:
@@ -218094,18 +218101,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ca9e791b-0f6d-4c47-afb1-9339a659b6c2:
-    id: ca9e791b-0f6d-4c47-afb1-9339a659b6c2
+  6c004d99-a567-47bc-9c91-3cf7866d1346:
+    id: 6c004d99-a567-47bc-9c91-3cf7866d1346
     content: Severity
     children:
-      - ab194d7a-25bb-4544-bef6-880e76ffd09f
+      - 9856d3dc-5981-40f6-9bd3-626321c7c117
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ab194d7a-25bb-4544-bef6-880e76ffd09f:
-    id: ab194d7a-25bb-4544-bef6-880e76ffd09f
+  9856d3dc-5981-40f6-9bd3-626321c7c117:
+    id: 9856d3dc-5981-40f6-9bd3-626321c7c117
     content: Low — non-critical audio cue only; visual desktop notifications (native IPC path) are unaffected, so there is no functional or data impact.
     children: []
     metadata:
@@ -218113,20 +218120,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  906ff4e6-6ceb-42f5-98d8-b24f2f631e0f:
-    id: 906ff4e6-6ceb-42f5-98d8-b24f2f631e0f
+  63b85a95-1da4-4020-a914-98712042ab41:
+    id: 63b85a95-1da4-4020-a914-98712042ab41
     content: Notes
     children:
-      - 1cfc5e02-49f5-429b-be50-474ad9378b48
-      - f4698509-4b6d-4fdd-bcd7-b0279b3ee5ad
-      - ea96d9f9-b8b8-4d25-b43e-78c8428861b1
+      - 515220a1-68b5-4f50-8e71-058952fa0230
+      - 1240d383-2c32-4999-9010-f7485e9fde51
+      - ddb6a2be-e266-43ef-9a50-f47366ad961b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  1cfc5e02-49f5-429b-be50-474ad9378b48:
-    id: 1cfc5e02-49f5-429b-be50-474ad9378b48
+  515220a1-68b5-4f50-8e71-058952fa0230:
+    id: 515220a1-68b5-4f50-8e71-058952fa0230
     content: 'Disambiguation: the focus gate (workflowNotification.ts:10) and the notificationSounds preference also produce silence — confirm the window is unfocused and the pref is on before attributing silence to this bug.'
     children: []
     metadata:
@@ -218134,8 +218141,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f4698509-4b6d-4fdd-bcd7-b0279b3ee5ad:
-    id: f4698509-4b6d-4fdd-bcd7-b0279b3ee5ad
+  1240d383-2c32-4999-9010-f7485e9fde51:
+    id: 1240d383-2c32-4999-9010-f7485e9fde51
     content: 'Look-alike: a global Claude Code Stop hook (afplay Glass.aiff) was firing a system chime mistakable for an Arborescent sound; it was removed 2026-06-09, so remaining silence is this bug.'
     children: []
     metadata:
@@ -218143,8 +218150,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ea96d9f9-b8b8-4d25-b43e-78c8428861b1:
-    id: ea96d9f9-b8b8-4d25-b43e-78c8428861b1
+  ddb6a2be-e266-43ef-9a50-f47366ad961b:
+    id: ddb6a2be-e266-43ef-9a50-f47366ad961b
     content: 'UX/telemetry gap: the play() rejection is swallowed as a logger.warn, so the broken state was undetectable — worth surfacing a one-time diagnostic when an expected sound asset fails to load.'
     children: []
     metadata:
@@ -218152,18 +218159,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f0b7c2ed-0390-44f2-ac19-8542602296e7:
-    id: f0b7c2ed-0390-44f2-ac19-8542602296e7
+  7a7f73c0-4bbc-44c2-845f-48a10d5906f9:
+    id: 7a7f73c0-4bbc-44c2-845f-48a10d5906f9
     content: Proposed fix
     children:
-      - d3f2a9fb-3165-44aa-bfef-3f9f507b5f53
+      - 5ec8c02b-7e31-4ce7-9091-43653897c052
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d3f2a9fb-3165-44aa-bfef-3f9f507b5f53:
-    id: d3f2a9fb-3165-44aa-bfef-3f9f507b5f53
+  5ec8c02b-7e31-4ce7-9091-43653897c052:
+    id: 5ec8c02b-7e31-4ce7-9091-43653897c052
     content: Import the wavs as Vite assets (import successUrl from '../sounds/success.wav') and pass the resolved URL to Audio, or add a public/ dir / copy step so './sounds/*.wav' exists in the output; then verify a .wav lands in both .vite/renderer and out/.
     children: []
     metadata:
@@ -218171,31 +218178,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  70ca1783-3774-4eea-a6ff-bafb0a150d4e:
-    id: 70ca1783-3774-4eea-a6ff-bafb0a150d4e
+  dc39dba2-e8cd-4b1a-b717-e79d3f01f907:
+    id: dc39dba2-e8cd-4b1a-b717-e79d3f01f907
     content: Technical refinement
     children:
-      - 3db0eee7-6612-44ff-a641-a552f06bd7c4
-      - 87b75480-1e9a-4ca7-86fe-61b22a8ffb26
+      - 075251d7-c913-49c6-a00e-5d01ec55bf0a
+      - 67692778-063e-4050-84fd-e68b0997c452
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3db0eee7-6612-44ff-a641-a552f06bd7c4:
-    id: 3db0eee7-6612-44ff-a641-a552f06bd7c4
+  075251d7-c913-49c6-a00e-5d01ec55bf0a:
+    id: 075251d7-c913-49c6-a00e-5d01ec55bf0a
     content: Flag complications
     children:
-      - fbdf490c-0d05-411d-9e7d-80b085d94d77
-      - d629d769-c1f3-4225-b72b-1ba441782d5f
-      - 0f696d9c-30aa-4210-a801-b17ae5b3c502
+      - c50bbc1c-432f-43ac-b411-438738ebb834
+      - e4891a7f-cd35-496a-ae2d-5b1464edd87b
+      - 8222c7db-3f02-44a2-93f9-f1382d75f88d
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  fbdf490c-0d05-411d-9e7d-80b085d94d77:
-    id: fbdf490c-0d05-411d-9e7d-80b085d94d77
+  c50bbc1c-432f-43ac-b411-438738ebb834:
+    id: c50bbc1c-432f-43ac-b411-438738ebb834
     content: 'Edge case / risk: the bundled asset URL must resolve under the packaged app''s file:// base — low risk, since the JS/CSS bundles already load correctly (the renderer base is already relative), but the build verification must confirm a .wav now lands in both .vite/renderer and out/.'
     children: []
     metadata:
@@ -218203,8 +218210,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d629d769-c1f3-4225-b72b-1ba441782d5f:
-    id: d629d769-c1f3-4225-b72b-1ba441782d5f
+  e4891a7f-cd35-496a-ae2d-5b1464edd87b:
+    id: e4891a7f-cd35-496a-ae2d-5b1464edd87b
     content: 'Out of scope: the quiet master level of the wav files, the focus-gate and notificationSounds preference semantics, and the native desktop-notification IPC path (which is unaffected).'
     children: []
     metadata:
@@ -218212,8 +218219,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0f696d9c-30aa-4210-a801-b17ae5b3c502:
-    id: 0f696d9c-30aa-4210-a801-b17ae5b3c502
+  8222c7db-3f02-44a2-93f9-f1382d75f88d:
+    id: 8222c7db-3f02-44a2-93f9-f1382d75f88d
     content: 'ROI: a few-line change in one file with no config change expected — clearly positive; the only thing that could inflate it is the renderer base turning out non-relative, which is quickly verifiable.'
     children: []
     metadata:
@@ -218221,19 +218228,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  87b75480-1e9a-4ca7-86fe-61b22a8ffb26:
-    id: 87b75480-1e9a-4ca7-86fe-61b22a8ffb26
+  67692778-063e-4050-84fd-e68b0997c452:
+    id: 67692778-063e-4050-84fd-e68b0997c452
     content: Summarise the approach
     children:
-      - b3965f07-41e8-4194-8d30-32a55c6fc9ea
-      - 65242254-1a6f-4265-83cb-dda8b33353e1
+      - 96584efd-81e1-436f-a910-a0c1db611b0c
+      - 7346a6f9-dfec-4823-a385-97ba752a02e0
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b3965f07-41e8-4194-8d30-32a55c6fc9ea:
-    id: b3965f07-41e8-4194-8d30-32a55c6fc9ea
+  96584efd-81e1-436f-a910-a0c1db611b0c:
+    id: 96584efd-81e1-436f-a910-a0c1db611b0c
     content: 'Architecture / where it lands: replace the runtime string path with Vite asset imports in workflowNotification.ts (import both wavs, pass the resolved URLs to new Audio) so the bundler emits and fingerprints them; no Vite/Forge config change needed given the relative renderer base.'
     children: []
     metadata:
@@ -218241,8 +218248,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  65242254-1a6f-4265-83cb-dda8b33353e1:
-    id: 65242254-1a6f-4265-83cb-dda8b33353e1
+  7346a6f9-dfec-4823-a385-97ba752a02e0:
+    id: 7346a6f9-dfec-4823-a385-97ba752a02e0
     content: 'Non-obvious for the reviewer: verify by unfocusing the window (the focus gate suppresses sound while focused) and by confirming a .wav appears in .vite/renderer and out/ post-build; consider escalating the swallowed logger.warn so a future missing-asset regression is detectable.'
     children: []
     metadata:
@@ -218250,21 +218257,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  31ce9cee-b5c3-48a6-96c1-3aef351b48b1:
-    id: 31ce9cee-b5c3-48a6-96c1-3aef351b48b1
+  db67ad45-edab-4caa-aa32-4031113e6dc7:
+    id: db67ad45-edab-4caa-aa32-4031113e6dc7
     content: Verification summary
     children:
-      - 7a432455-008b-41a1-be08-2ef861f76683
-      - c4fe10d9-f051-4f4b-9b57-937de3552ee6
-      - 93dc962f-1316-486b-941c-2aa6d3423a00
-      - 6a1c5b20-d403-4df2-ab8e-6675c7e8d366
+      - c356a24d-e346-4a76-a816-2ccaa937eb6f
+      - 98ba9e20-d6c5-4313-9375-7ed470474021
+      - 4c455d56-dd2c-44b3-9365-07944e44bc54
+      - 691fbe49-b818-4778-b32c-c0ba3af5bc48
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7a432455-008b-41a1-be08-2ef861f76683:
-    id: 7a432455-008b-41a1-be08-2ef861f76683
+  c356a24d-e346-4a76-a816-2ccaa937eb6f:
+    id: c356a24d-e346-4a76-a816-2ccaa937eb6f
     content: 'Implemented and verified: workflowNotification.ts now imports the wavs as Vite assets; the build emits success-*.wav and alert-*.wav into both .vite/renderer and the packaged .app; the built JS references them via new URL(asset, import.meta.url) so they resolve next to the JS bundle under file://.'
     children: []
     metadata:
@@ -218272,8 +218279,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c4fe10d9-f051-4f4b-9b57-937de3552ee6:
-    id: c4fe10d9-f051-4f4b-9b57-937de3552ee6
+  98ba9e20-d6c5-4313-9375-7ed470474021:
+    id: 98ba9e20-d6c5-4313-9375-7ed470474021
     content: 'Checks pass on changed files only: 17/17 unit tests (incl. 2 new regression tests that were red pre-fix), lint clean, type-check clean.'
     children: []
     metadata:
@@ -218281,8 +218288,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  93dc962f-1316-486b-941c-2aa6d3423a00:
-    id: 93dc962f-1316-486b-941c-2aa6d3423a00
+  4c455d56-dd2c-44b3-9365-07944e44bc54:
+    id: 4c455d56-dd2c-44b3-9365-07944e44bc54
     content: 'Not done — logger.warn escalation: surfacing a louder one-time diagnostic on sound-load failure was declined; the existing warn already appears in the diagnostic log so the failure is detectable, making escalation marginal and out of scope for this fix.'
     children: []
     metadata:
@@ -218290,8 +218297,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6a1c5b20-d403-4df2-ab8e-6675c7e8d366:
-    id: 6a1c5b20-d403-4df2-ab8e-6675c7e8d366
+  691fbe49-b818-4778-b32c-c0ba3af5bc48:
+    id: 691fbe49-b818-4778-b32c-c0ba3af5bc48
     content: 'Correctly scoped out and untouched: quiet wav master level, focus-gate / notificationSounds preference semantics, and the native desktop-notification IPC path.'
     children: []
     metadata:
@@ -218299,22 +218306,2436 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f5488097-c16f-44ca-96f4-98c17a51665c:
-    id: f5488097-c16f-44ca-96f4-98c17a51665c
+  4480d8e1-61a7-4392-a037-486c0a97848f:
+    id: 4480d8e1-61a7-4392-a037-486c0a97848f
     content: review feedback
     children:
-      - 4c67acd1-7df5-4cf8-bc50-6ab473dfa0cf
+      - ee7a9977-b9fc-4638-a4cd-f699fd2c3ee6
     metadata:
       status: completed
-  4c67acd1-7df5-4cf8-bc50-6ab473dfa0cf:
-    id: 4c67acd1-7df5-4cf8-bc50-6ab473dfa0cf
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee7a9977-b9fc-4638-a4cd-f699fd2c3ee6:
+    id: ee7a9977-b9fc-4638-a4cd-f699fd2c3ee6
     content: 'pr-review-toolkit:code-reviewer verdict: approve-with-nits — no blockers, no should-fixes. Fix is correct, minimal, and caller-compatible: notifyWorkflowEvent keeps its (type, title, body) signature; only playSound''s URL source changed, so all 9 call sites (workflowExecutionActions, workflowHookEventHandler, workflowClearSession, workflowAckManager) are unaffected. Reviewer independently reproduced fail-before/pass-after: the old ''./sounds/success.wav'' literal fails the two ''bundled sound assets'' tests; the Vite-resolved ''/src/renderer/sounds/success.wav'' passes — so the regression is genuinely guarded. Addressed during this review: aligned the 3 new test titles to the file''s ''should …'' convention (17/17 still green). Not actioned, with reason: (1) reviewer''s ''*.wav has no ambient type decl'' nit is moot — root vite-env.d.ts already has /// <reference types="vite/client" /> and tsc --noEmit is clean; (2) the ''repeated interactions'' test is intentional behavioral coverage for the checklist, not a regression guard, so it stays. Build proof already on record: npm run package emits success-*.wav and alert-*.wav into .vite/renderer and the packaged .app, referenced via new URL(asset, import.meta.url) (file:// safe). No outstanding action items.'
     children: []
     metadata:
       status: completed
-  b09d4439-b8b7-4a16-9d91-b40f1d987a0c:
-    id: b09d4439-b8b7-4a16-9d91-b40f1d987a0c
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0072b7e-cd54-4f9d-8d19-8ee50fe0f893:
+    id: b0072b7e-cd54-4f9d-8d19-8ee50fe0f893
     content: 'documentation: no changes made (with rationale + a warning). Rationale: the changelog''s Unreleased section already lists "Desktop notifications and sounds" (CHANGELOG.md:54 — audio alerts for completion/errors/NeedsReview/timeouts, toggles under File → Preferences). This is a bug fix to that still-unreleased feature, so per the convention it gets no separate changelog line, and the existing entry already describes the now-working behavior, so no edit. No docs/ prose added either: sounds are an auxiliary, discoverable, non-blocking cue tied to an existing preference — a dedicated section would bloat and over-focus on feature detail. WARNING / inconsistency for the user: (1) that changelog entry has advertised working "audio alerts" for the entire v0.2.0 dev cycle while sounds never actually played (broken since 02d2a05) — now true after this fix. (2) git tags v0.1.1 and v0.2.0 exist, but CHANGELOG.md only has "0.1.0 - Initial Release" + "Unreleased" — release sections for 0.1.1/0.2.0 were never cut, so the changelog''s notion of "last release" is 0.1.0. Pre-existing; not addressed here.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e7a1208-cd04-45a4-b92d-ca77bf7a1ac9:
+    id: 1e7a1208-cd04-45a4-b92d-ca77bf7a1ac9
+    content: merged to master
+    children:
+      - c6f2b070-90ff-48e3-a3ed-79eb64d2b313
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6f2b070-90ff-48e3-a3ed-79eb64d2b313:
+    id: c6f2b070-90ff-48e3-a3ed-79eb64d2b313
+    content: 'Single commit 8aac109 "fix: bundle notification sound assets via Vite imports so sounds play" rebased onto current master and fast-forwarded in; project.arbo committed separately on master as d2cccdc. Pushed to origin (origin/master = 8aac109). Worktree and local branch fix/notification-sounds deleted after the merge was confirmed on master.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a80a524-f237-4ae3-9741-95517d377e11:
+    id: 9a80a524-f237-4ae3-9741-95517d377e11
+    content: If a bound node is playing, but we interrupt Claude
+    children:
+      - 0a28acaf-71ba-414c-8a3b-530a0fc65d99
+      - 5b553860-e0ea-4805-bb48-9d478a1377c4
+      - 1cc8570a-4133-40c9-93e2-e33f4d88ad1d
+      - 8c5b9e37-4625-4a93-b42b-927eb260c164
+      - c73239a6-09fc-4e78-8361-2a48733ab8b3
+      - a34c914f-d4c5-4caa-8b19-d477a5feefe2
+      - 2a1c6cca-206b-4c1d-9c20-367f87f621ae
+      - aaae88b9-a009-42c4-b856-d6c06ed4c57f
+      - adf29cd2-74db-4265-8978-1c561599f264
+      - e8a81710-dfe2-4297-8496-4c6c60791c65
+      - dcdefe38-d9a3-415c-aefc-14e70ae53636
+      - 245803ae-aef4-4778-8be8-1af5b6bbd48b
+      - 4b1007f9-47cc-4272-a2ba-84a7932972c9
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 75526230-b3bd-4567-a61a-9000f2164065
+  fdeee32d-7083-4973-923f-36b475f6c542:
+    id: fdeee32d-7083-4973-923f-36b475f6c542
+    content: Create a 'map' file complimentary to an arbo file or blueprint
+    children:
+      - 73bae751-c9fb-422c-ba3d-7cf5939e49fc
+    metadata:
+      status: pending
+      expanded: false
+  73bae751-c9fb-422c-ba3d-7cf5939e49fc:
+    id: 73bae751-c9fb-422c-ba3d-7cf5939e49fc
+    content: Or perhaps within an arbo file as a secondary structure
+    children:
+      - f9191358-4677-44bb-8f79-8069867739ea
+      - 6a2148bb-8836-4a01-893b-5859811a847f
+      - fb37cd77-04aa-4e03-994e-b19d33b8235f
+    metadata:
+      status: pending
+  f9191358-4677-44bb-8f79-8069867739ea:
+    id: f9191358-4677-44bb-8f79-8069867739ea
+    content: Basically a structured, hierarchical version of the tree instead of the current flat tree
+    children: []
+    metadata:
+      status: pending
+  6a2148bb-8836-4a01-893b-5859811a847f:
+    id: 6a2148bb-8836-4a01-893b-5859811a847f
+    content: To facilitate code reviews
+    children: []
+    metadata:
+      status: pending
+  fb37cd77-04aa-4e03-994e-b19d33b8235f:
+    id: fb37cd77-04aa-4e03-994e-b19d33b8235f
+    content: Perhaps with some of the metadata removed
+    children: []
+    metadata:
+      status: pending
+  7d9b536d-bc51-4bd3-9d42-7ca9d77bb7ce:
+    id: 7d9b536d-bc51-4bd3-9d42-7ca9d77bb7ce
+    content: Start a workflow node in a new session (rebind, and silently detach a decomposed sibling)
+    children:
+      - 68f70e6d-e338-422b-8812-893e2bdcfe7a
+      - 1f28887a-4465-40c8-86e9-ec67a4ac0ccc
+      - f2b449df-6dcc-4590-b170-273e1bfdf0b1
+      - 94606e0c-bb3b-4de4-b670-98ed232b8aae
+      - c9a6c294-1465-4c47-a27f-da3f2122cf3a
+      - 3e36b5e9-da8a-4143-991c-069656caa25d
+      - 50531dd7-555a-45df-a345-5677dc6f6355
+      - 0212658f-42c7-42a3-af77-565f137de20e
+      - 0b7cb389-d98e-4d99-a12a-0f45640f8eb3
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 2a1b8662-ff6c-4133-99d9-25ecdf1533fd
+  27ca88df-5f7e-4cd8-b9ca-1f55e4effcbf:
+    id: 27ca88df-5f7e-4cd8-b9ca-1f55e4effcbf
+    content: When a workflow advances to a step with no context
+    children:
+      - f1ea7b79-149d-4bff-a6a6-a22d00135ba3
+      - 9ba7d47b-1a42-4a12-92e1-e2f05dc86950
+      - ac07a165-1692-4288-a5b6-a05009d80dbd
+      - 5cb27b59-1eef-47ee-8ee6-e80b57ee0b60
+      - b8ee8ce0-7c99-4301-bcfa-6d4c8686f2a4
+      - e1b2b248-6f8d-486a-a971-26a9ad7482b8
+      - 2957975d-e43a-4179-a97d-b3ef6098c3a3
+      - e287c191-c84a-4bbf-ad77-0b56a6df8d75
+      - e87225c1-867b-4bde-8437-147e3367f60e
+      - d183abc3-8bad-4911-a6c8-ccec512fc777
+      - f53dde5d-c4a3-462c-88d6-55f79cb0b282
+      - 6ab2e5f2-6625-40d7-a171-bd452d4844e1
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: f86ff8a7-7aa0-4f30-afee-e8414b19929e
+  0680a364-7227-4e19-8a0c-ad3551e7750b:
+    id: 0680a364-7227-4e19-8a0c-ad3551e7750b
+    content: Claude is adding big paragraphs of text
+    children:
+      - a7ce79e3-da82-4294-bb14-263b1dcae27a
+      - a69df245-c6a0-42fb-b306-cdafa515d068
+      - 31150016-e9aa-4298-90e3-1b96436f2f42
+      - 09a31eb9-8677-4135-a255-dd7fe30c4730
+      - baa6b1e4-8ef9-47b5-abc7-f21a2e2e52fa
+      - 640da826-101e-4879-b108-6f6159a8c0b6
+      - f486f525-3198-4dcb-91f0-b43937ffba9b
+      - 5b708c40-d94b-4d7f-9ff5-e25efb9b6c7c
+      - dc3292ef-48d8-4d0b-a7d8-1fdce8e7f08f
+      - 9fbacf8d-3d1f-4fdf-b0b2-af5c6a4c6e55
+      - 16541663-b5ed-4faa-bb62-3c7225e2b9b0
+      - ccb98c09-f9b6-4c23-beb9-6e6ae3a22517
+      - 8afc3f4c-2076-4bdf-97c3-ee985bb1e87d
+      - 6fc86d12-a306-4582-9346-d7e22129da62
+      - e3c4a6da-afda-47cc-b0ab-0033e85c9b52
+      - 1ec6899c-e2e6-406c-9e3f-f07aa95bd0af
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 80400b7e-d7c8-4c7e-9234-078891008c5c
+  2bacf50d-7216-4b47-9f57-da1f009cd401:
+    id: 2bacf50d-7216-4b47-9f57-da1f009cd401
+    content: If the worktree you are currently in is not merged to main
+    children:
+      - 54315c3a-c568-4649-a76f-f2988c760fa5
+    metadata:
+      isBlueprint: true
+  54315c3a-c568-4649-a76f-f2988c760fa5:
+    id: 54315c3a-c568-4649-a76f-f2988c760fa5
+    content: Pause and alert the user
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  9ba7d47b-1a42-4a12-92e1-e2f05dc86950:
+    id: 9ba7d47b-1a42-4a12-92e1-e2f05dc86950
+    content: Summary
+    children:
+      - 7455228c-a165-4158-bc07-892e39669a83
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7455228c-a165-4158-bc07-892e39669a83:
+    id: 7455228c-a165-4158-bc07-892e39669a83
+    content: A context-less workflow step, reached by an autonomous advance, sends the node's own contents into the terminal as a prompt instead of sending nothing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac07a165-1692-4288-a5b6-a05009d80dbd:
+    id: ac07a165-1692-4288-a5b6-a05009d80dbd
+    content: Steps to reproduce
+    children:
+      - 29461df4-16b7-47b5-aaf9-7eb827c048bb
+      - b0b126fb-bbfe-40c5-8e28-e9a4a982bb23
+      - 3c995b52-d561-4eb5-a41f-a5ca630703f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29461df4-16b7-47b5-aaf9-7eb827c048bb:
+    id: 29461df4-16b7-47b5-aaf9-7eb827c048bb
+    content: 'Precondition: a running workflow whose next node has no applied context and no inheritable context (and none of the DEFAULT_EXECUTE/REVIEW/REVISE built-ins resolve).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0b126fb-bbfe-40c5-8e28-e9a4a982bb23:
+    id: b0b126fb-bbfe-40c5-8e28-e9a4a982bb23
+    content: 'User action: let the workflow advance to that context-less node (Stop-hook advance or recurse hand-off, bindingSource "workflow-advance").'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c995b52-d561-4eb5-a41f-a5ca630703f5:
+    id: 3c995b52-d561-4eb5-a41f-a5ca630703f5
+    content: 'Observation: the bound terminal receives the bare node text as a fresh prompt, with no instruction/context wrapping and no Arborescent routing marker.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cb27b59-1eef-47ee-8ee6-e80b57ee0b60:
+    id: 5cb27b59-1eef-47ee-8ee6-e80b57ee0b60
+    content: Expected behavior
+    children:
+      - 34756faa-d25d-4a12-86a6-d39e11289228
+      - 97033a3f-c436-4e1c-845d-635d611d3c0b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34756faa-d25d-4a12-86a6-d39e11289228:
+    id: 34756faa-d25d-4a12-86a6-d39e11289228
+    content: 'Happy path: an autonomous advance to a context-less step sends nothing to the terminal — no prompt is dispatched.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97033a3f-c436-4e1c-845d-635d611d3c0b:
+    id: 97033a3f-c436-4e1c-845d-635d611d3c0b
+    content: 'Edge case: an explicit/manual send of a context-less node may still send bare content (action-mode), so the suppression must be scoped to the autonomous workflow-advance path, not the manual one.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8ee8ce0-7c99-4301-bcfa-6d4c8686f2a4:
+    id: b8ee8ce0-7c99-4301-bcfa-6d4c8686f2a4
+    content: Actual behavior
+    children:
+      - 009294cd-6351-4181-bf1c-af05435dbd59
+      - b9ea93c1-5d3b-4f32-be0f-2ce348bd00c0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  009294cd-6351-4181-bf1c-af05435dbd59:
+    id: 009294cd-6351-4181-bf1c-af05435dbd59
+    content: runAutonomousCollaborateInTerminal hits the no-context branch and calls executeInTerminal with the raw nodeContent, then returns ''.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9ea93c1-5d3b-4f32-be0f-2ce348bd00c0:
+    id: b9ea93c1-5d3b-4f32-be0f-2ce348bd00c0
+    content: 'User-visible symptom: the terminal agent receives unframed node text and acts on it as a prompt, polluting the session; because no marker is emitted, the session-to-node binding is left ambiguous.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1b2b248-6f8d-486a-a971-26a9ad7482b8:
+    id: e1b2b248-6f8d-486a-a971-26a9ad7482b8
+    content: Suspected cause
+    children:
+      - a2e69784-222c-43f0-8423-4deb2fdf7889
+      - 74937aed-f63b-4822-9fdc-ecc5ec7ef04b
+      - 2f55cac5-1b99-4a47-89c7-a9e4dcd0fdd1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2e69784-222c-43f0-8423-4deb2fdf7889:
+    id: a2e69784-222c-43f0-8423-4deb2fdf7889
+    content: 'sendActions.ts runAutonomousCollaborateInTerminal (~600-605): when effectiveContextId is falsy it sends bare nodeContent — the "action-mode-equivalent" fallback meant for explicit manual sends, reused unconditionally on the autonomous path.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74937aed-f63b-4822-9fdc-ecc5ec7ef04b:
+    id: 74937aed-f63b-4822-9fdc-ecc5ec7ef04b
+    content: workflowExecutionActions.ts sendContentToTerminal (~947-975) calls autonomousCollaborateInTerminal unconditionally; its only no-context awareness is the collaborating-flag guard at line 971 — nothing skips the send when there is no context.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f55cac5-1b99-4a47-89c7-a9e4dcd0fdd1:
+    id: 2f55cac5-1b99-4a47-89c7-a9e4dcd0fdd1
+    content: 'Why existing guards miss it: the only no-context handling is the bare-content fallback itself, and buildSendPayloadBody (sendActions.ts:276-278) likewise returns nodeContent rather than empty, so the falsy-context path was never designed to suppress a send.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2957975d-e43a-4179-a97d-b3ef6098c3a3:
+    id: 2957975d-e43a-4179-a97d-b3ef6098c3a3
+    content: Affected files
+    children:
+      - ded148ed-b04e-430f-aee5-6808450cadf7
+      - 5ed5324e-950c-4a09-92f6-502cfc12f987
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ded148ed-b04e-430f-aee5-6808450cadf7:
+    id: ded148ed-b04e-430f-aee5-6808450cadf7
+    content: src/renderer/store/tree/actions/sendActions.ts — primary suspect (runAutonomousCollaborateInTerminal ~600-605; buildSendPayloadBody ~276-278).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ed5324e-950c-4a09-92f6-502cfc12f987:
+    id: 5ed5324e-950c-4a09-92f6-502cfc12f987
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — related surface (sendContentToTerminal advance dispatch ~947-997).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e287c191-c84a-4bbf-ad77-0b56a6df8d75:
+    id: e287c191-c84a-4bbf-ad77-0b56a6df8d75
+    content: Regression window
+    children:
+      - e27c945e-4f01-43a7-9764-9c84651acdc4
+      - 9c59eab7-be9c-4b0a-a753-72fda5d2adfc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e27c945e-4f01-43a7-9764-9c84651acdc4:
+    id: e27c945e-4f01-43a7-9764-9c84651acdc4
+    content: 'Last known good: before the autonomous bare-content fallback existed — prior to 6ea4f76 ("fix: skip collaboration setup on bare send", 2026-04-19).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c59eab7-be9c-4b0a-a753-72fda5d2adfc:
+    id: 9c59eab7-be9c-4b0a-a753-72fda5d2adfc
+    content: 'First observed broken: 6ea4f76 (2026-04-19); the current form was set by c92da16 ("fix: hold workflow-start prompts behind the rebind confirmation dialog", 2026-05-22).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e87225c1-867b-4bde-8437-147e3367f60e:
+    id: e87225c1-867b-4bde-8437-147e3367f60e
+    content: Severity
+    children:
+      - 12265858-3458-433b-8beb-6dba0d2aeb91
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12265858-3458-433b-8beb-6dba0d2aeb91:
+    id: 12265858-3458-433b-8beb-6dba0d2aeb91
+    content: Medium — no crash or data loss, but autonomous workflows silently dispatch an unintended prompt on context-less steps, derailing the agent session and muddying the terminal↔node binding.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d183abc3-8bad-4911-a6c8-ccec512fc777:
+    id: d183abc3-8bad-4911-a6c8-ccec512fc777
+    content: Notes
+    children:
+      - aceba966-f8b1-490d-aad9-03d9957acbb8
+      - 9e32b824-1f13-448b-8909-395b64e23857
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aceba966-f8b1-490d-aad9-03d9957acbb8:
+    id: aceba966-f8b1-490d-aad9-03d9957acbb8
+    content: Disambiguate from the manual bare-send path (runCollaborateInTerminal ~542-550), which is intentional action-mode behavior and must keep working.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e32b824-1f13-448b-8909-395b64e23857:
+    id: 9e32b824-1f13-448b-8909-395b64e23857
+    content: 'UX/telemetry gap: the autonomous bare send only logs "Sent bare node content..." at info; a skipped context-less step should emit an activity-log entry so the no-send is observable instead of looking like a stall.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f53dde5d-c4a3-462c-88d6-55f79cb0b282:
+    id: f53dde5d-c4a3-462c-88d6-55f79cb0b282
+    content: Technical refinement
+    children:
+      - 3266e459-563d-45a2-9df5-c3d74a7b716e
+      - b3bf2331-6a63-4d56-a8ca-22a446d9cef9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3266e459-563d-45a2-9df5-c3d74a7b716e:
+    id: 3266e459-563d-45a2-9df5-c3d74a7b716e
+    content: Flag complications
+    children:
+      - 5a9878ea-fc3d-4c53-a153-54b400f4bf9f
+      - 61f137dd-7391-47ee-ab5f-2ca59ea147d2
+      - 45dcd638-8942-4b60-b05b-ce0e63bc0894
+      - 9497bd6f-721b-4dd3-968b-73e2cfe68c76
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a9878ea-fc3d-4c53-a153-54b400f4bf9f:
+    id: 5a9878ea-fc3d-4c53-a153-54b400f4bf9f
+    content: 'Risk — "send nothing" can stall the workflow: autonomous advancement is driven by the Stop that follows the sent prompt, so simply suppressing the send leaves a pending ack (registerPendingAck) that no Stop ever satisfies. The fix must skip-and-advance, not just not-send.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61f137dd-7391-47ee-ab5f-2ca59ea147d2:
+    id: 61f137dd-7391-47ee-ab5f-2ca59ea147d2
+    content: 'Out of scope: the manual action-mode bare send (runCollaborateInTerminal) and one-off non-workflow sends via buildSendPayloadBody:276-278 must keep sending bare content unchanged — only the autonomous workflow path changes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45dcd638-8942-4b60-b05b-ce0e63bc0894:
+    id: 45dcd638-8942-4b60-b05b-ce0e63bc0894
+    content: 'Decision to settle: the same no-context branch serves both workflow-start and workflow-advance; confirm whether a context-less first step also no-ops/skips or only advance does.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9497bd6f-721b-4dd3-968b-73e2cfe68c76:
+    id: 9497bd6f-721b-4dd3-968b-73e2cfe68c76
+    content: 'ROI caveat: well-authored autonomous workflows attach a context to every actionable step, so a context-less step is usually malformed authoring — the fix is cheap but mostly a guard against that, not a hot path.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3bf2331-6a63-4d56-a8ca-22a446d9cef9:
+    id: b3bf2331-6a63-4d56-a8ca-22a446d9cef9
+    content: Approach (2-3 bullets)
+    children:
+      - fb339b51-8a7a-4194-900f-37a8932b9bed
+      - 6a270599-53f0-44aa-9e9f-3f5b2d2dbddf
+      - efc631dd-c739-4560-ba8c-28373b474afb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb339b51-8a7a-4194-900f-37a8932b9bed:
+    id: fb339b51-8a7a-4194-900f-37a8932b9bed
+    content: 'Gate at the workflow boundary: sendContentToTerminal already computes effectiveContextId (workflowExecutionActions.ts ~958) — when it is falsy on an autonomous send, do not call autonomousCollaborateInTerminal or registerPendingAck.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a270599-53f0-44aa-9e9f-3f5b2d2dbddf:
+    id: 6a270599-53f0-44aa-9e9f-3f5b2d2dbddf
+    content: 'Skip-and-advance instead of suppress: route the context-less node straight to advanceNode (same closure) so the workflow moves on rather than deadlocking on an unsatisfiable pending ack — this is the non-obvious part.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efc631dd-c739-4560-ba8c-28373b474afb:
+    id: efc631dd-c739-4560-ba8c-28373b474afb
+    content: Leave the shared sendActions helpers untouched so manual/action-mode and one-off sends keep their current bare-content behavior; scope the change to the autonomous dispatch only.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1ea7b79-149d-4bff-a6a6-a22d00135ba3:
+    id: f1ea7b79-149d-4bff-a6a6-a22d00135ba3
+    content: worktree
+    children:
+      - aca22588-f2c5-45fe-b430-b1831d11a830
+    metadata:
+      status: pending
+  aca22588-f2c5-45fe-b430-b1831d11a830:
+    id: aca22588-f2c5-45fe-b430-b1831d11a830
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-no-context-step-send-nothing)'
+    children: []
+    metadata:
+      status: pending
+  6ab2e5f2-6625-40d7-a171-bd452d4844e1:
+    id: 6ab2e5f2-6625-40d7-a171-bd452d4844e1
+    content: 'BLOCKED — design decision needed before implementing. The spec''d seam (gate sendContentToTerminal on bindingSource===''workflow-advance'') cannot isolate the bug: ''workflow-advance'' also tags rebind-confirmed starts, recurse hand-offs, continueWorkflow and resendStep — none of which should be skipped. A skip-and-advance gate scoped to context-less autonomous steps turns ~11 existing tests red (recurseNoSiblingAdvance x4, workflowExecutionActions continue/resend/recurse x5, workflowStartRebindGate x1, workflowStepTimeoutRemoval x1) because the suite pervasively models context-less autonomous steps as "land + send node content" — and workflowStartRebindGate deliberately asserts a context-less node DOES dispatch. Need the user to decide: (A) skip-and-advance only on the pure Stop-driven natural advance, explicitly preserving send for rebind-start/recurse/continue/resend (most surgical; requires a new discriminator since bindingSource is shared); (B) land-but-suppress-send (smaller churn but the workflow waits/stalls on the step); or (C) skip everywhere and update all ~11 tests. New tests in workflowAdvanceNoContextSkip.test.ts are green for the core behavior; the candidate gate is in place but breaks the above.'
+    children: []
+    metadata:
+      status: pending
+  a7ce79e3-da82-4294-bb14-263b1dcae27a:
+    id: a7ce79e3-da82-4294-bb14-263b1dcae27a
+    content: worktree
+    children:
+      - 6c08b902-9946-48c4-a6c5-2bfac9eef289
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c08b902-9946-48c4-a6c5-2bfac9eef289:
+    id: 6c08b902-9946-48c4-a6c5-2bfac9eef289
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-record-issues-multiple-nodes)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a69df245-c6a0-42fb-b306-cdafa515d068:
+    id: a69df245-c6a0-42fb-b306-cdafa515d068
+    content: Summary
+    children:
+      - 2826a929-b0d3-4184-b60c-5cb8face24c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2826a929-b0d3-4184-b60c-5cb8face24c8:
+    id: 2826a929-b0d3-4184-b60c-5cb8face24c8
+    content: In collaborate+execute ("both") mode, the step prompt tells Claude to "record them once by calling add_child_node," so encountered issues land as one big paragraph in a single node instead of separate structured nodes.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31150016-e9aa-4298-90e3-1b96436f2f42:
+    id: 31150016-e9aa-4298-90e3-1b96436f2f42
+    content: Steps to reproduce
+    children:
+      - 5f319d87-eecc-4624-a94f-324a8e8d2520
+      - 67a6c8b9-56fd-4983-8d2e-2a572750cd1e
+      - e126bd9d-a6cf-48b4-b522-0613c45d447d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f319d87-eecc-4624-a94f-324a8e8d2520:
+    id: 5f319d87-eecc-4624-a94f-324a8e8d2520
+    content: 'Precondition: run an automatic step in collaborate+execute ("both") mode whose CONTENT asks for code changes (the buildBothOutputTarget prompt path).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67a6c8b9-56fd-4983-8d2e-2a572750cd1e:
+    id: 67a6c8b9-56fd-4983-8d2e-2a572750cd1e
+    content: 'User action: have Claude execute the step and encounter two or more distinct issues worth recording.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e126bd9d-a6cf-48b4-b522-0613c45d447d:
+    id: e126bd9d-a6cf-48b4-b522-0613c45d447d
+    content: 'Observation: Claude makes a single add_child_node call and dumps all issues as one large paragraph under the bound step.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09a31eb9-8677-4135-a255-dd7fe30c4730:
+    id: 09a31eb9-8677-4135-a255-dd7fe30c4730
+    content: Expected behavior
+    children:
+      - 7b9ed221-16b9-4d68-8cbf-4e3024ec178d
+      - 73301fd4-ff6e-4567-8245-bd614a95e34d
+      - c8668d39-6984-4520-9ab2-19921bdd0cf0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b9ed221-16b9-4d68-8cbf-4e3024ec178d:
+    id: 7b9ed221-16b9-4d68-8cbf-4e3024ec178d
+    content: 'Happy path: each distinct issue becomes its own child node, with sub-points nested as grandchildren, keeping the tree scannable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73301fd4-ff6e-4567-8245-bd614a95e34d:
+    id: 73301fd4-ff6e-4567-8245-bd614a95e34d
+    content: 'Edge case (multiple issues): the prompt makes clear Claude may call add_child_node several times — one node per issue.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8668d39-6984-4520-9ab2-19921bdd0cf0:
+    id: c8668d39-6984-4520-9ab2-19921bdd0cf0
+    content: 'Edge case (zero issues): no child node is added and no empty placeholder node is created.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  baa6b1e4-8ef9-47b5-abc7-f21a2e2e52fa:
+    id: baa6b1e4-8ef9-47b5-abc7-f21a2e2e52fa
+    content: Actual behavior
+    children:
+      - 60fa2003-533c-4ddb-a885-2cbda66c58d9
+      - eec456fb-9643-4238-bdb6-53a7cacea160
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60fa2003-533c-4ddb-a885-2cbda66c58d9:
+    id: 60fa2003-533c-4ddb-a885-2cbda66c58d9
+    content: Claude calls add_child_node exactly once and concatenates every issue into one node's content.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eec456fb-9643-4238-bdb6-53a7cacea160:
+    id: eec456fb-9643-4238-bdb6-53a7cacea160
+    content: 'User-visible symptom: a single tree node holding a wall of prose, defeating the outliner''s node-per-thought structure.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  640da826-101e-4879-b108-6f6159a8c0b6:
+    id: 640da826-101e-4879-b108-6f6159a8c0b6
+    content: Suspected cause
+    children:
+      - a9163c8b-de52-4410-9862-4d13a87c0422
+      - b63e524e-1efb-4a5e-b595-c04c9f53b307
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9163c8b-de52-4410-9862-4d13a87c0422:
+    id: a9163c8b-de52-4410-9862-4d13a87c0422
+    content: 'Code path: buildBothOutputTarget in src/renderer/store/tree/actions/sendActions.ts:184 emits "- If issues were encountered, record them once by calling add_child_node with the bound step as parent_id".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b63e524e-1efb-4a5e-b595-c04c9f53b307:
+    id: b63e524e-1efb-4a5e-b595-c04c9f53b307
+    content: The singular framing ("once", "a child node"), plus add_child_node's "Content of the new child node" description, signals one call / one node and never states multiple calls are allowed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f486f525-3198-4dcb-91f0-b43937ffba9b:
+    id: f486f525-3198-4dcb-91f0-b43937ffba9b
+    content: Affected files
+    children:
+      - 3170c2da-19d8-47fa-8b44-28fcba51a4a8
+      - 053fad56-778d-4621-8461-8c26e91fe430
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3170c2da-19d8-47fa-8b44-28fcba51a4a8:
+    id: 3170c2da-19d8-47fa-8b44-28fcba51a4a8
+    content: 'Primary suspect: src/renderer/store/tree/actions/sendActions.ts (buildBothOutputTarget, ~line 184).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  053fad56-778d-4621-8461-8c26e91fe430:
+    id: 053fad56-778d-4621-8461-8c26e91fe430
+    content: 'Related surface: src/main/services/mcpServer.ts add_child_node registration (~lines 110-129), whose description does not invite repeated calls or per-issue nodes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b708c40-d94b-4d7f-9ff5-e25efb9b6c7c:
+    id: 5b708c40-d94b-4d7f-9ff5-e25efb9b6c7c
+    content: Regression window
+    children:
+      - 536ae46a-4e87-497e-85ed-373ab2efb846
+      - 751fcd65-603a-499a-b0a0-878315a8cb07
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  536ae46a-4e87-497e-85ed-373ab2efb846:
+    id: 536ae46a-4e87-497e-85ed-373ab2efb846
+    content: 'Last known good: none — the singular framing predates the MCP migration ("append a single new child node at the end of the list", commit 246a1ea, 2026-05-17 and earlier).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  751fcd65-603a-499a-b0a0-878315a8cb07:
+    id: 751fcd65-603a-499a-b0a0-878315a8cb07
+    content: 'First observed with current wording: commit 69d100b (2026-06-03), which replaced the file-write phrasing with "record them once by calling add_child_node".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc3292ef-48d8-4d0b-a7d8-1fdce8e7f08f:
+    id: dc3292ef-48d8-4d0b-a7d8-1fdce8e7f08f
+    content: Severity
+    children:
+      - ba92f626-c4e5-49d1-97d6-c54fd93f2a0f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba92f626-c4e5-49d1-97d6-c54fd93f2a0f:
+    id: ba92f626-c4e5-49d1-97d6-c54fd93f2a0f
+    content: 'Low–medium usability: issues are still captured, but as an unstructured blob that erodes tree readability and downstream reuse — no data loss in both-mode.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fbacf8d-3d1f-4fdf-b0b2-af5c6a4c6e55:
+    id: 9fbacf8d-3d1f-4fdf-b0b2-af5c6a4c6e55
+    content: Notes
+    children:
+      - 5f914271-e9da-44d3-80f0-2f6f8d6de221
+      - a6145b45-2cb9-4e46-8db2-21aebafcd021
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f914271-e9da-44d3-80f0-2f6f8d6de221:
+    id: 5f914271-e9da-44d3-80f0-2f6f8d6de221
+    content: Disambiguate from autonomous submit_step_output rebuilding the bound subtree from CONTENT and dropping out-of-band add_child_node nodes — a different failure on the collaborate submit path, not this both-mode wording issue.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6145b45-2cb9-4e46-8db2-21aebafcd021:
+    id: a6145b45-2cb9-4e46-8db2-21aebafcd021
+    content: 'UX/telemetry gap: nothing distinguishes "one issue" from "many issues collapsed into one node," so the blob is invisible until a human reads it; fix candidates are rewording to invite one node per issue and noting in the tool description that multiple calls are allowed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16541663-b5ed-4faa-bb62-3c7225e2b9b0:
+    id: 16541663-b5ed-4faa-bb62-3c7225e2b9b0
+    content: Technical refinement
+    children:
+      - a827129b-3363-4843-be9f-039d77946831
+      - b145d804-5d46-4689-8fe6-3b808f9928bf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a827129b-3363-4843-be9f-039d77946831:
+    id: a827129b-3363-4843-be9f-039d77946831
+    content: Flag complications
+    children:
+      - 7e527093-3489-4999-aea2-6b76672df038
+      - cdc06216-a21b-45d6-88ac-98db147c63b2
+      - 91ff22b6-5c2c-49e6-91e6-f0e69aa78ec1
+      - d1e9c955-ef1c-4636-b6ca-a0a284d377e4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e527093-3489-4999-aea2-6b76672df038:
+    id: 7e527093-3489-4999-aea2-6b76672df038
+    content: 'Over-fragmentation risk: inviting "one node per issue" could split a single trivial issue into several nodes — keep the one-issue→one-concise-node guidance to bound it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdc06216-a21b-45d6-88ac-98db147c63b2:
+    id: cdc06216-a21b-45d6-88ac-98db147c63b2
+    content: 'Mode interaction: only the both-mode path records via MCP incrementally, so multiple child nodes persist there; the autonomous collaborate-submit path rebuilds the subtree from CONTENT and would drop out-of-band nodes — reword only the both-mode target, not that path.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91ff22b6-5c2c-49e6-91e6-f0e69aa78ec1:
+    id: 91ff22b6-5c2c-49e6-91e6-f0e69aa78ec1
+    content: 'Out of scope: fixing the autonomous-submit rebuild drop (separate bug) and the collaborate-only / decomposition output targets.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1e9c955-ef1c-4636-b6ca-a0a284d377e4:
+    id: d1e9c955-ef1c-4636-b6ca-a0a284d377e4
+    content: 'ROI: pure prompt-wording change, very low cost vs. low–medium usability gain; existing both-mode prompt tests assert only tool names (toContain ''add_child_node''), so they won''t break.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b145d804-5d46-4689-8fe6-3b808f9928bf:
+    id: b145d804-5d46-4689-8fe6-3b808f9928bf
+    content: Summarise the approach
+    children:
+      - 22398424-230e-4d88-8f7c-2edb0ea1da18
+      - f1a9afb3-300f-4bc9-bf9d-2281c0295996
+      - 4a711465-7036-49f8-9f64-e9141737c26e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22398424-230e-4d88-8f7c-2edb0ea1da18:
+    id: 22398424-230e-4d88-8f7c-2edb0ea1da18
+    content: Reword the one line in buildBothOutputTarget (sendActions.ts:184) to invite one child node per distinct issue and state add_child_node may be called more than once.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1a9afb3-300f-4bc9-bf9d-2281c0295996:
+    id: f1a9afb3-300f-4bc9-bf9d-2281c0295996
+    content: Optionally note in add_child_node's description (mcpServer.ts) that it may be called repeatedly, one node per item.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a711465-7036-49f8-9f64-e9141737c26e:
+    id: 4a711465-7036-49f8-9f64-e9141737c26e
+    content: 'Non-obvious: add_child_node already supports multiple calls — the limiter is the prompt wording, not the tool, so no logic change is needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccb98c09-f9b6-4c23-beb9-6e6ae3a22517:
+    id: ccb98c09-f9b6-4c23-beb9-6e6ae3a22517
+    content: 'TDD scope note: the bug''s zero-issue and one-issue edge cases (does Claude add no node / one concise node?) are agent-runtime behaviors, not assertable from the prompt-builder unit — which can only test the emitted prompt copy. Left as it.todo; verifying them would need a tool-call-observing integration harness that does not exist yet.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8afc3f4c-2076-4bdf-97c3-ee985bb1e87d:
+    id: 8afc3f4c-2076-4bdf-97c3-ee985bb1e87d
+    content: 'Adjacent look-alike for the implementer: DEFAULT_EXECUTE_CONTEXT (sendActions.ts:51) carries the same singular framing — "record them as a child node" — and sits outside the scoped fix (buildBothOutputTarget only). Decide in the implementation step whether to reword it in the same PR; the new tests here do not cover it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fc86d12-a306-4582-9346-d7e22129da62:
+    id: 6fc86d12-a306-4582-9346-d7e22129da62
+    content: Verification
+    children:
+      - 4c857be2-e0d1-4272-b185-d91a76fb4ee2
+      - 0a6e6561-2a88-4e5a-9479-942c3b76c4b9
+      - 5a9e968a-e7f9-4c4f-b4f0-8c130e359fdc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c857be2-e0d1-4272-b185-d91a76fb4ee2:
+    id: 4c857be2-e0d1-4272-b185-d91a76fb4ee2
+    content: 'Implemented and verified: buildBothOutputTarget reworded to record each issue as its own child node and permit calling add_child_node more than once; DEFAULT_EXECUTE_CONTEXT reworded to match; add_child_node tool description notes it may be called repeatedly. Diff is 3 files (+26/-3) on branch fix/record-issues-multiple-nodes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a6e6561-2a88-4e5a-9479-942c3b76c4b9:
+    id: 0a6e6561-2a88-4e5a-9479-942c3b76c4b9
+    content: 'Checks green: both-mode prompt suite 8 pass / 0 fail (incl. 2 new tests); full changed-file run 227 pass / 0 fail; ESLint clean on changed files; tsc --noEmit clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a9e968a-e7f9-4c4f-b4f0-8c130e359fdc:
+    id: 5a9e968a-e7f9-4c4f-b4f0-8c130e359fdc
+    content: 'Deferred (chosen not to do now): runtime edge-case verification — zero issues → no node added, one issue → a single concise node — left as it.todo because it needs a tool-call-observing integration harness that does not exist; the prompt-builder unit can only assert the emitted copy, which is covered.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3c4a6da-afda-47cc-b0ab-0033e85c9b52:
+    id: e3c4a6da-afda-47cc-b0ab-0033e85c9b52
+    content: 'AI refactor: rewrote the two new test comments in sendActionsBothModePrompt.test.ts to state the tested invariant and the reason for tolerant matching, dropping the change-history narrative ("used to", "the fix") to match the comments convention (no iteration-history references).'
+    children: []
+    metadata:
+      status: completed
+  1ec6899c-e2e6-406c-9e3f-f07aa95bd0af:
+    id: 1ec6899c-e2e6-406c-9e3f-f07aa95bd0af
+    content: 'AI refactor: added a defaultExecuteContext.test.ts assertion locking the DEFAULT_EXECUTE_CONTEXT per-issue framing (rejects "record them as a child node"; tolerant per-issue match) — it covers the prompt-content behavior change that previously had no test.'
+    children: []
+    metadata:
+      status: completed
+  0a28acaf-71ba-414c-8a3b-530a0fc65d99:
+    id: 0a28acaf-71ba-414c-8a3b-530a0fc65d99
+    content: worktree
+    children:
+      - 4ea78799-e16a-413c-859d-834ca8eb34f1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ea78799-e16a-413c-859d-834ca8eb34f1:
+    id: 4ea78799-e16a-413c-859d-834ca8eb34f1
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-worktrees/fix-stop-hook-node-scoped-advance) — branch `fix/stop-hook-node-scoped-advance` forked from `master` at `/Users/brianfox/dev/Arborescent-worktrees/fix-stop-hook-node-scoped-advance`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b553860-e0ea-4805-bb48-9d478a1377c4:
+    id: 5b553860-e0ea-4805-bb48-9d478a1377c4
+    content: Summary
+    children:
+      - a574799c-199a-4a06-a53f-a40a3d7e4944
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a574799c-199a-4a06-a53f-a40a3d7e4944:
+    id: a574799c-199a-4a06-a53f-a40a3d7e4944
+    content: An unrelated terminal Stop hook (from a manual send/revise on a different node) is mis-credited to the bound running node and advances it a step it never finished.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cc8570a-4133-40c9-93e2-e33f4d88ad1d:
+    id: 1cc8570a-4133-40c9-93e2-e33f4d88ad1d
+    content: Steps to reproduce
+    children:
+      - 895f6515-20d7-479b-af75-75a4c6cf45f7
+      - c5c2907c-cc82-40b7-9ec9-11a75907bc61
+      - 0561f112-d26e-41fc-b2cf-589bea1d0aec
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  895f6515-20d7-479b-af75-75a4c6cf45f7:
+    id: 895f6515-20d7-479b-af75-75a4c6cf45f7
+    content: 'Precondition: a workflow node is bound and running on a terminal (state ''running'' in workflowExecutionStates), mid-step with Claude active.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5c2907c-cc82-40b7-9ec9-11a75907bc61:
+    id: c5c2907c-cc82-40b7-9ec9-11a75907bc61
+    content: 'User action: interrupt Claude on that terminal, then manually send or revise content targeting a DIFFERENT node on the same terminal and let that turn finish.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0561f112-d26e-41fc-b2cf-589bea1d0aec:
+    id: 0561f112-d26e-41fc-b2cf-589bea1d0aec
+    content: 'Observation: when the manual turn''s Stop hook fires, the original bound node advances to its next workflow step (its next-step prompt is sent) without the bound node''s own work having completed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c5b9e37-4625-4a93-b42b-927eb260c164:
+    id: 8c5b9e37-4625-4a93-b42b-927eb260c164
+    content: Expected behavior
+    children:
+      - 2504c857-2f83-4f99-a731-af0601a9db50
+      - c212a830-c9f8-4c97-8604-040941529764
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2504c857-2f83-4f99-a731-af0601a9db50:
+    id: 2504c857-2f83-4f99-a731-af0601a9db50
+    content: 'Happy path: a manual send/revise on another node does not advance the bound node; only the bound node''s own completion signal advances it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c212a830-c9f8-4c97-8604-040941529764:
+    id: c212a830-c9f8-4c97-8604-040941529764
+    content: 'Edge cases: multiple Stop hooks during one interruption (e.g. several clarifying questions) must not each advance the bound node, and interrupting Claude should pause the bound node rather than leave it to advance on the next unrelated Stop.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c73239a6-09fc-4e78-8361-2a48733ab8b3:
+    id: c73239a6-09fc-4e78-8361-2a48733ab8b3
+    content: Actual behavior
+    children:
+      - 685e6500-d403-45d8-b879-343d530ed776
+      - 5c97593e-c171-41fc-82c1-29f7bc6ce234
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  685e6500-d403-45d8-b879-343d530ed776:
+    id: 685e6500-d403-45d8-b879-343d530ed776
+    content: The bound node advances one step per unrelated Stop; with multiple Stop hooks it can over-advance, and two step prompts can paste into the terminal at once.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c97593e-c171-41fc-82c1-29f7bc6ce234:
+    id: 5c97593e-c171-41fc-82c1-29f7bc6ce234
+    content: 'User-visible symptoms: the workflow silently jumps a step, the bound node''s next-step prompt appears prematurely, and content lands out of sequence requiring a manual rewind.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a34c914f-d4c5-4caa-8b19-d477a5feefe2:
+    id: a34c914f-d4c5-4caa-8b19-d477a5feefe2
+    content: Suspected cause
+    children:
+      - 1d3c6084-bb33-4b2e-9832-211f7383f6ae
+      - 82a55e40-6f20-4195-a028-314d6a93bc4e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d3c6084-bb33-4b2e-9832-211f7383f6ae:
+    id: 1d3c6084-bb33-4b2e-9832-211f7383f6ae
+    content: findRunningNodeOnTerminal (src/renderer/store/tree/actions/terminalBindingResolution.ts:42-60) resolves a Stop purely by terminal and returns the bound node; a manual send/revise (sendActions.ts) never registers in workflowExecutionStates, so the bound node is the only candidate the resolver sees for that terminal.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82a55e40-6f20-4195-a028-314d6a93bc4e:
+    id: 82a55e40-6f20-4195-a028-314d6a93bc4e
+    content: The explicit_submit_seen gate (src/renderer/store/tree/actions/workflowHookEventHandler.ts:232-239) does not cover this because the flag is session/turn-global (src/main/services/oneShotTargetStore.ts) and the manual send's own submit_step_output sets it (src/main/services/mcpSubmitOutputTool.ts:131), so the gate reads true and permits the bound node's advance.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a1c6cca-206b-4c1d-9c20-367f87f621ae:
+    id: 2a1c6cca-206b-4c1d-9c20-367f87f621ae
+    content: Affected files
+    children:
+      - 57757364-fcff-489e-8306-61088ed75820
+      - 33d34743-a3f8-40a3-95ef-e5c79915a8f2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57757364-fcff-489e-8306-61088ed75820:
+    id: 57757364-fcff-489e-8306-61088ed75820
+    content: src/renderer/store/tree/actions/workflowHookEventHandler.ts — Stop-event advance routing (primary suspect).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33d34743-a3f8-40a3-95ef-e5c79915a8f2:
+    id: 33d34743-a3f8-40a3-95ef-e5c79915a8f2
+    content: 'Related surfaces: terminalBindingResolution.ts (findRunningNodeOnTerminal), src/main/services/oneShotTargetStore.ts (session-global explicit_submit_seen), src/renderer/store/tree/actions/sendActions.ts (manual send omits run-state registration).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaae88b9-a009-42c4-b856-d6c06ed4c57f:
+    id: aaae88b9-a009-42c4-b856-d6c06ed4c57f
+    content: Regression window
+    children:
+      - d84b6f58-beff-410f-803c-d82e762ff1d5
+      - b4c041f8-6945-4483-8e6b-7679af84b658
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d84b6f58-beff-410f-803c-d82e762ff1d5:
+    id: d84b6f58-beff-410f-803c-d82e762ff1d5
+    content: 'Last known good: unknown — the defect is inherent to the Stop-hook + transient run-state advancement design, not a single regressing commit.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4c041f8-6945-4483-8e6b-7679af84b658:
+    id: b4c041f8-6945-4483-8e6b-7679af84b658
+    content: 'First observed: surfaced via a manual send/revise on a second node during a bound run; sibling of the already-noted decomposition hand-off double-advance.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adf29cd2-74db-4265-8978-1c561599f264:
+    id: adf29cd2-74db-4265-8978-1c561599f264
+    content: Severity
+    children:
+      - 31cfa707-edeb-450b-944a-70925eb12f5d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31cfa707-edeb-450b-944a-70925eb12f5d:
+    id: 31cfa707-edeb-450b-944a-70925eb12f5d
+    content: Medium-High — silent workflow desync (step skipped / premature prompt); no data loss, but requires manual recovery and erodes trust in autonomous advancement.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8a81710-dfe2-4297-8496-4c6c60791c65:
+    id: e8a81710-dfe2-4297-8496-4c6c60791c65
+    content: Notes
+    children:
+      - fd185c1f-2672-481a-980d-6e510d3ae27e
+      - e0011b37-9b5c-4cf3-b60b-8f05afbc558a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd185c1f-2672-481a-980d-6e510d3ae27e:
+    id: fd185c1f-2672-481a-980d-6e510d3ae27e
+    content: 'Disambiguate from the decomposition hand-off double-advance (same findRunningNodeOnTerminal mis-credit family, different trigger) and from the "Stop dropped: no running node" stall (that loses run-state; this one over-advances).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0011b37-9b5c-4cf3-b60b-8f05afbc558a:
+    id: e0011b37-9b5c-4cf3-b60b-8f05afbc558a
+    content: 'UX/telemetry gap: there is no pause-on-interrupt hook today and no signal when a Stop is credited to a node that did not itself submit this turn — a log/pause candidate, and per-node (not session-global) submit tracking would close the gate hole.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcdefe38-d9a3-415c-aefc-14e70ae53636:
+    id: dcdefe38-d9a3-415c-aefc-14e70ae53636
+    content: Technical refinement
+    children:
+      - ccc200fa-b5de-4c6a-8fd9-3978bb693cfe
+      - 3bee5954-a7b4-4b3b-a636-29c55741f8e6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccc200fa-b5de-4c6a-8fd9-3978bb693cfe:
+    id: ccc200fa-b5de-4c6a-8fd9-3978bb693cfe
+    content: Flag complications
+    children:
+      - f1434af3-f5fb-46fa-ad61-c16aa2a8bb44
+      - a76d6792-4e65-4cb5-bdf8-7d162619310e
+      - 813be29c-2fea-45ab-a28f-53567e9137f4
+      - cc84d6e1-d91b-4cac-8cb0-8cf4d56bea69
+      - da9e88b2-d339-4b0b-a350-cffa8db18b24
+      - 18c03fe7-79e5-41e7-b1e8-4510e70b472b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1434af3-f5fb-46fa-ad61-c16aa2a8bb44:
+    id: f1434af3-f5fb-46fa-ad61-c16aa2a8bb44
+    content: 'Stop-before-intent is a latency race, not a logical one (the completion call always lands mid-turn, before turn-end); handle it with a short bounded retry on Stop, and on timeout leave the node running/awaiting-validation rather than dropping or advancing — this also absorbs today''s "Stop dropped: no running node" stall.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a76d6792-4e65-4cb5-bdf8-7d162619310e:
+    id: a76d6792-4e65-4cb5-bdf8-7d162619310e
+    content: If Claude hangs after declaring done but no Stop ever fires, the node sits visibly running with the intent pending until the user stops it; this is benign (honest state, cleared on teardown) and is intentionally given no separate timeout.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  813be29c-2fea-45ab-a28f-53567e9137f4:
+    id: 813be29c-2fea-45ab-a28f-53567e9137f4
+    content: The "announced-then-interrupted" case (node declares done, then user interrupts and sends elsewhere) will still advance the declared node on the terminal's next Stop; parked as rare and acceptable.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc84d6e1-d91b-4cac-8cb0-8cf4d56bea69:
+    id: cc84d6e1-d91b-4cac-8cb0-8cf4d56bea69
+    content: 'Open question deferred: whether an ESC interrupt fires a Stop at all is unverified against Claude Code''s hook contract — the fix is correct either way (no intent, no advance), but the pause-on-interrupt UX depends on the answer.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  da9e88b2-d339-4b0b-a350-cffa8db18b24:
+    id: da9e88b2-d339-4b0b-a350-cffa8db18b24
+    content: 'Out of scope: the decomposition hand-off double-advance (sibling bug, different trigger), the pause-on-interrupt UX (brown-pause-on-ESC), and revise-mid-run replace-in-place are not addressed here.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  18c03fe7-79e5-41e7-b1e8-4510e70b472b:
+    id: 18c03fe7-79e5-41e7-b1e8-4510e70b472b
+    content: ROI is favorable — the change is a net reduction in machinery (drop the safety-net auto-submit, one flag on the existing entry, no TTL); the only genuinely new logic is the Stop retry/timeout rendezvous, which replaces existing stall handling.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bee5954-a7b4-4b3b-a636-29c55741f8e6:
+    id: 3bee5954-a7b4-4b3b-a636-29c55741f8e6
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - 9362ecae-a391-4570-b3b0-b5636a9d0398
+      - 28735b7a-4f64-44ec-a14f-6d41399dec57
+      - c2a7db9e-1dd5-49d1-87dd-c5331a314b4d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9362ecae-a391-4570-b3b0-b5636a9d0398:
+    id: 9362ecae-a391-4570-b3b0-b5636a9d0398
+    content: 'Move node identity off the Stop hook''s terminal guess and onto the explicit completion call: announce_step_done/submit_step_output (which already carry target_node_id) set a node-scoped doneDeclared flag on the workflowExecutionStates entry, replacing the session-global explicit_submit_seen; the Stop hook becomes a pure terminal-ready edge that advances only the node whose entry holds a pending flag — no flag, no advance.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28735b7a-4f64-44ec-a14f-6d41399dec57:
+    id: 28735b7a-4f64-44ec-a14f-6d41399dec57
+    content: 'Non-obvious: advancing inside the MCP call is impossible because the terminal isn''t free until the turn ends (after the tool returns), so the Stop edge is still needed — but only as a readiness signal, not as the node resolver; the flag lives on the entry, so entry teardown on stop/finish garbage-collects it (no TTL).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2a7db9e-1dd5-49d1-87dd-c5331a314b4d:
+    id: c2a7db9e-1dd5-49d1-87dd-c5331a314b4d
+    content: 'Likely to surprise the reviewer: the safety-net Stop auto-submit is removed, not kept — under this model "turn ended with no declaration" must advance nothing, so the old safety net would be actively wrong; changes land in workflowHookEventHandler.ts, workflowExecutionActions.ts, the MCP completion tools, and oneShotTargetStore.ts.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  245803ae-aef4-4778-8be8-1af5b6bbd48b:
+    id: 245803ae-aef4-4778-8be8-1af5b6bbd48b
+    content: Verification summary
+    children:
+      - b40a77ae-1cee-4958-a8c7-c4f9a52fdb1e
+      - e52ba418-4094-41d0-a1b6-bd840f18d64a
+      - 41ce3ae1-631d-4e78-a675-42c400f2b4fb
+      - 42bbb4ea-a71e-4cb4-8b05-b5677bf02ba6
+      - 909bf34c-28ac-499e-9824-48440f472b0a
+      - 7a9fd192-e038-489c-88cc-6c00fc79a619
+      - adcc891e-3efe-494e-b1a7-49ed1427a7d5
+      - dc4edcb9-dc43-4024-b2c2-3099f4c59d6c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b40a77ae-1cee-4958-a8c7-c4f9a52fdb1e:
+    id: b40a77ae-1cee-4958-a8c7-c4f9a52fdb1e
+    content: 'Core fix verified implemented and green: the Stop advance is node-scoped — a manual send/revise on another node no longer advances the bound node, and repeated declaration-less Stops never advance; affected tests pass, type-check and lint clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e52ba418-4094-41d0-a1b6-bd840f18d64a:
+    id: e52ba418-4094-41d0-a1b6-bd840f18d64a
+    content: Deviation — declaration is carried on the Stop event (declared_node_id, tracked per-session in oneShotTargetStore), NOT stored as a flag on the workflowExecutionStates entry; the approach bullets are implemented in substance but via this event-carried mechanism.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41ce3ae1-631d-4e78-a675-42c400f2b4fb:
+    id: 41ce3ae1-631d-4e78-a675-42c400f2b4fb
+    content: 'Not built (chosen out) — the Stop-before-declaration retry/timeout rendezvous: unnecessary because the declaration rides on the Stop event, so there is no Stop-vs-declaration race to reconcile.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42bbb4ea-a71e-4cb4-8b05-b5677bf02ba6:
+    id: 42bbb4ea-a71e-4cb4-8b05-b5677bf02ba6
+    content: Not built (chosen out) — no TTL and no entry-teardown GC; the declaration is cleared at the turn boundary by the dispatcher (register-target / post-forward) instead.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  909bf34c-28ac-499e-9824-48440f472b0a:
+    id: 909bf34c-28ac-499e-9824-48440f472b0a
+    content: Behavior change vs the parked prediction — in the announced-then-interrupted case a later same-session manual send overwrites the declaration, so the declared node stalls (stays running) rather than advancing; still within the "rare and acceptable" envelope and safer than a wrong advance.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a9fd192-e038-489c-88cc-6c00fc79a619:
+    id: 7a9fd192-e038-489c-88cc-6c00fc79a619
+    content: Actual file set — workflowHookEventHandler.ts, hookEventDispatcher.ts, hookServer.ts, oneShotTargetStore.ts, mcpWriteTools.ts, mcpSubmitOutputTool.ts; workflowExecutionActions.ts was NOT touched (the entry-flag approach would have).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  adcc891e-3efe-494e-b1a7-49ed1427a7d5:
+    id: adcc891e-3efe-494e-b1a7-49ed1427a7d5
+    content: Deferred / out of scope — decomposition double-advance, pause-on-interrupt UX, the unresolved "does ESC fire a Stop" question, and revise-mid-run replace-in-place.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc4edcb9-dc43-4024-b2c2-3099f4c59d6c:
+    id: dc4edcb9-dc43-4024-b2c2-3099f4c59d6c
+    content: Still open — regression window "last known good" remains undetermined; inherent to the Stop-hook advancement design, not a single regressing commit.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68f70e6d-e338-422b-8812-893e2bdcfe7a:
+    id: 68f70e6d-e338-422b-8812-893e2bdcfe7a
+    content: worktree — feat/start-workflow-new-session (~/dev/Arborescent-worktrees/start-workflow-new-session)
+    children:
+      - 99f0d880-abfd-45a6-9577-f465282ed45a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99f0d880-abfd-45a6-9577-f465282ed45a:
+    id: 99f0d880-abfd-45a6-9577-f465282ed45a
+    content: '[Open worktree in VS Code](vscode://file/Users/brianfox/dev/Arborescent-worktrees/start-workflow-new-session)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f28887a-4465-40c8-86e9-ec67a4ac0ccc:
+    id: 1f28887a-4465-40c8-86e9-ec67a4ac0ccc
+    content: 📄 Product spec
+    children:
+      - 183ee24d-13c7-400d-a0f1-6e7424ed7bf6
+      - 301fe876-8178-41d2-80dc-92e438104bfa
+      - 2be3031e-4e16-43aa-9519-5961c28b2fd2
+      - f040daf4-7001-4c84-8178-88a419bb8bd3
+      - 10500514-2e3f-4486-b7c1-df00e61f1509
+      - ab8f22dc-94d2-4a0f-b57d-f0d92fe43c8c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  183ee24d-13c7-400d-a0f1-6e7424ed7bf6:
+    id: 183ee24d-13c7-400d-a0f1-6e7424ed7bf6
+    content: Context
+    children:
+      - 28ca2bc6-acaf-450d-81ff-413eb6f0a64a
+      - c16b4b3f-20a4-49a3-9869-4a6f269da7dd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28ca2bc6-acaf-450d-81ff-413eb6f0a64a:
+    id: 28ca2bc6-acaf-450d-81ff-413eb6f0a64a
+    content: 'Session binding is an internal concept: a node carries a sessionId, and recurse autoplay auto-binds decomposed siblings to one shared session so the group runs serially on a single terminal.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c16b4b3f-20a4-49a3-9869-4a6f269da7dd:
+    id: c16b4b3f-20a4-49a3-9869-4a6f269da7dd
+    content: Developers sometimes need a node to run in its own fresh session instead — e.g. separate PRs across the stack — but there is no user-facing way to override the binding; Send is a one-off run that does not model the binding, and plain Start workflow follows whatever the node is already bound to.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  301fe876-8178-41d2-80dc-92e438104bfa:
+    id: 301fe876-8178-41d2-80dc-92e438104bfa
+    content: User / persona
+    children:
+      - 3d8fbbdc-82fb-4f8a-95cc-c84f99341972
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d8fbbdc-82fb-4f8a-95cc-c84f99341972:
+    id: 3d8fbbdc-82fb-4f8a-95cc-c84f99341972
+    content: A developer using Arborescent as a control plane to drive multiple Claude CLI coding sessions from a single tree.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2be3031e-4e16-43aa-9519-5961c28b2fd2:
+    id: 2be3031e-4e16-43aa-9519-5961c28b2fd2
+    content: Current experience and why it is insufficient
+    children:
+      - 65abb0d2-6604-40fb-a8dd-b1159c0ed6b9
+      - 39fb6ca3-c932-40c2-8272-76e1fc6d57cf
+      - ff246d9a-c0c4-44d7-a8e1-c2235a5f6928
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65abb0d2-6604-40fb-a8dd-b1159c0ed6b9:
+    id: 65abb0d2-6604-40fb-a8dd-b1159c0ed6b9
+    content: Plain "Start workflow" routes by the node's existing sessionId — focus the live tab, resume the detached session, or spawn fresh only if unbound — so a bound node can never be forced onto a clean session.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39fb6ca3-c932-40c2-8272-76e1fc6d57cf:
+    id: 39fb6ca3-c932-40c2-8272-76e1fc6d57cf
+    content: For decomposed siblings, recurse force-inherits the shared session; the developer cannot peel one sibling off to run in its own session without abandoning decomposition.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff246d9a-c0c4-44d7-a8e1-c2235a5f6928:
+    id: ff246d9a-c0c4-44d7-a8e1-c2235a5f6928
+    content: 'The earlier "unbind from recurse" idea was rejected: binding is internal and abstract, easy to forget once set, and a persisted per-node/blueprint flag surprises whoever inherits the workflow. The need is better modelled as an explicit start action.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f040daf4-7001-4c84-8178-88a419bb8bd3:
+    id: f040daf4-7001-4c84-8178-88a419bb8bd3
+    content: Goal
+    children:
+      - 32fdbee6-3508-4ab1-9e9d-fb057b80e667
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32fdbee6-3508-4ab1-9e9d-fb057b80e667:
+    id: 32fdbee6-3508-4ab1-9e9d-fb057b80e667
+    content: Give any bound or decomposed workflow node a "Start workflow in new session" action that spawns a fresh session, re-points the node's binding to it, and — for a decomposed sibling — silently detaches it from its group so the remaining siblings keep auto-running.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10500514-2e3f-4486-b7c1-df00e61f1509:
+    id: 10500514-2e3f-4486-b7c1-df00e61f1509
+    content: Business rules
+    children:
+      - df159733-c0d3-4368-b52d-072bc18b67e3
+      - 9e350c2d-9128-4193-8e42-3dbe844f465f
+      - 5747a7b7-fb1e-4877-ae3d-58260a2c6af6
+      - 277d06c1-6a4a-4732-b61a-c5700fa71d25
+      - f0aa90b1-a6ec-4741-96a5-46a61e5faae9
+      - 05d21add-1cb0-4e3c-8d72-52f058430b45
+      - 06f9460e-deb6-49ec-9692-6eed2fb29824
+      - 6c9ff2a7-4859-4f0d-854f-2e8bcb7a5822
+      - d7bbba38-77a2-49f8-911d-67263eb10d5f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df159733-c0d3-4368-b52d-072bc18b67e3:
+    id: df159733-c0d3-4368-b52d-072bc18b67e3
+    content: '"Start workflow in new session" is offered on a workflow node when it is bound to a session or is a decomposed sibling (has a groupId); it is hidden when it is neither, where it would be identical to plain Start workflow.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e350c2d-9128-4193-8e42-3dbe844f465f:
+    id: 9e350c2d-9128-4193-8e42-3dbe844f465f
+    content: On invocation the node always starts via the spawn-fresh route — a brand-new Claude session, never a resume — regardless of any prior sessionId.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5747a7b7-fb1e-4877-ae3d-58260a2c6af6:
+    id: 5747a7b7-fb1e-4877-ae3d-58260a2c6af6
+    content: A confirmation dialog is shown only when the node has a live or resumable session binding to abandon — i.e. when plain Start workflow would otherwise focus or resume an existing session (it has already been played in this workflow). The dialog warns that the current session will be disconnected and a fresh one started.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  277d06c1-6a4a-4732-b61a-c5700fa71d25:
+    id: 277d06c1-6a4a-4732-b61a-c5700fa71d25
+    content: When the node has no such binding (it has not yet been played, whether grouped or not), no dialog is shown; the action proceeds directly.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0aa90b1-a6ec-4741-96a5-46a61e5faae9:
+    id: f0aa90b1-a6ec-4741-96a5-46a61e5faae9
+    content: 'The node''s binding is re-pointed: any prior sessionId is cleared and replaced by the new session, so a later plain Start workflow focuses the new session, not the old one.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05d21add-1cb0-4e3c-8d72-52f058430b45:
+    id: 05d21add-1cb0-4e3c-8d72-52f058430b45
+    content: If the node is a decomposed sibling, the action also removes its groupId, detaching it from the group; this is always silent and never surfaced in a dialog, because the grouping concept may be unfamiliar to a developer who did not author the workflow or has forgotten the recurse step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06f9460e-deb6-49ec-9692-6eed2fb29824:
+    id: 06f9460e-deb6-49ec-9692-6eed2fb29824
+    content: After a detach, recurse advances to the next still-grouped sibling, which inherits the shared session as before; the remaining group keeps auto-playing, and the developer can detach further siblings the same way, each into its own session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c9ff2a7-4859-4f0d-854f-2e8bcb7a5822:
+    id: 6c9ff2a7-4859-4f0d-854f-2e8bcb7a5822
+    content: The prior session is left intact but is no longer bound to this node; the one-session-per-node exclusivity invariant is preserved.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7bbba38-77a2-49f8-911d-67263eb10d5f:
+    id: d7bbba38-77a2-49f8-911d-67263eb10d5f
+    content: When a confirmation dialog is shown and the developer cancels it, nothing changes — no start, no rebind, no detach.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab8f22dc-94d2-4a0f-b57d-f0d92fe43c8c:
+    id: ab8f22dc-94d2-4a0f-b57d-f0d92fe43c8c
+    content: Acceptance criteria
+    children:
+      - 722996a9-62bd-46a0-8683-4ba7ad276162
+      - 7a533b45-10c8-48ff-8d9d-503462942346
+      - 71719104-693a-418d-b3f3-cfbfe1323969
+      - 4f5c70d1-34c3-4010-b05d-dcb4e3c1d64d
+      - 69aece18-db4d-4dcb-9358-62f8eff5f739
+      - 31453f37-1ffc-44d7-963f-e4fc993572f6
+      - aa17ca6b-a644-4d4d-8306-aba07dfac211
+      - 1b04d7c5-d634-44e1-8fbb-0e3a2288107d
+      - 546c0942-7b20-4012-85b4-fcbf44e1feaa
+      - 108fc92c-7f2f-41ae-bb66-3a7346c0e264
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  722996a9-62bd-46a0-8683-4ba7ad276162:
+    id: 722996a9-62bd-46a0-8683-4ba7ad276162
+    content: The action appears on a bound non-decomposed node and on a decomposed sibling; it does not appear on an unbound, ungrouped node.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a533b45-10c8-48ff-8d9d-503462942346:
+    id: 7a533b45-10c8-48ff-8d9d-503462942346
+    content: Invoking it on a node with a live or resumable session binding opens a confirmation dialog stating the current session will be disconnected and a fresh one started.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71719104-693a-418d-b3f3-cfbfe1323969:
+    id: 71719104-693a-418d-b3f3-cfbfe1323969
+    content: Invoking it on a node with no live/resumable binding (not yet played) shows no dialog and proceeds directly to a fresh-session start.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f5c70d1-34c3-4010-b05d-dcb4e3c1d64d:
+    id: 4f5c70d1-34c3-4010-b05d-dcb4e3c1d64d
+    content: Confirming on a bound non-decomposed node spawns a fresh session, rebinds the node to it, and leaves the previous session no longer bound to the node, with the new binding round-tripping through .arbo save/reload.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69aece18-db4d-4dcb-9358-62f8eff5f739:
+    id: 69aece18-db4d-4dcb-9358-62f8eff5f739
+    content: Invoking it on a decomposed sibling spawns a fresh session for it and removes its groupId silently (no group-related dialog), and recurse advances to the next still-grouped sibling on the shared session.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31453f37-1ffc-44d7-963f-e4fc993572f6:
+    id: 31453f37-1ffc-44d7-963f-e4fc993572f6
+    content: After a detach, the remaining grouped siblings continue to auto-play together unchanged, with existing recurse tests still passing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa17ca6b-a644-4d4d-8306-aba07dfac211:
+    id: aa17ca6b-a644-4d4d-8306-aba07dfac211
+    content: Detaching every sibling in a group in turn leaves no grouped siblings; recurse terminates cleanly — no crash, no MAX_RECURSE_ITERATIONS runaway, no false "Recurse halted" toast.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b04d7c5-d634-44e1-8fbb-0e3a2288107d:
+    id: 1b04d7c5-d634-44e1-8fbb-0e3a2288107d
+    content: In a multi-root decomposition (orchestrator deleted), a detached sibling is not used as the decomposedChildGroupId hand-off anchor; the remaining shared groupId still anchors the hand-off.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  546c0942-7b20-4012-85b4-fcbf44e1feaa:
+    id: 546c0942-7b20-4012-85b4-fcbf44e1feaa
+    content: The fresh session receives its own unique sessionId via SessionStart/registerSession and exclusivity holds across the old and new sessions.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  108fc92c-7f2f-41ae-bb66-3a7346c0e264:
+    id: 108fc92c-7f2f-41ae-bb66-3a7346c0e264
+    content: When a dialog is shown, cancelling it leaves the node, its binding, and its group unchanged.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2b449df-6dcc-4590-b170-273e1bfdf0b1:
+    id: f2b449df-6dcc-4590-b170-273e1bfdf0b1
+    content: 🔧 Implementation proposal
+    children:
+      - a82b4038-5126-4d64-a183-6f8a7a875cab
+      - e732c252-c990-44ed-a4bf-5bc84389245d
+      - b6dca40a-43b2-4acb-af0f-46d50f33703b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a82b4038-5126-4d64-a183-6f8a7a875cab:
+    id: a82b4038-5126-4d64-a183-6f8a7a875cab
+    content: Approach
+    children:
+      - c84debdd-efa0-48c5-a74d-215fb16f7658
+      - 69c37dce-5878-43ed-b25e-3e3cfd74dbe5
+      - 8e69eef1-500f-4093-9fe5-ec124495694a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c84debdd-efa0-48c5-a74d-215fb16f7658:
+    id: c84debdd-efa0-48c5-a74d-215fb16f7658
+    content: 'Add a start variant that forces a fresh session: clear the node''s sessionId before routing so decideWorkflowStartRoute yields spawn-fresh, then bind the new session on SessionStart. For a node carrying a groupId, also remove the groupId as part of the same action.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69c37dce-5878-43ed-b25e-3e3cfd74dbe5:
+    id: 69c37dce-5878-43ed-b25e-3e3cfd74dbe5
+    content: 'Gate the confirmation on the route the node would otherwise take: show the dialog only when decideWorkflowStartRoute on the current sessionId is focus-existing-tab or resume-in-new-tab; if it is already spawn-fresh, proceed silently.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e69eef1-500f-4093-9fe5-ec124495694a:
+    id: 8e69eef1-500f-4093-9fe5-ec124495694a
+    content: 'Reuse, don''t extend, recurse: a detached node simply stops matching its group''s originGroupId in the existing selector, so the next still-grouped sibling is chosen with no new skip logic.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e732c252-c990-44ed-a4bf-5bc84389245d:
+    id: e732c252-c990-44ed-a4bf-5bc84389245d
+    content: Touchpoints
+    children:
+      - 54df3fa9-f0d1-45b4-b873-7c5f11b81136
+      - 4c9a8101-6691-4682-9387-6f568bee2ba8
+      - b0533d2c-e598-49b9-9ac1-f34e0d56b294
+      - 3ccbdf49-5685-465e-a7b1-a43a8f4ab429
+      - 18387770-f8b6-42f7-babe-a09e9606edf3
+      - 400fb19c-3718-4221-a68f-a45a08330898
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54df3fa9-f0d1-45b4-b873-7c5f11b81136:
+    id: 54df3fa9-f0d1-45b4-b873-7c5f11b81136
+    content: Start action — a new store action wrapping startWorkflow (workflowExecutionActions.ts ~243) that clears node.metadata.sessionId (→ spawn-fresh) and, when present, removes node.metadata.groupId.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c9a8101-6691-4682-9387-6f568bee2ba8:
+    id: 4c9a8101-6691-4682-9387-6f568bee2ba8
+    content: Confirmation gating — compute decideWorkflowStartRoute (workflowStartRoute.ts) on the current sessionId to decide whether to prompt; no change to the route function itself.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0533d2c-e598-49b9-9ac1-f34e0d56b294:
+    id: b0533d2c-e598-49b9-9ac1-f34e0d56b294
+    content: Recurse — no new skip logic; the detached node is excluded by the existing groupId filter (workflowHelpers.ts:369). Add only the guard for the undefined-group subtlety (see constraints).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ccbdf49-5685-465e-a7b1-a43a8f4ab429:
+    id: 3ccbdf49-5685-465e-a7b1-a43a8f4ab429
+    content: UI — context-menu item "Start workflow in new session" gated to bound-or-grouped nodes, placed in the session/workflow menu group (useNodeContextMenu.ts), distinct from Send; the confirmation dialog appears only on the bound/played path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18387770-f8b6-42f7-babe-a09e9606edf3:
+    id: 18387770-f8b6-42f7-babe-a09e9606edf3
+    content: Persistence — sessionId/groupId changes ride existing metadata serialization (no schema migration); both are framework-managed keys, consistent with an app/user action.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  400fb19c-3718-4221-a68f-a45a08330898:
+    id: 400fb19c-3718-4221-a68f-a45a08330898
+    content: Tests — spawn-fresh + rebind on a bound node (dialog shown); silent detach + fresh start on an un-played sibling (no dialog); detach advances recurse to the next sibling; remaining group unchanged; all-detached clean termination; multi-root anchor unaffected; dialog cancel is a no-op.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6dca40a-43b2-4acb-af0f-46d50f33703b:
+    id: b6dca40a-43b2-4acb-af0f-46d50f33703b
+    content: Constraints to call out
+    children:
+      - 2c8336f1-7aff-4c1a-bb67-cdad88df7fe0
+      - 5c85014f-6b2d-4c2f-9595-cdde12f25b25
+      - 28b1e083-3901-4cd4-bca8-549012eb8325
+      - 6a0272a9-ec86-4b7c-bf27-857fa0981a49
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c8336f1-7aff-4c1a-bb67-cdad88df7fe0:
+    id: 2c8336f1-7aff-4c1a-bb67-cdad88df7fe0
+    content: 'Confirmation is conditional, not mandatory: it fires only when a live/resumable session would be abandoned (route ≠ spawn-fresh). The group detachment is always silent — it is never the subject of a warning.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c85014f-6b2d-4c2f-9595-cdde12f25b25:
+    id: 5c85014f-6b2d-4c2f-9595-cdde12f25b25
+    content: 'groupId-detach is a removal, not a re-stamp: the remaining siblings keep the shared groupId so decomposedChildGroupId still anchors correctly; guard the selector so an ungrouped node does not match the undefined-origin legacy path (or move the detached node out of the step''s children).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28b1e083-3901-4cd4-bca8-549012eb8325:
+    id: 28b1e083-3901-4cd4-bca8-549012eb8325
+    content: Default behavior of plain Start workflow is unchanged; a node never acted on behaves exactly as today.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a0272a9-ec86-4b7c-bf27-857fa0981a49:
+    id: 6a0272a9-ec86-4b7c-bf27-857fa0981a49
+    content: Exclusivity (one node per session) is preserved by existing bindSessionInNodes / registerSession; no change needed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94606e0c-bb3b-4de4-b670-98ed232b8aae:
+    id: 94606e0c-bb3b-4de4-b670-98ed232b8aae
+    content: Chunking decision
+    children:
+      - a4b49cd7-9f20-4009-ba47-09e6979a574f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4b49cd7-9f20-4009-ba47-09e6979a574f:
+    id: a4b49cd7-9f20-4009-ba47-09e6979a574f
+    content: Ship as one chunk (single PR) — the start action, the conditional confirmation + menu wiring, the undefined-group guard, and tests are an inseparable vertical slice; plain Start workflow is unchanged so there is no half-state to land separately, and there is no data migration.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9a6c294-1465-4c47-a27f-da3f2122cf3a:
+    id: c9a6c294-1465-4c47-a27f-da3f2122cf3a
+    content: Challenges and pushback
+    children:
+      - 175a250c-7bff-41e9-9fec-5cb49a3dc013
+      - 69e347d6-36d7-4f03-a3d8-c786316bd624
+      - c74fd42b-3bde-4f8d-b115-452fc9e11fd5
+      - 4d24a6f2-e9aa-47c4-a88f-2015ab4318c8
+      - 8422913b-b6d8-40ba-98d1-fb8a2cabe53e
+      - 6dfc0356-9fe3-4ce6-aa6b-9f4ba0f1ab47
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  175a250c-7bff-41e9-9fec-5cb49a3dc013:
+    id: 175a250c-7bff-41e9-9fec-5cb49a3dc013
+    content: This subsumes the earlier decomposition-specific "unbind" feature into one general action; binding stays internal and is expressed through a start the developer takes — no abstract per-node flag, no blueprint-inherited surprise config.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69e347d6-36d7-4f03-a3d8-c786316bd624:
+    id: 69e347d6-36d7-4f03-a3d8-c786316bd624
+    content: The warning is tied to a recognizable thing (a session you have been working in), not to the internal group concept — so a developer who never knew about recurse is never confronted with it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c74fd42b-3bde-4f8d-b115-452fc9e11fd5:
+    id: c74fd42b-3bde-4f8d-b115-452fc9e11fd5
+    content: It delivers the original "PRs in their own sessions" use case as plain manual parallelism — the developer starts each independent sibling in its own session — without building an auto-orchestrator.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d24a6f2-e9aa-47c4-a88f-2015ab4318c8:
+    id: 4d24a6f2-e9aa-47c4-a88f-2015ab4318c8
+    content: Boundary / out of scope — unattended parallel auto-spawn of a whole decomposition (siblings launching their own sessions hands-off) remains the separate concurrency epic; this primitive is manual per-node.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8422913b-b6d8-40ba-98d1-fb8a2cabe53e:
+    id: 8422913b-b6d8-40ba-98d1-fb8a2cabe53e
+    content: Don't add — a persistent step/blueprint "always start outputs in new sessions" setting (the very surprise-config we are avoiding) and retroactive re-grouping after a detach.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dfc0356-9fe3-4ce6-aa6b-9f4ba0f1ab47:
+    id: 6dfc0356-9fe3-4ce6-aa6b-9f4ba0f1ab47
+    content: Minor — a detached sibling has no on-screen marker (groupId is invisible in the UI), but for the played path the start is confirmed and for the un-played path nothing the developer recognises has changed; a visible "independent" cue is a later nicety, not part of this slice.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e36b5e9-da8a-4143-991c-069656caa25d:
+    id: 3e36b5e9-da8a-4143-991c-069656caa25d
+    content: Open question for the human
+    children:
+      - 95d8b089-c820-4f84-8a98-68625c486854
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95d8b089-c820-4f84-8a98-68625c486854:
+    id: 95d8b089-c820-4f84-8a98-68625c486854
+    content: Concurrency — confirm that manual per-sibling "Start workflow in new session" (each its own session, started by hand) is the intended scope, and that unattended auto-spawn of a whole decomposition into parallel sessions stays a separate epic.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50531dd7-555a-45df-a345-5677dc6f6355:
+    id: 50531dd7-555a-45df-a345-5677dc6f6355
+    content: Technical refinement
+    children:
+      - ff217670-700c-4dbe-9188-5bef00ccc9a4
+      - c5b0e802-d770-4068-a705-85b5b625e259
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff217670-700c-4dbe-9188-5bef00ccc9a4:
+    id: ff217670-700c-4dbe-9188-5bef00ccc9a4
+    content: Flag complications
+    children:
+      - 6752f7dc-8d9c-4477-a8ee-e66cd21405ee
+      - 9f513609-b4b6-4f1f-bc12-007b337a6448
+      - 86f2cbcb-b110-4102-bf01-72bff57ce1df
+      - d8b4e4bb-f9af-4196-b0bb-2c2ac562dade
+      - 0fc1b768-066a-4647-8cd3-f03e2457eb92
+      - 0c21fa45-1dde-42df-a5fc-2566b671783e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6752f7dc-8d9c-4477-a8ee-e66cd21405ee:
+    id: 6752f7dc-8d9c-4477-a8ee-e66cd21405ee
+    content: Order of operations — startWorkflow returns early for ineligible/already-running nodes (isEligibleForExecution), so the action must check eligibility before clearing sessionId / removing groupId; otherwise a bailed start strands a node silently unbound and ungrouped but not running.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f513609-b4b6-4f1f-bc12-007b337a6448:
+    id: 9f513609-b4b6-4f1f-bc12-007b337a6448
+    content: Recurse hand-off race — the next sibling is dispatched on a 2s setTimeout (scheduleRecurseStart) that captures nextNodeId and does not re-validate at fire time; if the user starts/detaches that exact sibling inside the window, dispatchRecurseStart must re-check it (still grouped, not already running) or it double-starts the node and re-stamps the shared session onto one just made independent. This is the main implementation subtlety.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86f2cbcb-b110-4102-bf01-72bff57ce1df:
+    id: 86f2cbcb-b110-4102-bf01-72bff57ce1df
+    content: '"Already played" is not a reliable dialog trigger — exclusivity clears the shared sessionId off a sibling once a later one inherits it, so a superseded sibling routes to spawn-fresh and shows no dialog even though it visibly ran; harmless (nothing live is abandoned) but worth knowing the prompt is "live session to abandon", not "has run".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8b4e4bb-f9af-4196-b0bb-2c2ac562dade:
+    id: d8b4e4bb-f9af-4196-b0bb-2c2ac562dade
+    content: Orphaned prior session — a Case 1 rebind leaves the old session/terminal alive but unbound; it is not closed, so repeated use can leave dangling terminals. Auto-closing is out of scope.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fc1b768-066a-4647-8cd3-f03e2457eb92:
+    id: 0fc1b768-066a-4647-8cd3-f03e2457eb92
+    content: Out of scope — unattended parallel auto-spawn of a decomposition (concurrency epic); a persistent step/blueprint "always new session" setting; retroactive re-grouping; auto-closing abandoned sessions; an on-screen "independent" marker.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c21fa45-1dde-42df-a5fc-2566b671783e:
+    id: 0c21fa45-1dde-42df-a5fc-2566b671783e
+    content: ROI — the core change is small and high value (clear sessionId → spawn-fresh, drop groupId, conditional confirm); the only effort risk is the recurse-race guard, which looks trivial but needs its own guard plus test, so do not under-budget it. The undefined-groupId guard is marginal (legacy pre-groupId files only — decomposedChildGroupId already ignores ungrouped children), so keep it defensive, not elaborate.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5b0e802-d770-4068-a705-85b5b625e259:
+    id: c5b0e802-d770-4068-a705-85b5b625e259
+    content: Summarise the approach
+    children:
+      - fc5aa0d9-6bf9-45d7-891d-a28f6c05c834
+      - f6c5a541-a724-4744-bdfa-26cc73159acf
+      - b9d4b155-6b70-4011-8a19-b37c51adda0b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc5aa0d9-6bf9-45d7-891d-a28f6c05c834:
+    id: fc5aa0d9-6bf9-45d7-891d-a28f6c05c834
+    content: 'One new store action wraps startWorkflow: check eligibility, optionally confirm (only when the current route would focus/resume a live session), clear the node''s sessionId so the route becomes spawn-fresh, and remove groupId if present — no change to the route function or the recurse selector.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6c5a541-a724-4744-bdfa-26cc73159acf:
+    id: f6c5a541-a724-4744-bdfa-26cc73159acf
+    content: The detach is just the absence of a matching groupId, so recurse's existing group filter advances to the next sibling for free; the only recurse-side code touched is a re-validation guard inside the 2s dispatch — the non-obvious bit a reviewer should look for.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9d4b155-6b70-4011-8a19-b37c51adda0b:
+    id: b9d4b155-6b70-4011-8a19-b37c51adda0b
+    content: Surface is a single context-menu item (bound-or-grouped nodes) plus a conditional confirm dialog; persistence and exclusivity ride existing framework-managed metadata paths, so there is no schema or data-migration work.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0212658f-42c7-42a3-af77-565f137de20e:
+    id: 0212658f-42c7-42a3-af77-565f137de20e
+    content: Verification summary
+    children:
+      - 0f90f0dc-1adf-4267-aeab-fa9de7e1876e
+      - 69751b9b-e2ce-4689-a014-6fea9c661b48
+      - 4cc60a58-cb0e-43c3-bddf-50b95b559d77
+      - 9c4071d3-3f65-40d1-96b3-e38df008ec59
+      - 31c8da0e-0691-47d2-8147-2f8b82543457
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f90f0dc-1adf-4267-aeab-fa9de7e1876e:
+    id: 0f90f0dc-1adf-4267-aeab-fa9de7e1876e
+    content: Implemented and verified — action, race guard, confirmation dialog (store + component + container + App mount), menu wiring; tests green (changed/new files + full action+integration suite), lint and type-check clean.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69751b9b-e2ce-4689-a014-6fea9c661b48:
+    id: 69751b9b-e2ce-4689-a014-6fea9c661b48
+    content: Satisfied by existing code rather than new dedicated tests
+    children:
+      - 08e5db24-3c26-481c-a77f-32f99e3c8094
+      - d55a98a1-4255-461f-a69a-ab91dfeab2c3
+      - 5e56d9bd-fc66-4d77-a237-a48b7a9b2d5f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08e5db24-3c26-481c-a77f-32f99e3c8094:
+    id: 08e5db24-3c26-481c-a77f-32f99e3c8094
+    content: Multi-root anchor (AC8) — decomposedChildGroupId already skips ungrouped children, so a detached sibling is never the hand-off anchor.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d55a98a1-4255-461f-a69a-ab91dfeab2c3:
+    id: d55a98a1-4255-461f-a69a-ab91dfeab2c3
+    content: Unique session + exclusivity (AC9) — existing registerSession / bindSessionInNodes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e56d9bd-fc66-4d77-a237-a48b7a9b2d5f:
+    id: 5e56d9bd-fc66-4d77-a237-a48b7a9b2d5f
+    content: .arbo round-trip (AC4) — sessionId/groupId are serialized metadata; the rebind persists via existing autosave/serialization.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cc60a58-cb0e-43c3-bddf-50b95b559d77:
+    id: 4cc60a58-cb0e-43c3-bddf-50b95b559d77
+    content: Deliberate omission within an otherwise-completed item
+    children:
+      - 53d97006-d8d8-4dd9-9441-9eebc9e49f3f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53d97006-d8d8-4dd9-9441-9eebc9e49f3f:
+    id: 53d97006-d8d8-4dd9-9441-9eebc9e49f3f
+    content: The undefined-group selector guard (Touchpoints / Constraints) was not added — modern decompositions always stamp a real groupId, so a detached (undefined) node never matches a real origin group; the existing legacy contract (undefined matches undefined) still relies on current behavior, making the guard legacy-only and unnecessary. The remaining-siblings-keep-the-shared-groupId behavior it protects is already correct.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c4071d3-3f65-40d1-96b3-e38df008ec59:
+    id: 9c4071d3-3f65-40d1-96b3-e38df008ec59
+    content: Abandoned — out of scope for this slice
+    children:
+      - a50b3d20-a8c6-4cd3-8901-d16b227228c6
+      - 4ac35ab2-e758-4fc3-8aae-d45acf4c3f00
+      - 165f2c75-8f4e-42e5-b20b-4b624fb000ee
+      - 28b72733-bbcf-4b5c-9c60-6f94762dc172
+      - 597b00ef-1c33-41aa-8b55-64ae274f1f8f
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a50b3d20-a8c6-4cd3-8901-d16b227228c6:
+    id: a50b3d20-a8c6-4cd3-8901-d16b227228c6
+    content: Unattended parallel auto-spawn of a whole decomposition (the concurrency epic).
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ac35ab2-e758-4fc3-8aae-d45acf4c3f00:
+    id: 4ac35ab2-e758-4fc3-8aae-d45acf4c3f00
+    content: Persistent step/blueprint "always start outputs in new sessions" setting.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  165f2c75-8f4e-42e5-b20b-4b624fb000ee:
+    id: 165f2c75-8f4e-42e5-b20b-4b624fb000ee
+    content: Retroactive re-grouping after a detach.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  28b72733-bbcf-4b5c-9c60-6f94762dc172:
+    id: 28b72733-bbcf-4b5c-9c60-6f94762dc172
+    content: Auto-closing the orphaned prior session after a rebind.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  597b00ef-1c33-41aa-8b55-64ae274f1f8f:
+    id: 597b00ef-1c33-41aa-8b55-64ae274f1f8f
+    content: On-screen "independent" marker for a detached sibling.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  31c8da0e-0691-47d2-8147-2f8b82543457:
+    id: 31c8da0e-0691-47d2-8147-2f8b82543457
+    content: Unresolved — awaiting the human
+    children:
+      - b9a89a92-090b-4b96-8a5c-85b25550ece9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9a89a92-090b-4b96-8a5c-85b25550ece9:
+    id: b9a89a92-090b-4b96-8a5c-85b25550ece9
+    content: Concurrency scope confirmation (manual per-sibling start vs the auto-spawn epic).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b1007f9-47cc-4272-a2ba-84a7932972c9:
+    id: 4b1007f9-47cc-4272-a2ba-84a7932972c9
+    content: review feedback
+    children:
+      - 7d1d13e7-5e6a-4f03-95cc-da759f3ba500
+      - b2c88cc8-6d67-4d5d-908f-9dff1c8a6774
+      - d9bfba9c-4bb4-400c-9a6c-633f0131b623
+      - 70da5f53-8f1b-4795-86c6-2ef0df0b7a2a
+    metadata:
+      status: completed
+  7d1d13e7-5e6a-4f03-95cc-da759f3ba500:
+    id: 7d1d13e7-5e6a-4f03-95cc-da759f3ba500
+    content: 'Verdict: approved — core node-scoped Stop-advance fix is sound and runtime-correct (type-check, lint, affected tests all green). One should-fix (non-blocking, type-contract only) and minor doc nits below.'
+    children: []
+    metadata:
+      status: pending
+  b2c88cc8-6d67-4d5d-908f-9dff1c8a6774:
+    id: b2c88cc8-6d67-4d5d-908f-9dff1c8a6774
+    content: 'Should-fix (type contract): the IPC payload type omits the new field. Add `declared_node_id?: string | null` to electronApi.HookEventPayload (src/shared/types/electronApi.ts) and to the inline `data` type in src/preload/index.ts onHookEvent (~L121). Runtime is correct (Electron structured-clone carries the field main→renderer), but at the type level the renderer sees declared_node_id as always-undefined (the permissive branch), so a future refactor that rebuilds the renderer event from the declared shape would silently disable the gate in production with no test failure. workflowHookEventHandler.HookEventPayload already has the field; only the shared IPC contract lags.'
+    children: []
+    metadata:
+      status: completed
+  d9bfba9c-4bb4-400c-9a6c-633f0131b623:
+    id: d9bfba9c-4bb4-400c-9a6c-633f0131b623
+    content: 'Nit (docs): stale boolean-"flag" prose in src/main/services/tests/mcpSubmitOutputTool.test.ts (~L465-467, 506, 518-521) — assertions are correct (doneDeclarationNode) but comments still say "raise the flag"; reword to the node-scoped declaration model so the rationale matches the data model.'
+    children: []
+    metadata:
+      status: completed
+  70da5f53-8f1b-4795-86c6-2ef0df0b7a2a:
+    id: 70da5f53-8f1b-4795-86c6-2ef0df0b7a2a
+    content: 'Confirmed sound (no action): tri-state gate correct (undefined=permissive non-dispatcher caller, null=dispatcher saw no declaration → gate, string=advance only that node); main.ts:308 is the sole renderer hook-event send and always routes through the dispatcher''s attachDeclaredNode; all renamed oneShotTargetStore call sites updated and mcpServer Pick<> deps satisfied; durable-recovery bypass is correct (completed status is the node-scoped proof, recoveredCompletions guards double-advance); collaborating/stopReceived + checkpoint + manual branches unchanged (gate exempts manual, sits before them); one-declaration-per-session Map is correct (per-turn, consumed by that turn''s Stop or reset on register-target) and the decomposition hand-off is better-defended now. Test coverage for the new behavior is strong.'
+    children: []
+    metadata:
+      status: pending
+  0b7cb389-d98e-4d99-a12a-0f45640f8eb3:
+    id: 0b7cb389-d98e-4d99-a12a-0f45640f8eb3
+    content: 'review feedback (pr-review-toolkit:code-reviewer) — VERDICT: no blockers, ship-ready. The four hard cases are correct: (1) race guard in dispatchRecurseStart reads workflowExecutionStates at timer-fire and bails with releaseTerminalAssignmentForNode + return — no double-start, no spurious session re-stamp (asserted in recurseHandoff.test.ts: sessionId stays undefined); (2) startWorkflowInNewSession checks isEligibleForExecution before the metadata delete, so a bailed start never strips binding+group; (3) confirmation gated on decideWorkflowStartRoute(currentSessionId).kind !== ''spawn-fresh'' — a pure decomposed sibling (groupId, no session) starts silently, a live/resumable session prompts, and the dialog copy is accurate because it only fires when a sessionId exists; (4) detach = delete groupId → findNextDecomposedSibling skips it (undefined !== originGroupId); the all-ungrouped edge is guarded in hasDecomposedSiblings (originGroupId !== undefined). Conventions followed: template-only component, logic in store/hook, store under store/, plain-CSS custom properties, tests in tests/ subdirs, no empty/skipped tests. Verified during review: type-check + lint clean, 80 feature tests pass. Nits — (a) handler recomputed freshNode.metadata.sessionId instead of the in-scope sessionId local: FIXED; (b) dead CSS fallback var(--blue-500, var(--amber-500)) (--blue-500 is always defined): FIXED to var(--blue-500); (c) pendingNewSessionStartStore duplicates the pendingTerminalCloseStore single-slot shape — left as-is, intentional mirror of the established pattern, consolidating would be premature abstraction; (d) no single end-to-end test for a node with BOTH a live session AND a groupId through menu→confirm→action — deferred (each piece is covered individually), should-consider not should-fix.'
     children: []
     metadata:
       status: pending
@@ -218455,18 +220876,12 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   51664017-f43c-48f9-b78c-9925a1cce3d9:
     cwd: /Users/brianfox/dev/Arborescent
-  4358a0b1-d48a-41a7-9ad4-10ccc4875710:
-    cwd: /Users/brianfox/dev/Arborescent
-  d643983e-c321-4def-a764-b04f653e056c:
-    cwd: /Users/brianfox/dev/Arborescent
   9fab1371-ceec-42cf-b0cc-c071381f1d06:
     cwd: /Users/brianfox/dev/Arborescent
   12451877-7601-40d0-83cf-0b3887d2d87a:
     cwd: /Users/brianfox/dev/Arborescent
   4c45dfd8-2cb2-41f0-830d-483e7cc49204:
     cwd: /Users/brianfox/dev/Arborescent
-  1ab60102-8295-4dfa-8cf8-f7cee6353e2e:
-    cwd: /Users/brianfox/dev/forestadmin
   9d70acf7-6b45-42fb-aea2-da93505f7fc3:
     cwd: /Users/brianfox/dev/Arborescent
   cdc0b42f-63a2-48c4-a14d-67d45ed482f0:
@@ -218475,5 +220890,17 @@ sessionRegistry:
     cwd: /Users/brianfox/dev/Arborescent
   094f56ca-d507-44f5-b8b8-8c0d601e2bd0:
     cwd: /Users/brianfox/dev/Arborescent
-  ebca2702-73db-4b3b-9743-db8fbace3678:
-    cwd: /Users/brianfox/dev/forestadmin
+  c0495cb2-ea61-4bb6-b3ac-54c7344967c0:
+    cwd: /Users/brianfox
+  271402cc-694d-47f2-80dc-410b3302bef7:
+    cwd: /Users/brianfox/dev/Arborescent
+  3fcec4d6-b76c-4b8b-b81f-79d0a9f11b09:
+    cwd: /Users/brianfox/dev/Arborescent
+  2a1b8662-ff6c-4133-99d9-25ecdf1533fd:
+    cwd: /Users/brianfox/dev/Arborescent
+  80400b7e-d7c8-4c7e-9234-078891008c5c:
+    cwd: /Users/brianfox/dev/Arborescent
+  f86ff8a7-7aa0-4f30-afee-e8414b19929e:
+    cwd: /Users/brianfox/dev/Arborescent
+  75526230-b3bd-4567-a61a-9000f2164065:
+    cwd: /Users/brianfox/dev/Arborescent
