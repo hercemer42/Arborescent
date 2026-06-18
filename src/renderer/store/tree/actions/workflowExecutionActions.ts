@@ -992,6 +992,29 @@ export const createWorkflowExecutionActions = (
 
       if (!autonomousCollaborateInTerminal) return;
 
+      // An autonomous run that lands on a manual step with no attached context has
+      // nothing to dispatch — manual steps are driven by the user. Sending the bare
+      // node content would only pollute the session, so suppress the send and leave
+      // the node waiting at the step, the same resting state advanceNode parks a
+      // manual step in.
+      const owningStepId = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry)?.currentStepId;
+      const owningStep = owningStepId ? nodes[owningStepId] : undefined;
+      const isManualStep = ((owningStep?.metadata.stepType as StepType) || "manual") === "manual";
+      if (!effectiveContextId && owningStep && isManualStep) {
+        logger.info(
+          `Suppressed send for node ${nodeId} — landed on a context-less manual step`,
+          "WorkflowExecution",
+        );
+        stopWorkflow(nodeId);
+        notifyWorkflow(
+          `"${node.content || nodeId}" waiting at a manual step`,
+          "info",
+          undefined,
+          node.metadata.sessionId,
+        );
+        return;
+      }
+
       // Only pure-collaborate steps defer the advancing Stop: their result is
       // applied by submit_step_output (handleAutonomousFeedback), which then
       // advances. Collaborate+execute completes via announce_step_done (submit
