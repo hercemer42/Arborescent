@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-09-09T14:58:56.086Z'
+updated: '2026-09-09T16:23:26.850Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -79160,7 +79160,6 @@ nodes:
     content: User story creation
     children:
       - 33c3d4b2-e994-4144-9ae6-d2be101a8dcc
-      - 10d76a4e-4f62-4e83-b401-7e067459eab9
       - 6548ece6-de19-4b3a-8abd-6adb17f63017
       - aaccc30a-f16f-49aa-ad49-1b44e833f71e
       - 34701cf3-42b5-4b74-ad34-29ec59ffaa5a
@@ -79169,7 +79168,7 @@ nodes:
       - fdeee32d-7083-4973-923f-36b475f6c542
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       appliedContextId: 0b325532-61be-48ea-b9c0-6223bfca0846
@@ -113260,6 +113259,7 @@ nodes:
       - 7d9b536d-bc51-4bd3-9d42-7ca9d77bb7ce
       - 0680a364-7227-4e19-8a0c-ad3551e7750b
       - 27ca88df-5f7e-4cd8-b9ca-1f55e4effcbf
+      - 579cd48f-be49-4842-83f6-d0790f341d21
     metadata:
       status: pending
       isBlueprint: true
@@ -122268,7 +122268,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 579cd48f-be49-4842-83f6-d0790f341d21
+      - 10d76a4e-4f62-4e83-b401-7e067459eab9
     metadata:
       status: pending
       isBlueprint: true
@@ -220012,21 +220012,18 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  4453664c-ef8e-4dc3-9e3a-fe8caf8dccf9:
-    id: 4453664c-ef8e-4dc3-9e3a-fe8caf8dccf9
-    content: docs/stories/002-debrief-findings-refine.md
-    children:
-      - 63722a6d-1213-4d10-93fb-a9ed788e71a4
-    metadata:
-      status: pending
   10d76a4e-4f62-4e83-b401-7e067459eab9:
     id: 10d76a4e-4f62-4e83-b401-7e067459eab9
     content: 002 - A debrief refines an existing finding
     children:
-      - 4453664c-ef8e-4dc3-9e3a-fe8caf8dccf9
+      - 06d943fe-6f6c-4fee-ae30-4cc7f86f6757
+      - 5a25bd0b-65c7-4185-9a69-ba0dfd3938d5
     metadata:
-      status: pending
+      status: completed
       expanded: false
+      deleted: false
+      plugins: {}
+      sessionId: 0f10ba86-753b-437f-8cec-f828156a0da6
   fea058f2-a151-45e4-9bfb-8df89c9d465f:
     id: fea058f2-a151-45e4-9bfb-8df89c9d465f
     content: docs/stories/003-story-file-links-and-preview.md
@@ -220102,12 +220099,6 @@ nodes:
     metadata:
       status: pending
       expanded: false
-  63722a6d-1213-4d10-93fb-a9ed788e71a4:
-    id: 63722a6d-1213-4d10-93fb-a9ed788e71a4
-    content: vscode://file/Users/brianfox/dev/Arborescent/docs/stories/002-debrief-findings-refine.md
-    children: []
-    metadata:
-      status: pending
   a1747886-953c-4c9a-b09a-c3e73614af6a:
     id: a1747886-953c-4c9a-b09a-c3e73614af6a
     content: vscode://file/Users/brianfox/dev/Arborescent/docs/stories/003-story-file-links-and-preview.md
@@ -220539,6 +220530,38 @@ nodes:
     children: []
     metadata:
       status: pending
+  06d943fe-6f6c-4fee-ae30-4cc7f86f6757:
+    id: 06d943fe-6f6c-4fee-ae30-4cc7f86f6757
+    content: docs/stories/002-debrief-findings-refine.md
+    children:
+      - 3aab590c-1742-4df0-83af-6006a4d4d57f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3aab590c-1742-4df0-83af-6006a4d4d57f:
+    id: 3aab590c-1742-4df0-83af-6006a4d4d57f
+    content: vscode://file/Users/brianfox/dev/Arborescent/docs/stories/002-debrief-findings-refine.md
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a25bd0b-65c7-4185-9a69-ba0dfd3938d5:
+    id: 5a25bd0b-65c7-4185-9a69-ba0dfd3938d5
+    content: worktree — feat/002-debrief-findings-refine
+    children:
+      - 35d3825d-e766-490b-a7df-18f00fde66a7
+    metadata:
+      status: pending
+  35d3825d-e766-490b-a7df-18f00fde66a7:
+    id: 35d3825d-e766-490b-a7df-18f00fde66a7
+    content: vscode://file/Users/brianfox/dev/Arborescent-002-debrief-findings-refine
+    children: []
+    metadata:
+      status: pending
 sessionRegistry:
   54e692fc-a226-4fcc-b48c-85fdc2e390a5:
     cwd: /Users/brianfox/dev/Arborescent
@@ -220701,4 +220724,6 @@ sessionRegistry:
   b66abbc8-046d-496b-9617-0aee66e8f390:
     cwd: /Users/brianfox/dev/Arborescent
   70c78c2a-6ad6-44b0-8db2-317fb2562ebe:
+    cwd: /Users/brianfox/dev/Arborescent
+  0f10ba86-753b-437f-8cec-f828156a0da6:
     cwd: /Users/brianfox/dev/Arborescent
