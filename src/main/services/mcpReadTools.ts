@@ -8,6 +8,7 @@ import {
   getContextDeclarations,
   getAppliedContextIdWithInheritance,
 } from '../../shared/utils/permissionGate';
+import { authoriseNodeIdParameter } from './mcpFindingsGrant';
 
 export interface TreeReadState {
   nodes: Record<string, TreeNode>;
@@ -64,6 +65,7 @@ export interface GetNodeArgs {
 export interface GetTreeArgs {
   sessionId: string;
   depth?: number;
+  nodeId?: string;
 }
 
 export interface ListContextsArgs {
@@ -209,10 +211,16 @@ function contextsInScope(
   return annotated;
 }
 
+type ReadPayload<T> = T | { refusal: ToolResult };
+
+function isRefusal<T>(payload: ReadPayload<T>): payload is { refusal: ToolResult } {
+  return typeof payload === 'object' && payload !== null && 'refusal' in payload;
+}
+
 async function withBoundNode<T>(
   deps: ReadToolsDeps,
   sessionId: string,
-  fn: (boundNodeId: string, state: TreeReadState) => T | Promise<T>,
+  fn: (boundNodeId: string, state: TreeReadState) => ReadPayload<T> | Promise<ReadPayload<T>>,
 ): Promise<ToolResult> {
   const resolved = resolveBinding({ bindingRegistry: deps.bindingRegistry }, sessionId, { oneShot: false });
   if (!resolved) {
@@ -227,7 +235,7 @@ async function withBoundNode<T>(
     return treeReadFailure(read.kind, sessionId, boundNodeId);
   }
   const payload = await fn(boundNodeId, read.state);
-  return ok(payload);
+  return isRefusal(payload) ? payload.refusal : ok(payload);
 }
 
 export function createReadTools(deps: ReadToolsDeps): ReadTools {
@@ -250,7 +258,23 @@ export function createReadTools(deps: ReadToolsDeps): ReadTools {
       }
       return withBoundNode(deps, args.sessionId, (boundNodeId, state) => {
         const depth = Math.min(args.depth ?? MAX_TREE_DEPTH, MAX_TREE_DEPTH);
-        return serializeSubtree(boundNodeId, state, depth);
+        if (args.nodeId === undefined) return serializeSubtree(boundNodeId, state, depth);
+
+        const authorisation = authoriseNodeIdParameter(state, boundNodeId, args.nodeId);
+        if ('refusal' in authorisation) {
+          // A write/* code on a read tool, as the unbound precondition already
+          // does: the read/* codes describe a tree that could not be reached,
+          // and retrying one of those is sound where retrying a refusal is not.
+          return {
+            refusal: codedErr(
+              authorisation.refusal === 'link-node'
+                ? `node_id ${args.nodeId} is a hyperlink — its subtree is dropped everywhere the tree is read. Read the finding that carries it instead.`
+                : `node_id ${args.nodeId} is neither inside the bound subtree rooted at ${boundNodeId} nor inside a Findings node this step is configured to read.`,
+              MCP_ERROR_CODES.writeOutsideBoundSubtree,
+            ),
+          };
+        }
+        return serializeSubtree(args.nodeId, state, depth);
       });
     },
 

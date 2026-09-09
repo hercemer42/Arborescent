@@ -11,19 +11,22 @@ export interface TreeSlice {
   ancestorRegistry: AncestorRegistry;
 }
 
-interface EvidenceRequest {
-  parentId: string;
-  createdNodeId: string;
+interface TouchedFinding {
+  touchedNodeId: string;
   subjectNodeId: string;
   findingsRootId: string;
 }
 
+type EvidenceRequest =
+  | (TouchedFinding & { mode: 'created'; createdNodeId: string })
+  | (TouchedFinding & { mode: 'revised' });
+
 function findTouchedFindingId(
-  parentId: string,
+  touchedNodeId: string,
   findingsRootId: string,
   { ancestorRegistry }: TreeSlice,
 ): string | undefined {
-  const chain = [...(ancestorRegistry[parentId] ?? []), parentId];
+  const chain = [...(ancestorRegistry[touchedNodeId] ?? []), touchedNodeId];
   const rootIndex = chain.indexOf(findingsRootId);
   if (rootIndex === -1) return undefined;
   return chain[rootIndex + 1];
@@ -91,16 +94,16 @@ function settleNewFinding(slice: TreeSlice, findingId: string): TreeSlice {
 // A back-link is the unit of evidence and the app owns it: add_child_node cannot
 // set metadata, so the session can never create one. Attaching is idempotent on
 // the subject, so a retried, resumed or re-sent debrief cannot inflate a weight.
+// A revision is itself a recurrence report and earns one on the same terms.
 export function recordFindingEvidence(slice: TreeSlice, request: EvidenceRequest): TreeSlice {
   const { findingsRootId } = request;
   if (!slice.nodes[findingsRootId]) return slice;
 
-  const isNewFinding = request.parentId === findingsRootId;
-  const settled = isNewFinding ? settleNewFinding(slice, request.createdNodeId) : slice;
+  const newFindingId =
+    request.mode === 'created' && request.touchedNodeId === findingsRootId ? request.createdNodeId : undefined;
+  const settled = newFindingId ? settleNewFinding(slice, newFindingId) : slice;
 
-  const findingId = isNewFinding
-    ? request.createdNodeId
-    : findTouchedFindingId(request.parentId, findingsRootId, settled);
+  const findingId = newFindingId ?? findTouchedFindingId(request.touchedNodeId, findingsRootId, settled);
   if (!findingId || !settled.nodes[findingId]) return settled;
   if (hasBackLinkTo(findingId, request.subjectNodeId, settled.nodes)) return settled;
 

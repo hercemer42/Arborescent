@@ -15,14 +15,14 @@ import {
 import {
   isStructurallyAutonomous,
   resolveParentStepType,
-  resolveParentStepNode,
 } from '../../shared/utils/autonomousStepContext';
+import { authoriseTarget, authoriseNodeIdParameter, isWithinSubtree } from './mcpFindingsGrant';
 
 export type MutationRequest =
   | { kind: 'add-child'; parentId: string; content: string; position?: number; debriefDestinationId?: string }
   | { kind: 'append'; content: string }
   | { kind: 'mark-complete'; status: 'completed' | 'abandoned' }
-  | { kind: 'set-content'; content: string }
+  | { kind: 'set-content'; content: string; debriefDestinationId?: string; subjectNodeId?: string }
   | { kind: 'delete' }
   | { kind: 'move'; newParentId: string; position?: number }
   | { kind: 'set-metadata'; key: string; value: unknown };
@@ -46,7 +46,7 @@ export interface WriteTools {
   appendToNode(args: { sessionId: string; content: string }): Promise<ToolResult>;
   markStepComplete(args: { sessionId: string; status: 'completed' | 'abandoned'; node_id?: string }): Promise<ToolResult>;
   announceStepDone(args: { sessionId: string }): Promise<ToolResult>;
-  setNodeContent(args: { sessionId: string; content: string }): Promise<ToolResult>;
+  setNodeContent(args: { sessionId: string; content: string; node_id?: string }): Promise<ToolResult>;
   deleteNode(args: { sessionId: string }): Promise<ToolResult>;
   moveNode(args: { sessionId: string; new_parent_id: string; position?: number }): Promise<ToolResult>;
   setNodeMetadata(args: { sessionId: string; key: string; value: unknown }): Promise<ToolResult>;
@@ -99,81 +99,24 @@ async function resolveBoundState(deps: WriteToolsDeps, sessionId: string): Promi
   return { ok: true, boundNodeId, state: read.state };
 }
 
-function isWithinSubtree(state: TreeReadState, rootNodeId: string, nodeId: string): boolean {
-  if (nodeId === rootNodeId) return true;
-  if (!state.nodes[nodeId]) return false;
-  return (state.ancestorRegistry[nodeId] ?? []).includes(rootNodeId);
-}
+// Out-of-scope reads the same for either parameter; a link refusal does not,
+// because nesting under a link and rewriting one fail for different reasons.
+const LINK_REFUSALS = {
+  parent_id: (targetId: string) => `parent_id ${targetId} is a hyperlink — nothing can be nested beneath a link.`,
+  node_id: (targetId: string) => `node_id ${targetId} is a hyperlink — a back-link is evidence and cannot be rewritten.`,
+};
 
-// A step declaring a Findings node authorises writes into it. An unresolvable
-// destination grants nothing: the session must never receive the parent-not-found
-// error, because it has no recovery path and would announce the step done anyway.
-// The full workflow shape is required, exactly as the prompt-side resolver
-// requires it, so a grant cannot outlive the workflow — removing a workflow
-// clears isWorkflow alone and leaves stepType and the destination behind.
-function resolveDebriefDestinationId(state: TreeReadState, boundNodeId: string): string | undefined {
-  const step = resolveParentStepNode(boundNodeId, state);
-  const destinationId = step?.metadata.debriefDestinationId;
-  if (!step || !destinationId) return undefined;
-
-  const stepAncestors = state.ancestorRegistry[step.id] ?? [];
-  const workflowId = stepAncestors[stepAncestors.length - 1];
-  if (!workflowId || state.nodes[workflowId]?.metadata.isWorkflow !== true) return undefined;
-
-  return state.nodes[destinationId] ? destinationId : undefined;
-}
-
-interface AddChildAuthorisation {
-  // Set when the write lands inside a configured Findings subtree, so the
-  // applier attaches evidence for exactly the writes the gate authorised as a
-  // debrief rather than re-deriving intent from a node flag.
-  debriefDestinationId?: string;
-  bypassesModePolicy: boolean;
-}
-
-// Nothing nests under a link: a hyperlink node's subtree is dropped from every
-// send and export, so a child written there is invisible to everything that
-// reads the tree back.
-function isLinkNode(state: TreeReadState, nodeId: string): boolean {
-  const metadata = state.nodes[nodeId]?.metadata;
-  return metadata?.isHyperlink === true || metadata?.isExternalLink === true;
-}
-
-// The grant is orthogonal to the context-mode table: it turns on a single
-// request kind against a single subtree, so no existing step gains surface and
-// no other mutation kind can inherit it. Refusals are worded here, where the
-// reason for them is known.
-function authoriseAddChildParent(
-  state: TreeReadState,
+function targetRefusal(
+  authorisation: { refusal: 'out-of-scope' | 'link-node' },
+  parameter: keyof typeof LINK_REFUSALS,
   boundNodeId: string,
-  parentId: string,
-): AddChildAuthorisation | { refusal: ToolResult } {
-  const destinationId = resolveDebriefDestinationId(state, boundNodeId);
-  const withinDestination = destinationId !== undefined && isWithinSubtree(state, destinationId, parentId);
-  const withinBound = isWithinSubtree(state, boundNodeId, parentId);
-
-  if (!withinBound && !withinDestination) {
-    return {
-      refusal: codedErr(
-        `parent_id ${parentId} is neither inside the bound subtree rooted at ${boundNodeId} nor inside a Findings node this step is configured to write to.`,
-        MCP_ERROR_CODES.writeOutsideBoundSubtree,
-      ),
-    };
-  }
-
-  if (isLinkNode(state, parentId)) {
-    return {
-      refusal: codedErr(
-        `parent_id ${parentId} is a hyperlink — nothing can be nested beneath a link.`,
-        MCP_ERROR_CODES.writeOutsideBoundSubtree,
-      ),
-    };
-  }
-
-  return {
-    debriefDestinationId: withinDestination ? destinationId : undefined,
-    bypassesModePolicy: withinDestination && !withinBound,
-  };
+  targetId: string,
+): ToolResult {
+  const message =
+    authorisation.refusal === 'link-node'
+      ? LINK_REFUSALS[parameter](targetId)
+      : `${parameter} ${targetId} is neither inside the bound subtree rooted at ${boundNodeId} nor inside a Findings node this step is configured to write to.`;
+  return codedErr(message, MCP_ERROR_CODES.writeOutsideBoundSubtree);
 }
 
 async function executeMutation(
@@ -204,13 +147,36 @@ async function executeMutation(
   // submit_step_output, so the grant would authorise a write that cannot land.
   let effectiveRequest = request;
   let authorisedByDebriefDestination = false;
+  let mutationNodeId = boundNodeId;
+
   if (request.kind === 'add-child') {
-    const authorisation = authoriseAddChildParent(state, boundNodeId, request.parentId);
-    if ('refusal' in authorisation) return authorisation.refusal;
+    const authorisation = authoriseTarget(state, boundNodeId, request.parentId);
+    if ('refusal' in authorisation) return targetRefusal(authorisation, 'parent_id', boundNodeId, request.parentId);
     authorisedByDebriefDestination = automatic && authorisation.bypassesModePolicy;
     if (authorisation.debriefDestinationId) {
       effectiveRequest = { ...request, debriefDestinationId: authorisation.debriefDestinationId };
     }
+  }
+
+  if (targetNodeId !== undefined && targetNodeId !== boundNodeId) {
+    if (request.kind === 'set-content') {
+      const authorisation = authoriseNodeIdParameter(state, boundNodeId, targetNodeId);
+      if ('refusal' in authorisation) return targetRefusal(authorisation, 'node_id', boundNodeId, targetNodeId);
+      authorisedByDebriefDestination = automatic && authorisation.bypassesModePolicy;
+      if (authorisation.debriefDestinationId) {
+        effectiveRequest = {
+          ...request,
+          debriefDestinationId: authorisation.debriefDestinationId,
+          subjectNodeId: boundNodeId,
+        };
+      }
+    } else if (!isWithinSubtree(state, boundNodeId, targetNodeId)) {
+      return codedErr(
+        `node_id ${targetNodeId} does not resolve to a node within the bound subtree rooted at ${boundNodeId}.`,
+        MCP_ERROR_CODES.writeOutsideBoundSubtree,
+      );
+    }
+    mutationNodeId = targetNodeId;
   }
 
   const allowedKinds = automatic
@@ -218,17 +184,6 @@ async function executeMutation(
     : MODE_POLICY[mode].proposalMutationKinds;
   if (!authorisedByDebriefDestination && !allowedKinds.includes(request.kind)) {
     return codedErr(MODE_POLICY[mode].mutationRefusal, MCP_ERROR_CODES.writeModeRefusal);
-  }
-
-  let mutationNodeId = boundNodeId;
-  if (targetNodeId !== undefined && targetNodeId !== boundNodeId) {
-    if (!isWithinSubtree(state, boundNodeId, targetNodeId)) {
-      return codedErr(
-        `node_id ${targetNodeId} does not resolve to a node within the bound subtree rooted at ${boundNodeId}.`,
-        MCP_ERROR_CODES.writeOutsideBoundSubtree,
-      );
-    }
-    mutationNodeId = targetNodeId;
   }
 
   return dispatchMutation(deps, sessionId, mutationNodeId, effectiveRequest, automatic);
@@ -320,7 +275,7 @@ export function createWriteTools(deps: WriteToolsDeps): WriteTools {
       executeMutation(deps, args.sessionId, { kind: 'mark-complete', status: args.status }, args.node_id),
     announceStepDone: (args) => executeAnnounceStepDone(deps, args.sessionId),
     setNodeContent: (args) =>
-      executeMutation(deps, args.sessionId, { kind: 'set-content', content: args.content }),
+      executeMutation(deps, args.sessionId, { kind: 'set-content', content: args.content }, args.node_id),
     deleteNode: (args) => executeMutation(deps, args.sessionId, { kind: 'delete' }),
     moveNode: (args) => {
       const request: MutationRequest =

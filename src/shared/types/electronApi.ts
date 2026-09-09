@@ -57,7 +57,7 @@ export type MutationRequest =
   | { kind: 'add-child'; parentId: string; content: string; position?: number; debriefDestinationId?: string }
   | { kind: 'append'; content: string }
   | { kind: 'mark-complete'; status: 'completed' | 'abandoned' }
-  | { kind: 'set-content'; content: string }
+  | { kind: 'set-content'; content: string; debriefDestinationId?: string; subjectNodeId?: string }
   | { kind: 'delete' }
   | { kind: 'move'; newParentId: string; position?: number }
   | { kind: 'set-metadata'; key: string; value: unknown };

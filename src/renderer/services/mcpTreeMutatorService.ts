@@ -31,7 +31,7 @@ export function applyMutation(store: TreeStore, nodeId: string, request: Mutatio
     case 'mark-complete':
       return applyMarkComplete(store, nodeId, request.status);
     case 'set-content':
-      return applySetContent(store, nodeId, request.content);
+      return applySetContent(store, nodeId, request);
     case 'delete':
       return applyDelete(store, nodeId);
     case 'move':
@@ -84,7 +84,8 @@ function applyAddChild(
   const inserted = insertChild(state, request);
   const settled = request.debriefDestinationId
     ? recordFindingEvidence(inserted, {
-        parentId: request.parentId,
+        mode: 'created',
+        touchedNodeId: request.parentId,
         createdNodeId: inserted.newNodeId,
         subjectNodeId,
         findingsRootId: request.debriefDestinationId,
@@ -121,8 +122,30 @@ function applyMarkComplete(
   }));
 }
 
-function applySetContent(store: TreeStore, nodeId: string, content: string): MutationResult {
-  return updateNode(store, nodeId, (node) => ({ ...node, content }));
+function applySetContent(
+  store: TreeStore,
+  nodeId: string,
+  request: Extract<MutationRequest, { kind: 'set-content' }>,
+): MutationResult {
+  const { debriefDestinationId, subjectNodeId } = request;
+  if (!debriefDestinationId || !subjectNodeId) {
+    return updateNode(store, nodeId, (node) => ({ ...node, content: request.content }));
+  }
+
+  const state = store.getState();
+  const node = state.nodes[nodeId];
+  if (!node) return { ok: false, error: `Node ${nodeId} not found` };
+
+  const revised = { ...node, content: request.content };
+  const settled = recordFindingEvidence(
+    { nodes: { ...state.nodes, [nodeId]: revised }, ancestorRegistry: state.ancestorRegistry },
+    { mode: 'revised', touchedNodeId: nodeId, subjectNodeId, findingsRootId: debriefDestinationId },
+  );
+
+  store.setState({ nodes: settled.nodes, ancestorRegistry: settled.ancestorRegistry });
+  syncBoundTerminalTitles(nodeId, revised);
+  triggerAutoSave(store);
+  return { ok: true };
 }
 
 interface StoreActionsForDelete {

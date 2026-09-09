@@ -72,10 +72,19 @@ export class ArborescentMcpServer {
         inputSchema: {
           ...sessionIdSchema,
           depth: z.number().int().min(0).optional().describe('Maximum tree depth (0 = root only)'),
+          node_id: z
+            .string()
+            .min(1)
+            .optional()
+            .describe('Optional node to read instead of the bound node. Available only on a debrief step, and only for a node in the bound subtree or in the Findings node the step writes to — use it to read a finding named in the register before revising it.'),
         },
       },
       async (args) =>
-        tools.getTree({ sessionId: args.session_id, depth: args.depth as number | undefined }),
+        tools.getTree({
+          sessionId: args.session_id,
+          depth: args.depth as number | undefined,
+          nodeId: args.node_id,
+        }),
     );
 
     mcp.registerTool(
@@ -169,14 +178,21 @@ export class ArborescentMcpServer {
     mcp.registerTool(
       'set_node_content',
       {
-        title: 'Replace bound node content',
-        description: 'Replaces the bound node content. Only allowed in collaborate-only mode on automatic steps.',
+        title: 'Replace node content',
+        description:
+          'Replaces the bound node content, which a step mode has to permit. With node_id it replaces the content of another node, which only a debrief step can do and only inside the Findings node it writes to — use it to improve a finding title or description. A back-link is refused: the evidence a finding rests on is not rewritten.',
         inputSchema: {
           ...sessionIdSchema,
-          content: z.string().describe('New content for the bound node'),
+          content: z.string().describe('New content for the node'),
+          node_id: z
+            .string()
+            .min(1)
+            .optional()
+            .describe('Optional node to replace instead of the bound node. Findings-scoped; resolve ids from the register or with get_tree.'),
         },
       },
-      async (args) => tools.setNodeContent({ sessionId: args.session_id, content: args.content }),
+      async (args) =>
+        tools.setNodeContent({ sessionId: args.session_id, content: args.content, node_id: args.node_id }),
     );
 
     mcp.registerTool(

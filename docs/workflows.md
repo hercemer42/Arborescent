@@ -72,6 +72,8 @@ From then on, each run of that step writes what it observed as a child of your F
 
 The number beside a finding is how many times it has been reported. It counts the links back to the work that surfaced it, so it rises when a later run reports the same problem again instead of filing a duplicate. Grey means up to three times, amber four or five, red six or more. Re-running or resuming the same step against the same item never inflates it.
 
+A later run also rewrites a finding it recognises, so the wording improves as the count rises: a first sighting names a symptom, and the run that hits the same problem for the fourth time can often name the cause. It revises the headline and the detail, never the links back — the evidence stays as it was recorded. Your own edits to a finding can be rewritten the same way, so keep anything you want kept verbatim outside the Findings node.
+
 Findings are a queue for you to read, not a task list. Nothing acts on them, and a session asked to critique the tool it is running inside will sometimes produce plausible filler — so read them before you act. Retire one by deleting it, which takes its detail and its links with it.
 
 Debrief is offered on autonomous steps only. On a manual or checkpoint step every tree write becomes a proposition for you to review, and a debrief cannot land through that route. A step configured to write findings whose node you later delete keeps running: it skips the debrief and tells you why, once, in a warning you will also find in the activity log.
