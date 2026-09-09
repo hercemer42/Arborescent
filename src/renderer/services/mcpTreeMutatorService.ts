@@ -16,6 +16,7 @@ import {
 import { getParentIdOrNull } from '../utils/parentLookup';
 import { shouldInheritBlueprint } from '../utils/nodeHelpers';
 import { createTreeNode } from '../utils/nodeConstruction';
+import { recordFindingEvidence, type TreeSlice } from '../utils/findingEvidence';
 import { isNodeInReview } from '../store/tree/reviews';
 import { isAutonomousNodeNotInPlay } from '../../shared/utils/autonomousStepContext';
 import { MCP_ERROR_CODES } from '../../shared/utils/mcpErrorCodes';
@@ -24,7 +25,7 @@ import { v4 as uuidv4 } from 'uuid';
 export function applyMutation(store: TreeStore, nodeId: string, request: MutationRequest): MutationResult {
   switch (request.kind) {
     case 'add-child':
-      return applyAddChild(store, request);
+      return applyAddChild(store, nodeId, request);
     case 'append':
       return applyAppend(store, nodeId, request.content);
     case 'mark-complete':
@@ -40,13 +41,11 @@ export function applyMutation(store: TreeStore, nodeId: string, request: Mutatio
   }
 }
 
-function applyAddChild(
-  store: TreeStore,
+function insertChild(
+  state: TreeSlice,
   request: Extract<MutationRequest, { kind: 'add-child' }>,
-): MutationResult {
-  const state = store.getState();
+): TreeSlice & { newNodeId: string } {
   const parent = state.nodes[request.parentId];
-  if (!parent) return { ok: false, error: `Parent node ${request.parentId} not found` };
 
   // Mirror CreateNodeCommand's metadata initialization so AI-added children behave
   // identically to user-created nodes: pending status for workflow tracking and
@@ -67,10 +66,32 @@ function applyAddChild(
   newChildren.splice(insertAt, 0, newId);
   const updatedParent: TreeNode = { ...parent, children: newChildren };
 
-  store.setState({
+  return {
     nodes: { ...state.nodes, [newId]: newNode, [request.parentId]: updatedParent },
     ancestorRegistry: addNodeToRegistry(state.ancestorRegistry, newId, request.parentId),
-  });
+    newNodeId: newId,
+  };
+}
+
+function applyAddChild(
+  store: TreeStore,
+  subjectNodeId: string,
+  request: Extract<MutationRequest, { kind: 'add-child' }>,
+): MutationResult {
+  const state = store.getState();
+  if (!state.nodes[request.parentId]) return { ok: false, error: `Parent node ${request.parentId} not found` };
+
+  const inserted = insertChild(state, request);
+  const settled = request.debriefDestinationId
+    ? recordFindingEvidence(inserted, {
+        parentId: request.parentId,
+        createdNodeId: inserted.newNodeId,
+        subjectNodeId,
+        findingsRootId: request.debriefDestinationId,
+      })
+    : inserted;
+
+  store.setState({ nodes: settled.nodes, ancestorRegistry: settled.ancestorRegistry });
   triggerAutoSave(store);
   return { ok: true };
 }

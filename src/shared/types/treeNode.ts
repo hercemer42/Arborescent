@@ -60,6 +60,10 @@ export interface NodeMetadata {
   replacementSideLinkName?: string;
   resolveLinkedContent?: boolean;
 
+  // Debrief — a step's Findings node, and the flag that makes its children render weights
+  debriefDestinationId?: string;
+  isFindingsRoot?: boolean;
+
   // Hyperlinks / external
   isHyperlink?: boolean;
   linkedNodeId?: string;

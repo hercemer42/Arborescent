@@ -54,7 +54,7 @@ export interface TreeReadResponse {
 }
 
 export type MutationRequest =
-  | { kind: 'add-child'; parentId: string; content: string; position?: number }
+  | { kind: 'add-child'; parentId: string; content: string; position?: number; debriefDestinationId?: string }
   | { kind: 'append'; content: string }
   | { kind: 'mark-complete'; status: 'completed' | 'abandoned' }
   | { kind: 'set-content'; content: string }

@@ -62,6 +62,20 @@ These two options work together. Enable decomposition on an earlier step to spli
 
 If the workflow has multiple decomposition steps, each recurse step pairs with the nearest decomposition step earlier in the chain — pair each decomposition with its own downstream recurse to process every batch.
 
+## Debrief
+
+A workflow that runs for hours is watched by the AI session driving it, and nothing collects what that session noticed — a step prompt that under-specified its output, a context that fought the tool gate, the same papercut hit three times in an afternoon. A debrief step deposits each of those as a finding in a node you choose.
+
+Pick the node you want the findings collected under — one per project is enough. Right-click it → **Edit** → **Copy as Hyperlink**, then open the configuration dialog for the last step of the workflow and paste it into **Findings node**. The node must live in the file you are editing; a link from another file is refused as you paste it.
+
+From then on, each run of that step writes what it observed as a child of your Findings node: a short headline you see in the tree, with the detail one keystroke away underneath. Every finding also carries a link back to the item the workflow was running when it came up. Click it to go straight there.
+
+The number beside a finding is how many times it has been reported. It counts the links back to the work that surfaced it, so it rises when a later run reports the same problem again instead of filing a duplicate. Grey means up to three times, amber four or five, red six or more. Re-running or resuming the same step against the same item never inflates it.
+
+Findings are a queue for you to read, not a task list. Nothing acts on them, and a session asked to critique the tool it is running inside will sometimes produce plausible filler — so read them before you act. Retire one by deleting it, which takes its detail and its links with it.
+
+Debrief is offered on autonomous steps only. On a manual or checkpoint step every tree write becomes a proposition for you to review, and a debrief cannot land through that route. A step configured to write findings whose node you later delete keeps running: it skips the debrief and tells you why, once, in a warning you will also find in the activity log.
+
 ## Running a Workflow
 
 Place an item inside any workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.

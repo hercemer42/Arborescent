@@ -17,6 +17,11 @@ export function StepConfigDialogContainer() {
   const setRecurse = useStore((state) => state.actions.setRecurse);
   const setClearSession = useStore((state) => state.actions.setClearSession);
   const setArchiveSettings = useStore((state) => state.actions.setArchiveSettings);
+  const setDebriefDestination = useStore((state) => state.actions.setDebriefDestination);
+  const debriefDestinationId = node?.metadata.debriefDestinationId as string | undefined;
+  const debriefDestinationContent = useStore((state) =>
+    debriefDestinationId ? state.nodes[debriefDestinationId]?.content : undefined,
+  );
 
   useModalHotkeyContext(isOpen);
 
@@ -43,12 +48,15 @@ export function StepConfigDialogContainer() {
       recurse={recurse}
       clearSession={clearSession}
       archiveSettings={archiveSettings}
+      debriefDestinationId={debriefDestinationId}
+      debriefDestinationContent={debriefDestinationContent}
       currentFilePath={currentFilePath}
       onStepTypeChange={setStepType}
       onDecompositionChange={setDecomposition}
       onRecurseChange={setRecurse}
       onClearSessionChange={setClearSession}
       onArchiveSettingsChange={setArchiveSettings}
+      onDebriefDestinationChange={setDebriefDestination}
       onClose={close}
     />
   );

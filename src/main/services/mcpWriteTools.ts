@@ -12,10 +12,14 @@ import {
   MODE_POLICY,
   StepMode,
 } from '../../shared/utils/permissionGate';
-import { isStructurallyAutonomous, resolveParentStepType } from '../../shared/utils/autonomousStepContext';
+import {
+  isStructurallyAutonomous,
+  resolveParentStepType,
+  resolveParentStepNode,
+} from '../../shared/utils/autonomousStepContext';
 
 export type MutationRequest =
-  | { kind: 'add-child'; parentId: string; content: string; position?: number }
+  | { kind: 'add-child'; parentId: string; content: string; position?: number; debriefDestinationId?: string }
   | { kind: 'append'; content: string }
   | { kind: 'mark-complete'; status: 'completed' | 'abandoned' }
   | { kind: 'set-content'; content: string }
@@ -95,10 +99,81 @@ async function resolveBoundState(deps: WriteToolsDeps, sessionId: string): Promi
   return { ok: true, boundNodeId, state: read.state };
 }
 
-function isWithinBoundSubtree(state: TreeReadState, boundNodeId: string, nodeId: string): boolean {
-  if (nodeId === boundNodeId) return true;
+function isWithinSubtree(state: TreeReadState, rootNodeId: string, nodeId: string): boolean {
+  if (nodeId === rootNodeId) return true;
   if (!state.nodes[nodeId]) return false;
-  return (state.ancestorRegistry[nodeId] ?? []).includes(boundNodeId);
+  return (state.ancestorRegistry[nodeId] ?? []).includes(rootNodeId);
+}
+
+// A step declaring a Findings node authorises writes into it. An unresolvable
+// destination grants nothing: the session must never receive the parent-not-found
+// error, because it has no recovery path and would announce the step done anyway.
+// The full workflow shape is required, exactly as the prompt-side resolver
+// requires it, so a grant cannot outlive the workflow — removing a workflow
+// clears isWorkflow alone and leaves stepType and the destination behind.
+function resolveDebriefDestinationId(state: TreeReadState, boundNodeId: string): string | undefined {
+  const step = resolveParentStepNode(boundNodeId, state);
+  const destinationId = step?.metadata.debriefDestinationId;
+  if (!step || !destinationId) return undefined;
+
+  const stepAncestors = state.ancestorRegistry[step.id] ?? [];
+  const workflowId = stepAncestors[stepAncestors.length - 1];
+  if (!workflowId || state.nodes[workflowId]?.metadata.isWorkflow !== true) return undefined;
+
+  return state.nodes[destinationId] ? destinationId : undefined;
+}
+
+interface AddChildAuthorisation {
+  // Set when the write lands inside a configured Findings subtree, so the
+  // applier attaches evidence for exactly the writes the gate authorised as a
+  // debrief rather than re-deriving intent from a node flag.
+  debriefDestinationId?: string;
+  bypassesModePolicy: boolean;
+}
+
+// Nothing nests under a link: a hyperlink node's subtree is dropped from every
+// send and export, so a child written there is invisible to everything that
+// reads the tree back.
+function isLinkNode(state: TreeReadState, nodeId: string): boolean {
+  const metadata = state.nodes[nodeId]?.metadata;
+  return metadata?.isHyperlink === true || metadata?.isExternalLink === true;
+}
+
+// The grant is orthogonal to the context-mode table: it turns on a single
+// request kind against a single subtree, so no existing step gains surface and
+// no other mutation kind can inherit it. Refusals are worded here, where the
+// reason for them is known.
+function authoriseAddChildParent(
+  state: TreeReadState,
+  boundNodeId: string,
+  parentId: string,
+): AddChildAuthorisation | { refusal: ToolResult } {
+  const destinationId = resolveDebriefDestinationId(state, boundNodeId);
+  const withinDestination = destinationId !== undefined && isWithinSubtree(state, destinationId, parentId);
+  const withinBound = isWithinSubtree(state, boundNodeId, parentId);
+
+  if (!withinBound && !withinDestination) {
+    return {
+      refusal: codedErr(
+        `parent_id ${parentId} is neither inside the bound subtree rooted at ${boundNodeId} nor inside a Findings node this step is configured to write to.`,
+        MCP_ERROR_CODES.writeOutsideBoundSubtree,
+      ),
+    };
+  }
+
+  if (isLinkNode(state, parentId)) {
+    return {
+      refusal: codedErr(
+        `parent_id ${parentId} is a hyperlink — nothing can be nested beneath a link.`,
+        MCP_ERROR_CODES.writeOutsideBoundSubtree,
+      ),
+    };
+  }
+
+  return {
+    debriefDestinationId: withinDestination ? destinationId : undefined,
+    bypassesModePolicy: withinDestination && !withinBound,
+  };
 }
 
 async function executeMutation(
@@ -123,16 +198,31 @@ async function executeMutation(
   // and proposal (manual/checkpoint) routes carry separate kind allowances,
   // because the proposal queue is user-reviewed while direct applies are not.
   const automatic = isAutomatic(boundNodeId, state);
+
+  // Autonomous-only is mechanical: on the proposal route every write becomes a
+  // review proposition, and the receiver rejects every proposition that is not a
+  // submit_step_output, so the grant would authorise a write that cannot land.
+  let effectiveRequest = request;
+  let authorisedByDebriefDestination = false;
+  if (request.kind === 'add-child') {
+    const authorisation = authoriseAddChildParent(state, boundNodeId, request.parentId);
+    if ('refusal' in authorisation) return authorisation.refusal;
+    authorisedByDebriefDestination = automatic && authorisation.bypassesModePolicy;
+    if (authorisation.debriefDestinationId) {
+      effectiveRequest = { ...request, debriefDestinationId: authorisation.debriefDestinationId };
+    }
+  }
+
   const allowedKinds = automatic
     ? MODE_POLICY[mode].directApplyMutationKinds
     : MODE_POLICY[mode].proposalMutationKinds;
-  if (!allowedKinds.includes(request.kind)) {
+  if (!authorisedByDebriefDestination && !allowedKinds.includes(request.kind)) {
     return codedErr(MODE_POLICY[mode].mutationRefusal, MCP_ERROR_CODES.writeModeRefusal);
   }
 
   let mutationNodeId = boundNodeId;
   if (targetNodeId !== undefined && targetNodeId !== boundNodeId) {
-    if (!isWithinBoundSubtree(state, boundNodeId, targetNodeId)) {
+    if (!isWithinSubtree(state, boundNodeId, targetNodeId)) {
       return codedErr(
         `node_id ${targetNodeId} does not resolve to a node within the bound subtree rooted at ${boundNodeId}.`,
         MCP_ERROR_CODES.writeOutsideBoundSubtree,
@@ -141,6 +231,18 @@ async function executeMutation(
     mutationNodeId = targetNodeId;
   }
 
+  return dispatchMutation(deps, sessionId, mutationNodeId, effectiveRequest, automatic);
+}
+
+// The proposal queue is user-reviewed while a direct apply is not, so the route
+// a mutation takes is the route its authority was granted for.
+async function dispatchMutation(
+  deps: WriteToolsDeps,
+  sessionId: string,
+  mutationNodeId: string,
+  request: MutationRequest,
+  automatic: boolean,
+): Promise<ToolResult> {
   if (!automatic) {
     const proposal = await deps.proposalSubmitter.submit({
       sessionId,

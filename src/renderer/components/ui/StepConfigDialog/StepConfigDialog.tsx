@@ -2,6 +2,7 @@ import type { StepType } from '../../../store/tree/commands/SetStepTypeCommand';
 import { Modal } from '../Modal';
 import { StepTypeSelector } from './StepTypeSelector';
 import { StepOptionsSection } from './StepOptionsSection';
+import { DebriefSection } from './DebriefSection';
 // TODO(archive): Archive UI disabled 2026-06-08. Either restore it (uncomment
 // this import and the <ArchiveSection> render below) or delete the archive
 // feature entirely (ArchiveSection, useArchiveHyperlinkPaste, getArchiveConfigForNode,
@@ -24,12 +25,15 @@ interface StepConfigDialogProps {
   recurse?: boolean;
   clearSession?: boolean;
   archiveSettings?: ArchiveSettings;
+  debriefDestinationId?: string;
+  debriefDestinationContent?: string;
   currentFilePath?: string | null;
   onStepTypeChange: (nodeId: string, stepType: StepType) => void;
   onDecompositionChange: (nodeId: string, decomposition: boolean) => void;
   onRecurseChange: (nodeId: string, recurse: boolean) => void;
   onClearSessionChange: (nodeId: string, clearSession: boolean) => void;
   onArchiveSettingsChange: (nodeId: string, settings: ArchiveSettings) => void;
+  onDebriefDestinationChange: (nodeId: string, destinationId: string | undefined) => void;
   onClose: () => void;
 }
 
@@ -39,10 +43,14 @@ export function StepConfigDialog({
   decomposition = false,
   recurse = false,
   clearSession = false,
-  // TODO(archive): archiveSettings / currentFilePath / onArchiveSettingsChange
-  // remain on the props interface (and are still passed by the container) so
-  // restoring the archive section is a one-line uncomment. They're intentionally
-  // not destructured while the section is disabled.
+  debriefDestinationId,
+  debriefDestinationContent,
+  currentFilePath,
+  onDebriefDestinationChange,
+  // TODO(archive): archiveSettings / onArchiveSettingsChange remain on the props
+  // interface (and are still passed by the container) so restoring the archive
+  // section is a one-line uncomment. They're intentionally not destructured
+  // while the section is disabled.
   onStepTypeChange,
   onDecompositionChange,
   onRecurseChange,
@@ -73,6 +81,13 @@ export function StepConfigDialog({
           currentFilePath={currentFilePath}
           onChange={(settings) => onArchiveSettingsChange(nodeId, settings)}
         /> */}
+        <DebriefSection
+          stepType={effectiveStepType}
+          debriefDestinationId={debriefDestinationId}
+          destinationContent={debriefDestinationContent}
+          currentFilePath={currentFilePath}
+          onChange={(destinationId) => onDebriefDestinationChange(nodeId, destinationId)}
+        />
       </div>
     </Modal>
   );

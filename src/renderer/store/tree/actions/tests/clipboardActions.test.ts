@@ -1520,6 +1520,147 @@ describe('clipboardActions', () => {
       expect(pastedNodes).toHaveLength(1);
       expect(pastedNodes[0].metadata.appliedContextId).toBe('local-context');
     });
+
+    it('should strip a debrief destination that does not resolve in the target file', async () => {
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-step': {
+          id: 'source-step',
+          content: 'Debrief step',
+          children: [],
+          metadata: { debriefDestinationId: 'findings-in-source-file' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      const cachedMarkdown = '# Debrief step';
+      currentMockCache = {
+        rootNodeIds: ['source-step'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedNodes = Object.values(state.nodes).filter(
+        (n) => n.content === 'Debrief step' && n.id !== 'source-step'
+      );
+      expect(pastedNodes).toHaveLength(1);
+      expect(pastedNodes[0].metadata.debriefDestinationId).toBeUndefined();
+    });
+
+    it('should keep a debrief destination that exists in the target file', async () => {
+      state.nodes['target-findings'] = {
+        id: 'target-findings',
+        content: 'Findings',
+        children: [],
+        metadata: { isFindingsRoot: true },
+      };
+      state.ancestorRegistry['target-findings'] = ['root'];
+
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-step': {
+          id: 'source-step',
+          content: 'Debrief step with valid destination',
+          children: [],
+          metadata: { debriefDestinationId: 'target-findings' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      const cachedMarkdown = '# Debrief step with valid destination';
+      currentMockCache = {
+        rootNodeIds: ['source-step'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedNodes = Object.values(state.nodes).filter(
+        (n) => n.content === 'Debrief step with valid destination' && n.id !== 'source-step'
+      );
+      expect(pastedNodes).toHaveLength(1);
+      expect(pastedNodes[0].metadata.debriefDestinationId).toBe('target-findings');
+    });
+
+    it('should not strip a debrief destination when pasting within the same file', async () => {
+      state.nodes['local-findings'] = {
+        id: 'local-findings',
+        content: 'Findings',
+        children: [],
+        metadata: { isFindingsRoot: true },
+      };
+      state.nodes['step-with-debrief'] = {
+        id: 'step-with-debrief',
+        content: 'Step with local debrief',
+        children: [],
+        metadata: { debriefDestinationId: 'local-findings' },
+      };
+      state.ancestorRegistry['local-findings'] = ['root'];
+      state.ancestorRegistry['step-with-debrief'] = ['root'];
+
+      const cachedMarkdown = '# Step with local debrief';
+      currentMockCache = {
+        rootNodeIds: ['step-with-debrief'],
+        sourceFilePath: targetFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedNodes = Object.values(state.nodes).filter(
+        (n) => n.content === 'Step with local debrief' && n.id !== 'step-with-debrief'
+      );
+      expect(pastedNodes).toHaveLength(1);
+      expect(pastedNodes[0].metadata.debriefDestinationId).toBe('local-findings');
+    });
+
+    it('should preserve isFindingsRoot on cross-file paste, so the copy is a Findings node in its new file', async () => {
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-findings': {
+          id: 'source-findings',
+          content: 'Findings',
+          children: [],
+          metadata: { isFindingsRoot: true },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      const cachedMarkdown = '# Findings';
+      currentMockCache = {
+        rootNodeIds: ['source-findings'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pasted = Object.values(state.nodes).filter(
+        (n) => n.content === 'Findings' && n.id !== 'source-findings'
+      );
+      expect(pasted).toHaveLength(1);
+      expect(pasted[0].metadata.isFindingsRoot).toBe(true);
+    });
   });
 
   describe('hyperlink actions', () => {

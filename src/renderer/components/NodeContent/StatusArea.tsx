@@ -6,6 +6,7 @@ import { StatusCheckbox } from '../ui/StatusCheckbox';
 import type { LucideIcon } from '../ui/CustomizeDialog/CustomizeDialog';
 import { useStepConfigDialogStore } from '../../store/stepConfigDialog/stepConfigDialogStore';
 import { getStepTypeLabel } from './hooks/useWorkflowIndicator';
+import { getWeightBand } from '../../utils/findings';
 
 export type ExecutionState = 'running' | 'awaiting-validation' | null;
 export type StepType = 'manual' | 'checkpoint' | 'autonomous';
@@ -67,6 +68,21 @@ function BrokenChainIndicator({ broken }: BrokenChainIndicatorProps) {
   );
 }
 
+// The badge takes the checkbox's position rather than sitting beside it, the
+// same substitution a workflow step number already makes. Colour carries the
+// recurrence signal, so the label carries it too.
+function FindingWeightBadge({ weight }: { weight: number }) {
+  return (
+    <span
+      className={`finding-weight-badge weight-band-${getWeightBand(weight)}`}
+      aria-label={`Weight ${weight}`}
+      title={`Seen ${weight} time${weight === 1 ? '' : 's'}`}
+    >
+      {weight}
+    </span>
+  );
+}
+
 interface StatusAreaProps {
   node: TreeNode;
   isLink: boolean;
@@ -74,6 +90,7 @@ interface StatusAreaProps {
   navigateToLinkedNode: () => void;
   isContextDeclaration: boolean;
   isContextChild: boolean;
+  findingWeight: number | null;
   ContextIcon: LucideIcon | null | undefined;
   contextColor: string | undefined;
   BlueprintIcon: LucideIcon;
@@ -92,10 +109,11 @@ interface StatusAreaProps {
 }
 
 /**
- * Dispatches to one of five visual states for a node's status area:
- *   link | context-declaration | context-child | blueprint | checkbox.
+ * Dispatches to one of six visual states for a node's status area:
+ *   link | finding-weight | context-declaration | context-child | blueprint |
+ *   checkbox.
  *
- * Split out of NodeContent so the five branches (previously 130+ lines of
+ * Split out of NodeContent so the branches (previously 130+ lines of
  * inline JSX inside a `renderStatusArea` IIFE) are legible in isolation.
  */
 export function StatusArea({
@@ -105,6 +123,7 @@ export function StatusArea({
   navigateToLinkedNode,
   isContextDeclaration,
   isContextChild,
+  findingWeight,
   ContextIcon,
   contextColor,
   BlueprintIcon,
@@ -133,6 +152,18 @@ export function StatusArea({
       >
         <Link size={19} />
       </button>
+    );
+  }
+
+  // Ahead of the context and blueprint branches, which return early: a finding
+  // inheriting either would otherwise render an icon and hide its weight.
+  if (findingWeight !== null) {
+    return (
+      <span className="checkbox-icon-wrapper">
+        <FindingWeightBadge weight={findingWeight} />
+        <WorkflowOverlay executionState={executionState} onStop={onStopWorkflow} onUnpause={onUnpauseWorkflow} />
+        <BrokenChainIndicator broken={node.metadata.brokenChain === true} />
+      </span>
     );
   }
 

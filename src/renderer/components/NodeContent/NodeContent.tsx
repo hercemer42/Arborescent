@@ -9,6 +9,7 @@ import { useBlueprintIcon } from './hooks/useBlueprintIcon';
 import { useHyperlinkNavigation } from './hooks/useHyperlinkNavigation';
 import { useSearchHighlight } from './hooks/useSearchHighlight';
 import { useWorkflowIndicator } from './hooks/useWorkflowIndicator';
+import { useFindingWeight } from './hooks/useFindingWeight';
 import { useWorkflowExecutionOverlay } from './hooks/useWorkflowExecutionOverlay';
 import { useRichNodeContent } from './hooks/useRichNodeContent';
 import { StatusArea } from './StatusArea';
@@ -41,6 +42,7 @@ function NodeContentComponent({
   const { isContextDeclaration, isContextChild, ContextIcon, contextColor } = useContextIcon(node);
   const { BlueprintIcon, blueprintColor, isInherited: isInheritingBlueprintIcon } = useBlueprintIcon(node);
   const { isWorkflow, isInsideWorkflow, stepNumber, stepType } = useWorkflowIndicator(node);
+  const findingWeight = useFindingWeight(node);
   const { executionState, stopWorkflow, unpauseWorkflow } = useWorkflowExecutionOverlay(node);
 
   const isHyperlink = node.metadata.isHyperlink === true;
@@ -72,6 +74,7 @@ function NodeContentComponent({
             navigateToLinkedNode={navigateToLinkedNode}
             isContextDeclaration={isContextDeclaration}
             isContextChild={isContextChild}
+            findingWeight={findingWeight}
             ContextIcon={ContextIcon}
             contextColor={contextColor}
             BlueprintIcon={BlueprintIcon}

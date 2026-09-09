@@ -570,4 +570,89 @@ describe('createWorkflowActions', () => {
       expect(mockExecuteCommand).not.toHaveBeenCalled();
     });
   });
+  // Declaring a Findings node is the capability grant, so the setter does two
+  // things: it records the pointer on the step and stamps the target as a
+  // findings root, which is what makes its children render weight badges. The
+  // flag is never cleared automatically — retargeting a step leaves the
+  // previous Findings node's badges intact.
+  describe('setDebriefDestination', () => {
+    beforeEach(() => {
+      state.nodes['findings'] = { id: 'findings', content: 'Findings', children: [], metadata: {} };
+      state.nodes['other-findings'] = { id: 'other-findings', content: 'Other findings', children: [], metadata: {} };
+      state.ancestorRegistry['findings'] = ['root'];
+      state.ancestorRegistry['other-findings'] = ['root'];
+      state.nodes['root'].children = [...state.nodes['root'].children, 'findings', 'other-findings'];
+    });
+
+    it('records the destination on the step', () => {
+      actions.setDebriefDestination('step-1', 'findings');
+
+      expect(state.nodes['step-1'].metadata.debriefDestinationId).toBe('findings');
+    });
+
+    it('stamps isFindingsRoot on the target', () => {
+      actions.setDebriefDestination('step-1', 'findings');
+
+      expect(state.nodes['findings'].metadata.isFindingsRoot).toBe(true);
+    });
+
+    it('triggers an autosave', () => {
+      actions.setDebriefDestination('step-1', 'findings');
+
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('leaves the rest of the step metadata alone', () => {
+      actions.setDebriefDestination('step-1', 'findings');
+
+      expect(state.nodes['step-1'].metadata.isBlueprint).toBe(true);
+    });
+
+    it('clears the pointer when the destination is removed', () => {
+      actions.setDebriefDestination('step-1', 'findings');
+
+      actions.setDebriefDestination('step-1', undefined);
+
+      expect(state.nodes['step-1'].metadata.debriefDestinationId).toBeUndefined();
+    });
+
+    it('leaves isFindingsRoot in place when the pointer is cleared, so existing badges survive', () => {
+      actions.setDebriefDestination('step-1', 'findings');
+
+      actions.setDebriefDestination('step-1', undefined);
+
+      expect(state.nodes['findings'].metadata.isFindingsRoot).toBe(true);
+    });
+
+    it('stamps the new target on a retarget and leaves the previous flag intact', () => {
+      actions.setDebriefDestination('step-1', 'findings');
+
+      actions.setDebriefDestination('step-1', 'other-findings');
+
+      expect(state.nodes['step-1'].metadata.debriefDestinationId).toBe('other-findings');
+      expect(state.nodes['other-findings'].metadata.isFindingsRoot).toBe(true);
+      expect(state.nodes['findings'].metadata.isFindingsRoot).toBe(true);
+    });
+
+    it('stores nothing when the step resolves to no node', () => {
+      actions.setDebriefDestination('missing-step', 'findings');
+
+      expect(state.nodes['findings'].metadata.isFindingsRoot).toBeUndefined();
+    });
+
+    it('stores nothing when the destination resolves to no node', () => {
+      actions.setDebriefDestination('step-1', 'missing-findings');
+
+      expect(state.nodes['step-1'].metadata.debriefDestinationId).toBeUndefined();
+    });
+
+    it('lets two steps share one Findings node', () => {
+      actions.setDebriefDestination('step-1', 'findings');
+      actions.setDebriefDestination('step-2', 'findings');
+
+      expect(state.nodes['step-1'].metadata.debriefDestinationId).toBe('findings');
+      expect(state.nodes['step-2'].metadata.debriefDestinationId).toBe('findings');
+    });
+  });
+
 });

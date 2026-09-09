@@ -393,6 +393,24 @@ export function getArchiveConfigForNode(
   };
 }
 
+// The destination lives on the step while the session binds to the subject, so
+// resolution walks up one level. Existence of the target is the caller's
+// concern: the send path omits the register and warns rather than letting a
+// dangling id reach a session that has no recovery path.
+export function getDebriefDestinationId(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): string | undefined {
+  const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
+  if (!position) return undefined;
+
+  const stepNode = nodes[position.currentStepId];
+  if (!stepNode) return undefined;
+
+  return (stepNode.metadata.debriefDestinationId as string | undefined) || undefined;
+}
+
 export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean; needsReviewNotified?: boolean; collaborating?: boolean; stopReceived?: boolean; clearing?: boolean };
 
 export function isEligibleForExecution(

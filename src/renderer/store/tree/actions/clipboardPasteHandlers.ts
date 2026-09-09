@@ -234,11 +234,40 @@ function getSourceNodes(
   return sourceStore.getState().nodes;
 }
 
+type ReferenceKey = 'appliedContextId' | 'debriefDestinationId' | 'linkedNodeId';
+
+// A pointer survives a paste when the copied set carries its target (remap to
+// the clone) or the destination file already holds it (keep); otherwise it is
+// stripped rather than left dangling.
+function remapOrStripReference(
+  metadata: TreeNode['metadata'],
+  key: ReferenceKey,
+  idMapping: Record<string, string>,
+  targetNodes: Record<string, TreeNode>,
+): 'remapped' | 'kept' | 'stripped' {
+  const referencedId = metadata[key] as string | undefined;
+  if (!referencedId) return 'kept';
+
+  const remappedId = idMapping[referencedId];
+  if (remappedId) {
+    metadata[key] = remappedId;
+    return 'remapped';
+  }
+
+  if (!targetNodes[referencedId]) {
+    delete metadata[key];
+    return 'stripped';
+  }
+
+  return 'kept';
+}
+
 /**
  * When nodes cross a file boundary, their metadata may reference ids
- * that only exist in the source file. Remap appliedContextId and
- * linkedNodeId through the idMapping produced by cloneNodesWithNewIds,
- * or strip them if the referenced id has no match on either side.
+ * that only exist in the source file. Remap appliedContextId,
+ * linkedNodeId and debriefDestinationId through the idMapping produced by
+ * cloneNodesWithNewIds, or strip them if the referenced id has no match on
+ * either side.
  */
 function remapNodeReferences(
   nodesMap: Record<string, TreeNode>,
@@ -254,25 +283,10 @@ function remapNodeReferences(
       delete metadata.transient;
     }
 
-    const appliedContextId = metadata.appliedContextId as string | undefined;
-    if (appliedContextId) {
-      const remappedContextId = idMapping[appliedContextId];
-      if (remappedContextId) {
-        metadata.appliedContextId = remappedContextId;
-      } else if (!targetNodes[appliedContextId]) {
-        delete metadata.appliedContextId;
-      }
-    }
-
-    const linkedNodeId = metadata.linkedNodeId as string | undefined;
-    if (linkedNodeId) {
-      const remappedLinkId = idMapping[linkedNodeId];
-      if (remappedLinkId) {
-        metadata.linkedNodeId = remappedLinkId;
-      } else if (!targetNodes[linkedNodeId]) {
-        delete metadata.linkedNodeId;
-        delete metadata.isHyperlink;
-      }
+    remapOrStripReference(metadata, 'appliedContextId', idMapping, targetNodes);
+    remapOrStripReference(metadata, 'debriefDestinationId', idMapping, targetNodes);
+    if (remapOrStripReference(metadata, 'linkedNodeId', idMapping, targetNodes) === 'stripped') {
+      delete metadata.isHyperlink;
     }
 
     result[id] = { ...node, metadata };

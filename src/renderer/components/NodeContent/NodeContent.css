@@ -171,6 +171,32 @@
   justify-content: center;
 }
 
+.finding-weight-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid currentcolor;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: default;
+}
+
+.finding-weight-badge.weight-band-muted {
+  color: var(--gray-400);
+}
+
+.finding-weight-badge.weight-band-amber {
+  color: var(--amber-500);
+}
+
+.finding-weight-badge.weight-band-red {
+  color: var(--red-600);
+}
+
 .workflow-indicator {
   position: absolute;
   left: -18px;

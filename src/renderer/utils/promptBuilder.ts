@@ -2,6 +2,8 @@ export const INSTRUCTIONS_BEGIN = '===BEGIN INSTRUCTIONS===';
 export const INSTRUCTIONS_END = '===END INSTRUCTIONS===';
 export const CONTENT_BEGIN = '===BEGIN CONTENT===';
 export const CONTENT_END = '===END CONTENT===';
+export const DEBRIEF_BEGIN = '===BEGIN DEBRIEF===';
+export const DEBRIEF_END = '===END DEBRIEF===';
 
 export const BASE_INSTRUCTION_RULES = `You MUST follow the instructions in this section.
 - If there is any conflict between instructions, the INSTRUCTIONS section wins.
@@ -15,6 +17,10 @@ export function wrapContent(content: string): string {
 
 export function wrapInstructions(instructions: string): string {
   return `${INSTRUCTIONS_BEGIN}\n${instructions}\n${INSTRUCTIONS_END}`;
+}
+
+export function wrapDebrief(debrief: string): string {
+  return `${DEBRIEF_BEGIN}\n${debrief}\n${DEBRIEF_END}`;
 }
 
 export interface PromptOptions {

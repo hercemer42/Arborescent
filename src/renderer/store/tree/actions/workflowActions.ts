@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { getParentIdOrNull } from '../../../utils/nodeHelpers';
+import { getParentIdOrNull, updateNodeMetadata } from '../../../utils/nodeHelpers';
 import { expandCollapsedAncestors } from '../../../utils/nodeExpansion';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
@@ -28,6 +28,7 @@ export interface WorkflowActions {
   setRecurse: (nodeId: string, recurse: boolean) => void;
   setClearSession: (nodeId: string, clearSession: boolean) => void;
   setArchiveSettings: (nodeId: string, settings: { archiveDestinationId?: string; archiveSideLinkName?: string; replacementSideLinkName?: string; resolveLinkedContent?: boolean }) => void;
+  setDebriefDestination: (nodeId: string, destinationId: string | undefined) => void;
 }
 
 type StoreState = {
@@ -292,6 +293,25 @@ export const createWorkflowActions = (
     triggerAutosave?.();
   }
 
+  // Declaring a Findings node is itself the capability grant, so the pointer on
+  // the step and the flag on the target are set together. The flag is never
+  // withdrawn: retargeting or clearing a step leaves the previous Findings
+  // node's badges reading the evidence they still hold.
+  function setDebriefDestination(nodeId: string, destinationId: string | undefined): void {
+    const { nodes } = get();
+    if (!nodes[nodeId]) return;
+    if (destinationId !== undefined && !nodes[destinationId]) return;
+
+    const withPointer = updateNodeMetadata(nodes, nodeId, { debriefDestinationId: destinationId });
+    const nextNodes = destinationId === undefined
+      ? withPointer
+      : updateNodeMetadata(withPointer, destinationId, { isFindingsRoot: true });
+
+    set({ nodes: nextNodes });
+
+    triggerAutosave?.();
+  }
+
   return {
     declareAsWorkflow,
     removeFromWorkflow,
@@ -302,5 +322,6 @@ export const createWorkflowActions = (
     setRecurse,
     setClearSession,
     setArchiveSettings,
+    setDebriefDestination,
   };
 };

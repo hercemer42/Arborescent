@@ -3,6 +3,7 @@ import type { TreeNode } from '../../types';
 import {
   getAutonomousStepContext,
   resolveParentStepType,
+  resolveParentStepNode,
   isAutonomousNodeNotInPlay,
 } from '../autonomousStepContext';
 
@@ -173,5 +174,51 @@ describe('resolveParentStepType — the immediate parent step type of the bound 
     });
     expect(resolveParentStepType(ROOT, state)).toBeUndefined();
     expect(resolveParentStepType('missing-node', state)).toBeUndefined();
+  });
+});
+
+// Step configuration is authored on the step, so consumers holding only the
+// subject read it through the same binding contract rather than re-deriving it.
+describe('resolveParentStepNode — step configuration read from the subject', () => {
+  it('returns the parent step', () => {
+    const state = makeState({
+      nodes: {
+        [ROOT]: makeNode(ROOT),
+        [STEP]: makeNode(STEP, { stepType: 'autonomous', debriefDestinationId: 'findings-1' }),
+        [BOUND]: makeNode(BOUND),
+      },
+    });
+    expect(resolveParentStepNode(BOUND, state)?.metadata.debriefDestinationId).toBe('findings-1');
+  });
+
+  it('reads the step even when it carries no stepType', () => {
+    const state = makeState({
+      nodes: {
+        [ROOT]: makeNode(ROOT),
+        [STEP]: makeNode(STEP, { debriefDestinationId: 'findings-1' }),
+        [BOUND]: makeNode(BOUND),
+      },
+    });
+    expect(resolveParentStepNode(BOUND, state)?.metadata.debriefDestinationId).toBe('findings-1');
+  });
+
+  it('does not reach past the immediate parent', () => {
+    const state = makeState({
+      nodes: {
+        [ROOT]: makeNode(ROOT, { debriefDestinationId: 'findings-1' }),
+        [STEP]: makeNode(STEP, { stepType: 'autonomous' }),
+        [BOUND]: makeNode(BOUND),
+      },
+    });
+    expect(resolveParentStepNode(BOUND, state)?.metadata.debriefDestinationId).toBeUndefined();
+  });
+
+  it('returns null for a root-level node and for a node missing from the tree', () => {
+    const state = makeState({
+      nodes: { [ROOT]: makeNode(ROOT) },
+      ancestorRegistry: { [ROOT]: [] },
+    });
+    expect(resolveParentStepNode(ROOT, state)).toBeNull();
+    expect(resolveParentStepNode('missing-node', state)).toBeNull();
   });
 });

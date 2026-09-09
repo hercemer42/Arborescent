@@ -371,6 +371,23 @@ describe('Integration: Workflow Execution', () => {
   });
 
   describe('manual last step completion', () => {
+    // A context-less manual step is suppressed before it can run, so these
+    // fixtures attach one. What is under test is what happens when a manual
+    // last step finishes, which never required the step to lack a context.
+    function attachStepContext(): void {
+      stateRef.current.nodes['ctx'] = {
+        id: 'ctx',
+        content: 'Step context',
+        children: [],
+        metadata: { isContextDeclaration: true, collaborate: true, execute: true },
+      };
+      stateRef.current.nodes['task'] = {
+        ...stateRef.current.nodes['task'],
+        metadata: { ...stateRef.current.nodes['task'].metadata, appliedContextId: 'ctx' },
+      };
+      stateRef.current.ancestorRegistry['ctx'] = ['root'];
+    }
+
     it('completes the workflow when a manual last step finishes, instead of leaving it paused', () => {
       const state = () => stateRef.current;
 
@@ -379,6 +396,7 @@ describe('Integration: Workflow Execution', () => {
       stateRef.current.nodes['s1'].children = [];
       stateRef.current.nodes['s3'].children = ['task'];
       stateRef.current.ancestorRegistry['task'] = ['root', 'wf', 's3'];
+      attachStepContext();
 
       void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
@@ -405,6 +423,7 @@ describe('Integration: Workflow Execution', () => {
       stateRef.current.nodes['s1'].children = [];
       stateRef.current.nodes['s2'].children = ['task'];
       stateRef.current.ancestorRegistry['task'] = ['root', 'wf', 's2'];
+      attachStepContext();
 
       void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');

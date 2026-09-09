@@ -55,6 +55,16 @@ export function resolveParentStepType(
   return resolveParentStep(nodeId, state)?.metadata?.stepType;
 }
 
+// Step configuration — archive settings, a debrief destination — is authored on
+// the step, so a consumer holding only the subject reads it from here rather
+// than re-deriving the binding contract above.
+export function resolveParentStepNode(
+  nodeId: string,
+  state: StructuralState,
+): TreeNode | null {
+  return resolveParentStep(nodeId, state);
+}
+
 export function getAutonomousStepContext<TExecState = unknown>(
   nodeId: string,
   state: FullState<TExecState>,

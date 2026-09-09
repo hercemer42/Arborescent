@@ -10,7 +10,13 @@ import {
   getContextDeclarations,
   ContextFlags,
 } from '../../../utils/nodeHelpers';
-import { BASE_INSTRUCTION_RULES, STEP_CONTEXT_FRAMING, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
+import {
+  BASE_INSTRUCTION_RULES,
+  STEP_CONTEXT_FRAMING,
+  wrapInstructions,
+  wrapContent,
+  wrapDebrief,
+} from '../../../utils/promptBuilder';
 import { resolveStepMode, MODE_POLICY } from '../../../../shared/utils/permissionGate';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
@@ -41,7 +47,14 @@ import { capturePendingProposal, setPendingProposal, dropPendingProposal as drop
 import { addReview, removeReview, getInReviewNodeIds, hasBrowserReview, isReviewOverlap, type ReviewMap, type ReviewSource } from '../reviews';
 import { basename } from '../../../utils/basename';
 import { reconcileFeedback } from '../../feedback/reconcileFeedback';
-import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
+import {
+  isDecompositionEnabled,
+  getArchiveConfigForNode,
+  getDebriefDestinationId,
+  getWorkflowStepPosition,
+} from '../../../utils/workflowHelpers';
+import { renderFindingsRegister } from '../../../utils/findings';
+import { notifyWorkflow } from './workflowToast';
 import { classifyTerminalSend } from '../../../utils/codeNode';
 
 export const DEFAULT_EXECUTE_CONTEXT = `You are executing a coding task. Please:
@@ -262,8 +275,70 @@ interface SendPayloadArgs {
   bindingSource?: AutonomousSendSource;
 }
 
+// One source of truth for "can a debrief land here", so the register and the
+// warning can never disagree on the same send.
+function resolveDebriefDelivery(
+  nodeId: string,
+  state: Pick<TreeState, 'nodes' | 'ancestorRegistry'>,
+  contextResolved: boolean,
+): { destinationId?: string; skippedBecause?: string } {
+  const destinationId = getDebriefDestinationId(nodeId, state.nodes, state.ancestorRegistry);
+  if (!destinationId) return {};
+  if (!state.nodes[destinationId]) {
+    return { skippedBecause: `Findings node ${destinationId} no longer exists.` };
+  }
+  if (!contextResolved) {
+    return { skippedBecause: 'the step has no applied context, so every finding write is refused.' };
+  }
+  return { destinationId };
+}
+
+// A debrief that cannot land is worth a warning rather than a failure: the step
+// still runs, because losing a workflow to a misconfigured debrief costs more
+// than losing the findings.
+function warnIfDebriefCannotLand(nodeId: string, state: TreeState, contextResolved: boolean): void {
+  const { skippedBecause } = resolveDebriefDelivery(nodeId, state, contextResolved);
+  if (!skippedBecause) return;
+
+  const stepId = getWorkflowStepPosition(nodeId, state.nodes, state.ancestorRegistry)?.currentStepId;
+  const stepName = (stepId && state.nodes[stepId]?.content) || nodeId;
+
+  notifyWorkflow(
+    `Debrief skipped on "${stepName}" — ${skippedBecause}`,
+    'warning',
+    undefined,
+    state.nodes[nodeId]?.metadata.sessionId as string | undefined,
+  );
+}
+
+function buildDebriefBlock(destinationId: string, nodes: Record<string, TreeNode>): string {
+  const register = renderFindingsRegister(destinationId, nodes);
+  const registerSection = register
+    ? `\n\nExisting findings — add your description under one of these ids to record a recurrence rather than creating a sibling:\n${register}`
+    : '';
+
+  return wrapDebrief(
+    `Record each problem you observed while running this workflow as a child of node ${destinationId}, one add_child_node call per problem: first line the headline, the rest the description.${registerSection}`,
+  );
+}
+
+// The register travels in the prompt because the session's read tools are
+// scoped to the bound node and cannot see the Findings node at all. An
+// unresolvable destination contributes nothing: the parent-not-found error has
+// no recovery path, so the session would lose the whole debrief in silence.
+function appendDebriefBlock(body: string, args: SendPayloadArgs): string {
+  if (args.target !== 'autonomous-terminal') return body;
+
+  // An autonomous send with no resolved context never reaches payload assembly,
+  // so reaching here is itself the answer to whether a context resolved.
+  const { destinationId } = resolveDebriefDelivery(args.nodeId, args.state, true);
+  if (!destinationId) return body;
+
+  return `${body}\n\n${buildDebriefBlock(destinationId, args.state.nodes)}`;
+}
+
 function buildSendPayload(args: SendPayloadArgs): string {
-  const body = buildSendPayloadBody(args);
+  const body = appendDebriefBlock(buildSendPayloadBody(args), args);
   return maybePrependRoutingMarker(body, args);
 }
 
@@ -596,6 +671,8 @@ export function createSendActions(
 
     const effectiveContextId = overrideContextId
       ?? getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+
+    warnIfDebriefCannotLand(nodeId, state, Boolean(effectiveContextId));
 
     if (!effectiveContextId) {
       const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);

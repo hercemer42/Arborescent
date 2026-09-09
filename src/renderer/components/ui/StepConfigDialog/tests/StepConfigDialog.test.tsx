@@ -2,22 +2,26 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { StepConfigDialog } from '../StepConfigDialog';
 import type { StepType } from '@/store/tree/commands/SetStepTypeCommand';
+import { useHyperlinkClipboardStore } from '@/store/clipboard/hyperlinkClipboardStore';
 
 describe('StepConfigDialog', () => {
   const defaultProps = {
     nodeId: 'node-1',
     currentStepType: 'manual' as StepType,
     decomposition: false,
+    currentFilePath: '/file.arbo',
     onStepTypeChange: vi.fn(),
     onDecompositionChange: vi.fn(),
     onRecurseChange: vi.fn(),
     onClearSessionChange: vi.fn(),
     onArchiveSettingsChange: vi.fn(),
+    onDebriefDestinationChange: vi.fn(),
     onClose: vi.fn(),
   };
 
   beforeEach(() => {
     vi.clearAllMocks();
+    useHyperlinkClipboardStore.setState({ cache: null });
   });
 
   describe('rendering', () => {
@@ -204,6 +208,33 @@ describe('StepConfigDialog', () => {
       fireEvent.click(screen.getByLabelText(/recurse/i));
 
       expect(defaultProps.onRecurseChange).toHaveBeenCalledWith('node-1', true);
+    });
+  });
+
+  // The section is covered in isolation by DebriefSection.test.tsx; these pin
+  // that the dialog actually renders it and wires its callback through.
+  describe('debrief section', () => {
+    it('renders the Findings node input', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.getByLabelText(/findings node/i)).toBeInTheDocument();
+    });
+
+    it('reflects the configured destination', () => {
+      render(<StepConfigDialog {...defaultProps} debriefDestinationId="findings-1" />);
+
+      expect((screen.getByLabelText(/findings node/i) as HTMLInputElement).value).toBe('findings-1');
+    });
+
+    it('reports the destination id to onDebriefDestinationChange for the configured node', () => {
+      render(<StepConfigDialog {...defaultProps} currentStepType={'autonomous' as StepType} />);
+      useHyperlinkClipboardStore.getState().setCache('findings-1', 'Findings', '/file.arbo', 'pasted-text');
+
+      fireEvent.paste(screen.getByLabelText(/findings node/i), {
+        clipboardData: { getData: (type: string) => (type === 'text/plain' ? 'pasted-text' : '') },
+      } as unknown as ClipboardEventInit);
+
+      expect(defaultProps.onDebriefDestinationChange).toHaveBeenCalledWith('node-1', 'findings-1');
     });
   });
 
