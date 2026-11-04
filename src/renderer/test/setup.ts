@@ -127,6 +127,7 @@ global.window.electron = {
   terminalResize: vi.fn(),
   terminalDestroy: vi.fn(),
   terminalGetCwd: vi.fn().mockResolvedValue(null),
+  terminalShellInFront: vi.fn().mockResolvedValue(true),
   getTerminalRecentOutput: vi.fn().mockResolvedValue(''),
   getTerminalBufferedOutput: vi.fn().mockResolvedValue({ data: '', endOffset: 0 }),
   claudeSessionExists: vi.fn().mockResolvedValue(true),

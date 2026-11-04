@@ -136,6 +136,15 @@ class TerminalManagerClass {
     return terminal.cwd;
   }
 
+  // True when the terminal's own shell is the process in front, so nothing (Claude, an editor)
+  // runs in it and a typed command reaches the shell. node-pty names the foreground process.
+  shellInFront(id: string): boolean {
+    const terminal = this.terminals.get(id);
+    if (!terminal) return false;
+    const name = (command: string) => command.split(/[\\/]/).pop()!.replace(/^-/, '').replace(/\.exe$/i, '');
+    return name(terminal.ptyProcess.process) === name(terminal.shellCommand);
+  }
+
   destroyAll(): void {
     for (const [id] of this.terminals) {
       this.destroy(id);

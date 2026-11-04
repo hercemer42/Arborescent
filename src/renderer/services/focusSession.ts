@@ -26,14 +26,15 @@ export function focusSession(sessionId: string): boolean {
 // Typed into a shell, so only a session id and an absolute directory get that far.
 const SESSION_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-// Reopens a Claude session that is not running (a `Resume` hook event): back in the terminal tab it
-// last ran in when an open file still has one, else in a new tab of the active file opened in its
-// directory, then focused. A tab whose shell is busy with something else is only shown.
+// Brings a Claude session forward from outside the app (a `Resume` hook event), whether or not it
+// runs: its terminal tab when an open file has one, resumed there only when the tab is back at its
+// shell, since a tab with anything in front (the session itself, most often) is only shown. A
+// session no open file has opens in a new tab of the active file, in its directory, resumed.
 export async function resumeSession(sessionId: string, cwd: string | undefined): Promise<boolean> {
   if (!SESSION_ID.test(sessionId)) return false;
   const mapped = findStoreOwningSession(sessionId)?.getState().workflowSessionMap[sessionId];
   if (mapped && focusSession(sessionId)) {
-    if (await waitForShellPrompt(mapped)) await window.electron.terminalWrite(mapped, `claude --resume ${sessionId}\r`);
+    if (await window.electron.terminalShellInFront(mapped)) await window.electron.terminalWrite(mapped, `claude --resume ${sessionId}\r`);
     return true;
   }
 

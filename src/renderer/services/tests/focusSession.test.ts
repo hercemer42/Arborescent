@@ -7,6 +7,7 @@ const mocks = vi.hoisted(() => ({
   focusTerminal: vi.fn(),
   createNewTerminal: vi.fn(),
   promptReady: true,
+  shellInFront: true,
   terminalWrite: vi.fn(),
   activeFilePath: '/work.arbo' as string | null,
   owning: null as unknown,
@@ -31,8 +32,12 @@ describe('focusSession', () => {
     mocks.owning = null;
     mocks.entries = [];
     mocks.promptReady = true;
+    mocks.shellInFront = true;
     mocks.activeFilePath = '/work.arbo';
-    (window as unknown as { electron: unknown }).electron = { terminalWrite: mocks.terminalWrite };
+    (window as unknown as { electron: unknown }).electron = {
+      terminalWrite: mocks.terminalWrite,
+      terminalShellInFront: async () => mocks.shellInFront,
+    };
   });
 
   it('switches to the file owning the session, shows the terminal panel, selects and focuses its terminal', () => {
@@ -56,7 +61,7 @@ describe('focusSession', () => {
 
   const ID = '3c55fd04-f8b5-4508-8990-e3bac3f67cc7';
 
-  it('resumes a session in the tab it last ran in, once its shell is at a prompt', async () => {
+  it('resumes a session in the tab it last ran in, when that tab is back at its shell', async () => {
     const store = storeWith({ [ID]: 'terminal-7' });
     mocks.owning = store;
     mocks.entries = [{ filePath: '/work.arbo', store }];
@@ -67,14 +72,16 @@ describe('focusSession', () => {
     expect(mocks.createNewTerminal).not.toHaveBeenCalled();
   });
 
-  it('only shows a tab whose shell is busy with something else', async () => {
+  it('only brings forward a tab where the session, or anything else, still runs', async () => {
     const store = storeWith({ [ID]: 'terminal-7' });
     mocks.owning = store;
     mocks.entries = [{ filePath: '/work.arbo', store }];
-    mocks.promptReady = false;
+    mocks.shellInFront = false;
 
     expect(await resumeSession(ID, '/repo')).toBe(true);
+    expect(mocks.focusTerminal).toHaveBeenCalledWith('terminal-7');
     expect(mocks.terminalWrite).not.toHaveBeenCalled();
+    expect(mocks.createNewTerminal).not.toHaveBeenCalled();
   });
 
   it('opens a session no file has in a new tab of the active file, in its directory', async () => {
