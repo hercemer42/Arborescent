@@ -7,6 +7,7 @@ import { createApplicationMenu } from './services/menuService';
 import { registerTerminalHandlers, cleanupTerminals } from './handlers/terminalHandlers';
 import { logger } from './services/logger';
 import { startHookServerWithRetry, HookServer } from './services/hookServer';
+import { writeHookEndpoint, removeHookEndpoint } from './services/hookEndpointFile';
 import { startMcpServerWithRetry, ArborescentMcpServer } from './services/mcpServer';
 import { installHooks } from './services/hookInstaller';
 import { getOrCreateMcpAuthToken } from './services/mcpAuthToken';
@@ -305,6 +306,13 @@ const createWindow = async () => {
       getMcpServer: () => mcpServer,
       forwardToRenderer: (payload) => {
         if (mainWindow && !mainWindow.isDestroyed()) {
+          // Sent from outside the app to show a session: the window first, the renderer then
+          // picks its file and terminal tab.
+          if (payload.hook_event_name === 'Focus') {
+            if (mainWindow.isMinimized()) mainWindow.restore();
+            mainWindow.show();
+            app.focus({ steal: true });
+          }
           mainWindow.webContents.send('hook-event', payload);
         }
       },
@@ -320,6 +328,9 @@ const createWindow = async () => {
       hookServer = hookResult.server;
       hookServerPort = hookResult.port;
       logger.info(`Hook server started on port ${hookResult.port}`, 'Main');
+      writeHookEndpoint(hookResult.port, hookAuthToken).catch((error: Error) =>
+        logger.warn(`Hook endpoint file not written, so tools outside the app cannot focus a session: ${error.message}`, 'Main'),
+      );
     } else {
       logger.warn('Hook server failed to start — workflow hooks will not work', 'Main');
     }
@@ -369,6 +380,7 @@ app.on('before-quit', () => {
   proposalBridge?.dispose();
   seedBindingsBridge?.dispose();
   void hookServer?.stop();
+  void removeHookEndpoint();
   void mcpServer?.stop();
 });
 

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useTerminalStore } from '../store/terminal/terminalStore';
 import { logger } from '../services/logger';
 import { findStoreOwningSession, findStoreOwningTerminal } from '../store/storeOwnership';
+import { focusSession } from '../services/focusSession';
 
 export function useHookEventListener(): void {
   useEffect(() => {
@@ -10,6 +11,13 @@ export function useHookEventListener(): void {
         `Hook event received in renderer: ${event.hook_event_name} (session=${event.session_id}${event.terminal_id ? `, terminal=${event.terminal_id}` : ''})`,
         'HookEventListener',
       );
+
+      if (event.hook_event_name === 'Focus') {
+        if (!focusSession(event.session_id)) {
+          logger.warn(`Focus dropped — no open file has session ${event.session_id}`, 'HookEventListener');
+        }
+        return;
+      }
 
       if (event.terminal_id) {
         if (event.hook_event_name === 'UserPromptSubmit') {
