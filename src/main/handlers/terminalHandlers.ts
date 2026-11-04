@@ -119,6 +119,11 @@ export function registerTerminalHandlers(
   );
 
   ipcMain.handle(
+    'terminal:shell-in-front',
+    async (_event: IpcMainInvokeEvent, id: string): Promise<boolean> => TerminalManager.shellInFront(id)
+  );
+
+  ipcMain.handle(
     'terminal:destroy',
     async (_event: IpcMainInvokeEvent, id: string): Promise<void> => {
       try {

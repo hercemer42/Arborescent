@@ -19,6 +19,8 @@ export interface HookEventPayload {
   terminal_id?: string;
   message?: string;
   source?: string;
+  // The directory a `Resume` event reopens its session in.
+  cwd?: string;
   // Attached by the main-process dispatcher on Stop events: the node that
   // declared done this turn (null when none). The renderer advances only the
   // matching node. Absent on non-Stop events and non-dispatcher paths.
@@ -195,6 +197,8 @@ export interface ElectronAPI {
   terminalResize: (id: string, cols: number, rows: number) => Promise<void>;
   terminalDestroy: (id: string) => Promise<void>;
   terminalGetCwd: (id: string) => Promise<string | null>;
+  // True when nothing runs in the terminal but its shell, so a typed command reaches the shell.
+  terminalShellInFront: (id: string) => Promise<boolean>;
   // Returns a trailing window of the terminal's output already emitted, so a
   // late subscriber (the launch resume) can detect a prompt drawn before it
   // attached. onTerminalData does not replay this.

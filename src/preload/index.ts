@@ -59,6 +59,8 @@ const api: ElectronAPI = {
     ipcRenderer.invoke('terminal:destroy', id),
   terminalGetCwd: (id) =>
     ipcRenderer.invoke('terminal:get-cwd', id),
+  terminalShellInFront: (id) =>
+    ipcRenderer.invoke('terminal:shell-in-front', id),
   getTerminalRecentOutput: (id) =>
     ipcRenderer.invoke('terminal:get-recent-output', id),
   getTerminalBufferedOutput: (id) =>

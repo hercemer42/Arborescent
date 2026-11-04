@@ -8,6 +8,8 @@ export type HookEventPayload = {
   terminal_id?: string;
   message?: string;
   source?: string;
+  // The directory a `Resume` event reopens its session in, sent by a tool outside the app.
+  cwd?: string;
   // node_uuid is trusted input from a hook script bound to a known node UUID. The
   // hook server is loopback-only and bearer-auth-gated; if that ever changes, this
   // field becomes a session-takeover vector and the dispatcher must validate it.
@@ -182,6 +184,10 @@ export class HookServer {
 
     if (typeof obj.source === 'string') {
       payload.source = obj.source;
+    }
+
+    if (typeof obj.cwd === 'string') {
+      payload.cwd = obj.cwd;
     }
 
     if (typeof obj.node_uuid === 'string') {

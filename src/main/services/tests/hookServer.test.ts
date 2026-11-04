@@ -404,6 +404,14 @@ describe('HookServer', () => {
       });
     });
 
+    it('should pass on the directory of a Resume event, and drop one that is not a string', async () => {
+      await postHook(port, { session_id: 'sess-9', hook_event_name: 'Resume', cwd: '/Users/me/dev/repo' }, AUTH_TOKEN);
+      await postHook(port, { session_id: 'sess-9', hook_event_name: 'Resume', cwd: 42 }, AUTH_TOKEN);
+
+      expect(mockCallback).toHaveBeenNthCalledWith(1, { session_id: 'sess-9', hook_event_name: 'Resume', cwd: '/Users/me/dev/repo' });
+      expect(mockCallback).toHaveBeenNthCalledWith(2, { session_id: 'sess-9', hook_event_name: 'Resume' });
+    });
+
     it('should not invoke callback for auth-rejected requests', async () => {
       await postHook(port, {
         session_id: 'sess-1',
