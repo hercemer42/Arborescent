@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useTerminalStore } from '../store/terminal/terminalStore';
 import { logger } from '../services/logger';
 import { findStoreOwningSession, findStoreOwningTerminal } from '../store/storeOwnership';
-import { focusSession } from '../services/focusSession';
+import { focusSession, resumeSession } from '../services/focusSession';
 
 export function useHookEventListener(): void {
   useEffect(() => {
@@ -16,6 +16,13 @@ export function useHookEventListener(): void {
         if (!focusSession(event.session_id)) {
           logger.warn(`Focus dropped — no open file has session ${event.session_id}`, 'HookEventListener');
         }
+        return;
+      }
+
+      if (event.hook_event_name === 'Resume') {
+        void resumeSession(event.session_id, event.cwd).then((resumed) => {
+          if (!resumed) logger.warn(`Resume dropped — session ${event.session_id} has no tab and no usable directory or open file`, 'HookEventListener');
+        });
         return;
       }
 

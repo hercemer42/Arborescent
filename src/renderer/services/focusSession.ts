@@ -4,6 +4,7 @@ import { useFilesStore } from '../store/files/filesStore';
 import { usePanelStore } from '../store/panel/panelStore';
 import { useTerminalStore } from '../store/terminal/terminalStore';
 import { focusTerminal } from './terminalFocusRegistry';
+import { waitForShellPrompt } from './shellPromptReadiness';
 
 // Brings a Claude session to the front from outside the app (a `Focus` hook event, sent by
 // pr-radar's focus plugin): its file's tab, the terminal panel, then its terminal tab and the
@@ -19,5 +20,29 @@ export function focusSession(sessionId: string): boolean {
   usePanelStore.getState().showTerminal();
   useTerminalStore.getState().setActiveTerminal(terminalId);
   focusTerminal(terminalId);
+  return true;
+}
+
+// Typed into a shell, so only a session id and an absolute directory get that far.
+const SESSION_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+// Reopens a Claude session that is not running (a `Resume` hook event): back in the terminal tab it
+// last ran in when an open file still has one, else in a new tab of the active file opened in its
+// directory, then focused. A tab whose shell is busy with something else is only shown.
+export async function resumeSession(sessionId: string, cwd: string | undefined): Promise<boolean> {
+  if (!SESSION_ID.test(sessionId)) return false;
+  const mapped = findStoreOwningSession(sessionId)?.getState().workflowSessionMap[sessionId];
+  if (mapped && focusSession(sessionId)) {
+    if (await waitForShellPrompt(mapped)) await window.electron.terminalWrite(mapped, `claude --resume ${sessionId}\r`);
+    return true;
+  }
+
+  if (!cwd || !cwd.startsWith('/') || !useFilesStore.getState().activeFilePath) return false;
+  usePanelStore.getState().showTerminal();
+  const created = await useTerminalStore.getState().createNewTerminal(undefined, cwd);
+  if (!created) return false;
+  useTerminalStore.getState().setActiveTerminal(created.id);
+  if (await waitForShellPrompt(created.id)) await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
+  focusTerminal(created.id);
   return true;
 }

@@ -306,9 +306,9 @@ const createWindow = async () => {
       getMcpServer: () => mcpServer,
       forwardToRenderer: (payload) => {
         if (mainWindow && !mainWindow.isDestroyed()) {
-          // Sent from outside the app to show a session: the window first, the renderer then
-          // picks its file and terminal tab.
-          if (payload.hook_event_name === 'Focus') {
+          // Sent from outside the app to show a session, or reopen one: the window first, the
+          // renderer then picks its file and terminal tab.
+          if (payload.hook_event_name === 'Focus' || payload.hook_event_name === 'Resume') {
             if (mainWindow.isMinimized()) mainWindow.restore();
             mainWindow.show();
             app.focus({ steal: true });
